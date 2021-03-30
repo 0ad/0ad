@@ -592,8 +592,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (msg.data.garrison ? this.CheckGarrisonRange(msg.data.target) :
-			this.CheckOccupyTurretRange(msg.data.target))
+		if (this.CheckTargetRange(msg.data.target, msg.data.garrison ? IID_Garrisonable : IID_Turretable))
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONING");
 		else
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
@@ -748,8 +747,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!Engine.QueryInterface(msg.data.target,
 				msg.data.garrison ? IID_GarrisonHolder : IID_TurretHolder))
 				return this.FinishOrder();
-			if (!(msg.data.garrison ? this.CheckGarrisonRange(msg.data.target) :
-				this.CheckOccupyTurretRange(msg.data.target)))
+			if (this.CheckTargetRange(msg.data.target, msg.data.garrison ? IID_Garrisonable : IID_Turretable))
 			{
 				if (!this.CheckTargetVisible(msg.data.target))
 					return this.FinishOrder();
@@ -1103,8 +1101,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"GARRISON": {
 			"APPROACHING": {
 				"enter": function() {
-					if (!(this.order.data.garrison ? this.MoveToGarrisonRange(this.order.data.target) :
-						this.MoveToOccupyTurretRange(this.order.data.target)))
+					if (!this.MoveToTargetRange(this.order.data.target, this.order.data.garrison ? IID_Garrisonable : IID_Turretable))
 					{
 						this.FinishOrder();
 						return true;
@@ -3220,8 +3217,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					if (this.order.data.garrison ? !this.MoveToGarrisonRange(this.order.data.target) :
-						!this.MoveToOccupyTurretRange(this.order.data.target))
+					if (!this.MoveToTargetRange(this.order.data.target, this.order.data.garrison ? IID_Garrisonable : IID_Turretable))
 					{
 						this.FinishOrder();
 						return true;
@@ -3252,8 +3248,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!msg.likelyFailure && !msg.likelySuccess)
 						return;
 
-					if (this.order.data.garrison ? this.CheckGarrisonRange(this.order.data.target) :
-						this.CheckOccupyTurretRange(this.order.data.target))
+					if (this.CheckTargetRange(this.order.data.target, this.order.data.garrison ? IID_Garrisonable : IID_Turretable))
 						this.SetNextState("GARRISONING");
 					else
 					{
@@ -4708,7 +4703,7 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	let range = this.GetRange(iid, type);
+	let range = this.GetRange(iid, type, target);
 	if (!range)
 		return false;
 
@@ -4745,7 +4740,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	let range = this.GetRange(IID_Attack, type);
+	let range = this.GetRange(IID_Attack, type, target);
 	if (!range)
 		return false;
 
@@ -4808,34 +4803,6 @@ UnitAI.prototype.MoveFormationToTargetAttackRange = function(target)
 	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
-UnitAI.prototype.MoveToGarrisonRange = function(target)
-{
-	if (!this.CheckTargetVisible(target))
-		return false;
-
-	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-	if (!cmpGarrisonHolder)
-		return false;
-	var range = cmpGarrisonHolder.GetLoadingRange();
-
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
-};
-
-UnitAI.prototype.MoveToOccupyTurretRange = function(target)
-{
-	if (!this.CheckTargetVisible(target))
-		return false;
-
-	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
-	if (!cmpTurretHolder)
-		return false;
-	let range = cmpTurretHolder.GetLoadingRange();
-
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
-};
-
 /**
  * Generic dispatcher for other Check...Range functions.
  * @param iid - Interface ID (optional) implementing GetRange
@@ -4866,7 +4833,7 @@ UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
-	let range = this.GetRange(iid, type);
+	let range = this.GetRange(iid, type, target);
 	if (!range)
 		return false;
 
@@ -4902,7 +4869,7 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 		return false;
 
-	let range = this.GetRange(IID_Attack, type);
+	let range = this.GetRange(IID_Attack, type, target);
 	if (!range)
 		return false;
 
@@ -4949,26 +4916,6 @@ UnitAI.prototype.CheckFormationTargetAttackRange = function(target)
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
-};
-
-UnitAI.prototype.CheckGarrisonRange = function(target)
-{
-	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-	if (!cmpGarrisonHolder)
-		return false;
-
-	let range = cmpGarrisonHolder.GetLoadingRange();
-	return this.CheckTargetRangeExplicit(target, range.min, range.max);
-};
-
-UnitAI.prototype.CheckOccupyTurretRange = function(target)
-{
-	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
-	if (!cmpTurretHolder)
-		return false;
-
-	let range = cmpTurretHolder.GetLoadingRange();
-	return this.CheckTargetRangeExplicit(target, range.min, range.max);
 };
 
 /**
@@ -5059,7 +5006,7 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 
 UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
 {
-	let range = this.GetRange(iid, type);
+	let range = this.GetRange(iid, type, target);
 	if (!range)
 		return false;
 
@@ -6349,19 +6296,20 @@ UnitAI.prototype.WalkToHeldPosition = function()
  * General getter for ranges.
  *
  * @param {number} iid
+ * @param {number} target - [Optional]
  * @param {string} type - [Optional]
  * @return {Object | undefined} - The range in the form
  *	{ "min": number, "max": number }
  *	Object."elevationBonus": number may be present when iid == IID_Attack.
  *	Returns undefined when the entity does not have the requested component.
  */
-UnitAI.prototype.GetRange = function(iid, type)
+UnitAI.prototype.GetRange = function(iid, type, target)
 {
 	let component = Engine.QueryInterface(this.entity, iid);
 	if (!component)
 		return undefined;
 
-	return component.GetRange(type);
+	return component.GetRange(type, target);
 };
 
 UnitAI.prototype.CanAttack = function(target)

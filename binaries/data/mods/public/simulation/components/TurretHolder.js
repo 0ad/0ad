@@ -215,7 +215,7 @@ class TurretHolder
 	/**
 	 * @return {Object} - Max and min ranges at which entities can occupy any turret.
 	 */
-	GetLoadingRange()
+	LoadingRange()
 	{
 		return { "min": 0, "max": +(this.template.LoadingRange || 2) };
 	}

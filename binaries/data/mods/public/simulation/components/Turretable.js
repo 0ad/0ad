@@ -8,6 +8,17 @@ Turretable.prototype.Init = function()
 };
 
 /**
+ * @param {string} type - Unused.
+ * @param {number} target - The entity ID of the target to check.
+ * @return {Object} - The range this entity needs to be in in order to occupy a turret point on the target.
+ */
+Turretable.prototype.GetRange = function(type, target)
+{
+	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
+	return cmpTurretHolder ? cmpTurretHolder.LoadingRange() : { "min": 0, "max": 1 };
+};
+
+/**
  * @return {number} - The entity ID of the entity this entity is turreted on.
  */
 Turretable.prototype.HolderID = function()

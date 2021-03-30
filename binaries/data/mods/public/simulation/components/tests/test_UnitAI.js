@@ -6,6 +6,7 @@ Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/BuildingAI.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
+Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
@@ -59,13 +60,8 @@ TestTargetEntityRenaming(
 	"INDIVIDUAL.GARRISON.APPROACHING", "INDIVIDUAL.IDLE",
 	(unitAI, player_ent, target_ent) => {
 		unitAI.CanGarrison = (target) => target == target_ent;
-		unitAI.MoveToGarrisonRange = (target) => target == target_ent;
+		unitAI.MoveToTargetRange = (target) => target == target_ent;
 		unitAI.AbleToMove = () => true;
-
-		AddMock(target_ent, IID_GarrisonHolder, {
-			"GetLoadingRange": () => ({ "max": 100, "min": 0 }),
-			"CanPickup": () => false
-		});
 
 		unitAI.Garrison(target_ent, false);
 	}

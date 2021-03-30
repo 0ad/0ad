@@ -14,6 +14,17 @@ Garrisonable.prototype.Init = function()
 };
 
 /**
+ * @param {string} type - Unused.
+ * @param {number} target - The entity ID of the target to check.
+ * @return {Object} - Min and max ranges this entity needs to be in in order to garrison the target.
+ */
+Garrisonable.prototype.GetRange = function(type, target)
+{
+	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	return cmpGarrisonHolder ? cmpGarrisonHolder.LoadingRange() : { "min": 0, "max": 1 };
+};
+
+/**
  * @return {number} - The number of slots this unit takes in a garrisonHolder.
  */
 Garrisonable.prototype.UnitSize = function()
