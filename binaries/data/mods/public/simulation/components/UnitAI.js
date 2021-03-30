@@ -369,8 +369,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		        cmpPassengerMotion.IsTargetRangeReachable(this.entity, range.min, range.max) &&
 		        PositionHelper.DistanceBetweenEntities(this.entity, msg.data.target) < 200)
 			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
@@ -378,14 +380,18 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (!this.AddGuard(msg.data.target))
 			return this.FinishOrder();
 
-		if (!this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+		if (this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+			this.SetNextState("INDIVIDUAL.GUARD.GUARDING");
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.GUARD.ESCORTING");
 		else
-			this.SetNextState("INDIVIDUAL.GUARD.GUARDING");
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Flee": function(msg) {
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 		this.SetNextState("INDIVIDUAL.FLEEING");
 		return ACCEPT_ORDER;
 	},
@@ -461,6 +467,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.HEAL.HEALING");
 			return ACCEPT_ORDER;
 		}
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 
 		if (this.GetStance().respondStandGround && !msg.data.force)
 			return this.FinishOrder();
@@ -533,12 +541,16 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.GATHER.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
 	"Order.GatherNearPosition": function(msg) {
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
 		msg.data.initPos = { 'x': msg.data.x, 'z': msg.data.z };
 		msg.data.relaxed = true;
@@ -557,12 +569,16 @@ UnitAI.prototype.UnitFsmSpec = {
 			// so just switch back to that order.
 			this.FinishOrder();
 		}
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Trade": function(msg) {
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 		// We must check if this trader has both markets in case it was a back-to-work order.
 		let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 		if (!cmpTrader || !cmpTrader.HasBothMarkets())
@@ -576,8 +592,10 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.Repair": function(msg) {
 		if (this.CheckTargetRange(msg.data.target, IID_Builder))
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.REPAIR.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
@@ -655,18 +673,24 @@ UnitAI.prototype.UnitFsmSpec = {
 	"FORMATIONCONTROLLER": {
 
 		"Order.Walk": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkAndFight": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("WALKINGANDFIGHTING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.MoveIntoFormation": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("FORMING");
 			return ACCEPT_ORDER;
@@ -676,12 +700,16 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.WalkToTargetRange": function(msg) {
 			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToTarget": function(msg) {
 			if (this.CheckRange(msg.data))
+				return this.FinishOrder();
+			if (!this.AbleToMove())
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
@@ -690,11 +718,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.WalkToPointRange": function(msg) {
 			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.Patrol": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("PATROL.PATROLLING");
 			return ACCEPT_ORDER;
@@ -727,7 +759,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			if (!this.CheckFormationTargetAttackRange(target))
 			{
-				if (this.CanAttack(target) && this.CheckTargetVisible(target))
+				if (this.AbleToMove() && this.CheckTargetVisible(target))
 				{
 					this.SetNextState("COMBAT.APPROACHING");
 					return ACCEPT_ORDER;
@@ -749,7 +781,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				return this.FinishOrder();
 			if (this.CheckTargetRange(msg.data.target, msg.data.garrison ? IID_Garrisonable : IID_Turretable))
 			{
-				if (!this.CheckTargetVisible(msg.data.target))
+				if (!this.AbleToMove() || !this.CheckTargetVisible(msg.data.target))
 					return this.FinishOrder();
 
 				this.SetNextState("GARRISON.APPROACHING");
@@ -2250,7 +2282,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"CHASING": {
 				"Order.MoveToChasingPoint": function(msg) {
-					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
+					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max) || !this.AbleToMove())
 						return this.FinishOrder();
 					msg.data.relaxed = true;
 					this.StopTimer();
@@ -5347,14 +5379,7 @@ UnitAI.prototype.AddOrder = function(type, data, queued, pushFront)
 	else if (queued)
 		this.PushOrder(type, data);
 	else
-	{
-		// May happen if an order arrives on the same turn the unit is garrisoned
-		// in that case, just forget the order as this will lead to an infinite loop.
-		// ToDo: Fix that by checking for the ability to move on orders that need that.
-		if (this.isGarrisoned && type != "Ungarrison")
-			return;
 		this.ReplaceOrder(type, data);
-	}
 };
 
 /**
