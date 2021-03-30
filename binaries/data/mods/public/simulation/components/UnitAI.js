@@ -351,11 +351,11 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.PickupUnit": function(msg) {
-		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-		if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+		let cmpHolder = Engine.QueryInterface(this.entity, msg.data.iid);
+		if (!cmpHolder || cmpHolder.IsFull())
 			return this.FinishOrder();
 
-		let range = cmpGarrisonHolder.GetLoadingRange();
+		let range = cmpHolder.GetLoadingRange();
 		msg.data.min = range.min;
 		msg.data.max = range.max;
 		if (this.CheckRange(msg.data))
@@ -1116,7 +1116,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpHolder && cmpHolder.CanPickup(this.entity))
 					{
 						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
-						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity, "iid": this.order.data.garrison ? IID_GarrisonHolder : IID_TurretHolder });
 					}
 					return false;
 				},
@@ -3230,7 +3230,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpHolder && cmpHolder.CanPickup(this.entity))
 					{
 						this.pickup = this.order.data.target;
-						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity, "iid": this.order.data.garrison ? IID_GarrisonHolder : IID_TurretHolder });
 					}
 					return false;
 				},
@@ -3431,8 +3431,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"LOADING": {
 				"enter": function() {
-					let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-					if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+					let cmpHolder = Engine.QueryInterface(this.entity, this.order.data.iid);
+					if (!cmpHolder || cmpHolder.IsFull())
 					{
 						this.FinishOrder();
 						return true;
@@ -3702,7 +3702,7 @@ UnitAI.prototype.OnPickupRequested = function(msg)
 {
 	if (this.HasPickupOrder(msg.entity))
 		return;
-	this.PushOrderAfterForced("PickupUnit", { "target": msg.entity });
+	this.PushOrderAfterForced("PickupUnit", { "target": msg.entity, "iid": msg.iid });
 };
 
 UnitAI.prototype.OnPickupCanceled = function(msg)
