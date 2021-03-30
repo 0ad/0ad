@@ -29,12 +29,6 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Network warnings",
-				"tooltip": "Show which player has a bad connection in multiplayer games.",
-				"config": "overlay.netwarnings"
-			},
-			{
-				"type": "boolean",
 				"label": "FPS overlay",
 				"tooltip": "Show frames per second in top right corner.",
 				"config": "overlay.fps"
@@ -56,25 +50,6 @@
 				"label": "Ceasefire time overlay",
 				"tooltip": "Always show the remaining ceasefire time.",
 				"config": "gui.session.ceasefirecounter"
-			},
-			{
-				"type": "dropdown",
-				"label": "Late observer joins",
-				"tooltip": "Allow everybody or buddies only to join the game as observer after it started.",
-				"config": "network.lateobservers",
-				"list": [
-					{ "value": "everyone", "label": "Everyone" },
-					{ "value": "buddies", "label": "Buddies" },
-					{ "value": "disabled", "label": "Disabled" }
-				]
-			},
-			{
-				"type": "number",
-				"label": "Observer limit",
-				"tooltip": "Prevent further observers from joining if the limit is reached.",
-				"config": "network.observerlimit",
-				"min": 0,
-				"max": 32
 			},
 			{
 				"type": "boolean",
@@ -425,7 +400,7 @@
 		]
 	},
 	{
-		"label": "Lobby",
+		"label": "Networking / Lobby",
 		"tooltip": "These settings only affect the multiplayer.",
 		"options":
 		[
@@ -447,6 +422,45 @@
 				"label": "Game rating column",
 				"tooltip": "Show the average rating of the participating players in a column of the gamelist.",
 				"config": "lobby.columns.gamerating"
+			},
+			{
+				"type": "boolean",
+				"label": "Network warnings",
+				"tooltip": "Show which player has a bad connection in multiplayer games.",
+				"config": "overlay.netwarnings"
+			},
+			{
+				"type": "dropdown",
+				"label": "Late observer joins",
+				"tooltip": "Allow everybody or buddies only to join the game as observer after it started.",
+				"config": "network.lateobservers",
+				"list": [
+					{ "value": "everyone", "label": "Everyone" },
+					{ "value": "buddies", "label": "Buddies" },
+					{ "value": "disabled", "label": "Disabled" }
+				]
+			},
+			{
+				"type": "number",
+				"label": "Observer limit",
+				"tooltip": "Prevent further observers from joining if the limit is reached.",
+				"config": "network.observerlimit",
+				"min": 0,
+				"max": 32
+			},
+			{
+				"type": "number",
+				"label": "Max lag for observers",
+				"tooltip": "When hosting, pause the game if observers are lagging more than this many turns. If set to -1, observers are ignored.",
+				"config": "network.observermaxlag",
+				"min": -1,
+				"max": 10000
+			},
+			{
+				"type": "boolean",
+				"label": "(Observer) Speed up when lagging.",
+				"tooltip": "When observing a game, automatically speed up if you start lagging, to catch up with the live match.",
+				"config": "network.autocatchup"
 			}
 		]
 	},

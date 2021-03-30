@@ -98,6 +98,17 @@ void SetSimRate(float rate)
 	g_Game->SetSimRate(rate);
 }
 
+int GetPendingTurns(const ScriptRequest& rq)
+{
+	if (!g_Game || !g_Game->GetTurnManager())
+	{
+		ScriptException::Raise(rq, "Game is not started");
+		return 0;
+	}
+
+	return g_Game->GetTurnManager()->GetPendingTurns();
+}
+
 bool IsPaused(const ScriptRequest& rq)
 {
 	if (!g_Game)
@@ -179,6 +190,7 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&SetViewedPlayer>(rq, "SetViewedPlayer");
 	ScriptFunction::Register<&GetSimRate>(rq, "GetSimRate");
 	ScriptFunction::Register<&SetSimRate>(rq, "SetSimRate");
+	ScriptFunction::Register<&GetPendingTurns>(rq, "GetPendingTurns");
 	ScriptFunction::Register<&IsPaused>(rq, "IsPaused");
 	ScriptFunction::Register<&SetPaused>(rq, "SetPaused");
 	ScriptFunction::Register<&IsVisualReplay>(rq, "IsVisualReplay");

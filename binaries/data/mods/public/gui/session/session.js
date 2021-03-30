@@ -20,6 +20,7 @@ var g_GameSpeedControl;
 var g_Menu;
 var g_MiniMapPanel;
 var g_NetworkStatusOverlay;
+var g_NetworkDelayOverlay;
 var g_ObjectivesDialog;
 var g_OutOfSyncNetwork;
 var g_OutOfSyncReplay;
@@ -289,6 +290,7 @@ function init(initData, hotloadData)
 	g_Menu = new Menu(g_PauseControl, g_PlayerViewControl, g_Chat);
 	g_MiniMapPanel = new MiniMapPanel(g_PlayerViewControl, g_DiplomacyColors, g_WorkerTypes);
 	g_NetworkStatusOverlay = new NetworkStatusOverlay();
+	g_NetworkDelayOverlay = new NetworkDelayOverlay();
 	g_ObjectivesDialog = new ObjectivesDialog(g_PlayerViewControl, mapCache);
 	g_OutOfSyncNetwork = new OutOfSyncNetwork();
 	g_OutOfSyncReplay = new OutOfSyncReplay();

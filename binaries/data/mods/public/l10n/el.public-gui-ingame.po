@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-07 18:03+0000\n"
+"POT-Creation-Date: 2021-03-26 08:10+0000\n"
+"PO-Revision-Date: 2021-03-27 10:21+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -167,8 +167,8 @@ msgstr "Παύση Παιχνιδιού"
 msgid "Click to Resume Game"
 msgstr "Κλικ για Επαναφορά Παιχνιδιού"
 
-#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:264
-#: gui/session/selection_details.js:282 gui/session/selection_panels.js:557
+#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -709,7 +709,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Μέσο έυρος μπόνους: %(range)s μέτρα"
 msgstr[1] "Μέσο μπόνους έκτασης: %(range)s μέτρα"
 
-#: gui/session/input.js:683
+#: gui/session/input.js:684
 msgid "Cannot build wall here!"
 msgstr "Δεν μπορείς να χτίσεις τείχος εδώ!"
 
@@ -891,132 +891,136 @@ msgstr "Άγνωστος παίκτης"
 msgid "Find idle worker"
 msgstr "Εύρεση αδρανούς εργάτη"
 
-#: gui/session/selection_details.js:60
+#: gui/session/selection_details.js:65
 #, javascript-format
-msgid "%(genericName)s — Packed"
-msgstr "%(genericName)s — Πλήρη"
+msgid "%(secondaryName)s — Packed"
+msgstr ""
 
-#: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:70
+#: gui/session/selection_details.js:67
+msgid "Packed"
+msgstr ""
+
+#: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "[ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ] %(player)s"
 
-#: gui/session/selection_details.js:75
+#: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Βαθμίδα"
 
-#: gui/session/selection_details.js:132
+#: gui/session/selection_details.js:140
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:173
+#: gui/session/selection_details.js:181
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:193
+#: gui/session/selection_details.js:201
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:194 gui/session/selection_details.js:200
+#: gui/session/selection_details.js:202 gui/session/selection_details.js:208
 msgid "Experience:"
 msgstr "Εμπειρία:"
 
-#: gui/session/selection_details.js:199
+#: gui/session/selection_details.js:207
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:209
+#: gui/session/selection_details.js:217
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:210 gui/session/selection_details.js:240
-#: gui/session/selection_details.js:270
+#: gui/session/selection_details.js:218 gui/session/selection_details.js:248
+#: gui/session/selection_details.js:278
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:222
+#: gui/session/selection_details.js:230
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:253 gui/session/unit_actions.js:619
-#: gui/session/unit_actions.js:628 gui/session/unit_actions.js:646
-#: gui/session/unit_actions.js:1030
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
+#: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
+#: gui/session/unit_actions.js:1041
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Κέρδος: %(gain)s"
 
-#: gui/session/selection_details.js:262 gui/session/selection_details.js:280
+#: gui/session/selection_details.js:270 gui/session/selection_details.js:288
 #, javascript-format
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
 msgstr "(%(number)s)\n%(time)s"
 
-#: gui/session/selection_details.js:274
+#: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
 msgstr "Τρέχων/Μέγιστος συλλεκτών"
 
-#: gui/session/selection_details.js:298
+#: gui/session/selection_details.js:306
 #, javascript-format
-msgid "(%(genericName)s)"
-msgstr "(%(genericName)s)"
+msgid "(%(secondaryName)s)"
+msgstr ""
 
-#: gui/session/selection_details.js:444
+#: gui/session/selection_details.js:450
 msgid "Capture Points:"
 msgstr "Πόντοι Κατάκτησης:"
 
-#: gui/session/selection_details.js:452
+#: gui/session/selection_details.js:458
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s:%(details)s\n"
 
-#: gui/session/selection_details.js:453
+#: gui/session/selection_details.js:459
 msgid "Garrison Size"
 msgstr "Μέγεθος Οχύρωσης"
 
-#: gui/session/selection_details.js:458
+#: gui/session/selection_details.js:464
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s⏎"
 
-#: gui/session/selection_details.js:459
+#: gui/session/selection_details.js:465
 msgid "Carrying:"
 msgstr "Κουβαλάει:"
 
-#: gui/session/selection_details.js:462 gui/session/selection_details.js:471
+#: gui/session/selection_details.js:468 gui/session/selection_details.js:477
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:467
+#: gui/session/selection_details.js:473
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:468
+#: gui/session/selection_details.js:474
 msgid "Loot:"
 msgstr "Λάφυρα:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:529
+#: gui/session/selection_details.js:535
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:553
+#: gui/session/selection_details.js:559
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:560
+#: gui/session/selection_details.js:566
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1117,21 +1121,31 @@ msgstr "Αδυναμία έρευνας όταν βρίσκεται σε φάσ�
 msgid "Cannot train while upgrading."
 msgstr "Αδυναμία εκπαίδευσης όταν βρίσκεται σε φάση αναβάθμισης."
 
-#: gui/session/selection_panels.js:1070
+#: gui/session/selection_panels.js:1077
 #, javascript-format
-msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr "Αναβάθμιση σε %(name)s. %(tooltip)s"
+msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
+msgstr ""
 
-#: gui/session/selection_panels.js:1075
+#: gui/session/selection_panels.js:1083
 #, javascript-format
-msgid "Upgrade to %(name)s."
-msgstr "Αναβάθμιση σε %(name)s."
+msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
+msgstr "Αναβάθμιση σε %(primaryName)s(%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1111
+#: gui/session/selection_panels.js:1091
+#, javascript-format
+msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
+msgstr "Αναβάθμιση σε%(primaryName)s.%(tooltip)s"
+
+#: gui/session/selection_panels.js:1096
+#, javascript-format
+msgid "Upgrade to a %(primaryName)s."
+msgstr "Αναβάθμιση σε %(primaryName)s."
+
+#: gui/session/selection_panels.js:1133
 msgid "Cancel Upgrading"
 msgstr "Ακύρωση αναβάθμισης"
 
-#: gui/session/selection_panels.js:1126
+#: gui/session/selection_panels.js:1148
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1595,140 +1609,140 @@ msgstr "Δεν υπάρχουν εμπορικά πλοία."
 msgid "Ready"
 msgstr "Έτοιμος"
 
-#: gui/session/unit_actions.js:558
+#: gui/session/unit_actions.js:566
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Αυτή είναι η αρχή της εμπορικής αγοράς\nΠατήστε το Δεξί-κλίκ για να ακυρώσετε τη διαδρομή ανταλλαγής."
 
-#: gui/session/unit_actions.js:617
+#: gui/session/unit_actions.js:625
 msgid "Origin trade market."
 msgstr "Αρχική αγορά εμπορίου"
 
-#: gui/session/unit_actions.js:627
+#: gui/session/unit_actions.js:635
 msgid "Destination trade market."
 msgstr "Προορισμός της αγοράς."
 
-#: gui/session/unit_actions.js:634
+#: gui/session/unit_actions.js:642
 msgid "Right-click to set as origin trade market"
 msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προέλευσης."
 
-#: gui/session/unit_actions.js:641 gui/session/unit_actions.js:1036
+#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1047
 msgid "This market is too close to the origin market."
 msgstr "Αυτή η αγορά είναι πολύ κοντά στην αρχική αγορά."
 
-#: gui/session/unit_actions.js:645
+#: gui/session/unit_actions.js:653
 msgid "Right-click to set as destination trade market."
 msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προορισμού."
 
-#: gui/session/unit_actions.js:704 gui/session/unit_actions.js:967
+#: gui/session/unit_actions.js:713 gui/session/unit_actions.js:978
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Τρέχουσα οχύρωση: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1027
+#: gui/session/unit_actions.js:1038
 msgid "Right-click to establish a default route for new traders."
 msgstr "Κάντε δεξί κλικ για να καθοριστεί μια προεπιλεγμένη διαδρομή για τους νέους εμπόρους."
 
-#: gui/session/unit_actions.js:1031
+#: gui/session/unit_actions.js:1042
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Αναμενόμενο κέρδος: %(gain)s"
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1168
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Αυτή η οντότητα δε μπορεί να ελεγχθεί."
 msgstr[1] "Αυτές οι οντότητες δε μπορούν να ελεγχθούν."
 
-#: gui/session/unit_actions.js:1203
+#: gui/session/unit_actions.js:1214
 msgid "Unload All."
 msgstr "Ξεφόρτωμα όλων"
 
-#: gui/session/unit_actions.js:1223
+#: gui/session/unit_actions.js:1234
 msgid "Destroy the selected units or structures."
 msgstr "Καταστροφή των επιλεγμένων μονάδων ή κτιρίων."
 
-#: gui/session/unit_actions.js:1225
+#: gui/session/unit_actions.js:1236
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Χηση του %(hotkey)s για αποφυγή διαλόγου επιβεβαίωσης."
 
-#: gui/session/unit_actions.js:1275
+#: gui/session/unit_actions.js:1286
 msgid "Abort the current order."
 msgstr "Ακύρωσε την τρέχουσα παραγγελία."
 
-#: gui/session/unit_actions.js:1296
+#: gui/session/unit_actions.js:1307
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Διάταξε τις επιλεγμένες μονάδες να οχυρωθούν σ' ένα κτίριο ή μία μονάδα."
 
-#: gui/session/unit_actions.js:1321
+#: gui/session/unit_actions.js:1332
 msgid "Unload"
 msgstr "Ξεφορτώμα"
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1352
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Διάταξε τις επιλεγμένες μονάδες να επισκευάσουν ένα κτίριο, ένα πλοίο ή μία πολιορκιτική μηχανή."
 
-#: gui/session/unit_actions.js:1362
+#: gui/session/unit_actions.js:1373
 msgid "Focus on Rally Point."
 msgstr "Συγκέντρωση στο επιλεγμένο σημείο."
 
-#: gui/session/unit_actions.js:1399
+#: gui/session/unit_actions.js:1410
 msgid "Back to Work"
 msgstr "Πίσω στη δουλειά"
 
-#: gui/session/unit_actions.js:1420
+#: gui/session/unit_actions.js:1431
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Διάταξε τις επιλεγμένες μονάδες να φρουρήσουν ένα κτίριο ή μία μονάδα."
 
-#: gui/session/unit_actions.js:1440
+#: gui/session/unit_actions.js:1451
 msgid "Remove guard"
 msgstr "Αφαίρεση προφύλαξης"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1459
+#: gui/session/unit_actions.js:1470
 msgid "Barter & Trade"
 msgstr "Ανταλλαγή και Εμπόριο"
 
-#: gui/session/unit_actions.js:1479
+#: gui/session/unit_actions.js:1490
 msgid "Patrol"
 msgstr "Περιπολία"
 
-#: gui/session/unit_actions.js:1480
+#: gui/session/unit_actions.js:1491
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Η επίθεση σε όλες τις εχθρικές μονάδες που θα συναντήσουν αποφεύγοντας τα κτίρια."
 
-#: gui/session/unit_actions.js:1508
+#: gui/session/unit_actions.js:1519
 msgid "Press to allow allies to use this dropsite"
 msgstr "Πληκτρολόγησε για να επιτραπεί η χρήση του καθορισμένου σημείου από τους συμμάχους. "
 
-#: gui/session/unit_actions.js:1513
+#: gui/session/unit_actions.js:1524
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Πληκτρολόγησε για να αποφύγουν οι σύμμαχοι αυτό το καθορισμένο σημείο "
 
-#: gui/session/unit_actions.js:1548
+#: gui/session/unit_actions.js:1559
 msgid "The use of this dropsite is prohibited"
 msgstr "Σου απαγορεύεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1554
+#: gui/session/unit_actions.js:1565
 msgid "Allies are allowed to use this dropsite."
 msgstr "Σύμμαχοι επιτρέπετε να χρησιμοποιήσουν αυτό το προκαθορισμένο σημείο."
 
-#: gui/session/unit_actions.js:1555
+#: gui/session/unit_actions.js:1566
 msgid "You are allowed to use this dropsite"
 msgstr "Σου επιτρέπεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1619
+#: gui/session/unit_actions.js:1630
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Η οντότητα πρέπει να εξουδετερωθεί ώστε να συλλεχθεί."
 
-#: gui/session/unit_actions.js:1622
+#: gui/session/unit_actions.js:1633
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Δεν μπορείς να καταστρέψεις αυτήν την οντότητα γιατί εχεις λιγότερους απο τους μισούς πόντους κατάκτησης"
 
-#: gui/session/unit_actions.js:1625
+#: gui/session/unit_actions.js:1636
 msgid "This entity is undeletable"
 msgstr "Η οντότητα δεν διαγράφεται."

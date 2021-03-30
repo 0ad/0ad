@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support">
+  <Auras datatype="tokens">
+    units/elephant_worker
+  </Auras>
+  <Cost>
+    <BuildTime>15</BuildTime>
+    <Resources>
+      <food>100</food>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Square width="4.5" depth="9.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>300</Max>
+  </Health>
+  <Identity>
+    <GenericName>Worker Elephant</GenericName>
+    <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
+    <Formations disable=""/>
+  </Identity>
+  <Loot>
+    <food>10</food>
+  </Loot>
+  <Position>
+    <Anchor>pitch</Anchor>
+    <TurnRate>3</TurnRate>
+  </Position>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>2</Hack>
+        <Pierce>2</Pierce>
+        <Crush>10</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <ResourceDropsite>
+    <Types>food wood stone metal</Types>
+    <Sharable>false</Sharable>
+  </ResourceDropsite>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/elephant_select.xml</select>
+      <order_garrison>actor/fauna/animal/elephant_order.xml</order_garrison>
+      <order_gather>actor/fauna/animal/elephant_order.xml</order_gather>
+      <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
+      <death>actor/fauna/animal/elephant_death.xml</death>
+      <trained>actor/fauna/animal/elephant_trained.xml</trained>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <HeightOffset>9.0</HeightOffset>
+  </StatusBars>
+  <UnitAI>
+    <CanPatrol>false</CanPatrol>
+  </UnitAI>
+  <UnitMotion>
+    <PassabilityClass>large</PassabilityClass>
+    <WalkSpeed op="mul">0.6</WalkSpeed>
+  </UnitMotion>
+  <Vision>
+    <Range>50</Range>
+  </Vision>
+</Entity>

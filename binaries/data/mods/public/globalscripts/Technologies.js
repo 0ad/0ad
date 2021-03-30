@@ -88,9 +88,12 @@ function GetTechModifiedProperty_string(modifications, classes, originalValue)
 
 /**
  * Returns whether the given modification applies to the entity containing the given class list
+ * NB: returns true if modifications.affects is empty, to allow "affects anything" modifiers.
  */
 function DoesModificationApply(modification, classes)
 {
+	if (!modification.affects || !modification.affects.length)
+		return true;
 	return MatchesClassList(classes, modification.affects);
 }
 
