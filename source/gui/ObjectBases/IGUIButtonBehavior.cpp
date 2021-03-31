@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -144,13 +144,13 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage& Message)
 const CGUISpriteInstance& IGUIButtonBehavior::GetButtonSprite(const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_over, const CGUISpriteInstance& sprite_pressed, const CGUISpriteInstance& sprite_disabled) const
 {
 	if (!m_pObject.IsEnabled())
-		return sprite_disabled || sprite;
+		return sprite_disabled ? sprite_disabled : sprite;
 
 	if (!m_pObject.IsMouseHovering())
 		return sprite;
 
 	if (m_Pressed)
-		return sprite_pressed || sprite;
+		return sprite_pressed ? sprite_pressed : sprite;
 
-	return sprite_over || sprite;
+	return sprite_over ? sprite_over : sprite;
 }
