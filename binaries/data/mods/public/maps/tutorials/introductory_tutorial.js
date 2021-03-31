@@ -334,7 +334,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Now that you are in City Phase, build a fortress nearby (gather some stone first if needed) and then use it to construct 2 Battering Rams."),
+		"instructions": markForTranslation("Now that you are in City Phase, build the Arsenal nearby and then use it to construct 2 Battering Rams."),
 		"Init": function()
 		{
 			this.ramCount = 0;
