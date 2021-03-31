@@ -46,6 +46,8 @@ const uint SDL_USEREVENT_ = 0x8000;
 const uint SDL_HOTKEYPRESS = SDL_USEREVENT_;
 const uint SDL_HOTKEYDOWN = SDL_USEREVENT_ + 1;
 const uint SDL_HOTKEYUP = SDL_USEREVENT_ + 2;
+const uint SDL_HOTKEYPRESS_SILENT = SDL_USEREVENT_ + 3;
+const uint SDL_HOTKEYUP_SILENT = SDL_USEREVENT_ + 4;
 
 constexpr SDL_Scancode_ UNUSED_HOTKEY_CODE = 0; // == SDL_SCANCODE_UNKNOWN
 
@@ -70,9 +72,6 @@ typedef std::vector<SHotkeyMapping> KeyMapping;
 // (A hotkey triggered by a combination of multiple keys will be in this map
 // multiple times.)
 extern std::unordered_map<SDL_Scancode_, KeyMapping> g_HotkeyMap;
-
-// The current pressed status of hotkeys
-extern std::unordered_map<std::string, bool> g_HotkeyStatus;
 
 class CConfigDB;
 extern void LoadHotkeys(CConfigDB& configDB);

@@ -31,12 +31,33 @@
 static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 
 std::unordered_map<int, KeyMapping> g_HotkeyMap;
-std::unordered_map<std::string, bool> g_HotkeyStatus;
 
 namespace {
-// List of currently pressed hotkeys. This is used to quickly reset hotkeys.
-// NB: this points to one of g_HotkeyMap's mappings. It works because that map is stable once constructed.
-std::vector<const SHotkeyMapping*> pressedHotkeys;
+	std::unordered_map<std::string, bool> g_HotkeyStatus;
+
+	struct PressedHotkey
+	{
+		PressedHotkey(const SHotkeyMapping* m, bool t) : mapping(m), retriggered(t) {};
+		// NB: this points to one of g_HotkeyMap's mappings. It works because that std::unordered_map is stable once constructed.
+		const SHotkeyMapping* mapping;
+		// Whether the hotkey was triggered by a key release (silences "press" and "up" events).
+		bool retriggered;
+	};
+
+	struct ReleasedHotkey
+	{
+		ReleasedHotkey(const char* n, bool t) : name(n), wasRetriggered(t) {};
+		const char* name;
+		bool wasRetriggered;
+	};
+
+	// List of currently pressed hotkeys. This is used to quickly reset hotkeys.
+	// This is an unsorted vector because there will generally be very few elements,
+	// so it's presumably faster than std::set.
+	std::vector<PressedHotkey> pressedHotkeys;
+
+	// List of active keys relevant for hotkeys.
+	std::vector<SDL_Scancode_> activeScancodes;
 }
 
 static_assert(std::is_integral<std::underlying_type<SDL_Scancode>::type>::value, "SDL_Scancode is not an integral enum.");
@@ -133,9 +154,9 @@ bool isPressed(const SKey& key)
 
 InReaction HotkeyStateChange(const SDL_Event_* ev)
 {
-	if (ev->ev.type == SDL_HOTKEYPRESS)
+	if (ev->ev.type == SDL_HOTKEYPRESS || ev->ev.type == SDL_HOTKEYPRESS_SILENT)
 		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = true;
-	else if (ev->ev.type == SDL_HOTKEYUP)
+	else if (ev->ev.type == SDL_HOTKEYUP || ev->ev.type == SDL_HOTKEYUP_SILENT)
 		g_HotkeyStatus[static_cast<const char*>(ev->ev.user.data1)] = false;
 	return IN_PASS;
 }
@@ -227,68 +248,67 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	if (g_HotkeyMap.find(scancode) == g_HotkeyMap.end())
 		return (IN_PASS);
 
-	// Inhibit the dispatch of hotkey events caused by real keys (not fake mouse button
-	// events) while the console is up.
+	bool isReleasedKey = ev->ev.type == SDL_KEYUP || ev->ev.type == SDL_MOUSEBUTTONUP;
+	std::vector<SDL_Scancode_>::iterator it = std::find(activeScancodes.begin(), activeScancodes.end(), scancode);
+	// This prevents duplicates, assuming we might end up in a weird state - feels safer with input.
+	if (isReleasedKey && it != activeScancodes.end())
+			activeScancodes.erase(it);
+	else if (!isReleasedKey && it == activeScancodes.end())
+		activeScancodes.emplace_back(scancode);
 
-	bool consoleCapture = false;
+	/**
+	 * Hotkey behaviour spec (see also tests):
+	 *  - If both 'F' and 'Ctrl+F' are hotkeys, and Ctrl & F keys are down, then the more specific one only is fired ('Ctrl+F' here).
+	 *  - If 'Ctrl+F' and 'Ctrl+A' are both hotkeys, both may fire simulatenously (respectively without Ctrl).
+	 *    - However, per the first point, 'Ctrl+Shift+F' would fire alone in that situation.
+	 *  - "Press" is sent once, when the hotkey is initially triggered.
+	 *  - "Up" is sent once, when the hotkey is released or superseded by a more specific hotkey.
+	 *  - "Down" is sent repeatedly, and is also sent alongside the inital "Press".
+	 *    - As a special case (see below), "Down" is not sent alongside "PressSilent".
+	 *  - If 'Ctrl+F' is active, and 'Ctrl' is released, 'F' must become active again.
+	 *    - However, the "Press" event is _not_ fired. Instead, "PressSilent" is.
+	 *    - Likewise, once 'F' is released, the "Up" event will be a "UpSilent".
+	 *      (the reason is that it is unexpected to trigger a press on key release).
+	 *  - Hotkeys are allowed to fire with extra keys (e.g. Ctrl+F+A still triggers 'Ctrl+F').
+	 *  - If 'F' and 'Ctrl+F' trigger the same hotkey, adding 'Ctrl' _and_ releasing 'Ctrl' will trigger new 'Press' events.
+	 *    The "Up" event is only sent when both Ctrl & F are released.
+	 *    - This is somewhat unexpected/buggy, but it makes the implementation easier and is easily avoidable for players.
+	 * Note that mouse buttons/wheel inputs can fire hotkeys, in combinations with keys.
+	 * ...Yes, this is all surprisingly complex.
+	 */
 
-	if (g_Console && g_Console->IsActive() && scancode < SDL_NUM_SCANCODES)
-		consoleCapture = true;
+	std::vector<ReleasedHotkey> releasedHotkeys;
+	std::vector<PressedHotkey> newPressedHotkeys;
 
-	// Here's an interesting bit:
-	// If you have an event bound to, say, 'F', and another to, say, 'Ctrl+F', pressing
-	// 'F' while control is down would normally fire off both.
+	std::set<SDL_Scancode_> triggers;
+	if (!isReleasedKey)
+		triggers.insert(scancode);
+	else
+		// If the key is released, we need to check all less precise hotkeys again, to see if we should retrigger some.
+		for (SDL_Scancode_ code : activeScancodes)
+			triggers.insert(code);
 
-	// To avoid this, set the modifier keys for /all/ events this key would trigger
-	// (Ctrl, for example, is both group-save and bookmark-save)
-	// but only send a HotkeyPress/HotkeyDown event for the event with bindings most precisely
-	// matching the conditions (i.e. the event with the highest number of auxiliary
-	// keys, providing they're all down)
-
-	// Furthermore, we need to support non-conflicting hotkeys triggering at the same time.
-	// This is much more complex code than you might expect. A refactoring could be used.
-
-	std::vector<const SHotkeyMapping*> newPressedHotkeys;
-	std::vector<const char*> releasedHotkeys;
+	// Now check if we need to trigger new hotkeys / retrigger hotkeys.
+	// We'll need the match-level and the keys in play to release currently pressed hotkeys.
 	size_t closestMapMatch = 0;
-
-	bool release = (ev->ev.type == SDL_KEYUP) || (ev->ev.type == SDL_MOUSEBUTTONUP);
-
-	SKey retrigger = { UNUSED_HOTKEY_CODE };
-	for (const SHotkeyMapping& hotkey : g_HotkeyMap[scancode])
-	{
-		// If the key is being released, any active hotkey is released.
-		if (release)
+	for (SDL_Scancode_ code : triggers)
+		for (const SHotkeyMapping& hotkey : g_HotkeyMap[code])
 		{
-			if (g_HotkeyStatus[hotkey.name])
+			// Ensure no duplications in the new list.
+			if (std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+							 [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.name; }) != newPressedHotkeys.end())
+				continue;
+
+			bool accept = true;
+			for (const SKey& k : hotkey.requires)
 			{
-				releasedHotkeys.push_back(hotkey.name.c_str());
-
-				// If we are releasing a key, we possibly need to retrigger less precise hotkeys
-				// (e.g. 'Ctrl + D', if releasing D, we need to retrigger Ctrl hotkeys).
-				// To do this simply, we'll just re-trigger any of the additional required key.
-				if (!hotkey.requires.empty() && retrigger.code == UNUSED_HOTKEY_CODE)
-					for (const SKey& k : hotkey.requires)
-						if (isPressed(k))
-						{
-							retrigger.code = hotkey.requires.front().code;
-							break;
-						}
+				accept = isPressed(k);
+				if (!accept)
+					break;
 			}
-			continue;
-		}
-
-		// Check for no unpermitted keys
-		bool accept = true;
-		for (const SKey& k : hotkey.requires)
-		{
-			accept = isPressed(k);
 			if (!accept)
-				break;
-		}
+				continue;
 
-		if (accept && !(consoleCapture && hotkey.name != "console.toggle"))
-		{
 			// Check if this is an equally precise or more precise match
 			if (hotkey.requires.size() + 1 >= closestMapMatch)
 			{
@@ -299,76 +319,93 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 					newPressedHotkeys.clear();
 					closestMapMatch = hotkey.requires.size() + 1;
 				}
-				newPressedHotkeys.push_back(&hotkey);
+				newPressedHotkeys.emplace_back(&hotkey, isReleasedKey);
 			}
+		}
+
+	// Check if we need to release hotkeys.
+	for (PressedHotkey& hotkey : pressedHotkeys)
+	{
+		bool addingAnew = std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+									   [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; }) != newPressedHotkeys.end();
+
+		// Update the triggered status to match our current state.
+		if (addingAnew)
+			std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+						 [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; })->retriggered = hotkey.retriggered;
+		// If the already-pressed hotkey has a lower specificity than the new hotkey(s), de-activate it.
+		else if (hotkey.mapping->requires.size() + 1 < closestMapMatch)
+		{
+			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
+			continue;
+		}
+
+		// Check that the hotkey still matches all active keys.
+		bool accept = isPressed(hotkey.mapping->primary);
+		if (accept)
+			for (const SKey& k : hotkey.mapping->requires)
+			{
+				accept = isPressed(k);
+				if (!accept)
+					break;
+			}
+		if (!accept && !addingAnew)
+			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
+		else if (accept)
+		{
+			// If this hotkey has higher specificity than the new hotkeys we wanted to trigger/retrigger,
+			// then discard this new addition(s). This works because at any given time, all hotkeys
+			// active must have the same specificity.
+			if (hotkey.mapping->requires.size() + 1 > closestMapMatch)
+			{
+				closestMapMatch = hotkey.mapping->requires.size() + 1;
+				newPressedHotkeys.clear();
+				newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
+			}
+			else if (!addingAnew)
+				newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
 		}
 	}
-
-	// If this is a new key, check if we need to unset any previous hotkey.
-	// NB: this uses unsorted vectors because there are usually very few elements to go through
-	// (and thus it is presumably faster than std::set).
-	if ((ev->ev.type == SDL_KEYDOWN) || (ev->ev.type == SDL_MOUSEBUTTONDOWN))
-		for (const SHotkeyMapping* hotkey : pressedHotkeys)
-		{
-			if (std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
-							 [&hotkey](const SHotkeyMapping* v){ return v->name == hotkey->name; }) != newPressedHotkeys.end())
-				continue;
-			else if (hotkey->requires.size() + 1 < closestMapMatch)
-				releasedHotkeys.push_back(hotkey->name.c_str());
-			else
-			{
-				// We need to check that all 'keys' are still pressed (because of mouse buttons).
-				if (!isPressed(hotkey->primary))
-					continue;
-				for (const SKey& key : hotkey->requires)
-					if (!isPressed(key))
-						continue;
-				newPressedHotkeys.push_back(hotkey);
-			}
-		}
 
 	pressedHotkeys.swap(newPressedHotkeys);
 
 	// Mouse wheel events are released instantly.
 	if (ev->ev.type == SDL_MOUSEWHEEL)
-		for (const SHotkeyMapping* hotkey : pressedHotkeys)
-			releasedHotkeys.push_back(hotkey->name.c_str());
+		for (const PressedHotkey& hotkey : pressedHotkeys)
+			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), false);
 
-	for (const SHotkeyMapping* hotkey : pressedHotkeys)
+	for (const PressedHotkey& hotkey : pressedHotkeys)
 	{
 		// Send a KeyPress event when a hotkey is pressed initially and on mouseButton and mouseWheel events.
 		if (ev->ev.type != SDL_KEYDOWN || ev->ev.key.repeat == 0)
 		{
 			SDL_Event_ hotkeyPressNotification;
-			hotkeyPressNotification.ev.type = SDL_HOTKEYPRESS;
-			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(hotkey->name.c_str());
+			hotkeyPressNotification.ev.type = hotkey.retriggered ? SDL_HOTKEYPRESS_SILENT : SDL_HOTKEYPRESS;
+			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(hotkey.mapping->name.c_str());
 			in_push_priority_event(&hotkeyPressNotification);
 		}
 
 		// Send a HotkeyDown event on every key, mouseButton and mouseWheel event.
+		// The exception is on the first retriggering: hotkeys may fire transiently
+		// while a user lifts fingers off multi-key hotkeys, and listeners to "hotkeydown"
+		// generally don't expect that to trigger then.
+		// (It might be better to check for HotkeyIsPressed, however).
 		// For keys the event is repeated depending on hardware and OS configured interval.
 		// On linux, modifier keys (shift, alt, ctrl) are not repeated, see https://github.com/SFML/SFML/issues/122.
+		if (ev->ev.key.repeat == 0 && hotkey.retriggered)
+			continue;
 		SDL_Event_ hotkeyDownNotification;
 		hotkeyDownNotification.ev.type = SDL_HOTKEYDOWN;
-		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(hotkey->name.c_str());
+		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(hotkey.mapping->name.c_str());
 		in_push_priority_event(&hotkeyDownNotification);
 	}
 
-	for (const char* hotkeyName : releasedHotkeys)
+	for (const ReleasedHotkey& hotkey : releasedHotkeys)
 	{
 		SDL_Event_ hotkeyNotification;
-		hotkeyNotification.ev.type = SDL_HOTKEYUP;
-		hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
+		hotkeyNotification.ev.type = hotkey.wasRetriggered ? SDL_HOTKEYUP_SILENT : SDL_HOTKEYUP;
+		hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkey.name);
 		in_push_priority_event(&hotkeyNotification);
-	}
-
-	if (retrigger.code != UNUSED_HOTKEY_CODE)
-	{
-		SDL_Event_ phantomKey;
-		phantomKey.ev.type = SDL_KEYDOWN;
-		phantomKey.ev.key.repeat = 0;
-		phantomKey.ev.key.keysym.scancode = static_cast<SDL_Scancode>(retrigger.code);
-		HotkeyInputHandler(&phantomKey);
 	}
 
 	return IN_PASS;

@@ -539,14 +539,14 @@ void InitInput()
 
 	in_add_handler(CProfileViewer::InputThunk);
 
-	in_add_handler(conInputHandler);
-
 	in_add_handler(HotkeyInputHandler);
 
 	// gui_handler needs to be registered after (i.e. called before!) the
 	// hotkey handler so that input boxes can be typed in without
 	// setting off hotkeys.
 	in_add_handler(gui_handler);
+	// Likewise for the console.
+	in_add_handler(conInputHandler);
 
 	in_add_handler(touch_input_handler);
 

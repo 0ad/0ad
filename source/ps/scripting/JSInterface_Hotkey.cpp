@@ -164,6 +164,7 @@ JS::Value GetConflicts(const ScriptRequest& rq, JS::HandleValue combination)
 
 void JSI_Hotkey::RegisterScriptFunctions(const ScriptRequest& rq)
 {
+	ScriptFunction::Register<&HotkeyIsPressed>(rq, "HotkeyIsPressed");
 	ScriptFunction::Register<&GetHotkeyMap>(rq, "GetHotkeyMap");
 	ScriptFunction::Register<&GetScancodeKeyNames>(rq, "GetScancodeKeyNames");
 	ScriptFunction::Register<&ReloadHotkeys>(rq, "ReloadHotkeys");

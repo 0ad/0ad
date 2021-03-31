@@ -48,8 +48,11 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(const ScriptRequest& rq, JS
 	case SDL_MOUSEBUTTONDOWN: typeName = "mousebuttondown"; break;
 	case SDL_MOUSEBUTTONUP: typeName = "mousebuttonup"; break;
 	case SDL_QUIT: typeName = "quit"; break;
+	case SDL_HOTKEYPRESS: typeName = "hotkeypress"; break;
 	case SDL_HOTKEYDOWN: typeName = "hotkeydown"; break;
 	case SDL_HOTKEYUP: typeName = "hotkeyup"; break;
+	case SDL_HOTKEYPRESS_SILENT: typeName = "hotkeypresssilent"; break;
+	case SDL_HOTKEYUP_SILENT: typeName = "hotkeyupsilent"; break;
 	default: typeName = "(unknown)"; break;
 	}
 
@@ -111,8 +114,11 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(const ScriptRequest& rq, JS
 		SET(obj, "clicks", (int)val.ev.button.clicks);
 		break;
 	}
+	case SDL_HOTKEYPRESS:
 	case SDL_HOTKEYDOWN:
 	case SDL_HOTKEYUP:
+	case SDL_HOTKEYPRESS_SILENT:
+	case SDL_HOTKEYUP_SILENT:
 	{
 		SET(obj, "hotkey", static_cast<const char*>(val.ev.user.data1));
 		break;
