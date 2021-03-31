@@ -72,24 +72,27 @@ public:
 private:
 	void CheckClientsReady();
 
-	/// The latest turn for which we have received all commands from all clients
-	u32 m_ReadyTurn;
+	struct Client
+	{
+		CStrW playerName;
+		// Latest turn for which all commands have been received.
+		u32 readyTurn;
+		// Last known simulated turn.
+		u32 simulatedTurn;
+		bool isObserver;
+		bool isOOS = false;
+	};
 
-	// Client ID -> whether they are only an observer.
-	std::unordered_map<int, bool> m_ClientsObserver;
+	std::unordered_map<int, Client> m_ClientsData;
 
-	// Client ID -> ready turn number (the latest turn for which all commands have been received from that client)
-	std::map<int, u32> m_ClientsReady;
-
-	// Client ID -> last known simulated turn number (for which we have the state hash)
-	// (the client has reached the start of this turn, not done the update for it yet)
-	std::map<int, u32> m_ClientsSimulated;
+	// Cached value - is any client OOS? This is reset when the OOS client leaves.
+	bool m_HasSyncError = false;
 
 	// Map of turn -> {Client ID -> state hash}; old indexes <= min(m_ClientsSimulated) are deleted
 	std::map<u32, std::map<int, std::string>> m_ClientStateHashes;
 
-	// Map of client ID -> playername
-	std::map<int, CStrW> m_ClientPlayernames;
+	/// The latest turn for which we have received all commands from all clients
+	u32 m_ReadyTurn;
 
 	// Current turn length
 	u32 m_TurnLength;
@@ -98,8 +101,6 @@ private:
 	std::vector<u32> m_SavedTurnLengths;
 
 	CNetServerWorker& m_NetServer;
-
-	bool m_HasSyncError;
 };
 
 #endif // INCLUDED_NETSERVERTURNMANAGER

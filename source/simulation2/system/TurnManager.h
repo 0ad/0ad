@@ -209,8 +209,6 @@ protected:
 	/// add elapsed time increments to until we reach 0).
 	float m_DeltaSimTime;
 
-	bool m_HasSyncError;
-
 	IReplayLogger& m_Replay;
 
 	// The number of the last turn that is allowed to be executed (used for replays)
