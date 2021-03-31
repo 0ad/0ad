@@ -56,7 +56,7 @@ GarrisonHolder.prototype.IsGarrisoned = function(entity)
 /**
  * @return {Object} max and min range at which entities can garrison the holder.
  */
-GarrisonHolder.prototype.GetLoadingRange = function()
+GarrisonHolder.prototype.LoadingRange = function()
 {
 	return { "max": +this.template.LoadingRange, "min": 0 };
 };

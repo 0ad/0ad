@@ -30,7 +30,7 @@ GUI Object Base - Text Owner
 #ifndef INCLUDED_IGUITEXTOWNER
 #define INCLUDED_IGUITEXTOWNER
 
-#include "ps/Shapes.h"
+#include "maths/Rect.h"
 
 #include <vector>
 

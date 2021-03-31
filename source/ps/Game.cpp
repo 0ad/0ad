@@ -36,7 +36,6 @@
 #include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
 #include "ps/Replay.h"
-#include "ps/Shapes.h"
 #include "ps/World.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"

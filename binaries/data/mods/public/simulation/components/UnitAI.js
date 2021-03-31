@@ -351,11 +351,11 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.PickupUnit": function(msg) {
-		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-		if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+		let cmpHolder = Engine.QueryInterface(this.entity, msg.data.iid);
+		if (!cmpHolder || cmpHolder.IsFull())
 			return this.FinishOrder();
 
-		let range = cmpGarrisonHolder.GetLoadingRange();
+		let range = cmpHolder.GetLoadingRange();
 		msg.data.min = range.min;
 		msg.data.max = range.max;
 		if (this.CheckRange(msg.data))
@@ -369,8 +369,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		        cmpPassengerMotion.IsTargetRangeReachable(this.entity, range.min, range.max) &&
 		        PositionHelper.DistanceBetweenEntities(this.entity, msg.data.target) < 200)
 			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
@@ -378,14 +380,18 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (!this.AddGuard(msg.data.target))
 			return this.FinishOrder();
 
-		if (!this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+		if (this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
+			this.SetNextState("INDIVIDUAL.GUARD.GUARDING");
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.GUARD.ESCORTING");
 		else
-			this.SetNextState("INDIVIDUAL.GUARD.GUARDING");
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Flee": function(msg) {
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 		this.SetNextState("INDIVIDUAL.FLEEING");
 		return ACCEPT_ORDER;
 	},
@@ -461,6 +467,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.HEAL.HEALING");
 			return ACCEPT_ORDER;
 		}
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 
 		if (this.GetStance().respondStandGround && !msg.data.force)
 			return this.FinishOrder();
@@ -533,12 +541,16 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.GATHER.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
 	"Order.GatherNearPosition": function(msg) {
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
 		msg.data.initPos = { 'x': msg.data.x, 'z': msg.data.z };
 		msg.data.relaxed = true;
@@ -557,12 +569,16 @@ UnitAI.prototype.UnitFsmSpec = {
 			// so just switch back to that order.
 			this.FinishOrder();
 		}
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Trade": function(msg) {
+		if (!this.AbleToMove())
+			return this.FinishOrder();
 		// We must check if this trader has both markets in case it was a back-to-work order.
 		let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 		if (!cmpTrader || !cmpTrader.HasBothMarkets())
@@ -576,8 +592,10 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.Repair": function(msg) {
 		if (this.CheckTargetRange(msg.data.target, IID_Builder))
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
-		else
+		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.REPAIR.APPROACHING");
+		else
+			return this.FinishOrder();
 		return ACCEPT_ORDER;
 	},
 
@@ -592,8 +610,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (msg.data.garrison ? this.CheckGarrisonRange(msg.data.target) :
-			this.CheckOccupyTurretRange(msg.data.target))
+		if (this.CheckTargetRange(msg.data.target, msg.data.garrison ? IID_Garrisonable : IID_Turretable))
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONING");
 		else
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
@@ -656,18 +673,24 @@ UnitAI.prototype.UnitFsmSpec = {
 	"FORMATIONCONTROLLER": {
 
 		"Order.Walk": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkAndFight": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("WALKINGANDFIGHTING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.MoveIntoFormation": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("FORMING");
 			return ACCEPT_ORDER;
@@ -677,12 +700,16 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.WalkToTargetRange": function(msg) {
 			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToTarget": function(msg) {
 			if (this.CheckRange(msg.data))
+				return this.FinishOrder();
+			if (!this.AbleToMove())
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
@@ -691,11 +718,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.WalkToPointRange": function(msg) {
 			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.Patrol": function(msg) {
+			if (!this.AbleToMove())
+				return this.FinishOrder();
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
 			this.SetNextState("PATROL.PATROLLING");
 			return ACCEPT_ORDER;
@@ -728,7 +759,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			if (!this.CheckFormationTargetAttackRange(target))
 			{
-				if (this.CanAttack(target) && this.CheckTargetVisible(target))
+				if (this.AbleToMove() && this.CheckTargetVisible(target))
 				{
 					this.SetNextState("COMBAT.APPROACHING");
 					return ACCEPT_ORDER;
@@ -748,10 +779,9 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!Engine.QueryInterface(msg.data.target,
 				msg.data.garrison ? IID_GarrisonHolder : IID_TurretHolder))
 				return this.FinishOrder();
-			if (!(msg.data.garrison ? this.CheckGarrisonRange(msg.data.target) :
-				this.CheckOccupyTurretRange(msg.data.target)))
+			if (this.CheckTargetRange(msg.data.target, msg.data.garrison ? IID_Garrisonable : IID_Turretable))
 			{
-				if (!this.CheckTargetVisible(msg.data.target))
+				if (!this.AbleToMove() || !this.CheckTargetVisible(msg.data.target))
 					return this.FinishOrder();
 
 				this.SetNextState("GARRISON.APPROACHING");
@@ -1103,8 +1133,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"GARRISON": {
 			"APPROACHING": {
 				"enter": function() {
-					if (!(this.order.data.garrison ? this.MoveToGarrisonRange(this.order.data.target) :
-						this.MoveToOccupyTurretRange(this.order.data.target)))
+					if (!this.MoveToTargetRange(this.order.data.target, this.order.data.garrison ? IID_Garrisonable : IID_Turretable))
 					{
 						this.FinishOrder();
 						return true;
@@ -1119,7 +1148,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpHolder && cmpHolder.CanPickup(this.entity))
 					{
 						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
-						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity, "iid": this.order.data.garrison ? IID_GarrisonHolder : IID_TurretHolder });
 					}
 					return false;
 				},
@@ -2253,7 +2282,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"CHASING": {
 				"Order.MoveToChasingPoint": function(msg) {
-					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
+					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max) || !this.AbleToMove())
 						return this.FinishOrder();
 					msg.data.relaxed = true;
 					this.StopTimer();
@@ -3220,8 +3249,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					if (this.order.data.garrison ? !this.MoveToGarrisonRange(this.order.data.target) :
-						!this.MoveToOccupyTurretRange(this.order.data.target))
+					if (!this.MoveToTargetRange(this.order.data.target, this.order.data.garrison ? IID_Garrisonable : IID_Turretable))
 					{
 						this.FinishOrder();
 						return true;
@@ -3234,7 +3262,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (cmpHolder && cmpHolder.CanPickup(this.entity))
 					{
 						this.pickup = this.order.data.target;
-						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
+						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity, "iid": this.order.data.garrison ? IID_GarrisonHolder : IID_TurretHolder });
 					}
 					return false;
 				},
@@ -3252,8 +3280,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!msg.likelyFailure && !msg.likelySuccess)
 						return;
 
-					if (this.order.data.garrison ? this.CheckGarrisonRange(this.order.data.target) :
-						this.CheckOccupyTurretRange(this.order.data.target))
+					if (this.CheckTargetRange(this.order.data.target, this.order.data.garrison ? IID_Garrisonable : IID_Turretable))
 						this.SetNextState("GARRISONING");
 					else
 					{
@@ -3436,8 +3463,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"LOADING": {
 				"enter": function() {
-					let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-					if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
+					let cmpHolder = Engine.QueryInterface(this.entity, this.order.data.iid);
+					if (!cmpHolder || cmpHolder.IsFull())
 					{
 						this.FinishOrder();
 						return true;
@@ -3707,7 +3734,7 @@ UnitAI.prototype.OnPickupRequested = function(msg)
 {
 	if (this.HasPickupOrder(msg.entity))
 		return;
-	this.PushOrderAfterForced("PickupUnit", { "target": msg.entity });
+	this.PushOrderAfterForced("PickupUnit", { "target": msg.entity, "iid": msg.iid });
 };
 
 UnitAI.prototype.OnPickupCanceled = function(msg)
@@ -4708,7 +4735,7 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	let range = this.GetRange(iid, type);
+	let range = this.GetRange(iid, type, target);
 	if (!range)
 		return false;
 
@@ -4745,7 +4772,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	let range = this.GetRange(IID_Attack, type);
+	let range = this.GetRange(IID_Attack, type, target);
 	if (!range)
 		return false;
 
@@ -4808,34 +4835,6 @@ UnitAI.prototype.MoveFormationToTargetAttackRange = function(target)
 	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
-UnitAI.prototype.MoveToGarrisonRange = function(target)
-{
-	if (!this.CheckTargetVisible(target))
-		return false;
-
-	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-	if (!cmpGarrisonHolder)
-		return false;
-	var range = cmpGarrisonHolder.GetLoadingRange();
-
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
-};
-
-UnitAI.prototype.MoveToOccupyTurretRange = function(target)
-{
-	if (!this.CheckTargetVisible(target))
-		return false;
-
-	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
-	if (!cmpTurretHolder)
-		return false;
-	let range = cmpTurretHolder.GetLoadingRange();
-
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
-};
-
 /**
  * Generic dispatcher for other Check...Range functions.
  * @param iid - Interface ID (optional) implementing GetRange
@@ -4866,7 +4865,7 @@ UnitAI.prototype.CheckPointRangeExplicit = function(x, z, min, max)
 
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
-	let range = this.GetRange(iid, type);
+	let range = this.GetRange(iid, type, target);
 	if (!range)
 		return false;
 
@@ -4902,7 +4901,7 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 		return false;
 
-	let range = this.GetRange(IID_Attack, type);
+	let range = this.GetRange(IID_Attack, type, target);
 	if (!range)
 		return false;
 
@@ -4949,26 +4948,6 @@ UnitAI.prototype.CheckFormationTargetAttackRange = function(target)
 
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
-};
-
-UnitAI.prototype.CheckGarrisonRange = function(target)
-{
-	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-	if (!cmpGarrisonHolder)
-		return false;
-
-	let range = cmpGarrisonHolder.GetLoadingRange();
-	return this.CheckTargetRangeExplicit(target, range.min, range.max);
-};
-
-UnitAI.prototype.CheckOccupyTurretRange = function(target)
-{
-	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
-	if (!cmpTurretHolder)
-		return false;
-
-	let range = cmpTurretHolder.GetLoadingRange();
-	return this.CheckTargetRangeExplicit(target, range.min, range.max);
 };
 
 /**
@@ -5059,7 +5038,7 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 
 UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
 {
-	let range = this.GetRange(iid, type);
+	let range = this.GetRange(iid, type, target);
 	if (!range)
 		return false;
 
@@ -5400,14 +5379,7 @@ UnitAI.prototype.AddOrder = function(type, data, queued, pushFront)
 	else if (queued)
 		this.PushOrder(type, data);
 	else
-	{
-		// May happen if an order arrives on the same turn the unit is garrisoned
-		// in that case, just forget the order as this will lead to an infinite loop.
-		// ToDo: Fix that by checking for the ability to move on orders that need that.
-		if (this.isGarrisoned && type != "Ungarrison")
-			return;
 		this.ReplaceOrder(type, data);
-	}
 };
 
 /**
@@ -6349,19 +6321,20 @@ UnitAI.prototype.WalkToHeldPosition = function()
  * General getter for ranges.
  *
  * @param {number} iid
+ * @param {number} target - [Optional]
  * @param {string} type - [Optional]
  * @return {Object | undefined} - The range in the form
  *	{ "min": number, "max": number }
  *	Object."elevationBonus": number may be present when iid == IID_Attack.
  *	Returns undefined when the entity does not have the requested component.
  */
-UnitAI.prototype.GetRange = function(iid, type)
+UnitAI.prototype.GetRange = function(iid, type, target)
 {
 	let component = Engine.QueryInterface(this.entity, iid);
 	if (!component)
 		return undefined;
 
-	return component.GetRange(type);
+	return component.GetRange(type, target);
 };
 
 UnitAI.prototype.CanAttack = function(target)

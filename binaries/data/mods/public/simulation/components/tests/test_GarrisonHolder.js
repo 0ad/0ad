@@ -152,7 +152,7 @@ TS_ASSERT_EQUALS(cmpGarrisonHolder.IsGarrisoningAllowed(), false);
 cmpGarrisonHolder.AllowGarrisoning(true, 5);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsGarrisoningAllowed(), true);
 
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetLoadingRange(), { "max": 2.1, "min": 0 });
+TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.LoadingRange(), { "max": 2.1, "min": 0 });
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetHealRate(), 1);
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetAllowedClasses(), "Infantry+Cavalry");

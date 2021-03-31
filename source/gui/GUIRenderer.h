@@ -22,7 +22,7 @@
 #include "graphics/ShaderTechniquePtr.h"
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
-#include "ps/Shapes.h"
+#include "maths/Rect.h"
 
 #include <map>
 #include <vector>

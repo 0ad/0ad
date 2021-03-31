@@ -1971,8 +1971,8 @@ public:
 		// Territory data is stored per territory-tile (typically a multiple of terrain-tiles).
 		// LOS data is stored per los vertex (in reality tiles too, but it's the center that matters).
 		// This scales from LOS coordinates to Territory coordinates.
-		auto scale = [](i32 coord) -> i32 {
-			return (coord * LOS_TILE_SIZE + LOS_TILE_SIZE / 2) / (ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * Pathfinding::NAVCELL_SIZE_INT);
+		auto scale = [](i32 coord, i32 max) -> i32 {
+			return std::min(max, (coord * LOS_TILE_SIZE + LOS_TILE_SIZE / 2) / (ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * Pathfinding::NAVCELL_SIZE_INT));
 		};
 
 		// For each territory-tile, if it is owned by a valid player then update the LOS
@@ -1982,7 +1982,7 @@ public:
 			{
 				// TODO: This fetches data redundantly if the los grid is smaller than the territory grid
 				// (but it's unlikely to matter much).
-				u8 p = grid.get(scale(i), scale(j)) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
+				u8 p = grid.get(scale(i, grid.width() - 1), scale(j, grid.height() - 1)) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
 				{
 					u32& explored = m_ExploredVertices.at(p);
