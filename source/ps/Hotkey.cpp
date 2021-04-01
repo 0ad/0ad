@@ -244,17 +244,9 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		HotkeyInputHandler(&phantom);
 	}
 
-	// Check whether we have any hotkeys registered for this particular keycode
+	// Check whether we have any hotkeys registered that include this scancode.
 	if (g_HotkeyMap.find(scancode) == g_HotkeyMap.end())
 		return (IN_PASS);
-
-	bool isReleasedKey = ev->ev.type == SDL_KEYUP || ev->ev.type == SDL_MOUSEBUTTONUP;
-	std::vector<SDL_Scancode_>::iterator it = std::find(activeScancodes.begin(), activeScancodes.end(), scancode);
-	// This prevents duplicates, assuming we might end up in a weird state - feels safer with input.
-	if (isReleasedKey && it != activeScancodes.end())
-			activeScancodes.erase(it);
-	else if (!isReleasedKey && it == activeScancodes.end())
-		activeScancodes.emplace_back(scancode);
 
 	/**
 	 * Hotkey behaviour spec (see also tests):
@@ -273,15 +265,31 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	 *  - If 'F' and 'Ctrl+F' trigger the same hotkey, adding 'Ctrl' _and_ releasing 'Ctrl' will trigger new 'Press' events.
 	 *    The "Up" event is only sent when both Ctrl & F are released.
 	 *    - This is somewhat unexpected/buggy, but it makes the implementation easier and is easily avoidable for players.
+	 *  - Wheel scrolling is 'instantaneous' behaviour and is essentially entirely separate from the above.
+	 *    - It won't untrigger other hotkeys, and fires/releases on the same 'key event'.
 	 * Note that mouse buttons/wheel inputs can fire hotkeys, in combinations with keys.
 	 * ...Yes, this is all surprisingly complex.
 	 */
+
+	bool isReleasedKey = ev->ev.type == SDL_KEYUP || ev->ev.type == SDL_MOUSEBUTTONUP;
+	// Wheel events are pressed & released in the same go.
+	bool isInstantaneous = ev->ev.type == SDL_MOUSEWHEEL;
+
+	if (!isInstantaneous)
+	{
+		std::vector<SDL_Scancode_>::iterator it = std::find(activeScancodes.begin(), activeScancodes.end(), scancode);
+		// This prevents duplicates, assuming we might end up in a weird state - feels safer with input.
+		if (isReleasedKey && it != activeScancodes.end())
+			activeScancodes.erase(it);
+		else if (!isReleasedKey && it == activeScancodes.end())
+			activeScancodes.emplace_back(scancode);
+	}
 
 	std::vector<ReleasedHotkey> releasedHotkeys;
 	std::vector<PressedHotkey> newPressedHotkeys;
 
 	std::set<SDL_Scancode_> triggers;
-	if (!isReleasedKey)
+	if (!isReleasedKey || isInstantaneous)
 		triggers.insert(scancode);
 	else
 		// If the key is released, we need to check all less precise hotkeys again, to see if we should retrigger some.
@@ -323,58 +331,58 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 			}
 		}
 
-	// Check if we need to release hotkeys.
-	for (PressedHotkey& hotkey : pressedHotkeys)
+	// For instantaneous events, we don't update the pressedHotkeys (i.e. currently active hotkeys),
+	// we just fire/release the triggered hotkeys transiently.
+	// Therefore, skip the whole 'check pressedHotkeys & swap with newPressedHotkeys' logic.
+	if (!isInstantaneous)
 	{
-		bool addingAnew = std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
-									   [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; }) != newPressedHotkeys.end();
-
-		// Update the triggered status to match our current state.
-		if (addingAnew)
-			std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
-						 [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; })->retriggered = hotkey.retriggered;
-		// If the already-pressed hotkey has a lower specificity than the new hotkey(s), de-activate it.
-		else if (hotkey.mapping->requires.size() + 1 < closestMapMatch)
+		for (PressedHotkey& hotkey : pressedHotkeys)
 		{
-			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
-			continue;
+			bool addingAnew = std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+										   [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; }) != newPressedHotkeys.end();
+
+			// Update the triggered status to match our current state.
+			if (addingAnew)
+				std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+							 [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; })->retriggered = hotkey.retriggered;
+			// If the already-pressed hotkey has a lower specificity than the new hotkey(s), de-activate it.
+			else if (hotkey.mapping->requires.size() + 1 < closestMapMatch)
+			{
+				releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
+				continue;
+			}
+
+			// Check that the hotkey still matches all active keys.
+			bool accept = isPressed(hotkey.mapping->primary);
+			if (accept)
+				for (const SKey& k : hotkey.mapping->requires)
+				{
+					accept = isPressed(k);
+					if (!accept)
+						break;
+				}
+			if (!accept && !addingAnew)
+				releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
+			else if (accept)
+			{
+				// If this hotkey has higher specificity than the new hotkeys we wanted to trigger/retrigger,
+				// then discard this new addition(s). This works because at any given time, all hotkeys
+				// active must have the same specificity.
+				if (hotkey.mapping->requires.size() + 1 > closestMapMatch)
+				{
+					closestMapMatch = hotkey.mapping->requires.size() + 1;
+					newPressedHotkeys.clear();
+					newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
+				}
+				else if (!addingAnew)
+					newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
+			}
 		}
 
-		// Check that the hotkey still matches all active keys.
-		bool accept = isPressed(hotkey.mapping->primary);
-		if (accept)
-			for (const SKey& k : hotkey.mapping->requires)
-			{
-				accept = isPressed(k);
-				if (!accept)
-					break;
-			}
-		if (!accept && !addingAnew)
-			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
-		else if (accept)
-		{
-			// If this hotkey has higher specificity than the new hotkeys we wanted to trigger/retrigger,
-			// then discard this new addition(s). This works because at any given time, all hotkeys
-			// active must have the same specificity.
-			if (hotkey.mapping->requires.size() + 1 > closestMapMatch)
-			{
-				closestMapMatch = hotkey.mapping->requires.size() + 1;
-				newPressedHotkeys.clear();
-				newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
-			}
-			else if (!addingAnew)
-				newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
-		}
+		pressedHotkeys.swap(newPressedHotkeys);
 	}
 
-	pressedHotkeys.swap(newPressedHotkeys);
-
-	// Mouse wheel events are released instantly.
-	if (ev->ev.type == SDL_MOUSEWHEEL)
-		for (const PressedHotkey& hotkey : pressedHotkeys)
-			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), false);
-
-	for (const PressedHotkey& hotkey : pressedHotkeys)
+	for (const PressedHotkey& hotkey : isInstantaneous ? newPressedHotkeys : pressedHotkeys)
 	{
 		// Send a KeyPress event when a hotkey is pressed initially and on mouseButton and mouseWheel events.
 		if (ev->ev.type != SDL_KEYDOWN || ev->ev.key.repeat == 0)
@@ -399,6 +407,11 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(hotkey.mapping->name.c_str());
 		in_push_priority_event(&hotkeyDownNotification);
 	}
+
+	// Release instantaneous events (e.g. mouse wheel) right away.
+	if (isInstantaneous)
+		for (const PressedHotkey& hotkey : newPressedHotkeys)
+			releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), false);
 
 	for (const ReleasedHotkey& hotkey : releasedHotkeys)
 	{
