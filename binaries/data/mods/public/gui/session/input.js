@@ -780,12 +780,12 @@ function handleInputAfterGui(ev)
 
 	if (ev.hotkey == "session.highlightguarding")
 	{
-		g_ShowGuarding = (ev.type == "hotkeydown");
+		g_ShowGuarding = (ev.type == "hotkeypress");
 		updateAdditionalHighlight();
 	}
 	else if (ev.hotkey == "session.highlightguarded")
 	{
-		g_ShowGuarded = (ev.type == "hotkeydown");
+		g_ShowGuarded = (ev.type == "hotkeypress");
 		updateAdditionalHighlight();
 	}
 
@@ -828,7 +828,7 @@ function handleInputAfterGui(ev)
 			}
 			break;
 
-		case "hotkeydown":
+		case "hotkeypress":
 			if (ev.hotkey.indexOf("selection.group.") == 0)
 			{
 				let now = Date.now();

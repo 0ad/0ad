@@ -32,6 +32,9 @@
 class TestHotkey : public CxxTest::TestSuite
 {
 	CConfigDB* configDB;
+	// Stores whether one of these was sent in the last fakeInput call.
+	bool hotkeyPress = false;
+	bool hotkeyUp = false;
 
 private:
 
@@ -43,8 +46,14 @@ private:
 		ev.ev.key.keysym.scancode = SDL_GetScancodeFromName(key);
 		GlobalsInputHandler(&ev);
 		HotkeyInputHandler(&ev);
+		hotkeyPress = false;
+		hotkeyUp = false;
 		while(in_poll_priority_event(&ev))
+		{
+			hotkeyUp |= ev.ev.type == SDL_HOTKEYUP;
+			hotkeyPress |= ev.ev.type == SDL_HOTKEYPRESS;
 			HotkeyStateChange(&ev);
+		}
 	}
 
 public:
@@ -87,12 +96,14 @@ public:
 		 * Simple check.
 		 */
 		fakeInput("A", true);
+		TS_ASSERT_EQUALS(hotkeyPress, true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
 
 		fakeInput("A", false);
+		TS_ASSERT_EQUALS(hotkeyUp, true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
@@ -105,6 +116,27 @@ public:
 		 */
 		fakeInput("A", true);
 		fakeInput("B", true);
+		// HotkeyUp is true - A is released.
+		TS_ASSERT_EQUALS(hotkeyUp, true);
+		TS_ASSERT_EQUALS(hotkeyPress, true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
+
+		fakeInput("B", false);
+		// A is silently retriggered - no Press
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), true);
+
+		fakeInput("A", false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+
+		fakeInput("B", true);
+		fakeInput("A", true);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
@@ -114,25 +146,15 @@ public:
 		fakeInput("B", false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
-
-		fakeInput("B", true);
-		fakeInput("A", true);
-		// Activating the more precise hotkey AB untriggers "A"
-		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), true);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
-
-		fakeInput("A", false);
-		fakeInput("B", false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
 
 		fakeInput("A", true);
 		fakeInput("B", true);
 		fakeInput("B", false);
+		TS_ASSERT_EQUALS(hotkeyUp, true);
+		// The "A" is retriggered silently.
+		TS_ASSERT_EQUALS(hotkeyPress, false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
@@ -144,16 +166,66 @@ public:
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+	}
 
+	void test_double_combination()
+	{
+		configDB->SetValueString(CFG_SYSTEM, "hotkey.AB", "A+B");
+		configDB->SetValueList(CFG_SYSTEM, "hotkey.D", { "D", "E" });
+		configDB->WriteFile(CFG_SYSTEM, "config/conf.cfg");
+		configDB->Reload(CFG_SYSTEM);
+
+		UnloadHotkeys();
+		LoadHotkeys(*configDB);
+
+		// Bit of a special case > Both D and E trigger the same hotkey.
+		// In that case, any key change that still gets the hotkey triggered
+		// will re-trigger a "press", and on the final release, the "Up" is sent.
+		fakeInput("D", true);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
 		fakeInput("E", true);
-		// Changing from one hotkey to another more specific combination of the same hotkey keeps it active
-		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		fakeInput("D", false);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
 		fakeInput("E", false);
-		// Likewise going the other way.
+		TS_ASSERT_EQUALS(hotkeyUp, true);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
+
+		// Check that silent triggering works even in that case.
+		fakeInput("D", true);
+		fakeInput("E", true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		fakeInput("A", true);
+		fakeInput("B", true);
+		TS_ASSERT_EQUALS(hotkeyUp, true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
+		fakeInput("B", false);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		fakeInput("E", false);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		// Note: as a consequence of the special case here - repressing E won't trigger a "press".
+		fakeInput("E", true);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		fakeInput("E", false);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		fakeInput("D", false);
+		TS_ASSERT_EQUALS(hotkeyUp, false);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
 	}
 
 	void test_quirk()
@@ -162,6 +234,7 @@ public:
 		configDB->SetValueString(CFG_SYSTEM, "hotkey.AB", "A+B");
 		configDB->SetValueString(CFG_SYSTEM, "hotkey.ABC", "A+B+C");
 		configDB->SetValueList(CFG_SYSTEM, "hotkey.D", { "D", "D+E" });
+		configDB->SetValueString(CFG_SYSTEM, "hotkey.E", "E+C");
 		configDB->WriteFile(CFG_SYSTEM, "config/conf.cfg");
 		configDB->Reload(CFG_SYSTEM);
 
@@ -170,9 +243,9 @@ public:
 
 		/**
 		 * Quirk of the implementation: hotkeys are allowed to fire with too many keys.
-		 * Further, hotkeys of the same specificity (i.e. same # of required keys)
-		 * are allowed to fire at the same time if they don't conflict.
-		 * This is required so that e.g. up+left scrolls both up and left at the same time.
+		 * Further, hotkeys with the same # of keys are allowed to trigger at the same time.
+		 * This is required to make e.g. 'up' and 'left' scroll up-left when both are active.
+		 * It would be nice to extend this to 'non-conflicting hotkeys', but that's quickly far more complex.
 		 */
 		fakeInput("A", true);
 		fakeInput("D", true);
@@ -181,6 +254,7 @@ public:
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
 
 		fakeInput("C", true);
 		// A+D+C likewise.
@@ -188,27 +262,56 @@ public:
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
 
 		fakeInput("B", true);
-		// Here D is inactivated because it's lower-specificity than A+B+C (with D being ignored).
+		// A+B+C is a hotkey, more specific than A and D - both deactivated.
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
+
+		fakeInput("E", true);
+		// D+E is still less specific than A+B+C - nothing changes.
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
+
+		fakeInput("B", false);
+		// E & D activated - D+E and E+C have the same specificity.
+		// The triggering is silent as it's from a key release.
+		TS_ASSERT_EQUALS(hotkeyUp, true);
+		TS_ASSERT_EQUALS(hotkeyPress, false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), true);
+
+		fakeInput("E", false);
+		// A and D again.
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
 
 		fakeInput("A", false);
-		fakeInput("B", false);
-		fakeInput("C", false);
-		fakeInput("D", false);
-
-		fakeInput("B", true);
-		fakeInput("D", true);
-		fakeInput("A", true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
-		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
+
+		fakeInput("D", false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
-
+		TS_ASSERT_EQUALS(HotkeyIsPressed("E"), false);
 		UnloadHotkeys();
 	}
 };

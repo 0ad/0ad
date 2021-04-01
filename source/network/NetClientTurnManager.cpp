@@ -84,10 +84,6 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 
 	m_Replay.Hash(hash, quick);
 
-	// Don't send the hash if OOS
-	if (m_HasSyncError)
-		return;
-
 	// Send message to the server
 	CSyncCheckMessage msg;
 	msg.m_Turn = turn;
@@ -114,17 +110,13 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	CStr expectedHashHex(Hexify(expectedHash));
 	NETCLIENTTURN_LOG("OnSyncError(%d, %hs)\n", turn, expectedHashHex.c_str());
 
-	// Only complain the first time
-	if (m_HasSyncError)
-		return;
-
-	m_HasSyncError = true;
-
 	std::string hash;
 	ENSURE(m_Simulation2.ComputeStateHash(hash, !TurnNeedsFullHash(turn)));
 
 	OsPath oosdumpPath(psLogDir() / (L"oos_dump" + g_UniqueLogPostfix + L".txt"));
 	std::ofstream file (OsString(oosdumpPath).c_str(), std::ofstream::out | std::ofstream::trunc);
+	file << "oos turn: " << turn << std::endl;
+	file << "net client turn: " << m_CurrentTurn << std::endl;
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 

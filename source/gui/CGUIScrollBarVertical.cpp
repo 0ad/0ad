@@ -78,9 +78,9 @@ void CGUIScrollBarVertical::Draw()
 			if (m_ButtonMinusHovered)
 			{
 				if (m_ButtonMinusPressed)
-					button_top = &(GetStyle()->m_SpriteButtonTopPressed || GetStyle()->m_SpriteButtonTop);
+					button_top = &(GetStyle()->m_SpriteButtonTopPressed ? GetStyle()->m_SpriteButtonTopPressed : GetStyle()->m_SpriteButtonTop);
 				else
-					button_top = &(GetStyle()->m_SpriteButtonTopOver || GetStyle()->m_SpriteButtonTop);
+					button_top = &(GetStyle()->m_SpriteButtonTopOver ? GetStyle()->m_SpriteButtonTopOver : GetStyle()->m_SpriteButtonTop);
 			}
 			else
 				button_top = &GetStyle()->m_SpriteButtonTop;
@@ -88,9 +88,9 @@ void CGUIScrollBarVertical::Draw()
 			if (m_ButtonPlusHovered)
 			{
 				if (m_ButtonPlusPressed)
-					button_bottom = &(GetStyle()->m_SpriteButtonBottomPressed || GetStyle()->m_SpriteButtonBottom);
+					button_bottom = &(GetStyle()->m_SpriteButtonBottomPressed ? GetStyle()->m_SpriteButtonBottomPressed : GetStyle()->m_SpriteButtonBottom);
 				else
-					button_bottom = &(GetStyle()->m_SpriteButtonBottomOver || GetStyle()->m_SpriteButtonBottom);
+					button_bottom = &(GetStyle()->m_SpriteButtonBottomOver ? GetStyle()->m_SpriteButtonBottomOver : GetStyle()->m_SpriteButtonBottom);
 			}
 			else
 				button_bottom = &GetStyle()->m_SpriteButtonBottom;

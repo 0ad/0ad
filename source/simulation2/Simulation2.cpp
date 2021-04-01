@@ -885,6 +885,7 @@ bool CSimulation2::ComputeStateHash(std::string& outHash, bool quick)
 
 bool CSimulation2::DumpDebugState(std::ostream& stream)
 {
+	stream << "sim turn: " << m->m_TurnNumber << std::endl;
 	return m->m_ComponentManager.DumpDebugState(stream, true);
 }
 

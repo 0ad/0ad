@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,11 +88,6 @@ JS::Value LoadMapSettings(const ScriptInterface& scriptInterface, const VfsPath&
 	return settings;
 }
 
-bool HotkeyIsPressed_(const std::string& hotkeyName)
-{
-	return HotkeyIsPressed(hotkeyName);
-}
-
 // This value is recalculated once a frame. We take special care to
 // filter it, so it is both accurate and free of jitter.
 int GetFps()
@@ -134,7 +129,6 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&GetSystemUsername>(rq, "GetSystemUsername");
 	ScriptFunction::Register<&GetMatchID>(rq, "GetMatchID");
 	ScriptFunction::Register<&LoadMapSettings>(rq, "LoadMapSettings");
-	ScriptFunction::Register<&HotkeyIsPressed_>(rq, "HotkeyIsPressed");
 	ScriptFunction::Register<&GetFps>(rq, "GetFPS");
 	ScriptFunction::Register<&GetTextWidth>(rq, "GetTextWidth");
 	ScriptFunction::Register<&CalculateMD5>(rq, "CalculateMD5");

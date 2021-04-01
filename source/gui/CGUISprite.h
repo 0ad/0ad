@@ -158,16 +158,6 @@ public:
 	operator bool() const { return !m_SpriteName.empty(); };
 
 	/**
-	 * Returns this sprite if it has been set, otherwise the given fallback sprite.
-	 */
-	const CGUISpriteInstance& operator||(const CGUISpriteInstance& fallback) const
-	{
-		if (*this)
-			return *this;
-		return fallback;
-	}
-
-	/**
 	 * Returns the sprite texture name.
 	 */
 	const CStr& GetName() const { return m_SpriteName; }

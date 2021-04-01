@@ -453,15 +453,15 @@ void CDropDown::Draw()
 
 		if (!m_Enabled)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Disabled || m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, bz + 0.05f, rect);
 		}
 		else if (m_Open)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Pressed || m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, bz + 0.05f, rect);
 		}
 		else if (m_MouseHovering)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Over || m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2Over ? m_Sprite2Over : m_Sprite2, bz + 0.05f, rect);
 		}
 		else
 			m_pGUI.DrawSprite(m_Sprite2, bz + 0.05f, rect);
