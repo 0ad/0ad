@@ -1,11 +1,11 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Worker"],
+	"affects": ["Builder"],
 	"modifications": [
 		{ "value": "Builder/Rate", "multiply": 1.1 }
 	],
 	"auraName": "Patron of Construction",
-	"auraDescription": "Workers +10% build rate.",
+	"auraDescription": "Builders +10% build rate.",
 	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
 }

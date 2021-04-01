@@ -4,7 +4,7 @@
 	"affects": ["Worker"],
 	"modifications": [
 		{ "value": "Builder/Rate", "multiply": 1.15 },
-		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.15 }
+		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.15, "affects": "Builder" }
 	],
 	"auraName": "Administrator",
 	"auraDescription": "Workers +15% build rate and gather speed.",

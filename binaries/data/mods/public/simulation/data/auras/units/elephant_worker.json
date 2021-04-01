@@ -1,6 +1,6 @@
 {
-	"affects": ["Worker"],
-	"auraDescription": "Workers +25% build rate.",
+	"affects": ["Builder"],
+	"auraDescription": "Builders +25% build rate.",
 	"auraName": "Elephant Workers",
 	"modifications": [
 		{ "value": "Builder/Rate", "multiply": 1.25 }

@@ -49,6 +49,10 @@
 		<action on="Release">updateSelectionDetails();</action>
 	</object>
 
+	<object hotkey="selection.idlebuilder">
+		<action on="KeyDown">findIdleUnit(["Builder"]);</action>
+	</object>
+
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 	<object hotkey="selection.idlewarrior">
 		<action on="KeyDown">findIdleUnit(g_MilitaryTypes);</action>
