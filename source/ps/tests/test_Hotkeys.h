@@ -45,7 +45,8 @@ private:
 		ev.ev.key.repeat = 0;
 		ev.ev.key.keysym.scancode = SDL_GetScancodeFromName(key);
 		GlobalsInputHandler(&ev);
-		HotkeyInputHandler(&ev);
+		HotkeyInputPrepHandler(&ev);
+		HotkeyInputActualHandler(&ev);
 		hotkeyPress = false;
 		hotkeyUp = false;
 		while(in_poll_priority_event(&ev))

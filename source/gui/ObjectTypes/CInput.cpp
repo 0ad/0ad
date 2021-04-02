@@ -218,29 +218,35 @@ InReaction CInput::ManuallyHandleKeys(const SDL_Event_* ev)
 		return IN_HANDLED;
 	}
 	case SDL_KEYDOWN:
+	case SDL_KEYUP:
 	{
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
 		SDL_Keycode keyCode = ev->ev.key.keysym.sym;
 
-		// Regular text input is handled in SDL_TEXTINPUT, however keydown events are still sent (and they come first).
-		// To make things work correctly, we pass through 'escape' which is a non-character key.
-		// TODO: there are probably other keys that we could ignore, but recognizing "non-glyph" keys isn't that trivial.
-		// Further, don't input text if modifiers other than shift are pressed (the user is presumably trying to perform a hotkey).
-		if (keyCode == SDLK_ESCAPE ||
+		// We have a probably printable key - we should return HANDLED so it can't trigger hotkeys.
+		// However, if Ctrl/Meta modifiers are active, just pass it through instead,
+		// assuming that we are indeed trying to trigger hotkeys (e.g. copy/paste).
+		// Escape & the "cancel" hotkey are also passed through to allow closing dialogs easily.
+		// See also similar logic in CConsole.cpp
+		// NB: this assumes that Ctrl/GUI aren't used in the Manually* functions below,
+		// as those code paths would obviously never be taken.
+		if (keyCode == SDLK_ESCAPE || EventWillFireHotkey(ev, "cancel") ||
 		     g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_RCTRL] ||
-		     g_scancodes[SDL_SCANCODE_LALT] || g_scancodes[SDL_SCANCODE_RALT] ||
 		     g_scancodes[SDL_SCANCODE_LGUI] || g_scancodes[SDL_SCANCODE_RGUI])
 			return IN_PASS;
 
 		if (m_ComposingText)
 			return IN_HANDLED;
 
-		ManuallyImmutableHandleKeyDownEvent(keyCode);
-		ManuallyMutableHandleKeyDownEvent(keyCode);
+		if (ev->ev.type == SDL_KEYDOWN)
+		{
+			ManuallyImmutableHandleKeyDownEvent(keyCode);
+			ManuallyMutableHandleKeyDownEvent(keyCode);
 
-		UpdateBufferPositionSetting();
+			UpdateBufferPositionSetting();
+		}
 		return IN_HANDLED;
 	}
 	default:

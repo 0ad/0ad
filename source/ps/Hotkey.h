@@ -77,9 +77,29 @@ class CConfigDB;
 extern void LoadHotkeys(CConfigDB& configDB);
 extern void UnloadHotkeys();
 
+/**
+ * Updates g_HotkeyMap.
+ */
 extern InReaction HotkeyStateChange(const SDL_Event_* ev);
-extern InReaction HotkeyInputHandler(const SDL_Event_* ev);
 
+/**
+ * Detects hotkeys that should fire. This allows using EventWillFireHotkey,
+ * (and then possibly preventing those hotkeys from firing by handling the event).
+ */
+extern InReaction HotkeyInputPrepHandler(const SDL_Event_* ev);
+/**
+ * Actually fires hotkeys.
+ */
+extern InReaction HotkeyInputActualHandler(const SDL_Event_* ev);
+
+/**
+ * @return whether the event @param ev will fire the hotkey @param keyname.
+ */
+extern bool EventWillFireHotkey(const SDL_Event_* ev, const CStr& keyname);
+
+/**
+ * @return whether the hotkey is currently pressed (i.e. active).
+ */
 extern bool HotkeyIsPressed(const CStr& keyname);
 
 #endif // INCLUDED_HOTKEY
