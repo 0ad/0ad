@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -138,7 +138,10 @@ public:
 
 	virtual void SetDisableBlockMovementPathfinding(bool movementDisabled, bool pathfindingDisabled, int32_t shape) = 0;
 
-	virtual bool GetBlockMovementFlag() const = 0;
+	/**
+	 * @param templateOnly - whether to return the raw template value or the current value.
+	 */
+	virtual bool GetBlockMovementFlag(bool templateOnly) const = 0;
 
 	/**
 	 * Change the control group that the entity belongs to.

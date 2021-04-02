@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -409,6 +409,13 @@ public:
 					pos.X, pos.Y, m_Clearance, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 			else
 				AddClusterShapes(pos.X, pos.Y, cmpPosition->GetRotation().Y);
+
+			// Used by UnitMotion to activate/deactivate pushing
+			if (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT)
+			{
+				CMessageMovementObstructionChanged msg;
+				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+			}
 		}
 		else if (!active && m_Active)
 		{
@@ -427,6 +434,13 @@ public:
 				m_Tag = tag_t();
 				if (m_Type == CLUSTER)
 					RemoveClusterShapes();
+			}
+
+			// Used by UnitMotion to activate/deactivate pushing
+			if (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT)
+			{
+				CMessageMovementObstructionChanged msg;
+				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
 		}
 		// else we didn't change the active status
@@ -462,9 +476,9 @@ public:
 		}
 	}
 
-	virtual bool GetBlockMovementFlag() const
+	virtual bool GetBlockMovementFlag(bool templateOnly) const
 	{
-		return (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT) != 0;
+		return m_Active && ((templateOnly ? m_TemplateFlags : m_Flags) & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT) != 0;
 	}
 
 	virtual EObstructionType GetObstructionType() const
@@ -527,6 +541,8 @@ public:
 
 	virtual void SetUnitClearance(const entity_pos_t& clearance)
 	{
+		// This doesn't send a MovementObstructionChanged message
+		// because it's a just a workaround init order, and used in UnitMotion directly.
 		if (m_Type == UNIT)
 			m_Clearance = clearance;
 	}

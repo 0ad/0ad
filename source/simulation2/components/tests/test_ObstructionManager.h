@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ public:
 	virtual void SetActive(bool UNUSED(active)) { }
 	virtual void SetMovingFlag(bool UNUSED(enabled)) { }
 	virtual void SetDisableBlockMovementPathfinding(bool UNUSED(movementDisabled), bool UNUSED(pathfindingDisabled), int32_t UNUSED(shape)) { }
-	virtual bool GetBlockMovementFlag() const { return true; }
+	virtual bool GetBlockMovementFlag(bool) const { return true; }
 	virtual void SetControlGroup(entity_id_t UNUSED(group)) { }
 	virtual entity_id_t GetControlGroup() const { return INVALID_ENTITY; }
 	virtual void SetControlGroup2(entity_id_t UNUSED(group2)) { }
