@@ -7,7 +7,6 @@ class NetworkDelayOverlay
 	{
 		this.netDelayOverlay = Engine.GetGUIObjectByName("netDelayOverlay");
 
-		this.netDelayOverlay.caption="toto";
 		this.caption = translate(this.Caption);
 		this.sprintfData = {};
 
