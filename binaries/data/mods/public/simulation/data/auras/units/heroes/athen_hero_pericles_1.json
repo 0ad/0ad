@@ -1,11 +1,11 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Worker"],
+	"affects": ["Builder"],
 	"modifications": [
 		{ "value": "Builder/Rate", "multiply": 1.15 }
 	],
 	"auraName": "Periclean Building Program",
-	"auraDescription": "Workers +15% build rate.",
+	"auraDescription": "Builders +15% build rate.",
 	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
 }

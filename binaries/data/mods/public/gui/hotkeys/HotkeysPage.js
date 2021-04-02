@@ -42,6 +42,10 @@ class HotkeysPage
 		let categories = clone(this.metadata.categories);
 		for (let name in categories)
 			categories[name].hotkeys = [];
+		// Add hotkeys defined in the metadata but not in the C++ map.
+		for (let hotkeyName in this.metadata.hotkeys)
+			if (!this.hotkeys[hotkeyName])
+				this.hotkeys[hotkeyName] = [];
 		for (let hotkeyName in this.hotkeys)
 		{
 			if (this.metadata.hotkeys[hotkeyName])
