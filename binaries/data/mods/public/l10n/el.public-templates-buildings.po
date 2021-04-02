@@ -38,9 +38,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-22 19:18+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-03-29 07:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,11 +241,11 @@ msgstr "Θέατρον"
 msgid "Pyrgíon"
 msgstr "Πύργιον"
 
-#: simulation/templates/structures/athen/wall_gate.xml:12
-#: simulation/templates/structures/mace/wall_gate.xml:12
-#: simulation/templates/structures/ptol/wall_gate.xml:12
-#: simulation/templates/structures/sele/wall_gate.xml:12
-#: simulation/templates/structures/spart/wall_gate.xml:12
+#: simulation/templates/structures/athen/wall_gate.xml:9
+#: simulation/templates/structures/mace/wall_gate.xml:9
+#: simulation/templates/structures/ptol/wall_gate.xml:9
+#: simulation/templates/structures/sele/wall_gate.xml:9
+#: simulation/templates/structures/spart/wall_gate.xml:9
 msgid "Pylai"
 msgstr "Πύλαι"
 
@@ -337,10 +337,10 @@ msgstr "Χτίστε πάνω στην ακτογραμμή σε οικεία,ο
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
-#: simulation/templates/structures/brit/wall_tower.xml:12
+#: simulation/templates/structures/brit/wall_tower.xml:9
 #: simulation/templates/structures/gaul/defense_tower.xml:9
 #: simulation/templates/structures/gaul/sentry_tower.xml:5
-#: simulation/templates/structures/gaul/wall_tower.xml:12
+#: simulation/templates/structures/gaul/wall_tower.xml:9
 msgid "Uxelon"
 msgstr "Άξελον"
 
@@ -417,8 +417,8 @@ msgstr "Καπάνον"
 msgid "Nemeton"
 msgstr "Νέμετον"
 
-#: simulation/templates/structures/brit/wall_gate.xml:12
-#: simulation/templates/structures/gaul/wall_gate.xml:12
+#: simulation/templates/structures/brit/wall_gate.xml:9
+#: simulation/templates/structures/gaul/wall_gate.xml:9
 msgid "Duoricos"
 msgstr "Ντουορίκος"
 
@@ -571,7 +571,7 @@ msgstr "Ναός Θυσιών"
 msgid "Tophet"
 msgstr "Τοφεθ"
 
-#: simulation/templates/structures/cart/wall_gate.xml:12
+#: simulation/templates/structures/cart/wall_gate.xml:9
 msgid "Mijdil-šaʿar"
 msgstr "Mijdil-šaʿar"
 
@@ -752,16 +752,16 @@ msgstr "Οικία"
 msgid "Arruga"
 msgstr "Ζάρωμα"
 
-#: simulation/templates/structures/iber/monument.xml:32
+#: simulation/templates/structures/iber/monument.xml:31
 msgid "Revered Monument"
 msgstr "Ανεστραμένο μνημείο"
 
-#: simulation/templates/structures/iber/monument.xml:33
+#: simulation/templates/structures/iber/monument.xml:32
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
 #: simulation/templates/structures/iber/monument.xml:9
-#: simulation/templates/structures/iber/monument.xml:35
+#: simulation/templates/structures/iber/monument.xml:34
 msgid "Monument"
 msgstr "Μνημείο"
 
@@ -773,7 +773,7 @@ msgstr "Όλα"
 msgid "Loki"
 msgstr "Λόκι"
 
-#: simulation/templates/structures/iber/wall_gate.xml:12
+#: simulation/templates/structures/iber/wall_gate.xml:9
 msgid "Biko Sarbide"
 msgstr "Biko Sarbide"
 
@@ -946,7 +946,7 @@ msgstr "Εκπαιδεύστε Πρωταθλητλες Άμμων και Επί
 msgid "TempleOfAmun"
 msgstr "Ναος του Αμμώνος"
 
-#: simulation/templates/structures/kush/wall_gate.xml:12
+#: simulation/templates/structures/kush/wall_gate.xml:9
 msgid "ʿryt"
 msgstr "ʿryt"
 
@@ -988,7 +988,7 @@ msgid "Gotra"
 msgstr "Μαντρί"
 
 #: simulation/templates/structures/maur/defense_tower.xml:5
-#: simulation/templates/structures/maur/tower_double.xml:24
+#: simulation/templates/structures/maur/tower_double.xml:20
 msgid "Udarka"
 msgstr "Udarka"
 
@@ -1065,18 +1065,18 @@ msgstr "Khalla"
 msgid "Devalaya"
 msgstr "Devalaya"
 
-#: simulation/templates/structures/maur/tower_double.xml:20
+#: simulation/templates/structures/maur/tower_double.xml:16
 msgid "Rampart Tower"
 msgstr "Πύργος Προμαχώνα"
 
-#: simulation/templates/structures/maur/tower_double.xml:22
+#: simulation/templates/structures/maur/tower_double.xml:18
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
 msgstr "Πύργος με υψηλότερη αντοχή και προμαχώνες για 16 τοξότες. Οι ορατοί τοξότες φρουροί λαμβάνουν ένα μπόνους στο βεληνεκές και στη θωράκιση. Μόνο τοξότες μπορούν να γίνουν φρουρά. Χρειάζεται η τεχνολογία ταμπούρια για τη προστασία της βάσης του."
 
-#: simulation/templates/structures/maur/wall_gate.xml:18
+#: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
 msgstr "Dwara"
 
@@ -1262,7 +1262,7 @@ msgstr "Χειμερινό ανάκτορο"
 msgid "Āyadanam"
 msgstr "Εϊανταναμ"
 
-#: simulation/templates/structures/pers/wall_gate.xml:12
+#: simulation/templates/structures/pers/wall_gate.xml:9
 msgid "Duvarθiš"
 msgstr "Ντουβάρθι"
 
@@ -1417,42 +1417,42 @@ msgstr "Βιτζιλάριουμ"
 msgid "Turris Līgnea"
 msgstr "Τούρις Λίγνεα"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:25
+#: simulation/templates/structures/rome/siege_wall_gate.xml:22
 msgid "Siege Wall Gate"
 msgstr "Πύλη Πολιορκητικού Τείχους"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:26
+#: simulation/templates/structures/rome/siege_wall_gate.xml:23
 msgid "Porta Circummūnītiōnis"
 msgstr "Πόρτα Σιρκουμουνιτιονίς"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:27
-#: simulation/templates/structures/rome/siege_wall_long.xml:28
+#: simulation/templates/structures/rome/siege_wall_gate.xml:24
+#: simulation/templates/structures/rome/siege_wall_long.xml:25
 #: simulation/templates/structures/rome/siege_wall_medium.xml:25
 #: simulation/templates/structures/rome/siege_wall_short.xml:25
-#: simulation/templates/structures/rome/siege_wall_tower.xml:35
+#: simulation/templates/structures/rome/siege_wall_tower.xml:29
 #: simulation/templates/structures/rome/wallset_siege.xml:9
 msgid "SiegeWall"
 msgstr "Τοίχος Πολιορκίας"
 
-#: simulation/templates/structures/rome/siege_wall_long.xml:26
+#: simulation/templates/structures/rome/siege_wall_long.xml:23
 #: simulation/templates/structures/rome/siege_wall_medium.xml:23
 #: simulation/templates/structures/rome/siege_wall_short.xml:23
 #: simulation/templates/structures/rome/wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "Πολιορκητικό Τείχος"
 
-#: simulation/templates/structures/rome/siege_wall_long.xml:27
+#: simulation/templates/structures/rome/siege_wall_long.xml:24
 #: simulation/templates/structures/rome/siege_wall_medium.xml:24
 #: simulation/templates/structures/rome/siege_wall_short.xml:24
 #: simulation/templates/structures/rome/wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Μούρους Σιρκουμουνιτιονίς"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:31
+#: simulation/templates/structures/rome/siege_wall_tower.xml:26
 msgid "Siege Wall Tower"
 msgstr "Πολιορκητικό Τείχος Πύργου"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:32
+#: simulation/templates/structures/rome/siege_wall_tower.xml:27
 msgid "Turris Circummūnītiōnis"
 msgstr "Τέρος Σιρκουμουνιτιονίς"
 
@@ -1504,7 +1504,7 @@ msgstr "Tabernāculum"
 msgid "A temporary shelter for soldiers."
 msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες."
 
-#: simulation/templates/structures/rome/wall_gate.xml:12
+#: simulation/templates/structures/rome/wall_gate.xml:9
 msgid "Porta"
 msgstr "Πύλη"
 
@@ -1612,7 +1612,6 @@ msgstr "Αστικό"
 #: simulation/templates/structures/rome/army_camp.xml:5
 #: simulation/templates/template_structure_civic_civil_centre.xml:11
 #: simulation/templates/template_structure_defensive_tower.xml:5
-#: simulation/templates/template_structure_defensive_wall_tower.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
@@ -1656,7 +1655,6 @@ msgid "House"
 msgstr "Σπίτι"
 
 #: simulation/templates/template_structure_civic_house.xml:32
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -1678,11 +1676,11 @@ msgstr "Στοά"
 
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
+#: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_forge.xml:26
@@ -1704,12 +1702,12 @@ msgstr "Αμυντική κατασκευή"
 
 #: simulation/templates/structures/palisades_outpost.xml:17
 #: simulation/templates/template_structure_defensive_outpost.xml:9
-#: simulation/templates/template_structure_defensive_outpost.xml:36
-#: simulation/templates/template_structure_defensive_outpost.xml:39
+#: simulation/templates/template_structure_defensive_outpost.xml:28
+#: simulation/templates/template_structure_defensive_outpost.xml:31
 msgid "Outpost"
 msgstr "Προφυλακή"
 
-#: simulation/templates/template_structure_defensive_outpost.xml:38
+#: simulation/templates/template_structure_defensive_outpost.xml:30
 msgid ""
 "Build in own or neutral territory. No vision range unless garrisoned. Slowly"
 " converts to Gaia while in neutral territory."
@@ -1745,21 +1743,6 @@ msgstr "Πύργος Πυροβολικού"
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 msgid "ArtilleryTower"
 msgstr "Πύργος Πυροβολικού "
-
-#: simulation/templates/structures/gaul/assembly.xml:34
-#: simulation/templates/structures/kush/pyramid_large.xml:29
-#: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:75
-#: simulation/templates/structures/rome/temple_mars.xml:14
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
-#: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:71
-#: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:42
-msgid "City"
-msgstr "Πόλη"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1801,12 +1784,12 @@ msgstr "Πέτρινος Πύργος"
 msgid "StoneTower"
 msgstr "Λίθινος Πύργος"
 
-#: simulation/templates/template_structure_defensive_wall.xml:23
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:15
+#: simulation/templates/template_structure_defensive_wall.xml:18
 msgid "Wall"
 msgstr "Τείχος"
 
-#: simulation/templates/template_structure_defensive_wall.xml:25
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "Οχύρωσε την πόλη για μια στιβαρή άμυνα."
 
@@ -1817,21 +1800,17 @@ msgid "Gate"
 msgstr "Πύλη"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
-#: simulation/templates/template_structure_defensive_wall_long.xml:29
+#: simulation/templates/template_structure_defensive_wall_long.xml:26
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr "Επιτρέψτε είσοδο στις μονάδες απο τα Τείχη , Μπορούν να κλειδωθούν για να αποτρέψουν είσοδο."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:20
+#: simulation/templates/template_structure_defensive_wall_long.xml:17
 msgid "Can be converted into a Gate."
 msgstr "Μπορεί να μετατραπεί σε Πύλη."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:49
+#: simulation/templates/template_structure_defensive_wall_tower.xml:22
 msgid "Wall Turret"
 msgstr "Πυργίσκος Τείχους"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
-msgid "Garrison Infantry for additional arrows."
-msgstr "Πεζικό Φρουράς για επιπλέον βέλη."
 
 #: simulation/templates/template_structure_economic.xml:4
 msgid "Economic Structure"
@@ -1895,6 +1874,18 @@ msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
 msgstr "Εκπαιδεύστε Πρωταθλητες για Πεζικάριες Γυναίκες με Βαλλίστρες, κατασκευάστε Πολιορκητικές Μηχανές, και ερευνήστε Τεχνολογίες Πολιορκητικών  Μηχανών."
+
+#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/kush/pyramid_large.xml:29
+#: simulation/templates/structures/kush/temple_amun.xml:31
+#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/temple_mars.xml:14
+#: simulation/templates/template_structure_military_arsenal.xml:28
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_special.xml:20
+#: simulation/templates/template_structure_wonder.xml:42
+msgid "City"
+msgstr "Πόλη"
 
 #: simulation/templates/template_structure_military_barracks.xml:26
 #: simulation/templates/template_structure_military_barracks.xml:29

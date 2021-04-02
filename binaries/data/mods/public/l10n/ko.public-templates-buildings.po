@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-21 15:04+0000\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-04-02 02:51+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -227,11 +227,11 @@ msgstr "테아트론"
 msgid "Pyrgíon"
 msgstr "피르기온"
 
-#: simulation/templates/structures/athen/wall_gate.xml:12
-#: simulation/templates/structures/mace/wall_gate.xml:12
-#: simulation/templates/structures/ptol/wall_gate.xml:12
-#: simulation/templates/structures/sele/wall_gate.xml:12
-#: simulation/templates/structures/spart/wall_gate.xml:12
+#: simulation/templates/structures/athen/wall_gate.xml:9
+#: simulation/templates/structures/mace/wall_gate.xml:9
+#: simulation/templates/structures/ptol/wall_gate.xml:9
+#: simulation/templates/structures/sele/wall_gate.xml:9
+#: simulation/templates/structures/spart/wall_gate.xml:9
 msgid "Pylai"
 msgstr "파일라이"
 
@@ -323,10 +323,10 @@ msgstr "고유, 중립 또는 연합 영토의 해안선에 건설하십시오. 
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
-#: simulation/templates/structures/brit/wall_tower.xml:12
+#: simulation/templates/structures/brit/wall_tower.xml:9
 #: simulation/templates/structures/gaul/defense_tower.xml:9
 #: simulation/templates/structures/gaul/sentry_tower.xml:5
-#: simulation/templates/structures/gaul/wall_tower.xml:12
+#: simulation/templates/structures/gaul/wall_tower.xml:9
 msgid "Uxelon"
 msgstr "유세론"
 
@@ -403,8 +403,8 @@ msgstr "카파논"
 msgid "Nemeton"
 msgstr "네메톤"
 
-#: simulation/templates/structures/brit/wall_gate.xml:12
-#: simulation/templates/structures/gaul/wall_gate.xml:12
+#: simulation/templates/structures/brit/wall_gate.xml:9
+#: simulation/templates/structures/gaul/wall_gate.xml:9
 msgid "Duoricos"
 msgstr "두오리코스"
 
@@ -557,7 +557,7 @@ msgstr "제물 사원"
 msgid "Tophet"
 msgstr "토펫"
 
-#: simulation/templates/structures/cart/wall_gate.xml:12
+#: simulation/templates/structures/cart/wall_gate.xml:9
 msgid "Mijdil-šaʿar"
 msgstr "미즈-딜 샤우-아르"
 
@@ -738,16 +738,16 @@ msgstr "에트제"
 msgid "Arruga"
 msgstr "아르루가"
 
-#: simulation/templates/structures/iber/monument.xml:32
+#: simulation/templates/structures/iber/monument.xml:31
 msgid "Revered Monument"
 msgstr "존경의 기념비"
 
-#: simulation/templates/structures/iber/monument.xml:33
+#: simulation/templates/structures/iber/monument.xml:32
 msgid "Gur Oroigarri"
 msgstr "구르 오로이가르리"
 
 #: simulation/templates/structures/iber/monument.xml:9
-#: simulation/templates/structures/iber/monument.xml:35
+#: simulation/templates/structures/iber/monument.xml:34
 msgid "Monument"
 msgstr "기념비"
 
@@ -759,7 +759,7 @@ msgstr "오라"
 msgid "Loki"
 msgstr "로키"
 
-#: simulation/templates/structures/iber/wall_gate.xml:12
+#: simulation/templates/structures/iber/wall_gate.xml:9
 msgid "Biko Sarbide"
 msgstr "비코 사르비데"
 
@@ -932,7 +932,7 @@ msgstr "아문 대표전사와 정예 치료사를 훈련하세요. 치유 기�
 msgid "TempleOfAmun"
 msgstr "아문 사원"
 
-#: simulation/templates/structures/kush/wall_gate.xml:12
+#: simulation/templates/structures/kush/wall_gate.xml:9
 msgid "ʿryt"
 msgstr "ʿryt"
 
@@ -974,7 +974,7 @@ msgid "Gotra"
 msgstr "고트라"
 
 #: simulation/templates/structures/maur/defense_tower.xml:5
-#: simulation/templates/structures/maur/tower_double.xml:24
+#: simulation/templates/structures/maur/tower_double.xml:20
 msgid "Udarka"
 msgstr "우다르카"
 
@@ -1051,18 +1051,18 @@ msgstr "크할라"
 msgid "Devalaya"
 msgstr "데바라야"
 
-#: simulation/templates/structures/maur/tower_double.xml:20
+#: simulation/templates/structures/maur/tower_double.xml:16
 msgid "Rampart Tower"
 msgstr "성곽 탑"
 
-#: simulation/templates/structures/maur/tower_double.xml:22
+#: simulation/templates/structures/maur/tower_double.xml:18
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
 msgstr "최대 16 명의 궁수를 위한 성벽이 있는 더 높은 체력 타워. 보이는 수비대 궁수에게는 사거리와 방어구 보너스를 받습니다. 궁수만 주둔 할 수 있습니다. 발을 보호하기 위해서는 근총안 기술이 필요하십시오."
 
-#: simulation/templates/structures/maur/wall_gate.xml:18
+#: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
 msgstr "드와라"
 
@@ -1248,7 +1248,7 @@ msgstr "타카라"
 msgid "Āyadanam"
 msgstr "아야다남"
 
-#: simulation/templates/structures/pers/wall_gate.xml:12
+#: simulation/templates/structures/pers/wall_gate.xml:9
 msgid "Duvarθiš"
 msgstr "두바르띠스"
 
@@ -1403,42 +1403,42 @@ msgstr "비기라리움"
 msgid "Turris Līgnea"
 msgstr "투르리스 리그네아"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:25
+#: simulation/templates/structures/rome/siege_wall_gate.xml:22
 msgid "Siege Wall Gate"
 msgstr "방어벽"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:26
+#: simulation/templates/structures/rome/siege_wall_gate.xml:23
 msgid "Porta Circummūnītiōnis"
 msgstr "포르타 시르쿰무니티오니스"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:27
-#: simulation/templates/structures/rome/siege_wall_long.xml:28
+#: simulation/templates/structures/rome/siege_wall_gate.xml:24
+#: simulation/templates/structures/rome/siege_wall_long.xml:25
 #: simulation/templates/structures/rome/siege_wall_medium.xml:25
 #: simulation/templates/structures/rome/siege_wall_short.xml:25
-#: simulation/templates/structures/rome/siege_wall_tower.xml:35
+#: simulation/templates/structures/rome/siege_wall_tower.xml:29
 #: simulation/templates/structures/rome/wallset_siege.xml:9
 msgid "SiegeWall"
 msgstr "방어벽"
 
-#: simulation/templates/structures/rome/siege_wall_long.xml:26
+#: simulation/templates/structures/rome/siege_wall_long.xml:23
 #: simulation/templates/structures/rome/siege_wall_medium.xml:23
 #: simulation/templates/structures/rome/siege_wall_short.xml:23
 #: simulation/templates/structures/rome/wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "방어벽"
 
-#: simulation/templates/structures/rome/siege_wall_long.xml:27
+#: simulation/templates/structures/rome/siege_wall_long.xml:24
 #: simulation/templates/structures/rome/siege_wall_medium.xml:24
 #: simulation/templates/structures/rome/siege_wall_short.xml:24
 #: simulation/templates/structures/rome/wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "무루스 시르쿰무니티오니스"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:31
+#: simulation/templates/structures/rome/siege_wall_tower.xml:26
 msgid "Siege Wall Tower"
 msgstr "방어벽 탑"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:32
+#: simulation/templates/structures/rome/siege_wall_tower.xml:27
 msgid "Turris Circummūnītiōnis"
 msgstr "투르리스 시르쿰무니티오니스"
 
@@ -1490,7 +1490,7 @@ msgstr "타베르나쿠룸"
 msgid "A temporary shelter for soldiers."
 msgstr "병사들을 위한 임시 거처 입니다."
 
-#: simulation/templates/structures/rome/wall_gate.xml:12
+#: simulation/templates/structures/rome/wall_gate.xml:9
 msgid "Porta"
 msgstr "포르타"
 
@@ -1598,7 +1598,6 @@ msgstr "시민"
 #: simulation/templates/structures/rome/army_camp.xml:5
 #: simulation/templates/template_structure_civic_civil_centre.xml:11
 #: simulation/templates/template_structure_defensive_tower.xml:5
-#: simulation/templates/template_structure_defensive_wall_tower.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
@@ -1642,7 +1641,6 @@ msgid "House"
 msgstr "집"
 
 #: simulation/templates/template_structure_civic_house.xml:32
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -1664,11 +1662,11 @@ msgstr "스토아"
 
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
+#: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_forge.xml:26
@@ -1690,12 +1688,12 @@ msgstr "방어 건축물"
 
 #: simulation/templates/structures/palisades_outpost.xml:17
 #: simulation/templates/template_structure_defensive_outpost.xml:9
-#: simulation/templates/template_structure_defensive_outpost.xml:36
-#: simulation/templates/template_structure_defensive_outpost.xml:39
+#: simulation/templates/template_structure_defensive_outpost.xml:28
+#: simulation/templates/template_structure_defensive_outpost.xml:31
 msgid "Outpost"
 msgstr "전초기지"
 
-#: simulation/templates/template_structure_defensive_outpost.xml:38
+#: simulation/templates/template_structure_defensive_outpost.xml:30
 msgid ""
 "Build in own or neutral territory. No vision range unless garrisoned. Slowly"
 " converts to Gaia while in neutral territory."
@@ -1731,21 +1729,6 @@ msgstr "대포탑"
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 msgid "ArtilleryTower"
 msgstr "대포탑"
-
-#: simulation/templates/structures/gaul/assembly.xml:34
-#: simulation/templates/structures/kush/pyramid_large.xml:29
-#: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:75
-#: simulation/templates/structures/rome/temple_mars.xml:14
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
-#: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:71
-#: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:42
-msgid "City"
-msgstr "도시"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1787,12 +1770,12 @@ msgstr "돌 탑"
 msgid "StoneTower"
 msgstr "돌탑"
 
-#: simulation/templates/template_structure_defensive_wall.xml:23
-#: simulation/templates/template_structure_defensive_wall.xml:26
+#: simulation/templates/template_structure_defensive_wall.xml:15
+#: simulation/templates/template_structure_defensive_wall.xml:18
 msgid "Wall"
 msgstr "벽"
 
-#: simulation/templates/template_structure_defensive_wall.xml:25
+#: simulation/templates/template_structure_defensive_wall.xml:17
 msgid "Wall off your town for a stout defense."
 msgstr "마을을 방어하기 위해 방어벽을 쌓으십시오."
 
@@ -1803,21 +1786,17 @@ msgid "Gate"
 msgstr "문"
 
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
-#: simulation/templates/template_structure_defensive_wall_long.xml:29
+#: simulation/templates/template_structure_defensive_wall_long.xml:26
 msgid "Allow units access through Walls. Can be locked to prevent access."
 msgstr "벽을 통해 사람들이 접근할 수 있게 하십시오. 접근을 막기 위해 잠글 수도 있습니다."
 
-#: simulation/templates/template_structure_defensive_wall_long.xml:20
+#: simulation/templates/template_structure_defensive_wall_long.xml:17
 msgid "Can be converted into a Gate."
 msgstr "관문으로 변환할 수 있습니다."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:49
+#: simulation/templates/template_structure_defensive_wall_tower.xml:22
 msgid "Wall Turret"
-msgstr "작은 탑 벽"
-
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
-msgid "Garrison Infantry for additional arrows."
-msgstr "화살 공격이 추가된 주둔지 보병."
+msgstr "터렛 벽"
 
 #: simulation/templates/template_structure_economic.xml:4
 msgid "Economic Structure"
@@ -1881,6 +1860,18 @@ msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
 msgstr "대표전사 보병 석궁병을 훈련하고, 공성 전차를 만들며, 공성 전차 기술을 연구합니다."
+
+#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/kush/pyramid_large.xml:29
+#: simulation/templates/structures/kush/temple_amun.xml:31
+#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/temple_mars.xml:14
+#: simulation/templates/template_structure_military_arsenal.xml:28
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_special.xml:20
+#: simulation/templates/template_structure_wonder.xml:42
+msgid "City"
+msgstr "도시"
 
 #: simulation/templates/template_structure_military_barracks.xml:26
 #: simulation/templates/template_structure_military_barracks.xml:29

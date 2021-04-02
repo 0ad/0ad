@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-14 13:38+0000\n"
-"Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-03-29 09:30+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,21 +232,25 @@ msgstr "Мечник"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:7
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:25
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
 #: simulation/templates/template_unit_champion_infantry_archer.xml:28
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
 #: simulation/templates/template_unit_elephant_archer.xml:36
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
 #: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
 #: simulation/templates/template_unit_ship_bireme.xml:48
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:53
 #: simulation/templates/template_unit_ship_trireme.xml:48
-#: simulation/templates/template_unit_siege_boltshooter.xml:48
-#: simulation/templates/template_unit_siege_stonethrower.xml:41
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Ranged"
 msgstr "Дистанційний бій"
@@ -283,6 +287,29 @@ msgstr "Стрілець"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
 msgid "Cavalry Archer"
 msgstr "Кавалеріський стрілець"
+
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:5
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:5
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:5
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Crossbow"
+msgstr "Арбалет"
+
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:31
+msgid "Cavalry Crossbowman"
+msgstr ""
+
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:32
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
+msgid "Crossbowman"
+msgstr "Арбалетник"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -327,6 +354,10 @@ msgstr "Чемпіон кавалеріських стрільців"
 msgid "Champion Cavalry Axeman"
 msgstr "Чемпіон кавалеріських воїнів з сокирою"
 
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:25
+msgid "Champion Cavalry Crossbowman"
+msgstr ""
+
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
 msgid "Champion Cavalry Javelineer"
 msgstr "Чемпіон кавалерійських метальників списів"
@@ -353,7 +384,7 @@ msgstr "Бойовий слон"
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
-#: simulation/templates/units/maur/support_elephant.xml:23
+#: simulation/templates/template_unit_support_elephant.xml:21
 msgid "Elephant"
 msgstr "Слон"
 
@@ -381,6 +412,10 @@ msgstr "Чемпіон стрільців"
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
 msgstr "Чемпіон воїнів з сокирою"
+
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:28
+msgid "Champion Infantry Crossbowman"
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
 msgid "Champion Infantry Javelineer"
@@ -460,7 +495,7 @@ msgstr "Стрілецький слон"
 msgid "Kill to gather meat for food."
 msgstr "Забити, щоб зібрати м'ясо для їжі."
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:7
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
 msgstr "Забити заради їжі."
 
@@ -481,6 +516,10 @@ msgstr "Герой кавалеріських стрільців"
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
 msgstr "Герой кавалеріських воїнів з сокирою"
+
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:25
+msgid "Hero Cavalry Crossbowman"
+msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
 msgid "Hero Cavalry Javelineer"
@@ -522,6 +561,10 @@ msgstr "Герой стрільців"
 msgid "Hero Axeman"
 msgstr "Герой воїнів з сокирою"
 
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:25
+msgid "Hero Infantry Crossbowman"
+msgstr ""
+
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
 msgid "Hero Infantry Javelineer"
 msgstr "Герой піхотних метальників списів"
@@ -556,6 +599,10 @@ msgstr "Піхота ближнього бою"
 msgid "Infantry Maceman"
 msgstr ""
 
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
+msgid "Infantry Crossbowman"
+msgstr ""
+
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Infantry Javelineer"
 msgstr ""
@@ -580,7 +627,7 @@ msgid "Light Warship"
 msgstr "Легкий військовий корабель"
 
 #: simulation/templates/template_unit_ship_bireme.xml:47
-#: simulation/templates/template_unit_ship_quinquereme.xml:48
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/template_unit_ship_trireme.xml:47
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Garrison units for transport and to increase firepower."
@@ -588,7 +635,7 @@ msgstr "Розмістити підрозділи у гарнізоні для �
 
 #: simulation/templates/template_unit_ship_bireme.xml:48
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:53
 #: simulation/templates/template_unit_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Військовий корабель"
@@ -663,11 +710,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Камінь"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:47
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
 msgid "Heavy Warship"
 msgstr "Важкий військовий корабель"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:53
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
 msgstr "Квінкерема"
@@ -691,11 +738,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Стріла"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:48
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "BoltShooter"
 msgstr "Стрілець болтами"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:49
+#: simulation/templates/template_unit_siege_boltshooter.xml:54
 msgid "Bolt Shooter"
 msgstr "Стрілець болтами"
 
@@ -716,11 +763,11 @@ msgstr "Облоговий таран"
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Не може атакувати поля або органічні підрозділи."
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:41
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 msgid "StoneThrower"
 msgstr "Каменемет"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:42
+#: simulation/templates/template_unit_siege_stonethrower.xml:47
 msgid "Siege Catapult"
 msgstr "Облогова катапульта"
 
@@ -731,6 +778,10 @@ msgstr "Облогова вежа"
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Siege Tower"
 msgstr "Облогова вежа"
+
+#: simulation/templates/template_unit_support_elephant.xml:20
+msgid "Worker Elephant"
+msgstr "Робочий слон"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1823,11 +1874,11 @@ msgstr "Нільський торгівельний баркас"
 msgid "Dȝy sbt"
 msgstr "Даі себет"
 
-#: simulation/templates/units/kush/ship_trireme.xml:16
+#: simulation/templates/units/kush/ship_trireme.xml:10
 msgid "Ptolemaic Mercenary Trireme"
 msgstr "Птолемейська найманська трирема"
 
-#: simulation/templates/units/kush/ship_trireme.xml:17
+#: simulation/templates/units/kush/ship_trireme.xml:11
 msgid "shry ʿȝ"
 msgstr "Сехері аа"
 
@@ -1899,20 +1950,7 @@ msgstr "Кавалерія супроводу"
 msgid "Hetaîros"
 msgstr "Хетаірос"
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Crossbow"
-msgstr "Арбалет"
-
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:26
-msgid "Crossbowman"
-msgstr "Арбалетник"
-
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:28
-msgid "Champion Crossbowman"
-msgstr "Чемпіон арбалетників"
-
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:29
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:6
 msgid "Gastraphetophoros"
 msgstr "Гастрафетофорос"
 
@@ -2160,11 +2198,7 @@ msgstr "Торгівельний корабель"
 msgid "Vanijyik Nauka"
 msgstr "Ванідж'їк наука"
 
-#: simulation/templates/units/maur/support_elephant.xml:21
-msgid "Worker Elephant"
-msgstr "Робочий слон"
-
-#: simulation/templates/units/maur/support_elephant.xml:22
+#: simulation/templates/units/maur/support_elephant.xml:5
 msgid "Karmākara Gaja"
 msgstr "Кармакара гаджа"
 
@@ -2539,11 +2573,11 @@ msgstr "Піхота царської охорони"
 msgid "Phalangitès Agema"
 msgstr "Фалангітес агема"
 
-#: simulation/templates/units/ptol/champion_juggernaut.xml:25
+#: simulation/templates/units/ptol/champion_juggernaut.xml:24
 msgid "Juggernaut"
 msgstr "Джаггернаут"
 
-#: simulation/templates/units/ptol/champion_juggernaut.xml:26
+#: simulation/templates/units/ptol/champion_juggernaut.xml:25
 msgid "Tessarakonterēs"
 msgstr "Тессараконтерес"
 
@@ -3074,11 +3108,11 @@ msgstr "Спартіатіс"
 msgid "Émporos Períoikos"
 msgstr "Емпорос періоікос"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:46
+#: simulation/templates/units/theb_siege_fireraiser.xml:51
 msgid "Fire Raiser"
 msgstr "Підпалювач"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:47
+#: simulation/templates/units/theb_siege_fireraiser.xml:52
 msgid "Pyrobolos"
 msgstr "Піроболос"
 

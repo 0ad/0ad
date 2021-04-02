@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-03-28 20:12+0000\n"
+"PO-Revision-Date: 2021-04-01 17:16+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Pues cambiar ente la pantalla completa y la ventana primiendo Alt + Intro. Nel mou ventana, pues camudar el tamañu de la mesma. Si'l xuegu va amodín, pues afacer los axustes nel menú opciones: prúebalu sin los «Efeutos d'agua en calidá alta» y les «Solombres»."
+msgstr "Pues cambiar ente la pantalla completa y la ventana primiendo Alternativa + Introducir. Nel mou ventana, pues camudar el tamañu de la mesma. Si'l xuegu va amodín, pues afacer los axustes nel menú opciones: prúebalu sin los «Efeutos d'agua en calidá alta» y les «Solombres»."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -75,7 +75,7 @@ msgstr "• Les fleches, o les tecles WASD, mueven la cámara"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + les fleches, o Mayúscules + la rueda del mur, voltien la cámara"
+msgstr "• Ctrl + les fleches, o Mayúscules + la rueda del mur, xiren la cámara"
 
 #: gui/manual/intro.txt:16
 msgid ""
@@ -200,12 +200,12 @@ msgstr "  hotkey.fps.toggle – Amosar, anubrir los cuadros por segundu (CPS)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – Enseñar el perfilador en tiempu real, (amuesa darréu los datos, ún tres otru)"
+msgstr "  hotkey.profile.toggle – Activar, desactivar el perfilador en tiempu real, (amuesa darréu los datos, ún tres otru)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr "  hotkey.profile.save – Guardar los datos del perfilador en «logs/profile.txt»"
+msgstr "  hotkey.profile.save – Guardar los datos actuales del perfilador en «logs/profile.txt»"
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -293,7 +293,7 @@ msgstr "  hotkey.privatechat – Charrar a soles col últimu contautu esbilláu"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr "  hotkey.pause – Posar o siguir xugando"
+msgstr "  hotkey.pause – Posar o siguir cola partida"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -350,7 +350,7 @@ msgstr "  hotkey.session.stop – Aparar les unidaes esbillaes"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr "  hotkey.session.backtowork – Facer volver trabayar"
+msgstr "  hotkey.session.backtowork – Facer volver al trabayu"
 
 #: gui/manual/intro.txt:79
 msgid ""
@@ -575,7 +575,7 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  hotkey.wireframe – Amosar, anubrir la cadarma (primi una vegada pa ver los modelos cola cadarma y la testura, dos vegaes pa ver namái la cadarma y la testura, tres vegaes pa volver al mou normal)"
+msgstr "  hotkey.wireframe – Activar, desactivar el mou cadarma (primi una vegada pa ver los modelos cola cadarma y la testura, dos vegaes pa ver namái la cadarma y la testura, tres vegaes pa volver al mou normal)"
 
 #: gui/manual/intro.txt:122
 msgid ""
@@ -585,7 +585,7 @@ msgstr "  hotkey.silhouettes – Amosar, anubrir los contornos de les unidaes (q
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr "  hotkey.session.diplomacycolors – Amosar, anubrir les colores diplomátiques"
+msgstr "  hotkey.session.diplomacycolors – Activar, desactivar les colores diplomátiques"
 
 #: gui/manual/intro.txt:124
 msgid ""
@@ -627,31 +627,31 @@ msgstr "  hotkey.camera.right – Mover la vista a mandrecha"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr "  hotkey.camera.rotate.up – Entornar la cámara p'arriba"
+msgstr "  hotkey.camera.rotate.up – Xirar la cámara p'arriba"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr "  hotkey.camera.rotate.down – Entornar la cámara p'abaxo"
+msgstr "  hotkey.camera.rotate.down – Xirar la cámara p'abaxo"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr "  hotkey.camera.rotate.wheel.cw – Voltiar la cámara en sen horariu"
+msgstr "  hotkey.camera.rotate.wheel.cw – Xirar la cámara en sen horariu"
 
 #: gui/manual/intro.txt:136
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr "  hotkey.camera.rotate.ccw – Voltiar la cámara en sen antihorariu"
+msgstr "  hotkey.camera.rotate.ccw – Xirar la cámara en sen antihorariu"
 
 #: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr "  hotkey.camera.rotate.wheel.cw – Voltiar la cámara en sen horariu"
+msgstr "  hotkey.camera.rotate.wheel.cw – Xirar la cámara en sen horariu"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr "  hotkey.camera.rotate.wheel.ccw – Voltiar la cámara en sen antihorariu"
+msgstr "  hotkey.camera.rotate.wheel.ccw – Xirar la cámara en sen antihorariu"
 
 #: gui/manual/intro.txt:139
 msgid ""
@@ -686,17 +686,17 @@ msgstr "[font=\"sans-bold-14\"]Pa la cimentación[font=\"sans-14\"]"
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr "  hotkey.session.rotate.ccw – Voltiar la construcción 15 graos en sen antihorariu"
+msgstr "  hotkey.session.rotate.ccw – Xirar la construcción 15 graos en sen antihorariu"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr "  hotkey.session.rotate.cw – Voltiar la construcción 15 graos en sen horariu"
+msgstr "  hotkey.session.rotate.cw – Xirar la construcción 15 graos en sen horariu"
 
 #: gui/manual/intro.txt:148
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  Botón esq. + Arrastre del mur – Voltiar la construcción (pónense les murueques en soltando'l mur)"
+msgstr "  Botón esq. + Arrastre del mur – Xirar la construcción (pónense les murueques en soltando'l mur)"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

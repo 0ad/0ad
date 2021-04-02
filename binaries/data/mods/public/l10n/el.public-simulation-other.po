@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 09:29+0000\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-03-29 09:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -544,26 +544,26 @@ msgstr "%(category)s το όριο εκπαίδευσης του %(limit)s επ�
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s το όριο του %(limit)s επιτεύχθηκε"
 
-#: simulation/components/Player.js:348
+#: simulation/components/Player.js:347
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:350
+#: simulation/components/Player.js:349
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:352
+#: simulation/components/Player.js:351
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:354
+#: simulation/components/Player.js:353
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -571,15 +571,15 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:339
+#: simulation/components/ProductionQueue.js:340
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Η Οντότητα είναι σε διαδικασία αναβάθμισης. Δέ μπορεί να ξεκινήσει τη παραγωγή"
 
-#: simulation/components/ProductionQueue.js:515
+#: simulation/components/ProductionQueue.js:351
 msgid "The production queue is full."
 msgstr "Η σειρά παραγωγής είναι πλήρης."
 
-#: simulation/components/ProductionQueue.js:905
+#: simulation/components/ProductionQueue.js:832
 msgid "Can't find free space to spawn trained units"
 msgstr "Δεν μπορεί να βρεθεί ελεύθερος χώρος για να βγουν οι εκπαιδευμένες μονάδες"
 
@@ -876,38 +876,38 @@ msgstr "(Απάτη -  αποκάλυψης χάρτη)"
 msgid "%(player)s has resigned."
 msgstr "ο %(player)s παραιτήθηκε."
 
-#: simulation/helpers/Commands.js:601
+#: simulation/helpers/Commands.js:640
 msgid "(Cheat - promoted units)"
 msgstr "(Απάτη - προώθηση μονάδων)"
 
-#: simulation/helpers/Commands.js:722
+#: simulation/helpers/Commands.js:761
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Δεν δύναται να αναβαθμιστούν διότι η απαιτούμενη απόστασή δεν έχει επαληθευτεί ή εμποδίζεται απο το έδαφος."
 
-#: simulation/helpers/Commands.js:767
+#: simulation/helpers/Commands.js:806
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Ζητείτε επίθεση εναντίον του παίχτη %(_player_)s."
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:845
 msgid "There are no bribable units"
 msgstr "Δεν υπάρχουν δωροδοκήσιμες μονάδες"
 
-#: simulation/helpers/Commands.js:852
-msgid "Unable to ungarrison unit(s)"
-msgstr "Δεν είναι δυνατή η κατάργηση της φρουράς για τη μονάδα(ες)"
+#: simulation/helpers/Commands.js:891
+msgid "Unable to unload unit(s)."
+msgstr ""
 
-#: simulation/helpers/Commands.js:866
+#: simulation/helpers/Commands.js:905
 msgid "Some unit(s) can't go back to work"
 msgstr "Μερικές μονάδες δεν μπορούν να επιστρέψουν στην εργασία τους."
 
-#: simulation/helpers/Commands.js:885
+#: simulation/helpers/Commands.js:924
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)sδέ μπορεί να ελεγχθεί."
 
-#: simulation/helpers/Commands.js:1136
+#: simulation/helpers/Commands.js:1175
 msgid "The building's technology requirements are not met."
 msgstr "Οι απαιτήσεις της τεχνολογίας του κτιρίου δεν πληρούνται."

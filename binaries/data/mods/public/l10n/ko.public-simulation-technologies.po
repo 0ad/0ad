@@ -4,18 +4,18 @@
 # project.
 # Translators:
 # 이민학, 2019
-# JungHee Lee <daemul72@gmail.com>, 2019,2021
+# Bruce Lee <daemul72@gmail.com>, 2019,2021
 # moolow <copyhyeon@gmail.com>, 2019
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2019,2021
+# Bruce Lee <daemul72@gmail.com>, 2019,2021
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Minhak Lee, 2019
 # 이민학, 2019
 # moolow <copyhyeon@gmail.com>, 2019
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-03-14 21:25+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-04-02 04:22+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,8 +116,8 @@ msgid "Unlocked in Village Phase."
 msgstr "부락 단계에서 잠금해제합니다."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
-msgid "Archers −10% training time and +10 attack range."
-msgstr "궁수의 훈련 시간이 -10% 감소하고 공격 범위가 +10 증가합니다."
+msgid "Archers +10 attack range."
+msgstr ""
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -531,8 +531,8 @@ msgstr "비료"
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +15% grain gather rate."
-msgstr "일꾼의 곡물 채집률이 +15% 증가합니다."
+msgid "Workers +20% grain gather rate."
+msgstr "일꾼의 곡물 수확률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -579,8 +579,8 @@ msgstr "쇠 도끼날"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +20% wood gather rate."
-msgstr "일꾼의 목재 채집률이 +20% 증가합니다."
+msgid "Workers +25% wood gather rate."
+msgstr "일꾼의 목재 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -607,8 +607,8 @@ msgstr "힐로테스"
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +20% stone gather rate."
-msgstr "일꾼의 석재 채집률이 +20% 증가합니다."
+msgid "Workers +25% stone gather rate."
+msgstr "일꾼의 석재 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -637,8 +637,8 @@ msgstr "수직 갱도 광산"
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +20% metal gather rate."
-msgstr "일꾼의 금속 채집률이 +20% 증가합니다."
+msgid "Workers +25% metal gather rate."
+msgstr "일꾼의 금속 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -1083,7 +1083,7 @@ msgstr "선박 선체용 목재 보강재."
 
 #: simulation/data/technologies/ship_health.jsongenericName
 msgid "Reinforced hull"
-msgstr "강화된 선체"
+msgstr "보강된 선체"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
@@ -1634,4 +1634,4 @@ msgstr "페리스타시스"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "“영광적인 확장” 기운 활성화: 불가사의 소유당 최대 인구수가 +20% 증가합니다."
+msgstr "“영광스러운 확장” 아우라 활성화: 불가사의 소유당 최대 인구수가 +20% 증가합니다."

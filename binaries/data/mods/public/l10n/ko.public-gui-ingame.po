@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-26 08:10+0000\n"
-"PO-Revision-Date: 2021-03-26 10:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-04-02 07:01+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgstr "대화"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
-msgstr "저장"
+msgstr "저장하기"
 
 #: gui/session/MenuButtons.js:77
 msgid "Summary"
@@ -160,7 +160,7 @@ msgid "Click to Resume Game"
 msgstr "게임을 이어하려면 클릭"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:558
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -621,7 +621,7 @@ msgstr "적"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
-msgstr "공헌"
+msgstr "공물"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
@@ -639,7 +639,7 @@ msgstr "남은 휴전 시간: %(time)s."
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 msgid "Toggle Diplomacy Colors"
-msgstr "국경 색 변경"
+msgstr "외교 색상 변경"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -941,7 +941,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
 #: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1041
+#: gui/session/unit_actions.js:1128
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "얻음: %(gain)s"
@@ -962,55 +962,55 @@ msgstr "현재/최대 채집자"
 msgid "(%(secondaryName)s)"
 msgstr ""
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:451
 msgid "Capture Points:"
 msgstr "점령 점수:"
 
-#: gui/session/selection_details.js:458
+#: gui/session/selection_details.js:459
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s: %(details)s\n"
 
-#: gui/session/selection_details.js:459
+#: gui/session/selection_details.js:460
 msgid "Garrison Size"
 msgstr "주둔지 크기"
 
-#: gui/session/selection_details.js:464
+#: gui/session/selection_details.js:465
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:465
+#: gui/session/selection_details.js:466
 msgid "Carrying:"
 msgstr "적재:"
 
-#: gui/session/selection_details.js:468 gui/session/selection_details.js:477
+#: gui/session/selection_details.js:469 gui/session/selection_details.js:478
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:473
+#: gui/session/selection_details.js:474
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:474
+#: gui/session/selection_details.js:475
 msgid "Loot:"
 msgstr "전리품:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:559
+#: gui/session/selection_details.js:560
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:566
+#: gui/session/selection_details.js:567
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1023,118 +1023,118 @@ msgstr "비상 상황!"
 msgid "End of alert."
 msgstr "경보 종료."
 
-#: gui/session/selection_panels.js:276
+#: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
 msgstr "기본 대형이 비활성화되었습니다."
 
-#: gui/session/selection_panels.js:277
+#: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
 msgstr "기본 대형 기능을 비활성화하려면 마우스 오른쪽 버튼을 클릭합니다."
 
-#: gui/session/selection_panels.js:280
+#: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
 msgstr "이것은 이동 명령에 사용되는 기본 대형입니다."
 
-#: gui/session/selection_panels.js:281
+#: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
 msgstr "이를 기본 대형으로 지정하려면 마우스 오른쪽 버튼을 클릭합니다."
 
-#: gui/session/selection_panels.js:337
+#: gui/session/selection_panels.js:338
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)s님을 내립니다"
 
-#: gui/session/selection_panels.js:338
+#: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "하나를 내리려면 한 번 클릭합니다.이 유형을 모두 내리려면 Shift 키를 누른 상태에서 클릭합니다."
 
-#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:860
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:861
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "플레이어: %(playername)s"
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:377
 msgid "Lock Gate"
 msgstr "문 닫기"
 
-#: gui/session/selection_panels.js:382
+#: gui/session/selection_panels.js:383
 msgid "Unlock Gate"
 msgstr "성문 잠금해제"
 
-#: gui/session/selection_panels.js:433
+#: gui/session/selection_panels.js:434
 msgid "Pack"
 msgstr "짐싸기"
 
-#: gui/session/selection_panels.js:441
+#: gui/session/selection_panels.js:442
 msgid "Unpack"
 msgstr "짐풀기"
 
-#: gui/session/selection_panels.js:449
+#: gui/session/selection_panels.js:450
 msgid "Cancel Packing"
 msgstr "짐싸기 취소"
 
-#: gui/session/selection_panels.js:457
+#: gui/session/selection_panels.js:458
 msgid "Cancel Unpacking"
 msgstr "짐풀기 취소"
 
-#: gui/session/selection_panels.js:544
+#: gui/session/selection_panels.js:545
 msgid "Insufficient population capacity:"
 msgstr "불충분한 인구 수용력:"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:546
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:725
+#: gui/session/selection_panels.js:726
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s 계급의 %(number)s개 개체들"
 
-#: gui/session/selection_panels.js:731
+#: gui/session/selection_panels.js:732
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "남음: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:732
+#: gui/session/selection_panels.js:733
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:784
+#: gui/session/selection_panels.js:785
 msgid "Cannot research while upgrading."
 msgstr "판올림하는 동안에는 연구할 수 없습니다."
 
-#: gui/session/selection_panels.js:1008
+#: gui/session/selection_panels.js:1010
 msgid "Cannot train while upgrading."
 msgstr "판올림하는 동안에는 훈련할 수 없습니다."
 
-#: gui/session/selection_panels.js:1077
+#: gui/session/selection_panels.js:1079
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1083
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1091
+#: gui/session/selection_panels.js:1093
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1096
+#: gui/session/selection_panels.js:1098
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1133
+#: gui/session/selection_panels.js:1135
 msgid "Cancel Upgrading"
 msgstr "업그레이드 취소"
 
-#: gui/session/selection_panels.js:1148
+#: gui/session/selection_panels.js:1150
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1302,7 +1302,7 @@ msgstr "순위"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr "생산 대기중인 목록"
+msgstr "생산 대기열"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
@@ -1600,7 +1600,7 @@ msgstr "행선지 교역 시장."
 msgid "Right-click to set as origin trade market"
 msgstr "원산지 교역 시장으로 지정하려면 마우스 오른쪽 버튼으로 클릭"
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1047
+#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1134
 msgid "This market is too close to the origin market."
 msgstr "이 시장은 원산지 시장에 너무 가깝습니다."
 
@@ -1608,113 +1608,122 @@ msgstr "이 시장은 원산지 시장에 너무 가깝습니다."
 msgid "Right-click to set as destination trade market."
 msgstr "목적지 교역 시장으로 지정하려면 마우스 오른쪽 클릭하십시오."
 
-#: gui/session/unit_actions.js:713 gui/session/unit_actions.js:978
+#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
+#, javascript-format
+msgid "Current turrets: %(occupied)s/%(capacity)s"
+msgstr "현재 터렛: %(occupied)s/%(capacity)s"
+
+#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "현재 주둔지: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1038
+#: gui/session/unit_actions.js:1125
 msgid "Right-click to establish a default route for new traders."
 msgstr "새로운 상인들을 위한 기본 경로를 지정하려면 마우스 오른쪽 클릭하십시오."
 
-#: gui/session/unit_actions.js:1042
+#: gui/session/unit_actions.js:1129
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "예상 수익: %(gain)s"
 
-#: gui/session/unit_actions.js:1168
+#: gui/session/unit_actions.js:1255
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "이러한 개체들을 제어할 수 없습니다."
 
-#: gui/session/unit_actions.js:1214
+#: gui/session/unit_actions.js:1301
 msgid "Unload All."
 msgstr "모두 내립니다."
 
-#: gui/session/unit_actions.js:1234
+#: gui/session/unit_actions.js:1336
+msgid "Unload Turrets."
+msgstr "터렛에서 내립니다."
+
+#: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
 msgstr "선택한 유닛 또는 건축물을 파괴합니다."
 
-#: gui/session/unit_actions.js:1236
+#: gui/session/unit_actions.js:1358
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "확인 대화상자를 표시하지 않으려면 %(hotkey)s 키를 사용하십시오."
 
-#: gui/session/unit_actions.js:1286
+#: gui/session/unit_actions.js:1408
 msgid "Abort the current order."
 msgstr "현재 명령을 중단합니다."
 
-#: gui/session/unit_actions.js:1307
+#: gui/session/unit_actions.js:1429
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "선택한 유닛이 건축물이나 유닛에 주둔하도록 명령합니다."
 
-#: gui/session/unit_actions.js:1332
+#: gui/session/unit_actions.js:1450
 msgid "Unload"
 msgstr "내리기"
 
-#: gui/session/unit_actions.js:1352
+#: gui/session/unit_actions.js:1477
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "선택한 유닛이 건축물, 배, 공성 전차의 수리를 명령합니다."
 
-#: gui/session/unit_actions.js:1373
+#: gui/session/unit_actions.js:1498
 msgid "Focus on Rally Point."
 msgstr "집결 지점으로 이동합니다."
 
-#: gui/session/unit_actions.js:1410
+#: gui/session/unit_actions.js:1535
 msgid "Back to Work"
 msgstr "하던 일로 돌아가기"
 
-#: gui/session/unit_actions.js:1431
+#: gui/session/unit_actions.js:1556
 msgid "Order the selected units to guard a structure or unit."
 msgstr "선택한 유닛에 건축물이나 유닛을 보호하도록 명령합니다."
 
-#: gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1576
 msgid "Remove guard"
 msgstr "경비병 제거"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1470
+#: gui/session/unit_actions.js:1595
 msgid "Barter & Trade"
 msgstr "물물교환 및 교역"
 
-#: gui/session/unit_actions.js:1490
+#: gui/session/unit_actions.js:1615
 msgid "Patrol"
 msgstr "정찰병"
 
-#: gui/session/unit_actions.js:1491
+#: gui/session/unit_actions.js:1616
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "건축물을 피하면서 마주친 모든 적 유닛을 공격합니다."
 
-#: gui/session/unit_actions.js:1519
+#: gui/session/unit_actions.js:1644
 msgid "Press to allow allies to use this dropsite"
 msgstr "동맹이 회수 시설을 사용할 수 있도록 하려면 누르십시오"
 
-#: gui/session/unit_actions.js:1524
+#: gui/session/unit_actions.js:1649
 msgid "Press to prevent allies from using this dropsite"
 msgstr "동맹이 회수 시설을 사용하지 않도록하려면 누르십시오"
 
-#: gui/session/unit_actions.js:1559
+#: gui/session/unit_actions.js:1684
 msgid "The use of this dropsite is prohibited"
 msgstr "이 회수 시설의 사용은 금지되어 있습니다"
 
-#: gui/session/unit_actions.js:1565
+#: gui/session/unit_actions.js:1690
 msgid "Allies are allowed to use this dropsite."
 msgstr "동맹은 이 회수 시설을 사용할 수 있습니다."
 
-#: gui/session/unit_actions.js:1566
+#: gui/session/unit_actions.js:1691
 msgid "You are allowed to use this dropsite"
 msgstr "당신은 이 회수 시설을 사용할 수 있습니다"
 
-#: gui/session/unit_actions.js:1630
+#: gui/session/unit_actions.js:1755
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "개체를 수집하려면 먼저 죽여야합니다"
 
-#: gui/session/unit_actions.js:1633
+#: gui/session/unit_actions.js:1758
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "점령 지수의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다"
 
-#: gui/session/unit_actions.js:1636
+#: gui/session/unit_actions.js:1761
 msgid "This entity is undeletable"
 msgstr "이 개체는 삭제할 수 없습니다"
