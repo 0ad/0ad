@@ -716,7 +716,7 @@ private:
 	 * Attempts to replace the current path with a straight line to the target,
 	 * if it's close enough and the route is not obstructed.
 	 */
-	bool TryGoingStraightToTarget(const CFixedVector2D& from);
+	bool TryGoingStraightToTarget(const CFixedVector2D& from, bool updatePaths);
 
 	/**
 	 * Returns whether our we need to recompute a path to reach our target.
@@ -955,7 +955,7 @@ void CCmpUnitMotion::Move(CCmpUnitMotionManager::MotionState& state, fixed dt)
 	// If we're chasing a potentially-moving unit and are currently close
 	// enough to its current position, and we can head in a straight line
 	// to it, then throw away our current path and go straight to it.
-	state.wentStraight = TryGoingStraightToTarget(state.initialPos);
+	state.wentStraight = TryGoingStraightToTarget(state.initialPos, true);
 
 	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.angle);
 }
@@ -1274,50 +1274,28 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 	else
 	{
 		out = cmpTargetPosition->GetPosition2D();
-		// Because units move one-at-a-time and pathing is asynchronous, we need to account for target movement,
-		// if we are computing this during the MT_Motion* part of the turn.
-		// If our entity ID is lower, we move first, and so we need to add a predicted movement to compute a path for next turn.
-		// If our entity ID is higher, the target has already moved, so we can just use the position directly.
+		// Position is only updated after all units have moved & pushed.
+		// Therefore, we may need to interpolate the target position, depending on when this call takes place during the turn:
+		//  - On "Turn Start", we'll check positions directly without interpolation.
+		//  - During movement, we'll call this for direct-pathing & we need to interpolate
+		//    (this way, we move where the unit will end up at the end of _this_ turn, making it match on next turn start).
+		//  - After movement, we'll call this to request paths & we need to interpolate
+		//    (this way, we'll move where the unit ends up in the end of _next_ turn, making it a match in 2 turns).
 		// TODO: This does not really aim many turns in advance, with orthogonal trajectories it probably should.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
 		CmpPtr<ICmpUnitMotionManager> cmpUnitMotionManager(GetSystemEntity());
 		bool needInterpolation = cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && cmpUnitMotionManager->ComputingMotion();
-		if (needInterpolation && GetEntityId() < moveRequest.m_Entity)
+		if (needInterpolation)
 		{
 			// Add predicted movement.
 			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D());
-
-			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-			if (!cmpPosition || !cmpPosition->IsInWorld())
-				return true; // Still return true since we don't need a position for the target to have one.
-
-			// Fleeing fix: if we anticipate the target to go through us, we'll suddenly turn around, which is bad.
-			// Pretend that the target is still behind us in those cases.
-			if (m_MoveRequest.m_MinRange > fixed::Zero())
-			{
-				if ((out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) >= 0)
-					out = tempPos;
-			}
-			else
-				out = tempPos;
-		}
-		else if (needInterpolation && GetEntityId() > moveRequest.m_Entity)
-		{
-			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-			if (!cmpPosition || !cmpPosition->IsInWorld())
-				return true; // Still return true since we don't need a position for the target to have one.
-
-			// Fleeing fix: opposite to above, check if our target has travelled through us already this turn.
-			CFixedVector2D tempPos = out - (out - cmpTargetPosition->GetPreviousPosition2D());
-			if (m_MoveRequest.m_MinRange > fixed::Zero() &&
-				(out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) < 0)
-				out = tempPos;
+			out = tempPos;
 		}
 	}
 	return true;
 }
 
-bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
+bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from, bool updatePaths)
 {
 	// Assume if we have short paths we want to follow them.
 	// Exception: offset movement (formations) generally have very short deltas
@@ -1367,6 +1345,9 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 	}
 	else if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 		return false;
+
+	if (!updatePaths)
+		return true;
 
 	// That route is okay, so update our path
 	m_LongPath.m_Waypoints.clear();
@@ -1600,10 +1581,17 @@ void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoa
 	}
 #endif
 
-	// If the target is close and we can reach it in a straight line,
-	// then we'll just go along the straight line instead of computing a path.
-	if (!ShouldAlternatePathfinder() && TryGoingStraightToTarget(from))
+	// If the target is close enough, hope that we'll be able to go straight next turn.
+	if (!ShouldAlternatePathfinder() && TryGoingStraightToTarget(from, false))
+	{
+		// NB: since we may fail to move straight next turn, we should edge our bets.
+		// Since the 'go straight' logic currently fires only if there's no short path,
+		// we'll compute a long path regardless to make sure _that_ stays up to date.
+		// (it's also extremely likely to be very fast to compute, so no big deal).
+		m_ShortPath.m_Waypoints.clear();
+		RequestLongPath(from, goal);
 		return;
+	}
 
 	// Otherwise we need to compute a path.
 
