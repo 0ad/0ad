@@ -55,10 +55,10 @@
  * smaller ranges might miss some legitimate routes around large obstacles.)
  * NB: keep the max-range in sync with the vertex pathfinder "move the search space" heuristic.
  */
-static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3)/2;
+static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3);
 static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*14);
 static const entity_pos_t SHORT_PATH_SEARCH_RANGE_INCREMENT = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
-static const u8 SHORT_PATH_SEARCH_RANGE_INCREASE_DELAY = 2;
+static const u8 SHORT_PATH_SEARCH_RANGE_INCREASE_DELAY = 1;
 
 /**
  * When using the short-pathfinder to rejoin a long-path waypoint, aim for a circle of this radius around the waypoint.
@@ -100,7 +100,7 @@ static const u8 KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN = 12;
  * this could probably be lowered.
  * TODO: when unit pushing is implemented, this number can probably be lowered.
  */
-static const u8 MAX_FAILED_MOVEMENTS = 40;
+static const u8 MAX_FAILED_MOVEMENTS = 35;
 
 /**
  * When computing paths but failing to move, we want to occasionally alternate pathfinder systems
@@ -129,6 +129,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_PathResult);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
+		componentManager.SubscribeToMessageType(MT_MovementObstructionChanged);
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 	}
 
@@ -155,7 +156,11 @@ public:
 
 	bool m_FacePointAfterMove;
 
-	// Number of turns since we last managed to move successfully.
+	// Whether the unit participates in pushing.
+	bool m_Pushing = true;
+
+	// Internal counter used when recovering from obstructed movement.
+	// Most notably, increases the search range of the vertex pathfinder.
 	// See HandleObstructedMove() for more details.
 	u8 m_FailedMovements = 0;
 
@@ -258,7 +263,11 @@ public:
 
 			CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 			if (cmpObstruction)
+			{
 				cmpObstruction->SetUnitClearance(m_Clearance);
+				if (!cmpObstruction->GetBlockMovementFlag(true))
+					m_Pushing = false;
+			}
 		}
 
 		m_DebugOverlayEnabled = false;
@@ -291,6 +300,7 @@ public:
 		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
 
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
+		serialize.Bool("pushing", m_Pushing);
 
 		Serializer(serialize, "long path", m_LongPath.m_Waypoints);
 		Serializer(serialize, "short path", m_ShortPath.m_Waypoints);
@@ -339,6 +349,13 @@ public:
 		{
 			if (!ENTITY_IS_LOCAL(GetEntityId()))
 				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Unregister(GetEntityId());
+			break;
+		}
+		case MT_MovementObstructionChanged:
+		{
+			CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+			if (cmpObstruction)
+				m_Pushing = cmpObstruction->GetBlockMovementFlag(false);
 			break;
 		}
 		case MT_ValueModification:
@@ -507,11 +524,6 @@ public:
 	}
 
 private:
-	bool ShouldAvoidMovingUnits() const
-	{
-		return !m_FormationController;
-	}
-
 	bool IsFormationMember() const
 	{
 		// TODO: this really shouldn't be what we are checking for.
@@ -721,14 +733,14 @@ private:
 	 */
 	ControlGroupMovementObstructionFilter GetObstructionFilter() const
 	{
-		return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), GetGroup());
+		return ControlGroupMovementObstructionFilter(false, GetGroup());
 	}
 	/**
 	 * Filter a specific tag on top of the existing control groups.
 	 */
-	SkipMovingTagAndControlGroupObstructionFilter GetObstructionFilter(const ICmpObstructionManager::tag_t& tag) const
+	SkipTagAndControlGroupObstructionFilter GetObstructionFilter(const ICmpObstructionManager::tag_t& tag) const
 	{
-		return SkipMovingTagAndControlGroupObstructionFilter(tag, GetGroup());
+		return SkipTagAndControlGroupObstructionFilter(tag, false, GetGroup());
 	}
 
 	/**
@@ -917,9 +929,23 @@ void CCmpUnitMotion::OnTurnStart()
 
 void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 {
+	state.ignore = !m_Pushing;
+
 	// If we were idle and will still be, no need for an update.
 	state.needUpdate = state.cmpPosition->IsInWorld() &&
 		(m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
+
+	if (state.ignore)
+		return;
+
+	state.controlGroup = IsFormationMember() ? m_MoveRequest.m_Entity : INVALID_ENTITY;
+
+	// Update moving flag, this is an internal construct used for pushing,
+	// so it does not really reflect whether the unit is actually moving or not.
+	state.isMoving = m_MoveRequest.m_Type != MoveRequest::NONE;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+	if (cmpObstruction)
+		cmpObstruction->SetMovingFlag(state.isMoving);
 }
 
 void CCmpUnitMotion::Move(CCmpUnitMotionManager::MotionState& state, fixed dt)
@@ -946,9 +972,12 @@ void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed d
 	else
 	{
 		// Update the Position component after our movement (if we actually moved anywhere)
-		// When moving always set the angle in the direction of the movement.
 		CFixedVector2D offset = state.pos - state.initialPos;
-		state.angle = atan2_approx(offset.X, offset.Y);
+		// When moving always set the angle in the direction of the movement,
+		// if we are not trying to move, assume this is pushing-related movement,
+		// and maintain the current angle instead.
+		if (IsMoveRequested())
+			state.angle = atan2_approx(offset.X, offset.Y);
 		state.cmpPosition->MoveAndTurnTo(state.pos.X, state.pos.Y, state.angle);
 
 		// Calculate the mean speed over this past turn.
@@ -959,6 +988,10 @@ void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed d
 		return;
 	else if (!state.wasObstructed && state.pos != state.initialPos)
 		m_FailedMovements = 0;
+
+	// If we moved straight, and didn't quite finish the path, reset - we'll update it next turn if still OK.
+	if (state.wentStraight && !state.wasObstructed)
+		m_ShortPath.m_Waypoints.clear();
 
 	// We may need to recompute our path sometimes (e.g. if our target moves).
 	// Since we request paths asynchronously anyways, this does not need to be done before moving.
@@ -1132,24 +1165,12 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 
 void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed)
 {
-	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 	CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
-	// Idle this turn.
-	if (speed == fixed::Zero())
+	if (cmpVisual)
 	{
-		// Update moving flag if we moved last turn.
-		if (m_CurSpeed > fixed::Zero() && cmpObstruction)
-			cmpObstruction->SetMovingFlag(false);
-		if (cmpVisual)
+		if (speed == fixed::Zero())
 			cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
-	}
-	// Moved this turn
-	else
-	{
-		// Update moving flag if we didn't move last turn.
-		if (m_CurSpeed == fixed::Zero() && cmpObstruction)
-			cmpObstruction->SetMovingFlag(true);
-		if (cmpVisual)
+		else
 			cmpVisual->SelectMovementAnimation(speed > (m_WalkSpeed / 2).Multiply(m_RunMultiplier + fixed::FromInt(1)) ? "run" : "walk", speed);
 	}
 
@@ -1298,6 +1319,12 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 
 bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 {
+	// Assume if we have short paths we want to follow them.
+	// Exception: offset movement (formations) generally have very short deltas
+	// and to look good we need them to walk-straight most of the time.
+	if (!IsFormationMember() && !m_ShortPath.m_Waypoints.empty())
+		return false;
+
 	CFixedVector2D targetPos;
 	if (!ComputeTargetPosition(targetPos))
 		return false;
@@ -1332,14 +1359,14 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 			specificIgnore = cmpTargetObstruction->GetObstruction();
 	}
 
+	// Check movement against units - we want to use the short pathfinder to walk around those if needed.
 	if (specificIgnore.valid())
 	{
-		if (!cmpPathfinder->CheckMovement(SkipTagObstructionFilter(specificIgnore), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
+		if (!cmpPathfinder->CheckMovement(GetObstructionFilter(specificIgnore), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 			return false;
 	}
 	else if (!cmpPathfinder->CheckMovement(GetObstructionFilter(), from.X, from.Y, goalPos.X, goalPos.Y, m_Clearance, m_PassClass))
 		return false;
-
 
 	// That route is okay, so update our path
 	m_LongPath.m_Waypoints.clear();

@@ -22,6 +22,8 @@
 #include "ICmpUnitMotionManager.h"
 
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/system/EntityMap.h"
 
 class CCmpUnitMotion;
@@ -31,6 +33,7 @@ class CCmpUnitMotionManager : public ICmpUnitMotionManager
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Update_Final);
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
@@ -42,6 +45,8 @@ public:
 	// Persisted state for each unit.
 	struct MotionState
 	{
+		MotionState(CmpPtr<ICmpPosition> cmpPos, CCmpUnitMotion* cmpMotion);
+
 		// Component references - these must be kept alive for the duration of motion.
 		// NB: this is generally not something one should do, but because of the tight coupling here it's doable.
 		CmpPtr<ICmpPosition> cmpPosition;
@@ -52,22 +57,35 @@ public:
 		// Transient position during the movement.
 		CFixedVector2D pos;
 
+		// Accumulated "pushing" from nearby units.
+		CFixedVector2D push;
+
 		fixed initialAngle;
 		fixed angle;
 
-		// If true, the entity needs to be handled during movement.
-		bool needUpdate;
+		// Used for formations - units with the same control group won't push at a distance.
+		// (this is required because formations may be tight and large units may end up never settling.
+		entity_id_t controlGroup = INVALID_ENTITY;
 
-		// 'Leak' from UnitMotion.
-		bool wentStraight;
-		bool wasObstructed;
+		// Meta-flag -> this entity won't push nor be pushed.
+		// (used for entities that have their obstruction disabled).
+		bool ignore = false;
+
+		// If true, the entity needs to be handled during movement.
+		bool needUpdate = false;
+
+		bool wentStraight = false;
+		bool wasObstructed = false;
+
+		// Clone of the obstruction manager flag for efficiency
+		bool isMoving = false;
 	};
 
 	EntityMap<MotionState> m_Units;
 	EntityMap<MotionState> m_FormationControllers;
 
-	// Temporary vector, reconstructed each turn (stored here to avoid memory reallocations).
-	std::vector<EntityMap<MotionState>::iterator> m_MovingUnits;
+	// The vectors are cleared each frame.
+	Grid<std::vector<EntityMap<MotionState>::iterator>> m_MovingUnits;
 
 	bool m_ComputingMotion;
 
@@ -78,7 +96,6 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
-		m_MovingUnits.reserve(40);
 	}
 
 	virtual void Deinit()
@@ -92,12 +109,20 @@ public:
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
 		Init(paramNode);
+		ResetSubdivisions();
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
+			case MT_TerrainChanged:
+			{
+				CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+				if (cmpTerrain->GetVerticesPerSide() != m_MovingUnits.width())
+					ResetSubdivisions();
+				break;
+			}
 			case MT_TurnStart:
 			{
 				OnTurnStart();
@@ -130,12 +155,26 @@ public:
 		return m_ComputingMotion;
 	}
 
+private:
+	void ResetSubdivisions();
 	void OnTurnStart();
 
 	void MoveUnits(fixed dt);
 	void MoveFormations(fixed dt);
 	void Move(EntityMap<MotionState>& ents, fixed dt);
+
+	void Push(EntityMap<MotionState>::value_type& a, EntityMap<MotionState>::value_type& b, fixed dt);
 };
+
+void CCmpUnitMotionManager::ResetSubdivisions()
+{
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+	if (!cmpTerrain)
+		return;
+
+	size_t size = cmpTerrain->GetVerticesPerSide() - 1;
+	m_MovingUnits.resize(size * TERRAIN_TILE_SIZE / 20 + 1, size * TERRAIN_TILE_SIZE / 20 + 1);
+}
 
 REGISTER_COMPONENT_TYPE(UnitMotionManager)
 

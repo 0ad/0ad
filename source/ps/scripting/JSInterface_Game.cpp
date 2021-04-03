@@ -98,13 +98,10 @@ void SetSimRate(float rate)
 	g_Game->SetSimRate(rate);
 }
 
-int GetPendingTurns(const ScriptRequest& rq)
+int GetPendingTurns()
 {
 	if (!g_Game || !g_Game->GetTurnManager())
-	{
-		ScriptException::Raise(rq, "Game is not started");
 		return 0;
-	}
 
 	return g_Game->GetTurnManager()->GetPendingTurns();
 }

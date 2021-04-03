@@ -17,7 +17,7 @@ class TurretHolder
 					"y": +points[point].Y,
 					"z": +points[point].Z
 				},
-				"allowedClasses": points[point].AllowedClasses,
+				"allowedClasses": points[point].AllowedClasses?._string,
 				"angle": points[point].Angle ? +points[point].Angle * Math.PI / 180 : null,
 				"entity": null
 			});
@@ -49,7 +49,7 @@ class TurretHolder
 			return true;
 
 		let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), turretPoint.allowedClasses._string);
+		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), turretPoint.allowedClasses);
 	}
 
 	/**

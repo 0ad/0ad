@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -622,11 +622,11 @@ static bool isUnprintableChar(SDL_Keysym key)
 	case SDLK_LEFT: case SDLK_RIGHT:
 	case SDLK_UP: case SDLK_DOWN:
 	case SDLK_PAGEUP: case SDLK_PAGEDOWN:
-		return false;
+		return true;
 
 	// Ignore the others
 	default:
-		return true;
+		return false;
 	}
 }
 
@@ -671,7 +671,7 @@ InReaction conInputHandler(const SDL_Event_* ev)
 
 	// In SDL2, we no longer get Unicode wchars via SDL_Keysym
 	// we use text input events instead and they provide UTF-8 chars
-	if (ev->ev.type == SDL_TEXTINPUT && !HotkeyIsPressed("console.toggle"))
+	if (ev->ev.type == SDL_TEXTINPUT)
 	{
 		// TODO: this could be more efficient with an interface to insert UTF-8 strings directly
 		std::wstring wstr = wstring_from_utf8(ev->ev.text.text);
@@ -681,19 +681,28 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	}
 	// TODO: text editing events for IME support
 
-	if (ev->ev.type != SDL_KEYDOWN)
+	if (ev->ev.type != SDL_KEYDOWN && ev->ev.type != SDL_KEYUP)
 		return IN_PASS;
 
 	int sym = ev->ev.key.keysym.sym;
 
-	// Stop unprintable characters (ctrl+, alt+ and escape),
-	// also prevent ` and/or ~ appearing in console every time it's toggled.
-	if (!isUnprintableChar(ev->ev.key.keysym) &&
+	// Stop unprintable characters (ctrl+, alt+ and escape).
+	if (ev->ev.type == SDL_KEYDOWN && isUnprintableChar(ev->ev.key.keysym) &&
 		!HotkeyIsPressed("console.toggle"))
 	{
 		g_Console->InsertChar(sym, 0);
 		return IN_HANDLED;
 	}
 
-	return IN_PASS;
+	// We have a probably printable key - we should return HANDLED so it can't trigger hotkeys.
+	// However, if Ctrl/Meta modifiers are active (or it's escape), just pass it through instead,
+	// assuming that we are indeed trying to trigger hotkeys (e.g. copy/paste).
+	// Also ignore the key if we are trying to toggle the console off.
+	// See also similar logic in CInput.cpp
+	if (EventWillFireHotkey(ev, "console.toggle") ||
+		g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_RCTRL] ||
+		g_scancodes[SDL_SCANCODE_LGUI] || g_scancodes[SDL_SCANCODE_RGUI])
+		return IN_PASS;
+
+	return IN_HANDLED;
 }

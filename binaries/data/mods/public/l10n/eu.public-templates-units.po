@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-12 09:29+0000\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-03-29 09:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -218,21 +218,25 @@ msgstr "Ezpataria"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:7
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:25
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
 #: simulation/templates/template_unit_champion_infantry_archer.xml:28
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
 #: simulation/templates/template_unit_elephant_archer.xml:36
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
 #: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
 #: simulation/templates/template_unit_ship_bireme.xml:48
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:53
 #: simulation/templates/template_unit_ship_trireme.xml:48
-#: simulation/templates/template_unit_siege_boltshooter.xml:48
-#: simulation/templates/template_unit_siege_stonethrower.xml:41
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Ranged"
 msgstr "Urrutirakoa"
@@ -269,6 +273,29 @@ msgstr "Arkularia"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
 msgid "Cavalry Archer"
 msgstr "Zalditeria arkularia"
+
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:5
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:5
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:5
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Crossbow"
+msgstr "Balezta"
+
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:31
+msgid "Cavalry Crossbowman"
+msgstr ""
+
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:32
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
+msgid "Crossbowman"
+msgstr "Baleztaria"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -313,6 +340,10 @@ msgstr "Arkulari zalditeria aldezkaria"
 msgid "Champion Cavalry Axeman"
 msgstr "Aihozlari Zaldun Aldezkaria"
 
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:25
+msgid "Champion Cavalry Crossbowman"
+msgstr ""
+
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
 msgid "Champion Cavalry Javelineer"
 msgstr "Zaldun lantzari txapelduna"
@@ -339,7 +370,7 @@ msgstr "Guda Elefantea"
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
-#: simulation/templates/units/maur/support_elephant.xml:23
+#: simulation/templates/template_unit_support_elephant.xml:21
 msgid "Elephant"
 msgstr "Elefantea"
 
@@ -367,6 +398,10 @@ msgstr "Arkulari aldezkaria"
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
 msgstr "Aihozlari Aldezkaria"
+
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:28
+msgid "Champion Infantry Crossbowman"
+msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
 msgid "Champion Infantry Javelineer"
@@ -446,7 +481,7 @@ msgstr "Arkularia elefantean"
 msgid "Kill to gather meat for food."
 msgstr "Hil jateko haragia ustiatzeko."
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:7
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
 msgstr "Hil janaria ustiatzeko"
 
@@ -467,6 +502,10 @@ msgstr "Zalditeri arkulari heroia"
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
 msgstr "Aihozlari Zalditeria Heroia"
+
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:25
+msgid "Hero Cavalry Crossbowman"
+msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
 msgid "Hero Cavalry Javelineer"
@@ -508,6 +547,10 @@ msgstr "Arkulari heroia"
 msgid "Hero Axeman"
 msgstr "Aihozlari Heroia"
 
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:25
+msgid "Hero Infantry Crossbowman"
+msgstr ""
+
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
 msgid "Hero Infantry Javelineer"
 msgstr "Infanteriko lantzari heroia"
@@ -542,6 +585,10 @@ msgstr "Buruz-buruko Infanteria"
 msgid "Infantry Maceman"
 msgstr "Infanteria mazolaria"
 
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
+msgid "Infantry Crossbowman"
+msgstr ""
+
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Infantry Javelineer"
 msgstr "Oinezko lantzaria"
@@ -566,7 +613,7 @@ msgid "Light Warship"
 msgstr "Gudaontzi Arina"
 
 #: simulation/templates/template_unit_ship_bireme.xml:47
-#: simulation/templates/template_unit_ship_quinquereme.xml:48
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/template_unit_ship_trireme.xml:47
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Garrison units for transport and to increase firepower."
@@ -574,7 +621,7 @@ msgstr "Sartu unitateak guardan garraiatzeko eta su indarra handitzeko."
 
 #: simulation/templates/template_unit_ship_bireme.xml:48
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:53
 #: simulation/templates/template_unit_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Gudaontzia"
@@ -649,11 +696,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Harria"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:47
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
 msgid "Heavy Warship"
 msgstr "Guaontzi astuna"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:53
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
 msgstr "Quinquereme"
@@ -677,11 +724,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Torlojua"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:48
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "BoltShooter"
 msgstr "Zagitaria"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:49
+#: simulation/templates/template_unit_siege_boltshooter.xml:54
 msgid "Bolt Shooter"
 msgstr "Zagitaria"
 
@@ -702,11 +749,11 @@ msgstr "Arietea"
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Ezin dira eremuak edo unitate organikoak eraso."
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:41
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 msgid "StoneThrower"
 msgstr "Harri jaurtitzailea"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:42
+#: simulation/templates/template_unit_siege_stonethrower.xml:47
 msgid "Siege Catapult"
 msgstr "Setio Katapulta"
 
@@ -717,6 +764,10 @@ msgstr "SetioDorrea"
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Siege Tower"
 msgstr "Setio Dorrea"
+
+#: simulation/templates/template_unit_support_elephant.xml:20
+msgid "Worker Elephant"
+msgstr "Lanerako Elefantea"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1809,11 +1860,11 @@ msgstr "Niloko Merkatari-Ontzia"
 msgid "Dȝy sbt"
 msgstr "Dȝy sbt"
 
-#: simulation/templates/units/kush/ship_trireme.xml:16
+#: simulation/templates/units/kush/ship_trireme.xml:10
 msgid "Ptolemaic Mercenary Trireme"
 msgstr "Trirreme Ptolemaikar Mertzenarioa"
 
-#: simulation/templates/units/kush/ship_trireme.xml:17
+#: simulation/templates/units/kush/ship_trireme.xml:11
 msgid "shry ʿȝ"
 msgstr "shry ʿȝ"
 
@@ -1885,20 +1936,7 @@ msgstr "Zalditeri Konpainia"
 msgid "Hetaîros"
 msgstr "Hetaîros"
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Crossbow"
-msgstr "Balezta"
-
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:26
-msgid "Crossbowman"
-msgstr "Baleztaria"
-
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:28
-msgid "Champion Crossbowman"
-msgstr "Baleztari aldezkaria"
-
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:29
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:6
 msgid "Gastraphetophoros"
 msgstr "Gastraphetophoros"
 
@@ -2146,11 +2184,7 @@ msgstr "Merkantzia-ontzia"
 msgid "Vanijyik Nauka"
 msgstr "Vanijyik Nauka"
 
-#: simulation/templates/units/maur/support_elephant.xml:21
-msgid "Worker Elephant"
-msgstr "Lanerako Elefantea"
-
-#: simulation/templates/units/maur/support_elephant.xml:22
+#: simulation/templates/units/maur/support_elephant.xml:5
 msgid "Karmākara Gaja"
 msgstr "Karmākara Gaja"
 
@@ -2525,11 +2559,11 @@ msgstr "Erregearen Guardia Oinez"
 msgid "Phalangitès Agema"
 msgstr "Phalangitès Agema"
 
-#: simulation/templates/units/ptol/champion_juggernaut.xml:25
+#: simulation/templates/units/ptol/champion_juggernaut.xml:24
 msgid "Juggernaut"
 msgstr "Mastodontea"
 
-#: simulation/templates/units/ptol/champion_juggernaut.xml:26
+#: simulation/templates/units/ptol/champion_juggernaut.xml:25
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
@@ -3060,11 +3094,11 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:46
+#: simulation/templates/units/theb_siege_fireraiser.xml:51
 msgid "Fire Raiser"
 msgstr "Su Emaile "
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:47
+#: simulation/templates/units/theb_siege_fireraiser.xml:52
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 

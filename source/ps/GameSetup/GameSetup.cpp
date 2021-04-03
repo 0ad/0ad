@@ -539,7 +539,7 @@ void InitInput()
 
 	in_add_handler(CProfileViewer::InputThunk);
 
-	in_add_handler(HotkeyInputHandler);
+	in_add_handler(HotkeyInputActualHandler);
 
 	// gui_handler needs to be registered after (i.e. called before!) the
 	// hotkey handler so that input boxes can be typed in without
@@ -550,11 +550,17 @@ void InitInput()
 
 	in_add_handler(touch_input_handler);
 
-	// must be registered after (called before) the GUI which relies on these globals
-	in_add_handler(GlobalsInputHandler);
+	// Should be called after scancode map update (i.e. after the global input, but before UI).
+	// This never blocks the event, but it does some processing necessary for hotkeys,
+	// which are triggered later down the input chain.
+	// (by calling this before the UI, we can use 'EventWouldTriggerHotkey' in the UI).
+	in_add_handler(HotkeyInputPrepHandler);
 
-	// Should be called first, this updates our hotkey press state
-	// so that js calls to HotkeyIsPressed are synched with events.
+	// These two must be called first (i.e. pushed last)
+	// GlobalsInputHandler deals with some important global state,
+	// such as which scancodes are being pressed, mouse buttons pressed, etc.
+	// while HotkeyStateChange updates the map of active hotkeys.
+	in_add_handler(GlobalsInputHandler);
 	in_add_handler(HotkeyStateChange);
 }
 

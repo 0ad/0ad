@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ DEFINE_INTERFACE_METHOD_CONST_0("GetEntitiesBlockingConstruction", std::vector<e
 DEFINE_INTERFACE_METHOD_CONST_0("GetEntitiesDeletedUponConstruction", std::vector<entity_id_t>, ICmpObstruction, GetEntitiesDeletedUponConstruction)
 DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)
 DEFINE_INTERFACE_METHOD_3("SetDisableBlockMovementPathfinding", void, ICmpObstruction, SetDisableBlockMovementPathfinding, bool, bool, int32_t)
-DEFINE_INTERFACE_METHOD_CONST_0("GetBlockMovementFlag", bool, ICmpObstruction, GetBlockMovementFlag)
+DEFINE_INTERFACE_METHOD_CONST_1("GetBlockMovementFlag", bool, ICmpObstruction, GetBlockMovementFlag, bool)
 DEFINE_INTERFACE_METHOD_1("SetControlGroup", void, ICmpObstruction, SetControlGroup, entity_id_t)
 DEFINE_INTERFACE_METHOD_CONST_0("GetControlGroup", entity_id_t, ICmpObstruction, GetControlGroup)
 DEFINE_INTERFACE_METHOD_1("SetControlGroup2", void, ICmpObstruction, SetControlGroup2, entity_id_t)

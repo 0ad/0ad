@@ -47,6 +47,11 @@ AlertRaiser.prototype.RaiseAlert = function()
 	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.RaiseAlertRange, [owner], IID_UnitAI, true).filter(ent => this.UnitFilter(ent));
 	for (let unit of units)
 	{
+		let cmpGarrisonable = Engine.QueryInterface(unit, IID_Garrisonable);
+		if (!cmpGarrisonable)
+			continue;
+
+		let size = cmpGarrisonable.TotalSize();
 		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 
 		let holder = cmpRangeManager.ExecuteQuery(unit, 0, +this.template.SearchRange, mutualAllies, IID_GarrisonHolder, true).find(ent => {
@@ -65,13 +70,13 @@ AlertRaiser.prototype.RaiseAlert = function()
 			if (!reserved.has(ent))
 				reserved.set(ent, cmpGarrisonHolder.GetCapacity() - cmpGarrisonHolder.OccupiedSlots());
 
-			return cmpGarrisonHolder.IsAllowedToGarrison(unit) && reserved.get(ent);
+			return cmpGarrisonHolder.IsAllowedToGarrison(unit) && reserved.get(ent) >= size;
 		});
 
 		if (holder)
 		{
-			reserved.set(holder, reserved.get(holder) - 1);
-			cmpUnitAI.ReplaceOrder("Garrison", { "target": holder, "force": true });
+			reserved.set(holder, reserved.get(holder) - size);
+			cmpUnitAI.Garrison(holder, false, false);
 		}
 		else
 			// If no available spots, stop moving

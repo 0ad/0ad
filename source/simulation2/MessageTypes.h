@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -387,6 +387,20 @@ public:
 	entity_id_t ent;
 	int oldVisibility;
 	int newVisibility;
+};
+
+/**
+ * Sent when then obstruction of an entity has changed in a manner
+ * that changes 'block movement' properties.
+ */
+class CMessageMovementObstructionChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(MovementObstructionChanged)
+
+	CMessageMovementObstructionChanged()
+	{
+	}
 };
 
 /**

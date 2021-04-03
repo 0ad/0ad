@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -260,9 +260,7 @@ private:
 
 	/**
 	 * Given a path with an arbitrary collection of waypoints, updates the
-	 * waypoints to be nicer. Calls "Testline" between waypoints
-	 * so that bended paths can become straight if there's nothing in between
-	 * (this happens because A* is 8-direction, and the map isn't actually a grid).
+	 * waypoints to be nicer.
 	 * If @param maxDist is non-zero, path waypoints will be espaced by at most @param maxDist.
 	 * In that case the distance between (x0, z0) and the first waypoint will also be made less than maxDist.
 	 */

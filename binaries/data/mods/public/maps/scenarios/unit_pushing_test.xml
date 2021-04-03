@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="7">
+	<Terrain patches="20" texture="grass1_spring" priority="0" height="16384"/>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<AmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
+		<Water>
+			<WaterBody>
+				<Type>ocean</Type>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<Height>5</Height>
+				<Waviness>4</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<WindAngle>0</WindAngle>
+			</WaterBody>
+		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
+	</Environment>
+	<Camera>
+		<Position x="330.378" y="418.536" z="253.809"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": false,
+  "Description": "This map is designed to test the performance & functionality of unit pushing.",
+  "Keywords": [
+    "trigger",
+    "demo"
+  ],
+  "Name": "Unit Pushing test",
+  "PlayerData": [
+    null,
+    { "AI": "" },
+    { "AI": "" }
+  ],
+  "RevealMap": true,
+  "ExploredMap": true,
+  "TriggerScripts": [
+    "scripts/TriggerHelper.js",
+    "scenarios/unit_pushing_test.js"
+  ],
+  "VictoryConditions": []
+}
+]]></ScriptSettings>
+	<Entities>
+	</Entities>
+	<Paths/>
+</Scenario>

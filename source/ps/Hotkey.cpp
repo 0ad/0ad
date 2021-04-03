@@ -51,6 +51,15 @@ namespace {
 		bool wasRetriggered;
 	};
 
+	// 'In-flight' state used because the hotkey triggering process is split in two phase.
+	// These hotkeys may still be stopped if the event responsible for triggering them is handled
+	// before it can be used to generate the hotkeys.
+	std::vector<PressedHotkey> newPressedHotkeys;
+	// Stores the 'specificity' of the newly pressed hotkeys.
+	size_t closestMapMatch = 0;
+	// This is merely used to ensure consistency in EventWillFireHotkey.
+	const SDL_Event_* currentEvent;
+
 	// List of currently pressed hotkeys. This is used to quickly reset hotkeys.
 	// This is an unsorted vector because there will generally be very few elements,
 	// so it's presumably faster than std::set.
@@ -161,9 +170,13 @@ InReaction HotkeyStateChange(const SDL_Event_* ev)
 	return IN_PASS;
 }
 
-InReaction HotkeyInputHandler(const SDL_Event_* ev)
+InReaction HotkeyInputPrepHandler(const SDL_Event_* ev)
 {
 	int scancode = SDL_SCANCODE_UNKNOWN;
+
+	// Restore default state.
+	newPressedHotkeys.clear();
+	currentEvent = nullptr;
 
 	switch(ev->ev.type)
 	{
@@ -223,30 +236,32 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	{
 		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_SHIFT);
 		unified[0] = (phantom.ev.type == SDL_KEYDOWN);
-		HotkeyInputHandler(&phantom);
+		return HotkeyInputPrepHandler(&phantom);
 	}
 	else if (scancode == SDL_SCANCODE_LCTRL || scancode == SDL_SCANCODE_RCTRL)
 	{
 		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_CTRL);
 		unified[1] = (phantom.ev.type == SDL_KEYDOWN);
-		HotkeyInputHandler(&phantom);
+		return HotkeyInputPrepHandler(&phantom);
 	}
 	else if (scancode == SDL_SCANCODE_LALT || scancode == SDL_SCANCODE_RALT)
 	{
 		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_ALT);
 		unified[2] = (phantom.ev.type == SDL_KEYDOWN);
-		HotkeyInputHandler(&phantom);
+		return HotkeyInputPrepHandler(&phantom);
 	}
 	else if (scancode == SDL_SCANCODE_LGUI || scancode == SDL_SCANCODE_RGUI)
 	{
 		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_SUPER);
 		unified[3] = (phantom.ev.type == SDL_KEYDOWN);
-		HotkeyInputHandler(&phantom);
+		return HotkeyInputPrepHandler(&phantom);
 	}
 
 	// Check whether we have any hotkeys registered that include this scancode.
 	if (g_HotkeyMap.find(scancode) == g_HotkeyMap.end())
-		return (IN_PASS);
+		return IN_PASS;
+
+	currentEvent = ev;
 
 	/**
 	 * Hotkey behaviour spec (see also tests):
@@ -285,9 +300,6 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 			activeScancodes.emplace_back(scancode);
 	}
 
-	std::vector<ReleasedHotkey> releasedHotkeys;
-	std::vector<PressedHotkey> newPressedHotkeys;
-
 	std::set<SDL_Scancode_> triggers;
 	if (!isReleasedKey || isInstantaneous)
 		triggers.insert(scancode);
@@ -298,7 +310,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	// Now check if we need to trigger new hotkeys / retrigger hotkeys.
 	// We'll need the match-level and the keys in play to release currently pressed hotkeys.
-	size_t closestMapMatch = 0;
+	closestMapMatch = 0;
 	for (SDL_Scancode_ code : triggers)
 		for (const SHotkeyMapping& hotkey : g_HotkeyMap[code])
 		{
@@ -330,6 +342,20 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 				newPressedHotkeys.emplace_back(&hotkey, isReleasedKey);
 			}
 		}
+
+	return IN_PASS;
+}
+
+InReaction HotkeyInputActualHandler(const SDL_Event_* ev)
+{
+	if (!currentEvent)
+		return IN_PASS;
+
+	bool isInstantaneous = ev->ev.type == SDL_MOUSEWHEEL;
+
+	// TODO: it's probably possible to break hotkeys somewhat if the "Up" event that would release a hotkey is handled
+	// by a priori handler - it might be safer to do that in the 'Prep' phase.
+	std::vector<ReleasedHotkey> releasedHotkeys;
 
 	// For instantaneous events, we don't update the pressedHotkeys (i.e. currently active hotkeys),
 	// we just fire/release the triggered hotkeys transiently.
@@ -422,6 +448,16 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	}
 
 	return IN_PASS;
+}
+
+bool EventWillFireHotkey(const SDL_Event_* ev, const CStr& keyname)
+{
+	// Sanity check of sort. This parameter mostly exists because it looks right from the caller's perspective.
+	if (ev != currentEvent || !currentEvent)
+		return false;
+
+	return std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+		[&keyname](const PressedHotkey& v){ return v.mapping->name == keyname; }) != newPressedHotkeys.end();
 }
 
 bool HotkeyIsPressed(const CStr& keyname)

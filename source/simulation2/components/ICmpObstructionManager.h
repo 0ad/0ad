@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ public:
 		FLAG_BLOCK_FOUNDATION         = (1 << 1), // prevents foundations being placed on this shape
 		FLAG_BLOCK_CONSTRUCTION       = (1 << 2), // prevents buildings being constructed on this shape
 		FLAG_BLOCK_PATHFINDING        = (1 << 3), // prevents the tile pathfinder choosing paths through this shape
-		FLAG_MOVING                   = (1 << 4), // indicates this unit is currently moving
+		FLAG_MOVING                   = (1 << 4), // reserved for unitMotion - see usage there.
 		FLAG_DELETE_UPON_CONSTRUCTION = (1 << 5)  // this entity is deleted when construction of a building placed on top of this entity starts
 	};
 
@@ -530,25 +530,28 @@ public:
 };
 
 /**
- * Obstruction test filter that reject shapes in a given control group or with the given tag (if that tag is moving),
- * and rejects shapes that don't block unit movement. See D3482 for why this exists.
+ * Similar to ControlGroupMovementObstructionFilter, but also ignoring a specific tag. See D3482 for why this exists.
  */
-class SkipMovingTagAndControlGroupObstructionFilter : public IObstructionTestFilter
+class SkipTagAndControlGroupObstructionFilter : public IObstructionTestFilter
 {
 	entity_id_t m_Group;
 	tag_t m_Tag;
+	bool m_AvoidMoving;
 
 public:
-	SkipMovingTagAndControlGroupObstructionFilter(tag_t tag, entity_id_t group) :
-	m_Tag(tag), m_Group(group)
+	SkipTagAndControlGroupObstructionFilter(tag_t tag, bool avoidMoving,  entity_id_t group) :
+	m_Tag(tag), m_Group(group), m_AvoidMoving(avoidMoving)
 	{}
 
 	virtual bool TestShape(tag_t tag, flags_t flags, entity_id_t group, entity_id_t group2) const
 	{
-		if (tag.n == m_Tag.n && (flags & ICmpObstructionManager::FLAG_MOVING))
+		if (tag.n == m_Tag.n)
 			return false;
 
 		if (group == m_Group || (group2 != INVALID_ENTITY && group2 == m_Group))
+			return false;
+
+		if ((flags & ICmpObstructionManager::FLAG_MOVING) && !m_AvoidMoving)
 			return false;
 
 		if (!(flags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT))

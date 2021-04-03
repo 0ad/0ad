@@ -15,6 +15,7 @@
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
+# Martin Křížek <krizekmartin@gmail.com>, 2021
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
 # fri, 2014-2018,2020
@@ -30,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-26 08:10+0000\n"
-"PO-Revision-Date: 2021-03-26 10:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-03-29 07:10+0000\n"
+"PO-Revision-Date: 2021-04-01 20:43+0000\n"
+"Last-Translator: Martin Křížek <krizekmartin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +160,7 @@ msgid "Click to Resume Game"
 msgstr "Klepněte pro pokračování ve hře"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:558
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -557,19 +558,19 @@ msgstr "Povýšit vybrané jednotky"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "Povolit culling"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Zamknout cull kameru"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Zobrazit frustum kamery"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Zobrazit frustum stínů"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -889,11 +890,11 @@ msgstr "Najít nečinného dělníka"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — Zabaleno"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Zabaleno"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -946,7 +947,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
 #: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1041
+#: gui/session/unit_actions.js:1128
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Zisk: %(gain)s"
@@ -956,7 +957,7 @@ msgstr "Zisk: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -965,57 +966,57 @@ msgstr "Nyní/maximum sběračů"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:451
 msgid "Capture Points:"
 msgstr "Body za zajetí:"
 
-#: gui/session/selection_details.js:458
+#: gui/session/selection_details.js:459
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
-#: gui/session/selection_details.js:459
+#: gui/session/selection_details.js:460
 msgid "Garrison Size"
-msgstr ""
+msgstr "Velikost posádky"
 
-#: gui/session/selection_details.js:464
+#: gui/session/selection_details.js:465
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:465
+#: gui/session/selection_details.js:466
 msgid "Carrying:"
 msgstr "Nese:"
 
-#: gui/session/selection_details.js:468 gui/session/selection_details.js:477
+#: gui/session/selection_details.js:469 gui/session/selection_details.js:478
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:473
+#: gui/session/selection_details.js:474
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:474
+#: gui/session/selection_details.js:475
 msgid "Loot:"
 msgstr "Kořist:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:559
+#: gui/session/selection_details.js:560
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:566
+#: gui/session/selection_details.js:567
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1028,70 +1029,70 @@ msgstr "Zvýšit ostražitost!"
 msgid "End of alert."
 msgstr "Konec poplachu."
 
-#: gui/session/selection_panels.js:276
+#: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
 msgstr "Výchozí formace je zakázána."
 
-#: gui/session/selection_panels.js:277
+#: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
 msgstr "Kliknutím pravým tlačítkem zakážete výchozí funkci formace."
 
-#: gui/session/selection_panels.js:280
+#: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
 msgstr "Toto je výchozí formace používaná pro příkazy k pohybu."
 
-#: gui/session/selection_panels.js:281
+#: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
 msgstr "Kliknutím pravým tlačítkem nastavíte tuto formaci jako výchozí."
 
-#: gui/session/selection_panels.js:337
+#: gui/session/selection_panels.js:338
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Vyložit %(name)s"
 
-#: gui/session/selection_panels.js:338
+#: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Jednou klepněte pro vyložení 1. Shift-klepněte pro vyložení všeho tohoto typu."
 
-#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:860
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:861
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Hráč: %(playername)s"
 
-#: gui/session/selection_panels.js:376
+#: gui/session/selection_panels.js:377
 msgid "Lock Gate"
 msgstr "Zamknout bránu"
 
-#: gui/session/selection_panels.js:382
+#: gui/session/selection_panels.js:383
 msgid "Unlock Gate"
 msgstr "Odemknout bránu"
 
-#: gui/session/selection_panels.js:433
+#: gui/session/selection_panels.js:434
 msgid "Pack"
 msgstr "Sbalit"
 
-#: gui/session/selection_panels.js:441
+#: gui/session/selection_panels.js:442
 msgid "Unpack"
 msgstr "Rozbalit"
 
-#: gui/session/selection_panels.js:449
+#: gui/session/selection_panels.js:450
 msgid "Cancel Packing"
 msgstr "Zrušit balení"
 
-#: gui/session/selection_panels.js:457
+#: gui/session/selection_panels.js:458
 msgid "Cancel Unpacking"
 msgstr "Zrušit rozbalování"
 
-#: gui/session/selection_panels.js:544
+#: gui/session/selection_panels.js:545
 msgid "Insufficient population capacity:"
 msgstr "Nedostatečný kapacita populace:"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:546
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:725
+#: gui/session/selection_panels.js:726
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1100,59 +1101,59 @@ msgstr[1] "%(number)s entity třídy %(class)s"
 msgstr[2] "%(number)s entit třídy %(class)s"
 msgstr[3] "%(number)s entit třídy %(class)s"
 
-#: gui/session/selection_panels.js:731
+#: gui/session/selection_panels.js:732
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Zůstává: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:732
+#: gui/session/selection_panels.js:733
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:784
+#: gui/session/selection_panels.js:785
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Během vylepšování nelze zkoumat."
 
-#: gui/session/selection_panels.js:1008
+#: gui/session/selection_panels.js:1010
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Během vylepšování nelze trénovat."
 
-#: gui/session/selection_panels.js:1077
+#: gui/session/selection_panels.js:1079
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Vylepšit na %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1083
+#: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Vylepšit na %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1091
+#: gui/session/selection_panels.js:1093
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Vylepšit na %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1096
+#: gui/session/selection_panels.js:1098
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Vylepšit na %(primaryName)s."
 
-#: gui/session/selection_panels.js:1133
+#: gui/session/selection_panels.js:1135
 msgid "Cancel Upgrading"
 msgstr "Zrušit vylepšování"
 
-#: gui/session/selection_panels.js:1148
+#: gui/session/selection_panels.js:1150
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Nelze vylepšovat, pokud se entita trénuje, zkoumá, nebo již vylepšuje."
+msgstr[1] "Nelze vylepšovat, pokud se všechny entity trénují, zkoumají, nebo již vylepšují."
+msgstr[2] "Nelze vylepšovat, pokud se všechny entity trénují, zkoumají, nebo již vylepšují."
+msgstr[3] "Nelze vylepšovat, pokud se všechny entity trénují, zkoumají, nebo již vylepšují."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1224,10 +1225,10 @@ msgstr "%(changer)s zmenší limit o %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Může být postaveno pouze jednou."
+msgstr[1] "Může být postaveno pouze %(limit)s krát."
+msgstr[2] "Může být postaveno pouze %(limit)s krát."
+msgstr[3] "Může být postaveno pouze %(limit)s krát."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1237,52 +1238,52 @@ msgstr "Může být postaveno pouze jednou."
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Může být postaveno ještě %(count)s krát."
+msgstr[1] "Může být postaveno ještě %(count)s krát."
+msgstr[2] "Může být postaveno ještě %(count)s krát."
+msgstr[3] "Může být postaveno ještě %(count)s krát."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Může být vytrénováno pouze jednou."
+msgstr[1] "Může být vytrénováno pouze %(limit)s krát."
+msgstr[2] "Může být vytrénováno pouze %(limit)s krát."
+msgstr[3] "Může být vytrénováno pouze %(limit)s krát."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Může být vytrénováno pouze jednou."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Může být vytrénováno ještě %(count)s krát."
+msgstr[1] "Může být vytrénováno ještě %(count)s krát."
+msgstr[2] "Může být vytrénováno ještě %(count)s krát."
+msgstr[3] "Může být vytrénováno ještě %(count)s krát."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Může být vytvořeno pouze jednou."
+msgstr[1] "Může být vytvořeno pouze %(limit)s krát."
+msgstr[2] "Může být vytvořeno pouze %(limit)s krát."
+msgstr[3] "Může být vytvořeno pouze %(limit)s krát."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Může být vytvořeno pouze jednou."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Může být vytvořeno ještě %(count)s krát."
+msgstr[1] "Může být vytvořeno ještě %(count)s krát."
+msgstr[2] "Může být vytvořeno ještě %(count)s krát."
+msgstr[3] "Může být vytvořeno ještě %(count)s krát."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1341,7 +1342,7 @@ msgstr "Klepněte pro vybrání seskupených jednotek, klepněte dvakrát pro p�
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alpha XXV: Y——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1349,7 +1350,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Zobrazit přehled civilizace / Strom staveb\nPo kliknutí se zobrazí naposledy otevřený."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1376,7 +1377,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Současní sběrači: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1656,124 +1657,133 @@ msgstr "Cílový obchodní trh."
 msgid "Right-click to set as origin trade market"
 msgstr "Klepněte pravým tlačítkem myši pro nastavení jako původní obchodní trh"
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1047
+#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1134
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Tento trh je příliš blízko výchozího trhu."
 
 #: gui/session/unit_actions.js:653
 msgid "Right-click to set as destination trade market."
 msgstr "Klepněte pravým tlačítkem myši pro nastavení jako cílový obchodní trh."
 
-#: gui/session/unit_actions.js:713 gui/session/unit_actions.js:978
+#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
+#, javascript-format
+msgid "Current turrets: %(occupied)s/%(capacity)s"
+msgstr ""
+
+#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nynější posádka: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1038
+#: gui/session/unit_actions.js:1125
 msgid "Right-click to establish a default route for new traders."
 msgstr "Klepněte pravým tlačítkem myši pro zřízení výchozí cesty pro nové obchodníky."
 
-#: gui/session/unit_actions.js:1042
+#: gui/session/unit_actions.js:1129
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Očekávaný zisk: %(gain)s"
 
-#: gui/session/unit_actions.js:1168
+#: gui/session/unit_actions.js:1255
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Tato entita nemůže být ovládána."
+msgstr[1] "Tyto entity nemohou být ovládány."
+msgstr[2] "Tyto entity nemohou být ovládány."
+msgstr[3] "Tyto entity nemohou být ovládány."
 
-#: gui/session/unit_actions.js:1214
+#: gui/session/unit_actions.js:1301
 msgid "Unload All."
 msgstr "Vyložit vše."
 
-#: gui/session/unit_actions.js:1234
-msgid "Destroy the selected units or structures."
+#: gui/session/unit_actions.js:1336
+msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1236
+#: gui/session/unit_actions.js:1356
+msgid "Destroy the selected units or structures."
+msgstr "Zničit vybrané jednotky nebo stavby."
+
+#: gui/session/unit_actions.js:1358
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Použijte %(hotkey)s pro vyhnutí se potvrzovacímu dialogu."
 
-#: gui/session/unit_actions.js:1286
+#: gui/session/unit_actions.js:1408
 msgid "Abort the current order."
 msgstr "Zrušit nynější příkaz."
 
-#: gui/session/unit_actions.js:1307
+#: gui/session/unit_actions.js:1429
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Přikažte vybraným jednotkám obsadit stavbu nebo jednotku."
 
-#: gui/session/unit_actions.js:1332
+#: gui/session/unit_actions.js:1450
 msgid "Unload"
 msgstr "Vyložit"
 
-#: gui/session/unit_actions.js:1352
+#: gui/session/unit_actions.js:1477
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Přikažte vybraným jednotkám opravit stavbu, loď, nebo obléhací stroj."
 
-#: gui/session/unit_actions.js:1373
+#: gui/session/unit_actions.js:1498
 msgid "Focus on Rally Point."
 msgstr "Přepnout na shromaždiště"
 
-#: gui/session/unit_actions.js:1410
+#: gui/session/unit_actions.js:1535
 msgid "Back to Work"
 msgstr "Zpět do práce"
 
-#: gui/session/unit_actions.js:1431
+#: gui/session/unit_actions.js:1556
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Přikažte vybraným jednotkám hlídat stavbu nebo jednotku."
 
-#: gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1576
 msgid "Remove guard"
 msgstr "Odstranit stráž"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1470
+#: gui/session/unit_actions.js:1595
 msgid "Barter & Trade"
 msgstr "Výměnný obchod a obchod"
 
-#: gui/session/unit_actions.js:1490
+#: gui/session/unit_actions.js:1615
 msgid "Patrol"
 msgstr "Hlídka"
 
-#: gui/session/unit_actions.js:1491
+#: gui/session/unit_actions.js:1616
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Útočit na všechny objevené nepřátelské jednotky, ale vyhnout se stavbám."
 
-#: gui/session/unit_actions.js:1519
+#: gui/session/unit_actions.js:1644
 msgid "Press to allow allies to use this dropsite"
 msgstr "Stiskněte pro povolení spojencům používat tento odhazovací prostor"
 
-#: gui/session/unit_actions.js:1524
+#: gui/session/unit_actions.js:1649
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Stiskněte pro zabránění spojencům používat tento odhazovací prostor"
 
-#: gui/session/unit_actions.js:1559
+#: gui/session/unit_actions.js:1684
 msgid "The use of this dropsite is prohibited"
 msgstr "Je zakázáno používat tento odhazovací prostor"
 
-#: gui/session/unit_actions.js:1565
+#: gui/session/unit_actions.js:1690
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Spojenci mohou využít tento odhazovací prostor."
 
-#: gui/session/unit_actions.js:1566
+#: gui/session/unit_actions.js:1691
 msgid "You are allowed to use this dropsite"
 msgstr "Je vám dovoleno používat tento odhazovací prostor"
 
-#: gui/session/unit_actions.js:1630
+#: gui/session/unit_actions.js:1755
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Tato entita by měla být usmrcena předtím, než z ní půjde získávat"
 
-#: gui/session/unit_actions.js:1633
+#: gui/session/unit_actions.js:1758
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Tuto entitu nemůžete zničit, protože vlastníte méně než polovinu bodů za zajetí"
 
-#: gui/session/unit_actions.js:1636
+#: gui/session/unit_actions.js:1761
 msgid "This entity is undeletable"
 msgstr "Tuto entitu nelze smazat."
