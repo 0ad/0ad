@@ -460,6 +460,21 @@ bool EventWillFireHotkey(const SDL_Event_* ev, const CStr& keyname)
 		[&keyname](const PressedHotkey& v){ return v.mapping->name == keyname; }) != newPressedHotkeys.end();
 }
 
+void ResetActiveHotkeys()
+{
+	newPressedHotkeys.clear();
+	for (const PressedHotkey& hotkey : pressedHotkeys)
+	{
+		SDL_Event_ hotkeyNotification;
+		hotkeyNotification.ev.type = hotkey.retriggered ? SDL_HOTKEYUP_SILENT : SDL_HOTKEYUP;
+		hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkey.mapping->name.c_str());
+		in_push_priority_event(&hotkeyNotification);
+	}
+	pressedHotkeys.clear();
+	activeScancodes.clear();
+	currentEvent = nullptr;
+}
+
 bool HotkeyIsPressed(const CStr& keyname)
 {
 	return g_HotkeyStatus[keyname];

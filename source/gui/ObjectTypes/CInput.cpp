@@ -1128,6 +1128,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		m_PrevTime = 0.0;
 		m_CursorVisState = false;
 
+		ResetActiveHotkeys();
+
 		// Tell the IME where to draw the candidate list
 		SDL_Rect rect;
 		rect.h = m_CachedActualSize.GetSize().Height;

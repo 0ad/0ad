@@ -98,6 +98,15 @@ extern InReaction HotkeyInputActualHandler(const SDL_Event_* ev);
 extern bool EventWillFireHotkey(const SDL_Event_* ev, const CStr& keyname);
 
 /**
+ * Resets all currently active hotkeys (and clears in-flight hotkeys).
+ * You should call this when something grabs key input, e.g. an input box,
+ * as those prevent keydown/keyup messages from reaching the hotkey system,
+ * and can lead to hotkeys being stuck active.
+ * NB: active hotkeys are released immediately and "HotkeyUp" message sent.
+ */
+extern void ResetActiveHotkeys();
+
+/**
  * @return whether the hotkey is currently pressed (i.e. active).
  */
 extern bool HotkeyIsPressed(const CStr& keyname);
