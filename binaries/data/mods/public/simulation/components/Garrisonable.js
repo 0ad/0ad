@@ -148,10 +148,14 @@ Garrisonable.prototype.UnGarrison = function(forced = false)
 	});
 
 	let cmpRallyPoint = Engine.QueryInterface(this.holder, IID_RallyPoint);
+
+	// Need to delete this before ordering to a rally
+	// point else we may not garrison another entity.
+	delete this.holder;
+
 	if (cmpRallyPoint)
 		cmpRallyPoint.OrderToRallyPoint(this.entity, ["garrison"]);
 
-	delete this.holder;
 	return true;
 };
 
