@@ -34,6 +34,11 @@ GarrisonHolder.prototype.Schema =
 	"</optional>";
 
 /**
+ * Time between heals.
+ */
+GarrisonHolder.prototype.HEAL_TIMEOUT = 1000;
+
+/**
  * Initialize GarrisonHolder Component
  * Garrisoning when loading a map is set in the script of the map, by setting initGarrison
  * which should contain the array of garrisoned entities.
@@ -182,11 +187,8 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (!this.HasEnoughHealth())
 		return false;
 
-	if (!this.timer && this.GetHealRate() > 0)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
-	}
+	if (!this.timer && this.GetHealRate())
+		this.StartTimer();
 
 	this.entities.push(entity);
 	this.UpdateGarrisonFlag();
@@ -323,16 +325,32 @@ GarrisonHolder.prototype.HasEnoughHealth = function()
 	return !cmpHealth || cmpHealth.GetHitpoints() > Math.floor(+this.template.EjectHealth * cmpHealth.GetMaxHitpoints());
 };
 
-/**
- * Called every second. Heals garrisoned units.
- */
-GarrisonHolder.prototype.HealTimeout = function(data)
+GarrisonHolder.prototype.StartTimer = function()
 {
+	if (this.timer)
+		return;
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	if (!this.entities.length)
+	this.timer = cmpTimer.SetInterval(this.entity, IID_GarrisonHolder, "HealTimeout", this.HEAL_TIMEOUT, this.HEAL_TIMEOUT, null);
+};
+
+GarrisonHolder.prototype.StopTimer = function()
+{
+	if (!this.timer)
+		return;
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	delete this.timer;
+};
+
+/**
+ * @params data and lateness are unused.
+ */
+GarrisonHolder.prototype.HealTimeout = function(data, lateness)
+{
+	let healRate = this.GetHealRate();
+	if (!this.entities.length || !healRate)
 	{
-		cmpTimer.CancelTimer(this.timer);
-		delete this.timer;
+		this.StopTimer();
 		return;
 	}
 
@@ -340,10 +358,8 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 	{
 		let cmpHealth = Engine.QueryInterface(entity, IID_Health);
 		if (cmpHealth && !cmpHealth.IsUnhealable())
-			cmpHealth.Increase(this.GetHealRate());
+			cmpHealth.Increase(healRate);
 	}
-
-	this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
 };
 
 /**
@@ -505,7 +521,7 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 		if (cmpGarrisonable)
 			cmpGarrisonable.Garrison(this.entity);
 	}
-	this.initGarrison = undefined;
+	delete this.initGarrison;
 };
 
 GarrisonHolder.prototype.OnValueModification = function(msg)
@@ -522,17 +538,10 @@ GarrisonHolder.prototype.OnValueModification = function(msg)
 	if (msg.valueNames.indexOf("GarrisonHolder/BuffHeal") === -1)
 		return;
 
-	if (this.timer && this.GetHealRate() == 0)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-		delete this.timer;
-	}
-	else if (!this.timer && this.GetHealRate() > 0)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
-	}
+	if (this.timer && !this.GetHealRate())
+		this.StopTimer();
+	else if (!this.timer && this.GetHealRate())
+		this.StartTimer();
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);
