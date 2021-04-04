@@ -496,6 +496,16 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			"turretPoints": template.TurretHolder.TurretPoints
 		};
 
+	if (template.Upkeep)
+	{
+		ret.upkeep = {
+			"interval": +template.Upkeep.Interval,
+			"rates": {}
+		};
+		for (let type in template.Upkeep.Rates)
+			ret.upkeep.rates[type] = getEntityValue("Upkeep/Rates/" + type);
+	}
+
 	if (template.WallSet)
 	{
 		ret.wallSet = {
