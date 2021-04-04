@@ -117,7 +117,7 @@ experiments.building = {
 			Do("repair", { "target": target }, QuickSpawn(gx + i, gy, REG_UNIT_TEMPLATE));
 
 		let cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
-		cmpFoundation.InitialiseConstruction(1, "structures/athen/storehouse");
+		cmpFoundation.InitialiseConstruction("structures/athen/storehouse");
 	}
 };
 

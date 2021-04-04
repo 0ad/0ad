@@ -128,9 +128,8 @@ function testFoundation(...mocks)
 		return previewEnt;
 	};
 	cmpFoundation = ConstructComponent(foundationEnt, "Foundation", {});
-	cmpFoundation.InitialiseConstruction(player, finalTemplate);
+	cmpFoundation.InitialiseConstruction(finalTemplate);
 
-	TS_ASSERT_EQUALS(cmpFoundation.owner, player);
 	TS_ASSERT_EQUALS(cmpFoundation.finalTemplateName, finalTemplate);
 	TS_ASSERT_EQUALS(cmpFoundation.maxProgress, 0);
 	TS_ASSERT_EQUALS(cmpFoundation.initialised, true);
@@ -243,7 +242,7 @@ const cmpBuildableAuto = ConstructComponent(foundationEnt2, "AutoBuildable", {
 	"Rate": "1.0"
 });
 
-cmpAutoBuildingFoundation.InitialiseConstruction(player, finalTemplate);
+cmpAutoBuildingFoundation.InitialiseConstruction(finalTemplate);
 
 // We start at 3 cause there is no delay on the first run.
 cmpTimer.OnUpdate({ "turnLength": turnLength });

@@ -38,21 +38,17 @@ Foundation.prototype.OnDeserialized = function()
 	this.CreateConstructionPreview();
 };
 
-Foundation.prototype.InitialiseConstruction = function(owner, template)
+Foundation.prototype.InitialiseConstruction = function(template)
 {
 	this.finalTemplateName = template;
 
-	// We need to know the owner in OnDestroy, but at that point the entity has already been
-	// decoupled from its owner, so we need to remember it in here (and assume it won't change)
-	this.owner = owner;
-
 	// Remember the cost here, so if it changes after construction begins (from auras or technologies)
-	// we will use the correct values to refund partial construction costs
+	// we will use the correct values to refund partial construction costs.
 	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	if (!cmpCost)
-		error("A foundation must have a cost component to know the build time");
+		error("A foundation, from " + template + ", must have a cost component to know the build time");
 
-	this.costs = cmpCost.GetResourceCosts(owner);
+	this.costs = cmpCost.GetResourceCosts();
 
 	this.maxProgress = 0;
 
@@ -140,7 +136,9 @@ Foundation.prototype.OnOwnershipChanged = function(msg)
 	if (this.IsFinished())
 		return;
 
-	let cmpPlayer = QueryPlayerIDInterface(this.owner);
+	let cmpPlayer = QueryPlayerIDInterface(msg.from);
+	if (!cmpPlayer)
+		return;
 
 	for (var r in this.costs)
 	{
@@ -148,7 +146,7 @@ Foundation.prototype.OnOwnershipChanged = function(msg)
 		if (scaled)
 		{
 			cmpPlayer.AddResource(r, scaled);
-			var cmpStatisticsTracker = QueryPlayerIDInterface(this.owner, IID_StatisticsTracker);
+			var cmpStatisticsTracker = QueryPlayerIDInterface(msg.from, IID_StatisticsTracker);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -scaled);
 		}
