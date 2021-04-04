@@ -641,6 +641,7 @@ InReaction conInputHandler(const SDL_Event_* ev)
 
 		if (hotkey == "console.toggle")
 		{
+			ResetActiveHotkeys();
 			g_Console->ToggleVisible();
 			return IN_HANDLED;
 		}
