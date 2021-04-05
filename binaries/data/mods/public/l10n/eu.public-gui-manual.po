@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-04 14:22+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-03 09:58+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -336,64 +336,68 @@ msgid ""
 msgstr "lastertekla.hautapena.ezeztatu – Desautatu unitate guztiak, ezeztatu eraikuntzaren kokapena."
 
 #: gui/manual/intro.txt:74
+msgid "  hotkey.selection.idlebuilder – Select idle builder"
+msgstr "lastertekla.hautatu.egoneandagoeneraikitzailea – Hautatu egonean dagoen eraiklitzailea"
+
+#: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
 msgstr "lastertekla.hautapena.egoneadagoenborrokalaria – Hautatu egonean dagoen borrokalaria"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
 msgstr "lastertekla.hautapena.egoneadagoenlangilea – Hautatu egonean dagoen langilea  (hiritar-soldaduak barne)"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
 msgstr "lastertekla.hautatu.egoneandagoenunitatea – Hautatu egonean dagoen unitatea"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
 msgstr " hotkey.session.stop – Geldiarazi hautatutako unitateak."
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
 msgstr " hotkey.session.backtowork – Unitatea lanera itzuliko da"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
 msgstr " hotkey.session.unload – Atera guardan sartutako unitateak aukeratutako egituretatik"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
 msgstr " hotkey.selection.group.save.1 – Sortu 1 kontrol taldea (lehenetsita, hurrenez hurren, 2,3, ...) hautatutako unitate / egituretatik abiatuta."
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
 msgstr " hotkey.selection.group.select.1 – Hautatu 1 kontrol-taldeko unitateak/egiturak"
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
 msgstr " hotkey.selection.group.add.1 – 1 (0 arte) kontrol taldeari aukeratutako unitate edo egiturak gehitzen dizkio"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
 msgstr " hotkey.camera.jump.set.1 –  Markatu kameraren uneko kokalekua gero bertara itzultzeko (lehenetsitako 4 posizio posible daude)"
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
 msgstr " hotkey.camera.jump.1 – Eraman kamera finkatutako posizio batera. joan aurreko kokalekura kamera posizio horretan badago."
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, "
 "hotkey.session.queueunit.3, hotkey.session.queueunit.4, "
@@ -402,322 +406,322 @@ msgid ""
 "2nd, … unit shown to the training queue for all the selected structures"
 msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Trebatze egitura hautatuta. Gehitu erakusten den 1., 2., ... unitatea hautatutako egitura guztietako trebatze ilaran"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
 msgstr " hotkey.session.highlightguarded aukeratutako unitateekin – Aukeraketak babestutako egitura eta unitateak nabarmentzen ditu."
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
 msgstr " hotkey.session.highlightguarding aukeratutako egitura edo unitateekin  – Aukeraketa babesten duten unitateak nabarmentzen ditu ."
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
 msgstr " highlightguarding.showstatusbars – Ikusi  egoera-barra guztiak (baita eraikitze aurrerapenak ere)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
 msgstr "lastertekla.laburpena – Txandakatu laburpenaren leihoa"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
 msgstr " hotkey.lobby – Erakutsi hainbat jokalarien gela elkarrizketa leihoan."
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
 msgstr " hotkey.session.gui.diplomacy.toggle – Txandakatu partida barruko diplomazia panela"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
 msgstr "  hotkey.session.gui.barter.toggle – Aktibatu jokoaren truke eta merkataritza panela"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
 msgstr "  hotkey.session.gui.objectives.toggle – Aktibatu jokoaren helburuen panela"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
 msgstr "  hotkey.session.gui.tutorial.toggle – Aktibatu jokoaren tutorial panela"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
 msgstr " hotkey.structree – Txandakatu egitura-zuhaitzaren panela"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
 msgstr "lastertekla.zibinfo – Txandakatu zibilizazioaren informazio panela."
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Saguaren akzioa aldatzen du[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
 msgstr " hotkey.session.garrison + Eskuin klika egituran – Sartu guardan"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
 msgstr "  hotkey.session.repair + Eskuin klika egituran – Konpondu"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
 msgstr "  hotkey.session.patrol + Eskuin klika – Patruilatu"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
 msgstr " hotkey.session.queue + eskuin klika  – Jarri ilaran mugitu/eraiki/ustiatu/... agindua"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr " hotkey.session.orderone  + eskuin klika –  Agindu oraingo aukeraketako unitate bati mugitzea/eraikitzea/ustiatzea/... eta kendu aukeratik. Eginbide zehatzak dituzten unitateak azkar egozteko erabiltzen da."
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr " hotkey.session.batchtrain + ezker klika unitateak trebatzean – Unitateak taldeka gehitzen ditu (taldea berez 5ekoa da eta aukeretan alda daiteke)."
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr " hotkey.selection.add + ezker klika edo ezkerrarekin arrastatu mapako unitateetan – Gehitu unitatea aukeraketara"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr "  hotkey.selection.remove + ezker klika edo ezkerrarekin arrastatu mapako unitateetan – Kendu unitatea hautapenetik"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr " hotkey.selection.militaryonly  + ezkerrarekin arrastatu mapako unitateen gainean  – Aukeratu unitate militarrak soilik"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr " hotkey.selection.nonmilitaryonly + ezkerrarekin arrastatu mapako unitateen gainean – Hautatu unitate ez militarrak soilik"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr "  hotkey.selection.idleonly + ezkerrarekin arrastatu mapako unitateen gainean  – Aukeratu aktibo ez dauden unitateak soilik"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr "  hotkey.selection.woundedonly + ezkerrarekin arrastatu mapako unitateen gainean  – Hautatu zauritutako unitateak soilik"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "Eskuin klika egituraren bat aukeratuta dagoela – Ezarri elkartze puntua sortutako edo eraikinaren guardatik ateratako unitateentzat."
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr " hotkey.session.garrison + eskuin klika aukeratutako unitateekin – Babesean (kurtsorea egitura propio edo aliatu baten gainean badago)"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr " hotkey.session.attack + eskuin klika aukeratutako unitateekin – Erasoa (harrapatu edo bildu beharrean)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr " hotkey.session.attackmove + eskuin klika aukeratutako unitateekin – Eraso mugimendua (modu lehenetsian, bidean dauden etsai unitate eta egitura guztietara daude zuzenduta)"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr " hotkey.session.attackmoveUnit + eskuin klika aukeratutako unitateekin – Mugituz eraso, bidean aurkitutako unitateak bakarrik erasotzen dira"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr " hotkey.session.snaptoedges + Sagua egituretatik gertu mugitu – lerrokatu egitura berria dagoeneko bertan dagoen beste batekin"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Geruzak[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – Txandakatu GUI"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr " hotkey.session.devcommands.toggle – Erakutsi garatzailearen geruza (aukera teknikoekin)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr " hotkey.wireframe – wireframe modua txandakatu (zapaldu behin wireframe gainjarriak lortzeko eredu testurentzat, bi aldiz testurak koloretutako wireframeak lortzeko, hiru aldiz testura arruntetara itzultzeko)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr " hotkey.silhouettes – Gaitu edo desgaitzen ditu unitateen siluetak (desgaitzeak errendimendua hobetu dezake)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr " hotkey.session.diplomacycolors – Txandakatu diplomazia kolooreak"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr " hotkey.session.toggleattackrange – Aukeratutako unitate eta egituren eraso-irismen bistaratzeak txandakatzen ditu"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr " hotkey.session.toggleaurasrange – Aukeratutako unitate eta egituren aura-irismen bistaratzeak txandakatzen ditu"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr " hotkey.session.togglehealrange – Aukeratutako unitateen osasun-irismen bistaratzeak txandakatzen ditu"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Kameraren erabilera[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr " hotkey.camera.up – Eraman kamera gora"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr " hotkey.camera.down – Eraman kamera beheraka"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr " hotkey.camera.left – Eraman kamera ezkerrera"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr " hotkey.camera.right – Eraman kamera eskuinera"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr " hotkey.camera.rotate.up – Kamera biratu goraka ikusteko"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr " hotkey.camera.rotate.down – Kamera biratu beheraka ikusteko"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr " hotkey.camera.rotate.cw –  Biratu kamera erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr " hotkey.camera.rotate.ccw – Biratu kamera erlojuaren kontrako zentzuan lurraren inguruan"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr " hotkey.camera.rotate.wheel.cw –  Biratu kamera erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr " hotkey.camera.rotate.wheel.ccw – Biratu kamera erlojuaren kontrako zentzuan lurraren inguruan"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr " hotkey.camera.follow – Jarraitu aukeratutako unitatea (mugitu kamera unitatea jarraitzeari uzteko)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr " hotkey.camera.reset – Kamera bere hasierako balioetara eta norabidera eraman"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr " hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Kamera lurrera gerturatu (Jarraitu sakatzen polikiago egiteko)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr " hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Kamera lurretik urrundu (Jarraitu sakatzen polikiago egiteko)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr " hotkey.camera.pan – Mantendu sakatuta eta mugitu sagua kamera mugitzeko"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Egitura kokatu bitartean[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr " hotkey.session.rotate.ccw – Biratu egitura 15 gradu erlojuaren kontrako norabidean "
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr " hotkey.session.rotate.cw – Biratu egitura 15 gradu erlojuaren norabidean "
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:149
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "Ezker botoiaz arrastatu – Biratu egitura sagua erabiliz (oinarriak botoia askatzean kokatuko dira)"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Gordetako jokoa bat kargatzean[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
 msgstr " hotkey.cancel – Utzi"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr " hotkey.session.savedgames.delete –  Gordetako partida ezabatzen da baieztapena eskatuz"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

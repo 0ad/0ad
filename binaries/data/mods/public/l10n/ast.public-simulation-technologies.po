@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 16:59+0000\n"
+"PO-Revision-Date: 2021-04-03 15:48+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -271,11 +271,11 @@ msgstr "Muralles: tiempu de construcción +100% costu en piedra +100% vida +200%
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr "Sacante la llera de los cimientos, los celtes construyíen con madera."
+msgstr "Sacantes los cimientos, les construcciones celtes taben feches de madera."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
-msgstr "Construcción con madera"
+msgstr "Construcciones de madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
@@ -445,7 +445,7 @@ msgstr "Rede de pesca"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr "Pesqueros: tasa de pesca +30%."
+msgstr "Pesqueros: ritmu de pesca +30%."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -457,7 +457,7 @@ msgstr "Condiciones de vida"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr "Construcciones: tasa de sanamientu +1."
+msgstr "Construcciones: ritmu de sanamientu +1."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -516,7 +516,7 @@ msgstr "Fertilizante"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "Obreros: tasa de cueya de cebera +20%."
+msgstr "Obreros: ritmu de cueya del pan +20%."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -530,7 +530,7 @@ msgstr "Coyedora"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "Obreros: tasa de coyedura +10%."
+msgstr "Obreros: ritmu de cueya del pan +10%."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -564,7 +564,7 @@ msgstr "Azaes de fierro"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr "Obreros: tasa de corta +25%."
+msgstr "Obreros: ritmu de corta +25%."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -578,7 +578,7 @@ msgstr "Brueses"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Fai que los siervos ayuden a sacar piedra de les canteres. Entaína la estraición de piedra."
+msgstr "Fai que los siervos ayuden a sacar piedra de les canteres. Entaína la estraición de la piedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -592,11 +592,11 @@ msgstr "Heilōtes"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr "Obreros: tasa d'estraición de piedra +25%."
+msgstr "Obreros: ritmu d'estraición de la piedra +25%."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr "Contrata sirvientes pa sacar piedra de les canteres. Entaína la estraición de piedra."
+msgstr "Contrata sirvientes pa sacar piedra de les canteres. Entaína la estraición de la piedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -612,7 +612,7 @@ msgstr "Douloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr "Desendolca'l pozu mineru. Entaína la estraición de metal."
+msgstr "Desendolca'l pozu mineru. Entaína la estraición del metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -622,11 +622,11 @@ msgstr "Pozos mineros"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "Obreros: tasa d'estraición de metal +25%."
+msgstr "Obreros: ritmu d'estraición del metal +25%."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr "Descubri una veta de plata. Entaína la estraición de metal."
+msgstr "Descubri una veta de plata. Entaína la estraición del metal."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -644,7 +644,7 @@ msgstr "Mines de Krenídes"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Merca esclavos pa sacar piedra de les canteres. Entaína la estraición de piedra."
+msgstr "Merca esclavos pa sacar piedra de les canteres. Entaína la estraición de la piedra."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -665,7 +665,7 @@ msgstr "Servi"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr "Forni los obreros d'aperios. Entaína la estraición de metal."
+msgstr "Forni los obreros d'aperios. Entaína la estraición del metal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -681,7 +681,7 @@ msgstr "Goxes"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "Obreros: tasa de pañadura +50%."
+msgstr "Obreros: ritmu de coyeta de la fruta +50%."
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -720,7 +720,7 @@ msgstr "Entaína'l sanamientu de tolos curanderos."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "Tasa de sanamientu"
+msgstr "Ritmu de sanamientu"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
@@ -737,7 +737,7 @@ msgstr "Curanderos: tiempu de sanamientu −20%."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "Tasa de sanamientu II"
+msgstr "Ritmu de sanamientu II"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
@@ -772,7 +772,7 @@ msgstr "Melecina de batalla"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "Unidaes orgániques baleres: tasa d'alicamientu +0.5."
+msgstr "Unidaes orgániques baleres: ritmu d'alicamientu +0.5."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -921,7 +921,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas urbana, que desbloquia más unidaes y teunoloxía. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas urbana, que desbloquia más unidaes y teunoloxía. Places: territoriu +50%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +9. Obreros: ritmu d'estraición del metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -934,7 +934,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas urbana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9."
+msgstr "Avanza a la fas urbana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -973,7 +973,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +7. Obreros: ritmu d'estraición del metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -985,7 +985,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7."
+msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

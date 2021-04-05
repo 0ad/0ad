@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 09:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-03 10:08+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,14 +70,14 @@ msgstr "Oinarrizkoa"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 msgid "Soldier"
 msgstr "Soldadua"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Citizen"
 msgstr "Hiritarra"
 
@@ -286,7 +286,7 @@ msgstr "Balezta"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:31
 msgid "Cavalry Crossbowman"
-msgstr ""
+msgstr "Zalditeriako baleztaria"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:32
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
@@ -342,7 +342,7 @@ msgstr "Aihozlari Zaldun Aldezkaria"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:25
 msgid "Champion Cavalry Crossbowman"
-msgstr ""
+msgstr "Zalditeriako baleztari  aldezkaria"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
 msgid "Champion Cavalry Javelineer"
@@ -382,7 +382,7 @@ msgstr "Enborra"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_infantry.xml:65
 msgid "Infantry"
 msgstr "Infanteria"
@@ -401,7 +401,7 @@ msgstr "Aihozlari Aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:28
 msgid "Champion Infantry Crossbowman"
-msgstr ""
+msgstr "Infanteriako baleztari aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
 msgid "Champion Infantry Javelineer"
@@ -505,7 +505,7 @@ msgstr "Aihozlari Zalditeria Heroia"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:25
 msgid "Hero Cavalry Crossbowman"
-msgstr ""
+msgstr "Zalditeriako baleztari heroia"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
 msgid "Hero Cavalry Javelineer"
@@ -549,7 +549,7 @@ msgstr "Aihozlari Heroia"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:25
 msgid "Hero Infantry Crossbowman"
-msgstr ""
+msgstr "Infanteriako baleztari heroia"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
 msgid "Hero Infantry Javelineer"
@@ -571,9 +571,15 @@ msgstr "Lantzari Heroia"
 msgid "Hero Swordsman"
 msgstr "Ezpatari Heroia"
 
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
+msgid "Builder"
+msgstr "Eraikitzailea"
+
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
 msgid "Worker"
 msgstr "Langilea"
 
@@ -587,7 +593,7 @@ msgstr "Infanteria mazolaria"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
 msgid "Infantry Crossbowman"
-msgstr ""
+msgstr "Infanteriako baleztaria"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Infantry Javelineer"
@@ -774,7 +780,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Sastakaia"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:64
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Female Citizen"
 msgstr "Hiritar Emakumea"
 
@@ -783,12 +789,12 @@ msgid "Heal units."
 msgstr "Sendatu unitateak."
 
 #: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:47
+#: simulation/templates/template_unit_support_slave.xml:49
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Morroi"
 
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:48
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Bizitza mugatuko ustiatzaileak. Hobaria meatzaritzan eta egur moztean."
 

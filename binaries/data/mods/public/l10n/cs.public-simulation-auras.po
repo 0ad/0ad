@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-02 07:11+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 20:34+0000\n"
 "Last-Translator: Martin Křížek <krizekmartin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Vlastenectví"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "Vojáci získají +1 k obraně proti drtivým, sekavým a průrazným útokům a +10% k poškození útoků na blízko i na dálku."
+msgstr "Vojáci získají +1 k obraně proti drtivým, sečným a bodným útokům a +10% k poškození útoků na blízko i na dálku."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -147,7 +147,7 @@ msgstr "Helenizace"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Vojáci ve věžích mají +3 k obraně proti drtivým, sečným a bodným útokům a +20 dohled."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -322,7 +322,7 @@ msgstr "Dotírání harcovníků"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr "Vůdce kartágenské těžké jízdy v Trebii a Kannách, kde měl jeho trojnásobný útok pro nepřítele devastující účinky.\nJízda bojující z blízka +1 k drtivé, sečné a bodné odolnosti a +10% ke zdraví."
+msgstr "Vůdce kartágenské těžké jízdy v Trebii a Kannách, kde měl jeho trojnásobný útok pro nepřítele devastující účinky.\nJízda bojující z blízka +1 k obraně proti drtivým, sečným a bodným útokům a +10% ke zdraví."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -452,7 +452,7 @@ msgstr "Mstitel Lukrécie"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr "Brutus byl jednou z klíčových postav svržení monarchie a založení římské republiky. Později jako konzul vedl římskou armádu k vítězství proti etruskému králi Tarquiniovi, který se snažil znovu získat trůn.\nLidé a obléhací stroje zíkají obranu  +1 proti rozdrzcení, hacknutí a probodnutí."
+msgstr "Brutus byl jednou z klíčových postav svržení monarchie a založení římské republiky. Později jako konzul vedl římskou armádu k vítězství proti etruskému králi Tarquiniovi, který se snažil znovu získat trůn.\nLidé a obléhací stroje získají +1 k obraně proti drtivým, sečným a bodným útokům."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -514,8 +514,8 @@ msgid "Iron Pelanors"
 msgstr "Železný pelanor"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
-msgid "Workers +25% build rate."
-msgstr "Dělníci staví o 25% rychleji."
+msgid "Builders +25% build rate."
+msgstr "Stavitelé staví o 25% rychleji."
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
@@ -540,8 +540,8 @@ msgid "Peltast Reforms"
 msgstr "Reformy peltastů"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "Workers +15% build rate."
-msgstr "Dělníci staví o 15 % rychleji."
+msgid "Builders +15% build rate."
+msgstr "Stavitelé staví o 15% rychleji."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -559,7 +559,7 @@ msgstr "Chrám Athény Nike"
 msgid ""
 "When garrisoned, the Ship has −30% batch training time and +50% movement "
 "speed."
-msgstr ""
+msgstr "Při obsazení získá loď −30% k času tréninku skupiny a +50% k pohybu."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -622,7 +622,7 @@ msgstr "Pokořitel žoldnéřů"
 msgid ""
 "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
 "melee and ranged attack damage."
-msgstr ""
+msgstr "Vlastní a spojenečtí vojáci a obléhací stroje +1 k síle obsazení, +20% k poškození na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -648,7 +648,7 @@ msgstr "Plenitel Říma"
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "Vojáci a obléhací stroje +1 k síle obsazení, +20% k poškození na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
@@ -662,7 +662,7 @@ msgstr "Přípravy na válku"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "Když je posádka v budově, má stavba +2 k obnově bodů obsazení."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -670,7 +670,7 @@ msgstr "Vzorová obrana"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
-msgstr ""
+msgstr "Stavba a obléhací věž získá +75% k počtu šípů, pokud je obsazena posádkou."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -678,7 +678,7 @@ msgstr "Udatný obránce"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Vojáci +1 k obraně proti drtivým, sečným a bodným útokům."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -686,7 +686,7 @@ msgstr "Bojový zápal"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr ""
+msgstr "Vojáci −15% z ceny, −20% z doby výcviku."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -698,7 +698,7 @@ msgstr "Vojáci získají +20% k rychlosti pohybu."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
-msgstr ""
+msgstr "Vojáci a obléhací stroje získají +100% ke kořist zdrojů."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
@@ -708,7 +708,7 @@ msgstr "Lup"
 #: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Šampióni +2 k síle obsazení, +20% k poškození na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
@@ -718,7 +718,7 @@ msgstr "Válečnická královna"
 msgid ""
 "Temple of Amun +20% resource costs and build time. Amun Temple Guard +20% "
 "resource costs and training time."
-msgstr ""
+msgstr "Amunův chrám +20% k ceně a času výstavby. Amunova chrámová stráž +20% k ceně a času výcviku."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
@@ -728,7 +728,7 @@ msgstr "Opovrhovač tradicí"
 msgid ""
 "Temple of Apedemak −20% resource costs and build time. Apedemak Temple Guard"
 " −20% resource costs and training time."
-msgstr ""
+msgstr "Chrám Apedemak −20% k ceně a době stavby. Apedemakská chrámové stráž −20% k ceně a době tréninku."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
@@ -744,7 +744,7 @@ msgstr "Povraždění věřících"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
-msgstr ""
+msgstr "Vojáci +10% k poškození útoku na blízko a na dálku, +50% ke kořisti."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -752,7 +752,7 @@ msgstr "Zachránce Kúše"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
-msgstr ""
+msgstr "Kúšitské Triremy −50 dřeva kovu na stavbu."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
@@ -768,7 +768,7 @@ msgstr "Imperialismus"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr ""
+msgstr "Nepřátelské občanské centrum −50% obnovy bodů obsazení s posádkou."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
@@ -777,7 +777,7 @@ msgstr "Dobyvatel"
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
-msgstr ""
+msgstr "Pikenýr +20% k síle obsazení, +20% k poškození na blízko."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -787,7 +787,7 @@ msgstr "Taxiarchès"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr ""
+msgstr "Obléhací stroje +1 k obraně proti drtivým, sečným a bodným útokům, +20% poškození k útokům na blízko i na dálku, +10% dosah útoků na dálku, +10% dohled."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -809,7 +809,7 @@ msgstr "Pyrrhovo vítězství"
 msgid ""
 "Temples −50% resource costs and build time. Temple technologies −50% "
 "resource costs and research time."
-msgstr ""
+msgstr "Chrámy −50% z ceny a doby výstavby. Chrámové technologie −50% z ceny a doby výzkumu."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
@@ -819,7 +819,7 @@ msgstr "Buddhismus"
 msgid ""
 "When garrisoned, the Structure's technologies have −20% resource cost and "
 "−50% research time."
-msgstr ""
+msgstr "Při obsazení jsou technologie stavby o 20% levnější a jsou o 50% rychleji vyzkoumané."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -832,7 +832,7 @@ msgstr "Obnovení"
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Jízda +1 k síle obsazení, +20% k poškození na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
@@ -841,7 +841,7 @@ msgstr "Prvořadý vedoucí"
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
-msgstr ""
+msgstr "Vojáci, obléhací stroje, obchodníci a kupecké lodě +15% k rychlosti pohybu."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
@@ -849,7 +849,7 @@ msgstr "Vedení"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
-msgstr ""
+msgstr "Dělníci +15% k rychlosti stavby a získávání surovin."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraName
 msgid "Administrator"
@@ -857,7 +857,7 @@ msgstr "Správce"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr ""
+msgstr "Vojáci a obléhací stroje mají −20% k rychlosti útoků na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
@@ -877,8 +877,8 @@ msgid "Enemy Heroes −10% health."
 msgstr "Nepřátelští hrdinové budou mít o -10% zdraví."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
-msgid "Workers +10% build rate."
-msgstr "Dělníci získají +10% k rychlosti sestavování."
+msgid "Builders +10% build rate."
+msgstr "Stavitelé staví o 10% rychleji."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
@@ -886,7 +886,7 @@ msgstr "Patron výstavby"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr ""
+msgstr "Žoldáci jsou o 35% levnější."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
@@ -911,11 +911,11 @@ msgstr "Meč Říma"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "Nepřátelská pěchota −10% k poškození na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Lidé a stavby +1 k obraně proti drtivým, sečným a bodným útokům."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -925,7 +925,7 @@ msgstr "Štít Říma"
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "Vojáci a obléhací stroje +2 k síle obsazení, +20% k poškození na blízko a na dálku."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -933,7 +933,7 @@ msgstr "Triumf"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Jízda +2 k obraně proti drtivým, sečným a bodným útokům."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -959,7 +959,7 @@ msgstr "Zooiarchos"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr "Oštěpáři občanské pěchoty +1 k drtvé, sečné a bodné odolnosti a +25% k poškození při boji z dálky."
+msgstr "Oštěpaři občanské pěchoty +1 k obraně proti drtivým, sečným a bodným útokům, +25% k poškození na dálku."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
