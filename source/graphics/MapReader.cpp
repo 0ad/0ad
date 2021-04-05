@@ -1058,10 +1058,6 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				// TODO: other parts of the position
 			}
 
-			CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
-			if (cmpOwnership)
-				cmpOwnership->SetOwner(PlayerID);
-
 			if (!Garrison.empty())
 			{
 				CmpPtr<ICmpGarrisonHolder> cmpGarrisonHolder(sim, ent);
@@ -1071,6 +1067,8 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 					LOGERROR("CXMLMapReader::ReadEntities() entity '%d' of player '%d' has no GarrisonHolder component and thus cannot garrison units.", ent, PlayerID);
 			}
 
+			// Needs to be before ownership changes to prevent initialising
+			// subunits too soon.
 			if (!Turrets.empty())
 			{
 				CmpPtr<ICmpTurretHolder> cmpTurretHolder(sim, ent);
@@ -1079,6 +1077,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				else
 					LOGERROR("CXMLMapReader::ReadEntities() entity '%d' of player '%d' has no TurretHolder component and thus cannot use turrets.", ent, PlayerID);
 			}
+
+			CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
+			if (cmpOwnership)
+				cmpOwnership->SetOwner(PlayerID);
 
 			CmpPtr<ICmpObstruction> cmpObstruction(sim, ent);
 			if (cmpObstruction)

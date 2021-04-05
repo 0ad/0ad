@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "ICmpPosition.h"
 
 #include "simulation2/MessageTypes.h"
+#include "simulation2/serialization/SerializedTypes.h"
 
 #include "ICmpTerrain.h"
 #include "ICmpTerritoryManager.h"
@@ -228,6 +229,7 @@ public:
 			serialize.NumberFixed_Unbounded("y", m_TurretPosition.Y);
 			serialize.NumberFixed_Unbounded("z", m_TurretPosition.Z);
 		}
+		Serializer(serialize, "turrets", m_Turrets);
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
@@ -265,6 +267,7 @@ public:
 			deserialize.NumberFixed_Unbounded("y", m_TurretPosition.Y);
 			deserialize.NumberFixed_Unbounded("z", m_TurretPosition.Z);
 		}
+		Serializer(deserialize, "turrets", m_Turrets);
 
 		if (m_InWorld)
 			UpdateXZRotation();

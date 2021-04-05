@@ -35,6 +35,14 @@ Turretable.prototype.IsTurreted = function()
 };
 
 /**
+ * @return {boolean} - Whether we can leave the turret point.
+ */
+Turretable.prototype.IsEjectable = function()
+{
+	return this.ejectable;
+};
+
+/**
  * @param {number} target - The entity ID to check.
  * @return {boolean} - Whether we can occupy the turret.
  */
@@ -50,18 +58,21 @@ Turretable.prototype.CanOccupy = function(target)
 /**
  * @param {number} target - The entity ID of the entity this entity is being turreted on.
  * @param {string} turretPointName - Optionally the turret point name to occupy.
+ * @param {boolean} ejectable - Whether we can leave this turret point (e.g. false for a tank turret).
+ *
  * @return {boolean} - Whether occupying succeeded.
  */
-Turretable.prototype.OccupyTurret = function(target, turretPointName = "")
+Turretable.prototype.OccupyTurret = function(target, turretPointName = "", ejectable = true)
 {
 	if (!this.CanOccupy(target))
 		return false;
 
 	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
-	if (!cmpTurretHolder || !cmpTurretHolder.OccupyNamedTurret(this.entity, turretPointName))
+	if (!cmpTurretHolder || !cmpTurretHolder.OccupyNamedTurretPoint(this.entity, turretPointName))
 		return false;
 
 	this.holder = target;
+	this.ejectable = ejectable;
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
@@ -96,12 +107,15 @@ Turretable.prototype.LeaveTurret = function(forced = false)
 	if (!this.holder)
 		return true;
 
+	if (!this.ejectable && !forced)
+		return false;
+
 	let pos = PositionHelper.GetSpawnPosition(this.holder, this.entity, forced);
 	if (!pos)
 		return false;
 
 	let cmpTurretHolder = Engine.QueryInterface(this.holder, IID_TurretHolder);
-	if (!cmpTurretHolder || !cmpTurretHolder.LeaveTurret(this.entity))
+	if (!cmpTurretHolder || !cmpTurretHolder.LeaveTurretPoint(this.entity, forced))
 		return false;
 
 	let cmpUnitMotionEntity = Engine.QueryInterface(this.entity, IID_UnitMotion);
@@ -111,13 +125,14 @@ Turretable.prototype.LeaveTurret = function(forced = false)
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (cmpPosition)
 	{
+		cmpPosition.SetTurretParent(INVALID_ENTITY, new Vector3D());
 		cmpPosition.JumpTo(pos.x, pos.z);
 		cmpPosition.SetHeightOffset(0);
-	}
 
-	let cmpHolderPosition = Engine.QueryInterface(this.holder, IID_Position);
-	if (cmpHolderPosition)
-		cmpPosition.SetYRotation(cmpHolderPosition.GetPosition().horizAngleTo(pos));
+		let cmpHolderPosition = Engine.QueryInterface(this.holder, IID_Position);
+		if (cmpHolderPosition)
+			cmpPosition.SetYRotation(cmpHolderPosition.GetPosition().horizAngleTo(pos));
+	}
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
@@ -138,10 +153,15 @@ Turretable.prototype.LeaveTurret = function(forced = false)
 	});
 
 	let cmpRallyPoint = Engine.QueryInterface(this.holder, IID_RallyPoint);
+
+	// Need to delete this before ordering to a rally
+	// point else we may not occupy another turret point.
+	delete this.holder;
+
 	if (cmpRallyPoint)
 		cmpRallyPoint.OrderToRallyPoint(this.entity, ["occupy-turret"]);
 
-	delete this.holder;
+	delete this.ejectable;
 	return true;
 };
 
@@ -155,7 +175,7 @@ Turretable.prototype.OnEntityRenamed = function(msg)
 		return;
 
 	let holder = this.holder;
-	let currentPoint = cmpTurretHolder.GetOccupiedTurretName(this.entity);
+	let currentPoint = cmpTurretHolder.GetOccupiedTurretPointName(this.entity);
 	this.LeaveTurret(true);
 	let cmpTurretableNew = Engine.QueryInterface(msg.newentity, IID_Turretable);
 	if (cmpTurretableNew)

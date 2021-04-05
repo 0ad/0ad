@@ -134,8 +134,7 @@ Health.prototype.ExecuteRegeneration = function()
 	if (this.GetIdleRegenRate() != 0)
 	{
 		let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-		if (cmpUnitAI && (cmpUnitAI.IsIdle() ||
-			cmpUnitAI.GetGarrisonHolder() != INVALID_ENTITY && !cmpUnitAI.IsTurret()))
+		if (cmpUnitAI && cmpUnitAI.IsIdle())
 			regen += this.GetIdleRegenRate();
 	}
 
