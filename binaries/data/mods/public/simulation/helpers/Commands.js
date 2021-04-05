@@ -1181,10 +1181,9 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		Engine.DestroyEntity(ent);
 	}
 
-	// We need the cost after tech and aura modifications
-	// To calculate this with an entity requires ownership, so use the template instead
+	// We need the cost after tech and aura modifications.
 	let cmpCost = Engine.QueryInterface(ent, IID_Cost);
-	let costs = cmpCost.GetResourceCosts(player);
+	let costs = cmpCost.GetResourceCosts();
 
 	if (!cmpPlayer.TrySubtractResources(costs))
 	{
@@ -1202,7 +1201,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 
 	// Initialise the foundation
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
-	cmpFoundation.InitialiseConstruction(player, cmd.template);
+	cmpFoundation.InitialiseConstruction(cmd.template);
 
 	// send Metadata info if any
 	if (cmd.metadata)

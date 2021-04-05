@@ -576,6 +576,13 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"run": cmpUnitMotion.GetWalkSpeed() * cmpUnitMotion.GetRunMultiplier()
 		};
 
+	let cmpUpkeep = Engine.QueryInterface(ent, IID_Upkeep);
+	if (cmpUpkeep)
+		ret.upkeep = {
+			"interval": cmpUpkeep.GetInterval(),
+			"rates": cmpUpkeep.GetRates()
+		};
+
 	return ret;
 };
 

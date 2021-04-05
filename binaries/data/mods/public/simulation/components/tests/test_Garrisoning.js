@@ -63,7 +63,7 @@ AddMock(friendlyPlayer, IID_Player, {
 });
 
 AddMock(SYSTEM_ENTITY, IID_Timer, {
-	"SetTimeout": (ent, iid, funcname, time, data) => 1
+	"SetInterval": (ent, iid, funcname, time, data) => 1
 });
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {

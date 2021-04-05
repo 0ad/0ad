@@ -329,6 +329,7 @@ function displaySingle(entState)
 		getPopulationBonusTooltip,
 		getProjectilesTooltip,
 		getResourceTrickleTooltip,
+		getUpkeepTooltip,
 		getLootTooltip
 	].map(func => func(entState)).filter(tip => tip).join("\n");
 	if (detailedTooltip)

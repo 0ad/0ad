@@ -38,21 +38,20 @@ Cost.prototype.GetBuildTime = function()
 	return ApplyValueModificationsToEntity("Cost/BuildTime", +this.template.BuildTime, this.entity);
 };
 
-Cost.prototype.GetResourceCosts = function(owner)
+Cost.prototype.GetResourceCosts = function()
 {
-	if (!owner)
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
 	{
-		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-		if (!cmpOwnership)
-			error("GetResourceCosts called without valid ownership");
-		else
-			owner = cmpOwnership.GetOwner();
+		error("GetResourceCosts called without valid ownership on " + this.entity + ".");
+		return {};
 	}
 
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let entityTemplateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 	let entityTemplate = cmpTemplateManager.GetTemplate(entityTemplateName);
 
+	let owner = cmpOwnership.GetOwner();
 	let costs = {};
 	for (let res in this.template.Resources)
 		costs[res] = ApplyValueModificationsToTemplate("Cost/Resources/"+res, +this.template.Resources[res], owner, entityTemplate);

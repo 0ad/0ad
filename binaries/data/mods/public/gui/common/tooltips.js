@@ -846,6 +846,30 @@ function getResourceTrickleTooltip(template)
 	});
 }
 
+function getUpkeepTooltip(template)
+{
+	if (!template.upkeep)
+		return "";
+
+	let resCodes = g_ResourceData.GetCodes().filter(res => !!template.upkeep.rates[res]);
+	if (!resCodes.length)
+		return "";
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Upkeep:")),
+		"details": sprintf(translate("%(resources)s / %(time)s"), {
+			"resources":
+				resCodes.map(
+					res => sprintf(translate("%(resourceIcon)s %(rate)s"), {
+						"resourceIcon": resourceIcon(res),
+						"rate": template.upkeep.rates[res]
+					})
+				).join("  "),
+			"time": getSecondsString(template.upkeep.interval / 1000)
+		})
+	});
+}
+
 /**
  * Returns an array of strings for a set of wall pieces. If the pieces share
  * resource type requirements, output will be of the form '10 to 30 Stone',
