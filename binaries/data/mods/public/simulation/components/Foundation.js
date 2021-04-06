@@ -266,37 +266,34 @@ Foundation.prototype.Build = function(builderEnt, work)
 	if (this.GetBuildProgress() == 1.0)
 		return;
 
-	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	// If there are any units in the way, ask them to move away and return early from this method.
-	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag(true))
-	{
-		// Remove animal corpses
-		for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
-			Engine.DestroyEntity(ent);
-
-		let collisions = cmpObstruction.GetEntitiesBlockingConstruction();
-		if (collisions.length)
-		{
-			for (var ent of collisions)
-			{
-				var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-				if (cmpUnitAI)
-					cmpUnitAI.LeaveFoundation(this.entity);
-
-				// TODO: What if an obstruction has no UnitAI?
-			}
-
-			// TODO: maybe we should tell the builder to use a special
-			// animation to indicate they're waiting for people to get
-			// out the way
-
-			return;
-		}
-	}
-
-	// Handle the initial 'committing' of the foundation
 	if (!this.committed)
 	{
+		let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+		if (cmpObstruction && cmpObstruction.GetBlockMovementFlag(true))
+		{
+			for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
+				Engine.DestroyEntity(ent);
+
+			let collisions = cmpObstruction.GetEntitiesBlockingConstruction();
+			if (collisions.length)
+			{
+				for (let ent of collisions)
+				{
+					let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+					if (cmpUnitAI)
+						cmpUnitAI.LeaveFoundation(this.entity);
+
+					// TODO: What if an obstruction has no UnitAI?
+				}
+
+				// TODO: maybe we should tell the builder to use a special
+				// animation to indicate they're waiting for people to get
+				// out the way
+
+				return;
+			}
+		}
+
 		// The obstruction always blocks new foundations/construction,
 		// but we've temporarily allowed units to walk all over it
 		// (via CCmpTemplateManager). Now we need to remove that temporary
