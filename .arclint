@@ -33,7 +33,7 @@
       "type": "cppcheck",
       "bin": ["cppcheck", "build\\arclint\\dummies\\cppcheck.bat", "build/arclint/dummies/cppcheck.php"],
       "include": "/\\.(h|cpp)$/",
-      "flags": ["--max-configs=40", "--language=c++", "--std=c++17", "-Isource/"]
+      "flags": ["--max-configs=40", "--language=c++", "--std=c++17", "-Isource/", "--suppress=unknownMacro"]
     }
   }
 }
