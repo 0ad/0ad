@@ -174,7 +174,7 @@ Gate.prototype.LockGate = function()
 
 	// Delete animal corpses to prevent units trying to gather the unreachable entity
 	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
+	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag(true))
 		for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
 			Engine.DestroyEntity(ent);
 

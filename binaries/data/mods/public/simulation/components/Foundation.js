@@ -268,7 +268,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	// If there are any units in the way, ask them to move away and return early from this method.
-	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
+	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag(true))
 	{
 		// Remove animal corpses
 		for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
