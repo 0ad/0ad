@@ -61,7 +61,6 @@ Foundation.prototype.InitialiseConstruction = function(template)
  */
 Foundation.prototype.OnHealthChanged = function(msg)
 {
-	// Gradually reveal the final building preview
 	let cmpPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
 	if (cmpPosition)
 		cmpPosition.SetConstructionProgress(this.GetBuildProgress());
@@ -74,14 +73,11 @@ Foundation.prototype.OnHealthChanged = function(msg)
  */
 Foundation.prototype.GetBuildProgress = function()
 {
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (!cmpHealth)
 		return 0;
 
-	var hitpoints = cmpHealth.GetHitpoints();
-	var maxHitpoints = cmpHealth.GetMaxHitpoints();
-
-	return hitpoints / maxHitpoints;
+	return cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints();
 };
 
 Foundation.prototype.GetBuildPercentage = function()
@@ -90,8 +86,6 @@ Foundation.prototype.GetBuildPercentage = function()
 };
 
 /**
- * Returns the current builders.
- *
  * @return {number[]} - An array containing the entity IDs of assigned builders.
  */
 Foundation.prototype.GetBuilders = function()
@@ -119,12 +113,7 @@ Foundation.prototype.OnOwnershipChanged = function(msg)
 		return;
 	}
 
-	if (msg.to != INVALID_PLAYER)
-		return;
-
-	// Refund a portion of the construction cost, proportional to the amount of build progress remaining
-
-	if (!this.initialised) // this happens if the foundation was destroyed because the player had insufficient resources
+	if (msg.to != INVALID_PLAYER || !this.initialised)
 		return;
 
 	if (this.previewEntity != INVALID_ENTITY)
@@ -137,16 +126,17 @@ Foundation.prototype.OnOwnershipChanged = function(msg)
 		return;
 
 	let cmpPlayer = QueryPlayerIDInterface(msg.from);
-	if (!cmpPlayer)
-		return;
+	let cmpStatisticsTracker = QueryPlayerIDInterface(msg.from, IID_StatisticsTracker);
 
-	for (var r in this.costs)
+	// Refund a portion of the construction cost, proportional
+	// to the amount of build progress remaining.
+	for (let r in this.costs)
 	{
-		var scaled = Math.ceil(this.costs[r] * (1.0 - this.maxProgress));
+		let scaled = Math.ceil(this.costs[r] * (1.0 - this.maxProgress));
 		if (scaled)
 		{
-			cmpPlayer.AddResource(r, scaled);
-			var cmpStatisticsTracker = QueryPlayerIDInterface(msg.from, IID_StatisticsTracker);
+			if (cmpPlayer)
+				cmpPlayer.AddResource(r, scaled);
 			if (cmpStatisticsTracker)
 				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -scaled);
 		}
@@ -154,8 +144,6 @@ Foundation.prototype.OnOwnershipChanged = function(msg)
 };
 
 /**
- * Adds an array of builders.
- *
  * @param {number[]} builders - An array containing the entity IDs of builders to assign.
  */
 Foundation.prototype.AddBuilders = function(builders)
@@ -169,8 +157,6 @@ Foundation.prototype.AddBuilders = function(builders)
 };
 
 /**
- * Adds a single builder to this entity.
- *
  * @param {number} builderEnt - The entity to add.
  * @return {boolean} - Whether the addition was successful.
  */
@@ -192,8 +178,6 @@ Foundation.prototype.AddBuilderHelper = function(builderEnt)
 };
 
 /**
- * Adds a builder to the counter.
- *
  * @param {number} builderEnt - The entity to add.
  */
 Foundation.prototype.AddBuilder = function(builderEnt)
@@ -202,6 +186,9 @@ Foundation.prototype.AddBuilder = function(builderEnt)
 		this.HandleBuildersChanged();
 };
 
+/**
+ * @param {number} builderEnt - The entity to remove.
+ */
 Foundation.prototype.RemoveBuilder = function(builderEnt)
 {
 	if (!this.builders.has(builderEnt))
@@ -221,7 +208,7 @@ Foundation.prototype.HandleBuildersChanged = function()
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SetVariable("numbuilders", this.builders.size);
+		cmpVisual.SetVariable("numbuilders", this.GetNumBuilders());
 
 	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.GetBuilders() });
 };
@@ -245,7 +232,6 @@ Foundation.prototype.GetBuildTime = function()
 {
 	let timeLeft = (1 - this.GetBuildProgress()) * Engine.QueryInterface(this.entity, IID_Cost).GetBuildTime();
 	let rate = this.totalBuilderRate * this.buildMultiplier;
-	// The rate if we add another woman to the foundation.
 	let rateNew = (this.totalBuilderRate + 1) * this.CalculateBuildMultiplier(this.GetNumBuilders() + 1);
 	return {
 		// Avoid division by zero, in particular 0/0 = NaN which isn't reliably serialized
@@ -262,8 +248,8 @@ Foundation.prototype.Build = function(builderEnt, work)
 {
 	// Do nothing if we've already finished building
 	// (The entity will be destroyed soon after completion so
-	// this won't happen much)
-	if (this.GetBuildProgress() == 1.0)
+	// this won't happen much.)
+	if (this.IsFinished())
 		return;
 
 	if (!this.committed)
@@ -301,15 +287,13 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (cmpObstruction)
 			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
 
-		// Call the related trigger event
-		var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+		let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 		cmpTrigger.CallEvent("ConstructionStarted", {
 			"foundation": this.entity,
 			"template": this.finalTemplateName
 		});
 
-		// Switch foundation to scaffold variant
-		var cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		let cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
 		if (cmpFoundationVisual)
 			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0);
 
@@ -317,27 +301,24 @@ Foundation.prototype.Build = function(builderEnt, work)
 		this.CreateConstructionPreview();
 	}
 
-	// Add an appropriate proportion of hitpoints
-	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
+	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (!cmpHealth)
 	{
 		error("Foundation " + this.entity + " does not have a health component.");
 		return;
 	}
-	var deltaHP = work * this.GetBuildRate() * this.buildMultiplier;
+	let deltaHP = work * this.GetBuildRate() * this.buildMultiplier;
 	if (deltaHP > 0)
 		cmpHealth.Increase(deltaHP);
 
-	// Update the total builder rate
+	// Update the total builder rate.
 	this.totalBuilderRate += work - this.builders.get(builderEnt);
 	this.builders.set(builderEnt, work);
 
-	var progress = this.GetBuildProgress();
+	// Remember our max progress for partial refund in case of destruction.
+	this.maxProgress = Math.max(this.maxProgress, this.GetBuildProgress());
 
-	// Remember our max progress for partial refund in case of destruction
-	this.maxProgress = Math.max(this.maxProgress, progress);
-
-	if (progress >= 1.0)
+	if (this.maxProgress >= 1.0)
 	{
 		let cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 
