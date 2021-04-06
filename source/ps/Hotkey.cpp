@@ -300,13 +300,13 @@ InReaction HotkeyInputPrepHandler(const SDL_Event_* ev)
 			activeScancodes.emplace_back(scancode);
 	}
 
-	std::set<SDL_Scancode_> triggers;
+	std::vector<SDL_Scancode_> triggers;
 	if (!isReleasedKey || isInstantaneous)
-		triggers.insert(scancode);
+		triggers.push_back(scancode);
 	else
 		// If the key is released, we need to check all less precise hotkeys again, to see if we should retrigger some.
 		for (SDL_Scancode_ code : activeScancodes)
-			triggers.insert(code);
+			triggers.push_back(code);
 
 	// Now check if we need to trigger new hotkeys / retrigger hotkeys.
 	// We'll need the match-level and the keys in play to release currently pressed hotkeys.
