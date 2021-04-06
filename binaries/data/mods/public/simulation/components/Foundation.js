@@ -342,132 +342,24 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 	if (progress >= 1.0)
 	{
-		// Finished construction
+		let cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 
-		// Create the real entity
-		var building = Engine.AddEntity(this.finalTemplateName);
+		let building = ChangeEntityTemplate(this.entity, this.finalTemplateName);
 
-		// Copy various parameters from the foundation
-
-		var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-		var cmpBuildingVisual = Engine.QueryInterface(building, IID_Visual);
-		if (cmpVisual && cmpBuildingVisual)
-			cmpBuildingVisual.SetActorSeed(cmpVisual.GetActorSeed());
-
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (!cmpPosition || !cmpPosition.IsInWorld())
-		{
-			error("Foundation " + this.entity + " does not have a position in-world.");
-			Engine.DestroyEntity(building);
-			return;
-		}
-		var cmpBuildingPosition = Engine.QueryInterface(building, IID_Position);
-		if (!cmpBuildingPosition)
-		{
-			error("New building " + building + " has no position component.");
-			Engine.DestroyEntity(building);
-			return;
-		}
-		var pos = cmpPosition.GetPosition2D();
-		cmpBuildingPosition.JumpTo(pos.x, pos.y);
-		var rot = cmpPosition.GetRotation();
-		cmpBuildingPosition.SetYRotation(rot.y);
-		cmpBuildingPosition.SetXZRotation(rot.x, rot.z);
-		// TODO: should add a ICmpPosition::CopyFrom() instead of all this
-
-		var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
-		var cmpBuildingRallyPoint = Engine.QueryInterface(building, IID_RallyPoint);
-		if(cmpRallyPoint && cmpBuildingRallyPoint)
-		{
-			var rallyCoords = cmpRallyPoint.GetPositions();
-			var rallyData = cmpRallyPoint.GetData();
-			for (var i = 0; i < rallyCoords.length; ++i)
-			{
-				cmpBuildingRallyPoint.AddPosition(rallyCoords[i].x, rallyCoords[i].z);
-				cmpBuildingRallyPoint.AddData(rallyData[i]);
-			}
-		}
-
-		// ----------------------------------------------------------------------
-
-		var owner;
-		var cmpTerritoryDecay = Engine.QueryInterface(building, IID_TerritoryDecay);
-		if (cmpTerritoryDecay && cmpTerritoryDecay.HasTerritoryOwnership())
-		{
-			let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-			owner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
-		}
-		else
-		{
-			let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-			if (!cmpOwnership)
-			{
-				error("Foundation " + this.entity + " has no ownership.");
-				Engine.DestroyEntity(building);
-				return;
-			}
-			owner = cmpOwnership.GetOwner();
-		}
-		var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
-		if (!cmpBuildingOwnership)
-		{
-			error("New Building " + building + " has no ownership.");
-			Engine.DestroyEntity(building);
-			return;
-		}
-		cmpBuildingOwnership.SetOwner(owner);
-
-		/*
-		Copy over the obstruction control group IDs from the foundation
-		entities. This is needed to ensure that when a foundation is completed
-		and replaced by a new entity, it remains in the same control group(s)
-		as any other foundation entities that may surround it. This is the
-		mechanism that is used to e.g. enable wall pieces to be built closely
-		together, ignoring their mutual obstruction shapes (since they would
-		otherwise be prevented from being built so closely together). If the
-		control groups are not copied over, the new entity will default to a
-		new control group containing only itself, and will hence block
-		construction of any surrounding foundations that it was previously in
-		the same control group with.
-
-		Note that this will result in the completed building entities having
-		control group IDs that equal entity IDs of old (and soon to be deleted)
-		foundation entities. This should not have any consequences, however,
-		since the control group IDs are only meant to be unique identifiers,
-		which is still true when reusing the old ones.
-		*/
-
-		var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
-		if (cmpObstruction && cmpBuildingObstruction)
-		{
-			cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
-			cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
-		}
-
-		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
-
-		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
-		if (cmpBuildingHealth)
-			cmpBuildingHealth.SetHitpoints(progress * cmpBuildingHealth.GetMaxHitpoints());
 
 		PlaySound("constructed", building);
 
 		Engine.PostMessage(this.entity, MT_ConstructionFinished,
 			{ "entity": this.entity, "newentity": building });
-		Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": building });
 
-		// Inform the builders that repairing has finished.
-		// This not done by listening to a global message due to performance.
 		for (let builder of this.GetBuilders())
 		{
 			let cmpUnitAIBuilder = Engine.QueryInterface(builder, IID_UnitAI);
 			if (cmpUnitAIBuilder)
 				cmpUnitAIBuilder.ConstructionFinished({ "entity": this.entity, "newentity": building });
 		}
-
-		Engine.DestroyEntity(this.entity);
 	}
 };
 

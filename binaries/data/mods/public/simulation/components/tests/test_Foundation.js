@@ -1,13 +1,20 @@
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Transform.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/AutoBuildable.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
+Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/Cost.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
+Engine.LoadComponentScript("interfaces/Guard.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Population.js");
+Engine.LoadComponentScript("interfaces/Promotion.js");
+Engine.LoadComponentScript("interfaces/Repairable.js");
+Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
+Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 Engine.LoadComponentScript("interfaces/TerritoryDecay.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
@@ -15,6 +22,7 @@ Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("AutoBuildable.js");
 Engine.LoadComponentScript("Foundation.js");
 Engine.LoadComponentScript("Timer.js");
+
 let player = 1;
 let playerEnt = 3;
 let foundationEnt = 20;
@@ -84,6 +92,8 @@ function testFoundation(...mocks)
 		"GetRotation": () => rot,
 		"SetConstructionProgress": () => {},
 		"IsInWorld": () => true,
+		"GetHeightOffset": () => {},
+		"MoveOutOfWorld": () => {}
 	});
 
 	AddMock(previewEnt, IID_Ownership, {
@@ -108,6 +118,7 @@ function testFoundation(...mocks)
 	});
 
 	AddMock(newEnt, IID_Position, {
+		"GetPosition2D": () => pos,
 		"JumpTo": (x, y) => {
 			TS_ASSERT_EQUALS(x, pos.x);
 			TS_ASSERT_EQUALS(y, pos.y);
@@ -117,6 +128,7 @@ function testFoundation(...mocks)
 			TS_ASSERT_EQUALS(rx, rot.x);
 			TS_ASSERT_EQUALS(rz, rot.z);
 		},
+		"SetHeightOffset": () => {}
 	});
 
 	for (let mock of mocks)

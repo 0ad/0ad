@@ -127,7 +127,7 @@ RallyPoint.prototype.OrderToRallyPoint = function(entity, ignore = [])
 
 RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	for (var data of this.data)
+	for (let data of this.data)
 	{
 		if (!data)
 			continue;
@@ -135,6 +135,21 @@ RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 			data.target = msg.newentity;
 		if (data.source && data.source == msg.entity)
 			data.source = msg.newentity;
+	}
+
+	if (msg.entity != this.entity)
+		return;
+
+	let cmpRallyPointNew = Engine.QueryInterface(msg.newentity, IID_RallyPoint);
+	if (cmpRallyPointNew)
+	{
+		let rallyCoords = this.GetPositions();
+		let rallyData = this.GetData();
+		for (let i = 0; i < rallyCoords.length; ++i)
+		{
+			cmpRallyPointNew.AddPosition(rallyCoords[i].x, rallyCoords[i].z);
+			cmpRallyPointNew.AddData(rallyData[i]);
+		}
 	}
 };
 
