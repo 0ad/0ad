@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-02 07:07+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 08:38+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -884,7 +884,7 @@ msgstr "%(label)s: %(effects)s"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "아군의 포격: %(enabled)s"
 
-#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:154
+#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -893,7 +893,7 @@ msgstr "아군의 포격: %(enabled)s"
 msgid "Yes"
 msgstr "예"
 
-#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:154
+#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1212,12 +1212,12 @@ msgstr "범위:"
 #: gui/common/tooltips.js:1074 gui/common/tooltips.js:1102
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1078 gui/common/tooltips.js:1095
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1125
 msgid "Classes:"
@@ -1493,21 +1493,21 @@ msgstr "새로운 단축키를 입력하고, 등록하려면 길게 누르십시
 msgid "May conflict with: "
 msgstr "다음과 충돌할 수 있음:"
 
-#: gui/hotkeys/HotkeysPage.js:71
+#: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
 msgstr "모든 단축키"
 
-#: gui/hotkeys/HotkeysPage.js:105
+#: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
 msgstr "사용 가능한 모든 단축키"
 
-#: gui/hotkeys/HotkeysPage.js:152
+#: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr "모든 단축키를 기본값으로 재설정하시겠습니까?\n경고: 되돌릴 수 없습니다."
 
-#: gui/hotkeys/HotkeysPage.js:153 gui/pregame/MainMenuItems.js:250
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "확인"
@@ -1591,7 +1591,7 @@ msgstr "단축키는 수정되지 않습니다"
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "카메라 관련 단축키."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
@@ -1601,12 +1601,12 @@ msgstr "카메라"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "뒤로 스크롤하거나 아래로 회전합니다."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "아래로 스크롤/회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
@@ -1616,7 +1616,7 @@ msgstr "선택의 첫 번째 유닛을 따릅니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr ""
+msgstr "유닛 따라가기"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
@@ -1706,7 +1706,7 @@ msgstr "스크롤하거나 왼쪽으로 회전합니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "왼쪽으로 스크롤/회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -1721,7 +1721,7 @@ msgstr "팬 카메라"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "선택한 건물의 집결 지점에 카메라 초점을 맞춥니 다."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
@@ -1736,17 +1736,17 @@ msgstr "카메라 회전을 기본값으로 재설정합니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "카메라 재설정"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "오른쪽으로 스크롤하거나 회전합니다."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "오른쪽으로 스크롤/회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
@@ -1757,7 +1757,7 @@ msgstr "지형을 중심으로 카메라를 시계 반대 방향으로 회전합
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "시계 반대 방향으로 회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
@@ -1768,7 +1768,7 @@ msgstr "지형을 중심으로 카메라를 시계 방향으로 회전합니다.
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "시계 방향으로 회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
@@ -1778,7 +1778,7 @@ msgstr "아래쪽을 보려면 카메라를 회전합니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "아래로 회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -1808,7 +1808,7 @@ msgstr "위쪽을 보려면 카메라를 회전합니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "위로 회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
@@ -1824,12 +1824,12 @@ msgstr "지형을 중심으로 카메라를 시계 방향으로 회전합니다.
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "카메라 스크롤 속도를 줄입니다."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "스크롤 속도 감소"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
@@ -1839,17 +1839,17 @@ msgstr "카메라 스크롤 속도를 높입니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "스크롤 속도 증가"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "앞으로 스크롤하거나 위로 회전합니다."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr "스크롤/위로 회전"
+msgstr "위로 스크롤/회전"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
@@ -1899,7 +1899,7 @@ msgstr "카메라 확대 - 효과는 FPS에 따라 달라집니다."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "확대 (단계별)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
@@ -1929,7 +1929,7 @@ msgstr "큰 BMP 스크린샷을 찍습니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "대형 스크린샷"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
@@ -1939,7 +1939,7 @@ msgstr "현재 대화 상자 / 팝업을 닫거나 취소합니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "닫기/취소"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -1969,17 +1969,17 @@ msgstr "클립보드에 복사합니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "클립보드에 복사"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "선택한 텍스트를 잘라내고 클립보드에 복사합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "클립보드로 잘라내기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
@@ -1989,12 +1989,12 @@ msgstr "바탕 화면으로 나갑니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Exit to desktop"
-msgstr ""
+msgstr "데스크톱으로 종료"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "클립보드에서 붙여넣습니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
@@ -2034,7 +2034,7 @@ msgstr "프로파일러 전환"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "새 프로파일러에 대해 HTTP/GPU 모드를 활성화/비활성화합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
@@ -2064,7 +2064,7 @@ msgstr "워터마크 전환"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "다음 탭을 표시합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
@@ -2079,22 +2079,22 @@ msgstr "이전 탭을 표시합니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "이전 탭"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "커서 왼쪽에 있는 단어를 삭제합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "커서 앞에서 삭제"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "커서 오른쪽에 있는 단어를 삭제합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
@@ -2114,7 +2114,7 @@ msgstr "커서를 왼쪽 단어로 이동"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "커서를 오른쪽 단어 시작 부분으로 이동합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
@@ -2229,7 +2229,7 @@ msgstr "유닛을 일괄 훈련하게 변경합니다."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "일괄 생산"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -2240,17 +2240,17 @@ msgstr "선택하는 대신 그룹 아이콘을 클릭할때 유닛을 선택취
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "유닛 유형 선택취소"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr "원하는 무역 자원을 100%로 설정하도록 변경합니다."
+msgstr "원하는 교역 자원을 100%로 설정하도록 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "100%로 교역 지정"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -2280,7 +2280,7 @@ msgstr "선택한 유닛 파괴"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "선택한 유닛 파괴"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
@@ -2315,7 +2315,7 @@ msgstr "강제 이동"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "건물/유닛을 삭제할 때 확인을 요청하지 않습니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
@@ -2360,7 +2360,7 @@ msgstr "이 명령을 실행한 다음 현재 명령으로 돌아가도록 변�
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "앞에 순서를 밀어넣기"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
@@ -2495,7 +2495,7 @@ msgstr "가장자리에 스냅 전환"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "현재 작업을 중지합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
@@ -2507,7 +2507,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "null 기본 대형과 마지막으로 사용된 기본 대형 사이를 전환합니다 (기본값은 '경비대형')."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
@@ -2622,7 +2622,7 @@ msgstr "최신 빠른저장 게임을 불러옵니다. 빠른저장 파일이 �
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "빠른 불러오기"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
@@ -2784,12 +2784,12 @@ msgstr "빨리감기 모드를 활성화합니다. 타임워프가 활성화되�
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "빨리감기 (타임워프)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "되감기 시간. 타임워프가 활성화되어 있어야 합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
@@ -2805,7 +2805,7 @@ msgstr "선택한 방어 건축물의 공격 범위 오버레이 표시를 전�
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Togge attack ranges"
-msgstr ""
+msgstr "공격 범위 전환"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
@@ -2886,7 +2886,7 @@ msgstr "유닛 선택 수정과 관련된 단축키입니다."
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "유닛 선택하기"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
@@ -2896,17 +2896,17 @@ msgstr "선택 항목에 유닛을 추가합니다."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "선택 항목에 추가"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "모든 유닛을 선택 취소하고 건물 배치를 취소합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "선택 취소"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
@@ -3216,22 +3216,22 @@ msgstr "노는 유닛만 선택합니다."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "노는 유닛만 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "다음 노는 유닛 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "다음 노는 유닛 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "다음 노는 전사를 선택합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
@@ -3256,7 +3256,7 @@ msgstr "선택 항목에 군인들 유닛만 추가합니다."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "군인만 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
@@ -3286,12 +3286,12 @@ msgstr "유닛을 선택에서 제거합니다."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "선택에서 유닛 제거"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "부상당한 유닛만 선택합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
@@ -3651,62 +3651,6 @@ msgstr "플레이어 이름 (싱글플레이어)"
 msgid "How you want to be addressed in single-player matches."
 msgstr "싱글플레이어 시합에서 어떻게 처리되기를 원하는지."
 
-#: gui/options/options.json[0].options[10].label
-msgid "Observer limit"
-msgstr "관찰자 한계"
-
-#: gui/options/options.json[0].options[10].tooltip
-msgid "Prevent further observers from joining if the limit is reached."
-msgstr "한계에 도달한 경우 추가 관찰자가 참여하지 못하게 합니다."
-
-#: gui/options/options.json[0].options[11].label
-msgid "Chat timestamp"
-msgstr "대화 시간 출력"
-
-#: gui/options/options.json[0].options[11].tooltip
-msgid "Display the time at which a chat message was posted."
-msgstr "대화 내용이 게시된 시간을 표시합니다."
-
-#: gui/options/options.json[0].options[12].label
-msgid "Naming of entities."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[0].label
-msgid "Specific primary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[1].label
-msgid "Generic primary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[2].label
-msgid "Only Specific."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[3].label
-msgid "Only Generic."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].tooltip
-msgid "How to show entity names."
-msgstr ""
-
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
 msgstr "플레이어이름 (멀티플레이어)"
@@ -3734,71 +3678,84 @@ msgid ""
 msgstr "이 기능을 사용 중지하면 새로운 버전을 사용할 때마다 시작 화면이 한 번 나타납니다. 기본 메뉴에서 언제든지 시작할 수 있습니다."
 
 #: gui/options/options.json[0].options[4].label
-msgid "Network warnings"
-msgstr "네트워크 경고"
-
-#: gui/options/options.json[0].options[4].tooltip
-msgid "Show which player has a bad connection in multiplayer games."
-msgstr "멀티플레이어 게임에서 어떤 플레이어가 연결 상태가 좋지 않은지를 표시합니다."
-
-#: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
 msgstr "FPS 덧판 보이기"
 
-#: gui/options/options.json[0].options[5].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "오른쪽 상단 모서리에 초당 프레임을 표시합니다."
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
 msgstr "현재 시간 덧판 보이기"
 
-#: gui/options/options.json[0].options[6].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
 msgstr "오른쪽 상단 모서리에 현재 시스템 시간을 표시합니다."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
 msgstr "게임 시간 덧판 보이기"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "오른쪽 상단 모서리에 현재 모의실험 시간을 표시합니다."
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
 msgstr "휴전 시간 덧판 보이기"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "항상 남은 휴전시간을 표시합니다."
 
+#: gui/options/options.json[0].options[8].label
+msgid "Chat timestamp"
+msgstr "대화 시간 출력"
+
+#: gui/options/options.json[0].options[8].tooltip
+msgid "Display the time at which a chat message was posted."
+msgstr "대화 내용이 게시된 시간을 표시합니다."
+
 #: gui/options/options.json[0].options[9].label
-msgid "Late observer joins"
-msgstr "늦은 관찰자 합류"
+msgid "Naming of entities."
+msgstr "본체의 이름 지정."
 
 #: gui/options/options.json[0].options[9].list[0].label
-#: gui/options/options.json[3].options[5].list[0].label
-msgid "Everyone"
-msgstr "모든 진영"
+msgid "Specific primary."
+msgstr "특정 이름 기본."
+
+#: gui/options/options.json[0].options[9].list[0].tooltip
+msgid "Show specific names as primary and generic names as secondary."
+msgstr "특정 이름을 기본 이름으로, 일반 이름을 보조 이름으로 표시합니다."
 
 #: gui/options/options.json[0].options[9].list[1].label
-#: gui/options/options.json[3].options[5].list[1].label
-msgid "Buddies"
-msgstr "친구들"
+msgid "Generic primary."
+msgstr "일반 이름 기본."
+
+#: gui/options/options.json[0].options[9].list[1].tooltip
+msgid "Show generic names as primary and specific names as secondary."
+msgstr "일반 이름을 기본 이름으로, 특정 이름을 보조 이름으로 표시합니다."
 
 #: gui/options/options.json[0].options[9].list[2].label
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-msgid "Disabled"
-msgstr "사용안함"
+msgid "Only Specific."
+msgstr "특정 이름만."
+
+#: gui/options/options.json[0].options[9].list[2].tooltip
+msgid "Show only specific names for units."
+msgstr "유닛에 대한 특정 이름만 표시합니다."
+
+#: gui/options/options.json[0].options[9].list[3].label
+msgid "Only Generic."
+msgstr "일반 이름만."
+
+#: gui/options/options.json[0].options[9].list[3].tooltip
+msgid "Show only generic names for units."
+msgstr "유닛의 일반 이름만 표시합니다."
 
 #: gui/options/options.json[0].options[9].tooltip
-msgid ""
-"Allow everybody or buddies only to join the game as observer after it "
-"started."
-msgstr "모든 사람 또는 친구들이 게임을 시작한 후에는 관찰자로 게임에 참여할 수 있습니다."
+msgid "How to show entity names."
+msgstr "본체 이름을 표시하는 방법."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -3943,6 +3900,13 @@ msgstr "화면 공간 후처리 필터(HDR, 꽃핌현상, DOF 등)를 사용합�
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
 msgstr "안티앨리어싱"
+
+#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[3].options[5].list[2].label
+#: gui/options/options.json[4].options[4].list[2].label
+msgid "Disabled"
+msgstr "사용안함"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
@@ -4220,9 +4184,19 @@ msgstr "인공 지능의 기본 동작입니다."
 msgid "Assign players"
 msgstr "플레이어 할당"
 
+#: gui/options/options.json[3].options[5].list[0].label
+#: gui/options/options.json[4].options[4].list[0].label
+msgid "Everyone"
+msgstr "모든 진영"
+
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "빈 슬롯이 있으면 시합에 참가하는 플레이어들에게 배정됩니다."
+
+#: gui/options/options.json[3].options[5].list[1].label
+#: gui/options/options.json[4].options[4].list[1].label
+msgid "Buddies"
+msgstr "친구들"
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
@@ -4241,8 +4215,8 @@ msgid ""
 msgstr "시합 설정 중 플레이어 공간을 확보하기 위해 합류하는 클라이언트를 자동으로 할당하십시오."
 
 #: gui/options/options.json[4].label
-msgid "Lobby"
-msgstr "로비"
+msgid "Networking / Lobby"
+msgstr "네트워킹 / 로비"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4270,6 +4244,52 @@ msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "게임 목록의 열에 참여한 플레이어의 평균 등급을 표시합니다."
+
+#: gui/options/options.json[4].options[3].label
+msgid "Network warnings"
+msgstr "네트워크 경고"
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid "Show which player has a bad connection in multiplayer games."
+msgstr "멀티플레이어 게임에서 어떤 플레이어가 연결 상태가 좋지 않은지를 표시합니다."
+
+#: gui/options/options.json[4].options[4].label
+msgid "Late observer joins"
+msgstr "늦은 관찰자 합류"
+
+#: gui/options/options.json[4].options[4].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started."
+msgstr "모든 사람 또는 친구들이 게임을 시작한 후에는 관찰자로 게임에 참여할 수 있습니다."
+
+#: gui/options/options.json[4].options[5].label
+msgid "Observer limit"
+msgstr "관찰자 한계"
+
+#: gui/options/options.json[4].options[5].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "한계에 도달한 경우 추가 관찰자가 참여하지 못하게 합니다."
+
+#: gui/options/options.json[4].options[6].label
+msgid "Max lag for observers"
+msgstr "관찰자를 위한 최대 지연"
+
+#: gui/options/options.json[4].options[6].tooltip
+msgid ""
+"When hosting, pause the game if observers are lagging more than this many "
+"turns. If set to -1, observers are ignored."
+msgstr "호스팅 할 때, 관찰자가 이 횟수 이상 지연되는 경우 게임을 일시 중지합니다. -1로 설정하면 관찰자가 무시됩니다."
+
+#: gui/options/options.json[4].options[7].label
+msgid "(Observer) Speed up when lagging."
+msgstr "(관찰자) 지연시 속도를 높일 수 있습니다."
+
+#: gui/options/options.json[4].options[7].tooltip
+msgid ""
+"When observing a game, automatically speed up if you start lagging, to catch"
+" up with the live match."
+msgstr "경기를 관전할 때, 실시간 경기를 따라잡기 위해 지연을 시작하면 자동으로 속도가 빨라집니다."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -5474,7 +5494,7 @@ msgstr "시장"
 
 #: gui/summary/layout.js:163
 msgid "Trade income"
-msgstr "교역 소득"
+msgstr "교역 수입"
 
 #: gui/summary/layout.js:164
 msgid "Barter efficiency"

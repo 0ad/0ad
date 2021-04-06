@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 09:30+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -86,14 +86,14 @@ msgstr "보통"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 msgid "Soldier"
 msgstr "병사"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Citizen"
 msgstr "시민"
 
@@ -302,7 +302,7 @@ msgstr "석궁"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:31
 msgid "Cavalry Crossbowman"
-msgstr ""
+msgstr "석궁 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:32
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
@@ -358,7 +358,7 @@ msgstr "대표전사 도끼 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:25
 msgid "Champion Cavalry Crossbowman"
-msgstr ""
+msgstr "대표전사 석궁 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
 msgid "Champion Cavalry Javelineer"
@@ -398,7 +398,7 @@ msgstr "통나무"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_infantry.xml:65
 msgid "Infantry"
 msgstr "보병"
@@ -417,7 +417,7 @@ msgstr "대표전사 도끼병"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:28
 msgid "Champion Infantry Crossbowman"
-msgstr ""
+msgstr "대표전사 석궁 보병"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
 msgid "Champion Infantry Javelineer"
@@ -521,7 +521,7 @@ msgstr "영웅 도끼 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:25
 msgid "Hero Cavalry Crossbowman"
-msgstr ""
+msgstr "영웅 석궁 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
 msgid "Hero Cavalry Javelineer"
@@ -565,7 +565,7 @@ msgstr "영웅 도끼병"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:25
 msgid "Hero Infantry Crossbowman"
-msgstr ""
+msgstr "영웅 석궁 보병"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
 msgid "Hero Infantry Javelineer"
@@ -587,9 +587,15 @@ msgstr "영웅 창병"
 msgid "Hero Swordsman"
 msgstr "영웅 검병"
 
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
+msgid "Builder"
+msgstr ""
+
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
 msgid "Worker"
 msgstr "일꾼"
 
@@ -603,7 +609,7 @@ msgstr "철퇴 보병"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
 msgid "Infantry Crossbowman"
-msgstr ""
+msgstr "석궁 보병"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Infantry Javelineer"
@@ -790,7 +796,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "단검"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:64
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Female Citizen"
 msgstr "여성 시민"
 
@@ -799,12 +805,12 @@ msgid "Heal units."
 msgstr "유닛을 치료합니다."
 
 #: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:47
+#: simulation/templates/template_unit_support_slave.xml:49
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "노예"
 
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:48
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "한정된 수명을 가진 채집자. 광업 및 벌목에 보너스를 제공합니다."
 
@@ -1929,7 +1935,7 @@ msgstr "재무 구조 개편: 로마와 동맹한 필립(Philip)은 국가의 �
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
-msgstr "오드뤼사이 척후 기병"
+msgstr "오드뤼사이 전초 기병"
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:8
 msgid "Hippakontistḕs Odrysós"

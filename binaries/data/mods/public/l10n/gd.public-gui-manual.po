@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-04 08:04+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,64 +335,68 @@ msgid ""
 msgstr "  hotkey.selection.cancel – Dì-thagh na h-uile aonad, sguir de chur togalaich."
 
 #: gui/manual/intro.txt:74
+msgid "  hotkey.selection.idlebuilder – Select idle builder"
+msgstr ""
+
+#: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
 msgstr "  hotkey.selection.idlewarrior – Tagh saighdear ’na thàmh"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
 msgstr "  hotkey.selection.idleworker – Tagh obraiche ’na thàmh (a’ gabhail a-steach saighdearan-dùthcha)"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
 msgstr "  hotkey.selection.idleunit – Tagh aonad ’na thàmh"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
 msgstr "  hotkey.session.stop – Cuir stad air na h‑aonadan a thagh thu"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
 msgstr "  hotkey.session.backtowork – Tillidh an t-aonad dhan obair"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
 msgstr "  hotkey.session.unload – Falbhaidh na h-aonadan a tha ’nan gearastan sna togalaichean a thagh thu"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.save.1 – Cruthaich buidheann-smachd 1 (Seo 2,3, … air leth o thùs) dhe na h-aonadan/togalaichean a thagh thu"
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
 msgstr "  hotkey.selection.group.select.1 – Tagh na h‑aonadan/togalaichean sa bhuidheann-smachd 1"
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.add.1 – Cuir buidheann-smachd 1 (gu ruige 0) ris na togalaichean/na h‑aonadan a thagh thu"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
 msgstr "  hotkey.camera.jump.set.1 – Comharraich ionad làithreach a’ chamara ach an urrainn dhut leum a ghearradh air ais dha an uairsin (gabhaidh 4 ionadan iomruineadh o thùs)"
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
 msgstr "  hotkey.camera.jump.1 – Gluais an camara gu ionad comharraichte. Geàrr leum air ais dhan ionad roimhe ma tha an camara air an ionad chomharraichte mu thràth"
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, "
 "hotkey.session.queueunit.3, hotkey.session.queueunit.4, "
@@ -401,322 +405,322 @@ msgid ""
 "2nd, … unit shown to the training queue for all the selected structures"
 msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Le togalach oideachaidh no dhà air a thaghadh. Cuir a’ chiad, an dàrna, … aonad a chì thu air a’ chiudha oideachaidh sa h‑uile togalach a thagh thu"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
 msgstr "  hotkey.session.highlightguarded le aonadan air an taghadh – Soillsichidh seo na h-aonadan agus na togalaich a tha ’gan dìon leis na thagh thu"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
 msgstr "  hotkey.session.highlightguarding le aonad(s)/structure(s) no togalaichean air an taghadh – Soillsichidh seo na h-aonadan a tha a’ dìon na thagh thu"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
 msgstr "  highlightguarding.showstatusbars – Seall a h-uile bàr-inbhe (seallaidh seo adhartas an togail cuideachd)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
 msgstr "  hotkey.summary – Toglaich uinneag a’ gheàrr-chunntais"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
 msgstr "  hotkey.lobby – Seall an lobaidh ioma-chluicheadair ann an uinneag còmhraidh"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
 msgstr "  hotkey.session.gui.diplomacy.toggle – Toglaich panail na dioplòmasachd am broinn a’ gheama"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
 msgstr "  hotkey.session.gui.barter.toggle – Toglaich panail iomlaididh is malairt am broinn a’ gheama"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
 msgstr "  hotkey.session.gui.objectives.toggle – Toglaich panail nan amasan am broinn a’ gheama"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
 msgstr "  hotkey.session.gui.tutorial.toggle – Toglaich panail an oideachaidh am broinn a’ gheama"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
 msgstr "  hotkey.structree – Toglaich panail craobh nan togalaichean"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
 msgstr "  hotkey.civinfo – Toglaich panail fiosrachadh an t-sìobhaltais"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Atharraich gnìomh na luchaige[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
 msgstr "  hotkey.session.garrison + briogadh deas air togalach – Rach ’nad ghearastan"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
 msgstr "  hotkey.session.repair + briogadh deas air togalach – Càraich"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
 msgstr "  hotkey.session.patrol + briogadh deas – Cuairteachan"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
 msgstr "  hotkey.session.queue + briogadh deas – Cuir an t‑òrdugh gluais/tog/cruinnich/msaa. air a’ chiudha"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr "  hotkey.session.orderone + briogadh deas – cuir òrdugh air aon aonad a-mhàin dhen taghadh làithreach airson gluasad/togail/cruinneachadh is msaa. agus neo-thagh e. Cleachd seo gus òrduighean airson saothraichean sònraichte a chur air aonadan gu luath"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr "  hotkey.session.batchtrain + briogadh deas le oideachadh aonadan – cuir aonadan ris ’nan grunnan (’S e grunnan de chòignear a bhios annta a ghnàth ach gabhaidh seo atharrachadh sna roghainnean)"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr "  hotkey.selection.add + briogadh clì no slaodadh thar an aonaid air a’ mhapa – cuir an t‑aonad ris an taghadh"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr "  hotkey.selection.remove + briogadh clì no slaodadh clì thar an aonaid air a’ mhap – thoir an t‑aonad far an taghadh"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr "  hotkey.selection.militaryonly + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan an airm"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr "  hotkey.selection.nonmilitaryonly + slaodadh clì thar aonadan air a’ mhapa – Na tagh aonadan an airm"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr "  hotkey.selection.idleonly + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan nan tàmh"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr "  hotkey.selection.woundedonly + slaodadh clì thar aonadan air a’ mhapa – Na tagh ach aonadan leònta"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "  Briogadh deas le togalach/togalaichean air an taghadh – suidhich ceann-cruinneachaidh airson aonadan a thèid a chruthachadh san togalach ud no a dh’fhalbhas an gearastan"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr "  hotkey.session.garrison + briogadh deas le aonad(an) air an taghadh – Rach ’nad ghearastan (Ma tha an cùrsair os cionn togalach caidreabhach no agad fhèin)"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr "  hotkey.session.attack + briogadh deas le aonad(an) air an taghadh – Thoir ionnsaigh (seach glacadh no cruinneachadh)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr "  hotkey.session.attackmove + briogadh deas le aonad(an) air an taghadh – Gluasad ionnsaighe (thèid amas air gach aonad ’s togalach an nàmhad air an rathad o thùs)"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr "  hotkey.session.attackmoveUnit + briogadh deas le aonad(an) air an taghadh – Gluasad ionnsaighe is dha dèid amas ach air aonadan air an rathad"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr "  hotkey.session.snaptoedges + gluasad luchaige faisg air togalaichean – Co-thaobhaich an togalach ùr le togalach eile faisg air"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Tar-chòmhdachaidhean[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – Toglaich an eadar-aghaidh"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr "  hotkey.session.devcommands.toggle – Toglaich tar-chòmhdachadh nan leasaichear (le roghainnean nan leasaichear)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  hotkey.wireframe – Toglaich modh frèam-uèir (brùth air aon turas gus frèaman-uèir a thar-chòmhdachadh air bàrr nam modalan le innich, dà thuras gus frèaman-uèir le dathan nan inneach a-mhàin fhaighinn is trì tursan gus tilleadh dhan mhodh àbhaisteach le innich)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr "  hotkey.silhouettes – Toglaich sgàil-riochdan nan aonadan (dh’fhaoidte gum faigh thu beagan dèanadais a bharrachd às)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – Toglaich dathan na dioplòmasachd"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – Toglaich samhlaidhean astair nan ionnsaighean airson nan aonadan is togalaichean a chaidh a thaghadh"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – Toglaich samhlaidhean astair nan aura airson nan aonadan is togalaichean a chaidh a thaghadh"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – Toglaich samhlaidhean astair an t-slànachaidh airson nan aonadan a chaidh a thaghadh"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Gluasad a’ chamara[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – Panaich an sgrìn suas"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – Panaich an sgrìn sìos"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – Panaich an sgrìn dhan taobh chlì"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – Panaich an sgrìn dhan taobh deas"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – Cuairtich an camara a shealltainn suas"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – Cuairtich an camara a shealltainn sìos"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.cw – Cuairtich an camara gu deiseil"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – Cuairtich an camara gu tuathail"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – Cuairtich an camara gu deiseil"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – Cuairtich an camara gu tuathail"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – Lean air an aonad air a thaghadh (gluais an camara ach nach lean e air an aonad tuilleadh)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – Ath-shuidhich sùm is comhair a’ chamara"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Sùm a-steach (cum sìos e airson sùmadh gu leantainneach)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Sùm a-mach (cum sìos e airson sùmadh gu leantainneach)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – Cùm sìos e is gluais an luchag airson panachadh"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Nuair a chuireas tu togalach ris[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – Cuairtich togalach gu tuathail le 15 ceuman"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – Cuairtich togalach gu deiseil le 15 ceuman"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:149
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  Slaod le putan clì na luchaige – Cuairtich an togalach leis an luchag (thèid a’ bhonn a shuidheachadh nuair a leigeas tu às an luchag)"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Nuair a luchdaicheas tu geama air a shàbhaladh[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
 msgstr "  hotkey.cancel – Sguir dheth"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – Sguab às an geama air a shàbhaladh a thagh thu ’s thèid dearbhadh iarraidh ort"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

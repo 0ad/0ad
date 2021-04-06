@@ -391,6 +391,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpTurretable = Engine.QueryInterface(ent, IID_Turretable);
 	if (cmpTurretable)
 		ret.turretable = {
+			"ejectable": cmpTurretable.IsEjectable(),
 			"holder": cmpTurretable.HolderID()
 		};
 

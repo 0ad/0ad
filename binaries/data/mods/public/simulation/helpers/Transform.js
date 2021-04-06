@@ -26,6 +26,13 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		cmpNewPosition.SetHeightOffset(cmpPosition.GetHeightOffset());
 	}
 
+	// Prevent spawning subunits on occupied positions.
+	let cmpTurretHolder = Engine.QueryInterface(oldEnt, IID_TurretHolder);
+	let cmpNewTurretHolder = Engine.QueryInterface(newEnt, IID_TurretHolder);
+	if (cmpTurretHolder && cmpNewTurretHolder)
+		for (let entity of cmpTurretHolder.GetEntities())
+			cmpNewTurretHolder.SetReservedTurretPoint(cmpTurretHolder.GetOccupiedTurretPointName(entity));
+
 	var cmpOwnership = Engine.QueryInterface(oldEnt, IID_Ownership);
 	var cmpNewOwnership = Engine.QueryInterface(newEnt, IID_Ownership);
 	if (cmpOwnership && cmpNewOwnership)
@@ -58,30 +65,6 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	if (cmpBuilderList && cmpNewBuilderList)
 		cmpNewBuilderList.AddBuilders(cmpBuilderList.GetBuilders());
 
-	var cmpUnitAI = Engine.QueryInterface(oldEnt, IID_UnitAI);
-	var cmpNewUnitAI = Engine.QueryInterface(newEnt, IID_UnitAI);
-	if (cmpUnitAI && cmpNewUnitAI)
-	{
-		let pos = cmpUnitAI.GetHeldPosition();
-		if (pos)
-			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
-		if (cmpUnitAI.GetStanceName())
-			cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
-		if (cmpUnitAI.GetGarrisonHolder() != INVALID_ENTITY)
-			cmpNewUnitAI.SetGarrisoned();
-		cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
-		if (cmpUnitAI.IsGuardOf())
-		{
-			let guarded = cmpUnitAI.IsGuardOf();
-			let cmpGuard = Engine.QueryInterface(guarded, IID_Guard);
-			if (cmpGuard)
-			{
-				cmpGuard.RenameGuard(oldEnt, newEnt);
-				cmpNewUnitAI.SetGuardOf(guarded);
-			}
-		}
-	}
-
 	let cmpPromotion = Engine.QueryInterface(oldEnt, IID_Promotion);
 	let cmpNewPromotion = Engine.QueryInterface(newEnt, IID_Promotion);
 	if (cmpPromotion && cmpNewPromotion)
@@ -95,7 +78,6 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		cmpNewResGatherer.GiveResources(carriedResources);
 		cmpNewResGatherer.SetLastCarriedType(cmpResGatherer.GetLastCarriedType());
 	}
-
 
 	// Maintain the list of guards
 	let cmpGuard = Engine.QueryInterface(oldEnt, IID_Guard);
@@ -132,6 +114,27 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	TransferGarrisonedUnits(oldEnt, newEnt);
 
 	Engine.PostMessage(oldEnt, MT_EntityRenamed, { "entity": oldEnt, "newentity": newEnt });
+
+	// UnitAI generally needs other components to be properly initialised.
+	let cmpUnitAI = Engine.QueryInterface(oldEnt, IID_UnitAI);
+	let cmpNewUnitAI = Engine.QueryInterface(newEnt, IID_UnitAI);
+	if (cmpUnitAI && cmpNewUnitAI)
+	{
+		let pos = cmpUnitAI.GetHeldPosition();
+		if (pos)
+			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
+		cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
+		let guarded = cmpUnitAI.IsGuardOf();
+		if (guarded)
+		{
+			let cmpGuarded = Engine.QueryInterface(guarded, IID_Guard);
+			if (cmpGuarded)
+			{
+				cmpGuarded.RenameGuard(oldEnt, newEnt);
+				cmpNewUnitAI.SetGuardOf(guarded);
+			}
+		}
+	}
 
 	if (cmpPosition && cmpPosition.IsInWorld())
 		cmpPosition.MoveOutOfWorld();

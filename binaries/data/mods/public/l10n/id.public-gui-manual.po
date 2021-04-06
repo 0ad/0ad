@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-12 09:47+0000\n"
-"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,64 +342,68 @@ msgid ""
 msgstr "  hotkey.selection.cancel – Batalkan pilihan semua unit, batalkan penempatan gedung."
 
 #: gui/manual/intro.txt:74
+msgid "  hotkey.selection.idlebuilder – Select idle builder"
+msgstr ""
+
+#: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
 msgstr "  hotkey.selection.idlewarrior – Pilih petarung yang diam"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
 msgstr "  hotkey.selection.idleworker – Pilih pekerja yang menganggur (termasuk warga-prajurit)"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
 msgstr "  hotkey.selection.idleunit – Pilih unit yang menganggur"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
 msgstr "  hotkey.session.stop – Stop (hentikan) unit yang saat ini dipilih"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
 msgstr "  hotkey.session.backtowork – Unit akan kembali bekerja"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
 msgstr "  hotkey.session.unload – Bongkar unit garnisun dari structure(s) yang dipilih"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.save.1 – Buat grup kontrol 1 (secara standar, masing-masing 2,3, ...) dari unit(s)/structure(s) yang dipilih"
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
 msgstr "  hotkey.selection.group.select.1 – Pilih unit(s)/structure(s) dalam kelompok kontrol 1"
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.add.1 – Tambahkan grup kontrol 1 (ke 0) ke unit(s)/structure(s) yang dipilih"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
 msgstr "  hotkey.camera.jump.set.1 – Tandai posisi kamera saat ini, untuk melompat kembali ke lain waktu (secara standar, ada 4 kemungkinan posisi)"
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
 msgstr "  hotkey.camera.jump.1 – Pindahkan kamera ke posisi yang ditandai. Lompat kembali ke lokasi terakhir jika kamera sudah melebihi posisi yang ditandai"
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, "
 "hotkey.session.queueunit.3, hotkey.session.queueunit.4, "
@@ -408,322 +412,322 @@ msgid ""
 "2nd, … unit shown to the training queue for all the selected structures"
 msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Dengan struktur pelatihan yang dipilih.  Tambahkan yang pertama, kedua, … unit ditampilkan ke antrian pelatihan untuk semua struktur yang dipilih"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
 msgstr "  hotkey.session.highlightguarded with unit(s) selected – Menyoroti unit(s)/structure(s) yang dijaga oleh seleksi"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
 msgstr "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – Menyoroti unit(s) yang menjaga seleksi"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
 msgstr "  highlightguarding.showstatusbars – Lihat semua bilah status (yang juga akan menunjukkan kemajuan bangunan)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
 msgstr "  hotkey.summary – Aktifkan jendela ringkasan"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
 msgstr "  hotkey.lobby – Tampilkan lobi multipemain di jendela dialog"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
 msgstr "  hotkey.session.gui.diplomacy.toggle – Aktifkan panel diplomasi dalam game"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
 msgstr "  hotkey.session.gui.barter.toggle – Aktifkan barter dalam game dan panel perdagangan"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
 msgstr "  hotkey.session.gui.objectives.toggle – Aktifkan panel tujuan dalam game"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
 msgstr "  hotkey.session.gui.tutorial.toggle – Aktifkan panel tutorial dalam game"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
 msgstr "  hotkey.structree – Aktifkan panel pohon struktur"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
 msgstr "  hotkey.civinfo – Aktifkan panel info peradaban"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Ubah tindakan mouse[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
 msgstr "  hotkey.session.garrison + Klik kanan pada struktur – Menempati"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
 msgstr "  hotkey.session.repair + Klik kanan pada struktur – Memperbaiki"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
 msgstr "  hotkey.session.patrol + Klik Kanan – Berpatroli"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
 msgstr "  hotkey.session.queue + Klik Kanan – Mengantri perintah gerak/bangun/kumpul/dll."
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr "  hotkey.session.orderone + Klik Kanan – Menyuruh satu unit dari pilihan saat ini untuk bergerak/membangun/mengumpulkan/dll. dan batal pilih. Digunakan untuk mengirimkan unit dengan cepat dengan tugas tertentu"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr "  hotkey.session.batchtrain + Klik Kiri saat melatih unit – Tambahkan unit dalam batch (ukuran batch adalah 5 secara standar dan dapat diubah dalam opsi)"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr "  hotkey.selection.add + Klik Kiri atau Seret Kiri pada unit di peta – Tambahkan unit ke pilihan"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr "  hotkey.selection.remove + Klik Kiri atau Seret Kiri pada unit di peta – Hapus unit dari pilihan"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr "  hotkey.selection.militaryonly + Seret Kiri pada unit di peta – Pilih unit militer saja"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr "  hotkey.selection.nonmilitaryonly + Seret Kiri pada unit di peta – Hanya pilih unit non-militer"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr "  hotkey.selection.idleonly + Seret Kiri pada unit di peta – Hanya pilih unit yang menganggur"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr "  hotkey.selection.woundedonly + Seret Kiri pada unit di peta – Hanya pilih unit yang terluka"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "Klik Kanan dengan sebuah struktur terpilih – Menetapkan titik kumpul untuk unit yang dibuat/dikeluarkan dari struktur tersebut"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr "  hotkey.session.garrison + Klik Kanan pada unit(s) yang dipilih – Menempatkan (Jika kursor berada di atas struktur milik kita atau  struktur milik sekutu)"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr "  hotkey.session.attack + Klik Kanan pada unit(s) yang dipilih – Serang (bukan mengambil alih atau mengumpulkan)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr "  hotkey.session.attackmove + Klik Kanan pada unit(s) yang dipilih  – Gerakan serangan (secara default semua unit dan struktur musuh di sepanjang jalan menjadi sasaran)"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr "  hotkey.session.attackmoveUnit + Klik Kanan pada unit(s) yang dipilih  – Gerakan serangan, hanya unit di sepanjang jalan yang ditargetkan"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr "  hotkey.session.snaptoedges + Gerakkan Mouse di dekat bangunan – Sejajarkan struktur baru dengan struktur terdekat yang sudah ada"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Overlay[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – Aktifkan GUI"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr "  hotkey.session.devcommands.toggle – Aktifkan hamparan pengembang (dengan opsi pengembang)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  hotkey.wireframe – Aktifkan mode wireframe (tekan sekali untuk mendapatkan wireframe terhampar di atas model bertekstur, dua kali untuk mendapatkan wireframe yang diwarnai oleh tekstur, tiga kali untuk kembali ke mode bertekstur normal)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr "  hotkey.silhouettes – Aktifkan siluet unit (mungkin memberikan sedikit peningkatan kinerja)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – Aktifkan warna diplomasi"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – Aktifkan visualisasi jangkauan serangan dari unit dan struktur yang dipilih"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – Aktifkan visualisasi rentang aura dari unit dan struktur yang dipilih"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – Aktifkan visualisasi rentang penyembuhan dari unit yang dipilih"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Manipulasi kamera[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – Geser layar ke atas"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – Geser layar ke bawah"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – Geser layar ke kiri"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – Geser layar ke kanan"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – Putar kamera untuk melihat ke atas"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – Putar kamera untuk melihat ke bawah"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.cw – Putar kamera searah jarum jam di sekitar medan"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – Putar kamera berlawanan arah jarum jam di sekitar medan"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – Putar kamera searah jarum jam di sekitar medan"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – Putar kamera berlawanan arah jarum jam di sekitar medan"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – Ikuti unit yang dipilih (gerakkan kamera untuk berhenti mengikuti unit)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – Setel ulang zoom dan orientasi kamera"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Perbesar (terus tekan untuk zoom terus menerus)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Perkecil (terus tekan untuk zoom berkelanjutan)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – Tekan terus dan gerakkan mouse untuk menggeser"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Selama Penempatan Struktur[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – Putar struktur 15 derajat berlawanan arah jarum jam"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – Putar struktur 15 derajat searah jarum jam"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:149
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  Tarik Kiri – Putar struktur menggunakan mouse (pondasi akan ditempatkan pada pelepasan mouse)"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Saat memuat game yang disimpan[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
 msgstr "  hotkey.cancel – Batalkan"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – Hapus game tersimpan yang dipilih, minta konfirmasi"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

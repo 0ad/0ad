@@ -3574,15 +3574,6 @@ UnitAI.prototype.UnsetGarrisoned = function()
 	this.SetMobile();
 };
 
-UnitAI.prototype.GetGarrisonHolder = function()
-{
-	if (!this.isGarrisoned)
-		return INVALID_ENTITY;
-
-	let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
-	return cmpGarrisonable ? cmpGarrisonable.HolderID() : INVALID_ENTITY;
-};
-
 UnitAI.prototype.ShouldRespondToEndOfAlert = function()
 {
 	return !this.orderQueue.length || this.orderQueue[0].type == "Garrison";

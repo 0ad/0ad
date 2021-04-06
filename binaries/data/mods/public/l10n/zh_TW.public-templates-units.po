@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 09:30+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -78,14 +78,14 @@ msgstr "基本"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 msgid "Soldier"
 msgstr "士兵"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Citizen"
 msgstr "公民"
 
@@ -390,7 +390,7 @@ msgstr "象鼻"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_infantry.xml:65
 msgid "Infantry"
 msgstr "步兵"
@@ -579,9 +579,15 @@ msgstr "英雄矛兵"
 msgid "Hero Swordsman"
 msgstr "英雄劍士"
 
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
+msgid "Builder"
+msgstr ""
+
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
 msgid "Worker"
 msgstr "工人"
 
@@ -782,7 +788,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "匕首"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:64
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Female Citizen"
 msgstr "女性公民"
 
@@ -791,12 +797,12 @@ msgid "Heal units."
 msgstr "治療單位。"
 
 #: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:47
+#: simulation/templates/template_unit_support_slave.xml:49
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "奴隸"
 
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:48
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "壽命有限的採集者。採礦及伐木有速度加成。"
 

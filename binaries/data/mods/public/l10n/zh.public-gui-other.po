@@ -56,6 +56,7 @@
 # Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tatos An <stron3@126.com>, 2020
+# Thomas Cheng <orangecza@gmail.com>, 2021
 # Tianran Yao <yaotianran@gmail.com>, 2016
 # Tom green <juty99@126.com>, 2020
 # Tong Hui <tonghuix@gmail.com>, 2015
@@ -88,9 +89,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-05 06:07+0000\n"
+"Last-Translator: Thomas Cheng <orangecza@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -946,7 +947,7 @@ msgstr "%(label)s: %(effects)s"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "友好火力：%(enabled)s"
 
-#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:154
+#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -955,7 +956,7 @@ msgstr "友好火力：%(enabled)s"
 msgid "Yes"
 msgstr "是"
 
-#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:154
+#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1066,7 +1067,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "防御塔位置"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1555,21 +1556,21 @@ msgstr "输入新的快捷键，保持注册。"
 msgid "May conflict with: "
 msgstr "可能与此冲突:"
 
-#: gui/hotkeys/HotkeysPage.js:71
+#: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
 msgstr "全部热键"
 
-#: gui/hotkeys/HotkeysPage.js:105
+#: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "所有可用热键."
 
-#: gui/hotkeys/HotkeysPage.js:152
+#: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr "是否要将全部快捷键重置为默认值？\n警告：该操作无法撤销。"
 
-#: gui/hotkeys/HotkeysPage.js:153 gui/pregame/MainMenuItems.js:250
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "确认"
@@ -1653,42 +1654,42 @@ msgstr "热键不可修改"
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "镜头相关热键."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "镜头"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "向后滚动或向下旋转."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "向下滚动/旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "跟随选中的第一个单位."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr ""
+msgstr "跟随单位"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "跳转到镜头位置1(见 \"设置镜头跳转1\")"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "跳转到镜头1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
@@ -1698,7 +1699,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr ""
+msgstr "跳转到镜头2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
@@ -1708,7 +1709,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "跳转到镜头3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
@@ -1718,17 +1719,17 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "跳转到镜头4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "设置镜头跳转位置1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "设置镜头跳转1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
@@ -1778,205 +1779,205 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
 msgid "Pan camera"
-msgstr ""
+msgstr "平移镜头"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "聚焦镜头于已选建筑的集结点."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "聚焦于集结点"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "重置镜头旋转为默认值."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "重置镜头"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "向右滚动或旋转."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "向右滚动/旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "将镜头环绕地形逆时针旋转."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "逆时针旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "将镜头环绕地形顺时针旋转."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "顺时针旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look downwards."
-msgstr ""
+msgstr "旋转镜头来向下看."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "向下旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "降低镜头旋转速度."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "降低旋转速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "增加镜头旋转速度."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "增加旋转速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look upwards."
-msgstr ""
+msgstr "旋转镜头来向上看."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "向上旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "将镜头环绕地形逆时针旋转－效果取决于FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "将镜头环绕地形顺时针旋转－效果取决于FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "降低镜头滚动速度."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "降低滚动速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "增加镜头滚动速度."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "增加滚动速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "向前滚动或向上旋转."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "向上滚动/旋转"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "放大镜头."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "放大"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "缩小镜头."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "缩小"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "降低镜头缩放速度."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "降低缩放速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "增加镜头缩放速度."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "增加缩放速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "放大镜头－效果取决于FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "放大 (逐步)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "缩小镜头－效果取决于FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "缩小 (逐步)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "常规热键."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -1986,27 +1987,27 @@ msgstr "通用"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "大BMP截图."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "大截图"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "关闭或取消当前对话框/弹窗."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "关闭/取消"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "确认当前命令."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2016,197 +2017,197 @@ msgstr "确认"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Open/close console."
-msgstr ""
+msgstr "打开/关闭终端."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "开/关终端"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "复制到剪切板."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "复制到剪切板"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "剪切选中文字并复制到剪切板."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "剪切到剪切板"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid "Exit to desktop."
-msgstr ""
+msgstr "退出到桌面."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Exit to desktop"
-msgstr ""
+msgstr "退出到桌面"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "从剪切板粘贴."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "从剪切板粘贴"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/unpause game."
-msgstr ""
+msgstr "暂停/恢复游戏."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "暂停/恢复"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "保存当前分析器数据至 log/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "保存配置"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable real-time profiler."
-msgstr ""
+msgstr "开启/关闭实时分析器."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "开/关分析器"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "为新的分析器打开/关闭 HTTP/GPU 模式."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "开/关分析器2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "PNG格式截图."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "截图"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "开/关官方截图的产品/公式水印."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "开/关水印"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "显示下一个标签."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "下一个标签"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "显示上一个标签."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "上一个标签"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "删除光标左边的单词."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "删除光标前的字符"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "删除光标右边的单词."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "删除光标后的字符"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "移动光标到左边单词的起始位置."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "移动光标到左边的单词"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "移动光标到右边单词的起始位置."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "移动光标到右边的单词"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "开/关全屏/窗口模式"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "开/关全屏"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "开/关线框模式."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "开/关线框模式"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr ""
+msgstr "在游戏设置屏幕中激活热键."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2216,67 +2217,67 @@ msgstr "游戏"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "打开地图浏览器."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "打开地图浏览器"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "游戏内热键."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "游戏内"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr ""
+msgstr "以攻击替代其它动作的修饰键 (例如 捕获)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "强制攻击"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "点击一个地方时, 移动攻击的修饰键."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "移动攻击"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "点击一个地方时, 仅移动攻击目标单位的修饰键"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "移动攻击 (仅单位)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr ""
+msgstr "设置集结点在建筑自身的修饰键."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "自动集结点"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "单位将返回工作."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2286,38 +2287,38 @@ msgstr "返回工作"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "批量训练单位的修饰键."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "批量生产"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
+msgstr "当点击组图标时, 以 取消选择 替代 选择 的修饰键."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "取消选择单位类型"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr ""
+msgstr "将急需贸易资源调至100%的修饰键."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "设置贸易至100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "点击建筑时, 驻防的修饰键."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -3713,62 +3714,6 @@ msgstr "玩家名昵称( 单人模式 )"
 msgid "How you want to be addressed in single-player matches."
 msgstr "你希望在单人过关游戏中被如何称呼"
 
-#: gui/options/options.json[0].options[10].label
-msgid "Observer limit"
-msgstr "观察人数上限"
-
-#: gui/options/options.json[0].options[10].tooltip
-msgid "Prevent further observers from joining if the limit is reached."
-msgstr "如果达到限制，禁止观察者再加入。"
-
-#: gui/options/options.json[0].options[11].label
-msgid "Chat timestamp"
-msgstr "聊天时间戳"
-
-#: gui/options/options.json[0].options[11].tooltip
-msgid "Display the time at which a chat message was posted."
-msgstr "显示聊天消息的时间。"
-
-#: gui/options/options.json[0].options[12].label
-msgid "Naming of entities."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[0].label
-msgid "Specific primary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[1].label
-msgid "Generic primary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[2].label
-msgid "Only Specific."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[3].label
-msgid "Only Generic."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].tooltip
-msgid "How to show entity names."
-msgstr ""
-
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
 msgstr "玩家昵称 ( 多人模式 )"
@@ -3796,71 +3741,84 @@ msgid ""
 msgstr "禁用此项时，欢迎界面仍然会在更新到新版本出现一次。除此外，你始终可用通过主菜单进入欢迎界面。"
 
 #: gui/options/options.json[0].options[4].label
-msgid "Network warnings"
-msgstr "网络警告"
-
-#: gui/options/options.json[0].options[4].tooltip
-msgid "Show which player has a bad connection in multiplayer games."
-msgstr "显示多人游戏连接不稳定的玩家。"
-
-#: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
 msgstr "每秒帧数"
 
-#: gui/options/options.json[0].options[5].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "在右上角显示帧率。"
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
 msgstr "现实时间"
 
-#: gui/options/options.json[0].options[6].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
 msgstr "在右上角显示目前的系统时间。"
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
 msgstr "游戏时间"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "在右上角显示目前的模拟时间。"
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
 msgstr "停火时间"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "总是显示剩余的停火时间。"
 
+#: gui/options/options.json[0].options[8].label
+msgid "Chat timestamp"
+msgstr "聊天时间戳"
+
+#: gui/options/options.json[0].options[8].tooltip
+msgid "Display the time at which a chat message was posted."
+msgstr "显示聊天消息的时间。"
+
 #: gui/options/options.json[0].options[9].label
-msgid "Late observer joins"
-msgstr "最近加入的观察者"
+msgid "Naming of entities."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].label
-#: gui/options/options.json[3].options[5].list[0].label
-msgid "Everyone"
-msgstr "全体"
+msgid "Specific primary."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[0].tooltip
+msgid "Show specific names as primary and generic names as secondary."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
-#: gui/options/options.json[3].options[5].list[1].label
-msgid "Buddies"
-msgstr "伙伴"
+msgid "Generic primary."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[1].tooltip
+msgid "Show generic names as primary and specific names as secondary."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-msgid "Disabled"
-msgstr "禁用"
+msgid "Only Specific."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[2].tooltip
+msgid "Show only specific names for units."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[3].label
+msgid "Only Generic."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[3].tooltip
+msgid "Show only generic names for units."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].tooltip
-msgid ""
-"Allow everybody or buddies only to join the game as observer after it "
-"started."
-msgstr "允许他人在游戏开始后，作为观察者加入游戏。"
+msgid "How to show entity names."
+msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4005,6 +3963,13 @@ msgstr "使用屏幕空间后处理过滤器（HDR，Bloom，DOF等）。"
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
 msgstr "抗锯齿"
+
+#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[3].options[5].list[2].label
+#: gui/options/options.json[4].options[4].list[2].label
+msgid "Disabled"
+msgstr "禁用"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
@@ -4282,9 +4247,19 @@ msgstr "人工智能默认行为。"
 msgid "Assign players"
 msgstr "分配玩家"
 
+#: gui/options/options.json[3].options[5].list[0].label
+#: gui/options/options.json[4].options[4].list[0].label
+msgid "Everyone"
+msgstr "全体"
+
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "如有空位，新成员可加入游戏。"
+
+#: gui/options/options.json[3].options[5].list[1].label
+#: gui/options/options.json[4].options[4].list[1].label
+msgid "Buddies"
+msgstr "伙伴"
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
@@ -4303,8 +4278,8 @@ msgid ""
 msgstr "在匹配设置期间，加入的用户自动分配。"
 
 #: gui/options/options.json[4].label
-msgid "Lobby"
-msgstr "大厅"
+msgid "Networking / Lobby"
+msgstr ""
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4332,6 +4307,52 @@ msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "在游戏列表中显示玩家的平均得分。"
+
+#: gui/options/options.json[4].options[3].label
+msgid "Network warnings"
+msgstr "网络警告"
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid "Show which player has a bad connection in multiplayer games."
+msgstr "显示多人游戏连接不稳定的玩家。"
+
+#: gui/options/options.json[4].options[4].label
+msgid "Late observer joins"
+msgstr "最近加入的观察者"
+
+#: gui/options/options.json[4].options[4].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started."
+msgstr "允许他人在游戏开始后，作为观察者加入游戏。"
+
+#: gui/options/options.json[4].options[5].label
+msgid "Observer limit"
+msgstr "观察人数上限"
+
+#: gui/options/options.json[4].options[5].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "如果达到限制，禁止观察者再加入。"
+
+#: gui/options/options.json[4].options[6].label
+msgid "Max lag for observers"
+msgstr ""
+
+#: gui/options/options.json[4].options[6].tooltip
+msgid ""
+"When hosting, pause the game if observers are lagging more than this many "
+"turns. If set to -1, observers are ignored."
+msgstr ""
+
+#: gui/options/options.json[4].options[7].label
+msgid "(Observer) Speed up when lagging."
+msgstr "(观察者) 滞后时提高速度."
+
+#: gui/options/options.json[4].options[7].tooltip
+msgid ""
+"When observing a game, automatically speed up if you start lagging, to catch"
+" up with the live match."
+msgstr "当你观看比赛滞后时, 播放速度将自动提高, 以确保跟上比赛直播."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4704,7 +4725,7 @@ msgstr "通过史诗般的战役来重现历史。"
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "打开比赛错误:"
 
 #: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"

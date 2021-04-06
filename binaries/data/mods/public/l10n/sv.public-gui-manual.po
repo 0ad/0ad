@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 15:32+0000\n"
-"Last-Translator: Martin H <pilino@posteo.de>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -341,64 +341,68 @@ msgid ""
 msgstr "  hotkey.selection.cancel – Ta bort allt urval, avbryt byggnadsplacering"
 
 #: gui/manual/intro.txt:74
+msgid "  hotkey.selection.idlebuilder – Select idle builder"
+msgstr ""
+
+#: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
 msgstr "  hotkey.selection.idlewarrior – Välj ledig krigare"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
 msgstr "  hotkey.selection.idleworker – Välj ledig arbetare (inkluderar medborgarsoldater)"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
 msgstr "  hotkey.selection.idleunit – Välj ledig enhet"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
 msgstr "  hotkey.session.stop – Stoppa valda enheter"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
 msgstr "  hotkey.session.backtowork – Enheten återvänder till arbetet"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
 msgstr "  hotkey.session.unload – Hämta ut alla garnisonerade enheter ur valda byggnader."
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.save.1 – Skapa kontrollgrupp 1 (standard, respektive 2, 3, ...) med de valda enheterna/byggnaderna"
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
 msgstr "  hotkey.selection.group.select.1 – Välj enheterna/byggnaderna i kontrollgrupp 1"
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.add.1 – Lägg till kontrollgrupp 1 (till 0) till de valda enheter/byggnader"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
 msgstr "  hotkey.camera.jump.set.1 − Markera den aktuella kamerapositionen för att komma tillbaka till den senare (standardmässigt finns det 4 möjliga positioner)"
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
 msgstr "  hotkey.camera.jump.1 – Flytta kameran till en markerad position. Hoppa tillbaka till den senaste positionen om kameran redan är över den markerade positionen."
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, "
 "hotkey.session.queueunit.3, hotkey.session.queueunit.4, "
@@ -407,322 +411,322 @@ msgid ""
 "2nd, … unit shown to the training queue for all the selected structures"
 msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Med markerad träningsbyggnad. Lägg till 1:a, 2:a, ... enheten som visas till produktionskön för alla markerade byggnader."
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
 msgstr "  hotkey.session.highlightguarded med valda enheter – Markera enheter/byggnader som vaktas av urvalet"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
 msgstr "  hotkey.session.highlightguarding med valda enheter/byggnader – Markerar enheterna som vaktar urvalet"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
 msgstr "  highlightguarding.showstatusbars – Visa alla statusrader (skulle även visa byggframsteg)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
 msgstr "  hotkey.summary – Visa sammanfattningsfönster"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
 msgstr "  hotkey.lobby – Visa flerspelarlobbyn i en dialogruta"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
 msgstr "  hotkey.session.gui.diplomacy.toggle – Växla diplomatipanelen i spelet"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
 msgstr "  hotkey.session.gui.barter.toggle – Visa handelspanelen i spelet"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
 msgstr "  hotkey.session.gui.objectives.toggle – Växla målpanelen i spelet"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
 msgstr "  hotkey.session.gui.tutorial.toggle – Växla handledningspanelen i spelet"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
 msgstr "  hotkey.structree – Visa panelen med strukturträdet"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
 msgstr "  hotkey.civinfo – Visa panelen med civilisationsinformation"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Ändra musaktion[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
 msgstr "  hotkey.session.garrison + Högerklick på byggnad – Garnisonera"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
 msgstr "  hotkey.session.repair + Högerklick på byggnad – Reparera"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
 msgstr "  hotkey.session.patrol + Högerklick – Patrullera"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
 msgstr "  hotkey.session.queue + Högerklick – Köa rörelse/bygg/samlings/osv.-uppgifter"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr "  hotkey.session.orderone + Högerklick – Beordra en enhet ur nuvarande urvalet att förflytta sig/bygga/samla/etc och avmarkera enheten. Använd för att snabbt skicka enheter med specifika uppgifter."
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr "  hotkey.session.batchtrain + Vänsterklick när enheter tränas: Lägg till i grupper (gruppstorleken är 5 som standard men kan ändras i inställningarna)"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr "  hotkey.selection.add + Vänsterklick eller vänsterdrag över enhet på karta – Lägg till enhet i urvalet"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr "  hotkey.selection.remove + Vänsterklick eller vänsterdrag över enhet på karta – Ta bort enhet ifrån urvalet"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr "  hotkey.selection.militaryonly + Vänsterdrag över enheter på kartan – Välj endast militära enheter"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr "  hotkey.selection.nonmilitaryonly + Vänsterklick och dra över enheter på kartan – Välj endast icke-militära enheter."
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr "  hotkey.selection.idleonly + Vänsterdrag över enheter på kartan – Välj endast lediga enheter"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr "  hotkey.selection.woundedonly + Vänsterdrag över enheter på kartan – Välj endast skadade enheter"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "  Högerklick med markerade byggnad(er) – Sätt en samlingsplats för enheter som tränas/går ur garnison från denna byggnad."
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr "  hotkey.session.garrison + Högerklick med valda enheter – Garnisonera (om markören är över en egen eller allierad struktur)"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr "  hotkey.session.attack + Högerklick med valda enheter − Attackera (istället för erövra eller samla)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr "  hotkey.session.attackmove + Högerklick med valda enheter – Attackera (standardmässigt attackeras alla fientliga byggnader och enheter längs vägen)"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr "  hotkey.session.attackmoveUnit + Högerklick med valda enhet(er) – Attackera, endast enheter längs vägen angrips"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr "  hotkey.session.snaptoedges + Flytta musen nära byggnader – Placera den nya strukturen parallellt med en existerande byggnad"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Överlägg[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – Växla grafiska gränssnittet"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr "  hotkey.session.devcommands.toggle – Växla utvecklarmeny (med utvecklaralternativ)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  hotkey.wireframe − Växla trådmodellsläge (tryck en gång för att få trådmodellerna lagrade över de texturerade modellerna, två gånger för att endast få trådmodellerna färgade med texturerna, tre gånger för att komma tillbaka till normala texturläget)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr "  hotkey.silhouettes – Växla enhetssilhuetter (kan ge en liten prestandaboost)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – Växla diplomatifärger"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – Växla visualisering av valda enheters/byggnaders attackräckvidd"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – Växla visualisering av valda enheters/byggnaders auraräckvidd"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – Växla visualisering av valda enheters läkningsräckvidd."
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Kameramanipulation[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – Flytta kameran uppåt"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – Flytta kameran nedåt"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – Flytta kameran åt vänster"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – Flytta kameran åt höger"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – Rotera kameran uppåt"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – Rotera kameran nedåt"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.cw – Rotera kameran medurs runt terräng"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – Rotera kameran moturs runt terräng"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – Rotera kameran medurs runt terräng"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – Rotera kameran moturs runt terräng"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – Följ den valda enheten (flytta kameran för att sluta följa enheten)"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – Återställ kamerazoom och riktning"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zooma in (håll tryckt för kontinuerlig zoom)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zooma ut (håll tryckt för kontinuerlig zoom)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – Håll tryckt och flytta musen för att panorera"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Under byggnadsplacering[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – Rotera struktur 15 grader moturs"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – Rotera struktur 15 grader medurs"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:149
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  Vänsterdrag – Rotera byggnaden med musen (fundamentet placeras när musen släpps)"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]När ett sparat spel laddas[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
 msgstr "  hotkey.cancel – Avbryt"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – Ta bort markerade sparade spelet, fråga om bekräftelse"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

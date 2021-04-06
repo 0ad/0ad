@@ -87,7 +87,7 @@ let cmpTurretHolder = ConstructComponent(holder, "TurretHolder", {
 
 TS_ASSERT(cmpTurretable.OccupyTurret(holder));
 TS_ASSERT_UNEVAL_EQUALS(cmpTurretHolder.GetEntities(), [turret]);
-TS_ASSERT(cmpTurretHolder.OccupiesTurret(turret));
+TS_ASSERT(cmpTurretHolder.OccupiesTurretPoint(turret));
 TS_ASSERT(cmpTurretable.LeaveTurret());
 TS_ASSERT_UNEVAL_EQUALS(cmpTurretHolder.GetEntities(), []);
 
@@ -98,12 +98,12 @@ let cmpTurretableNew = createTurretCmp(newTurret);
 TS_ASSERT(cmpTurretableNew.OccupyTurret(holder));
 TS_ASSERT(cmpTurretable.OccupyTurret(holder));
 TS_ASSERT(cmpTurretableNew.LeaveTurret());
-let previousTurret = cmpTurretHolder.GetOccupiedTurretName(turret);
+let previousTurret = cmpTurretHolder.GetOccupiedTurretPointName(turret);
 cmpTurretable.OnEntityRenamed({
 	"entity": turret,
 	"newentity": newTurret
 });
-let newTurretPos = cmpTurretHolder.GetOccupiedTurretName(newTurret);
+let newTurretPos = cmpTurretHolder.GetOccupiedTurretPointName(newTurret);
 TS_ASSERT_UNEVAL_EQUALS(newTurretPos, previousTurret);
 TS_ASSERT(cmpTurretableNew.LeaveTurret());
 

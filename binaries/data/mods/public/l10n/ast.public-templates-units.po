@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 16:59+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-04 17:38+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -64,14 +64,14 @@ msgstr "Básicu"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 msgid "Soldier"
 msgstr "Soldáu"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Citizen"
 msgstr "Ciudadanu/a"
 
@@ -376,7 +376,7 @@ msgstr "Trompada"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_infantry.xml:65
 msgid "Infantry"
 msgstr "Infantería"
@@ -565,9 +565,15 @@ msgstr "Llanceru heroicu"
 msgid "Hero Swordsman"
 msgstr "Espada heroicu"
 
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
+msgid "Builder"
+msgstr "Constructor/ora"
+
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
 msgid "Worker"
 msgstr "Obreru/a"
 
@@ -768,7 +774,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Puñalada"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:64
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Female Citizen"
 msgstr "Ciudadana"
 
@@ -777,12 +783,12 @@ msgid "Heal units."
 msgstr "Cura unidaes."
 
 #: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:47
+#: simulation/templates/template_unit_support_slave.xml:49
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Esclavu"
 
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:48
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Obreru de vida curtia. Dase-y bien sacar minerales y valtar árboles."
 
@@ -1742,7 +1748,7 @@ msgstr "Abore ʿhȝ"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
-msgstr "Curiador napatán"
+msgstr "Curiador d'Amón"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
 msgid "rs ʿImn"
@@ -1750,7 +1756,7 @@ msgstr "rs ʿImn"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
-msgstr "Curiador meroíticu"
+msgstr "Gazapa d'Apedemak"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"

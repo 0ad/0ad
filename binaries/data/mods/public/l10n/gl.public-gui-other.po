@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 08:29+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -878,7 +878,7 @@ msgstr ""
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Fogo amigo: %(enabled)s"
 
-#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:154
+#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -887,7 +887,7 @@ msgstr "Fogo amigo: %(enabled)s"
 msgid "Yes"
 msgstr "Si"
 
-#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:154
+#: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1492,21 +1492,21 @@ msgstr ""
 msgid "May conflict with: "
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:71
+#: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:105
+#: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:152
+#: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:153 gui/pregame/MainMenuItems.js:250
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Confirmación"
@@ -3650,62 +3650,6 @@ msgstr ""
 msgid "How you want to be addressed in single-player matches."
 msgstr ""
 
-#: gui/options/options.json[0].options[10].label
-msgid "Observer limit"
-msgstr ""
-
-#: gui/options/options.json[0].options[10].tooltip
-msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Prohibir que se unan espectadores unha vez acadado o límite."
-
-#: gui/options/options.json[0].options[11].label
-msgid "Chat timestamp"
-msgstr ""
-
-#: gui/options/options.json[0].options[11].tooltip
-msgid "Display the time at which a chat message was posted."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].label
-msgid "Naming of entities."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[0].label
-msgid "Specific primary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[1].label
-msgid "Generic primary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[2].label
-msgid "Only Specific."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[3].label
-msgid "Only Generic."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr ""
-
-#: gui/options/options.json[0].options[12].tooltip
-msgid "How to show entity names."
-msgstr ""
-
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
 msgstr ""
@@ -3733,71 +3677,84 @@ msgid ""
 msgstr "Se a desactiva, a pantalla de benvida aínda aparecerá unha vez, cada vez que haxa unha nova versión dispoñíbel. Sempre pode iniciala desde o menú principal."
 
 #: gui/options/options.json[0].options[4].label
-msgid "Network warnings"
-msgstr ""
-
-#: gui/options/options.json[0].options[4].tooltip
-msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Mostrar que xogador ten unha mala conexión nas partidas de varios xogadores."
-
-#: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
 msgstr ""
 
-#: gui/options/options.json[0].options[5].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Mostrar o número de fotogramas por segundo na esquina superior dereita."
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
 msgstr ""
 
-#: gui/options/options.json[0].options[6].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Mostrar a hora actual do sistema na esquina superior dereita."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
 msgstr ""
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Mostrar o tempo que leva durado a partida na esquina superior dereita."
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
 msgstr ""
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Mostrar sempre o tempo restante da tregua."
 
+#: gui/options/options.json[0].options[8].label
+msgid "Chat timestamp"
+msgstr ""
+
+#: gui/options/options.json[0].options[8].tooltip
+msgid "Display the time at which a chat message was posted."
+msgstr ""
+
 #: gui/options/options.json[0].options[9].label
-msgid "Late observer joins"
+msgid "Naming of entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].label
-#: gui/options/options.json[3].options[5].list[0].label
-msgid "Everyone"
-msgstr "Todos"
+msgid "Specific primary."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[0].tooltip
+msgid "Show specific names as primary and generic names as secondary."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
-#: gui/options/options.json[3].options[5].list[1].label
-msgid "Buddies"
-msgstr "Amizades"
+msgid "Generic primary."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[1].tooltip
+msgid "Show generic names as primary and specific names as secondary."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-msgid "Disabled"
-msgstr "Desactivados"
+msgid "Only Specific."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[2].tooltip
+msgid "Show only specific names for units."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[3].label
+msgid "Only Generic."
+msgstr ""
+
+#: gui/options/options.json[0].options[9].list[3].tooltip
+msgid "Show only generic names for units."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].tooltip
-msgid ""
-"Allow everybody or buddies only to join the game as observer after it "
-"started."
-msgstr "Permitir a todo o mundo ou só aos contactos unirse á partida como observador unha vez comezada."
+msgid "How to show entity names."
+msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -3942,6 +3899,13 @@ msgstr ""
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
 msgstr ""
+
+#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[3].options[5].list[2].label
+#: gui/options/options.json[4].options[4].list[2].label
+msgid "Disabled"
+msgstr "Desactivados"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
@@ -4219,9 +4183,19 @@ msgstr "Comportamento predeterminado da intelixencia artificial."
 msgid "Assign players"
 msgstr ""
 
+#: gui/options/options.json[3].options[5].list[0].label
+#: gui/options/options.json[4].options[4].list[0].label
+msgid "Everyone"
+msgstr "Todos"
+
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr ""
+
+#: gui/options/options.json[3].options[5].list[1].label
+#: gui/options/options.json[4].options[4].list[1].label
+msgid "Buddies"
+msgstr "Amizades"
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
@@ -4240,8 +4214,8 @@ msgid ""
 msgstr "Asignar automaticamente aos clientes que se unan a ocos baleiros de xogador durante a preparación da partida."
 
 #: gui/options/options.json[4].label
-msgid "Lobby"
-msgstr "Sala de espera"
+msgid "Networking / Lobby"
+msgstr ""
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4269,6 +4243,52 @@ msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Mostrar a puntuación media dos xogadores participantes nunha columna da lista de partidas."
+
+#: gui/options/options.json[4].options[3].label
+msgid "Network warnings"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid "Show which player has a bad connection in multiplayer games."
+msgstr "Mostrar que xogador ten unha mala conexión nas partidas de varios xogadores."
+
+#: gui/options/options.json[4].options[4].label
+msgid "Late observer joins"
+msgstr ""
+
+#: gui/options/options.json[4].options[4].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started."
+msgstr "Permitir a todo o mundo ou só aos contactos unirse á partida como observador unha vez comezada."
+
+#: gui/options/options.json[4].options[5].label
+msgid "Observer limit"
+msgstr ""
+
+#: gui/options/options.json[4].options[5].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "Prohibir que se unan espectadores unha vez acadado o límite."
+
+#: gui/options/options.json[4].options[6].label
+msgid "Max lag for observers"
+msgstr ""
+
+#: gui/options/options.json[4].options[6].tooltip
+msgid ""
+"When hosting, pause the game if observers are lagging more than this many "
+"turns. If set to -1, observers are ignored."
+msgstr ""
+
+#: gui/options/options.json[4].options[7].label
+msgid "(Observer) Speed up when lagging."
+msgstr ""
+
+#: gui/options/options.json[4].options[7].tooltip
+msgid ""
+"When observing a game, automatically speed up if you start lagging, to catch"
+" up with the live match."
+msgstr ""
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."

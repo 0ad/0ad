@@ -1321,7 +1321,7 @@ var g_EntityCommands =
 					continue;
 
 				if (allowedPlayersCheck([entState], ["Player"]))
-					count += entState.turretHolder.turretPoints.filter(turretPoint => turretPoint.entity).length;
+					count += entState.turretHolder.turretPoints.filter(turretPoint => turretPoint.entity && turretPoint.ejectable).length;
 				else
 					for (let turretPoint of entState.turretHolder.turretPoints)
 						if (turretPoint.entity && allowedPlayersCheck([GetEntityState(turretPoint.entity)], ["Player"]))
@@ -1443,7 +1443,8 @@ var g_EntityCommands =
 		"getInfo": function(entStates)
 		{
 			if (entStates.every(entState => !entState.turretable ||
-				entState.turretable.holder == INVALID_ENTITY))
+				entState.turretable.holder == INVALID_ENTITY ||
+				!entState.turretable.ejectable))
 				return false;
 
 			return {
@@ -1460,7 +1461,8 @@ var g_EntityCommands =
 			Engine.PostNetworkCommand({
 				"type": "leave-turret",
 				"entities": entStates.filter(entState => entState.turretable &&
-					entState.turretable.holder != INVALID_ENTITY).map(entState => entState.id)
+					entState.turretable.holder != INVALID_ENTITY ||
+					!entState.turretable.ejectable).map(entState => entState.id)
 			});
 		},
 		"allowedPlayers": ["Player"]

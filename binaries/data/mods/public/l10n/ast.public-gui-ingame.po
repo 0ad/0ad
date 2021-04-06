@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 18:45+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-04 18:12+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -85,6 +85,11 @@ msgstr "Rindise"
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Colar"
+
+#: gui/session/NetworkDelayOverlay.js:63
+#, javascript-format
+msgid "Delay to live stream: %(delay)ss"
+msgstr "Demoranza na tresmisión en direuto: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -348,7 +353,7 @@ msgstr "Calca pa centrate na unidá atacada."
 #: gui/session/chat/ChatMessageFormatSimulation.js:50
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s trocó %(amountGiven)s empara de %(amountGained)s."
+msgstr "%(player)s entrocó %(amountGiven)s empara de %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
@@ -472,11 +477,11 @@ msgstr "Esbillar el destinatariu de la charra."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:67
 msgid "The Developer Overlay was opened."
-msgstr "Abrióse la sobrecapa desendolcadora."
+msgstr "Abrióse la sobrecapa de desendolcu."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:68
 msgid "The Developer Overlay was closed."
-msgstr "Zarróse la sobrecapa desendolcadora."
+msgstr "Zarróse la sobrecapa de desendolcu."
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
 msgid "Control all units"
@@ -524,7 +529,7 @@ msgstr "Descubrir el mapa"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
 msgid "Enable time warp"
-msgstr "Activar la deformación del tiempu"
+msgstr "Activar l'alteriamientu temporal"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
@@ -552,14 +557,14 @@ msgstr "Amosar tueru piramidal de solombres"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
-msgstr "Mou deformación del tiempu"
+msgstr "Mou alteriamientu temporal"
 
 #: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Nota: El mou deformación del tiempu ye una opción desendolcadora & nun ta pensáu pal usu demientres periodos llargos de tiempu. Nun emplegalu correchamente pue facer que'l xuegu quede ensin memoria o falle."
+msgstr "Nota: La opción desendolcadora «mou alteriamientu temporal» nun ta pensada pal usu prollongáu. Si nun s'emplega a xeitu puede esgotar la memoria del xuegu o resultar en fallos."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1421,15 +1426,15 @@ msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr "Trocar"
+msgstr "Troquéu"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr "Vender:"
+msgstr "Dar:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr "Mercar:"
+msgstr "Percanciar:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
@@ -1460,7 +1465,7 @@ msgstr "Entama escoyendo'l recursu que quieras vender de la fila cimera. Cada ve
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr "Cambiar"
+msgstr "Cambéu"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
@@ -1683,7 +1688,7 @@ msgstr "Quitar la guardia"
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1595
 msgid "Barter & Trade"
-msgstr "Negociar & comerciar"
+msgstr "Comerciu"
 
 #: gui/session/unit_actions.js:1615
 msgid "Patrol"

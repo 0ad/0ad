@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 09:30+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -83,14 +83,14 @@ msgstr "Di base"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 msgid "Soldier"
 msgstr "Soldato"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Citizen"
 msgstr "Cittadino"
 
@@ -395,7 +395,7 @@ msgstr "Proboscide"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_infantry.xml:65
 msgid "Infantry"
 msgstr "Fanteria"
@@ -584,9 +584,15 @@ msgstr "Lanciere Eroe"
 msgid "Hero Swordsman"
 msgstr "Spadaccino Eroe"
 
-#: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:63
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
+msgid "Builder"
+msgstr ""
+
+#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:49
 msgid "Worker"
 msgstr "Lavoratore"
 
@@ -787,7 +793,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Pugnale"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:64
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Female Citizen"
 msgstr "Donna Cittadina"
 
@@ -796,12 +802,12 @@ msgid "Heal units."
 msgstr "Cura unità."
 
 #: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:47
+#: simulation/templates/template_unit_support_slave.xml:49
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Schiavo"
 
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:48
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Raccoglitori che rimangono in vita per un tempo limitato. Bonus nelle estrazioni e raccolta legna."
 

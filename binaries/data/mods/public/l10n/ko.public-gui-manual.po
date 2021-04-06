@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-04-02 06:56+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +159,7 @@ msgstr "• [font=\"sans-bold-14\"]시나리오 지도[font=\"sans-14\"] – 문
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]접전지역 지도[font=\"sans-14\"] – 지도 디자이너에 의해 제작되었지만 문명을 선택할 수 있는 지도"
+msgstr "• [font=\"sans-bold-14\"]전초전 지도[font=\"sans-14\"] – 지도 디자이너에 의해 제작되었지만 문명을 선택할 수 있는 지도"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -349,64 +349,68 @@ msgid ""
 msgstr "  hotkey.selection.cancel – 모든 유닛을 선택 취소하고 건물 배치를 취소합니다."
 
 #: gui/manual/intro.txt:74
+msgid "  hotkey.selection.idlebuilder – Select idle builder"
+msgstr ""
+
+#: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
 msgstr "  hotkey.selection.idlewarrior – 노는 전사 선택"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
 msgstr "  hotkey.selection.idleworker – 노는 일꾼 선택 (시민 병사들 포함)"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
 msgstr "  hotkey.selection.idleunit – 노는 유닛 선택"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
 msgstr "  hotkey.session.stop – 현재 선택한 유닛들을 멈추기(정지)"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
 msgstr "  hotkey.session.backtowork – 유닛이 다시 일할 것입니다"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
 msgstr "  hotkey.session.unload – 선택한 건축물의 주둔 유닛을 내립니다"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.save.1 – 선택한 유닛/건축물에서 제어 그룹 1(기본적으로 2,3, ...)을 생성합니다"
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
 msgstr "  hotkey.select.select.select.1 – 제어 그룹 1에서 유닛/건축물 선택"
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
 msgstr "  hotkey.selection.group.add.1 – 선택한 유닛/건축물에 제어 그룹 1(~0) 추가합니다"
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
 msgstr "  hotkey.camera.jump.set.1 – 나중에 다시 이동할 수 있도록 현재 카메라 위치를 표시합니다(기본적으로 4개의 가능한 위치가 있음)"
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
 msgstr "  hotkey.camera.jump.1 – 표시된 위치로 카메라를 이동합니다. 카메라가 이미 표시된 위치 위에 있으면 마지막 위치로 다시 이동합니다"
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, "
 "hotkey.session.queueunit.3, hotkey.session.queueunit.4, "
@@ -415,322 +419,322 @@ msgid ""
 "2nd, … unit shown to the training queue for all the selected structures"
 msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – 훈련 건축물이 선택되어 있습니다. 선택된 모든 건축물에 대해 표시된 첫 번째, 두 번째, … 유닛을 훈련 대기열에 추가합니다"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
 msgstr "  hotkey.session.highlightguarded with unit(s) selected – 선택 영역으로 보호되는 유닛/건축물을 강조 표시합니다"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
 msgstr "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – 선선택 영역을 지키는 유닛의 강조 표시합니다"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
 msgstr "  highlightguarding.showstatusbars – 모든 상태 막대 보기(건물 진행 상황도 표시됨)"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
 msgstr "  hotkey.summary – 요약 창 전환"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
 msgstr "  hotkey.lobby – 대화 창에서 멀티플레이어 로비를 표시합니다"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
 msgstr "  hotkey.session.gui.diplomacy.toggle – 게임 내 외교 패널을 전환합니다"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
 msgstr "  hotkey.session.gui.barter.toggle – 게임 내 물물교환 및 교역 패널을 전환합니다"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
 msgstr "  hotkey.session.gui.objectives.toggle – 게임 내 목표 패널을 전환합니다"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
 msgstr "  hotkey.session.gui.tutorial.toggle – 게임 내 사용 지침서 패널을 전환합니다"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
 msgstr "  hotkey.structree – 건축물 도감 패널을 전환합니다"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
 msgstr "  hotkey.civinfo – 문명 정보 패널을 전환합니다"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]마우스 작업 수정[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
 msgstr "  hotkey.session.garrison + 건축물을 마우스 오른쪽 버튼으로 클릭 – 주둔지"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
 msgstr "  hotkey.session.repair + 건축물을 마우스 오른쪽 버튼으로 클릭 – 수리"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
 msgstr "  hotkey.session.patrol + 마우스 오른쪽 버튼 클릭 – 순찰"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
 msgstr "  hotkey.session.queue + 마우스 오른쪽 버튼 클릭 – 이동/건축/수집/명령 등을 대기열에 넣습니다"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr "  hotkey.session.orderone + 마우스 오른쪽 버튼 클릭 – 이동/건설/수집/등 현재 선택에서 유닛 하나를 명령하고 선택을 취소합니다. 특정 작업을 통해 유닛을 신속하게 파견하는 데 사용됩니다"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr "  hotkey.session.batchtrain + 유닛 교육 시 마우스 왼쪽 버튼 클릭 – 유닛을 일괄적으로 추가합니다(배치 크기는 기본적으로 5이며 옵션에서 변경할 수 있음"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr "  hotkey.selection.add + 지도에서 유닛 위로 마우스 왼쪽 버튼 클릭 또는 마우스 왼쪽 버튼으로 드레그 – 선택할 유닛 추가"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr "  hotkey.selection.remove + 지도에서 유닛을 마우스 왼쪽 버튼 클릭 또는 마우스 왼쪽 버튼으로 드레그 – 선택에서 유닛 제거"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr "  hotkey.selection.militaryonly + 지도에서 유닛을 마우스 왼쪽 버튼으로 드레그 – 군대 유닛만 선택"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr "  hotkey.selection.nonmilitaryonly + 지도에서 유닛 위로 마우스 왼쪽 버튼으로 드레그 – 군대가 아닌 유닛만 선택"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr "  hotkey.selection.idleonly + 지도에서 유닛 위에서 마우스 왼쪽 버튼으로 드레그 – 노는 유닛만 선택"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr "  hotkey.selection.woundedonly + 지도에서 유닛 위에서 마우스 왼쪽 버튼으로 드레그 – 부상당한 유닛만 선택"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "  건축물(들)을 선택한 상태에서 마우스 오른쪽 클릭 – 건축물에서 유닛들이 생산/주둔해제될 경우 집결 지점을 설정"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr "  hotkey.session.garrison + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 주둔지(커서가 자신의 또는 동맹 건축물 위에 있는 경우)"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr "  hotkey.session.attack + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 공격(점령 또는 채집 대신)"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr "  hotkey.session.attack move + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 클릭 – 공격 이동(기본적으로 길을 따라있는 모든 적 유닛과 건축물이 표적이 됨)"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr "  hotkey.session.attackmoveUnit + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 클릭 – 공격 이동, 길을 따라있는 유닛만 대상 지정"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr "  hotkey.session.snaptoedges + 건축물 근처로 마우스 이동 – 새 건축물을 기존 근처 건축물과 정렬"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]오버레이[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – GUI를 전환합니다"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr "  hotkey.session.devcommands.toggle – 개발자 오버레이를 전환합니다(개발자 옵션 포함)"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  hotkey.wireframe – 와이어프레임 모드 전환(한 번 누르면 텍스처 모델 위에 와이어프레임이 중첩되고, 두 번 누르면 텍스처별로 색칠된 와이어프레임만 가져오고, 세 번 누르면 정상적인 텍스처 모드로 돌아갑니다)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr "  hotkey.silhouettes – 유닛 실루엣을 전환합니다(성능이 약간 향상될 수 있음)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – 외교 색상을 전환합니다"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – 선택한 유닛 및 건축물의 공격 범위 시각화를 전환합니다"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – 선택한 유닛 및 건축물의 아우라 범위 시각화를 전환합니다"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – 선택한 유닛의 치료 범위 시각화를 전환합니다"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]카메라 조작[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – 화면을 위로 이동"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – 화면을 아래로 이동"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – 화면을 왼쪽으로 이동"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – 화면을 오른쪽으로 이동"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – 카메라를 회전하여 위쪽을 봅니다"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – 카메라를 아래쪽으로 회전시킵니다"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.cw – 지형 주위에서 카메라를 시계 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – 지형 주위에서 카메라를 시계 반대 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – 지형 주위에서 카메라를 시계 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – 지형 주위에서 카메라를 시계 반대 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – 선택한 유닛을 따라갑니다(유닛을 따라 정지하려면 카메라를 이동합니다)."
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – 카메라 확대축소 및 방향 재설정"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – 확대(연속 확대하려면 계속 누름)"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – 축소(연속 확대/축소 시 계속 누르기)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – 누른 채로 마우스를 이동시킵니다"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]건축물 배치 중[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – 건축물을 시계 반대 방향으로 15도 회전합니다"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – 건축물을 시계 방향으로 15도 회전합니다"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:149
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  마우스 왼쪽 버튼으로 드레그 – 마우스를 사용하여 건축물을 돌림 (토대는 마우스를 놓을 때 배치됨)"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]저장된 게임을 볼러올 때[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
 msgstr "  hotkey.cancel – 취소"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – 선택한 저장된 게임을 삭제하고 확인을 요청합니다"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

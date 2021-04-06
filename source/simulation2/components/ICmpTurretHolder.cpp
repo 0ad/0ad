@@ -40,7 +40,7 @@ public:
 		std::vector<entity_id_t> entities = m_Script.Call<std::vector<entity_id_t>>("GetEntities");
 		for (entity_id_t entity : entities)
 			turrets.push_back(std::make_pair(
-				m_Script.Call<std::string>("GetOccupiedTurretName", entity),
+				m_Script.Call<std::string>("GetOccupiedTurretPointName", entity),
 				entity
 			));
 

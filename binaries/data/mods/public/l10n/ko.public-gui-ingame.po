@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-02 07:01+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 08:33+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -107,6 +107,11 @@ msgstr "기권하기"
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "끝내기"
+
+#: gui/session/NetworkDelayOverlay.js:63
+#, javascript-format
+msgid "Delay to live stream: %(delay)ss"
+msgstr "실시간 스트림으로 지연: %(delay)s초"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -884,11 +889,11 @@ msgstr "노는 일꾼 찾기"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — 가득참"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "가득참"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -960,7 +965,7 @@ msgstr "현재/최대 채집자"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:451
 msgid "Capture Points:"
@@ -1113,22 +1118,22 @@ msgstr "판올림하는 동안에는 훈련할 수 없습니다."
 #: gui/session/selection_panels.js:1079
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "%(primaryName)s님으로 갱신합니다 (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "%(primaryName)s님으로 갱신합니다 (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1093
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "%(primaryName)s님으로 갱신합니다. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1098
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "%(primaryName)s님으로 갱신합니다."
 
 #: gui/session/selection_panels.js:1135
 msgid "Cancel Upgrading"

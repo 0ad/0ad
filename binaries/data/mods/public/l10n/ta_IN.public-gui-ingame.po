@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 07:28+0000\n"
+"POT-Creation-Date: 2021-04-02 07:08+0000\n"
+"PO-Revision-Date: 2021-04-02 07:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -85,6 +85,11 @@ msgstr ""
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "வெளியேறு"
+
+#: gui/session/NetworkDelayOverlay.js:63
+#, javascript-format
+msgid "Delay to live stream: %(delay)ss"
+msgstr ""
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."

@@ -91,34 +91,34 @@ AddMock(infID, IID_Identity, {
 });
 
 // Test visible garrisoning restrictions.
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(siegeEngineID, cmpTurretHolder.turretPoints[0]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(siegeEngineID, cmpTurretHolder.turretPoints[1]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(siegeEngineID, cmpTurretHolder.turretPoints[2]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(archerID, cmpTurretHolder.turretPoints[0]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(archerID, cmpTurretHolder.turretPoints[1]), false);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(archerID, cmpTurretHolder.turretPoints[2]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(cavID, cmpTurretHolder.turretPoints[0]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(cavID, cmpTurretHolder.turretPoints[1]), false);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(cavID, cmpTurretHolder.turretPoints[2]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(infID, cmpTurretHolder.turretPoints[0]), true);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(infID, cmpTurretHolder.turretPoints[1]), false);
-TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurret(infID, cmpTurretHolder.turretPoints[2]), false);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(siegeEngineID, cmpTurretHolder.turretPoints[0]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(siegeEngineID, cmpTurretHolder.turretPoints[1]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(siegeEngineID, cmpTurretHolder.turretPoints[2]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(archerID, cmpTurretHolder.turretPoints[0]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(archerID, cmpTurretHolder.turretPoints[1]), false);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(archerID, cmpTurretHolder.turretPoints[2]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[0]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[1]), false);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[2]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(infID, cmpTurretHolder.turretPoints[0]), true);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(infID, cmpTurretHolder.turretPoints[1]), false);
+TS_ASSERT_EQUALS(cmpTurretHolder.AllowedToOccupyTurretPoint(infID, cmpTurretHolder.turretPoints[2]), false);
 
 // Test that one cannot leave a turret that is not occupied.
-TS_ASSERT(!cmpTurretHolder.LeaveTurret(archerID));
+TS_ASSERT(!cmpTurretHolder.LeaveTurretPoint(archerID));
 
 // Test occupying a turret.
-TS_ASSERT(!cmpTurretHolder.OccupiesTurret(archerID));
-TS_ASSERT(cmpTurretHolder.OccupyTurret(archerID));
-TS_ASSERT(cmpTurretHolder.OccupiesTurret(archerID));
+TS_ASSERT(!cmpTurretHolder.OccupiesTurretPoint(archerID));
+TS_ASSERT(cmpTurretHolder.OccupyTurretPoint(archerID));
+TS_ASSERT(cmpTurretHolder.OccupiesTurretPoint(archerID));
 
 // We're not occupying a turret that we can't occupy.
-TS_ASSERT(!cmpTurretHolder.OccupiesTurret(archerID, cmpTurretHolder.turretPoints[1]));
-TS_ASSERT(!cmpTurretHolder.OccupyTurret(cavID, cmpTurretHolder.turretPoints[1]));
-TS_ASSERT(!cmpTurretHolder.OccupyTurret(cavID, cmpTurretHolder.turretPoints[0]));
-TS_ASSERT(cmpTurretHolder.OccupyTurret(cavID, cmpTurretHolder.turretPoints[2]));
+TS_ASSERT(!cmpTurretHolder.OccupiesTurretPoint(archerID, cmpTurretHolder.turretPoints[1]));
+TS_ASSERT(!cmpTurretHolder.OccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[1]));
+TS_ASSERT(!cmpTurretHolder.OccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[0]));
+TS_ASSERT(cmpTurretHolder.OccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[2]));
 
 // Leave turrets.
-TS_ASSERT(cmpTurretHolder.LeaveTurret(archerID));
-TS_ASSERT(!cmpTurretHolder.LeaveTurret(cavID, cmpTurretHolder.turretPoints[1]));
-TS_ASSERT(cmpTurretHolder.LeaveTurret(cavID, cmpTurretHolder.turretPoints[2]));
+TS_ASSERT(cmpTurretHolder.LeaveTurretPoint(archerID));
+TS_ASSERT(!cmpTurretHolder.LeaveTurretPoint(cavID, false, cmpTurretHolder.turretPoints[1]));
+TS_ASSERT(cmpTurretHolder.LeaveTurretPoint(cavID, false, cmpTurretHolder.turretPoints[2]));
