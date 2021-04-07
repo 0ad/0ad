@@ -24,8 +24,7 @@ Trader.prototype.Init = function()
 	this.index = -1;
 	this.goods = {
 		"type": null,
-		"amount": null,
-		"origin": null
+		"amount": null
 	};
 };
 
@@ -231,7 +230,6 @@ Trader.prototype.PerformTrade = function(currentMarket)
 
 	this.goods.type = cmpPlayer.GetNextTradingGoods();
 	this.goods.amount = this.CalculateGain(currentMarket, nextMarket);
-	this.goods.origin = currentMarket;
 
 	return nextMarket;
 };
