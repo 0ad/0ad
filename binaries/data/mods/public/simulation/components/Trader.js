@@ -31,7 +31,8 @@ Trader.prototype.Init = function()
 
 Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 {
-	let gain = CalculateTraderGain(currentMarket, nextMarket, this.template, this.entity);
+	let cmpMarket = QueryMiragedInterface(currentMarket, IID_Market);
+	let gain = cmpMarket && cmpMarket.CalculateTraderGain(nextMarket, this.template, this.entity);
 	if (!gain)	// One of our markets must have been destroyed
 		return null;
 

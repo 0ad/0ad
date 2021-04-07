@@ -1894,7 +1894,8 @@ GuiInterface.prototype.GetTradingRouteGain = function(player, data)
 	if (!data.firstMarket || !data.secondMarket)
 		return null;
 
-	return CalculateTraderGain(data.firstMarket, data.secondMarket, data.template);
+	let cmpMarket = QueryMiragedInterface(data.firstMarket, IID_Market);
+	return cmpMarket && cmpMarket.CalculateTraderGain(data.secondMarket, data.template);
 };
 
 GuiInterface.prototype.GetTradingDetails = function(player, data)
