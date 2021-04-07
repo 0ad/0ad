@@ -90,7 +90,6 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 
 void CUnitAnimation::ReloadAnimation()
 {
-	UpdateAnimationID();
 	ReloadUnit(m_Model, m_Object);
 }
 
@@ -101,6 +100,7 @@ void CUnitAnimation::ReloadUnit(CModel* model, const CObjectEntry* object)
 
 	m_AnimStates.clear();
 	m_AnimStatesAreStatic = true;
+	PickAnimationID();
 	AddModel(m_Model, m_Object);
 }
 
@@ -237,7 +237,7 @@ void CUnitAnimation::Update(float time)
 				// we're handling the root model
 				// choose animations from the complete state
 				CStr oldID = m_AnimationID;
-				UpdateAnimationID();
+				PickAnimationID();
 				anim = it->object->GetRandomAnimation(m_State, m_AnimationID);
 				if (oldID != m_AnimationID)
 					for (SModelAnimState animState : m_AnimStates)
@@ -282,8 +282,7 @@ void CUnitAnimation::Update(float time)
 		cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Entity);
 }
 
-void CUnitAnimation::UpdateAnimationID()
+void CUnitAnimation::PickAnimationID()
 {
-	CStr& ID = m_Object->GetRandomAnimation(m_State)->m_ID;
-	m_AnimationID = ID;
+	m_AnimationID = m_Object->GetRandomAnimation(m_State)->m_ID;
 }
