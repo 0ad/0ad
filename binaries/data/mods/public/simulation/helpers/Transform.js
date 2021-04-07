@@ -33,12 +33,24 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		for (let entity of cmpTurretHolder.GetEntities())
 			cmpNewTurretHolder.SetReservedTurretPoint(cmpTurretHolder.GetOccupiedTurretPointName(entity));
 
-	var cmpOwnership = Engine.QueryInterface(oldEnt, IID_Ownership);
-	var cmpNewOwnership = Engine.QueryInterface(newEnt, IID_Ownership);
-	if (cmpOwnership && cmpNewOwnership)
-		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+	let owner;
+	let cmpTerritoryDecay = Engine.QueryInterface(newEnt, IID_TerritoryDecay);
+	if (cmpTerritoryDecay && cmpTerritoryDecay.HasTerritoryOwnership() && cmpNewPosition)
+	{
+		let pos = cmpNewPosition.GetPosition2D();
+		let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+		owner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
+	}
+	else
+	{
+		let cmpOwnership = Engine.QueryInterface(oldEnt, IID_Ownership);
+		if (cmpOwnership)
+			owner = cmpOwnership.GetOwner();
+	}
+	let cmpNewOwnership = Engine.QueryInterface(newEnt, IID_Ownership);
+	if (cmpNewOwnership)
+		cmpNewOwnership.SetOwner(owner);
 
-	// Copy control groups
 	CopyControlGroups(oldEnt, newEnt);
 
 	// Rescale capture points
@@ -143,6 +155,14 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	return newEnt;
 }
 
+/**
+ * Copy over the obstruction control group IDs.
+ * This is needed to ensure that when a group of structures with the same
+ * control groups is replaced by a new entity, they remains in the same control group(s).
+ * This is the mechanism that is used to e.g. enable wall pieces to be built closely
+ * together, ignoring their mutual obstruction shapes (since they would
+ * otherwise be prevented from being built so closely together).
+ */
 function CopyControlGroups(oldEnt, newEnt)
 {
 	let cmpObstruction = Engine.QueryInterface(oldEnt, IID_Obstruction);
