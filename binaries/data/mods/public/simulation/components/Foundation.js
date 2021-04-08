@@ -241,6 +241,62 @@ Foundation.prototype.GetBuildTime = function()
 };
 
 /**
+ * @return {boolean} - Whether the foundation has been committed sucessfully.
+ */
+Foundation.prototype.Commit = function()
+{
+	if (this.committed)
+		return false;
+
+	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	if (cmpObstruction && cmpObstruction.GetBlockMovementFlag(true))
+	{
+		for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
+			Engine.DestroyEntity(ent);
+
+		let collisions = cmpObstruction.GetEntitiesBlockingConstruction();
+		if (collisions.length)
+		{
+			for (let ent of collisions)
+			{
+				let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+				if (cmpUnitAI)
+					cmpUnitAI.LeaveFoundation(this.entity);
+
+				// TODO: What if an obstruction has no UnitAI?
+			}
+
+			// TODO: maybe we should tell the builder to use a special
+			// animation to indicate they're waiting for people to get
+			// out the way
+
+			return false;
+		}
+	}
+
+	// The obstruction always blocks new foundations/construction,
+	// but we've temporarily allowed units to walk all over it
+	// (via CCmpTemplateManager). Now we need to remove that temporary
+	// blocker-disabling, so that we'll perform standard unit blocking instead.
+	if (cmpObstruction)
+		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
+
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.CallEvent("ConstructionStarted", {
+		"foundation": this.entity,
+		"template": this.finalTemplateName
+	});
+
+	let cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpFoundationVisual)
+		cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0);
+
+	this.committed = true;
+	this.CreateConstructionPreview();
+	return true;
+};
+
+/**
  * Perform some number of seconds of construction work.
  * Returns true if the construction is completed.
  */
@@ -252,54 +308,8 @@ Foundation.prototype.Build = function(builderEnt, work)
 	if (this.IsFinished())
 		return;
 
-	if (!this.committed)
-	{
-		let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-		if (cmpObstruction && cmpObstruction.GetBlockMovementFlag(true))
-		{
-			for (let ent of cmpObstruction.GetEntitiesDeletedUponConstruction())
-				Engine.DestroyEntity(ent);
-
-			let collisions = cmpObstruction.GetEntitiesBlockingConstruction();
-			if (collisions.length)
-			{
-				for (let ent of collisions)
-				{
-					let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-					if (cmpUnitAI)
-						cmpUnitAI.LeaveFoundation(this.entity);
-
-					// TODO: What if an obstruction has no UnitAI?
-				}
-
-				// TODO: maybe we should tell the builder to use a special
-				// animation to indicate they're waiting for people to get
-				// out the way
-
-				return;
-			}
-		}
-
-		// The obstruction always blocks new foundations/construction,
-		// but we've temporarily allowed units to walk all over it
-		// (via CCmpTemplateManager). Now we need to remove that temporary
-		// blocker-disabling, so that we'll perform standard unit blocking instead.
-		if (cmpObstruction)
-			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
-
-		let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-		cmpTrigger.CallEvent("ConstructionStarted", {
-			"foundation": this.entity,
-			"template": this.finalTemplateName
-		});
-
-		let cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
-		if (cmpFoundationVisual)
-			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0);
-
-		this.committed = true;
-		this.CreateConstructionPreview();
-	}
+	if (!this.committed && !this.Commit())
+		return;
 
 	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (!cmpHealth)

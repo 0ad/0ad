@@ -24,14 +24,14 @@ Trader.prototype.Init = function()
 	this.index = -1;
 	this.goods = {
 		"type": null,
-		"amount": null,
-		"origin": null
+		"amount": null
 	};
 };
 
 Trader.prototype.CalculateGain = function(currentMarket, nextMarket)
 {
-	let gain = CalculateTraderGain(currentMarket, nextMarket, this.template, this.entity);
+	let cmpMarket = QueryMiragedInterface(currentMarket, IID_Market);
+	let gain = cmpMarket && cmpMarket.CalculateTraderGain(nextMarket, this.template, this.entity);
 	if (!gain)	// One of our markets must have been destroyed
 		return null;
 
@@ -230,7 +230,6 @@ Trader.prototype.PerformTrade = function(currentMarket)
 
 	this.goods.type = cmpPlayer.GetNextTradingGoods();
 	this.goods.amount = this.CalculateGain(currentMarket, nextMarket);
-	this.goods.origin = currentMarket;
 
 	return nextMarket;
 };
