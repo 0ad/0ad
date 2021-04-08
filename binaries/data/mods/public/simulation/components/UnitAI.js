@@ -2531,10 +2531,11 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"InventoryFilled": function(msg) {
 					let nearestDropsite = this.FindNearestDropsite(this.order.data.type.generic);
-					if (!nearestDropsite)
+					if (nearestDropsite)
+						this.PushOrderFront("ReturnResource", { "target": nearestDropsite, "force": false });
+					else
 						this.FinishOrder();
 
-					this.PushOrderFront("ReturnResource", { "target": nearestDropsite, "force": false });
 				},
 
 				"OutOfRange": function(msg) {
