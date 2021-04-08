@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,9 @@
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
 
+class CActorDef;
 class CModel;
+class CObjectEntry;
 class CObjectManager;
 class CSkeletonAnim;
 class CXeromyces;
@@ -30,12 +32,24 @@ class XMBElement;
 
 #include <boost/random/mersenne_twister.hpp>
 #include <map>
+#include <memory>
 #include <set>
 #include <unordered_set>
 #include <vector>
 
+/**
+ * Maintains the tree of possible objects from a specific actor definition at a given quality level.
+ * An Object Base is made of:
+ *  - a material
+ *  - a few properties (float on water / casts shadow / ...)
+ *  - a number of variant groups.
+ * Any actual object in game will pick a variant from each group (see ObjectEntry).
+ */
 class CObjectBase
 {
+	friend CActorDef;
+
+	// See CopyWithQuality() below.
 	NONCOPYABLE(CObjectBase);
 public:
 	struct Anim
@@ -118,32 +132,109 @@ public:
 		std::multimap<CStr, Samp> samplers;
 	};
 
-	CObjectBase(CObjectManager& objectManager);
+	CObjectBase(CObjectManager& objectManager, CActorDef& actorDef, u8 QualityLevel);
+
+	// Returns a set of selection such that, added to initialSelections, CalculateVariationKey can proceed.
+	std::set<CStr> CalculateRandomRemainingSelections(uint32_t seed, const std::vector<std::set<CStr>>& initialSelections) const;
 
 	// Get the variation key (indices of chosen variants from each group)
-	// based on the selection strings
-	std::vector<u8> CalculateVariationKey(const std::vector<std::set<CStr> >& selections);
+	// based on the selection strings.
+	// Should not have to make a random choice: the selections should be complete.
+	std::vector<u8> CalculateVariationKey(const std::vector<const std::set<CStr>*>& selections) const;
 
 	// Get the final actor data, combining all selected variants
-	const Variation BuildVariation(const std::vector<u8>& variationKey);
-
-	// Get a set of selection strings that are complete enough to specify an
-	// exact variation of the actor, using the initial selections wherever possible
-	// and choosing randomly where a choice is necessary.
-	std::set<CStr> CalculateRandomVariation(uint32_t seed, const std::set<CStr>& initialSelections);
-
-	// Given a prioritized vector of selection string sets that partially specify
-	// a variation, calculates a remaining set of selection strings such that the resulting
-	// set merged with the initial selections fully specifies an exact variation of
-	// the actor. The resulting selections are selected randomly, but only where a choice
-	// is necessary (i.e. where there are multiple variants but the initial selections,
-	// applied in priority order, fail to select one).
-	std::set<CStr> CalculateRandomRemainingSelections(uint32_t seed, const std::vector<std::set<CStr> >& initialSelections);
+	const Variation BuildVariation(const std::vector<u8>& variationKey) const;
 
 	// Get a list of variant groups for this object, plus for all possible
 	// props. Duplicated groups are removed, if several props share the same
 	// variant names.
 	std::vector<std::vector<CStr> > GetVariantGroups() const;
+
+	// Return a string identifying this actor uniquely (includes quality level information);
+	const CStr& GetIdentifier() const;
+
+	/**
+	 * Returns whether this object (including any possible props)
+	 * uses the given file. (This is used for hotloading.)
+	 */
+	bool UsesFile(const VfsPath& pathname) const;
+
+
+	struct {
+		// cast shadows from this object
+		bool m_CastShadows;
+		// float on top of water
+		bool m_FloatOnWater;
+	} m_Properties;
+
+	// the material file
+	VfsPath m_Material;
+
+	// Quality level - part of the data resource path.
+	u8 m_QualityLevel;
+
+private:
+	// Private interface for CActorDef/ObjectEntry
+
+	/**
+	 * Acts as an explicit copy constructor, for a new quality level.
+	 * Note that this does not reload the actor, so this setting will only change props.
+	 */
+	std::unique_ptr<CObjectBase> CopyWithQuality(u8 newQualityLevel) const;
+
+	// A low-quality RNG like rand48 causes visible non-random patterns (particularly
+	// in large grids of the same actor with consecutive seeds, e.g. forests),
+	// so use a better one that appears to avoid those patterns
+	using rng_t = boost::mt19937;
+	std::set<CStr> CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr>>& initialSelections) const;
+
+	/**
+	 * Get all quality levels at which this object changes (includes props).
+	 * Intended to be called by CActorFef.
+	 * @param splits - a sorted vector of unique quality splits.
+	 */
+	void GetQualitySplits(std::vector<u8>& splits) const;
+
+	void Load(const CXeromyces& XeroFile, const XMBElement& base);
+	void LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
+
+private:
+	// Backref to the owning actor.
+	CActorDef& m_ActorDef;
+
+	// Used to identify this actor uniquely in the ObjectManager (and for debug).
+	CStr m_Identifier;
+
+	std::vector< std::vector<Variant> > m_VariantGroups;
+	CObjectManager& m_ObjectManager;
+};
+
+/**
+ * Represents an actor file. Actors can contain various quality levels.
+ * An ActorDef maintains a CObjectBase for each specified quality level, and provides access to it.
+ */
+class CActorDef
+{
+	// Friend these three so they can use GetBase.
+	friend class CObjectManager;
+	friend class CObjectBase;
+	friend class CObjectEntry;
+
+	NONCOPYABLE(CActorDef);
+public:
+
+	CActorDef(CObjectManager& objectManager);
+
+	std::vector<u8> QualityLevels() const;
+
+	VfsPath GetPathname() const { return m_Pathname; }
+
+// Interface accessible from CObjectManager / CObjectBase
+protected:
+	/**
+	 * Return the Object base matching the given quality level.
+	 */
+	const std::shared_ptr<CObjectBase>& GetBase(u8 QualityLevel) const;
 
 	/**
 	 * Initialise this object by loading from the given file.
@@ -158,41 +249,21 @@ public:
 	bool Reload();
 
 	/**
-	 * Returns whether this object (including any possible props)
+	 * Returns whether this actor (including any possible props)
 	 * uses the given file. (This is used for hotloading.)
 	 */
-	bool UsesFile(const VfsPath& pathname);
+	bool UsesFile(const VfsPath& pathname) const;
 
 	// filename that this was loaded from
 	VfsPath m_Pathname;
 
-	// short human-readable name
-	CStrW m_ShortName;
-
-	struct {
-		// cast shadows from this object
-		bool m_CastShadows;
-		// float on top of water
-		bool m_FloatOnWater;
-	} m_Properties;
-
-	// the material file
-	VfsPath m_Material;
-
 private:
-	// A low-quality RNG like rand48 causes visible non-random patterns (particularly
-	// in large grids of the same actor with consecutive seeds, e.g. forests),
-	// so use a better one that appears to avoid those patterns
-	using rng_t = boost::mt19937;
-
-	std::set<CStr> CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr> >& initialSelections);
-
-	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
 
-	std::unordered_set<VfsPath> m_UsedFiles;
+	// std::shared_ptr to avoid issues during hotloading.
+	std::vector<std::shared_ptr<CObjectBase>> m_ObjectBases;
 
-	void LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
+	std::unordered_set<VfsPath> m_UsedFiles;
 };
 
 #endif

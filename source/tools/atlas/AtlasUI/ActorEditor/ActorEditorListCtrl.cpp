@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,9 +46,12 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 
 	#undef COLOR
 
+	AddColumnType(_("Group"),      50,  "@group",     new FieldEditCtrl_Boolean());
 	AddColumnType(_("Variant"),    90,  "@name",      new FieldEditCtrl_Text());
 	AddColumnType(_("Base File"),  90,  "@file",      new FieldEditCtrl_File(_T("art/variants/"), _("Variants (*.xml)|*.xml|All files (*.*)|*.*")));
 	AddColumnType(_("Ratio"),      50,  "@frequency", new FieldEditCtrl_Text());
+	AddColumnType(_("Min Quality"),50,  "@minquality",new FieldEditCtrl_Text());
+	AddColumnType(_("Max Quality"),50,  "@maxquality",new FieldEditCtrl_Text());
 	AddColumnType(_("Model"),      140, "mesh",       new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd, *.dae)|*.pmd;*.dae|All files (*.*)|*.*")));
 	AddColumnType(_("Particles"),  90,  "particles",  new FieldEditCtrl_File(_T("art/particles/"), _("Particle file (*.xml)|*.xml|All files (*.*)|*.*")));
 	AddColumnType(_("Textures"),   250, "textures",   new FieldEditCtrl_Dialog(&TexListEditor::Create));
@@ -66,8 +69,9 @@ void ActorEditorListCtrl::DoImport(AtObj& in)
 		for (AtIter variant = group["variant"]; variant.defined(); ++variant)
 			AddRow(variant);
 
-		AtObj blank;
-		AddRow(blank);
+		AtObj gr = *group;
+		gr.add("@group", "true");
+		AddRow(gr);
 	}
 
 	UpdateDisplay();
@@ -81,10 +85,17 @@ AtObj ActorEditorListCtrl::DoExport()
 
 	for (size_t i = 0; i < m_ListData.size(); ++i)
 	{
-		if (IsRowBlank((int)i))
+		if (std::string(m_ListData[i]["@group"]) == "true")
 		{
 			if (group.defined())
+			{
+				group.unset("@group");
+				if (m_ListData[i]["@minquality"].hasContent())
+					group.set("@minquality", m_ListData[i]["@minquality"]);
+				if (m_ListData[i]["@maxquality"].hasContent())
+					group.set("@maxquality", m_ListData[i]["@maxquality"]);
 				out.add("group", group);
+			}
 			group = AtObj();
 		}
 		else

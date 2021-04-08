@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #include "ps/CStr.h"
 #include "simulation2/system/Entity.h"	// entity_id_t
 
+class CActorDef;
 class CModelAbstract;
 class CObjectEntry;
 class CObjectManager;
@@ -38,8 +39,7 @@ class CUnit
 	NONCOPYABLE(CUnit);
 private:
 	// Private constructor. Needs complete list of selections for the variation.
-	CUnit(CObjectEntry* object, CObjectManager& objectManager,
-		const std::set<CStr>& actorSelections, uint32_t seed);
+	CUnit(CObjectManager& objectManager, const CActorDef& actor, uint32_t seed);
 
 public:
 	// Attempt to create a unit with the given actor, with a set of
@@ -80,12 +80,14 @@ public:
 	void SetActorSelections(const std::set<CStr>& selections);
 
 private:
-	// object from which unit was created; never NULL
-	CObjectEntry* m_Object;
-	// object model representation; never NULL
-	CModelAbstract* m_Model;
+	// Actor for the unit
+	const CActorDef& m_Actor;
+	// object from which unit was created; never NULL once fully created.
+	CObjectEntry* m_Object = nullptr;
+	// object model representation; never NULL once fully created.
+	CModelAbstract* m_Model = nullptr;
 
-	CUnitAnimation* m_Animation;
+	CUnitAnimation* m_Animation = nullptr;
 
 	// unique (per map) ID number for units created in the editor, as a
 	// permanent way of referencing them.

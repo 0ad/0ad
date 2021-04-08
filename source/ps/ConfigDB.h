@@ -54,10 +54,16 @@ enum EConfigNamespace
 
 using CConfigValueSet = std::vector<CStr>;
 
+// Opaque data type so that callers that hook into ConfigDB can delete their hooks.
+// Would be defined in CConfigDB but then it couldn't be forward-declared, which is rather annoying.
+// Actually defined below - requires access to CConfigDB.
+class CConfigDBHook;
+
 #define g_ConfigDB CConfigDB::GetSingleton()
 
 class CConfigDB : public Singleton<CConfigDB>
 {
+	friend CConfigDBHook;
 public:
 	/**
 	 * Attempt to retrieve the value of a config variable with the given name;
@@ -168,36 +174,37 @@ public:
 
 	bool WriteValueToFile(EConfigNamespace ns, const CStr& name, const CStr& value);
 
-
-	// Opaque data type so that callers that hook into ConfigDB can delete their hooks.
-	class hook_t
-	{
-		friend class CConfigDB;
-	public:
-		// Point the moved-from hook to end, which is checked for in UnregisterHook,
-		// to avoid a double-erase error.
-		hook_t(hook_t&& h) { ptr = std::move(h.ptr); h.ptr = m_Hooks.end(); }
-		hook_t(const hook_t&) = delete;
-	private:
-		hook_t(std::multimap<CStr, std::function<void()>>::iterator p) : ptr(p) {};
-
-		std::multimap<CStr, std::function<void()>>::iterator ptr;
-	};
-
 	/**
 	 * Register a simple lambda that will be called anytime the value changes in any namespace
 	 * This is simple on purpose, the hook is responsible for checking if it should do something.
 	 * When RegisterHookAndCall is called, the hook is immediately triggered.
 	 */
-	hook_t RegisterHookAndCall(const CStr& name, std::function<void()> hook);
+	CConfigDBHook RegisterHookAndCall(const CStr& name, std::function<void()> hook);
 
-	void UnregisterHook(hook_t&& hook);
+	void UnregisterHook(CConfigDBHook&& hook);
+	void UnregisterHook(std::unique_ptr<CConfigDBHook>&& hook);
 
 private:
 	static std::map<CStr, CConfigValueSet> m_Map[];
 	static std::multimap<CStr, std::function<void()>> m_Hooks;
 	static VfsPath m_ConfigFile[];
 	static bool m_HasChanges[];
+};
+
+class CConfigDBHook
+{
+	friend class CConfigDB;
+public:
+	CConfigDBHook() = delete;
+	// Point the moved-from hook to end, which is checked for in UnregisterHook,
+	// to avoid a double-erase error.
+	CConfigDBHook(CConfigDBHook&& h) : configDB(h.configDB) { ptr = std::move(h.ptr); h.ptr = configDB.m_Hooks.end(); }
+	CConfigDBHook(const CConfigDBHook&) = delete;
+private:
+	CConfigDBHook(CConfigDB& cdb, std::multimap<CStr, std::function<void()>>::iterator p) : configDB(cdb), ptr(p) {};
+
+	std::multimap<CStr, std::function<void()>>::iterator ptr;
+	CConfigDB& configDB;
 };
 
 

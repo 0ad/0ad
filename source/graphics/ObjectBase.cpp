@@ -31,11 +31,113 @@
 
 #include <boost/random/uniform_int_distribution.hpp>
 
-CObjectBase::CObjectBase(CObjectManager& objectManager)
-: m_ObjectManager(objectManager)
+namespace {
+	int GetQuality(CStr& value)
+	{
+		if (value == "low")
+			return 100;
+		else if (value == "medium")
+			return 150;
+		else if (value == "high")
+			return 200;
+		else
+			return value.ToInt();
+	}
+}
+
+CObjectBase::CObjectBase(CObjectManager& objectManager, CActorDef& actorDef, u8 qualityLevel)
+: m_ObjectManager(objectManager), m_ActorDef(actorDef)
 {
+	m_QualityLevel = qualityLevel;
 	m_Properties.m_CastShadows = false;
 	m_Properties.m_FloatOnWater = false;
+
+	// Remove leading art/actors/ & include quality level.
+	m_Identifier = m_ActorDef.m_Pathname.string8().substr(11) + CStr::FromInt(m_QualityLevel);
+}
+
+std::unique_ptr<CObjectBase> CObjectBase::CopyWithQuality(u8 newQualityLevel) const
+{
+	std::unique_ptr<CObjectBase> ret = std::make_unique<CObjectBase>(m_ObjectManager, m_ActorDef, newQualityLevel);
+	// No need to actually change any quality-related stuff here, we assume that this is a copy for props.
+	ret->m_VariantGroups = m_VariantGroups;
+	ret->m_Material = m_Material;
+	ret->m_Properties = m_Properties;
+	return ret;
+}
+
+void CObjectBase::Load(const CXeromyces& XeroFile, const XMBElement& root)
+{
+	// Define all the elements used in the XML file
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(castshadow);
+	EL(float);
+	EL(group);
+	EL(material);
+	AT(maxquality);
+	AT(minquality);
+#undef AT
+#undef EL
+
+
+	// Set up the group vector to avoid reallocation and copying later.
+	{
+		int groups = 0;
+		XERO_ITER_EL(root, child)
+		{
+			if (child.GetNodeName() == el_group)
+				++groups;
+		}
+
+		m_VariantGroups.reserve(groups);
+	}
+
+	// (This XML-reading code is rather worryingly verbose...)
+
+	auto shouldSkip = [&](XMBElement& node) {
+		XERO_ITER_ATTR(node, attr)
+		{
+			if (attr.Name == at_minquality && GetQuality(attr.Value) > m_QualityLevel)
+				return true;
+			else if (attr.Name == at_maxquality && GetQuality(attr.Value) <= m_QualityLevel)
+				return true;
+		}
+		return false;
+	};
+
+	XERO_ITER_EL(root, child)
+	{
+		int child_name = child.GetNodeName();
+
+		if (shouldSkip(child))
+			continue;
+
+		if (child_name == el_group)
+		{
+			std::vector<Variant>& currentGroup = m_VariantGroups.emplace_back();
+			currentGroup.reserve(child.GetChildNodes().size());
+			XERO_ITER_EL(child, variant)
+			{
+				if (shouldSkip(variant))
+					continue;
+
+				LoadVariant(XeroFile, variant, currentGroup.emplace_back());
+			}
+
+			if (currentGroup.size() == 0)
+				LOGERROR("Actor group has zero variants ('%s')", m_Identifier);
+		}
+		else if (child_name == el_castshadow)
+			m_Properties.m_CastShadows = true;
+		else if (child_name == el_float)
+			m_Properties.m_FloatOnWater = true;
+		else if (child_name == el_material)
+			m_Material = VfsPath("art/materials") / child.GetText().FromUTF8();
+	}
+
+	if (m_Material.empty())
+		m_Material = VfsPath("art/materials/default.xml");
 }
 
 void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant)
@@ -87,7 +189,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 		{
 			// Open up an external file to load.
 			// Don't crash hard when failures happen, but log them and continue
-			m_UsedFiles.insert(attr.Value);
+			m_ActorDef.m_UsedFiles.insert(attr.Value);
 			CXeromyces XeroVariant;
 			if (XeroVariant.Load(g_VFS, "art/variants/" + attr.Value) == PSRETURN_OK)
 			{
@@ -152,7 +254,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 
 			// For particle hotloading, it's easiest to reload the entire actor,
 			// so remember the relevant particle file as a dependency for this actor
-			m_UsedFiles.insert(file);
+			m_ActorDef.m_UsedFiles.insert(file);
 		}
 		else if (option_name == el_color)
 		{
@@ -213,105 +315,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 	}
 }
 
-bool CObjectBase::Load(const VfsPath& pathname)
-{
-	m_UsedFiles.clear();
-	m_UsedFiles.insert(pathname);
-
-	CXeromyces XeroFile;
-	if (XeroFile.Load(g_VFS, pathname, "actor") != PSRETURN_OK)
-		return false;
-
-	// Define all the elements used in the XML file
-	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
-	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
-	EL(actor);
-	EL(castshadow);
-	EL(float);
-	EL(group);
-	EL(material);
-	#undef AT
-	#undef EL
-
-	XMBElement root = XeroFile.GetRoot();
-
-	if (root.GetNodeName() != el_actor)
-	{
-		LOGERROR("Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
-		return false;
-	}
-
-	m_VariantGroups.clear();
-
-	m_Pathname = pathname;
-	m_ShortName = pathname.Basename().string();
-
-
-	// Set up the vector<vector<T>> m_Variants to contain the right number
-	// of elements, to avoid wasteful copying/reallocation later.
-	{
-		// Count the variants in each group
-		std::vector<int> variantGroupSizes;
-		XERO_ITER_EL(root, child)
-		{
-			if (child.GetNodeName() == el_group)
-				variantGroupSizes.push_back(child.GetChildNodes().size());
-		}
-
-		m_VariantGroups.resize(variantGroupSizes.size());
-		// Set each vector to match the number of variants
-		for (size_t i = 0; i < variantGroupSizes.size(); ++i)
-			m_VariantGroups[i].resize(variantGroupSizes[i]);
-	}
-
-
-	// (This XML-reading code is rather worryingly verbose...)
-
-	std::vector<std::vector<Variant> >::iterator currentGroup = m_VariantGroups.begin();
-
-	XERO_ITER_EL(root, child)
-	{
-		int child_name = child.GetNodeName();
-
-		if (child_name == el_group)
-		{
-			std::vector<Variant>::iterator currentVariant = currentGroup->begin();
-			XERO_ITER_EL(child, variant)
-			{
-				LoadVariant(XeroFile, variant, *currentVariant);
-				++currentVariant;
-			}
-
-			if (currentGroup->size() == 0)
-				LOGERROR("Actor group has zero variants ('%s')", pathname.string8());
-
-			++currentGroup;
-		}
-		else if (child_name == el_castshadow)
-			m_Properties.m_CastShadows = true;
-		else if (child_name == el_float)
-			m_Properties.m_FloatOnWater = true;
-		else if (child_name == el_material)
-			m_Material = VfsPath("art/materials") / child.GetText().FromUTF8();
-	}
-
-	if (m_Material.empty())
-		m_Material = VfsPath("art/materials/default.xml");
-
-	return true;
-}
-
-bool CObjectBase::Reload()
-{
-	return Load(m_Pathname);
-}
-
-bool CObjectBase::UsesFile(const VfsPath& pathname)
-{
-	return m_UsedFiles.find(pathname) != m_UsedFiles.end();
-}
-
-std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStr> >& selections)
+std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<const std::set<CStr>*>& selections) const
 {
 	// (TODO: see CObjectManager::FindObjectVariation for an opportunity to
 	// call this function a bit less frequently)
@@ -328,7 +332,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 	std::multimap<CStr, CStrW> chosenProps;
 
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
+	for (std::vector<std::vector<CObjectBase::Variant> >::const_iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
 		++grp)
 	{
@@ -349,7 +353,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 			// Determine the first variant that matches the provided strings,
 			// starting with the highest priority selections set:
 
-			for (std::vector<std::set<CStr> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
+			for (const std::set<CStr>* selset : selections)
 			{
 				ENSURE(grp->size() < 256); // else they won't fit in 'choices'
 
@@ -376,7 +380,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 		// Remember which props were chosen, so we can call CalculateVariationKey on them
 		// at the end.
 		// Erase all existing props which are overridden by this variant:
-		Variant& var((*grp)[match]);
+		const Variant& var((*grp)[match]);
 
 		for (const Prop& prop : var.m_Props)
 			chosenProps.erase(prop.m_PropPointName);
@@ -389,10 +393,10 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 	// Load each prop, and add their CalculateVariationKey to our key:
 	for (std::multimap<CStr, CStrW>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
-		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
+		CActorDef* prop = m_ObjectManager.FindActorDef(it->second);
 		if (prop)
 		{
-			std::vector<u8> propChoices = prop->CalculateVariationKey(selections);
+			std::vector<u8> propChoices = prop->GetBase(m_QualityLevel)->CalculateVariationKey(selections);
 			choices.insert(choices.end(), propChoices.begin(), propChoices.end());
 		}
 	}
@@ -400,7 +404,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 	return choices;
 }
 
-const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& variationKey)
+const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& variationKey) const
 {
 	Variation variation;
 
@@ -408,7 +412,7 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 	// chosen variant from each group. (Except variationKey has some bits stuck
 	// on the end for props, but we don't care about those in here.)
 
-	std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
+	std::vector<std::vector<CObjectBase::Variant> >::const_iterator grp = m_VariantGroups.begin();
 	std::vector<u8>::const_iterator match = variationKey.begin();
 	for ( ;
 		grp != m_VariantGroups.end() && match != variationKey.end();
@@ -428,7 +432,7 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		}
 
 		// Get the matched variant
-		CObjectBase::Variant& var ((*grp)[id]);
+		const CObjectBase::Variant& var ((*grp)[id]);
 
 		// Apply its data:
 
@@ -449,50 +453,44 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		// original should be erased, and replaced by the two new ones.
 		//
 		// So, erase all existing props which are overridden by this variant:
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		for (std::vector<CObjectBase::Prop>::const_iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 			variation.props.erase(it->m_PropPointName);
 		// and then insert the new ones:
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		for (std::vector<CObjectBase::Prop>::const_iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 			if (! it->m_ModelName.empty()) // if the name is empty then the overridden prop is just deleted
 				variation.props.insert(make_pair(it->m_PropPointName, *it));
 
 		// Same idea applies for animations.
 		// So, erase all existing animations which are overridden by this variant:
-		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+		for (std::vector<CObjectBase::Anim>::const_iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			variation.anims.erase(it->m_AnimName);
 		// and then insert the new ones:
-		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
+		for (std::vector<CObjectBase::Anim>::const_iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			variation.anims.insert(make_pair(it->m_AnimName, *it));
 
 		// Same for samplers, though perhaps not strictly necessary:
-		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
+		for (std::vector<CObjectBase::Samp>::const_iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
 			variation.samplers.erase(it->m_SamplerName.string());
-		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
+		for (std::vector<CObjectBase::Samp>::const_iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
 			variation.samplers.insert(make_pair(it->m_SamplerName.string(), *it));
 	}
 
 	return variation;
 }
 
-std::set<CStr> CObjectBase::CalculateRandomVariation(uint32_t seed, const std::set<CStr>& initialSelections)
+std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(uint32_t seed, const std::vector<std::set<CStr>>& initialSelections) const
 {
 	rng_t rng;
 	rng.seed(seed);
 
-	std::set<CStr> remainingSelections = CalculateRandomRemainingSelections(rng, std::vector<std::set<CStr> >(1, initialSelections));
-	remainingSelections.insert(initialSelections.begin(), initialSelections.end());
+	std::set<CStr> remainingSelections = CalculateRandomRemainingSelections(rng, initialSelections);
+	for (const std::set<CStr>& sel : initialSelections)
+		remainingSelections.insert(sel.begin(), sel.end());
 
 	return remainingSelections; // now actually a complete set of selections
 }
 
-std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(uint32_t seed, const std::vector<std::set<CStr> >& initialSelections)
-{
-	rng_t rng;
-	rng.seed(seed);
-	return CalculateRandomRemainingSelections(rng, initialSelections);
-}
-
-std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr> >& initialSelections)
+std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr>>& initialSelections) const
 {
 	std::set<CStr> remainingSelections;
 	std::multimap<CStr, CStrW> chosenProps;
@@ -507,7 +505,7 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 	// When choosing randomly, make use of each variant's frequency. If all
 	// variants have frequency 0, treat them as if they were 1.
 
-	for (std::vector<std::vector<Variant> >::iterator grp = m_VariantGroups.begin();
+	for (std::vector<std::vector<Variant> >::const_iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
 		++grp)
 	{
@@ -587,7 +585,7 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 
 		// Remember which props were chosen, so we can call CalculateRandomVariation on them
 		// at the end.
-		Variant& var ((*grp)[match]);
+		const Variant& var ((*grp)[match]);
 		// Erase all existing props which are overridden by this variant:
 		for (const Prop& prop : var.m_Props)
 			chosenProps.erase(prop.m_PropPointName);
@@ -600,19 +598,19 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 	// Load each prop, and add their required selections to ours:
 	for (std::multimap<CStr, CStrW>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
-		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
+		CActorDef* prop = m_ObjectManager.FindActorDef(it->second);
 		if (prop)
 		{
 			std::vector<std::set<CStr> > propInitialSelections = initialSelections;
 			if (!remainingSelections.empty())
 				propInitialSelections.push_back(remainingSelections);
 
-			std::set<CStr> propRemainingSelections = prop->CalculateRandomRemainingSelections(rng, propInitialSelections);
+			std::set<CStr> propRemainingSelections = prop->GetBase(m_QualityLevel)->CalculateRandomRemainingSelections(rng, propInitialSelections);
 			remainingSelections.insert(propRemainingSelections.begin(), propRemainingSelections.end());
 
 			// Add the prop's used files to our own (recursively) so we can hotload
 			// when any prop is changed
-			m_UsedFiles.insert(prop->m_UsedFiles.begin(), prop->m_UsedFiles.end());
+			m_ActorDef.m_UsedFiles.insert(prop->m_UsedFiles.begin(), prop->m_UsedFiles.end());
 		}
 	}
 
@@ -677,9 +675,9 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 				{
 					if (! props[k].m_ModelName.empty())
 					{
-						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName.c_str());
+						CActorDef* prop = m_ObjectManager.FindActorDef(props[k].m_ModelName.c_str());
 						if (prop)
-							objectsQueue.push(prop);
+							objectsQueue.push(prop->GetBase(m_QualityLevel).get());
 					}
 				}
 			}
@@ -687,4 +685,267 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 	}
 
 	return groups;
+}
+
+void CObjectBase::GetQualitySplits(std::vector<u8>& splits) const
+{
+	std::vector<u8>::iterator it = std::find_if(splits.begin(), splits.end(), [this](u8 qualityLevel) { return qualityLevel >= m_QualityLevel; });
+	if (it == splits.end() ||  *it != m_QualityLevel)
+		splits.emplace(it, m_QualityLevel);
+
+	for (const std::vector<Variant>& group : m_VariantGroups)
+		for (const Variant& variant : group)
+			for (const Prop& prop : variant.m_Props)
+			{
+				// TODO: we probably should clean those up after XML load.
+				if (prop.m_ModelName.empty())
+					continue;
+
+				CActorDef* propActor = m_ObjectManager.FindActorDef(prop.m_ModelName.c_str());
+				if (!propActor)
+					continue;
+
+				std::vector<u8> newSplits = propActor->QualityLevels();
+				if (newSplits.size() <= 1)
+					continue;
+
+				// This is not entirely optimal since we might loop though redundant quality levels, but that shouldn't matter.
+				// Custom implementation because this is inplace, std::set_union needs a 3rd vector.
+				std::vector<u8>::iterator v1 = splits.begin();
+				std::vector<u8>::iterator v2 = newSplits.begin();
+				while (v2 != newSplits.end())
+				{
+					if (v1 == splits.end() || *v1 > *v2)
+					{
+						v1 = ++splits.insert(v1, *v2);
+						++v2;
+					}
+					else if (*v1 == *v2)
+					{
+						++v1;
+						++v2;
+					}
+					else
+						++v1;
+				}
+			}
+}
+
+const CStr& CObjectBase::GetIdentifier() const
+{
+	return m_Identifier;
+}
+
+bool CObjectBase::UsesFile(const VfsPath& pathname) const
+{
+	return m_ActorDef.UsesFile(pathname);
+}
+
+
+CActorDef::CActorDef(CObjectManager& objectManager) : m_ObjectManager(objectManager)
+{
+}
+
+std::vector<u8> CActorDef::QualityLevels() const
+{
+	std::vector<u8> splits;
+	splits.reserve(m_ObjectBases.size());
+	for (const std::shared_ptr<CObjectBase>& base : m_ObjectBases)
+		splits.emplace_back(base->m_QualityLevel);
+	return splits;
+}
+
+const std::shared_ptr<CObjectBase>& CActorDef::GetBase(u8 QualityLevel) const
+{
+	for (const std::shared_ptr<CObjectBase>& base : m_ObjectBases)
+		if (base->m_QualityLevel >= QualityLevel)
+			return base;
+	// This code path ought to be impossible to take,
+	// because by construction we must have at least one valid CObjectBase of quality 255
+	// (which necessarily fits the u8 comparison above).
+	// However compilers will warn that we return a reference to a local temporary if I return nullptr,
+	// so just return something sane instead.
+	ENSURE(false);
+	return m_ObjectBases.back();
+}
+
+bool CActorDef::Load(const VfsPath& pathname)
+{
+	m_UsedFiles.clear();
+	m_UsedFiles.insert(pathname);
+
+	m_ObjectBases.clear();
+
+	CXeromyces XeroFile;
+	if (XeroFile.Load(g_VFS, pathname, "actor") != PSRETURN_OK)
+		return false;
+
+	// Define all the elements used in the XML file
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(actor);
+	EL(inline);
+	EL(qualitylevels);
+	AT(file);
+	AT(inline);
+	AT(quality);
+	AT(version);
+#undef AT
+#undef EL
+
+	XMBElement root = XeroFile.GetRoot();
+
+	if (root.GetNodeName() != el_actor && root.GetNodeName() != el_qualitylevels)
+	{
+		LOGERROR("Invalid actor format (actor '%s', unrecognised root element '%s')",
+				 pathname.string8().c_str(), XeroFile.GetElementString(root.GetNodeName()).c_str());
+		return false;
+	}
+
+	m_Pathname = pathname;
+
+	if (root.GetNodeName() == el_actor)
+	{
+		std::unique_ptr<CObjectBase> base = std::make_unique<CObjectBase>(m_ObjectManager, *this, 255);
+		base->Load(XeroFile, root);
+		m_ObjectBases.emplace_back(std::move(base));
+	}
+	else
+	{
+		XERO_ITER_ATTR(root, attr)
+		{
+			if (attr.Name == at_version && attr.Value.ToInt() != 1)
+			{
+				LOGERROR("Invalid actor format (actor '%s', version %i is not supported)",
+						 pathname.string8().c_str(), attr.Value.ToInt());
+				return false;
+			}
+		}
+		u8 quality = 0;
+		XMBElement inlineActor;
+		XERO_ITER_EL(root, child)
+		{
+			if (child.GetNodeName() == el_inline)
+				inlineActor = child;
+		}
+		XERO_ITER_EL(root, actor)
+		{
+			if (actor.GetNodeName() != el_actor)
+				continue;
+			bool found_quality = false;
+			bool use_inline = false;
+			CStr file;
+			XERO_ITER_ATTR(actor, attr)
+			{
+				if (attr.Name == at_quality)
+				{
+					int v = GetQuality(attr.Value);
+					if (v > 255)
+					{
+						LOGERROR("Qualitylevel to attribute must not be above 255 (file %s)", pathname.string8());
+						return false;
+					}
+					if (v <= quality)
+					{
+						LOGERROR("Elements must be in increasing quality order (file %s)", pathname.string8());
+						return false;
+					}
+					quality = v;
+					found_quality = true;
+				}
+				else if (attr.Name == at_file)
+				{
+					if (attr.Value.empty())
+						LOGWARNING("Empty actor file specified (file %s)", pathname.string8());
+					file = attr.Value;
+				}
+				else if (attr.Name == at_inline)
+					use_inline = true;
+			}
+			if (!found_quality)
+				quality = 255;
+			std::unique_ptr<CObjectBase> base = std::make_unique<CObjectBase>(m_ObjectManager, *this, quality);
+			if (use_inline)
+			{
+				if (inlineActor.GetNodeName() == -1)
+				{
+					LOGERROR("Actor quality level refers to inline definition, but no inline definition found (file %s)", pathname.string8());
+					return false;
+				}
+				base->Load(XeroFile, inlineActor);
+			}
+			else if (file.empty())
+				base->Load(XeroFile, actor);
+			else
+			{
+				if (actor.GetChildNodes().size() > 0)
+					LOGWARNING("Actor definition refers to file but has children elements, they will be ignored (file %s)", pathname.string8());
+
+				// Open up an external file to load.
+				// Don't crash hard when failures happen, but log them and continue
+				CXeromyces XeroActor;
+				if (XeroActor.Load(g_VFS, "art/actors/" + file, "actor") == PSRETURN_OK)
+				{
+					const XMBElement& root = XeroActor.GetRoot();
+					if (root.GetNodeName() != el_actor)
+					{
+						LOGERROR("Included actors cannot define quality levels (opening %s from file %s)", file, pathname.string8());
+						return false;
+					}
+					base->Load(XeroActor, root);
+				}
+				else
+				{
+					LOGERROR("Could not open actor file at path %s (file %s)", file, pathname.string8());
+					return false;
+				}
+				m_UsedFiles.insert(file);
+			}
+			m_ObjectBases.emplace_back(std::move(base));
+		}
+		if (quality != 255)
+		{
+			LOGERROR("Quality levels must go up to 255 (file %s)", pathname.string8().c_str());
+			return false;
+		}
+	}
+
+	// For each quality level, check if we need to further split (because of props).
+	std::vector<u8> splits = QualityLevels();
+	for (const std::shared_ptr<CObjectBase>& base : m_ObjectBases)
+		base->GetQualitySplits(splits);
+	ENSURE(splits.size() >= 1);
+	if (splits.size() > 5)
+	{
+		LOGERROR("Too many quality levels (%i) for actor %s", splits.size(), pathname.string8().c_str());
+		return false;
+	}
+
+	std::vector<std::shared_ptr<CObjectBase>>::iterator it = m_ObjectBases.begin();
+	std::vector<u8>::const_iterator qualityLevels = splits.begin();
+	while (it != m_ObjectBases.end())
+		if ((*it)->m_QualityLevel > *qualityLevels)
+		{
+			it = ++m_ObjectBases.emplace(it, (*it)->CopyWithQuality(*qualityLevels));
+			++qualityLevels;
+		}
+		else if ((*it)->m_QualityLevel == *qualityLevels)
+		{
+			++it;
+			++qualityLevels;
+		}
+		else
+			++it;
+
+	return true;
+}
+
+bool CActorDef::Reload()
+{
+	return Load(m_Pathname);
+}
+
+bool CActorDef::UsesFile(const VfsPath& pathname) const
+{
+	return m_UsedFiles.find(pathname) != m_UsedFiles.end();
 }

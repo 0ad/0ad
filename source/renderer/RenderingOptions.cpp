@@ -31,8 +31,8 @@ CRenderingOptions g_RenderingOptions;
 class CRenderingOptions::ConfigHooks
 {
 public:
-	std::vector<CConfigDB::hook_t>::iterator begin() { return hooks.begin(); }
-	std::vector<CConfigDB::hook_t>::iterator end() { return hooks.end(); }
+	std::vector<CConfigDBHook>::iterator begin() { return hooks.begin(); }
+	std::vector<CConfigDBHook>::iterator end() { return hooks.end(); }
 	template<typename T>
 	void Setup(CStr8 name, T& variable)
 	{
@@ -44,7 +44,7 @@ public:
 	}
 	void clear() { hooks.clear(); }
 private:
-	std::vector<CConfigDB::hook_t> hooks;
+	std::vector<CConfigDBHook> hooks;
 };
 
 RenderPath RenderPathEnum::FromString(const CStr8& name)
@@ -186,7 +186,7 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 void CRenderingOptions::ClearHooks()
 {
 	if (CConfigDB::IsInitialised())
-		for (CConfigDB::hook_t& hook : *m_ConfigHooks)
+		for (CConfigDBHook& hook : *m_ConfigHooks)
 			g_ConfigDB.UnregisterHook(std::move(hook));
 	m_ConfigHooks->clear();
 }

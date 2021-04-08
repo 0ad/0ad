@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,6 +77,21 @@ void FieldEditCtrl_Color::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lon
 			new EditCommand_Text(editCtrl, row, col, newColorStr)
 		);
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+void FieldEditCtrl_Boolean::StartEdit(wxWindow* parent, wxRect rect, long row, int col)
+{
+	wxArrayString choices;
+
+	// The famous three-valued boolean.
+	choices.Add("true");
+	choices.Add("false");
+	choices.Add("");
+
+	ListCtrlValidator validator((EditableListCtrl*)parent, row, col);
+	new QuickComboBox(parent, rect, choices, validator);
 }
 
 //////////////////////////////////////////////////////////////////////////

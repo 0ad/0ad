@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@
 
 #include <sstream>
 
-CObjectEntry::CObjectEntry(CObjectBase* base, CSimulation2& simulation) :
+CObjectEntry::CObjectEntry(const std::shared_ptr<CObjectBase>& base, CSimulation2& simulation) :
 	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL), m_Outdated(false), m_Simulation(simulation)
 {
 }
@@ -53,7 +53,7 @@ CObjectEntry::~CObjectEntry()
 }
 
 
-bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections,
+bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& completeSelections,
 								  const std::vector<u8>& variationKey,
 								  CObjectManager& objectManager)
 {
@@ -72,7 +72,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOGERROR("Actor '%s' has invalid RGB color '%s'", utf8_from_wstring(m_Base->m_ShortName), variation.color);
+			LOGERROR("Actor '%s' has invalid RGB color '%s'", m_Base->GetIdentifier(), variation.color);
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
@@ -130,7 +130,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	model->InitModel(modeldef);
 
 	if (m_Samplers.empty())
-		LOGERROR("Actor '%s' has no textures.", utf8_from_wstring(m_Base->m_ShortName));
+		LOGERROR("Actor '%s' has no textures.", m_Base->GetIdentifier());
 
 	for (const CObjectBase::Samp& samp : m_Samplers)
 	{
@@ -148,7 +148,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		if (std::find_if(m_Samplers.begin(), m_Samplers.end(),
 		                 [&](const CObjectBase::Samp& sampler) { return sampler.m_SamplerName == requSampName; }) == m_Samplers.end())
-			LOGERROR("Actor %s: required texture sampler %s not found (material %s)", utf8_from_wstring(m_Base->m_ShortName), requSampName.string().c_str(), m_Base->m_Material.string8().c_str());
+			LOGERROR("Actor %s: required texture sampler %s not found (material %s)", m_Base->GetIdentifier(), requSampName.string().c_str(), m_Base->m_Material.string8().c_str());
 	}
 
 	// calculate initial object space bounds, based on vertex positions
@@ -209,10 +209,13 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			continue;
 		}
 
-		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName.c_str(), selections);
+		CObjectEntry* oe = nullptr;
+		if (CActorDef* actorDef = objectManager.FindActorDef(prop.m_ModelName.c_str()); actorDef)
+			oe = objectManager.FindObjectVariation(actorDef->GetBase(m_Base->m_QualityLevel), completeSelections);
+
 		if (!oe)
 		{
-			LOGERROR("Failed to build prop model \"%s\" on actor \"%s\"", utf8_from_wstring(prop.m_ModelName), utf8_from_wstring(m_Base->m_ShortName));
+			LOGERROR("Failed to build prop model \"%s\" on actor \"%s\"", utf8_from_wstring(prop.m_ModelName), m_Base->GetIdentifier());
 			continue;
 		}
 
@@ -243,7 +246,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
 		}
 		else
-			LOGERROR("Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", ppn, m_ModelName.string8(), utf8_from_wstring(m_Base->m_ShortName));
+			LOGERROR("Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", ppn, m_ModelName.string8(), m_Base->GetIdentifier());
 	}
 
 	// Setup flags.
