@@ -5,24 +5,30 @@ Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Loot.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
+Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Heal.js");
+Engine.LoadComponentScript("Timer.js");
 
 const entity = 60;
 const player = 1;
 const otherPlayer = 2;
 
+AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+	"IsInTargetRange": () => true
+});
+
 let template = {
-	"Range": 20,
+	"Range": "20",
 	"RangeOverlay": {
 		"LineTexture": "heal_overlay_range.png",
 		"LineTextureMask": "heal_overlay_range_mask.png",
-		"LineThickness": 0.35
+		"LineThickness": "0.35"
 	},
-	"Health": 5,
-	"Interval": 2000,
+	"Health": "5",
+	"Interval": "2000",
 	"UnhealableClasses": { "_string": "Cavalry" },
-	"HealableClasses": { "_string": "Support Infantry" },
+	"HealableClasses": { "_string": "Support Infantry" }
 };
 
 AddMock(entity, IID_Ownership, {
@@ -34,11 +40,11 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 });
 
 AddMock(player, IID_Player, {
-	"IsAlly": () => true
+	"IsAlly": (p) => p == player
 });
 
 AddMock(otherPlayer, IID_Player, {
-	"IsAlly": () => false
+	"IsAlly": (p) => p == player
 });
 
 ApplyValueModificationsToEntity = function(value, stat, ent)
@@ -80,18 +86,18 @@ TS_ASSERT_UNEVAL_EQUALS(cmpHeal.GetRangeOverlays(), [{
 	"thickness": 0.35
 }]);
 
-// Test PerformHeal
+// Test healing.
 let target = 70;
-
 AddMock(target, IID_Ownership, {
 	"GetOwner": () => player
 });
 
-let targetClasses;
+let targetClasses = ["Infantry"];
 AddMock(target, IID_Identity, {
 	"GetClassesList": () => targetClasses
 });
 
+let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
 let increased;
 let unhealable = false;
 AddMock(target, IID_Health, {
@@ -101,12 +107,24 @@ AddMock(target, IID_Health, {
 		TS_ASSERT_EQUALS(amount, 5 + 100);
 		return { "old": 600, "new": 600 + 5 + 100 };
 	},
-	"IsUnhealable": () => unhealable
+	"IsUnhealable": () => unhealable,
+	"IsInjured": () => true
 });
 
-cmpHeal.PerformHeal(target);
+TS_ASSERT(cmpHeal.StartHealing(target));
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT(increased);
+increased = false;
+cmpTimer.OnUpdate({ "turnLength": 2.2 });
 TS_ASSERT(increased);
 
+// Test we can't heal too quickly.
+increased = false;
+TS_ASSERT(cmpHeal.StartHealing(target));
+cmpTimer.OnUpdate({ "turnLength": 2 });
+TS_ASSERT(!increased);
+
+// Test experience.
 let looted;
 AddMock(target, IID_Loot, {
 	"GetXp": () => {
@@ -123,12 +141,14 @@ AddMock(entity, IID_Promotion, {
 });
 
 increased = false;
-cmpHeal.PerformHeal(target);
+TS_ASSERT(cmpHeal.StartHealing(target));
+cmpTimer.OnUpdate({ "turnLength": 1 });
 TS_ASSERT(increased && looted && promoted);
 
 // Test OnValueModification
 let updated;
 AddMock(entity, IID_UnitAI, {
+	"FaceTowardsTarget": () => {},
 	"UpdateRangeQueries": () => {
 		updated = true;
 	}
@@ -161,10 +181,44 @@ TS_ASSERT_UNEVAL_EQUALS(cmpHeal.CanHeal(target), false);
 
 let otherTarget = 71;
 AddMock(otherTarget, IID_Ownership, {
-	"GetOwner": () => player
+	"GetOwner": () => otherPlayer
 });
 
 AddMock(otherTarget, IID_Health, {
-	"IsUnhealable": () => false
+	"IsUnhealable": () => false,
+	"IsInjured": () => true
 });
-TS_ASSERT_UNEVAL_EQUALS(cmpHeal.CanHeal(otherTarget), false);
+
+AddMock(otherTarget, IID_Identity, {
+	"GetClassesList": () => ["Infantry"]
+});
+TS_ASSERT(!cmpHeal.CanHeal(otherTarget));
+
+// Test we stop healing when finished.
+increased = false;
+AddMock(target, IID_Health, {
+	"GetMaxHitpoints": () => 700,
+	"Increase": amount => {
+		increased = true;
+		TS_ASSERT_EQUALS(amount, 5 + 100);
+		return { "old": 600, "new": 600 + 5 + 100 };
+	},
+	"IsUnhealable": () => false,
+	"IsInjured": () => true
+});
+TS_ASSERT(cmpHeal.StartHealing(target));
+cmpTimer.OnUpdate({ "turnLength": 2.2 });
+TS_ASSERT(increased);
+
+increased = false;
+AddMock(target, IID_Health, {
+	"GetMaxHitpoints": () => 700,
+	"Increase": amount => {
+		increased = true;
+		TS_ASSERT(false);
+	},
+	"IsUnhealable": () => false,
+	"IsInjured": () => false
+});
+cmpTimer.OnUpdate({ "turnLength": 2.2 });
+TS_ASSERT(!increased);

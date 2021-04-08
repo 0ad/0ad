@@ -49,9 +49,6 @@ Heal.prototype.Init = function()
 {
 };
 
-// We have no dynamic state to save.
-Heal.prototype.Serialize = null;
-
 Heal.prototype.GetTimers = function()
 {
 	return {
@@ -97,15 +94,13 @@ Heal.prototype.GetHealableClasses = function()
 Heal.prototype.CanHeal = function(target)
 {
 	let cmpHealth = Engine.QueryInterface(target, IID_Health);
-	if (!cmpHealth || cmpHealth.IsUnhealable())
+	if (!cmpHealth || cmpHealth.IsUnhealable() || !cmpHealth.IsInjured())
 		return false;
 
-	// Verify that the target is owned by an ally or the player self.
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || !IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target))
 		return false;
 
-	// Verify that the target has the right class.
 	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return false;
@@ -129,28 +124,143 @@ Heal.prototype.GetRangeOverlays = function()
 };
 
 /**
- * Heal the target entity. This should only be called after a successful range
- * check, and should only be called after GetTimers().repeat msec has passed
- * since the last call to PerformHeal.
+ * @param {number} target - The target to heal.
+ * @param {number} callerIID - The IID to notify on specific events.
+ * @return {boolean} - Whether we started healing.
  */
-Heal.prototype.PerformHeal = function(target)
+Heal.prototype.StartHealing = function(target, callerIID)
 {
-	let cmpHealth = Engine.QueryInterface(target, IID_Health);
-	if (!cmpHealth)
-		return;
+	if (this.target)
+		this.StopHealing();
 
+	if (!this.CanHeal(target))
+		return false;
+
+	let timings = this.GetTimers();
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+	// If the repeat time since the last heal hasn't elapsed,
+	// delay the action to avoid healing too fast.
+	let prepare = timings.prepare;
+	if (this.lastHealed)
+	{
+		let repeatLeft = this.lastHealed + timings.repeat - cmpTimer.GetTime();
+		prepare = Math.max(prepare, repeatLeft);
+	}
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+	{
+		cmpVisual.SelectAnimation("heal", false, 1.0);
+		cmpVisual.SetAnimationSyncRepeat(timings.repeat);
+		cmpVisual.SetAnimationSyncOffset(prepare);
+	}
+
+	// If using a non-default prepare time, re-sync the animation when the timer runs.
+	this.resyncAnimation = prepare != timings.prepare;
+	this.target = target;
+	this.callerIID = callerIID;
+	this.timer = cmpTimer.SetInterval(this.entity, IID_Heal, "PerformHeal", prepare, timings.repeat, null);
+
+	return true;
+};
+
+/**
+ * @param {string} reason - The reason why we stopped healing. Currently implemented are:
+ *	"outOfRange", "targetInvalidated".
+ */
+Heal.prototype.StopHealing = function(reason)
+{
+	if (this.timer)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		delete this.timer;
+	}
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("idle", false, 1.0);
+
+	delete this.target;
+
+	// The callerIID component may start healing again,
+	// replacing the callerIID, hence save that.
+	let callerIID = this.callerIID;
+	delete this.callerIID;
+
+	if (reason && callerIID)
+	{
+		let component = Engine.QueryInterface(this.entity, callerIID);
+		if (component)
+			component.ProcessMessage(reason, null);
+	}
+};
+
+/**
+ * Heal our target entity.
+ * @params - data and lateness are unused.
+ */
+Heal.prototype.PerformHeal = function(data, lateness)
+{
+	if (!this.CanHeal(this.target))
+	{
+		this.StopHealing("TargetInvalidated");
+		return;
+	}
+	if (!this.IsTargetInRange(this.target))
+	{
+		this.StopHealing("OutOfRange");
+		return;
+	}
+
+	// ToDo: Enable entities to keep facing a target.
+	Engine.QueryInterface(this.entity, IID_UnitAI)?.FaceTowardsTarget(this.target);
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.lastHealed = cmpTimer.GetTime() - lateness;
+
+	let cmpHealth = Engine.QueryInterface(this.target, IID_Health);
 	let targetState = cmpHealth.Increase(this.GetHealth());
 
 	// Add experience.
-	let cmpLoot = Engine.QueryInterface(target, IID_Loot);
+	let cmpLoot = Engine.QueryInterface(this.target, IID_Loot);
 	let cmpPromotion = Engine.QueryInterface(this.entity, IID_Promotion);
 	if (targetState !== undefined && cmpLoot && cmpPromotion)
-	{
 		// Health healed times experience per health.
 		cmpPromotion.IncreaseXp((targetState.new - targetState.old) / cmpHealth.GetMaxHitpoints() * cmpLoot.GetXp());
+
+	// TODO we need a sound file.
+	// PlaySound("heal_impact", this.entity);
+
+	if (!cmpHealth.IsInjured())
+	{
+		this.StopHealing("TargetInvalidated");
+		return;
 	}
-	// TODO we need a sound file
-//	PlaySound("heal_impact", this.entity);
+
+	if (this.resyncAnimation)
+	{
+		let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		if (cmpVisual)
+		{
+			let repeat = this.GetTimers().repeat;
+			cmpVisual.SetAnimationSyncRepeat(repeat);
+			cmpVisual.SetAnimationSyncOffset(repeat);
+		}
+		delete this.resyncAnimation;
+	}
+};
+
+/**
+ * @param {number} - The entity ID of the target to check.
+ * @return {boolean} - Whether this entity is in range of its target.
+ */
+Heal.prototype.IsTargetInRange = function(target)
+{
+	let range = this.GetRange();
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
 };
 
 Heal.prototype.OnValueModification = function(msg)

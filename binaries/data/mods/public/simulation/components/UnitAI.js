@@ -2679,83 +2679,49 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"HEALING": {
 				"enter": function() {
+					let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+					if (!cmpHeal)
+					{
+						this.FinishOrder();
+						return true;
+					}
+
 					if (!this.CheckRange(this.order.data, IID_Heal))
 					{
-						this.SetNextState("APPROACHING");
+						this.ProcessMessage("OutOfRange");
 						return true;
 					}
 
-					if (!this.TargetIsAlive(this.order.data.target) ||
-					    !this.CanHeal(this.order.data.target))
+					if (!cmpHeal.StartHealing(this.order.data.target, IID_UnitAI))
 					{
-						this.SetNextState("FINDINGNEWTARGET");
+						this.ProcessMessage("TargetInvalidated");
 						return true;
 					}
-
-					let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
-					this.healTimers = cmpHeal.GetTimers();
-
-					// If the repeat time since the last heal hasn't elapsed,
-					// delay the action to avoid healing too fast.
-					var prepare = this.healTimers.prepare;
-					if (this.lastHealed)
-					{
-						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-						var repeatLeft = this.lastHealed + this.healTimers.repeat - cmpTimer.GetTime();
-						prepare = Math.max(prepare, repeatLeft);
-					}
-
-					this.SelectAnimation("heal");
-					this.SetAnimationSync(prepare, this.healTimers.repeat);
-					this.StartTimer(prepare, this.healTimers.repeat);
-
-					// If using a non-default prepare time, re-sync the animation when the timer runs.
-					this.resyncAnimation = prepare != this.healTimers.prepare;
 
 					this.FaceTowardsTarget(this.order.data.target);
 					return false;
 				},
 
 				"leave": function() {
-					this.ResetAnimation();
-					this.StopTimer();
+					let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+					if (cmpHeal)
+						cmpHeal.StopHealing();
 				},
 
-				"Timer": function(msg) {
-					let target = this.order.data.target;
-					if (!this.TargetIsAlive(target) || !this.CanHeal(target))
+				"OutOfRange": function(msg) {
+					if (this.ShouldChaseTargetedEntity(this.order.data.target, this.order.data.force))
 					{
-						this.SetNextState("FINDINGNEWTARGET");
-						return;
-					}
-					if (!this.CheckRange(this.order.data, IID_Heal))
-					{
-						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
-						{
-							if (this.CanPack())
-							{
-								this.PushOrderFront("Pack", { "force": true });
-								return;
-							}
-							this.SetNextState("HEAL.APPROACHING");
-						}
+						if (this.CanPack())
+							this.PushOrderFront("Pack", { "force": true });
 						else
-							this.SetNextState("FINDINGNEWTARGET");
-						return;
+							this.SetNextState("APPROACHING");
 					}
+					else
+						this.SetNextState("FINDINGNEWTARGET");
+				},
 
-					let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-					this.lastHealed = cmpTimer.GetTime() - msg.lateness;
-
-					this.FaceTowardsTarget(target);
-					let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
-					cmpHeal.PerformHeal(target);
-
-					if (this.resyncAnimation)
-					{
-						this.SetAnimationSync(this.healTimers.repeat, this.healTimers.repeat);
-						this.resyncAnimation = false;
-					}
+				"TargetInvalidated": function(msg) {
+					this.SetNextState("FINDINGNEWTARGET");
 				},
 			},
 
@@ -3410,7 +3376,6 @@ UnitAI.prototype.Init = function()
 
 	// For preventing increased action rate due to Stop orders or target death.
 	this.lastAttacked = undefined;
-	this.lastHealed = undefined;
 
 	this.formationAnimationVariant = undefined;
 	this.cheeringTime = +(this.template.CheeringTime || 0);
