@@ -38,12 +38,20 @@ Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
+Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Player.js");
 Engine.LoadComponentScript("ResourceDropsite.js");
 Engine.LoadComponentScript("ResourceGatherer.js");
 Engine.LoadComponentScript("ResourceSupply.js");
+Engine.LoadComponentScript("Timer.js");
 
 Engine.RegisterGlobal("ApplyValueModificationsToEntity", (prop, oVal, ent) => oVal);
+let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer", null);
+
+AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+	"IsInTargetRange": () => true
+});
 
 const owner = 1;
 const gatherer = 11;
@@ -99,28 +107,24 @@ TS_ASSERT_UNEVAL_EQUALS(cmpResourceGatherer.GetCarryingStatus(), []);
 
 // Test gathering.
 
-TS_ASSERT_UNEVAL_EQUALS(cmpResourceGatherer.PerformGather(supply), {
-	"amount": 1,
-	"exhausted": false,
-	"filled": false
-});
+TS_ASSERT(cmpResourceGatherer.StartGathering(supply));
+cmpTimer.OnUpdate({ "turnLength": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceSupply.GetCurrentAmount(), 999);
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceGatherer.GetCarryingStatus(), [{
 	"type": "food",
 	"amount": 1,
 	"max": 10
 }]);
+cmpResourceGatherer.StopGathering();
 
 // Test committing resources.
 
 cmpResourceGatherer.CommitResources(dropsite);
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceGatherer.GetCarryingStatus(), []);
 
-TS_ASSERT_UNEVAL_EQUALS(cmpResourceGatherer.PerformGather(supply), {
-	"amount": 1,
-	"exhausted": false,
-	"filled": false
-});
+TS_ASSERT(cmpResourceGatherer.StartGathering(supply));
+cmpTimer.OnUpdate({ "turnLength": 1 });
+cmpResourceGatherer.StopGathering();
 cmpResourceGatherer.GiveResources([{
 	"type": "wood",
 	"amount": 1
