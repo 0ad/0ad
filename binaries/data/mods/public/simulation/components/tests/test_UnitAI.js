@@ -68,8 +68,14 @@ TestTargetEntityRenaming(
 );
 
 TestTargetEntityRenaming(
-	"INDIVIDUAL.REPAIR.REPAIRING", "INDIVIDUAL.IDLE",
+	"INDIVIDUAL.REPAIR.REPAIRING", "INDIVIDUAL.REPAIR.REPAIRING",
 	(unitAI, player_ent, target_ent) => {
+
+		AddMock(player_ent, IID_Builder, {
+			"StartRepairing": () => true,
+			"StopRepairing": () => {}
+		});
+
 		QueryBuilderListInterface = () => {};
 		unitAI.CheckTargetRange = () => true;
 		unitAI.CanRepair = (target) => target == target_ent;

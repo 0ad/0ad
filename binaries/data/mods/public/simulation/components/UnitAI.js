@@ -2961,6 +2961,13 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"REPAIRING": {
 				"enter": function() {
+					let cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+					if (!cmpBuilder)
+					{
+						this.FinishOrder();
+						return true;
+					}
+
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
 					if (this.order.data.force)
@@ -2968,68 +2975,43 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					this.order.data.force = false;
 
-					// Needed to remove the entity from the builder list when leaving this state.
-					this.repairTarget = this.order.data.target;
-
-					if (!this.CanRepair(this.repairTarget))
+					if (!this.CheckTargetRange(this.order.data.target, IID_Builder))
 					{
-						this.FinishOrder();
+						this.ProcessMessage("OutOfRange");
 						return true;
 					}
 
-					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
-					{
-						this.SetNextState("APPROACHING");
-						return true;
-					}
-
-					let cmpHealth = Engine.QueryInterface(this.repairTarget, IID_Health);
+					let cmpHealth = Engine.QueryInterface(this.order.data.target, IID_Health);
 					if (cmpHealth && cmpHealth.GetHitpoints() >= cmpHealth.GetMaxHitpoints())
 					{
 						// The building was already finished/fully repaired before we arrived;
 						// let the ConstructionFinished handler handle this.
-						this.ConstructionFinished({ "entity": this.repairTarget, "newentity": this.repairTarget });
+						this.ConstructionFinished({ "entity": this.order.data.target, "newentity": this.order.data.target });
 						return true;
 					}
 
-					let cmpBuilderList = QueryBuilderListInterface(this.repairTarget);
-					if (cmpBuilderList)
-						cmpBuilderList.AddBuilder(this.entity);
+					if (!cmpBuilder.StartRepairing(this.order.data.target, IID_UnitAI))
+					{
+						this.ProcessMessage("TargetInvalidated");
+						return true;
+					}
 
-					this.FaceTowardsTarget(this.repairTarget);
-
-					this.SelectAnimation("build");
-					this.StartTimer(1000, 1000);
+					this.FaceTowardsTarget(this.order.data.target);
 					return false;
 				},
 
 				"leave": function() {
-					let cmpBuilderList = QueryBuilderListInterface(this.repairTarget);
-					if (cmpBuilderList)
-						cmpBuilderList.RemoveBuilder(this.entity);
-					delete this.repairTarget;
-					this.StopTimer();
-					this.ResetAnimation();
+					let cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+					if (cmpBuilder)
+						cmpBuilder.StopRepairing();
 				},
 
-				"Timer": function(msg) {
-					if (!this.CanRepair(this.repairTarget))
-					{
-						this.FinishOrder();
-						return;
-					}
+				"OutOfRange": function(msg) {
+					this.SetNextState("APPROACHING");
+				},
 
-					this.FaceTowardsTarget(this.repairTarget);
-
-					let cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-					cmpBuilder.PerformBuilding(this.repairTarget);
-					// If the building is completed, the leave() function will be called
-					// by the ConstructionFinished message.
-					// In that case, the repairTarget is deleted, and we can just return.
-					if (!this.repairTarget)
-						return;
-					if (!this.CheckTargetRange(this.repairTarget, IID_Builder))
-						this.SetNextState("APPROACHING");
+				"TargetInvalidated": function(msg) {
+					this.FinishOrder();
 				},
 			},
 
