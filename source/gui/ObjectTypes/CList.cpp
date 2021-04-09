@@ -23,7 +23,6 @@
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SettingTypes/CGUIList.h"
-#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/timer.h"
 
@@ -408,6 +407,11 @@ void CList::AddItem(const CGUIString& str, const CGUIString& data)
 	SetupText(true);
 }
 
+void CList::AddItem(const CGUIString& strAndData)
+{
+	AddItem(strAndData, strAndData);
+}
+
 bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 {
 	int elmt_item = pFile->GetElementID("item");
@@ -498,11 +502,3 @@ int CList::GetHoveredItem()
 
 	return -1;
 }
-
-void CList::CreateJSObject()
-{
-	ScriptRequest rq(m_pGUI.GetScriptInterface());
-	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>;
-	ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton()), m_JSObject);
-}
-

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,10 +20,14 @@
 
 #include "scriptinterface/ScriptExtraHeaders.h"
 
+#include <memory>
 #include <utility>
 
 class ScriptInterface;
 class ScriptRequest;
+
+template <typename T>
+class JSI_GUIProxy;
 
 // See JSI_GuiProxy below
 #if GCC_VERSION
@@ -33,6 +37,37 @@ class ScriptRequest;
 # pragma warning(push, 1)
 # pragma warning(disable: 4265)
 #endif
+
+/**
+ * JS GUI proxies need to store some private data.
+ * This class is responsible for deleting that data.
+ */
+class IGUIProxyObject final
+{
+	template<typename T>
+	friend class JSI_GUIProxy;
+	friend std::unique_ptr<IGUIProxyObject> std::make_unique<IGUIProxyObject>();
+public:
+	JSObject* Get() const
+	{
+		return m_Object.get();
+	}
+
+	using PrivateData = IGUIObject*;
+	template<typename T>
+	static T* FromPrivateSlot(JSObject* obj)
+	{
+		return static_cast<T*>(static_cast<PrivateData>(js::GetProxyPrivate(obj).toPrivate()));
+	}
+
+protected:
+	IGUIProxyObject() = default;
+	IGUIProxyObject(const IGUIProxyObject&) = delete;
+	IGUIProxyObject(IGUIProxyObject&&) = delete;
+
+	JS::PersistentRootedObject m_Object;
+	PrivateData m_Ptr;
+};
 
 /**
  * Proxies need to store some data whose lifetime is tied to an interface.
@@ -47,7 +82,7 @@ public:
 	virtual bool has(const std::string& name) const = 0;
 	// @return the JSFunction matching @param name. Must call has() first as it can assume existence.
 	virtual JSObject* get(const std::string& name) const = 0;
-	virtual bool setFunction(const ScriptRequest& rq, const std::string& name, JSNative function, int nargs) = 0;
+	virtual bool setFunction(const ScriptRequest& rq, const std::string& name, JSFunction* function) = 0;
 };
 
 /**
@@ -67,14 +102,17 @@ public:
  * As such, these GUI proxies don't have one and instead override get/set directly.
  *
  * To add a new JSI_GUIProxy, you'll need to:
- *  - overload the GUI Object's CreateJSObject with the correct types and pointers
- *  - change the CGUI::AddObjectTypes method
- *  - explicitly instantiate the template.
+ *  - overload CreateJSObject in your class header.
+ *  - change the CGUI::AddObjectTypes method.
+ *  - explicitly instantiate the template & CreateJSObject via DECLARE_GUIPROXY.
  *
  */
 template<typename GUIObjectType>
 class JSI_GUIProxy : public js::BaseProxyHandler
 {
+	// Need to friend other specializations so CreateFunctions() can call the IGUIObject version in all codepaths.
+	template<typename T>
+	friend class JSI_GUIProxy;
 public:
 	// Access the js::Class of the Proxy.
 	static JSClass& ClassDefinition();
@@ -85,7 +123,8 @@ public:
 	// Call this in CGUI::AddObjectTypes.
 	static std::pair<const js::BaseProxyHandler*, GUIProxyProps*> CreateData(ScriptInterface& scriptInterface);
 
-	static void CreateJSObject(const ScriptRequest& rq, GUIObjectType* ptr, GUIProxyProps* data, JS::PersistentRootedObject& val);
+	// Create the JS object, the proxy, the data and wrap it in a convenient unique_ptr.
+	static std::unique_ptr<IGUIProxyObject> CreateJSObject(const ScriptRequest& rq, GUIObjectType* ptr, GUIProxyProps* data);
 protected:
 	// @param family can't be nullptr because that's used for some DOM object and it crashes.
 	JSI_GUIProxy() : BaseProxyHandler(this, false, false) {};
@@ -100,6 +139,10 @@ protected:
 
 	// Specialize this to define the custom properties of this type.
 	static void CreateFunctions(const ScriptRequest& rq, GUIProxyProps* cache);
+
+	// Convenience helper for the above.
+	template<auto callable>
+	static void CreateFunction(const ScriptRequest& rq, GUIProxyProps* cache, const std::string& name);
 
 	// This handles returning custom properties. Specialize this if needed.
 	bool PropGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const;

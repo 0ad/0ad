@@ -273,6 +273,13 @@ void IGUIObject::UpdateCachedSize()
 	}
 }
 
+CRect IGUIObject::GetComputedSize()
+{
+	UpdateCachedSize();
+	return m_CachedActualSize;
+}
+
+
 bool IGUIObject::ApplyStyle(const CStr& StyleName)
 {
 	if (!m_pGUI.HasStyle(StyleName))
@@ -460,46 +467,14 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 	return JS::ToBoolean(result);
 }
 
-void IGUIObject::CreateJSObject()
-{
-	ScriptRequest rq(m_pGUI.GetScriptInterface());
-	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>;
-	ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton()), m_JSObject);
-}
-
 JSObject* IGUIObject::GetJSObject()
 {
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation.
-	if (!m_JSObject.initialized())
+	if (!m_JSObject)
 		CreateJSObject();
 
-	return m_JSObject.get();
-}
-
-void IGUIObject::toString(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
-{
-	ScriptRequest rq(scriptInterface);
-	ScriptInterface::ToJSVal(rq, ret, "[GUIObject: " + GetName() + "]");
-}
-
-void IGUIObject::focus(ScriptInterface& UNUSED(scriptInterface), JS::MutableHandleValue ret)
-{
-	GetGUI().SetFocusedObject(this);
-	ret.setUndefined();
-}
-
-void IGUIObject::blur(ScriptInterface& UNUSED(scriptInterface), JS::MutableHandleValue ret)
-{
-	GetGUI().SetFocusedObject(nullptr);
-	ret.setUndefined();
-}
-
-void IGUIObject::getComputedSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
-{
-	UpdateCachedSize();
-	ScriptRequest rq(scriptInterface);
-	ScriptInterface::ToJSVal(rq, ret, m_CachedActualSize);
+	return m_JSObject->Get();
 }
 
 bool IGUIObject::IsEnabled() const
@@ -539,6 +514,11 @@ CStr IGUIObject::GetPresentableName() const
 void IGUIObject::SetFocus()
 {
 	m_pGUI.SetFocusedObject(this);
+}
+
+void IGUIObject::ReleaseFocus()
+{
+	m_pGUI.SetFocusedObject(nullptr);
 }
 
 bool IGUIObject::IsFocused() const

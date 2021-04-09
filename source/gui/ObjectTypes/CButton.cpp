@@ -21,7 +21,6 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUIText.h"
-#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "gui/SettingTypes/CGUIColor.h"
 
 CButton::CButton(CGUI& pGUI)
@@ -83,6 +82,12 @@ void CButton::UpdateCachedSize()
 	IGUITextOwner::UpdateCachedSize();
 }
 
+CSize2D CButton::GetTextSize()
+{
+	UpdateText();
+	return m_GeneratedTexts[0].GetSize();
+}
+
 void CButton::HandleMessage(SGUIMessage& Message)
 {
 	IGUIObject::HandleMessage(Message);
@@ -114,18 +119,4 @@ const CGUIColor& CButton::ChooseColor()
 		return m_TextColorPressed ? m_TextColorPressed : m_TextColor;
 
 	return m_TextColorOver ? m_TextColorOver : m_TextColor;
-}
-
-void CButton::getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
-{
-	ScriptRequest rq(scriptInterface);
-	UpdateText();
-	ScriptInterface::ToJSVal(rq, ret, m_GeneratedTexts[0].GetSize());
-}
-
-void CButton::CreateJSObject()
-{
-	ScriptRequest rq(m_pGUI.GetScriptInterface());
-	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>;
-	ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton()), m_JSObject);
 }

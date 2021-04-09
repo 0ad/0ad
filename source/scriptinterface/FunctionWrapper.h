@@ -285,7 +285,16 @@ public:
 	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
 	static JSFunctionSpec Wrap(const char* name)
 	{
-		return JS_FN(name, (&ToJSNative<callable>), args_info<decltype(callable)>::nb_args, flags);
+		return JS_FN(name, (&ToJSNative<callable, thisGetter>), args_info<decltype(callable)>::nb_args, flags);
+	}
+
+	/**
+	 * Return a JSFunction from a C++ function.
+	 */
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
+	static JSFunction* Create(const ScriptRequest& rq, const char* name)
+	{
+		return JS_NewFunction(rq.cx, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags, name);
 	}
 
 	/**
