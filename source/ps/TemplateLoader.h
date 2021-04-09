@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,9 @@
 #define INCLUDED_TEMPLATELOADER
 
 #include "simulation2/system/ParamNode.h"
+
+#include <string_view>
+#include <unordered_map>
 
 enum ETemplatesType
 {
@@ -69,14 +72,16 @@ private:
 	 * (Re)loads the given template, regardless of whether it exists already,
 	 * and saves into m_TemplateFileData. Also loads any parents that are not yet
 	 * loaded. Returns false on error.
-	 * @param templateName XML filename to load (not a |-separated string)
+	 * @param templateName - XML filename to load (may be a |-separated string)
+	 * @param compositing - whether this template is an intermediary layer in a |-separated string.
+	 * @param depth - the current recursion depth.
 	 */
-	bool LoadTemplateFile(const std::string& templateName, int depth);
+	bool LoadTemplateFile(CParamNode& node, std::string_view templateName, bool compositing, int depth);
 
 	/**
 	 * Constructs a standard static-decorative-object template for the given actor
 	 */
-	void ConstructTemplateActor(const std::string& actorName, CParamNode& out);
+	void ConstructTemplateActor(std::string_view actorName, CParamNode& out);
 
 	/**
 	 * Map from template name (XML filename or special |-separated string) to the most recently
@@ -84,7 +89,7 @@ private:
 	 * (Failed loads won't remove existing entries under the same name, so we behave more nicely
 	 * when hotloading broken files)
 	 */
-	std::map<std::string, CParamNode> m_TemplateFileData;
+	std::unordered_map<std::string, CParamNode> m_TemplateFileData;
 };
 
 #endif // INCLUDED_TEMPLATELOADER

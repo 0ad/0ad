@@ -130,7 +130,14 @@ sub add_entities
         push @files, $path;
         my $ent = Entity::load_inherited($f, "$mod_list_string");
 
-        push @deps, [ $path, "simulation/templates/" . $ent->{Entity}{'@parent'}{' content'} . ".xml" ] if $ent->{Entity}{'@parent'};
+        if ($ent->{Entity}{'@parent'})
+        {
+            my @parents = split(/\|/, $ent->{Entity}{'@parent'}{' content'});
+            for my $parentPath (@parents)
+            {
+                push @deps, [ $path, "simulation/templates/" . $parentPath . ".xml" ];
+            }
+        }
 
         if ($f !~ /^template_/)
         {
@@ -638,6 +645,11 @@ sub check_deps
 
     for my $f (sort keys %revdeps)
     {
+        if ($f =~ /simulation\/templates\//)
+        {
+            next if exists $files{$f =~ s/templates\//templates\/special\/filter\//r};
+            next if exists $files{$f =~ s/templates\//templates\/mixins\//r};
+        }
         next if exists $files{$f};
         warn "Missing file '$f' referenced by: " . (join ', ', map "'$_'", map vfs_to_relative_to_mods($_), sort @{$revdeps{$f}}) . "\n";
 
