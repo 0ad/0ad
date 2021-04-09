@@ -72,11 +72,6 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		cmpNewHealth.SetHitpoints(cmpNewHealth.GetMaxHitpoints() * healthLevel);
 	}
 
-	let cmpBuilderList = QueryBuilderListInterface(oldEnt);
-	let cmpNewBuilderList = QueryBuilderListInterface(newEnt);
-	if (cmpBuilderList && cmpNewBuilderList)
-		cmpNewBuilderList.AddBuilders(cmpBuilderList.GetBuilders());
-
 	let cmpPromotion = Engine.QueryInterface(oldEnt, IID_Promotion);
 	let cmpNewPromotion = Engine.QueryInterface(newEnt, IID_Promotion);
 	if (cmpPromotion && cmpNewPromotion)
