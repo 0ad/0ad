@@ -91,17 +91,17 @@ static Status AddToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fi
 	// Strip the .xml extension
 	VfsPath pathstem = pathname.ChangeExtension(L"");
 	// Strip the root from the path
-	std::wstring_view name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
+	std::string name = pathstem.string8().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
 
 	// We want to ignore template_*.xml templates, since they should never be built in the editor
-	if (name.substr(0, 9) == L"template_")
+	if (name.substr(0, 9) == "template_")
 		return INFO::OK;
 
 	// Also ignore some subfolders.
-	if (name.substr(0, 8) == L"special/" || name.substr(0, 7) == L"mixins/")
+	if (name.substr(0, 8) == "special/" || name.substr(0, 7) == "mixins/")
 		return INFO::OK;
 
-	templates.push_back(std::string(name.begin(), name.end()));
+	templates.push_back(name);
 	return INFO::OK;
 }
 
