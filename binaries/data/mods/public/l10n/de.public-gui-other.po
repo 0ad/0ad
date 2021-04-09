@@ -55,8 +55,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-04 14:35+0000\n"
+"POT-Creation-Date: 2021-04-05 07:08+0000\n"
+"PO-Revision-Date: 2021-04-05 15:44+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -429,7 +429,8 @@ msgstr "Cheats"
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
 #: gui/common/tooltips.js:669 gui/common/tooltips.js:675
 #: gui/common/tooltips.js:762 gui/common/tooltips.js:813
-#: gui/common/tooltips.js:834 gui/common/tooltips.js:1161
+#: gui/common/tooltips.js:834 gui/common/tooltips.js:858
+#: gui/common/tooltips.js:1185
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -577,8 +578,8 @@ msgstr "Benutzer (%(num)s): %(users)s"
 #: gui/common/tooltips.js:417 gui/common/tooltips.js:431
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:511
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
-#: gui/common/tooltips.js:997 gui/common/tooltips.js:1030
-#: gui/common/tooltips.js:1126 gui/loadgame/SavegameDetails.js:41
+#: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -725,7 +726,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:103 gui/common/tooltips.js:564
-#: gui/common/tooltips.js:1028
+#: gui/common/tooltips.js:1052
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "Sekunde"
@@ -823,7 +824,7 @@ msgstr "Blockt: %(blockPercentage)s%%, Dauer verkürzt: %(durationReduction)s%%"
 msgid "Garrison to fire arrows"
 msgstr "Einquartieren, um Pfeile zu schießen"
 
-#: gui/common/tooltips.js:308 gui/common/tooltips.js:1026
+#: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
 msgstr "Intervall:"
 
@@ -875,7 +876,7 @@ msgstr "%(rangeLabel)s %(minRange)s bis %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:356 gui/common/tooltips.js:1021
+#: gui/common/tooltips.js:356 gui/common/tooltips.js:1045
 msgid "Range:"
 msgstr "Reichweite:"
 
@@ -890,8 +891,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "Meter"
 
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:1023
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:364 gui/common/tooltips.js:1047
+#: gui/common/tooltips.js:1077
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "Meter"
@@ -1013,11 +1014,11 @@ msgstr "Einquartierungsbegrenzung"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:561 gui/common/tooltips.js:1016
+#: gui/common/tooltips.js:561 gui/common/tooltips.js:1040
 msgid "Heal:"
 msgstr "Heilen"
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1018
+#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
 msgid "Health"
 msgstr "Gesundheit"
 
@@ -1110,7 +1111,7 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Füge einen Arbeiter hinzu, um den Bau in %(second)s Sekunde zu vollenden."
 msgstr[1] "Füge einen Arbeiter hinzu, um den Bau in %(second)s Sekunden zu vollenden."
 
-#: gui/common/tooltips.js:730 gui/common/tooltips.js:969
+#: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1120,6 +1121,7 @@ msgid "Gather Rates:"
 msgstr "Sammelraten:"
 
 #: gui/common/tooltips.js:766 gui/common/tooltips.js:839
+#: gui/common/tooltips.js:863
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1156,148 +1158,152 @@ msgstr "%(resourceIcon)s %(reward)s"
 msgid "Resource Trickle:"
 msgstr "Stetiger Rohstoffzufluss:"
 
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
+#: gui/common/tooltips.js:859
+msgid "Upkeep:"
+msgstr "Unterhalt:"
+
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:888
+#: gui/common/tooltips.js:912
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s bis %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:917
+#: gui/common/tooltips.js:941
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Wälle: %(costs)s"
 
-#: gui/common/tooltips.js:918
+#: gui/common/tooltips.js:942
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Türme: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:926
+#: gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:927
+#: gui/common/tooltips.js:951
 msgid "Cost:"
 msgstr "Kosten:"
 
-#: gui/common/tooltips.js:940
+#: gui/common/tooltips.js:964
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Benötigt %(technology)s"
 
-#: gui/common/tooltips.js:953
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:954
+#: gui/common/tooltips.js:978
 msgid "Population Bonus:"
 msgstr "Bevölkerungsbonus:"
 
-#: gui/common/tooltips.js:974
+#: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
 msgstr "Ungenügende Ressourcen:"
 
-#: gui/common/tooltips.js:990
+#: gui/common/tooltips.js:1014
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:991
+#: gui/common/tooltips.js:1015
 msgid "Speed:"
 msgstr "Geschwindigkeit:"
 
-#: gui/common/tooltips.js:993 gui/common/tooltips.js:998
+#: gui/common/tooltips.js:1017 gui/common/tooltips.js:1022
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:995
+#: gui/common/tooltips.js:1019
 msgid "Walk"
 msgstr "Gehen"
 
-#: gui/common/tooltips.js:1000
+#: gui/common/tooltips.js:1024
 msgid "Run"
 msgstr "Rennen"
 
-#: gui/common/tooltips.js:1015 gui/common/tooltips.js:1020
-#: gui/common/tooltips.js:1025 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:1039 gui/common/tooltips.js:1044
+#: gui/common/tooltips.js:1049 gui/common/tooltips.js:1074
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1066
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1043
+#: gui/common/tooltips.js:1067
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1051
+#: gui/common/tooltips.js:1075
 msgctxt "aura"
 msgid "Range:"
 msgstr "Reichweite:"
 
-#: gui/common/tooltips.js:1074 gui/common/tooltips.js:1102
+#: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s (%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1078 gui/common/tooltips.js:1095
+#: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1125
+#: gui/common/tooltips.js:1149
 msgid "Classes:"
 msgstr "Klassen:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1152
+#: gui/common/tooltips.js:1176
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1162
+#: gui/common/tooltips.js:1186
 msgid "Loot:"
 msgstr "Beute:"
 
-#: gui/common/tooltips.js:1172
+#: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1173
+#: gui/common/tooltips.js:1197
 msgid "Dropsite for:"
 msgstr "Lager für:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1181
+#: gui/common/tooltips.js:1205
 msgid "Right-click to view more information."
 msgstr "Rechtsklicken, um mehr Informationen anzuzeigen."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1187
+#: gui/common/tooltips.js:1211
 msgid "Click to view more information."
 msgstr "Klicken, um mehr Informationen anzuzeigen,"
 
@@ -2595,47 +2601,47 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "GUI im Spiel"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Waffenstillstand-Zähler umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Waffenstillstand-Zähler umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Chatfenster umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Chat umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Zivilisations-Info anzeigen."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "Civ-Info umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr ""
+msgstr "\"Bilder pro Sekunde\"-Zähler umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr ""
+msgstr "FPS-Zähler umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2645,17 +2651,17 @@ msgstr "Zeige die Multiplayer-Lobby in einem Dialogfenster."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr ""
+msgstr "MP-Lobby umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Chatfenster umschalten und den vorherigen privaten Chatpartner auswählen."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Privaten Chat umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
@@ -2822,22 +2828,22 @@ msgstr "Statusleisten umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
+msgstr "Schnellvorlauf-Modus aktivieren. Zeitkrümmung muss aktiviert sein."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Schnellvorlauf (Zeitkrümmung)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Zeit zurückdrehen. Zeitkrümmung muss aktiviert sein."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewing (timewarp)"
-msgstr ""
+msgstr "Zurückspulen (Zeitkrümmung)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
@@ -3254,92 +3260,92 @@ msgstr "Kontrollgruppe 9 auswählen"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Nur untätige Einheiten auswählen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Nur untätige Einheiten auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Nächste untätige Einheit auswählen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Nächste untätige Einheit auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Nächsten untätigen Soldaten auswählen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Nächsten untätigen Soldaten auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Nächsten untätigen Arbeiter auswählen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Nächsten untätigen Arbeiter auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Nur Militäreinheiten der Auswahl hinzufügen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Nur Militär auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Nur zivile Einheiten der Auswahl hinzufügen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Nur zivil auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Einheiten, die nicht im aktuellen Bildausschnitt sind, in die Auswahl einschließen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Außerhalb des Bildes einschließen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Einheiten aus der Auswahl entfernen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Einheiten aus der Auswahl entfernen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Nur verwundete Einheiten auswählen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Nur verwundete Einheiten auswählen"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -3762,43 +3768,43 @@ msgstr "Zeit anzeigen, wenn eine Chatnachricht geschickt wurde."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Namen von Einheiten/Gebäuden."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
-msgstr ""
+msgstr "Spezifisch zuerst."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
+msgstr "Spezifische Namen zuerst anzeigen und generische Namen danach."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic primary."
-msgstr ""
+msgstr "Generisch zuerst."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
+msgstr "Generische Namen zuerst anziegen und spezifische danach."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
-msgstr ""
+msgstr "Nur spezifisch."
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Show only specific names for units."
-msgstr ""
+msgstr "Nur spezifische Namen für Einheiten anzeigen."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Nur generisch."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr "Nur generische Namen für Entitäten anzeigen."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Wie Namen von Gebäuden/Einheiten angezeigt werden."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4259,7 +4265,7 @@ msgstr "Beitretenden Clients während der Spielvorbereitung automatisch einen fr
 
 #: gui/options/options.json[4].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Netzwerk / Lobby"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4316,23 +4322,23 @@ msgstr "Verhindert das weitere Zuschauer beitreten, wenn das Limit erreicht ist.
 
 #: gui/options/options.json[4].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Maximum-Lag für Beobachter"
 
 #: gui/options/options.json[4].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Das Spiel als Host pausieren, wenn Beobachter mehr als diese Anzahl von Runden zurückliegen. Wenn der Wert -1 beträgt, werden Beobachter ignoriert."
 
 #: gui/options/options.json[4].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Beobachter) bei Lag beschleunigen."
 
 #: gui/options/options.json[4].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Das Spiel als Beobachter automatisch beschleunigen, wenn man anfängt zu laggen, um zur Live-Partie aufzuschließen."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."

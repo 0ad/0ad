@@ -34,8 +34,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 15:48+0000\n"
+"POT-Creation-Date: 2021-04-05 07:08+0000\n"
+"PO-Revision-Date: 2021-04-05 15:24+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -2282,13 +2282,23 @@ msgstr "Mehrspielerkarte. Ein tropisches Paradies."
 msgid "Tropical Island"
 msgstr "Tropisches Eiland"
 
+#: maps/scenarios/unit_chasing_test.xml:Description:40
+msgid ""
+"This map is designed to test a few different cases of units chasing each "
+"other."
+msgstr "Diese Karte wurde erstellt, um diverse Situationen zu testen, wo Einheiten sich verfolgen."
+
+#: maps/scenarios/unit_chasing_test.xml:Name:40
+msgid "Unit Chasing test"
+msgstr "Test Verfolgung von Einheiten"
+
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
 msgstr "Diese Karte wurde erstellt, um verschiedene Fälle von 'Tanzen' zu testen."
 
 #: maps/scenarios/unit_dancing_test.xml:Name:40
 msgid "Unit Dancing test"
-msgstr "Einheitentest Tanzen"
+msgstr "Test Tanzen von Einheiten"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:39
 msgid ""
@@ -2301,6 +2311,16 @@ msgstr "Diese Karte wurde erstellt um einige Grundbewegungsabläufe von Einheite
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
 msgstr "Einheiten Bewegungsintegration testen"
+
+#: maps/scenarios/unit_pushing_test.xml:Description:40
+msgid ""
+"This map is designed to test the performance & functionality of unit "
+"pushing."
+msgstr "Diese Karte wurde erstellt, um die Performance und die Funktionalität des Schiebens von Einheiten zu testen."
+
+#: maps/scenarios/unit_pushing_test.xml:Name:40
+msgid "Unit Pushing test"
+msgstr "Test Schieben von Einheiten"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-04 22:03+0000\n"
+"POT-Creation-Date: 2021-04-05 07:08+0000\n"
+"PO-Revision-Date: 2021-04-08 21:22+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -384,7 +384,8 @@ msgstr "Trampes"
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
 #: gui/common/tooltips.js:669 gui/common/tooltips.js:675
 #: gui/common/tooltips.js:762 gui/common/tooltips.js:813
-#: gui/common/tooltips.js:834 gui/common/tooltips.js:1161
+#: gui/common/tooltips.js:834 gui/common/tooltips.js:858
+#: gui/common/tooltips.js:1185
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -532,8 +533,8 @@ msgstr "Usuarios (%(num)s): %(users)s"
 #: gui/common/tooltips.js:417 gui/common/tooltips.js:431
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:511
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
-#: gui/common/tooltips.js:997 gui/common/tooltips.js:1030
-#: gui/common/tooltips.js:1126 gui/loadgame/SavegameDetails.js:41
+#: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
@@ -680,7 +681,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:103 gui/common/tooltips.js:564
-#: gui/common/tooltips.js:1028
+#: gui/common/tooltips.js:1052
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "segundu"
@@ -702,7 +703,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "Llealtá:"
+msgstr "Fideleza:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -736,12 +737,12 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr "Captura:"
+msgstr "Conquistar:"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr "Captura"
+msgstr "Conquistar"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -778,7 +779,7 @@ msgstr "Paraes: %(blockPercentage)s%%, Amenorgu na duranza: %(durationReduction)
 msgid "Garrison to fire arrows"
 msgstr "Guarez pa tirar fleches"
 
-#: gui/common/tooltips.js:308 gui/common/tooltips.js:1026
+#: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
 msgstr "Intervalu:"
 
@@ -830,7 +831,7 @@ msgstr "%(rangeLabel)s %(minRange)s a %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:356 gui/common/tooltips.js:1021
+#: gui/common/tooltips.js:356 gui/common/tooltips.js:1045
 msgid "Range:"
 msgstr "Algame:"
 
@@ -845,8 +846,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metros"
 
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:1023
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:364 gui/common/tooltips.js:1047
+#: gui/common/tooltips.js:1077
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metru"
@@ -968,11 +969,11 @@ msgstr "Llende de guarecimientu"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:561 gui/common/tooltips.js:1016
+#: gui/common/tooltips.js:561 gui/common/tooltips.js:1040
 msgid "Heal:"
 msgstr "Curar:"
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1018
+#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
 msgid "Health"
 msgstr "Salú"
 
@@ -1065,7 +1066,7 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Amiesta un obreru pa finar la construcción en %(second)s segundu."
 msgstr[1] "Amiesta un obreru pa finar la construcción en %(second)s segundos."
 
-#: gui/common/tooltips.js:730 gui/common/tooltips.js:969
+#: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1075,6 +1076,7 @@ msgid "Gather Rates:"
 msgstr "Tases de percanciamientu:"
 
 #: gui/common/tooltips.js:766 gui/common/tooltips.js:839
+#: gui/common/tooltips.js:863
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1111,148 +1113,152 @@ msgstr "%(resourceIcon)s %(reward)s"
 msgid "Resource Trickle:"
 msgstr "Bisbera de recursos:"
 
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
+#: gui/common/tooltips.js:859
+msgid "Upkeep:"
+msgstr "Caltenimientu:"
+
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:888
+#: gui/common/tooltips.js:912
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s%(minimum)s a %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:917
+#: gui/common/tooltips.js:941
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Muralles:  %(costs)s"
 
-#: gui/common/tooltips.js:918
+#: gui/common/tooltips.js:942
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torres:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:926
+#: gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:927
+#: gui/common/tooltips.js:951
 msgid "Cost:"
 msgstr "Costu:"
 
-#: gui/common/tooltips.js:940
+#: gui/common/tooltips.js:964
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Rique %(technology)s"
 
-#: gui/common/tooltips.js:953
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:954
+#: gui/common/tooltips.js:978
 msgid "Population Bonus:"
 msgstr "Bonificación de población:"
 
-#: gui/common/tooltips.js:974
+#: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
 msgstr "Nun hai recursos abondos:"
 
-#: gui/common/tooltips.js:990
+#: gui/common/tooltips.js:1014
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:991
+#: gui/common/tooltips.js:1015
 msgid "Speed:"
 msgstr "Velocidá:"
 
-#: gui/common/tooltips.js:993 gui/common/tooltips.js:998
+#: gui/common/tooltips.js:1017 gui/common/tooltips.js:1022
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:995
+#: gui/common/tooltips.js:1019
 msgid "Walk"
 msgstr "Andar"
 
-#: gui/common/tooltips.js:1000
+#: gui/common/tooltips.js:1024
 msgid "Run"
 msgstr "Correr"
 
-#: gui/common/tooltips.js:1015 gui/common/tooltips.js:1020
-#: gui/common/tooltips.js:1025 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:1039 gui/common/tooltips.js:1044
+#: gui/common/tooltips.js:1049 gui/common/tooltips.js:1074
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1066
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1043
+#: gui/common/tooltips.js:1067
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1051
+#: gui/common/tooltips.js:1075
 msgctxt "aura"
 msgid "Range:"
 msgstr "Algame:"
 
-#: gui/common/tooltips.js:1074 gui/common/tooltips.js:1102
+#: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s (%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1078 gui/common/tooltips.js:1095
+#: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1125
+#: gui/common/tooltips.js:1149
 msgid "Classes:"
 msgstr "Clases:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1152
+#: gui/common/tooltips.js:1176
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1162
+#: gui/common/tooltips.js:1186
 msgid "Loot:"
 msgstr "Botín:"
 
-#: gui/common/tooltips.js:1172
+#: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1173
+#: gui/common/tooltips.js:1197
 msgid "Dropsite for:"
 msgstr "Depósitu pa:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1181
+#: gui/common/tooltips.js:1205
 msgid "Right-click to view more information."
 msgstr "Calca col botón derechu pa ver más información."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1187
+#: gui/common/tooltips.js:1211
 msgid "Click to view more information."
 msgstr "Calca pa ver más información."
 
@@ -2172,7 +2178,7 @@ msgstr "Al xugar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr "Facer atacar en cuenta d'otra aición (p. ex. tomar)."
+msgstr "Facer atacar en cuenta d'otra aición (p. ex. conquistar)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -2859,32 +2865,32 @@ msgstr "Abrir el resume"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Abrir o zarrar una charra en mou equipu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Abrir la charra n'equipu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Shows the game time elapsed since the game started."
-msgstr ""
+msgstr "Amosar o anubrir el tiempu pasao desque entamó'l xuegu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr ""
+msgstr "Amosar la sobrecapa de tiempu corrío"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Atayos rellacionaos cola esbilldura d'unidaes."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "Esbilladura d'unidaes"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
@@ -2899,12 +2905,12 @@ msgstr "Amestar a la esbilla"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Desesbillar unidaes o encaboxar l'allugamientu d'edificios."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Encaboxar la esbilla"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
@@ -3209,92 +3215,92 @@ msgstr "Esbillar el control 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Esbillar namái les unidaes baleres."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Esbillar unidaes baleres"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Esbillar la siguiente unidá balera."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Esbillar la siguiente unidá balera"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Esbillar el siguiente guerreru baleru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Esbillar el siguiente guerreru baleru"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Esbillar el siguiente obreru baleru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Esbillar el siguiente obreru baleru"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr "Añader unidaes militares a la esbilla."
+msgstr "Añader a la esbilla namái les unidaes militares."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Esbillar militares"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr "Añader unidaes civiles a la esbilla."
+msgstr "Añader a la esbilla namái les unidaes civiles."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Esbillar civiles"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Inxerir na esbilla unidaes que tán fuera de campu."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Incluyir el fuera de campu"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Quitar de la esbiila unidaes."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Quitar de la esbilla unidaes"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Esbillar namái les unidaes mancaes."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Esbillar unidaes mancaes"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -3717,43 +3723,43 @@ msgstr "Amosar el momentu en que s'espublicen los mensaxes."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Denomación."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
-msgstr ""
+msgstr "Principal particular."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
+msgstr "Amosar el nome particular como'l principal y el nome xeneral como'l secundariu."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic primary."
-msgstr ""
+msgstr "Principal xeneral."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
+msgstr "Amosar el nome xeneral como'l principal y el nome particular como'l secundariu."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
-msgstr ""
+msgstr "Namái'l particular."
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Show only specific names for units."
-msgstr ""
+msgstr "Amosar namái'l nome particular de les unidaes."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Namái'l xeneral."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr "Amosar namái'l nome xeneral de les unidaes."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Cómo denomar a los entes."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4214,7 +4220,7 @@ msgstr "Asignar automáticamente a veceros que tean xuniéndose rales llibres pa
 
 #: gui/options/options.json[4].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Conexón a la rede / antepar"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4271,23 +4277,23 @@ msgstr "Quitar que más espeutadores se xunan si s'algama la llende."
 
 #: gui/options/options.json[4].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Retrasu máximu pa los espeutadores"
 
 #: gui/options/options.json[4].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Al agospiar, posar la partida si los espeutadores queden más de determináu númberu de rioles atrás. Si s'afita a -1, nun se-yos fai casu."
 
 #: gui/options/options.json[4].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Espeutador) Entainar al quedar atrás."
 
 #: gui/options/options.json[4].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Al mirar una partida, entainar automáticamente si emprimes a restrasar pa sincronizar col alcuentru."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4656,7 +4662,7 @@ msgstr "Siguir cola campaña"
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr "Vivir la historia nes campañes militares."
+msgstr "Vivir la historia en campañes militares."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
@@ -5024,24 +5030,24 @@ msgstr[1] "Héroes"
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] "Construcción específica"
-msgstr[1] "Construcciones específiques"
+msgstr[0] "Construcción única"
+msgstr[1] "Construcciones úniques"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] "Teunoloxía específica"
-msgstr[1] "Teunoloxíes específiques"
+msgstr[0] "Téunica única"
+msgstr[1] "Téuniques úniques"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Cambiar a la güeyada a les civilizaciones"
+msgstr "%(hotkey)s: Cambiar a «Güeyada a les civilizaciones»."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Cambiar al árbole de construcciones."
+msgstr "%(hotkey)s: Cambiar a «Árbole de construcciones»."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
@@ -5069,14 +5075,14 @@ msgstr "Constructores:"
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr "Allistólo:"
+msgstr "Allístase en:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr "Investigóse en:"
+msgstr "Desendólcase en:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
@@ -5090,7 +5096,7 @@ msgstr "Constrúi:"
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "Teunoloxíes:"
+msgstr "Desendolca:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
@@ -5104,7 +5110,7 @@ msgstr "Allista:"
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr "Pue facese:"
+msgstr "Ascensiones:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
@@ -5592,7 +5598,7 @@ msgstr "Ganancies"
 
 #: gui/summary/summary.js:64
 msgid "Captured"
-msgstr "Tomaes"
+msgstr "Conquistaes"
 
 #: gui/summary/summary.js:69
 msgid "Succeeded"
@@ -5782,7 +5788,7 @@ msgstr "Allista tolos conscritos. Delles faiciones tamién pueden desbloquiar l'
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
-msgstr "Investiga teunoloxíes militares úniques a cada faición."
+msgstr "Desendolca les téuniques militares úniques de cada faición."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6081,7 +6087,7 @@ msgstr "ARQUITEUTURA PERSA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr "La teunoloxía especial de los perses. "
+msgstr "La téunica especial de los perses. "
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
@@ -6095,7 +6101,7 @@ msgstr "El tiempu de construcción aprovez el +20% en resultes. "
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr "Los perses tamién disponen de gran númberu de teunoloxíes estructurales & proteutores."
+msgstr "Los perses tamién disponen d'abondes téuniques constructives y defensives."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -6242,7 +6248,7 @@ msgstr "Un depósitu baratu pa recursos non comibles (la madera, la piedra, el m
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "Desendolca teunoloxíes p'ameyorar les competencies de los ciudadanos."
+msgstr "Desendolca téuniques p'ameyorar la competencia de los ciudadanos."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -6258,7 +6264,7 @@ msgstr "Allista curanderos pa sanar les tropes en campu batalla."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr "Desendolca teunoloxíes de curamientu."
+msgstr "Desendolca téuniques curatibles."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."

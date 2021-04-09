@@ -19,6 +19,7 @@
 # Koteinik Kerudion <gsmsrv@gmail.com>, 2021
 # Mikhail Grebelnick <oers92@mail.ru>, 2020
 # Nergal Sham <sham-nergal@mail.ru>, 2016
+# nwtour <nwtour@mail.ru>, 2021
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
@@ -36,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-08 20:03+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,7 +156,7 @@ msgstr "Эллинизация"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Воины в турелях получают +3 к защите от раздробляющего, рубящего и колющего оружия и +20% к дальности обзора."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -670,7 +671,7 @@ msgstr "Подготовка к войне"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "При наличии гарнизона здание получает +2 к восстановлению очков захвата."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

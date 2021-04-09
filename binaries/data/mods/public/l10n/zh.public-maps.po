@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 07:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-05 07:08+0000\n"
+"PO-Revision-Date: 2021-04-07 06:19+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2274,6 +2274,16 @@ msgstr "多人地图。热带伊甸园"
 msgid "Tropical Island"
 msgstr "热带群岛"
 
+#: maps/scenarios/unit_chasing_test.xml:Description:40
+msgid ""
+"This map is designed to test a few different cases of units chasing each "
+"other."
+msgstr ""
+
+#: maps/scenarios/unit_chasing_test.xml:Name:40
+msgid "Unit Chasing test"
+msgstr ""
+
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
 msgstr "本地图旨在测试几种不同单位的“休闲小动作”。"
@@ -2293,6 +2303,16 @@ msgstr "本地图旨在测试一些基本的单位运动案例。 涉及了 unit
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
 msgstr "单元运动集成测试"
+
+#: maps/scenarios/unit_pushing_test.xml:Description:40
+msgid ""
+"This map is designed to test the performance & functionality of unit "
+"pushing."
+msgstr ""
+
+#: maps/scenarios/unit_pushing_test.xml:Name:40
+msgid "Unit Pushing test"
+msgstr ""
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."
@@ -2963,7 +2983,7 @@ msgstr "冲突演示地图"
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Name:38
 msgid "Skirmish Demo (2)"
-msgstr ""
+msgstr "遭遇战演示（2）"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:38
 msgid "Sporades Islands (2)"
@@ -3049,7 +3069,7 @@ msgstr "条条大路通罗马"
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
-msgstr ""
+msgstr "奥古斯都皇家大道（4）"
 
 #: maps/skirmishes/watering_holes_4p.xml:Description:38
 msgid ""

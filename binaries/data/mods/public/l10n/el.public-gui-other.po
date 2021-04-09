@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-03 08:19+0000\n"
+"POT-Creation-Date: 2021-04-05 07:08+0000\n"
+"PO-Revision-Date: 2021-04-09 07:00+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -395,7 +395,8 @@ msgstr "Ζαβολιές"
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
 #: gui/common/tooltips.js:669 gui/common/tooltips.js:675
 #: gui/common/tooltips.js:762 gui/common/tooltips.js:813
-#: gui/common/tooltips.js:834 gui/common/tooltips.js:1161
+#: gui/common/tooltips.js:834 gui/common/tooltips.js:858
+#: gui/common/tooltips.js:1185
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -543,8 +544,8 @@ msgstr "Χρήστες (%(num)s): %(users)s"
 #: gui/common/tooltips.js:417 gui/common/tooltips.js:431
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:511
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
-#: gui/common/tooltips.js:997 gui/common/tooltips.js:1030
-#: gui/common/tooltips.js:1126 gui/loadgame/SavegameDetails.js:41
+#: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -691,7 +692,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:103 gui/common/tooltips.js:564
-#: gui/common/tooltips.js:1028
+#: gui/common/tooltips.js:1052
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "δευτερόλεπτα"
@@ -789,7 +790,7 @@ msgstr "Κύβοι:%(blockPercentage)s%%,Διάρκεια ελαχιστοποί
 msgid "Garrison to fire arrows"
 msgstr "Φρουρά με βέλη φωτιάς"
 
-#: gui/common/tooltips.js:308 gui/common/tooltips.js:1026
+#: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
 msgstr "Διάστημα:"
 
@@ -841,7 +842,7 @@ msgstr "%(rangeLabel)s %(minRange)s σε%(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:356 gui/common/tooltips.js:1021
+#: gui/common/tooltips.js:356 gui/common/tooltips.js:1045
 msgid "Range:"
 msgstr "Απόσταση:"
 
@@ -856,8 +857,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "μέτρα"
 
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:1023
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:364 gui/common/tooltips.js:1047
+#: gui/common/tooltips.js:1077
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "μέτρα"
@@ -979,11 +980,11 @@ msgstr "Όρια Οχύρωσης"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:561 gui/common/tooltips.js:1016
+#: gui/common/tooltips.js:561 gui/common/tooltips.js:1040
 msgid "Heal:"
 msgstr "Θεραπεύω"
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1018
+#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
 msgid "Health"
 msgstr "Υγεία"
 
@@ -1076,7 +1077,7 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Πρόσθεσε έναν εργάτη για να ολοκληρώσεις τις επισκευές κατά %(second)s δευτερόλεπτο."
 msgstr[1] "Πρόσθεσε έναν εργάτη για να ολοκληρώσεις τις επισκευές κατά%(second)sδευτερόλεπτα."
 
-#: gui/common/tooltips.js:730 gui/common/tooltips.js:969
+#: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1086,6 +1087,7 @@ msgid "Gather Rates:"
 msgstr "Συντελεστής Συγκομιδής:"
 
 #: gui/common/tooltips.js:766 gui/common/tooltips.js:839
+#: gui/common/tooltips.js:863
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1122,148 +1124,152 @@ msgstr "%(resourceIcon)s%(reward)s"
 msgid "Resource Trickle:"
 msgstr "Διάχυση Πόρων:"
 
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
+#: gui/common/tooltips.js:859
+msgid "Upkeep:"
+msgstr "Συντήρηση:"
+
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:888
+#: gui/common/tooltips.js:912
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s μέχρι %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:917
+#: gui/common/tooltips.js:941
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Τείχη:  %(costs)s"
 
-#: gui/common/tooltips.js:918
+#: gui/common/tooltips.js:942
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Πύργοι: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:926
+#: gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:927
+#: gui/common/tooltips.js:951
 msgid "Cost:"
 msgstr "Κόστος:"
 
-#: gui/common/tooltips.js:940
+#: gui/common/tooltips.js:964
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Απαιτείται η τεχνολογία %(technology)s"
 
-#: gui/common/tooltips.js:953
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s%(bonus)s"
 
-#: gui/common/tooltips.js:954
+#: gui/common/tooltips.js:978
 msgid "Population Bonus:"
 msgstr "Πληθυσμιακό Όφελος:"
 
-#: gui/common/tooltips.js:974
+#: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
 msgstr "Μη επαρκείς πόροι"
 
-#: gui/common/tooltips.js:990
+#: gui/common/tooltips.js:1014
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:991
+#: gui/common/tooltips.js:1015
 msgid "Speed:"
 msgstr "Ταχύτητα:"
 
-#: gui/common/tooltips.js:993 gui/common/tooltips.js:998
+#: gui/common/tooltips.js:1017 gui/common/tooltips.js:1022
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:995
+#: gui/common/tooltips.js:1019
 msgid "Walk"
 msgstr "Περπάτα"
 
-#: gui/common/tooltips.js:1000
+#: gui/common/tooltips.js:1024
 msgid "Run"
 msgstr "Τρέξε"
 
-#: gui/common/tooltips.js:1015 gui/common/tooltips.js:1020
-#: gui/common/tooltips.js:1025 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:1039 gui/common/tooltips.js:1044
+#: gui/common/tooltips.js:1049 gui/common/tooltips.js:1074
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1066
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1043
+#: gui/common/tooltips.js:1067
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1051
+#: gui/common/tooltips.js:1075
 msgctxt "aura"
 msgid "Range:"
 msgstr "Βεληνεκές:"
 
-#: gui/common/tooltips.js:1074 gui/common/tooltips.js:1102
+#: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s(%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1078 gui/common/tooltips.js:1095
+#: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1125
+#: gui/common/tooltips.js:1149
 msgid "Classes:"
 msgstr "Τάξεις:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1152
+#: gui/common/tooltips.js:1176
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1162
+#: gui/common/tooltips.js:1186
 msgid "Loot:"
 msgstr "Λάφυρα:"
 
-#: gui/common/tooltips.js:1172
+#: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1173
+#: gui/common/tooltips.js:1197
 msgid "Dropsite for:"
 msgstr "Σημείο ρίψης για:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1181
+#: gui/common/tooltips.js:1205
 msgid "Right-click to view more information."
 msgstr "Κάνε δεξί κλικ για να δεις περισσότερες πληροφορίες."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1187
+#: gui/common/tooltips.js:1211
 msgid "Click to view more information."
 msgstr "Κάνε κλικ για να δεις περισσότερες πληροφορίες."
 
@@ -1610,17 +1616,17 @@ msgstr "Κάμερα"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Κύλιση ροδέλας πρός τα πίσω ή περιστροή πρός τα κάτω."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Μετακίνηση ροδέλας ποντικού/Περιστροφή κάτω."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Ακολουθείστε την πρώτη μονάδα της επιλογής."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
@@ -1630,17 +1636,17 @@ msgstr "Ακολουθήστε τη Μονάδα"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "Άλμα σε θέση κάμερας 1 (δείτε \" Ορισμός άλματος κάμερας 1\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "Άλμα σε κάμερα 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr ""
+msgstr "Άλμα σε θέση κάμερας 2 (δείτε \" Ορισμός άλματος κάμερας 2\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
@@ -1650,62 +1656,62 @@ msgstr "Άλμα σε κάμερα 2"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr ""
+msgstr "Άλμα σε θέση κάμερας 3 (δείτε \" Ορισμός άλματος κάμερας 3\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "Άλμα σε κάμερα 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr ""
+msgstr "Άλμα σε θέση κάμερας 4 (δείτε \" Ορισμός άλματος κάμερας 4\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "Άλμα σε κάμερα 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας σε θέση 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας σε θέση 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας σε θέση 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας σε θέση 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "Ορισμός άλματος κάμερας 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
@@ -1766,18 +1772,18 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Περιστροφή αριστερόστροφα"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Περιστροφή κάμερας δεξιόστροφα γύρω απο το έδαφος."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Περιστροφή σύμφωνα με τη φορά του ρολογιού (δεξιόστροφα)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
@@ -1787,7 +1793,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "Περιστροφή προς τα κάτω."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -1817,7 +1823,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "Περιστροφή πρός τα πάνω."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
@@ -1968,7 +1974,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη Κονσόλας."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -1993,12 +1999,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid "Exit to desktop."
-msgstr ""
+msgstr "Έξοδο σε Επιφάνεια Εργασίας."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Exit to desktop"
-msgstr ""
+msgstr "Έξοδο σε Επιφάνεια Εργασίας"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2028,7 +2034,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Αποθήκευση Προφίλ"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
@@ -2053,12 +2059,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "Τραβήτξε ένα  στιγμιότυπο εικόνας PNG ."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Στιγμιότυπο εικόνας."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
@@ -2068,27 +2074,27 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη υδατογραφήματος."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Εμφάνιση επόμενης καρτέλας."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Επόμενη καρτέλα"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Εμφάνιση της προηγούμενης καρτέλας."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Προηγούμενη καρτέλα"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
@@ -2138,17 +2144,17 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη Πλήρους Οθόνης"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη  λειτουργίας προσχέδιου."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη  λειτουργίας προσχέδιου"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
@@ -2163,12 +2169,12 @@ msgstr "Διαμόρφωση Παιχνιδιού"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "Άνοιγμα περιηγητή χάρτη."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Άνοιγμα περιηγητή χάρτη"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -2178,7 +2184,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "Σε παιχνίδι"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
@@ -2188,7 +2194,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "Εξαναγκασμός επίθεσης."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
@@ -2198,7 +2204,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Κατάσταση Επίθεσης"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
@@ -2218,7 +2224,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "Αυτόματο σημείο συγκέντρωσης"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
@@ -2259,7 +2265,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "Ορισμός εμπορίου σε 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -2289,7 +2295,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Καταστροφή επιλεγμένων μονάδων."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
@@ -2319,7 +2325,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr ""
+msgstr "Εξαναγκασμός κίνησης"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
@@ -2349,7 +2355,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Διατάξτε μία μονάδα."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
@@ -2631,7 +2637,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "Γρήγορη φόρτιση παιχνιδιού."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
@@ -3240,32 +3246,32 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Επιλογή επόμενου αδρανούς πολεμιστή."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Επιλογή επόμενου αδρανούς πολεμιστή"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Επιλογή επόμενου αδρανούς εργάτη."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Επιλογή επόμενου αδρανούς εργάτη"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Προσθήκη μόνο στρατιωτρικών μοναδων στην επιλογή."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Επιλογή μόνο στρατιωτικού."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
@@ -3280,12 +3286,12 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Συμπερίληψη στην επιλογή μονάδων εκτός οθόνης."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Συμπερίληψη εκτός οθόνης"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
@@ -3305,7 +3311,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Επιλογή μόνο λαβωμένων ομάδων"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format

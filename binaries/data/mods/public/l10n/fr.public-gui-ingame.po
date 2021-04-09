@@ -77,7 +77,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 06:51+0000\n"
+"PO-Revision-Date: 2021-04-05 15:07+0000\n"
 "Last-Translator: Raz Ou <razieze@ymail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -936,11 +936,11 @@ msgstr "Trouver un travailleur inactif"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — Démonté"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Démonté"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -1012,7 +1012,7 @@ msgstr "Ramasseurs actuels/max"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:451
 msgid "Capture Points:"
@@ -1166,22 +1166,22 @@ msgstr "Impossible de recruter tant qu'une amélioration est en cours."
 #: gui/session/selection_panels.js:1079
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Améliorer à %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1085
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Améliorer à %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1093
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Améliorer à %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1098
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Améliorer à %(primaryName)s."
 
 #: gui/session/selection_panels.js:1135
 msgid "Cancel Upgrading"
@@ -1680,7 +1680,7 @@ msgstr "Clic droit pour définir le marché de destination."
 #: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "Tourelles actuelles : %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
@@ -1708,7 +1708,7 @@ msgstr "Tout décharger."
 
 #: gui/session/unit_actions.js:1336
 msgid "Unload Turrets."
-msgstr ""
+msgstr "Tourelles déchargées."
 
 #: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
