@@ -25,6 +25,7 @@
 #include "graphics/MeshManager.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
+#include "graphics/ModelDummy.h"
 #include "graphics/ObjectBase.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/ParticleManager.h"
@@ -75,6 +76,12 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 			LOGERROR("Actor '%s' has invalid RGB color '%s'", m_Base->GetIdentifier(), variation.color);
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
+	}
+
+	if (variation.model.empty())
+	{
+		m_Model = new CModelDummy();
+		return true;
 	}
 
 	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
