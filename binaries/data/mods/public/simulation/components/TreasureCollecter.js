@@ -46,6 +46,10 @@ TreasureCollecter.prototype.StartCollecting = function(target, callerIID)
 	if (!cmpTreasure || !cmpTreasure.IsAvailable())
 		return false;
 
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("collecting_treasure", false, 1.0);
+
 	this.target = target;
 	this.callerIID = callerIID;
 
@@ -69,9 +73,12 @@ TreasureCollecter.prototype.StopCollecting = function(reason)
 	}
 	delete this.target;
 
-	// The callerIID component may start gathering again,
-	// replacing the callerIID, which gets deleted after
-	// the callerIID has finished. Hence save the data.
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("idle", false, 1.0);
+
+	// The callerIID component may start collecting again,
+	// replacing the callerIID, hence save that.
 	let callerIID = this.callerIID;
 	delete this.callerIID;
 

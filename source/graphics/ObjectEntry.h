@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,16 +40,16 @@ class CObjectEntry
 	NONCOPYABLE(CObjectEntry);
 
 public:
-	CObjectEntry(CObjectBase* base, CSimulation2& simulation);
+	CObjectEntry(const std::shared_ptr<CObjectBase>& base, CSimulation2& simulation);
 	~CObjectEntry();
 
 	// Construct this actor, using the specified variation selections
-	bool BuildVariation(const std::vector<std::set<CStr> >& selections,
+	bool BuildVariation(const std::vector<const std::set<CStr>*>& completeSelections,
 		const std::vector<u8>& variationKey, CObjectManager& objectManager);
 
 	// Base actor. Contains all the things that don't change between
 	// different variations of the actor.
-	CObjectBase* m_Base;
+	std::shared_ptr<CObjectBase> m_Base;
 
 	// samplers list
 	std::vector<CObjectBase::Samp> m_Samplers;

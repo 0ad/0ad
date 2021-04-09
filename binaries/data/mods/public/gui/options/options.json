@@ -153,6 +153,17 @@
 				"max": 1
 			},
 			{
+				"type": "dropdown",
+				"label": "Model quality",
+				"tooltip": "Model quality setting.",
+				"config": "max_actor_quality",
+				"list": [
+					{ "value": 100, "label": "Low", "tooltip": "Simpler models for better performance." },
+					{ "value": 150, "label": "Medium", "tooltip": "Average quality and average performance." },
+					{ "value": 200, "label": "High", "tooltip": "High quality models." }
+				]
+			},
+			{
 				"type": "slider",
 				"label": "Shader effects",
 				"tooltip": "Number of shader effects. REQUIRES GAME RESTART",

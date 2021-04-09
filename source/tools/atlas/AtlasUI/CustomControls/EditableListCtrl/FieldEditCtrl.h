@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,14 @@ protected:
 //////////////////////////////////////////////////////////////////////////
 
 class FieldEditCtrl_Color : public FieldEditCtrl
+{
+protected:
+	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
+};
+
+//////////////////////////////////////////////////////////////////////////
+
+class FieldEditCtrl_Boolean : public FieldEditCtrl
 {
 protected:
 	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);

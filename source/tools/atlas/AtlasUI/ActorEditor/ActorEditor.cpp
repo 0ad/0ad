@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,6 +155,12 @@ static AtObj ConvertToLatestFormat(AtObj in)
 	{
 		// old-style actor format
 		version = -1;
+	}
+	else if (in["qualitylevels"].defined())
+	{
+		// New-style, multiple-quality-levels actor.
+		wxLogError(_("Cannot edit actors with multiple quality levels. If you want to use the actor editor, use the `<actor file=\"\">` format and edit the referenced files."));
+		return AtObj();
 	}
 	else if (in["actor"].defined())
 		version = (in["actor"]["@version"].defined()) ? (*in["actor"]["@version"]).getLong() : 0;
@@ -314,6 +320,8 @@ void ActorEditor::ImportData(AtObj& in)
 	AtObj actor (*data["actor"]);
 	m_ActorEditorListCtrl->ImportData(actor);
 
+	m_Actor = actor;
+
 	m_CastShadows->SetValue(actor["castshadow"].defined());
 	m_Float->SetValue(actor["float"].defined());
 	m_Material->SetValue((wxString)actor["material"]);
@@ -326,12 +334,21 @@ AtObj ActorEditor::ExportData()
 
 	actor.set("@version", "1");
 
-	if (m_CastShadows->IsChecked())
+
+	AtObj castShadow = *m_Actor["castshadow"];
+	if (m_CastShadows->IsChecked() && castShadow.defined())
+		actor.set("castshadow", castShadow);
+	else if (m_CastShadows->IsChecked())
 		actor.set("castshadow", "");
 
-	if (m_Float->IsChecked())
+	AtObj floatObj = *m_Actor["float"];
+	if (m_Float->IsChecked() && floatObj)
+		actor.set("float", floatObj);
+	else if (m_Float->IsChecked())
 		actor.set("float", "");
 
+	AtObj material = *m_Actor["material"];
+	actor.set("material", material);
 	if (m_Material->GetValue().length())
 		actor.set("material", m_Material->GetValue());
 

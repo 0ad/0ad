@@ -488,16 +488,21 @@ bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CS
 	return ret;
 }
 
-CConfigDB::hook_t CConfigDB::RegisterHookAndCall(const CStr& name, std::function<void()> hook)
+CConfigDBHook CConfigDB::RegisterHookAndCall(const CStr& name, std::function<void()> hook)
 {
 	hook();
-	return m_Hooks.emplace(name, hook);
+	return CConfigDBHook(*this, m_Hooks.emplace(name, hook));
 }
 
-void CConfigDB::UnregisterHook(CConfigDB::hook_t&& hook)
+void CConfigDB::UnregisterHook(CConfigDBHook&& hook)
 {
 	if (hook.ptr != m_Hooks.end())
 		m_Hooks.erase(hook.ptr);
+}
+
+void CConfigDB::UnregisterHook(std::unique_ptr<CConfigDBHook>&& hook)
+{
+	UnregisterHook(std::move(*hook.get()));
 }
 
 #undef CHECK_NS

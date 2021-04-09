@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,13 +18,16 @@
 #ifndef INCLUDED_OBJECTMANAGER
 #define INCLUDED_OBJECTMANAGER
 
-#include <vector>
-#include <map>
-#include <set>
-
 #include "ps/CStr.h"
 #include "lib/file/vfs/vfs_path.h"
 
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <vector>
+
+class CActorDef;
+class CConfigDBHook;
 class CMeshManager;
 class CObjectBase;
 class CObjectEntry;
@@ -41,13 +44,13 @@ public:
 	// Unique identifier of an actor variation
 	struct ObjectKey
 	{
-		ObjectKey(const CStrW& name, const std::vector<u8>& var)
-			: ActorName(name), ActorVariation(var) {}
+		ObjectKey(const CStr& identifier, const std::vector<u8>& var)
+			: ObjectBaseIdentifier(identifier), ActorVariation(var) {}
 
 		bool operator< (const CObjectManager::ObjectKey& a) const;
 
 	private:
-		CStrW ActorName;
+		CStr ObjectBaseIdentifier;
 		std::vector<u8> ActorVariation;
 	};
 
@@ -65,13 +68,22 @@ public:
 
 	void UnloadObjects();
 
-	CObjectEntry* FindObject(const CStrW& objname);
-	void DeleteObject(CObjectEntry* entry);
+	CActorDef* FindActorDef(const CStrW& actorName);
 
-	CObjectBase* FindObjectBase(const CStrW& objname);
+	/**
+	 * Get the object entry for a given actor & the given selections list.
+	 * @param selections - a possibly incomplete list of selections.
+	 * @param seed - the randomness seed to use to complete the random selections.
+	 */
+	CObjectEntry* FindObjectVariation(const CActorDef* actor, const std::vector<std::set<CStr>>& selections, uint32_t seed);
 
-	CObjectEntry* FindObjectVariation(const CStrW& objname, const std::vector<std::set<CStr> >& selections);
-	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
+	/**
+	 * @see FindObjectVariation.
+	 * These take a complete selection. These are pointers to sets that are
+	 * guaranteed to exist (pointers are used to avoid copying the sets).
+	 */
+	CObjectEntry* FindObjectVariation(const std::shared_ptr<CObjectBase>& base, const std::vector<const std::set<CStr>*>& completeSelections);
+	CObjectEntry* FindObjectVariation(const CStrW& objname, const std::vector<const std::set<CStr>*>& completeSelections);
 
 	/**
 	 * Get the terrain object that actors managed by this manager should be linked
@@ -85,13 +97,22 @@ public:
 	 */
 	Status ReloadChangedFile(const VfsPath& path);
 
-private:
+
+	/**
+	 * Reload actors that have a quality setting. Used when changing the actor quality.
+	 */
+	void ActorQualityChanged();
+
 	CMeshManager& m_MeshManager;
 	CSkeletonAnimManager& m_SkeletonAnimManager;
 	CSimulation2& m_Simulation;
 
-	std::map<ObjectKey, CObjectEntry*> m_Objects;
-	std::map<CStrW, CObjectBase*> m_ObjectBases;
+	u8 m_QualityLevel = 100;
+	std::unique_ptr<CConfigDBHook> m_QualityHook;
+
+	// TODO: define a hash and switch to unordered_map
+	std::map<ObjectKey, std::unique_ptr<CObjectEntry>> m_Objects;
+	std::unordered_map<CStrW, std::unique_ptr<CActorDef>> m_ActorDefs;
 };
 
 #endif

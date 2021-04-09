@@ -1,10 +1,20 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
+Engine.LoadComponentScript("interfaces/Foundation.js");
+Engine.LoadComponentScript("interfaces/Repairable.js");
+Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Builder.js");
+Engine.LoadComponentScript("Timer.js");
 
 const builderId = 6;
+const target = 7;
 const playerId = 1;
 const playerEntityID = 2;
+
+AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
+	"IsInTargetRange": () => true
+});
 
 AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	"TemplateExists": () => true
@@ -14,7 +24,7 @@ Engine.RegisterGlobal("ApplyValueModificationsToEntity", (prop, oVal, ent) => oV
 
 
 let cmpBuilder = ConstructComponent(builderId, "Builder", {
-	"Rate": 1.0,
+	"Rate": "1.0",
 	"Entities": { "_string": "structures/{civ}/barracks structures/{civ}/civil_centre structures/{native}/house" }
 });
 
@@ -81,3 +91,30 @@ AddMock(builderId, IID_Obstruction, {
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetRange(), { "max": 3, "min": 0 });
+
+// Test repairing.
+AddMock(playerEntityID, IID_Player, {
+	"IsAlly": (p) => p == playerId
+});
+
+AddMock(target, IID_Ownership, {
+	"GetOwner": () => playerId
+});
+
+let increased = false;
+AddMock(target, IID_Foundation, {
+	"Build": (entity, amount) => {
+		increased = true;
+		TS_ASSERT_EQUALS(amount, 1);
+	},
+	"AddBuilder": () => {}
+});
+
+let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer");
+
+TS_ASSERT(cmpBuilder.StartRepairing(target));
+cmpTimer.OnUpdate({ "turnLength": 1 });
+TS_ASSERT(increased);
+increased = false;
+cmpTimer.OnUpdate({ "turnLength": 2 });
+TS_ASSERT(increased);

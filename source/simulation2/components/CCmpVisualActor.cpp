@@ -385,13 +385,6 @@ public:
 		return m_Unit->GetModel().GetTransform().GetTranslation();
 	}
 
-	virtual std::wstring GetActorShortName() const
-	{
-		if (!m_Unit)
-			return L"";
-		return m_Unit->GetObject().m_Base->m_ShortName;
-	}
-
 	virtual std::wstring GetProjectileActor() const
 	{
 		if (!m_Unit)
@@ -556,7 +549,7 @@ public:
 		if (!m_Unit)
 			return;
 
-		if (name != m_ActorName)
+		if (!name.empty() && name != m_ActorName)
 			return;
 
 		ReloadActor();

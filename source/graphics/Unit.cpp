@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,16 +26,11 @@
 #include "SkeletonAnimDef.h"
 #include "UnitAnimation.h"
 
-CUnit::CUnit(CObjectEntry* object, CObjectManager& objectManager,
-			 const std::set<CStr>& actorSelections, uint32_t seed)
-: m_Object(object), m_Model(object->m_Model->Clone()),
-  m_ID(INVALID_ENTITY), m_ActorSelections(actorSelections),
-  m_ObjectManager(objectManager), m_Seed(seed)
+#include "ps/CLogger.h"
+
+CUnit::CUnit(CObjectManager& objectManager, const CActorDef& actor, uint32_t seed)
+: m_ID(INVALID_ENTITY), m_ObjectManager(objectManager), m_Actor(actor), m_Seed(seed), m_Animation(nullptr)
 {
-	if (m_Model->ToCModel())
-		m_Animation = new CUnitAnimation(m_ID, m_Model->ToCModel(), m_Object);
-	else
-		m_Animation = NULL;
 }
 
 CUnit::~CUnit()
@@ -46,22 +41,19 @@ CUnit::~CUnit()
 
 CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>& selections, CObjectManager& objectManager)
 {
-	CObjectBase* base = objectManager.FindObjectBase(actorName);
+	CActorDef* actor = objectManager.FindActorDef(actorName);
 
-	if (! base)
-		return NULL;
+	if (!actor)
+		return nullptr;
 
-	std::set<CStr> actorSelections = base->CalculateRandomVariation(seed, selections);
-
-	std::vector<std::set<CStr> > selectionsVec;
-	selectionsVec.push_back(actorSelections);
-
-	CObjectEntry* obj = objectManager.FindObjectVariation(base, selectionsVec);
-
-	if (! obj)
-		return NULL;
-
-	return new CUnit(obj, objectManager, actorSelections, seed);
+	CUnit* unit = new CUnit(objectManager, *actor, seed);
+	unit->SetActorSelections(selections); // Calls ReloadObject().
+	if (!unit->m_Model)
+	{
+		delete unit;
+		return nullptr;
+	}
+	return unit;
 }
 
 void CUnit::UpdateModel(float frameTime)
@@ -107,7 +99,7 @@ void CUnit::ReloadObject()
 	std::set<CStr> entitySelections;
 	for (const std::pair<const CStr, CStr>& selection : m_EntitySelections)
 		entitySelections.insert(selection.second);
-	std::vector<std::set<CStr> > selections;
+	std::vector<std::set<CStr>> selections;
 	selections.push_back(entitySelections);
 	selections.push_back(m_ActorSelections);
 
@@ -116,14 +108,24 @@ void CUnit::ReloadObject()
 	// expects the selectors passed to it to be complete.
 	// see http://trac.wildfiregames.com/ticket/979
 
-	// Use the entity ID as randomization seed (same as when the unit was first created)
-	std::set<CStr> remainingSelections = m_Object->m_Base->CalculateRandomRemainingSelections(m_Seed, selections);
-	if (!remainingSelections.empty())
-		selections.push_back(remainingSelections);
-
 	// If these selections give a different object, change this unit to use it
-	CObjectEntry* newObject = m_ObjectManager.FindObjectVariation(m_Object->m_Base, selections);
-	if (newObject && newObject != m_Object)
+	// Use the entity ID as randomization seed (same as when the unit was first created)
+	CObjectEntry* newObject = m_ObjectManager.FindObjectVariation(&m_Actor, selections, m_Seed);
+	if (!newObject)
+	{
+		LOGERROR("Error loading object variation (actor: %s)", m_Actor.GetPathname().string8());
+		// Don't delete the unit, don't override our current (valid) state.
+		return;
+	}
+
+	if (!m_Object)
+	{
+		m_Object = newObject;
+		m_Model = newObject->m_Model->Clone();
+		if (m_Model->ToCModel())
+			m_Animation = new CUnitAnimation(m_ID, m_Model->ToCModel(), m_Object);
+	}
+	else if (m_Object && newObject != m_Object)
 	{
 		// Clone the new object's base (non-instance) model
 		CModelAbstract* newModel = newObject->m_Model->Clone();

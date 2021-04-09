@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,12 +53,6 @@ public:
 	 * (Not safe for use in simulation code.)
 	 */
 	virtual CVector3D GetPosition() const = 0;
-
-	/**
-	 * Return the short name of the actor that's being displayed, or the empty string on error.
-	 * (Not safe for use in simulation code.)
-	 */
-	virtual std::wstring GetActorShortName() const = 0;
 
 	/**
 	 * Return the filename of the actor to be used for projectiles from this unit, or the empty string if none.
@@ -166,8 +160,9 @@ public:
 	 * Called when an actor file has been modified and reloaded dynamically.
 	 * If this component uses the named actor file, it should regenerate its actor
 	 * to pick up the new definitions.
+	 * If name is empty, this reloads all the time. This is used when global quality settings change.
 	 */
-	virtual void Hotload(const VfsPath& name) = 0;
+	virtual void Hotload(const VfsPath& name = L"") = 0;
 
 	DECLARE_INTERFACE_TYPE(Visual)
 };

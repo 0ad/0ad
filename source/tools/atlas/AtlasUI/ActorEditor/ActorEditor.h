@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,6 +50,10 @@ private:
 	wxCheckBox* m_CastShadows;
 	wxCheckBox* m_Float;
 	wxComboBox* m_Material;
+
+	// Some data is not modifiable in the editor
+	// but should be persisted so for convenience keep a copy of the last loaded file.
+	AtObj m_Actor;
 
 	DECLARE_EVENT_TABLE();
 };

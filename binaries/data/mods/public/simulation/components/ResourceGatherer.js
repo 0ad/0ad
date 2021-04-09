@@ -31,6 +31,12 @@ ResourceGatherer.prototype.Schema =
 		Resources.BuildSchema("positiveDecimal") +
 	"</element>";
 
+/*
+ * Call interval will be determined by gather rate,
+ * so always gather integer amount.
+ */
+ResourceGatherer.prototype.GATHER_AMOUNT = 1;
+
 ResourceGatherer.prototype.Init = function()
 {
 	this.capacities = {};
@@ -161,52 +167,133 @@ ResourceGatherer.prototype.GetCapacity = function(resourceType)
 ResourceGatherer.prototype.GetRange = function()
 {
 	return { "max": +this.template.MaxDistance, "min": 0 };
-	// maybe this should depend on the unit or target or something?
 };
 
 /**
- * Gather from the target entity. This should only be called after a successful range check,
- * and if the target has a compatible ResourceSupply.
- * Call interval will be determined by gather rate, so always gather 1 amount when called.
+ * @param {number} target - The target to gather from.
+ * @param {number} callerIID - The IID to notify on specific events.
+ * @return {boolean} - Whether we started gathering.
  */
-ResourceGatherer.prototype.PerformGather = function(target)
+ResourceGatherer.prototype.StartGathering = function(target, callerIID)
 {
-	if (!this.GetTargetGatherRate(target))
-		return { "exhausted": true };
+	if (this.target)
+		this.StopGathering();
 
-	let gatherAmount = 1;
+	let rate = this.GetTargetGatherRate(target);
+	if (!rate)
+		return false;
 
 	let cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	let type = cmpResourceSupply.GetType();
+	if (!cmpResourceSupply || !cmpResourceSupply.AddActiveGatherer(this.entity))
+		return false;
 
-	// Initialise the carried count if necessary
+	let resourceType = cmpResourceSupply.GetType();
+
+	// If we've already got some resources but they're the wrong type,
+	// drop them first to ensure we're only ever carrying one type.
+	if (this.IsCarryingAnythingExcept(resourceType.generic))
+		this.DropResources();
+	this.AddToPlayerCounter(resourceType.generic);
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("gather_" + resourceType.specific, false, 1.0);
+
+	// Calculate timing based on gather rates.
+	// This allows the gather rate to control how often we gather, instead of how much.
+	let timing = 1000 / rate;
+
+	this.target = target;
+	this.callerIID = callerIID;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timer = cmpTimer.SetInterval(this.entity, IID_ResourceGatherer, "PerformGather", timing, timing, null);
+
+	return true;
+};
+
+/**
+ * @param {string} reason - The reason why we stopped gathering used to notify the caller.
+ */
+ResourceGatherer.prototype.StopGathering = function(reason)
+{
+	if (this.timer)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		delete this.timer;
+	}
+
+	if (this.target)
+	{
+		let cmpResourceSupply = Engine.QueryInterface(this.target, IID_ResourceSupply);
+		if (cmpResourceSupply)
+			cmpResourceSupply.RemoveGatherer(this.entity);
+		this.RemoveFromPlayerCounter();
+		delete this.target;
+	}
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("idle", false, 1.0);
+
+	// The callerIID component may start gathering again,
+	// replacing the callerIID, hence save that.
+	let callerIID = this.callerIID;
+	delete this.callerIID;
+
+	if (reason && callerIID)
+	{
+		let component = Engine.QueryInterface(this.entity, callerIID);
+		if (component)
+			component.ProcessMessage(reason, null);
+	}
+};
+
+/**
+ * Gather from our target entity.
+ * @params - data and lateness are unused.
+ */
+ResourceGatherer.prototype.PerformGather = function(data, lateness)
+{
+	let cmpResourceSupply = Engine.QueryInterface(this.target, IID_ResourceSupply);
+	if (!cmpResourceSupply || cmpResourceSupply.GetCurrentAmount() <= 0)
+	{
+		this.StopGathering("TargetInvalidated");
+		return;
+	}
+
+	if (!this.IsTargetInRange(this.target))
+	{
+		this.StopGathering("OutOfRange");
+		return;
+	}
+
+	// ToDo: Enable entities to keep facing a target.
+	Engine.QueryInterface(this.entity, IID_UnitAI)?.FaceTowardsTarget(this.target);
+
+	let type = cmpResourceSupply.GetType();
 	if (!this.carrying[type.generic])
 		this.carrying[type.generic] = 0;
 
-	// Find the maximum so we won't exceed our capacity
 	let maxGathered = this.GetCapacity(type.generic) - this.carrying[type.generic];
-
-	let status = cmpResourceSupply.TakeResources(Math.min(gatherAmount, maxGathered));
-
+	let status = cmpResourceSupply.TakeResources(Math.min(this.GATHER_AMOUNT, maxGathered));
 	this.carrying[type.generic] += status.amount;
-
 	this.lastCarriedType = type;
 
 	// Update stats of how much the player collected.
 	// (We have to do it here rather than at the dropsite, because we
-	// need to know what subtype it was)
+	// need to know what subtype it was.)
 	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseResourceGatheredCounter(type.generic, status.amount, type.specific);
 
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 
-
-	return {
-		"amount": status.amount,
-		"exhausted": status.exhausted,
-		"filled": this.carrying[type.generic] >= this.GetCapacity(type.generic)
-	};
+	if (!this.CanCarryMore(type.generic))
+		this.StopGathering("InventoryFilled");
+	else if (status.exhausted)
+		this.StopGathering("TargetInvalidated");
 };
 
 /**
@@ -217,14 +304,14 @@ ResourceGatherer.prototype.PerformGather = function(target)
 ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 {
 	let cmpResourceSupply = QueryMiragedInterface(target, IID_ResourceSupply);
-	if (!cmpResourceSupply)
+	if (!cmpResourceSupply || cmpResourceSupply.GetCurrentAmount() <= 0)
 		return 0;
 
 	let type = cmpResourceSupply.GetType();
 
 	let rate = 0;
 	if (type.specific)
-		rate = this.GetGatherRate(type.generic+"."+type.specific);
+		rate = this.GetGatherRate(type.generic + "." + type.specific);
 	if (rate == 0 && type.generic)
 		rate = this.GetGatherRate(type.generic);
 
@@ -233,6 +320,15 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 		rate *= diminishingReturns;
 
 	return rate;
+};
+
+/**
+ * @param {number} target - The entity ID of the target to check.
+ * @return {boolean} - Whether we can gather from the target.
+ */
+ResourceGatherer.prototype.CanGather = function(target)
+{
+	return this.GetTargetGatherRate(target) > 0;
 };
 
 /**
@@ -374,6 +470,16 @@ ResourceGatherer.prototype.RemoveFromPlayerCounter = function(playerid)
 		cmpPlayer.RemoveResourceGatherer(this.lastGathered);
 
 	delete this.lastGathered;
+};
+
+/**
+ * @param {number} - The entity ID of the target to check.
+ * @return {boolean} - Whether this entity is in range of its target.
+ */
+ResourceGatherer.prototype.IsTargetInRange = function(target)
+{
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager).
+		IsInTargetRange(this.entity, target, 0, +this.template.MaxDistance, false);
 };
 
 // Since we cache gather rates, we need to make sure we update them when tech changes.

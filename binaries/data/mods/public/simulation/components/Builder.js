@@ -18,11 +18,14 @@ Builder.prototype.Schema =
 		"<text/>" +
 	"</element>";
 
+/*
+ * Build interval and repeat time, in ms.
+ */
+Builder.prototype.BUILD_INTERVAL = 1000;
+
 Builder.prototype.Init = function()
 {
 };
-
-Builder.prototype.Serialize = null; // we have no dynamic state to save
 
 Builder.prototype.GetEntitiesList = function()
 {
@@ -80,26 +83,118 @@ Builder.prototype.CanRepair = function(target)
 };
 
 /**
- * Build/repair the target entity. This should only be called after a successful range check.
- * It should be called at a rate of once per second.
+ * @param {number} target - The target to repair.
+ * @param {number} callerIID - The IID to notify on specific events.
+ * @return {boolean} - Whether we started repairing.
  */
-Builder.prototype.PerformBuilding = function(target)
+Builder.prototype.StartRepairing = function(target, callerIID)
 {
-	let rate = this.GetRate();
+	if (this.target)
+		this.StopRepairing();
 
-	let cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+	if (!this.CanRepair(target))
+		return false;
+
+	let cmpBuilderList = QueryBuilderListInterface(target);
+	if (cmpBuilderList)
+		cmpBuilderList.AddBuilder(this.entity);
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("build", false, 1.0);
+
+	this.target = target;
+	this.callerIID = callerIID;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timer = cmpTimer.SetInterval(this.entity, IID_Builder, "PerformBuilding", this.BUILD_INTERVAL, this.BUILD_INTERVAL, null);
+
+	return true;
+};
+
+/**
+ * @param {string} reason - The reason why we stopped repairing.
+ */
+Builder.prototype.StopRepairing = function(reason)
+{
+	if (this.timer)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		delete this.timer;
+	}
+
+	if (this.target)
+	{
+		let cmpBuilderList = QueryBuilderListInterface(this.target);
+		if (cmpBuilderList)
+			cmpBuilderList.RemoveBuilder(this.entity);
+
+		delete this.target;
+	}
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("idle", false, 1.0);
+
+	// The callerIID component may start repairing again,
+	// replacing the callerIID, hence save that.
+	let callerIID = this.callerIID;
+	delete this.callerIID;
+
+	if (reason && callerIID)
+	{
+		let component = Engine.QueryInterface(this.entity, callerIID);
+		if (component)
+			component.ProcessMessage(reason, null);
+	}
+};
+
+/**
+ * Repair our target entity.
+ * @params - data and lateness are unused.
+ */
+Builder.prototype.PerformBuilding = function(data, lateness)
+{
+	if (!this.CanRepair(this.target))
+	{
+		this.StopRepairing("TargetInvalidated");
+		return;
+	}
+
+	if (!this.IsTargetInRange(this.target))
+	{
+		this.StopRepairing("OutOfRange");
+		return;
+	}
+
+	// ToDo: Enable entities to keep facing a target.
+	Engine.QueryInterface(this.entity, IID_UnitAI)?.FaceTowardsTarget(this.target);
+
+	let cmpFoundation = Engine.QueryInterface(this.target, IID_Foundation);
 	if (cmpFoundation)
 	{
-		cmpFoundation.Build(this.entity, rate);
+		cmpFoundation.Build(this.entity, this.GetRate());
 		return;
 	}
 
-	let cmpRepairable = Engine.QueryInterface(target, IID_Repairable);
+	let cmpRepairable = Engine.QueryInterface(this.target, IID_Repairable);
 	if (cmpRepairable)
 	{
-		cmpRepairable.Repair(this.entity, rate);
+		cmpRepairable.Repair(this.entity, this.GetRate());
 		return;
 	}
+};
+
+/**
+ * @param {number} - The entity ID of the target to check.
+ * @return {boolean} - Whether this entity is in range of its target.
+ */
+Builder.prototype.IsTargetInRange = function(target)
+{
+	let range = this.GetRange();
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
 };
 
 Builder.prototype.OnValueModification = function(msg)
