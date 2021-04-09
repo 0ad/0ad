@@ -182,15 +182,15 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Order the idle Skirmishers to build an outpost to the north east at the edge of your territory. This will be the fifth Village Phase structure that you have built, allowing you to advance to the Town Phase."),
+		"instructions": markForTranslation("Build a Barracks nearby. Whenever your population limit is reached, build an extra House using any available builder units. This will be the fifth Village Phase structure that you have built, allowing you to advance to the Town Phase."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Outpost"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Barracks"))
 				this.NextGoal();
 		}
 	},
 	{
-		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the II icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
+		"instructions": markForTranslation("Select the Civic Center again and advance to Town Phase by clicking on the II icon (you have to wait for the barracks to be built first). This will allow Town Phase buildings to be constructed."),
 		"IsDone": function()
 		{
 			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_generic");
@@ -213,6 +213,14 @@ Trigger.prototype.tutorialGoals = [
 		"OnResearchFinished": function(msg)
 		{
 			if (msg.tech == "phase_town_generic")
+				this.NextGoal();
+		}
+	},
+	{
+		"instructions": markForTranslation("Order the idle Skirmishers to build an outpost to the north east at the edge of your territory."),
+		"OnPlayerCommand": function(msg)
+		{
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Outpost"))
 				this.NextGoal();
 		}
 	},
@@ -251,14 +259,6 @@ Trigger.prototype.tutorialGoals = [
 				return;
 			this.rallyPointSet = true;
 			if (this.IsDone())
-				this.NextGoal();
-		}
-	},
-	{
-		"instructions": markForTranslation("Build a Barracks nearby. Whenever your population limit is reached, build an extra House using any available builder units."),
-		"OnPlayerCommand": function(msg)
-		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Barracks"))
 				this.NextGoal();
 		}
 	},
