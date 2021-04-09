@@ -355,7 +355,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (!cmpHolder || cmpHolder.IsFull())
 			return this.FinishOrder();
 
-		let range = cmpHolder.GetLoadingRange();
+		let range = cmpHolder.LoadingRange();
 		msg.data.min = range.min;
 		msg.data.max = range.max;
 		if (this.CheckRange(msg.data))
