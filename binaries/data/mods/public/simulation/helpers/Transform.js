@@ -130,6 +130,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		let pos = cmpUnitAI.GetHeldPosition();
 		if (pos)
 			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
+		cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
 		cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
 		let guarded = cmpUnitAI.IsGuardOf();
 		if (guarded)
