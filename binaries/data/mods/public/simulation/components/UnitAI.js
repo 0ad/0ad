@@ -355,7 +355,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (!cmpHolder || cmpHolder.IsFull())
 			return this.FinishOrder();
 
-		let range = cmpHolder.GetLoadingRange();
+		let range = cmpHolder.LoadingRange();
 		msg.data.min = range.min;
 		msg.data.max = range.max;
 		if (this.CheckRange(msg.data))
@@ -2761,11 +2761,15 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function(msg) {
-					// Check the dropsite is in range and we can return our resource there
-					// (we didn't get stopped before reaching it)
+					if (msg.likelyFailure || this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+						this.SetNextState("DROPPINGRESOURCES");
+				},
+			},
+
+			"DROPPINGRESOURCES": {
+				"enter": function() {
 					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) &&
-					    this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
+					if (this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
 					{
 						cmpResourceGatherer.CommitResources(this.order.data.target);
 
@@ -2775,26 +2779,17 @@ UnitAI.prototype.UnitFsmSpec = {
 						// Our next order should always be a Gather,
 						// so just switch back to that order.
 						this.FinishOrder();
-						return;
+						return true;
 					}
-
-					if (msg.obstructed)
-						return;
-
-					// If we are here: we are in range but not carrying the right resources (or resources at all),
-					// the dropsite was destroyed, or we couldn't reach it, or ownership changed.
-					// Look for a new one.
-					let genericType = cmpResourceGatherer.GetMainCarryingType();
-					let nearby = this.FindNearestDropsite(genericType);
-					if (nearby)
-					{
-						this.FinishOrder();
-						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-						return;
-					}
-
-					// Oh no, couldn't find any drop sites. Give up on returning.
+					let nearby = this.FindNearestDropsite(cmpResourceGatherer.GetMainCarryingType());
 					this.FinishOrder();
+					if (nearby)
+						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+
+					return true;
+				},
+
+				"leave": function() {
 				},
 			},
 		},
@@ -2901,6 +2896,12 @@ UnitAI.prototype.UnitFsmSpec = {
 				// TODO: Inform player
 			},
 
+			"leave": function() {
+				let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+				if (cmpTrader)
+					cmpTrader.StopTrading();
+			},
+
 			"APPROACHINGMARKET": {
 				"enter": function() {
 					if (!this.MoveToMarket(this.order.data.target))
@@ -2921,10 +2922,50 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.waypoints && this.waypoints.length)
 					{
 						if (!this.MoveToMarket(this.order.data.target))
-							this.StopTrading();
+							this.FinishOrder();
 					}
 					else
-						this.PerformTradeAndMoveToNextMarket(this.order.data.target);
+						this.SetNextState("TRADING");
+				},
+			},
+
+			"TRADING": {
+				"enter": function() {
+					if (!this.CanTrade(this.order.data.target))
+					{
+						this.FinishOrder();
+						return true;
+					}
+
+					if (!this.CheckTargetRange(this.order.data.target, IID_Trader))
+					{
+						this.SetNextState("APPROACHINGMARKET");
+						return true;
+					}
+
+					let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+					let nextMarket = cmpTrader.PerformTrade(this.order.data.target);
+					let amount = cmpTrader.GetGoods().amount;
+					if (!nextMarket || !amount || !amount.traderGain)
+					{
+						this.FinishOrder();
+						return true;
+					}
+
+					this.order.data.target = nextMarket;
+
+					if (this.order.data.route && this.order.data.route.length)
+					{
+						this.waypoints = this.order.data.route.slice();
+						if (this.order.data.target == cmpTrader.GetSecondMarket())
+							this.waypoints.reverse();
+					}
+
+					this.SetNextState("APPROACHINGMARKET");
+					return true;
+				},
+
+				"leave": function() {
 				},
 			},
 
@@ -2933,9 +2974,10 @@ UnitAI.prototype.UnitFsmSpec = {
 					return;
 				let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 				let otherMarket = cmpTrader && cmpTrader.GetFirstMarket();
-				this.StopTrading();
 				if (otherMarket)
 					this.WalkToTarget(otherMarket);
+				else
+					this.FinishOrder();
 			},
 		},
 
@@ -5745,53 +5787,10 @@ UnitAI.prototype.MoveToMarket = function(targetMarket)
 	return this.MoveTo(this.order.data.nextTarget, IID_Trader);
 };
 
-UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
-{
-	if (!this.CanTrade(currentMarket))
-	{
-		this.StopTrading();
-		return;
-	}
-
-	if (!this.CheckTargetRange(currentMarket, IID_Trader))
-	{
-		if (!this.MoveToMarket(currentMarket))	// If the current market is not reached try again
-			this.StopTrading();
-		return;
-	}
-
-	let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	let nextMarket = cmpTrader.PerformTrade(currentMarket);
-	let amount = cmpTrader.GetGoods().amount;
-	if (!nextMarket || !amount || !amount.traderGain)
-	{
-		this.StopTrading();
-		return;
-	}
-
-	this.order.data.target = nextMarket;
-
-	if (this.order.data.route && this.order.data.route.length)
-	{
-		this.waypoints = this.order.data.route.slice();
-		if (this.order.data.target == cmpTrader.GetSecondMarket())
-			this.waypoints.reverse();
-	}
-
-	this.SetNextState("APPROACHINGMARKET");
-};
-
 UnitAI.prototype.MarketRemoved = function(market)
 {
 	if (this.order && this.order.data && this.order.data.target && this.order.data.target == market)
 		this.UnitFsm.ProcessMessage(this, { "type": "TradingCanceled", "market": market });
-};
-
-UnitAI.prototype.StopTrading = function()
-{
-	this.FinishOrder();
-	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	cmpTrader.StopTrading();
 };
 
 /**

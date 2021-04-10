@@ -22,7 +22,6 @@
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/CGUIText.h"
-#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "scriptinterface/ScriptInterface.h"
 
 CText::CText(CGUI& pGUI)
@@ -131,6 +130,12 @@ void CText::UpdateCachedSize()
 {
 	IGUIObject::UpdateCachedSize();
 	IGUITextOwner::UpdateCachedSize();
+}
+
+CSize2D CText::GetTextSize()
+{
+	UpdateText();
+	return m_GeneratedTexts[0].GetSize();
 }
 
 void CText::HandleMessage(SGUIMessage& Message)
@@ -249,19 +254,4 @@ bool CText::MouseOverIcon()
 		}
 
 	return false;
-}
-
-
-void CText::CreateJSObject()
-{
-	ScriptRequest rq(m_pGUI.GetScriptInterface());
-	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>;
-	ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton()), m_JSObject);
-}
-
-void CText::getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
-{
-	ScriptRequest rq(scriptInterface);
-	UpdateText();
-	ScriptInterface::ToJSVal(rq, ret, m_GeneratedTexts[0].GetSize());
 }

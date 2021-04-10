@@ -593,7 +593,9 @@ g_SelectionPanels.Research = {
 				}));
 
 		let sortedEntStates = unitEntStates.sort((a, b) =>
-			(!b.upgrade || !b.upgrade.isUpgrading) - (!a.upgrade || !a.upgrade.isUpgrading));
+			(!b.upgrade || !b.upgrade.isUpgrading) - (!a.upgrade || !a.upgrade.isUpgrading) ||
+		 	(!a.production ? 0 : a.production.queue.length) - (!b.production ? 0 : b.production.queue.length)
+		 );
 
 		for (let state of sortedEntStates)
 		{

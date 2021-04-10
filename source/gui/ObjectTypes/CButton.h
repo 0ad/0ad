@@ -43,6 +43,11 @@ public:
 	virtual void UpdateCachedSize();
 
 	/**
+	 * @return the object text size.
+	 */
+	CSize2D GetTextSize();
+
+	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
 	virtual void HandleMessage(SGUIMessage& Message);
@@ -51,11 +56,6 @@ public:
 	 * Draws the Button
 	 */
 	virtual void Draw();
-
-	/**
-	 * Populate @param ret with the object's text size.
-	 */
-	void getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 protected:
 	/**

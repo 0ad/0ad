@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 15:03+0000\n"
+"POT-Creation-Date: 2021-04-05 07:08+0000\n"
+"PO-Revision-Date: 2021-04-05 19:53+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -2275,6 +2275,16 @@ msgstr "Multiplayer kaart, een tropisch paradijs."
 msgid "Tropical Island"
 msgstr "Tropisch eiland"
 
+#: maps/scenarios/unit_chasing_test.xml:Description:40
+msgid ""
+"This map is designed to test a few different cases of units chasing each "
+"other."
+msgstr "Deze kaart is ontworpen om een paar verschillende manieren te testen van eenheden die elkaar achtervolgen."
+
+#: maps/scenarios/unit_chasing_test.xml:Name:40
+msgid "Unit Chasing test"
+msgstr "Eenheden achtervolgingstest"
+
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
 msgstr "Deze kaart is ontworpen om een paar verschillende manieren van 'dansen' te testen."
@@ -2294,6 +2304,16 @@ msgstr "Deze kaart is gemaakt om eenheden bepaalde simpele bewegingen te laten m
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
 msgstr "Geïntegreerde bewegingstest voor eenheden"
+
+#: maps/scenarios/unit_pushing_test.xml:Description:40
+msgid ""
+"This map is designed to test the performance & functionality of unit "
+"pushing."
+msgstr "Deze kaart is ontworpen om de prestaties en functionaliteit van het voortduwen van eenheden te testen."
+
+#: maps/scenarios/unit_pushing_test.xml:Name:40
+msgid "Unit Pushing test"
+msgstr "Eenheden voortduwen test"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."

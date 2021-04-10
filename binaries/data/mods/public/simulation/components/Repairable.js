@@ -151,6 +151,13 @@ Repairable.prototype.GetRepairRate = function()
 	return repairTime ? cmpHealth.GetMaxHitpoints() / repairTime : 1;
 };
 
+Repairable.prototype.OnEntityRenamed = function(msg)
+{
+	let cmpRepairableNew = Engine.QueryInterface(msg.newentity, IID_Repairable);
+	if (cmpRepairableNew)
+		cmpRepairableNew.AddBuilders(this.GetBuilders());
+};
+
 function RepairableMirage() {}
 RepairableMirage.prototype.Init = function(cmpRepairable)
 {

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "maths/BoundingBoxOriented.h"
 #include "simulation2/helpers/Player.h"
 
+class CModelDummy;
 class CModel;
 class CModelDecal;
 class CModelParticleEmitter;
@@ -73,13 +74,16 @@ public:
 	virtual CModelAbstract* Clone() const = 0;
 
 	/// Dynamic cast
-	virtual CModel* ToCModel() { return NULL; }
+	virtual CModelDummy* ToCModelDummy() { return nullptr; }
 
 	/// Dynamic cast
-	virtual CModelDecal* ToCModelDecal() { return NULL; }
+	virtual CModel* ToCModel() { return nullptr; }
 
 	/// Dynamic cast
-	virtual CModelParticleEmitter* ToCModelParticleEmitter() { return NULL; }
+	virtual CModelDecal* ToCModelDecal() { return nullptr; }
+
+	/// Dynamic cast
+	virtual CModelParticleEmitter* ToCModelParticleEmitter() { return nullptr; }
 
 	// (This dynamic casting is a bit ugly, but we won't have many subclasses
 	// and this seems the easiest way to integrate with other code that wants

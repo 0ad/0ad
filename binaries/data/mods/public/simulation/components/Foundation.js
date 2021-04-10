@@ -409,6 +409,13 @@ Foundation.prototype.CreateConstructionPreview = function()
 	}
 };
 
+Foundation.prototype.OnEntityRenamed = function(msg)
+{
+	let cmpFoundationNew = Engine.QueryInterface(msg.newentity, IID_Foundation);
+	if (cmpFoundationNew)
+		cmpFoundationNew.AddBuilders(this.GetBuilders());
+};
+
 function FoundationMirage() {}
 FoundationMirage.prototype.Init = function(cmpFoundation)
 {

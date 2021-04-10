@@ -57,6 +57,11 @@ public:
 	 */
 	virtual void AddItem(const CGUIString& str, const CGUIString& data);
 
+	/**
+	 * Add an item where both parameters are identical.
+	 */
+	void AddItem(const CGUIString& strAndData);
+
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been

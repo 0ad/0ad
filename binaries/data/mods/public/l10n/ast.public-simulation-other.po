@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 17:10+0000\n"
+"PO-Revision-Date: 2021-04-08 21:02+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "Toi entamando una gran campaña militar escontra %(_player_)s, ven conmigo."
+msgstr "Toi entamando una campaña contra %(_player_)s, acompáñame."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
@@ -805,7 +805,7 @@ msgstr "Venci oponentes matando toles sos unidaes & esbarrumbando toles sos cons
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr "Conquista"
+msgstr "Aniquilación"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
@@ -813,7 +813,7 @@ msgstr "Venci oponentes esbarrumbando toles sos construcciones."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr "Conquista de construcciones"
+msgstr "Aniquilación de construcciones"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
@@ -821,7 +821,7 @@ msgstr "Venci oponentes matando toles sos unidaes."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "Conquista d'unidaes"
+msgstr "Anquilación d'unidaes"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
@@ -899,4 +899,4 @@ msgstr "Nun ye posible mandar a los/es %(unit)s."
 
 #: simulation/helpers/Commands.js:1175
 msgid "The building's technology requirements are not met."
-msgstr "Nun se cumplen los requisitos de la teunoloxía de la construcción."
+msgstr "Nun se cumplen los requisitos téunicos de la construcción."

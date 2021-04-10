@@ -12,7 +12,13 @@ my $vfsroot = '../../../binaries/data/mods';
 sub get_filename
 {
     my ($vfspath, $mod) = @_;
-    my $fn = "$vfsroot/$mod/simulation/templates/$vfspath.xml";
+    my $fn = "$vfsroot/$mod/simulation/templates/special/filter/$vfspath.xml";
+    if (not -e $fn) {
+        $fn = "$vfsroot/$mod/simulation/templates/mixins/$vfspath.xml";
+    }
+    if (not -e $fn) {
+        $fn = "$vfsroot/$mod/simulation/templates/$vfspath.xml";
+    }
     return $fn;
 }
 
@@ -136,16 +142,28 @@ sub get_main_mod
 
 sub load_inherited
 {
-    my ($vfspath, $mods) = @_;
+    my ($vfspath, $mods, $base) = @_;
+    if ($vfspath =~ /\|/) {
+        my @paths = split(/\|/, $vfspath, 2);
+        $base = load_inherited($paths[1], $mods, $base);
+        $base = load_inherited($paths[0], $mods, $base);
+        return $base
+    }
     my $main_mod = get_main_mod($vfspath, $mods);
     my $layer = load_xml($vfspath, get_file($vfspath, $main_mod));
 
     if ($layer->{Entity}{'@parent'}) {
-        my $parent = load_inherited($layer->{Entity}{'@parent'}{' content'}, $mods);
+        my $parent = load_inherited($layer->{Entity}{'@parent'}{' content'}, $mods, $base);
         apply_layer($parent->{Entity}, $layer->{Entity});
         return $parent;
     } else {
-        return $layer;
+        if (not $base) {
+            return $layer;
+        }
+        else {
+            apply_layer($base->{Entity}, $layer->{Entity});
+            return $base
+        }
     }
 }
 

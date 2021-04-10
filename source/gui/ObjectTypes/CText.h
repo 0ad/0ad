@@ -45,14 +45,14 @@ public:
 	virtual void UpdateCachedSize();
 
 	/**
+	 * @return the object text size.
+	 */
+	CSize2D GetTextSize();
+
+	/**
 	 * Test if mouse position is over an icon
 	 */
 	virtual bool MouseOverIcon();
-
-	/**
-	 * Populate @param ret with the object's text size.
-	 */
-	void getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been

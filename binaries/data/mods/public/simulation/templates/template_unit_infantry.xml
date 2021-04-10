@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit">
+<Entity parent="builder|template_unit">
   <Attack>
     <Capture>
       <AttackName>Capture</AttackName>
@@ -16,37 +16,6 @@
       <MaxRange>2</MaxRange>
     </Slaughter>
   </Attack>
-  <Builder>
-    <Rate>1.0</Rate>
-    <Entities datatype="tokens">
-      structures/{civ}/civil_centre
-      structures/{civ}/crannog
-      structures/{civ}/military_colony
-      structures/{civ}/house
-      structures/{civ}/apartment
-      structures/{civ}/storehouse
-      structures/{civ}/farmstead
-      structures/{civ}/field
-      structures/{civ}/corral
-      structures/{civ}/dock
-      structures/{civ}/barracks
-      structures/{civ}/stable
-      structures/{civ}/elephant_stable
-      structures/{civ}/arsenal
-      structures/{civ}/forge
-      structures/{civ}/temple
-      structures/{civ}/market
-      structures/{civ}/outpost
-      structures/{civ}/sentry_tower
-      structures/{civ}/defense_tower
-      structures/{civ}/fortress
-      structures/wallset_palisade
-      structures/{civ}/wallset_siege
-      structures/{civ}/wallset_stone
-      structures/{civ}/theater
-      structures/{civ}/wonder
-    </Entities>
-  </Builder>
   <Cost>
     <BuildTime>12</BuildTime>
     <Resources>
@@ -62,7 +31,7 @@
   <Identity>
     <GenericName>Infantry</GenericName>
     <Classes datatype="tokens">Human CitizenSoldier</Classes>
-    <VisibleClasses datatype="tokens">Citizen Builder Worker Soldier Infantry</VisibleClasses>
+    <VisibleClasses datatype="tokens">Citizen Worker Soldier Infantry</VisibleClasses>
     <Rank>Basic</Rank>
   </Identity>
   <Loot>

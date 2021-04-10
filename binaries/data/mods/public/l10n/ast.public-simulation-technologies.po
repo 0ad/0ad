@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-03 15:48+0000\n"
+"PO-Revision-Date: 2021-04-08 21:00+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Desblóquiase na fas villana."
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Construcciones civiles: tiempu de construcción +20% vida +20% puntos de resistencia +20%."
+msgstr "Construcciones civiles: tiempu de construcción +20% vida +20% fideleza +20%."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -155,7 +155,7 @@ msgstr "Arquiteutura"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Construcciones: vida y puntos de resistencia +25% tiempu de construcción +20%."
+msgstr "Construcciones: vida y fideleza +25% tiempu de construcción +20%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -279,7 +279,7 @@ msgstr "Construcciones de madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Construcciones: tiempu de construcción −20% vida −20% puntos de resistencia −20%."
+msgstr "Construcciones: tiempu de construcción −20% vida −20% fideleza −20%."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -305,7 +305,7 @@ msgstr "Arquiteutura helénica"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "Construcciones: vida +10% puntos de resistencia +10%."
+msgstr "Construcciones: vida +10% fideleza +10%."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -787,7 +787,7 @@ msgstr "Metrópolis helenista"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Places: vida y puntos de resistencia +100% fleches por defeutu ×2."
+msgstr "Places: vida y fideleza +100% fleches por defeutu ×2."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -888,7 +888,7 @@ msgstr "Campeones: tiempu de preparación −20%."
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr "Teunoloxía lluella que pue emplegase pa requisitos de plantía. Reemplázala phase_city_generic o phase_city_{civ}."
+msgstr "Téunica lluella pa requisitos de plantía. Reemplázala phase_city_generic o phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -921,7 +921,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas urbana, que desbloquia más unidaes y teunoloxía. Places: territoriu +50%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +9. Obreros: ritmu d'estraición del metal +10%."
+msgstr "Avanza a la fas urbana, que desbloquia más unidaes y téuniques. Places: territoriu +50%. Construcciones: ritmu de fidelización por unidá guarecida +9. Obreros: ritmu d'estraición del metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -934,13 +934,13 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas urbana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +9."
+msgstr "Avanza a la fas urbana, que desbloquia más unidaes y téuniques. Places: territoriu +50%. Construcciones: ritmu de fidelización por unidá guarecida +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "Teunoloxía lluella que pue emplegase pa requisitos de plantía. Reemplázala phase_town_generic o phase_town_{civ}. "
+msgstr "Téunica lluella pa requisitos de plantía. Reemplázala phase_town_generic o phase_town_{civ}. "
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -973,7 +973,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +7. Obreros: ritmu d'estraición del metal +10%."
+msgstr "Avanza a la fas villana, que desbloquia más unidaes y téuniques. Places: territoriu +30%. Construcciones: ritmu de fidelización por unidá guarecida +7. Obreros: ritmu d'estraición del metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -985,7 +985,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: ritmu de resistencia a la conquista por unidá guarecida +7."
+msgstr "Avanza a la fas villana, que desbloquia más unidaes y téuniques. Places: territoriu +30%. Construcciones: ritmu de fidelización por unidá guarecida +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1089,7 +1089,7 @@ msgstr "Barcos: velocidá +10%."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr "Los avances teunolóxicos ameyoren les máquines."
+msgstr "Los avances téunicos ameyoren les máquines."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1441,7 +1441,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "Unidaes avanzaes, escoyíes: tiempu de preparación +20% vida +25% captura +0.7 saquéu +20% arremangu pal llabor −30%; Curanderos: sanamientu +5 algame +3; Unidaes de choque: tiez +1 ataque +20%; Unidaes de tiru: imprecisión −20%."
+msgstr "Unidaes avanzaes, escoyíes: tiempu de preparación +20% vida +25% conquista +0.7 saquéu +20% arremangu obreru −30%; Curanderos: sanamientu +5 algame +3; Unidaes de choque: tiez +1 ataque +20%; Unidaes de tiru: imprecisión −20%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1461,7 +1461,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Unidaes escoyíes: tiempu de preparación +20% vida +25% captura +0.8 saquéu +20% arremangu pal llabor −30%; Curanderos: sanamientu +5 algame +3; Unidaes de choque: tiez +1 ataque +20%; Unidaes de tiru: imprecisión −20%."
+msgstr "Unidaes escoyíes: tiempu de preparación +20% vida +25% conquista +0.8 saquéu +20% arremangu obreru −30%; Curanderos: sanamientu +5 algame +3; Unidaes de choque: tiez +1 ataque +20%; Unidaes de tiru: imprecisión −20%."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""

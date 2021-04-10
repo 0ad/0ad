@@ -36,6 +36,7 @@
 
 class CGUI;
 class IGUIObject;
+class IGUIProxyObject;
 class IGUISetting;
 
 template <typename T>
@@ -215,6 +216,11 @@ public:
 	virtual void UpdateCachedSize();
 
 	/**
+	 * Updates and returns the size of the object.
+	 */
+	CRect GetComputedSize();
+
+	/**
 	 * Reset internal state of this object.
 	 */
 	virtual void ResetStates();
@@ -232,14 +238,6 @@ public:
 	 * Retrieves the JSObject representing this GUI object.
 	 */
 	JSObject* GetJSObject();
-
-	/**
-	 * The following functions are called from JS.
-	 */
-	void toString(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void focus(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void blur(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void getComputedSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	//@}
 protected:
@@ -349,6 +347,11 @@ public:
 	 * Take focus!
 	 */
 	void SetFocus();
+
+	/**
+	 * Release focus.
+	 */
+	void ReleaseFocus();
 
 protected:
 	/**
@@ -461,6 +464,7 @@ private:
 
 	/**
 	 * Creates the JS object representing this page upon first use.
+	 * This function (and its derived versions) are defined in the GUIProxy implementation file for convenience.
 	 */
 	virtual void CreateJSObject();
 
@@ -536,8 +540,8 @@ protected:
 	// Internal storage for registered script handlers.
 	std::map<CStr, JS::Heap<JSObject*> > m_ScriptHandlers;
 
-	// Cached JSObject representing this GUI object
-	JS::PersistentRootedObject m_JSObject;
+	// Cached JSObject representing this GUI object.
+	std::unique_ptr<IGUIProxyObject> m_JSObject;
 
 	// Cache references to settings for performance
 	bool m_Enabled;

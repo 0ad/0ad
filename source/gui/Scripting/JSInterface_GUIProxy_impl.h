@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "gui/CGUISetting.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -42,23 +43,23 @@ JSI_GUIProxy<T>& JSI_GUIProxy<T>::Singleton()
 	return s;
 }
 
+// Call this for every specialised type. You will need to override IGUIObject::CreateJSObject() in your class interface.
+#define DECLARE_GUIPROXY(Type) \
+void Type::CreateJSObject() \
+{ \
+	ScriptRequest rq(m_pGUI.GetScriptInterface()); \
+	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>; \
+	m_JSObject = ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton())); \
+} \
+template class JSI_GUIProxy<Type>;
+
 // Use a common namespace to avoid duplicating the symbols un-necessarily.
 namespace JSInterface_GUIProxy
 {
-/**
- * Conveniently wrap a simple C++ function to a JSNative.
- */
-template<class OG, class R, void (R::*funcptr)(ScriptInterface&, JS::MutableHandleValue)>
-inline bool apply_to(JSContext* cx, uint argc, JS::Value* vp)
+template<typename T>
+inline T* GuiObjectGetter(const ScriptRequest&, JS::CallArgs& args)
 {
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	OG* e = static_cast<OG*>(js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate());
-	if (!e)
-		return false;
-
-	(static_cast<R*>(e)->*(funcptr))(*(ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface), args.rval());
-
-	return true;
+	return IGUIProxyObject::FromPrivateSlot<T>(args.thisv().toObjectOrNull());
 }
 
 // Default implementation of the cache via unordered_map
@@ -77,9 +78,9 @@ public:
 		return m_Functions.at(name).get();
 	}
 
-	virtual bool setFunction(const ScriptRequest& rq, const std::string& name, JSNative function, int nargs) override
+	virtual bool setFunction(const ScriptRequest& rq, const std::string& name, JSFunction* function) override
 	{
-		m_Functions[name].init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, function, nargs, 0, name.c_str())));
+		m_Functions[name].init(rq.cx, JS_GetFunctionObject(function));
 		return true;
 	}
 
@@ -115,21 +116,38 @@ std::pair<const js::BaseProxyHandler*, GUIProxyProps*> JSI_GUIProxy<T>::CreateDa
 	using PropertyCache = typename PropCache::type;
 	PropertyCache* data = new PropertyCache();
 	ScriptRequest rq(scriptInterface);
-	CreateFunctions(rq, data);
+
+	// Functions common to all children of IGUIObject.
+	JSI_GUIProxy<IGUIObject>::CreateFunctions(rq, data);
+
+	// Let derived classes register their own interface.
+	if constexpr (!std::is_same_v<T, IGUIObject>)
+		CreateFunctions(rq, data);
 	return { &Singleton(), data };
 }
 
 template<typename T>
-void JSI_GUIProxy<T>::CreateJSObject(const ScriptRequest& rq, T* ptr, GUIProxyProps* dataPtr, JS::PersistentRootedObject& val)
+template<auto callable>
+void JSI_GUIProxy<T>::CreateFunction(const ScriptRequest& rq, GUIProxyProps* cache, const std::string& name)
+{
+	cache->setFunction(rq, name, ScriptFunction::Create<callable, JSInterface_GUIProxy::GuiObjectGetter<T>>(rq, name.c_str()));
+}
+
+template<typename T>
+std::unique_ptr<IGUIProxyObject> JSI_GUIProxy<T>::CreateJSObject(const ScriptRequest& rq, T* ptr, GUIProxyProps* dataPtr)
 {
 	js::ProxyOptions options;
 	options.setClass(&ClassDefinition());
 
+	auto ret = std::make_unique<IGUIProxyObject>();
+	ret->m_Ptr = static_cast<IGUIObject*>(ptr);
+
 	JS::RootedValue cppObj(rq.cx), data(rq.cx);
-	cppObj.get().setPrivate(ptr);
+	cppObj.get().setPrivate(ret->m_Ptr);
 	data.get().setPrivate(static_cast<void*>(dataPtr));
-	val.init(rq.cx, js::NewProxyObject(rq.cx, &Singleton(), cppObj, nullptr, options));
-	js::SetProxyReservedSlot(val, 0, data);
+	ret->m_Object.init(rq.cx, js::NewProxyObject(rq.cx, &Singleton(), cppObj, nullptr, options));
+	js::SetProxyReservedSlot(ret->m_Object, 0, data);
+	return ret;
 }
 
 template <typename T>
@@ -138,7 +156,7 @@ bool JSI_GUIProxy<T>::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 	ScriptRequest rq(*pScriptInterface);
 
-	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
+	T* e = IGUIProxyObject::FromPrivateSlot<T>(proxy.get());
 	if (!e)
 		return false;
 
@@ -206,7 +224,7 @@ template <typename T>
 bool JSI_GUIProxy<T>::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
 							JS::HandleValue UNUSED(receiver), JS::ObjectOpResult& result) const
 {
-	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
+	T* e = IGUIProxyObject::FromPrivateSlot<T>(proxy.get());
 	if (!e)
 	{
 		LOGERROR("C++ GUI Object could not be found");
@@ -261,7 +279,7 @@ bool JSI_GUIProxy<T>::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id
 template<typename T>
 bool JSI_GUIProxy<T>::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::ObjectOpResult& result) const
 {
-	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
+	T* e = IGUIProxyObject::FromPrivateSlot<T>(proxy.get());
 	if (!e)
 	{
 		LOGERROR("C++ GUI Object could not be found");

@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_support">
+<Entity parent="builder|template_unit_support">
   <Builder>
     <Rate>0.5</Rate>
-    <Entities datatype="tokens">
-      structures/{civ}/civil_centre
-      structures/{civ}/crannog
-      structures/{civ}/military_colony
-      structures/{civ}/house
-      structures/{civ}/apartment
-      structures/{civ}/storehouse
-      structures/{civ}/farmstead
-      structures/{civ}/field
-      structures/{civ}/corral
-      structures/{civ}/dock
-      structures/{civ}/barracks
-      structures/{civ}/stable
-      structures/{civ}/elephant_stable
-      structures/{civ}/arsenal
-      structures/{civ}/forge
-      structures/{civ}/temple
-      structures/{civ}/market
-      structures/{civ}/outpost
-      structures/{civ}/sentry_tower
-      structures/{civ}/defense_tower
-      structures/{civ}/fortress
-      structures/wallset_palisade
-      structures/{civ}/wallset_siege
-      structures/{civ}/wallset_stone
-      structures/{civ}/theater
-      structures/{civ}/wonder
-    </Entities>
   </Builder>
   <Cost>
     <Population>0</Population>
@@ -46,7 +18,7 @@
     <GenericName>Slave</GenericName>
     <SelectionGroupName>template_unit_support_slave</SelectionGroupName>
     <Tooltip>Gatherer with a finite life span. Bonused at mining and lumbering.</Tooltip>
-    <VisibleClasses datatype="tokens">Builder Worker Slave</VisibleClasses>
+    <VisibleClasses datatype="tokens">Worker Slave</VisibleClasses>
   </Identity>
   <Loot>
     <xp>10</xp>
