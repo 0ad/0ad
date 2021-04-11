@@ -4,6 +4,26 @@
 	size="4 4 100%-4 100%-44"
 >
 
+	<!-- Names and civilization emblem etc. (This must come before the attack and resistance icon to avoid clipping issues.) -->
+	<object size="0 92 100% 100%" name="statsArea" type="image" sprite="edgedPanelShader">
+		<!-- Civilization tooltip. -->
+		<object size="0 38 100% 62" tooltip_style="sessionToolTip">
+			<!-- Civilization emblem. -->
+			<object size="50%-64 50%-10 50%+64 50%+10" name="playerCivIcon" type="image" ghost="true"/>
+			<!-- Player color band. -->
+			<object name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
+			<object type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
+			<!-- Player name. -->
+			<object size="0 50%-10 100% 50%+10" name="player" type="text" style="largeCenteredOutlinedText"/>
+		</object>
+
+		<!-- Primary and secondary names. -->
+		<object>
+			<object size="0 2 100% 22" name="primary" ghost="true" type="text" style="PrimaryNameCentered"/>
+			<object size="0 17 100% 37" name="secondary" ghost="true" type="text" style="SecondaryNameCentered"/>
+		</object>
+	</object>
+
 	<!-- Stats Bars -->
 	<object size= "0 0 100% 96" type="image" tooltip_style="sessionToolTip">
 
@@ -81,7 +101,7 @@
 				<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 			</object>
 
-			<object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip_style="sessionToolTip">
+			<object size="4 4 20 20" name="rankIcon" type="image" tooltip_style="sessionToolTip">
 				<translatableAttribute id="tooltip">Rank</translatableAttribute>
 			</object>
 
@@ -91,30 +111,6 @@
 					<object type="image" size="0 0 16 16" z="200" tooltip_style="sessionToolTip"/>
 				</repeat>
 			</object>
-		</object>
-	</object>
-
-	<!-- Names and civilization emblem etc. (This must come before the attack and resistance icon to avoid clipping issues.) -->
-	<object size="0 92 100% 100%" name="statsArea" type="image" sprite="edgedPanelShader">
-
-		<!-- Primary and secondary names. -->
-		<object z="30">
-			<object size="0 2 100% 22" name="primary" ghost="true" type="text" style="PrimaryNameCentered"/>
-			<object size="0 17 100% 37" name="secondary" ghost="true" type="text" style="SecondaryNameCentered"/>
-		</object>
-
-		<!-- Civilization tooltip. -->
-		<object size="0 38 100% 62" tooltip_style="sessionToolTip">
-			<!-- Images to clip off the top and bottom of the civilization emblem. -->
-			<object z="20" size="0 50%-64 100% 50%-12" ghost="true" type="image" sprite="remove"/>
-			<object z="20" size="0 50%+12 100% 50%+64" ghost="true" type="image" sprite="remove"/>
-			<!-- Civilization emblem. -->
-			<object size="50%-64 50%-64 50%+64 50%+64" name="playerCivIcon" type="image" ghost="true"/>
-			<!-- Player color band. -->
-			<object name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
-			<object type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
-			<!-- Player name. -->
-			<object size="0 50%-10 100% 50%+10" z="30" name="player" type="text" style="largeCenteredOutlinedText"/>
 		</object>
 	</object>
 </object>

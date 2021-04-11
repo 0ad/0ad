@@ -25,6 +25,8 @@
 #include "gui/Scripting/ScriptFunctions.h"
 #include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "i18n/L10n.h"
+#include "lib/allocators/DynamicArena.h"
+#include "lib/allocators/STLAllocators.h"
 #include "lib/bits.h"
 #include "lib/input.h"
 #include "lib/sysdep/sysdep.h"
@@ -65,13 +67,40 @@ const CStr CGUI::EventNameMouseLeftRelease = "MouseLeftRelease";
 const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
 const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
 
+namespace
+{
+
+struct VisibleObject
+{
+	IGUIObject* object;
+	// Index of the object in a depth-first search inside GUI tree.
+	size_t index;
+	// Cached value of GetBufferedZ to avoid recursive calls in a deep hierarchy.
+	float bufferedZ;
+};
+
+template<class Container>
+void CollectVisibleObjectsRecursively(const std::vector<IGUIObject*>& objects, Container* visibleObjects)
+{
+	for (IGUIObject* const& object : objects)
+	{
+		if (!object->IsHidden())
+		{
+			visibleObjects->emplace_back(VisibleObject{object, visibleObjects->size(), 0.0f});
+			CollectVisibleObjectsRecursively(object->GetChildren(), visibleObjects);
+		}
+	}
+}
+
+} // anonynous namespace
+
 CGUI::CGUI(const shared_ptr<ScriptContext>& context)
 	: m_BaseObject(std::make_unique<CGUIDummyObject>(*this)),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),
 	  m_MouseButtons(0)
 {
-	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIPage", context));
+	m_ScriptInterface = std::make_shared<ScriptInterface>("Engine", "GUIPage", context);
 	m_ScriptInterface->SetCallbackData(this);
 
 	GuiScriptingInit(*m_ScriptInterface);
@@ -302,7 +331,22 @@ void CGUI::Draw()
 	// drawn on top of everything else
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	m_BaseObject->RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
+	using Arena = Allocators::DynamicArena<128 * KiB>;
+	using ObjectListAllocator = ProxyAllocator<VisibleObject, Arena>;
+	Arena arena;
+
+	std::vector<VisibleObject, ObjectListAllocator> visibleObjects((ObjectListAllocator(arena)));
+	CollectVisibleObjectsRecursively(m_BaseObject->GetChildren(), &visibleObjects);
+	for (VisibleObject& visibleObject : visibleObjects)
+		visibleObject.bufferedZ = visibleObject.object->GetBufferedZ();
+
+	std::sort(visibleObjects.begin(), visibleObjects.end(), [](const VisibleObject& visibleObject1, const VisibleObject& visibleObject2) -> bool {
+		if (visibleObject1.bufferedZ != visibleObject2.bufferedZ)
+			return visibleObject1.bufferedZ < visibleObject2.bufferedZ;
+		return visibleObject1.index < visibleObject2.index;
+	});
+	for (const VisibleObject& visibleObject : visibleObjects)
+		visibleObject.object->Draw();
 }
 
 void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))

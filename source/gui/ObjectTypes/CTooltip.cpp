@@ -147,8 +147,6 @@ void CTooltip::HandleMessage(SGUIMessage& Message)
 
 void CTooltip::Draw()
 {
-	float z = 900.f; // TODO: Find a nicer way of putting the tooltip on top of everything else
-
 	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
 	// we need to call it now *before* we do the rest of the drawing
 	if (!m_GeneratedTextsValid)
@@ -157,7 +155,13 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
+	const float z = GetBufferedZ();
 	m_pGUI.DrawSprite(m_Sprite, z, m_CachedActualSize);
-
 	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft(), z + 0.1f);
+}
+
+float CTooltip::GetBufferedZ() const
+{
+	// TODO: Find a nicer way of putting the tooltip on top of everything else.
+	return 900.f;
 }
