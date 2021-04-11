@@ -327,10 +327,6 @@ void CGUI::SendEventToAll(const CStr& eventName, const JS::HandleValueArray& par
 
 void CGUI::Draw()
 {
-	// Clear the depth buffer, so the GUI is
-	// drawn on top of everything else
-	glClear(GL_DEPTH_BUFFER_BIT);
-
 	using Arena = Allocators::DynamicArena<128 * KiB>;
 	using ObjectListAllocator = ProxyAllocator<VisibleObject, Arena>;
 	Arena arena;

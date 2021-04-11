@@ -131,10 +131,6 @@ void CChart::Draw()
 	const float width = rect.GetWidth();
 	const float height = rect.GetHeight();
 
-	// Disable depth updates to prevent apparent z-fighting-related issues
-	//  with some drivers causing units to get drawn behind the texture.
-	glDepthMask(0);
-
 	// Setup the render state
 	CMatrix3D transform = GetDefaultGuiMatrix();
 	CShaderDefines lineDefines;
@@ -172,9 +168,6 @@ void CChart::Draw()
 		DrawAxes(shader);
 
 	tech->EndPass();
-
-	// Reset depth mask
-	glDepthMask(1);
 
 	for (size_t i = 0; i < m_TextPositions.size(); ++i)
 		DrawText(i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i], bz + 0.5f);
