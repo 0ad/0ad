@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -157,7 +157,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(const std::string& templateNa
 		// Compute validity, if it's not computed before
 		if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
 		{
-			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(wstring_from_utf8(templateName), fileData.ToXML());
+			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(templateName, fileData.ToXMLString());
 
 			// Show error on the first failure to validate the template
 			if (!m_TemplateSchemaValidity[templateName])

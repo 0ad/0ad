@@ -138,12 +138,12 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		std::wstring anchor = paramNode.GetChild("Anchor").ToString();
-		if (anchor == L"pitch")
+		const std::string& anchor = paramNode.GetChild("Anchor").ToString();
+		if (anchor == "pitch")
 			m_AnchorType = PITCH;
-		else if (anchor == L"pitch-roll")
+		else if (anchor == "pitch-roll")
 			m_AnchorType = PITCH_ROLL;
-		else if (anchor == L"roll")
+		else if (anchor == "roll")
 			m_AnchorType = ROLL;
 		else
 			m_AnchorType = UPRIGHT;

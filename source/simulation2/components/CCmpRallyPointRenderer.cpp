@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	// ---------------------------------------------------------------------------------------------
 	// Load some XML configuration data (schema guarantees that all these nodes are valid)
 
-	m_MarkerTemplate = paramNode.GetChild("MarkerTemplate").ToString();
+	m_MarkerTemplate = paramNode.GetChild("MarkerTemplate").ToWString();
 	const CParamNode& lineDashColor = paramNode.GetChild("LineDashColor");
 	m_LineDashColor = CColor(
 		lineDashColor.GetChild("@r").ToInt()/255.f,
@@ -99,11 +99,11 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	);
 
 	m_LineThickness = paramNode.GetChild("LineThickness").ToFixed().ToFloat();
-	m_LineTexturePath = paramNode.GetChild("LineTexture").ToString();
-	m_LineTextureMaskPath = paramNode.GetChild("LineTextureMask").ToString();
-	m_LineStartCapType = SOverlayTexturedLine::StrToLineCapType(paramNode.GetChild("LineStartCap").ToString());
-	m_LineEndCapType = SOverlayTexturedLine::StrToLineCapType(paramNode.GetChild("LineEndCap").ToString());
-	m_LinePassabilityClass = paramNode.GetChild("LinePassabilityClass").ToUTF8();
+	m_LineTexturePath = paramNode.GetChild("LineTexture").ToWString();
+	m_LineTextureMaskPath = paramNode.GetChild("LineTextureMask").ToWString();
+	m_LineStartCapType = SOverlayTexturedLine::StrToLineCapType(paramNode.GetChild("LineStartCap").ToWString());
+	m_LineEndCapType = SOverlayTexturedLine::StrToLineCapType(paramNode.GetChild("LineEndCap").ToWString());
+	m_LinePassabilityClass = paramNode.GetChild("LinePassabilityClass").ToString();
 
 	// ---------------------------------------------------------------------------------------------
 	// Load some textures

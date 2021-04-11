@@ -196,14 +196,14 @@ public:
 	bool IsOk() const;
 
 	/**
-	 * Returns the content of this node as a string
+	 * Returns the content of this node as a wstring
 	 */
-	const std::wstring& ToString() const;
+	const std::wstring ToWString() const;
 
 	/**
-	 * Returns the content of this node as an 8-bit string
+	 * Returns the content of this node as an UTF8 string
 	 */
-	const std::string ToUTF8() const;
+	const std::string& ToString() const;
 
 	/**
 	 * Returns the content of this node as an internalized 8-bit string. Should only be used for
@@ -234,12 +234,12 @@ public:
 	/**
 	 * Returns the content of this node and its children as an XML string
 	 */
-	std::wstring ToXML() const;
+	std::string ToXMLString() const;
 
 	/**
 	 * Write the content of this node and its children as an XML string, to the stream
 	 */
-	void ToXML(std::wostream& strm) const;
+	void ToXMLString(std::ostream& strm) const;
 
 	/**
 	 * Returns a JS::Value representation of this node and its children.
@@ -259,9 +259,12 @@ public:
 
 	/**
 	 * Escapes a string so that it is well-formed XML content/attribute text.
-	 * (Replaces "&" with "&amp;" etc, and replaces invalid characters with U+FFFD.)
+	 * (Replaces "&" with "&amp;" etc)
 	 */
-	static std::wstring EscapeXMLString(const std::wstring& str);
+	static std::string EscapeXMLString(const std::string& str);
+
+	std::string m_Name;
+	u32 m_Index;
 
 private:
 
@@ -279,7 +282,7 @@ private:
 
 	void ConstructJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) const;
 
-	std::wstring m_Value;
+	std::string m_Value;
 	ChildrenMap m_Childs;
 	bool m_IsOk;
 

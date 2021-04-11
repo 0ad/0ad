@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,9 +40,9 @@ public:
 
 	MD5 GetGrammarHash() const { return m_Hash; }
 
-	bool Validate(const std::wstring& filename, const std::wstring& document) const;
+	bool Validate(const std::string& filename, const std::string& document) const;
 
-	bool ValidateEncoded(const std::wstring& filename, const std::string& document) const;
+	bool ValidateEncoded(const std::string& filename, const std::string& document) const;
 
 	bool ValidateEncoded(xmlDocPtr doc) const;
 

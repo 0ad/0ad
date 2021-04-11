@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -172,12 +172,12 @@ PathfinderPassability::PathfinderPassability(pass_class_t mask, const CParamNode
 
 	if (node.GetChild("Obstructions").IsOk())
 	{
-		std::wstring obstructions = node.GetChild("Obstructions").ToString();
-		if (obstructions == L"none")
+		const std::string& obstructions = node.GetChild("Obstructions").ToString();
+		if (obstructions == "none")
 			m_Obstructions = NONE;
-		else if (obstructions == L"pathfinding")
+		else if (obstructions == "pathfinding")
 			m_Obstructions = PATHFINDING;
-		else if (obstructions == L"foundation")
+		else if (obstructions == "foundation")
 			m_Obstructions = FOUNDATION;
 		else
 		{

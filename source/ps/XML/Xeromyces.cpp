@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ bool CXeromyces::AddValidator(const PIVFS& vfs, const std::string& name, const V
 	return true;
 }
 
-bool CXeromyces::ValidateEncoded(const std::string& name, const std::wstring& filename, const std::string& document)
+bool CXeromyces::ValidateEncoded(const std::string& name, const std::string& filename, const std::string& document)
 {
 	std::lock_guard<std::mutex> lock(g_ValidatorCacheLock);
 	return GetValidator(name).ValidateEncoded(filename, document);

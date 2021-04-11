@@ -229,7 +229,7 @@ public:
 
 		RelaxNGValidator v;
 		TS_ASSERT(v.LoadGrammar("<element xmlns='http://relaxng.org/ns/structure/1.0' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes' name='test'><data type='decimal'/></element>"));
-		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
+		TS_ASSERT(v.Validate("doc", "<test>2.0</test>"));
 
 		copyFile(srcDAE, testDAE);
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
@@ -237,7 +237,7 @@ public:
 		TS_ASSERT(modeldef);
 		if (modeldef) TS_ASSERT_PATH_EQUALS(modeldef->GetName(), testBase);
 
-		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
+		TS_ASSERT(v.Validate("doc", "<test>2.0</test>"));
 	}
 
 

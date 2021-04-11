@@ -66,21 +66,21 @@ public:
 
 		const CParamNode* basic = tempMan->LoadTemplate(ent2, "basic");
 		TS_ASSERT(basic != NULL);
-		TS_ASSERT_WSTR_EQUALS(basic->ToXML(), L"<Test1A>12345</Test1A>");
+		TS_ASSERT_STR_EQUALS(basic->ToXMLString(), "<Test1A>12345</Test1A>");
 
 		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2");
 		TS_ASSERT(inherit2 != NULL);
-		TS_ASSERT_WSTR_EQUALS(inherit2->ToXML(), L"<Test1A a=\"a2\" b=\"b1\" c=\"c1\"><d>d2</d><e>e1</e><f>f1</f><g>g2</g></Test1A>");
+		TS_ASSERT_STR_EQUALS(inherit2->ToXMLString(), "<Test1A a=\"a2\" b=\"b1\" c=\"c1\"><d>d2</d><e>e1</e><f>f1</f><g>g2</g></Test1A>");
 
 		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1");
 		TS_ASSERT(inherit1 != NULL);
-		TS_ASSERT_WSTR_EQUALS(inherit1->ToXML(), L"<Test1A a=\"a1\" b=\"b1\" c=\"c1\"><d>d1</d><e>e1</e><f>f1</f></Test1A>");
+		TS_ASSERT_STR_EQUALS(inherit1->ToXMLString(), "<Test1A a=\"a1\" b=\"b1\" c=\"c1\"><d>d1</d><e>e1</e><f>f1</f></Test1A>");
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1");
 		TS_ASSERT(actor != NULL);
-		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
-				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>128x128/ellipse.png</MainTexture><MainTextureMask>128x128/ellipse_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
-				L"<VisualActor><Actor>example1</Actor><ActorOnly></ActorOnly><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
+		TS_ASSERT_STR_EQUALS(actor->ToXMLString(),
+				"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>128x128/ellipse.png</MainTexture><MainTextureMask>128x128/ellipse_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
+				"<VisualActor><Actor>example1</Actor><ActorOnly></ActorOnly><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 	}
 
 	void test_LoadTemplate_scriptcache()
