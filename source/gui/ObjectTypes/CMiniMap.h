@@ -104,7 +104,7 @@ protected:
 
 	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z) const;
 
-	void DrawViewRect(CMatrix3D transform) const;
+	void DrawViewRect(const CMatrix3D& transform) const;
 
 	void GetMouseWorldCoordinates(float& x, float& z) const;
 

@@ -4,8 +4,6 @@
 	sprite="mapPanel"
 	type="image"
 >
-	<!-- MiniMap -->
-	<object name="minimap" size="8 8 100%-8 100%-8" type="minimap" mask="true"/>
 
 	<!-- Background image -->
 	<object
@@ -33,4 +31,7 @@
 		tooltip_style="sessionToolTip"
 		hotkey="session.diplomacycolors"
 	/>
+
+	<!-- MiniMap -->
+	<object name="minimap" size="8 8 100%-8 100%-8" type="minimap" mask="true"/>
 </object>
