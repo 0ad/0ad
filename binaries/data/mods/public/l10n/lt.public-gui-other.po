@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 08:29+0000\n"
+"POT-Creation-Date: 2021-04-09 07:08+0000\n"
+"PO-Revision-Date: 2021-04-09 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -3801,88 +3801,98 @@ msgid "Start 0 A.D. in a window."
 msgstr "Startuoti 0 A.D. lange."
 
 #: gui/options/options.json[1].options[10].label
+msgid "Shadow quality"
+msgstr "Šešėlių kokybė"
+
+#: gui/options/options.json[1].options[10].list[0].label
+msgid "Very Low"
+msgstr "Labai mažai"
+
+#: gui/options/options.json[1].options[10].list[4].label
+msgid "Very High"
+msgstr "Labai Daug"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Šešėlių žymėjimo raiška. Dideles reikšmės gali neleisti žaidimui veikti naudojant mažai atminties turinčias vaizdo plokštes."
+
+#: gui/options/options.json[1].options[11].label
 msgid "Shadow filtering"
 msgstr "Šešėlių filtravimas"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Sklandūs šešėliai."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "Unit silhouettes"
 msgstr "Vienetų siluetai."
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Rodyti vienetų esančių už pastatų siluetus."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Particles"
 msgstr "Dūmai"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Enable particles."
 msgstr "Įjungti daleles."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water effects"
 msgstr "Vandens efektai"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Kai išjungta, naudojami žemiausi įmanomi nustatymai vandens atvaizdavimui, kitus vandens nustatymus padarant nereikšmingais."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "High-quality water effects"
 msgstr "Aukštos kokybės vandens efektai"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Naudoti aukštos kokybės efektus vandeniui, krantus skalaujančių bangų, putų ir laivų \"pėdsakų\" piešimui."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "Vandens atspindžiai"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Leisti vandeniui atspindėti veidrodinį vaizdą."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "Vandens refrakcija"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Naudoti tikrą vandens refrakcijos žymėjimą vietoj skaidrumo."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Real water depth"
 msgstr "Realus vandens gylis"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Ištiesų naudoti vandens gylio atvaizdavimo skaičiavimus."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Sklandus matymas"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Sklandžiai atskleisti tamsą ir rūką."
-
-#: gui/options/options.json[1].options[19].label
-msgid "VSync"
-msgstr "Vertikali Sinchronizacija"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Naudoti vertikalią sinchronizacija mažinti ekrano plėšymui. REIKALAUJA ŽAIDIMO PERKROVOS"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -3893,20 +3903,28 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Naudoti OpenGL 2.0 shader'ius (rekomenduojama)"
 
 #: gui/options/options.json[1].options[20].label
+msgid "VSync"
+msgstr "Vertikali Sinchronizacija"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Naudoti vertikalią sinchronizacija mažinti ekrano plėšymui. REIKALAUJA ŽAIDIMO PERKROVOS"
+
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in menus"
 msgstr "KPS sumažinimas meniu"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Procesoriaus apkrovos taupymui, sumažinti piešimo dažnį visuose meniu. Nustatyti maksimalų, norint išjungti."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in games"
 msgstr "KPS sumažinimas žaidimuose"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
@@ -4024,51 +4042,56 @@ msgid "The sharpness of the choosen pass."
 msgstr ""
 
 #: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
+msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "Šešėliai"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "Įjungti šešėlius."
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "Šešėlių kokybė"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "Labai mažai"
-
-#: gui/options/options.json[1].options[9].list[1].label
+#: gui/options/options.json[1].options[10].list[1].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Low"
 msgstr "Mažai"
 
-#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[1].options[7].list[0].tooltip
+msgid "Simpler models for better performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[2].label
+#: gui/options/options.json[1].options[7].list[1].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Vidutiniškai"
 
-#: gui/options/options.json[1].options[9].list[3].label
+#: gui/options/options.json[1].options[7].list[1].tooltip
+msgid "Average quality and average performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[3].label
+#: gui/options/options.json[1].options[7].list[2].label
 msgid "High"
 msgstr "Daug"
 
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "Labai Daug"
+#: gui/options/options.json[1].options[7].list[2].tooltip
+msgid "High quality models."
+msgstr ""
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Model quality setting."
+msgstr ""
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shader effects"
+msgstr ""
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadows"
+msgstr "Šešėliai"
 
 #: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Šešėlių žymėjimo raiška. Dideles reikšmės gali neleisti žaidimui veikti naudojant mažai atminties turinčias vaizdo plokštes."
+msgid "Enable shadows."
+msgstr "Įjungti šešėlius."
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
