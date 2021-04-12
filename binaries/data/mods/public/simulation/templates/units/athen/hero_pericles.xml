@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="hoplite|template_unit_hero_infantry_spearman">
+<Entity parent="civ/athen|hoplite|template_unit_hero_infantry_spearman">
   <Auras datatype="tokens">
     units/heroes/athen_hero_pericles_1
     units/heroes/athen_hero_pericles_2
   </Auras>
   <Identity>
-    <Civ>athen</Civ>
-    <Lang>greek</Lang>
     <GenericName>Pericles</GenericName>
     <SpecificName>Periklēs</SpecificName>
     <Icon>units/athen_hero_pericles.png</Icon>

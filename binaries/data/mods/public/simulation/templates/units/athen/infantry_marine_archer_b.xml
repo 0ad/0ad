@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="merc_inf|template_unit_infantry_ranged_archer">
-  <Builder>
-    <Entities datatype="tokens">
-      structures/athen/gymnasium
-      structures/athen/prytaneion
-    </Entities>
-  </Builder>
+<Entity parent="civ/athen|merc_inf|template_unit_infantry_ranged_archer">
   <Identity>
-    <Civ>athen</Civ>
-    <Lang>greek</Lang>
     <SelectionGroupName>units/athen/infantry_marine_archer_b</SelectionGroupName>
     <GenericName>Cretan Mercenary Archer</GenericName>
     <SpecificName>Toxótēs Krētikós</SpecificName>

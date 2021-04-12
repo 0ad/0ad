@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_ship_trireme">
+<Entity parent="civ/athen|template_unit_ship_trireme">
   <Footprint>
     <Square width="10.0" depth="40.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <Civ>athen</Civ>
     <SpecificName>Triḗrēs Athēnaía</SpecificName>
     <GenericName>Athenian Trireme</GenericName>
     <Icon>units/hele_ship_trireme.png</Icon>
