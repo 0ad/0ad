@@ -217,27 +217,25 @@ ResourceGatherer.prototype.StartGathering = function(target, callerIID)
  */
 ResourceGatherer.prototype.StopGathering = function(reason)
 {
-	if (this.timer)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-		delete this.timer;
-	}
+	if (!this.target)
+		return;
 
-	if (this.target)
-	{
-		let cmpResourceSupply = Engine.QueryInterface(this.target, IID_ResourceSupply);
-		if (cmpResourceSupply)
-			cmpResourceSupply.RemoveGatherer(this.entity);
-		this.RemoveFromPlayerCounter();
-		delete this.target;
-	}
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	delete this.timer;
+
+	let cmpResourceSupply = Engine.QueryInterface(this.target, IID_ResourceSupply);
+	if (cmpResourceSupply)
+		cmpResourceSupply.RemoveGatherer(this.entity);
+	this.RemoveFromPlayerCounter();
+
+	delete this.target;
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("idle", false, 1.0);
 
-	// The callerIID component may start gathering again,
+	// The callerIID component may start again,
 	// replacing the callerIID, hence save that.
 	let callerIID = this.callerIID;
 	delete this.callerIID;

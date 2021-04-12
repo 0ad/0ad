@@ -191,8 +191,6 @@ Attack.prototype.Init = function()
 {
 };
 
-Attack.prototype.Serialize = null; // we have no dynamic state to save
-
 Attack.prototype.GetAttackTypes = function(wantedTypes)
 {
 	let types = g_AttackTypes.filter(type => !!this.template[type]);
@@ -443,6 +441,130 @@ Attack.prototype.GetRange = function(type)
 };
 
 /**
+ * @param {number} target - The target to attack.
+ * @param {string} type - The type of attack to use.
+ * @param {number} callerIID - The IID to notify on specific events.
+ *
+ * @return {boolean} - Whether we started attacking.
+ */
+Attack.prototype.StartAttacking = function(target, type, callerIID)
+{
+	if (this.target)
+		this.StopAttacking();
+
+	if (!this.CanAttack(target))
+		return false;
+
+	let timings = this.GetTimers(type);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+	// If the repeat time since the last attack hasn't elapsed,
+	// delay the action to avoid attacking too fast.
+	let prepare = timings.prepare;
+	if (this.lastAttacked)
+	{
+		let repeatLeft = this.lastAttacked + timings.repeat - cmpTimer.GetTime();
+		prepare = Math.max(prepare, repeatLeft);
+	}
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+	{
+		cmpVisual.SelectAnimation("attack_" + type.toLowerCase(), false, 1.0);
+		cmpVisual.SetAnimationSyncRepeat(timings.repeat);
+		cmpVisual.SetAnimationSyncOffset(prepare);
+	}
+
+	// If using a non-default prepare time, re-sync the animation when the timer runs.
+	this.resyncAnimation = prepare != timings.prepare;
+	this.target = target;
+	this.callerIID = callerIID;
+	this.timer = cmpTimer.SetInterval(this.entity, IID_Attack, "Attack", prepare, timings.repeat, type);
+
+	return true;
+};
+
+/**
+ * @param {string} reason - The reason why we stopped attacking.
+ */
+Attack.prototype.StopAttacking = function(reason)
+{
+	if (!this.target)
+		return;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	delete this.timer;
+
+	delete this.target;
+
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("idle", false, 1.0);
+
+	// The callerIID component may start again,
+	// replacing the callerIID, hence save that.
+	let callerIID = this.callerIID;
+	delete this.callerIID;
+
+	if (reason && callerIID)
+	{
+		let component = Engine.QueryInterface(this.entity, callerIID);
+		if (component)
+			component.ProcessMessage(reason, null);
+	}
+};
+
+/**
+ * Attack our target entity.
+ * @param {string} data - The attack type to use.
+ * @param {number} lateness - The offset of the actual call and when it was expected.
+ */
+Attack.prototype.Attack = function(type, lateness)
+{
+	if (!this.CanAttack(this.target))
+	{
+		this.StopAttacking("TargetInvalidated");
+		return;
+	}
+
+	// ToDo: Enable entities to keep facing a target.
+	Engine.QueryInterface(this.entity, IID_UnitAI)?.FaceTowardsTarget(this.target);
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.lastAttacked = cmpTimer.GetTime() - lateness;
+
+	// BuildingAI has its own attack routine.
+	if (!Engine.QueryInterface(this.entity, IID_BuildingAI))
+		this.PerformAttack(type, this.target);
+
+	if (!this.target)
+	{
+		this.StopAttacking("TargetInvalidated");
+		return;
+	}
+
+	// We check the range after the attack to facilitate chasing.
+	if (!this.IsTargetInRange(this.target, type))
+	{
+		this.StopAttacking("OutOfRange");
+		return;
+	}
+
+	if (this.resyncAnimation)
+	{
+		let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		if (cmpVisual)
+		{
+			let repeat = this.GetTimers(type).repeat;
+			cmpVisual.SetAnimationSyncRepeat(repeat);
+			cmpVisual.SetAnimationSyncOffset(repeat);
+		}
+		delete this.resyncAnimation;
+	}
+};
+
+/**
  * Attack the target entity. This should only be called after a successful range check,
  * and should only be called after GetTimers().repeat msec has passed since the last
  * call to PerformAttack.
@@ -580,6 +702,36 @@ Attack.prototype.PerformAttack = function(type, target)
 	}
 	else
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_DelayedDamage).Hit(data, 0);
+};
+
+/**
+ * @param {number} - The entity ID of the target to check.
+ * @return {boolean} - Whether this entity is in range of its target.
+ */
+Attack.prototype.IsTargetInRange = function(target, type)
+{
+	let range = this.GetRange(type);
+	if (type == "Ranged")
+	{
+		let cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
+		if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
+			return false;
+
+		let cmpPositionSelf = Engine.QueryInterface(this.entity, IID_Position);
+		if (!cmpPositionSelf || !cmpPositionSelf.IsInWorld())
+			return false;
+
+		let positionSelf = cmpPositionSelf.GetPosition();
+		let positionTarget = cmpPositionTarget.GetPosition();
+
+		let heightDifference = positionSelf.y + range.elevationBonus - positionTarget.y;
+		range.max = Math.sqrt(Math.square(range.max) + 2 * range.max * heightDifference);
+
+		if (range.max < 0)
+			return false;
+	}
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
 };
 
 Attack.prototype.OnValueModification = function(msg)

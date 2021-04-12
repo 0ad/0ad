@@ -149,11 +149,6 @@ function TestFormationExiting(mode)
 		"GetEnemies": function() { return [2]; },
 	});
 
-	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
-		"IsInTargetRange": () => true,
-		"IsInPointRange": () => true
-	});
-
 	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
 
 	AddMock(unit, IID_Identity, {
@@ -194,6 +189,8 @@ function TestFormationExiting(mode)
 		"GetTimers": function() { return { "prepare": 500, "repeat": 1000 }; },
 		"CanAttack": function(v) { return true; },
 		"CompareEntitiesByPreference": function(a, b) { return 0; },
+		"IsTargetInRange": () => true,
+		"StartAttacking": () => true
 	});
 
 	unitAI.OnCreate();
@@ -370,6 +367,9 @@ function TestMoveIntoFormationWhileAttacking()
 			"GetTimers": function() { return { "prepare": 500, "repeat": 1000 }; },
 			"CanAttack": function(v) { return true; },
 			"CompareEntitiesByPreference": function(a, b) { return 0; },
+			"IsTargetInRange": () => true,
+			"StartAttacking": () => true,
+			"StopAttacking": () => {}
 		});
 
 		unitAI.OnCreate();

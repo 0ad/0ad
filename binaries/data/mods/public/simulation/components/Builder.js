@@ -117,27 +117,24 @@ Builder.prototype.StartRepairing = function(target, callerIID)
  */
 Builder.prototype.StopRepairing = function(reason)
 {
-	if (this.timer)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-		delete this.timer;
-	}
+	if (!this.target)
+		return;
 
-	if (this.target)
-	{
-		let cmpBuilderList = QueryBuilderListInterface(this.target);
-		if (cmpBuilderList)
-			cmpBuilderList.RemoveBuilder(this.entity);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	delete this.timer;
 
-		delete this.target;
-	}
+	let cmpBuilderList = QueryBuilderListInterface(this.target);
+	if (cmpBuilderList)
+		cmpBuilderList.RemoveBuilder(this.entity);
+
+	delete this.target;
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("idle", false, 1.0);
 
-	// The callerIID component may start repairing again,
+	// The callerIID component may start again,
 	// replacing the callerIID, hence save that.
 	let callerIID = this.callerIID;
 	delete this.callerIID;
