@@ -5425,6 +5425,9 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false, 
  */
 UnitAI.prototype.Garrison = function(target, queued, pushFront)
 {
+	// Not allowed to garrison when occupying a turret, at the moment.
+	if (this.isGarrisoned)
+		return;
 	if (target == this.entity)
 		return;
 	if (!this.CanGarrison(target))

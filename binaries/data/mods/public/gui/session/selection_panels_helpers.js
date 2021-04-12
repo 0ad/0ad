@@ -487,6 +487,20 @@ function unloadAllTurrets()
 		});
 }
 
+function leaveTurretPoints()
+{
+	let entities = g_Selection.toList().filter(entity => {
+		let entState = GetEntityState(entity);
+		return entState && entState.turretable &&
+			entState.turretable.holder != INVALID_ENTITY;
+	});
+
+	Engine.PostNetworkCommand({
+		"type": "leave-turret",
+		"entities": entities
+	});
+}
+
 function backToWork()
 {
 	Engine.PostNetworkCommand({

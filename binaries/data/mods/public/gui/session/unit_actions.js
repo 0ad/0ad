@@ -730,10 +730,9 @@ var g_UnitActions =
 		},
 		"preSelectedActionCheck": function(target, selection)
 		{
-			return  preSelectedAction == ACTION_GARRISON &&
-				(this.actionCheck(target, selection) || {
+			return preSelectedAction == ACTION_OCCUPY_TURRET && (this.actionCheck(target, selection) || {
 				"type": "none",
-				"cursor": "action-garrison-disabled",
+				"cursor": "action-occupy-turret-disabled",
 				"target": null
 			});
 		},
@@ -747,9 +746,10 @@ var g_UnitActions =
 			let actionInfo = getActionInfo("occupy-turret", target, selection);
 			return actionInfo.possible && {
 				"type": "occupy-turret",
-				"cursor": "action-garrison",
+				"cursor": "action-occupy-turret",
 				"tooltip": actionInfo.tooltip,
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 21,
@@ -1421,7 +1421,8 @@ var g_EntityCommands =
 	"garrison": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.unitAI || entState.turretParent || false))
+			if (entStates.every(entState => !entState.garrisonable ||
+				entState.garrisonable.holder != INVALID_ENTITY))
 				return false;
 
 			return {
@@ -1439,6 +1440,28 @@ var g_EntityCommands =
 		"allowedPlayers": ["Player"]
 	},
 
+	"occupy-turret": {
+		"getInfo": function(entStates)
+		{
+			if (entStates.every(entState => !entState.turretable ||
+				entState.turretable.holder != INVALID_ENTITY))
+				return false;
+
+			return {
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.occupyturret") +
+				           translate("Order the selected units to occupy a turret point."),
+				"icon": "occupy-turret.png",
+				"enabled": true
+			};
+		},
+		"execute": function()
+		{
+			inputState = INPUT_PRESELECTEDACTION;
+			preSelectedAction = ACTION_OCCUPY_TURRET;
+		},
+		"allowedPlayers": ["Player"]
+	},
+
 	"leave-turret": {
 		"getInfo": function(entStates)
 		{
@@ -1449,21 +1472,13 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": translate("Unload"),
-				"icon": "garrison-out.png",
+				"icon": "leave-turret.png",
 				"enabled": true
 			};
 		},
 		"execute": function(entStates)
 		{
-			if (!entStates.length)
-				return;
-
-			Engine.PostNetworkCommand({
-				"type": "leave-turret",
-				"entities": entStates.filter(entState => entState.turretable &&
-					entState.turretable.holder != INVALID_ENTITY ||
-					!entState.turretable.ejectable).map(entState => entState.id)
-			});
+			leaveTurretPoints();
 		},
 		"allowedPlayers": ["Player"]
 	},
