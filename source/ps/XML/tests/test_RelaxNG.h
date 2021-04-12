@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,21 +39,21 @@ public:
 		RelaxNGValidator v;
 		TS_ASSERT(v.LoadGrammar("<element xmlns='http://relaxng.org/ns/structure/1.0' name='test'><empty/></element>"));
 
-		TS_ASSERT(v.Validate(L"doc", L"<test/>"));
+		TS_ASSERT(v.Validate("doc", "<test/>"));
 
 		{
 			TestLogger logger;
-			TS_ASSERT(!v.Validate(L"doc", L"<bogus/>"));
+			TS_ASSERT(!v.Validate("doc", "<bogus/>"));
 			TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "Validation error: doc:1: Expecting element test, got bogus");
 		}
 
 		{
 			TestLogger logger;
-			TS_ASSERT(!v.Validate(L"doc", L"bogus"));
+			TS_ASSERT(!v.Validate("doc", "bogus"));
 			TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "RelaxNGValidator: Failed to parse document");
 		}
 
-		TS_ASSERT(v.Validate(L"doc", L"<test/>"));
+		TS_ASSERT(v.Validate("doc", "<test/>"));
 	}
 
 	void test_interleave()
@@ -68,20 +68,20 @@ public:
 		RelaxNGValidator v;
 		TS_ASSERT(v.LoadGrammar("<element xmlns='http://relaxng.org/ns/structure/1.0' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes' name='test'><data type='decimal'><param name='minInclusive'>1.5</param></data></element>"));
 
-		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
+		TS_ASSERT(v.Validate("doc", "<test>2.0</test>"));
 
 		TestLogger logger;
 
-		TS_ASSERT(!v.Validate(L"doc", L"<test>x</test>"));
-		TS_ASSERT(!v.Validate(L"doc", L"<test>1.0</test>"));
+		TS_ASSERT(!v.Validate("doc", "<test>x</test>"));
+		TS_ASSERT(!v.Validate("doc", "<test>1.0</test>"));
 
 		RelaxNGValidator w;
 		TS_ASSERT(w.LoadGrammar("<element xmlns='http://relaxng.org/ns/structure/1.0' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes' name='test'><data type='integer'></data></element>"));
 
-		TS_ASSERT(w.Validate(L"doc", L"<test>2</test>"));
+		TS_ASSERT(w.Validate("doc", "<test>2</test>"));
 
-		TS_ASSERT(!w.Validate(L"doc", L"<test>x</test>"));
-		TS_ASSERT(!w.Validate(L"doc", L"<test>2.0</test>"));
+		TS_ASSERT(!w.Validate("doc", "<test>x</test>"));
+		TS_ASSERT(!w.Validate("doc", "<test>2.0</test>"));
 	}
 
 	void test_broken_grammar()
@@ -92,6 +92,6 @@ public:
 		TS_ASSERT(!v.LoadGrammar("whoops"));
 		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "RelaxNGValidator: Failed to compile schema");
 
-		TS_ASSERT(!v.Validate(L"doc", L"<test/>"));
+		TS_ASSERT(!v.Validate("doc", "<test/>"));
 	}
 };

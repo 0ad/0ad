@@ -430,9 +430,6 @@ void CMiniMap::Draw()
 	const float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
 
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
-	// Disable depth updates to prevent apparent z-fighting-related issues
-	//  with some drivers causing units to get drawn behind the texture.
-	glDepthMask(0);
 
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
@@ -634,9 +631,6 @@ void CMiniMap::Draw()
 	DrawViewRect(unitMatrix);
 
 	PROFILE_END("minimap units");
-
-	// Reset depth mask
-	glDepthMask(1);
 }
 
 void CMiniMap::CreateTextures()

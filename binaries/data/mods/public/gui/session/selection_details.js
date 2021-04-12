@@ -308,7 +308,7 @@ function displaySingle(entState)
 		});
 
 	let isGaia = playerState.civ == "gaia";
-	Engine.GetGUIObjectByName("playerCivIcon").sprite = isGaia ? "" : "stretched:grayscale:" + civEmblem;
+	Engine.GetGUIObjectByName("playerCivIcon").sprite = isGaia ? "" : "cropped:1.0, 0.15625 center:grayscale:" + civEmblem;
 	Engine.GetGUIObjectByName("player").tooltip = isGaia ? "" : civName;
 
 	// TODO: we should require all entities to have icons

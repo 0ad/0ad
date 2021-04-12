@@ -127,14 +127,14 @@ bool RelaxNGValidator::LoadGrammarFile(const PIVFS& vfs, const VfsPath& grammarP
 	return LoadGrammar(file.DecodeUTF8());
 }
 
-bool RelaxNGValidator::Validate(const std::wstring& filename, const std::wstring& document) const
+bool RelaxNGValidator::Validate(const std::string& filename, const std::string& document) const
 {
-	std::string docutf8 = "<?xml version='1.0' encoding='utf-8'?>" + utf8_from_wstring(document);
+	std::string docutf8 = "<?xml version='1.0' encoding='utf-8'?>" + document;
 
 	return ValidateEncoded(filename, docutf8);
 }
 
-bool RelaxNGValidator::ValidateEncoded(const std::wstring& filename, const std::string& document) const
+bool RelaxNGValidator::ValidateEncoded(const std::string& filename, const std::string& document) const
 {
 	TIMER_ACCRUE(xml_validation);
 
@@ -144,10 +144,10 @@ bool RelaxNGValidator::ValidateEncoded(const std::wstring& filename, const std::
 		return false;
 	}
 
-	xmlDocPtr doc = xmlReadMemory(document.c_str(), (int)document.size(), utf8_from_wstring(filename).c_str(), NULL, XML_PARSE_NONET);
+	xmlDocPtr doc = xmlReadMemory(document.c_str(), (int)document.size(), filename.c_str(), NULL, XML_PARSE_NONET);
 	if (doc == NULL)
 	{
-		LOGERROR("RelaxNGValidator: Failed to parse document '%s'", utf8_from_wstring(filename).c_str());
+		LOGERROR("RelaxNGValidator: Failed to parse document '%s'", filename.c_str());
 		return false;
 	}
 

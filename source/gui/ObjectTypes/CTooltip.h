@@ -50,6 +50,8 @@ protected:
 
 	virtual void Draw();
 
+	virtual float GetBufferedZ() const;
+
 	// Settings
 	float m_BufferZone;
 	CGUIString m_Caption;

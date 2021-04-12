@@ -97,7 +97,7 @@ std::vector<std::string> Interface::GetTemplates(const std::vector<std::string>&
 		const CParamNode* node = cmpTemplateManager->GetTemplate(templateName);
 
 		if (node != nullptr)
-			templates.push_back(utf8_from_wstring(node->ToXML()));
+			templates.push_back(node->ToXMLString());
 	}
 
 	return templates;

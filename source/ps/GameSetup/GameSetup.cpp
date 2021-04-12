@@ -254,7 +254,13 @@ void Render()
 	ogl_WarnIfError();
 
 	if (g_DoRenderGui)
+	{
+		// All GUI elements are drawn in Z order to render semi-transparent
+		// objects correctly.
+		glDisable(GL_DEPTH_TEST);
 		g_GUI->Draw();
+		glEnable(GL_DEPTH_TEST);
+	}
 
 	ogl_WarnIfError();
 

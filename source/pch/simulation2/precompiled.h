@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 // The simulation has many header files (component interfaces) which are quick to compile on their own
 // but bring in a lot of headers indirectly. Adding these to the precompiled header
 // cuts down compilation time by about half.
-#include "simulation2/system/Component.h"
 #include "simulation2/system/Interface.h"
 #include "simulation2/system/InterfaceScripted.h"
 #include "maths/FixedVector2D.h"

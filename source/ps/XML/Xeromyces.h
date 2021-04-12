@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,7 +74,7 @@ public:
 
 	static bool AddValidator(const PIVFS& vfs, const std::string& name, const VfsPath& grammarPath);
 
-	static bool ValidateEncoded(const std::string& name, const std::wstring& filename, const std::string& document);
+	static bool ValidateEncoded(const std::string& name, const std::string& filename, const std::string& document);
 
 private:
 	static RelaxNGValidator& GetValidator(const std::string& name);

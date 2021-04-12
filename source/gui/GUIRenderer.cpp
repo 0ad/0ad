@@ -102,7 +102,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			SGUIImage* Image = new SGUIImage();
 
 			Image->m_TextureName = TextureName;
-			// Allow grayscale images for disabled portraits
 			if (SpriteName.Find("grayscale:") != -1)
 			{
 				Image->m_Effects = std::make_shared<SGUIImageEffects>();
@@ -118,12 +117,22 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			// TODO: Should check (nicely) that this is a valid file?
 			SGUIImage* Image = new SGUIImage();
 
+			const bool centered = SpriteName.Find("center:") != -1;
+
 			CStr info = SpriteName.AfterLast("cropped:").BeforeFirst(":");
 			double xRatio = info.BeforeFirst(",").ToDouble();
 			double yRatio = info.AfterLast(",").ToDouble();
-			Image->m_TextureSize = CGUISize(CRect(0, 0, 0, 0), CRect(0, 0, 100/xRatio, 100/yRatio));
-
+			const CRect percentSize = centered
+				? CRect(50 - 50 / xRatio, 50 - 50 / yRatio, 50 + 50 / xRatio, 50 + 50 / yRatio)
+				: CRect(0, 0, 100 / xRatio, 100 / yRatio);
+			Image->m_TextureSize = CGUISize(CRect(0, 0, 0, 0), percentSize);
 			Image->m_TextureName = TextureName;
+
+			if (SpriteName.Find("grayscale:") != -1)
+			{
+				Image->m_Effects = std::make_shared<SGUIImageEffects>();
+				Image->m_Effects->m_Greyscale = true;
+			}
 
 			Sprite->AddImage(Image);
 

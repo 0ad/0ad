@@ -78,12 +78,6 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
 
-	if (variation.model.empty())
-	{
-		m_Model = new CModelDummy();
-		return true;
-	}
-
 	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
 	{
 		CMaterial material = g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material);
@@ -110,6 +104,12 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 	if (!variation.particles.empty())
 	{
 		m_Model = new CModelParticleEmitter(g_Renderer.GetParticleManager().LoadEmitterType(variation.particles));
+		return true;
+	}
+
+	if (variation.model.empty())
+	{
+		m_Model = new CModelDummy();
 		return true;
 	}
 

@@ -257,7 +257,7 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 		{
-			m_PassClassName = paramNode.GetChild("PassabilityClass").ToUTF8();
+			m_PassClassName = paramNode.GetChild("PassabilityClass").ToString();
 			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
 			m_Clearance = cmpPathfinder->GetClearance(m_PassClass);
 

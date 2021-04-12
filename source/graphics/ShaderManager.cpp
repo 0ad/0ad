@@ -132,7 +132,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 		XMLWriter_File shaderFile;
 		shaderFile.SetPrettyPrint(false);
 		shaderFile.XMB(XeroFile);
-		bool ok = CXeromyces::ValidateEncoded("shader", wstring_from_utf8(name), shaderFile.GetOutput());
+		bool ok = CXeromyces::ValidateEncoded("shader", name, shaderFile.GetOutput());
 		if (!ok)
 			return false;
 	}

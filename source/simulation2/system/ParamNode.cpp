@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@
 #include <sstream>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string/join.hpp>	// this isn't in string.hpp in old Boosts
 
 static CParamNode g_NullNode(false);
 
@@ -70,7 +69,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	ResetScriptVal();
 
 	std::string name = xmb.GetElementString(element.GetNodeName()); // TODO: is GetElementString inefficient?
-	CStrW value = element.GetText().FromUTF8();
+	CStr value = element.GetText();
 
 	bool hasSetValue = false;
 
@@ -115,11 +114,11 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 			}
 			else if (attr.Name == at_op)
 			{
-				if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"add")
+				if (attr.Value == "add")
 					op = ADD;
-				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul")
+				else if (attr.Value == "mul")
 					op = MUL;
-				else if (std::wstring(attr.Value.begin(), attr.Value.end()) == L"mul_round")
+				else if (attr.Value == "mul_round")
 					op = MUL_ROUND;
 				else
 					LOGWARNING("Invalid op '%ls'", attr.Value);
@@ -129,30 +128,30 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	{
 		XERO_ITER_ATTR(element, attr)
 		{
-			if (attr.Name == at_datatype && std::wstring(attr.Value.begin(), attr.Value.end()) == L"tokens")
+			if (attr.Name == at_datatype && attr.Value == "tokens")
 			{
 				CParamNode& node = m_Childs[name];
 
 				// Split into tokens
-				std::vector<std::wstring> oldTokens;
-				std::vector<std::wstring> newTokens;
+				std::vector<std::string> oldTokens;
+				std::vector<std::string> newTokens;
 				if (!replacing && !node.m_Value.empty()) // ignore the old tokens if replace="" was given
 					boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
 				if (!value.empty())
 					boost::algorithm::split(newTokens, value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
 
 				// Merge the two lists
-				std::vector<std::wstring> tokens = oldTokens;
+				std::vector<std::string> tokens = oldTokens;
 				for (size_t i = 0; i < newTokens.size(); ++i)
 				{
-					if (newTokens[i][0] == L'-')
+					if (newTokens[i][0] == '-')
 					{
-						std::vector<std::wstring>::iterator tokenIt = std::find(tokens.begin(), tokens.end(), newTokens[i].substr(1));
+						std::vector<std::string>::iterator tokenIt = std::find(tokens.begin(), tokens.end(), newTokens[i].substr(1));
 						if (tokenIt != tokens.end())
 							tokens.erase(tokenIt);
 						else
 							LOGWARNING("[ParamNode] Could not remove token '%s' from node '%s'%s; not present in list nor inherited (possible typo?)",
-								utf8_from_wstring(newTokens[i].substr(1)), name, sourceIdentifier ? (" in '" + utf8_from_wstring(sourceIdentifier) + "'").c_str() : "");
+								newTokens[i].substr(1), name, sourceIdentifier ? (" in '" + utf8_from_wstring(sourceIdentifier) + "'").c_str() : "");
 					}
 					else
 					{
@@ -161,7 +160,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 					}
 				}
 
-				node.m_Value = boost::algorithm::join(tokens, L" ");
+				node.m_Value = boost::algorithm::join(tokens, " ");
 				hasSetValue = true;
 				break;
 			}
@@ -174,18 +173,18 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 	{
 		// TODO: Support parsing of data types other than fixed; log warnings in other cases
 		fixed oldval = node.ToFixed();
-		fixed mod = fixed::FromString(CStrW(value));
+		fixed mod = fixed::FromString(value);
 
 		switch (op)
 		{
 		case ADD:
-			node.m_Value = (oldval + mod).ToString().FromUTF8();
+			node.m_Value = (oldval + mod).ToString();
 			break;
 		case MUL:
-			node.m_Value = oldval.Multiply(mod).ToString().FromUTF8();
+			node.m_Value = oldval.Multiply(mod).ToString();
 			break;
 		case MUL_ROUND:
-			node.m_Value = fixed::FromInt(oldval.Multiply(mod).ToInt_RoundToNearest()).ToString().FromUTF8();
+			node.m_Value = fixed::FromInt(oldval.Multiply(mod).ToInt_RoundToNearest()).ToString();
 			break;
 		default:
 			break;
@@ -226,7 +225,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 			continue;
 		// Add any others
 		std::string attrName = xmb.GetAttributeString(attr.Name);
-		node.m_Childs["@" + attrName].m_Value = attr.Value.FromUTF8();
+		node.m_Childs["@" + attrName].m_Value = attr.Value;
 	}
 }
 
@@ -243,47 +242,39 @@ bool CParamNode::IsOk() const
 	return m_IsOk;
 }
 
-const std::wstring& CParamNode::ToString() const
+const std::wstring CParamNode::ToWString() const
+{
+	return wstring_from_utf8(m_Value);
+}
+
+const std::string& CParamNode::ToString() const
 {
 	return m_Value;
 }
 
-const std::string CParamNode::ToUTF8() const
-{
-	return utf8_from_wstring(m_Value);
-}
-
 const CStrIntern CParamNode::ToUTF8Intern() const
 {
-	return CStrIntern(utf8_from_wstring(m_Value));
+	return CStrIntern(m_Value);
 }
 
 int CParamNode::ToInt() const
 {
-	int ret = 0;
-	std::wstringstream strm;
-	strm << m_Value;
-	strm >> ret;
-	return ret;
+	return std::strtol(m_Value.c_str(), nullptr, 10);
 }
 
 fixed CParamNode::ToFixed() const
 {
-	return fixed::FromString(CStrW(m_Value));
+	return fixed::FromString(m_Value);
 }
 
 float CParamNode::ToFloat() const
 {
-	float ret = 0;
-	std::wstringstream strm;
-	strm << m_Value;
-	strm >> ret;
-	return ret;
+	return std::strtof(m_Value.c_str(), nullptr);
 }
 
 bool CParamNode::ToBool() const
 {
-	if (m_Value == L"true")
+	if (m_Value == "true")
 		return true;
 	else
 		return false;
@@ -294,40 +285,39 @@ const CParamNode::ChildrenMap& CParamNode::GetChildren() const
 	return m_Childs;
 }
 
-std::wstring CParamNode::EscapeXMLString(const std::wstring& str)
+std::string CParamNode::EscapeXMLString(const std::string& str)
 {
-	std::wstring ret;
+	std::string ret;
 	ret.reserve(str.size());
+	// TODO: would be nice to check actual v1.0 XML codepoints,
+	// but our UTF8 validation routines are lacking.
 	for (size_t i = 0; i < str.size(); ++i)
 	{
-		wchar_t c = str[i];
+		char c = str[i];
 		switch (c)
 		{
-		case '<': ret += L"&lt;"; break;
-		case '>': ret += L"&gt;"; break;
-		case '&': ret += L"&amp;"; break;
-		case '"': ret += L"&quot;"; break;
-		case '\t': ret += L"&#9;"; break;
-		case '\n': ret += L"&#10;"; break;
-		case '\r': ret += L"&#13;"; break;
+		case '<': ret += "&lt;"; break;
+		case '>': ret += "&gt;"; break;
+		case '&': ret += "&amp;"; break;
+		case '"': ret += "&quot;"; break;
+		case '\t': ret += "&#9;"; break;
+		case '\n': ret += "&#10;"; break;
+		case '\r': ret += "&#13;"; break;
 		default:
-			if ((0x20 <= c && c <= 0xD7FF) || (0xE000 <= c && c <= 0xFFFD))
-				ret += c;
-			else
-				ret += 0xFFFD;
+			ret += c;
 		}
 	}
 	return ret;
 }
 
-std::wstring CParamNode::ToXML() const
+std::string CParamNode::ToXMLString() const
 {
-	std::wstringstream strm;
-	ToXML(strm);
+	std::stringstream strm;
+	ToXMLString(strm);
 	return strm.str();
 }
 
-void CParamNode::ToXML(std::wostream& strm) const
+void CParamNode::ToXMLString(std::ostream& strm) const
 {
 	strm << m_Value;
 
@@ -338,9 +328,7 @@ void CParamNode::ToXML(std::wostream& strm) const
 		if (it->first.length() && it->first[0] == '@')
 			continue;
 
-		std::wstring name (it->first.begin(), it->first.end());
-
-		strm << L"<" << name;
+		strm << "<" << it->first;
 
 		// Output the child's attributes first
 		ChildrenMap::const_iterator cit = it->second.m_Childs.begin();
@@ -348,16 +336,16 @@ void CParamNode::ToXML(std::wostream& strm) const
 		{
 			if (cit->first.length() && cit->first[0] == '@')
 			{
-				std::wstring attrname (cit->first.begin()+1, cit->first.end());
-				strm << L" " << attrname << L"=\"" << EscapeXMLString(cit->second.m_Value) << L"\"";
+				std::string attrname (cit->first.begin()+1, cit->first.end());
+				strm << " " << attrname << "=\"" << EscapeXMLString(cit->second.m_Value) << "\"";
 			}
 		}
 
-		strm << L">";
+		strm << ">";
 
-		it->second.ToXML(strm);
+		it->second.ToXMLString(strm);
 
-		strm << L"</" << name << ">";
+		strm << "</" << it->first << ">";
 	}
 }
 
@@ -387,8 +375,8 @@ void CParamNode::ConstructJSVal(const ScriptRequest& rq, JS::MutableHandleValue 
 		}
 
 		// Just a string
-		utf16string text(m_Value.begin(), m_Value.end());
-		JS::RootedString str(rq.cx, JS_AtomizeAndPinUCStringN(rq.cx, reinterpret_cast<const char16_t*>(text.data()), text.length()));
+		JS::RootedString str(rq.cx, JS_NewStringCopyUTF8Z(rq.cx, JS::ConstUTF8CharsZ(m_Value.data(), m_Value.size())));
+		str.set(JS_AtomizeAndPinJSString(rq.cx, str));
 		if (str)
 		{
 			ret.setString(str);
