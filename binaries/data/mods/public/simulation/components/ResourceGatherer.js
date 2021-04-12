@@ -330,15 +330,6 @@ ResourceGatherer.prototype.CanGather = function(target)
 };
 
 /**
- * @param {number} target - The entity ID of the target to check.
- * @return {boolean} - Whether we can gather from the target.
- */
-ResourceGatherer.prototype.CanGather = function(target)
-{
-	return this.GetTargetGatherRate(target) > 0;
-};
-
-/**
  * Returns whether this unit can carry more of the given type of resource.
  * (This ignores whether the unit is actually able to gather that
  * resource type or not.)

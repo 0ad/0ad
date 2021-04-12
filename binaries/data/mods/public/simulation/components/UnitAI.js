@@ -558,19 +558,10 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.ReturnResource": function(msg) {
-		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer) &&
-		    this.CanReturnResource(msg.data.target, true, cmpResourceGatherer))
-		{
-			cmpResourceGatherer.CommitResources(msg.data.target);
-			this.SetDefaultAnimationVariant();
-
-			// Our next order should always be a Gather,
-			// so just switch back to that order.
-			this.FinishOrder();
-		}
+		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
+			this.SetNextState("RETURNRESOURCE.DROPPINGRESOURCES");
 		else if (this.AbleToMove())
-			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
+			this.SetNextState("RETURNRESOURCE.APPROACHING");
 		else
 			return this.FinishOrder();
 		return ACCEPT_ORDER;
@@ -2437,10 +2428,9 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function(msg) {
-					// If we failed, the GATHERING timer will handle finding a valid resource.
 					if (msg.likelyFailure || msg.obstructed && this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange) ||
 						 this.CheckRange(this.order.data))
-						this.SetNextState("GATHERING");
+						this.SetNextState("FINDINGNEWTARGET");
 				},
 			},
 
@@ -2557,7 +2547,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!initPos)
 						initPos = { 'x': pos.X, 'z': pos.Z };
 					else if (!nearbyResource)
-						nearbyResource = this.FindNearbyResource(new Vector2D(initPos.X, initPos.Z), filter);
+						nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z), filter);
 
 					if (nearbyResource)
 					{
@@ -2727,8 +2717,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						// Stop showing the carried resource animation.
 						this.SetDefaultAnimationVariant();
 
-						// Our next order should always be a Gather,
-						// so just switch back to that order.
 						this.FinishOrder();
 						return true;
 					}
@@ -4318,15 +4306,14 @@ UnitAI.prototype.FindNearbyResource = function(position, filter)
 	return nearby.find(ent => {
 		if (!this.CanGather(ent) || !this.CheckTargetVisible(ent))
 			return false;
-		let cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
-		let type = cmpResourceSupply.GetType();
-		let amount = cmpResourceSupply.GetCurrentAmount();
 
 		let template = cmpTemplateManager.GetCurrentTemplateName(ent);
 		if (template.indexOf("resource|") != -1)
 			template = template.slice(9);
 
-		return amount > 0 && cmpResourceSupply.IsAvailableTo(this.entity) && filter(ent, type, template);
+		let cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+		let type = cmpResourceSupply.GetType();
+		return cmpResourceSupply.IsAvailableTo(this.entity) && filter(ent, type, template);
 	});
 };
 
