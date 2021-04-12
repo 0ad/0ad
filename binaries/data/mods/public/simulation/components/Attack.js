@@ -93,11 +93,13 @@ Attack.prototype.Schema =
 				"<Pierce>0.0</Pierce>" +
 				"<Crush>0.0</Crush>" +
 			"</Damage>" +
+			"<RepeatTime>1000</RepeatTime>" +
 			"<MaxRange>4.0</MaxRange>" +
 		"</Slaughter>" +
 	"</a:example>" +
-	"<optional>" +
-		"<element name='Melee'>" +
+	"<oneOrMore>" +
+		"<element>" +
+			"<anyName a:help='Currently one of Melee, Ranged, Capture or Slaughter.'/>" +
 			"<interleave>" +
 				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
 					"<optional>" +
@@ -109,33 +111,11 @@ Attack.prototype.Schema =
 				"</element>" +
 				Attacking.BuildAttackEffectsSchema() +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
-					"<data type='nonNegativeInteger'/>" +
-				"</element>" +
-				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
-					"<data type='positiveInteger'/>" +
-				"</element>" +
-				Attack.prototype.preferredClassesSchema +
-				Attack.prototype.restrictedClassesSchema +
-			"</interleave>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='Ranged'>" +
-			"<interleave>" +
-				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
-					"<optional>" +
-						"<attribute name='context'>" +
-							"<text/>" +
-						"</attribute>" +
-					"</optional>" +
-					"<text/>" +
-				"</element>" +
-				Attacking.BuildAttackEffectsSchema() +
-				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<optional>" +
+					"<element name='MinRange' a:help='Minimum attack range (in metres). Defaults to 0.'><ref name='nonNegativeDecimal'/></element>" +
+				"</optional>" +
 				"<optional>"+
-					"<element name='ElevationBonus' a:help='give an elevation advantage (in meters)'><ref name='nonNegativeDecimal'/></element>" +
+					"<element name='ElevationBonus' a:help='The offset height from which the attack occurs, relative to the entity position. Defaults to 0.'><ref name='nonNegativeDecimal'/></element>" +
 				"</optional>" +
 				"<optional>" +
 					"<element name='RangeOverlay'>" +
@@ -146,13 +126,17 @@ Attack.prototype.Schema =
 						"</interleave>" +
 					"</element>" +
 				"</optional>" +
-				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
-					"<data type='nonNegativeInteger'/>" +
-				"</element>" +
-				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" +
+				"<optional>" +
+					"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation. Defaults to 0.'>" +
+						"<data type='nonNegativeInteger'/>" +
+					"</element>" +
+				"</optional>" +
+				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
 					"<data type='positiveInteger'/>" +
 				"</element>" +
-				"<element name='Delay' a:help='Delay of the damage in milliseconds'><ref name='nonNegativeDecimal'/></element>" +
+				"<optional>" +
+					"<element name='Delay' a:help='Delay of applying the effects in milliseconds after the attack has landed. Defaults to 0.'><ref name='nonNegativeDecimal'/></element>" +
+				"</optional>" +
 				"<optional>" +
 					"<element name='Splash'>" +
 						"<interleave>" +
@@ -163,82 +147,45 @@ Attack.prototype.Schema =
 						"</interleave>" +
 					"</element>" +
 				"</optional>" +
-				"<element name='Projectile'>" +
-					"<interleave>" +
-						"<element name='Speed' a:help='Speed of projectiles (in meters per second).'>" +
-							"<ref name='positiveDecimal'/>" +
-						"</element>" +
-						"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
-						"<element name='Gravity' a:help='The gravity affecting the projectile. This affects the shape of the flight curve.'>" +
-							"<ref name='nonNegativeDecimal'/>" +
-						"</element>" +
-						"<element name='FriendlyFire' a:help='Whether stray missiles can hurt non enemy units.'><data type='boolean'/></element>" +
-						"<optional>" +
-							"<element name='LaunchPoint' a:help='Delta from the unit position where to launch the projectile.'>" +
-								"<attribute name='y'>" +
-									"<data type='decimal'/>" +
-								"</attribute>" +
-							"</element>" +
-						"</optional>" +
-						"<optional>" +
-							"<element name='ActorName' a:help='actor of the projectile animation.'>" +
-								"<text/>" +
-							"</element>" +
-						"</optional>" +
-						"<optional>" +
-							"<element name='ImpactActorName' a:help='actor of the projectile impact animation'>" +
-								"<text/>" +
-							"</element>" +
-							"<element name='ImpactAnimationLifetime' a:help='length of the projectile impact animation.'>" +
+				"<optional>" +
+					"<element name='Projectile'>" +
+						"<interleave>" +
+							"<element name='Speed' a:help='Speed of projectiles (in meters per second).'>" +
 								"<ref name='positiveDecimal'/>" +
 							"</element>" +
-						"</optional>" +
-					"</interleave>" +
-				"</element>" +
+							"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Gravity' a:help='The gravity affecting the projectile. This affects the shape of the flight curve.'>" +
+								"<ref name='nonNegativeDecimal'/>" +
+							"</element>" +
+							"<element name='FriendlyFire' a:help='Whether stray missiles can hurt non enemy units.'><data type='boolean'/></element>" +
+							"<optional>" +
+								"<element name='LaunchPoint' a:help='Delta from the unit position where to launch the projectile.'>" +
+									"<attribute name='y'>" +
+										"<data type='decimal'/>" +
+									"</attribute>" +
+								"</element>" +
+							"</optional>" +
+							"<optional>" +
+								"<element name='ActorName' a:help='actor of the projectile animation.'>" +
+									"<text/>" +
+								"</element>" +
+							"</optional>" +
+							"<optional>" +
+								"<element name='ImpactActorName' a:help='actor of the projectile impact animation'>" +
+									"<text/>" +
+								"</element>" +
+								"<element name='ImpactAnimationLifetime' a:help='length of the projectile impact animation.'>" +
+									"<ref name='positiveDecimal'/>" +
+								"</element>" +
+							"</optional>" +
+						"</interleave>" +
+					"</element>" +
+				"</optional>" +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='Capture'>" +
-			"<interleave>" +
-				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
-					"<optional>" +
-						"<attribute name='context'>" +
-							"<text/>" +
-						"</attribute>" +
-					"</optional>" +
-					"<text/>" +
-				"</element>" +
-				Attacking.BuildAttackEffectsSchema() +
-				"<element name='MaxRange' a:help='Maximum attack range (in meters)'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
-					"<data type='positiveInteger'/>" +
-				"</element>" +
-				Attack.prototype.preferredClassesSchema +
-				Attack.prototype.restrictedClassesSchema +
-			"</interleave>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
-			"<interleave>" +
-				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
-					"<optional>" +
-						"<attribute name='context'>" +
-							"<text/>" +
-						"</attribute>" +
-					"</optional>" +
-					"<text/>" +
-				"</element>" +
-				Attacking.BuildAttackEffectsSchema() +
-				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
-				Attack.prototype.preferredClassesSchema +
-				Attack.prototype.restrictedClassesSchema +
-			"</interleave>" +
-		"</element>" +
-	"</optional>";
+	"</oneOrMore>";
 
 Attack.prototype.Init = function()
 {
@@ -502,18 +449,33 @@ Attack.prototype.GetRange = function(type)
  */
 Attack.prototype.PerformAttack = function(type, target)
 {
-	let attackerOwner = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return;
+	let selfPosition = cmpPosition.GetPosition();
+
+	let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
+		return;
+	let targetPosition = cmpTargetPosition.GetPosition();
+
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return;
+	let attackerOwner = cmpOwnership.GetOwner();
 
 	let data = {
 		"type": type,
 		"attackData": this.GetAttackEffectsData(type),
-		"target": target,
+		"splash": this.GetSplashData(type),
 		"attacker": this.entity,
 		"attackerOwner": attackerOwner,
+		"target": target,
 	};
 
-	// If this is a ranged attack, then launch a projectile
-	if (type == "Ranged")
+	let delay = +(this.template[type].Delay || 0);
+
+	if (this.template[type].Projectile)
 	{
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		let turnLength = cmpTimer.GetLatestTurnLength()/1000;
@@ -528,15 +490,6 @@ Attack.prototype.PerformAttack = function(type, target)
 		// We will try to estimate the position of the target, where we can hit it.
 		// We first estimate the time-till-hit by extrapolating linearly the movement
 		// of the last turn. We compute the time till an arrow will intersect the target.
-		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (!cmpPosition || !cmpPosition.IsInWorld())
-			return;
-		let selfPosition = cmpPosition.GetPosition();
-		let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
-		if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
-			return;
-		let targetPosition = cmpTargetPosition.GetPosition();
-
 		let targetVelocity = Vector3D.sub(targetPosition, cmpTargetPosition.GetPreviousPosition()).div(turnLength);
 
 		let timeToTarget = PositionHelper.PredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity);
@@ -571,31 +524,24 @@ Attack.prototype.PerformAttack = function(type, target)
 		let predictedHeight = cmpTargetPosition.GetHeightAt(predictedPosition.x, predictedPosition.z);
 
 		// Add inaccuracy based on spread.
-		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template[type].Projectile.Spread, this.entity) *
+		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/" + type + "/Spread", +this.template[type].Projectile.Spread, this.entity) *
 			predictedPosition.horizDistanceTo(selfPosition) / 100;
 
 		let randNorm = randomNormal2D();
 		let offsetX = randNorm[0] * distanceModifiedSpread;
 		let offsetZ = randNorm[1] * distanceModifiedSpread;
 
-		let realTargetPosition = new Vector3D(predictedPosition.x + offsetX, predictedHeight, predictedPosition.z + offsetZ);
+		data.position = new Vector3D(predictedPosition.x + offsetX, predictedHeight, predictedPosition.z + offsetZ);
 
-		// Recalculate when the missile will hit the target position.
-		let realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);
+		let realHorizDistance = data.position.horizDistanceTo(selfPosition);
 		timeToTarget = realHorizDistance / horizSpeed;
+		delay += timeToTarget * 1000;
 
-		let missileDirection = Vector3D.sub(realTargetPosition, selfPosition).div(realHorizDistance);
+		data.direction = Vector3D.sub(data.position, selfPosition).div(realHorizDistance);
 
-		// Launch the graphical projectile.
-		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-
-		let actorName = "";
-		let impactActorName = "";
-		let impactAnimationLifetime = 0;
-
-		actorName = this.template[type].Projectile.ActorName || "";
-		impactActorName = this.template[type].Projectile.ImpactActorName || "";
-		impactAnimationLifetime = this.template[type].Projectile.ImpactAnimationLifetime || 0;
+		let actorName = this.template[type].Projectile.ActorName || "";
+		let impactActorName = this.template[type].Projectile.ImpactActorName || "";
+		let impactAnimationLifetime = this.template[type].Projectile.ImpactAnimationLifetime || 0;
 
 		// TODO: Use unit rotation to implement x/z offsets.
 		let deltaLaunchPoint = new Vector3D(0, +this.template[type].Projectile.LaunchPoint["@y"], 0);
@@ -614,24 +560,26 @@ Attack.prototype.PerformAttack = function(type, target)
 				launchPoint = visualActorLaunchPoint;
 		}
 
-		let id = cmpProjectileManager.LaunchProjectileAtPoint(launchPoint, realTargetPosition, horizSpeed, gravity, actorName, impactActorName, impactAnimationLifetime);
+		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+		data.projectileId = cmpProjectileManager.LaunchProjectileAtPoint(launchPoint, data.position, horizSpeed, gravity, actorName, impactActorName, impactAnimationLifetime);
 
-		let attackImpactSound = "";
 		let cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
-		if (cmpSound)
-			attackImpactSound = cmpSound.GetSoundGroup("attack_impact_" + type.toLowerCase());
+		data.attackImpactSound = cmpSound ? cmpSound.GetSoundGroup("attack_impact_" + type.toLowerCase()) : "";
 
-		data.position = realTargetPosition;
-		data.direction = missileDirection;
-		data.projectileId = id;
-		data.attackImpactSound = attackImpactSound;
-		data.splash = this.GetSplashData(type);
 		data.friendlyFire = this.template[type].Projectile.FriendlyFire == "true";
-
-		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_DelayedDamage, "MissileHit", +this.template[type].Delay + timeToTarget * 1000, data);
 	}
 	else
-		Attacking.HandleAttackEffects(target, data);
+	{
+		data.position = targetPosition;
+		data.direction = Vector3D.sub(targetPosition, selfPosition);
+	}
+	if (delay)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_DelayedDamage, "Hit", delay, data);
+	}
+	else
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_DelayedDamage).Hit(data, 0);
 };
 
 Attack.prototype.OnValueModification = function(msg)
@@ -648,20 +596,20 @@ Attack.prototype.OnValueModification = function(msg)
 		cmpUnitAI.UpdateRangeQueries();
 };
 
-Attack.prototype.GetRangeOverlays = function()
+Attack.prototype.GetRangeOverlays = function(type = "Ranged")
 {
-	if (!this.template.Ranged || !this.template.Ranged.RangeOverlay)
+	if (!this.template[type] || !this.template[type].RangeOverlay)
 		return [];
 
-	let range = this.GetRange("Ranged");
+	let range = this.GetRange(type);
 	let rangeOverlays = [];
 	for (let i in range)
 		if ((i == "min" || i == "max") && range[i])
 			rangeOverlays.push({
 				"radius": range[i],
-				"texture": this.template.Ranged.RangeOverlay.LineTexture,
-				"textureMask": this.template.Ranged.RangeOverlay.LineTextureMask,
-				"thickness": +this.template.Ranged.RangeOverlay.LineThickness,
+				"texture": this.template[type].RangeOverlay.LineTexture,
+				"textureMask": this.template[type].RangeOverlay.LineTextureMask,
+				"thickness": +this.template[type].RangeOverlay.LineThickness,
 			});
 	return rangeOverlays;
 };
