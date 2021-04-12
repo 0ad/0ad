@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_cavalry_ranged_javelineer">
+<Entity parent="merc_cav|template_unit_cavalry_ranged_javelineer">
   <Attack>
     <Ranged>
       <Projectile>
@@ -16,7 +16,7 @@
     <SelectionGroupName>units/kush/cavalry_javelineer_merc_b</SelectionGroupName>
     <GenericName>Blemmye Desert Raider</GenericName>
     <SpecificName>nhw Bulahau gml</SpecificName>
-    <VisibleClasses datatype="tokens">Camel Mercenary</VisibleClasses>
+    <VisibleClasses datatype="tokens">Camel</VisibleClasses>
     <Icon>units/kush_camel_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

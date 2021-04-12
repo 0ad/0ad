@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Entity>
+  <Cost>
+    <BuildTime op="mul">0.7</BuildTime>
+    <Resources>
+      <food op="mul">0.4</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <!-- Metal is specified on a per-class basis in derived templates. -->
+    </Resources>
+  </Cost>
+  <Identity>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+  </Identity>
+  <Loot>
+    <food op="mul">0.4</food>
+    <wood>0</wood>
+    <stone>0</stone>
+  </Loot>
+  <ResourceGatherer disable=""/>
+</Entity>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_infantry_ranged_archer">
+<Entity parent="merc_inf|template_unit_infantry_ranged_archer">
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>
     <SelectionGroupName>units/mace/infantry_archer_b</SelectionGroupName>
     <GenericName>Cretan Mercenary Archer</GenericName>
     <SpecificName>Toxótēs Krētikós</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/mace_infantry_archer.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

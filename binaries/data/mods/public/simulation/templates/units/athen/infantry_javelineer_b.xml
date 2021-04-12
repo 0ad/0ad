@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_infantry_ranged_javelineer">
+<Entity parent="merc_inf|template_unit_infantry_ranged_javelineer">
   <Builder>
     <Entities datatype="tokens">
       structures/athen/gymnasium
@@ -12,7 +12,6 @@
     <SelectionGroupName>units/athen/infantry_javelineer_b</SelectionGroupName>
     <GenericName>Thracian Peltast</GenericName>
     <SpecificName>Peltastḗs Thrâx</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/athen_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

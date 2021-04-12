@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_cavalry_melee_swordsman">
+<Entity parent="merc_cav|template_unit_cavalry_melee_swordsman">
   <Attack>
     <Melee>
       <AttackName context="Name of an attack using a single-edged sword.">Sword</AttackName>
@@ -10,7 +10,6 @@
     <GenericName>Iberian Heavy Cavalry</GenericName>
     <SpecificName>Ḥayyāl Ḥerev Raḫūv</SpecificName>
     <SelectionGroupName>units/cart/cavalry_swordsman_iber_b</SelectionGroupName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/cart_cavalry_swordsman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
