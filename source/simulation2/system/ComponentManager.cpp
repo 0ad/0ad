@@ -459,9 +459,9 @@ void CComponentManager::ResetState()
 	m_DynamicMessageSubscriptionsNonsync.clear();
 	m_DynamicMessageSubscriptionsNonsyncByComponent.clear();
 
-	// Delete all IComponents
-	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
-	for (; iit != m_ComponentsByTypeId.end(); ++iit)
+	// Delete all IComponents in reverse order of creation.
+	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::reverse_iterator iit = m_ComponentsByTypeId.rbegin();
+	for (; iit != m_ComponentsByTypeId.rend(); ++iit)
 	{
 		std::map<entity_id_t, IComponent*>::iterator eit = iit->second.begin();
 		for (; eit != iit->second.end(); ++eit)
