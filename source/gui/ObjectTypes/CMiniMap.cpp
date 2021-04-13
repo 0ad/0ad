@@ -75,7 +75,6 @@ unsigned int ScaleColor(unsigned int color, float x)
 void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D& center, const float radius, std::vector<CVector3D>* lines)
 {
 	constexpr float EPS = 1e-3f;
-	const float radiusSquared = radius * radius;
 	lines->reserve(points.size() * 2);
 	for (size_t idx = 0; idx < points.size(); ++idx)
 	{
@@ -317,7 +316,7 @@ void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 	std::vector<CVector3D> lines;
 	// We need to prevent drawing view bounds out of the map.
 	const float halfMapSize = static_cast<float>((m_MapSize - 1) * TERRAIN_TILE_SIZE) * 0.5f;
-	CropPointsByCircle(hitPoints, CVector3D(halfMapSize, 0.0f, halfMapSize), halfMapSize, &lines);
+	CropPointsByCircle(hitPoints, CVector3D(halfMapSize, 0.0f, halfMapSize), halfMapSize * m_MapScale, &lines);
 	if (lines.empty())
 		return;
 
