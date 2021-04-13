@@ -46,6 +46,7 @@
 
 #include <fstream>
 #include <iomanip>
+#include <memory>
 
 class CSimulation2Impl
 {
@@ -53,7 +54,6 @@ public:
 	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptContext> cx, CTerrain* terrain) :
 		m_SimContext(), m_ComponentManager(m_SimContext, cx),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
-		m_SecondaryTerrain(nullptr), m_SecondaryContext(nullptr), m_SecondaryComponentManager(nullptr), m_SecondaryLoadedScripts(nullptr),
 		m_MapSettings(cx->GetGeneralJSContext()), m_InitAttributes(cx->GetGeneralJSContext())
 	{
 		m_SimContext.m_UnitManager = unitManager;
@@ -81,11 +81,6 @@ public:
 
 	~CSimulation2Impl()
 	{
-		delete m_SecondaryTerrain;
-		delete m_SecondaryContext;
-		delete m_SecondaryComponentManager;
-		delete m_SecondaryLoadedScripts;
-
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
 
@@ -143,11 +138,11 @@ public:
 	int m_RejoinTestTurn;
 	bool m_TestingRejoin;
 
-	// Secondary simulation
-	CTerrain* m_SecondaryTerrain;
-	CSimContext* m_SecondaryContext;
-	CComponentManager* m_SecondaryComponentManager;
-	std::set<VfsPath>* m_SecondaryLoadedScripts;
+	// Secondary simulation (NB: order matters for destruction).
+	std::unique_ptr<CComponentManager> m_SecondaryComponentManager;
+	std::unique_ptr<CTerrain> m_SecondaryTerrain;
+	std::unique_ptr<CSimContext> m_SecondaryContext;
+	std::unique_ptr<std::set<VfsPath>> m_SecondaryLoadedScripts;
 
 	struct SerializationTestState
 	{
@@ -404,20 +399,16 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		if (startRejoinTest)
 			debug_printf("Initializing the secondary simulation\n");
 
-		delete m_SecondaryTerrain;
-		m_SecondaryTerrain = new CTerrain();
+		m_SecondaryTerrain = std::make_unique<CTerrain>();
 
-		delete m_SecondaryContext;
-		m_SecondaryContext = new CSimContext();
-		m_SecondaryContext->m_Terrain = m_SecondaryTerrain;
+		m_SecondaryContext = std::make_unique<CSimContext>();
+		m_SecondaryContext->m_Terrain = m_SecondaryTerrain.get();
 
-		delete m_SecondaryComponentManager;
-		m_SecondaryComponentManager = new CComponentManager(*m_SecondaryContext, scriptInterface.GetContext());
+		m_SecondaryComponentManager = std::make_unique<CComponentManager>(*m_SecondaryContext, scriptInterface.GetContext());
 		m_SecondaryComponentManager->LoadComponentTypes();
 
-		delete m_SecondaryLoadedScripts;
-		m_SecondaryLoadedScripts = new std::set<VfsPath>();
-		ENSURE(LoadDefaultScripts(*m_SecondaryComponentManager, m_SecondaryLoadedScripts));
+		m_SecondaryLoadedScripts = std::make_unique<std::set<VfsPath>>();
+		ENSURE(LoadDefaultScripts(*m_SecondaryComponentManager, m_SecondaryLoadedScripts.get()));
 		ResetComponentState(*m_SecondaryComponentManager, false, false);
 
 		// Load the trigger scripts after we have loaded the simulation.
@@ -425,7 +416,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			ScriptRequest rq2(m_SecondaryComponentManager->GetScriptInterface());
 			JS::RootedValue mapSettingsCloned(rq2.cx,
 				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, m_MapSettings));
-			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts));
+			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts.get()));
 		}
 
 		// Load the map into the secondary simulation
@@ -447,8 +438,8 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
 			mapReader->LoadMap(mapfilename, *scriptInterface.GetContext(), JS::UndefinedHandleValue,
-				m_SecondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
-				NULL, NULL, m_SecondaryContext, INVALID_PLAYER, true); // throws exception on failure
+				m_SecondaryTerrain.get(), NULL, NULL, NULL, NULL, NULL, NULL,
+				NULL, NULL, m_SecondaryContext.get(), INVALID_PLAYER, true); // throws exception on failure
 		}
 
 		LDR_EndRegistering();
