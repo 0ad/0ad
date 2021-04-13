@@ -166,25 +166,24 @@ Heal.prototype.StartHealing = function(target, callerIID)
 };
 
 /**
- * @param {string} reason - The reason why we stopped healing. Currently implemented are:
- *	"outOfRange", "targetInvalidated".
+ * @param {string} reason - The reason why we stopped healing.
  */
 Heal.prototype.StopHealing = function(reason)
 {
-	if (this.timer)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-		delete this.timer;
-	}
+	if (!this.target)
+		return;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	delete this.timer;
+
+	delete this.target;
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("idle", false, 1.0);
 
-	delete this.target;
-
-	// The callerIID component may start healing again,
+	// The callerIID component may start again,
 	// replacing the callerIID, hence save that.
 	let callerIID = this.callerIID;
 	delete this.callerIID;
@@ -199,7 +198,8 @@ Heal.prototype.StopHealing = function(reason)
 
 /**
  * Heal our target entity.
- * @params - data and lateness are unused.
+ * @param data - Unused.
+ * @param {number} lateness - The offset of the actual call and when it was expected.
  */
 Heal.prototype.PerformHeal = function(data, lateness)
 {

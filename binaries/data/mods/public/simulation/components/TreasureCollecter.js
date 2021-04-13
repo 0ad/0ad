@@ -65,19 +65,20 @@ TreasureCollecter.prototype.StartCollecting = function(target, callerIID)
  */
 TreasureCollecter.prototype.StopCollecting = function(reason)
 {
-	if (this.timer)
-	{
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.timer);
-		delete this.timer;
-	}
+	if (!this.target)
+		return;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	delete this.timer;
+
 	delete this.target;
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
 		cmpVisual.SelectAnimation("idle", false, 1.0);
 
-	// The callerIID component may start collecting again,
+	// The callerIID component may start again,
 	// replacing the callerIID, hence save that.
 	let callerIID = this.callerIID;
 	delete this.callerIID;

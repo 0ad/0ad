@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 08:29+0000\n"
+"POT-Creation-Date: 2021-04-09 07:08+0000\n"
+"PO-Revision-Date: 2021-04-09 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -3776,88 +3776,98 @@ msgid "Start 0 A.D. in a window."
 msgstr "0 A.D를 창 모드로 시작합니다."
 
 #: gui/options/options.json[1].options[10].label
+msgid "Shadow quality"
+msgstr "그림자 품질"
+
+#: gui/options/options.json[1].options[10].list[0].label
+msgid "Very Low"
+msgstr "매우 낮음"
+
+#: gui/options/options.json[1].options[10].list[4].label
+msgid "Very High"
+msgstr "매우 높음"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
+
+#: gui/options/options.json[1].options[11].label
 msgid "Shadow filtering"
 msgstr "그림자 필터링"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "부드러운 그림자입니다."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "Unit silhouettes"
 msgstr "유닛 윤곽"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "건축물 뒤에 유닛 윤곽을 표시합니다."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Particles"
 msgstr "입자"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Enable particles."
 msgstr "입자 활성화."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water effects"
 msgstr "물 효과"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "OFF인 경우, 가능한 가장 낮은 설정을 사용하여 물을 렌더링합니다. 이렇게 하면 다른 설정과 관련성이 없어집니다."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "High-quality water effects"
 msgstr "높은 품질의 물 효과"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "물, 해안파도 렌더링, 해안의 파도거품, 선박 노선 등에 고품질 효과를 활용합니다."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "물위 반사"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "물이 반사 이미지를 반영하도록 합니다."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "물위 반사"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "투명도가 아닌 실제 물의 굴절 지도를 사용합니다."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Real water depth"
 msgstr "실제 수심"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "부드러운 시야 이동"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "전쟁의 어둠과 안개가 부드럽게 걷힙니다."
-
-#: gui/options/options.json[1].options[19].label
-msgid "VSync"
-msgstr "수직 동기화"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결하십시오. 게임을 다시 시작해야합니다"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -3868,20 +3878,28 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "OpenGL 2.0 그림자를 사용합니다(권장)."
 
 #: gui/options/options.json[1].options[20].label
+msgid "VSync"
+msgstr "수직 동기화"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결하십시오. 게임을 다시 시작해야합니다"
+
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in menus"
 msgstr "메뉴에서 FPS 조절"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU 작업량을 절약하려면 모든 메뉴에서 렌더링 빈도를 조절하십시오. 조절을 사용하지 않으려면 최대 값으로 설정하십시오."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in games"
 msgstr "게임에서 FPS 조절"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
@@ -3999,51 +4017,56 @@ msgid "The sharpness of the choosen pass."
 msgstr "선택한 경로의 선명도입니다."
 
 #: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
-msgstr "그림자 효과"
+msgid "Model quality"
+msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "그림자 효과의 수입니다. 이 기능을 사용하시려면 게임을 다시 시작해야합니다"
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "그림자"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "그림자 활성화."
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "그림자 품질"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "매우 낮음"
-
-#: gui/options/options.json[1].options[9].list[1].label
+#: gui/options/options.json[1].options[10].list[1].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Low"
 msgstr "낮음"
 
-#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[1].options[7].list[0].tooltip
+msgid "Simpler models for better performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[2].label
+#: gui/options/options.json[1].options[7].list[1].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "중간"
 
-#: gui/options/options.json[1].options[9].list[3].label
+#: gui/options/options.json[1].options[7].list[1].tooltip
+msgid "Average quality and average performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[3].label
+#: gui/options/options.json[1].options[7].list[2].label
 msgid "High"
 msgstr "높음"
 
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "매우 높음"
+#: gui/options/options.json[1].options[7].list[2].tooltip
+msgid "High quality models."
+msgstr ""
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Model quality setting."
+msgstr ""
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shader effects"
+msgstr "그림자 효과"
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "그림자 효과의 수입니다. 이 기능을 사용하시려면 게임을 다시 시작해야합니다"
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadows"
+msgstr "그림자"
 
 #: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
+msgid "Enable shadows."
+msgstr "그림자 활성화."
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."

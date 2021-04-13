@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_infantry_ranged_javelineer">
+<Entity parent="merc_inf|template_unit_infantry_ranged_javelineer">
   <Builder>
     <Entities datatype="tokens">
       structures/{civ}/super_dock
@@ -13,7 +13,6 @@
     <GenericName>Iberian Mercenary Skirmisher</GenericName>
     <SpecificName>Sǝḫīr Kidōn</SpecificName>
     <SelectionGroupName>units/cart/infantry_javelineer_iber_b</SelectionGroupName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/cart_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

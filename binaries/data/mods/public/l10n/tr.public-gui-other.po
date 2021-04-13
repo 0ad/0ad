@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 08:29+0000\n"
+"POT-Creation-Date: 2021-04-09 07:08+0000\n"
+"PO-Revision-Date: 2021-04-09 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -3791,88 +3791,98 @@ msgid "Start 0 A.D. in a window."
 msgstr "0 A.D.'yi pencere modunda başlat."
 
 #: gui/options/options.json[1].options[10].label
+msgid "Shadow quality"
+msgstr "Gölge kalitesi"
+
+#: gui/options/options.json[1].options[10].list[0].label
+msgid "Very Low"
+msgstr "Çok Düşük"
+
+#: gui/options/options.json[1].options[10].list[4].label
+msgid "Very High"
+msgstr "Çok Yüksek"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Gölge harita çözünürlüğü. Düşük değerli bir grafik kartı kullanırken yüksek değerler oyunu düşürebilir!"
+
+#: gui/options/options.json[1].options[11].label
 msgid "Shadow filtering"
 msgstr "Gölge filtrelemesi"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Yumuşak gölgeler"
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "Unit silhouettes"
 msgstr "Birim silüetleri"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Yapıların arkasındaki birimlerin ana hatlarını göster."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Particles"
 msgstr "Parçalar"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Enable particles."
 msgstr "Parçalar etkin"
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water effects"
 msgstr "Su efektleri"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Kapatıldığında, Su kaplama işlemede mümkün olan düşük ayarları kullan. Bunu yapmak diğer ayarları geçersiz kılar."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "High-quality water effects"
 msgstr "Yüksek kalitesi su efektleri"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Kıyı dalgalarında, kıyıdaki köpüklerde ve gemi yollarındaki suyun işlenmesi için, yüksek kalite efektleri kullan, "
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "Su yansımaları"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Suyun ayna görüntüsü yansıtmasına izin verin."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "Su kırılması"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Şeffaflık değil gerçek bir su kırılma haritası kullanın."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Real water depth"
 msgstr "Gerçek su derinliği"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Hesaplamalarda gerçek su derinliğini kullanın."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Düz görüş"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Karanlığı ve savaş sisini sorunsuz bir şekilde kaldırın."
-
-#: gui/options/options.json[1].options[19].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Ekran yırtılmasını önlemek için Vsync'i aktif hale getir. OYUNU YENİDEN BAŞLATMAYI GEREKTİRİR."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -3883,20 +3893,28 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "OpenGL 2.0 gölgelendirme kullanın (önerilir)"
 
 #: gui/options/options.json[1].options[20].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Ekran yırtılmasını önlemek için Vsync'i aktif hale getir. OYUNU YENİDEN BAŞLATMAYI GEREKTİRİR."
+
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in menus"
 msgstr "Menülerde SBK (FPS) azaltma"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU'nun iş yükünü azaltmak için, tüm menülerdeki oluşturma frekansını azaltın. Kısıtlamayı devre dışı bırakmak için maksimum değer olarak ayarlayın."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in games"
 msgstr "Oyunlarda SBK (FPS) azaltma"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
@@ -4014,51 +4032,56 @@ msgid "The sharpness of the choosen pass."
 msgstr "Seçilen kanalın keskinliği."
 
 #: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
-msgstr "Gölgelendirici efektleri"
+msgid "Model quality"
+msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Gölgelendirici efektlerinin sayısı. OYUN YENİDEN BAŞLATILMASI GEREKİYOR"
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "Gölgeler"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "Gölgeler aktif"
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "Gölge kalitesi"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "Çok Düşük"
-
-#: gui/options/options.json[1].options[9].list[1].label
+#: gui/options/options.json[1].options[10].list[1].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Low"
 msgstr "Düşük"
 
-#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[1].options[7].list[0].tooltip
+msgid "Simpler models for better performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[2].label
+#: gui/options/options.json[1].options[7].list[1].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Orta"
 
-#: gui/options/options.json[1].options[9].list[3].label
+#: gui/options/options.json[1].options[7].list[1].tooltip
+msgid "Average quality and average performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[3].label
+#: gui/options/options.json[1].options[7].list[2].label
 msgid "High"
 msgstr "Yüksek"
 
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "Çok Yüksek"
+#: gui/options/options.json[1].options[7].list[2].tooltip
+msgid "High quality models."
+msgstr ""
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Model quality setting."
+msgstr ""
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shader effects"
+msgstr "Gölgelendirici efektleri"
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Gölgelendirici efektlerinin sayısı. OYUN YENİDEN BAŞLATILMASI GEREKİYOR"
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadows"
+msgstr "Gölgeler"
 
 #: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Gölge harita çözünürlüğü. Düşük değerli bir grafik kartı kullanırken yüksek değerler oyunu düşürebilir!"
+msgid "Enable shadows."
+msgstr "Gölgeler aktif"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."

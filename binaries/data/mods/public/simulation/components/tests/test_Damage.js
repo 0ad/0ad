@@ -107,7 +107,7 @@ function Test_Generic()
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_DelayedDamage, {
-		"MissileHit": () => {
+		"Hit": () => {
 			damageTaken = true;
 		},
 	});
@@ -478,7 +478,7 @@ function Test_MissileHit()
 		"GetEnemies": () => [2]
 	});
 
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(60));
 	hitEnts.clear();
 
@@ -510,13 +510,13 @@ function Test_MissileHit()
 		"GetShape": () => ({ "type": "circle", "radius": 20 })
 	});
 
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	hitEnts.clear();
 
 	// Make sure we don't corrupt other tests.
 	DeleteMock(60, IID_Mirage);
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(60));
 	hitEnts.clear();
 
@@ -539,7 +539,7 @@ function Test_MissileHit()
 		"ExecuteQueryAroundPos": () => [61]
 	});
 
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	hitEnts.clear();
 
@@ -589,7 +589,7 @@ function Test_MissileHit()
 		"GetShape": () => ({ "type": "circle", "radius": 20 }),
 	});
 
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 200);
 	dealtDamage = 0;
@@ -616,35 +616,35 @@ function Test_MissileHit()
 	});
 
 	data.attackData.Bonuses = bonus;
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 400 * 100 + 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
 	data.splash.attackData.Bonuses = splashBonus;
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 400 * 100 + 10000 * 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
 	data.attackData.Bonuses = undefined;
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
 	data.attackData.Bonuses = null;
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;
 	hitEnts.clear();
 
 	data.attackData.Bonuses = {};
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
 	dealtDamage = 0;
@@ -696,7 +696,7 @@ function Test_MissileHit()
 		"GetShape": () => ({ "type": "circle", "radius": 20 }),
 	});
 
-	cmpDelayedDamage.MissileHit(data, 0);
+	cmpDelayedDamage.Hit(data, 0);
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT_EQUALS(dealtDamage, 100 + 200);
 	dealtDamage = 0;

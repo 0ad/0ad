@@ -20,6 +20,7 @@
 # Freagarach, 2019-2021
 # 魔大农, 2015
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
+# Jeroen Bourgois <jeroenbourgois@gmail.com>, 2021
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Marijn Billiet <marijnbilliet@gmail.com>, 2017-2018
 # Mark Lemmens <the_white_eagle@telenet.be>, 2015
@@ -39,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-09 07:08+0000\n"
+"PO-Revision-Date: 2021-04-11 16:25+0000\n"
+"Last-Translator: Jeroen Bourgois <jeroenbourgois@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "%(userDesc)s - %(templateName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Sneltoets niet toegewezen: %(hotkeyName)s"
+msgstr "Niet toegewezen sneltoets: %(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
@@ -1603,7 +1604,7 @@ msgstr "Sla wijzigingen op"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Niet opgeslagen wijzigingen zullen verloren gaan"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
@@ -1629,7 +1630,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
@@ -3803,88 +3804,98 @@ msgid "Start 0 A.D. in a window."
 msgstr "Start 0 A.D. in een venster."
 
 #: gui/options/options.json[1].options[10].label
+msgid "Shadow quality"
+msgstr "Schaduwkwaliteit"
+
+#: gui/options/options.json[1].options[10].list[0].label
+msgid "Very Low"
+msgstr "Erg laag"
+
+#: gui/options/options.json[1].options[10].list[4].label
+msgid "Very High"
+msgstr "Erg hoog"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
+
+#: gui/options/options.json[1].options[11].label
 msgid "Shadow filtering"
 msgstr "Schaduwfiltering"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Zachte schaduwen."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "Unit silhouettes"
 msgstr "Silhouetten"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Laat de contouren van de eenheden achter bouwwerken zien."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Particles"
 msgstr "Partikels"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Enable particles."
 msgstr "Activeer partikels."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Water effects"
 msgstr "Watereffecten"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Zet dit UIT om de laagst waterkwaliteit weer te geven. Dit negeert alle andere waterinstellingen."
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "High-quality water effects"
 msgstr "Hoge kwaliteit watereffecten"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolfen, schuimkoppen en hekgolven."
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr "Waterreflectie"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Laat water toe om een spiegelbeeld te reflecteren."
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr "Waterrefractie"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Gebruik een realistische refractieafbeelding, en geen transparantie voor water."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Real water depth"
 msgstr "Werkelijke waterdiepte"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Gebruik de echte diepte van het water bij de weergaveberekeningen."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Zachte randen"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Maak de overgang van donkere stukken naar lichtere stukken zachter."
-
-#: gui/options/options.json[1].options[19].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Gebruik verticale synchronisatie om een scherm dat \"scheurt\" te voorkomen. HET SPEL MOET HERSTART WORDEN"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -3895,20 +3906,28 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Gebruik OpenGL 2.0 shaders (aangeraden)"
 
 #: gui/options/options.json[1].options[20].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Gebruik verticale synchronisatie om een scherm dat \"scheurt\" te voorkomen. HET SPEL MOET HERSTART WORDEN"
+
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in menus"
 msgstr "Limiteer beelden per seconde (FPS) in het menu."
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Beperk de renderfrequentie in alle menus voor een lager processorgebruik. Stel in op maximaal om beperking uit te schakelen."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in games"
 msgstr "Limiteer beelden per seconde (FPS) tijdens het spelen"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
@@ -4026,51 +4045,56 @@ msgid "The sharpness of the choosen pass."
 msgstr "De scherpte van de gekozen bewerking."
 
 #: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
-msgstr "Shader effecten"
+msgid "Model quality"
+msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Aantal shader effecten. HET SPEL MOET HERSTART WORDEN"
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "Schaduwen"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "Activeer schaduwen."
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "Schaduwkwaliteit"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "Erg laag"
-
-#: gui/options/options.json[1].options[9].list[1].label
+#: gui/options/options.json[1].options[10].list[1].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Low"
 msgstr "Laag"
 
-#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[1].options[7].list[0].tooltip
+msgid "Simpler models for better performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[2].label
+#: gui/options/options.json[1].options[7].list[1].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr "Normaal"
 
-#: gui/options/options.json[1].options[9].list[3].label
+#: gui/options/options.json[1].options[7].list[1].tooltip
+msgid "Average quality and average performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[3].label
+#: gui/options/options.json[1].options[7].list[2].label
 msgid "High"
 msgstr "Hoog"
 
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "Erg hoog"
+#: gui/options/options.json[1].options[7].list[2].tooltip
+msgid "High quality models."
+msgstr ""
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Model quality setting."
+msgstr ""
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shader effects"
+msgstr "Shader effecten"
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Aantal shader effecten. HET SPEL MOET HERSTART WORDEN"
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadows"
+msgstr "Schaduwen"
 
 #: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
+msgid "Enable shadows."
+msgstr "Activeer schaduwen."
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."

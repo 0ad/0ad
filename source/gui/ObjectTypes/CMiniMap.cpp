@@ -50,21 +50,60 @@
 #include "simulation2/helpers/Los.h"
 #include "simulation2/system/ParamNode.h"
 
+#include <array>
 #include <cmath>
+#include <vector>
 
 extern bool g_GameRestarted;
+
+namespace
+{
 
 // Set max drawn entities to UINT16_MAX for now, which is more than enough
 // TODO: we should be cleverer about drawing them to reduce clutter
 const u16 MAX_ENTITIES_DRAWN = 65535;
 
-static unsigned int ScaleColor(unsigned int color, float x)
+unsigned int ScaleColor(unsigned int color, float x)
 {
 	unsigned int r = unsigned(float(color & 0xff) * x);
 	unsigned int g = unsigned(float((color>>8) & 0xff) * x);
 	unsigned int b = unsigned(float((color>>16) & 0xff) * x);
 	return (0xff000000 | b | g<<8 | r<<16);
 }
+
+// Adds segments pieces lying inside the circle to lines.
+void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D& center, const float radius, std::vector<CVector3D>* lines)
+{
+	constexpr float EPS = 1e-3f;
+	const float radiusSquared = radius * radius;
+	lines->reserve(points.size() * 2);
+	for (size_t idx = 0; idx < points.size(); ++idx)
+	{
+		const CVector3D& currentPoint = points[idx];
+		const CVector3D& nextPoint = points[(idx + 1) % points.size()];
+		const CVector3D direction = (nextPoint - currentPoint).Normalized();
+		const CVector3D normal(direction.Z, 0.0f, -direction.X);
+		const float offset = normal.Dot(currentPoint) - normal.Dot(center);
+		// We need to have lines only inside the circle.
+		if (std::abs(offset) + EPS >= radius)
+			continue;
+		const CVector3D closestPoint = center + normal * offset;
+		const float halfChordLength = sqrt(radius * radius - offset * offset);
+		const CVector3D intersectionA = closestPoint - direction * halfChordLength;
+		const CVector3D intersectionB = closestPoint + direction * halfChordLength;
+		// We have no intersection if the segment is lying outside of the circle.
+		if (direction.Dot(currentPoint) + EPS > direction.Dot(intersectionB) ||
+		    direction.Dot(nextPoint) - EPS < direction.Dot(intersectionA))
+			continue;
+
+		lines->emplace_back(
+			direction.Dot(currentPoint) > direction.Dot(intersectionA) ? currentPoint : intersectionA);
+		lines->emplace_back(
+			direction.Dot(nextPoint) < direction.Dot(intersectionB) ? nextPoint : intersectionB);
+	}
+}
+
+} // anonymous namespace
 
 const CStr CMiniMap::EventNameWorldClick = "WorldClick";
 
@@ -259,7 +298,7 @@ bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 
 // This sets up and draws the rectangle on the minimap
 //  which represents the view of the camera in the world.
-void CMiniMap::DrawViewRect(CMatrix3D transform) const
+void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 {
 	// Compute the camera frustum intersected with a fixed-height plane.
 	// Use the water height as a fixed base height, which should be the lowest we can go
@@ -268,26 +307,28 @@ void CMiniMap::DrawViewRect(CMatrix3D transform) const
 	const float height = m_CachedActualSize.GetHeight();
 	const float invTileMapSize = 1.0f / float(TERRAIN_TILE_SIZE * m_MapSize);
 
-	CVector3D hitPt[4];
-	hitPt[0] = m_Camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), h);
-	hitPt[1] = m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), h);
-	hitPt[2] = m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, h);
-	hitPt[3] = m_Camera->GetWorldCoordinates(0, 0, h);
-
-	float ViewRect[4][2];
-	for (int i = 0; i < 4; ++i)
-	{
-		// convert to minimap space
-		ViewRect[i][0] = (width * hitPt[i].X * invTileMapSize);
-		ViewRect[i][1] = (height * hitPt[i].Z * invTileMapSize);
-	}
-
-	float viewVerts[] = {
-		ViewRect[0][0], -ViewRect[0][1],
-		ViewRect[1][0], -ViewRect[1][1],
-		ViewRect[2][0], -ViewRect[2][1],
-		ViewRect[3][0], -ViewRect[3][1]
+	const std::array<CVector3D, 4> hitPoints = {
+		m_Camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), h),
+		m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), h),
+		m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, h),
+		m_Camera->GetWorldCoordinates(0, 0, h)
 	};
+
+	std::vector<CVector3D> lines;
+	// We need to prevent drawing view bounds out of the map.
+	const float halfMapSize = static_cast<float>((m_MapSize - 1) * TERRAIN_TILE_SIZE) * 0.5f;
+	CropPointsByCircle(hitPoints, CVector3D(halfMapSize, 0.0f, halfMapSize), halfMapSize, &lines);
+	if (lines.empty())
+		return;
+
+	std::vector<float> vertices;
+	vertices.reserve(lines.size() * 2);
+	for (const CVector3D& point : lines)
+	{
+		// Convert to minimap space.
+		vertices.emplace_back(width * point.X * invTileMapSize);
+		vertices.emplace_back(-(height * point.Z * invTileMapSize));
+	}
 
 	// Enable Scissoring to restrict the rectangle to only the minimap.
 	glScissor(
@@ -306,11 +347,11 @@ void CMiniMap::DrawViewRect(CMatrix3D transform) const
 	shader->Uniform(str_transform, transform);
 	shader->Uniform(str_color, 1.0f, 0.3f, 0.3f, 1.0f);
 
-	shader->VertexPointer(2, GL_FLOAT, 0, viewVerts);
+	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
 	shader->AssertPointersBound();
 
 	if (!g_Renderer.m_SkipSubmit)
-		glDrawArrays(GL_LINE_LOOP, 0, 4);
+		glDrawArrays(GL_LINES, 0, vertices.size() / 2);
 
 	tech->EndPass();
 

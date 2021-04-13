@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 08:29+0000\n"
+"POT-Creation-Date: 2021-04-09 07:08+0000\n"
+"PO-Revision-Date: 2021-04-09 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lojban (http://www.transifex.com/wildfire-games/0ad/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -3756,87 +3756,97 @@ msgid "Start 0 A.D. in a window."
 msgstr ""
 
 #: gui/options/options.json[1].options[10].label
-msgid "Shadow filtering"
+msgid "Shadow quality"
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[0].label
+msgid "Very Low"
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[4].label
+msgid "Very High"
 msgstr ""
 
 #: gui/options/options.json[1].options[10].tooltip
-msgid "Smooth shadows."
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
 msgstr ""
 
 #: gui/options/options.json[1].options[11].label
-msgid "Unit silhouettes"
+msgid "Shadow filtering"
 msgstr ""
 
 #: gui/options/options.json[1].options[11].tooltip
-msgid "Show outlines of units behind structures."
+msgid "Smooth shadows."
 msgstr ""
 
 #: gui/options/options.json[1].options[12].label
-msgid "Particles"
+msgid "Unit silhouettes"
 msgstr ""
 
 #: gui/options/options.json[1].options[12].tooltip
-msgid "Enable particles."
+msgid "Show outlines of units behind structures."
 msgstr ""
 
 #: gui/options/options.json[1].options[13].label
-msgid "Water effects"
+msgid "Particles"
 msgstr ""
 
 #: gui/options/options.json[1].options[13].tooltip
+msgid "Enable particles."
+msgstr ""
+
+#: gui/options/options.json[1].options[14].label
+msgid "Water effects"
+msgstr ""
+
+#: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr ""
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "High-quality water effects"
 msgstr ""
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr ""
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
 msgstr ""
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr ""
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
 msgstr ""
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr ""
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "Real water depth"
 msgstr ""
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr ""
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr ""
 
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Lift darkness and fog of war smoothly."
-msgstr ""
-
-#: gui/options/options.json[1].options[19].label
-msgid "VSync"
-msgstr ""
-
 #: gui/options/options.json[1].options[19].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgid "Lift darkness and fog of war smoothly."
 msgstr ""
 
 #: gui/options/options.json[1].options[1].label
@@ -3848,20 +3858,28 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr ""
 
 #: gui/options/options.json[1].options[20].label
-msgid "FPS throttling in menus"
+msgid "VSync"
 msgstr ""
 
 #: gui/options/options.json[1].options[20].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[1].options[21].label
+msgid "FPS throttling in menus"
+msgstr ""
+
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr ""
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in games"
 msgstr ""
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
@@ -3979,50 +3997,55 @@ msgid "The sharpness of the choosen pass."
 msgstr ""
 
 #: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
+msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "ctino"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr ""
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr ""
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr ""
-
-#: gui/options/options.json[1].options[9].list[1].label
+#: gui/options/options.json[1].options[10].list[1].label
+#: gui/options/options.json[1].options[7].list[0].label
 msgid "Low"
 msgstr ""
 
-#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[1].options[7].list[0].tooltip
+msgid "Simpler models for better performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[2].label
+#: gui/options/options.json[1].options[7].list[1].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
 msgstr ""
 
-#: gui/options/options.json[1].options[9].list[3].label
+#: gui/options/options.json[1].options[7].list[1].tooltip
+msgid "Average quality and average performance."
+msgstr ""
+
+#: gui/options/options.json[1].options[10].list[3].label
+#: gui/options/options.json[1].options[7].list[2].label
 msgid "High"
 msgstr ""
 
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
+#: gui/options/options.json[1].options[7].list[2].tooltip
+msgid "High quality models."
 msgstr ""
 
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Model quality setting."
+msgstr ""
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shader effects"
+msgstr ""
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadows"
+msgstr "ctino"
+
 #: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
+msgid "Enable shadows."
 msgstr ""
 
 #: gui/options/options.json[1].tooltip

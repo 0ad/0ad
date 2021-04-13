@@ -11,6 +11,8 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 		return INVALID_ENTITY;
 	}
 
+	Engine.ProfileStart("Transform");
+
 	var cmpPosition = Engine.QueryInterface(oldEnt, IID_Position);
 	var cmpNewPosition = Engine.QueryInterface(newEnt, IID_Position);
 	if (cmpPosition && cmpNewPosition)
@@ -146,6 +148,9 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 
 	if (cmpPosition && cmpPosition.IsInWorld())
 		cmpPosition.MoveOutOfWorld();
+
+	Engine.ProfileStop();
+
 	Engine.DestroyEntity(oldEnt);
 
 	return newEnt;

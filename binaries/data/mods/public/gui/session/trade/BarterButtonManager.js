@@ -32,6 +32,13 @@ class BarterButtonManager
 		this.update();
 	}
 
+	getSelectedButton()
+	{
+		for (let button of this.buttons)
+			if (!this.selectedResource || this.selectedResource == button.resourceCode)
+				return button;
+	}
+
 	update()
 	{
 		if (this.viewedPlayer >= 1)

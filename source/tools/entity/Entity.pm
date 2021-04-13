@@ -99,6 +99,11 @@ sub apply_layer
         elsif ($op eq 'mul') {
             $base->{' content'} = $op1 * $op2;
         }
+        elsif ($op eq 'mul_round') {
+            # This is incorrect (floors instead of rounding)
+            # but for schema purposes it ought be fine.
+            $base->{' content'} = int($op1 * $op2);
+        }
         else {
             die "Invalid operator '$op'";
         }

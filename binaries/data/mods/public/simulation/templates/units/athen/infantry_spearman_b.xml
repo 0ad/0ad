@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="hoplite|template_unit_infantry_melee_spearman">
-  <Builder>
-    <Entities datatype="tokens">
-      structures/athen/gymnasium
-      structures/athen/prytaneion
-    </Entities>
-  </Builder>
+<Entity parent="civ/athen|hoplite|template_unit_infantry_melee_spearman">
   <Identity>
-    <Civ>athen</Civ>
-    <Lang>greek</Lang>
     <SelectionGroupName>units/athen/infantry_spearman_b</SelectionGroupName>
     <GenericName>Athenian Hoplite</GenericName>
     <SpecificName>Hoplítēs Athēnaîos</SpecificName>

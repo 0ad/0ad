@@ -29,9 +29,9 @@ TradeDialog.prototype.BarterPanel = class
 		this.barterHelp.hidden = !canBarter;
 		this.barterHelp.tooltip = sprintf(
 			translate(this.InstructionsTooltip), {
-				"quantity": this.BarterResourceSellQuantity,
+				"quantity": this.barterButtonManager.getSelectedButton().BarterResourceSellQuantity,
 				"hotkey": colorizeHotkey("%(hotkey)s", "session.massbarter"),
-				"multiplier": this.Multiplier
+				"multiplier": this.barterButtonManager.getSelectedButton().Multiplier
 			});
 	}
 };

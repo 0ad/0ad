@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_cavalry_ranged_javelineer">
+<Entity parent="merc_cav|template_unit_cavalry_ranged_javelineer">
   <Identity>
     <Civ>ptol</Civ>
     <SelectionGroupName>units/ptol/cavalry_javelineer_merc_b</SelectionGroupName>
     <GenericName>Tarantine Settler Cavalry</GenericName>
     <SpecificName>Hippeús Tarantînos</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/mace_cavalry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

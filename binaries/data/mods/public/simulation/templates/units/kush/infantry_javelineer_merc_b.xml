@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_infantry_ranged_javelineer">
+<Entity parent="merc_inf|template_unit_infantry_ranged_javelineer">
   <Builder>
     <Entities datatype="tokens">
       structures/kush/pyramid_small
@@ -15,7 +15,6 @@
     <SelectionGroupName>units/kush/infantry_javelineer_merc_b</SelectionGroupName>
     <GenericName>Noba Skirmisher</GenericName>
     <SpecificName>nhw ʿhȝw Noba</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/kush_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

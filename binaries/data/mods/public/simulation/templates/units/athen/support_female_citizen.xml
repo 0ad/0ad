@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_support_female_citizen">
-  <Builder>
-    <Entities datatype="tokens">
-      structures/athen/gymnasium
-      structures/athen/prytaneion
-    </Entities>
-  </Builder>
+<Entity parent="civ/athen|template_unit_support_female_citizen">
   <Identity>
-    <Civ>athen</Civ>
     <SpecificName>Gýnē Athēnaía</SpecificName>
     <GenericName>Athenian Woman</GenericName>
     <Icon>units/hele_support_female_citizen.png</Icon>
