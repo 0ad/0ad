@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,29 +17,22 @@
 
 #include "precompiled.h"
 
-#include "lib/timer.h"
-#include "maths/MathUtil.h"
-#include "renderer/TimeManager.h"
+#include "TimeManager.h"
 
+CTimeManager::CTimeManager() = default;
 
-CTimeManager::CTimeManager()
+double CTimeManager::GetFrameDelta() const
 {
-	m_frameDelta = 0.0;
-	m_globalTime = 0.0;
+	return m_FrameDelta;
 }
 
-double CTimeManager::GetFrameDelta()
+double CTimeManager::GetGlobalTime() const
 {
-	return m_frameDelta;
-}
-
-double CTimeManager::GetGlobalTime()
-{
-	return m_globalTime;
+	return m_GlobalTime;
 }
 
 void CTimeManager::Update(double delta)
 {
-	m_frameDelta = delta;
-	m_globalTime += delta;
+	m_FrameDelta = delta;
+	m_GlobalTime += delta;
 }
