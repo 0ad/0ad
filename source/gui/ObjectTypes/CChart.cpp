@@ -84,7 +84,7 @@ void CChart::DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, c
 	glEnable(GL_LINE_SMOOTH);
 #endif
 	glLineWidth(1.1f);
-	if (!g_Renderer.m_SkipSubmit)
+	if (!g_Renderer.DoSkipSubmit())
 		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 3);
 	glLineWidth(1.0f);
 #if !CONFIG2_GLES
@@ -98,7 +98,7 @@ void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor&
 	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
 	shader->AssertPointersBound();
 
-	if (!g_Renderer.m_SkipSubmit)
+	if (!g_Renderer.DoSkipSubmit())
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, vertices.size() / 3);
 }
 
