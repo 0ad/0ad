@@ -520,7 +520,7 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
 	if (cmpPathfinder)
-		cmpPathfinder->FetchAsyncResultsAndSendMessages();
+		cmpPathfinder->SendRequestedPaths();
 
 	{
 		PROFILE2("Sim - Update Start");
@@ -541,7 +541,7 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	if (cmpPathfinder)
 	{
 		cmpPathfinder->StartProcessingMoves(true);
-		cmpPathfinder->FetchAsyncResultsAndSendMessages();
+		cmpPathfinder->SendRequestedPaths();
 	}
 	// Send all the update phases
 	{
@@ -559,7 +559,7 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	if (cmpPathfinder)
 	{
 		cmpPathfinder->StartProcessingMoves(true);
-		cmpPathfinder->FetchAsyncResultsAndSendMessages();
+		cmpPathfinder->SendRequestedPaths();
 	}
 
 	{

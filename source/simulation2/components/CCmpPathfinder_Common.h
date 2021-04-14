@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,7 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/helpers/Grid.h"
 
+#include <vector>
 
 class HierarchicalPathfinder;
 class LongPathfinder;
@@ -58,33 +59,6 @@ class AtlasOverlay;
  */
 class CCmpPathfinder final : public ICmpPathfinder
 {
-protected:
-
-	class PathfinderWorker
-	{
-		friend CCmpPathfinder;
-	public:
-		PathfinderWorker();
-
-		// Process path requests, checking if we should stop before each new one.
-		void Work(const CCmpPathfinder& pathfinder);
-
-	private:
-		// Insert requests in m_[Long/Short]Requests depending on from.
-		// This could be removed when we may use if-constexpr in CCmpPathfinder::PushRequestsToWorkers
-		template<typename T>
-		void PushRequests(std::vector<T>& from, ssize_t amount);
-
-		// Stores our results, the main thread will fetch this.
-		std::vector<PathResult> m_Results;
-
-		std::vector<LongPathRequest> m_LongRequests;
-		std::vector<ShortPathRequest> m_ShortRequests;
-	};
-
-	// Allow the workers to access our private variables
-	friend class PathfinderWorker;
-
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
@@ -103,13 +77,9 @@ public:
 
 	std::map<std::string, pass_class_t> m_PassClassMasks;
 	std::vector<PathfinderPassability> m_PassClasses;
+	u16 m_MaxSameTurnMoves; // Compute only this many paths when useMax is true in StartProcessingMoves.
 
 	// Dynamic state:
-
-	std::vector<LongPathRequest> m_LongPathRequests;
-	std::vector<ShortPathRequest> m_ShortPathRequests;
-	u32 m_NextAsyncTicket; // Unique IDs for asynchronous path requests.
-	u16 m_MaxSameTurnMoves; // Compute only this many paths when useMax is true in StartProcessingMoves.
 
 	// Lazily-constructed dynamic state (not serialized):
 
@@ -128,8 +98,45 @@ public:
 	std::unique_ptr<HierarchicalPathfinder> m_PathfinderHier;
 	std::unique_ptr<LongPathfinder> m_LongPathfinder;
 
-	// Workers process pathing requests.
-	std::vector<PathfinderWorker> m_Workers;
+	template<typename T>
+	class PathRequests {
+	public:
+		std::vector<T> m_Requests;
+		std::vector<PathResult> m_Results;
+		// This is the array index of the next path to compute.
+		size_t m_NextPathToCompute = 0;
+		// This is false until all scheduled paths have been computed.
+		bool m_ComputeDone = true;
+
+		void ClearComputed()
+		{
+			if (m_Results.size() == m_Requests.size())
+				m_Requests.clear();
+			else
+				m_Requests.erase(m_Requests.end() - m_Results.size(), m_Requests.end());
+			m_Results.clear();
+		}
+
+		/**
+		 * @param max - if non-zero, how many paths to process.
+		 */
+		void PrepareForComputation(u16 max)
+		{
+			size_t n = m_Requests.size();
+			if (max && n > max)
+				n = max;
+			m_NextPathToCompute = 0;
+			m_Results.resize(n);
+			m_ComputeDone = n == 0;
+		}
+
+		template<typename U>
+		void Compute(const CCmpPathfinder& cmpPathfinder, const U& pathfinder);
+	};
+	PathRequests<LongPathRequest> m_LongPathRequests;
+	PathRequests<ShortPathRequest> m_ShortPathRequests;
+
+	u32 m_NextAsyncTicket; // Unique IDs for asynchronous path requests.
 
 	AtlasOverlay* m_AtlasOverlay;
 
@@ -222,7 +229,7 @@ public:
 
 	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) const;
 
-	virtual void FetchAsyncResultsAndSendMessages();
+	virtual void SendRequestedPaths();
 
 	virtual void StartProcessingMoves(bool useMax);
 

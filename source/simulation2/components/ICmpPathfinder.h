@@ -185,7 +185,7 @@ public:
 	/**
 	 * Finish computing asynchronous path requests and send the CMessagePathResult messages.
 	 */
-	virtual void FetchAsyncResultsAndSendMessages() = 0;
+	virtual void SendRequestedPaths() = 0;
 
 	/**
 	 * Tell asynchronous pathfinder threads that they can begin computing paths.
