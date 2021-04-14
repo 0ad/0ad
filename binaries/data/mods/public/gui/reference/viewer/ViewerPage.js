@@ -35,13 +35,7 @@ class ViewerPage extends ReferencePage
 		// Attempt to get the civ code from the template, or, if
 		// it's a technology, from the researcher's template.
 		if (!isTech)
-		{
-			// Catch and redirect if template is a non-promotion variant of
-			// another (ie. units/{civ}_support_female_citizen_house).
-			templateName = this.TemplateLoader.getBaseTemplateName(templateName, this.TemplateLoader.DefaultCiv);
-
 			this.setActiveCiv(this.TemplateLoader.loadEntityTemplate(templateName, this.TemplateLoader.DefaultCiv).Identity.Civ);
-		}
 
 		if (this.activeCiv == this.TemplateLoader.DefaultCiv && data.civ)
 			this.setActiveCiv(data.civ);
@@ -59,17 +53,28 @@ class ViewerPage extends ReferencePage
 		// We do that here, so we don't do it later in the tooltip callback functions, as that would be messier.
 		if (this.activeCiv != this.TemplateLoader.DefaultCiv)
 		{
+			let currentTemplateName = this.currentTemplate.name.internal;
+			if (!isTech)
+			{
+				// If template is a non-promotion, non-upgrade variant of another (e.g.
+				// units/{civ}/support_female_citizen_house), we wish to use the name of the base template,
+				// not that of the variant template, when interacting with the compiled Template Lists.
+				let templateVariance = this.TemplateLoader.getVariantBaseAndType(this.currentTemplate.name.internal, this.TemplateLoader.DefaultCiv);
+				if (templateVariance[1].passthru)
+					currentTemplateName = templateVariance[0];
+			}
+
 			let templateLists = this.TemplateLister.getTemplateLists(this.activeCiv);
 
-			let builders = templateLists.structures.get(this.currentTemplate.name.internal);
+			let builders = templateLists.structures.get(currentTemplateName);
 			if (builders && builders.length)
 				this.currentTemplate.builtByListOfNames = builders.map(builder => getEntityNames(this.TemplateParser.getEntity(builder, this.activeCiv)));
 
-			let trainers = templateLists.units.get(this.currentTemplate.name.internal);
+			let trainers = templateLists.units.get(currentTemplateName);
 			if (trainers && trainers.length)
 				this.currentTemplate.trainedByListOfNames = trainers.map(trainer => getEntityNames(this.TemplateParser.getEntity(trainer, this.activeCiv)));
 
-			let researchers = templateLists.techs.get(this.currentTemplate.name.internal);
+			let researchers = templateLists.techs.get(currentTemplateName);
 			if (researchers && researchers.length)
 				this.currentTemplate.researchedByListOfNames = researchers.map(researcher => getEntityNames(this.TemplateParser.getEntity(researcher, this.activeCiv)));
 		}

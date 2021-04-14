@@ -36,17 +36,27 @@ class TemplateLister
 
 			for (let templateBeingParsed of templatesThisIteration)
 			{
+				let baseOfTemplateBeingParsed = this.TemplateLoader.getVariantBaseAndType(templateBeingParsed, civCode)[0];
 				let list = this.deriveTemplateListsFromTemplate(templateBeingParsed, civCode);
 				for (let type in list)
 					for (let templateName of list[type])
+					{
+						if (type != "techs")
+						{
+							let templateVariance = this.TemplateLoader.getVariantBaseAndType(templateName, civCode);
+							if (templateVariance[1].passthru)
+								templateName = templateVariance[0];
+						}
+
 						if (!templateLists[type].has(templateName))
 						{
-							templateLists[type].set(templateName, [templateBeingParsed]);
+							templateLists[type].set(templateName, [baseOfTemplateBeingParsed]);
 							if (type != "techs")
 								templatesToParse.push(templateName);
 						}
-						else if (templateLists[type].get(templateName).indexOf(templateBeingParsed) == -1)
-							templateLists[type].get(templateName).push(templateBeingParsed);
+						else if (templateLists[type].get(templateName).indexOf(baseOfTemplateBeingParsed) == -1)
+							templateLists[type].get(templateName).push(baseOfTemplateBeingParsed);
+					}
 			}
 		} while (templatesToParse.length);
 
@@ -109,11 +119,6 @@ class TemplateLister
 	deriveTemplateListsFromTemplate(templateName, civCode)
 	{
 		if (!templateName || !Engine.TemplateExists(templateName))
-			return {};
-
-		// If this is a non-promotion variant (ie. {civ}_support_female_citizen_house)
-		// then it is functionally equivalent to another unit being processed, so skip it.
-		if (this.TemplateLoader.getBaseTemplateName(templateName, civCode) != templateName)
 			return {};
 
 		let template = this.TemplateLoader.loadEntityTemplate(templateName, civCode);
