@@ -2556,8 +2556,9 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					// Failing that, try to move there and se if we are more lucky: maybe there are resources in FOW.
-					// Only move if we are some distance away (TODO: pick the distance better?)
-					if (!this.CheckPointRangeExplicit(initPos.x, initPos.z, 0, 10))
+					// Only move if we are some distance away (TODO: pick the distance better?).
+					// Using the default relaxed range check since that is used in the WALKING-state.
+					if (!this.CheckPointRangeExplicit(initPos.x, initPos.z, 0, this.DefaultRelaxedMaxRange))
 					{
 						this.GatherNearPosition(initPos.x, initPos.z, resourceType, resourceTemplate);
 						return true;

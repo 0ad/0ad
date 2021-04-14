@@ -18,6 +18,7 @@
 #ifndef INCLUDED_JSI_GUIPROXY
 #define INCLUDED_JSI_GUIPROXY
 
+#include "gui/ObjectBases/IGUIObject.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 
 #include <memory>
