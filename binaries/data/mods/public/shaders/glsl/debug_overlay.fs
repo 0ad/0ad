@@ -1,11 +1,18 @@
 #version 110
 
+#if DEBUG_TEXTURED
 uniform sampler2D baseTex;
 
 varying vec2 v_tex;
+#else
+uniform vec4 color;
+#endif
 
 void main()
 {
-    vec4 base = texture2D(baseTex, v_tex);
-    gl_FragColor = base;
+#if DEBUG_TEXTURED
+    gl_FragColor = texture2D(baseTex, v_tex);
+#else
+    gl_FragColor = color;
+#endif
 }

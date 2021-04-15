@@ -20,10 +20,66 @@
 #include "renderer/DebugRenderer.h"
 
 #include "graphics/Camera.h"
+#include "graphics/Color.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
+#include "maths/Vector3D.h"
+#include "renderer/Renderer.h"
+
+#include <cmath>
+
+void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const CColor& color, const float width)
+{
+	if (from == to)
+		return;
+
+#if CONFIG2_GLES
+	#warning TODO: implement drawing line for GLES
+#else
+	CShaderTechniquePtr debugLineTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	debugLineTech->BeginPass();
+	CShaderProgramPtr debugLineShader = debugLineTech->GetShader();
+
+	debugLineShader->Bind();
+	debugLineShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	debugLineShader->Uniform(str_color, color);
+
+	// Basis to set a line with the width in R^3 space.
+	const CVector3D direction = (to - from).Normalized();
+	const CVector3D upCandidate = direction.Dot(CVector3D(0.0f, 1.0f, 0.0f)) > 0.9f ?
+		CVector3D(1.0f, 0.0f, 0.0f) :
+		CVector3D(0.0f, 1.0f, 0.0f);
+	const CVector3D right = direction.Cross(upCandidate).Normalized();
+	const CVector3D up = direction.Cross(right);
+
+	std::vector<float> vertices;
+	const size_t splits = 3;
+	float angle = 0.0f;
+	const float step = static_cast<float>(M_PI * 2.0f / splits);
+	for (size_t idx = 0; idx <= splits; ++idx, angle += step)
+	{
+		const CVector3D offset = (right * std::cos(angle) + up * std::sin(angle)) * width;
+		const CVector3D a = from + offset;
+		const CVector3D b = to + offset;
+		vertices.emplace_back(a.X);
+		vertices.emplace_back(a.Y);
+		vertices.emplace_back(a.Z);
+		vertices.emplace_back(b.X);
+		vertices.emplace_back(b.Y);
+		vertices.emplace_back(b.Z);
+	}
+	debugLineShader->VertexPointer(3, GL_FLOAT, sizeof(float) * 3, vertices.data());
+	debugLineShader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, vertices.size() / 3);
+
+	debugLineShader->Unbind();
+	debugLineTech->EndPass();
+#endif
+}
 
 void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, int intermediates) const
 {

@@ -23,12 +23,20 @@
 class CBoundingBoxAligned;
 class CBrush;
 class CCamera;
+class CVector3D;
+
+struct CColor;
 
 // Helper for unoptimized rendering of geometrics primitives. Should not be
 // used for regular passes.
 class CDebugRenderer
 {
 public:
+	/**
+	 * Render the line in world space.
+	 */
+	void DrawLine(const CVector3D& from, const CVector3D& to, const CColor& color, const float width);
+
 	/**
 	 * Render: Renders the camera's frustum in world space.
 	 * The caller should set the color using glColorXy before calling Render.

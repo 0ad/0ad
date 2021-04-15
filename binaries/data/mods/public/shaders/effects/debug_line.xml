@@ -2,13 +2,11 @@
 <effect>
 
     <technique>
-        <define name="DEBUG_TEXTURED" value="1"/>
         <require shaders="arb"/>
         <pass shader="arb/debug_overlay"/>
     </technique>
 
     <technique>
-        <define name="DEBUG_TEXTURED" value="1"/>
         <require shaders="glsl"/>
         <pass shader="glsl/debug_overlay"/>
     </technique>

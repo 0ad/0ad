@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/World.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -239,39 +240,17 @@ void AtlasViewGame::DrawCinemaPathTool()
 	if (!m_DrawMoveTool)
 		return;
 
-#if CONFIG2_GLES
-	#warning TODO : implement Atlas cinema path tool for GLES
-#else
-	CVector3D focus = m_MoveTool;
-	CVector3D camera = GetCamera().GetOrientation().GetTranslation();
-	float scale = (focus - camera).Length() / 10.0;
+	const CVector3D focus = m_MoveTool;
+	const CVector3D camera = GetCamera().GetOrientation().GetTranslation();
+	const float scale = (focus - camera).Length();
+	const float axisLength = scale / 10.0f;
+	const float lineWidth = scale / 1e3f;
 
 	glDisable(GL_DEPTH_TEST);
-	glLineWidth(1.6f);
-	glEnable(GL_LINE_SMOOTH);
-
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glBegin(GL_LINE_STRIP);
-	glVertex3fv(focus.GetFloatArray());
-	glVertex3fv((focus + CVector3D(scale, 0, 0)).GetFloatArray());
-	glEnd();
-
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glBegin(GL_LINE_STRIP);
-	glVertex3fv(focus.GetFloatArray());
-	glVertex3fv((focus + CVector3D(0, scale, 0)).GetFloatArray());
-	glEnd();
-
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glBegin(GL_LINE_STRIP);
-	glVertex3fv(focus.GetFloatArray());
-	glVertex3fv((focus + CVector3D(0, 0, scale)).GetFloatArray());
-	glEnd();
-
-	glDisable(GL_LINE_SMOOTH);
-	glLineWidth(1.0f);
+	g_Renderer.GetDebugRenderer().DrawLine(focus, focus + CVector3D(axisLength, 0, 0), CColor(1.0f, 0.0f, 0.0f, 1.0f), lineWidth);
+	g_Renderer.GetDebugRenderer().DrawLine(focus, focus + CVector3D(0, axisLength, 0), CColor(0.0f, 1.0f, 0.0f, 1.0f), lineWidth);
+	g_Renderer.GetDebugRenderer().DrawLine(focus, focus + CVector3D(0, 0, axisLength), CColor(0.0f, 0.0f, 1.0f, 1.0f), lineWidth);
 	glEnable(GL_DEPTH_TEST);
-#endif
 }
 
 void AtlasViewGame::DrawOverlays()
@@ -279,6 +258,9 @@ void AtlasViewGame::DrawOverlays()
 #if CONFIG2_GLES
 #warning TODO: implement Atlas game overlays for GLES
 #else
+	if (m_BandboxArray.empty())
+		return;
+
 	// Set up transform for overlays
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -295,20 +277,17 @@ void AtlasViewGame::DrawOverlays()
 	transform = proj * transform;
 	glLoadMatrixf(&transform._11);
 
-	if (m_BandboxArray.size() > 0)
-	{
-		glEnableClientState(GL_COLOR_ARRAY);
-		glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
 
-		// Render bandbox as array of lines
-		glVertexPointer(2, GL_FLOAT, sizeof(SBandboxVertex), &m_BandboxArray[0].x);
-		glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(SBandboxVertex), &m_BandboxArray[0].r);
+	// Render bandbox as array of lines
+	glVertexPointer(2, GL_FLOAT, sizeof(SBandboxVertex), &m_BandboxArray[0].x);
+	glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(SBandboxVertex), &m_BandboxArray[0].r);
 
-		glDrawArrays(GL_LINES, 0, m_BandboxArray.size());
+	glDrawArrays(GL_LINES, 0, m_BandboxArray.size());
 
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glDisableClientState(GL_COLOR_ARRAY);
-	}
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
