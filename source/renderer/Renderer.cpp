@@ -434,12 +434,9 @@ CRenderer::CRenderer()
 	if (skycolor.ParseString(skystring, 255.f))
 		SetClearColor(skycolor.AsSColor4ub());
 
-	m_ShadowZBias = 0.02f;
-	m_ShadowMapSize = 0;
+	m_LightEnv = nullptr;
 
-	m_LightEnv = NULL;
-
-	m_CurrentScene = NULL;
+	m_CurrentScene = nullptr;
 
 	m_hCompositeAlphaMap = 0;
 

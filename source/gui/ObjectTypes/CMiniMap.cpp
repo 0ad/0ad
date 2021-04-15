@@ -349,7 +349,7 @@ void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
 	shader->AssertPointersBound();
 
-	if (!g_Renderer.m_SkipSubmit)
+	if (!g_Renderer.DoSkipSubmit())
 		glDrawArrays(GL_LINES, 0, vertices.size() / 2);
 
 	tech->EndPass();
@@ -414,7 +414,7 @@ void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle
 	shader->VertexPointer(3, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 
-	if (!g_Renderer.m_SkipSubmit)
+	if (!g_Renderer.DoSkipSubmit())
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
@@ -655,7 +655,7 @@ void CMiniMap::Draw()
 		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
-		if (!g_Renderer.m_SkipSubmit)
+		if (!g_Renderer.DoSkipSubmit())
 			glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
 
 		g_Renderer.GetStats().m_DrawCalls++;

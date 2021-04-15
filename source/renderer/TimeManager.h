@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,25 +18,19 @@
 #ifndef INCLUDED_TIMEMANAGER
 #define INCLUDED_TIMEMANAGER
 
-#include "graphics/Texture.h"
-#include "maths/Matrix3D.h"
-#include "lib/ogl.h"
-
-
 class CTimeManager
 {
 public:
 	CTimeManager();
 
-	double GetFrameDelta();
-	double GetGlobalTime();
+	double GetFrameDelta() const;
+	double GetGlobalTime() const;
 
 	void Update(double delta);
 
 private:
-	double m_frameDelta;
-	double m_globalTime;
+	double m_FrameDelta = 0.0;
+	double m_GlobalTime = 0.0;
 };
-
 
 #endif // INCLUDED_TIMEMANAGER

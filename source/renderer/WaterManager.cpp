@@ -847,7 +847,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 #if CONFIG2_GLES
 #warning Fix WaterManager::RenderWaves on GLES
 #else
-	if (g_Renderer.m_SkipSubmit || !m_WaterFancyEffects)
+	if (g_Renderer.DoSkipSubmit() || !m_WaterFancyEffects)
 		return;
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);

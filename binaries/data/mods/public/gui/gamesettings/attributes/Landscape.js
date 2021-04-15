@@ -66,7 +66,7 @@ GameSettings.prototype.Attributes.Landscape = class Landscape extends GameSettin
 			items = subgroup.Items.map(x => x.Id);
 		}
 		else
-			items = this.data.map(x => x.Items.map(item => item.Id));
+			items = this.data.map(x => x.Items.map(item => item.Id)).flat();
 
 		this.value = pickRandom(items);
 		return true;

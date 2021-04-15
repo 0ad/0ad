@@ -121,7 +121,7 @@ class TemplateLoader
 			{
 				templateName = templateName.replace(/\{(civ|native)\}/g, civCode);
 				if (Engine.TemplateExists(templateName))
-					production.units.push(this.getBaseTemplateName(templateName, civCode));
+					production.units.push(templateName);
 			}
 
 		let appendTechnology = (technologyName) => {
@@ -225,10 +225,22 @@ class TemplateLoader
 	}
 
 	/**
-	 * Returns the name of a template's base form (without `_house`, `_trireme`, or similar),
-	 * or the template's own name if the base is of a different promotion rank.
+	 * A template may be a variant of another template,
+	 * eg. `*_house`, `*_trireme`, or a promotion.
+	 *
+	 * This method returns an array containing:
+	 * [0] - The template's basename
+	 * [1] - The variant type
+	 * [2] - Further information (if available)
+	 *
+	 * e.g.:
+	 * units/athen/infantry_swordsman_e
+	 *    -> ["units/athen/infantry_swordsman_b", TemplateVariant.promotion, "elite"]
+	 *
+	 * units/brit/support_female_citizen_house
+	 *    -> ["units/brit/support_female_citizen", TemplateVariant.unlockedByTechnology, "unlock_female_house"]
 	 */
-	getBaseTemplateName(templateName, civCode)
+	getVariantBaseAndType(templateName, civCode)
 	{
 		if (!templateName || !Engine.TemplateExists(templateName))
 			return undefined;
@@ -237,29 +249,35 @@ class TemplateLoader
 		let template = this.loadEntityTemplate(templateName, civCode);
 
 		if (!dirname(templateName) || dirname(template["@parent"]) != dirname(templateName))
-			return templateName;
+			return [templateName, TemplateVariant.base];
 
 		let parentTemplate = this.loadEntityTemplate(template["@parent"], civCode);
+		let inheritedVariance = this.getVariantBaseAndType(template["@parent"], civCode);
 
-		if (parentTemplate.Identity && (
-			parentTemplate.Identity.Civ && parentTemplate.Identity.Civ != template.Identity.Civ ||
-			parentTemplate.Identity.Rank && parentTemplate.Identity.Rank != template.Identity.Rank
-		))
-			return templateName;
+		if (parentTemplate.Identity)
+		{
+			if (parentTemplate.Identity.Civ && parentTemplate.Identity.Civ != template.Identity.Civ)
+				return [templateName, TemplateVariant.base];
 
-		if (!parentTemplate.Cost)
-			return templateName;
+			if (parentTemplate.Identity.Rank && parentTemplate.Identity.Rank != template.Identity.Rank)
+				return [inheritedVariance[0], TemplateVariant.promotion, template.Identity.Rank.toLowerCase()];
+		}
 
 		if (parentTemplate.Upgrade)
 			for (let upgrade in parentTemplate.Upgrade)
 				if (parentTemplate.Upgrade[upgrade].Entity)
-					return templateName;
+					return [inheritedVariance[0], TemplateVariant.upgrade, upgrade.toLowerCase()];
 
-		for (let res in parentTemplate.Cost.Resources)
-			if (+parentTemplate.Cost.Resources[res])
-				return this.getBaseTemplateName(template["@parent"], civCode);
+		if (template.Identity.RequiredTechnology)
+			return [inheritedVariance[0], TemplateVariant.unlockedByTechnology, template.Identity.RequiredTechnology];
 
-		return templateName;
+		if (parentTemplate.Cost)
+			for (let res in parentTemplate.Cost.Resources)
+				if (+parentTemplate.Cost.Resources[res])
+					return [inheritedVariance[0], TemplateVariant.trainable];
+
+		warn("Template variance unknown: " + templateName);
+		return [templateName, TemplateVariant.unknown];
 	}
 
 	isPairTech(technologyCode)

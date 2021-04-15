@@ -433,41 +433,34 @@ void ShadowMapInternals::CreateTexture()
 
 	pglGenFramebuffersEXT(1, &Framebuffer);
 
-	if (g_Renderer.m_ShadowMapSize != 0)
-	{
-		// non-default option to override the size
-		Width = Height = g_Renderer.m_ShadowMapSize;
-	}
-	else
-	{
-		CFG_GET_VAL("shadowquality", QualityLevel);
+	CFG_GET_VAL("shadowquality", QualityLevel);
 
-		// get shadow map size as next power of two up from view width/height
-		int shadow_map_size = (int)round_up_to_pow2((unsigned)std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight()));
-		switch (QualityLevel)
-		{
-		// Very Low
-		case -2:
-			shadow_map_size /= 4;
-			break;
-		// Low
-		case -1:
-			shadow_map_size /= 2;
-			break;
-		// High
-		case 1:
-			shadow_map_size *= 2;
-			break;
-		// Ultra
-		case 2:
-			shadow_map_size *= 4;
-			break;
-		// Medium as is
-		default:
-			break;
-		}
-		Width = Height = shadow_map_size;
+	// get shadow map size as next power of two up from view width/height
+	int shadow_map_size = (int)round_up_to_pow2((unsigned)std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight()));
+	switch (QualityLevel)
+	{
+	// Very Low
+	case -2:
+		shadow_map_size /= 4;
+		break;
+	// Low
+	case -1:
+		shadow_map_size /= 2;
+		break;
+	// High
+	case 1:
+		shadow_map_size *= 2;
+		break;
+	// Ultra
+	case 2:
+		shadow_map_size *= 4;
+		break;
+	// Medium as is
+	default:
+		break;
 	}
+	Width = Height = shadow_map_size;
+
 	// Clamp to the maximum texture size
 	Width = std::min(Width, (int)ogl_max_tex_size);
 	Height = std::min(Height, (int)ogl_max_tex_size);

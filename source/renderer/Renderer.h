@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,16 +25,14 @@
 
 #include "graphics/Camera.h"
 #include "graphics/SColor.h"
+#include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
-
-#include "graphics/ShaderDefines.h"
-#include "renderer/Scene.h"
 #include "renderer/RenderingOptions.h"
+#include "renderer/Scene.h"
 
-// necessary declarations
 class CFontManager;
 class CLightEnv;
 class CMaterial;
@@ -74,7 +72,8 @@ public:
 	// various enumerations and renderer related constants
 	enum { NumAlphaMaps=14 };
 
-	enum CullGroup {
+	enum CullGroup
+	{
 		CULL_DEFAULT,
 		CULL_SHADOWS,
 		CULL_REFLECTIONS,
@@ -85,7 +84,8 @@ public:
 	};
 
 	// stats class - per frame counts of number of draw calls, poly counts etc
-	struct Stats {
+	struct Stats
+	{
 		// set all stats to zero
 		void Reset() { memset(this, 0, sizeof(*this)); }
 		// number of draw calls per frame - total DrawElements + Begin/End immediate mode loops
@@ -104,7 +104,8 @@ public:
 		size_t m_Particles;
 	};
 
-	struct Caps {
+	struct Caps
+	{
 		bool m_VBO;
 		bool m_ARBProgram;
 		bool m_ARBProgramShadow;
@@ -192,8 +193,9 @@ public:
 
 	// set the current lighting environment; (note: the passed pointer is just copied to a variable within the renderer,
 	// so the lightenv passed must be scoped such that it is not destructed until after the renderer is no longer rendering)
-	void SetLightEnv(CLightEnv* lightenv) {
-		m_LightEnv=lightenv;
+	void SetLightEnv(CLightEnv* lightenv)
+	{
+		m_LightEnv = lightenv;
 	}
 
 	// set the mode to render subsequent terrain patches
@@ -287,6 +289,12 @@ public:
 	 * Resets the render state to default, that was before a game started
 	 */
 	void ResetState();
+
+	/**
+	 * m_SkipSubmit: Disable the actual submission of rendering commands to OpenGL.
+	 * All state setup is still performed as usual.
+	 */
+	bool DoSkipSubmit() const { return m_SkipSubmit; }
 
 protected:
 	friend struct CRendererInternals;
@@ -428,33 +436,7 @@ protected:
 	 */
 	bool m_DisplayTerrainPriorities;
 
-public:
-	/**
-	 * m_ShadowZBias: Z bias used when rendering shadows into a depth texture.
-	 * This can be used to control shadowing artifacts.
-	 *
-	 * Can be accessed via JS as renderer.shadowZBias
-	 * ShadowMap uses this for matrix calculation.
-	 */
-	float m_ShadowZBias;
-
-	/**
-	 * m_ShadowMapSize: Size of shadow map, or 0 for default. Typically slow but useful
-	 * for high-quality rendering. Changes don't take effect until the shadow map
-	 * is regenerated.
-	 *
-	 * Can be accessed via JS as renderer.shadowMapSize
-	 */
-	int m_ShadowMapSize;
-
-	/**
-	 * m_SkipSubmit: Disable the actual submission of rendering commands to OpenGL.
-	 * All state setup is still performed as usual.
-	 *
-	 * Can be accessed via JS as renderer.skipSubmit
-	 */
 	bool m_SkipSubmit;
 };
 
-
-#endif
+#endif // INCLUDED_RENDERER

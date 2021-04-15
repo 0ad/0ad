@@ -73,6 +73,8 @@ GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSett
 			// Pick one of the available botnames for the chosen civ
 			// Determine botnames
 			let chosenName = pickRandom(this.settings.civData[civ].AINames);
+			if (!this.settings.isNetworked)
+				chosenName = translate(chosenName);
 
 			// Count how many players use the chosenName
 			let usedName = this.values.filter(oName => oName && oName.indexOf(chosenName) !== -1).length;
