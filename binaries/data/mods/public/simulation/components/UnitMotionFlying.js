@@ -315,7 +315,7 @@ UnitMotionFlying.prototype.GetRunMultiplier = function()
  * Estimate the next position of the unit. Just linearly extrapolate.
  * TODO: Reuse the movement code for a better estimate.
  */
-UnitMotionFlying.prototype.EstimateNextPosition = function(dt)
+UnitMotionFlying.prototype.EstimateFuturePosition = function(dt)
 {
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
