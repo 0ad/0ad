@@ -33,6 +33,7 @@
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
+class CDebugRenderer;
 class CFontManager;
 class CLightEnv;
 class CMaterial;
@@ -275,6 +276,8 @@ public:
 	CTimeManager& GetTimeManager();
 
 	CPostprocManager& GetPostprocManager();
+
+	CDebugRenderer& GetDebugRenderer();
 
 	/**
 	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.

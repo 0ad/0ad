@@ -108,15 +108,6 @@ class CCamera
 		// Build an orientation matrix from camera position, camera orientation, and up-vector
 		void LookAlong(const CVector3D& camera, CVector3D orientation, CVector3D up);
 
-		/**
-		 * Render: Renders the camera's frustum in world space.
-		 * The caller should set the color using glColorXy before calling Render.
-		 *
-		 * @param intermediates determines how many intermediate distance planes should
-		 * be hinted at between the near and far planes
-		 */
-		void Render(int intermediates = 0) const;
-
 	public:
 		// This is the orientation matrix. The inverse of this
 		// is the view matrix

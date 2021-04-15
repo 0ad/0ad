@@ -26,6 +26,7 @@
 #include "graphics/ShaderManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Profile.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 
@@ -455,7 +456,7 @@ void SilhouetteRenderer::RenderDebugOverlays(const CCamera& camera)
 	for (size_t i = 0; i < m_DebugBounds.size(); ++i)
 	{
 		shader->Uniform(str_color, m_DebugBounds[i].color);
-		m_DebugBounds[i].bounds.RenderOutline(shader);
+		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m_DebugBounds[i].bounds, shader);
 	}
 
 	CMatrix3D m;

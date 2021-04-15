@@ -15,21 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Implementation of CBrush, a class representing a convex object
- */
-
 #include "precompiled.h"
 
 #include "Brush.h"
 
-#include "graphics/ShaderProgram.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Frustum.h"
-#include "lib/ogl.h"
 
-#include <float.h>
-
+CBrush::CBrush() = default;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Convert the given bounds into a brush
@@ -380,12 +373,13 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 
 	ENSURE(prev == &result);
 }
-std::vector<CVector3D> CBrush::GetVertices() const
+
+const std::vector<CVector3D>& CBrush::GetVertices() const
 {
 	return m_Vertices;
 }
 
-void CBrush::GetFaces(std::vector<std::vector<size_t> >& out) const
+void CBrush::GetFaces(std::vector<std::vector<size_t>>& out) const
 {
 	// split the back-to-back faces into separate face vectors, so that they're in a
 	// user-friendlier format than the back-to-back vertex index array
@@ -414,78 +408,4 @@ void CBrush::GetFaces(std::vector<std::vector<size_t> >& out) const
 
 		faceStartIdx = j + 1;
 	}
-}
-
-void CBrush::Render(CShaderProgramPtr& shader) const
-{
-	std::vector<float> data;
-
-	std::vector<std::vector<size_t> > faces;
-	GetFaces(faces);
-
-#define ADD_VERT(a) \
-	STMT( \
-		data.push_back(u); \
-		data.push_back(v); \
-		data.push_back(m_Vertices[faces[i][a]].X); \
-		data.push_back(m_Vertices[faces[i][a]].Y); \
-		data.push_back(m_Vertices[faces[i][a]].Z); \
-	)
-
-	for (size_t i = 0; i < faces.size(); ++i)
-	{
-		// Triangulate into (0,1,2), (0,2,3), ...
-		for (size_t j = 1; j < faces[i].size() - 2; ++j)
-		{
-			float u = 0;
-			float v = 0;
-			ADD_VERT(0);
-			ADD_VERT(j);
-			ADD_VERT(j+1);
-		}
-	}
-
-#undef ADD_VERT
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-
-	shader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, data.size() / 5);
-}
-
-void CBrush::RenderOutline(CShaderProgramPtr& shader) const
-{
-	std::vector<float> data;
-
-	std::vector<std::vector<size_t> > faces;
-	GetFaces(faces);
-
-#define ADD_VERT(a) \
-	STMT( \
-		data.push_back(u); \
-		data.push_back(v); \
-		data.push_back(m_Vertices[faces[i][a]].X); \
-		data.push_back(m_Vertices[faces[i][a]].Y); \
-		data.push_back(m_Vertices[faces[i][a]].Z); \
-	)
-
-	for (size_t i = 0; i < faces.size(); ++i)
-	{
-		for (size_t j = 0; j < faces[i].size() - 1; ++j)
-		{
-			float u = 0;
-			float v = 0;
-			ADD_VERT(j);
-			ADD_VERT(j+1);
-		}
-	}
-
-#undef ADD_VERT
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-
-	shader->AssertPointersBound();
-	glDrawArrays(GL_LINES, 0, data.size() / 5);
 }
