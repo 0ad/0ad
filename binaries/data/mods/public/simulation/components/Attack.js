@@ -238,7 +238,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 	let cmpHealth = QueryMiragedInterface(target, IID_Health);
 	let targetClasses = cmpIdentity.GetClassesList();
 	if (targetClasses.indexOf("Domestic") != -1 && this.template.Slaughter && cmpHealth && cmpHealth.GetHitpoints() &&
-	   (!wantedTypes || !wantedTypes.filter(wType => wType.indexOf("!") != 0).length))
+	   (!wantedTypes || !wantedTypes.filter(wType => wType.indexOf("!") != 0).length || wantedTypes.indexOf("Slaughter") != -1))
 		return true;
 
 	let cmpEntityPlayer = QueryOwnerInterface(this.entity);
@@ -452,7 +452,7 @@ Attack.prototype.StartAttacking = function(target, type, callerIID)
 	if (this.target)
 		this.StopAttacking();
 
-	if (!this.CanAttack(target))
+	if (!this.CanAttack(target, [type]))
 		return false;
 
 	let timings = this.GetTimers(type);
@@ -522,7 +522,7 @@ Attack.prototype.StopAttacking = function(reason)
  */
 Attack.prototype.Attack = function(type, lateness)
 {
-	if (!this.CanAttack(this.target))
+	if (!this.CanAttack(this.target, [type]))
 	{
 		this.StopAttacking("TargetInvalidated");
 		return;
