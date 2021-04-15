@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@ public:
 
 	void ClampSmoothly(float min, float max)
 	{
-		m_Target = Clamp(m_Target, static_cast<double>(min), static_cast<double>(max));
+		m_Target = Clamp(m_Target, min, max);
 	}
 
 	float Update(float time);
