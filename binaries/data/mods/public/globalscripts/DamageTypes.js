@@ -11,7 +11,7 @@ class DamageTypesMetadata
 	{
 		this.damageTypeData = {};
 
-		let files = Engine.ListDirectoryFiles("simulation/data/template_helpers/damage_types", "*.json", false);
+		let files = Engine.ListDirectoryFiles("simulation/data/damage_types", "*.json", false);
 		for (let filename of files)
 		{
 			let data = Engine.ReadJSONFile(filename);
