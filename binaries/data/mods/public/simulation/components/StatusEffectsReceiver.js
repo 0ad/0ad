@@ -145,7 +145,7 @@ StatusEffectsReceiver.prototype.ExecuteEffect = function(statusCode, lateness)
 		return;
 
 	if (status.Damage || status.Capture)
-		Attacking.HandleAttackEffects(this.entity, {
+		AttackHelper.HandleAttackEffects(this.entity, {
 			"type": statusCode,
 			"attackData": status,
 			"attacker": status.source.entity,

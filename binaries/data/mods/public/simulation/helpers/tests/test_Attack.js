@@ -21,14 +21,13 @@ AttackEffects = class AttackEffects
 	}
 };
 
-Engine.LoadHelperScript("Attacking.js");
+Engine.LoadHelperScript("Attack.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 
-// Unit tests for the Attacking helper.
 // TODO: Some of it is tested in components/test_Damage.js, which should be spliced and moved.
 
 class testHandleAttackEffects {
@@ -59,7 +58,7 @@ class testHandleAttackEffects {
 			"Capture": x => { this.resultString += x; },
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -78,7 +77,7 @@ class testHandleAttackEffects {
 			"Capture": x => { this.resultString += x; },
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -95,7 +94,7 @@ class testHandleAttackEffects {
 			"GetMaxHitpoints": () => 1,
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -110,7 +109,7 @@ class testHandleAttackEffects {
 	 */
 	testAttackedMessage() {
 		Engine.PostMessage = () => TS_ASSERT(false);
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -122,7 +121,7 @@ class testHandleAttackEffects {
 		});
 		let count = 0;
 		Engine.PostMessage = () => count++;
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -137,7 +136,7 @@ class testHandleAttackEffects {
 		});
 		count = 0;
 		Engine.PostMessage = () => count++;
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -157,7 +156,7 @@ class testHandleAttackEffects {
 		});
 		let spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,
@@ -183,7 +182,7 @@ class testHandleAttackEffects {
 			},
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+		AttackHelper.HandleAttackEffects(this.TESTED_ENTITY_ID, {
 			"type": "Test",
 			"attackData": this.attackData,
 			"attacker": INVALID_ENTITY,

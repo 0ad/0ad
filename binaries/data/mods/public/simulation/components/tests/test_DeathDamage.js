@@ -2,7 +2,7 @@ AttackEffects = class AttackEffects
 {
 };
 
-Engine.LoadHelperScript("Attacking.js");
+Engine.LoadHelperScript("Attack.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
@@ -53,8 +53,8 @@ let result = {
 	"friendlyFire": false
 };
 
-Attacking.CauseDamageOverArea = data => TS_ASSERT_UNEVAL_EQUALS(data, result);
-Attacking.GetPlayersToDamage = () => playersToDamage;
+AttackHelper.CauseDamageOverArea = data => TS_ASSERT_UNEVAL_EQUALS(data, result);
+AttackHelper.GetPlayersToDamage = () => playersToDamage;
 
 AddMock(deadEnt, IID_Position, {
 	"GetPosition2D": () => pos,

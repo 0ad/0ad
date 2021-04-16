@@ -42,7 +42,7 @@ DelayedDamage.prototype.Hit = function(data, lateness)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager).PlaySoundGroupAtPosition(data.attackImpactSound, data.position);
 
 	if (data.splash)
-		Attacking.CauseDamageOverArea({
+		AttackHelper.CauseDamageOverArea({
 			"type": data.type,
 			"attackData": data.splash.attackData,
 			"attacker": data.attacker,
@@ -62,7 +62,7 @@ DelayedDamage.prototype.Hit = function(data, lateness)
 
 	if (!data.projectileId)
 	{
-		Attacking.HandleAttackEffects(target, data);
+		AttackHelper.HandleAttackEffects(target, data);
 		return;
 	}
 
@@ -71,7 +71,7 @@ DelayedDamage.prototype.Hit = function(data, lateness)
 	// Deal direct damage if we hit the main target
 	// and we could handle the attack.
 	if (PositionHelper.TestCollision(target, data.position, lateness) &&
-		Attacking.HandleAttackEffects(target, data))
+		AttackHelper.HandleAttackEffects(target, data))
 	{
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 		return;
@@ -79,12 +79,12 @@ DelayedDamage.prototype.Hit = function(data, lateness)
 
 	// If we didn't hit the main target look for nearby units.
 	let ents = PositionHelper.EntitiesNearPoint(Vector2D.from3D(data.position), this.MISSILE_HIT_RADIUS,
-		Attacking.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
+		AttackHelper.GetPlayersToDamage(data.attackerOwner, data.friendlyFire));
 
 	for (let ent of ents)
 	{
 		if (!PositionHelper.TestCollision(ent, data.position, lateness) ||
-			!Attacking.HandleAttackEffects(ent, data))
+			!AttackHelper.HandleAttackEffects(ent, data))
 			continue;
 
 		cmpProjectileManager.RemoveProjectile(data.projectileId);

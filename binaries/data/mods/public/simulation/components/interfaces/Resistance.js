@@ -15,6 +15,6 @@ Engine.RegisterMessageType("InvulnerabilityChanged");
  *		"capture": number,
  *		"statusEffects": Object[],
  *		"fromStatusEffect": boolean }
- * sent from Attacking.js-helper to the target entity, each time the target is damaged.
+ * sent from Attack.js-helper to the target entity, each time the target is damaged.
  */
 Engine.RegisterMessageType("Attacked");
