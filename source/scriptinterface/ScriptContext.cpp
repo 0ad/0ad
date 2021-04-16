@@ -19,6 +19,7 @@
 
 #include "ScriptContext.h"
 
+#include "lib/alignment.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
@@ -91,6 +92,15 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 
 	m_cx = JS_NewContext(contextSize);
 	ENSURE(m_cx); // TODO: error handling
+
+	// Set stack quota limits - JS scripts will stop with a "too much recursion" exception.
+	// This seems to refer to the program's actual stack size, so it should be lower than the lowest common denominator
+	// of the various stack sizes of supported OS.
+	// From SM78's jsapi.h:
+	// - "The stack quotas for each kind of code should be monotonically descending"
+	// - "This function may only be called immediately after the runtime is initialized
+	//   and before any code is executed and/or interrupts requested"
+	JS_SetNativeStackQuota(m_cx, 950 * KiB, 900 * KiB, 850 * KiB);
 
 	ENSURE(JS::InitSelfHostedCode(m_cx));
 
