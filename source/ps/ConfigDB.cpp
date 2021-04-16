@@ -496,11 +496,11 @@ CConfigDBHook CConfigDB::RegisterHookAndCall(const CStr& name, std::function<voi
 
 void CConfigDB::UnregisterHook(CConfigDBHook&& hook)
 {
-	if (hook.ptr != m_Hooks.end())
-		m_Hooks.erase(hook.ptr);
+	if (hook.m_Ptr != m_Hooks.end())
+		m_Hooks.erase(hook.m_Ptr);
 }
 
-void CConfigDB::UnregisterHook(std::unique_ptr<CConfigDBHook>&& hook)
+void CConfigDB::UnregisterHook(std::unique_ptr<CConfigDBHook> hook)
 {
 	UnregisterHook(std::move(*hook.get()));
 }

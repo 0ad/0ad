@@ -31,19 +31,30 @@
 
 #include <boost/random/uniform_int_distribution.hpp>
 
-namespace {
-	int GetQuality(CStr& value)
-	{
-		if (value == "low")
-			return 100;
-		else if (value == "medium")
-			return 150;
-		else if (value == "high")
-			return 200;
-		else
-			return value.ToInt();
-	}
+namespace
+{
+/**
+ * The maximal quality for an actor.
+ */
+static constexpr int MAX_QUALITY = 255;
+
+/**
+ * How many quality levels a given actor can have.
+ */
+static constexpr int MAX_LEVELS_PER_ACTOR_DEF = 5;
+
+int GetQuality(const CStr& value)
+{
+	if (value == "low")
+		return 100;
+	else if (value == "medium")
+		return 150;
+	else if (value == "high")
+		return 200;
+	else
+		return value.ToInt();
 }
+} // anonymous namespace
 
 CObjectBase::CObjectBase(CObjectManager& objectManager, CActorDef& actorDef, u8 qualityLevel)
 : m_ObjectManager(objectManager), m_ActorDef(actorDef)
@@ -761,7 +772,7 @@ const std::shared_ptr<CObjectBase>& CActorDef::GetBase(u8 QualityLevel) const
 		if (base->m_QualityLevel >= QualityLevel)
 			return base;
 	// This code path ought to be impossible to take,
-	// because by construction we must have at least one valid CObjectBase of quality 255
+	// because by construction we must have at least one valid CObjectBase of quality MAX_QUALITY
 	// (which necessarily fits the u8 comparison above).
 	// However compilers will warn that we return a reference to a local temporary if I return nullptr,
 	// so just return something sane instead.
@@ -806,7 +817,7 @@ bool CActorDef::Load(const VfsPath& pathname)
 
 	if (root.GetNodeName() == el_actor)
 	{
-		std::unique_ptr<CObjectBase> base = std::make_unique<CObjectBase>(m_ObjectManager, *this, 255);
+		std::unique_ptr<CObjectBase> base = std::make_unique<CObjectBase>(m_ObjectManager, *this, MAX_QUALITY);
 		base->Load(XeroFile, root);
 		m_ObjectBases.emplace_back(std::move(base));
 	}
@@ -840,9 +851,9 @@ bool CActorDef::Load(const VfsPath& pathname)
 				if (attr.Name == at_quality)
 				{
 					int v = GetQuality(attr.Value);
-					if (v > 255)
+					if (v > MAX_QUALITY)
 					{
-						LOGERROR("Qualitylevel to attribute must not be above 255 (file %s)", pathname.string8());
+						LOGERROR("Qualitylevel to attribute must not be above %i (file %s)", MAX_QUALITY, pathname.string8());
 						return false;
 					}
 					if (v <= quality)
@@ -863,7 +874,7 @@ bool CActorDef::Load(const VfsPath& pathname)
 					use_inline = true;
 			}
 			if (!found_quality)
-				quality = 255;
+				quality = MAX_QUALITY;
 			std::unique_ptr<CObjectBase> base = std::make_unique<CObjectBase>(m_ObjectManager, *this, quality);
 			if (use_inline)
 			{
@@ -903,9 +914,9 @@ bool CActorDef::Load(const VfsPath& pathname)
 			}
 			m_ObjectBases.emplace_back(std::move(base));
 		}
-		if (quality != 255)
+		if (quality != MAX_QUALITY)
 		{
-			LOGERROR("Quality levels must go up to 255 (file %s)", pathname.string8().c_str());
+			LOGERROR("Quality levels must go up to %i (file %s)", MAX_QUALITY, pathname.string8().c_str());
 			return false;
 		}
 	}
@@ -915,9 +926,9 @@ bool CActorDef::Load(const VfsPath& pathname)
 	for (const std::shared_ptr<CObjectBase>& base : m_ObjectBases)
 		base->GetQualitySplits(splits);
 	ENSURE(splits.size() >= 1);
-	if (splits.size() > 5)
+	if (splits.size() > MAX_LEVELS_PER_ACTOR_DEF)
 	{
-		LOGERROR("Too many quality levels (%i) for actor %s", splits.size(), pathname.string8().c_str());
+		LOGERROR("Too many quality levels (%i) for actor %s (max %i)", splits.size(), pathname.string8().c_str(), MAX_LEVELS_PER_ACTOR_DEF);
 		return false;
 	}
 
