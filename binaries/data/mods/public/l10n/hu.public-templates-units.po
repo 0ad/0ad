@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 09:29+0000\n"
+"POT-Creation-Date: 2021-04-12 07:11+0000\n"
+"PO-Revision-Date: 2021-04-12 09:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -60,33 +60,33 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
 msgstr "Mészárlás"
 
-#: simulation/templates/template_unit_cavalry.xml:30
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:32
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion_cavalry.xml:20
 #: simulation/templates/template_unit_hero_cavalry.xml:19
 msgid "Cavalry"
 msgstr "Lovas"
 
-#: simulation/templates/template_unit_cavalry.xml:31
+#: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:9
-#: simulation/templates/template_unit_infantry.xml:66
+#: simulation/templates/template_unit_infantry.xml:37
 #: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Alap"
 
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_infantry.xml:36
 msgid "Soldier"
 msgstr "Katona"
 
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_infantry.xml:36
+#: simulation/templates/template_unit_support_female_citizen.xml:37
 msgid "Citizen"
 msgstr "Polgár"
 
@@ -226,27 +226,27 @@ msgid "Swordsman"
 msgstr "Kardforgató"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:7
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
-#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_champion_infantry_archer.xml:28
-#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
-#: simulation/templates/template_unit_elephant_archer.xml:36
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:23
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_champion_infantry_archer.xml:26
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
+#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:23
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_hero_infantry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:48
-#: simulation/templates/template_unit_ship_quinquereme.xml:53
-#: simulation/templates/template_unit_ship_trireme.xml:48
-#: simulation/templates/template_unit_siege_boltshooter.xml:53
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
+#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_siege_boltshooter.xml:52
+#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_tower.xml:59
 msgid "Ranged"
 msgstr "Távolsági"
 
@@ -268,18 +268,18 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Í"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:30
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
-#: simulation/templates/template_unit_champion_infantry_archer.xml:28
-#: simulation/templates/template_unit_elephant_archer.xml:36
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:31
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:32
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:23
+#: simulation/templates/template_unit_champion_infantry_archer.xml:26
+#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_archer.xml:23
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:29
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:30
 msgid "Archer"
 msgstr "Íjász"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
 msgstr "Lovas íjász"
 
@@ -293,16 +293,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "Számszeríj"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 msgid "Cavalry Crossbowman"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:32
-#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
-#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
 msgid "Crossbowman"
 msgstr "Íjpuskás"
 
@@ -316,16 +316,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Javelin"
 msgstr "Gerely"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
 msgstr "Gerelyes lovas"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:31
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
 msgstr "Gerelyes"
 
@@ -341,7 +341,7 @@ msgstr "Bajnok egység"
 msgid "Champion Cavalry"
 msgstr "Bajnok lovas"
 
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:26
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
 msgstr "Bajnok lovassági íjász"
 
@@ -349,11 +349,11 @@ msgstr "Bajnok lovassági íjász"
 msgid "Champion Cavalry Axeman"
 msgstr "Bajnok baltás lovas"
 
-#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:25
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
 msgstr "Bajnok gerelyes lovas"
 
@@ -391,8 +391,8 @@ msgstr "Ormány"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:63
-#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_infantry.xml:34
+#: simulation/templates/template_unit_infantry.xml:36
 msgid "Infantry"
 msgstr "Gyalogos"
 
@@ -400,7 +400,7 @@ msgstr "Gyalogos"
 msgid "Champion Infantry"
 msgstr "Bajnok gyalogos"
 
-#: simulation/templates/template_unit_champion_infantry_archer.xml:29
+#: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
 msgstr "Bajnok íjász"
 
@@ -408,11 +408,11 @@ msgstr "Bajnok íjász"
 msgid "Champion Axeman"
 msgstr "Bajnok baltás"
 
-#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:28
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
 msgstr "Bajnok gerelyes gyalogos"
 
@@ -480,7 +480,7 @@ msgstr "Nem tud épületeket, hajókat vagy ostromgépeket támadni."
 msgid "Dog"
 msgstr "Kutya"
 
-#: simulation/templates/template_unit_elephant_archer.xml:35
+#: simulation/templates/template_unit_elephant_archer.xml:33
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Elefántos íjász"
@@ -504,7 +504,7 @@ msgstr "Hős"
 msgid "Hero Cavalry"
 msgstr "Hős lovas"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
 msgstr "Hős lovas íjász"
 
@@ -512,11 +512,11 @@ msgstr "Hős lovas íjász"
 msgid "Hero Cavalry Axeman"
 msgstr "Hős baltás lovas"
 
-#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:25
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
 msgstr ""
 
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
 msgstr "Hős gerelyes lovas"
 
@@ -548,7 +548,7 @@ msgstr "Támogató"
 msgid "Healer"
 msgstr "Gyógyító"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:26
+#: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
 msgstr "Hős íjász"
 
@@ -556,11 +556,11 @@ msgstr "Hős íjász"
 msgid "Hero Axeman"
 msgstr "Hős baltás"
 
-#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:25
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
 msgstr ""
 
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
 msgstr "Hős gerelyes gyalogos"
 
@@ -580,15 +580,9 @@ msgstr "Hős lándzsás"
 msgid "Hero Swordsman"
 msgstr "Hős kardforgató"
 
-#: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_female_citizen.xml:66
-#: simulation/templates/template_unit_support_slave.xml:49
-msgid "Builder"
-msgstr ""
-
-#: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_female_citizen.xml:66
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_infantry.xml:36
+#: simulation/templates/template_unit_support_female_citizen.xml:37
+#: simulation/templates/template_unit_support_slave.xml:21
 msgid "Worker"
 msgstr "Munkás"
 
@@ -600,11 +594,11 @@ msgstr "Közelharci gyalogos"
 msgid "Infantry Maceman"
 msgstr "Buzogányos gyalogos"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
 msgstr ""
 
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
 msgstr "Gerelyes gyalogos"
 
@@ -613,8 +607,8 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Sling"
 msgstr "Parittya"
 
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:32
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:33
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:31
 msgid "Slinger"
 msgstr "Parittyás"
 
@@ -623,25 +617,25 @@ msgstr "Parittyás"
 msgid "Ship"
 msgstr "Hajó"
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:44
 msgid "Light Warship"
 msgstr "Könnyű hadihajó"
 
-#: simulation/templates/template_unit_ship_bireme.xml:47
-#: simulation/templates/template_unit_ship_quinquereme.xml:52
-#: simulation/templates/template_unit_ship_trireme.xml:47
-#: simulation/templates/template_unit_siege_tower.xml:62
+#: simulation/templates/template_unit_ship_bireme.xml:45
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
+#: simulation/templates/template_unit_ship_trireme.xml:45
+#: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Egységek beszállásolása szállításhoz, és a tűzerő növeléséhez."
 
-#: simulation/templates/template_unit_ship_bireme.xml:48
+#: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:53
-#: simulation/templates/template_unit_ship_trireme.xml:48
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
+#: simulation/templates/template_unit_ship_trireme.xml:46
 msgid "Warship"
 msgstr "Hadihajó"
 
-#: simulation/templates/template_unit_ship_bireme.xml:48
+#: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/units/cart/ship_bireme.xml:9
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
@@ -711,20 +705,20 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Kő"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:51
+#: simulation/templates/template_unit_ship_quinquereme.xml:50
 msgid "Heavy Warship"
 msgstr "Nehéz hadihajó"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:53
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
 msgstr "Pentérész"
 
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:44
 msgid "Medium Warship"
 msgstr "Közepes hadihajó"
 
-#: simulation/templates/template_unit_ship_trireme.xml:48
+#: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
 msgstr "Triérész"
@@ -739,11 +733,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Nyíl"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:53
+#: simulation/templates/template_unit_siege_boltshooter.xml:52
 msgid "BoltShooter"
 msgstr "Nyílvető"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:54
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "Bolt Shooter"
 msgstr "Nyílvető"
 
@@ -764,19 +758,19 @@ msgstr "Faltörő kos"
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Nem tud földeket vagy élő egységeket támadni."
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
+#: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"
 msgstr "Kőhajító"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:47
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 msgid "Siege Catapult"
 msgstr "Ostrom katapult"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:59
 msgid "SiegeTower"
 msgstr "Ostromtorony"
 
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Siege Tower"
 msgstr "Ostromtorony"
 
@@ -789,7 +783,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Tőr"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_support_female_citizen.xml:34
 msgid "Female Citizen"
 msgstr "Női polgár"
 
@@ -797,13 +791,13 @@ msgstr "Női polgár"
 msgid "Heal units."
 msgstr "Egységek gyógyítása."
 
-#: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:18
+#: simulation/templates/template_unit_support_slave.xml:21
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Rabszolga"
 
-#: simulation/templates/template_unit_support_slave.xml:48
+#: simulation/templates/template_unit_support_slave.xml:20
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Véges élettartamú gyűjtögető. Bányászatkor és favágáskor bónuszt kap."
 
@@ -2514,11 +2508,11 @@ msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
 msgstr "Géppuska"
 
-#: simulation/templates/units/plane.xml:48
+#: simulation/templates/units/plane.xml:47
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/units/plane.xml:49
+#: simulation/templates/units/plane.xml:48
 msgid "A World War II American fighter plane."
 msgstr "Egy II. világháborús amerikai vadászrepülőgép."
 
@@ -3109,11 +3103,11 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:51
+#: simulation/templates/units/theb_siege_fireraiser.xml:50
 msgid "Fire Raiser"
 msgstr "Tűzgyújtó"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:52
+#: simulation/templates/units/theb_siege_fireraiser.xml:51
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 

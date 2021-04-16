@@ -21,15 +21,16 @@
 # c5f3de31f3a2c4018f39966fa6563659_5b320d0, 2014-2017
 # Nescio, 2020-2021
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016-2017
+# Miguel Punzo <ijko7343@gmail.com>, 2021
 # Nicola Jelmorini, 2015
 # Samuele Marazzita <samuelemarazzita@gmail.com>, 2016
 # SebastianoPistore <SebastianoPistore.info@protonmail.ch>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 09:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-12 07:11+0000\n"
+"PO-Revision-Date: 2021-04-13 16:09+0000\n"
+"Last-Translator: Miguel Punzo <ijko7343@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,33 +65,33 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
 msgstr "Massacro"
 
-#: simulation/templates/template_unit_cavalry.xml:30
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:32
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion_cavalry.xml:20
 #: simulation/templates/template_unit_hero_cavalry.xml:19
 msgid "Cavalry"
 msgstr "Cavalleria"
 
-#: simulation/templates/template_unit_cavalry.xml:31
+#: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:9
-#: simulation/templates/template_unit_infantry.xml:66
+#: simulation/templates/template_unit_infantry.xml:37
 #: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Di base"
 
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_infantry.xml:36
 msgid "Soldier"
 msgstr "Soldato"
 
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_infantry.xml:36
+#: simulation/templates/template_unit_support_female_citizen.xml:37
 msgid "Citizen"
 msgstr "Cittadino"
 
@@ -230,27 +231,27 @@ msgid "Swordsman"
 msgstr "Spadaccino"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:7
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
-#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_champion_infantry_archer.xml:28
-#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
-#: simulation/templates/template_unit_elephant_archer.xml:36
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:23
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_champion_infantry_archer.xml:26
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
+#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:23
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_hero_infantry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:48
-#: simulation/templates/template_unit_ship_quinquereme.xml:53
-#: simulation/templates/template_unit_ship_trireme.xml:48
-#: simulation/templates/template_unit_siege_boltshooter.xml:53
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
+#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_siege_boltshooter.xml:52
+#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_tower.xml:59
 msgid "Ranged"
 msgstr "A distanza"
 
@@ -272,18 +273,18 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Arco"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:30
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
-#: simulation/templates/template_unit_champion_infantry_archer.xml:28
-#: simulation/templates/template_unit_elephant_archer.xml:36
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:31
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:32
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:23
+#: simulation/templates/template_unit_champion_infantry_archer.xml:26
+#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:23
+#: simulation/templates/template_unit_hero_infantry_archer.xml:23
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:29
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:30
 msgid "Archer"
 msgstr "Arciere"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
 msgstr "Arciere a Cavallo"
 
@@ -297,16 +298,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "Balestra"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 msgid "Cavalry Crossbowman"
-msgstr ""
+msgstr "Cavalry Crossbowman"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:32
-#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:29
-#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:26
-#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:26
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
 msgid "Crossbowman"
 msgstr "Balestriere"
 
@@ -320,16 +321,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Javelin"
 msgstr "Giavellottiere"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
 msgstr "Giavellottista a cavallo"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:31
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
 msgstr "Giavellottiere"
 
@@ -345,7 +346,7 @@ msgstr "Unità Campione"
 msgid "Champion Cavalry"
 msgstr "Cavalleria Campione"
 
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:26
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
 msgstr "Arciere a cavallo Campione"
 
@@ -353,11 +354,11 @@ msgstr "Arciere a cavallo Campione"
 msgid "Champion Cavalry Axeman"
 msgstr "Cavaliere con ascia campione"
 
-#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:25
+#: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr ""
+msgstr "Champion Cavalry Crossbowman"
 
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
 msgstr "Giavellottista a cavallo Campione"
 
@@ -395,8 +396,8 @@ msgstr "Proboscide"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:63
-#: simulation/templates/template_unit_infantry.xml:65
+#: simulation/templates/template_unit_infantry.xml:34
+#: simulation/templates/template_unit_infantry.xml:36
 msgid "Infantry"
 msgstr "Fanteria"
 
@@ -404,7 +405,7 @@ msgstr "Fanteria"
 msgid "Champion Infantry"
 msgstr "Fanteria Campione"
 
-#: simulation/templates/template_unit_champion_infantry_archer.xml:29
+#: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
 msgstr "Arciere Campione"
 
@@ -412,11 +413,11 @@ msgstr "Arciere Campione"
 msgid "Champion Axeman"
 msgstr "Soldato con ascia campione"
 
-#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:28
+#: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr ""
+msgstr "Champion Infantry Crossbowman"
 
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
 msgstr "Giavellottiere Fanteria Campione"
 
@@ -484,7 +485,7 @@ msgstr "Non può attaccare Strutture, Navi o Macchine d'Assedio."
 msgid "Dog"
 msgstr "Cane"
 
-#: simulation/templates/template_unit_elephant_archer.xml:35
+#: simulation/templates/template_unit_elephant_archer.xml:33
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Elefante con Arciere"
@@ -508,7 +509,7 @@ msgstr "Eroe"
 msgid "Hero Cavalry"
 msgstr "Cavalleria Eroe"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
 msgstr "Arciere a Cavallo Eroe"
 
@@ -516,11 +517,11 @@ msgstr "Arciere a Cavallo Eroe"
 msgid "Hero Cavalry Axeman"
 msgstr "Cavalleria con ascia eroe"
 
-#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:25
+#: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr ""
+msgstr "Hero Cavalry Crossbowman"
 
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
 msgstr "Giavellottista a cavallo Eroe"
 
@@ -552,7 +553,7 @@ msgstr "Supporto"
 msgid "Healer"
 msgstr "Guaritore"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:26
+#: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
 msgstr "Arciere Eroe"
 
@@ -560,11 +561,11 @@ msgstr "Arciere Eroe"
 msgid "Hero Axeman"
 msgstr "Soldato con ascia eroe"
 
-#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:25
+#: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr ""
+msgstr "Hero Infantry Crossbowman"
 
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
 msgstr "Giavellottista Eroe"
 
@@ -584,15 +585,9 @@ msgstr "Lanciere Eroe"
 msgid "Hero Swordsman"
 msgstr "Spadaccino Eroe"
 
-#: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_female_citizen.xml:66
-#: simulation/templates/template_unit_support_slave.xml:49
-msgid "Builder"
-msgstr ""
-
-#: simulation/templates/template_unit_infantry.xml:65
-#: simulation/templates/template_unit_support_female_citizen.xml:66
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_infantry.xml:36
+#: simulation/templates/template_unit_support_female_citizen.xml:37
+#: simulation/templates/template_unit_support_slave.xml:21
 msgid "Worker"
 msgstr "Lavoratore"
 
@@ -604,11 +599,11 @@ msgstr "Fanteria da Mischia"
 msgid "Infantry Maceman"
 msgstr "Fante con mazza"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
-msgstr ""
+msgstr "Infantry Crossbowman"
 
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
 msgstr "Giavellottista"
 
@@ -617,8 +612,8 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Sling"
 msgstr "Fromboliere"
 
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:32
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:33
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:31
 msgid "Slinger"
 msgstr "Fromboliere"
 
@@ -627,25 +622,25 @@ msgstr "Fromboliere"
 msgid "Ship"
 msgstr "Nave"
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:44
 msgid "Light Warship"
 msgstr "Nave da Guerra Leggera"
 
-#: simulation/templates/template_unit_ship_bireme.xml:47
-#: simulation/templates/template_unit_ship_quinquereme.xml:52
-#: simulation/templates/template_unit_ship_trireme.xml:47
-#: simulation/templates/template_unit_siege_tower.xml:62
+#: simulation/templates/template_unit_ship_bireme.xml:45
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
+#: simulation/templates/template_unit_ship_trireme.xml:45
+#: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Presidiala con delle unità per trasportarle e aumentare la potenza di fuoco."
 
-#: simulation/templates/template_unit_ship_bireme.xml:48
+#: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:53
-#: simulation/templates/template_unit_ship_trireme.xml:48
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
+#: simulation/templates/template_unit_ship_trireme.xml:46
 msgid "Warship"
 msgstr "Nave da Guerra"
 
-#: simulation/templates/template_unit_ship_bireme.xml:48
+#: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/units/cart/ship_bireme.xml:9
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
@@ -715,20 +710,20 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Pietra"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:51
+#: simulation/templates/template_unit_ship_quinquereme.xml:50
 msgid "Heavy Warship"
 msgstr "Nave da Guerra Pesante"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:53
+#: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
 msgstr "Quinquereme"
 
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:44
 msgid "Medium Warship"
 msgstr "Nave da Guerra Media"
 
-#: simulation/templates/template_unit_ship_trireme.xml:48
+#: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
 msgstr "Trireme"
@@ -743,11 +738,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Dardo"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:53
+#: simulation/templates/template_unit_siege_boltshooter.xml:52
 msgid "BoltShooter"
 msgstr "Balista"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:54
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "Bolt Shooter"
 msgstr "Lancia Dardi"
 
@@ -768,19 +763,19 @@ msgstr "Ariete"
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Non può attaccare coltivazioni o unità organiche"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
+#: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"
 msgstr "Fromboliere"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:47
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 msgid "Siege Catapult"
 msgstr "Catapulta d'assedio"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:59
 msgid "SiegeTower"
 msgstr "Torre d'assedio"
 
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Siege Tower"
 msgstr "Torre d'assedio"
 
@@ -793,7 +788,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Pugnale"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_support_female_citizen.xml:34
 msgid "Female Citizen"
 msgstr "Donna Cittadina"
 
@@ -801,13 +796,13 @@ msgstr "Donna Cittadina"
 msgid "Heal units."
 msgstr "Cura unità."
 
-#: simulation/templates/template_unit_support_slave.xml:46
-#: simulation/templates/template_unit_support_slave.xml:49
+#: simulation/templates/template_unit_support_slave.xml:18
+#: simulation/templates/template_unit_support_slave.xml:21
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Schiavo"
 
-#: simulation/templates/template_unit_support_slave.xml:48
+#: simulation/templates/template_unit_support_slave.xml:20
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Raccoglitori che rimangono in vita per un tempo limitato. Bonus nelle estrazioni e raccolta legna."
 
@@ -2518,11 +2513,11 @@ msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
 msgstr "Mitragliatrici"
 
-#: simulation/templates/units/plane.xml:48
+#: simulation/templates/units/plane.xml:47
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/units/plane.xml:49
+#: simulation/templates/units/plane.xml:48
 msgid "A World War II American fighter plane."
 msgstr "Un caccia americano della Seconda Guerra Mondiale"
 
@@ -3113,11 +3108,11 @@ msgstr "Spartiate"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:51
+#: simulation/templates/units/theb_siege_fireraiser.xml:50
 msgid "Fire Raiser"
 msgstr "Incendiario"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:52
+#: simulation/templates/units/theb_siege_fireraiser.xml:51
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 

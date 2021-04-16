@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# chanoknun namab <phor_38.8-chanoknun@hotmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-19 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-15 22:42+0000\n"
+"Last-Translator: chanoknun namab <phor_38.8-chanoknun@hotmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/wildfire-games/0ad/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,38 +19,38 @@ msgstr ""
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr ""
+msgstr "การกำหนดค่า AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr ""
+msgstr "ตกลง"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "AI จะถูกปิดใช้งานสำหรับผู้เล่นคนนี้"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
-msgstr ""
+msgstr "พฤติกรรม AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
-msgstr ""
+msgstr "ความยากของ AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "ไม่มี"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:44
 msgid "AI Player"
-msgstr ""
+msgstr "ผู้เล่น AI"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:139
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.js:57
 msgid "Yes"
@@ -68,7 +69,7 @@ msgstr "ไม่ทราบ"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "แผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
@@ -78,420 +79,420 @@ msgstr "ผู้เล่น"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "ประเภทเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "กำหนดค่า AI:%(description)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:156
 msgid "Select player."
-msgstr ""
+msgstr "เลือกผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:246
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "AI:%(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:281
 msgid "Unassigned"
-msgstr ""
+msgstr "ไม่ได้กำหนด"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "เลือกอารยธรรมสำหรับผู้เล่นคนนี้"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "สุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "สุ่มเลือกหนึ่งอารยธรรมเมื่อเกมเริ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:44
 msgid "Pick a color."
-msgstr ""
+msgstr "เลือกสี"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr ""
+msgstr "เลือกทีมของผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "ไม่มี"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
-msgstr ""
+msgstr "ชื่อผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
-msgstr ""
+msgstr "สี"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr ""
+msgstr "ตำแหน่งผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "อารยธรรม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
-msgstr ""
+msgstr "ทีม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "ค้นหาแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "กด %(hotkey)s เพื่อดูรายการแผนที่ "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:34
 msgid "Cheats"
-msgstr ""
+msgstr "สูตร"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:37
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "สลับการใช้งานของกลโกง"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr ""
+msgstr "สำรวจแผนที่"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "สลับแผนที่ที่สำรวจแล้ว (ดูแผนที่เริ่มต้น)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr ""
+msgstr "ผู้รอดคนสุดท้าย"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "สลับแม้ว่าผู้เล่นเหลือคนสุดท้าย หรือ พันธมิตรชุดสุดท้ายที่เหลือเป็นผู้ชนะ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr ""
+msgstr "ล็อคทีม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "สลับทีมที่ถูกล็อก"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
-msgstr ""
+msgstr "เร่ร่อน"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:28
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "ในโหมดเร่ร่อน ผู้เล่นเริ่มต้นด้วยทหารเพียงหยิบมือ และต้องหาสถานที่ที่เหมาะสมในการสร้างเมืองของตน ขอแนะนำให้พักรบ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
-msgstr ""
+msgstr "อันดับเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "สลับถ้าเกมนี้ได้รับการจัดอันดับสำหรับลีดเดอร์บอร์ด"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr ""
+msgstr "ฮีโร่รักษาการณ์"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "สลับแม้ว่าฮีโร่สามารถถูกคุมขัง"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
-msgstr ""
+msgstr "เปิดเผยแผนที่"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "สลับแผนที่ที่เปิดเผย (เห็นทุกอย่าง)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
-msgstr ""
+msgstr "ปิดการใช้งานสายลับ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "ปิดการใช้งานสายลับระหว่างเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:25
 msgid "Disable Treasures"
-msgstr ""
+msgstr "ปิดการใช้งานขุมทรัพย์"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "อย่าเพิ่มสมบัติในแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World population"
-msgstr ""
+msgstr "ประชากรโลก"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "เมื่อตรวจสอบจำนวนประชากรจะกระจายเท่า ๆ กันกับผู้เล่นทุกคนที่มีชีวิตอยู่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
-msgstr ""
+msgstr "ไบโอม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:60
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "เลือกพืชและสัตว์"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "สุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
-msgstr ""
+msgstr "เลือกไบโอมโดยการสุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
-msgstr ""
+msgstr "กลางวัน"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "เลือกการแข่งขันที่จะเกิดขึ้นในเวลากลางวันหรือกลางคืน"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
 msgid "Random"
-msgstr ""
+msgstr "สุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "สุ่มเลือกเวลาของวัน"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
 msgid "Game Speed"
-msgstr ""
+msgstr "ความเร็วเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
 msgid "Select game speed."
-msgstr ""
+msgstr "เลือกความเร็วเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
 msgid "Random"
-msgstr ""
+msgstr "สุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr ""
+msgstr "เลือกภูมิประเทศแบบสุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
-msgstr ""
+msgstr "ภูมิประเทศ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "เลือกหนึ่งในภูมิประเทศของแผนที่นี้"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:58
 msgid "Map Filter"
-msgstr ""
+msgstr "ตัวกรองแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:61
 msgid "Select a map filter."
-msgstr ""
+msgstr "เลือกตัวกรองแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:102
 msgid "Select Map"
-msgstr ""
+msgstr "เลือกแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:105
 msgid "Select a map to play on."
-msgstr ""
+msgstr "เลือกแผนที่ที่จะเล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:111
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "สุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:114
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "สุ่มเลือกแผนที่ใดก็ได้"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:39
 msgid "Map Size"
-msgstr ""
+msgstr "ขนาดแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:42
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "เลือกขนาดแผนที่ (ขนาดที่ใหญ่ขึ้นอาจลดประสิทธิภาพ)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:51
 msgid "Map Type"
-msgstr ""
+msgstr "รูปแบบแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:54
 msgid "Select a map type."
-msgstr ""
+msgstr "เลือกรูปแบบแผนที่"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
-msgstr ""
+msgstr "จำนวนผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr ""
+msgstr "เลือกจำนวนผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:54
 msgid "Population Cap"
-msgstr ""
+msgstr "จำนวนประชากร"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:57
 msgid "Select population limit."
-msgstr ""
+msgstr "เลือกขีดจำกัดประชากร"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:60
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "ต่อผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:63
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "คำเตือน: อาจมีปัญหาด้านประสิทธิภาพหากผู้เล่น%(players)sทุกคนเข้าถึง%(popCap)sจำนวนประชากร"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
-msgstr ""
+msgstr "ทรัพยากรเริ่มต้น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "เลือกทรัพยากรเริ่มต้นของเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "จำนวนเริ่มต้นของทรัพยากรแต่ละรายการ:%(resources)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "ต่อผู้เล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
-msgstr ""
+msgstr "ตำแหน่งทีม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "เลือกหนึ่งในรูปแบบตำแหน่งเริ่มต้นของแผนที่นี้"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Random"
-msgstr ""
+msgstr "สุ่ม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "เลือกรูปแบบการจัดทีมแบบสุ่มเมื่อเริ่มเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
-msgstr ""
+msgstr "ความยาก"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:44
 msgid "Select the difficulty of this scenario."
-msgstr ""
+msgstr "เลือกความยากของสถานการณ์นี้"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr ""
+msgstr "จำนวนประชากรโลก"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr ""
+msgstr "เลือกขีดจำกัดประชากรโลก"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "คำเตือน: อาจมีปัญหาด้านประสิทธิภาพหากมีประชากรถึง%(popCap)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
-msgstr ""
+msgstr "พักรบ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "ตั้งเวลาที่ไม่สามารถโจมตีได้"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "ไม่มีการพักรบ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:44
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)sนาที"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr ""
+msgstr "จำนวนวัตถุมงคล"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
+msgstr[0] "%(number)sวัตถุมงคล"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "จำนวนวัตถุมงคลทั้งหมดที่เกิดบนแผนที่ วัตถุชัยชนะมีความสมจริงมากที่สุดโดยมีเพียงหนึ่งหรือสองชิ้น จำนวนที่มากขึ้นของวัตถุมงคลสำคัญมากในการยึดครองเพื่อรับโบนัสออร่า"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
-msgstr ""
+msgstr "ระยะเวลาวัตถุมงคล"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "นาทีจนกว่าผู้เล่นจะได้รับชัยชนะ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -499,44 +500,44 @@ msgstr ""
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)sนาที"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:50
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:47
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "ชนะทันที"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:35
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "เวลาเพิ่มขึ้นของระดับน้ำทะเล"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "ตั้งเวลาที่น้ำจะเริ่มขึ้น"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)sนาที"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"
-msgstr ""
+msgstr "ระยะเวลาชัยชนะ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "นาทีจนกว่าผู้เล่นจะได้รับชัยชนะ"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
-msgstr ""
+msgstr "ย้อนกลับ"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr ""
+msgstr "กลับไปที่ล็อบบี้"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
@@ -547,330 +548,330 @@ msgstr "กลับไปหน้าเมนูหลัก"
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s : ดูภาพรวมอารยธรรม /\nโครงสร้างที่เปิดล่าสุดจะเปิดอีกครั้งเมื่อคลิก"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "แสดงล็อบบี้ผู้เล่นหลายคนในหน้าต่างโต้ตอบ"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
-msgstr ""
+msgstr "ฉันพร้อมแล้ว"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr ""
+msgstr "เตรียมพร้อม"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr ""
+msgstr "ฉันยังไม่พร้อม"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "ระบุว่าคุณพร้อมที่จะเล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "เตรียมพร้อมแม้การตั้งค่าเกมจะเปลี่ยนไป"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "ระบุว่าคุณไม่พร้อมที่จะเล่น"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "รีเซ็ตอารยธรรมใด ๆ ที่ถูกเลือกให้เป็นค่าเริ่มต้น (แบบสุ่ม)"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "รีเซ็ตทีมทั้งหมดเป็นค่าเริ่มต้น"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr ""
+msgstr "เริ่มเกม!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "เริ่มเกมใหม่ด้วยการตั้งค่าปัจจุบัน"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "เริ่มเกมใหม่ด้วยการตั้งค่าปัจจุบัน (ปิดใช้งานจนกว่าผู้เล่นทุกคนจะพร้อม)"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "กด %(hotkey)s เพื่อตั้งชื่อผู้เล่นหรือตั้งค่าอัตโนมัติ"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr ""
+msgstr "ผู้เล่นที่ไม่รู้จัก"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:50
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s%(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:27
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)sเข้าร่วมแล้ว"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)sออก "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)sถูกเตะออก"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)sถูกแบน"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "%(username)sยังไม่พร้อม"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "%(username)sพร้อม "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "การตั้งค่าเกมถูกเปลี่ยน"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
-msgstr ""
+msgstr "ส่ง"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "==%(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
-msgstr ""
+msgstr "ชม:นท"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:40
 msgid "Cheats enabled."
-msgstr ""
+msgstr "เปิดใช้งานกลโกง"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
-msgstr ""
+msgstr "อันดับเกม"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "คลิก%(name)sเพื่อสลับแท็บการตั้งค่า"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "กด%(hotkey)sเพื่อย้ายไปยังแท็บการตั้งค่าถัดไป"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "กด%(hotkey)sเพื่อย้ายไปที่แท็บการตั้งค่าก่อนหน้า"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "ไม่มีแผนที่ที่เลือก"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "คลิกเพื่อดูรายการแผนที่ที่มี"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
-msgstr ""
+msgstr "แสดงข้อความนี้ในอนาคต"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
-msgstr ""
+msgstr "กำลังโหลด"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
-msgstr ""
+msgstr "กำลังโหลดข้อมูลแผนที่ โปรดรอ…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):16
 msgid "Match Setup"
-msgstr ""
+msgstr "การตั้งค่าการจับคู่"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:60
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "เกมของ%(name)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:124
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "โปรดป้อนชื่อเซิร์ฟเวอร์ที่ถูกต้อง"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "หมายเลขพอร์ตเซิร์ฟเวอร์ต้องอยู่ระหว่าง%(min)sและ%(max)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
-msgstr ""
+msgstr "กำลังเชื่อมต่อกับเซิร์ฟเวอร์ ..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "เซิร์ฟเวอร์ไม่ทำงาน"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "รหัสผ่านไม่ถูกต้อง"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
-msgstr ""
+msgstr "คุณถูกแบน"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[ค่าไม่ถูกต้อง%(reason)s ]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "การเชื่อมต่อล้มเหลว"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "ข้อความสุทธิ:%(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:288
 msgid "Registering with server..."
-msgstr ""
+msgstr "การลงทะเบียนกับเซิร์ฟเวอร์ ..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:294
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "เกมได้เริ่มขึ้นแล้ว เข้าร่วมอีกครั้ง..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:373
 msgid "Game name already in use."
-msgstr ""
+msgstr "มีการใช้ชื่อเกมนี้แล้ว"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "ไม่สามารถโฮสต์เกม:%(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
 #: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
 msgid "Error"
-msgstr ""
+msgstr "ผิดพลาด"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "ไม่สามารถเข้าร่วมเกม:%(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "เกมของ%(playername)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr ""
+msgstr "ผู้เล่นหลายคน"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr ""
+msgstr "เข้าร่วมเกมที่มีอยู่"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "ชื่อผู้เล่น:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "ชื่อโฮสต์ของเซิร์ฟเวอร์หรือ IP:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "พอร์ตเซิร์ฟเวอร์:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr ""
+msgstr "ตั้งค่าเซิร์ฟเวอร์ของคุณเป็นโฮสต์"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "ชื่อเซิร์ฟเวอร์:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "รหัสผ่านเซิร์ฟเวอร์:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "ใช้ STUN เพื่อแก้ไขปัญหาไฟร์วอลล์"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
-msgstr ""
+msgstr "ดำเนินการต่อ"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
 msgid "Password:"
-msgstr ""
+msgstr "รหัสผ่าน:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "ยืนยัน"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "เว้นว่างไว้เพื่อใช้พอร์ตเริ่มต้น"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "เว้นว่างไว้หากไม่ต้องการ"
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
 msgctxt "loading screen progress"
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading
@@ -878,24 +879,24 @@ msgstr ""
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "กำลังสร้าง “%(map)s”"
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "กำลังโหลด “%(map)s”"
 
 #: gui/text/quotes.txt:1
 msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "“ ซุส \\ […] ตั้งกฎของเขา: ปัญญามาจากความทุกข์ \\ […] ดังนั้นผู้ชายที่ต่อต้านพวกเขาจะเรียนรู้ที่จะฝึกฝนการกลั่นกรอง \\ [ ... ] พระคุณดังกล่าวเป็นที่รุนแรงและความรุนแรง.” \\ n— เอสคีลัส(“ อะกาเมมนอน”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""

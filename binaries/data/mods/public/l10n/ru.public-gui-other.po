@@ -48,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-09 07:08+0000\n"
-"PO-Revision-Date: 2021-04-09 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-15 22:09+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -1035,11 +1035,11 @@ msgstr "Здоровье"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "Размер гарнизона"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -1049,7 +1049,7 @@ msgstr ""
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
@@ -1170,7 +1170,7 @@ msgstr ""
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1281,12 +1281,12 @@ msgstr "Радиус действия:"
 #: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1149
 msgid "Classes:"
@@ -1548,7 +1548,7 @@ msgstr "Нестандартные"
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
@@ -1770,12 +1770,12 @@ msgstr "Сохранить позицию камеры 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Скроллить или повернуть влево."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr "Скроллить вниз"
+msgstr "Скроллить влево"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -2409,7 +2409,7 @@ msgstr "Модификатор при котором задание получи
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Задание для одного юнита"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
@@ -2429,7 +2429,7 @@ msgstr "Модификатор принуждающий выполнить за�
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Добавить задание в начало"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
@@ -2915,7 +2915,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr ""
+msgstr "Показать древо зданий"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
@@ -2960,7 +2960,7 @@ msgstr "Выбранные юниты"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Добавить юнитов к выделенному отряду."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
@@ -3300,22 +3300,22 @@ msgstr "Следующий простаивающий юнит"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Выбрать следующего простаивающего воина."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Следующий простаивающий воин"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Выбрать следующего простаивающего рабочего."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Следующий простаивающий рабочий"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
@@ -3345,17 +3345,17 @@ msgstr "Включить в выборку юнитов за пределами 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Выбрать без учёта видимости экрана"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Убрать юнитов из выбранного."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Убрать юнитов из выбранного"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
@@ -3593,12 +3593,12 @@ msgstr "Все карты выбранного типа."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Обзор карт"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Закрыть обзор карт и отменить выбранное."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3610,7 +3610,7 @@ msgstr "Закрыть"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Закрыть обзор карт."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3624,7 +3624,7 @@ msgstr ""
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Выберите карту:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3641,11 +3641,11 @@ msgstr ""
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Перейти на предыдущую страницу."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Перейти на следующую страницу."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
@@ -3788,43 +3788,43 @@ msgstr "Показывать время отправления сообщени�
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Наименование объектов"
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
-msgstr ""
+msgstr "Основные специфические."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
+msgstr "Показывать специфические наименования как основные, а обобщенные как дополнительные."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic primary."
-msgstr ""
+msgstr "Основные обобщенные."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
+msgstr "Показывать обобщенные наименования как основные, а специфические как дополнительные."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
-msgstr ""
+msgstr "Только специфические."
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Show only specific names for units."
-msgstr ""
+msgstr "Показывать только специфические названия юнитов."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Только обобщенные."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr "Показывать только обобщенные наименования юнитов."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Как показывать наименования объектов."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4081,7 +4081,7 @@ msgstr "Степень повышения резкости выбранного 
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "Качество моделей"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label
@@ -4090,7 +4090,7 @@ msgstr "Низкое"
 
 #: gui/options/options.json[1].options[7].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Простые модели для лучшей производительности."
 
 #: gui/options/options.json[1].options[10].list[2].label
 #: gui/options/options.json[1].options[7].list[1].label
@@ -4100,7 +4100,7 @@ msgstr "Среднее"
 
 #: gui/options/options.json[1].options[7].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Среднее качество и средняя производительность."
 
 #: gui/options/options.json[1].options[10].list[3].label
 #: gui/options/options.json[1].options[7].list[2].label
@@ -4109,11 +4109,11 @@ msgstr "Высокое"
 
 #: gui/options/options.json[1].options[7].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Высокое качество моделей."
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Настройка качества моделей."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shader effects"
@@ -4745,7 +4745,7 @@ msgstr "Посмотреть различные карты, представле
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Продолжить кампанию"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
@@ -4754,7 +4754,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Ошибка открытия кампании:"
 
 #: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -4778,11 +4778,11 @@ msgstr "Загрузить сохранённую игру."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr ""
+msgstr "Новая кампания"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
-msgstr ""
+msgstr "Загрузить кампанию"
 
 #: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
@@ -4930,7 +4930,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Альфа XXV: Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5060,7 +5060,7 @@ msgstr ""
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Бонусы погребальных колесниц"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -6286,7 +6286,7 @@ msgstr "ПРИЛИПАНИЕ"
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr "Здания могут быть выровняны нажатием горячей клавиши прилипания при размещении"
+msgstr "Здания могут быть выровнены нажатием горячей клавиши прилипания при размещении"
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
@@ -6374,7 +6374,7 @@ msgstr "Его аура исцеляет близких юнитов."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "Разместите раненых юнитов внутри для их ускоренного исцеления."
+msgstr "Размещайте раненых юнитов в гарнизонах для их ускоренного исцеления."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
