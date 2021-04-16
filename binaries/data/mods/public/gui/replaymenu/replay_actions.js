@@ -101,16 +101,25 @@ function displayReplayCompatibilityError(replay)
 }
 
 /**
- * Opens the summary screen of the given replay, if its data was found in that directory.
+ * Opens the summary screen of the given replay, if its data was found in that directory, , or shows an error message in case of incompatibility.
  */
 function showReplaySummary()
 {
-	var selected = Engine.GetGUIObjectByName("replaySelection").selected;
+	let selected = Engine.GetGUIObjectByName("replaySelection").selected;
 	if (selected == -1)
 		return;
 
+	let replay = g_ReplaysFiltered[selected];
+	if (isReplayCompatible(replay))
+		reallyShowReplaySummary(replay.directory);
+	else
+		displayReplayCompatibilityError(replay);
+}
+
+function reallyShowReplaySummary(directory)
+{
 	// Load summary screen data from the selected replay directory
-	let simData = Engine.GetReplayMetadata(g_ReplaysFiltered[selected].directory);
+	let simData = Engine.GetReplayMetadata(directory);
 
 	if (!simData)
 	{
@@ -123,8 +132,8 @@ function showReplaySummary()
 		"gui": {
 			"dialog": false,
 			"isReplay": true,
-			"replayDirectory": g_ReplaysFiltered[selected].directory,
-			"replaySelectionData": createReplaySelectionData(g_ReplaysFiltered[selected].directory),
+			"replayDirectory": directory,
+			"replaySelectionData": createReplaySelectionData(directory),
 			"summarySelection": g_SummarySelection
 		}
 	});

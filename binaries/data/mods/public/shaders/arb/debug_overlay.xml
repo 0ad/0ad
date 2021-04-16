@@ -3,13 +3,14 @@
 
     <vertex file="arb/debug_overlay.vp">
         <uniform name="transform" loc="0" type="mat4"/>
-        <uniform name="textureTransform" loc="4" type="mat4"/>
+        <uniform name="textureTransform" loc="4" type="mat4" if="DEBUG_TEXTURED"/>
         <stream name="pos"/>
-        <stream name="uv0"/>
+        <stream name="uv0" if="DEBUG_TEXTURED"/>
     </vertex>
 
     <fragment file="arb/debug_overlay.fp">
-        <uniform name="baseTex" loc="0" type="sampler2D"/>
+        <uniform name="baseTex" loc="0" type="sampler2D" if="DEBUG_TEXTURED"/>
+        <uniform name="color" loc="0" type="vec4" if="!DEBUG_TEXTURED"/>
     </fragment>
 
 </program>

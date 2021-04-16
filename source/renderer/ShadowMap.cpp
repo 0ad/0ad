@@ -33,6 +33,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 
@@ -676,19 +677,19 @@ void ShadowMap::RenderDebugBounds()
 	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform);
 
 	shader->Uniform(str_color, 1.0f, 1.0f, 0.0f, 1.0f);
-	m->ShadowReceiverBound.RenderOutline(shader);
+	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowReceiverBound, shader);
 
 	shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
-	m->ShadowCasterBound.RenderOutline(shader);
+	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowCasterBound, shader);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 0.25f);
-	m->ShadowRenderBound.Render(shader);
+	g_Renderer.GetDebugRenderer().DrawBoundingBox(m->ShadowRenderBound, shader);
 	glDisable(GL_BLEND);
 
 	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 1.0f);
-	m->ShadowRenderBound.RenderOutline(shader);
+	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowRenderBound, shader);
 
 	// Render light frustum
 
@@ -705,12 +706,11 @@ void ShadowMap::RenderDebugBounds()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	shader->Uniform(str_color, 1.0f, 0.0f, 0.0f, 0.25f);
-	frustumBrush.Render(shader);
+	g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, shader);
 	glDisable(GL_BLEND);
 
 	shader->Uniform(str_color, 1.0f, 0.0f, 0.0f, 1.0f);
-	frustumBrush.RenderOutline(shader);
-
+	g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, shader);
 
 	shaderTech->EndPass();
 

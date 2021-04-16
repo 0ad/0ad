@@ -165,7 +165,7 @@ function displayModList(listObjectName, folders, enabled)
 	listObject.list_name = folders.map(folder => colorMod(folder, g_Mods[folder].name, enabled));
 	listObject.list_folder = folders.map(folder => colorMod(folder, folder, enabled));
 	listObject.list_label = folders.map(folder => colorMod(folder, g_Mods[folder].label, enabled));
-	listObject.list_url = folders.map(folder => colorMod(folder, g_Mods[folder].url || ""), enabled);
+	listObject.list_url = folders.map(folder => colorMod(folder, g_Mods[folder].url || "", enabled));
 	listObject.list_version = folders.map(folder => colorMod(folder, g_Mods[folder].version, enabled));
 	listObject.list_dependencies = folders.map(folder => colorMod(folder, g_Mods[folder].dependencies.join(" "), enabled));
 	listObject.list = folders;

@@ -24,6 +24,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "ps/Profile.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 
 struct ParticleRendererInternals
@@ -158,6 +159,6 @@ void ParticleRenderer::RenderBounds(int cullGroup, CShaderProgramPtr& shader)
 		CParticleEmitter* emitter = emitters[i];
 
 		CBoundingBoxAligned bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
-		bounds.Render(shader);
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(bounds, shader);
 	}
 }

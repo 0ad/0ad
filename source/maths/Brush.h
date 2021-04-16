@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,12 +19,10 @@
  * CBrush, a class representing a convex object
  */
 
-#ifndef maths_brush_h
-#define maths_brush_h
+#ifndef INCLUDED_BRUSH
+#define INCLUDED_BRUSH
 
-#include "Vector3D.h"
-
-#include "graphics/ShaderProgramPtr.h"
+#include "maths/Vector3D.h"
 
 #include <vector>
 
@@ -38,10 +36,8 @@ class CPlane;
  */
 class CBrush
 {
-	friend class TestBrush;
-
 public:
-	CBrush() { }
+	CBrush();
 
 	/**
 	 * CBrush: Construct a brush from a bounds object.
@@ -83,29 +79,17 @@ public:
 	void Intersect(const CFrustum& frustum, CBrush& result) const;
 
 	/**
-	 * Render the surfaces of the brush as triangles.
-	 */
-	void Render(CShaderProgramPtr& shader) const;
-
-	/**
-	 * Render the outline of the brush as lines.
-	 */
-	void RenderOutline(CShaderProgramPtr& shader) const;
-
-private:
-
-	/**
-	 * Returns a copy of the vertices in this brush. Intended for testing purposes; you should not need to use
+	 * Returns vertices in the brush. Intended for testing purposes; you should not need to use
 	 * this method directly.
 	 */
-	std::vector<CVector3D> GetVertices() const;
+	const std::vector<CVector3D>& GetVertices() const;
 
 	/**
 	 * Writes a vector of the faces in this brush to @p out. Each face is itself a vector, listing the vertex indices
 	 * that make up the face, starting and ending with the same index. Intended for testing purposes; you should not
 	 * need to use this method directly.
 	 */
-	void GetFaces(std::vector<std::vector<size_t> >& out) const;
+	void GetFaces(std::vector<std::vector<size_t>>& out) const;
 
 private:
 	static const size_t NO_VERTEX = ~0u;
@@ -126,4 +110,4 @@ private:
 	struct Helper;
 };
 
-#endif // maths_brush_h
+#endif // INCLUDED_BRUSH

@@ -23,8 +23,6 @@
 
 #include "BoundingBoxAligned.h"
 
-#include "graphics/ShaderProgram.h"
-#include "lib/ogl.h"
 #include "maths/BoundingBoxOriented.h"
 #include "maths/Brush.h"
 #include "maths/Frustum.h"
@@ -264,72 +262,4 @@ void CBoundingBoxAligned::Expand(float amount)
 {
 	m_Data[0] -= CVector3D(amount, amount, amount);
 	m_Data[1] += CVector3D(amount, amount, amount);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// Render the bounding box
-void CBoundingBoxAligned::Render(CShaderProgramPtr& shader) const
-{
-	std::vector<float> data;
-
-#define ADD_FACE(x, y, z) \
-	ADD_PT(0, 0, x, y, z); ADD_PT(1, 0, x, y, z); ADD_PT(1, 1, x, y, z); \
-	ADD_PT(1, 1, x, y, z); ADD_PT(0, 1, x, y, z); ADD_PT(0, 0, x, y, z);
-#define ADD_PT(u_, v_, x, y, z) \
-	STMT(int u = u_; int v = v_; \
-		data.push_back(u); \
-		data.push_back(v); \
-		data.push_back(m_Data[x].X); \
-		data.push_back(m_Data[y].Y); \
-		data.push_back(m_Data[z].Z); \
-	)
-
-	ADD_FACE(u, v, 0);
-	ADD_FACE(0, u, v);
-	ADD_FACE(u, 0, 1-v);
-	ADD_FACE(u, 1-v, 1);
-	ADD_FACE(1, u, 1-v);
-	ADD_FACE(u, 1, v);
-
-#undef ADD_FACE
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-
-	shader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, 6*6);
-}
-
-void CBoundingBoxAligned::RenderOutline(CShaderProgramPtr& shader) const
-{
-	std::vector<float> data;
-
-#define ADD_FACE(x, y, z) \
-	ADD_PT(0, 0, x, y, z); ADD_PT(1, 0, x, y, z); \
-	ADD_PT(1, 0, x, y, z); ADD_PT(1, 1, x, y, z); \
-	ADD_PT(1, 1, x, y, z); ADD_PT(0, 1, x, y, z); \
-	ADD_PT(0, 1, x, y, z); ADD_PT(0, 0, x, y, z);
-#define ADD_PT(u_, v_, x, y, z) \
-	STMT(int u = u_; int v = v_; \
-		data.push_back(u); \
-		data.push_back(v); \
-		data.push_back(m_Data[x].X); \
-		data.push_back(m_Data[y].Y); \
-		data.push_back(m_Data[z].Z); \
-	)
-
-	ADD_FACE(u, v, 0);
-	ADD_FACE(0, u, v);
-	ADD_FACE(u, 0, 1-v);
-	ADD_FACE(u, 1-v, 1);
-	ADD_FACE(1, u, 1-v);
-	ADD_FACE(u, 1, v);
-
-#undef ADD_FACE
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-
-	shader->AssertPointersBound();
-	glDrawArrays(GL_LINES, 0, 6*8);
 }

@@ -22,12 +22,6 @@
 
 #include "precompiled.h"
 
-#include <map>
-#include <set>
-#include <algorithm>
-
-#include <boost/algorithm/string.hpp>
-
 #include "Renderer.h"
 
 #include "lib/bits.h"	// is_pow2
@@ -58,6 +52,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/Texture.h"
 #include "graphics/TextureManager.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
 #include "renderer/ModelRenderer.h"
@@ -75,6 +70,11 @@
 #include "renderer/VertexBufferManager.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
+
+#include <algorithm>
+#include <boost/algorithm/string.hpp>
+#include <map>
+#include <set>
 
 struct SScreenRect
 {
@@ -297,6 +297,8 @@ public:
 
 	/// Postprocessing effect manager
 	CPostprocManager postprocManager;
+
+	CDebugRenderer debugRenderer;
 
 	CFontManager fontManager;
 
@@ -1483,12 +1485,12 @@ void CRenderer::DisplayFrustum()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glColor4ub(255,255,255,64);
-	m_CullCamera.Render(2);
+	GetDebugRenderer().DrawCameraFrustum(m_CullCamera, 2);
 	glDisable(GL_BLEND);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glColor3ub(255,255,255);
-	m_CullCamera.Render(2);
+	GetDebugRenderer().DrawCameraFrustum(m_CullCamera, 2);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glEnable(GL_CULL_FACE);
@@ -1950,6 +1952,11 @@ CMaterialManager& CRenderer::GetMaterialManager()
 CPostprocManager& CRenderer::GetPostprocManager()
 {
 	return m->postprocManager;
+}
+
+CDebugRenderer& CRenderer::GetDebugRenderer()
+{
+	return m->debugRenderer;
 }
 
 CFontManager& CRenderer::GetFontManager()

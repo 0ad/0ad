@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -146,16 +146,6 @@ public:
 	 * Only valid for non-empty bounding boxes - check IsEmpty() first.
 	 */
 	CFrustum ToFrustum() const;
-
-	/**
-	 * Render the surfaces of the bound object as triangles.
-	 */
-	void Render(CShaderProgramPtr& shader) const;
-
-	/**
-	 * Render the outline of the bound object as lines.
-	 */
-	void RenderOutline(CShaderProgramPtr& shader) const;
 
 private:
 	// Holds the minimal and maximal coordinate points in m_Data[0] and m_Data[1], respectively.
