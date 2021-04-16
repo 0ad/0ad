@@ -112,8 +112,8 @@ for (let i = 0; i < numPlayers; ++i)
 	if (Engine.GetTemplate("structures/" + civ + "/house").Population.Bonus <= 5)
 	{
 		var wall = ["gate", "tower", "long",
-			"cornerIn", "long", "barracks", "tower", "long", "tower", "house", "long",
-			"cornerIn", "long", "house", "tower", "gate", "tower", "house", "long",
+			"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
+			"cornerIn", "long", "stable", "tower", "gate", "tower", "house", "long",
 			"cornerIn", "long", "house", "tower", "long", "tower", "house", "long",
 			"cornerIn", "long", "house", "tower"];
 	}
@@ -121,7 +121,7 @@ for (let i = 0; i < numPlayers; ++i)
 	{
 		var wall = ["gate", "tower", "long",
 			"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
-			"cornerIn", "long", "house", "tower", "gate", "tower", "long",
+			"cornerIn", "long", "stable", "tower", "gate", "tower", "long",
 			"cornerIn", "long", "house", "tower", "long", "tower", "long",
 			"cornerIn", "long", "house", "tower"];
 	}
