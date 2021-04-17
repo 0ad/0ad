@@ -714,38 +714,6 @@ void ShadowMap::RenderDebugBounds()
 
 	shaderTech->EndPass();
 
-#if 0
-	CMatrix3D InvTexTransform;
-
-	m->TextureMatrix.GetInverse(InvTexTransform);
-
-	// Render representative texture rectangle
-	glPushMatrix();
-	glMultMatrixf(&InvTexTransform._11);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4ub(255,0,0,64);
-	glBegin(GL_QUADS);
-		glVertex3f(0.0, 0.0, 0.0);
-		glVertex3f(1.0, 0.0, 0.0);
-		glVertex3f(1.0, 1.0, 0.0);
-		glVertex3f(0.0, 1.0, 0.0);
-	glEnd();
-	glDisable(GL_BLEND);
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glColor3ub(255,0,0);
-	glBegin(GL_QUADS);
-		glVertex3f(0.0, 0.0, 0.0);
-		glVertex3f(1.0, 0.0, 0.0);
-		glVertex3f(1.0, 1.0, 0.0);
-		glVertex3f(0.0, 1.0, 0.0);
-	glEnd();
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glPopMatrix();
-#endif
-
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
 
