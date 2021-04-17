@@ -9,13 +9,6 @@
     </technique>
 
     <technique>
-        <require shaders="fixed"/>
-        <pass shader="fixed:gui_text">
-            <blend src="src_alpha" dst="one_minus_src_alpha"/>
-        </pass>
-    </technique>
-
-    <technique>
         <require shaders="glsl"/>
         <pass shader="glsl/gui_text">
             <blend src="src_alpha" dst="one_minus_src_alpha"/>

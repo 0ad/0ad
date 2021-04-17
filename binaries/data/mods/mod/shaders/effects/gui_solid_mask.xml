@@ -7,11 +7,6 @@
     </technique>
 
     <technique>
-        <require shaders="fixed"/>
-        <pass shader="fixed:gui_solid"/>
-    </technique>
-
-    <technique>
         <require shaders="glsl"/>
         <pass shader="glsl/gui_solid_mask"/>
     </technique>

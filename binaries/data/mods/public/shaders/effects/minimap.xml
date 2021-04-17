@@ -11,9 +11,4 @@
         <pass shader="glsl/minimap"/>
     </technique>
 
-    <technique>
-        <require shaders="fixed"/>
-        <pass shader="fixed:minimap"/>
-    </technique>
-
 </effect>
