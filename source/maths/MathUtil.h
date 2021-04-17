@@ -28,17 +28,8 @@ inline T Interpolate(const T& a, const T& b, float t)
 	return a + (b - a) * t;
 }
 
-// TODO C++20: use the proper one.
-template<typename T>
-struct type_identity
-{
-	using type = T;
-};
-template<typename T>
-using type_identity_t = typename type_identity<T>::type;
-
 template <typename T>
-inline T Clamp(T value, type_identity_t<T> min, type_identity_t<T> max)
+inline T Clamp(T value, T min, T max)
 {
 	if (value <= min)
 		return min;

@@ -21,7 +21,7 @@ AttackEffects = class AttackEffects
 	}
 };
 
-Engine.LoadHelperScript("Attacking.js");
+Engine.LoadHelperScript("Attack.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
@@ -80,13 +80,13 @@ class testResistance
 			"attackerOwner": this.EnemyID
 		};
 
-		Attacking.HandleAttackEffects(this.EntityID, data);
+		AttackHelper.HandleAttackEffects(this.EntityID, data);
 		TS_ASSERT_EQUALS(spy._called, 1);
 
 		this.cmpResistance.SetInvulnerability(true);
 
 		TS_ASSERT(this.cmpResistance.IsInvulnerable());
-		Attacking.HandleAttackEffects(this.EntityID, data);
+		AttackHelper.HandleAttackEffects(this.EntityID, data);
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -120,7 +120,7 @@ class testResistance
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -154,7 +154,7 @@ class testResistance
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -185,7 +185,7 @@ class testResistance
 		});
 		let spy = new Spy(cmpCapturable, "Capture");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -226,7 +226,7 @@ class testResistance
 		});
 		let spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -253,7 +253,7 @@ class testResistance
 		});
 		spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -297,7 +297,7 @@ class testResistance
 		});
 		spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -344,7 +344,7 @@ class testResistance
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,
@@ -398,7 +398,7 @@ class testResistance
 		let healthSpy = new Spy(cmpHealth, "TakeDamage");
 		let captureSpy = new Spy(cmpCapturable, "Capture");
 
-		Attacking.HandleAttackEffects(this.EntityID, {
+		AttackHelper.HandleAttackEffects(this.EntityID, {
 			"type": "Test",
 			"attackData": attackData,
 			"attacker": this.AttackerID,

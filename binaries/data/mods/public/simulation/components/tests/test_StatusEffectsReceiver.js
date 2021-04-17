@@ -18,13 +18,13 @@ let enemyEntity = 4;
 let enemy = 2;
 let statusName;
 
-let Attacking = {
+let AttackHelper = {
 	"HandleAttackEffects": (_, data) => {
 		for (let type in data.attackData.Damage)
 			dealtDamage += data.attackData.Damage[type];
 	}
 };
-Engine.RegisterGlobal("Attacking", Attacking);
+Engine.RegisterGlobal("AttackHelper", AttackHelper);
 
 function reset()
 {

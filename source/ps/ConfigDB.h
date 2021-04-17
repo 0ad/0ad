@@ -182,7 +182,7 @@ public:
 	CConfigDBHook RegisterHookAndCall(const CStr& name, std::function<void()> hook);
 
 	void UnregisterHook(CConfigDBHook&& hook);
-	void UnregisterHook(std::unique_ptr<CConfigDBHook>&& hook);
+	void UnregisterHook(std::unique_ptr<CConfigDBHook> hook);
 
 private:
 	static std::map<CStr, CConfigValueSet> m_Map[];
@@ -198,13 +198,13 @@ public:
 	CConfigDBHook() = delete;
 	// Point the moved-from hook to end, which is checked for in UnregisterHook,
 	// to avoid a double-erase error.
-	CConfigDBHook(CConfigDBHook&& h) : configDB(h.configDB) { ptr = std::move(h.ptr); h.ptr = configDB.m_Hooks.end(); }
+	CConfigDBHook(CConfigDBHook&& h) : m_ConfigDB(h.m_ConfigDB) { m_Ptr = std::move(h.m_Ptr); h.m_Ptr = m_ConfigDB.m_Hooks.end(); }
 	CConfigDBHook(const CConfigDBHook&) = delete;
 private:
-	CConfigDBHook(CConfigDB& cdb, std::multimap<CStr, std::function<void()>>::iterator p) : configDB(cdb), ptr(p) {};
+	CConfigDBHook(CConfigDB& cdb, std::multimap<CStr, std::function<void()>>::iterator p) : m_ConfigDB(cdb), m_Ptr(p) {};
 
-	std::multimap<CStr, std::function<void()>>::iterator ptr;
-	CConfigDB& configDB;
+	std::multimap<CStr, std::function<void()>>::iterator m_Ptr;
+	CConfigDB& m_ConfigDB;
 };
 
 

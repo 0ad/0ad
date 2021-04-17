@@ -15,7 +15,7 @@ DeathDamage.prototype.Schema =
 	"<element name='Shape' a:help='Shape of the splash damage, can be circular.'><text/></element>" +
 	"<element name='Range' a:help='Size of the area affected by the splash.'><ref name='nonNegativeDecimal'/></element>" +
 	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units.'><data type='boolean'/></element>" +
-	Attacking.BuildAttackEffectsSchema();
+	AttackHelper.BuildAttackEffectsSchema();
 
 DeathDamage.prototype.Init = function()
 {
@@ -26,7 +26,7 @@ DeathDamage.prototype.Serialize = null;
 
 DeathDamage.prototype.GetDeathDamageEffects = function()
 {
-	return Attacking.GetAttackEffectsData("DeathDamage", this.template, this.entity);
+	return AttackHelper.GetAttackEffectsData("DeathDamage", this.template, this.entity);
 };
 
 DeathDamage.prototype.CauseDeathDamage = function()
@@ -41,7 +41,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 	if (owner == INVALID_PLAYER)
 		warn("Unit causing death damage does not have any owner.");
 
-	Attacking.CauseDamageOverArea({
+	AttackHelper.CauseDamageOverArea({
 		"type": "Death",
 		"attackData": this.GetDeathDamageEffects(),
 		"attacker": this.entity,

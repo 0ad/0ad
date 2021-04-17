@@ -1,47 +1,39 @@
-var WeightedList = function()
+function WeightedList()
 {
-    this.elements = [ ];
-    this.totalWeight = 0;
+	this.elements = new Map();
+	this.totalWeight = 0;
 };
 
 WeightedList.prototype.length = function()
 {
-	return this.elements.length;
+	return this.elements.size;
 };
 
-WeightedList.prototype.push = function(item, weight)
+WeightedList.prototype.push = function(item, weight = 1)
 {
-	if (weight === undefined)
-		weight = 1;
+	this.elements.set(item, weight);
 	this.totalWeight += weight;
-	this.elements.push({ "item": item, "weight": weight });
 };
 
-WeightedList.prototype.removeAt = function(index)
+WeightedList.prototype.remove = function(item)
 {
-	var element = this.elements.splice(index, 1)[0];
-	if (element)
-		this.totalWeight -= element.weight;
+	const weight = this.elements.get(item);
+	if (weight)
+		this.totalWeight -= weight;
+	this.elements.delete(item);
 };
 
-WeightedList.prototype.itemAt = function(index)
+WeightedList.prototype.randomItem = function()
 {
-	var element = this.elements[index];
-	return element ? element.item : null;
-};
-
-WeightedList.prototype.randomIndex = function() {
-	var element;
-	var targetWeight = randFloat(0, this.totalWeight);
-	var cumulativeWeight = 0;
-	for (var index = 0; index < this.elements.length; index++)
+	const targetWeight = randFloat(0, this.totalWeight);
+	let cumulativeWeight = 0;
+	for (let [item, weight] of this.elements)
 	{
-		element = this.elements[index];
-		cumulativeWeight += element.weight;
+		cumulativeWeight += weight;
 		if (cumulativeWeight >= targetWeight)
-			return index;
+			return item;
 	}
-	return -1;
+	return undefined;
 };
 
 Engine.RegisterGlobal("WeightedList", WeightedList);

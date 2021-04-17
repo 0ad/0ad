@@ -21,7 +21,7 @@ AttackEffects = class AttackEffects
 	}
 };
 
-Engine.LoadHelperScript("Attacking.js");
+Engine.LoadHelperScript("Attack.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
@@ -280,7 +280,7 @@ for (let className of ["Infantry", "Cavalry"])
 
 		TS_ASSERT_EQUALS(cmpAttack.GetAttackEffectsData("Capture").Bonuses || null, null);
 
-		let getAttackBonus = (s, t, e, splash) => Attacking.GetAttackBonus(s, e, t, cmpAttack.GetAttackEffectsData(t, splash).Bonuses || null);
+		let getAttackBonus = (s, t, e, splash) => AttackHelper.GetAttackBonus(s, e, t, cmpAttack.GetAttackEffectsData(t, splash).Bonuses || null);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Melee", defender), className == "Cavalry" ? 2 : 1);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged", defender), 1);
 		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus(attacker, "Ranged", defender, true), className == "Cavalry" ? 3 : 1);

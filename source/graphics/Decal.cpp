@@ -45,10 +45,10 @@ void CModelDecal::CalcVertexExtents(ssize_t& i0, ssize_t& j0, ssize_t& i1, ssize
 	i1 = ceil(std::max(std::max(corner0.X, corner1.X), std::max(corner2.X, corner3.X)) / TERRAIN_TILE_SIZE);
 	j1 = ceil(std::max(std::max(corner0.Z, corner1.Z), std::max(corner2.Z, corner3.Z)) / TERRAIN_TILE_SIZE);
 
-	i0 = Clamp(i0, 0, m_Terrain->GetVerticesPerSide() - 1);
-	j0 = Clamp(j0, 0, m_Terrain->GetVerticesPerSide() - 1);
-	i1 = Clamp(i1, 0, m_Terrain->GetVerticesPerSide() - 1);
-	j1 = Clamp(j1, 0, m_Terrain->GetVerticesPerSide() - 1);
+	i0 = Clamp<ssize_t>(i0, 0, m_Terrain->GetVerticesPerSide() - 1);
+	j0 = Clamp<ssize_t>(j0, 0, m_Terrain->GetVerticesPerSide() - 1);
+	i1 = Clamp<ssize_t>(i1, 0, m_Terrain->GetVerticesPerSide() - 1);
+	j1 = Clamp<ssize_t>(j1, 0, m_Terrain->GetVerticesPerSide() - 1);
 }
 
 void CModelDecal::CalcBounds()

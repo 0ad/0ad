@@ -11,7 +11,7 @@ AttackEffects = class AttackEffects
 	}
 };
 
-Engine.LoadHelperScript("Attacking.js");
+Engine.LoadHelperScript("Attack.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Position.js");
 Engine.LoadHelperScript("ValueModification.js");
@@ -147,12 +147,12 @@ function Test_Generic()
 		damageTaken = false;
 	}
 
-	Attacking.HandleAttackEffects(target, data);
+	AttackHelper.HandleAttackEffects(target, data);
 	TestDamage();
 
 	data.type = "Ranged";
 	type = data.type;
-	Attacking.HandleAttackEffects(target, data);
+	AttackHelper.HandleAttackEffects(target, data);
 	TestDamage();
 
 	// Check for damage still being dealt if the attacker dies
@@ -164,8 +164,8 @@ function Test_Generic()
 	AddMock(atkPlayerEntity, IID_Player, {
 		"GetEnemies": () => [2, 3]
 	});
-	TS_ASSERT_UNEVAL_EQUALS(Attacking.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
-	TS_ASSERT_UNEVAL_EQUALS(Attacking.GetPlayersToDamage(atkPlayerEntity, false), [2, 3]);
+	TS_ASSERT_UNEVAL_EQUALS(AttackHelper.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
+	TS_ASSERT_UNEVAL_EQUALS(AttackHelper.GetPlayersToDamage(atkPlayerEntity, false), [2, 3]);
 }
 
 Test_Generic();
@@ -257,7 +257,7 @@ function TestLinearSplashDamage()
 		}
 	});
 
-	Attacking.CauseDamageOverArea(data);
+	AttackHelper.CauseDamageOverArea(data);
 	TS_ASSERT(hitEnts.has(60));
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT(hitEnts.has(62));
@@ -273,7 +273,7 @@ function TestLinearSplashDamage()
 		}
 	});
 
-	Attacking.CauseDamageOverArea(data);
+	AttackHelper.CauseDamageOverArea(data);
 	TS_ASSERT(hitEnts.has(60));
 	TS_ASSERT(hitEnts.has(61));
 	TS_ASSERT(hitEnts.has(62));
@@ -388,7 +388,7 @@ function TestCircularSplashDamage()
 	});
 	let spy65 = new Spy(cmpHealth65, "TakeDamage");
 
-	Attacking.CauseDamageOverArea({
+	AttackHelper.CauseDamageOverArea({
 		"type": "Ranged",
 		"attackData": { "Damage": { "Hack": 100, "Pierce": 0, "Crush": 0 } },
 		"attacker": 50,

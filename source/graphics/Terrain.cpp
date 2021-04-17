@@ -118,8 +118,8 @@ CStr8 CTerrain::GetMovementClass(ssize_t i, ssize_t j) const
 // outwards to infinity
 void CTerrain::CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const
 {
-	ssize_t hi = Clamp(i, 0, m_MapSize - 1);
-	ssize_t hj = Clamp(j, 0, m_MapSize - 1);
+	ssize_t hi = Clamp<ssize_t>(i, 0, m_MapSize - 1);
+	ssize_t hj = Clamp<ssize_t>(j, 0, m_MapSize - 1);
 	u16 height = m_Heightmap[hj*m_MapSize + hi];
 	pos.X = float(i*TERRAIN_TILE_SIZE);
 	pos.Y = float(height*HEIGHT_SCALE);
@@ -130,8 +130,8 @@ void CTerrain::CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const
 // CalcPositionFixed: calculate the world space position of the vertex at (i,j)
 void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) const
 {
-	ssize_t hi = Clamp(i, 0, m_MapSize - 1);
-	ssize_t hj = Clamp(j, 0, m_MapSize - 1);
+	ssize_t hi = Clamp<ssize_t>(i, 0, m_MapSize - 1);
+	ssize_t hj = Clamp<ssize_t>(j, 0, m_MapSize - 1);
 	u16 height = m_Heightmap[hj*m_MapSize + hi];
 	pos.X = fixed::FromInt(i) * (int)TERRAIN_TILE_SIZE;
 	// fixed max value is 32767, but height is a u16, so divide by two to avoid overflow
@@ -308,15 +308,15 @@ CMiniPatch* CTerrain::GetTile(ssize_t i, ssize_t j) const
 
 float CTerrain::GetVertexGroundLevel(ssize_t i, ssize_t j) const
 {
-	i = Clamp(i, 0, m_MapSize - 1);
-	j = Clamp(j, 0, m_MapSize - 1);
+	i = Clamp<ssize_t>(i, 0, m_MapSize - 1);
+	j = Clamp<ssize_t>(j, 0, m_MapSize - 1);
 	return HEIGHT_SCALE * m_Heightmap[j*m_MapSize + i];
 }
 
 fixed CTerrain::GetVertexGroundLevelFixed(ssize_t i, ssize_t j) const
 {
-	i = Clamp(i, 0, m_MapSize - 1);
-	j = Clamp(j, 0, m_MapSize - 1);
+	i = Clamp<ssize_t>(i, 0, m_MapSize - 1);
+	j = Clamp<ssize_t>(j, 0, m_MapSize - 1);
 	// Convert to fixed metres (being careful to avoid intermediate overflows)
 	return fixed::FromInt(m_Heightmap[j*m_MapSize + i] / 2) / (int)(HEIGHT_UNITS_PER_METRE / 2);
 }
@@ -324,8 +324,8 @@ fixed CTerrain::GetVertexGroundLevelFixed(ssize_t i, ssize_t j) const
 fixed CTerrain::GetSlopeFixed(ssize_t i, ssize_t j) const
 {
 	// Clamp to size-2 so we can use the tiles (i,j)-(i+1,j+1)
-	i = Clamp(i, 0, m_MapSize - 2);
-	j = Clamp(j, 0, m_MapSize - 2);
+	i = Clamp<ssize_t>(i, 0, m_MapSize - 2);
+	j = Clamp<ssize_t>(j, 0, m_MapSize - 2);
 
 	u16 h00 = m_Heightmap[j*m_MapSize + i];
 	u16 h01 = m_Heightmap[(j+1)*m_MapSize + i];
@@ -480,8 +480,8 @@ fixed CTerrain::GetExactGroundLevelFixed(fixed x, fixed z) const
 bool CTerrain::GetTriangulationDir(ssize_t i, ssize_t j) const
 {
 	// Clamp to size-2 so we can use the tiles (i,j)-(i+1,j+1)
-	i = Clamp(i, 0, m_MapSize - 2);
-	j = Clamp(j, 0, m_MapSize - 2);
+	i = Clamp<ssize_t>(i, 0, m_MapSize - 2);
+	j = Clamp<ssize_t>(j, 0, m_MapSize - 2);
 
 	int h00 = m_Heightmap[j*m_MapSize + i];
 	int h01 = m_Heightmap[(j+1)*m_MapSize + i];
@@ -774,10 +774,10 @@ void CTerrain::SetHeightMap(u16* heightmap)
 void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
 {
 	// Finds the inclusive limits of the patches that include the specified range of tiles
-	ssize_t pi0 = Clamp( i0   /PATCH_SIZE, 0, m_MapSizePatches-1);
-	ssize_t pi1 = Clamp((i1-1)/PATCH_SIZE, 0, m_MapSizePatches-1);
-	ssize_t pj0 = Clamp( j0   /PATCH_SIZE, 0, m_MapSizePatches-1);
-	ssize_t pj1 = Clamp((j1-1)/PATCH_SIZE, 0, m_MapSizePatches-1);
+	ssize_t pi0 = Clamp<ssize_t>( i0   /PATCH_SIZE, 0, m_MapSizePatches-1);
+	ssize_t pi1 = Clamp<ssize_t>((i1-1)/PATCH_SIZE, 0, m_MapSizePatches-1);
+	ssize_t pj0 = Clamp<ssize_t>( j0   /PATCH_SIZE, 0, m_MapSizePatches-1);
+	ssize_t pj1 = Clamp<ssize_t>((j1-1)/PATCH_SIZE, 0, m_MapSizePatches-1);
 
 	for (ssize_t j = pj0; j <= pj1; j++)
 	{
@@ -793,10 +793,10 @@ void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dir
 	if (m_Heightmap)
 	{
 		m_HeightMipmap.Update(m_Heightmap,
-			Clamp(i0, 0, m_MapSize - 1),
-			Clamp(j0, 0, m_MapSize - 1),
-			Clamp(i1, 1, m_MapSize),
-			Clamp(j1, 1, m_MapSize)
+			Clamp<ssize_t>(i0, 0, m_MapSize - 1),
+			Clamp<ssize_t>(j0, 0, m_MapSize - 1),
+			Clamp<ssize_t>(i1, 1, m_MapSize),
+			Clamp<ssize_t>(j1, 1, m_MapSize)
 		);
 	}
 }
@@ -820,10 +820,10 @@ void CTerrain::MakeDirty(int dirtyFlags)
 
 CBoundingBoxAligned CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
 {
-	i0 = Clamp(i0, 0, m_MapSize - 1);
-	j0 = Clamp(j0, 0, m_MapSize - 1);
-	i1 = Clamp(i1, 0, m_MapSize - 1);
-	j1 = Clamp(j1, 0, m_MapSize - 1);
+	i0 = Clamp<ssize_t>(i0, 0, m_MapSize - 1);
+	j0 = Clamp<ssize_t>(j0, 0, m_MapSize - 1);
+	i1 = Clamp<ssize_t>(i1, 0, m_MapSize - 1);
+	j1 = Clamp<ssize_t>(j1, 0, m_MapSize - 1);
 
 	u16 minH = 65535;
 	u16 maxH = 0;

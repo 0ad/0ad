@@ -341,8 +341,7 @@ BuildingAI.prototype.FireArrows = function()
 	let firedArrows = 0;
 	while (firedArrows < arrowsToFire && targets.length())
 	{
-		let selectedIndex = targets.randomIndex();
-		let selectedTarget = targets.itemAt(selectedIndex);
+		let selectedTarget = targets.randomItem();
 
 		let targetCmpPosition = Engine.QueryInterface(selectedTarget, IID_Position);
 		if (targetCmpPosition && targetCmpPosition.IsInWorld() && this.CheckTargetVisible(selectedTarget))
@@ -364,7 +363,7 @@ BuildingAI.prototype.FireArrows = function()
 		}
 
 		// Could not attack target, try a different target.
-		targets.removeAt(selectedIndex);
+		targets.remove(selectedTarget);
 	}
 
 	this.arrowsLeft -= firedArrows;

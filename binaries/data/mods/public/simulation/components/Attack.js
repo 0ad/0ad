@@ -109,7 +109,7 @@ Attack.prototype.Schema =
 					"</optional>" +
 					"<text/>" +
 				"</element>" +
-				Attacking.BuildAttackEffectsSchema() +
+				AttackHelper.BuildAttackEffectsSchema() +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<optional>" +
 					"<element name='MinRange' a:help='Minimum attack range (in metres). Defaults to 0.'><ref name='nonNegativeDecimal'/></element>" +
@@ -143,7 +143,7 @@ Attack.prototype.Schema =
 							"<element name='Shape' a:help='Shape of the splash damage, can be circular or linear'><text/></element>" +
 							"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-							Attacking.BuildAttackEffectsSchema() +
+							AttackHelper.BuildAttackEffectsSchema() +
 						"</interleave>" +
 					"</element>" +
 				"</optional>" +
@@ -327,7 +327,7 @@ Attack.prototype.GetAttackEffectsData = function(type, splash)
 	let template = this.template[type];
 	if (splash)
 		template = template.Splash;
-	return Attacking.GetAttackEffectsData("Attack/" + type + (splash ? "/Splash" : ""), template, this.entity);
+	return AttackHelper.GetAttackEffectsData("Attack/" + type + (splash ? "/Splash" : ""), template, this.entity);
 };
 
 /**

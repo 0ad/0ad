@@ -72,7 +72,7 @@ public:
 
 	void ClampSmoothly(float min, float max)
 	{
-		m_Target = Clamp(m_Target, min, max);
+		m_Target = Clamp<double>(m_Target, min, max);
 	}
 
 	float Update(float time);

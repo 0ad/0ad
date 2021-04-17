@@ -31,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 07:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-15 16:08+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +123,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr ""
+msgstr "Каждый игрок начинает в густом лесу.\n\nАрденны — это регион с обширными лесами, пологими холмами и горными хребтами, сформированными в середине Девонского периода на территории современных Бельгии и Люксембурга. Регион получил название от античного «Silva» — широкого леса, во времена Рима называвшегося Arduenna Silva."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -192,7 +192,7 @@ msgstr "Каледонские луга"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Represents "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr ""
+msgstr "Каждый игрок начинает на холме, окружённом отвесными скалами. Представляет Кантабрии, гористый регион на севере Пиренейского полуострова."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -295,7 +295,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr ""
+msgstr "Контролируя проход к Эгейскому морю с востока, Додеканес подвергался многочисленным, но недолгим вторжениям. В конце концов, после объединения с Родосом по их инициативе, острова превратились в крупные морские, торговые и культурные центры. А вы достигните того же?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -369,7 +369,7 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "«Остров Мероэ», огромный полуостров, омываемый реками Нил и Атбара, сердце древнего Куша. Место, где жестокая пустыня начинает переходить в засушливую саванну и появляются маленькие акациевые рощи. Земля эта богата ресурсами и воды вечного Нил даруют ей жизнь, но смертельная угроза сгущается на другом берегу."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
@@ -517,7 +517,7 @@ msgid ""
 "Lands”, the ancient religious capital of Napata lay in its shadow. This is "
 "where kings were made – and unmade! Abutting a rich floodplain downstream "
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
-msgstr ""
+msgstr "Начиная от плодородных берегов Нила, игроки штурмуют хорошо защищённую Напату, лежащую у подножия холма Джебель-Баркал, «Священной скалы». Это южный дом Амона и, в соответствии с верованиями как кушитов, так и египтян, место зарождения человека. Известная как «Престол двух земель», религиозная столица Напата лежит в его тени. Город в котором короновали... и низвергали! Эта земля, примыкающая к богатой пойме ниже четвёртого порога Нила, стала житницей древнего Куша."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
@@ -929,7 +929,7 @@ msgid ""
 "Settle in the cold regions of the Arctic, the native habitat of the muskox. "
 "Here you can pine away to your content and also hunt the occasional walrus "
 "or two."
-msgstr ""
+msgstr "Поселитесь в холодных районах Арктики в естественной среде обитания овцебыка. Здесь Вы можете добывать сосну и охотиться на моржей."
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
@@ -2355,41 +2355,41 @@ msgstr "Имя нам — легион"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s и его союзника завладели всеми реликвиями и победят через %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s завладел все реликвии и победит через %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Вы с союзниками собрали все реликвии и выиграете через %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Вы собрали все реликвии и выиграете через %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s победил (Собрана реликвия)."
+msgstr[1] "%(players)s и %(lastPlayer)s победили (Собрана реликвия)."
+msgstr[2] "%(players)s и %(lastPlayer)s победили (Собрана реликвия)."
+msgstr[3] "%(players)s и %(lastPlayer)s победили (Собрана реликвия)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s победил (Собрана реликвия)."
+msgstr[1] "%(players)s и %(lastPlayer)s проиграли (Собрана реликвия)."
+msgstr[2] "%(players)s и %(lastPlayer)s проиграли (Собрана реликвия)."
+msgstr[3] "%(players)s и %(lastPlayer)s проиграл (Собрана реликвия)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2414,7 +2414,7 @@ msgstr "%(player)s был побежден (потерял всех юнитов
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s был побежден (потерял всех юнитов и критически важные постройки)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
@@ -2426,46 +2426,46 @@ msgstr "%(player)s был побежден (потерял героя)."
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s владеет Чудом. %(_player_)s победит с союзниками через %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s владеет Чудом и победит через %(time)s."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s владеет Чудом и победит через %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "Вы владеете Чудом и победите с союзниками через %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "Вы владеете Чудом и победите через %(time)s."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s победил (Чудо построено)."
+msgstr[1] "%(players)s и %(lastPlayer)s победили (Чудо построено)."
+msgstr[2] "%(players)s и %(lastPlayer)s победили (Чудо построено)."
+msgstr[3] "%(players)s и %(lastPlayer)s победили (Чудо построено)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s проиграл (построено Чудо)."
+msgstr[1] "%(lastPlayer)s проиграл (построено Чудо)."
+msgstr[2] "%(lastPlayer)s проиграл (построено Чудо)."
+msgstr[3] "%(players)s и %(lastPlayer)s проиграли (построено Чудо)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""
@@ -3003,7 +3003,7 @@ msgstr "Карта демонстрационной схватки."
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Name:38
 msgid "Skirmish Demo (2)"
-msgstr ""
+msgstr "Демонстрационная схватка (2)"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:38
 msgid "Sporades Islands (2)"
@@ -3089,7 +3089,7 @@ msgstr "Все дороги ведут в Рим. Августова дорог�
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
-msgstr ""
+msgstr "Августова дорога (4)"
 
 #: maps/skirmishes/watering_holes_4p.xml:Description:38
 msgid ""
