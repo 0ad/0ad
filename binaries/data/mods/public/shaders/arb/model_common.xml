@@ -9,6 +9,7 @@
         <uniform name="shadowTransform" loc="4" type="mat4"/>
         <uniform if="USE_INSTANCING" name="instancingTransform" loc="8" type="mat4"/>
         <uniform name="shadowScale" loc="12" type="vec4"/>
+        <uniform name="transform" loc="16" type="mat4"/>
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>

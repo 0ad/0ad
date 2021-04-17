@@ -10,10 +10,12 @@
   ATTRIB position = vertex.position;
 #endif
 
-DP4 result.position.x, state.matrix.mvp.row[0], position;
-DP4 result.position.y, state.matrix.mvp.row[1], position;
-DP4 result.position.z, state.matrix.mvp.row[2], position;
-DP4 result.position.w, state.matrix.mvp.row[3], position;
+PARAM transform[4] = { program.local[4..7] };
+
+DP4 result.position.x, transform[0], position;
+DP4 result.position.y, transform[1], position;
+DP4 result.position.z, transform[2], position;
+DP4 result.position.w, transform[3], position;
 
 MOV result.color, vertex.color;
 

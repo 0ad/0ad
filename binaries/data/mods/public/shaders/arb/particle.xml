@@ -6,7 +6,9 @@
         <stream name="color"/>
         <stream name="uv0"/>
         <stream name="uv1"/>
-        <uniform name="losTransform" loc="0" type="vec2"/>
+        <uniform name="transform" loc="0" type="mat4"/>
+        <uniform name="modelViewMatrix" loc="4" type="mat4"/>
+        <uniform name="losTransform" loc="8" type="vec2"/>
     </vertex>
 
     <fragment file="arb/particle.fp">

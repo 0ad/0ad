@@ -3,6 +3,7 @@
 
     <vertex file="arb/overlay_solid.vp">
         <uniform name="transform" loc="0" type="mat4"/>
+        <uniform name="instancingTransform" loc="4" type="mat4"/>
         <stream name="pos"/>
     </vertex>
 

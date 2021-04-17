@@ -8,6 +8,7 @@ PARAM shadowTransform[4] = { program.local[4..7] };
 #if USE_INSTANCING
   PARAM instancingTransform[4] = { program.local[8..11] };
 #endif
+PARAM transform[4] = { program.local[16..19] };
 
 #if USE_FP_SHADOW && USE_SHADOW_PCF
   PARAM shadowScale = program.local[12];
@@ -23,7 +24,7 @@ OUTPUT v_los = result.texcoord[2];
   OUTPUT v_normal = result.texcoord[3];
   OUTPUT v_half = result.texcoord[4];
 #endif
-  
+
 //// Compute position and normal:
 
 #if USE_INSTANCING
@@ -41,10 +42,10 @@ OUTPUT v_los = result.texcoord[2];
   ATTRIB normal = vertex.normal;
 #endif
 
-DP4 result.position.x, state.matrix.mvp.row[0], position;
-DP4 result.position.y, state.matrix.mvp.row[1], position;
-DP4 result.position.z, state.matrix.mvp.row[2], position;
-DP4 result.position.w, state.matrix.mvp.row[3], position;
+DP4 result.position.x, transform[0], position;
+DP4 result.position.y, transform[1], position;
+DP4 result.position.z, transform[2], position;
+DP4 result.position.w, transform[3], position;
 
 //// Compute lighting:
 

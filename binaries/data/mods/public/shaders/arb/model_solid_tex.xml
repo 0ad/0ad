@@ -3,6 +3,7 @@
 
     <vertex file="arb/solid_tex.vp">
         <uniform if="USE_INSTANCING" name="instancingTransform" loc="0" type="mat4"/>
+        <uniform name="transform" loc="4" type="mat4"/>
         <stream name="pos"/>
         <stream name="uv0"/>
     </vertex>
