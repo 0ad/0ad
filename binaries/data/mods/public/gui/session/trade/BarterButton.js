@@ -22,11 +22,11 @@ class BarterButton
 
 		let resourceName = { "resource": resourceNameWithinSentence(resourceCode) };
 
-		this.sellButton.tooltip = sprintf(this.SellTooltip, resourceName);
+		this.sellButton.tooltip = sprintf(translate(this.SellTooltip), resourceName);
 		this.sellButton.onPress = () => { barterButtonManager.setSelectedResource(this.resourceCode); };
 		this.sellButton.hidden = false;
 
-		this.buyButton.tooltip = sprintf(this.BuyTooltip, resourceName);
+		this.buyButton.tooltip = sprintf(translate(this.BuyTooltip), resourceName);
 		this.buyButton.onPress = () => { this.buy(); };
 
 		this.iconPath = this.ResourceIconPath + resourceCode + ".png";
