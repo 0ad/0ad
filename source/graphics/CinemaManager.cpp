@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,9 +64,7 @@ void CCinemaManager::Update(const float deltaRealTime) const
 
 void CCinemaManager::Render() const
 {
-	if (IsEnabled())
-		DrawBars();
-	else if (m_DrawPaths)
+	if (!IsEnabled() && m_DrawPaths)
 		DrawPaths();
 }
 
@@ -180,57 +178,6 @@ void CCinemaManager::DrawNodes(const RNSpline& spline, const CColor& nodeColor) 
 	glPointSize(1.0f);
 	glDisable(GL_POINT_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
-#endif
-}
-
-void CCinemaManager::DrawBars() const
-{
-	int height = (float)g_xres / 2.39f;
-	int shift = (g_yres - height) / 2;
-	if (shift <= 0)
-		return;
-
-#if CONFIG2_GLES
-	#warning TODO : implement bars for GLES
-#else
-	// Set up transform for GL bars
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-	CMatrix3D transform;
-	transform.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
-	glLoadMatrixf(&transform._11);
-
-	glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
-
-	glEnable(GL_BLEND);
-	glDisable(GL_DEPTH_TEST);
-
-	glBegin(GL_QUADS);
-	glVertex2i(0, 0);
-	glVertex2i(g_xres, 0);
-	glVertex2i(g_xres, shift);
-	glVertex2i(0, shift);
-	glEnd();
-
-	glBegin(GL_QUADS);
-	glVertex2i(0, g_yres - shift);
-	glVertex2i(g_xres, g_yres - shift);
-	glVertex2i(g_xres, g_yres);
-	glVertex2i(0, g_yres);
-	glEnd();
-
-	glDisable(GL_BLEND);
-	glEnable(GL_DEPTH_TEST);
-
-	// Restore transform
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
 #endif
 }
 

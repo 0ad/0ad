@@ -629,6 +629,10 @@ function onTick()
 
 	updateTimers();
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
+
+	let isPlayingCinemaPath = GetSimState().cinemaPlaying && !g_Disconnected;
+	if (isPlayingCinemaPath)
+		updateCinemaOverlay();
 }
 
 function onSimulationUpdate()
@@ -675,7 +679,28 @@ function updateCinemaPath()
 	let isPlayingCinemaPath = GetSimState().cinemaPlaying && !g_Disconnected;
 
 	Engine.GetGUIObjectByName("session").hidden = !g_ShowGUI || isPlayingCinemaPath;
+	Engine.GetGUIObjectByName("cinemaOverlay").hidden = !isPlayingCinemaPath;
 	Engine.ConfigDB_CreateValue("user", "silhouettes", !isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true" ? "true" : "false");
+}
+
+function updateCinemaOverlay()
+{
+	let cinemaOverlay = Engine.GetGUIObjectByName("cinemaOverlay");
+	let width = cinemaOverlay.getComputedSize().right;
+	let height = cinemaOverlay.getComputedSize().bottom;
+	let barHeight = (height - width / 2.39) / 2;
+	if (barHeight < 0)
+		barHeight = 0;
+
+	let cinemaBarTop = Engine.GetGUIObjectByName("cinemaBarTop");
+	let cinemaBarTopSize = cinemaBarTop.size;
+	cinemaBarTopSize.bottom = barHeight;
+	cinemaBarTop.size = cinemaBarTopSize;
+
+	let cinemaBarBottom = Engine.GetGUIObjectByName("cinemaBarBottom");
+	let cinemaBarBottomSize = cinemaBarBottom.size;
+	cinemaBarBottomSize.top = -barHeight;
+	cinemaBarBottom.size = cinemaBarBottomSize;
 }
 
 // TODO: Use event subscription onSimulationUpdate, onEntitySelectionChange, onPlayerViewChange, ... instead
