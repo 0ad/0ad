@@ -18,8 +18,8 @@ class HotkeyMetadata
 		let hotkey_i = 0;
 		let categories = {
 			[this.DEFAULT_CATEGORY]: {
-				"name": markForTranslation("Other Hotkeys"),
-				"desc": markForTranslation("Other Hotkeys"),
+				"name": translate(this.DefaultCategoryString),
+				"desc": translate(this.DefaultCategoryString),
 			}
 		};
 		for (let file of files)
@@ -65,3 +65,5 @@ class HotkeyMetadata
 		return Engine.ListDirectoryFiles("gui/hotkeys/spec/", "*.json");
 	}
 }
+
+HotkeyMetadata.prototype.DefaultCategoryString = markForTranslation("Other Hotkeys");

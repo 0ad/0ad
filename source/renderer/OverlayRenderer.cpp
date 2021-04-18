@@ -773,7 +773,8 @@ void OverlayRenderer::RenderSphereOverlays()
 		transform.Scale(sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
 		transform.Translate(sphere->m_Center);
 
-		shader->Uniform(str_transform, transform);
+		shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+		shader->Uniform(str_instancingTransform, transform);
 
 		shader->Uniform(str_color, sphere->m_Color);
 

@@ -121,7 +121,7 @@ class HotkeysPage
 			let hotkey = hotkeyList.list_data[hotkeyList.hovered];
 			hotkeyList.tooltip = this.metadata.hotkeys[hotkey]?.desc ?
 						translateWithContext("hotkey metadata", this.metadata.hotkeys[hotkey]?.desc) :
-						translate(markForTranslation("No tooltip available"));
+						translate(this.UnavailableTooltipString);
 		}
 	}
 
@@ -194,3 +194,5 @@ function init()
 {
 	let hotkeyPage = new HotkeysPage(new HotkeyMetadata());
 }
+
+HotkeysPage.prototype.UnavailableTooltipString = markForTranslation("No tooltip available.");
