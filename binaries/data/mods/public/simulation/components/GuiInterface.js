@@ -1790,6 +1790,18 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 	return false;
 };
 
+GuiInterface.prototype.PlaySoundForPlayer = function(player, data)
+{
+	let playerEntityID = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetPlayerByID(player);
+	let cmpSound = Engine.QueryInterface(playerEntityID, IID_Sound);
+	if (!cmpSound)
+		return;
+
+	let soundGroup = cmpSound.GetSoundGroup(data.name);
+	if (soundGroup)
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager).PlaySoundGroupForPlayer(soundGroup, player);
+};
+
 GuiInterface.prototype.PlaySound = function(player, data)
 {
 	if (!data.entity)
@@ -2088,6 +2100,7 @@ let exposedFunctions = {
 	"SetWallPlacementPreview": 1,
 	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
+	"PlaySoundForPlayer": 1,
 	"FindIdleUnits": 1,
 	"HasIdleUnits": 1,
 	"GetTradingRouteGain": 1,
