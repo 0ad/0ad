@@ -35,5 +35,3 @@ WeightedList.prototype.randomItem = function()
 	}
 	return undefined;
 };
-
-Engine.RegisterGlobal("WeightedList", WeightedList);

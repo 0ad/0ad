@@ -1,5 +1,3 @@
-Engine.LoadHelperScript("MultiKeyMap.js");
-
 function setup_keys(map)
 {
 	map.AddItem("prim_a", "item_a", null, "sec_a");

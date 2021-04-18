@@ -1,4 +1,3 @@
-Engine.LoadHelperScript("MultiKeyMap.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Health.js");
