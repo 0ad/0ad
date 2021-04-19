@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-12 07:11+0000\n"
-"PO-Revision-Date: 2021-04-12 10:22+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 16:53+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,60 @@ msgstr "Gutxitu objektiboaren osasun puntuak."
 msgctxt "effect caused by an attack"
 msgid "Damage"
 msgstr "Kaltea"
+
+#: simulation/data/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Indar gordinak eragindako kaltea, esaterako borra batekin edo zanpatuz"
+
+#: simulation/data/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Zanpatu"
+
+#: simulation/data/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr "Objektuak erretzeagatik sortutako kalteak, lastargia edo su gezia kasu."
+
+#: simulation/data/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Sua"
+
+#: simulation/data/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Objektu zorrotzek moztuz edo ebakiz eragindako kaltea, esaterako ezpata edo aizkoraz"
+
+#: simulation/data/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Moztu"
+
+#: simulation/data/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Punta zorrotzezko objektuek eragindako kaltea, esaterako gezi edo latzaz."
+
+#: simulation/data/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Zulatu"
+
+#: simulation/data/damage_types/poison.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by venomous or poisoned objects, like a snake or a poisoned "
+"weapon."
+msgstr "Objektu pozoitsu edo pozoituek sortutako kalteak, suge edo arma pozoitu batek kasu."
+
+#: simulation/data/damage_types/poison.jsonname
+msgctxt "damage type"
+msgid "Poison"
+msgstr "Pozoia"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -547,11 +601,11 @@ msgstr "Tilapia"
 msgid "Tuna"
 msgstr "Hegalaburra"
 
-#: simulation/templates/gaia/fruit/apple.xml:4
+#: simulation/templates/gaia/fruit/apple.xml:7
 msgid "Apple"
 msgstr "Sagarrondoa"
 
-#: simulation/templates/gaia/fruit/banana.xml:4
+#: simulation/templates/gaia/fruit/banana.xml:7
 msgid "Banana"
 msgstr "Banana"
 
@@ -563,13 +617,13 @@ msgstr "Banana"
 msgid "Berries"
 msgstr "Baiak"
 
-#: simulation/templates/gaia/fruit/date.xml:4
+#: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
 msgstr "Datil-palmondoa"
 
-#: simulation/templates/gaia/fruit/fig.xml:7
+#: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
 msgstr "Pikondoa"
 
@@ -577,7 +631,7 @@ msgstr "Pikondoa"
 msgid "Grapes"
 msgstr "Mahatsak"
 
-#: simulation/templates/gaia/fruit/olive.xml:4
+#: simulation/templates/gaia/fruit/olive.xml:7
 msgid "Olive"
 msgstr "Olibondoa"
 
@@ -883,6 +937,10 @@ msgstr "Oihan tropikaleko zuhaitza"
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
 msgstr "Eraikitzailea"
+
+#: simulation/templates/mixins/mercenary.xml:13
+msgid "Mercenary"
+msgstr "Mertzenarioa"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

@@ -23,7 +23,7 @@
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # d69a1a6ea17338ef5ba4fd2e2774c22d_8ea4641 <b28583627f497114f41a687813aea539_200530>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2014
-# Mark Munkacsi <munkacsimark@gmail.com>, 2020
+# Mark Munkacsi <markmunkacsi@protonmail.com>, 2020
 # Nagy András <asd0707@freemail.hu>, 2014-2015
 # Peter Darvasi <darvasipeter@windowslive.com>, 2013-2014
 # Péter Dóbé <dobepeter@gmail.com>, 2017
@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-19 09:18+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,16 +114,16 @@ msgstr "Játéktípus"
 msgid "Configure AI: %(description)s."
 msgstr "MI beállítása: %(description)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:156
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
 msgstr "Játékos választása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:246
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "MI: %(ai)s"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:281
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
 msgstr "Nincs hozzárendelve"
 
@@ -182,11 +182,11 @@ msgstr "Térképek tallózása"
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Nyomd meg az összes elérhető térkép megtekintéséhez: %(hotkey)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:34
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
 msgstr "Csalások"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:37
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
 msgstr "Csalás használhatóság váltása."
 
@@ -349,28 +349,28 @@ msgstr "Táj"
 msgid "Select one of the landscapes of this map."
 msgstr "Válaszd ki a térkép táját."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:58
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
 msgid "Map Filter"
 msgstr "Térkép szűrő"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:66
 msgid "Select a map filter."
 msgstr "Térkép szűrő kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:102
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:104
 msgid "Select Map"
 msgstr "Térkép választása"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:105
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:107
 msgid "Select a map to play on."
 msgstr "Térkép kiválasztása a játékhoz."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:111
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:113
 msgctxt "map selection"
 msgid "Random"
 msgstr "Véletlenszerű"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:114
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:116
 msgid "Pick any of the given maps at random."
 msgstr "A létező pályák közül véletlenszerűen választva."
 
@@ -398,20 +398,20 @@ msgstr "Játékosok száma"
 msgid "Select number of players."
 msgstr "Játékosok számának kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
 msgstr "Népességkorlát"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:57
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
 msgstr "Népességhatár kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:60
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Játékosonként"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:61
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
@@ -752,86 +752,86 @@ msgstr "Betöltés"
 msgid "Loading map data. Please wait…"
 msgstr "Térképadatok betöltése. Légy türelmes!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):16
+#: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
 msgstr "Játszma beállítás"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:60
+#: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)s játéka"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:124
+#: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
 msgstr "Adj meg egy érvényes kiszolgálónevet."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:132
+#: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
 msgstr "A kiszolgáló port száma %(min)s és %(max)s között kell legyen."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:151
+#: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
 msgstr "Csatlakozás a kiszolgálóhoz…"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:166
+#: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
 msgstr "A kiszolgáló nem fut."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:167
+#: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
 msgstr "A jelszó érvénytelen."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:168
+#: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
 msgstr "Kitiltottak."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:171
+#: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[érvénytelen érték: %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:179
+#: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
 msgstr "A kiszolgálóhoz kapcsolódás sikertelen."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:181
+#: gui/gamesetup_mp/gamesetup_mp.js:180
 msgid "Connection failed"
 msgstr "Sikertelen kapcsolódás"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:193
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Hálózati üzenet: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:288
+#: gui/gamesetup_mp/gamesetup_mp.js:275
 msgid "Registering with server..."
 msgstr "Regisztráció a kiszolgálón…"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:294
+#: gui/gamesetup_mp/gamesetup_mp.js:281
 msgid "Game has already started, rejoining..."
 msgstr "A játék már elkezdődött, újrakapcsolódás…"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:373
+#: gui/gamesetup_mp/gamesetup_mp.js:360
 msgid "Game name already in use."
 msgstr "A játéknév már használatban van."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388
+#: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Nem hozható létre játék: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
-#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
+#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
+#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
 msgid "Error"
 msgstr "Hiba"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Nem lehet csatlakozni a játékhoz: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:474
+#: gui/gamesetup_mp/gamesetup_mp.js:461
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s játéka"
@@ -1293,26 +1293,12 @@ msgstr "„És Karthágónak pusztulnia kell.” \\n– idősebb Cato, aki kés�
 
 #: gui/text/quotes.txt:56
 msgid ""
-"“If a king is energetic, his subjects will be equally energetic.” \\n— "
-"Chanakya (“Arthashastra”, I. “Concerning Discipline”, chapter 19)"
-msgstr "„Ha a király erőteljes, akkor az alattvalói ugyanolyan erőteljesek lesznek.” \\n– Csánakja („Artasasztra”, I. „A fegyelemről”, 19. fejezet)"
-
-#: gui/text/quotes.txt:57
-msgid ""
-"“Whoever imposes severe punishment becomes repulsive to the people; while he"
-" who awards mild punishment becomes contemptible. But whoever imposes "
-"punishment as deserved becomes respectable.” \\n— Chanakya (“Arthashastra”, "
-"I. “Concerning Discipline”, chapter 4)"
-msgstr "„Aki túl szigorú büntetéseket ró ki az taszító lesz a nép számára; míg aki enyhét az megvetendő lesz. De aki megérdemelt büntetést ad, kiérdemli a tiszteletet.” - Csánakja („Artasasztra”, I. „A fegyelemről”, 4. fejezet)"
-
-#: gui/text/quotes.txt:58
-msgid ""
 "“We did not flinch but gave our lives to save Greece when her fate hung on a"
 " razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
 msgstr ""
 
-#: gui/text/quotes.txt:59
+#: gui/text/quotes.txt:57
 msgid ""
 "“Then the blood really flowed, for the two lines were so close that shield "
 "struck against shield, and they drove their swords into each other's faces. "
@@ -1321,21 +1307,21 @@ msgid ""
 "(“Histories of Alexander the Great”, III. 11.5)"
 msgstr ""
 
-#: gui/text/quotes.txt:60
+#: gui/text/quotes.txt:58
 msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
 msgstr "„Én Kürosz vagyok, aki a perzsák birodalmát alapította. Ne irigyeld tőlem azt a kevés földet, amely testemet fedi.” \\n– Nagy Kürosz sírfelirata (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 69. bekezdés)"
 
-#: gui/text/quotes.txt:61
+#: gui/text/quotes.txt:59
 msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
 msgstr ""
 
-#: gui/text/quotes.txt:62
+#: gui/text/quotes.txt:60
 msgid ""
 "“Phraortes was captured and brought before me. I cut off his nose, his ears,"
 " and his tongue, and I put out one eye, and he was kept in chains at my "
@@ -1345,37 +1331,37 @@ msgid ""
 "inscription, column II, 32)"
 msgstr ""
 
-#: gui/text/quotes.txt:63
+#: gui/text/quotes.txt:61
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
 msgstr ""
 
-#: gui/text/quotes.txt:64
+#: gui/text/quotes.txt:62
 msgid ""
 "“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
 msgstr ""
 
-#: gui/text/quotes.txt:65
+#: gui/text/quotes.txt:63
 msgid ""
 "“Physical strength is only noble in cattle, it is strength of character that"
 " is noble in men.” \\n— Democritus (fragment)"
 msgstr ""
 
-#: gui/text/quotes.txt:66
+#: gui/text/quotes.txt:64
 msgid ""
 "“It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.” \\n— Demosthenes, in one of his many speeches against the rising"
 " Philip II of Macedon (“Olynthiac II”, 10)"
 msgstr "„Lehetetlen tartós hatalmat alapítani igazságtalanság, hazugságok és árulás mellett.” \\n– Démoszthenész, egyik beszédében a feltörekvő II. Philipposz makedón király ellen („II. Olünthoszi beszéd”, 10.)"
 
-#: gui/text/quotes.txt:67
+#: gui/text/quotes.txt:65
 msgid ""
 "“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
 msgstr ""
 
-#: gui/text/quotes.txt:68
+#: gui/text/quotes.txt:66
 msgid ""
 "“The Macedonians first raised an unearthly shout followed by the Persians "
 "answering, so that the whole hillside bordering the battlefield echoed back "
@@ -1384,7 +1370,7 @@ msgid ""
 "about the Battle of Issus (“The Library of History”, XVII., sec. 33)"
 msgstr ""
 
-#: gui/text/quotes.txt:69
+#: gui/text/quotes.txt:67
 msgid ""
 "“Brasidas, taking his stand on the gangway, fought off from there the "
 "multitude of Athenians who converged upon him. And at the outset he slew "
@@ -1394,7 +1380,7 @@ msgid ""
 "History”, XXII., sec. 62)"
 msgstr ""
 
-#: gui/text/quotes.txt:70
+#: gui/text/quotes.txt:68
 msgid ""
 "“Plato had defined man as an animal, biped and featherless, and was "
 "applauded. Diogenes \\[of Sinope] plucked a fowl and brought it into the "
@@ -1404,88 +1390,88 @@ msgid ""
 " 40)"
 msgstr ""
 
-#: gui/text/quotes.txt:71
+#: gui/text/quotes.txt:69
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
 msgstr ""
 
-#: gui/text/quotes.txt:72
+#: gui/text/quotes.txt:70
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
 msgstr ""
 
-#: gui/text/quotes.txt:73
+#: gui/text/quotes.txt:71
 msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
 msgstr ""
 
-#: gui/text/quotes.txt:74
+#: gui/text/quotes.txt:72
 msgid ""
 "“The victor is not victorious if the vanquished does not consider himself "
 "so.” \\n— Ennius (“Annales”, fragment 31.493)"
 msgstr ""
 
-#: gui/text/quotes.txt:75
+#: gui/text/quotes.txt:73
 msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
 msgstr "„Itt fekszünk, vándor, vidd hírül a spártaiaknak: megcselekedtük, amit megkövetelt a haza.” \\n– Leónidasz és katonái számára állított síremlék felirata Thermopülainál (Hérodotosz: Történelem, VII. 228.)"
 
-#: gui/text/quotes.txt:76
+#: gui/text/quotes.txt:74
 msgid ""
 "“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
 "(“Iphigenia in Tauris”)"
 msgstr "„A gyáva hátat fordít, míg a bátor ember a veszélyt választja.” \\n– Euripidész („Iphigeneia Tauriszban”)"
 
-#: gui/text/quotes.txt:77
+#: gui/text/quotes.txt:75
 msgid ""
 "“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
 "Euripides (“Iphigenia in Tauris”)"
 msgstr ""
 
-#: gui/text/quotes.txt:78
+#: gui/text/quotes.txt:76
 msgid ""
 "“Cowards do not count in battle; they are there, but not in it.” \\n— "
 "Euripides (“Meleager”)"
 msgstr ""
 
-#: gui/text/quotes.txt:79
+#: gui/text/quotes.txt:77
 msgid ""
 "“Chance fights ever on the side of the prudent.” \\n— Euripides "
 "(“Pirithous”)"
 msgstr ""
 
-#: gui/text/quotes.txt:80
+#: gui/text/quotes.txt:78
 msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
 msgstr ""
 
-#: gui/text/quotes.txt:81
+#: gui/text/quotes.txt:79
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
 msgstr "„Jöttem, láttam, győztem.” \\n– Caesar, miután leverte II. Pharnakész pontoszi királyt az első rohammal (Plutarkhosz, „Párhuzamos életrajzok”, „Caius Iulius Caesar”, 50. bekezdés)"
 
-#: gui/text/quotes.txt:82
+#: gui/text/quotes.txt:80
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
 msgstr "„Az emberek szívesen elhiszik azt, amire vágynak.” \\n– Caesar („De Bello Gallico”, III. 18.)"
 
-#: gui/text/quotes.txt:83
+#: gui/text/quotes.txt:81
 msgid ""
 "“It is not the well-fed long-haired man I fear, but the pale and the hungry "
 "looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
 msgstr ""
 
-#: gui/text/quotes.txt:84
+#: gui/text/quotes.txt:82
 msgid ""
 "“After fighting from noon almost to sunset, with victory doubtful, the "
 "Germans, on one side charged the enemy in a compact body, and drove them "
@@ -1494,7 +1480,7 @@ msgid ""
 "VII. 80)"
 msgstr ""
 
-#: gui/text/quotes.txt:85
+#: gui/text/quotes.txt:83
 msgid ""
 "“All the centurions of the fourth cohort were slain, and the standard-bearer"
 " killed, the standard itself lost, almost all the centurions of the other "
@@ -1504,7 +1490,7 @@ msgid ""
 "\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
 msgstr ""
 
-#: gui/text/quotes.txt:86
+#: gui/text/quotes.txt:84
 msgid ""
 "“But the enemy \\[…] displayed such great courage, that when the front rank "
 "had fallen the men behind them stood on them and continue the fight from on "
@@ -1514,39 +1500,39 @@ msgid ""
 "about the Battle of the Sabis (“De Bello Gallico”, II. 27)"
 msgstr ""
 
-#: gui/text/quotes.txt:87
+#: gui/text/quotes.txt:85
 msgid ""
 "“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
 msgstr ""
 
-#: gui/text/quotes.txt:88
+#: gui/text/quotes.txt:86
 msgid ""
 "“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
 " when passing through a barbarian village in the Alps (Plutarch, “Parallel "
 "Lives”, “Caesar”, sec. 11)"
 msgstr ""
 
-#: gui/text/quotes.txt:89
+#: gui/text/quotes.txt:87
 msgid ""
 "“Stop quoting laws, we carry weapons!” \\n— Pompey (Plutarch, “Parallel "
 "Lives”, “Pompey”, sec. 10)"
 msgstr "„Ne idézd a törvényeket, fegyverünk van!” \\n– Pompeius (Plutarkhosz, „Párhuzamos életrajzok”, 10. bekezdés)"
 
-#: gui/text/quotes.txt:90
+#: gui/text/quotes.txt:88
 msgid ""
 "“If a man put out the eye of another man, his eye shall be put out.” \\n— "
 "Hammurabi (Hammurabi's Code, sec. 196)"
 msgstr "„Ha valaki másnak a szemét kioltja: szemét oltsák ki.” \\n– Hammurapi (Hammurapi törvényei, 196. §)"
 
-#: gui/text/quotes.txt:91
+#: gui/text/quotes.txt:89
 msgid ""
 "“I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.” \\n— Hannibal (Polybius, “Histories”, III. 85)"
 msgstr ""
 
-#: gui/text/quotes.txt:92
+#: gui/text/quotes.txt:90
 msgid ""
 "“Let us now end the anxiety of the Romans, who can't wait for the death of "
 "an old man.” \\n— Hannibal's last words before his suicide, in exile with "
@@ -1554,7 +1540,7 @@ msgid ""
 "Rome”, XXXIX. 51)"
 msgstr ""
 
-#: gui/text/quotes.txt:93
+#: gui/text/quotes.txt:91
 msgid ""
 "“Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
 "world as theirs and subject to their pleasure. With whom we are to be at "
@@ -1562,57 +1548,57 @@ msgid ""
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr "„Ez a végsőkig kegyetlen és gőgös nép \\[a rómaiak] mindenen uralkodni, mindenütt parancsolni akar. Úgy véli, egyedül ő döntheti el, ki ellen viselhetünk háborút, s kivel élhetünk békében.” \\n– Hannibál, a seregéhez szólva (Livius, „A római nép története”, XXI. könyv, 44. szakasz)"
 
-#: gui/text/quotes.txt:94
+#: gui/text/quotes.txt:92
 msgid ""
 "“You must be brave and discard all hopes of anything but victory or death.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr ""
 
-#: gui/text/quotes.txt:95
+#: gui/text/quotes.txt:93
 msgid ""
 "“War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
 "Refutation of all Heresies”, IX. 4)"
 msgstr ""
 
-#: gui/text/quotes.txt:96
+#: gui/text/quotes.txt:94
 msgid ""
 "“You could not step twice into the same river.” \\n— Heraclitus (Plato, "
 "“Cratylus”, 402a)"
 msgstr "„Nem léphetsz kétszer ugyanabba a folyóba.” \\n– Hérakleitosz (Platón: „Kratülosz”, 402a)"
 
-#: gui/text/quotes.txt:97
+#: gui/text/quotes.txt:95
 msgid ""
 "“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
 "Histories”, III. 52)"
 msgstr ""
 
-#: gui/text/quotes.txt:98
+#: gui/text/quotes.txt:96
 msgid ""
 "“In soft regions are born soft men.” \\n— Herodotus (“The Histories”, IX. "
 "122)"
 msgstr ""
 
-#: gui/text/quotes.txt:99
+#: gui/text/quotes.txt:97
 msgid ""
 "“This is the bitterest pain among men, to have much knowledge but no power.”"
 " \\n— Herodotus (“The Histories”, IX. 16)"
 msgstr "„Az a legkeserűbb fájdalom az emberek közt, hogy túl sok tudáshoz nem társul hatalom.” \\n– Hérodotosz („Történelem”, IX. 16.)"
 
-#: gui/text/quotes.txt:100
+#: gui/text/quotes.txt:98
 msgid ""
 "“Although he \\[Xerxes] had plenty of troops he had few men.” \\n— Herodotus"
 " (“The Histories”, VII. 210)"
 msgstr ""
 
-#: gui/text/quotes.txt:101
+#: gui/text/quotes.txt:99
 msgid ""
 "“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
 msgstr "„A lakedaimóniak emlékezetes csatát vívtak; világossá tették, hogy ők voltak a szakértők, és hogy amatőrök ellen harcoltak.” \\n– Hérodotosz („Történelem”, VII. 211.)"
 
-#: gui/text/quotes.txt:102
+#: gui/text/quotes.txt:100
 msgid ""
 "“Being informed \\[…] that when the Barbarians discharged their arrows they "
 "obscured the light of the sun by the multitude of the arrows, he "
@@ -1623,7 +1609,7 @@ msgid ""
 "“Histories”, VII. 226)"
 msgstr ""
 
-#: gui/text/quotes.txt:103
+#: gui/text/quotes.txt:101
 msgid ""
 "“The judgment given to Croesus by each of the two oracles \\[Delphi and "
 "Thebes] was the same: If he sent an army against the Persians, he would "
@@ -1631,7 +1617,7 @@ msgid ""
 "Croesus destroyed was his own (“The Histories”, I. 53)"
 msgstr ""
 
-#: gui/text/quotes.txt:104
+#: gui/text/quotes.txt:102
 msgid ""
 "“He \\[King Darius] asked who the Athenians were, and, being informed, "
 "called for his bow, and placing an arrow on the string, shot upward into the"
@@ -1641,7 +1627,7 @@ msgid ""
 "Histories”, V. 105)"
 msgstr ""
 
-#: gui/text/quotes.txt:105
+#: gui/text/quotes.txt:103
 msgid ""
 "“He \\[King Darius] asked one of his servants every day, when his dinner was"
 " spread, three times to repeat to him: Master, remember the Athenians!” \\n—"
@@ -1649,39 +1635,53 @@ msgid ""
 " the Persian Wars (“The Histories”, V. 105)"
 msgstr ""
 
-#: gui/text/quotes.txt:106
+#: gui/text/quotes.txt:104
 msgid ""
 "“Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
 msgstr "„Durva legyőzőjén győzött a levert Görögország, s pór népét Latiumnak művészetre kapatta.” \\n– Horatius („Episztolák”, I. episztola, 156-157.)"
 
-#: gui/text/quotes.txt:107
+#: gui/text/quotes.txt:105
 msgid ""
 "“Anger is a momentary madness, so control your passion or it will control "
 "you.” \\n— Horace (“Epistles”, epistle II., 62)"
 msgstr ""
 
-#: gui/text/quotes.txt:108
+#: gui/text/quotes.txt:106
 msgid ""
 "“It is your concern when your neighbor's wall is on fire.” \\n— Horace "
 "(“Epistles”, epistle XVIII., 84)"
 msgstr ""
 
-#: gui/text/quotes.txt:109
+#: gui/text/quotes.txt:107
 msgid ""
 "“It is sweet and honorable to die for one's country.” \\n— Horace (“Odes”, "
 "III., ode II., 13)"
 msgstr "„Édes és dicső meghalni a hazáért.” \\n– Horatius („Ódák”, III., II. óda, 13.)"
 
-#: gui/text/quotes.txt:110
+#: gui/text/quotes.txt:108
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
 msgstr "„Kurus vagyok, a világ királya…”\\n – Felirat (Kürosz-henger) "
 
-#: gui/text/quotes.txt:111
+#: gui/text/quotes.txt:109
 msgid ""
 "“In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.” \\n— Croesus, king of Lydia (Herodotus, “The Histories”, I. 87)"
 msgstr "„Békeidőben a fiak temetik el az apjukat, de háborúban az apák a fiaikat.” \\n– Krőzus, Lüdia királya (Hérodotosz, „Történelem”, I., 87.)"
+
+#: gui/text/quotes.txt:110
+msgid ""
+"“Whoever imposes severe punishment becomes repulsive to the people; while he"
+" who awards mild punishment becomes contemptible. But whoever imposes "
+"punishment as deserved becomes respectable.”\\n— Kauṭilya (“Arthashastra”, "
+"I.4.8–10)"
+msgstr ""
+
+#: gui/text/quotes.txt:111
+msgid ""
+"“If a king is energetic, his subjects will be equally energetic.”\\n— "
+"Kauṭilya (“Arthashastra” I.19.1)"
+msgstr ""
 
 #: gui/text/quotes.txt:112
 msgid ""

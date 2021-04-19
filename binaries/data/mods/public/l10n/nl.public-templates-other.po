@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-12 07:11+0000\n"
-"PO-Revision-Date: 2021-04-12 10:22+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 19:04+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -58,6 +58,60 @@ msgstr "Vermindert de gezondheid of sterkte van een doelwit."
 msgctxt "effect caused by an attack"
 msgid "Damage"
 msgstr "Schade"
+
+#: simulation/data/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Schade veroorzaakt door brute kracht, zoals met een knuppel of door vertrappen."
+
+#: simulation/data/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Verpletter"
+
+#: simulation/data/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr "Schade veroorzaakt door brandende objecten zoals toortsen of een brandende pijl."
+
+#: simulation/data/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Vuur"
+
+#: simulation/data/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Schade veroorzaakt door snijden of hakken met een scherp voorwerp zoals een zwaard of een bijl."
+
+#: simulation/data/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Hak"
+
+#: simulation/data/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Schade veroorzaakt door scherpe puntige voorwerpen zoals pijlen of speren."
+
+#: simulation/data/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Doorboor"
+
+#: simulation/data/damage_types/poison.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by venomous or poisoned objects, like a snake or a poisoned "
+"weapon."
+msgstr "Schade veroorzaakt door giftige of vergiftigde objecten zoals een slang of een vergiftigd wapen."
+
+#: simulation/data/damage_types/poison.jsonname
+msgctxt "damage type"
+msgid "Poison"
+msgstr "Vergif"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -557,11 +611,11 @@ msgstr "Tilapia"
 msgid "Tuna"
 msgstr "Tonijn"
 
-#: simulation/templates/gaia/fruit/apple.xml:4
+#: simulation/templates/gaia/fruit/apple.xml:7
 msgid "Apple"
 msgstr "Appelboom"
 
-#: simulation/templates/gaia/fruit/banana.xml:4
+#: simulation/templates/gaia/fruit/banana.xml:7
 msgid "Banana"
 msgstr "Banaan"
 
@@ -573,13 +627,13 @@ msgstr "Banaan"
 msgid "Berries"
 msgstr "Bessen"
 
-#: simulation/templates/gaia/fruit/date.xml:4
+#: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
 msgstr "Dadelboom"
 
-#: simulation/templates/gaia/fruit/fig.xml:7
+#: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
 msgstr "Vijg"
 
@@ -587,7 +641,7 @@ msgstr "Vijg"
 msgid "Grapes"
 msgstr "Druiven"
 
-#: simulation/templates/gaia/fruit/olive.xml:4
+#: simulation/templates/gaia/fruit/olive.xml:7
 msgid "Olive"
 msgstr "Olijfboom"
 
@@ -893,6 +947,10 @@ msgstr "Regenwoudboom"
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
 msgstr "Bouwer"
+
+#: simulation/templates/mixins/mercenary.xml:13
+msgid "Mercenary"
+msgstr "Huurling"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

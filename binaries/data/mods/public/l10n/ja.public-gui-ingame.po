@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 07:29+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 07:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "降伏"
 msgid "Exit"
 msgstr "終了"
 
-#: gui/session/NetworkDelayOverlay.js:63
+#: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
 msgstr ""
@@ -681,19 +681,19 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "%(resourceType)s %(resourceAmount)sを%(playerName)sに貢ぎます。Shift+クリックで%(greaterAmount)s貢ぎます。"
 
-#: gui/session/input.js:173
+#: gui/session/input.js:174
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "基本射程：%(range)sメートル"
 
-#: gui/session/input.js:174
+#: gui/session/input.js:175
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "平均ボーナス射程：%(range)sメートル"
 
-#: gui/session/input.js:684
+#: gui/session/input.js:685
 msgid "Cannot build wall here!"
 msgstr "ここに壁は建設できません"
 
@@ -956,55 +956,55 @@ msgstr "現在の/最大の収集者数"
 msgid "(%(secondaryName)s)"
 msgstr ""
 
-#: gui/session/selection_details.js:451
+#: gui/session/selection_details.js:452
 msgid "Capture Points:"
 msgstr "占領ポイント:"
 
-#: gui/session/selection_details.js:459
+#: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr ""
 
-#: gui/session/selection_details.js:460
+#: gui/session/selection_details.js:461
 msgid "Garrison Size"
 msgstr ""
 
-#: gui/session/selection_details.js:465
+#: gui/session/selection_details.js:466
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:466
+#: gui/session/selection_details.js:467
 msgid "Carrying:"
 msgstr "積載 ："
 
-#: gui/session/selection_details.js:469 gui/session/selection_details.js:478
+#: gui/session/selection_details.js:470 gui/session/selection_details.js:479
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:474
+#: gui/session/selection_details.js:475
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:475
+#: gui/session/selection_details.js:476
 msgid "Loot:"
 msgstr "略奪"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:536
+#: gui/session/selection_details.js:537
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:560
+#: gui/session/selection_details.js:561
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:567
+#: gui/session/selection_details.js:568
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr "、"
@@ -1042,7 +1042,7 @@ msgstr "%(name)sを外に出す"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:861
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:863
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "プレイヤー：%(playername)s"
@@ -1080,55 +1080,55 @@ msgstr "人口上限の不足:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:726
+#: gui/session/selection_panels.js:728
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 
-#: gui/session/selection_panels.js:732
+#: gui/session/selection_panels.js:734
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "不足：%(entityCounts)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:735
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:787
 msgid "Cannot research while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1010
+#: gui/session/selection_panels.js:1012
 msgid "Cannot train while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1079
+#: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1085
+#: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1093
+#: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1098
+#: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1135
+#: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
 msgstr "アップグレードをキャンセル"
 
-#: gui/session/selection_panels.js:1150
+#: gui/session/selection_panels.js:1152
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1274,23 +1274,23 @@ msgid "Shift-click"
 msgstr "Shift+クリック"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
 msgid "Health"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
 msgstr "占領ポイント"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
 msgstr ""
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
 msgstr "経験"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):105
 msgid "Rank"
 msgstr "順位"
 
@@ -1647,77 +1647,81 @@ msgstr "確認画面を表示したくない場合は%(hotkey)sを使用して�
 msgid "Abort the current order."
 msgstr "現在の命令を中止します。"
 
-#: gui/session/unit_actions.js:1429
+#: gui/session/unit_actions.js:1430
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "選択したユニットへ建物やユニットに駐屯することを命令します。"
 
-#: gui/session/unit_actions.js:1450
+#: gui/session/unit_actions.js:1452
+msgid "Order the selected units to occupy a turret point."
+msgstr ""
+
+#: gui/session/unit_actions.js:1474
 msgid "Unload"
 msgstr "外に出す"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1494
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "選択したユニットを建造物、艦船または攻城兵器を修復することを命令します。"
 
-#: gui/session/unit_actions.js:1498
+#: gui/session/unit_actions.js:1515
 msgid "Focus on Rally Point."
 msgstr "集合地点に移動する。"
 
-#: gui/session/unit_actions.js:1535
+#: gui/session/unit_actions.js:1552
 msgid "Back to Work"
 msgstr "仕事に戻す"
 
-#: gui/session/unit_actions.js:1556
+#: gui/session/unit_actions.js:1573
 msgid "Order the selected units to guard a structure or unit."
 msgstr "選択したユニットを建造物またはユニットを護衛を命令します。"
 
-#: gui/session/unit_actions.js:1576
+#: gui/session/unit_actions.js:1593
 msgid "Remove guard"
 msgstr "護衛解除"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1595
+#: gui/session/unit_actions.js:1612
 msgid "Barter & Trade"
 msgstr "取引と交易"
 
-#: gui/session/unit_actions.js:1615
+#: gui/session/unit_actions.js:1632
 msgid "Patrol"
 msgstr "巡回"
 
-#: gui/session/unit_actions.js:1616
+#: gui/session/unit_actions.js:1633
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "建造物を避けながら、遭遇したすべての敵ユニットを攻撃します。"
 
-#: gui/session/unit_actions.js:1644
+#: gui/session/unit_actions.js:1661
 msgid "Press to allow allies to use this dropsite"
 msgstr "同盟国がこの回収施設を使用できるようにするには押してください"
 
-#: gui/session/unit_actions.js:1649
+#: gui/session/unit_actions.js:1666
 msgid "Press to prevent allies from using this dropsite"
 msgstr "同盟国がこの回収施設を使用しないようにするには押してください"
 
-#: gui/session/unit_actions.js:1684
+#: gui/session/unit_actions.js:1701
 msgid "The use of this dropsite is prohibited"
 msgstr "この回収施設の使用は禁止されています"
 
-#: gui/session/unit_actions.js:1690
+#: gui/session/unit_actions.js:1707
 msgid "Allies are allowed to use this dropsite."
 msgstr ""
 
-#: gui/session/unit_actions.js:1691
+#: gui/session/unit_actions.js:1708
 msgid "You are allowed to use this dropsite"
 msgstr "この回収施設を使用することは許可されています"
 
-#: gui/session/unit_actions.js:1755
+#: gui/session/unit_actions.js:1772
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "エンティティは、それを収集する前に破壊しなければならない"
 
-#: gui/session/unit_actions.js:1758
+#: gui/session/unit_actions.js:1775
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "半分に満たない占領ポイントしか所持していないため、このエンティティを破壊できません"
 
-#: gui/session/unit_actions.js:1761
+#: gui/session/unit_actions.js:1778
 msgid "This entity is undeletable"
 msgstr "このエンティティは削除できません"

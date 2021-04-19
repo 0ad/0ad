@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 07:29+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 07:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Atsistatydinti"
 msgid "Exit"
 msgstr "Išeiti"
 
-#: gui/session/NetworkDelayOverlay.js:63
+#: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
 msgstr ""
@@ -672,7 +672,7 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Siųsti %(resourceAmount)s%(resourceType)s duoklę %(playerName)s. Lyg2+spustelėti, kad nusiųsti %(greaterAmount)s."
 
-#: gui/session/input.js:173
+#: gui/session/input.js:174
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
@@ -681,7 +681,7 @@ msgstr[1] "Bazinis nuotolis: %(range)s m."
 msgstr[2] "Bazinis nuotolis: %(range)s m."
 msgstr[3] "Bazinis nuotolis: %(range)s m."
 
-#: gui/session/input.js:174
+#: gui/session/input.js:175
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
@@ -690,7 +690,7 @@ msgstr[1] "Vidutinis nuotolio priedas: %(range)s m."
 msgstr[2] "Vidutinis nuotolio priedas: %(range)s m."
 msgstr[3] "Vidutinis nuotolio priedas: %(range)s m."
 
-#: gui/session/input.js:684
+#: gui/session/input.js:685
 msgid "Cannot build wall here!"
 msgstr "Čia statyti sienos negalite!"
 
@@ -953,55 +953,55 @@ msgstr "Dabartinis / maksimalus rankiotojų skaičius"
 msgid "(%(secondaryName)s)"
 msgstr ""
 
-#: gui/session/selection_details.js:451
+#: gui/session/selection_details.js:452
 msgid "Capture Points:"
 msgstr "Užgrobimo taškai:"
 
-#: gui/session/selection_details.js:459
+#: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s: %(details)s\n"
 
-#: gui/session/selection_details.js:460
+#: gui/session/selection_details.js:461
 msgid "Garrison Size"
 msgstr "Sargybos Dydis"
 
-#: gui/session/selection_details.js:465
+#: gui/session/selection_details.js:466
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:466
+#: gui/session/selection_details.js:467
 msgid "Carrying:"
 msgstr "Neša:"
 
-#: gui/session/selection_details.js:469 gui/session/selection_details.js:478
+#: gui/session/selection_details.js:470 gui/session/selection_details.js:479
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:474
+#: gui/session/selection_details.js:475
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:475
+#: gui/session/selection_details.js:476
 msgid "Loot:"
 msgstr "Grobis:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:536
+#: gui/session/selection_details.js:537
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:560
+#: gui/session/selection_details.js:561
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:567
+#: gui/session/selection_details.js:568
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1039,7 +1039,7 @@ msgstr "Iškeldinti %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Vienas paspaudimas iškrausto 1. Lyg2+paspaudimas iškrausto visus to pačio tipo."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:861
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:863
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Žaidėjas: %(playername)s"
@@ -1077,7 +1077,7 @@ msgstr "Nepakankamas populiacijos talpumas:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:726
+#: gui/session/selection_panels.js:728
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1086,49 +1086,49 @@ msgstr[1] "%(class)s klasės subjektų: %(number)s"
 msgstr[2] "%(class)s klasės subjektų: %(number)s"
 msgstr[3] "%(class)s klasės subjektų: %(number)s"
 
-#: gui/session/selection_panels.js:732
+#: gui/session/selection_panels.js:734
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Liko: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:735
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:787
 msgid "Cannot research while upgrading."
 msgstr "Negalima tyrinėti, kol tobulinama."
 
-#: gui/session/selection_panels.js:1010
+#: gui/session/selection_panels.js:1012
 msgid "Cannot train while upgrading."
 msgstr "Negalima mokyti, kol tobulinama."
 
-#: gui/session/selection_panels.js:1079
+#: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1085
+#: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1093
+#: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1098
+#: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1135
+#: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
 msgstr "Atšaukti Tobulinimą"
 
-#: gui/session/selection_panels.js:1150
+#: gui/session/selection_panels.js:1152
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1295,23 +1295,23 @@ msgid "Shift-click"
 msgstr "Laikant shift spustelti"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
 msgid "Health"
 msgstr "Sveikata"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
 msgstr "Užgrobimo taškai"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
 msgstr "Puolimas ir Atsparumas"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
 msgstr "Patirtis"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):105
 msgid "Rank"
 msgstr "Rangas"
 
@@ -1698,77 +1698,81 @@ msgstr "Spauskite %(hotkey)s, kad nebūtų rodomas patvirtinimo dialogas."
 msgid "Abort the current order."
 msgstr "Atšaukti dabartinį įsakymą."
 
-#: gui/session/unit_actions.js:1429
+#: gui/session/unit_actions.js:1430
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Įsakyti pažymėtiems vienetams kraustytis į pastatą ar vienetą."
 
-#: gui/session/unit_actions.js:1450
+#: gui/session/unit_actions.js:1452
+msgid "Order the selected units to occupy a turret point."
+msgstr ""
+
+#: gui/session/unit_actions.js:1474
 msgid "Unload"
 msgstr "Išleisti"
 
-#: gui/session/unit_actions.js:1477
+#: gui/session/unit_actions.js:1494
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Įsakyti pažymėtiems vienetams pataisyti pastatą ar apgulties įrenginį."
 
-#: gui/session/unit_actions.js:1498
+#: gui/session/unit_actions.js:1515
 msgid "Focus on Rally Point."
 msgstr "Fokusuoti susitelkimo vietą."
 
-#: gui/session/unit_actions.js:1535
+#: gui/session/unit_actions.js:1552
 msgid "Back to Work"
 msgstr "Grįžti prie darbo"
 
-#: gui/session/unit_actions.js:1556
+#: gui/session/unit_actions.js:1573
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Įsakyti pažymėtiems vienetams saugoti pastatą ar vienetą."
 
-#: gui/session/unit_actions.js:1576
+#: gui/session/unit_actions.js:1593
 msgid "Remove guard"
 msgstr "Pašalinti sargybą"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1595
+#: gui/session/unit_actions.js:1612
 msgid "Barter & Trade"
 msgstr "Mainai ir prekyba"
 
-#: gui/session/unit_actions.js:1615
+#: gui/session/unit_actions.js:1632
 msgid "Patrol"
 msgstr "Patruliuoti"
 
-#: gui/session/unit_actions.js:1616
+#: gui/session/unit_actions.js:1633
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Pulti visus sutiktus priešų vienetus išvengiant statinių."
 
-#: gui/session/unit_actions.js:1644
+#: gui/session/unit_actions.js:1661
 msgid "Press to allow allies to use this dropsite"
 msgstr "Spustelėkite norėdami leisti sąjungininkams naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1649
+#: gui/session/unit_actions.js:1666
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Spustelėkite norėdami neleisti sąjungininkams naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1684
+#: gui/session/unit_actions.js:1701
 msgid "The use of this dropsite is prohibited"
 msgstr "Jums draudžiama naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1690
+#: gui/session/unit_actions.js:1707
 msgid "Allies are allowed to use this dropsite."
 msgstr "Sąjungininkams galima naudotis šiuo pakrovimu."
 
-#: gui/session/unit_actions.js:1691
+#: gui/session/unit_actions.js:1708
 msgid "You are allowed to use this dropsite"
 msgstr "Jums leidžiama naudoti šia aikštelę."
 
-#: gui/session/unit_actions.js:1755
+#: gui/session/unit_actions.js:1772
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Subjektas turi būti užmuštas prieš paimant išteklius."
 
-#: gui/session/unit_actions.js:1758
+#: gui/session/unit_actions.js:1775
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Negalite sunaikinti šio subjekto, nes turite mažiau nei pusę užgrobimo taškų."
 
-#: gui/session/unit_actions.js:1761
+#: gui/session/unit_actions.js:1778
 msgid "This entity is undeletable"
 msgstr "Šis subjektas negali būti panaikintas."

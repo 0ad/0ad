@@ -10,6 +10,7 @@
 # Daniel Muñoz <dani_m_1991@hotmail.com>, 2021
 # David Fernandez Carhuas <deivyelintelecto23@gmail.com>, 2015
 # Jesús Asenjo <jasenjot@gmail.com>, 2017
+# jorgman1 . <jorgman1@protonmail.com>, 2021
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
 # Juan Jaramillo <juanda097@protonmail.ch>, 2017
 # juan pablo Ferraro <ferrarojuanpablo@yahoo.es>, 2020
@@ -22,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-12 07:11+0000\n"
-"PO-Revision-Date: 2021-04-12 10:22+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-18 12:52+0000\n"
+"Last-Translator: jorgman1 . <jorgman1@protonmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,6 +62,60 @@ msgstr "Reduce la salud de un objetivo."
 msgctxt "effect caused by an attack"
 msgid "Damage"
 msgstr "Daño"
+
+#: simulation/data/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Daño causado por fuerza bruta, como con una porra o pisoteado."
+
+#: simulation/data/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Aplastamiento"
+
+#: simulation/data/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr ""
+
+#: simulation/data/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Fuego"
+
+#: simulation/data/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Daño causado por objetos cortantes afilados como una espada o un hacha."
+
+#: simulation/data/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Corte"
+
+#: simulation/data/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Daño causado por objetos puntiagudos afilados, como flechas o lanzas."
+
+#: simulation/data/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Perforación"
+
+#: simulation/data/damage_types/poison.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by venomous or poisoned objects, like a snake or a poisoned "
+"weapon."
+msgstr ""
+
+#: simulation/data/damage_types/poison.jsonname
+msgctxt "damage type"
+msgid "Poison"
+msgstr "veneno"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -560,11 +615,11 @@ msgstr "Tilapia"
 msgid "Tuna"
 msgstr "Atún"
 
-#: simulation/templates/gaia/fruit/apple.xml:4
+#: simulation/templates/gaia/fruit/apple.xml:7
 msgid "Apple"
 msgstr "Manzano"
 
-#: simulation/templates/gaia/fruit/banana.xml:4
+#: simulation/templates/gaia/fruit/banana.xml:7
 msgid "Banana"
 msgstr "Platanero"
 
@@ -576,13 +631,13 @@ msgstr "Platanero"
 msgid "Berries"
 msgstr "Frutos silvestres"
 
-#: simulation/templates/gaia/fruit/date.xml:4
+#: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
 msgstr "Palmera de dátiles"
 
-#: simulation/templates/gaia/fruit/fig.xml:7
+#: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
 msgstr "Higuera"
 
@@ -590,7 +645,7 @@ msgstr "Higuera"
 msgid "Grapes"
 msgstr "Uvas"
 
-#: simulation/templates/gaia/fruit/olive.xml:4
+#: simulation/templates/gaia/fruit/olive.xml:7
 msgid "Olive"
 msgstr "Olivo"
 
@@ -896,6 +951,10 @@ msgstr "Rainforest Tree"
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
 msgstr "Constructor"
+
+#: simulation/templates/mixins/mercenary.xml:13
+msgid "Mercenary"
+msgstr "Mercenario"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

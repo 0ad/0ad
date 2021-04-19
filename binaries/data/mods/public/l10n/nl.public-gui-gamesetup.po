@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-20 19:01+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 19:01+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -125,16 +125,16 @@ msgstr "Speltype"
 msgid "Configure AI: %(description)s."
 msgstr "Stel AI in: %(description)s"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:156
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
 msgstr "Selecteer speler."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:246
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:281
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
 msgstr "Niet toegewezen"
 
@@ -193,11 +193,11 @@ msgstr "Blader door de kaarten"
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Klik %(hotkey)s om de lijst met beschikbare kaarten te zien."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:34
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
 msgstr "Cheats"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:37
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
 msgstr "Zet de mogelijkheid om vals te spelen."
 
@@ -360,28 +360,28 @@ msgstr "Landschap"
 msgid "Select one of the landscapes of this map."
 msgstr "Selecteer een landschap voor deze kaart."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:58
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
 msgid "Map Filter"
 msgstr "Kaart Filter"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:66
 msgid "Select a map filter."
 msgstr "Selecteer een kaartfilter."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:102
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:104
 msgid "Select Map"
 msgstr "Selecteer Kaart"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:105
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:107
 msgid "Select a map to play on."
 msgstr "Selecteer een kaart om op te spelen."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:111
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:113
 msgctxt "map selection"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:114
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:116
 msgid "Pick any of the given maps at random."
 msgstr "Kies willekeurig een van de gegeven kaarten."
 
@@ -409,20 +409,20 @@ msgstr "Aantal Spelers"
 msgid "Select number of players."
 msgstr "Selecteer het aantal spelers"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
 msgstr "Maximum aantal inwoners"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:57
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
 msgstr "Selecteer een maximum aantal inwoners."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:60
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Per speler"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:61
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
@@ -763,86 +763,86 @@ msgstr "Laden"
 msgid "Loading map data. Please wait…"
 msgstr "Kaartgegevens laden. Een moment..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):16
+#: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
 msgstr "Wedstrijd instellen"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:60
+#: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "Spel van %(name)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:124
+#: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
 msgstr "Gelieve een geldige servernaam in te voeren."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:132
+#: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
 msgstr "Serverpoort moet een getal tussen %(min)s en %(max)szijn ."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:151
+#: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
 msgstr "Verbinden met de server..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:166
+#: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
 msgstr "Server is niet actief."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:167
+#: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
 msgstr "Ongeldig wachtwoord."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:168
+#: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
 msgstr "U werd verbannen."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:171
+#: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Ongeldige waarde %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:179
+#: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
 msgstr "Verbinden met de server mislukt."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:181
+#: gui/gamesetup_mp/gamesetup_mp.js:180
 msgid "Connection failed"
 msgstr "Verbindingsfout"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:193
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Netwerkbericht: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:288
+#: gui/gamesetup_mp/gamesetup_mp.js:275
 msgid "Registering with server..."
 msgstr "Registreren op de server..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:294
+#: gui/gamesetup_mp/gamesetup_mp.js:281
 msgid "Game has already started, rejoining..."
 msgstr "Het spel is al begonnen, weer meedoen..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:373
+#: gui/gamesetup_mp/gamesetup_mp.js:360
 msgid "Game name already in use."
 msgstr "Spelnaam wordt al gebruikt."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388
+#: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Kan het spel niet hosten: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
-#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
+#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
+#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
 msgid "Error"
 msgstr "Fout"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Kan niet verbinden met spel: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:474
+#: gui/gamesetup_mp/gamesetup_mp.js:461
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s's spel"
@@ -1304,26 +1304,12 @@ msgstr "\"En overigens ben ik van mening dat Carthago verwoest moet worden.\" \\
 
 #: gui/text/quotes.txt:56
 msgid ""
-"“If a king is energetic, his subjects will be equally energetic.” \\n— "
-"Chanakya (“Arthashastra”, I. “Concerning Discipline”, chapter 19)"
-msgstr "“Als een koning krachtig is, zullen zijn onderdanen net zo zijn.” \\n— Chanakya (“Arthashastra”, I. “Over discipline”, hoofdstuk 19)"
-
-#: gui/text/quotes.txt:57
-msgid ""
-"“Whoever imposes severe punishment becomes repulsive to the people; while he"
-" who awards mild punishment becomes contemptible. But whoever imposes "
-"punishment as deserved becomes respectable.” \\n— Chanakya (“Arthashastra”, "
-"I. “Concerning Discipline”, chapter 4)"
-msgstr "“Wie wreed straft wekt afkeer bij het volk; terwijl hij die mild straft wordt geminacht. Maar wie verdiende straffen oplegt wordt gerespecteerd.” \\n— Chanakya (“Arthashastra”, I. “Over discipline”, hoofdstuk 4)"
-
-#: gui/text/quotes.txt:58
-msgid ""
 "“We did not flinch but gave our lives to save Greece when her fate hung on a"
 " razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
 msgstr "\"Wij deinsden niet terug maar gaven ons leven om Griekenland te redden toen haar lot aan een zijden draad hing.\" \\n— Korinthisch grafschrift voor de gesneuvelden in de Perzische oorlogen. (Plutarchus, “Moralia”, “Over de slechtheid van Herodotus”, 870e)"
 
-#: gui/text/quotes.txt:59
+#: gui/text/quotes.txt:57
 msgid ""
 "“Then the blood really flowed, for the two lines were so close that shield "
 "struck against shield, and they drove their swords into each other's faces. "
@@ -1332,21 +1318,21 @@ msgid ""
 "(“Histories of Alexander the Great”, III. 11.5)"
 msgstr "“Toen begon het bloed echt te stromen, want de linies waren zo dicht bij elkaar dat schild tegen schild stootte, en ze staken elkaar het zwaard in het gezicht. Het was voor de verzwakte of de lafhartige onmogelijk zich terug te trekken; man tegen man vochten ze alsof in een duel.” \\n— Curtius Rufus over de Slag bij Issos (“Historiën van Alexander de Grote”, III. 11.5)"
 
-#: gui/text/quotes.txt:60
+#: gui/text/quotes.txt:58
 msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
 msgstr "\"Ik ben Cyrus, die de Perzen hun koninkrijk won. Misgun me daarom niet het stukje aarde dat mijn botten bedekt.\" \\n— Het grafschrift van Cyrus de Grote (Plutarchus, “Parallelle levens”, “Alexander”, sec. 69)"
 
-#: gui/text/quotes.txt:61
+#: gui/text/quotes.txt:59
 msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
 msgstr "“Ik ben Darius, de grote koning, koning der koningen, koning van Perzië, koning van de landen, \\[…] 23 landen in totaal.” \\n— Darius I (Behistuninscriptie, kolom I, 1–6)"
 
-#: gui/text/quotes.txt:62
+#: gui/text/quotes.txt:60
 msgid ""
 "“Phraortes was captured and brought before me. I cut off his nose, his ears,"
 " and his tongue, and I put out one eye, and he was kept in chains at my "
@@ -1356,37 +1342,37 @@ msgid ""
 "inscription, column II, 32)"
 msgstr "“Phraortes was gevangen genomen en werd voor mij gebracht. Ik sneed zijn neus af, zijn oren en zijn tong, en ik stak hem een oog uit. Hij werd geketend bij de ingang van mijn paleis gezet, zodat alle mensen hem daar zagen. Daarna kruisigde ik hem in Ecbatana; en de mannen die zijn belangrijkste volgelingen waren \\[…] stroopte ik de huid af en hing die op gevuld met stro.” \\n— Darius I (Behistuninscriptie, kolom II, 32)"
 
-#: gui/text/quotes.txt:63
+#: gui/text/quotes.txt:61
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
 msgstr "“Door weinig te verlangen maakt een arm man zichzelf rijk.” \\n— Democritus (fragment)"
 
-#: gui/text/quotes.txt:64
+#: gui/text/quotes.txt:62
 msgid ""
 "“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
 msgstr "“Het is moeilijk geregeerd te worden door je mindere.” \\n— Democritus (fragment)"
 
-#: gui/text/quotes.txt:65
+#: gui/text/quotes.txt:63
 msgid ""
 "“Physical strength is only noble in cattle, it is strength of character that"
 " is noble in men.” \\n— Democritus (fragment)"
 msgstr "“Fysieke kracht is alleen bij vee bewonderenswaardig, het is een sterk karakter waardoor mensen bewonderd worden.” \\n— Democritus (fragment)"
 
-#: gui/text/quotes.txt:66
+#: gui/text/quotes.txt:64
 msgid ""
 "“It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.” \\n— Demosthenes, in one of his many speeches against the rising"
 " Philip II of Macedon (“Olynthiac II”, 10)"
 msgstr "“Het is niet mogelijk een bestendige macht te vestigen gebaseerd op onrecht, meineed en bedrog.” \\n— Demosthenes, in een van zijn toespraken tegen Philip II van Macedonië (“Olynthiac II”, 10)"
 
-#: gui/text/quotes.txt:67
+#: gui/text/quotes.txt:65
 msgid ""
 "“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
 msgstr "“Presentatie, presentatie en presentatie.” \\n— Demosthenes, op de vraag wat de drie meest belangrijke elementen van de redekunst zijn (Cicero, “Over de redenaar”, 3.213)"
 
-#: gui/text/quotes.txt:68
+#: gui/text/quotes.txt:66
 msgid ""
 "“The Macedonians first raised an unearthly shout followed by the Persians "
 "answering, so that the whole hillside bordering the battlefield echoed back "
@@ -1395,7 +1381,7 @@ msgid ""
 "about the Battle of Issus (“The Library of History”, XVII., sec. 33)"
 msgstr "“De Macedoniërs slaakten als eerste een angstwekkende kreet, gevolgd door het antwoord van de Perzen, zodat de heuvels naast het slagveld het geluid terugkaatsten, en die tweede brul was luider dan de Macedonische oorlogskreet omdat vijfhonderdduizend mannen als één stem klonken.” \\n— Diodoros van Sicilië over de Slag bij Issos (“Historische Bibliotheek”, XVII., sec. 33)"
 
-#: gui/text/quotes.txt:69
+#: gui/text/quotes.txt:67
 msgid ""
 "“Brasidas, taking his stand on the gangway, fought off from there the "
 "multitude of Athenians who converged upon him. And at the outset he slew "
@@ -1405,7 +1391,7 @@ msgid ""
 "History”, XXII., sec. 62)"
 msgstr "“Brasidas, die positie innam bij de loopplank, sloeg vanaf daar de massa Atheners terug die op hem afkwamen. En bij aanvang doodde hij er zoveel als hem aanvielen, maar na een tijdje, toen hij door veel projectielen geraakt werd, was hij zwaar gewond aan de voorkant van zijn lichaam.” \\n— Diodoros van Sicilië, over een dappere Spartaan bij de Slag bij Pylos (“Historische Bibliotheek”, XXII., sec. 62)"
 
-#: gui/text/quotes.txt:70
+#: gui/text/quotes.txt:68
 msgid ""
 "“Plato had defined man as an animal, biped and featherless, and was "
 "applauded. Diogenes \\[of Sinope] plucked a fowl and brought it into the "
@@ -1415,88 +1401,88 @@ msgid ""
 " 40)"
 msgstr "“Plato omschreef de mens als een dier met twee benen en zonder veren, en hij kreeg daarvoor applaus. Diogenes \\[van Sinope] plukte een hoen en bracht het naar de vergaderzaal met de woorden: Hier is Plato's mens. Dientengevolge werd aan de definitie toegevoegd: met brede nagels.” \\n— Diogenes Laertius (“Leven en leer van beroemde filosofen”, “Diogenes”, sec. 40)"
 
-#: gui/text/quotes.txt:71
+#: gui/text/quotes.txt:69
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
 msgstr "“Ik ben een inwoner van de wereld.” \\n— Diogenes van Sinope (Diogenes Laertius, “Leven en leer van beroemde filosofen”, “Diogenes”, sec. 63)"
 
-#: gui/text/quotes.txt:72
+#: gui/text/quotes.txt:70
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
 msgstr "“Ik ben niet gek, mijn hoofd werkt gewoon anders dan het jouwe.” \\n— Diogenes van Sinope (Stobaeus, “Florilegium”, 51)"
 
-#: gui/text/quotes.txt:73
+#: gui/text/quotes.txt:71
 msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
 msgstr "\"Ja, ga eens uit mijn zonlicht.\" \\n— Diogenes van Sinope tegen Alexander de Grote toen die hem vroeg of hij hem kon helpen. (Plutarchus, “Parallelle levens”, “Alexander”, sec. 14)"
 
-#: gui/text/quotes.txt:74
+#: gui/text/quotes.txt:72
 msgid ""
 "“The victor is not victorious if the vanquished does not consider himself "
 "so.” \\n— Ennius (“Annales”, fragment 31.493)"
 msgstr "“De overwinnaar heeft niet gewonnen als de overwonnenen zichzelf niet zo zien.” \\n— Ennius (“Annalen”, fragment 31.493)"
 
-#: gui/text/quotes.txt:75
+#: gui/text/quotes.txt:73
 msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
 msgstr "“Vreemdeling, ga en zeg de Spartanen dat we hier liggen, gehoorzaam aan hun wetten.” \\n— Grafschrift bij Thermopylae voor Leonidas en zijn mannen (Herodotus, “Historiën”, VII. 228)"
 
-#: gui/text/quotes.txt:76
+#: gui/text/quotes.txt:74
 msgid ""
 "“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
 "(“Iphigenia in Tauris”)"
 msgstr "“Een lafaard loopt weg, een moedig man kiest gevaar.” \\n— Euripides (“Iphigenia in Tauris”)"
 
-#: gui/text/quotes.txt:77
+#: gui/text/quotes.txt:75
 msgid ""
 "“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
 "Euripides (“Iphigenia in Tauris”)"
 msgstr "“Beproevingen sterken de dapperen, lafaards bereiken niets.” \\n— Euripides (“Iphigenia in Tauris”)"
 
-#: gui/text/quotes.txt:78
+#: gui/text/quotes.txt:76
 msgid ""
 "“Cowards do not count in battle; they are there, but not in it.” \\n— "
 "Euripides (“Meleager”)"
 msgstr "“Lafaards tellen niet mee in het gevecht; ze zijn er wel, maar ze zijn niet aanwezig.” \\n— Euripides (“Meleager”)"
 
-#: gui/text/quotes.txt:79
+#: gui/text/quotes.txt:77
 msgid ""
 "“Chance fights ever on the side of the prudent.” \\n— Euripides "
 "(“Pirithous”)"
 msgstr "“Het geluk vecht altijd mee met de verstandige.” \\n— Euripides (“Pirithous”)"
 
-#: gui/text/quotes.txt:80
+#: gui/text/quotes.txt:78
 msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
 msgstr "\"Kom terug met je schild, of er op.\" \\n— Afscheidsgroet van Spartaanse vrouwen aan hun strijders, daarmee bedoelend dat lafaards hun schild in de strijd weggooien om te vluchten.  (Plutarchus, “Moralia”, “Gezegden van Spartaanse vrouwen”, 241f)"
 
-#: gui/text/quotes.txt:81
+#: gui/text/quotes.txt:79
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
 msgstr "\"Ik kwam, ik zag, ik overwon.\" \\n— Caesar, nadat hij Pharnaces II van Pontus bij de eerste aanval verpletterend verslagen had.  (Plutarchus, “Parallelle levens”, “Caesar”, sec. 50)"
 
-#: gui/text/quotes.txt:82
+#: gui/text/quotes.txt:80
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
 msgstr "“Mensen geloven wat ze willen geloven..” \\n— Caesar (“Over de Gallische oorlog”, III. 18)"
 
-#: gui/text/quotes.txt:83
+#: gui/text/quotes.txt:81
 msgid ""
 "“It is not the well-fed long-haired man I fear, but the pale and the hungry "
 "looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
 msgstr "\"Het is niet de goed doorvoede, langharige man die ik vrees, maar de bleke met een hongerige blik in de ogen.\" \\n— Caesar (Plutarchus, “Parallelle levens”, “Marcus Antonius”, sec.11)"
 
-#: gui/text/quotes.txt:84
+#: gui/text/quotes.txt:82
 msgid ""
 "“After fighting from noon almost to sunset, with victory doubtful, the "
 "Germans, on one side charged the enemy in a compact body, and drove them "
@@ -1505,7 +1491,7 @@ msgid ""
 "VII. 80)"
 msgstr "“Na gevochten te hebben van het middaguur tot bijna zonsondergang, met de overwinning buiten bereik, vielen de Germanen in gesloten orde de vijand van de ene kant aan en dreven hen terug; en, tot vluchten gedwongen, werden de boogschutters omsingeld en tot stukken gehakt.” \\n— Caesar over de Slag bij Alesia (“Over de Gallische oorlog”, VII. 80)"
 
-#: gui/text/quotes.txt:85
+#: gui/text/quotes.txt:83
 msgid ""
 "“All the centurions of the fourth cohort were slain, and the standard-bearer"
 " killed, the standard itself lost, almost all the centurions of the other "
@@ -1515,7 +1501,7 @@ msgid ""
 "\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
 msgstr "“Alle centurions van het vierde cohort waren omgebracht en de standaarddrager gedood, de standaard zelf was vermist, en bijna alle centurions van de andere cohorten waren gewond of gedood, onder hen de oppercenturio van het legioen, Publius Sextus Baculus, een zeer dappere man, die zo uitgeput was door de vele en zware verwondingen dat hij al niet meer in staat was zichzelf overeind te houden.” \\n— Caesar over de Slag bij de Sabis (“Over de Gallische oorlog”, II. 25)"
 
-#: gui/text/quotes.txt:86
+#: gui/text/quotes.txt:84
 msgid ""
 "“But the enemy \\[…] displayed such great courage, that when the front rank "
 "had fallen the men behind them stood on them and continue the fight from on "
@@ -1525,39 +1511,39 @@ msgid ""
 "about the Battle of the Sabis (“De Bello Gallico”, II. 27)"
 msgstr "“Maar de vijand \\[…] toonde zulke dapperheid, dat toen de voorste rij gesneuveld was, de mannen achter hen op ze gingen staan en doorgingen met vechten van bovenop de lijken; en toen zij gedood waren werd de stapel lijken hoger, terwijl de overlevenden de berg als standpunt gebruikten om projectielen naar onze mannen te werpen of om speren mee op te vangen en deze terug te gooien.” \\n— Caesar over de Slag bij de Sabis (“Over de Gallische oorlog”, II. 27)"
 
-#: gui/text/quotes.txt:87
+#: gui/text/quotes.txt:85
 msgid ""
 "“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
 msgstr "“De teerling is geworpen.” \\n— Caesar, toen hij met zijn legioen de rivier de Rubicon overstak naar Italië, een halsmisdrijf dat leidde tot de burgeroorlog met Pompeius (Suetonius, “De levens van de twaalf Caesars”, 32)"
 
-#: gui/text/quotes.txt:88
+#: gui/text/quotes.txt:86
 msgid ""
 "“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
 " when passing through a barbarian village in the Alps (Plutarch, “Parallel "
 "Lives”, “Caesar”, sec. 11)"
 msgstr "\"Ik ben liever hier de eerste man dan nummer twee in Rome.\" \\n— Caesar, toen hij door een barbaars dorpje in de Alpen trok. (Plutarchus, “Parallelle levens”, “Caesar”, sec. 11)"
 
-#: gui/text/quotes.txt:89
+#: gui/text/quotes.txt:87
 msgid ""
 "“Stop quoting laws, we carry weapons!” \\n— Pompey (Plutarch, “Parallel "
 "Lives”, “Pompey”, sec. 10)"
 msgstr "\"Hou op met wetten citeren, wij zijn gewapend!\" \\n— Pompeius (Plutarchus, “Parallelle levens”, “Pompeius”, sec. 10)"
 
-#: gui/text/quotes.txt:90
+#: gui/text/quotes.txt:88
 msgid ""
 "“If a man put out the eye of another man, his eye shall be put out.” \\n— "
 "Hammurabi (Hammurabi's Code, sec. 196)"
 msgstr "“Als een man het oog van een andere man uitsteekt, zal ook zijn oog uitgestoken worden.” \\n— Hammurabi (Codex Hammurabi, sec. 196)"
 
-#: gui/text/quotes.txt:91
+#: gui/text/quotes.txt:89
 msgid ""
 "“I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.” \\n— Hannibal (Polybius, “Histories”, III. 85)"
 msgstr "“Ik ben niet gekomen om oorlog te voeren met de Italianen, maar om de Italianen te helpen tegen Rome.” \\n— Hannibal (Polybius, “Historiën”, III. 85)"
 
-#: gui/text/quotes.txt:92
+#: gui/text/quotes.txt:90
 msgid ""
 "“Let us now end the anxiety of the Romans, who can't wait for the death of "
 "an old man.” \\n— Hannibal's last words before his suicide, in exile with "
@@ -1565,7 +1551,7 @@ msgid ""
 "Rome”, XXXIX. 51)"
 msgstr "“Laten we nu de angst van de Romeinen beëindigen, die niet kunnen wachten op de dood van een oude man.” \\n— Hannibal's laatste woorden voordat hij in zijn ballingsoord zelfmoord pleegde, terwijl Flaminius de plaatselijke leider onder druk zette om hem uit te leveren (Livius, “Vanaf de Stichting van de Stad”, XXXIX. 51)"
 
-#: gui/text/quotes.txt:93
+#: gui/text/quotes.txt:91
 msgid ""
 "“Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
 "world as theirs and subject to their pleasure. With whom we are to be at "
@@ -1573,57 +1559,57 @@ msgid ""
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr "“De meest onmenselijke en arrogante der landen, vinden zij \\[de Romeinen] rdat de wereld van hen is en dat ze ermee kunnen doen wat ze willen. Met wie we oorlog zullen voeren, met wie het vrede is, zij denken dat het goed is dat zij dat bepalen.” \\n— Hannibal, sprekend tot zijn troepen (Livius, “Vanaf de Stichting van de Stad”, XXI. 44)"
 
-#: gui/text/quotes.txt:94
+#: gui/text/quotes.txt:92
 msgid ""
 "“You must be brave and discard all hopes of anything but victory or death.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr "“Jullie moeten dapper zijn en op niets anders hopen dan de overwinning of de dood.” \\n— Hannibal, sprekend tot zijn troepen (Livius, “Vanaf de Stichting van de Stad”, XXI. 44)"
 
-#: gui/text/quotes.txt:95
+#: gui/text/quotes.txt:93
 msgid ""
 "“War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
 "Refutation of all Heresies”, IX. 4)"
 msgstr "“Oorlog is de vader en koning van alles: sommigen maakt hij goden en anderen mensen; sommigen slaven en anderen vrij mens.” \\n— Heraclitus (Hippolytus, “De weerlegging van alle ketterijen”, IX. 4)"
 
-#: gui/text/quotes.txt:96
+#: gui/text/quotes.txt:94
 msgid ""
 "“You could not step twice into the same river.” \\n— Heraclitus (Plato, "
 "“Cratylus”, 402a)"
 msgstr "“Het is niet mogelijk om twee keer in dezelfde rivier te stappen.” \\n— Heraclitus (Plato, “Cratylus”, 402a)"
 
-#: gui/text/quotes.txt:97
+#: gui/text/quotes.txt:95
 msgid ""
 "“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
 "Histories”, III. 52)"
 msgstr "“Het is beter om benijd te worden dan beklaagd.” \\n— Herodotus (“Historiën”, III. 52)"
 
-#: gui/text/quotes.txt:98
+#: gui/text/quotes.txt:96
 msgid ""
 "“In soft regions are born soft men.” \\n— Herodotus (“The Histories”, IX. "
 "122)"
 msgstr "“Zwakke landen brengen zwakke mannen voort.” \\n— Herodotus (“Historiën”, IX. 122)"
 
-#: gui/text/quotes.txt:99
+#: gui/text/quotes.txt:97
 msgid ""
 "“This is the bitterest pain among men, to have much knowledge but no power.”"
 " \\n— Herodotus (“The Histories”, IX. 16)"
 msgstr "“De meest bittere pijn lijdt hij die veel kennis heeft maar geen macht.” \\n— Herodotus (“Historiën”, IX. 16)"
 
-#: gui/text/quotes.txt:100
+#: gui/text/quotes.txt:98
 msgid ""
 "“Although he \\[Xerxes] had plenty of troops he had few men.” \\n— Herodotus"
 " (“The Histories”, VII. 210)"
 msgstr "“Hoewel hij \\[Xerxes] een groot leger had, had hij weinig mannen.” \\n— Herodotus (“Historiën”, VII. 210)"
 
-#: gui/text/quotes.txt:101
+#: gui/text/quotes.txt:99
 msgid ""
 "“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
 msgstr "“De Lakedamoniërs \\[Spartanen] vochten een gedenkwaardige veldslag; ze maakten volkomen duidelijk dat zij de experts waren die het tegen amateurs opnamen.” \\n— Herodotus (“Historiën”, VII. 211)"
 
-#: gui/text/quotes.txt:102
+#: gui/text/quotes.txt:100
 msgid ""
 "“Being informed \\[…] that when the Barbarians discharged their arrows they "
 "obscured the light of the sun by the multitude of the arrows, he "
@@ -1634,7 +1620,7 @@ msgid ""
 "“Histories”, VII. 226)"
 msgstr "“Toen hem werd verteld \\[…] dat het licht van de zon verduisterd werd wanneer de barbaren hun pijlen afvuurden, zei hij \\[Dieneces] \\[…] dat hun gast \\[…] ze heel goed nieuws bracht, want als de Meden het licht verduisterden konden ze in de schaduw vechten in plaats van in de volle zon.” \\n— Herodotus over Dieneces, naar verluidt de dapperste Spartaanse soldaat in Thermopylae (Polybius, “Historiën”, VII. 226)"
 
-#: gui/text/quotes.txt:103
+#: gui/text/quotes.txt:101
 msgid ""
 "“The judgment given to Croesus by each of the two oracles \\[Delphi and "
 "Thebes] was the same: If he sent an army against the Persians, he would "
@@ -1642,7 +1628,7 @@ msgid ""
 "Croesus destroyed was his own (“The Histories”, I. 53)"
 msgstr "“De profetie die beide orakels \\[Delphi en Thebe] Croesus gaven was dezelfde: als hij een leger uitzond naar de Perzen, zou hij een groot rijk ten val brengen.” \\n— Herodotus, die later vermeldde dat het rijk wat Croesus vernietigde zijn eigen was (“Historiën”, I. 53)"
 
-#: gui/text/quotes.txt:104
+#: gui/text/quotes.txt:102
 msgid ""
 "“He \\[King Darius] asked who the Athenians were, and, being informed, "
 "called for his bow, and placing an arrow on the string, shot upward into the"
@@ -1652,7 +1638,7 @@ msgid ""
 "Histories”, V. 105)"
 msgstr "“Hij \\[Koning Darius] vroeg wie de Atheners waren, en toen hem dat verteld was vroeg hij om zijn boog. Hij plaatste een pijl en schoot die omhoog de lucht in, terwijl hij zei toen hij de pees losliet: Laat mij, O Zeus, mij wraken op de Atheners!!” \\n— Herodotus, verhalend hoe de Atheense steun voor de Ionische opstand de woede wekte van Darius I, de Perzische koning (“Historiën”, V. 105)"
 
-#: gui/text/quotes.txt:105
+#: gui/text/quotes.txt:103
 msgid ""
 "“He \\[King Darius] asked one of his servants every day, when his dinner was"
 " spread, three times to repeat to him: Master, remember the Athenians!” \\n—"
@@ -1660,39 +1646,53 @@ msgid ""
 " the Persian Wars (“The Histories”, V. 105)"
 msgstr "“Hij \\[Koning Darius] vroeg een van zijn dienaren om iedere dag, wanneer zijn diner werd geserveerd, drie keer tegen hem te zeggen: Meester, vergeet de Atheners niet!” \\n— Herodotus, verhalend hoe de Atheense steun voor de Ionische opstand leidde tot de Perzische oorlogen (“Historiën”, V. 105)"
 
-#: gui/text/quotes.txt:106
+#: gui/text/quotes.txt:104
 msgid ""
 "“Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
 msgstr "“Het verslagen Griekenland ving haar barbaarse veroveraar en bracht haar beschaving naar het rustieke Latium.” \\n— Horatius (“Alle brieven”, brief I., 156–157)"
 
-#: gui/text/quotes.txt:107
+#: gui/text/quotes.txt:105
 msgid ""
 "“Anger is a momentary madness, so control your passion or it will control "
 "you.” \\n— Horace (“Epistles”, epistle II., 62)"
 msgstr "“Toorn is een tijdelijke gekte, dus houd je woede in bedwang anders neemt ze je over” \\n— Horatius (“Alle brieven”, brief II., 62)"
 
-#: gui/text/quotes.txt:108
+#: gui/text/quotes.txt:106
 msgid ""
 "“It is your concern when your neighbor's wall is on fire.” \\n— Horace "
 "(“Epistles”, epistle XVIII., 84)"
 msgstr "“Het is jouw probleem wanneer de muur van je buurman in brand staat.” \\n— Horatius (“Alle brieven”, brief XVIII., 84)"
 
-#: gui/text/quotes.txt:109
+#: gui/text/quotes.txt:107
 msgid ""
 "“It is sweet and honorable to die for one's country.” \\n— Horace (“Odes”, "
 "III., ode II., 13)"
 msgstr "“Het is mooi en eervol om voor je land te sterven.” \\n— Horatius (“Oden”, III., ode II., 13)"
 
-#: gui/text/quotes.txt:110
+#: gui/text/quotes.txt:108
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
 msgstr "“Ik ben Cyrus, koning van de wereld…” \\n— Inscriptie (Cyruscilinder)"
 
-#: gui/text/quotes.txt:111
+#: gui/text/quotes.txt:109
 msgid ""
 "“In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.” \\n— Croesus, king of Lydia (Herodotus, “The Histories”, I. 87)"
 msgstr "“In vredestijd begraven zonen hun vaders, in oorlogstijd is het andersom.” \\n— Croesus, koning van Lydië (Herodotus, “Historien”, I. 87)"
+
+#: gui/text/quotes.txt:110
+msgid ""
+"“Whoever imposes severe punishment becomes repulsive to the people; while he"
+" who awards mild punishment becomes contemptible. But whoever imposes "
+"punishment as deserved becomes respectable.”\\n— Kauṭilya (“Arthashastra”, "
+"I.4.8–10)"
+msgstr "“Wie wreed straft wekt afkeer bij het volk; terwijl hij die mild straft wordt geminacht. Maar wie verdiende straffen oplegt wordt gerespecteerd.”\\n— Kauṭilya (“Arthashastra”, I.4.8–10)"
+
+#: gui/text/quotes.txt:111
+msgid ""
+"“If a king is energetic, his subjects will be equally energetic.”\\n— "
+"Kauṭilya (“Arthashastra” I.19.1)"
+msgstr "“Als een koning krachtig is, zullen zijn onderdanen net zo zijn.”\\n— Kauṭilya (“Arthashastra” I.19.1)"
 
 #: gui/text/quotes.txt:112
 msgid ""

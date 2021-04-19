@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-09 07:08+0000\n"
-"PO-Revision-Date: 2021-04-09 08:30+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 08:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -882,7 +882,7 @@ msgstr ""
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Sí"
 
@@ -891,7 +891,7 @@ msgstr "Sí"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "No"
 
@@ -2283,6 +2283,16 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
+msgctxt "hotkey metadata"
+msgid "Order an entity to leave a turret point."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
+msgctxt "hotkey metadata"
+msgid "Leave Turret Point"
 msgstr ""
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
@@ -4834,7 +4844,7 @@ msgid ""
 "for additional information."
 msgstr "El editor de escenarios no está disponible o no ha podido cargarse. Echa un vistazo a los archivos de registro del juego para obtener información adicional."
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Error"
 
@@ -5143,7 +5153,7 @@ msgstr ""
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr ""
 
-#: gui/reference/viewer/ViewerPage.js:167
+#: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr ""
@@ -5174,15 +5184,15 @@ msgstr ""
 msgid "Incompatible replay"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:117
+#: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:166
+#: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
 msgstr ""
 
