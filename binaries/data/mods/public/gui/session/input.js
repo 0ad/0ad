@@ -1622,8 +1622,10 @@ function findIdleUnit(classes)
 	let idleUnits = Engine.GuiInterfaceCall("FindIdleUnits", data);
 	if (!idleUnits.length)
 	{
-		// TODO: display a message or play a sound to indicate no more idle units, or something
-		// Reset for next cycle
+		// TODO: display a message to indicate no more idle units, or something
+		Engine.GuiInterfaceCall("PlaySoundForPlayer", {
+			"name": "no_idle_unit"
+		});
 		resetIdleUnit();
 		return;
 	}

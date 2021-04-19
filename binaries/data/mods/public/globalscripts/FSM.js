@@ -374,5 +374,3 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	obj.fsmStateName = nextStateName;
 	obj.FsmStateNameChanged(obj.fsmStateName);
 };
-
-Engine.RegisterGlobal("FSM", FSM);

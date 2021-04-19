@@ -221,5 +221,3 @@ MultiKeyMap.prototype._RemoveItem = function(primaryKey, itemID, secondaryKey, s
  * Stub method, to overload.
  */
 MultiKeyMap.prototype._OnItemModified = function(primaryKey, secondaryKey, itemID) {};
-
-Engine.RegisterGlobal("MultiKeyMap", MultiKeyMap);

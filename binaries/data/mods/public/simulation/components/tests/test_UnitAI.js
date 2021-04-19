@@ -1,4 +1,3 @@
-Engine.LoadHelperScript("FSM.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Position.js");
 Engine.LoadHelperScript("Sound.js");

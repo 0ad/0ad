@@ -1,6 +1,5 @@
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("ModifiersManager.js");
-Engine.LoadHelperScript("MultiKeyMap.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 
