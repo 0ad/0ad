@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-09 07:08+0000\n"
-"PO-Revision-Date: 2021-04-16 07:08+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-19 07:16+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Πάτα το πλήκτρο %(hotkey)s για να ολοκληρώσε
 #: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
-msgstr "Tab"
+msgstr "Καρτέλα"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
@@ -895,7 +895,7 @@ msgstr "Φίλια Πυρά: %(enabled)s"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Ναι"
 
@@ -904,7 +904,7 @@ msgstr "Ναι"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Όχι"
 
@@ -2030,7 +2030,7 @@ msgstr "Παύση/Εκκίνηση"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Αποθήκευση των δεδομένων του τρέχοντος προφίλ σε logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
@@ -2050,7 +2050,7 @@ msgstr "Εμφάνιση/Απόκρυψη προφίλ"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Ενεργοποίηση/απενεργοποίηση λειτουργίας HTTP/GPU για νέο προφίλ."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
@@ -2291,12 +2291,22 @@ msgstr "Προφύλαξη"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr ""
+msgstr "Καταστρέψτε τις επιλεγμένες μονάδες."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
 msgstr "Καταστροφή επιλεγμένων μονάδων."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
+msgctxt "hotkey metadata"
+msgid "Order an entity to leave a turret point."
+msgstr "Διατάξτε μια οντότητα να αφήσει το σημείο του πυργίσκου."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
+msgctxt "hotkey metadata"
+msgid "Leave Turret Point"
+msgstr "Αφήστε το Σημείο  του Πυργίσκου."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
@@ -2306,7 +2316,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Μεγάλη σε όγκο ανταλλαγή "
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
@@ -2316,7 +2326,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Μεγάλη σε όγκο προσφορά."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
@@ -2346,7 +2356,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "Κυρίευση του  Πυργίσκου"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
@@ -2361,7 +2371,7 @@ msgstr "Διατάξτε μία μονάδα."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Τροποποίηση  περιπολίας σε μονάδα. "
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2486,7 +2496,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Περιστροφή κτηρίου αριστερόστροφα. "
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
@@ -2496,7 +2506,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Περιστροφή κτηρίου δεξιόσττροφα"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
@@ -2506,7 +2516,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Εναλλαγή επικόλληση-σε-άκρη"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
@@ -2558,7 +2568,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Εκφόρτωση  τύπου μονάδας"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
@@ -2573,7 +2583,7 @@ msgstr "Εμφάνιση περιβάλλον χρήστη εντός παιχν
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Εναλλαγή μετρητή παύσης πυρός."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
@@ -2583,7 +2593,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Εναλλαγή παραθύρου συνομιλίας."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
@@ -2593,7 +2603,7 @@ msgstr "Εμφάνιση/Απόκρυψη συνομιλίας ( τσατ )"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Εμφάνιση πληροφοριών πολιτισμού."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2730,7 +2740,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη ορατότητα GUI (Περιβάλλον Γραφικών Χρήστη)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
@@ -2790,7 +2800,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη μπάρας στατιστικών"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
@@ -2842,12 +2852,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr ""
+msgstr "Εναλλαγή εύρους υγείας"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes."
-msgstr ""
+msgstr "Εναλλαγή σιλουέτας  μονάδων."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
@@ -2857,12 +2867,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Show structure tree."
-msgstr ""
+msgstr "Εμφάνιση δένδρου δομής."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr ""
+msgstr "Εναλλαγή δένδρου δομής."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
@@ -2872,7 +2882,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr ""
+msgstr "Εναλλαγή παραθύρου περίληψης. "
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
@@ -2882,7 +2892,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Εναλλαγή παραθύρου ομαδικής συνομιλίας."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -3027,7 +3037,7 @@ msgstr " Προσθήκη Ομάδας Ελέγχου 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 0."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
@@ -3037,7 +3047,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 0"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
@@ -3047,7 +3057,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
@@ -3057,7 +3067,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 2"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
@@ -3067,7 +3077,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 3"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
@@ -3077,7 +3087,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 4"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
@@ -3087,7 +3097,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 5"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
@@ -3097,7 +3107,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 6"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
@@ -3107,7 +3117,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 7"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου  8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
@@ -3117,7 +3127,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 8"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr ""
+msgstr "Αποθήκευση τρέχουσας επιλογής ώς Ομάδα Ελέγχου  9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
@@ -3127,7 +3137,7 @@ msgstr "Ορισμός Ομάδας Ελέγχου 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 0."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
@@ -3137,7 +3147,7 @@ msgstr "Επιλογή Ομάδας Ελέγχου 0"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 1."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
@@ -3147,7 +3157,7 @@ msgstr "Επιλογή Ομάδας Ελέγχου 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 2."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
@@ -3157,7 +3167,7 @@ msgstr "Επιλογή Ομάδας Ελέγχου 2"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 3."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
@@ -3167,7 +3177,7 @@ msgstr "Επιλογή Ομάδας Ελέγχου 3"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 4."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
@@ -3177,7 +3187,7 @@ msgstr "Επιλογή Ομάδας Ελέγχου 4"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 5."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
@@ -3187,62 +3197,62 @@ msgstr "Επιλογή Ομάδας Ελέγχου 5"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 6."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr ""
+msgstr "Επιλογή Ομάδας Ελέγχου 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 7."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr ""
+msgstr "Επιλογή Ομάδας Ελέγχου 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 8."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr ""
+msgstr "Επιλογή Ομάδας Ελέγχου 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 9."
-msgstr ""
+msgstr "Αλλαγή της τρέχουσας επιλογής σε Ομάδα Ελέγχου 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr ""
+msgstr "Επιλογή Ομάδας Ελέγχου 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Επιλογή μόνο αδρανών μονάδων."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Επιλογή μόνο αδρανών μονάδων"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Επιλογή μόνο αδρανών μονάδων."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Επιλογή επόμενης αδρανούς μονάδας"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
@@ -3277,12 +3287,12 @@ msgstr "Επιλογή μόνο στρατιωτικού."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Προσθήκη μόνο  μή στρατιωτρικών μοναδων στην επιλογή."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Επιλογή μόνο μή στρατιωτικών μονάδων μόνο."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
@@ -3297,17 +3307,17 @@ msgstr "Συμπερίληψη εκτός οθόνης"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Απομάκρυνση μονάδων απο την  επιλογή."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Απομάκρυνση μονάδων απο την  επιλογή"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Επιλογή μόνο λαβωμένων μονάδων."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
@@ -3735,11 +3745,11 @@ msgstr "Εμφάνιση χρόνου στον οποίο ένα μήνυμα α
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Ονομασία των οντοτήτων."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
-msgstr ""
+msgstr "Συγκεκριμένο αρχικό."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Show specific names as primary and generic names as secondary."
@@ -3747,7 +3757,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic primary."
-msgstr ""
+msgstr "Γενικό αρχικό."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
@@ -3755,23 +3765,23 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
-msgstr ""
+msgstr "Μόνο Συγκεκριμένα."
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Show only specific names for units."
-msgstr ""
+msgstr "Εμφάνισε μόνο συγκεκριμένα ονόματα για τις μονάδες."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Μόνο Γενικό."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr " Εμφάνισε μόνο γενικά ονόματα για τις μονάδες."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Πώς να εμφανίσετε τα ονόματα των οντοτήτων."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4028,7 +4038,7 @@ msgstr "Το ακόνισμα γραφικών της επιλεγμένης μ�
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "Ποιότητα μοντέλου"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label
@@ -4037,7 +4047,7 @@ msgstr "Χαμηλό"
 
 #: gui/options/options.json[1].options[7].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Απλοϊκά μοντέλα για καλύτερη αποδοση."
 
 #: gui/options/options.json[1].options[10].list[2].label
 #: gui/options/options.json[1].options[7].list[1].label
@@ -4047,7 +4057,7 @@ msgstr "Μεσαίο"
 
 #: gui/options/options.json[1].options[7].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Μέτρια ποιότητα και μέτρια επίδοση."
 
 #: gui/options/options.json[1].options[10].list[3].label
 #: gui/options/options.json[1].options[7].list[2].label
@@ -4056,11 +4066,11 @@ msgstr "Υψηλό"
 
 #: gui/options/options.json[1].options[7].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Μοντέλα υψηλής ποιότητας."
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Ρυθμίσεις ποιότητας μοντέλου."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shader effects"
@@ -4255,7 +4265,7 @@ msgstr "Αυτόματη εκχώρηση συμμετεχόντων σε ελε
 
 #: gui/options/options.json[4].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Δικτύωση/\"αίθουσα αναμονής\""
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4312,7 +4322,7 @@ msgstr "Αποτρέπει την περαιτέρω σύνδεση παρατη
 
 #: gui/options/options.json[4].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Μέγιστη καθυστέρηση (στο δύκτιο) για παρατηρητές/τριες"
 
 #: gui/options/options.json[4].options[6].tooltip
 msgid ""
@@ -4322,7 +4332,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Παρατηρητής) Επιτάχυνση όταν η σύνδεση είναι αργή."
 
 #: gui/options/options.json[4].options[7].tooltip
 msgid ""
@@ -4847,7 +4857,7 @@ msgid ""
 "for additional information."
 msgstr "Ο Επεξεργαστής Σεναρίων δεν είναι διαθέσιμος ή η φόρτωσή του απέτυχε.Κοιτάξτε τις εγγραφές παιχνιδιού για περισσότερες πληροφορίες."
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -5156,7 +5166,7 @@ msgstr "Εκπαιδευτής Μονάδων"
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Κλείσιμο του Δέντρου Κατασκευής."
 
-#: gui/reference/viewer/ViewerPage.js:167
+#: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr "%(hotkey)s:Κλείσιμο Επισκόπησης Προτύπου"
@@ -5187,15 +5197,15 @@ msgstr "Απαιτείται η έκδοση: %(version)s"
 msgid "Incompatible replay"
 msgstr "Ασυμβίβαστη επανάληψη"
 
-#: gui/replaymenu/replay_actions.js:117
+#: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
 msgstr "Δεν υπάρχουν διαθέσιμα συνοπτικά δεδομένα."
 
-#: gui/replaymenu/replay_actions.js:166
+#: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Θέλετε να σβήσετε αυτή την επανάληψη μόνιμα;"
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
 msgstr "Διαγραφή επανάληψης"
 

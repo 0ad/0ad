@@ -156,6 +156,10 @@ msgid ""
 "Village Phase structure that you have built, allowing you to advance to the "
 "Town Phase."
 msgstr ""
+"Wybuduj koszary niedaleko. Zawsze, kiedy osiągniesz limit populacji, wybuduj"
+" dodatkowy dom, używając do tego dostępnych jednostek. Będzie to piąta "
+"konstrukcja Fazy Osady, którą wybudujesz, co pozwoli na przejście do Fazy "
+"Wioski."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -722,6 +726,8 @@ msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a Farmstead."
 msgstr ""
+"Aby zminimalizować odległość między polami a magazynem, najpierw wybudujmy "
+"Spichlerz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -739,6 +745,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Będziemy potrzebować porządnego kawałka ziemi wokół Spichlerza, by zaorać "
+"pola. Dodatkowo bardziej na zachód możesz zaobserwować kozy, które mogą "
+"polepszyć wydajność gromadzenia żywności, jeśli zdecydujesz się je "
+"skonsumować."
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -749,18 +759,28 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Gdy spróbujesz zaznaczyć trzy bezrobotne kobiety poprzez przytrzymanie i "
+"przeciągnięcie kursora myszy, może się zdarzyć, że przypadkowo zaznaczysz "
+"dodatkowe jednostki. Aby tego uniknąć, przytrzymaj klawisz I, co zaznaczy "
+"tylko bezrobotne jednostki. Jeśli przypadkiem zaznaczysz jednostkę "
+"kawalerii, przytrzymaj control i kliknij ikonę kawalerii, by ją usunąć."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Po ukończeniu budowy Spichlerza jednostki automatycznie zabiorą się za "
+"gromadzenie żywności - w tym przypadku zaczną zabijać kozy.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your House builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the Houses."
 msgstr ""
+"Ale jednostki, które budują domy, będą chciały wybudować coś jeszcze, a "
+"jeśli niczego takiego nie będzie w pobliżu, przestaną robić cokolwiek. "
+"Poczekaj, aż wzniosą budowle."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -768,12 +788,17 @@ msgid ""
 "to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Po zbudowaniu obu domów wybierz dwie kobiety i każ im zbudować pole tak "
+"blisko, jak to tylko możliwe, do zagrody, która jest miejscem dla wszystkich"
+" rodzajów żywności."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the Field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"Gdy pole będzie gotowe, budowniczowie automatycznie zaczną zbierać z niego "
+"surowce.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -829,6 +854,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Dla przykładu: efektywność uprawy roli można poprawić za pomocą zbadania "
+"technologii w Spichlerzu. Wybierz go i poszukaj odpowiedniej ikony na panelu"
+" na dole po prawej stronie. Zobaczysz, że jest takich technologii kilka. "
+"Najedź na nie kursorem, by zobaczyć ich koszta i efekty, a następnie kliknij"
+" na tę, którą chcesz opracować."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -900,6 +930,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
+"W późniejszych fazach będzie potrzeba kamienia i metalu, by wybudować "
+"większe struktury i wytrenować lepszych żołnierzy. Dlatego też, skoro "
+"czekamy na następną fazę, wyślij połowę bezrobotnych żołnierzy (którzy "
+"ukończyli budować Koszary), aby zbierali kamień, a drugą połowę, by zbierali"
+" metal."
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -923,12 +958,18 @@ msgid ""
 "their wood and then hold Shift and right-click on the stone quarry to gather"
 " it.\n"
 msgstr ""
+"Powinniśmy im kazać składować drewno w Centrum Osady. Aby ustalić kolejność "
+"zadań, wybierz żołnierzy, przytrzymaj shift i kliknij PPM na Centrum Osady, "
+"aby złożyli tam drewno, następnie (dalej trzymając shift) kliknij PPM na "
+"kopalni kamienia, by rozpocząć wydobycie.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
 msgstr ""
+"Wydaj podobne polecenie kolejkowania pozostałym żołnierzom i wyślij ich do "
+"kopalni metalu na zachodzie."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -944,6 +985,9 @@ msgid ""
 " the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Ta mapa stanowi niejaki samouczek, pozwalający ci efektywnie rozpocząć grę. "
+"Na samym początku najważniejsze jest jak najszybsze gromadzenie zasobów, "
+"dzięki którym wyszkolisz odpowiednią liczbę żołnierzy."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-12 07:11+0000\n"
-"PO-Revision-Date: 2021-04-12 10:20+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 10:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Belarusian (http://www.transifex.com/wildfire-games/0ad/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,60 @@ msgstr ""
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
+msgstr ""
+
+#: simulation/data/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr ""
+
+#: simulation/data/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr ""
+
+#: simulation/data/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr ""
+
+#: simulation/data/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr ""
+
+#: simulation/data/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr ""
+
+#: simulation/data/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr ""
+
+#: simulation/data/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr ""
+
+#: simulation/data/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr ""
+
+#: simulation/data/damage_types/poison.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by venomous or poisoned objects, like a snake or a poisoned "
+"weapon."
+msgstr ""
+
+#: simulation/data/damage_types/poison.jsonname
+msgctxt "damage type"
+msgid "Poison"
 msgstr ""
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
@@ -544,11 +598,11 @@ msgstr ""
 msgid "Tuna"
 msgstr ""
 
-#: simulation/templates/gaia/fruit/apple.xml:4
+#: simulation/templates/gaia/fruit/apple.xml:7
 msgid "Apple"
 msgstr ""
 
-#: simulation/templates/gaia/fruit/banana.xml:4
+#: simulation/templates/gaia/fruit/banana.xml:7
 msgid "Banana"
 msgstr ""
 
@@ -560,13 +614,13 @@ msgstr ""
 msgid "Berries"
 msgstr ""
 
-#: simulation/templates/gaia/fruit/date.xml:4
+#: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
 msgstr ""
 
-#: simulation/templates/gaia/fruit/fig.xml:7
+#: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
 msgstr ""
 
@@ -574,7 +628,7 @@ msgstr ""
 msgid "Grapes"
 msgstr ""
 
-#: simulation/templates/gaia/fruit/olive.xml:4
+#: simulation/templates/gaia/fruit/olive.xml:7
 msgid "Olive"
 msgstr ""
 
@@ -879,6 +933,10 @@ msgstr ""
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
+msgstr ""
+
+#: simulation/templates/mixins/mercenary.xml:13
+msgid "Mercenary"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5

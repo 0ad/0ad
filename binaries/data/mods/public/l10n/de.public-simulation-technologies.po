@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-02 15:48+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 15:44+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -314,7 +314,7 @@ msgstr "Gebäude −20% Bauzeit, −20% Gesundheit und −20% Eroberungspunkte."
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr "Die Gallier waren weitbekannt für ihre effektive Kavallerie. Keltische Söldner waren durchaus gefragt im Mittelmeerraum."
+msgstr "Die Gallier waren weitum bekannt für ihre effektive Kavallerie. Keltische Söldner waren durchaus gefragt im Mittelmeerraum."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
@@ -442,7 +442,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Die frühen Achämenidenherrscher machten Persien zum ersten asiatischen Großreich, welches die See beherrschte. Der Großkönig begünstigte die vielen Seevölker um deren Dienste zu sichern, startete aber auch selbst diverse Marineaktivitäten. Während der Herrschaft von Dareios I. wurde beispielsweise ein Kanal in Ägypten gebaut und eine persische Flotte zur Induserkundung ausgeschickt. Laut Herodot wurden etwa 300 Schiffe der persischen Marine nachgerüstet, um den Transport von Reitern und deren Pferden zu ermöglichen."
+msgstr "Die frühen Achämenidenherrscher machten Persien zum ersten asiatischen Großreich, welches die See beherrschte. Der Großkönig begünstigte die vielen Seevölker, um deren Dienste zu sichern, startete aber auch selbst diverse Marineaktivitäten. Während der Herrschaft von Dareios I. wurde beispielsweise ein Kanal in Ägypten gebaut und eine persische Flotte zur Induserkundung ausgeschickt. Laut Herodot wurden etwa 300 Schiffe der persischen Marine nachgerüstet, um den Transport von Reitern und deren Pferden zu ermöglichen."
 
 #: simulation/data/technologies/equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -822,7 +822,7 @@ msgstr "Verwaltungssitze +100% Gesundheit und Eroberungspunkte sowie doppelt so 
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "Die Achämeniden unterhielten ein 10.000-Mann starkes Eliteheer, von Griechischen Autoren als Athanatoi (\"Unsterbliche\") bezeichnet."
+msgstr "Die Achämeniden unterhielten ein 10.000-Mann starkes Eliteheer, von griechischen Autoren als Athanatoi (\"Unsterbliche\") bezeichnet."
 
 #: simulation/data/technologies/immortals.jsongenericName
 msgid "Immortals"
@@ -917,7 +917,7 @@ msgstr "Gardisten −20% Ausbildungszeit."
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen, ersetzt durch phase_city_generic oder phase_city_ {civ}."
+msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen - ersetzt durch phase_city_generic oder phase_city_ {civ}."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -969,7 +969,7 @@ msgstr "Steige zur Großstadtphase auf, die mehr Einheiten, Gebäude und Technol
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen, ersetzt durch phase_town_generic oder phase_town_ {civ}."
+msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen - ersetzt durch phase_town_generic oder phase_town_ {civ}."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1181,7 +1181,7 @@ msgstr "Belagerungswaffen –40% Packzeit."
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr "Die Silberschilde oder Argyraspidai waren die Elite der schweren Infantrie der mazedonischen Armee."
+msgstr "Die Silberschilde oder Argyraspidai waren die Elite der schweren Infanterie der mazedonischen Armee."
 
 #: simulation/data/technologies/silvershields.jsongenericName
 msgid "Silver Shields Regiment"
@@ -1442,7 +1442,7 @@ msgstr "Fortgeschrittetenes Handwerk"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr "Händler, die gemeinsam in Karavanen reisen, sind weniger gefährdet."
+msgstr "Händler, die gemeinsam in Karawanen reisen, sind weniger gefährdet."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
@@ -1491,13 +1491,6 @@ msgid ""
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
 msgstr "Eliteeinheiten +20% Ausbildungszeit, +25% Gesundheit, +0,8 Einnehmrate, +20% Beute und −30% Sammelrate; Heiler +5 Heilstärke und +3 Heilreichweite; Nahkampfeinheiten +1 Widerstand und +20% Schaden; Fernkampfeinheiten -20% Streuung."
-
-#: simulation/data/technologies/unit_mercenary.jsontooltip
-msgid ""
-"Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
-"training time, and unable to gather resources; Infantry costs 60 metal, "
-"Cavalry 80 metal, Elephants 120 metal."
-msgstr "Nicht-Gardesöldner −60% Nahrungskosten, keine Holz- oder Steinkosten,  −30% Ausbildungszeit und sie können keine Ressourcen abbauen; Infanterie kostet 60 Metall, Kavallerie 80 Metall und Elefanten 120 Metall."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription

@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
+# Timur Seber <seber.tatsoft@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-04-15 20:04+0000\n"
+"PO-Revision-Date: 2021-04-18 01:02+0000\n"
 "Last-Translator: Timur Seber <seber.tatsoft@gmail.com>\n"
 "Language-Team: Tatar (http://www.transifex.com/wildfire-games/0ad/language/tt/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +52,7 @@ msgstr ""
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime
@@ -73,7 +74,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s (%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
@@ -241,7 +242,7 @@ msgstr ""
 #: gui/modio/modio.js:337
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:347
@@ -262,7 +263,7 @@ msgstr ""
 #: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/сек"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -349,7 +350,7 @@ msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
-msgstr ""
+msgstr "Ябу"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
@@ -403,7 +404,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):191
 msgid "Quit"
-msgstr ""
+msgstr "Чыгу"
 
 #: gui/modmod/modmod.xml:(caption):201
 msgid "Help"
@@ -449,7 +450,7 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. Translation: Label of a button that when pressed opens the Terms and
 #. Conditions in the

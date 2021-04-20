@@ -89,8 +89,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-09 07:08+0000\n"
-"PO-Revision-Date: 2021-04-09 08:30+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 08:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -953,7 +953,7 @@ msgstr "友好火力：%(enabled)s"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "是"
 
@@ -962,7 +962,7 @@ msgstr "是"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "否"
 
@@ -2350,6 +2350,16 @@ msgstr "销毁选中的单位."
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
 msgstr "销毁选中的单位"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
+msgctxt "hotkey metadata"
+msgid "Order an entity to leave a turret point."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
+msgctxt "hotkey metadata"
+msgid "Leave Turret Point"
+msgstr ""
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
@@ -4900,7 +4910,7 @@ msgid ""
 "for additional information."
 msgstr "脚本编辑器不可用或加载失败。请查看日志了解详情。"
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "错误"
 
@@ -5204,7 +5214,7 @@ msgstr "训练单位"
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s:关闭各文明建筑谱表"
 
-#: gui/reference/viewer/ViewerPage.js:167
+#: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr "%(hotkey)s：关闭模板查看器"
@@ -5235,15 +5245,15 @@ msgstr "需要版本：%(version)s"
 msgid "Incompatible replay"
 msgstr "回放不兼容"
 
-#: gui/replaymenu/replay_actions.js:117
+#: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
 msgstr "无可用摘要数据。"
 
-#: gui/replaymenu/replay_actions.js:166
+#: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "确定要永久删除?"
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
 msgstr "删除回放。"
 

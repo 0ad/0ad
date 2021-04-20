@@ -382,7 +382,7 @@ PETRA.gatherTreasure = function(gameState, ent, water = false)
 		return false;
 	if (!ent || !ent.position())
 		return false;
-	if (!ent.isTreasureCollecter)
+	if (!ent.isTreasureCollecter())
 		return false;
 	let treasureFound;
 	let distmin = Math.min();

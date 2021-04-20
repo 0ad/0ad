@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-20 16:25+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-16 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,16 +114,16 @@ msgstr "Τύπος Παιχνιδιού"
 msgid "Configure AI: %(description)s."
 msgstr "Διαμόρφωση Τεχνητής Νοημοσύνης: %(description)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:156
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
 msgstr "Επιλογή παίκτη."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:246
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:281
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
 msgstr "Δεν ορίστηκε"
 
@@ -182,11 +182,11 @@ msgstr "Περιήγηση σε Χάρτες"
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Πατήστε %(hotkey)s για να δείτε τη λίστα με διαθέσιμους χάρτες."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:34
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
 msgstr "Ζαβολιές"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:37
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
 msgstr "Εναλλαγή χρήσης ζαβολιών."
 
@@ -349,28 +349,28 @@ msgstr "Τοπίο"
 msgid "Select one of the landscapes of this map."
 msgstr "Έπιλέξτε ένα απο τα τοπία απο αυτό το χάρτη."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:58
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
 msgid "Map Filter"
 msgstr "Φίλτρο Χάρτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:66
 msgid "Select a map filter."
 msgstr "Επιλογή φίλτρου χάρτη."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:102
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:104
 msgid "Select Map"
 msgstr "Επιλογή Χάρτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:105
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:107
 msgid "Select a map to play on."
 msgstr "Επιλογή χάρτη για παιχνίδι."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:111
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:113
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:114
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:116
 msgid "Pick any of the given maps at random."
 msgstr "Επιλέξτε τυχαία οποιονδήποτε από τους χάρτες."
 
@@ -398,20 +398,20 @@ msgstr "Αριθμός Παικτών"
 msgid "Select number of players."
 msgstr "Επιλογή αριθμού παικτών."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
 msgstr "Ανώτατο Όριο Πληθυσμού"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:57
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
 msgstr "Επιλογή ορίου πληθυσμού."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:60
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Ανά Παίχτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:61
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
@@ -752,86 +752,86 @@ msgstr "Φόρτωση"
 msgid "Loading map data. Please wait…"
 msgstr "Φόρτωση δεδομένων χάρτη. Παρακαλώ περιμένετε..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):16
+#: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
 msgstr "Διαμόρφωση αναμέτρησης"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:60
+#: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "Παιχνίδι του %(name)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:124
+#: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
 msgstr "Παρακαλώ πληκτρολογήστε ένα έγκυρο όνομα διακομιστή."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:132
+#: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
 msgstr "Ο αριθμός της θύρας του διακομιστή πρέπει να είναι μεταξύ %(min)s και %(max)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:151
+#: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
 msgstr "Σύνδεση με διακομιστή..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:166
+#: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
 msgstr "Ο εξυπηρετητής ( Server) δε τρέχει."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:167
+#: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
 msgstr "Μη έγκυρος κωδικός."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:168
+#: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
 msgstr "Σου απαγορεύτηκε η πρόσβαση."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:171
+#: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Μη έγκυρη τιμή%(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:179
+#: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
 msgstr "Αποτυχία σύνδεσης με τον εξυπηρετητή."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:181
+#: gui/gamesetup_mp/gamesetup_mp.js:180
 msgid "Connection failed"
 msgstr "Η σύνδεση απέτυχε"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:193
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Μήνυμα διαδικτύου: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:288
+#: gui/gamesetup_mp/gamesetup_mp.js:275
 msgid "Registering with server..."
 msgstr "Εγγραφή με τον διακομιστή ..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:294
+#: gui/gamesetup_mp/gamesetup_mp.js:281
 msgid "Game has already started, rejoining..."
 msgstr "Το παιχνίδι έχει ήδη ξεκινήσει , επανασύνδεση ..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:373
+#: gui/gamesetup_mp/gamesetup_mp.js:360
 msgid "Game name already in use."
 msgstr "Το όνομα παιχνιδιού είναι ήδη σε χρήση."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388
+#: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Δεν μπορεί να φιλοξενήσει παιχνίδι: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
-#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
+#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
+#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Δεν μπορεί να συνδεθεί στο παιχνίδι: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:474
+#: gui/gamesetup_mp/gamesetup_mp.js:461
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Το παιχνίδι του/ων %(playername)s"
@@ -1293,26 +1293,12 @@ msgstr "“Επιπλέον, θεωρώ ότι η Καρχηδόνα πρέπε�
 
 #: gui/text/quotes.txt:56
 msgid ""
-"“If a king is energetic, his subjects will be equally energetic.” \\n— "
-"Chanakya (“Arthashastra”, I. “Concerning Discipline”, chapter 19)"
-msgstr "\"Αν ένας βασιλιάς είναι δυναμικός, εξίσου δυναμικοί θα είναι και οι υπήκοοί του.\" \\n— Τσανάκυα (\"Αρθασάστρα\", Ι. \"Σχετικά με την Πειθαρχία\", κεφάλαιο 19)"
-
-#: gui/text/quotes.txt:57
-msgid ""
-"“Whoever imposes severe punishment becomes repulsive to the people; while he"
-" who awards mild punishment becomes contemptible. But whoever imposes "
-"punishment as deserved becomes respectable.” \\n— Chanakya (“Arthashastra”, "
-"I. “Concerning Discipline”, chapter 4)"
-msgstr "“Αυτός ο οποίος επιβάλλει αυστηρή τιμωρία γίνεται αποκρουστικός για τους ανθρώπους: ενώ εκείνος ο οποίος απονέμει ήπια τιμωρία γίνεται αξιοκαταφρόνητος. Αλλά αυτός ο οποίος επιβάλλει την τιμωρία που αρμόζει γίνεται σεβαστός.” \\n— Τσανάκυα (“Αρθασάστρα”, Ι. “Σχετικά με την Πειθαρχία”, κεφάλαιο 4)"
-
-#: gui/text/quotes.txt:58
-msgid ""
 "“We did not flinch but gave our lives to save Greece when her fate hung on a"
 " razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
 msgstr "“Εμείς δεν χαμηλώσαμε το βλέμμα, αλλά δώσαμε τη ζωή μας για να σώσουμε την Ελλάδα, όταν η μοίρα της κρεμόταν στη κόψη του ξυραφιού.” \\n— Επιτάφιος των Κορινθίων πεσόντων στους Περσικούς Πολέμους (Πλούταρχος, “Ηθικά”, XI. “Από την Κακία του Ηροδότου”, 870ε)"
 
-#: gui/text/quotes.txt:59
+#: gui/text/quotes.txt:57
 msgid ""
 "“Then the blood really flowed, for the two lines were so close that shield "
 "struck against shield, and they drove their swords into each other's faces. "
@@ -1321,21 +1307,21 @@ msgid ""
 "(“Histories of Alexander the Great”, III. 11.5)"
 msgstr "“Τότε, το αίμα πραγματικά έρεε, για τις δύο παρατάξεις που ήταν τόσο κοντά ώστε ασπίδα χτυπούσε ασπίδα, και τα ξίφη τους αναπηδούσαν στο πρόσωπο του άλλου. Ήταν αδύνατο για τους αδύναμους ή τους δειλούς να υποχωρήσουν, άντρας εναντίον ανδρός μαχόταν σαν σε μονομαχία.” \\n— Κούρτιος Ρούφος για τη Μάχη του Ίσιου (“Ιστορίες του Μεγάλου Αλεξάνδρου”, ΙΙΙ. 11.5)"
 
-#: gui/text/quotes.txt:60
+#: gui/text/quotes.txt:58
 msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
 msgstr "“Είμαι ο Κύρος, ο οποίος κέρδισε για τους Πέρσες την αυτοκρατορία τους. Επομένως, μην τσιγκουνεύεστε αυτό το κομμάτι της γης που καλύπτει τα οστά μου.” \\n— Επιτάφιος του Κύρου (Πλούταρχος, “Βίοι Παράλληλοι”, “Αλέξανδρος”, εδάφιο 69)"
 
-#: gui/text/quotes.txt:61
+#: gui/text/quotes.txt:59
 msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
 msgstr "“Είμαι ο Δαρείος, ο μεγάλος βασιλιάς, ο βασιλιάς των βασιλιάδων, ο βασιλιάς της Περσίας, ο βασιλιάς των χωρών, \\[...] εικοσιτριών χωρών συνολικά.” \\n— Δαρείος Α΄ (Επιγραφή Μπεχιστούν, στήλη Ι, 1-6)"
 
-#: gui/text/quotes.txt:62
+#: gui/text/quotes.txt:60
 msgid ""
 "“Phraortes was captured and brought before me. I cut off his nose, his ears,"
 " and his tongue, and I put out one eye, and he was kept in chains at my "
@@ -1345,37 +1331,37 @@ msgid ""
 "inscription, column II, 32)"
 msgstr "“Ο Φραόρτης συνελήφθη και τον έφεραν μπροστά μου, του έκοψα τη μύτη, τα αυτιά και τη γλώσσα του και του έβγαλα το ένα μάτι και τον έβαλα αλυσοδεμένο στην είσοδο του παλατιού μου και τον είδαν όλοι. Έπειτα τον σταύρωσα στα Εκβάτανα· και τους άντρες που ήταν πρωτίστως οπαδοί του \\[...] τους έγδαρα και κρέμασα τα δέρματα τους γεμιστά με άχυρο” \\n— Δαρείος Α. (Επιγραφή Μπεχιστούν, στήλη ΙΙ, 32)"
 
-#: gui/text/quotes.txt:63
+#: gui/text/quotes.txt:61
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
 msgstr "“Επιθυμώντας λίγα, ένας φτωχός άνθρωπος κάνει τον εαυτό του πλούσιο.” \\n— Δημόκριτος (απόσπασμα)"
 
-#: gui/text/quotes.txt:64
+#: gui/text/quotes.txt:62
 msgid ""
 "“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
 msgstr "“Είναι δύσκολο να κυβερνάσαι από έναν κατώτερο.” \\n— Δημόκριτος (απόσπασμα)"
 
-#: gui/text/quotes.txt:65
+#: gui/text/quotes.txt:63
 msgid ""
 "“Physical strength is only noble in cattle, it is strength of character that"
 " is noble in men.” \\n— Democritus (fragment)"
 msgstr "“Η σωματική δύναμη είναι μόνο ευγενής στα βοοειδή, η δύναμη του χαρακτήρα είναι που είναι ευγενής στους άνδρες.” \\n— Δημόκριτος (απόσπασμα)"
 
-#: gui/text/quotes.txt:66
+#: gui/text/quotes.txt:64
 msgid ""
 "“It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.” \\n— Demosthenes, in one of his many speeches against the rising"
 " Philip II of Macedon (“Olynthiac II”, 10)"
 msgstr "“Δεν είναι δυνατό να βρεθεί μια διαρκής εξουσία μετά από αδικία, ψευδορκία και προδοσία.” \\n— Δημοσθένης, σε μία από τις πολλές ομιλίες του εναντίον του ανερχόμενου Φιλίππου Β' της Μακεδονίας (“Ολύνθιος ΙΙ”, 10)"
 
-#: gui/text/quotes.txt:67
+#: gui/text/quotes.txt:65
 msgid ""
 "“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
 msgstr "\"Η ηθοποιία, η ηθοποιία, η ηθοποιία.” \\n— Δημοσθένης, όταν ρωτήθηκε ποια ήταν τα τρία πιο σημαντικά στοιχεία της ρητορικής (Κικέρων, “Περί Ρητορικής”, 3.213)"
 
-#: gui/text/quotes.txt:68
+#: gui/text/quotes.txt:66
 msgid ""
 "“The Macedonians first raised an unearthly shout followed by the Persians "
 "answering, so that the whole hillside bordering the battlefield echoed back "
@@ -1384,7 +1370,7 @@ msgid ""
 "about the Battle of Issus (“The Library of History”, XVII., sec. 33)"
 msgstr "“Οι Μακεδόνες πρώτοι φώναξαν με μια υπερφυσική φωνή και ακολούθησαν οι Πέρσες που τους απάντησαν, έτσι ολόκληρη η πλαγιά που συνόρευε με το πεδίο της μάχης αντανακλούσε τον ήχο και ο δεύτερος βόμβος ήταν πιο δυνατός από τη μακεδονική πολεμική κραυγή καθώς φώναζαν με μία φωνή πεντακόσιες χιλιάδες άντρες.” \\n— Ο Διόδωρος ο Σικελός για τη Μάχη της Ισσού (“Η Βιβλιοθήκη της Ιστορίας”, XVII., εδάφιο 33)"
 
-#: gui/text/quotes.txt:69
+#: gui/text/quotes.txt:67
 msgid ""
 "“Brasidas, taking his stand on the gangway, fought off from there the "
 "multitude of Athenians who converged upon him. And at the outset he slew "
@@ -1394,7 +1380,7 @@ msgid ""
 "History”, XXII., sec. 62)"
 msgstr "”Ο Βρασίδας, που στεκόταν στη δίοδο, πολέμησε από εκεί το πλήθος των Αθηναίων που έπεφταν επάνω του. Και ευθύς εξαρχής σκότωσε πολλούς καθώς έφτασαν σ 'αυτόν, αλλά μετά από λίγο καθώς δέχτηκε αρκετές επιθέσεις, καταβαλλόμενος από πολλά τραύματα στην όψη του σώματός του.” \\n— Ο Διόδωρος Σικελός, σε ένα γενναίο Σπαρτιάτη στη μάχη της Πύλου (“Η Βιβλιοθήκη της Ιστορίας”, XXII., εδάφιο 62)"
 
-#: gui/text/quotes.txt:70
+#: gui/text/quotes.txt:68
 msgid ""
 "“Plato had defined man as an animal, biped and featherless, and was "
 "applauded. Diogenes \\[of Sinope] plucked a fowl and brought it into the "
@@ -1404,88 +1390,88 @@ msgid ""
 " 40)"
 msgstr "“Ο Πλάτωνας είχε ορίσει τον άνθρωπο ως ζώο, δίποδο και χωρίς φτερά, και επευφημήθηκε. Ο Διογένης \\[της Σινώπης] μάδησε μία όρνιθα και την έφερε στην αίθουσα διδασκαλίας λέγοντας: Εδώ είναι ο άνθρωπος του Πλάτωνα. Ως επακόλουθο στον ορισμό προστέθηκε: έχοντας πλατιά νύχια.” \\n— Διογένης Λαέρτιος (“Οι ζωές και οι απόψεις επιφανών φιλοσόφων”, “Διογένης”, εδάφιο 40)"
 
-#: gui/text/quotes.txt:71
+#: gui/text/quotes.txt:69
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
 msgstr "“Είμαι ένας πολίτης του κόσμου.” \\n— Διογένης Σινωπεύς (Διογένης Λαέρτιος, “Οι Ζωές και οι Απόψεις Επιφανών Φιλοσόφων”, “Διογένης”, εδάφιο 63)"
 
-#: gui/text/quotes.txt:72
+#: gui/text/quotes.txt:70
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
 msgstr "“Δεν είναι ότι είμαι τρελός, είναι μόνο ότι το κεφάλι μου είναι διαφορετικό από το δικός σας.” \\n— Διογένης Σινωπεύς  (Στοβαίος, “Ανθολογία”, 51)"
 
-#: gui/text/quotes.txt:73
+#: gui/text/quotes.txt:71
 msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
 msgstr "“Ναι, απομακρύνσου από τον ήλιο.” \\n— Ο Διογένης της Σινώπης στο Μέγα Αλέξανδρο, όταν τον ρώτησε αν μπορεί να τον βοηθήσει με κάποιο τρόπο (Πλούταρχος, “Βίοι Παράλληλοι”, “Αλέξανδρος”, εδάφιο 14)"
 
-#: gui/text/quotes.txt:74
+#: gui/text/quotes.txt:72
 msgid ""
 "“The victor is not victorious if the vanquished does not consider himself "
 "so.” \\n— Ennius (“Annales”, fragment 31.493)"
 msgstr "“Ο νικητής δεν είναι νικητής αν οι κατακτημένοι δεν θεωρούν τους εαυτούς το ίδιο.” \\n— Έννιος (“Χρονικά”, απόσπασμα 31.493)"
 
-#: gui/text/quotes.txt:75
+#: gui/text/quotes.txt:73
 msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
 msgstr "\"Ξένε, πες στους Σπαρτιάτες ότι βρισκόμαστε εδώ, υπακούοντας στους νόμους τους.\" \\n— Επιτάφιος στις Θερμοπύλες για τον Λεωνίδα και τους άντρες του (Ηρόδοτος, \"Ιστορικά\", VII. 228)"
 
-#: gui/text/quotes.txt:76
+#: gui/text/quotes.txt:74
 msgid ""
 "“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
 "(“Iphigenia in Tauris”)"
 msgstr "“Ένας δειλός τρέπεται σε φυγή, αλλά η επιλογή ενός γενναίου ανθρώπου είναι ο κίνδυνος.” \\n— Ευριπίδης (“Ιφιγένεια εν Ταύροις”)"
 
-#: gui/text/quotes.txt:77
+#: gui/text/quotes.txt:75
 msgid ""
 "“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
 "Euripides (“Iphigenia in Tauris”)"
 msgstr "“Οι γενναίοι άνδρες γίνονται πιο τολμηροί από τις δοκιμασίες, ενώ οι δειλοί δεν καταφέρνουν τίποτα.” \\n— Ευριπίδης (“Ιφιγένεια εν Ταύροις”)"
 
-#: gui/text/quotes.txt:78
+#: gui/text/quotes.txt:76
 msgid ""
 "“Cowards do not count in battle; they are there, but not in it.” \\n— "
 "Euripides (“Meleager”)"
 msgstr "“Οι δειλοί δεν μετράνε στη μάχη, είναι εκεί, αλλά όχι σε αυτήν.” \\n— Ευριπίδης (“Μελέαγρος”)"
 
-#: gui/text/quotes.txt:79
+#: gui/text/quotes.txt:77
 msgid ""
 "“Chance fights ever on the side of the prudent.” \\n— Euripides "
 "(“Pirithous”)"
 msgstr "“Η ευκαιρία παλεύει πάντα από την πλευρά του συνετού.” \\n— Ευριπίδης (“Πειρίθους”)"
 
-#: gui/text/quotes.txt:80
+#: gui/text/quotes.txt:78
 msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
 msgstr "“Η ταν η επί τας.” \\n— Αποχαιρετισμός των γυναικών της Σπάρτης στους πολεμιστές τους, υπονοώντας ότι οι δειλοί θα έριχναν την ασπίδα τους στη μάχη για να φύγουν (Πλούταρχος, “Ηθικά”, “Οι Σπαρτιάτισσες”, 241στ)"
 
-#: gui/text/quotes.txt:81
+#: gui/text/quotes.txt:79
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
 msgstr "“Ήρθα, είδα, νίκησα.” \\n— Γάιος Ιούλιος Καίσαρας, μετά την εξολόθρευση του Φαρνάκη Β του Πόντου από την πρώτη επίθεση (Πλούταρχος, “Βίοι Παράλληλοι”, “Καίσαρας”, εδάφιο 50)"
 
-#: gui/text/quotes.txt:82
+#: gui/text/quotes.txt:80
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
 msgstr "\"Οι άνδρες πρόθυμα πιστεύουν ό,τι θέλουν.\" \\n— Γάιος Ιούλιος Καίσαρας (\"Απομνημονεύματα για το Γαλατικό Πόλεμο\", III. 18)"
 
-#: gui/text/quotes.txt:83
+#: gui/text/quotes.txt:81
 msgid ""
 "“It is not the well-fed long-haired man I fear, but the pale and the hungry "
 "looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
 msgstr "“Δεν φοβάμαι τον καλοθρεμμένο μακρυμάλλη άντρα άλλα τον χλωμό και αυτόν που κοιτάζει πεινασμένα.” \\n— Γάιος Ιούλιος Καίσαρας  (Πλούταρχος, “Βίοι Παράλληλοι”, “Αντώνιος”, εδάφιο 11)"
 
-#: gui/text/quotes.txt:84
+#: gui/text/quotes.txt:82
 msgid ""
 "“After fighting from noon almost to sunset, with victory doubtful, the "
 "Germans, on one side charged the enemy in a compact body, and drove them "
@@ -1494,7 +1480,7 @@ msgid ""
 "VII. 80)"
 msgstr "“Αφού αγωνίστηκαν από το σχεδόν μεσημέρι μέχρι το ηλιοβασίλεμα, με αμφίβολη τη νίκη, οι Γερμανοί, από τη μια πλευρά εξανάγκασαν τον εχθρό σε ένα συμπαγές σώμα και τους οδήγησαν πίσω και όταν βρίσκονταν στο βεληνεκές, οι τοξότες που τους περιέβαλλαν τους έκοψαν κομμάτια.” \\n— Γάιος Ιούλιος Καίσαρας για τη μάχη της Αλεσίας (“Απομνημονεύματα για το Γαλατικό Πόλεμο”, VII. 80)"
 
-#: gui/text/quotes.txt:85
+#: gui/text/quotes.txt:83
 msgid ""
 "“All the centurions of the fourth cohort were slain, and the standard-bearer"
 " killed, the standard itself lost, almost all the centurions of the other "
@@ -1504,7 +1490,7 @@ msgid ""
 "\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
 msgstr "“Όλοι οι εκατόνταρχοι της τέταρτης κοόρτης δολοφονήθηκαν και ο σημαιοφόρος σκοτώθηκε, το λάβαρο χάθηκε, σχεδόν όλοι οι εκατόνταρχοι των άλλων κοόρτων είτε τραυματίστηκαν είτε δολοφονήθηκαν και μεταξύ αυτών ο κύριος εκατόνταρχος της λεγεώνας Πόπλιος Σέξτιος Βάκαλος, ένας πολύ γενναίος άνθρωπος, ο οποίος ήταν πολύ εξαντλημένος από τις πολλές και σοβαρές πληγές, δεν ήταν πλέον σε θέση να υποστηρίξει τον εαυτό του.” \\n— Γάιος Ιούλιος Καίσαρας για τη μάχη των Σάβεων (“Απομνημονεύματα για το Γαλατικό Πόλεμο”, II. 25)"
 
-#: gui/text/quotes.txt:86
+#: gui/text/quotes.txt:84
 msgid ""
 "“But the enemy \\[…] displayed such great courage, that when the front rank "
 "had fallen the men behind them stood on them and continue the fight from on "
@@ -1514,39 +1500,39 @@ msgid ""
 "about the Battle of the Sabis (“De Bello Gallico”, II. 27)"
 msgstr "“Αλλά ο εχθρός \\[...] εμφάνιζε τόσο μεγάλο θάρρος, που όταν oi πρώτες γραμμές έπεσαν οι άνδρες από πίσω στέκονταν επάνω τους και να συνέχιζαν τον αγώνα πάνω από τα πτώματα, όταν και αυτοί σκοτώθηκαν ο σωρός των πτωμάτων έγινε ψηλότερος, ενώ οι επιζώντες χρησιμοποίησαν το σωρό ως πλεονεκτικό σημείο για τη ρίψη βλημάτων στους άνδρες μας, ή για να μαζεύουν τις λόγχες μας και να τις ρίχνουν πάλι πίσω.” \\n— ο Ιούλιος Καίσαρας για τη Μάχη της Σάβις ( “Απομνημονεύματα για το Γαλατικό Πόλεμο”, II. 27)"
 
-#: gui/text/quotes.txt:87
+#: gui/text/quotes.txt:85
 msgid ""
 "“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
 msgstr "“Ο κύβος ερρίφθη.” \\n— Ο Γαίος Ιούλιος Καίσαρ, όταν διάσχισε τον ποταμό Ρουβιτσών με τη λεγεώνα του στην Ιταλία, αυτό αποτελούσε βασικό αδίκημα και οδήγησε στον εμφύλιο πόλεμό εναντίον του Πομπηίου (Σουετώνιος, “Οι Ζωές των Δώδεκα Καισάρων”, 32)"
 
-#: gui/text/quotes.txt:88
+#: gui/text/quotes.txt:86
 msgid ""
 "“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
 " when passing through a barbarian village in the Alps (Plutarch, “Parallel "
 "Lives”, “Caesar”, sec. 11)"
 msgstr "“Θα προτιμούσα να είμαι ο πρώτος άνθρωπος εδώ παρά ο δεύτερος άνθρωπο στη Ρώμη.” \\n— Γάιος Ιούλιος Καίσαρας, καθώς περνούσε μέσα από ένα βάρβαρο χωριό στις Άλπεις (Πλούταρχος, “Βίοι Παράλληλοι”, “Καίσαρας”, εδάφιο 11)"
 
-#: gui/text/quotes.txt:89
+#: gui/text/quotes.txt:87
 msgid ""
 "“Stop quoting laws, we carry weapons!” \\n— Pompey (Plutarch, “Parallel "
 "Lives”, “Pompey”, sec. 10)"
 msgstr "“Σταματήστε να μας παραθέτεται τους νόμους, εμείς φέρουμε τα όπλα!” \\n— Γναίος Πομπήιος ο Μέγας (Πλούταρχος, “Βίοι Παράλληλοι”, “Πομπήιος”, εδάφιο 10)"
 
-#: gui/text/quotes.txt:90
+#: gui/text/quotes.txt:88
 msgid ""
 "“If a man put out the eye of another man, his eye shall be put out.” \\n— "
 "Hammurabi (Hammurabi's Code, sec. 196)"
 msgstr "“Αν ένας άντρας  βγάλει το μάτι ενός άλλου άντρα, το μάτι του πρέπει να βγει.” \\n— Χαμουραμπί (Κώδικας Χαμουραμπί, εδάφιο 196)"
 
-#: gui/text/quotes.txt:91
+#: gui/text/quotes.txt:89
 msgid ""
 "“I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.” \\n— Hannibal (Polybius, “Histories”, III. 85)"
 msgstr "“Έχω έρθει για να μην κάνω πόλεμο κατά των Ιταλών, αλλά και να βοηθήσω τους Ιταλούς εναντίον της Ρώμης.” \\n— Αννίβας Μπάρκα (Πολύβιος, “Ιστορίαι”, III. 85)"
 
-#: gui/text/quotes.txt:92
+#: gui/text/quotes.txt:90
 msgid ""
 "“Let us now end the anxiety of the Romans, who can't wait for the death of "
 "an old man.” \\n— Hannibal's last words before his suicide, in exile with "
@@ -1554,7 +1540,7 @@ msgid ""
 "Rome”, XXXIX. 51)"
 msgstr "“Ας τερματίσουμε τώρα το άγχος των Ρωμαίων, που δεν μπορούν να περιμένουν τον θάνατο ενός γέρου.” \\n— Τα τελευταία λόγια του Αννίβα Βάρκα πριν από την αυτοκτονία του, στην εξορία με τον Φλαμίνιο που πίεζε τον τοπικό κυβερνήτη να τον παραδώσει (Λίβιος, “Από Κτίσεως Πόλεως”, XXXIX. 51)"
 
-#: gui/text/quotes.txt:93
+#: gui/text/quotes.txt:91
 msgid ""
 "“Most inhuman and most arrogant of nations, they \\[the Romans] reckon the "
 "world as theirs and subject to their pleasure. With whom we are to be at "
@@ -1562,57 +1548,57 @@ msgid ""
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr "\"Οι πιο απάνθρωποι και πιο αλαζονικοί των εθνών, αυτοί \\[οι Ρωμαίοι] θεωρούν τον κόσμο δικό τους και αντικείμενο της ευχαρίστησή τους. Με τους οποίους πρόκειται να βρεθούμε σε πόλεμο, οι οποίοι θεωρούν σωστό να ξεκαθαρίσουμε με μας ειρηνικά\". \\n— Αννίβας Βάρκας, απευθυνόμενος στα στρατεύματά του (Λίβιος, \"Από Κτίσεως Πόλεως\", XXI. 44)"
 
-#: gui/text/quotes.txt:94
+#: gui/text/quotes.txt:92
 msgid ""
 "“You must be brave and discard all hopes of anything but victory or death.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 msgstr "“Πρέπει να είστε γενναίοι και να απορρίψετε όλες τις ελπίδες για οτιδήποτε εκτός από νίκη ή θάνατο.” \\n— Αννίβας Βάρκας, απευθυνόμενος στα στρατεύματά του (Λίβιος, “Από Κτίσεως Πόλεως”, XXI. 44)"
 
-#: gui/text/quotes.txt:95
+#: gui/text/quotes.txt:93
 msgid ""
 "“War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
 "Refutation of all Heresies”, IX. 4)"
 msgstr "“Ο πόλεμος είναι ο πατέρας και ο βασιλιάς όλων των πραγμάτων: κάποιους έχουν κάνει θεούς και κάποιους άνδρες, κάποιους σκλάβους και κάποιους ελεύθερους.” \\n— Ηράκλειτος (Ιππόλυτος, “Κατά Πασών Αιρέσεων Έλεγχος”, ΙΧ. 4)"
 
-#: gui/text/quotes.txt:96
+#: gui/text/quotes.txt:94
 msgid ""
 "“You could not step twice into the same river.” \\n— Heraclitus (Plato, "
 "“Cratylus”, 402a)"
 msgstr "“Δεν μπορείς να περάσεις το ίδιο ποτάμι δύο φορές.” \\n— Ηράκλειτος (Πλάτων, “Κρατύλος”, 402α)"
 
-#: gui/text/quotes.txt:97
+#: gui/text/quotes.txt:95
 msgid ""
 "“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
 "Histories”, III. 52)"
 msgstr "“Είναι καλύτερο να σε ζηλεύουν παρά να σε λυπούνται.” \\n— Ηρόδοτος (“Ιστορικά”, III. 52)"
 
-#: gui/text/quotes.txt:98
+#: gui/text/quotes.txt:96
 msgid ""
 "“In soft regions are born soft men.” \\n— Herodotus (“The Histories”, IX. "
 "122)"
 msgstr "“Σε μαλακές περιοχές γεννιούνται μαλακοί άνδρες.” \\n— Ηρόδοτος (“Ιστορικά”, IX. 122)"
 
-#: gui/text/quotes.txt:99
+#: gui/text/quotes.txt:97
 msgid ""
 "“This is the bitterest pain among men, to have much knowledge but no power.”"
 " \\n— Herodotus (“The Histories”, IX. 16)"
 msgstr "“Αυτός είναι ο πιο πικρός πόνος για τους άνδρες, να έχουν μεγάλη γνώση, αλλά καμία δύναμη.” \\n— Ηρόδοτος (“Ιστορικά”, IX. 16)"
 
-#: gui/text/quotes.txt:100
+#: gui/text/quotes.txt:98
 msgid ""
 "“Although he \\[Xerxes] had plenty of troops he had few men.” \\n— Herodotus"
 " (“The Histories”, VII. 210)"
 msgstr "“Αν και αυτός \\[Ξέρξης] είχε πολλά στρατεύματα, είχε λίγους άντρες.” \\n— Ηρόδοτος (“Ιστορικά”, VII. 210)"
 
-#: gui/text/quotes.txt:101
+#: gui/text/quotes.txt:99
 msgid ""
 "“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
 msgstr "“Οι Λακεδαιμόνιοι \\[Σπαρτιάτες] πολέμησαν σε μία αξιοσημείωτη μάχη, έκαναν σαφές ότι αυτοί ήταν οι ειδικοί, και ότι πολεμούσαν εναντίων σε ερασιτέχνες.” \\n— Ηρόδοτος (“Ιστορικά”, VII. 211)"
 
-#: gui/text/quotes.txt:102
+#: gui/text/quotes.txt:100
 msgid ""
 "“Being informed \\[…] that when the Barbarians discharged their arrows they "
 "obscured the light of the sun by the multitude of the arrows, he "
@@ -1623,7 +1609,7 @@ msgid ""
 "“Histories”, VII. 226)"
 msgstr "“Έχοντας ενημερωθεί \\[...] πως όταν οι Βάρβαροι ρίξουν τα βέλη τους, θα κρυφτεί το φως του ήλιου από το πλήθος των βέλων, ο \\[Διηνέκης] \\[...] είπε ότι οι επισκέπτες τους \\[...] τους έφεραν πολύ καλά νέα, γιατί αν οι Μήδες απέκρυπταν το φως του ήλιου, η μάχη εναντίον τους θα ήταν στη σκιά και όχι στον ήλιο.” \\n— Ο Ηρόδοτος περιγράφει τον Διηνέκη, τον πιο φημισμένο γενναίο στρατιώτη Σπαρτιάτη στις Θερμοπύλες (Πολύβιος, “Ιστορίες”, VII.226)"
 
-#: gui/text/quotes.txt:103
+#: gui/text/quotes.txt:101
 msgid ""
 "“The judgment given to Croesus by each of the two oracles \\[Delphi and "
 "Thebes] was the same: If he sent an army against the Persians, he would "
@@ -1631,7 +1617,7 @@ msgid ""
 "Croesus destroyed was his own (“The Histories”, I. 53)"
 msgstr "“Ο χρησμός που δόθηκε στον Κροίσο από καθένα από τα δυο μαντεία [Δελφούς και Θήβες] ήταν ο ίδιος: Αν στείλεις στρατό ενάντια στους Πέρσες, θα καταστρέψεις μια μεγάλη αυτοκρατορία.” \\n— Ηρόδοτος, αργότερα αναφέρει ότι η αυτοκρατορία που κατέστρεψε ο Κροίσος ήταν η δική του (“Ιστορικά”, Ι. 53)"
 
-#: gui/text/quotes.txt:104
+#: gui/text/quotes.txt:102
 msgid ""
 "“He \\[King Darius] asked who the Athenians were, and, being informed, "
 "called for his bow, and placing an arrow on the string, shot upward into the"
@@ -1641,7 +1627,7 @@ msgid ""
 "Histories”, V. 105)"
 msgstr "\"Αυτός \\[ο βασιλιάς Δαρείος] ρώτησε ποιοι είναι οι Αθηναίοι, και αφού ενημερώθηκε, ζήτησε το τόξο του, και τοποθετώντας ένα βέλος στη χορδή, το έριξε προς τα πάνω στον ουρανό, λέγοντας, καθώς άφησε να πετάξει το βέλος: Δώσε μου, ο Δία, την εκδίκηση στους Αθηναίους!\" \\n— Ηρόδοτος, αφηγώντας πώς οι Αθηναίοι στήριξαν την Επανάσταση του Ιονίου προκαλώντας την οργή του Δαρείου Α, του Πέρση βασιλιά («Οι Ιστορίες», V. 105)"
 
-#: gui/text/quotes.txt:105
+#: gui/text/quotes.txt:103
 msgid ""
 "“He \\[King Darius] asked one of his servants every day, when his dinner was"
 " spread, three times to repeat to him: Master, remember the Athenians!” \\n—"
@@ -1649,39 +1635,53 @@ msgid ""
 " the Persian Wars (“The Histories”, V. 105)"
 msgstr "“Αυτός \\[ο βασιλιάς Δαρείος] ζήτησε από έναν από τους υπηρέτες του, κάθε μέρα, όταν το δείπνο του είχε στρωθεί, να του επαναλαμβάνει τρεις φορές: Αφέντη, θυμηθείτε τους Αθηναίους!” \\n— Ηρόδοτος, αφηγώντας πώς οι Αθηναίοι στήριξαν την Επανάσταση του Ιονίου προκαλώντας την οργή του Δαρείου Α, του Πέρση βασιλιά (“Οι Ιστορίες”, V. 105)"
 
-#: gui/text/quotes.txt:106
+#: gui/text/quotes.txt:104
 msgid ""
 "“Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
 msgstr "\"Η κατάκτηση της Ελλάδας πραγματοποιήθηκε με αιχμαλωσία από άγριο κατακτητή και αυτή έφερε τις τέχνες της στο αγροτικό Λάτιο.\"  \\n— Οράτιος (\"Επιστολές\", επιστολή I., 156-157)"
 
-#: gui/text/quotes.txt:107
+#: gui/text/quotes.txt:105
 msgid ""
 "“Anger is a momentary madness, so control your passion or it will control "
 "you.” \\n— Horace (“Epistles”, epistle II., 62)"
 msgstr "“Ο θυμός είναι μία στιγμιαία τρέλα, επομένως ελέγχετε το πάθος σας ή θα σας ελέγξει αυτό.” \\n— Οράτιος (“Επιστολές”, επιστολή II., 62)"
 
-#: gui/text/quotes.txt:108
+#: gui/text/quotes.txt:106
 msgid ""
 "“It is your concern when your neighbor's wall is on fire.” \\n— Horace "
 "(“Epistles”, epistle XVIII., 84)"
 msgstr "“Ανησυχήστε όταν η μάντρα του γείτονά σας έχει πιάσει φωτιά.” \\n— Οράτιος (“Επιστολές”, επιστολή XVIII., 84)"
 
-#: gui/text/quotes.txt:109
+#: gui/text/quotes.txt:107
 msgid ""
 "“It is sweet and honorable to die for one's country.” \\n— Horace (“Odes”, "
 "III., ode II., 13)"
 msgstr "“Είναι γλυκό και τιμητικό να πεθάνει κανείς για την πατρίδα του.” \\n— Οράτιος (“Ωδές”, III., ωδή II., 13)"
 
-#: gui/text/quotes.txt:110
+#: gui/text/quotes.txt:108
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
 msgstr "\"Είμαι ο Κύρος, ο βασιλιάς του κόσμου...\" \\n— Επιγραφή (Κύλινδρος του Κύρου)"
 
-#: gui/text/quotes.txt:111
+#: gui/text/quotes.txt:109
 msgid ""
 "“In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.” \\n— Croesus, king of Lydia (Herodotus, “The Histories”, I. 87)"
 msgstr "“Στην ειρήνη, οι γιοι θάβουν τους πατέρες τους, αλλά στον πόλεμο οι πατέρες θάβουν τους γιους τους.” \\n— Κροίσος, ο βασιλιάς της Λυδίας (Ηρόδοτος, “Ιστορικά”, I. 87)"
+
+#: gui/text/quotes.txt:110
+msgid ""
+"“Whoever imposes severe punishment becomes repulsive to the people; while he"
+" who awards mild punishment becomes contemptible. But whoever imposes "
+"punishment as deserved becomes respectable.”\\n— Kauṭilya (“Arthashastra”, "
+"I.4.8–10)"
+msgstr ""
+
+#: gui/text/quotes.txt:111
+msgid ""
+"“If a king is energetic, his subjects will be equally energetic.”\\n— "
+"Kauṭilya (“Arthashastra” I.19.1)"
+msgstr ""
 
 #: gui/text/quotes.txt:112
 msgid ""

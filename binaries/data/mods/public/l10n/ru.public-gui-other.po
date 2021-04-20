@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-09 07:08+0000\n"
-"PO-Revision-Date: 2021-04-15 22:09+0000\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-18 13:51+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -438,7 +438,7 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:414
 msgctxt "game setup option"
 msgid "enabled"
-msgstr "Включено"
+msgstr "включено"
 
 #: gui/common/gamedescription.js:415
 msgctxt "game setup option"
@@ -938,7 +938,7 @@ msgstr "Огонь по своим: %(enabled)s"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Да"
 
@@ -947,7 +947,7 @@ msgstr "Да"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Нет"
 
@@ -1044,7 +1044,7 @@ msgstr "Размер гарнизона"
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:593
 #, javascript-format
@@ -1670,7 +1670,7 @@ msgstr "Камера"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Скроллить вниз / перемещаться назад."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
@@ -1770,7 +1770,7 @@ msgstr "Сохранить позицию камеры 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr "Скроллить или повернуть влево."
+msgstr "Скроллить / перемещаться влево."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
@@ -1810,7 +1810,7 @@ msgstr "Сбросить настройки камеры"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr "Скроллить или повернуть вправо."
+msgstr "Скроллить / перемещаться вправо."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
@@ -1913,7 +1913,7 @@ msgstr "Увеличить скорость скроллинга"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr "Скроллить или поворачивать вверх/вперед."
+msgstr "Скроллить вверх /  перемещаться вперед."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
@@ -2013,7 +2013,7 @@ msgstr "Закрыть/Завершить"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Подтвердить текущее действие."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2133,22 +2133,22 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Показать следующую вкладку."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Следующая вкладка"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Показать предыдущую вкладку."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Предыдущая вкладка"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
@@ -2173,22 +2173,22 @@ msgstr "Удалить после курсора"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Переместить курсор к началу слова левей курсора."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Переместить курсор к левому слову"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Переместить курсор к началу слова правей курсора."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Переместить курсор к правому слову"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
@@ -2228,7 +2228,7 @@ msgstr ""
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Открыть обзор карт"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -2350,6 +2350,16 @@ msgstr "Уничтожить выбранных юнитов."
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
 msgstr "Уничтожить выбранных юнитов"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
+msgctxt "hotkey metadata"
+msgid "Order an entity to leave a turret point."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
+msgctxt "hotkey metadata"
+msgid "Leave Turret Point"
+msgstr ""
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
@@ -2728,7 +2738,7 @@ msgstr "Активировать оверлей разработчика"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr ""
+msgstr "Переключить дипломатические цвета"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
@@ -2910,7 +2920,7 @@ msgstr "Показать силуэты юнитов"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Show structure tree."
-msgstr ""
+msgstr "Показать древо зданий."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
@@ -2965,7 +2975,7 @@ msgstr "Добавить юнитов к выделенному отряду."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "Добавить к уже выделенным"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
@@ -3325,7 +3335,7 @@ msgstr "Добавить в выбранное только военных юн�
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Выбрать только воинов"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
@@ -3335,7 +3345,7 @@ msgstr "Добавить в выбранное только невоенных �
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Выделить только невоенных"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
@@ -3581,7 +3591,7 @@ msgstr "Триггер карты"
 
 #: gui/maps/MapFilters.js:113
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Карты, содержащие сценарии и потенциально создающие  вражеские юниты."
+msgstr "Карты, содержащие сценарные события воспроизводящие вражеских юнитов."
 
 #: gui/maps/MapFilters.js:118
 msgid "All Maps"
@@ -3620,7 +3630,7 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
@@ -3632,12 +3642,12 @@ msgstr "Фильтр карт:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Ткнуть карту случайным образом"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Выбрать"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
@@ -3649,21 +3659,21 @@ msgstr "Перейти на следующую страницу."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Увеличить размер миниатюр карт."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Уменьшить размер миниатюр карт."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Карты: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Страница: %(currentPage)s/%(maxPage)s"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4308,7 +4318,7 @@ msgstr "Автоматически назначать присоединивши
 
 #: gui/options/options.json[4].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Сеть / Лобби"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -4357,31 +4367,31 @@ msgstr "Позволить всем или только друзьям прис�
 
 #: gui/options/options.json[4].options[5].label
 msgid "Observer limit"
-msgstr "Предел количества зрителей"
+msgstr "Предел количества наблюдателей"
 
 #: gui/options/options.json[4].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Предотвращение дальнейшего подключение зрителей при достижении предела."
+msgstr "Предотвращение дальнейшего подключение наблюдателей при достижении предела."
 
 #: gui/options/options.json[4].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Максимальная задержка для наблюдателей"
 
 #: gui/options/options.json[4].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Создатель игры приостанавливает игру если наблюдатели отстают на большое количество ходов. Если установлено значение -1, наблюдатели игнорируются. "
 
 #: gui/options/options.json[4].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Наблюдатель) Ускорять при задержках."
 
 #: gui/options/options.json[4].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Во время наблюдения игра автоматически ускоряется если появляются задержки для возобновления прямой трансляции."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4626,7 +4636,7 @@ msgstr "Все"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Показать уведомление в чате, если вы или союзник начали, прервали или завершили переход на новый этап, а также на этапы всех игроков в режиме зрителя."
+msgstr "Показать уведомление в чате, если вы или союзник начали, прервали или завершили переход на новый этап, а также на этапы всех игроков в режиме наблюдателя."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -4733,7 +4743,7 @@ msgstr "Обзор погребальных колесниц"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "Сравнить преимущества, которые предоставляют погребальные колесницы в 0 A.D."
+msgstr "Сравнить преимущества предоставляемые погребальными колесницами в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
@@ -4750,7 +4760,7 @@ msgstr "Продолжить кампанию"
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Воспроизведите историю в исторических военных кампаниях."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
@@ -4900,7 +4910,7 @@ msgid ""
 "for additional information."
 msgstr "Редактор сценариев недоступен или не запускается. Посмотрите логи игры для более подробной информации."
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Ошибка"
 
@@ -5056,11 +5066,11 @@ msgstr "Вы можете автоматически посылать нам а�
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Закрыть бонусы погребальных колесниц."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr "Бонусы погребальных колесниц"
+msgstr "Погребальные колесницы"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -5219,7 +5229,7 @@ msgstr "Обучающие юниты"
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Закрыть древо зданий."
 
-#: gui/reference/viewer/ViewerPage.js:167
+#: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr "%(hotkey)s: закрыть просмотр шаблона"
@@ -5250,15 +5260,15 @@ msgstr "Требуемая версия: %(version)s"
 msgid "Incompatible replay"
 msgstr "Несовместимый повтор"
 
-#: gui/replaymenu/replay_actions.js:117
+#: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
 msgstr "Нет итоговых данных."
 
-#: gui/replaymenu/replay_actions.js:166
+#: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Вы уверены, что хотите навсегда удалить этот повтор?"
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
 msgstr "Удалить повтор"
 

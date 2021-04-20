@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-09 07:08+0000\n"
-"PO-Revision-Date: 2021-04-09 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-16 07:13+0000\n"
+"PO-Revision-Date: 2021-04-17 12:39+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -890,7 +890,7 @@ msgstr "아군의 포격: %(enabled)s"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "예"
 
@@ -899,7 +899,7 @@ msgstr "예"
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
 #: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "아니오"
 
@@ -1005,7 +1005,7 @@ msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr "터렛 위치"
+msgstr "포탑 위치"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1123,7 +1123,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
-msgstr ""
+msgstr "유지비:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -2288,6 +2288,16 @@ msgctxt "hotkey metadata"
 msgid "Destroy selected units"
 msgstr "선택한 유닛 파괴"
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
+msgctxt "hotkey metadata"
+msgid "Order an entity to leave a turret point."
+msgstr "개체에게 포탑 지점을 떠나라고 명령하십시오."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
+msgctxt "hotkey metadata"
+msgid "Leave Turret Point"
+msgstr "터렛 지점 나가기"
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
@@ -2331,17 +2341,17 @@ msgstr "확인 없이 파기"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr "터렛 홀더를 클릭할 때 터렛을 점령하도록 변경했습니다."
+msgstr "포탑 홀더를 클릭할 때 포탑을 점령하도록 변경했습니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr "터렛 지점 점령"
+msgstr "포탑 지점 점령"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr "선택 항목에서 단 하나의 본체만 명령하기 위해 변경합니다."
+msgstr "선택 항목에서 단 하나의 개체만 명령하기 위해 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
@@ -2533,12 +2543,12 @@ msgstr "내리기"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr "터렛의 유닛을 내립니다."
+msgstr "포탑의 유닛을 내립니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr "터렛 내리기"
+msgstr "포탑 내리기"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
@@ -3761,7 +3771,7 @@ msgstr "유닛의 일반 이름만 표시합니다."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr "본체 이름을 표시하는 방법."
+msgstr "개체 이름을 표시하는 방법."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4018,7 +4028,7 @@ msgstr "선택한 경로의 선명도입니다."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "모델 품질"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label
@@ -4027,7 +4037,7 @@ msgstr "낮음"
 
 #: gui/options/options.json[1].options[7].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "더 단순한 모델을 통해 성능을 향상시킬 수 있습니다."
 
 #: gui/options/options.json[1].options[10].list[2].label
 #: gui/options/options.json[1].options[7].list[1].label
@@ -4037,7 +4047,7 @@ msgstr "중간"
 
 #: gui/options/options.json[1].options[7].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "평균 품질 및 평균 성능입니다."
 
 #: gui/options/options.json[1].options[10].list[3].label
 #: gui/options/options.json[1].options[7].list[2].label
@@ -4046,11 +4056,11 @@ msgstr "높음"
 
 #: gui/options/options.json[1].options[7].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "높은 품질 모델."
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "모델 품질 설정."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shader effects"
@@ -4837,7 +4847,7 @@ msgid ""
 "for additional information."
 msgstr "시나리오 편집기를 사용할 수 없거나 불러오지 못했습니다. 추가 정보는 게임 기록을 참조하십시오."
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "오류"
 
@@ -5141,7 +5151,7 @@ msgstr "유닛 훈련 교관"
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: 건축물 도감을 닫습니다."
 
-#: gui/reference/viewer/ViewerPage.js:167
+#: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr "%(hotkey)s: 서식 보기 닫기"
@@ -5172,15 +5182,15 @@ msgstr "필요한 버전: %(version)s"
 msgid "Incompatible replay"
 msgstr "호환되지않는 다시보기"
 
-#: gui/replaymenu/replay_actions.js:117
+#: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
 msgstr "사용할 수 있는 요약 자료가 없습니다."
 
-#: gui/replaymenu/replay_actions.js:166
+#: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "이 다시보기를 영구적으로 삭제 하시겠습니까?"
 
-#: gui/replaymenu/replay_actions.js:168
+#: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
 msgstr "다시보기 삭제"
 
