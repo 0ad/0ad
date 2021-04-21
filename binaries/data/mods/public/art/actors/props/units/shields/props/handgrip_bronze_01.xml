@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<actor version="1">
-  <castshadow/>
-  <group>
-    <variant frequency="1" file="shields/aspis_handgrip_bronze_01.xml" name="Aspis-Handgrip-01"/>
-  </group>
-  <group>
-    <variant name="Handgrip">
-      <mesh>props/shield/props/handgrip_bronze_01.dae</mesh>
-    </variant>
-  </group>
-  <material>no_trans_parallax_spec.xml</material>
-</actor>
+<qualitylevels version="1">
+  <actor version="1" quality="low"/>
+  <actor version="1" quality="medium"/>
+  <actor version="1">
+    <group>
+      <variant frequency="1" file="shields/aspis_handgrip_bronze_01.xml" name="Aspis-Handgrip-01">
+        <mesh>props/shield/props/handgrip_bronze_01.dae</mesh>
+      </variant>
+    </group>
+    <material>no_trans_norm_spec.xml</material>
+  </actor>
+</qualitylevels>
