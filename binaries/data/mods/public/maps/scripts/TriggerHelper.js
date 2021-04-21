@@ -91,7 +91,7 @@ TriggerHelper.SetUnitFormation = function(playerID, entities, formation)
 	ProcessCommand(playerID, {
 		"type": "formation",
 		"entities": entities,
-		"name": formation
+		"formation": formation
 	});
 };
 

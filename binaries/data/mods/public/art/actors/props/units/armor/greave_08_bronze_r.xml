@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<actor version="1">
-  <castshadow/>
-  <group>
-    <variant>
-      <mesh>props/armor/greave_08_r.dae</mesh>
-      <textures>
-        <texture file="props/armor/greave_08_bronze.png" name="baseTex"/>
-        <texture file="props/armor/greave_08_norm.png" name="normTex"/>
-        <texture file="props/armor/greave_08_bronze_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-  </group>
-  <material>no_trans_parallax_spec.xml</material>
-</actor>
+<qualitylevels version="1">
+  <actor version="1" quality="low"/>
+  <actor version="1" quality="medium"/>
+  <actor version="1">
+    <group>
+      <variant>
+        <mesh>props/armor/greave_08_r.dae</mesh>
+        <textures>
+          <texture file="props/armor/greave_08_bronze.png" name="baseTex"/>
+          <texture file="props/armor/greave_08_norm.png" name="normTex"/>
+          <texture file="props/armor/greave_08_bronze_spec.png" name="specTex"/>
+        </textures>
+      </variant>
+    </group>
+    <material>no_trans_norm_spec.xml</material>
+  </actor>
+</qualitylevels>
