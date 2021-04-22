@@ -31,7 +31,7 @@ var g_CommunityButtons = [
 	},
 	{
 		"caption": translate("Chat"),
-		"tooltip": translate("Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)"),
+		"tooltip": translate("Click to open the 0 A.D. IRC chat in your browser (#0ad on webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it may take a while to get your question answered. Alternatively, you can use the forum (see Website)."),
 		"size": "50%+4 100%-144 100%-8 100%-116",
 		"onPress": () => {
 			openURL("https://webchat.quakenet.org/?channels=0ad");
@@ -40,9 +40,17 @@ var g_CommunityButtons = [
 	{
 		"caption": translate("Report a Bug"),
 		"tooltip": translate("Click to visit 0 A.D. Trac to report a bug, crash, or error."),
-		"size": "8 100%-108 100%-8 100%-80",
+		"size": "8 100%-108 50%-4 100%-80",
 		"onPress": () => {
 			openURL("https://trac.wildfiregames.com/wiki/ReportingErrors/");
+		}
+	},
+	{
+		"caption": translateWithContext("Frequently Asked Questions", "FAQ"),
+		"tooltip": translate("Click to visit the Frequently Asked Questions page in your browser."),
+		"size": "50%+4 100%-108 100%-8 100%-80",
+		"onPress": () => {
+			openURL("https://trac.wildfiregames.com/wiki/FAQ");
 		}
 	},
 	{
