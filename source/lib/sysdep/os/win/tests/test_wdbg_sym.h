@@ -111,18 +111,11 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
 		// amount of text (not just "(failed)" error messages) was produced.
-		ErrorMessageMem emm = {0};
+
 		CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];
 		TS_ASSERT_EQUALS(debug_CaptureContext(context), INFO::OK);
-		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, context, L"m_test_array", &emm);
+		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0, 0, 0, context, L"m_test_array");
 		TS_ASSERT(wcslen(text) > 500);
-#if 0
-		{
-			std::wofstream s(L"d:\\out.txt");
-			s << text;
-		}
-#endif
-		debug_FreeErrorMessage(&emm);
 
 		debug_printf("(done dumping stack frames)\n");
 	}
