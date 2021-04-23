@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,9 @@
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
 #include "lib/file/vfs/vfs_path.h"
+
+#include <memory>
+#include <vector>
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // CBoneState: structure describing state of a bone at some point
@@ -78,8 +81,8 @@ public:
 	void BuildBoneMatrices(float time, CMatrix3D* matrices, bool loop) const;
 
 	// anim I/O functions
-	static CSkeletonAnimDef* Load(const VfsPath& filename);
-	static void Save(const VfsPath& pathname, const CSkeletonAnimDef* anim);
+	static std::unique_ptr<CSkeletonAnimDef> Load(const VfsPath& filename);
+	static void Save(const VfsPath& pathname, const CSkeletonAnimDef& anim);
 
 public:
 	// frame time - time between successive frames, in ms
@@ -89,7 +92,11 @@ public:
 	// number of frames in the animation
 	size_t m_NumFrames;
 	// animation data - m_NumKeys*m_NumFrames total keys
-	Key* m_Keys;
+	std::vector<Key> m_Keys;
+	// Unique identifier - used by CModelDef to cache bounds per-animDef.
+	// (hopefully we won't run into the u32 limit too soon).
+	u32 m_UID;
+	static u32 nextUID;
 };
 
 #endif

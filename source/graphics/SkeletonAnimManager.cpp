@@ -40,9 +40,6 @@ CSkeletonAnimManager::CSkeletonAnimManager(CColladaManager& colladaManager)
 // CSkeletonAnimManager destructor
 CSkeletonAnimManager::~CSkeletonAnimManager()
 {
-	using Iter = std::unordered_map<VfsPath,CSkeletonAnimDef*>::iterator;
-	for (Iter i = m_Animations.begin(); i != m_Animations.end(); ++i)
-		delete i->second;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,22 +50,18 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 	VfsPath name = pathname.ChangeExtension(L"");
 
 	// Find if it's already been loaded
-	std::unordered_map<VfsPath, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
+	std::unordered_map<VfsPath, std::unique_ptr<CSkeletonAnimDef>>::iterator iter = m_Animations.find(name);
 	if (iter != m_Animations.end())
-		return iter->second;
+		return iter->second.get();
 
-	CSkeletonAnimDef* def = NULL;
+	std::unique_ptr<CSkeletonAnimDef> def;
 
 	// Find the file to load
 	VfsPath psaFilename = m_ColladaManager.GetLoadablePath(name, CColladaManager::PSA);
 
 	if (psaFilename.empty())
-	{
 		LOGERROR("Could not load animation '%s'", pathname.string8());
-		def = NULL;
-	}
 	else
-	{
 		try
 		{
 			def = CSkeletonAnimDef::Load(psaFilename);
@@ -77,14 +70,12 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 		{
 			LOGERROR("Could not load animation '%s'", psaFilename.string8());
 		}
-	}
 
 	if (def)
 		LOGMESSAGE("CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", pathname.string8());
 	else
 		LOGERROR("CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", pathname.string8());
 
-	// Add to map
-	m_Animations[name] = def; // NULL if failed to load - we won't try loading it again
-	return def;
+	// Add to map, NULL if failed to load - we won't try loading it again
+	return m_Animations.insert_or_assign(name, std::move(def)).first->second.get();
 }
