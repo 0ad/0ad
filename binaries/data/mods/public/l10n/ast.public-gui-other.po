@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 14:14+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-20 16:11+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1476,7 +1476,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Magar que'l xugador tralláu nun lu vea tan difícil, el nivel por defeutu de la IA ye enforma abegosu pa novatos, que siguen ensin dominar los fundamentales del xuegu. A estos aconséyase-yos entamar xugando escontra una IA de nivel más baxu (Quedu o Perfácil). Cambia'l nivel de la IA calcando nel iconu del engrane cabo'l xugador que quieras camudar nel panel d'esbilla enriba."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "Otros atayos"
 
@@ -1515,6 +1515,10 @@ msgstr "¿Reafitar tolos atayos?\nAVISU: Esto nun pue revertise."
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Confirmanza"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr "Nun hai conseyos disponibles."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3221,6 +3225,16 @@ msgstr "Escoyer el control 9."
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
 msgstr "Esbillar el control 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr "Esbillar el siguiente constructor baleru."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr "Esbillar el siguiente constructor baleru"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"

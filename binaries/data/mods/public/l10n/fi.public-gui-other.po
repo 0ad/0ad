@@ -7,6 +7,7 @@
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Kalle Mantyla <kalle.mantyla@gmail.com>, 2016
+# Matti Tuhola, 2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-21 15:12+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,22 +36,22 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr ""
+msgstr "Määrittämätön pikanäppäin: %(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Täydennä pelaajien nimet automaattisesti painamalla %(hotkey)s."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Sarkain"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
@@ -58,7 +59,7 @@ msgstr "Lataus keskeytetty"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_utility.js:236
 #, javascript-format
@@ -142,12 +143,12 @@ msgstr "Tuntematon sivilisaatio"
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "lyöty"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "voitettu"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
@@ -188,46 +189,46 @@ msgstr "Voittajaa ei määritetä, vaikka kaikki kaatuisivat."
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ihme (%(min)s minuutti)"
+msgstr[1] "Ihme (%(min)s minuttia)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kaappaa muinaisjäännös (%(min)s minuutti)"
+msgstr[1] "Kaappaa muinaisjäännös (%(min)s minuuttia)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
-msgstr ""
+msgstr "Muinaisjäännösten määrä"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Varuskunta sankareille"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Sankarit voidaan määrätä varuskuntaan."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Alttiina olevat sankarit"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Sankareita ei voi määrätä varuskuntaan, ja ne ovat alttiita hyökkäyksille."
 
 #: gui/common/gamedescription.js:252
 msgid "Rated game"
-msgstr ""
+msgstr "Arvioitu peli"
 
 #: gui/common/gamedescription.js:253
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Kun pelin voittaja on selvillä, aulassa näkyvää pistemäärää muutetaan."
 
 #: gui/common/gamedescription.js:258
 msgid "Locked Teams"
@@ -307,15 +308,15 @@ msgstr "Kartan koko"
 #: gui/common/gamedescription.js:329
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Sattumanvarainen biomi"
 
 #: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Valitse biomi sattumanvaraisesti luettelosta."
 
 #: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Kulkuritila"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
@@ -325,7 +326,7 @@ msgstr "Kansalaiskeskukset"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Pelaajilla on aluksi vain muutama yksikkö, ja heidän on löydettävä sopiva paikka kaupungin rakentamiselle."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
@@ -338,7 +339,7 @@ msgstr "Aloitusresurssit"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Per pelaaja"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -352,11 +353,11 @@ msgstr "Väkilukuraja"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Per pelaaja"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Maailman väestökatto"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -370,7 +371,7 @@ msgstr "Pois käytöstä"
 #: gui/common/gamedescription.js:393
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Kartan määrittelyn mukaisesti."
 
 #: gui/common/gamedescription.js:397
 msgid "Explored Map"
@@ -378,7 +379,7 @@ msgstr "Tutkittu kartan alue"
 
 #: gui/common/gamedescription.js:402
 msgid "Revealed Map"
-msgstr ""
+msgstr "Paljastettu kartta"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -408,11 +409,11 @@ msgstr "ei käytössä"
 
 #: gui/common/gamedescription.js:427
 msgid "Victorious"
-msgstr ""
+msgstr "Voitokas"
 
 #: gui/common/gamedescription.js:432
 msgid "Defeated"
-msgstr ""
+msgstr "Kukistettu"
 
 #: gui/common/gamedescription.js:441
 #, javascript-format
@@ -443,7 +444,7 @@ msgstr "Huono yhteys %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Tämä johtuu usein siitä, että UDP-porttia 20595 ei ole välitetty isännän puolelta palomuurin tai virustorjuntaohjelmiston takia."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -451,7 +452,7 @@ msgstr "Isäntä on lopettanut pelin."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Väärä verkkoprotokollaversio."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -471,7 +472,7 @@ msgstr "Sinut on estetty."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Pelaajanimi on käytössä. Jos yhteys katkesi, yritä uudelleen muutaman sekunnin kuluttua."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -479,19 +480,19 @@ msgstr "Palvelin on täynnä."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Turvallinen aulan todennus epäonnistui. Liity aulan kautta."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Virhe: Palvelin ei onnistunut varaamaan yksilöllistä asiakastunnusta."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Virhe: Asiakkaan komennot olivat valmiina odottamatonta pelivuoroa varten."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Virhe: Asiakas simuloi odottamattoman pelivuoron."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
@@ -499,11 +500,11 @@ msgstr "Salasana on virheellinen."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Ei löytynyt käyttämätöntä porttia enet STUN -asiakkaalle."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "STUN-päätepistettä ei löytynyt."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -524,7 +525,7 @@ msgstr "Yhteys katkaistu"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Vain isäntä voi antaa asiakkaalle potkut!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -604,7 +605,7 @@ msgstr "Kahakka"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Kartta, jossa on ennalta määritetty maasto ja pelaajien määrä. Valitse vapaasti muut peliasetukset."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -615,7 +616,7 @@ msgstr "Satunnainen"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Luo ainutkertainen kartta, jossa luonnonvarat jakautuvat joka kerta eri tavalla. Valitse pelaajien ja joukkueiden määrä vapaasti."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -624,7 +625,7 @@ msgstr "Skenaario"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Kartta, jossa on ennalta määritetty maasto ja peliasetukset."
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
@@ -658,7 +659,7 @@ msgstr "Oletus"
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(maailma)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -667,7 +668,7 @@ msgstr "Tuntematon"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Tuntematon voiton ehto"
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -705,7 +706,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:178
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
@@ -721,43 +722,43 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
-msgstr ""
+msgstr "Vastustuskyky:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr ""
+msgstr "Vahinko:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:230 gui/common/tooltips.js:250
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr ""
+msgstr "Valtaus:"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Valtaus"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
-msgstr ""
+msgstr "Tilavaikutukset"
 
 #: gui/common/tooltips.js:267
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Estää kohteen %(name)s"
 
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:280
 #: gui/common/tooltips.js:287
@@ -990,7 +991,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "Varuskunnan koko"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -1482,7 +1483,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr ""
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr ""
 
@@ -1521,6 +1522,10 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Vahvistus"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3228,6 +3233,16 @@ msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
 msgstr ""
 
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr ""
+
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
@@ -4801,7 +4816,7 @@ msgstr "Aseta peliasetukset"
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
 msgid "Hotkeys"
-msgstr ""
+msgstr "Pikanäppäimet"
 
 #: gui/pregame/MainMenuItems.js:214
 msgid "Adjust hotkeys."
@@ -4881,7 +4896,7 @@ msgstr "WILDIFRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alfa XXV: Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""

@@ -6,6 +6,7 @@
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
+# Matti Tuhola, 2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-21 07:12+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,13 +84,13 @@ msgstr "Lukittu kaupunkivaiheessa."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Mestarijalkaväen keihäsmiehille +25% terveyttä, mutta +5% koulutusaika."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
+msgstr "Intialaisilla, iranilaisilla ja kushilaisilla kansoilla oli vahva jousiammuntaperinne, ja he käyttivät taistelussa usein joukkoja jousimiehiä."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -108,7 +109,7 @@ msgstr "Kylä-vaiheessa avoin."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
-msgstr ""
+msgstr "Jousimiehille +10 hyökkäyskantama."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -146,7 +147,7 @@ msgstr "Avautuu kaupunkivaiheessa."
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Kansalaisrakenteille +20% rakennusaika, +20% terveyttä ja +20% kaappauspisteitä."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -154,7 +155,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Persialaiset rakensivat upean 2699 kilometrin pituisen kuninkaallisen valtatien Sardiksesta Susaan; Dareios Suuri ja Kserkses rakensivat myös upean Persepoliksen; Kyrus Suuri paransi huomattavasti Ecbatanaa ja käytännössä \"rakensi uudelleen\" vanhan elamilaisten pääkaupungin Susan."
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Persian Architecture"
@@ -162,13 +163,13 @@ msgstr "Persialainen arkkitehtuuri"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr ""
+msgstr "Rakenteille +25% terveyttä ja kaappauspisteitä, mutta myös +20% rakennusaika."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr ""
+msgstr "Taistelutahto on ratkaiseva voiton kannalta. Innosta joukkojasi korkeammalla palkalla."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
@@ -184,7 +185,7 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr ""
+msgstr "Sotilaille, piirityskoneille ja laivoille +25% hyökkäysvahinko."
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -206,13 +207,13 @@ msgstr "Upokasteräs"
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "Swordsmen +20% attack damage."
-msgstr ""
+msgstr "Miekkamiehille +20% hyökkäysvahinko."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr ""
+msgstr "Lisää merkittävästi jalkaväen koulutusnopeutta kouluttamalla jalkaväkeä suurissa erissä tai komppanioissa."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -221,13 +222,13 @@ msgstr "Asevelvollisuus"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
-msgstr ""
+msgstr "Parakeille -10% eräkoulutusaika."
 
 #: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr ""
+msgstr "Ratsuväkijoukkojen kutsuminen sodan aikana auttaa vahvistamaan kuninkaan armeijan rivejä."
 
 #: simulation/data/technologies/cavalry_cost_time.jsongenericName
 msgid "Levy Cavalry"
@@ -235,15 +236,15 @@ msgstr "Sotaväkeenottoratsuväki"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr ""
+msgstr "Ratsuväelle -10% koulutusaika."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
-msgstr ""
+msgstr "Jalosta parempia sotahevosia."
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr ""
+msgstr "Hevosten jalostus"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
@@ -255,7 +256,7 @@ msgstr "Kouluta hevosesi nopeammiksi."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Hevosajot"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
@@ -266,7 +267,7 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Karthagonilaiset rakensivat kaupunginmuurinsa kolmeen samankeskiseen kehään. Näitä muureja ei koskaan murrettu. Vaikka roomalaiset valtasivat kaupungin, se tapahtui kaupungin sataman kautta eikä hyökkäyksellä muurien yli."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -274,11 +275,11 @@ msgstr "Kolminkertainen muuri"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Kaupunkimuurille +100% rakennusaika, +100% kivikustannukset ja +200% terveyttä."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Kelttiläiset rakenteet tehtiin enimmäkseen puusta ja niiden perustukset olivat kivimurskaa."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"

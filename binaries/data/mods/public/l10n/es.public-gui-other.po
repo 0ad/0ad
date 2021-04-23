@@ -45,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-18 13:18+0000\n"
-"Last-Translator: jorgman1 . <jorgman1@protonmail.com>\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-19 08:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1511,7 +1511,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Aunque sea razonablemente fácil para el jugador experto, el nivel de la IA supone todo un reto para jugadores nuevos que todavía desconozcan los rudimentos del juego.\n\nEs recomendable bajar el nivel (a «de prueba» o «fácil») en las primeras partidas. Puedes cambiarlo haciendo clic sobre cada botón con engranaje en el panel de selección de jugadores, encima de este mensaje."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "Otros atajos de teclado"
 
@@ -1550,6 +1550,10 @@ msgstr "¿Quieres reiniciar todos los atajos de teclado a su valor por defecto?\
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Confirmar decisión"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3255,6 +3259,16 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
 msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc

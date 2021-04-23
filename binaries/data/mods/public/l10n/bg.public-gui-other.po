@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:29+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-19 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -1482,7 +1482,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Въпреки че за опитните играчи стандартното ниво на трудност на изкуствения интелект е сравнително лесно, за новите играчи то може да бъде доста предизвикателно, докато не усвоят основните механики на играта. Начинаещите играчи е препоръчително да започнат с игра срещу по-ниско ниво ИИ („много лесно“ или дори „пясъчник“). Промяната на нивото на ИИ се прави като щракнете иконката с зъбно колело до всеки играч, управляван от ИИ, в областта за избор на играчите по-горе."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr ""
 
@@ -1521,6 +1521,10 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Потвърждаване"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3226,6 +3230,16 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
 msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc

@@ -89,9 +89,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-20 13:03+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1064,7 +1064,7 @@ msgstr "+ "
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
@@ -1281,12 +1281,12 @@ msgstr "范围: "
 #: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1149
 msgid "Classes:"
@@ -1541,7 +1541,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“测试”或“极易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "其他热键"
 
@@ -1580,6 +1580,10 @@ msgstr "是否要将全部快捷键重置为默认值？\n警告：该操作无�
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "确认"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3287,75 +3291,85 @@ msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
 msgstr ""
 
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr "选取下一位空闲建筑工"
+
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "仅选取空闲单位。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "仅选取空闲单位"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "选取下一位空闲单位。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "选取下一位空闲单位"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "选取下一位空闲战斗人员。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "选取下一位空闲战斗人员"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "选取下一位空闲工人。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "选取下一位空闲工人"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "仅将军事单位添加至列表内。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "仅选取军事单位"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "仅将非军事单位添加至列表内。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "仅选取非军事单位"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "包含屏幕外的选取项。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "包含屏幕外的"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
@@ -4091,7 +4105,7 @@ msgstr "选择的传递的清晰度。"
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "模型质量"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label

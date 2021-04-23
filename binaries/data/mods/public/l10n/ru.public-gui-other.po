@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-18 13:51+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-22 10:23+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1541,7 +1541,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Лёгкий для опытного игрока уровень ИИ, выбранный по умолчанию, довольно сложен для новичков, не освоивших базовые механизмы игры. Новичкам рекомендуется начать с уровня «песочница» или «очень легко». Уровень ИИ настраивается щелчком по значку шестерни в строке каждого игрока на верхней панели настроек."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "Нестандартные"
 
@@ -1580,6 +1580,10 @@ msgstr "Сбросить все горячие клавиши к значени�
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Подтверждение"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr "Подсказка недоступна."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1968,7 +1972,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Приблизить (шаг за шагом)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
@@ -2354,22 +2358,22 @@ msgstr "Уничтожить выбранных юнитов"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Приказать покинуть турель."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Покинуть турель"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Модификатор увеличивает партии ресурса при обмене."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Массовый обмен"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
@@ -2748,12 +2752,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Показать панель обмена и торговли."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Панель обмена и торговли"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
@@ -2879,7 +2883,7 @@ msgstr ""
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr ""
+msgstr "Включить/выключить режим отображения дальности атаки выбранных юнитов и оборонительных сооружений."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
@@ -2930,12 +2934,12 @@ msgstr "Показать древо зданий"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Показать/скрыть сводную таблицу игры."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr ""
+msgstr "Сводная таблица"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
@@ -2980,7 +2984,7 @@ msgstr "Добавить к уже выделенным"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Отменить выбор всех юнитов, отменить размещение здания."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
@@ -3286,6 +3290,16 @@ msgstr "Изменить выбранных на отряд 9."
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
 msgstr "Выбрать отряд 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr "Выбрать следующего простаивающего строителя."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr "Следующий простаивающий строитель"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
@@ -5324,7 +5338,7 @@ msgstr[3] "> %(min)s мин"
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr "%(min)s - %(max)s min"
+msgstr "%(min)s - %(max)s мин"
 
 #: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"

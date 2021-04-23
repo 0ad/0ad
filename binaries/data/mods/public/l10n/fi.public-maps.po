@@ -5,6 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
+# Matti Tuhola, 2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 07:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-22 14:58+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "Egeanmeri"
 msgid ""
 "The central region of the vast continent of Africa, birthplace of humanity. "
 "Players start in a lush area teeming with vegetation and wildlife."
-msgstr ""
+msgstr "Laajan Afrikan mantereen keskiosassa sijaitseva alue, ihmiskunnan syntypaikka. Pelaajat aloittavat rehevällä alueella, joka kuhisee kasvillisuutta ja villieläimiä."
 
 #: maps/random/african_plains.jsonsettings.Name
 msgid "African Plains"
@@ -47,7 +48,7 @@ msgstr "Afrikan tasangot"
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
-msgstr "Korkeat alpiiniset vuoret ympäröivät syviä laaksoja, jotka pujottelee tunturipurojen ja sormimaisten järvien kanssa."
+msgstr "Korkeat alppivuoret ympäröivät syviä laaksoja, joita reunustavat vuoristopurot ja sormimaiset järvet."
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
@@ -55,7 +56,7 @@ msgstr "Vuoristojärvet"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
-msgstr "Korkeat alppivuoret syvien laaksojen rajoilla"
+msgstr "Korkeat alppivuoret syvien laaksojen rajoilla."
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
@@ -65,7 +66,7 @@ msgstr "Vuoristolaakso"
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr ""
+msgstr "Korkeat jyrkänteet avautuvat alapuolella olevaan maastoon. Jyrkänteillä odottavat runsaat luonnonvarat, mutta varo vihollisia, jotka suunnittelevat väijytystä."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -75,7 +76,7 @@ msgstr "Väijytys"
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
-msgstr "Avoin vaikeasti puolustettava alue, jossa on vähän puuta ja kiveä, edustaen Vähä-Aasian syvännettä."
+msgstr "Avoin vaikeasti puolustettava alue, jossa on vain vähän puuta ja kiveä ja joka edustaa Vähä-Aasian syvännettä."
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
@@ -97,7 +98,7 @@ msgid ""
 "animals, profiting from its milder climate. Wolves, ever present, have shed "
 "their winter clothes; deer, hares and muskox populate the plains. The last "
 "traces of winter are rapidly disappearing, only to reappear very soon."
-msgstr ""
+msgstr "Kesä on saapunut pohjoisen kylmille alueille, ja sen mukana ovat saapuneet monet eläimet, jotka hyötyvät leudommasta ilmastosta. Aina läsnä olevat sudet ovat karistaneet talvipukunsa, ja tasangot ovat täynnä peuroja, jäniksiä ja myskihärkiä. Talven viimeisetkin jäljet katoavat nopeasti, mutta ne ilmestyvät pian uudelleen."
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
@@ -108,7 +109,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr ""
+msgstr "Jokainen pelaaja aloittaa syvällä metsässä.\n\nArdennit ovat laajojen metsien, kumpuilevien kukkuloiden ja harjanteiden muodostama alue Givetin Ardennien vuoristossa, pääasiassa nykyisessä Belgiassa ja Luxemburgissa. Alue on saanut nimensä muinaisesta Silvasta, joka oli roomalaisaikana Arduenna Silvaksi kutsuttu laaja metsä."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -118,11 +119,11 @@ msgstr "Ardennien metsä"
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
 " mountain range in the Northwest Africa."
-msgstr ""
+msgstr "Karu maa, jossa on vain vähän tilaa rakennuksille ja jossa on niukasti puuta. Edustaa Luoteis-Afrikan vuoristoa."
 
 #: maps/random/atlas_mountains.jsonsettings.Name
 msgid "Atlas Mountains"
-msgstr "Atlaksen vuoret"
+msgstr "Atlasvuoret"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
@@ -133,7 +134,7 @@ msgid ""
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr ""
+msgstr "Bahrain oli vuonna 800 eaa. tuhoutuneen Dilmunin sivilisaation keskus, jota vuorollaan hallitsivat sumerilaiset, assyrialaiset, babylonialaiset, persialaiset ja muut myöhemmät kansat. Bahrain on strategisesti Sinus Persicuksen (Persianlahden) alueella sijaitseva saari, joka on erinomaisten helmikalastusvesiensä ansiosta myös helmikaupan keskus, eikä sitä ole koskaan jätetty pitkäksi aikaa miehittämättä. Mutta nyt, kun edelliset asukkaat ovat lähteneet, maa valmistautuu sotaan. Tuleeko sinusta Bahrainin seuraava hallitsija?"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -144,11 +145,11 @@ msgid ""
 "An experimental map with its heightmap generated by erosion to look more "
 "natural. Not all seeds will be fair though! Tiny maps with 8 players may "
 "take a while to generate."
-msgstr "Kokeellinen karttaa, eroosion synnyttäessä sen korkeuskarttaa näyttääkseen enemmän luonnolliselta. Kaikki siemenet eivät tule olemaan reiluja kuitenkaan! Pikkuruiset kartat 8 pelaajalle voi kestää tuokion syntyessään."
+msgstr "Kokeellinen kartta, jonka korkeuskartta on luotu eroosion avulla näyttämään luonnollisemmalta. Kaikki siemenet eivät kuitenkaan ole reiluja! Pienten 8-pelaajan karttojen luominen voi kestää jonkin aikaa."
 
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
-msgstr "Belgian Ylängöt"
+msgstr "Belgian ylängöt"
 
 #: maps/random/botswanan_haven.jsonsettings.Description
 msgid ""
@@ -156,18 +157,18 @@ msgid ""
 "inhospitable just weeks before has come to life totally transformed. Herds "
 "of zebras graze amid the tall, lush grasses in which lions lie waiting, "
 "while in the shallow pools lurk fearsome crocodiles."
-msgstr ""
+msgstr "Botswanalainen Afrikka sadekaudella – maa, joka vain viikkoja aiemmin oli kuiva ja karu, on herännyt henkiin täysin muuttuneena. Seepra-laumat laiduntavat keskellä korkeaa, rehevää ruohoa, jossa leijonat väijyvät, ja matalissa lammikoissa vaanivat pelottavat krokotiilit."
 
 #: maps/random/botswanan_haven.jsonsettings.Name
 msgid "Botswanan Haven"
-msgstr ""
+msgstr "Botswanalainen paratiisi"
 
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
 "Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt have barely died away.\n"
 "Aiming at a realistic terrain, this map might not always be balanced."
-msgstr ""
+msgstr "Hedelmällinen maa, jota ympäröi karu maasto.\nViimeaikaisten lumisateiden jäänteet kummittelevat yhä metsissä, ja lumien sulamisesta syntyneet virtaavat joet ovat tuskin ehtineet laantua.\nKoska tavoitteena on realistinen maasto, tämä kartta ei välttämättä ole aina tasapainotettu."
 
 #: maps/random/caledonian_meadows.jsonsettings.Name
 msgid "Caledonian Meadows"
@@ -177,7 +178,7 @@ msgstr "Kaledonian niityt"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Represents "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr ""
+msgstr "Jokainen pelaaja aloittaa jyrkkien kallioiden ympäröimällä kukkulalla. Edustaa Cantabrian vuoristoaluetta Iberian niemimaan pohjoisosassa."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -185,7 +186,7 @@ msgstr "Cantabrian ylänkö"
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
-msgstr "Pelaajat aloittavat ympäri kenttää syvissä kanjoneissa."
+msgstr "Pelaajat aloittavat syvistä kanjoneista eri puolilta karttaa."
 
 #: maps/random/canyon.jsonsettings.Name
 msgid "Canyon"
@@ -208,7 +209,7 @@ msgstr "Manner"
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
-msgstr "Kaksi välimerimäistä maamassaa liittyen yhteen kapealla niemellä maata, kutsuttaessa \"Kannas\"."
+msgstr "Kaksi Välimeren alueen maamassaa, joita yhdistää kapea kannas."
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -218,7 +219,7 @@ msgstr "Korintin kannas "
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief "
 "that will make landing difficult."
-msgstr "Pelaajat aloittavat kahdelta vastapäätä olevilta saarilda, molemmat todella rosoisen korkeuseron kanssa tulevat tekemään maihinnoususta vaikeata."
+msgstr "Pelaajat aloittavat kahdella vastakkaisella saarella, jotka molemmat ovat hyvin epätasaisia, mikä tekee maihinnoususta vaikeaa."
 
 #: maps/random/corsica.jsonsettings.Name
 msgid "Corsica vs Sardinia"
@@ -229,7 +230,7 @@ msgid ""
 "Each player starts on an island surrounded by water.\n"
 "\n"
 "The Cyclades is an island group in the Aegean Sea, south-east of the mainland of Greece. They are one of the island groups which constitute the Aegean archipelago. The name refers to the islands around  the sacred island of Delos. The Cyclades comprise about 220 islands. The islands are peaks of a submerged mountainous terrain, with the exception of two volcanic islands, Milos and Santorini. The climate is generally dry and mild, but with the exception of Naxos the soil is not very fertile."
-msgstr "Kukin pelaaja aloittaa veden ympäröimällä saarella.\n\nKykladit ovat saariryhmä Egean merellä, kaakkoon Kreikan mantereesta. Ne ovat yksi saariryhmistä jotka muodostavat Egean saariston. Nimi viittaa pyhää Deloksen saarta ympäröiviin saariin. Kykladit koostuvat n. 220 saaresta. Saaret ovat uponneen vuoristoalueen huippuja, poikkeuksena kaksi tuliperäistä saarta, Milos ja Santorini. Ilmasto on yleensä kuiva ja leuto, poikkeuksena Naxos, jonka maaperä ei ole kovin hedelmällinen."
+msgstr "Kukin pelaaja aloittaa veden ympäröimällä saarella.\n\nKykladit ovat saariryhmä Egeanmerellä, Kreikan mantereesta kaakkoon. Ne ovat yksi Egeanmeren saariston muodostavista saariryhmistä. Nimi viittaa pyhää Deloksen saarta ympäröiviin saariin. Kykladit koostuvat noin 220 saaresta. Saaret ovat vedenalaisen vuoristomaiseman huippuja, lukuun ottamatta kahta tuliperäistä saarta, Milosta ja Santorinia. Ilmasto on yleensä kuiva ja leuto, mutta Naxosta lukuun ottamatta maaperä ei ole kovin hedelmällistä."
 
 #: maps/random/cycladic_archipelago.jsonsettings.Name
 msgid "Cycladic Archipelago"
@@ -237,7 +238,7 @@ msgstr "Kykladien saaristoryhmä"
 
 #: maps/random/danubius.jsonsettings.Daytime[0].Description
 msgid "Bright daylight illuminates the scene."
-msgstr ""
+msgstr "Kirkas päivänvalo valaisee maiseman."
 
 #: maps/random/danubius.jsonsettings.Daytime[0].Name
 msgid "Day"
@@ -245,7 +246,7 @@ msgstr "Päivä"
 
 #: maps/random/danubius.jsonsettings.Daytime[1].Description
 msgid "Attackers are covered by the darkness of the night."
-msgstr ""
+msgstr "Hyökkääjät peittyvät yön pimeyteen."
 
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
@@ -260,19 +261,19 @@ msgid ""
 "amongst themselves, but also beat back these ruthless invaders. Ultimately, "
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr ""
+msgstr "Pelaajat aloittavat pelin Tonavan rannalla aikana, joka seuraa kelttiläisen Boiji-heimon levittäytymistä Pannoniaan. Kelttiläiset ovat lähettäneet lisävoimia kitkeäkseen jäljellä olevat vieraat kulttuurit ja vahvistaakseen otettaan tästä maasta. Pelaajien on paitsi kilpailtava vallasta keskenään, myös torjuttava nämä häikäilemättömät hyökkääjät. Lopulta boijit kukistuivat daakialaisten nousevan vallan alla, mikä johti geto-daakialaisen konfederaation uudelleen syntymiseen kuningas Burebistan johdolla."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
-msgstr ""
+msgstr "Tonava"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
-msgstr "Syvä musta metsä Germaniassa."
+msgstr "Syvä pimeä metsä Germaniassa."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
-msgstr "Synkkä metsä"
+msgstr "Syvä metsä"
 
 #: maps/random/dodecanese.jsonsettings.Description
 msgid ""
@@ -280,11 +281,11 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr ""
+msgstr "Dodekanesian saaret, jotka valvovat pääsyä Egeanmerelle idästä, ovat joutuneet lukuisten mutta lyhytaikaisten valloitusten kohteeksi. Lopulta nämä saaret vakiinnuttivat valtansa Rodoksen johdolla ja kehittyivät suuriksi merenkulun, kaupan ja kulttuurin keskuksiksi. Pystytkö sinä saavuttamaan saman?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
-msgstr ""
+msgstr "Dodekanesian saaret"
 
 #: maps/random/elephantine.jsonsettings.Description
 msgid ""
@@ -294,17 +295,17 @@ msgid ""
 "became an important way-station for the trade in ivory and other goods. It "
 "was considered to be the home of the god Khnum, guardian of the source of "
 "the Nile, and boasted an impressive temple complex."
-msgstr ""
+msgstr "Muinaisen Kushin ja Egyptin välisenä perinteisenä rajana toiminut linnoitettu Elefantinen saari sijaitsi Niilin varrella ensimmäisen kataraktin kohdalla. Ylä-Egyptin ja Ala-Nubian välisenä rajana Elefantine oli tärkeä norsunluun ja muiden tavaroiden kaupan reittiasema. Sitä pidettiin Niilin lähteen vartijana toimivan Khnum-jumalan kotipaikkana, ja siellä sijaitsi vaikuttava temppelikompleksi."
 
 #: maps/random/elephantine.jsonsettings.Name
 msgid "Elephantine"
-msgstr ""
+msgstr "Elefantine"
 
 #: maps/random/empire.jsonsettings.Description
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr "Naapurialue on luvannut uskollisuutensa sinun hallinnollesi. Sinun tehtäväsi on komentaa heidät voittoon."
+msgstr "Naapurialue on luvannut uskollisuutensa sinun hallinnollesi. Sinun tehtäväsi on johtaa heidät voittoon."
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -325,7 +326,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr ""
+msgstr "[color=\"red\"]TÄRKEÄ HUOMIO: TEKOÄLYPELAAJAT EIVÄT TOIMI TÄLLÄ KARTALLA[/color] \n\nAikoinaan hedelmällinen laakso, joka on autioitunut sen sydämessä sijaitsevan, pitkään lepotilassa olleen tulivuoren purkauksen seurauksena. Vuosien jälkeen elämän merkit ovat alkaneet jälleen ilmestyä ja levitä tähän tyhjään palaneeseen maahan. Nyt maa on puolimatkassa kohti entistä rehevyyttään. Valitettavasti tätä ei kestä kauan: pitkän kuivuuden jälkeen pohjoisempana sijaitsevilla ylängöillä on alkanut sataa loputtomasti. Vedenpinta nousee jyrkästi, mikä hitaasti pakottaa pelaajat etsimään korkeampaa maaperää pienemmiltä, sammuneilta tulivuorilta tai nyt taas uinuvalta suurelta tulivuorelta."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -333,19 +334,19 @@ msgstr "Sammunut tulivuori"
 
 #: maps/random/extinct_volcano_triggers.js:59
 msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr ""
+msgstr "Sade jatkuu, meidän on evakuoitava pian!"
 
 #: maps/random/extinct_volcano_triggers.js:60
 msgid "The rivers are standing high, we need to find a safe place!"
-msgstr ""
+msgstr "Joet ovat korkealla, meidän on löydettävä turvallinen paikka!"
 
 #: maps/random/extinct_volcano_triggers.js:61
 msgid "We have to find dry ground, our lands will drown soon!"
-msgstr ""
+msgstr "Meidän on löydettävä kuiva alue, maamme hukkuu pian!"
 
 #: maps/random/extinct_volcano_triggers.js:62
 msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr ""
+msgstr "Järvet alkavat niellä maata, meidän on löydettävä suoja!"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
@@ -354,17 +355,17 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "\"Meroën saari\", Niilin ja Atbarah-joen reunustama laaja niemimaa, muodosti muinaisen Kushin ydinalueen. Siellä karut aavikot alkavat tehdä tilaa puolikuiville savanneille, ja maisemaa koristavat pienet akaasiametsät. Alueella on runsaasti luonnonvaroja, ja aina läsnä oleva Niili tuo elämää, mutta vastarannalla häämöttää vakava uhka."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
-msgstr ""
+msgstr "Meroën kentät"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
 "battle in chest deep waters."
-msgstr "Suuri tulva on kulkenut laakson läpi mahdollistaen sekä laivojen että joukkojen liikkumisen matalassa vedessä."
+msgstr "Laakson poikki on kulkenut suuri tulva, joka mahdollistaa laivojen ja joukkojen taistelun rinnan syvissä vesissä."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -372,7 +373,7 @@ msgstr "Tulva"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
-msgstr "Pelaajat aloittavat ennalta tehdyssä linnakkeessa kasoilla resursseja."
+msgstr "Pelaajat aloittavat pelin valmiissa linnoituksessa, jossa on kasoittain resursseja."
 
 #: maps/random/fortress.jsonsettings.Name
 msgid "Fortress"
@@ -384,7 +385,7 @@ msgstr "Villi ja tuntematon maisema odottaa kilpailevia tutkimusmatkailijoita."
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
-msgstr "Etuvartio"
+msgstr "Rajaseutu"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -399,7 +400,7 @@ msgid ""
 "Players start in the shores of the Mediterranean Sea with a river flowing between them.\n"
 "\n"
 "The Guadalquivir is the fifth longest river in the Iberian peninsula and the second longest river with its entire length in Spain. The Guadalquivir river is the only great navigable river in Spain. Currently it is navigable to Seville, but in Roman times it was navigable to Cordoba. The ancient city of Tartessos was said to have been located at the mouth of the Guadalquivir, although its site has not yet been found."
-msgstr ""
+msgstr "Pelaajat aloittavat Välimeren rannoilta, ja heidän välissään virtaa joki.\n\nGuadalquivir on Iberian niemimaan viidenneksi pisin joki ja toiseksi pisin koko pituudeltaan Espanjassa sijaitseva joki. Guadalquivir on Espanjan ainoa suuri purjehduskelpoinen joki. Nykyisin se on purjehduskelpoinen Sevillaan asti, mutta roomalaisaikana se oli purjehduskelpoinen Cordobaan asti. Muinaisen Tartessosin kaupungin sanotaan sijainneen Guadalquivirin suulla, mutta sen sijaintia ei ole vielä löydetty."
 
 #: maps/random/guadalquivir_river.jsonsettings.Name
 msgid "Guadalquivir River"
@@ -410,7 +411,7 @@ msgid ""
 "Players start around a gulf dotted with small islands.\n"
 "\n"
 "The Gulf of Bothnia is the northernmost arm of the Baltic Sea."
-msgstr "Pelaajat aloittavat ympäri saarien täplittämää lahtea.\n\nPohjanlahti on itämeren pohjoisin osa."
+msgstr "Pelaajat aloittavat ympäri saarten täplittämää lahtea.\n\nPohjanlahti on itämeren pohjoisin osa."
 
 #: maps/random/gulf_of_bothnia.jsonsettings.Name
 msgid "Gulf of Bothnia"
@@ -423,7 +424,7 @@ msgid ""
 "cliffs in the deep ocean. Small passages at the base of the cliffs make for "
 "tight fighting and easy fortification. Will you fight your way through the "
 "narrow passageways or take to the sea?"
-msgstr ""
+msgstr "Pelaajat aloittavat suojaisan sataman rauhallisilla vesillä, jossa on jonkinlaiseset kalastusmahdollisuudet. Suuri määrä mereneläviä lojuu suojaavien kallioiden takana syvällä valtameressä. Pienet käytävät kallioiden juurella mahdollistavat tiukat taistelut ja helpon linnoittautumisen. Taisteletko tiesi läpi kapeiden käytävien vai lähdetkö merelle?"
 
 #: maps/random/harbor.jsonsettings.Name
 msgid "Harbor"
@@ -435,11 +436,11 @@ msgid ""
 "western civilization. Yet the land lacks unity, countless city-states vie "
 "for dominance. Will you lead your polis to glory and greatness or see it "
 "fall into oblivion, erased from the histories?"
-msgstr ""
+msgstr "Hellas, kreikkalaisten koti ja heidän kauttaan länsimaisen sivilisaation perusta. Maasta puuttuu kuitenkin yhtenäisyys, ja lukemattomat kaupunkivaltiot kilpailevat vallasta. Johdatatko poliksesi loistoon ja suuruuteen vai katsotko, kuinka se vaipuu unohduksiin ja pyyhkiytyy pois historiasta?"
 
 #: maps/random/hellas.jsonsettings.Name
 msgid "Hellas"
-msgstr ""
+msgstr "Hellas"
 
 #: maps/random/hells_pass.jsonsettings.Description
 msgid ""
@@ -447,11 +448,11 @@ msgid ""
 " bountiful resources far from the front lines, teams may choose to support "
 "their exposed teammates financially, or retreat to more fertile, but less "
 "defensible ground."
-msgstr ""
+msgstr "Kapea sola jyrkkien vuorten välissä kannustaa tiukkaan puolustustaisteluun. Runsas luonnonvarojen määrä kaukana rintamalinjoilta antaa joukkueille mahdollisuuden tukea haavoittuneita joukkuetovereitaan taloudellisesti tai vetäytyä hedelmällisemmälle, mutta vähemmän puolustuskelpoiselle maastolle."
 
 #: maps/random/hells_pass.jsonsettings.Name
 msgid "Hell's Pass"
-msgstr "Helvetin kulku"
+msgstr "Helvetin sola"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -469,7 +470,7 @@ msgid ""
 "life-bringing rain which is already two months late. Due to the extended "
 "dryness and scorching heat, only the largest lake remains. The hardy trees "
 "which have survived the climate are spread out, yet not too scarce."
-msgstr ""
+msgstr "Keski-Intia juuri ennen monsuunikautta – kuivunut maa odottaa elämää tuovaa sadetta, joka on jo kaksi kuukautta myöhässä. Pitkään jatkuneen kuivuuden ja paahtavan kuumuuden vuoksi jäljellä on vain suurin järvi. Tässä ilmastossa selviytyneet sitkeät puut ovat hajallaan, mutta eivät kuitenkaan liian harvassa."
 
 #: maps/random/india.jsonsettings.Name
 msgid "India"
@@ -479,15 +480,15 @@ msgstr "Intia"
 msgid ""
 "Teams start off with nearly adjacent civic centers on a small island, "
 "offering a fortified base from which to expand."
-msgstr ""
+msgstr "Joukkueilla on aluksi lähes vierekkäiset kansalaiskeskukset pienellä saarella, josta käsin joukkueet voivat lähteä laajentumaan."
 
 #: maps/random/island_stronghold.jsonsettings.Name
 msgid "Island Stronghold"
-msgstr "Saarivoimapiste"
+msgstr "Saarilinnake"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
-msgstr "Pelaajat aloittavat pieniltä saarilta muiden saarien ympäröimänä."
+msgstr "Pelaajat aloittavat pieniltä saarilta, joita ympäröivät lukuisat muut saaret."
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
@@ -502,20 +503,20 @@ msgid ""
 "Lands”, the ancient religious capital of Napata lay in its shadow. This is "
 "where kings were made – and unmade! Abutting a rich floodplain downstream "
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
-msgstr ""
+msgstr "Pelaajat aloittavat pelin Niilin hedelmällisen rannan läheisyydestä ja piirittävät raskaasti puolustettua Napatan kaupunkia, joka sijaitsee Jebel Barkalin, \"puhtaan vuoren\", juurella. Se on Amunin eteläinen kotipaikka ja sekä kushilaisten että egyptiläisten mukaan ihmisen syntypaikka. \"Kahden maan valtaistuimena\" tunnettu Napatan muinainen uskonnollinen pääkaupunki sijaitsi sen varjossa. Tässä paikassa monien kuninkaiden valta sai alkunsa – ja loppunsa. Neljännen kataraktin alajuoksulla sijaitsevan rikkaan tulvatasangon äärellä tästä alueesta tuli muinaisen Kushin leipäkori."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
-msgstr ""
+msgstr "Jebel Barkal"
 
 #: maps/random/jebel_barkal_triggers.js:592
 msgid "Napata is attacking!"
-msgstr ""
+msgstr "Napata hyökkää!"
 
 #: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
-msgstr ""
+msgstr "Aikaa Napatan hyökkäykseen: %(time)s!"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -540,7 +541,7 @@ msgid ""
 "The Italian peninsula \n"
 "\n"
 " Latium is the region of central western Italy in which the city of Rome was founded and grew to be the capital city of the Roman Empire. Latium was originally a small triangle of fertile, volcanic soil on which resided the tribe of the Latins. It was located on the left bank (east and south) of the Tiber river, extending northward to the Anio river (a left-bank tributary of the Tiber) and southeastward to the Pomptina Palus (Pontine Marshes, now the Pontine Fields) as far south as the Circeian promontory. The right bank of the Tiber was occupied by the Etruscan city of Veii, and the other borders were occupied by Italic tribes. Subsequently Rome defeated Veii and then its Italic neighbors, expanding Latium to the Apennine Mountains in the northeast and to the opposite end of the marsh in the southeast. The modern descendant, the Italian Regione of Lazio, also called Latium in Latin, and occasionally in modern English, is somewhat larger still, but not as much as double the original Latium."
-msgstr ""
+msgstr "Italian niemimaa \n\nLatium on alue keskisessä Länsi-Italiassa, jossa perustettiin Rooman kaupunki, josta kasvoi samannimisen valtakunnan pääkaupunki. Latium oli alun perin pieni kolmio hedelmällistä, tuliperäistä maaperää, jossa asui latinalaisten heimo. Se sijaitsi Tiber-joen vasemmalla rannalla (itä- ja etelärannalla) ja jatkui pohjoisessa Anio-jokeen asti (Tiber-joen vasemmanpuoleinen sivujoki) ja kaakossa Pomptina Palusista (Pontiset suot, nykyiset Pontiset pellot) aina etelään Circeian niemekkeelle asti. Tiberin oikealla rannalla sijaitsi etruskien kaupunki Veji, ja muilla rannoilla asui italialaisia heimoja. Sittemmin Rooma kukisti Vejin ja sen jälkeen italialaiset naapurinsa ja laajensi Latiumin aluetta Apenniinien vuorille koillisessa ja suon vastakkaiseen päähän kaakossa. Alueen nykyaikainen jälkeläinen on Italian Lazion alue, jota latinaksi kutsutaan myös Latiumiksi, ja se on edelleen alkuperäistä Latiumia jonkin verran laajempi, mutta ei kuitenkaan tuplasti suurempi."
 
 #: maps/random/latium.jsonsettings.Name
 msgid "Latium"
@@ -575,11 +576,11 @@ msgid ""
 "place to live, but the control of this ancient corridor was vital for any "
 "power seeking to control the lucrative trade routes on the Nile and affords "
 "access to the rich goldfields of the Nubian desert."
-msgstr ""
+msgstr "Kreikkalais-roomalaisessa maailmassa nimellä Triakontaschoinos tunnettu Ala-Nubia oli Niilin ensimmäisen ja toisen kataraktin välinen alue, joka muodosti perinteisen raja-alueen Kushin ja Egyptin välillä. Alueen paahtava aavikko, jyrkät laaksot ja jyrkät kalliot tekevät siitä elämälle epäsuotuisan paikan, mutta tämän muinaisen käytävän hallinta oli elintärkeää kaikille valloille, jotka halusivat valvoa Niilin tuottoisia kauppareittejä, ja se tarjosi pääsyn Nubian aavikon rikkaille kultakentille."
 
 #: maps/random/lower_nubia.jsonsettings.Name
 msgid "Lower Nubia"
-msgstr ""
+msgstr "Ala-Nubia"
 
 #: maps/random/mainland.jsonsettings.Description
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
@@ -601,11 +602,11 @@ msgid ""
 "founded, later to become the capital of the great Byzantine Empire under the"
 " new name of Constantinople. Players start on fertile land with adequate "
 "resources."
-msgstr ""
+msgstr "Propontis (Marmaran meri) yhdistää Pontus Euxinuksen (Mustanmeren) Egeanmereen ja erottaa Vähä-Aasian Traakiasta. Lounaassa on Hellespont (Dardanellit), jonka suulla sijaitsi aikoinaan muinainen Iliumin (Troijan) kaupunki. Koillisessa sijaitsee Bosporus Thraciae (Bosporinsalmi), jonne aikanaan perustettiin kreikkalainen Bysantin kaupunki, josta myöhemmin tuli suuren Bysantin valtakunnan pääkaupunki uudella nimellä Konstantinopoli. Pelaajat aloittavat hedelmällisellä maalla, jolla on kohtuullisesti luonnonvaroja."
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
-msgstr ""
+msgstr "Marmara"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
@@ -619,7 +620,7 @@ msgid ""
 "Syria, on the south by Libya and Mauritania, and on the west by Iberia. The "
 "name Mediterranean is derived from Latin, but the Romans themselves "
 "preferred the term 'Mare Internum' or even 'Mare Nostrum'."
-msgstr ""
+msgstr "Välimeri, foinikialaisten, kreikkalaisten, egyptiläisten ja myöhemmin roomalaisten koti. He ottivat Mesopotamiasta peräisin olevat alkeelliset tiedot ja organisaatioperiaatteet ja muokkasivat niistä jotakin suurempaa. Näin he siirsivät oppimisen ja tiedon keskipisteen Välimeren rannikolle ja loivat näin perustan sivilisaatiolle sellaisena kuin me sen nykyään tunnemme. Välimeri rajoittuu lähes kokonaan maa-alueisiin: pohjoisessa Gallia Transalpina (Transalpiininen Gallia), Italia, Kreikka (Graecia) ja Anatolia, idässä Syyria, etelässä Libya ja Mauritania ja lännessä Iberia. Nimi Välimeri on peräisin latinasta, mutta roomalaiset itse käyttivät mieluummin termiä Mare Internum (\"sisäinen meri\") tai jopa Mare Nostrum (\"meidän meremme\")."
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
@@ -641,7 +642,7 @@ msgid ""
 "A jumbled maze of cliffs, canyons, and rugged terrain with an oasis in the center\n"
 "\n"
 "Cappadocia is a historical region in Central Anatolia. In the time of Herodotus, the Cappadocians were reported as occupying the whole region from Mount Taurus to the vicinity of the the Black Sea. Cappadocia, in this sense, was bounded in the south by the chain of the Taurus Mountains that separate it from Cilicia, to the east by the upper Euphrates and the Armenian Highland, to the north by Pontus, and to the west by Lycaonia and eastern Galatia. Cappadocia lies in eastern Anatolia. The relief consists of a high plateau over 1000 m in altitude that is pierced by volcanic peaks. Due to its inland location and high altitude, Cappadocia has a markedly continental climate, with hot dry summers and cold snowy winters. Rainfall is sparse and the region is largely semi-arid."
-msgstr ""
+msgstr "Kallioiden, kanjonien ja karun maaston muodostama sekava sokkelo, jonka keskellä on keidas.\n\nKappadokia on historiallinen alue Keski-Anatoliassa. Herodotoksen aikana kappadokialaisten kerrottiin vallanneen koko alueen Taurusvuorelta Mustanmeren läheisyyteen asti. Tässä mielessä Kappadokia rajoittui etelässä Taurusvuoriston ketjuun, joka erottaa sen Kilikiasta, idässä Eufratin yläjuoksuun ja Armenian ylänköön, pohjoisessa Pontukseen ja lännessä Lykoniaan ja itäiseen Galatiaan. Kappadokia sijaitsee Itä-Anatoliassa. Sen maanpinta muodostuu yli 1000 metriä korkeasta ylätasangosta, jota lävistävät tulivuoriperäiset huiput. Sisämaisen sijaintinsa ja korkean sijaintinsa vuoksi Kappadokiassa vallitsee selvästi mannermainen ilmasto, jossa kesät ovat kuumia ja kuivia ja talvet kylmiä ja lumisia. Sateet ovat niukkoja, ja alue on suurelta osin puolikuivaa."
 
 #: maps/random/neareastern_badlands.jsonsettings.Name
 msgid "Neareastern Badlands"
@@ -649,7 +650,7 @@ msgstr "Lähi-idän erämaat"
 
 #: maps/random/new_rms_test.jsonsettings.Description
 msgid "A basic test of the random map generator - not playable."
-msgstr "Yksinkertainen testi satunnaisen kartan generaattorille - pelikelvoton."
+msgstr "Satunnaiskarttageneraattorin perustesti - ei pelattavissa."
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
@@ -661,7 +662,7 @@ msgid ""
 "of the Seven Natural Wonders of Africa. Due to it's climate, biodiversity "
 "and history, Ngorongoro is believed by some to be Africa's Garden of Eden "
 "and the birthplace of mankind."
-msgstr ""
+msgstr "Ngorongoron kraatteri on maailman suurin ehjä tuliperäinen kaldera, ja se on yksi Afrikan seitsemästä luonnonihmeestä. Ilmastonsa, biologisen monimuotoisuutensa ja historiansa vuoksi jotkut uskovat Ngorongoron olevan Afrikan Eedenin puutarha ja ihmiskunnan syntypaikka."
 
 #: maps/random/ngorongoro.jsonsettings.Name
 msgid "Ngorongoro"
@@ -692,7 +693,7 @@ msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
 "The southern parts of Zagros Mountains were the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
-msgstr ""
+msgstr "Kuiva, mineraalipitoinen keskinen tasanko, jota ympäröivät kallioiset kukkulat.\n\nZagros-vuoriston eteläosat olivat Persian valtakuntien ja väestön sydän. Korkeudestaan huolimatta eteläosat ovat kuivempia kuin pohjoinen Zagros, mikä saa aikaan puolikuivan ilmaston. Korkeammilla alueilla on silti joitakin harvoja tammimetsiköitä."
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
@@ -710,19 +711,19 @@ msgstr "Foinikialainen Levantti"
 
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Description
 msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
-msgstr ""
+msgstr "Hajallaan oleva auringonvalo valaisee maisemaa eloisalla punaisella sävyllä."
 
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Name
 msgid "Dawn"
-msgstr ""
+msgstr "Aamunkoi"
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Description
 msgid "The scenery is illuminated by direct or indirect sunlight."
-msgstr ""
+msgstr "Maisemaa valaisee suora tai epäsuora auringonvalo."
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
-msgstr ""
+msgstr "Päivänvalo"
 
 #: maps/random/polar_sea.jsonsettings.Description
 msgid ""
@@ -735,11 +736,11 @@ msgid ""
 "undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
 "inadvisable to disable treasures, since there is no gatherable wood. Not "
 "recommended for inexperienced players.[/color]"
-msgstr ""
+msgstr "Pelaajat aloittavat kylmällä napa-alueella, jossa ei ole kasvillisuutta. Meressä on runsaasti kaloja ja valaita, kun taas hauraalla jäisellä maalla riittää metsästettäviä mursuja ja vaarallisia susia. Nämä karun ja ankaran ilmaston nälkäisiksi tekemät sudet, joita saaliin tuoksu vetää puoleensa, ovat alkaneet ilmestyä pelottavin määrin. Viisas ja vahva hallitsija ei ainoastaan saavuta voittoa vihollisistaan, vaan myös pitää näiden petojen määrän kurissa, estääkseen niitä heikentämästä maan taloutta ja aiheuttamasta sen tuhoa. [color=\"red\"]Varoitus: Aarteita ei kannata poistaa käytöstä, koska kerättävää puuta ei ole. Ei suositella kokemattomille pelaajille.[/color]"
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
-msgstr ""
+msgstr "Jäämeri"
 
 #: maps/random/pompeii.jsonsettings.Description
 msgid ""
@@ -747,7 +748,7 @@ msgid ""
 "Pompeii, along with much of the surrounding area, was mostly destroyed and "
 "buried under 4 to 6 meters of volcanic ash and pumice in the eruption of "
 "Mount Vesuvius in AD 79."
-msgstr ""
+msgstr "Pompeji oli muinainen roomalainen rannikkokaupunki Campanian alueella Italiassa. Pompeji ja suuri osa sitä ympäröivästä alueesta tuhoutui Vesuviuksen purkauksessa vuonna 79 jKr. ja hautautui 4-6 metrin paksun tuhkan ja hohkakiven alle."
 
 #: maps/random/pompeii.jsonsettings.Name
 msgid "Pompeii"
@@ -771,18 +772,18 @@ msgid ""
 "most prosperous cities of Medieval Europe and one of the Anglo-Norman "
 "dynasty capitals under the new name of Rouen, Ratumacos is still a peaceful "
 "land - but not for long."
-msgstr ""
+msgstr "Pelaajat aloittavat pelin Sequana-joen (Seinen) rannalla Pohjois-Galliassa lähellä Ratumacosin asutusta. Ratumacosista tulee yksi keskiaikaisen Euroopan suurimmista ja vauraimmista kaupungeista ja yksi anglo-normannien dynastian pääkaupungeista uudella nimellä Rouen, mutta tällä hetkellä Ratumacos on vielä rauhallinen paikka - joskaan ei enää kauan."
 
 #: maps/random/ratumacos.jsonsettings.Name
 msgid "Ratumacos"
-msgstr ""
+msgstr "Ratumacos"
 
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
 "trade with the Far East, it was coveted by all. Although dry, this land is "
 "by no means inhospitable, and is amply provided with all resources."
-msgstr ""
+msgstr "Historiallisesti Punainenmeri oli monien kansojen meri. Se sijaitsi ihanteellisella paikalla Kaukoidän kanssa käytävää kauppaa varten, ja kaikki halusivat sen itselleen. Vaikka maa on kuiva, se ei ole suinkaan elinkelvoton, ja siellä on runsaasti kaikkia luonnonvaroja."
 
 #: maps/random/red_sea.jsonsettings.Name
 msgid "Red Sea"
@@ -803,11 +804,11 @@ msgid ""
 "Narrow strips of lands are separated by waterways, leaving few and shallow "
 "landbridges between them. Tropical wetlands provide plenty of game, but "
 "beware of Mauryan tribesmen when exploring the outermost islands."
-msgstr ""
+msgstr "Kapeat maakaistaleet on erotettu toisistaan vesiväylillä, ja niiden väliin on jäänyt harvoja ja matalia maasiltoja. Trooppiset kosteikot tarjoavat runsaasti riistaa, mutta varo Mauryan-heimon jäseniä, kun tutkit syrjäisimpiä saaria."
 
 #: maps/random/river_archipelago.jsonsettings.Name
 msgid "River Archipelago"
-msgstr ""
+msgstr "Jokisaaristo"
 
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
@@ -823,7 +824,7 @@ msgctxt "biome definition"
 msgid ""
 "The vitalizing waters of the Nile sustain life along its banks, while the "
 "long dry season scorches the land."
-msgstr ""
+msgstr "Niilin elinvoimaiset vedet ylläpitävät elämää sen rannoilla, samalla kun pitkä kuiva kausi polttaa maata."
 
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
 msgctxt "biome definition"
@@ -835,7 +836,7 @@ msgctxt "biome definition"
 msgid ""
 "Revelling in the much awaited rain, the baked land transforms into a lush "
 "haven for both man and beast."
-msgstr ""
+msgstr "Kauan odotettua sadetta nauttien paistunut maa muuttuu reheväksi tyyssijaksi sekä ihmisille että eläimille."
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
 msgctxt "biome definition"
@@ -848,12 +849,12 @@ msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
-msgstr ""
+msgstr "Alue korkeilla lumisilla vuorilla. Pureva tuuli pyyhkäisee läpi runsaiden havupuumetsien ja saa jopa sitkeimmät peurat ja vuohet värisemään kylmästä."
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Alpine"
-msgstr ""
+msgstr "Alppimaa"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -862,7 +863,7 @@ msgid ""
 "intertwined. The native beech and oak trees of this temperate zone display a"
 " multi-colored foliage while the evergreen pines look on with indifference "
 "at the approaching winter."
-msgstr ""
+msgstr "Syksy huipussaan. Maisemaa hallitsee toisiinsa kietoutuneiden värien häikäisevä loisto. Tälle leudolle vyöhykkeelle ominaisten pyökkien ja tammien lehdet ovat moniväriset, kun taas ikivihreät männyt katsovat välinpitämättöminä lähestyvää talvea."
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
@@ -875,7 +876,7 @@ msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and tamarix "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
-msgstr ""
+msgstr "Puoliaavikkoalue, jossa on lukuisia taatelipalmuja ja tamariskipuita. Kamelilaumat vaeltavat erämaassa, ja välillä yksittäinen gaselli hyppii säikähdyksissään pakoon, kun sitä häiritään."
 
 #: maps/random/rmbiome/generic/desert.jsonDescription.Title
 msgctxt "biome definition"
@@ -888,7 +889,7 @@ msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
 "inviting land. The cypresses are in a perpetual struggle with the dominant "
 "fan palms while deer graze in their shadows, blissfully unaware."
-msgstr ""
+msgstr "Aloita Välimeren ilmastolla siunatulla alueella, lämpimässä ja kutsuvassa maassa. Sypressit käyvät jatkuvaa kamppailua hallitsevien viuhkapalmujen kanssa, ja peurat laiduntavat niiden varjoissa autuaan tietämättöminä."
 
 #: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
 msgctxt "biome definition"
@@ -901,7 +902,7 @@ msgid ""
 "The savanna, a dry climate in which only the hardy Baobab trees thrive. "
 "Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
 " giraffes or elephants roam the wild in search of food."
-msgstr ""
+msgstr "Savanni, kuiva ilmasto, jossa vain sitkeät baobab-puut viihtyvät. Yksittäiset gasellit laiduntavat niukassa ruohikossa, kun taas seepra-, gnu-, kirahvi- ja norsulaumat vaeltavat etsien ravintoa."
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
@@ -914,12 +915,12 @@ msgid ""
 "Settle in the cold regions of the Arctic, the native habitat of the muskox. "
 "Here you can pine away to your content and also hunt the occasional walrus "
 "or two."
-msgstr ""
+msgstr "Asettaudu kylmille arktisille alueille, jotka ovat myskihärän alkuperäistä elinympäristöä. Täällä voit viettää päiväsi rauhassa ja metsästää satunnaisesti mursuja."
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Snowy"
-msgstr ""
+msgstr "Luminen"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -928,12 +929,12 @@ msgid ""
 "diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
 "supremacy but this root-war is a neverending struggle. Numerous apple trees "
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr ""
+msgstr "Maata peittävät rehevät niityt, jotka paikoin väistyvät upeiden ja monimuotoisten lehtipuuvaltaisten metsien tieltä. Poppelit, männyt, pyökit ja tammet kilpailevat kaikki herruudesta, mutta tämä sota on loputon kamppailu. Maata täplittävät lukuisat omenapuut, ja peurat sekä lampaat ahmivat tämänvuotisia pudonneita hedelmiä."
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Temperate"
-msgstr ""
+msgstr "Lauhkea"
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgctxt "biome definition"
@@ -942,7 +943,7 @@ msgid ""
 " environment awaits. The tall Toona trees look on disapprovingly at this "
 "invasion of their privacy and ferocious tigers are determined to defend "
 "their territory at all costs."
-msgstr ""
+msgstr "Tutki salaperäistä tropiikkia. Äärimmäisen vihreä, mutta myös erittäin kostea ympäristö odottaa sinua. Korkeat toonapuut katsovat paheksuvasti tätä yksityisyyden loukkausta, ja hurjat tiikerit ovat päättäneet puolustaa reviiriään hinnalla millä hyvänsä."
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Title
 msgctxt "biome definition"
@@ -954,7 +955,7 @@ msgctxt "biome definition"
 msgid ""
 "Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
 "The thick ice formed is capable of withstanding any weight."
-msgstr ""
+msgstr "Kova kylmyys on onnistunut jäädyttämään lahden. Näin muodostunut paksu jääpeite kestää suurenkin painon."
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -967,19 +968,19 @@ msgid ""
 "A late spring breeze ripples through the conifer forests of the Gulf of "
 "Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
 "undergrowth."
-msgstr ""
+msgstr "Myöhäiskeväinen tuulenvire aaltoilee Pohjanlahden havumetsissä. Peuralaumat täplittävät maisemaa ja leikkisät jänikset temmeltävät aluskasvillisuudessa."
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Late Spring"
-msgstr ""
+msgstr "Loppukevät"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
 "Winter has set in, carpeting the land with its first snow. The still "
 "unfrozen gulf offers great fishing opportunities."
-msgstr ""
+msgstr "Talvi on saapunut ja peittänyt maan ensilumeen. Vielä sula lahti tarjoaa loistavat kalastusmahdollisuudet."
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgctxt "biome definition"
@@ -992,7 +993,7 @@ msgid ""
 "Spring in the highlands, yet the heat has already begun making itself felt. "
 "The short-lived green grasses are on the retreat, paving the way for "
 "scorching summer."
-msgstr ""
+msgstr "Ylämailla on kevät, mutta kuumuus alkaa jo tuntua. Lyhytikäiset vihreät ruohot vetäytyvät ja ennakoivat paahteista kesää."
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgctxt "biome definition"
@@ -1004,7 +1005,7 @@ msgctxt "biome definition"
 msgid ""
 "An arid, hostile land. The blistering heat has baked the ground to a sickly "
 "brown and the remaining trees struggle for survival."
-msgstr ""
+msgstr "Kuiva, elämälle vihamielinen maa. Helle on polttanut maan sairaalloisen ruskeaksi, ja jäljellä olevat puut kamppailevat eloonjäämisestä."
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgctxt "biome definition"
@@ -1035,7 +1036,7 @@ msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
-msgstr ""
+msgstr "Pelaajat lähtevät liikkeelle eri puolilta karttaa, ja heidän välillään on vettä viivoina.\n\nAfrikan savanni on täynnä eläimiä metsästettäväksi, ja läheiset mineraaliesiintymät ovat runsaat. Kuivakausi lähestyy, ja juomapaikat ovat kuivumassa."
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
@@ -1056,11 +1057,11 @@ msgid ""
 "the wild searching for prey, a lone arctic fox scurries away to hide. "
 "Starting in this seemingly hostile terrain, players must conquer - or be "
 "conquered."
-msgstr ""
+msgstr "Lumen peittämä maa uinuu horroksessa. Tämä hauras rauha on murtumaisillaan, mutta ei kevään vaikutuksesta. Suuret susilaumat väijyvät saalista etsien, ja yksinäiset napaketut hakeutuvat piiloon. Pelaajien on valloitettava tämä elämälle vihamielisen oloinen maasto - tai tultava sen valloittamaksi."
 
 #: maps/random/scythian_rivulet.jsonsettings.Name
 msgid "Scythian Rivulet"
-msgstr ""
+msgstr "Skyytialainen puronvarsi"
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
@@ -1075,7 +1076,7 @@ msgid ""
 "Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr ""
+msgstr "Joukkueet aloittavat lähes vierekkäin sijaitsevilla kansalaiskeskuksilla, jotka tarjoavat mahdollisuuden helppoon sotilas- ja rakennusyhteistyöhön. Joukkueilla on omat alueensa, ja niiden on luotettava toisiinsa puolustaakseen selustaansa."
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
@@ -1086,7 +1087,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr ""
+msgstr "[color=\"red\"]TÄRKEÄ HUOMAUTUS: TEKOÄLYPELAAJAT EIVÄT TOIMI TÄLLÄ KARTALLA[/color] \n\nSuojaa tukikohtaasi loputtomilta vihollisaalloilta. Käytä naiskansalaista kerätäksesi kartan keskellä olevat aarteet ennen muita ja yritä rakentaa tukikohtasi. Viimeisenä jäljellä oleva pelaaja on voittaja!"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -1104,7 +1105,7 @@ msgstr "VIhollisen aalto hyökkää!"
 #: maps/random/survivalofthefittest_triggers.js:292
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti kansalaiskeskuksen)."
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1130,101 +1131,101 @@ msgstr "Tuntematon."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
-msgstr ""
+msgstr "Valitse sattumanvarainen maasto"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
-msgstr ""
+msgstr "Kannas"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
 msgid "A small central river."
-msgstr ""
+msgstr "Pieni keskinen joki."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
 msgid "Central River"
-msgstr ""
+msgstr "Keskinen joki"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
-msgstr ""
+msgstr "Pelaajat ovat linjassa maakaistaleella, jonka toista tai molempia sivuja reunustavat meret, joilla voi olla saaria."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
 msgid "Edge Seas"
-msgstr ""
+msgstr "Reunameret"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
-msgstr ""
+msgstr "Kuunsirpin muotoinen maa keskellä olevan järven ympärillä."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
 msgid "Gulf"
-msgstr ""
+msgstr "Lahti"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
 msgid "Mainland style with some small random lakes."
-msgstr ""
+msgstr "Mannermaan tapainen kartta, jossa on muutamia pieniä järviä sattumanvaraisesti."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
 msgid "Lakes"
-msgstr ""
+msgstr "Järvet"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
-msgstr ""
+msgstr "Suuri kukkula hallitsee karttaa ja jättää pelaajille vain pienen solan jonka läpi kulkea kahden naapuripelaajan luo."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
 msgid "Passes"
-msgstr ""
+msgstr "Solat"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
-msgstr ""
+msgstr "Maata ympäröi kukkula, joka jättää jokaiselle pelaajalle pienen alueen, joka on yhteydessä suureen keskialueeseen."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
 msgid "Lowlands"
-msgstr ""
+msgstr "Alanko"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Name
 msgid "Random Land"
-msgstr ""
+msgstr "Sattumanvarainen maasto"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr ""
+msgstr "Valitse sattumanvarainen merellinen maasto"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
-msgstr ""
+msgstr "Valtava meri jakaa kartan kahteen osaan."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
-msgstr ""
+msgstr "Merellinen: Keskinen meri"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
-msgstr ""
+msgstr "Pelaajat ovat sijoittuneet hajautetusti saariketjuille ja irrallisille saarille."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
-msgstr ""
+msgstr "Merellinen: Saaristo"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
-msgstr ""
+msgstr "Keskusjärvi, jonka joet mahdollisesti erottavat toisistaan viereiset pelaajat."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
-msgstr ""
+msgstr "Merellinen: Järvi ja joet"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Name
 msgid "Random Naval"
-msgstr ""
+msgstr "Sattumanvarainen merellinen"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -1236,13 +1237,13 @@ msgstr "Hiiltynyt ja kuollut maa, jossa pelaavat aloittavat savuavan tulivuoren 
 
 #: maps/random/volcanic_lands.jsonsettings.Name
 msgid "Volcanic Lands"
-msgstr "Vulkaaniset maat"
+msgstr "Tuliperäinen maa"
 
 #: maps/random/wall_demo.jsonsettings.Description
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Giant map "
 "size is recommended!"
-msgstr ""
+msgstr "Muurien sijoitusmenetelmien/-koodin esittely satunnaiskartoissa. Jättikokoista karttaa suositellaan!"
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
@@ -1254,7 +1255,7 @@ msgstr "Kukkuloiden ympäröimä järvi."
 
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
-msgstr ""
+msgstr "Eräjärvi"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -1271,7 +1272,7 @@ msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
-msgstr ""
+msgstr "Kevät Arkadiassa, Kreikassa. Kevään sateet ovat täyttäneet purojen uomat, jotka muuten olisivat olleet kuivia koko loppuvuoden, ja jakaneet maat kahden sotivan heimon kesken. \n\nPelaajat aloittavat vuoristoisen, luonnonvaroiltaan rikkaan alueen molemmin puolin. Ylimääräiset aloitusrakennukset auttavat pelaajia käynnistämään uusien siirtokuntiensa rakentamisen."
 
 #: maps/scenarios/arcadia.xml:Name:38
 msgid "Arcadia"
@@ -1331,11 +1332,11 @@ msgstr "Pelaaja 2"
 #: maps/scenarios/azure_coast_4p.xml:Description:26
 #: maps/scenarios/azure_coast_8p.xml:Description:38
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr "Auta nuorta Massiliaa kotiutuakseen tai karkota Kreikkalaiset Galliasta."
+msgstr "Auta nuorta Massiliaa kotiutumaan tai karkottamaan kreikkalaiset Galliasta."
 
 #: maps/scenarios/azure_coast_2p.xml:Name:26
 msgid "Azure Coast 2"
-msgstr "Taivaansininen rannikko 2"
+msgstr "Sininen rannikko 2"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:26
 msgid "Greeks"
@@ -1343,11 +1344,11 @@ msgstr "Kreikkalaiset"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[1].Name:26
 msgid "Celts"
-msgstr "Kelttiläiset"
+msgstr "Keltit"
 
 #: maps/scenarios/azure_coast_4p.xml:Name:26
 msgid "Azure Coast 3"
-msgstr "Taivaansininen rannikko 3"
+msgstr "Sininen rannikko 3"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:26
 msgid "East"
@@ -1367,7 +1368,7 @@ msgstr "Pohjoinen"
 
 #: maps/scenarios/azure_coast_8p.xml:Name:38
 msgid "Azure Coast 1"
-msgstr "Azuren rannikko 1"
+msgstr "Sininen rannikko 1"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:38
 msgid "Antipolis"
@@ -1375,7 +1376,7 @@ msgstr "Antipolis"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[1].Name:38
 msgid "Nikaia"
-msgstr "Nikea"
+msgstr "Níkaia"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[2].Name:38
 msgid "Massalia"
@@ -1387,7 +1388,7 @@ msgstr "Olbia"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[4].Name:38
 msgid "Deciates"
-msgstr "Deciates"
+msgstr "Dekiates"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[5].Name:38
 msgid "Salluvii"
@@ -1405,7 +1406,7 @@ msgstr "Verguni"
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr "Rooma taistelee Veiin etruskikaupunkia vastaan Tiber-joen valuma-alueesta."
+msgstr "Rooma taistelee Vejin etruskikaupunkia vastaan Tiber-joen valuma-alueen hallinnasta."
 
 #: maps/scenarios/battle_for_the_tiber.xml:Name:26
 msgid "Battle for the Tiber"
@@ -1417,7 +1418,7 @@ msgstr "Rooma"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[1].Name:26
 msgid "Veii"
-msgstr "Veii"
+msgstr "Veji"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[2].Name:26
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[3].Name:26
@@ -1434,7 +1435,7 @@ msgstr "Belgialainen suoyö"
 
 #: maps/scenarios/bridge_demo.xml:Description:26
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
-msgstr "Demokartta, joka opettaa siltojen simuloinnin Atlas-karttaeditorilla."
+msgstr "Demokartta, jossa näytetään, kuinka siltoja simuloidaan Atlas-karttaeditorissa."
 
 #: maps/scenarios/bridge_demo.xml:Name:26
 msgid "Bridge demo"
@@ -1450,21 +1451,21 @@ msgstr "Muu"
 
 #: maps/scenarios/campaign_test_map.xml:Description:38
 msgid "A test map for potential Strategic Campaigns."
-msgstr ""
+msgstr "Testikartta mahdollisia strategisia kampanjoita varten."
 
 #: maps/scenarios/campaign_test_map.xml:Name:38
 msgid "Strategic Campaign Proof of Concept"
-msgstr ""
+msgstr "Strategisen kampanjan konseptin todentaminen"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:38
 msgid "Delian League"
-msgstr "Delianin kieli"
+msgstr "Deloksen meriliitto"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
 #: maps/scenarios/peloponnese.xml:PlayerData[3].Name:38
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:39
 msgid "Thebes"
-msgstr "Theeba"
+msgstr "Theba"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[2].Name:38
 #: maps/scenarios/peloponnese.xml:PlayerData[5].Name:38
@@ -1481,7 +1482,7 @@ msgstr "Eretria"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[5].Name:38
 msgid "Chalcis"
-msgstr "Chalkis"
+msgstr "Chalkída"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[6].Name:38
 msgid "Peloponnesian League"
@@ -1497,19 +1498,19 @@ msgstr "Kampanjakartta - Testi"
 
 #: maps/scenarios/cinema_demo.js:6
 msgid "Cutscene starts after 5 seconds"
-msgstr ""
+msgstr "Välinäytös alkaa 5 sekunnin kuluttua"
 
 #: maps/scenarios/cinema_demo.xml:Description:39
 msgid "Demo map for cinematic camera movements."
-msgstr ""
+msgstr "Demokartta kameran elokuvamaisista liikkeistä."
 
 #: maps/scenarios/cinema_demo.xml:Name:39
 msgid "Cinema Demo"
-msgstr ""
+msgstr "Elokuvademo"
 
 #: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:39
 msgid "Xerxes I"
-msgstr ""
+msgstr "Kserkses I"
 
 #: maps/scenarios/cinema_demo.xml:PlayerData[2].Name:39
 msgid "You"
@@ -1538,16 +1539,16 @@ msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
-msgstr ""
+msgstr "Syvä kivinen kanjoni halkaisee aavikon. Soveltuu hyvin moninpeliin.\n\n2 kahden pelaajan joukkuetta.\n1 pelaaja kummastakin joukkueesta aloittaa tukikohdalla ja resursseilla. Toinen pelaaja aloittaa vain suurella armeijalla, jolla auttaa joukkuetoveriaan."
 
 #: maps/scenarios/death_canyon_invasion_force.xml:Name:38
 msgid "Death Canyon - Invasion Force"
-msgstr "Kuoleman kanjoni - Maahanhyökkäysvoima"
+msgstr "Kuoleman kanjoni - Hyökkäysvoimat"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:38
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:38
 msgid "Invasion Force"
-msgstr "Tunkeutumisvoimat"
+msgstr "Hyökkäysvoimat"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[2].Name:38
 #: maps/scenarios/demo_trading.xml:PlayerData[2].Name:26
@@ -1564,7 +1565,7 @@ msgstr "Pelaaja 3"
 
 #: maps/scenarios/demo_trading.xml:Description:26
 msgid "A demonstration of the new trading feature."
-msgstr "Uuden kaupankäynnin demonstraatio."
+msgstr "Uuden kaupankäyntiominaisuuden esittely."
 
 #: maps/scenarios/demo_trading.xml:Name:26
 msgid "Trading Demo"
@@ -1574,18 +1575,18 @@ msgstr "Kaupankäyntidemo"
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
-msgstr "Brittein saaret -demokartta, luotu korkeuskartalla."
+msgstr "Brittein saarten demokartta, joka on luotu korkeuskartan avulla."
 
 #: maps/scenarios/eire_and_albion.xml:Name:26
 msgid "Eire and Albion (British Isles)"
-msgstr "Irlanti ja Iso-Britannia (Britteinsaaret)"
+msgstr "Irlanti ja Iso-Britannia (Brittein saaret)"
 
 #: maps/scenarios/fast_oasis.xml:Description:26
 msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
-msgstr ""
+msgstr "Pieni aavikkokartta. Jokainen pelaaja aloittaa lähellä keidasta, joka on piste muuten karulla, hiekkaisella, ja hyökkäyksille sekä ryöstelylle avoimella aavikolla.\n\nPelinkulku on tiivistä ja nopeaa, eikä ole aikaa pysähtyä haistelemaan ruusuja."
 
 #: maps/scenarios/fast_oasis.xml:Name:26
 msgid "Fast Oasis"
@@ -1601,7 +1602,7 @@ msgstr "Pelaaja 4"
 
 #: maps/scenarios/fishing_demo.xml:Description:26
 msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Kokeile kalastusta kalastusveneillä. Vielä kehittelyssä"
+msgstr "Kokeile kalastusta kalastusveneellä. Vielä kehitteillä."
 
 #: maps/scenarios/fishing_demo.xml:Name:26
 msgid "Fishing Demo"
@@ -1609,7 +1610,7 @@ msgstr "Kalastusdemo"
 
 #: maps/scenarios/flight_demo.xml:Description:39
 msgid "Fly some Mustangs."
-msgstr "Lennä joitain Mustangeja"
+msgstr "Lennä parilla Mustangilla."
 
 #: maps/scenarios/flight_demo.xml:Name:39
 msgid "Flight Demo"
@@ -1620,7 +1621,7 @@ msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
-msgstr ""
+msgstr "Laaja avoin kartta, jonka keskellä on kivinen alue, jossa on runsaasti mineraaleja (metalliresursseja). Tätä karttaa voidaan pelata, jos muut yksityiskohtaisemmat kartat aiheuttavat epämiellyttävää viivettä."
 
 #: maps/scenarios/gold_rush.xml:Name:26
 msgid "Gold Rush"
@@ -1628,18 +1629,18 @@ msgstr "Kultaryntäys"
 
 #: maps/scenarios/gorge.xml:Description:26
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
-msgstr ""
+msgstr "Gallian eteläisten maiden halki kiemurtelee jokivarren rotko."
 
 #: maps/scenarios/gorge.xml:Name:26
 msgid "Gorge"
-msgstr "Gorge"
+msgstr "Rotko"
 
 #: maps/scenarios/laconia.xml:Description:26
 msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr ""
+msgstr "Peloponnesoksen laakso Lakonia, spartalaisten kotimaa.\n\nMakedonialaiset tunkeutuvat spartalaisten maille. Hävittyään taistelun hyökkääjiä vastaan spartalaisten on koottava armeijansa nopeasti uudelleen, ennen kuin makedonialaiset valtaavat koko laakson."
 
 #: maps/scenarios/laconia.xml:Name:26
 msgid "Laconia"
@@ -1650,7 +1651,7 @@ msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
-msgstr ""
+msgstr "Moninpelikartta. Jokainen pelaaja aloittaa pienellä saarella, jolla on minimaaliset luonnonvarat ja joka sijaitsee suuren maamassan rannikolla.\n\nTämä on WFG-yhteisön suunnittelema kartta, jonka taustalla on: SMST, NOXAS1 ja Yodaspirine."
 
 #: maps/scenarios/miletus.xml:Description:26
 msgid "A sandbox scenario for one player."
@@ -1670,32 +1671,32 @@ msgstr "Roomalaiset"
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
-msgstr ""
+msgstr "Pieni kartta, jossa on paljon luonnonvaroja ja hieman vettä. Tarkoitettu pelattavuuden testaamiseen ei-kilpailullisissa moninpeliotteluissa."
 
 #: maps/scenarios/multiplayer_demo.xml:Name:26
 msgid "Multiplayer Demo"
-msgstr "Moninpelaajademo"
+msgstr "Moninpelidemo"
 
 #: maps/scenarios/napata_reconstruction.xml:Description:39
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
-msgstr ""
+msgstr "Tämä kartta esittää Napatan muinaisen kaupungin rekonstruktion. [color=\"red\"]Huomautus:[/color] Karttaa ei ole tarkoitettu pelattavaksi."
 
 #: maps/scenarios/napata_reconstruction.xml:Name:39
 msgid "Napata Reconstruction"
-msgstr ""
+msgstr "Napatan rekonstruktio"
 
 #: maps/scenarios/necropolis.xml:Description:38
 msgid ""
 "Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr ""
+msgstr "Neljä pelaajaa taistelee Niilin suistoalueella. Kukin kaupunki on aluksi suuren ylätasangon päällä, mutta luonnonvarat ovat vähissä, mikä pakottaa jokaisen pelaajan laajentamaan luonnonvaratoimintojaan ympäröiville alueille. ...\n\nTiedustelijat sanovat, että läheiset Niilin haarat ovat matalia ja monin paikoin kahlattavissa, joten niiden pitäisi toimia vain pienenä esteenä vihollisryhmien välillä."
 
 #: maps/scenarios/necropolis.xml:Name:38
 msgid "Necropolis"
-msgstr "Nekropolis"
+msgstr "Nekropoli"
 
 #: maps/scenarios/pathfinding_demo.xml:Description:38
 msgid "A map for testing unit movement algorithms."
@@ -1703,25 +1704,25 @@ msgstr "Kartta yksiköiden liikkumisalgoritmien testaamiseen."
 
 #: maps/scenarios/pathfinding_demo.xml:Name:38
 msgid "Pathfinding Demo"
-msgstr "Reitinlöytämisen demo"
+msgstr "Polunetsinnän demo"
 
 #: maps/scenarios/pathfinding_terrain_demo.xml:Description:26
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
-msgstr ""
+msgstr "Kartta liikkumiskustannusten ja maaston ominaisuuksien testaamista varten A*-polunetsijällä."
 
 #: maps/scenarios/pathfinding_terrain_demo.xml:Name:26
 msgid "Pathfinding Terrain Demo"
-msgstr "Reitinlöytämisen maaperän demo"
+msgstr "Polunetsinnän demo maastossa"
 
 #: maps/scenarios/peloponnese.xml:Description:38
 msgid "A real-world map of the Greek homeland."
-msgstr "Oikea maankartta Kreikkalaisten kotimaasta."
+msgstr "Tosielämän kartta kreikkalaisten kotimaasta."
 
 #: maps/scenarios/peloponnese.xml:Name:38
 msgid "Peloponnesian Wars"
-msgstr "Peloponnesolaiset sodat"
+msgstr "Peloponnesolaissodat"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:38
 msgid "Athens"
@@ -1743,15 +1744,15 @@ msgstr "Korintti"
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
 "placed."
-msgstr ""
+msgstr "Testikartta yksiköiden poimimista varten, jossa on meri ja kaksi saarta. Liipaisupisteet on sijoitettu."
 
 #: maps/scenarios/pickup_test_map.xml:Name:39
 msgid "Pickup test map"
-msgstr ""
+msgstr "Poimintatestin kartta"
 
 #: maps/scenarios/polynesia.xml:Description:38
 msgid "Demo map for new fancy water effects."
-msgstr "Demo kartta uusia vesi efektejä varten."
+msgstr "Demokartta uusista hienoista vesiefekteistä."
 
 #: maps/scenarios/polynesia.xml:Name:38
 msgid "Polynesia"
@@ -1775,7 +1776,7 @@ msgstr "Tekojärvi"
 
 #: maps/scenarios/resource_demo.xml:Description:26
 msgid "Demo map for resource gathering."
-msgstr "Demokartta resurssien keräilyyn."
+msgstr "Demokartta resurssien keräämistä varten."
 
 #: maps/scenarios/resource_demo.xml:Name:26
 msgid "Resource demo"
@@ -1783,24 +1784,24 @@ msgstr "Resurssidemo"
 
 #: maps/scenarios/road_demo.xml:Description:26
 msgid "Demo map showcasing Temperate Road decals."
-msgstr ""
+msgstr "Demokartta, jossa esitellään lauhkean maaston tiekoristeita."
 
 #: maps/scenarios/road_demo.xml:Name:26
 msgid "Road Decals Demo"
-msgstr ""
+msgstr "Tiekoristedemo"
 
 #: maps/scenarios/saharan_oases.xml:Description:26
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
-msgstr ""
+msgstr "Aavikkokartta, jossa kukin pelaaja on perustanut siirtokunnan omalle vehreälle keitaalleen. Muu osa karttaa on yleisesti ottaen avara ja karu."
 
 #: maps/scenarios/sahel.xml:Description:38
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
-msgstr ""
+msgstr "Sijaitsee Atlas-vuoriston eteläpuolella Pohjois-Afrikassa.\n\nJokseenkin avoin kartta, jossa on runsaasti ruokaa ja mineraalivaroja, kun taas puuta on jokseenkin niukasti."
 
 #: maps/scenarios/sahel.xml:PlayerData[0].Name:38
 msgid "Aulus Manlius Capitolinus"
@@ -1821,7 +1822,7 @@ msgstr "Tautalus"
 #: maps/scenarios/sandbox_athenians.xml:Description:38
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Pelaa ateenalaisten ryhmittymällä vaarattomassa hiekkalaatikkoympäristössä."
 
 #: maps/scenarios/sandbox_athenians.xml:Name:38
 msgid "Sandbox - The Athenians"
@@ -1853,20 +1854,20 @@ msgstr "Gallialaiset"
 #: maps/scenarios/sandbox_britons.xml:Description:38
 #: maps/scenarios/sandbox_gauls.xml:Description:39
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr ""
+msgstr "Leiki gallialaisten ryhmittymällä idyllisessä hiekkalaatikkoympäristössä."
 
 #: maps/scenarios/sandbox_britons.xml:Name:38
 msgid "Sandbox - The Britons"
-msgstr "Hiekkalinna - Britit"
+msgstr "Hiekkalaatikko - Britit"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
 msgid "Roman Interlopers"
-msgstr ""
+msgstr "Roomalaiset tunkeilijat"
 
 #: maps/scenarios/sandbox_carthaginians.xml:Description:38
 msgid "Explore the Carthaginian Buildings and Units."
-msgstr "Tutki Carthaginian rakennuksia ja yksiköitä."
+msgstr "Tutki karthagolaisia rakennuksia ja yksiköitä."
 
 #: maps/scenarios/sandbox_carthaginians.xml:Name:38
 msgid "Sandbox - The Carthaginians"
@@ -1888,7 +1889,7 @@ msgstr "Hiekkalaatikko - Gallialaiset"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
-msgstr "Demokartta iberialaisille"
+msgstr "Demokartta iberialaisille."
 
 #: maps/scenarios/sandbox_iberians.xml:Name:38
 msgid "Sandbox - The Iberians"
@@ -1896,24 +1897,24 @@ msgstr "Hiekkalaatikko - Iberialaiset"
 
 #: maps/scenarios/sandbox_kushites.xml:Description:39
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
-msgstr ""
+msgstr "Pelaa kushilaisten ryhmittymällä vaarattomassa hiekkalaatikkoskenaariossa."
 
 #: maps/scenarios/sandbox_kushites.xml:Name:39
 msgid "Sandbox - The Kushites"
-msgstr ""
+msgstr "Hiekkalaatikko - Kushilaiset"
 
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:39
 msgid "Kushites"
-msgstr ""
+msgstr "Kushilaiset"
 
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[2].Name:39
 msgid "Egyptians"
-msgstr ""
+msgstr "Egyptiläiset"
 
 #: maps/scenarios/sandbox_macedonians.xml:Description:38
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Pelaa makedonialaisten ryhmittymällä vaarattomassa hiekkalaatikkoympäristössä."
 
 #: maps/scenarios/sandbox_macedonians.xml:Name:38
 msgid "Sandbox - The Macedonians"
@@ -1925,15 +1926,15 @@ msgstr "Makedonialaiset"
 
 #: maps/scenarios/sandbox_mauryas.xml:Description:38
 msgid "Mauryan Indian faction showcase map."
-msgstr ""
+msgstr "Mauryan intialaisten ryhmittymän esittelykartta."
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:38
 msgid "Sandbox - The Mauryas"
-msgstr ""
+msgstr "Hiekkalaatikko - Mauruyat"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
 msgid "Mauryan Indians"
-msgstr "Mauryan Intialaiset"
+msgstr "Mauryan intialaiset"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:38
 msgid "Enemy"
@@ -1941,7 +1942,7 @@ msgstr "Vihollinen"
 
 #: maps/scenarios/sandbox_persians.xml:Description:38
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr "Demokartta. Pelaa persialaisilla hiekkalaatikkoasetuksella."
+msgstr "Demokartta. Pelaa persialaisella sivilisaatiolla hiekkalaatikkoasetelmassa."
 
 #: maps/scenarios/sandbox_persians.xml:Name:38
 msgid "Sandbox - The Persians"
@@ -1949,12 +1950,12 @@ msgstr "Hiekkalaatikko - Persialaiset"
 
 #: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
 msgid "Achaemenids"
-msgstr "Achaemenids"
+msgstr "Akhaimenidit"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:38
 msgid "An islands map good for intense naval combat."
-msgstr "Saarikartta. Hyvä intensiiviseen meritaisteluun."
+msgstr "Saarikartta, joka sopii hyvin kiivaaseen meritaisteluun."
 
 #: maps/scenarios/sandbox_ptolemies.xml:Name:38
 msgid "Sandbox - The Ptolemaic Egyptians"
@@ -1962,7 +1963,7 @@ msgstr "Hiekkalaatikko - Ptolemaioksen egyptiläiset"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:38
 msgid "Ptolemaios A' Soter"
-msgstr "Ptolemaios A' Soter"
+msgstr "Ptolemaios I Soter"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[1].Name:38
 msgid "Kautilya"
@@ -1971,7 +1972,7 @@ msgstr "Kautilya"
 #: maps/scenarios/sandbox_ptolemies_02.xml:Description:38
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
-msgstr ""
+msgstr "Pelaa Ptolemaioksen egyptiläisillä vaarattomassa hiekkalaatikkoasetelmassa."
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:Name:38
 msgid "Sandbox - The Ptolemaic Egyptians 2"
@@ -1999,7 +2000,7 @@ msgstr "Hiekkalaatikko - Rooman tasavaltalaiset"
 
 #: maps/scenarios/sandbox_seleucids.xml:Description:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
-msgstr ""
+msgstr "Hiekkalaatikkoskenaario, jossa pelaajat voivat kokeilla Seleukidien sivilisaatiota."
 
 #: maps/scenarios/sandbox_seleucids.xml:Name:38
 msgid "Sandbox - The Seleucids"
@@ -2011,12 +2012,12 @@ msgstr "Seleukidit"
 
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:38
 msgid "The Ptolemies"
-msgstr "Ptolemies"
+msgstr "Ptolemaiokset"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:38
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Pelaa spartalaisten ryhmittymällä vaarattomassa hiekkalaatikkoympäristössä."
 
 #: maps/scenarios/sandbox_spartans.xml:Name:38
 msgid "Sandbox - The Spartans"
@@ -2026,7 +2027,7 @@ msgstr "Hiekkalaatikko - Spartalaiset"
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
-msgstr ""
+msgstr "Avoin savannikartta, jonka keskellä kulkee pieni rotko, joka on helppo ylittää."
 
 #: maps/scenarios/savanna_ravine.xml:Name:38
 msgid "Savanna Ravine"
@@ -2036,7 +2037,7 @@ msgstr "Savannirotko"
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
-msgstr ""
+msgstr "Afrikan Serengetissä eläinlaumat kulkevat ristiin rastiin tasangolla. Mineraalivaroja on runsaasti ja puuta on runsaasti."
 
 #: maps/scenarios/serengeti.xml:Name:26
 msgid "Serengeti 1"
@@ -2056,11 +2057,11 @@ msgstr "Persia"
 
 #: maps/scenarios/ship_formations.xml:Description:26
 msgid "Ship formations mockup."
-msgstr "Laivojen muodostelmien malli."
+msgstr "Laivamuodostelmien mallinnus."
 
 #: maps/scenarios/ship_formations.xml:Name:26
 msgid "Ship Formations"
-msgstr "Laivojen muodostelmat"
+msgstr "Laivamuodostelmat"
 
 #: maps/scenarios/ship_formations.xml:PlayerData[0].Name:26
 msgid "Ships"
@@ -2078,7 +2079,7 @@ msgstr "Laivademo"
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr ""
+msgstr "Karthago vs. Makedonia vs. Persia vs. Iberia! Suuri keidas toimii keskipisteenä vuoristoisille ulokkeille, jotka jakavat kunkin pelaajan kotialueet."
 
 #: maps/scenarios/siwa_oasis.xml:Name:26
 msgid "Siwa Oasis"
@@ -2086,7 +2087,7 @@ msgstr "Siwan keidas"
 
 #: maps/scenarios/temperate_map.xml:Name:26
 msgid "Base Temperate Map"
-msgstr ""
+msgstr "Lauhkea peruskartta"
 
 #: maps/scenarios/territory_demo.xml:Description:26
 msgid "A demo map showing the territory effects of each type of structure."
@@ -2100,11 +2101,11 @@ msgstr "Aluedemo"
 msgid ""
 "This map is designed to help artists and modders find the adequate "
 "foundation for a specific building. This map is not meant to be playable."
-msgstr ""
+msgstr "Tämä kartta on suunniteltu auttamaan taiteilijoita ja modaajia löytämään sopivan perustuksen tietylle rakennukselle. Tätä karttaa ei ole tarkoitettu pelattavaksi."
 
 #: maps/scenarios/test_foundation.xml:Name:39
 msgid "Foundation Testing Map"
-msgstr ""
+msgstr "Perustuksen testauskartta"
 
 #: maps/scenarios/the_massacre_of_delphi.xml:Description:38
 msgid ""
@@ -2123,7 +2124,7 @@ msgid ""
 "\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
 "\n"
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr ""
+msgstr "\"Kreikan unelma on aina ollut mennä itään.\" \n\n\"Varokaa tuollaista ylpeyttä. Idällä on tapana niellä miehet ja heidän unelmansa.\" \n\nTyöntääkö Aleksanteri tiensä Persian porttien läpi ja täyttääkö hän kohtalonsa, vai puolustaako Ariobarzanes Persiksen karua muinaista maata vierasta hyökkääjää vastaan?"
 
 #: maps/scenarios/the_persian_gates.xml:Name:26
 msgid "The Persian Gates"
@@ -2177,15 +2178,15 @@ msgstr "Ei voittajaa vielä, valmistaudu taisteluun!"
 
 #: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "Vihollisesi aarrekammio on täynnä reunoihin asti, häviät!"
+msgstr "Vihollisesi aarrekammio on täynnä ääriään myöten, häviät!"
 
 #: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "Aarrekammiosi on täynnä reunoihin asti, olet voitokas!"
+msgstr "Aarrekammiosi on täynnä ääriään myöten, olet voitokas!"
 
 #: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
-msgstr "Pidä kiirettä! Vihollisesi on jo melkein voittanut!"
+msgstr "Pidä kiirettä! Vihollisesi on lähellä voittoa!"
 
 #: maps/scenarios/treasure_islands.js:71
 #, javascript-format
@@ -2204,22 +2205,22 @@ msgstr "Lyö vihollisesi voittaaksesi!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s on voittanut (aarre kerätty)."
+msgstr[1] "%(players)s ja %(lastPlayer)s ovat voittaneet (aarre kerätty)."
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s on lyöty (aarre kerätty)."
+msgstr[1] "%(players)s ja %(lastPlayer)s on lyöty (aarre kerätty)."
 
 #: maps/scenarios/treasure_islands.xml:Description:38
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
-msgstr "Etsi aarteita pieniltä saarilta ja vedestä. Kerää enemmän aarteita kuin vastustaja voittaaksesi pelin."
+msgstr "Etsi aarteita pieniltä saarilta ja vedestä. Kerää enemmän aarteita kuin vastustajasi voittaaksesi pelin."
 
 #: maps/scenarios/treasure_islands.xml:Name:38
 msgid "Treasure Islands"
@@ -2227,7 +2228,7 @@ msgstr "Aarresaari"
 
 #: maps/scenarios/triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Kyllä-Ei dialogin testaus. Oletko varma että olet varma vai etkö ole varma?"
+msgstr "Kyllä-ei dialogin testaus. Haluatko sanoa kyllä vai mieluummin että ei?"
 
 #: maps/scenarios/triggers_demo.js:79
 msgid "Sure"
@@ -2249,11 +2250,11 @@ msgstr "Sano ennemmin ei"
 msgid ""
 "Demo map listening to various triggers and printing warning messages about "
 "them"
-msgstr ""
+msgstr "Demokartta, joka kuuntelee erilaisia liipaisimia ja tulostaa niistä varoitusviestejä."
 
 #: maps/scenarios/triggers_demo.xml:Name:38
 msgid "Triggers Demo"
-msgstr "Triggeridemo"
+msgstr "Liipaisindemo"
 
 #: maps/scenarios/tropical_island.xml:Description:38
 msgid "Multiplayer map. A tropical paradise."
@@ -2267,19 +2268,19 @@ msgstr "Trooppinen saari"
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
-msgstr ""
+msgstr "Tämä kartta on suunniteltu testaamaan muutamia erilaisia tapauksia, joissa yksiköt jahtaavat toisiaan."
 
 #: maps/scenarios/unit_chasing_test.xml:Name:40
 msgid "Unit Chasing test"
-msgstr ""
+msgstr "Yksiköiden jahtaamistesti"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
-msgstr ""
+msgstr "Tämän kartan tarkoituksena on testata muutamia erilaisia \"tanssin\" tapauksia."
 
 #: maps/scenarios/unit_dancing_test.xml:Name:40
 msgid "Unit Dancing test"
-msgstr ""
+msgstr "Yksiköiden tanssitesti"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:39
 msgid ""
@@ -2287,21 +2288,21 @@ msgid ""
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
 "integrated test map. Look for things such as stuck units, wrong animations, "
 "and weird pathing."
-msgstr ""
+msgstr "Tämän kartan tarkoituksena on testata joitakin yksiköiden perusliikkumistapauksia. Se käsittää unitAI:n, unitMotionin ja asiaankuuluvat polunetsijät ja toimii siten integroituna testikarttana. Etsi esimerkiksi jumissa olevia yksiköitä, vääriä animaatioita ja outoja polkuja."
 
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
-msgstr ""
+msgstr "Yksikön liikkeen integraatiotesti"
 
 #: maps/scenarios/unit_pushing_test.xml:Description:40
 msgid ""
 "This map is designed to test the performance & functionality of unit "
 "pushing."
-msgstr ""
+msgstr "Tämä kartta on suunniteltu testaamaan yksikön työntämisen suorituskykyä ja toimivuutta."
 
 #: maps/scenarios/unit_pushing_test.xml:Name:40
 msgid "Unit Pushing test"
-msgstr ""
+msgstr "Yksiköiden työntämistesti"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."
@@ -2325,7 +2326,7 @@ msgstr "Muuritesti"
 
 #: maps/scenarios/we_are_legion.xml:Description:26
 msgid "A quick battle demo map using Roman legionaries."
-msgstr ""
+msgstr "Nopea taistelun demokartta, jossa käytetään roomalaisia legioonalaisia."
 
 #: maps/scenarios/we_are_legion.xml:Name:26
 msgid "We Are Legion"
@@ -2336,116 +2337,116 @@ msgstr "Me olemme Legioona"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s ja hänen liittolaisensa ovat kaapanneet kaikki muinaisjäännökset, ja voittavat ajassa %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s on kaapnnut kaikki muinaisjäännökset ja voittaa ajassa %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Sinä ja liittolaisesi olette kaapanneet kaikki muinaisjäännökset ja voitatte ajassa %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Olet kaapannut kaikki muinaisjäännökset ja voitat ajassa %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s on voittanut (muinaisjäännösten ryöstö)."
+msgstr[1] "%(players)s ja %(lastPlayer)s ovat voittaneet (muinaisjäännösten kaappaus)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s on lyöty (muinaisjäännösten ryöstö)."
+msgstr[1] "%(players)s ja %(lastPlayer)s on lyöty (muinaisjäännösten ryöstö)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti kaikki kriittiset yksiköt ja rakennelmat)"
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti kaikki rakennelmat)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti kaikki rakennelmat ja kriittiset yksiköt)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti kaikki yksiköt)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti kaikki yksiköt ja kriittiset rakennelmat)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
 msgid "%(player)s has been defeated (lost hero)."
-msgstr ""
+msgstr "%(player)s on lyöty (menetti sankarin)."
 
 #: maps/scripts/WonderVictory.js:80
 #, javascript-format
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s omistaa Ihmeen ja %(_player_)s ja hänen liittolaisensa voittavat ajassa %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s omistaa Ihmeen ja voittaa ajassa %(time)s."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s omistaa Ihmeen ja sinä voitat ajassa %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "Omistat Ihmeen ja sinä ja liittolaisesi voitatte ajassa %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "Omistat ihmeen ja voitat ajassa %(time)s."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s on voittanut (ihmevoitto)."
+msgstr[1] "%(players)s ja %(lastPlayer)s ovat voittaneet (ihmevoitto)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s on lyöty (ihmevoitto)."
+msgstr[1] "%(players)s ja %(lastPlayer)s on lyöty (ihmevoitto)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""
 "Each player starts the match atop a large flat plateau.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
-msgstr ""
+msgstr "Kumpikin pelaaja aloittaa pelin suuren tasanteen huipulta.\n\nIdässä on suuri lahti, jossa on kalastusmahdollisuuksia. Lännessä on karu takamaasto, jonka alla olevaa laaksoa hallitsee valloittamaton tasanne."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:38
 msgid "Acropolis Bay (2)"
@@ -2477,18 +2478,18 @@ msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
-msgstr ""
+msgstr "Taistele korkealla Atlas-vuoristossa, jossa lumihuippuiset vuoret kohoavat aavikkokeitaiden ylle. Villi maisema odottaa; jokainen pelaaja kohtaa erilaisia etuja ja haasteita sijaintinsa perusteella."
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Name:39
 msgid "Atlas Valleys (8)"
-msgstr ""
+msgstr "Atlaksen laaksot (8)"
 
 #: maps/skirmishes/bactria_2p.xml:Description:38
 msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr ""
+msgstr "Baktrian (nyky-Afganistanin) kuivat ja mineraalirikkaat maat Hindukuš-vuoriston juurella.\n\nKartan keskellä on kuivunut vuori. Sen molemmin puolin on vuoria ja aluskukkuloita, joita lävistävät petolliset solat ja vanhat kauppareitit."
 
 #: maps/skirmishes/bactria_2p.xml:Name:38
 msgid "Bactria (2)"
@@ -2500,7 +2501,7 @@ msgid ""
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
-msgstr ""
+msgstr "Villi ja puustoinen saari, joka on täynnä metsiä, kultaa ja salaperäisyyttä. Vuoret, meret ja tiheät metsät luovat erittäin dynaamisen ja nopeatempoisen 3-pelaajan kartan, jossa on paljon potentiaalia kahakointiin ja sissisodankäyntiin sekä koviin puolustustaisteluihin ja aggressiivisiin liikkeisiin."
 
 #: maps/skirmishes/barcania_3p.xml:Name:26
 msgid "Barcania (3)"
@@ -2511,7 +2512,7 @@ msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr ""
+msgstr "Kaksi pelaajaa kohtaa suuren suon jossain Reinin alankoalueella.\n\nPuuta on runsaasti, mutta metallia ja kiveä on vaikea löytää ja louhia. Metsästys- ja keräilymahdollisuudet ovat runsaat."
 
 #: maps/skirmishes/belgian_bog_2p.xml:Name:38
 msgid "Belgian Bog (2)"
@@ -2521,26 +2522,26 @@ msgstr "Belgialainen suo (2)"
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
-msgstr ""
+msgstr "Saharan eteläpuolella, Niilin itäpuolella, sijaitsee puolikuiva alue, joka tunnetaan nykyään Butanan arona."
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Butana Steppe (2)"
-msgstr ""
+msgstr "Butanan aro (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
-msgstr ""
+msgstr "Läntinen pelaaja"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
 msgid "East Player"
-msgstr ""
+msgstr "Itäinen pelaaja"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
-msgstr ""
+msgstr "Kalastusta voi harjoittaa keskisellä järvellä. Kartalla on myös runsaasti kivi- ja metalliesiintymiä."
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
 msgid "Caspian Sea (2v2)"
@@ -2559,7 +2560,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr ""
+msgstr "Pelaajat aloittavat kahdella vastakkaisella saarella, jotka molemmat ovat hyvin rosoisia, mikä tekee maihinnoususta vaikeaa.\n\nAlun perin torrealaisten miehittämä, sitten etruskien, fokaialaisten ja syrakusalaisten marginaalisesti asuttama. Rooma valloitti nämä kaksi saarta Karthagolta ensimmäisen puunilaissodan aikana ja perusti vuonna 238 eaa. provinssin \"Corsica et Sardinia\". Korsikalaiset kapinoivat säännöllisesti, ja vuosisadan kuluessa saari menetti kaksi kolmasosaa korsikalaisväestöstään."
 
 #: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
 msgid "Corsica and Sardinia (4)"
@@ -2567,7 +2568,7 @@ msgstr "Korsika ja Sardinia (4)"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
 msgid "A \"small island\"-style map set in the Aegean Sea."
-msgstr ""
+msgstr "Egeanmerelle sijoittuva \"pienet saaret\" -tyylinen kartta."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
 msgid "Cycladic Archipelago (2)"
@@ -2578,7 +2579,7 @@ msgid ""
 "A \"small island\"-style map set in the Aegean Sea.\n"
 "\n"
 "Map size: Very Large"
-msgstr ""
+msgstr "Egeanmerelle sijoittuva \"pienet saaret\" -tyylinen kartta.\n\nKartan koko: Erittäin suuri"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
@@ -2601,7 +2602,7 @@ msgid ""
 "A deep rocky canyon slicing through the desert.\n"
 "\n"
 "Each player starts their colony on a plateau on either side of the ravine."
-msgstr ""
+msgstr "Syvä kivinen kanjoni leikkaa aavikon halki.\n\nKukin pelaaja aloittaa siirtokuntansa tasangolla rotkon jommalla kummalla puolella."
 
 #: maps/skirmishes/death_canyon_2p.xml:Name:38
 msgid "Death Canyon (2)"
@@ -2614,7 +2615,7 @@ msgid ""
 "Each player starts the match with a free farmstead and free storehouse.\n"
 "\n"
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
-msgstr ""
+msgstr "Kaksi pelaajaa ottelevat Keski-Intian metsäisellä Deccanin tasangolla.\n\nKumpikin pelaaja saa pelin alussa ilmaisen maatilan ja varaston. \n\nNeitseellisiä luonnonvaroja on tasangon molemmin puolin sijaitsevilla alankoilla. Alangot tarjoavat myös mahdollisuuden laajentumiselle ja strategisille liikkeille."
 
 #: maps/skirmishes/deccan_plateau_2p.xml:Name:38
 msgid "Deccan Plateau (2)"
@@ -2625,7 +2626,7 @@ msgid ""
 "A foggy alpine landscape becomes a battleground as each team has an ally "
 "squashed precariously between two enemies. Two forest cliffs overlook the "
 "center lake, accessible from the sides of the map."
-msgstr ""
+msgstr "Sumuisesta alppimaisemasta tulee taistelukenttä, kun kummallakin joukkueella on liittolainen puristuksissa kahden vihollisen välissä. Keskeisen järven yläpuolella on kaksi metsäkalliota, joihin pääsee kartan sivuilta."
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Name:39
 msgid "Dueling Cliffs (3v3)"
@@ -2646,39 +2647,39 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr ""
+msgstr "Taistele muinaisen Egyptin jäännöksistä!\n\nPelaajat aloittavat täysikokoisilla kaupungeilla ja pienillä armeijoilla, joilla kummallakin on omat etunsa ja haittansa. Ole varovainen, sillä on 7 mahtavaa linnoitusta ja ryösteleviä rosvoja! \n\nOn viimeinen vuosisata ennen vuotta 0 jKr. Egypti on sisäisesti jakautunut hellenististen (Aleksandria, jota edustavat seleukidit) ja perinteisten vaikutteiden (Memfis, jota edustavat ptolemaiokset) välillä. Niilin eteläpuolella sijaitsevan Theban ovat jo vallanneet kushilaiset. Luoteisessa Al-Dschabal al-Achdarissa, jossa sijaitsee Kyrenen välimerellinen kaupunki, roomalaiset valmistelevat hyökkäystään. Itäisestä aavikosta at-Tihistä ja Siinain vuorelta viholliset (joita persialaiset edustavat) etenevät Siwan keidasalueelle. Kharga (jota edustaa Karthago) lounaisaavikolla yrittää myös saada osansa kakusta.\nPaikat:\n- Alexandria: kirjasto, satama\n- Memfis: Nekropoli, pyramidit, Apiksen pyhättö.\n- Theba: temppelialue, Kuninkaiden laakso .\n- Kyrene: Välimeren Macchie, oliivilehdot.\n- Fayyum: krokotiilipyhäkkö, Niilin pato.\n- Itäinen aavikko: Siinain vuori, syvä Wadi, Punaisenmeren riutat.\n- Läntinen aavikko: Charga- ja Siwa-keidas, Qattaran syvänkö."
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
-msgstr ""
+msgstr "Egypti (3v3)"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:39
 msgid "Alexandria"
-msgstr ""
+msgstr "Aleksandria"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:39
 msgid "Siwa"
-msgstr ""
+msgstr "Siwa"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[3].Name:39
 msgid "Sinai"
-msgstr ""
+msgstr "Siinai"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[4].Name:39
 msgid "Memphis"
-msgstr ""
+msgstr "Memfis"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:39
 msgid "Cyrene"
-msgstr ""
+msgstr "Kyrene"
 
 #: maps/skirmishes/farmland_2p.xml:Description:39
 msgid "Farmland in Eastern Europe."
-msgstr ""
+msgstr "Viljelysmaa Itä-Euroopassa."
 
 #: maps/skirmishes/farmland_2p.xml:Name:39
 msgid "Farmland (2)"
-msgstr ""
+msgstr "Viljelysmaa (2)"
 
 #: maps/skirmishes/forest_battle_4p.xml:Description:39
 msgid ""
@@ -2708,7 +2709,7 @@ msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr ""
+msgstr "Kaikki pelaajat aloittavat joen yhdellä rannalla, jossa on vain vähän kerättävissä olevaa metallia. Gambiajoen toisella puolella on savanni, jossa on paljon metalliesiintymiä. \n\n(Varoitus: Suuri kartta. Suositellaan tehokasta tietokonetta)"
 
 #: maps/skirmishes/gambia_river_3p.xml:Name:38
 msgid "Gambia River (3)"
@@ -2718,7 +2719,7 @@ msgstr "Gambia-joki (3)"
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of shallow water or via boat."
-msgstr ""
+msgstr "Välimerellä sijaitsevaa, luonnonvaroiltaan rikasta saarta reunustaa maaympyrä. Pelaajat pääsevät keskelle kapeaa matalan veden kaistaletta pitkin tai veneellä."
 
 #: maps/skirmishes/golden_island_2p.xml:Name:39
 msgid "Golden Island (2)"
@@ -2729,7 +2730,7 @@ msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
-msgstr ""
+msgstr "Pelaajat aloittavat kartan keskellä olevan pienen keidasalueen ympäriltä, jossa on suuri osa kartan saatavilla olevasta puusta.\n\nToisaalla, sisämaassa, sijaitsee suuria rikkauksia, suurten kulta- ja muiden metalliesiintymien muodossa."
 
 #: maps/skirmishes/golden_oasis_2p.xml:Name:38
 msgid "Gold Oasis (2)"
@@ -2741,7 +2742,7 @@ msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr ""
+msgstr "Kaksi ryhmittymää sijaitsevat turvallisesti suurten kalliotasanteiden huipulla.\n\nTiedustele maita löytääksesi ilmaisia aarteita ja hankkiaksesi uusia resursseja."
 
 #: maps/skirmishes/greek_acropolis_2p.xml:Name:38
 msgid "Greek Acropolis (2)"
@@ -2752,7 +2753,7 @@ msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr ""
+msgstr "Kolme ryhmittymää sijaitsevat turvallisesti suurten kalliotasanteiden päällä, kun taas neljäs ryhmittymä on erotettu vihollisistaan joenhaaralla.\n\nTiedustele maita löytääksesi ilmaisia aarteita ja hankkiaksesi uusia resursseja."
 
 #: maps/skirmishes/greek_acropolis_4p.xml:Name:38
 msgid "Greek Acropolis (4)"
@@ -2780,7 +2781,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr ""
+msgstr "Vanha suosikki. Muuten avaran, tasaisen aavikkokartan keskellä on rehevä keidas.\n\nTämä edustaa Libyan autiomaata, joka on osa Saharan autiomaata Niilin länsipuolella Egyptissä.\n\nIberialaiset eivät saa piirimuuriaan täällä. Sen sijaan kaikki ryhmittymät saavat neljä ilmaista kivitornia."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:38
 msgid "Libyan Oasis (2)"
@@ -2793,7 +2794,7 @@ msgid ""
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
-msgstr ""
+msgstr "Kartan keskellä kulkee itä-länsi-suuntainen joki, jossa on muutamia matalikkoja. \n\nMelko avointa metsää ja käytännössä tasainen. Runsaasti rakennustilaa. Hyvin tasapainotetut luonnonvarat.\n\nSivilisaatioiden alueet on jaettu pääjoen ja sivujokien mukaan (joissa on tarvittavat matalikot ylityksiä varten)."
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Name:39
 msgid "Lorraine Plain (2)"
@@ -2804,7 +2805,7 @@ msgstr "Lothringenin tasanko (2)"
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
-msgstr ""
+msgstr "Suuri keidas toimii keskipisteenä vuoriston muodostamille säteille, jotka jakavat kunkin pelaajan kotialueet."
 
 #: maps/skirmishes/median_oasis_2p.xml:Name:38
 msgid "Median Oasis (2)"
@@ -2818,7 +2819,7 @@ msgstr "Meedian keidas (4)"
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
-msgstr ""
+msgstr "Välimeren rannikolla sijaitseva suojaisa luonnonsatama tarjoaa luonnonvarat taistelua varten."
 
 #: maps/skirmishes/mediterranean_cove_2p.xml:Name:38
 msgid "Mediterranean Coves (2)"
@@ -2832,7 +2833,7 @@ msgid ""
 "All players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\n"
 "\n"
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
-msgstr ""
+msgstr "Kappadokian alue Keski-Itä-Anatoliassa.\n\nKaikki pelaajat aloittavat kartan länsipäässä, ja heidän edessään avautuu laaja, koskemattomaksi jäänyt erämaa, joka on kypsä valloitettavaksi ja ryöstettäväksi.\n\nKivi- ja metallivaroja on runsaasti, erityisesti kiveä, mutta puuta on jokseenkin niukasti."
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Name:38
 msgid "Neareastern Badlands (2)"
@@ -2858,7 +2859,7 @@ msgid ""
 "Stranded in the cold North, 2 players fight for supremacy over the Island. "
 "One player starts in the Mountains to the West, the other player starts near"
 " the Bay in the East."
-msgstr ""
+msgstr "Kylmään pohjoiseen juuttuneet 2 pelaajaa taistelevat saaren herruudesta. Toinen pelaaja aloittaa lännessä sijaitsevilta vuorilta ja toinen idässä sijaitsevan lahden läheltä."
 
 #: maps/skirmishes/northern_island_2p.xml:Name:39
 msgid "Northern Island (2)"
@@ -2870,29 +2871,29 @@ msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
-msgstr ""
+msgstr "Lempeä joki mutkittelee näiden serbialaisten kosteikkojen halki. Kiveä on niukasti, mutta monet suoraudan möykyt odottavat löytäjäänsä.\n\n*Tässä kartassa käytetään paljon ruohotoimijoita, mikä voi vaikuttaa haitallisesti suorituskykyyn."
 
 #: maps/skirmishes/obedska_bog_4p.xml:Name:39
 msgid "Obedska Bog (4)"
-msgstr ""
+msgstr "Obedskan suo (4)"
 
 #: maps/skirmishes/obedska_bog_night_4p.xml:Name:39
 msgid "Obedska Bog Night (4)"
-msgstr ""
+msgstr "Obedskan suo yöllä (4)"
 
 #: maps/skirmishes/oceanside_2p.xml:Description:39
 msgid "A Lush temperate biome along an ocean. "
-msgstr ""
+msgstr "Rehevä lauhkea ympäristö valtameren rannalla."
 
 #: maps/skirmishes/oceanside_2p.xml:Name:39
 msgid "Oceanside (2)"
-msgstr ""
+msgstr "Valtameren rannikko (2)"
 
 #: maps/skirmishes/persian_highlands_4p.xml:Description:38
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
-msgstr ""
+msgstr "Kuiva, mineraalirikas keskusallas, jota ympäröivät kallioiset kukkulat ja ylängöt."
 
 #: maps/skirmishes/persian_highlands_4p.xml:Name:38
 msgid "Persian Highlands (4)"
@@ -2903,7 +2904,7 @@ msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
-msgstr ""
+msgstr "Luoteis-Intia. Läheiset joet paisuvat monsuunisateiden vaikutuksesta, joten vain muutama petollinen ylityspaikka on käytettävissä.\n\nJoet ovat metsäisiä, ja ympäröivää maaseutua peittävät ruohoniityt. Varo tiikereitä korkeassa ruohikossa! Aasialaiset elefantit ovat myös yleinen näky."
 
 #: maps/skirmishes/punjab_2p.xml:Name:39
 msgid "Punjab (2)"
@@ -2914,7 +2915,7 @@ msgid ""
 "A desert biome map where each player has founded their colony at their own lush oasis.\n"
 "\n"
 "The rest of the map is generally wide-open and barren."
-msgstr ""
+msgstr "Aavikkoluontokartta, jossa jokainen pelaaja on perustanut siirtokuntansa omaan rehevään keitaaseensa.\n\nMuu osa kartasta on yleisesti ottaen avara ja karu."
 
 #: maps/skirmishes/saharan_oases_4p.xml:Name:38
 msgid "Saharan Oases (4)"
@@ -2925,7 +2926,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
-msgstr ""
+msgstr "Sijaitsee Atlas-vuoriston eteläpuolella Pohjois-Afrikassa.\n\nJokseenkin avoin kartta, jossa on runsaasti eläimiä ja mineraalivaroja, kun taas puuta on niukasti."
 
 #: maps/skirmishes/sahel_4p.xml:Name:38
 msgid "Sahel (4)"
@@ -2938,11 +2939,11 @@ msgid ""
 "Iberian players do not get full circuit walls, but 5 strategically placed wall towers.\n"
 "\n"
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
-msgstr ""
+msgstr "Intia Länsi-Ghatien vuoristoon sijoittuvat monipuoliset sademetsät. Sanomattakin on selvää, että puuta on runsaasti.\n\nIberialaiset pelaajat eivät saa täyttä piirimuuria, vaan 5 strategisesti sijoitettua muuritornia.\n\nVAROITUS: Tässä kartassa käytetään paljon kukkatoimijoita, koska se on sademetsä. Odota ruutunopeuden laskua, tämä on kuormittavaa useimmille keskihintaluokan tietokoneille."
 
 #: maps/skirmishes/sahyadri_buttes_5p.xml:Name:39
 msgid "Sahyadri Buttes (5)"
-msgstr ""
+msgstr "Länsi-Ghatien vuoret (5)"
 
 #: maps/skirmishes/savanna_river_2p.xml:Description:38
 msgid "A large savanna is bisected by a narrow jungle stream."
@@ -2964,7 +2965,7 @@ msgstr "Sisilia (2)"
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
-msgstr ""
+msgstr "Välimeren suuri saari Sisilia on valloitettavissa.\n[color=\"orange\"]Vinkki: satamat ovat hyödyllisiä jättöpaikkoja, kun et omista vielä aluetta[/color].[/color]"
 
 #: maps/skirmishes/sicilia_nomad_2p.xml:Name:34
 msgid "Sicilia Nomad (2)"
@@ -2976,7 +2977,7 @@ msgstr "Demo kahakkakartta"
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Name:38
 msgid "Skirmish Demo (2)"
-msgstr ""
+msgstr "Kahakkademo (2)"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:38
 msgid "Sporades Islands (2)"
@@ -2987,7 +2988,7 @@ msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
-msgstr ""
+msgstr "Karu maa, jossa on vähän puuta ja vähän eläimiä. Aarteet täplittävät maisemaa ja ovat välttämättömiä kasvulle alkuvaiheessa.\n\nPelaaja, joka perustaa kannattavan kauppakaravaanin mahdollisimman aikaisin, voi saada ratkaisevan edun."
 
 #: maps/skirmishes/syria_2p.xml:Name:38
 msgid "Syria (2)"
@@ -2998,7 +2999,7 @@ msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
-msgstr ""
+msgstr "Vuorten ja aavikon ympäröimä keidas. Veden äärellä sijaitsevat viljelysmaat antavat kaivattua pontta maanviljelylle, mutta keräily- ja metsästysmahdollisuudet ovat vähissä."
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Name:38
 msgid "Team Oasis (2v2)"
@@ -3006,18 +3007,18 @@ msgstr "Joukkuekeidas (2v2)"
 
 #: maps/skirmishes/temperate_roadway_2p.xml:Description:39
 msgid "Temperate zone map with plentiful resources. Map Size: Small"
-msgstr ""
+msgstr "Lauhkean vyöhykkeen kartta, jossa on runsaasti luonnonvaroja. Kartan koko: Pieni"
 
 #: maps/skirmishes/temperate_roadway_2p.xml:Name:39
 msgid "Temperate Roadway (2)"
-msgstr ""
+msgstr "Lauhkea tielinja (2)"
 
 #: maps/skirmishes/thessalian_plains_4p.xml:Description:38
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large plateau."
-msgstr ""
+msgstr "Kumpuilevaa Thessalian tasankoa halkovat kapeat purot, jotka on helppo ylittää. Laajat avoimet alueet mahdollistavat voimakkaan laajentumisen, ja jokainen pelaaja aloittaa pelin turvallisesti suuren ylätasangon päällä."
 
 #: maps/skirmishes/thessalian_plains_4p.xml:Name:38
 msgid "Thessalian Plains (4)"
@@ -3028,7 +3029,7 @@ msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr ""
+msgstr "Neljä ryhmittymää sijaitsevat turvallisesti suurten kalliotasanteiden huipulla.\n\nTiedustele maita löytääksesi ilmaisia aarteita ja hankkiaksesi uusia resursseja."
 
 #: maps/skirmishes/tuscan_acropolis_4p.xml:Name:39
 msgid "Tuscan Acropolis (4)"
@@ -3038,7 +3039,7 @@ msgstr "Toskanan akropoli (4)"
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
-msgstr ""
+msgstr "Suuri tropiikkikartta, jossa on meret idässä ja lännessä. Sopii kahdelle kolmen pelaajan joukkueelle tai kolmelle kahden pelaajan joukkueelle."
 
 #: maps/skirmishes/two_seas_6p.xml:Name:39
 msgid "Two Seas (6)"
@@ -3049,27 +3050,27 @@ msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
-msgstr ""
+msgstr "Kahakoi tuhkan pudotessa kevyesti tämän hiljattain purkautuneen tulivuoren ympärille. Palaneessa maisemassa on vain vähän ruokaa, joskin tuhoutuneissa metsissä on vielä paljon käyttökelpoista puuta."
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:39
 msgid "Vesuvius (6)"
-msgstr ""
+msgstr "Vesuvius (6)"
 
 #: maps/skirmishes/via_augusta_4p.xml:Description:39
 msgid ""
 "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr ""
+msgstr "Kaikki tiet vievät Roomaan. Via Julia Augusta on roomalainen tie, joka rakennettiin vuonna 13 eaa."
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
-msgstr ""
+msgstr "Via Augusta (4)"
 
 #: maps/skirmishes/watering_holes_4p.xml:Description:38
 msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr ""
+msgstr "Afrikan savanni on täynnä metsästettäviä eläimiä, ja läheiset mineraaliesiintymät ovat runsaita. Kuivakausi lähestyy, ja juomapaikat ovat kuivumassa.\n\nHuomautus: Tämä on hyvin pieni \"nopea ja hurja\" kartta. Iberialaiset eivät saa alussa omia piirimuurejaan."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:38
 msgid "Watering Holes (4)"
@@ -3082,7 +3083,7 @@ msgid ""
 "Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
 "\n"
 "Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr ""
+msgstr "Persialaisten kotimaata puskuroivat vuoret, jotka sijaitsevat Persiksen, Susianan ja Median välissä.\n\nPelaajat aloittavat pelin lähellä Persianlahtea omassa maakunnassaan, ja heillä on 1 ilmainen temppeli. \n\nKarujen takamaiden kautta pääsee käsiksi hyödyntämättömiin luonnonvaroihin ja alueisiin."
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:38
 msgid "Zagros Mountains (2)"

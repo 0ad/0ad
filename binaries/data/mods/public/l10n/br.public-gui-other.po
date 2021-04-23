@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:29+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-19 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -1523,7 +1523,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Daoust ma vez aes peurvuiañ evit ur c'hoarier gant skiant-prenet, al live IA dre-ziouer a vez diaes a-walc'h evit ar c'hoarierien nevez evit gellet mestroniañ mekanismoù diazez ar c'hoari. Ar re a grog a zo erbedet da c'hoari a-enep un IA gant ul live izeloc'h (Kestenn-draezh pe Aes-Kenañ). Cheñchit live an IA en ur glikañ war ar c’hendentadur e-kichen al lenner ho peus aozañ er banell-ziuzañ amañ a-us."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr ""
 
@@ -1562,6 +1562,10 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Kadarnadenn"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3267,6 +3271,16 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
 msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc

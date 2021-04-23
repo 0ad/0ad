@@ -6,6 +6,7 @@
 # asd asd <aalovuorinen@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # Juir Lae <juirlae@gmail.com>, 2019
+# Matti Tuhola, 2021
 # Max Ihalempia, 2017
 # Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
 # Riku Viitanen <riisseli4@gmail.com>, 2017
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-21 06:15+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +28,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr ""
+msgstr "Varuskunnassa majaileville piirityskoneille +3 terveyden palautumisnopeus."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr ""
+msgstr "Asevaraston korjauksia"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
@@ -39,7 +40,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "Perusteellinen koulutus"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -51,7 +52,7 @@ msgstr "Sataman korjauksia"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Sotilaille +20% lähi- ja kantamataisteluvahinkoa."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -60,7 +61,7 @@ msgstr "Uskonnollinen kiihko"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr ""
+msgstr "Työntekijöille +15% keräysnopeus."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -70,31 +71,31 @@ msgstr "Isänmaallisuus"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "Sotilaille +1 murskaus-, hakkaus- ja lävistyskestävyys sekä +10% lähi- ja kantamataisteluvahinkoa"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr ""
+msgstr "Kannustava läsnäolo"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "Sankareille -5% terveyttä."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
-msgstr ""
+msgstr "Voimakas papisto"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "Rakenteille -15 % teknologiavarantokustannuksista ja tutkimusajasta."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "Tieteellinen keskus"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr ""
+msgstr "Rakenteille +50% kaappauspisteiden uusiutumisnopeutta varuskuntaan sijoitettuille yksiköille."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -102,7 +103,7 @@ msgstr "Uskollisuus"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "Kauppiaille +20% liikkumisnopeutta."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -110,7 +111,7 @@ msgstr "Ashokan käsky"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Työntekijöille +25% viljan keräysnopeutta."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -118,7 +119,7 @@ msgstr "Maatalousbonus"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "Ihmisille +1 terveyden palautumisnopeuteen."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -126,7 +127,7 @@ msgstr "Lääkinnällinen hoito"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Rakenteille +20% vaikutusalueen säde."
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
@@ -247,7 +248,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "Syyrian tetrapolis"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
@@ -255,7 +256,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Peloponnesolaisliitto"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."

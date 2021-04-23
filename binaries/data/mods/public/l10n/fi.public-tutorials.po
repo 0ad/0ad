@@ -8,13 +8,14 @@
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
 # ZakkeX XekkaZ, 2021
+# Matti Tuhola, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-04-09 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: ZakkeX XekkaZ, 2021\n"
+"Last-Translator: Matti Tuhola, 2021\n"
 "Language-Team: Finnish (https://www.transifex.com/wildfire-games/teams/17418/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,6 +33,10 @@ msgid ""
 "that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Napsauta naiskansalaista hiiren vasemmalla painikkeella ja napsauta sitten "
+"hiiren oikealla painikkeella marjapensasta, niin saat naiskansalaisen "
+"keräämään ruokaa. Naiskansalaiset keräävät vihanneksia nopeammin kuin muut "
+"yksiköt."
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
@@ -39,6 +44,9 @@ msgid ""
 "begin gathering wood. Citizen Soldiers gather wood faster than Female "
 "Citizens."
 msgstr ""
+"Valitse kansalaissotilas ja napsauta hiiren oikealla painikkeella puuta "
+"kansalaiskeskuksen lähellä aloittaaksesi puun keräämisen. Kansalaissotilaat "
+"keräävät puuta nopeammin kuin naispuoliset kansalaiset."
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -64,13 +72,16 @@ msgstr ""
 #: maps/tutorials/introductory_tutorial.js:38
 #: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Napsauta hopliitti-kuvaketta."
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle Female Citizens and build a House nearby by selecting "
 "the House icon. Place the House by left-clicking on a piece of land."
 msgstr ""
+"Valitse kaksi joutilasta naispuolista kansalaista ja rakenna talo lähelle "
+"valitsemalla talon kuvake. Sijoita talo napsauttamalla vasemmalla "
+"painikkeella maata."
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
@@ -78,6 +89,9 @@ msgid ""
 "build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
 msgstr ""
+"Kun ne ovat valmiita, valitse vastavalmistuneet hopliitit ja anna heille "
+"tehtäväksi rakentaa varasto läheisten puiden viereen. Ne alkavat kerätä "
+"puuta, kun se on rakennettu."
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -85,20 +99,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Kouluta joukko kahakoitsijoita pitämällä %(hotkey)s painettuna ja "
+"napsauttamalla kahakoitsija-kuvaketta kansalaiskeskuksessa."
 
 #: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Napsauta kahakoitsija-kuvaketta."
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
 "Build a Farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Rakenna maatila avoimeen tilaan kansalaiskeskuksen viereen käyttämällä "
+"joutilaita rakennusmiehiä."
 
 #: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the Farmstead to be built."
-msgstr ""
+msgstr "Odotetaan, että maatila valmistuu."
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
@@ -106,6 +124,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a Field beside the Farmstead."
 msgstr ""
+"Kun maatila on rakennettu, sen rakentajat alkavat automaattisesti kerätä "
+"ruokaa, jos sitä on lähellä. Valitse rakentajat ja pane heidät sen sijaan "
+"rakentamaan pelto maatilan viereen."
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
@@ -113,6 +134,9 @@ msgid ""
 "Field. Using the newly created group of skirmishers, get them to build "
 "another House nearby."
 msgstr ""
+"Pellon rakentajat alkavat nyt automaattisesti kerätä ruokaa pellolta. "
+"Käyttämällä äskettäin luotua kahakoitsijaryhmä, pane heidät rakentamaan "
+"toinen talo lähistölle."
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
@@ -120,12 +144,17 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather wood."
 msgstr ""
+"Kouluta joukko hopliitteja kansalaiskeskuksessa. Valitse kansalaiskeskus ja "
+"napsauta sen ollessa valittuna hiiren kakkospainikkeella läheistä puuta. "
+"Kansalaiskeskuksen yksiköt keräävät nyt automaattisesti puuta."
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a wood icon."
 msgstr ""
+"Valitse kansalaiskeskus, vie kursori puun päälle ja napsauta hiiren oikealla"
+" painikkeella, kun kursori muuttuu puun kuvakkeeksi."
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
@@ -134,6 +163,10 @@ msgid ""
 "Village Phase structure that you have built, allowing you to advance to the "
 "Town Phase."
 msgstr ""
+"Rakenna kasarmi lähelle. Aina kun asukaslukusi raja saavutetaan, rakenna "
+"ylimääräinen talo käyttämällä käytettävissä olevia rakentajayksiköitä. Tämä "
+"on viides rakentamasi kylävaiheen rakennus, joten voit nyt siirtyä "
+"kauppalavaiheeseen."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -141,73 +174,95 @@ msgid ""
 "II icon (you have to wait for the barracks to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Valitse kansalaiskeskus uudelleen ja siirry kauppalavaiheeseen "
+"napsauttamalla II-kuvaketta (sinun on odotettava, että kasarmit valmistuvat)"
+" Tämä mahdollistaa kauppalavaiheen rakennusten rakentamisen."
 
 #: maps/tutorials/introductory_tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"Odottaessasi vaiheen etenemistä voit siirtää joutilaat työntekijät keräämään"
+" resursseja, joista sinulla on pulaa."
 
 #: maps/tutorials/introductory_tutorial.js:220
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory."
 msgstr ""
+"Käske joutilaat kahakoitsijat rakentamaan vartioasema alueesi "
+"koillisreunalle."
 
 #: maps/tutorials/introductory_tutorial.js:228
 msgid ""
 "Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Aloita naiskansalaisten koulutus kansalaiskeskuksessa ja aseta sen "
+"kokoontumispaikaksi maatila (napsauta sitä hiiren oikealla)."
 
 #: maps/tutorials/introductory_tutorial.js:246
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Napsauta naiskansalaisen kuvaketta."
 
 #: maps/tutorials/introductory_tutorial.js:266
 msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Tower near your Outpost."
 msgstr ""
+"Valmistaudu vihollispelaajan hyökkäykseen. Kouluta lisää sotilaita "
+"kasarmilla ja laita joutilaat sotilaat rakentamaan torni vartioasemasi "
+"lähelle."
 
 #: maps/tutorials/introductory_tutorial.js:274
 msgid ""
 "Build a Forge and research the Infantry Training technology (sword icon) to "
 "improve infantry hack attack."
 msgstr ""
+"Rakenna takomo ja kehitä Jalkaväen koulutus -teknologia (miekkakuvake) "
+"parantaaksesi jalkaväen hakkaushyökkäystä."
 
 #: maps/tutorials/introductory_tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
 msgstr ""
+"Vihollinen on tulossa. Kouluta lisää sotilaita vihollisen torjumiseksi."
 
 #: maps/tutorials/introductory_tutorial.js:290
 msgid "Try to repel the attack."
-msgstr ""
+msgstr "Yritä torjua hyökkäys."
 
 #: maps/tutorials/introductory_tutorial.js:300
 msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
+"Vihollisen hyökkäys on estetty. Rakenna nyt kauppapaikka ja temppeli samalla"
+" kun lähetät uusia yksiköitä keräämään tarvittavia resursseja."
 
 #: maps/tutorials/introductory_tutorial.js:321
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
+"Kun täytät kaupunkivaiheen vaatimukset, valitse kansalaiskeskuksesi ja "
+"siirry kaupunkivaiheeseen."
 
 #: maps/tutorials/introductory_tutorial.js:329
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
 msgstr ""
+"Vaiheenvaihtoa odotellessasi voit kouluttaa lisää sotilaita kasarmilla."
 
 #: maps/tutorials/introductory_tutorial.js:337
 msgid ""
 "Now that you are in City Phase, build the Arsenal nearby and then use it to "
 "construct 2 Battering Rams."
 msgstr ""
+"Nyt kun olet kaupunkivaiheessa, rakenna lähelle asevarasto ja rakenna sen "
+"avulla 2 muurinmurtajaa."
 
 #: maps/tutorials/introductory_tutorial.js:359
 msgid ""
@@ -215,14 +270,18 @@ msgid ""
 "find the enemy Civic Center on the map. Once the enemy's base has been "
 "spotted, send your Siege Engines and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Lopeta resurssien kerääminen sotilailla ja anna sen sijaan pienille ryhmille"
+" tehtäväksi löytää vihollisen kansalaiskeskus kartalta. Kun vihollisen "
+"tukikohta on havaittu, lähetä piirityskoneesi ja kaikki jäljellä olevat "
+"sotilaasi tuhoamaan se."
 
 #: maps/tutorials/introductory_tutorial.js:360
 msgid "Female Citizens should continue to gather resources."
-msgstr ""
+msgstr "Naiskansalaisten tulisi jatkaa resurssien keräämistä."
 
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr ""
+msgstr "Vihollinen on lyöty. Oppaan tehtävät on nyt suoritettu."
 
 #: maps/tutorials/introductory_tutorial.xml:Description:38
 msgid "This is a basic tutorial to get you started playing 0 A.D."
@@ -248,6 +307,10 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
+"Tämä opetusohjelma opettaa talouden kehittämisen perusteet. Tyypillisesti "
+"aloitat kylävaiheessa kansalaiskeskuksella ja parilla yksiköllä, ja lopulta "
+"tavoitteesi on kehittää ja laajentaa valtakuntaasi, usein kehittymällä "
+"kauppalavaiheeseen ja sen jälkeen kaupunkivaiheeseen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -255,12 +318,16 @@ msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."
 msgstr ""
+"Ennen kuin aloitat, voit vaihtaa koko näytön ja ikkunallisen tilan välillä "
+"painamalla %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "You can change the level of zoom using the mouse wheel and the camera view "
 "using any of your keyboard's arrow keys.\n"
 msgstr ""
+"Voit muuttaa zoomaustasoa hiiren rullan avulla ja kameranäkymää näppäimistön"
+" nuolinäppäimillä.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
@@ -272,6 +339,8 @@ msgid ""
 "\n"
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
+"Voit myös vaihtaa tämän opaspaneelin näyttämisen ja piilottamisen välillä "
+"milloin tahansa painamalla %(hotkey)s."
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -279,6 +348,9 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
+"Valitse aluksi rakennuksesi, kansalaiskeskus, napsauttamalla sitä. "
+"Napsauttamisen jälkeen näkyviin tulee valintarengas, joka on sivilisaatiosi "
+"värinen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -290,6 +362,14 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Nyt kun kansalaiskeskus on valittu, huomaat, että näytön oikeaan alakulmaan "
+"ilmestyy tuotantopaneeli, jossa kerrotaan yksityiskohtaisesti rakennuksen "
+"tukemat toiminnot. Käytettävissä olevat toiminnot eivät ole "
+"tuotantopaneelissa peitetty millään värillä, kun taas harmaalla tai "
+"punaisella peitetty kuvake osoittaa, että toimintoa ei ole avattu tai että "
+"sinulla ei ole riittävästi resursseja kyseisen toiminnon suorittamiseen. "
+"Lisäksi voit viedä kursorin minkä tahansa kuvakkeen päälle, jolloin näkyviin"
+" tulee lisätietoja sisältävä vihje."
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -299,6 +379,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more food and wood resources."
 msgstr ""
+"Ylimmällä painikerivillä on rakennuksessa koulutettavien yksiköiden kuvat, "
+"kun taas alimmalla rivillä tai kahdella rivillä on tutkittavissa olevia "
+"teknologioita. Vie kursori II-kuvakkeen päälle. Työkaluvihje kertoo, että "
+"kauppalavaiheeseen eteneminen vaatii sekä enemmän rakennettuja rakennuksia "
+"että enemmän ruoka- ja puuvaroja."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -310,6 +395,14 @@ msgid ""
 " Soldiers can gather any land resources while Cavalry Citizen Soldiers can "
 "only gather meat from animals.\n"
 msgstr ""
+"Sinulla on kahdenlaisia aloitusyksiköitä: Naiskansalaiset ja "
+"kansalaissotilaat. Naiskansalaiset ovat puhtaasti taloudellisia yksiköitä; "
+"heidän terveytensä on heikko ja hyökkäysvoimansa vähäinen tai olematon. "
+"Kansalaissotilaat ovat oletusarvoisesti työläisiä, mutta tarpeen vaatiessa "
+"he voivat käyttää asetta taisteluun. Kansalaissotilaita on kahta luokkaa: "
+"Jalkaväki ja ratsuväki. Naispuoliset kansalaiset ja jalkaväen "
+"kansalaissotilaat voivat kerätä mitä tahansa maaresursseja, kun taas "
+"ratsuväen kansalaissotilaat voivat kerätä vain lihaa eläimistä."
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -317,6 +410,9 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
+"Yleisenä nyrkkisääntönä voidaan sanoa, että napsautus hiiren vasemmalla "
+"painikkeella edustaa valintaa, kun taas napsautus oikealla, kun yksikkö on "
+"valittuna, edustaa käskyä (kerääminen, rakentaminen, taistelu jne.)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -324,16 +420,21 @@ msgid ""
 " your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"Tässä vaiheessa ruoka ja puu ovat tärkeimmät resurssit talouden "
+"kehittämiseksi, joten aloitetaan ruoan keräämisestä. Naiskansalaiset "
+"keräävät kasviksia nopeammin kuin muut yksiköt. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Yksiköiden valintaan on kolme pääasiallista tapaa:"
 
 #: maps/tutorials/starting_economy_walkthrough.js:42
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Pidä hiiren vasenta painiketta painettuna ja vedä valintaneliö, joka "
+"ympäröi haluamasi yksiköt."
 
 #: maps/tutorials/starting_economy_walkthrough.js:43
 msgid ""
@@ -341,6 +442,9 @@ msgid ""
 "holding Shift and clicking each additional unit (or also via the above "
 "selection rectangle).\n"
 msgstr ""
+"2) Napsauta yhtä niistä ja lisää sitten lisää yksiköitä valintaan pitämällä "
+"Shift-painiketta painettuna ja napsauttamalla jokaista uutta yksikköä (tai "
+"käyttämällä yllä mainittua valinteneliötä)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:44
 msgid ""
@@ -348,6 +452,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Kaksoisnapsauta yksikköä. Tämä valitsee kaikki näkyvässä ikkunassa olevat"
+" yksiköt, jotka ovat samantyyppisiä kuin kyseinen yksikkö. Kolminkertainen "
+"napsautus valitsee kaikki samantyyppiset yksiköt koko kartalta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
@@ -356,6 +463,11 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the Female Citizens selected."
 msgstr ""
+"Voit nollata valinnan napsauttamalla tyhjää kohtaa kartalla. Kokeile kaikkia"
+" näitä menetelmiä ennen kuin annat kaikille naiskansalaisillesi tehtäväksi "
+"kerätä viinirypäleitä kaupunkikeskuksesi kaakkoispuolella. Tämä onnistuu "
+"napsauttamalla viinirypäleitä hiiren oikealla painikkeella, kun kaikki "
+"naiskansalaiset on valittu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -363,17 +475,25 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"Kerätään nyt puuta jalkaväen kansalaissotilaiden avulla. Valitse jalkaväen "
+"kansalaissotilaasi ja käske heitä keräämään puuta napsauttamalla hiiren "
+"oikealla painikkeella lähintä puuta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Ratsuväen kansalaissotilaat ovat hyviä metsästykseen. Valitse "
+"ratsuväkiyksikkösi ja käske sen metsästää kanoja kansalaiskeskuksesi "
+"ympärillä samalla tavalla."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Kaikki yksikkösi keräävät nyt resursseja. Nyt kannattaa kouluttaa lisää "
+"yksiköitä!"
 
 #: maps/tutorials/starting_economy_walkthrough.js:79
 msgid ""
@@ -384,23 +504,35 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Asetetaan ensin kokoontumispaikka. Kun asetat kokoontumispaikan yksikköjä "
+"kouluttavalle rakennukselle, uudelle yksikölle annetaan automaattisesti "
+"tehtävä koulutuksen päätyttyä. Haluamme lähettää vastavalmistuneet yksiköt "
+"keräämään puita kansalaiskeskuksen eteläpuolella olevaan metsikköön. Valitse"
+" tätä varten kansalaiskeskus napsauttamalla sitä ja napsauta sitten hiiren "
+"oikealla painikkeella yhtä puista."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Kokoontumispaikat on merkitty sinisen viivan päässä olevalla pienellä "
+"lipulla."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a wood icon."
 msgstr ""
+"Valitse kansalaiskeskus, vie kursori puun päälle ja napsauta hiiren oikealla"
+" painikkeella, kun kursori muuttuu puun kuvakkeeksi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Nyt kun kokoontumispaikka on asetettu, voimme tuottaa lisää yksiköitä, ja ne"
+" suorittavat niille osoitetun tehtävän automaattisesti."
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -410,19 +542,27 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Kansalaissotilaat keräävät puuta nopeammin kuin naiskansalaiset. Valitse "
+"Kansalaiskeskus ja napsauta toista yksikkökuvaketta, hopliitteja, pitäen "
+"samalla Shift-näppäintä painettuna (Shift-näppäintä painamalla koulutetaan "
+"viiden yksikön erä). Voit kouluttaa yksiköitä myös yksitellen klikkaamalla, "
+"mutta viiden yksikön kouluttaminen yhdessä vie vähemmän aikaa kuin viiden "
+"yksikön kouluttaminen yksitellen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
+"Älä unohda pitää Shift-näppäintä painettuna napsautuksen aikana, jos haluat "
+"kouluttaa useita yksiköitä."
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr ""
+msgstr "Pidä Shift-näppäin pohjassa ja napsauta hopliitti-kuvaketta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Odotetaan, että yksiköiden koulutus saadaan päätökseen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -432,6 +572,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Kun odotat, kiinnitä huomiosi näytön yläreunassa olevaan paneeliin. "
+"Vasemmassa yläkulmassa näet tämänhetkiset resurssivarantosi (ruoka, puu, "
+"kivi ja metalli). Kun työntekijät tuovat resursseja takaisin "
+"kansalaiskeskukseen (tai muuhun pudotuspaikkaan), näet vastaavan resurssin "
+"määrän kasvavan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -440,12 +585,18 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Tämä on erittäin tärkeä käsite pitää mielessä: kerätyt resurssit on tuotava "
+"takaisin pudotuspaikalle, jotta ne lasketaan, ja sinun pitäisi aina yrittää "
+"minimoida resurssin ja lähimmän pudotuspaikan välinen etäisyys, jotta voisit"
+" parantaa keräystehokkuuttasi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "wood.\n"
 msgstr ""
+"Vasta koulutetut yksiköt menevät automaattisesti puiden luo ja alkavat "
+"kerätä puuta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -457,24 +608,38 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Mutta koska he joutuvat tuomaan sen takaisin kansalaiskeskukseen "
+"tallettaakseen sen, heidän keräystehokkuutensa kärsii etäisyydestä. "
+"Korjataksemme tämän voimme rakentaa lähelle puita varastorakennuksen, joka "
+"on puun, kiven ja metallin pudotuspaikka. Tee näin valitsemalla viisi "
+"vastavalmistunutta kansalaissotilasta, etsimällä rakennuspaneeli oikeasta "
+"alareunasta, napsauttamalla varastorakennus-kuvaketta, siirtämällä hiiren "
+"mahdollisimman lähelle puita, joita haluat kerätä, ja napsauttamalla "
+"kelvollista paikkaa, johon voit rakentaa pudotuspaikan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"Virheelliset (esteen tukkimat) sijainnit näkyvät rakennuksen "
+"esikatselukuvassa punaisina."
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Valitut kansalaiset aloittavat rakennuksen rakentamisen automaattisesti, kun"
+" olet asettanut perustuksen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering wood "
 "automatically.\n"
 msgstr ""
+"Kun rakentaminen päättyy, rakentajat siirtyvät automaattisesti keräämään "
+"puuta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -482,14 +647,19 @@ msgid ""
 "Center, hold Shift and click on the Female Citizen icon to train five Female"
 " Citizens."
 msgstr ""
+"Koulutetaan naiskansalaisia keräämään lisää ruokaa. Valitse kansalaiskeskus,"
+" pidä Shift-näppäintä painettuna ja napsauta naiskansalaisen kuvaketta "
+"kouluttaaksesi viisi naiskansalaista."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
+"Älä unohda pitää Shift-näppäintä painettuna napsautuksen aikana, jos haluat "
+"kouluttaa useita yksiköitä."
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr ""
+msgstr "Pidä Shift-näppäin pohjassa ja napsauta naiskansalaisen kuvaketta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -498,10 +668,15 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Sitä odotellessa, puun kerääjiä näyttää olevan tarpeeksi. Olisi syytä "
+"siirtää nykyinen kansalaiskeskuksen kokoontumispaikka pois puun "
+"keräämisestä. Napsauta tätä varten hiiren oikealla painikkeella "
+"kansalaiskeskusta sen ollessa valittuna (ja kokoontumispaikkaa osoittavan "
+"lippukuvakkeen ollessa yliviivattu)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Yksiköiden pitäisi olla pian valmiita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -511,6 +686,10 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Kiinnitä sillä välin huomiosi väestömäärään yläpaneelissa. Se on viides "
+"kohta vasemmalta, resurssien jälkeen. Sitä kannattaa pitää silmällä. Se "
+"osoittaa nykyisen väestömäärän (mukaan lukien koulutettavat) ja nykyisen "
+"väestörajan, joka määräytyy rakennettujen rakennelmien mukaan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -518,12 +697,17 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the House.\n"
 msgstr ""
+"Koska olet melkein saavuttanut väestörajan, sinun on lisättävä sitä "
+"rakentamalla uusia rakennuksia, jos haluat kouluttaa lisää yksiköitä. "
+"Kustannustehokkain rakennelma väestörajan nostamiseksi on talo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several Houses in a "
 "row."
 msgstr ""
+"Nyt kun yksiköt ovat valmiina, katsotaan, miten rakennetaan useita taloja "
+"peräkkäin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -538,12 +722,24 @@ msgid ""
 "Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
+"Valitse kaksi vastavalmistunutta naiskansalaista ja pyydä heitä rakentamaan "
+"taloja kansalaiskeskuksen itäpuolella olevaan tyhjään tilaan. Kun olet "
+"valinnut naispuoliset kansalaiset, napsauta oikeassa alareunassa olevaa "
+"talokuvaketta ja napsauta Shift-painikkeen ollessa alhaalla ensin sitä "
+"kohtaa kartalla, johon haluat rakentaa ensimmäisen talon, ja sitten sitä "
+"kohtaa, johon haluat rakentaa toisen talon (kun annat käskyn pitämällä "
+"Shift-painiketta alhaalla, asetat käskyn jonoon; yksiköt siirtyvät "
+"automaattisesti jonon seuraavaan käskyyn, kun ne saavat nykyisen käskynsä "
+"valmiiksi). Paina Escape-painiketta päästäksesi eroon talokursorista, jotta "
+"et vahingossa roiski taloja ympäri karttaa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Muistutus: Jos haluat valita vain kaksi naiskansalaista, napsauta "
+"ensimmäistä, pidä Shift-painiketta alhaalla ja napsauta toista."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -551,12 +747,17 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Saatat huomata, että marjat ovat rajallinen ruoan lähde. Tarvitsemme "
+"kestävämmän ravinnonlähteen. Pellot tuottavat rajattomasti ruokaa, mutta "
+"sadon korjaaminen niistä on hitaampaa kuin marjojen poimiminen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a Farmstead."
 msgstr ""
+"Jotta etäisyys maatilan ja sitä vastaavan ruoan pudotuspaikan välillä olisi "
+"mahdollisimman pieni, rakennamme ensin maatilan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -564,6 +765,9 @@ msgid ""
 "Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Valitse kolme jäljellä olevaa (joutilasta) naiskansalaista ja käske heitä "
+"rakentamaan maatila keskelle suurta avointa aluetta kansalaiskeskuksen "
+"länsipuolella."
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -571,6 +775,9 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Tarvitsemme kunnon lohkon tilaa maatilan ympärillä peltojen rakentamista "
+"varten. Lisäksi länsipuolella on vuohia, jotka parantavat ruoan keruun "
+"tehokkuutta, mikäli päätämme joskus metsästää niitä."
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -581,18 +788,31 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Jos yrität valita kolme joutilasta naispuolista kansalaista napsauttamalla "
+"ja vetämällä valintaruutua niiden päälle, saatat vahingossa valita "
+"ylimääräisiä yksiköitä. Voit välttää tämän pitämällä I-näppäintä painettuna "
+"valinnan aikana, jolloin vain joutilaat yksiköt valitaan. Jos valitset "
+"vahingossa ratsuväen yksikön, pidä Ctrl-näppäintä painettuna ja napsauta "
+"ruudun alareunassa olevan valintapaneelin ratsuväen yksikön kuvaketta "
+"poistaaksesi ratsuväen yksikön nykyisestä valinnasta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Kun maatilan rakennustyöt on saatu valmiiksi, sen rakentajat etsivät "
+"automaattisesti ruokaa, ja tässä tapauksessa he menevät läheisten vuohien "
+"perään."
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your House builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the Houses."
 msgstr ""
+"Mutta talosi rakentajat etsivät vain jotain muuta rakennettavaa, ja jos "
+"mitään ei löydy, he jäävät joutilaiksi. Odotetaan, että he saavat talot "
+"rakennettua."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -600,12 +820,16 @@ msgid ""
 "to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Kun molemmat talot on rakennettu, valitse kaksi naiskansalaista ja käske "
+"heitä rakentamaan pelto mahdollisimman lähelle maatilaa, joka on "
+"kaikenlaisten elintarvikkeiden pudotuspaikka."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the Field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"Kun pelto on valmis, rakentajat alkavat automaattisesti kerätä siitä ruokaa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -614,6 +838,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Ratsuväkiyksikön olisi viimeistään nyt pitänyt teurastaa kaikki kanat. "
+"Valitse se ja tutki lounaisaluetta: siellä on järvi, jonka ympärillä on "
+"kameleita. Siirrä ratsuväkiyksikköäsi napsauttamalla hiiren oikealla "
+"painikkeella haluamaasi kohtaan, ja kun näet kamelilauman, klikkaa hiiren "
+"oikealla painikkeella yhtä niistä aloittaaksesi ruoan metsästyksen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -622,26 +851,38 @@ msgid ""
 "on it. If the Field is not yet finished, new Workers sent by a rally point "
 "will help building it, and when built, they will gather food."
 msgstr ""
+"Pellolta voi kerätä enintään viisi työntekijää. Voit lisätä lisää "
+"työntekijöitä valitsemalla kansalaiskeskuksen ja asettamalla "
+"kokoontumispisteen pellolle napsauttamalla sitä hiiren oikealla "
+"painikkeella. Jos pelto ei ole vielä valmis, kokoontumispisteen lähettämät "
+"uudet työläiset auttavat sen rakentamisessa, ja kun se on rakennettu, he "
+"alkavat keräävät ruokaa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the Field."
 msgstr ""
+"Valitse kansalaiskeskus ja napsauta hiiren oikealla painikkeella peltoa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Napsauta nyt kolme kertaa oikeassa alareunassa olevaa naiskansalaisen "
+"kuvaketta kouluttaaksesi kolme uutta maanviljelijää."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
 msgstr ""
+"Napsauta pitämättä Shift-näppäintä pohjassa kouluttaaksesi yhden yksikön."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"Voit lisätä työntekijöidesi keräysnopeutta tutkimalla uusia teknologioita, "
+"joita on saatavilla joissakin rakennuksissa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -651,6 +892,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Esimerkiksi maanviljelysnopeutta voidaan parantaa maatilalla tutkittavissa "
+"olevalla teknologialla. Valitse maatila ja katso sen tuotantopaneelia "
+"oikeassa alakulmassa. Näet useita tutkittavia teknologioita. Vie kursori "
+"niiden päälle nähdäksesi niiden kustannukset ja vaikutukset ja napsauta "
+"sitä, jota haluat tutkia."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -658,6 +904,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Meidän pitäisi alkaa valmistautua kauppalavaiheeseen, joka avaa paljon "
+"enemmän yksiköitä ja rakennuksia. Valitse kansalaiskeskus ja vie kursori "
+"kauppalavaiheen kuvakkeen päälle nähdäksesi, mitä vielä tarvitaan. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -665,6 +914,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Meillä on nyt riittävästi resursseja, mutta yksi rakenne puuttuu. Vaikka "
+"tämä on taloudellinen opas, on kuitenkin hyödyllistä varautua puolustamaan "
+"hyökkäyksen varalta, joten rakennetaan kasarmi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -673,6 +925,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Valitse neljä sotilastasi ja pyydä heitä rakentamaan kasarmi: kuten "
+"ennenkin, aloita sotilaiden valitseminen, napsauta tuotantopaneelissa olevaa"
+" kasarmikuvaketta ja aseta sitten perusta lähelle kansalaiskeskusta "
+"paikkaan, johon haluat rakentaa."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -682,18 +938,28 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the Hoplite icon twice."
 msgstr ""
+"Odotetaan, että kasarmin rakennus valmistuu. Koska rakentaminen on "
+"pitkäkestoista, voit lisätä kaksi sotilasta rakentaaksesi sen nopeammin. "
+"Valitse tätä varten kansalaiskeskuksesi ja aseta kokoontumispaikka kasarmin "
+"perustukselle klikkaamalla sitä hiiren oikealla painikkeella (pitäisi näkyä "
+"vasarakuvake). Tuota sitten kaksi rakentajaa klikkaamalla hopliitti-"
+"kuvaketta kahdesti."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
+"Sinun pitäisi nyt pystyä etenemään kauppalavaiheeseen. Valitse "
+"kansalaiskeskus ja napsauta kyseisen teknologian kuvaketta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:395
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Jos sinulta puuttuu vielä resursseja (punaisella peitetty kuvake), odota, "
+"että työntekijäsi keräävät niitä riittävästi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -702,6 +968,11 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
+"Myöhemmissä vaiheissa tarvitset yleensä kiveä ja metallia rakentaaksesi "
+"suurempia rakennelmia ja kouluttaaksesi parempia sotilaita. Siksi voit "
+"tutkimuksen valmistumista odotellessasi lähettää puolet joutilaista "
+"kansalaissotilaistasi (jotka ovat saaneet kasarmirakennuksen valmiiksi) "
+"keräämään kiveä ja toisen puolen keräämään metallia. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -711,6 +982,12 @@ msgid ""
 "soldiers were gathering wood, so they may still carry some wood which would "
 "be lost when starting to gather another resource."
 msgstr ""
+"Tätä varten voimme valita kolme kansalaissotilasta ja napsauttaa hiiren "
+"oikealla painikkeella kansalaiskeskuksen länsipuolella olevaa kivilouhosta "
+"(kursori vaihtuu, kun viet kivilouhoksen leijumaan, kun sotilaat on "
+"valittu). Nämä sotilaat olivat kuitenkin keräämässä puuta, joten heillä "
+"saattaa olla vielä mukanaan jonkin verran puuta, joka menetettäisiin, kun "
+"aletaan kerätä toista resurssia."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -720,18 +997,29 @@ msgid ""
 "their wood and then hold Shift and right-click on the stone quarry to gather"
 " it.\n"
 msgstr ""
+"Näin ollen meidän pitäisi määrätä heidät tallettamaan puutavaransa matkan "
+"varrella sijaitsevaan kansalaiskeskukseen. Tätä varten pidämme Shift-"
+"näppäintä painettuna samalla kun klikkaamme saadaksemme käskyjä jonoon: "
+"valitse sotilaasi, pidä Shift-näppäintä painettuna ja klikkaa hiiren "
+"oikealla painikkeella kansalaiskeskusta tallettaaksesi puutavaran ja sitten "
+"pidä Shift-näppäintä painettuna ja klikkaa hiiren oikealla paikalla "
+"kivilouhosta kerätäksesi kiveä."
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
 msgstr ""
+"Tee samanlainen käskyjono jäljellä oleville sotilaille ja käske heidät "
+"keräämään metallia lännessä olevasta metallikaivoksesta."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
+"Tämä opas päättyy tähän. Näiden tietojen pitäisi antaa hyvä käsitys talouden"
+" perusasioista."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -739,6 +1027,9 @@ msgid ""
 " the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Tästä kartasta saat karkean ohjeen pelin tehokkaaseen aloittamiseen. Pelin "
+"alkuvaiheessa tärkeintä on kerätä resursseja mahdollisimman nopeasti, jotta "
+"pystyt myöhemmin rakentamaan tarpeeksi joukkoja."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

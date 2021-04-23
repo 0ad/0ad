@@ -6,6 +6,7 @@
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
 # Ildradil <piggmatias@gmail.com>, 2013
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
+# Matti Tuhola, 2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-22 14:57+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,7 +178,7 @@ msgstr "Huijauksien käyttö."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr ""
+msgstr "Tutkittu kartta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -198,7 +199,7 @@ msgstr "Voittaako viimeinen jäljellä oleva pelaaja vai viimeiset selvinneet li
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr ""
+msgstr "Lukitut joukkueet"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
@@ -206,13 +207,13 @@ msgstr "Lukitut joukkueet."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
-msgstr ""
+msgstr "Kulkuri"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:28
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "Kulkuritilassa pelaajilla on aluksi vain muutama yksikkö, ja heidän on löydettävä sopiva paikka kaupungin rakentamiselle. Aselepo on suositeltava."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -224,7 +225,7 @@ msgstr "Valitse jos haluat pelin viralliseksi ja vaikuttavan tilastoihin."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Määrää sankari varuskuntaan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
@@ -235,7 +236,7 @@ msgstr ""
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
-msgstr ""
+msgstr "Paljastettu kartta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -391,7 +392,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Per pelaaja"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:61
 #, javascript-format
@@ -416,7 +417,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Per pelaaja"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
@@ -446,7 +447,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr ""
+msgstr "Maailman väestökatto"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
@@ -482,7 +483,7 @@ msgstr[1] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr ""
+msgstr "Muinaisjäännösten määrä"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
