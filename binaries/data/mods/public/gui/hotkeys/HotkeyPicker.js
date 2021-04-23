@@ -104,7 +104,7 @@ class HotkeyPicker
 			if (i == this.enteringInput)
 				input.caption = translate("Enter new Hotkey, hold to register.");
 			else
-				input.caption = formatHotkeyCombination(this.combinations[i]) || "(unused)";
+				input.caption = formatHotkeyCombination(this.combinations[i]) || translateWithContext("Unassigned hotkey", "(unused)");
 			Engine.GetGUIObjectByName("conflicts[" + i + "]").caption = "";
 
 			Engine.GetGUIObjectByName("deleteComb[" + i + "]").hidden = !this.combinations[i].length;

@@ -8,7 +8,9 @@
   <Fogging merge=""/>
   <Footprint merge=""/>
   <!-- Add the Foundation component, to deal with the construction process. -->
-  <Foundation replace=""/>
+  <Foundation replace="">
+    <BuildTimeModifier>0.7</BuildTimeModifier>
+  </Foundation>
   <Health>
     <Initial>1</Initial>
   </Health>

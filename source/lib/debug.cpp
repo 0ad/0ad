@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,27 +20,33 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * platform-independent debug support code.
- */
-
 #include "precompiled.h"
 #include "lib/debug.h"
+
+#include "lib/alignment.h"
+#include "lib/app_hooks.h"
+#include "lib/fnv_hash.h"
+#include "lib/sysdep/cpu.h"	// cpu_CAS
+#include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/vm.h"
+
+#if OS_WIN
+# include "lib/sysdep/os/win/wdbg_heap.h"
+#endif
 
 #include <cstdarg>
 #include <cstring>
 #include <cstdio>
 
-#include "lib/alignment.h"
-#include "lib/app_hooks.h"
-#include "lib/fnv_hash.h"
-#include "lib/sysdep/vm.h"
-#include "lib/sysdep/cpu.h"	// cpu_CAS
-#include "lib/sysdep/sysdep.h"
+namespace
+{
 
-#if OS_WIN
-# include "lib/sysdep/os/win/wdbg_heap.h"
-#endif
+// (NB: this may appear obscene, but deep stack traces have been
+// observed to take up > 256 KiB)
+constexpr std::size_t MESSAGE_SIZE = 512 * KiB / sizeof(wchar_t);
+wchar_t g_MessageBuffer[MESSAGE_SIZE];
+
+} // anonymous namespace
 
 static const StatusDefinition debugStatusDefinitions[] = {
 	{ ERR::SYM_NO_STACK_FRAMES_FOUND, L"No stack frames found" },
@@ -207,15 +213,6 @@ Status debug_WriteCrashlog(const wchar_t* text)
 // error message
 //-----------------------------------------------------------------------------
 
-// (NB: this may appear obscene, but deep stack traces have been
-// observed to take up > 256 KiB)
-static const size_t messageSize = 512*KiB;
-
-void debug_FreeErrorMessage(ErrorMessageMem* emm)
-{
-	vm::Free(emm->pa_mem, messageSize);
-}
-
 
 // a stream with printf-style varargs and the possibility of
 // writing directly to the output buffer.
@@ -267,8 +264,7 @@ private:
 const wchar_t* debug_BuildErrorMessage(
 	const wchar_t* description,
 	const wchar_t* filename, int line, const char* func,
-	void* context, const wchar_t* lastFuncToSkip,
-	ErrorMessageMem* emm)
+	void* context, const wchar_t* lastFuncToSkip)
 {
 	// retrieve errno (might be relevant) before doing anything else
 	// that might overwrite it.
@@ -279,12 +275,7 @@ const wchar_t* debug_BuildErrorMessage(
 		StatusDescription(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
 	sys_StatusDescription(0, os_error, ARRAY_SIZE(os_error));
 
-	// rationale: see ErrorMessageMem
-	emm->pa_mem = vm::Allocate(messageSize);
-	wchar_t* const buf = (wchar_t*)emm->pa_mem;
-	if(!buf)
-		return L"(insufficient memory to generate error message)";
-	PrintfWriter writer(buf, messageSize / sizeof(wchar_t));
+	PrintfWriter writer(g_MessageBuffer, MESSAGE_SIZE);
 
 	// header
 	if(!writer(
@@ -334,7 +325,7 @@ fail:
 	))
 		goto fail;
 
-	return buf;
+	return g_MessageBuffer;
 }
 
 
@@ -465,20 +456,17 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	const wchar_t* filename = path_name_only(pathname);
 
 	// display in output window; double-click will navigate to error location.
-	debug_printf("%s(%d): %s\n", utf8_from_wstring(filename).c_str(), line, utf8_from_wstring(description).c_str());
-
-	ErrorMessageMem emm;
-	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip, &emm);
+	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip);
 
 	(void)debug_WriteCrashlog(text);
 	ErrorReactionInternal er = CallDisplayError(text, flags);
 
+	// TODO: use utf8 conversion without internal allocations.
+	debug_printf("%s(%d): %s\n", utf8_from_wstring(filename).c_str(), line, utf8_from_wstring(description).c_str());
+
 	// note: debug_break-ing here to make sure the app doesn't continue
 	// running is no longer necessary. debug_DisplayError now determines our
 	// window handle and is modal.
-
-	// must happen before PerformErrorReaction because that may exit.
-	debug_FreeErrorMessage(&emm);
 
 	return PerformErrorReaction(er, flags, suppress);
 }
@@ -535,7 +523,6 @@ static bool ShouldSkipError(Status err)
 	return false;
 }
 
-
 ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
 	CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];
@@ -551,14 +538,13 @@ ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* fi
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
 
-
 ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
 	CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];
 	(void)debug_CaptureContext(context);
 
-	const std::wstring lastFuncToSkip = L"debug_OnAssertionFailure";
+	const wchar_t* lastFuncToSkip = L"debug_OnAssertionFailure";
 	wchar_t buf[400];
 	swprintf_s(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%ls\"", expr);
-	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip.c_str(), file,line,func, suppress);
+	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }

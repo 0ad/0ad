@@ -1,7 +1,9 @@
 function Foundation() {}
 
 Foundation.prototype.Schema =
-	"<empty/>";
+	"<element name='BuildTimeModifier' a:help='Effect for having multiple builders.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>";
 
 Foundation.prototype.Init = function()
 {
@@ -15,7 +17,8 @@ Foundation.prototype.Init = function()
 	this.builders = new Map(); // Map of builder entities to their work per second
 	this.totalBuilderRate = 0; // Total amount of work the builders do each second
 	this.buildMultiplier = 1; // Multiplier for the amount of work builders do
-	this.buildTimePenalty = 0.7; // Penalty for having multiple builders
+
+	this.buildTimeModifier = +this.template.BuildTimeModifier;
 
 	this.previewEntity = INVALID_ENTITY;
 };
@@ -220,7 +223,7 @@ Foundation.prototype.HandleBuildersChanged = function()
 Foundation.prototype.CalculateBuildMultiplier = function(num)
 {
 	// Avoid division by zero, in particular 0/0 = NaN which isn't reliably serialized
-	return num < 2 ? 1 : Math.pow(num, this.buildTimePenalty) / num;
+	return num < 2 ? 1 : Math.pow(num, this.buildTimeModifier) / num;
 };
 
 Foundation.prototype.SetBuildMultiplier = function()

@@ -727,7 +727,7 @@ g_SelectionPanels.Research = {
 
 						entityCounts.push(sprintf(translatePlural("%(number)s entity of class %(class)s", "%(number)s entities of class %(class)s", remaining), {
 							"number": remaining,
-							"class": entity.class
+							"class": translate(entity.class)
 						}));
 					}
 

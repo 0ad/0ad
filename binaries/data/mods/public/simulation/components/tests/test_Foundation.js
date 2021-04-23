@@ -139,7 +139,9 @@ function testFoundation(...mocks)
 		TS_ASSERT_EQUALS(template, "construction|" + finalTemplate);
 		return previewEnt;
 	};
-	cmpFoundation = ConstructComponent(foundationEnt, "Foundation", {});
+	cmpFoundation = ConstructComponent(foundationEnt, "Foundation", {
+		"BuildTimeModifier": "0.7"
+	});
 	cmpFoundation.InitialiseConstruction(finalTemplate);
 
 	TS_ASSERT_EQUALS(cmpFoundation.finalTemplateName, finalTemplate);
@@ -149,8 +151,8 @@ function testFoundation(...mocks)
 	// BUILDER COUNT, BUILD RATE, TIME REMAINING
 	AddMock(10, IID_Builder, { "GetRate": () => 1.0 });
 	AddMock(11, IID_Builder, { "GetRate": () => 1.0 });
-	let twoBuilderMultiplier = Math.pow(2, cmpFoundation.buildTimePenalty) / 2;
-	let threeBuilderMultiplier = Math.pow(3, cmpFoundation.buildTimePenalty) / 3;
+	let twoBuilderMultiplier = Math.pow(2, cmpFoundation.buildTimeModifier) / 2;
+	let threeBuilderMultiplier = Math.pow(3, cmpFoundation.buildTimeModifier) / 3;
 
 	TS_ASSERT_EQUALS(cmpFoundation.CalculateBuildMultiplier(1), 1);
 	TS_ASSERT_EQUALS(cmpFoundation.CalculateBuildMultiplier(2), twoBuilderMultiplier);

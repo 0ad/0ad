@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -36,12 +36,12 @@
 // - the output routines make for platform-independent logging and
 //   crashlogs with "last-known activity" reporting.
 
-#include "lib/lib_api.h"
-#include "lib/types.h"	// intptr_t
-#include "lib/status.h"
 #include "lib/alignment.h"
 #include "lib/code_annotation.h"
 #include "lib/code_generation.h"
+#include "lib/lib_api.h"
+#include "lib/status.h"
+#include "lib/types.h"
 
 /**
  * trigger a breakpoint when reached/"called".
@@ -537,31 +537,6 @@ LIB_API bool debug_IsStackPointer(void* p);
  **/
 LIB_API void debug_SetThreadName(const char* name);
 
-
-/**
- * holds memory for an error message.
- **/
-struct ErrorMessageMem
-{
-	// rationale:
-	// - error messages with stack traces require a good deal of memory
-	//   (hundreds of KB). static buffers of that size are undesirable.
- 	// - the heap may be corrupted, so don't use malloc.
-	//   instead, "lib/sysdep/vm.h" functions should be safe.
-	// - alloca is a bit iffy (the stack may be maxed out), non-portable and
-	//   complicates the code because it can't be allocated by a subroutine.
-	// - this method is probably slow, but error messages aren't built often.
-	//   if necessary, first try malloc and use mmap if that fails.
-	void* pa_mem;
-};
-
-/**
- * free memory from the error message.
- *
- * @param emm ErrorMessageMem*
- **/
-LIB_API void debug_FreeErrorMessage(ErrorMessageMem* emm);
-
 /**
  * build a string describing the given error.
  *
@@ -572,11 +547,7 @@ LIB_API void debug_FreeErrorMessage(ErrorMessageMem* emm);
  * @param fn_only filename (no path) of source file that triggered the error.
  * @param line, func: exact position of the error.
  * @param context, lastFuncToSkip: see debug_DumpStack.
- * @param emm memory for the error message. caller should allocate
- * stack memory and set alloc_buf*; if not, there will be no
- * fallback in case heap alloc fails. should be freed via
- * debug_FreeErrorMessage when no longer needed.
  **/
-LIB_API const wchar_t* debug_BuildErrorMessage(const wchar_t* description, const wchar_t* fn_only, int line, const char* func, void* context, const wchar_t* lastFuncToSkip, ErrorMessageMem* emm);
+LIB_API const wchar_t* debug_BuildErrorMessage(const wchar_t* description, const wchar_t* fn_only, int line, const char* func, void* context, const wchar_t* lastFuncToSkip);
 
 #endif	// #ifndef INCLUDED_DEBUG

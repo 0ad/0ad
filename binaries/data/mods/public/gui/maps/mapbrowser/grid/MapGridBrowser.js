@@ -75,8 +75,8 @@ class MapGridBrowser extends GridBrowser
 		{
 			mapList = [{
 				"file": "random",
-				"name": "Random",
-				"description": "Pick a map at random.",
+				"name": translateWithContext("random map pick", "Random"),
+				"description": translate("Pick a map at random."),
 			}, ...mapList];
 		}
 		this.mapList = mapList;

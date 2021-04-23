@@ -361,22 +361,28 @@ Status sys_StatusDescription(int user_err, wchar_t* buf, size_t max_chars)
 	if(user_err < 0)
 		return ERR::FAIL;	// NOWARN
 
-	const DWORD err = user_err? (DWORD)user_err : GetLastError();
+	const DWORD errorCode = user_err? (DWORD)user_err : GetLastError();
 
 	// no one likes to see "The operation completed successfully" in
 	// error messages, so return more descriptive text instead.
-	if(err == 0)
+	if(errorCode == 0)
 	{
 		wcscpy_s(buf, max_chars, L"0 (no error code was set)");
 		return INFO::OK;
 	}
 
 	wchar_t message[400];
+	if(errorCode == ERROR_NOT_ENOUGH_MEMORY)
+	{
+		// We handle out of memory separately to prevent possible subsequent/nested allocations.
+		swprintf_s(message, ARRAY_SIZE(message), L"Not enough memory resources are available to process this command.");
+	}
+	else
 	{
 		const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 		const DWORD lang_id = 0;	// look for neutral, then current locale
 		va_list* args = 0;			// we don't care about "inserts"
-		const DWORD charsWritten = FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, message, (DWORD)ARRAY_SIZE(message), args);
+		const DWORD charsWritten = FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, source, errorCode, lang_id, message, (DWORD)ARRAY_SIZE(message), args);
 		if(!charsWritten)
 			WARN_RETURN(ERR::FAIL);
 		ENSURE(charsWritten < max_chars);
@@ -386,7 +392,7 @@ Status sys_StatusDescription(int user_err, wchar_t* buf, size_t max_chars)
 			message[charsWritten-2] = '\0';
 	}
 
-	const int charsWritten = swprintf_s(buf, max_chars, L"%d (%ls)", err, message);
+	const int charsWritten = swprintf_s(buf, max_chars, L"%d (%ls)", errorCode, message);
 	ENSURE(charsWritten != -1);
 	return INFO::OK;
 }
