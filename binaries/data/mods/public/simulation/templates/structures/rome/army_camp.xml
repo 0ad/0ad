@@ -4,7 +4,7 @@
     <Ranged>
       <AttackName>Bow</AttackName>
       <Damage>
-        <Pierce>25</Pierce>
+        <Pierce>10</Pierce>
       </Damage>
       <MaxRange>60</MaxRange>
       <PrepareTime>1200</PrepareTime>
@@ -16,6 +16,7 @@
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="3"/>
       </Projectile>
+      <PreferredClasses datatype="tokens">Human</PreferredClasses>
       <RangeOverlay>
         <LineTexture>outline_border.png</LineTexture>
         <LineTextureMask>outline_border_mask.png</LineTextureMask>
@@ -24,7 +25,7 @@
     </Ranged>
   </Attack>
   <BuildingAI>
-    <DefaultArrowCount>1</DefaultArrowCount>
+    <DefaultArrowCount>3</DefaultArrowCount>
     <MaxArrowCount>15</MaxArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
     <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
