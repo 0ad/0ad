@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:42+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-23 07:06+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1052,7 +1052,7 @@ msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "Położenia wieży"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1540,7 +1540,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Chociaż jest to dość łatwe dla doświadczonego gracza, domyślny poziom AI jest dość trudnym zadaniem dla nowych graczy, aby opanować podstawowe mechanizmy gry. Początkujący powinni zacząć od gry z AI na niższym poziomie (Piaskownica lub Bardzo Łatwy). Zmień poziom AI, klikając ikonę koła zębatego obok gracza, który chcesz zmodyfikować na powyższym panelu wyboru."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "Inne skróty klawiszowe"
 
@@ -1579,6 +1579,10 @@ msgstr "Zresetować wszystkie skróty klawiszowe do domyślnych wartości?\nUWAG
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Potwierdzenie"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr "Brak dymków informacji."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1689,82 +1693,82 @@ msgstr "Śledź jednostkę"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "Przejdź do pozycji kamery 1 (patrz \"Ustawianie skoku kamery 1\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "Przejdź do kamery 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr ""
+msgstr "Przejdź do pozycji kamery 2 (patrz \"Ustawianie skoku kamery 2\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr ""
+msgstr "Przejdź do kamery 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr ""
+msgstr "Przejdź do pozycji kamery 3 (patrz \"Ustawianie skoku kamery 3\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "Przejdź do kamery 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr ""
+msgstr "Przejdź do pozycji kamery 4 (patrz \"Ustawianie skoku kamery 4\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "Przejdź do kamery 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Ustawienie pozycji skoku kamery 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "Ustawianie skoku kamery 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Ustawienie pozycji skoku kamery 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "Ustawianie skoku kamery 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Ustawienie pozycji skoku kamery 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "Ustawianie skoku kamery 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Ustawienie pozycji skoku kamery 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "Ustawianie skoku kamery 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
@@ -1819,24 +1823,24 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Obróć kamerę przeciwnie do ruchu wskazówek zegara wokół terenu."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Obróć przeciwnie do wskazówkek zegara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Obróć kamerę zgodnie ze wskazówkami zegara wokół terenu."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Obróć zgodnie ze wskazówkami zegara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
@@ -1851,22 +1855,22 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Zmniejsz prędkość obrotu kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Zmniejsz prędkość obrotu"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Zwiększ prędkość obrotu kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Zwiększ prędkość obrotu"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
@@ -2027,7 +2031,7 @@ msgstr "Otwórz/zamknij konsolę."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Przełącz konsolę"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -2282,7 +2286,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "Jednostka wróci do pracy."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2393,12 +2397,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Nie pytaj o potwierdzenie, gdy usuwasz budynek/jednostkę."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Zniszcz bez potwierdzenia"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
@@ -2448,12 +2452,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Kolejność w kolejce"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr ""
+msgstr "Dodaj pierwszy typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
@@ -2463,7 +2467,7 @@ msgstr "Zakolejkuj pierwszą jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr ""
+msgstr "Dodaj drugi typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
@@ -2473,7 +2477,7 @@ msgstr "Zakolejkuj drugą jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr ""
+msgstr "Dodaj trzeci typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
@@ -2483,7 +2487,7 @@ msgstr "Zakolejkuj trzecią jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr ""
+msgstr "Dodaj czwarty typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
@@ -2493,7 +2497,7 @@ msgstr "Zakolejkuj czwartą jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr ""
+msgstr "Dodaj piąty typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
@@ -2503,7 +2507,7 @@ msgstr "Zakolejkuj piątą jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr ""
+msgstr "Dodaj szósty typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
@@ -2513,7 +2517,7 @@ msgstr "Zakolejkuj szóstą jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr ""
+msgstr "Dodaj siódmy typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
@@ -2523,7 +2527,7 @@ msgstr "Zakolejkuj siódmą jednostkę"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr ""
+msgstr "Dodaj ósmy typ jednostek do kolejki."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
@@ -2573,7 +2577,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Przerwij aktualną akcję."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
@@ -2650,7 +2654,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Przełącz czat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
@@ -2984,307 +2988,317 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Anuluj zaznaczenie"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 0 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 1 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 2 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 3 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 4 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 5 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 6 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 7 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 8 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr ""
+msgstr "Dodaj grupę kontrolną 9 do tego zaznaczenia."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr ""
+msgstr "Dodaj grupę kontrolną 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 0."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 0"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr ""
+msgstr "Zapisz obecne zaznaczenie jako grupa kontrolna 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr ""
+msgstr "Ustaw grupę kontrolną 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 0."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 0"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 1."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 2."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 3."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 4."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 5."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 6."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 7."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 8."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 9."
-msgstr ""
+msgstr "Zmień obecne zaznaczenie na grupę kontrolną 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr ""
+msgstr "Zaznacz grupę kontrolną 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr "Zaznacz kolejnego niepracującego robotnika."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr "Zaznacz kolejnego niepracującego robotnika"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
@@ -3364,17 +3378,17 @@ msgstr "Usuń jednostki z zaznaczenia."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Usuń jednostki z zaznaczenia"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Zaznacz tylko ranne jednostki."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Zaznacz tylko ranne jednostki"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -3797,7 +3811,7 @@ msgstr "Pokazuj czas, w którym opublikowano wiadomość na czacie."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Nazewnictwo podmiotów."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
@@ -3825,15 +3839,15 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Tylko ogólne."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr "Pokaż tylko nazwy ogólne jednostek."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Jak wyświetlać nazwy podmiotów."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"

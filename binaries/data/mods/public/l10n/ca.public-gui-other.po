@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:29+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-19 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -1488,7 +1488,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Tot i que és prou fàcil per a jugadors experimentats, el nivell per defecte de la IA suposa un repte per als jugadors nous que encara no dominen els mecanismes bàsics del joc. Els principiants haurien de començar pels nivells baixos (Proves o Molt fàcil). Es pot canviar el nivell de dificultat de la IA fent clic a l'engranatge al costat del jugador que voleu modificar al panell de selecció de la part superior."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr ""
 
@@ -1527,6 +1527,10 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Confirmació"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3232,6 +3236,16 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
 msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc

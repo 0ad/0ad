@@ -31,6 +31,37 @@
 # include <xmmintrin.h>
 #endif
 
+void CModelDef::GetMaxBounds(CSkeletonAnimDef* anim, bool loop, CBoundingBoxAligned& result)
+{
+	std::unordered_map<u32, CBoundingBoxAligned>::const_iterator it = m_MaxBoundsPerAnimDef.find(anim ? anim->m_UID : 0);
+	if (it != m_MaxBoundsPerAnimDef.end())
+	{
+		result = it->second;
+		return;
+	}
+
+	size_t numverts = GetNumVertices();
+	SModelVertex* verts = GetVertices();
+
+	if (!anim)
+	{
+		for (size_t i = 0; i < numverts; ++i)
+			result += verts[i].m_Coords;
+		m_MaxBoundsPerAnimDef[0] = result;
+		return;
+	}
+	ENSURE(anim->m_UID != 0);
+	std::vector<CMatrix3D> boneMatrix(anim->GetNumKeys());
+	// NB: by using frames, the bounds are technically pessimistic (since interpolation could end up outside of them).
+	for (size_t j = 0; j < anim->GetNumFrames(); ++j)
+	{
+		anim->BuildBoneMatrices(j*anim->GetFrameTime(), boneMatrix.data(), loop);
+		for (size_t i = 0; i < numverts; ++i)
+			result += SkinPoint(verts[i], boneMatrix.data());
+	}
+	m_MaxBoundsPerAnimDef[anim->m_UID] = result;
+}
+
 CVector3D CModelDef::SkinPoint(const SModelVertex& vtx,
 							   const CMatrix3D newPoseMatrices[])
 {

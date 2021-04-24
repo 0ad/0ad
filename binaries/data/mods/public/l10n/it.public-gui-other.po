@@ -41,8 +41,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:29+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-19 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1507,7 +1507,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Anche se ragionevolmente facile per un giocatore esperto, il livello di AI predefinito è abbastanza impegnativo per i nuovi giocatori che non ancora dominano i meccanismi di base del gioco. I principianti sono consigliati di iniziare giocando contro un livello inferiore di AI (Sandbox o Molto Facile). Cambiate il livello di AI facendo clic sull'icona a forma di ingranaggio accanto al giocatore che si desidera modificare nel pannello di selezione sovrastante."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "Altri tasti di scelta rapida"
 
@@ -1546,6 +1546,10 @@ msgstr "Reimposta tutti i tasti di scelta rapida ai valori predefiniti?\nATTENZI
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Conferma"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -3252,6 +3256,16 @@ msgstr "Change the current selection to control group 9."
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
 msgstr "Select Control Group 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"

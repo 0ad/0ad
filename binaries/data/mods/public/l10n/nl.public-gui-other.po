@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-18 18:44+0000\n"
+"POT-Creation-Date: 2021-04-19 07:15+0000\n"
+"PO-Revision-Date: 2021-04-22 13:16+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1506,7 +1506,7 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Alhoewel redelijk gemakkelijk voor een ervaren speler, is het niveau van standaard AI nogal uitdagend voor nieuwe spelers welke de basismechanismen van het spel nog moeten beheersen. Beginnelingen worden geadviseerd om te starten met spelen tegen een lager niveau AI (Zandbak of Heel makkelijk). Verander het niveau van de AI door op het tandwiel icoon te klikken nabij de speler welke u aan wilt passen, in het selectiepaneel hierboven."
 
-#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+#: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
 msgstr "Overige sneltoetsen"
 
@@ -1545,6 +1545,10 @@ msgstr "Herstel alle sneltoetsen naar standaard waarden?\nLET OP: dit kan niet o
 #: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Bevestiging"
+
+#: gui/hotkeys/HotkeysPage.js:198
+msgid "No tooltip available."
+msgstr "Geen tooltip beschikbaar."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -2058,22 +2062,22 @@ msgstr "Bewaar profiel"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable real-time profiler."
-msgstr ""
+msgstr "Schakel de real-time profiler aan/uit."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "Profiler aan/uit"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Schakel de HTTP/GPU modes voor de nieuwe profiler aan/uit."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "Profiler2 aan/uit"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2198,57 +2202,57 @@ msgstr "Open kaartenoverzicht"
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Sneltoetsen voor tijdens het spel."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "Tijdens spel"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr ""
+msgstr "Speciale toets om aan te vallen in plaats van een andere actie (bijvoorbeeld veroveren)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "Forceer aanval"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Speciale toets om een aanvalsbeweging uit te voeren bij het klikken op een plek. Dit betekent dat de geselecteerde eenheden vijandelijke eenheden en gebouwen aanvallen wanneer ze die onderweg tegenkomen. "
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Aanvalsbeweging"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Speciale toets om een aanvalsbeweging alleen gericht op eenheden uit te voeren bij het klikken op een plek. Dit betekent dat de geselecteerde eenheden enkel vijandelijke eenheden aanvallen wanneer ze die onderweg tegenkomen. "
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "Aanvalsbeweging (alleen eenheden)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr ""
+msgstr "Speciale toets om het verzamelpunt op het gebouw zelf te plaatsen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "Auto-verzamelpunt"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "De eenheid gaat verder met werken."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2258,38 +2262,38 @@ msgstr "Terug aan het werk"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "Speciale toets om eenheden in groepen te rekruteren."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "Groepsrekrutering"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
+msgstr "Speciale toets om eenheden te deselecteren in plaats van te selecteren wanneer u op het icoon van de groep klikt."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "Deselecteer type eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr ""
+msgstr "Speciale toets om de handel in de gewenste grondstof naar 100% te brengen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "Handel naar 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Speciale toets om te bemannen bij klikken op een gebouw."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2299,7 +2303,7 @@ msgstr "Beman"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Speciale toets om te begeleiden/bewaken bij klikken op een eenheid of gebouw."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2309,87 +2313,87 @@ msgstr "Bewaak"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr ""
+msgstr "Vernietig de geselecteerde eenheden."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Vernietig eenheden"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Laat de entiteit een toren verlaten."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Verlaat toren"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Speciale toets om een grote hoeveelheid grondstoffen te ruilen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Groothandel"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr ""
+msgstr "Speciale toets om een grote hoeveelheid grondstoffen te doneren."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Massaal doneren"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
+msgstr "Speciale toets om naar een plek te gaan in plaats van een andere actie (bijvoorbeeld verzamelen)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr ""
+msgstr "Geforceerde mars"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Vraag niet om bevestiging bij het vernietigen van een gebouw/eenheid."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Direct vernietigen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr ""
+msgstr "Speciale toets om een toren te bezetten bij het klikken op een torenplaats."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "Bezet torenplaats"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr ""
+msgstr "Speciale toets om slechts één eenheid in de selectie een bevel te geven."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Beveel één eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Speciale toets om een eenheid te laten patrouilleren."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2399,107 +2403,107 @@ msgstr "Patrouilleer"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr ""
+msgstr "Speciale toets om dit bevel uit te voeren en daarna terug te gaan naar de oorspronkelijke opdracht."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Eerst doen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr ""
+msgstr "Speciale toets om bevelen opeenvolgend uit te voeren in plaats van het bevel te vervangen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Achtereenvolgens uitvoeren"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr ""
+msgstr "Voeg het eerste type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
 msgid "Queue 1st unit"
-msgstr ""
+msgstr "Eerst wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr ""
+msgstr "Voeg het tweede type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
 msgid "Queue 2nd unit"
-msgstr ""
+msgstr "Tweede wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr ""
+msgstr "Voeg het derde type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
 msgid "Queue 3rd unit"
-msgstr ""
+msgstr "Derde wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr ""
+msgstr "Voeg het vierde type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
 msgid "Queue 4th unit"
-msgstr ""
+msgstr "Vierde wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr ""
+msgstr "Voeg het vijfde type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
 msgid "Queue 5th unit"
-msgstr ""
+msgstr "Vijfde wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr ""
+msgstr "Voeg het zesde type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
 msgid "Queue 6th unit"
-msgstr ""
+msgstr "Zesde wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr ""
+msgstr "Voeg het zevende type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
 msgid "Queue 7th unit"
-msgstr ""
+msgstr "Zevende wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr ""
+msgstr "Voeg het achtste type eenheid toe aan de rij."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
-msgstr ""
+msgstr "Achtste wachtende eenheid"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
+msgstr "Speciale toets om te laten repareren bij klikken op een gebouw/mechanische eenheid."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2509,59 +2513,59 @@ msgstr "Herstel"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview anticlockwise."
-msgstr ""
+msgstr "Roteer gebouw in aanbouw tegen de klok in."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Roteer gebouw tegen de klok in"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr ""
+msgstr "Roteer gebouw in aanbouw met de klok mee."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Roteer gebouw met de klok mee"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr ""
+msgstr "Speciale toets om nieuwe gebouwen uit te lijnen met naastgelegen gebouwen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Uitlijnen aan/uit"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Stop met de huidige actie."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr ""
+msgstr "Stop activiteit"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "Wissel tussen geen standaard formatie en de laatst gekozen standaard formatie (automatische keuze is \"vierkant\")."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr ""
+msgstr "Wissel standaard formatie"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Stuur de bemanning naar buiten wanneer een gebouw/mechanische eenheid wordt geselecteerd."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2571,72 +2575,72 @@ msgstr "Uitlaten"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Stuur de bemanning van de toren naar buiten."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Maak toren leeg"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Speciale toets om alle eenheden van een bepaald type naar buiten te sturen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Type eenheid naar buiten"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Sneltoetsen voor de user interface in het spel"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "Spel GUI"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Toon/verberg teller wapenstilstand."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Aantal wapenstilstand"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Toon/verberg het chat venster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Chat venster"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Toon informatie over de beschaving."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "Beschavingsinformatie"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr ""
+msgstr "Toon/verberg de frames per seconde teller."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr ""
+msgstr "FPS"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2646,199 +2650,199 @@ msgstr "Toon de multiplayer lobby in een dialoogvenster."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr ""
+msgstr "Toon/verberg de spelerslobby"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Toon/verberg het chat venster en selecteer de laatste privechat partner."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Privechat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr ""
+msgstr "Laad het laatste snel opgeslagen spel. Er gebeurt niets wanneer de snelle opslag leeg is."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "Snel spel laden"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr ""
+msgstr "Sla het spel snel op om het later snel te kunnen laden. Snel opslaan overschrijft altijd het vorige snel opgeslagen spel."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
 msgid "Quicksave"
-msgstr ""
+msgstr "Snel spel opslaan"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr ""
+msgstr "Toon/verberg de tijd van de computer."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Tijd tonen"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle developer commands panel."
-msgstr ""
+msgstr "Toon/verberg het paneel met ontwikkelaars commando's."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr ""
+msgstr "Ontwikkelaars paneel"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr ""
+msgstr "Toon/verberg de diplomatiekleuren."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Diplomatiekleuren"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Toon/verberg het ruil- en handelspaneel."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Ruilen en handelen"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr ""
+msgstr "Toon/verberg het diplomatie paneel."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr ""
+msgstr "Diplomatiepaneel"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Toon/verberg het spelmenu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr ""
+msgstr "Spelmenu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Toon/verberg de pagina met de speldoelen."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr ""
+msgstr "Speldoelen"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr ""
+msgstr "Toon/verberg de gebruikersinterface."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Gebruikersinterface"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Toon/verberg het paneel met de speloefening."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Speloefening"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Toon/verberg de markering van bewaakte eenheden."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Markeer bewaakt"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Toon/verberg de markering van eenheden die bewaken."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Markeer bewakers"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr ""
+msgstr "Verwijder het opgeslagen spel (in vensters voor het opslaan/laden)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Verwijder opgeslagen spel"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Vraag niet om bevestiging bij het verwijderen van een opgeslagen spel."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Direct verwijderen"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of status bars."
-msgstr ""
+msgstr "Toon/verberg de statusbalken."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr ""
+msgstr "Statusbalken"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
+msgstr "Activeer vooruit spoelen modus. Timewarp moet geactiveerd zijn."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Vooruit spoelen (timewarp)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Activeer achteruit spoelen. Timewarp moet geactiveerd zijn."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewing (timewarp)"
-msgstr ""
+msgstr "Achteruit spoelen (timewarp)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
@@ -3251,6 +3255,16 @@ msgstr "Maak controlgroep 9 de huidige selectie."
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
 msgstr "Selecteer controlgroep 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr "Selecteer de volgende inactieve bouwer."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr "Selecteer volgende inactieve bouwer"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"

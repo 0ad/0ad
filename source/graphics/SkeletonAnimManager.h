@@ -24,6 +24,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
+#include <memory>
 #include <unordered_map>
 
 class CColladaManager;
@@ -47,7 +48,7 @@ public:
 
 private:
 	// map of all known animations. Value is NULL if it failed to load.
-	std::unordered_map<VfsPath, CSkeletonAnimDef*> m_Animations;
+	std::unordered_map<VfsPath, std::unique_ptr<CSkeletonAnimDef>> m_Animations;
 
 	CColladaManager& m_ColladaManager;
 };

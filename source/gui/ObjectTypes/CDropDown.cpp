@@ -476,11 +476,11 @@ void CDropDown::Draw()
 		DrawText(m_Selected, m_Enabled ? m_TextColorSelected : m_TextColorDisabled, pos, bz + 0.1f, cliparea);
 	}
 
-	// Disable scrollbar during drawing without sending a setting-changed message
-	bool old = m_ScrollBar;
-
 	if (m_Open)
 	{
+		// Disable scrollbar during drawing without sending a setting-changed message
+		const bool old = m_ScrollBar;
+
 		// TODO: drawScrollbar as an argument of DrawList?
 		if (m_HideScrollBar)
 			m_ScrollBar = false;

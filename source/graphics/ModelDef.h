@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,16 +23,20 @@
 #define INCLUDED_MODELDEF
 
 #include "ps/CStr.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "renderer/VertexArray.h"
-#include <map>
+
 #include <cstring>
+#include <map>
+#include <unordered_map>
 
 class CBoneState;
+class CSkeletonAnimDef;
 
 /**
  * Describes the position of a prop point within its parent model. A prop point is the location within a parent model
@@ -189,6 +193,11 @@ public:
 	const SPropPoint* FindPropPoint(const char* name) const;
 
 	/**
+	 * @param anim may be null
+	 */
+	void GetMaxBounds(CSkeletonAnimDef* anim, bool loop, CBoundingBoxAligned& result);
+
+	/**
 	 * Transform the given vertex's position from the bind pose into the new pose.
 	 *
 	 * @return new world-space vertex coordinates
@@ -265,6 +274,9 @@ public:
 
 private:
 	VfsPath m_Name;	// filename
+
+	// Maximal bounding box of this mesh for a given animation.
+	std::unordered_map<u32, CBoundingBoxAligned> m_MaxBoundsPerAnimDef;
 
 	// renderdata shared by models of the same modeldef,
 	// by render path

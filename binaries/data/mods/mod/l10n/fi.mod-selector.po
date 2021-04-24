@@ -5,6 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
+# Matti Tuhola, 2021
 # mrJalostaja <pauli.nykanen@yahoo.com>, 2015
 # Petri, 2014
 # Some Dude <jonpajanen2@gmail.com>, 2018
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-03-22 10:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-20 22:20+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,11 +99,11 @@ msgstr "Päällä: %(mods)s"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io vastuuvapauslauseke"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Asiakirjan päivämäärä: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
@@ -113,7 +114,7 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Tämä palvelu tarjoaa helpon tavan ladata ja asentaa yhteisön tekemiä modeja, ja sen tarjoaa DBolical Pty Ltd, IndieDB:n ja ModDB:n takana oleva yritys."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -124,14 +125,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games on pitänyt huolen siitä, että tämä yhteys on turvallinen, ja tarkistanut modit tietoturva-aukkojen varalta, mutta ei voi taata, että tämä ei aiheuta riskejä."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Käyttämällä palvelua ymmärrät, että mod.io:n käyttöehdot ja tietosuojakäytäntö ovat voimassa ja että Wildfire Games ei ole vastuussa mistään palvelusta aiheutuvista vahingoista."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -392,7 +393,7 @@ msgstr "Käänteinen"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "Suodata yhteensopivat"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -442,7 +443,7 @@ msgstr "Vaihda modien käynnistysjärjestystä. Tämän pitäisi vastata modien 
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "Vastuuvapauslauseke"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"

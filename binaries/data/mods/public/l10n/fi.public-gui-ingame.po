@@ -7,6 +7,7 @@
 # Ildradil <piggmatias@gmail.com>, 2013
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
+# Matti Tuhola, 2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 07:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-21 14:37+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Katsaus"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Avaa yhteenvetoruutu painamalla %(hotkey)s."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
@@ -67,7 +68,7 @@ msgstr "Aula"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Avaa moninpelin aulasivu poistumatta pelistä painamalla %(hotkey)s."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -75,7 +76,7 @@ msgstr "Vaihtoehdot"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "Pikanäppäimet"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -102,7 +103,7 @@ msgstr "Poistu"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Suoratoiston viive: %(delay)s s"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -127,7 +128,7 @@ msgstr "Synkronoidaan peliä muiden pelaajien kanssa…"
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
@@ -140,7 +141,7 @@ msgstr "%(time)s (%(speed)sx)"
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
@@ -159,7 +160,7 @@ msgstr "Paina jatkaaksesi peliä"
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:558
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -352,21 +353,21 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s%(attacker)s on hyökännyt karjasi kimppuun!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s%(attacker)s on hyökännyt kimppuusi!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:31
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Keskity hyökkäyksen kohteena olevaan yksikköön napsauttamalla tätä."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:50
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s antoi vaihtokaupassa %(amountGiven)s ja sai %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
@@ -416,24 +417,24 @@ msgstr "%(player)s on sovussa pelaajan %(player2)s kanssa."
 #: gui/session/chat/ChatMessageFormatSimulation.js:113
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s etenee vaiheeseen %(phaseName)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:115
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "Pelaajan %(player)s vaihe %(phaseName)s on keskeytynyt."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:118
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s on saavuttanut vaiheen %(phaseName)s."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
 #: gui/session/chat/ChatMessageFormatSimulation.js:146
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:163
 #, javascript-format
@@ -486,7 +487,7 @@ msgstr "Suodata keskusteluhistoria."
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Valitse keskustelun vastaanottaja."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:67
 msgid "The Developer Overlay was opened."
@@ -546,7 +547,7 @@ msgstr "Aktivoi aikasiirtymä"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Aktivoi uudelleenliittymistesti"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -554,19 +555,19 @@ msgstr "Ylennä valitut yksiköt"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "Ota karsinta käyttöön"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Lukitse karsiva kamera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Näytä kameran kartio"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Näytä varjojen kartio"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -635,7 +636,7 @@ msgstr "Tulitaukoa jäljellä: %(time)s."
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Diplomatiavärit päälle tai pois"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -665,7 +666,7 @@ msgstr "Vihollinen"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Lahjo sattumanvarainen yksikkö tältä pelaajalta ja jaa sen näkökyky rajoitetun ajan."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -729,7 +730,7 @@ msgstr "Kyllä"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "Out-Of-Sync-virhe vuorolla %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -750,7 +751,7 @@ msgstr "Pelisi tila eroaa isännän pelin tilaan nähden."
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Tekoälyn kanssa pelattaviin moninpeleihin uudelleen liittymistä ei vielä tueta!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -760,7 +761,7 @@ msgstr "Varmistakaa, että kaikilla pelaajilla on samat modit käytössä."
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Napsauta päävalikossa olevaa \"Ilmoita virhe\" -painiketta auttaaksesi tämän korjaamisessa."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -772,17 +773,17 @@ msgstr "uusinta tallennettu polkuun: %(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "Tallennetaan nykyinen tila tiedostoon %(filepath)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
 msgid "Out of Sync"
-msgstr ""
+msgstr "Epätahdissa."
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Epätahdissa."
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -882,11 +883,11 @@ msgstr "Etsi joutilas työntekijä"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Pakattu"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Pakattu"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -958,7 +959,7 @@ msgstr "Nykyiset/enimmäiskerääjät"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -967,11 +968,11 @@ msgstr "Valtauspisteet:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr ""
+msgstr "Varuskunnan koko"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1023,19 +1024,19 @@ msgstr "Lopeta hälytys."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Oletusmuodostelma on pois päältä."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Poista oletusmuodostustoiminto käytöstä hiiren oikealla painikkeella."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Tämä on oletusmuodostelma, jota käytetään liikekäskyissä."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Napsauta hiiren oikealla painikkeella asettaaksesi tämän oletusmuodostelmaksi."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1088,8 +1089,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s luokan. %(class)s yksikkö"
+msgstr[1] "%(number)s luokan %(class)s yksikköä"
 
 #: gui/session/selection_panels.js:734
 #, javascript-format
@@ -1099,35 +1100,35 @@ msgstr "Jäljellä: %(entityCounts)s"
 #: gui/session/selection_panels.js:735
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:787
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Tutkimusta ei voi tehdä päivityksen aikana."
 
 #: gui/session/selection_panels.js:1012
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Kouluttaminen ei ole mahdollista päivityksen aikana."
 
 #: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Päivitys: %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Päivitys: %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Päivitys: %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Päivitys: %(primaryName)s."
 
 #: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
@@ -1140,8 +1141,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ei voi päivittää, kun yksikkö kouluttautuu, tekee tutkimusta tai on jo aloittanut päivityksen."
+msgstr[1] "Ei voi päivittää, kun kaikki yksiköt kouluttautuvat, tekevät tutkimusta tai ovat jo aloittaneet päivityksen."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1213,53 +1214,53 @@ msgstr "%(changer)s laskee rajaa %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voidaan rakentaa vain kerran."
+msgstr[1] "Voidaan rakentaa vain %(limit)s kertaa."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Voidaan rakentaa vain kerran."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voidaan rakentaa vielä %(count)s kerran."
+msgstr[1] "Voidaan rakentaa vielä %(count)s kertaa."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voitiin kouluttaa vain kerran."
+msgstr[1] "Voitiin kouluttaa vain %(limit)s kertaa."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Voidaan kouluttaa vain kerran."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voidaan kouluttaa vielä %(count)s kerran."
+msgstr[1] "Voidaan kouluttaa vielä %(count)s kertaa."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voitiin luoda vain kerran."
+msgstr[1] "Voitiin luoda vain%(limit)s kertaa."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Voidaan luoda vain kerran."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voidaan luoda vielä %(count)s kerran."
+msgstr[1] "Voidaan luoda vielä %(count)s kertaa."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1296,7 +1297,7 @@ msgstr "Valtauspisteitä"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Hyökkäys ja vastarinta"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
@@ -1318,7 +1319,7 @@ msgstr "Paina valitaksesi ryhmitetyt yksiköt, tuplaklikkaamalla saat keskitetty
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alfa XXV: Y——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1326,7 +1327,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Näytä sivilisaation yleiskatsaus /\nRakennepuu\nViimeksi avattu avataan uudelleen napsauttamalla."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1353,7 +1354,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Kerääjiä tällä hetkellä: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1377,7 +1378,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Kerääjiä: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1439,7 +1440,7 @@ msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr ""
+msgstr "Käy vaihtokauppaa"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
@@ -1451,13 +1452,13 @@ msgstr "Osta:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
-msgstr ""
+msgstr "Ei kauppapaikkoja saatavilla"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1465,7 +1466,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Valitse jokin tavaralaji, jota haluat muuttaa, napsauttamalla sitä, ja muuta sitten muiden tavaralajien osuuksia nuolinäppäimillä. Voit myös painaa %(hotkey)s valitessasi yhden tavaralajin, jolloin sen osuus on 100%%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1474,7 +1475,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Aloita valitsemalla yläriviltä luonnonvara, jonka haluat myydä. Joka kerta, kun alempia painikkeita painetaan, myydään %(quantity)s ylemmän resurssin näytettyä määrää alemman resurssin määrää vastaan. Paina ja pidä painettuna %(hotkey)s, jolloin vaihdettu määrä kerrotaan väliaikaisesti kertoimella %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1601,7 +1602,7 @@ msgstr "Valmis"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Tämä on lähtökauppapaikka.\nNapsauta hiiren oikealla purkaaksesi kauppareitin."
 
 #: gui/session/unit_actions.js:625
 msgid "Origin trade market."
@@ -1617,7 +1618,7 @@ msgstr "Hiiren oikea valitsee kaupan lähtö marketin"
 
 #: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1134
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Tämä kauppapaikka on liian lähellä lähtökauppapaikkaa."
 
 #: gui/session/unit_actions.js:653
 msgid "Right-click to set as destination trade market."
@@ -1626,7 +1627,7 @@ msgstr "Hiiren oikea valitsee kaupan kohde marketin."
 #: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "Tykkitorneja tällä hetkellä: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
@@ -1645,8 +1646,8 @@ msgstr "Odotettu saavutus: %(gain)s"
 #: gui/session/unit_actions.js:1255
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tätä yksikköä ei voi ohjata."
+msgstr[1] "Näitä yksiköitä ei voi ohjata."
 
 #: gui/session/unit_actions.js:1301
 msgid "Unload All."
@@ -1654,11 +1655,11 @@ msgstr "Pura kaikki."
 
 #: gui/session/unit_actions.js:1336
 msgid "Unload Turrets."
-msgstr ""
+msgstr "Pura tykkitornit."
 
 #: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Tuhoa valitut yksiköt tai rakenteet."
 
 #: gui/session/unit_actions.js:1358
 #, javascript-format
@@ -1671,11 +1672,11 @@ msgstr "Peruuta nykyinen käsky."
 
 #: gui/session/unit_actions.js:1430
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Määrää valitut yksiköt varuskunnaksi rakenteeseen tai yksikköön."
 
 #: gui/session/unit_actions.js:1452
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Määrää valitut yksiköt miehittämään tykkitornipiste."
 
 #: gui/session/unit_actions.js:1474
 msgid "Unload"
@@ -1683,11 +1684,11 @@ msgstr "Pura"
 
 #: gui/session/unit_actions.js:1494
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Määrää valitut yksiköt korjaamaan rakennelma, laiva tai piirityskone."
 
 #: gui/session/unit_actions.js:1515
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Keskitä kokoontumispaikkaan."
 
 #: gui/session/unit_actions.js:1552
 msgid "Back to Work"
@@ -1695,7 +1696,7 @@ msgstr "Takaisin tyohön"
 
 #: gui/session/unit_actions.js:1573
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Määrää valitut yksiköt vartioimaan rakennetta tai yksikköä."
 
 #: gui/session/unit_actions.js:1593
 msgid "Remove guard"
@@ -1713,7 +1714,7 @@ msgstr "Partioi"
 
 #: gui/session/unit_actions.js:1633
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Hyökkää kaikkien kohdattujen vihollisyksiköiden kimppuun välttäen samalla rakennelmia."
 
 #: gui/session/unit_actions.js:1661
 msgid "Press to allow allies to use this dropsite"
@@ -1729,11 +1730,11 @@ msgstr "Tämän laskeutumissijainnin käyttäminen on kiellettyä"
 
 #: gui/session/unit_actions.js:1707
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Liittolaiset saavat käyttää tätä pudotusaluetta."
 
 #: gui/session/unit_actions.js:1708
 msgid "You are allowed to use this dropsite"
-msgstr "Sinulla on lupa käyttää tätä laskeutumissijaintia"
+msgstr "Sinulla on lupa käyttää tätä pudotusaluetta."
 
 #: gui/session/unit_actions.js:1772
 msgid "The entity has to be killed before it can be gathered from"

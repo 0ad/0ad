@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,20 +25,30 @@
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStr.h"
+#include "ps/CLogger.h"
 #include "ps/FileIo.h"
 
+// Start IDs at 1 to leave 0 as a special value.
+u32 CSkeletonAnimDef::nextUID = 1;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimDef constructor
-CSkeletonAnimDef::CSkeletonAnimDef() : m_FrameTime(0), m_NumKeys(0), m_NumFrames(0), m_Keys(0)
+CSkeletonAnimDef::CSkeletonAnimDef() : m_FrameTime(0), m_NumKeys(0), m_NumFrames(0)
 {
+	m_UID = nextUID++;
+	// Log a warning if we ever overflow. Should that not result from a bug, bumping to u64 ought to suffice.
+	if (nextUID == 0)
+	{
+		// Reset to 1.
+		nextUID++;
+		LOGWARNING("CSkeletonAnimDef unique ID overflowed to 0 - model-animation bounds may be incorrect.");
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimDef destructor
 CSkeletonAnimDef::~CSkeletonAnimDef()
 {
-	delete[] m_Keys;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +99,7 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool l
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Load: try to load the anim from given file; return a new anim if successful
-CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
+std::unique_ptr<CSkeletonAnimDef> CSkeletonAnimDef::Load(const VfsPath& filename)
 {
 	CFileUnpacker unpacker;
 	unpacker.Read(filename,"PSSA");
@@ -100,17 +110,17 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
 	}
 
 	// unpack the data
-	CSkeletonAnimDef* anim=new CSkeletonAnimDef;
+	auto anim = std::make_unique<CSkeletonAnimDef>();
 	try {
 		CStr name; // unused - just here to maintain compatibility with the animation files
 		unpacker.UnpackString(name);
 		unpacker.UnpackRaw(&anim->m_FrameTime,sizeof(anim->m_FrameTime));
 		anim->m_NumKeys = unpacker.UnpackSize();
 		anim->m_NumFrames = unpacker.UnpackSize();
-		anim->m_Keys=new Key[anim->m_NumKeys*anim->m_NumFrames];
-		unpacker.UnpackRaw(anim->m_Keys,anim->m_NumKeys*anim->m_NumFrames*sizeof(Key));
+		anim->m_Keys.resize(anim->m_NumKeys*anim->m_NumFrames);
+		unpacker.UnpackRaw(anim->m_Keys.data(), anim->m_Keys.size() * sizeof(decltype(anim->m_Keys)::value_type));
 	} catch (PSERROR_File&) {
-		delete anim;
+		anim.reset();
 		throw;
 	}
 
@@ -119,18 +129,18 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Save: try to save anim to file
-void CSkeletonAnimDef::Save(const VfsPath& pathname,const CSkeletonAnimDef* anim)
+void CSkeletonAnimDef::Save(const VfsPath& pathname, const CSkeletonAnimDef& anim)
 {
 	CFilePacker packer(FILE_VERSION, "PSSA");
 
 	// pack up all the data
 	packer.PackString("");
-	packer.PackRaw(&anim->m_FrameTime,sizeof(anim->m_FrameTime));
-	const size_t numKeys = anim->m_NumKeys;
+	packer.PackRaw(&anim.m_FrameTime,sizeof(anim.m_FrameTime));
+	const size_t numKeys = anim.m_NumKeys;
 	packer.PackSize(numKeys);
-	const size_t numFrames = anim->m_NumFrames;
+	const size_t numFrames = anim.m_NumFrames;
 	packer.PackSize(numFrames);
-	packer.PackRaw(anim->m_Keys,numKeys*numFrames*sizeof(Key));
+	packer.PackRaw(anim.m_Keys.data(), anim.m_Keys.size() * sizeof(decltype(anim.m_Keys)::value_type));
 
 	// now write it
 	packer.Write(pathname);

@@ -330,10 +330,6 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 {
 	float bz = GetBufferedZ();
 
-	// First call draw on ScrollBarOwner
-	if (m_ScrollBar)
-		IGUIScrollBarOwner::Draw();
-
 	{
 		CRect rect = GetListRect();
 
@@ -396,6 +392,9 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 			DrawText(i, textcolor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), bz + 0.1f, cliparea);
 		}
 	}
+
+	if (m_ScrollBar)
+		IGUIScrollBarOwner::Draw();
 }
 
 void CList::AddItem(const CGUIString& str, const CGUIString& data)

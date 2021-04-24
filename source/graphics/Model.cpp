@@ -130,66 +130,16 @@ void CModel::CalcBounds()
 // CalcObjectBounds: calculate object space bounds of this model, based solely on vertex positions
 void CModel::CalcStaticObjectBounds()
 {
-	m_ObjectBounds.SetEmpty();
-
-	size_t numverts=m_pModelDef->GetNumVertices();
-	SModelVertex* verts=m_pModelDef->GetVertices();
-
-	for (size_t i=0;i<numverts;i++) {
-		m_ObjectBounds+=verts[i].m_Coords;
-	}
+	PROFILE2("CalcStaticObjectBounds");
+	m_pModelDef->GetMaxBounds(nullptr, !(m_Flags & MODELFLAG_NOLOOPANIMATION), m_ObjectBounds);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcAnimatedObjectBound: calculate bounds encompassing all vertex positions for given animation
 void CModel::CalcAnimatedObjectBounds(CSkeletonAnimDef* anim, CBoundingBoxAligned& result)
 {
-	result.SetEmpty();
-
-	// Set the current animation on which to perform calculations (if it's necessary)
-	if (anim != m_Anim->m_AnimDef)
-	{
-		CSkeletonAnim dummyanim;
-		dummyanim.m_AnimDef=anim;
-		if (!SetAnimation(&dummyanim)) return;
-	}
-
-	size_t numverts=m_pModelDef->GetNumVertices();
-	SModelVertex* verts=m_pModelDef->GetVertices();
-
-	// Remove any transformations, so that we calculate the bounding box
-	// at the origin. The box is later re-transformed onto the object, without
-	// having to recalculate the size of the box.
-	CMatrix3D transform, oldtransform = GetTransform();
-	CModelAbstract* oldparent = m_Parent;
-
-	m_Parent = 0;
-	transform.SetIdentity();
-	CRenderableObject::SetTransform(transform);
-
-	// Following seems to stomp over the current animation time - which, unsurprisingly,
-	// introduces artefacts in the currently playing animation. Save it here and restore it
-	// at the end.
-	float AnimTime = m_AnimTime;
-
-	// iterate through every frame of the animation
-	for (size_t j=0;j<anim->GetNumFrames();j++) {
-		m_PositionValid = false;
-		ValidatePosition();
-
-		// extend bounds by vertex positions at the frame
-		for (size_t i=0;i<numverts;i++)
-		{
-			result += CModelDef::SkinPoint(verts[i], GetAnimatedBoneMatrices());
-		}
-		// advance to next frame
-		m_AnimTime += anim->GetFrameTime();
-	}
-
-	m_PositionValid = false;
-	m_Parent = oldparent;
-	SetTransform(oldtransform);
-	m_AnimTime = AnimTime;
+	PROFILE2("CalcAnimatedObjectBounds");
+	m_pModelDef->GetMaxBounds(anim, !(m_Flags & MODELFLAG_NOLOOPANIMATION), result);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

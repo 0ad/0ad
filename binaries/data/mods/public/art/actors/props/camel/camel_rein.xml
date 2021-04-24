@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<actor version="1">
-  <castshadow/>
-  <group>
-    <variant>
-      <mesh>props/horse/rein_camel_01.dae</mesh>
-      <textures>
-        <texture file="props/horse/peytral_iron_03.png" name="baseTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant file="quadraped/base_camel_mount.xml"/>
-  </group>
-  <material>default.xml</material>
-</actor>
+<qualitylevels version="1">
+  <actor version="1" quality="low"/>
+  <actor quality="medium" inline=""/>
+  <actor inline=""/>
+  <inline version="1">
+    <castshadow minquality="high"/>
+    <group>
+      <variant>
+        <mesh>props/horse/rein_camel_01.dae</mesh>
+        <textures>
+          <texture file="props/horse/peytral_iron_03.png" name="baseTex"/>
+        </textures>
+      </variant>
+    </group>
+    <group>
+      <variant file="quadraped/base_camel_mount.xml"/>
+    </group>
+    <material>default.xml</material>
+  </inline>
+</qualitylevels>
