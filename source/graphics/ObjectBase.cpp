@@ -404,10 +404,9 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<const std::
 	// Load each prop, and add their CalculateVariationKey to our key:
 	for (std::multimap<CStr, CStrW>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
-		CActorDef* prop = m_ObjectManager.FindActorDef(it->second);
-		if (prop)
+		if (auto [success, prop] = m_ObjectManager.FindActorDef(it->second); success)
 		{
-			std::vector<u8> propChoices = prop->GetBase(m_QualityLevel)->CalculateVariationKey(selections);
+			std::vector<u8> propChoices = prop.GetBase(m_QualityLevel)->CalculateVariationKey(selections);
 			choices.insert(choices.end(), propChoices.begin(), propChoices.end());
 		}
 	}
@@ -609,19 +608,18 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 	// Load each prop, and add their required selections to ours:
 	for (std::multimap<CStr, CStrW>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
-		CActorDef* prop = m_ObjectManager.FindActorDef(it->second);
-		if (prop)
+		if (auto [success, prop] = m_ObjectManager.FindActorDef(it->second); success)
 		{
 			std::vector<std::set<CStr> > propInitialSelections = initialSelections;
 			if (!remainingSelections.empty())
 				propInitialSelections.push_back(remainingSelections);
 
-			std::set<CStr> propRemainingSelections = prop->GetBase(m_QualityLevel)->CalculateRandomRemainingSelections(rng, propInitialSelections);
+			std::set<CStr> propRemainingSelections = prop.GetBase(m_QualityLevel)->CalculateRandomRemainingSelections(rng, propInitialSelections);
 			remainingSelections.insert(propRemainingSelections.begin(), propRemainingSelections.end());
 
 			// Add the prop's used files to our own (recursively) so we can hotload
 			// when any prop is changed
-			m_ActorDef.m_UsedFiles.insert(prop->m_UsedFiles.begin(), prop->m_UsedFiles.end());
+			m_ActorDef.m_UsedFiles.insert(prop.m_UsedFiles.begin(), prop.m_UsedFiles.end());
 		}
 	}
 
@@ -683,14 +681,9 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 			{
 				const std::vector<Prop>& props = obj->m_VariantGroups[i][j].m_Props;
 				for (size_t k = 0; k < props.size(); ++k)
-				{
-					if (! props[k].m_ModelName.empty())
-					{
-						CActorDef* prop = m_ObjectManager.FindActorDef(props[k].m_ModelName.c_str());
-						if (prop)
-							objectsQueue.push(prop->GetBase(m_QualityLevel).get());
-					}
-				}
+					if (!props[k].m_ModelName.empty())
+						if (auto [success, prop] = m_ObjectManager.FindActorDef(props[k].m_ModelName.c_str()); success)
+							objectsQueue.push(prop.GetBase(m_QualityLevel).get());
 			}
 		}
 	}
@@ -712,11 +705,11 @@ void CObjectBase::GetQualitySplits(std::vector<u8>& splits) const
 				if (prop.m_ModelName.empty())
 					continue;
 
-				CActorDef* propActor = m_ObjectManager.FindActorDef(prop.m_ModelName.c_str());
-				if (!propActor)
+				auto [success, propActor] = m_ObjectManager.FindActorDef(prop.m_ModelName.c_str());
+				if (!success)
 					continue;
 
-				std::vector<u8> newSplits = propActor->QualityLevels();
+				std::vector<u8> newSplits = propActor.QualityLevels();
 				if (newSplits.size() <= 1)
 					continue;
 
@@ -951,12 +944,16 @@ bool CActorDef::Load(const VfsPath& pathname)
 	return true;
 }
 
-bool CActorDef::Reload()
-{
-	return Load(m_Pathname);
-}
-
 bool CActorDef::UsesFile(const VfsPath& pathname) const
 {
 	return m_UsedFiles.find(pathname) != m_UsedFiles.end();
+}
+
+void CActorDef::LoadErrorPlaceholder(const VfsPath& pathname)
+{
+	m_UsedFiles.clear();
+	m_ObjectBases.clear();
+	m_UsedFiles.emplace(pathname);
+	m_Pathname = pathname;
+	m_ObjectBases.emplace_back(std::make_shared<CObjectBase>(m_ObjectManager, *this, MAX_QUALITY));
 }

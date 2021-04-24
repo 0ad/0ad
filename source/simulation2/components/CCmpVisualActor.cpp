@@ -753,6 +753,18 @@ void CCmpVisualActor::ReloadActor()
 
 	InitModel();
 
+	if (!m_Unit)
+	{
+		if (m_ModelTag.valid())
+		{
+			CmpPtr<ICmpUnitRenderer> cmpModelRenderer(GetSystemEntity());
+			if (cmpModelRenderer)
+				cmpModelRenderer->RemoveUnit(m_ModelTag);
+			m_ModelTag = ICmpUnitRenderer::tag_t{};
+		}
+		return;
+	}
+
 	ReloadUnitAnimation();
 
 	m_Unit->GetModel().SetShadingColor(shading);

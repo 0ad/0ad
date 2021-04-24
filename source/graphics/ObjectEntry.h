@@ -80,10 +80,6 @@ public:
 	// corresponding model
 	CModelAbstract* m_Model;
 
-	// Whether this object is outdated, due to hotloading of its base object.
-	// (If true then CObjectManager won't reuse this object from its cache.)
-	bool m_Outdated;
-
 private:
 
 	CSimulation2& m_Simulation;

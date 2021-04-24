@@ -41,12 +41,9 @@ CUnit::~CUnit()
 
 CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>& selections, CObjectManager& objectManager)
 {
-	CActorDef* actor = objectManager.FindActorDef(actorName);
+	auto [success, actor] = objectManager.FindActorDef(actorName);
 
-	if (!actor)
-		return nullptr;
-
-	CUnit* unit = new CUnit(objectManager, *actor, seed);
+	CUnit* unit = new CUnit(objectManager, actor, seed);
 	unit->SetActorSelections(selections); // Calls ReloadObject().
 	if (!unit->m_Model)
 	{
