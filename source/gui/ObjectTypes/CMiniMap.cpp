@@ -33,7 +33,6 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-#include "maths/MathUtil.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -622,15 +621,6 @@ void CMiniMap::Draw()
 					}
 					else
 					{
-						if (cmpMinimap->UsesPlayerColor())
-						{
-							// Based on article: https://alaingalvan.tumblr.com/post/79864187609/glsl-color-correction-shaders
-							const int contrast = 10;
-							v.r = Clamp(((v.r - 128) * contrast) + 128, 0, 255);
-							v.g = Clamp(((v.g - 128) * contrast) + 128, 0, 255);
-							v.b = Clamp(((v.b - 128) * contrast) + 128, 0, 255);
-
-						}
 						addVertex(v, attrColor, attrPos);
 						++m_EntitiesDrawn;
 					}

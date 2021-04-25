@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -193,11 +193,6 @@ public:
 		x = m_X;
 		z = m_Z;
 		return true;
-	}
-
-	virtual bool UsesPlayerColor() const
-	{
-		return m_UsePlayerColor;
 	}
 
 	virtual bool CheckPing(double currentTime, double pingDuration)
