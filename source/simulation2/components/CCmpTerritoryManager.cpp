@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -660,7 +660,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 				else
 					overlayNode.m_Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-				overlayNode.m_Thickness = 1;
+				overlayNode.m_Thickness = 0.1f;
 				SimRender::ConstructCircleOnGround(GetSimContext(), boundaries[i].points[j].X, boundaries[i].points[j].Y, 0.1f, overlayNode, true);
 				m_DebugBoundaryLineNodes.push_back(overlayNode);
 			}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,12 +57,10 @@ void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vec
 
 	for (size_t i = 0; i < xz.size(); i += 2)
 	{
-		float px = xz[i];
-		float pz = xz[i+1];
-		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + heightOffset;
-		overlay.m_Coords.push_back(px);
-		overlay.m_Coords.push_back(py);
-		overlay.m_Coords.push_back(pz);
+		const float px = xz[i];
+		const float pz = xz[i+1];
+		const float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + heightOffset;
+		overlay.PushCoords(px, py, pz);
 	}
 }
 
@@ -99,9 +97,7 @@ static void ConstructCircleOrClosedArc(
 	{
 		// Start at the center point
 		cy = std::max(water, cmpTerrain->GetExactGroundLevel(x, z)) + heightOffset;
-		overlay.m_Coords.push_back(x);
-		overlay.m_Coords.push_back(cy);
-		overlay.m_Coords.push_back(z);
+		overlay.PushCoords(x, cy, z);
 	}
 
 	for (size_t i = 0; i <= numPoints; ++i) // use '<=' so it's a closed loop
@@ -110,17 +106,13 @@ static void ConstructCircleOrClosedArc(
 		float px = x + radius * cosf(a);
 		float pz = z + radius * sinf(a);
 		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + heightOffset;
-		overlay.m_Coords.push_back(px);
-		overlay.m_Coords.push_back(py);
-		overlay.m_Coords.push_back(pz);
+		overlay.PushCoords(px, py, pz);
 	}
 
 	if (!isCircle)
 	{
 		// Return to the center point
-		overlay.m_Coords.push_back(x);
-		overlay.m_Coords.push_back(cy);
-		overlay.m_Coords.push_back(z);
+		overlay.PushCoords(x, cy, z);
 	}
 }
 
@@ -195,9 +187,7 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 		float px = coords[i].first;
 		float pz = coords[i].second;
 		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + heightOffset;
-		overlay.m_Coords.push_back(px);
-		overlay.m_Coords.push_back(py);
-		overlay.m_Coords.push_back(pz);
+		overlay.PushCoords(px, py, pz);
 	}
 }
 
@@ -326,9 +316,9 @@ void SimRender::ConstructAxesMarker(const CMatrix3D& coordSystem, SOverlayLine& 
 	outY.m_Color = CColor(0, 1, 0, .5f); // Y axis; green
 	outZ.m_Color = CColor(0, 0, 1, .5f); // Z axis; blue
 
-	outX.m_Thickness = 2;
-	outY.m_Thickness = 2;
-	outZ.m_Thickness = 2;
+	outX.m_Thickness = 0.1f;
+	outY.m_Thickness = 0.1f;
+	outZ.m_Thickness = 0.1f;
 
 	CVector3D origin = coordSystem.GetTranslation();
 	outX.PushCoords(origin);

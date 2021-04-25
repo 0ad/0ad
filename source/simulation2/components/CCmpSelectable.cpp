@@ -670,11 +670,11 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector, const CFrustum& fru
 			if (cmpVisual)
 			{
 				SimRender::ConstructBoxOutline(cmpVisual->GetBounds(), *m_DebugBoundingBoxOverlay);
-				m_DebugBoundingBoxOverlay->m_Thickness = 2;
+				m_DebugBoundingBoxOverlay->m_Thickness = 0.1f;
 				m_DebugBoundingBoxOverlay->m_Color = CColor(1.f, 0.f, 0.f, 1.f);
 
 				SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), *m_DebugSelectionBoxOverlay);
-				m_DebugSelectionBoxOverlay->m_Thickness = 2;
+				m_DebugSelectionBoxOverlay->m_Thickness = 0.1f;
 				m_DebugSelectionBoxOverlay->m_Color = CColor(0.f, 1.f, 0.f, 1.f);
 
 				collector.Submit(m_DebugBoundingBoxOverlay);

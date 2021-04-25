@@ -130,7 +130,7 @@ public:
 			if (SelectionBoxEnabled)
 			{
 				SelectionBoxOverlay.m_Color = CColor(35/255.f, 86/255.f, 188/255.f, .75f); // pretty blue
-				SelectionBoxOverlay.m_Thickness = 2;
+				SelectionBoxOverlay.m_Thickness = 0.1f;
 
 				SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), SelectionBoxOverlay);
 				c->Submit(&SelectionBoxOverlay);

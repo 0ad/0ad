@@ -353,14 +353,8 @@ void TerrainRenderer::RenderOutlines(int cullGroup)
 	if (visiblePatches.empty())
 		return;
 
-#if CONFIG2_GLES
-#warning TODO: implement TerrainRenderer::RenderOutlines for GLES
-#else
-	glEnableClientState(GL_VERTEX_ARRAY);
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 		visiblePatches[i]->RenderOutline();
-	glDisableClientState(GL_VERTEX_ARRAY);
-#endif
 }
 
 

@@ -36,6 +36,11 @@ void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const 
 	if (from == to)
 		return;
 
+	DrawLine({from, to}, color, width);
+}
+
+void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width)
+{
 #if CONFIG2_GLES
 	#warning TODO: implement drawing line for GLES
 #else
@@ -48,33 +53,37 @@ void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const 
 	debugLineShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	debugLineShader->Uniform(str_color, color);
 
-	// Basis to set a line with the width in R^3 space.
-	const CVector3D direction = (to - from).Normalized();
-	const CVector3D upCandidate = direction.Dot(CVector3D(0.0f, 1.0f, 0.0f)) > 0.9f ?
-		CVector3D(1.0f, 0.0f, 0.0f) :
-		CVector3D(0.0f, 1.0f, 0.0f);
-	const CVector3D right = direction.Cross(upCandidate).Normalized();
-	const CVector3D up = direction.Cross(right);
+	const CVector3D cameraIn = g_Renderer.GetViewCamera().GetOrientation().GetIn();
 
 	std::vector<float> vertices;
-	const size_t splits = 3;
-	float angle = 0.0f;
-	const float step = static_cast<float>(M_PI * 2.0f / splits);
-	for (size_t idx = 0; idx <= splits; ++idx, angle += step)
+#define ADD(position) \
+	vertices.emplace_back((position).X); \
+	vertices.emplace_back((position).Y); \
+	vertices.emplace_back((position).Z);
+
+	for (size_t idx = 1; idx < line.size(); ++idx)
 	{
-		const CVector3D offset = (right * std::cos(angle) + up * std::sin(angle)) * width;
-		const CVector3D a = from + offset;
-		const CVector3D b = to + offset;
-		vertices.emplace_back(a.X);
-		vertices.emplace_back(a.Y);
-		vertices.emplace_back(a.Z);
-		vertices.emplace_back(b.X);
-		vertices.emplace_back(b.Y);
-		vertices.emplace_back(b.Z);
+		const CVector3D from = line[idx - 1];
+		const CVector3D to = line[idx];
+		const CVector3D direction = (to - from).Normalized();
+		const CVector3D view = direction.Dot(cameraIn) > 0.9f ?
+			CVector3D(0.0f, 1.0f, 0.0f) :
+			cameraIn;
+		const CVector3D offset = view.Cross(direction).Normalized() * width;
+
+		ADD(from + offset)
+		ADD(to - offset)
+		ADD(to + offset)
+		ADD(from + offset)
+		ADD(from - offset)
+		ADD(to - offset)
 	}
-	debugLineShader->VertexPointer(3, GL_FLOAT, sizeof(float) * 3, vertices.data());
+
+#undef ADD
+
+	debugLineShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	debugLineShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, vertices.size() / 3);
+	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
 	debugLineShader->Unbind();
 	debugLineTech->EndPass();
