@@ -56,6 +56,7 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 	const CVector3D cameraIn = g_Renderer.GetViewCamera().GetOrientation().GetIn();
 
 	std::vector<float> vertices;
+	vertices.reserve(line.size() * 6 * 3);
 #define ADD(position) \
 	vertices.emplace_back((position).X); \
 	vertices.emplace_back((position).Y); \
@@ -87,6 +88,52 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 
 	debugLineShader->Unbind();
 	debugLineTech->EndPass();
+#endif
+}
+
+void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, const CColor& color)
+{
+#if CONFIG2_GLES
+	#warning TODO: implement drawing circle for GLES
+#else
+	CShaderTechniquePtr debugCircleTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	debugCircleTech->BeginPass();
+	CShaderProgramPtr debugCircleShader = debugCircleTech->GetShader();
+
+	const CCamera& camera = g_Renderer.GetViewCamera();
+
+	debugCircleShader->Bind();
+	debugCircleShader->Uniform(str_transform, camera.GetViewProjection());
+	debugCircleShader->Uniform(str_color, color);
+
+	const CVector3D cameraUp = camera.GetOrientation().GetUp();
+	const CVector3D cameraLeft = camera.GetOrientation().GetLeft();
+
+	std::vector<float> vertices;
+#define ADD(position) \
+	vertices.emplace_back((position).X); \
+	vertices.emplace_back((position).Y); \
+	vertices.emplace_back((position).Z);
+
+	ADD(origin)
+
+	constexpr size_t segments = 16;
+	for (size_t idx = 0; idx <= segments; ++idx)
+	{
+		const float angle = M_PI * 2.0f * idx / segments;
+		const CVector3D offset = cameraUp * sin(angle) - cameraLeft * cos(angle);
+		ADD(origin + offset * radius)
+	}
+
+#undef ADD
+
+	debugCircleShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	debugCircleShader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 3);
+
+	debugCircleShader->Unbind();
+	debugCircleTech->EndPass();
 #endif
 }
 

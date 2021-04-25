@@ -44,6 +44,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ComponentManager.h"
 #include "simulation2/Simulation2.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 
 
@@ -74,111 +75,63 @@ void CCinemaManager::DrawPaths() const
 	if (!cmpCinemaManager)
 		return;
 
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+
 	for (const std::pair<const CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
 	{
-		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 128, true);
+		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 128);
 		DrawNodes(p.second, CColor(0.1f, 1.f, 0.f, 1.f));
 
 		if (p.second.GetTargetSpline().GetAllNodes().empty())
 			continue;
 
-		DrawSpline(p.second.GetTargetSpline(), CColor(1.f, 0.3f, 0.4f, 0.9f), 128, true);
+		DrawSpline(p.second.GetTargetSpline(), CColor(1.f, 0.3f, 0.4f, 0.9f), 128);
 		DrawNodes(p.second.GetTargetSpline(), CColor(1.f, 0.1f, 0.f, 1.f));
 	}
+
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
 }
 
-void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness, bool lines) const
+void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness) const
 {
 	if (spline.GetAllNodes().size() < 2)
 		return;
-	if (spline.GetAllNodes().size() == 2 && lines)
+	if (spline.GetAllNodes().size() == 2)
 		smoothness = 2;
 
-	float start = spline.MaxDistance.ToFloat() / smoothness;
-	float time = 0;
+	const float start = spline.MaxDistance.ToFloat() / smoothness;
 
-#if CONFIG2_GLES
-	#warning TODO : implement CCinemaPath on GLES
-#else
-
-	glDisable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
-	glColor4f(splineColor.r, splineColor.g, splineColor.b, splineColor.a);
-	if (lines)
+	std::vector<CVector3D> line;
+	for (int i = 0; i <= smoothness; ++i)
 	{
-		glLineWidth(1.8f);
-		glEnable(GL_LINE_SMOOTH);
-		glBegin(GL_LINE_STRIP);
+		const float time = start * i / spline.MaxDistance.ToFloat();
+		line.emplace_back(spline.GetPosition(time));
+	}
+	g_Renderer.GetDebugRenderer().DrawLine(line, splineColor, 0.2f);
+
+	// Height indicator
+	if (g_Game && g_Game->GetWorld() && g_Game->GetWorld()->GetTerrain())
+	{
 		for (int i = 0; i <= smoothness; ++i)
 		{
-			time = start * i / spline.MaxDistance.ToFloat();
-			CVector3D tmp = spline.GetPosition(time);
-			glVertex3f(tmp.X, tmp.Y, tmp.Z);
+			const float time = start * i / spline.MaxDistance.ToFloat();
+			const CVector3D tmp = spline.GetPosition(time);
+			const float groundY = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(tmp.X, tmp.Z);
+			g_Renderer.GetDebugRenderer().DrawLine(tmp, CVector3D(tmp.X, groundY, tmp.Z), splineColor, 0.1f);
 		}
-		glEnd();
-
-		// Height indicator
-		if (g_Game && g_Game->GetWorld() && g_Game->GetWorld()->GetTerrain())
-		{
-			glLineWidth(1.1f);
-			glBegin(GL_LINES);
-			for (int i = 0; i <= smoothness; ++i)
-			{
-				time = start * i / spline.MaxDistance.ToFloat();
-				CVector3D tmp = spline.GetPosition(time);
-				float groundY = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(tmp.X, tmp.Z);
-				glVertex3f(tmp.X, tmp.Y, tmp.Z);
-				glVertex3f(tmp.X, groundY, tmp.Z);
-			}
-			glEnd();
-		}
-
-		glDisable(GL_LINE_SMOOTH);
-		glLineWidth(1.0f);
 	}
-	else
-	{
-		smoothness /= 2;
-		start = spline.MaxDistance.ToFloat() / smoothness;
-		glEnable(GL_POINT_SMOOTH);
-		glPointSize(3.0f);
-		glBegin(GL_POINTS);
-		for (int i = 0; i <= smoothness; ++i)
-		{
-			time = start * i / spline.MaxDistance.ToFloat();
-			CVector3D tmp = spline.GetPosition(time);
-			glVertex3f(tmp.X, tmp.Y, tmp.Z);
-		}
-		glEnd();
-		glPointSize(1.0f);
-		glDisable(GL_POINT_SMOOTH);
-	}
-	glDisable(GL_BLEND);
-	glEnable(GL_DEPTH_TEST);
-
-#endif
 }
 
 void CCinemaManager::DrawNodes(const RNSpline& spline, const CColor& nodeColor) const
 {
-#if CONFIG2_GLES
-	#warning TODO : implement CCinemaPath on GLES
-#else
-
-	glDisable(GL_DEPTH_TEST);
-	glEnable(GL_POINT_SMOOTH);
-	glPointSize(7.0f);
-	glColor4f(nodeColor.r, nodeColor.g, nodeColor.b, nodeColor.a);
-	glBegin(GL_POINTS);
-
 	for (const SplineData& node : spline.GetAllNodes())
-		glVertex3f(node.Position.X.ToFloat(), node.Position.Y.ToFloat(), node.Position.Z.ToFloat());
-
-	glEnd();
-	glPointSize(1.0f);
-	glDisable(GL_POINT_SMOOTH);
-	glEnable(GL_DEPTH_TEST);
-#endif
+	{
+		g_Renderer.GetDebugRenderer().DrawCircle(
+			CVector3D(node.Position.X.ToFloat(), node.Position.Y.ToFloat(), node.Position.Z.ToFloat()),
+			0.5f, nodeColor);
+	}
 }
 
 bool CCinemaManager::IsEnabled() const

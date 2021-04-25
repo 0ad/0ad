@@ -41,6 +41,11 @@ public:
 	void DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width);
 
 	/**
+	 * Render the circle in world space oriented to the view camera.
+	 */
+	void DrawCircle(const CVector3D& origin, const float radius, const CColor& color);
+
+	/**
 	 * Render: Renders the camera's frustum in world space.
 	 * The caller should set the color using glColorXy before calling Render.
 	 *

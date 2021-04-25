@@ -34,12 +34,9 @@ public:
 	~CCinemaManager() {}
 
 	/**
-	 * Renders black bars and paths (if enabled)
+	 * Renders paths and their nodes (if enabled).
 	 */
 	void Render() const;
-	void DrawPaths() const;
-	void DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness, bool lines) const;
-	void DrawNodes(const RNSpline& spline, const CColor& nodesColor) const;
 
 	bool IsPlaying() const;
 	bool IsEnabled() const;
@@ -54,6 +51,10 @@ public:
 	void SetPathsDrawing(const bool drawPath);
 
 private:
+	void DrawPaths() const;
+	void DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness) const;
+	void DrawNodes(const RNSpline& spline, const CColor& nodesColor) const;
+
 	bool m_DrawPaths;
 };
 
