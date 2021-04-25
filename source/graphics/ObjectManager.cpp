@@ -66,24 +66,30 @@ CObjectManager::~CObjectManager()
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
-CActorDef* CObjectManager::FindActorDef(const CStrW& actorName)
+std::pair<bool, CActorDef&> CObjectManager::FindActorDef(const CStrW& actorName)
 {
 	ENSURE(!actorName.empty());
 
 	decltype(m_ActorDefs)::iterator it = m_ActorDefs.find(actorName);
-	if (it != m_ActorDefs.end())
-		return it->second.get();
+	if (it != m_ActorDefs.end() && !it->second.outdated)
+		return { true, *it->second.obj };
 
 	std::unique_ptr<CActorDef> actor = std::make_unique<CActorDef>(*this);
 
 	VfsPath pathname = VfsPath("art/actors/") / actorName;
 
-	if (actor->Load(pathname))
-		return m_ActorDefs.emplace(actorName, std::move(actor)).first->second.get();
+	bool success = true;
+	if (!actor->Load(pathname))
+	{
+		// In case of failure, load a placeholder - we want to have an actor around for hotloading.
+		// (this will leave garbage actors in the object manager if loading files with typos in the name,
+		// but that's unlikely to be a large memory problem).
+		LOGERROR("CObjectManager::FindActorDef(): Cannot find actor '%s'", utf8_from_wstring(actorName));
+		actor->LoadErrorPlaceholder(pathname);
+		success = false;
+	}
 
-	LOGERROR("CObjectManager::FindActorDef(): Cannot find actor '%s'", utf8_from_wstring(actorName));
-
-	return nullptr;
+	return { success, *m_ActorDefs.insert_or_assign(actorName, std::move(actor)).first->second.obj };
 }
 
 CObjectEntry* CObjectManager::FindObjectVariation(const CActorDef* actor, const std::vector<std::set<CStr>>& selections, uint32_t seed)
@@ -114,8 +120,8 @@ CObjectEntry* CObjectManager::FindObjectVariation(const std::shared_ptr<CObjectB
 	std::vector<u8> choices = base->CalculateVariationKey(completeSelections);
 	ObjectKey key (base->GetIdentifier(), choices);
 	decltype(m_Objects)::iterator it = m_Objects.find(key);
-	if (it != m_Objects.end() && !it->second->m_Outdated)
-		return it->second.get();
+	if (it != m_Objects.end() && !it->second.outdated)
+		return it->second.obj.get();
 
 	// If it hasn't been loaded, load it now.
 
@@ -128,7 +134,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(const std::shared_ptr<CObjectB
 	if (!obj->BuildVariation(completeSelections, choices, *this))
 		return nullptr;
 
-	return m_Objects.emplace(key, std::move(obj)).first->second.get();
+	return m_Objects.insert_or_assign(key, std::move(obj)).first->second.obj.get();
 }
 
 CTerrain* CObjectManager::GetTerrain()
@@ -148,25 +154,24 @@ void CObjectManager::UnloadObjects()
 Status CObjectManager::ReloadChangedFile(const VfsPath& path)
 {
 	// Mark old entries as outdated so we don't reload them from the cache
-	for (std::map<ObjectKey, std::unique_ptr<CObjectEntry>>::iterator it = m_Objects.begin(); it != m_Objects.end(); ++it)
-		if (it->second->m_Base->UsesFile(path))
-			it->second->m_Outdated = true;
+	for (std::pair<const ObjectKey, Hotloadable<CObjectEntry>>& object : m_Objects)
+		if (!object.second.outdated && object.second.obj->m_Base->UsesFile(path))
+			object.second.outdated = true;
 
 	const CSimulation2::InterfaceListUnordered& cmps = m_Simulation.GetEntitiesWithInterfaceUnordered(IID_Visual);
 
 	// Reload actors that use a changed object
-	for (std::unordered_map<CStrW, std::unique_ptr<CActorDef>>::iterator it = m_ActorDefs.begin(); it != m_ActorDefs.end(); ++it)
+	for (std::pair<const CStrW, Hotloadable<CActorDef>>& actor : m_ActorDefs)
 	{
-		if (!it->second->UsesFile(path))
-			continue;
-		it->second->Reload();
+		if (!actor.second.outdated && actor.second.obj->UsesFile(path))
+			actor.second.outdated = true;
 
 		// Slightly ugly hack: The graphics system doesn't preserve enough information to regenerate the
 		// object with all correct variations, and we don't want to waste space storing it just for the
 		// rare occurrence of hotloading, so we'll tell the component (which does preserve the information)
 		// to do the reloading itself
 		for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
-			static_cast<ICmpVisual*>(eit->second)->Hotload(it->first);
+			static_cast<ICmpVisual*>(eit->second)->Hotload(actor.first);
 	}
 	return INFO::OK;
 }

@@ -41,7 +41,7 @@
 #include <sstream>
 
 CObjectEntry::CObjectEntry(const std::shared_ptr<CObjectBase>& base, CSimulation2& simulation) :
-	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL), m_Outdated(false), m_Simulation(simulation)
+	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL), m_Simulation(simulation)
 {
 }
 
@@ -217,8 +217,8 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 		}
 
 		CObjectEntry* oe = nullptr;
-		if (CActorDef* actorDef = objectManager.FindActorDef(prop.m_ModelName.c_str()); actorDef)
-			oe = objectManager.FindObjectVariation(actorDef->GetBase(m_Base->m_QualityLevel), completeSelections);
+		if (auto [success, actorDef] = objectManager.FindActorDef(prop.m_ModelName.c_str()); success)
+			oe = objectManager.FindObjectVariation(actorDef.GetBase(m_Base->m_QualityLevel), completeSelections);
 
 		if (!oe)
 		{

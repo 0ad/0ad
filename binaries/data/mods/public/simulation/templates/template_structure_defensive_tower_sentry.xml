@@ -2,12 +2,12 @@
 <Entity parent="template_structure_defensive_tower">
   <Attack>
     <Ranged>
-      <Damage>
-        <Pierce>9</Pierce>
-      </Damage>
       <ElevationBonus>9</ElevationBonus>
     </Ranged>
   </Attack>
+  <BuildingAI>
+    <MaxArrowCount>3</MaxArrowCount>
+  </BuildingAI>
   <Cost>
     <BuildTime>40</BuildTime>
     <Resources>
@@ -22,7 +22,7 @@
     <Max>3</Max>
   </GarrisonHolder>
   <Health>
-    <Max>500</Max>
+    <Max>400</Max>
   </Health>
   <Identity>
     <GenericName>Sentry Tower</GenericName>
@@ -43,15 +43,6 @@
       tower_watch
     </Technologies>
   </ProductionQueue>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">-5</Hack>
-        <Pierce op="add">-5</Pierce>
-        <Crush op="add">-2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>16</Radius>

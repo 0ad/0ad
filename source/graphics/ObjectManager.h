@@ -68,7 +68,12 @@ public:
 
 	void UnloadObjects();
 
-	CActorDef* FindActorDef(const CStrW& actorName);
+	/**
+	 * Get the actor definition for the given path name.
+	 * If the actor cannot be loaded, this will return a placeholder actor.
+	 * @return Success/failure boolean and a valid actor definition.
+	 */
+	std::pair<bool, CActorDef&> FindActorDef(const CStrW& actorName);
 
 	/**
 	 * Get the object entry for a given actor & the given selections list.
@@ -97,7 +102,6 @@ public:
 	 */
 	Status ReloadChangedFile(const VfsPath& path);
 
-
 	/**
 	 * Reload actors that have a quality setting. Used when changing the actor quality.
 	 */
@@ -110,9 +114,17 @@ public:
 	u8 m_QualityLevel = 100;
 	std::unique_ptr<CConfigDBHook> m_QualityHook;
 
+	template<typename T>
+	struct Hotloadable
+	{
+		Hotloadable() = default;
+		Hotloadable(std::unique_ptr<T>&& ptr) : obj(std::move(ptr)) {}
+		bool outdated = false;
+		std::unique_ptr<T> obj;
+	};
 	// TODO: define a hash and switch to unordered_map
-	std::map<ObjectKey, std::unique_ptr<CObjectEntry>> m_Objects;
-	std::unordered_map<CStrW, std::unique_ptr<CActorDef>> m_ActorDefs;
+	std::map<ObjectKey, Hotloadable<CObjectEntry>> m_Objects;
+	std::unordered_map<CStrW, Hotloadable<CActorDef>> m_ActorDefs;
 };
 
 #endif

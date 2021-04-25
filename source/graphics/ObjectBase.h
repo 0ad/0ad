@@ -243,10 +243,10 @@ protected:
 	bool Load(const VfsPath& pathname);
 
 	/**
-	 * Reload this object from the file that it was previously loaded from.
-	 * Returns false on error.
+	 * Initialise this object with a default placeholder actor,
+	 * pretending to be the actor at pathname.
 	 */
-	bool Reload();
+	void LoadErrorPlaceholder(const VfsPath& pathname);
 
 	/**
 	 * Returns whether this actor (including any possible props)
