@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,6 +44,8 @@ public:
 	 * Updates the entity's minimap color to match the player color.
 	 */
 	virtual void UpdateColor() = 0;
+
+	virtual bool UsesPlayerColor() const = 0;
 
 	DECLARE_INTERFACE_TYPE(Minimap)
 };
