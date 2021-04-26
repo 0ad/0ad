@@ -77,7 +77,7 @@ std::unique_ptr<CObjectBase> CObjectBase::CopyWithQuality(u8 newQualityLevel) co
 	return ret;
 }
 
-void CObjectBase::Load(const CXeromyces& XeroFile, const XMBElement& root)
+bool CObjectBase::Load(const CXeromyces& XeroFile, const XMBElement& root)
 {
 	// Define all the elements used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
@@ -133,11 +133,15 @@ void CObjectBase::Load(const CXeromyces& XeroFile, const XMBElement& root)
 				if (shouldSkip(variant))
 					continue;
 
-				LoadVariant(XeroFile, variant, currentGroup.emplace_back());
+				if (!LoadVariant(XeroFile, variant, currentGroup.emplace_back()))
+					return false;
 			}
 
 			if (currentGroup.size() == 0)
+			{
 				LOGERROR("Actor group has zero variants ('%s')", m_Identifier);
+				return false;
+			}
 		}
 		else if (child_name == el_castshadow)
 			m_Properties.m_CastShadows = true;
@@ -149,9 +153,11 @@ void CObjectBase::Load(const CXeromyces& XeroFile, const XMBElement& root)
 
 	if (m_Material.empty())
 		m_Material = VfsPath("art/materials/default.xml");
+
+	return true;
 }
 
-void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant)
+bool CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant)
 {
 	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
@@ -190,7 +196,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 	if (variant.GetNodeName() != el_variant)
 	{
 		LOGERROR("Invalid variant format (unrecognised root element '%s')", XeroFile.GetElementString(variant.GetNodeName()).c_str());
-		return;
+		return false;
 	}
 
 	// Load variants first, so that they can be overriden if necessary.
@@ -205,10 +211,14 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 			if (XeroVariant.Load(g_VFS, "art/variants/" + attr.Value) == PSRETURN_OK)
 			{
 				XMBElement variantRoot = XeroVariant.GetRoot();
-				LoadVariant(XeroVariant, variantRoot, currentVariant);
+				if (!LoadVariant(XeroVariant, variantRoot, currentVariant))
+					return false;
 			}
 			else
+			{
 				LOGERROR("Could not open path %s", attr.Value);
+				return false;
+			}
 			// Continue loading extra definitions in this variant to allow nested files
 		}
 	}
@@ -233,7 +243,11 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 		{
 			XERO_ITER_EL(option, textures_element)
 			{
-				ENSURE(textures_element.GetNodeName() == el_texture);
+				if (textures_element.GetNodeName() != el_texture)
+				{
+					LOGERROR("<textures> can only contain <texture> elements.");
+					return false;
+				}
 
 				Samp samp;
 				XERO_ITER_ATTR(textures_element, se)
@@ -275,7 +289,11 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 		{
 			XERO_ITER_EL(option, anim_element)
 			{
-				ENSURE(anim_element.GetNodeName() == el_animation);
+				if (anim_element.GetNodeName() != el_animation)
+				{
+					LOGERROR("<animations> can only contain <animations> elements.");
+					return false;
+				}
 
 				Anim anim;
 				XERO_ITER_ATTR(anim_element, ae)
@@ -324,6 +342,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 			}
 		}
 	}
+	return true;
 }
 
 std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<const std::set<CStr>*>& selections) const
@@ -811,7 +830,11 @@ bool CActorDef::Load(const VfsPath& pathname)
 	if (root.GetNodeName() == el_actor)
 	{
 		std::unique_ptr<CObjectBase> base = std::make_unique<CObjectBase>(m_ObjectManager, *this, MAX_QUALITY);
-		base->Load(XeroFile, root);
+		if (!base->Load(XeroFile, root))
+		{
+			LOGERROR("Invalid actor (actor '%s')", pathname.string8());
+			return false;
+		}
 		m_ObjectBases.emplace_back(std::move(base));
 	}
 	else
@@ -876,10 +899,21 @@ bool CActorDef::Load(const VfsPath& pathname)
 					LOGERROR("Actor quality level refers to inline definition, but no inline definition found (file %s)", pathname.string8());
 					return false;
 				}
-				base->Load(XeroFile, inlineActor);
+				if (!base->Load(XeroFile, inlineActor))
+				{
+					LOGERROR("Invalid inline actor (actor '%s')", pathname.string8());
+					return false;
+				}
+
 			}
 			else if (file.empty())
-				base->Load(XeroFile, actor);
+			{
+				if (!base->Load(XeroFile, actor))
+				{
+					LOGERROR("Invalid actor (actor '%s')", pathname.string8());
+					return false;
+				}
+			}
 			else
 			{
 				if (actor.GetChildNodes().size() > 0)
@@ -896,7 +930,11 @@ bool CActorDef::Load(const VfsPath& pathname)
 						LOGERROR("Included actors cannot define quality levels (opening %s from file %s)", file, pathname.string8());
 						return false;
 					}
-					base->Load(XeroActor, root);
+					if (!base->Load(XeroActor, root))
+					{
+						LOGERROR("Invalid actor (actor '%s' loaded from '%s')", file, pathname.string8());
+						return false;
+					}
 				}
 				else
 				{
