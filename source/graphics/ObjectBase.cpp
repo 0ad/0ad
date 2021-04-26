@@ -869,7 +869,7 @@ bool CActorDef::Load(const VfsPath& pathname)
 					int v = GetQuality(attr.Value);
 					if (v > MAX_QUALITY)
 					{
-						LOGERROR("Qualitylevel to attribute must not be above %i (file %s)", MAX_QUALITY, pathname.string8());
+						LOGERROR("Quality levels can only go up to %i (file %s)", MAX_QUALITY, pathname.string8());
 						return false;
 					}
 					if (v <= quality)
@@ -947,7 +947,7 @@ bool CActorDef::Load(const VfsPath& pathname)
 		}
 		if (quality != MAX_QUALITY)
 		{
-			LOGERROR("Quality levels must go up to %i (file %s)", MAX_QUALITY, pathname.string8().c_str());
+			LOGERROR("The highest quality level must be %i, but the highest level found was %i (file %s)", MAX_QUALITY, quality, pathname.string8().c_str());
 			return false;
 		}
 	}
