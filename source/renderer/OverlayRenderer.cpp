@@ -30,6 +30,7 @@
 #include "maths/Quaternion.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/TexturedLineRData.h"
 #include "renderer/VertexArray.h"
@@ -224,8 +225,6 @@ void OverlayRenderer::Initialize()
 
 void OverlayRenderer::Submit(SOverlayLine* line)
 {
-	ENSURE(line->m_Coords.size() % 3 == 0);
-
 	m->lines.push_back(line);
 }
 
@@ -381,40 +380,21 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
 #else
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	pglActiveTextureARB(GL_TEXTURE0);
-	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
-
 	// Ignore z so that we draw behind terrain (but don't disable GL_DEPTH_TEST
 	// since we still want to write to the z buffer)
 	glDepthFunc(GL_ALWAYS);
 
-	for (size_t i = 0; i < m->lines.size(); ++i)
+	for (SOverlayLine* line : m->lines)
 	{
-		SOverlayLine* line = m->lines[i];
 		if (line->m_Coords.empty())
 			continue;
 
-		ENSURE(line->m_Coords.size() % 3 == 0);
-
-		glColor4fv(line->m_Color.FloatArray());
-		glLineWidth((float)line->m_Thickness);
-
-		glInterleavedArrays(GL_V3F, sizeof(float)*3, &line->m_Coords[0]);
-		glDrawArrays(GL_LINE_STRIP, 0, (GLsizei)line->m_Coords.size()/3);
+		g_Renderer.GetDebugRenderer().DrawLine(line->m_Coords, line->m_Color, static_cast<float>(line->m_Thickness));
 	}
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-
-	glLineWidth(1.f);
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_BLEND);
-
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 

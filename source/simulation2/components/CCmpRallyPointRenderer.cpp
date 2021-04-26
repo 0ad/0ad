@@ -441,7 +441,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath(size_t index, CmpPtr<ICmpPo
 		{
 			SOverlayLine overlayLine;
 			overlayLine.m_Color = CColor(1.0f, 0.0f, 0.0f, 1.0f);
-			overlayLine.m_Thickness = 2;
+			overlayLine.m_Thickness = 0.1f;
 			SimRender::ConstructSquareOnGround(GetSimContext(), point.X, point.Y, 0.2f, 0.2f, 1.0f, overlayLine, true);
 			m_DebugNodeOverlays[index].push_back(overlayLine);
 		}

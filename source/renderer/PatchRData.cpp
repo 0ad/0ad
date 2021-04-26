@@ -37,6 +37,7 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/World.h"
 #include "renderer/AlphaMapCalculator.h"
+#include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/WaterManager.h"
@@ -1121,12 +1122,7 @@ void CPatchRData::RenderOutline()
 		line.push_back(pos);
 	}
 
-#if CONFIG2_GLES
-#warning TODO: implement CPatchRData::RenderOutlines for GLES
-#else
-	glVertexPointer(3, GL_FLOAT, sizeof(CVector3D), &line[0]);
-	glDrawArrays(GL_LINE_STRIP, 0, line.size());
-#endif
+	g_Renderer.GetDebugRenderer().DrawLine(line, CColor(0.0f, 0.0f, 1.0f, 1.0f), 0.1f);
 }
 
 void CPatchRData::RenderSides(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader)

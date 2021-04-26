@@ -183,7 +183,7 @@ PlayerList.prototype.PlayerStatuses = {
 	"away": {
 		"status": translate("Away"),
 		"tags": {
-			"color": "229 76 13"
+			"color": "255 127 0"
 		}
 	},
 	"playing": {

@@ -20,6 +20,8 @@
 
 #include "graphics/ShaderProgramPtr.h"
 
+#include <vector>
+
 class CBoundingBoxAligned;
 class CBrush;
 class CCamera;
@@ -36,6 +38,12 @@ public:
 	 * Render the line in world space.
 	 */
 	void DrawLine(const CVector3D& from, const CVector3D& to, const CColor& color, const float width);
+	void DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width);
+
+	/**
+	 * Render the circle in world space oriented to the view camera.
+	 */
+	void DrawCircle(const CVector3D& origin, const float radius, const CColor& color);
 
 	/**
 	 * Render: Renders the camera's frustum in world space.

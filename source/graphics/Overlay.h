@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,22 +35,23 @@ struct SOverlayDescriptor;
 
 /**
  * Line-based overlay, with world-space coordinates, rendered in the world
- * potentially behind other objects. Designed for selection circles and debug info.
+ * potentially behind other objects. Designed for debug info.
  */
 struct SOverlayLine
 {
-	SOverlayLine() : m_Thickness(1) { }
+	SOverlayLine() : m_Thickness(0.1f) { }
 
 	CColor m_Color;
-	std::vector<float> m_Coords; // (x, y, z) vertex coordinate triples; shape is not automatically closed
-	u8 m_Thickness; // in pixels
+	// Shape is not automatically closed.
+	std::vector<CVector3D> m_Coords;
+	// Half-width of the line, in world-space units.
+	float m_Thickness;
 
-	void PushCoords(const CVector3D& v) { PushCoords(v.X, v.Y, v.Z); }
+	void PushCoords(const CVector3D& v) { m_Coords.emplace_back(v); }
+
 	void PushCoords(const float x, const float y, const float z)
 	{
-		m_Coords.push_back(x);
-		m_Coords.push_back(y);
-		m_Coords.push_back(z);
+		m_Coords.emplace_back(x, y, z);
 	}
 };
 
