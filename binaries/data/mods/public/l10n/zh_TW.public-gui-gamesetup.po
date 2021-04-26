@@ -25,15 +25,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 09:19+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/gamesettings/attributes/PlayerName.js:113
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:53
+msgctxt "team placement"
+msgid "Circle"
+msgstr "圓環"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:54
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "同盟玩家被分組並與對手玩家放置在地圖上的一個圓圈上。"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:58
+msgctxt "team placement"
+msgid "Line"
+msgstr "直線"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:59
+msgid "Allied players are placed in a linear pattern."
+msgstr "同盟玩家被放置在線性的位置。"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:63
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "隨機分隊"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:64
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "同盟玩家被分組，不過其餘的會被隨機放在地圖上。"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:68
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "要塞"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:69
+msgid "Allied players are grouped in one random place of the map."
+msgstr "同盟的玩家被分組在地圖的一個隨機位置。"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

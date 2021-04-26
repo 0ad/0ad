@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-19 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-25 13:31+0000\n"
+"Last-Translator: Vytautas\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1520,6 +1520,11 @@ msgstr "(registravimui laikykite)"
 msgid "Enter new Hotkey, hold to register."
 msgstr "Įveskite naują klavišą, registravimui laikykite."
 
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr ""
+
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr "Gali konfliktuoti su:"
@@ -2838,7 +2843,7 @@ msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3650,6 +3655,15 @@ msgstr "Žemėlapiai: %(mapCount)s"
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Lapas: %(currentPage)s/%(maxPage)s"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Atsitiktinis"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr ""
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4602,7 +4616,7 @@ msgstr "išiungti"
 
 #: gui/options/options.json[5].options[6].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Pabaigta"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
@@ -4938,9 +4952,11 @@ msgstr "Gyvi pokalbiai"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Atverk 0 A.D. IRC pokalbių kambarį savo naršyklėje (#0ad, serveryje webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4951,18 +4967,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "Išverskite Žaidimą"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Spauskite, kad atidatymėte 0 A.D. vertimo puslapį savo naršyklėje."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "Paremkite"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "Paremkite, kad padėtumėte su projekto išlaidomis."
 

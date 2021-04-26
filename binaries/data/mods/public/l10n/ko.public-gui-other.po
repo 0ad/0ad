@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-19 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-25 15:26+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1495,6 +1495,11 @@ msgstr "(등록하려면 길게 누르세요)"
 msgid "Enter new Hotkey, hold to register."
 msgstr "새로운 단축키를 입력하고, 등록하려면 길게 누르십시오."
 
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr "(미사용)"
+
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr "다음과 충돌할 수 있음:"
@@ -1520,7 +1525,7 @@ msgstr "확인"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "사용 가능한 툴팁 없음"
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -2813,7 +2818,7 @@ msgstr "되감기 시간. 타임워프가 활성화되어 있어야 합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr "되감기 (타임워프)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3231,12 +3236,12 @@ msgstr "제어 그룹 9 선택"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "다음 노는 건설 유닛을 선택합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "다음 노는 건설 유닛 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
@@ -3625,6 +3630,15 @@ msgstr "지도: %(mapCount)s"
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "페이지: %(currentPage)s/%(maxPage)s"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "무작위"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr "무작위로 지도를 선택합니다."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4380,16 +4394,16 @@ msgstr "선택한 각 유닛 위에 경험 상태 표시줄 표시합니다."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr "상세 도움말"
+msgstr "자세한 툴팁"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "유닛 양성 건축물에서 훈련이 가능한 유닛의 상세 도움말을 표시합니다."
+msgstr "유닛 양성 건축물에서 훈련이 가능한 유닛의 자세한 툴팁을 표시합니다."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
-msgstr "자원 및 인구 도움말 정렬"
+msgstr "자원 정렬 및 인구 툴팁"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -4406,7 +4420,7 @@ msgstr "내림차순"
 #: gui/options/options.json[5].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr "자원 및 인구 도움말의 플레이어를 값별로 동적으로 정렬합니다."
+msgstr "값별로 자원 및 인구 툴팁에서 다이내믹하게 정렬합니다."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
@@ -4913,9 +4927,11 @@ msgstr "대화"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "브라우저에서 0 A.D. IRC 채팅을 열려면 클릭하십시오. (#0ad on webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr "브라우저에서 0 A.D. IRC 채팅을 열려면 여기를 클릭하십시오.(webchat.quakenet.org의 #0ad) 모든 종류의 작업을 수행하는 자원 봉사자가 운영하며 질문에 대한 답변을 얻는 데 시간이 걸릴 수 있습니다. 또는 포럼을 사용할 수 있습니다(웹 사이트 참조)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4926,18 +4942,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "0 A.D. Trac을 클릭하여 버그, 충돌 또는 오류를 보고합니다."
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr "자주 묻는 질문 "
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr "브라우저에서 자주묻는 질문 페이지를 방문하려면 클릭하십시오."
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "게임 번역"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "브라우저에서 0 A.D. 번역 페이지를 열려면 클릭하십시오."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "기부"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "기부함으로써 프로젝트 비용을 도와주십시오."
 
@@ -5970,7 +5995,7 @@ msgstr "모든 파벌에 대한 건축물을 연구합니다."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr "당신 유닛의 무기와 방어구를 향상하기 위한 연구를 합니다."
+msgstr "유닛의 무기 및 방어구 업그레이드를 연구하십시오."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

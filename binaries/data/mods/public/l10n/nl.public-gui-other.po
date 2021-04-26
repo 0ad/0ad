@@ -12,7 +12,7 @@
 # bb <b.jansen5@students.uu.nl>, 2019-2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
-# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
+# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016,2021
 # Ellen Roels, 2015
 # 0df07244571ee3139f3030c73f383bf7_b45dbf3 <0dbf15e41aaa6214dad933946b05b915_279461>, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
@@ -40,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-22 13:16+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 20:12+0000\n"
+"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1523,6 +1523,11 @@ msgstr " (houd ingedrukt om vast te leggen)"
 msgid "Enter new Hotkey, hold to register."
 msgstr "Voer nieuwe sneltoets in, houd ingedrukt om vast te leggen."
 
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr "(ongebruikt)"
+
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr "Kan problemen geven met:"
@@ -2841,7 +2846,7 @@ msgstr "Activeer achteruit spoelen. Timewarp moet geactiveerd zijn."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr "Achteruit spoelen (timewarp)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3653,6 +3658,15 @@ msgstr "Kaarten: %(mapCount)s"
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Pagina: %(currentPage)s/%(maxPage)s"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Willekeurig"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr "Kies een willekeurige map."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4941,9 +4955,11 @@ msgstr "Chat"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Klik om de IRC chat in uw webbrowser te openen. (#0ad op webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr "Klik om de 0 A.D. IRC chat te openen in je browser (#0ad op webchat.quakenet.org). Deze wordt gerunt door vrijwilligers die allerlei taken uitvoeren, het kan een tijdje duren vooraleer je vraag beantwoord wordt. Als alternatief kan je ook het forum gebruiken (zie Website)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4954,18 +4970,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander probleem te melden."
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr "FAQ"
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr "Klik om de veel gestelde vragen pagina te openen in je browser."
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "Vertaal het spel"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klik om de 0 A.D. vertaalpagina te openen in uw browser."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "Doneer"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "Help het project met een donatie."
 

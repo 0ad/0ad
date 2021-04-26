@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-21 15:12+0000\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-24 18:38+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -764,27 +764,27 @@ msgstr "Estää kohteen %(name)s"
 #: gui/common/tooltips.js:287
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Keston lyhennys: %(durationReduction)s %%"
 
 #: gui/common/tooltips.js:282
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Estäää: %(blockPercentage)s %%"
 
 #: gui/common/tooltips.js:289
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Estää: %(blockPercentage)s %%, keston lyhennys: %(durationReduction)s %%"
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Miehitä ampuaksesi nuolia."
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
@@ -798,8 +798,8 @@ msgstr "Taso:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:315
 msgid "arrow"
@@ -810,7 +810,7 @@ msgstr[1] "Nuolia"
 #: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:338
@@ -906,7 +906,7 @@ msgstr "Ei"
 #: gui/common/tooltips.js:414
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "antaa %(name)s"
 
 #: gui/common/tooltips.js:447
 #, javascript-format
@@ -945,17 +945,17 @@ msgstr "Kesto"
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(laajentaa)"
 
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(korvaa)"
 
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(pinoutuu)"
 
 #: gui/common/tooltips.js:541
 #, javascript-format
@@ -996,16 +996,16 @@ msgstr "Varuskunnan koko"
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+"
 
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "Tykkitornien sijainnit"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1015,7 +1015,7 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:616
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Ammusten enimmäismäärä"
 
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
@@ -1025,7 +1025,7 @@ msgstr "Oletus"
 #: gui/common/tooltips.js:626
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Per yksikkö"
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
@@ -1498,6 +1498,11 @@ msgstr ""
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
 msgstr ""
 
 #: gui/hotkeys/HotkeyPicker.js:116
@@ -2622,7 +2627,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Näytä moninpeliaula valintaikkunassa."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -2818,7 +2823,7 @@ msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3631,6 +3636,15 @@ msgstr ""
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr ""
 
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Satunnainen"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr ""
+
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
@@ -3696,25 +3710,25 @@ msgstr ""
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Taustapysäytys"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Keskeytä yksinpelit kun ikkuna kadottaa kohdistuksen."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Ota tervetulonäyttö käyttöön"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Jos poistat sen käytöstä, tervetulonäyttö tulee silti näkyviin yhden kerran aina, kun uusi versio on saatavilla. Voit milloin tahansa käynnistää sen päävalikosta."
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "FPS-kerros"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -3722,7 +3736,7 @@ msgstr "Näytä FPS (kuvaa per sekunti) oikeassa yläkulmassa."
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Todellisen ajan kerros"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
@@ -3730,7 +3744,7 @@ msgstr "Näytä nykyinen systeemiaika oikeassa yläkulmassa."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Peliaikakerros"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
@@ -3738,7 +3752,7 @@ msgstr "Näytä simulaatioaika ylä-oikeassa laidassa."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Aselepoaikakerros"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -3746,7 +3760,7 @@ msgstr "Ainan näytä jäljellä oleva aselepoaika."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Keskustelun aikaleima"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
@@ -3754,43 +3768,43 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Kohteiden nimeäminen."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
-msgstr ""
+msgstr "Erisnimi ensin."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
+msgstr "Näytä erisnimet ensisijaisina ja yleisnimet toissijaisina."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic primary."
-msgstr ""
+msgstr "Yleisnimi ensin."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
+msgstr "Näytä yleisnimet ensisijaisina ja erisnimet toissijaisina."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
-msgstr ""
+msgstr "Vain erisnimet."
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Show only specific names for units."
-msgstr ""
+msgstr "Näytä vain yksiköiden erisnimet."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Vain yleisnimet."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr "Näytä vain yksiköiden yleisnimet."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Määrittää kuinka yksiköiden nimet näytetään."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -3798,7 +3812,7 @@ msgstr "Grafiikat"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Ikkunoitu tila"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -3806,7 +3820,7 @@ msgstr "Käynnistä 0 A.D. ikkunassa."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Varjojen laatu"
 
 #: gui/options/options.json[1].options[10].list[0].label
 msgid "Very Low"
@@ -3820,11 +3834,11 @@ msgstr "Hyvin korkea"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Varjokartan resoluutio. Suuret arvot voivat kaataa pelin, jos käytössä on vähämuistinen näytönohjain!"
 
 #: gui/options/options.json[1].options[11].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Varjojen suodatus"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Smooth shadows."
@@ -3832,11 +3846,11 @@ msgstr "Pehmeät varjostukset"
 
 #: gui/options/options.json[1].options[12].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Yksikköjen varjokuvat"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Näytä yksiköiden ääriviivat rakennusten takana."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Particles"
@@ -3848,17 +3862,17 @@ msgstr "Salli partikkelit."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Water effects"
-msgstr ""
+msgstr "Vesitehosteet"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Kun tämä on pois päältä, veden renderöintiin käytetään mahdollisimman alhaisia asetuksia. Tämä tekee muista asetuksista merkityksettömiä."
 
 #: gui/options/options.json[1].options[15].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Korkealaatuiset vesitehosteet"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid ""
@@ -3868,35 +3882,35 @@ msgstr "Käytä korkealaatuisia tehosteita vedelle, rannikon aaltojen renderöin
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Veden heijastukset"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Salli veden heijastaa peilikuva."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Valon taittuminen vedessä"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Käytä valon oikeaa taittumista vedessä läpinäkyvyyden sijaan."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Oikea vedensyvyys"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Käytä veden oikeaa syvyyttä renderöintilaskelmissa."
 
 #: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Pehmeä näkökenttä"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Poistaa pimeyden ja sotasumun pehmeästi."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -3916,23 +3930,23 @@ msgstr "Käytä pystysynkronaatiota korjataksesi näytön \"repeilyt\". VAATII P
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "FPS:n rajoittaminen valikoissa"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "Säästääksesi suorittimen työmäärää, rajoita renderöintitiheyttä kaikissa valikoissa. Aseta arvo maksimiin, jos haluat poistaa rajoittamisen käytöstä."
 
 #: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "FPS:n rajoittaminen pelissä"
 
 #: gui/options/options.json[1].options[22].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "Säästääksesi suorittimen työmäärää, rajoita renderöintitiheyttä käynnissä olevissa peleissä. Aseta arvo maksimiin, jos haluat poistaa rajoittamisen käytöstä."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -3940,19 +3954,19 @@ msgstr "Sumu"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Ota sumu käyttöön."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Jälkikäsittely"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Käytä näyttötilan jälkikäsittelysuotimia (HDR, Bloom, DOF, jne)"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Reunojenpehmennys"
 
 #: gui/options/options.json[1].options[4].list[0].label
 #: gui/options/options.json[1].options[5].list[0].label
@@ -3963,91 +3977,91 @@ msgstr "Pois käytöstä"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Ei reunojenpehmennystä."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Nopea, mutta yksinkertainen reunojenpehmennys."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Hidas, mutta laadukas reunojenpehmennys. Käyttää kahta näytettä pikseliä kohden. Tuettu GL3.3:sta alkaen."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Hidas, mutta laadukas reunojenpehmennys. Käyttää neljää näytettä pikseliä kohden. Tuettu GL3.3:sta alkaen."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Hidas, mutta laadukas reunojenpehmennys. Käyttää kahdeksaa näytettä pikseliä kohden. Tuettu GL3.3:sta alkaen."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Hidas, mutta laadukas reunojenpehmennys. Käyttää kuuttatoista näytettä pikseliä kohden. Tuettu GL3.3:sta alkaen."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Vähennä reunojen laskostumista."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Terävöitys"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Ei terävöitystä."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Kontrastiin mukautuva terävöitys – nopea kontrastiin perustuva terävöitysmentelmä."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Vähennä sumeutta."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Terävyyskerroin"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Valitun terävöitysmenetelmän terävyystaso."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "Mallien laatu"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label
@@ -4056,7 +4070,7 @@ msgstr "Matala"
 
 #: gui/options/options.json[1].options[7].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Yksinkertaisemmat mallit parantavat suorituskykyä."
 
 #: gui/options/options.json[1].options[10].list[2].label
 #: gui/options/options.json[1].options[7].list[1].label
@@ -4066,7 +4080,7 @@ msgstr "Keskinkertainen"
 
 #: gui/options/options.json[1].options[7].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Keskinkertainen laatu ja keskinkertainen suorituskyky."
 
 #: gui/options/options.json[1].options[10].list[3].label
 #: gui/options/options.json[1].options[7].list[2].label
@@ -4075,19 +4089,19 @@ msgstr "Korkea"
 
 #: gui/options/options.json[1].options[7].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Korkealaatuiset mallit."
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Mallin laatuasetus."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Varjostintehosteet"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Varjostintehosteiden määrä. VAATII PELIN UUDELLEENKÄYNNISTÄMISEN"
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadows"
@@ -4099,11 +4113,11 @@ msgstr "Salli varjot."
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Aseta tasapaino suorituskyvyn ja ulkonäön välille."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Pää-äänenvoimakkuus."
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
@@ -4111,23 +4125,23 @@ msgstr "Äänenvoimakkuuden taso."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Musiikin voimakkuus"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "Pelinsisäisen musiikin vahvistus."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Taustaäänien voimakkuus"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "Pelinsisäisten taustaäänien vahvistus."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Toimintaäänien voimakkuus"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -4582,7 +4596,7 @@ msgstr "Poista käytöstä"
 
 #: gui/options/options.json[5].options[6].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Suoritettu"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
@@ -4748,7 +4762,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
-msgstr ""
+msgstr "Lataa kampanja"
 
 #: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
@@ -4918,9 +4932,11 @@ msgstr "Keskustelu"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Paina avataksesi 0 A.D. -IRC-chatin selaimessasi. (#0ad-kanava osoitteessa webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4931,18 +4947,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Paina vieraillaksesi 0 A.D. -Trac-sivustolla. Voit raportoida bugeista, kaatumisista tai virheistä."
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "Käännä peliä"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Paina avataksesi 0 A.D. -käännössivuston selaimessasi."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "Lahjoita"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "Auta projektin kustannusten suhteen lahjoittamalla."
 

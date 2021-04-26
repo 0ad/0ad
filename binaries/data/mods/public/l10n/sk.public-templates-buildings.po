@@ -23,13 +23,13 @@
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Tom Hanax, 2019
-# Zuzana Miadoková <akara.horse@gmail.com>, 2019
+# Zuzana Miadoková <akara.horse@gmail.com>, 2019,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 07:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-25 15:26+0000\n"
+"Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -322,7 +322,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr "Vybudujte na pobreží vlastného, neutrálneho alebo spojeneckého územia. Získajte veľké čiastky územia. Kmeň územia. Trénujte občanov, budujte lode a skúmajte technológie. Vytvorte posádku z vojakov pre ďalšie šípy."
+msgstr "Vybudujte na pobreží vlastného, neutrálneho alebo spojeneckého územia. Získajte veľké čiastky územia. Kmeň územia. Trénuje občanov, buduje lode a skúma technológie. Vytvorte posádku z vojakov pre dodatočné šípy."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -365,7 +365,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Kmeň územia. Vycvičiť hrdinov. Vytvorte posádku z vojakov pre viac šípov."
+msgstr "Kmeň územia. Cvičí hrdinov. Vytvorte posádku z vojakov pre viac šípov."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -464,7 +464,7 @@ msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr "Trénuj žoldnierov a skúmaj žoldnierske technológie."
+msgstr "Trénuje žoldnierov a skúma žoldnierske technológie."
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -638,7 +638,7 @@ msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul/assembly.xml:32
 msgid "Train Champion Trumpeters and Heroes."
-msgstr "Trénuj šampiónov trubadúrov a hrdinov."
+msgstr "Trénuje šampiónov trubadúrov a hrdinov."
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
@@ -799,7 +799,7 @@ msgstr "Tábor Blemmye"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr "Trénuj Blemmye žoldnierov"
+msgstr "Trénuje žoldnierov Blemmye."
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
@@ -807,7 +807,7 @@ msgstr "Dedina Noba"
 
 #: simulation/templates/structures/kush/camp_noba.xml:23
 msgid "Train Noba Mercenaries."
-msgstr "Trénuj Noba žoldierov"
+msgstr "Trénuje Noba žoldierov."
 
 #: simulation/templates/structures/kush/civil_centre.xml:9
 msgid "Pr-nsw"
@@ -859,7 +859,7 @@ msgstr "trtr"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:26
 msgid "Large Pyramid"
-msgstr "Veľka pyramída"
+msgstr "Veľká pyramída"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:27
 msgid "mr ʿȝ"
@@ -913,11 +913,11 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedemak Champions and research healing technologies."
-msgstr "Trénuj liečiteľov, šampiónov Apedemaku a skúmaj liečiace technológie. "
+msgstr "Trénuje liečiteľov, šampiónov Apedemak a skúma liečiace technológie. "
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
-msgstr "Chrám Apedemakov"
+msgstr "ChrámApedemak"
 
 #: simulation/templates/structures/kush/temple_amun.xml:27
 msgid "Grand Temple of Amun"
@@ -929,11 +929,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
 msgid "Train Amun Champions and Elite Healers. Research healing technologies."
-msgstr ""
+msgstr "Trénuje šampiónov Amuna a Elitných liečiteľov. Skúma liečiteľské technológie."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr "AmonovChrám"
+msgstr "AmunovChrám"
 
 #: simulation/templates/structures/kush/wall_gate.xml:9
 msgid "ʿryt"
@@ -1341,7 +1341,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
 " Soldiers for additional arrows."
-msgstr ""
+msgstr "Postavte na neutrálnom alebo nepriateľskom teritóriu. Trénuje Pokročilú pechotu na boj zblízka. Vytvorte posádku vojakov pre dodatočné šípy."
 
 #: simulation/templates/structures/rome/army_camp.xml:38
 #: simulation/templates/structures/rome/army_camp.xml:75

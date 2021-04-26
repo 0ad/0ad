@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-21 15:49+0000\n"
+"PO-Revision-Date: 2021-04-24 08:43+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -316,7 +316,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr "Rakenna rantaviivalle omalle, puolueettomalle tai liittoutuneiden alueelle. Hanki suuria maa-alueita. Alueen juuri. Kouluta kansalaisia, rakenna aluksia ja tutki teknologioita. Määrää sotilaita varuskuntaan saadaksesi lisänuolia."
+msgstr "Rakenna rantaviivalle omalle, puolueettomalle tai liittoutuneiden alueelle. Hanki suuria maa-alueita. Alueen juuri. Kouluta kansalaisia, rakenna aluksia ja tutki teknologioita. Miehitä sotilailla saadaksesi lisänuolia."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -359,7 +359,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Alueen juuri. Kouluta sankareita. Määrää sotilaita varuskuntaan saadaksesi lisänuolia."
+msgstr "Alueen juuri. Kouluta sankareita. Miehitä sotilailla saadaksesi lisänuolia."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -1057,7 +1057,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr "Korkean terveystason torni, jossa on valleja jopa 16 jousimiehelle. Näkyvästi varuskuntaan määrätyt jousimiehet saavat etäisyys- ja panssaribonuksen. Vain jousimiehiä voi määrätä varuskuntaan. Tarvitsee ampuma-aukkoteknologian ampuakseen juurelle."
+msgstr "Korkean terveystason torni, jossa on valleja jopa 16 jousimiehelle. Näkyvästi tornia miehittävät jousimiehet saavat etäisyys- ja panssaribonuksen. Voidaan miehittää vain jousimiehillä. Tarvitsee ampuma-aukkoteknologian ampuakseen juurelle."
 
 #: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
@@ -1335,7 +1335,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
 " Soldiers for additional arrows."
-msgstr "Rakenna puolueettomalle tai vihollisen alueelle. Kouluta edistynyttä lähitaistelujalkaväkeä. Määrää sotilaita varuskuntaan saadaksesi lisänuolia."
+msgstr "Rakenna puolueettomalle tai vihollisen alueelle. Kouluta edistynyttä lähitaistelujalkaväkeä. Miehitä sotilailla saadaksesi lisänuolia."
 
 #: simulation/templates/structures/rome/army_camp.xml:38
 #: simulation/templates/structures/rome/army_camp.xml:75
@@ -1609,7 +1609,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr "Rakennetaan omalle tai puolueettomalle alueelle. Hanki suuria aluekokonaisuuksia. Alueen juuri. Kouluta kansalaisia ja tutki teknologioita. Määrää sotilaita varuskuntaan saadaksesi lisänuolia."
+msgstr "Rakennetaan omalle tai puolueettomalle alueelle. Hanki suuria aluekokonaisuuksia. Alueen juuri. Kouluta kansalaisia ja tutki teknologioita. Miehitä sotilailla saadaksesi lisänuolia."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:44
 #: simulation/templates/template_structure_civic_civil_centre.xml:81
@@ -1694,7 +1694,7 @@ msgstr "Vartiotorni"
 msgid ""
 "Build in own or neutral territory. No vision range unless garrisoned. Slowly"
 " converts to Gaia while in neutral territory."
-msgstr "Rakennetaan omalle tai puolueettomalle alueelle. Ei näköetäisyyttä, ellei yksiköitä ole määrätty varuskuntaan. Muuttuu hitaasti Gaian omistamaksi puolueettomalla alueella ollessaan."
+msgstr "Rakennetaan omalle tai puolueettomalle alueelle. Ei näköetäisyyttä, ellei miehitetty yksiköillä. Muuttuu hitaasti Gaian omistamaksi puolueettomalla alueella ollessaan."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1749,7 +1749,7 @@ msgstr "Vartiotorni"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr "Määrää jalkaväkeä varuskuntaan saadaksesi lisänuolia. Tarvitsee ampuma-aukkoteknolologian ampuakseen juurelle."
+msgstr "Miehitä jalkaväellä saadaksesi lisänuolia. Tarvitsee ampuma-aukkoteknolologian ampuakseen juurelle."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 msgid "SentryTower"
@@ -1931,7 +1931,7 @@ msgstr "Linnoitus"
 
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Territory root. Garrison Soldiers for additional arrows."
-msgstr "Terrotorion juuri. Määrää sotilaita varuskuntaan saadaksesi lisänuolia."
+msgstr "Terrotorion juuri. Miehitä sotilailla saadaksesi lisänuolia."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

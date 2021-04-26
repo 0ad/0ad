@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-20 16:11+0000\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-24 18:02+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1493,6 +1493,11 @@ msgstr "(Calténlu calcáu p'asignalu)"
 msgid "Enter new Hotkey, hold to register."
 msgstr "Introduz l'atayu nuevu, calténlu calcáu p'asignalu."
 
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr "(nun s'usa)"
+
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr "Pue criar conflictos con:"
@@ -2811,7 +2816,7 @@ msgstr "Volver p'atrás nel tiempu. Tien que tar activáu l'alteriamientu tempor
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr "Volver atrás (alteriamientu temporal)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3623,6 +3628,15 @@ msgstr "Mapes: %(mapCount)s"
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Páxina: %(currentPage)s/%(maxPage)s"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Al debalu"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr "Escoyer un mapa al debalu."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4899,7 +4913,7 @@ msgstr "Avisu: El xuegu sigue en desendolcu y entá queden munchos elementos por
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
-msgstr "Sitiu Web"
+msgstr "Sitiu na rede"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
@@ -4911,9 +4925,11 @@ msgstr "Charrar"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Calca p'abrir la charra IRC de 0 A.D. en restolador Web. (#0ad en webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr "Calca p'abrir la charra IRC de 0 A.D. en restolador (#0ad en webchat.quakenet.org). Caltiénenla voluntarios que faen toa mena de coses, asina que podría llevar un tiempu recibir rempuesta. Como alternativa, puedes usar el foru (ver «Sitiu na rede»)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4924,18 +4940,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Calca pa visitar 0 A.D. Trac pa informar d'un bloquéu o fallu."
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr "Entrugues frecuentes"
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr "Calca pa visitar la páxina «Entrugues frecuentes» nel restolador."
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "Traducir el xuegu"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Calca p'abrir la páxina de la torna de 0 A.D. en restolador."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "Donar"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "Ayuda colos gastos del proxeutu donando."
 

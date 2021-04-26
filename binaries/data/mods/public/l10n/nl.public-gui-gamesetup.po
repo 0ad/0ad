@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 19:01+0000\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 09:19+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -55,6 +55,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/gamesettings/attributes/PlayerName.js:113
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:53
+msgctxt "team placement"
+msgid "Circle"
+msgstr "Cirkel"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:54
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "Geallieerde spelers komen bij elkaar en zitten met de tegenstanders in een cirkel rondom de kaart."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:58
+msgctxt "team placement"
+msgid "Line"
+msgstr "Lijn"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:59
+msgid "Allied players are placed in a linear pattern."
+msgstr "Geallieerde spelers worden in een lijn geplaatst."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:63
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "Willekeurige groep"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:64
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "Geallieerde spelers komen bij elkaar, maar op willekeurige plekken op de kaart."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:68
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Fort"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:69
+msgid "Allied players are grouped in one random place of the map."
+msgstr "Geallieerde spelers komen bij elkaar op één willekeurige plek op de kaart."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

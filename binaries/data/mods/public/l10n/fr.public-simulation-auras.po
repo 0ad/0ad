@@ -16,7 +16,7 @@
 # curieux de l'être <skimandco@gmail.com>, 2017
 # David D, 2018
 # François Poirotte <clicky@erebot.net>, 2016
-# gab tes, 2020
+# gab_tes, 2020
 # Guillaume Gonthier <ggonthier@live.fr>, 2017
 # Hadri man <hadriman@live.fr>, 2018
 # Hamza ESSAD <essadhamza@outlook.fr>, 2017
@@ -40,6 +40,7 @@
 # Nolan Dartois <misterdevil59450@gmail.com>, 2019
 # oiseauroch <tobollive@aol.com>, 2018
 # Olivier Dupuis <oj.dupuis@gmail.com>, 2020
+# Oumph <oumph@free.fr>, 2021
 # PierrC <pierre.yves.cudennec@gmail.com>, 2018
 # Pierre Juste <supernovae@hotmail.com>, 2019
 # polien delamarque <m.oleil@laposte.net>, 2016
@@ -53,8 +54,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 06:47+0000\n"
-"Last-Translator: Raz Ou <razieze@ymail.com>\n"
+"PO-Revision-Date: 2021-04-25 09:26+0000\n"
+"Last-Translator: Oumph <oumph@free.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,7 +173,7 @@ msgstr "Hellénisation"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr "Augmente l'armure de +3 et le champs de vision de +20 pour les soldats en garnison dans les tourelles."
+msgstr "Augmente l'armure de +3 et le champ de vision de +20 pour les soldats en garnison dans les tourelles."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -182,7 +183,7 @@ msgstr "Mur protecteur"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr "Augmente la limite de population maximale de +20% (requiert la technologie “Expansion Glorieuse“)."
+msgstr "Augmente la limite de population maximale de +20% (requiert la technologie “Expansion glorieuse“)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -467,7 +468,7 @@ msgstr "Grand Libraire"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female Citizens −20% food cost and +10% gather speed."
-msgstr "Après le viole de Lucretia par le fils du Roi Tarquin le Superbe et son suicide subséquent, Brutus jura de la venger et de renverser la monarchie.\nLes Citoyennes demandent 20% de nourriture en moins et gagnent 10% de vitesse de récolte"
+msgstr "Après le viol de Lucretia par le fils du Roi Tarquin le Superbe et son suicide subséquent, Brutus jura de la venger et de renverser la monarchie.\nLes Citoyennes demandent 20% de nourriture en moins et gagnent 10% de vitesse de récolte"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -507,7 +508,7 @@ msgstr "Immigration"
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "Champion Elephants −10% resource costs."
-msgstr "Le fils de Séleucos Nicator, Antiochos réussit la tâche formidable de garder l'Empire soudé, tout en construisant des temples et en défaisant les envahisseurs Gaulois avec des éléphant de guerre.\nLes Éléphants Champions coûtent 10% de ressources en moins."
+msgstr "Le fils de Séleucos Nicator, Antiochos réussit la tâche formidable de garder l'Empire soudé, tout en construisant des temples et en défaisant les envahisseurs gaulois avec des éléphant de guerre.\nLes Éléphants champions coûtent 10% de ressources en moins."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
@@ -517,7 +518,7 @@ msgstr "Basileus Megas"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "Citizen Infantry Spearmen −10% resource costs."
-msgstr "Lycurgus institua plusieurs reformes militaires, ainsi l'allégeance complète et non divisé avec Sparte venant de ses citoyens fut implémenté sous la forme d'un gouvernement.\nLes Citoyens Lancier d'Infanterie coûtent 10% de ressources en moins. "
+msgstr "Lycurgus institua plusieurs reformes militaires, ainsi l'allégeance complète et non divisé avec Sparte venant de ses citoyens fut implémenté sous la forme d'un gouvernement.\nLes Citoyens lanciers d'infanterie coûtent 10% de ressources en moins. "
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -544,7 +545,7 @@ msgstr "Les Bâtisseurs construisent 25% plus vite."
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
-msgstr "Éléphants Ouvriers"
+msgstr "Éléphants ouvriers"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
@@ -629,7 +630,7 @@ msgstr "Britannorum Rex"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Soldiers and Siege Engines +15% movement speed."
-msgstr "Les Soldats et les Engins de Sièges gagnent 15% de vitesse de déplacement."
+msgstr "Les Soldats et les Engins de sèges gagnent 15% de vitesse de déplacement."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
@@ -647,7 +648,7 @@ msgstr "Maître des Mercenaires"
 msgid ""
 "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
 "melee and ranged attack damage."
-msgstr "Les soldats et les Engins de Sièges , les vôtres comme les alliés , gagnent +1 en force de capture d'attaque, et 20% de dégâts mêlée et distance."
+msgstr "Les soldats et les Engins de sièges , les vôtres comme les alliés , gagnent +1 en force de capture d'attaque, et 20% de dégâts mêlée et distance."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -663,7 +664,7 @@ msgstr "Commandant de cavalerie"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "Humans, Siege Engines, and Ships gain +15 metal loot."
-msgstr "Les Humains, les Engins de Sièges, et les Navires gagnent +15 de butin de métal en plus"
+msgstr "Les Humains, les Engins de sièges, et les Navires gagnent +15 de butin de métal en plus"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -673,7 +674,7 @@ msgstr "Saccageur de Rome"
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "Les Soldats et les Engins de Sièges gagnent +1 en force de capture d'attaque, et 20% de dégât mêlée et distance. "
+msgstr "Les soldats et les engins de sièges gagnent +1 en force de capture d'attaque, et 20% de dégât mêlée et distance. "
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
@@ -687,7 +688,7 @@ msgstr "Préparation à la guerre"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr "En garnison, la Structure gagne +2 en taux de régénération de points de capture de garnison."
+msgstr "En garnison, la structure gagne +2 en taux de régénération de points de capture de garnison."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -695,7 +696,7 @@ msgstr "Défense inspirée"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
-msgstr "En garnison, la structure ou la Tour de Siège gagnent 75% de flèches supplémentaires."
+msgstr "En garnison, la structure ou la Tour de siège gagnent 75% de flèches supplémentaires."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -703,7 +704,7 @@ msgstr "Vaillant défenseur"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
-msgstr "Les Soldats  gagnent +1 dégât écrasant, tranchant, perçant."
+msgstr "Les soldats  gagnent +1 dégât écrasant, tranchant, perçant."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -711,7 +712,7 @@ msgstr "Ferveur de bataille"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr "Les Soldats coûtent 15% de ressources en moins, et leur temps de formation est réduite de 20%."
+msgstr "Les soldats coûtent 15% de ressources en moins, et leur temps de formation est réduite de 20%."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -723,7 +724,7 @@ msgstr "Les soldats gagnent 20% de vitesse de déplacement."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
-msgstr "Les Soldats et les Engins de Sièges gagnent 100% de butin de ressources en plus."
+msgstr "Les soldats et les engins de sièges gagnent 100% de butin de ressources en plus."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
@@ -777,7 +778,7 @@ msgstr "Sauveur de Koush"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
-msgstr "Les Trirèmes Koushite coûtent 50 de bois et de métal de moins."
+msgstr "Les Trirèmes koushites coûtent 50 de bois et de métal de moins."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
@@ -793,7 +794,7 @@ msgstr "Impérialisme"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr "Les Centres Civiques ennemies perdent 50% du taux de régénération des points de capture de garnison."
+msgstr "Les centres-villes ennemis perdent 50% du taux de régénération des points de capture en garnison."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
@@ -866,7 +867,7 @@ msgstr "Commandant de première ligne"
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
-msgstr "Les Soldats, les Engins de Sièges, les Marchands et les Navires Marchands gagnent 15% de vitesse de déplacement."
+msgstr "Les soldats, les engins de sièges, les marchands et les navires marchands gagnent 15% de vitesse de déplacement."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
@@ -882,7 +883,7 @@ msgstr "Administrateur"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr "Les Soldats et les Engins de Sièges gagnent 20% de répétition mêlée et distance en moins"
+msgstr "Les soldats et les engins de sièges gagnent 20% de répétition mêlée et distance en moins"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"

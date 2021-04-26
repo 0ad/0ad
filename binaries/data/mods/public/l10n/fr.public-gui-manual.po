@@ -25,6 +25,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
 # oiseauroch <tobollive@aol.com>, 2018
+# Oumph <oumph@free.fr>, 2021
 # Raz Ou <razieze@ymail.com>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Polakrity <sxk-fr@live.fr>, 2017-2019
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 04:41+0000\n"
-"Last-Translator: Raz Ou <razieze@ymail.com>\n"
+"PO-Revision-Date: 2021-04-25 09:07+0000\n"
+"Last-Translator: Oumph <oumph@free.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -245,7 +246,7 @@ msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr "  hotkey.bigscreenshot – Prenez capture d'écran grand format (6400 × 4800 pixels, au format .bmp, l'emplacement est affiché en haut à gauche de l'interface graphique après que le fichier a été enregistré, et peut également être vu dans la console/journal si vous ne le trouvez pas)"
+msgstr "  hotkey.bigscreenshot – Prendre une capture d'écran grand format (6400 × 4800 pixels, au format .bmp, l'emplacement est affiché en haut à gauche de l'interface graphique après que le fichier a été enregistré, et peut également être vu dans la console/journal si vous ne le trouvez pas)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
@@ -301,7 +302,7 @@ msgstr "  hotkey.timeelapsedcounter.toggle –  Afficher/Masquer le temps écoul
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr "  hotkey.cancel – Ferme toutes les boîtes de dialogue (chat, menu) "
+msgstr "  hotkey.cancel – Fermer toutes les boîtes de dialogue (chat, menu) "
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
@@ -362,13 +363,13 @@ msgstr "hotkey.selection.idlebuilder – Sélectionner un bâtisseur inactif"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr "  hotkey.selection.idlewarrior – Sélectionnez un combattant inactif"
+msgstr "  hotkey.selection.idlewarrior – Sélectionner un combattant inactif"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr "  hotkey.selection.idleworker – Sélectionnez un travailleur oisif (y compris les citoyens-soldats)"
+msgstr "  hotkey.selection.idleworker – Sélectionner un travailleur oisif (y compris les citoyens-soldats)"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
@@ -398,7 +399,7 @@ msgstr "  hotkey.selection.group.save.1 – Créer le groupe de contrôle 1 (à 
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr "  hotkey.selection.group.select.1 – Sélectionne les unité(s)/structure(s) dans le groupe de contrôle 1"
+msgstr "  hotkey.selection.group.select.1 – Sélectionner les unité(s)/structure(s) dans le groupe de contrôle 1"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -410,13 +411,13 @@ msgstr "  hotkey.selection.group.add.1 – Ajouter le groupe de contrôle 1 aux 
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr "  hotkey.camera.jump.set.1 – Marquez la position de la caméra, pour y retourner plus tard (par défaut, il y a 4 positions possibles)"
+msgstr "  hotkey.camera.jump.set.1 – Marquer la position de la caméra, pour y retourner plus tard (par défaut, il y a 4 positions possibles)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr "  hotkey.camera.jump.1 – Déplacez la caméra vers une position marquée. Revenez au dernier emplacement si la caméra est déjà au-dessus de la position marquée"
+msgstr "  hotkey.camera.jump.1 – Déplacer la caméra vers une position marquée. Revenir au dernier emplacement si la caméra est déjà au-dessus de la position marquée"
 
 #: gui/manual/intro.txt:86
 msgid ""
@@ -425,19 +426,19 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – With une structure d'entraînement selectetionnée. Ajoute la 1ère, 2ème, … unité en file d'attente d'entraînement pour toutes les structures sélectionnées"
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Avec une structure d'entraînement selectionnée. Ajouter la 1ère, 2ème, … unité en file d'attente d'entraînement pour toutes les structures sélectionnées"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr "  hotkey.session.highlightguarded with unit(s) selected – Mettez en surbrillance l'unité (s) / structure (s) gardée (s) par la sélection"
+msgstr "  hotkey.session.highlightguarded with unit(s) selected – Mettre en surbrillance la ou les unité(s) / structure(s) gardée(s) par la sélection"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr "  hotkey.session.highlightguarding avec des unité(s)/structure(s) selectionnées – Mettez en surbrillance l'unité (s) / structure (s) gardée (s) par la sélection"
+msgstr "  hotkey.session.highlightguarding avec des unité(s)/structure(s) selectionnées – Mettre en surbrillance la ou les unité(s) / structure(s) gardée(s) par la sélection"
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -489,24 +490,24 @@ msgstr "  hotkey.session.garrison + clic droit sur une structure  – Mettre en 
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr "  hotkey.session.repair + clic Droit sur une structure – Réparer"
+msgstr "  hotkey.session.repair + clic droit sur une structure – Réparer"
 
 #: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr "  hotkey.session.patrol + Clic Droit – Patrouiller"
+msgstr "  hotkey.session.patrol + clic droit – Patrouiller"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr "  hotkey.session.queue + Clic droit – Mettez en file d'attente l'ordre de se déplacer/construire/se rassembler/ etc."
+msgstr "  hotkey.session.queue + clic droit – Mettre en file d'attente l'ordre de se déplacer/construire/se rassembler/ etc."
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr "  hotkey.session.orderone + clic droit – Commandez une unité de la sélection actuelle pour déplacer / construire / rassembler / etc. et désélectionnez-le. Utiliser pour expédier rapidement des unités avec des tâches spécifiques"
+msgstr "  hotkey.session.orderone + clic droit – Commander une unité de la sélection actuelle pour déplacer / construire / rassembler / etc. et désélectionner-la. Utilisé pour expédier rapidement des unités avec des tâches spécifiques"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -530,25 +531,25 @@ msgstr "  hotkey.selection.remove + clic gauche ou glisser vers la gauche sur l'
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr "  hotkey.selection.militaryonly Faites glisser sur les unités de la carte – Sélectionnez uniquement les unités militaires"
+msgstr "  hotkey.selection.militaryonly + faire glisser avec bouton gauche sur des unités de la carte – Sélectionnez uniquement les unités militaires"
 
 #: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr "  hotkey.selection.nonmilitaryonly + Gauche Faites glisser sur les unités sur la carte – Sélectionnez uniquement les unités non militaires"
+msgstr "  hotkey.selection.nonmilitaryonly + faire glisser avec bouton gauche sur des unités sur la carte – Sélectionner uniquement les unités non militaires"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr "  hotkey.selection.idleonly + Glisser vers la gauche sur les unités sur la carte – Sélectionnez uniquement les unités oisives"
+msgstr "  hotkey.selection.idleonly + faire glisser avec bouton gauche sur des unités sur la carte – Sélectionner uniquement les unités oisives"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr "  hotkey.selection.woundedonly + Glissement Gauche sur des unités – Ne sélectionner que les unités blessées."
+msgstr "  hotkey.selection.woundedonly + faire glisser avec bouton gauche sur des unités sur la carte – Ne sélectionner que les unités blessées."
 
 #: gui/manual/intro.txt:112
 msgid ""
@@ -560,31 +561,31 @@ msgstr "Cliquer droit avec une ou des structures sélectionnées - Définir un p
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr "  hotkey.session.garrison + clic droit avec des unité(s) sélectionnées  – Mettre en garnison (Si le curseur est sur une structure alliée ou à vous)"
+msgstr "  hotkey.session.garrison + clic droit avec une ou des unité(s) sélectionnée(s)  – Mettre en garnison (si le curseur est sur une structure alliée ou à vous)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr "  hotkey.session.attack + clic droit avec les unit&(s) sélectionnées – Attaquer (au lieu de of capturer ou de récolter)"
+msgstr "  hotkey.session.attack + clic droit avec une ou des unité(s) sélectionnée(s) – Attaquer (au lieu de capturer ou de récolter)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr "  hotkey.session.attackmove + clic droit avec des unité(s) sélectionnées – Mouvement d'attaque (par défaut, toutes les unités et structures ennemies en cours de route sont ciblées)"
+msgstr "  hotkey.session.attackmove + clic droit avec une ou des unité(s) sélectionnée(s) – Mouvement d'attaque (par défaut, toutes les unités et structures ennemies en cours de route sont ciblées)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr "  hotkey.session.attackmoveUnit + Right Click avec des unités sélectionnées – Déplacement d'attaque, seules les unités en cours de route sont ciblées"
+msgstr "  hotkey.session.attackmoveUnit + clic droit avec une ou des unité(s) sélectionnée(s) – Déplacement d'attaque, seules les unités en cours de route sont ciblées"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr "  hotkey.session.snaptoedges + Mouse Move near structures – Aligner la nouvelle structure avec une structure voisine existante"
+msgstr "  hotkey.session.snaptoedges + mouvement de souris vers les structures – Aligner la nouvelle structure avec une structure voisine existante"
 
 #: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -681,13 +682,13 @@ msgstr "  hotkey.camera.rotate.wheel.cw – Faire pivoter la caméra dans le sen
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around terrain"
+msgstr "  hotkey.camera.rotate.wheel.ccw – Faire pivoter la caméra dans le sens antihoraire autour du terrain"
 
 #: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr "  hotkey.camera.follow – Suit l'unité sélectionnée (déplacer la caméra pour arrêter de la suivre)"
+msgstr "  hotkey.camera.follow – Suivre l'unité sélectionnée (déplacer la caméra pour arrêter de la suivre)"
 
 #: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
@@ -697,17 +698,17 @@ msgstr " hotkey.camera.reset – Réinitialiser le zoom et l'orientation de la c
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom avant (maintenez enfoncé pour un zoom continu)"
+msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom avant (maintenir enfoncé pour un zoom continu)"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom arrière (maintenez enfoncé pour un zoom continu)"
+msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom arrière (maintenir enfoncé pour un zoom continu)"
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr "  hotkey.camera.pan – Maintenez enfoncé et déplacez la souris pour faire défiler"
+msgstr "  hotkey.camera.pan – Maintenir enfoncé et déplacer la souris pour faire défiler"
 
 #: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -716,11 +717,11 @@ msgstr "[font=\"sans-bold-14\"]Pendant le placement de la structure [font=\"sans
 #: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr "  hotkey.session.rotate.ccw –  Rotation de la structure se 15 degrés dans le sens antihoraire."
+msgstr "  hotkey.session.rotate.ccw –  Rotation de la structure de 15 degrés dans le sens antihoraire."
 
 #: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr "  hotkey.session.rotate.cw –  Rotation de la structure se 15 degrés dans le sens horaire."
+msgstr "  hotkey.session.rotate.cw –  Rotation de la structure de 15 degrés dans le sens horaire."
 
 #: gui/manual/intro.txt:149
 msgid ""
