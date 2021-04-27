@@ -1223,20 +1223,8 @@ void CRenderer::RenderParticles(int cullGroup)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-		glDisable(GL_TEXTURE_2D);
-		glColor3f(0.0f, 0.5f, 0.0f);
-
 		m->particleRenderer.RenderParticles(true);
-
-		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
-		shaderTech->BeginPass();
-		CShaderProgramPtr shader = shaderTech->GetShader();
-		shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
-		shader->Uniform(str_transform, m_ViewCamera.GetViewProjection());
-
-		m->particleRenderer.RenderBounds(cullGroup, shader);
-
-		shaderTech->EndPass();
+		m->particleRenderer.RenderBounds(cullGroup);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}

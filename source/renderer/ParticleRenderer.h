@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,8 +21,6 @@
 class CParticleEmitter;
 class CShaderDefines;
 struct ParticleRendererInternals;
-
-#include "graphics/ShaderProgramPtr.h"
 
 /**
  * Render particles.
@@ -60,7 +58,7 @@ public:
 	/**
 	 * Render bounding boxes for all the submitted emitters.
 	 */
-	void RenderBounds(int cullGroup, CShaderProgramPtr& shader);
+	void RenderBounds(int cullGroup);
 
 private:
 	ParticleRendererInternals* m;

@@ -18,13 +18,12 @@
 #ifndef INCLUDED_DEBUGRENDERER
 #define INCLUDED_DEBUGRENDERER
 
-#include "graphics/ShaderProgramPtr.h"
-
 #include <vector>
 
 class CBoundingBoxAligned;
 class CBrush;
 class CCamera;
+class CMatrix3D;
 class CVector3D;
 
 struct CColor;
@@ -52,27 +51,29 @@ public:
 	 * @param intermediates determines how many intermediate distance planes should
 	 * be hinted at between the near and far planes
 	 */
-	void DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates = 0) const;
+	void DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates = 0);
 
 	/**
 	 * Render the surfaces of the bound box as triangles.
 	 */
-	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CShaderProgramPtr& shader) const;
+	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color);
+	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform);
 
 	/**
 	 * Render the outline of the bound box as lines.
 	 */
-	void DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CShaderProgramPtr& shader) const;
+	void DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color);
+	void DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform);
 
 	/**
 	 * Render the surfaces of the brush as triangles.
 	 */
-	void DrawBrush(const CBrush& brush, const CShaderProgramPtr& shader) const;
+	void DrawBrush(const CBrush& brush, const CColor& color);
 
 	/**
 	 * Render the outline of the brush as lines.
 	 */
-	void DrawBrushOutline(const CBrush& brush, const CShaderProgramPtr& shader) const;
+	void DrawBrushOutline(const CBrush& brush, const CColor& color);
 };
 
 #endif // INCLUDED_DEBUGRENDERER

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,7 @@ public:
 		m_Rot = rot;
 	}
 
-	CQuaternion GetRotation() const
+	const CQuaternion& GetRotation() const
 	{
 		return m_Rot;
 	}
@@ -98,7 +98,7 @@ public:
 	/**
 	 * Get the bounding box of the center points of particles at their current positions.
 	 */
-	CBoundingBoxAligned GetParticleBounds() { return m_ParticleBounds; }
+	const CBoundingBoxAligned& GetParticleBounds() const { return m_ParticleBounds; }
 
 	/**
 	 * Push a new particle onto the ring buffer. (May overwrite an old particle.)

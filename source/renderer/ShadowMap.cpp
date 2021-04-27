@@ -654,10 +654,6 @@ void ShadowMap::SetDepthTextureBits(int bits)
 
 void ShadowMap::RenderDebugBounds()
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
-	shaderTech->BeginPass();
-	CShaderProgramPtr shader = shaderTech->GetShader();
-
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
 
@@ -667,26 +663,17 @@ void ShadowMap::RenderDebugBounds()
 	//  Green = bounds of objects in culling frustum that cast shadows
 	//  Blue = frustum used for rendering the shadow map
 
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform);
+	const CMatrix3D transform = g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform;
 
-	shader->Uniform(str_color, 1.0f, 1.0f, 0.0f, 1.0f);
-	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowReceiverBound, shader);
-
-	shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
-	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowCasterBound, shader);
-
+	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowReceiverBound, CColor(1.0f, 1.0f, 0.0f, 1.0f), transform);
+	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowCasterBound, CColor(0.0f, 1.0f, 0.0f, 1.0f), transform);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 0.25f);
-	g_Renderer.GetDebugRenderer().DrawBoundingBox(m->ShadowRenderBound, shader);
+	g_Renderer.GetDebugRenderer().DrawBoundingBox(m->ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.25f), transform);
 	glDisable(GL_BLEND);
-
-	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 1.0f);
-	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowRenderBound, shader);
+	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 1.0f), transform);
 
 	// Render light frustum
-
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
 	CFrustum frustum = GetShadowCasterCullFrustum();
 	// We don't have a function to create a brush directly from a frustum, so use
@@ -698,14 +685,9 @@ void ShadowMap::RenderDebugBounds()
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	shader->Uniform(str_color, 1.0f, 0.0f, 0.0f, 0.25f);
-	g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, shader);
+	g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.25f));
 	glDisable(GL_BLEND);
-
-	shader->Uniform(str_color, 1.0f, 0.0f, 0.0f, 1.0f);
-	g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, shader);
-
-	shaderTech->EndPass();
+	g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 1.0f));
 
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
