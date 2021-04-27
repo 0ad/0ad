@@ -52,7 +52,7 @@ public:
 	 * @param intermediates determines how many intermediate distance planes should
 	 * be hinted at between the near and far planes
 	 */
-	void DrawCameraFrustum(const CCamera& camera, int intermediates = 0) const;
+	void DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates = 0) const;
 
 	/**
 	 * Render the surfaces of the bound box as triangles.

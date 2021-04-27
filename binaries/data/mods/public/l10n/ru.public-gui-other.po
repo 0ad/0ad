@@ -6,6 +6,7 @@
 # Alexander Olkhovskiy, 2016,2018
 # Alexey, 2020
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
+# Bogdan Artemyev <bogarto@mail.ru>, 2021
 # Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2021
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2018-2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -47,8 +48,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-22 10:23+0000\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-24 20:26+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1165,7 +1166,7 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Награда:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
@@ -1557,6 +1558,11 @@ msgstr " (удерживайте для регистрации)"
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
 msgstr "Нажмите сочетание клавиш и удерживайте"
+
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr "(не используется)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
@@ -1982,7 +1988,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Отдалить (шаг за шагом)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
@@ -2027,7 +2033,7 @@ msgstr "Подтвердить"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Open/close console."
-msgstr ""
+msgstr "Открыть/закрыть консоль."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
@@ -2127,12 +2133,12 @@ msgstr "Снимок экрана"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Включить/отключить отображение водяного знака на экране для официальных снимков экрана."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Отображать водяной знак"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
@@ -2650,7 +2656,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Открыть/закрыть окно чата."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
@@ -2660,7 +2666,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Информация о цивилизации."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2876,7 +2882,7 @@ msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3688,6 +3694,15 @@ msgstr "Карты: %(mapCount)s"
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Страница: %(currentPage)s/%(maxPage)s"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Случайное"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr "Выбор случайной карты."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4976,9 +4991,11 @@ msgstr "Чат"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Нажмите, чтобы открыть IRC-чат 0 A.D. в браузере. (#0ad на webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr "Нажмите для открытия IRC чата 0 A.D. в браузере (#0ad на webchat.quakenet.org). Там обсуждаются всевозможные задачи и вам ответят на все возникшие вопросы (на английском языке). "
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4989,18 +5006,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Нажмите, чтобы посетить 0 A.D. Trac для отчета о баге, вылете или ошибке."
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr "Открыть страницу часто задаваемых вопросов в браузере."
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "Перевести игру"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Открыть страницу перевода 0 A.D. в браузере."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "Пожертвовать"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "Помогите пожертвованием для покрытия расходов проекта."
 

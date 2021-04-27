@@ -26,6 +26,7 @@
 # Mortimer <doug.mortimer@netcourrier.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
+# Oumph <oumph@free.fr>, 2021
 # polien delamarque <m.oleil@laposte.net>, 2017
 # 96921931311cbcef40e532f6e0de4499_eac7260, 2019
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
@@ -36,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 10:21+0000\n"
-"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
+"PO-Revision-Date: 2021-04-24 19:02+0000\n"
+"Last-Translator: Oumph <oumph@free.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +89,7 @@ msgstr "Écrasant"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr ""
+msgstr "Dégâts causés par des objets enflammés, comme une torche ou une flèche enflammée."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -110,7 +111,7 @@ msgstr "Tranchant"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Dommage causé par des objets pointus, tels que les flèches et les lances."
+msgstr "Dégâts causés par des objets pointus, telles que les flèches et les lances."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -122,12 +123,12 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr ""
+msgstr "Dégâts causés par un objet empoisonné ou une créature venimeuse, comme un serpent ou une arme empoisonnée."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr ""
+msgstr "Poison"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -250,7 +251,7 @@ msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:24
 msgid "Polar Bear"
-msgstr "Ours Polaire"
+msgstr "Ours polaire"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:25
 msgid "Ursus maritimus"
@@ -1051,7 +1052,7 @@ msgstr "Escarmouche"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Piquiers d'Infanterie uniquement, nécessite au moins 16."
+msgstr "Piquiers d'infanterie uniquement, nécessite au moins 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"

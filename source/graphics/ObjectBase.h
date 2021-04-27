@@ -195,8 +195,8 @@ private:
 	 */
 	void GetQualitySplits(std::vector<u8>& splits) const;
 
-	void Load(const CXeromyces& XeroFile, const XMBElement& base);
-	void LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
+	[[nodiscard]] bool Load(const CXeromyces& XeroFile, const XMBElement& base);
+	[[nodiscard]] bool LoadVariant(const CXeromyces& XeroFile, const XMBElement& variant, Variant& currentVariant);
 
 private:
 	// Backref to the owning actor.

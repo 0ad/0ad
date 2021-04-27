@@ -23,18 +23,62 @@
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Tom Hanax, 2019
+# Zuzana Miadoková <akara.horse@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 17:00+0000\n"
+"Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+#: gui/gamesettings/attributes/PlayerName.js:113
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:53
+msgctxt "team placement"
+msgid "Circle"
+msgstr "Kruh"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:54
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "Spojeneckí hráči sú zoskupení a umiestnení so súperiacimi hráčmi v jednom okruhu rozprestretom na mape."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:58
+msgctxt "team placement"
+msgid "Line"
+msgstr "Čiara"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:59
+msgid "Allied players are placed in a linear pattern."
+msgstr "Spojenci sú umiestnení podľa lineárneho vzorca."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:63
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "Náhodná skupina"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:64
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "Spojeneckí hráči sú zoskupení, ale inak náhodne roztrúsení na mape."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:68
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Pevnosť"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:69
+msgid "Allied players are grouped in one random place of the map."
+msgstr "Spojeneckí hráči sú zoskupení na jednom náhodnom mieste na mape."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -281,7 +325,7 @@ msgstr "Ak bude označené, populačný limit bude rovnomerne prerozdelený medz
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
-msgstr "Bijóm"
+msgstr "Bióm"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:60
 msgid "Select the flora and fauna."

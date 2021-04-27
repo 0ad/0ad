@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-19 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 08:31+0000\n"
+"Last-Translator: Vladimirs Kuzmins\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1507,6 +1507,11 @@ msgstr ""
 msgid "Enter new Hotkey, hold to register."
 msgstr ""
 
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr ""
+
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr ""
@@ -2825,7 +2830,7 @@ msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
+msgid "Rewind (timewarp)"
 msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
@@ -3636,6 +3641,15 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
+msgstr ""
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Nejauša"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
 msgstr ""
 
 #: gui/options/options.js:95
@@ -4925,9 +4939,11 @@ msgstr "Tērzētava"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Nospiediet, lai atvērtu 0 A.D. IRC tērzētavu savā tīmekļa pārlūkā. (#0ad on webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4938,18 +4954,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klikšķiniet un apmeklējiet 0 A.D. Trac, lai ziņotu par kļūdu, sabrukšanu vai nepilnību."
 
 #: gui/pregame/ProjectInformation.js:49
-msgid "Translate the Game"
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:50
-msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Nospied lai atvērtu 0 A.D. tulkošanas lapu savā interneta pārlūkā."
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:57
-msgid "Donate"
+msgid "Translate the Game"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:58
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr "Nospied lai atvērtu 0 A.D. tulkošanas lapu savā interneta pārlūkā."
+
+#: gui/pregame/ProjectInformation.js:65
+msgid "Donate"
+msgstr ""
+
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr ""
 

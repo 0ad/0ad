@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@
 #include "TerrainOverlay.h"
 
 #include "graphics/Color.h"
+#include "graphics/ShaderManager.h"
+#include "graphics/ShaderProgram.h"
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
 #include "lib/ogl.h"
@@ -182,37 +184,56 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 #warning TODO: implement TerrainOverlay::RenderTile for GLES
 #else
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
 	CVector3D pos[2][2];
 	for (int di = 0; di < 2; ++di)
 		for (int dj = 0; dj < 2; ++dj)
 			m_Terrain->CalcPosition(i + di, j + dj, pos[di][dj]);
 
-	glBegin(GL_TRIANGLES);
-		glColor4fv(color.FloatArray());
-		if (m_Terrain->GetTriangulationDir(i, j))
-		{
-			glVertex3fv(pos[0][0].GetFloatArray());
-			glVertex3fv(pos[1][0].GetFloatArray());
-			glVertex3fv(pos[0][1].GetFloatArray());
+	std::vector<float> vertices;
+#define ADD(position) \
+	vertices.emplace_back((position).X); \
+	vertices.emplace_back((position).Y); \
+	vertices.emplace_back((position).Z);
 
-			glVertex3fv(pos[1][0].GetFloatArray());
-			glVertex3fv(pos[1][1].GetFloatArray());
-			glVertex3fv(pos[0][1].GetFloatArray());
-		}
-		else
-		{
-			glVertex3fv(pos[0][0].GetFloatArray());
-			glVertex3fv(pos[1][0].GetFloatArray());
-			glVertex3fv(pos[1][1].GetFloatArray());
+	if (m_Terrain->GetTriangulationDir(i, j))
+	{
+		ADD(pos[0][0]);
+		ADD(pos[1][0]);
+		ADD(pos[0][1]);
 
-			glVertex3fv(pos[1][1].GetFloatArray());
-			glVertex3fv(pos[0][1].GetFloatArray());
-			glVertex3fv(pos[0][0].GetFloatArray());
-		}
-	glEnd();
+		ADD(pos[1][0]);
+		ADD(pos[1][1]);
+		ADD(pos[0][1]);
+	}
+	else
+	{
+		ADD(pos[0][0]);
+		ADD(pos[1][0]);
+		ADD(pos[1][1]);
 
+		ADD(pos[1][1]);
+		ADD(pos[0][1]);
+		ADD(pos[0][0]);
+	}
+#undef ADD
+
+	CShaderTechniquePtr overlayTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	overlayTech->BeginPass();
+	CShaderProgramPtr overlayShader = overlayTech->GetShader();
+
+	overlayShader->Bind();
+	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	overlayShader->Uniform(str_color, color);
+
+	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->AssertPointersBound();
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
+
+	overlayShader->Unbind();
+	overlayTech->EndPass();
 #endif
 }
 
@@ -243,18 +264,39 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 	if (line_width != 1)
 		glLineWidth((float)line_width);
 
-	CVector3D pos;
-	glBegin(GL_QUADS);
-		glColor4fv(color.FloatArray());
-		m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
-	glEnd();
+	std::vector<float> vertices;
+#define ADD(i, j) \
+	m_Terrain->CalcPosition(i, j, position); \
+	vertices.emplace_back(position.X); \
+	vertices.emplace_back(position.Y); \
+	vertices.emplace_back(position.Z);
+
+	CVector3D position;
+	ADD(i,   j);
+	ADD(i+1, j);
+	ADD(i+1, j+1);
+	ADD(i,   j+1);
+#undef ADD
+
+	CShaderTechniquePtr overlayTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	overlayTech->BeginPass();
+	CShaderProgramPtr overlayShader = overlayTech->GetShader();
+
+	overlayShader->Bind();
+	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	overlayShader->Uniform(str_color, color);
+
+	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->AssertPointersBound();
+
+	glDrawArrays(GL_QUADS, 0, vertices.size() / 3);
+
+	overlayShader->Unbind();
+	overlayTech->EndPass();
 
 	if (line_width != 1)
 		glLineWidth(1.0f);
-
 #endif
 }
 

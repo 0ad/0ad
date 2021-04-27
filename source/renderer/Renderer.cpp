@@ -1484,13 +1484,11 @@ void CRenderer::DisplayFrustum()
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4ub(255,255,255,64);
-	GetDebugRenderer().DrawCameraFrustum(m_CullCamera, 2);
+	GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 0.25f), 2);
 	glDisable(GL_BLEND);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glColor3ub(255,255,255);
-	GetDebugRenderer().DrawCameraFrustum(m_CullCamera, 2);
+	GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 1.0f), 2);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glEnable(GL_CULL_FACE);

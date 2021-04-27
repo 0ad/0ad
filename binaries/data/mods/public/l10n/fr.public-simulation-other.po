@@ -26,6 +26,7 @@
 # Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
+# Oumph <oumph@free.fr>, 2021
 # 96921931311cbcef40e532f6e0de4499_eac7260, 2019
 # Raz Ou <razieze@ymail.com>, 2021
 # Rémi Moulin <ggd.remi@gmail.com>, 2020
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-05 15:56+0000\n"
-"Last-Translator: Raz Ou <razieze@ymail.com>\n"
+"PO-Revision-Date: 2021-04-24 18:59+0000\n"
+"Last-Translator: Oumph <oumph@free.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +94,7 @@ msgstr "Désolé, je n'ai pas assez de soldats actuellement; mais ma prochaine a
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Désolé, je dois encore renforcer mon armée. Toutefois, j'attaquerais %(_player_)s après."
+msgstr "Désolé, je dois encore renforcer mon armée. Toutefois, j'attaquerai %(_player_)s après."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
@@ -210,7 +211,7 @@ msgstr "Plus jamais d'alliance avec vous, %(_player_)s!"
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr "Votre requête de paix ne vaux plus rien pour moi, %(_player_)s!"
+msgstr "Votre requête de paix ne vaut plus rien pour moi, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
@@ -244,14 +245,14 @@ msgstr "Nous avons trouvé un terrain d'entente, %(_player_)s. J'accepte l'allia
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "%(_player_)s, considérez nous comme allié dès maintenant."
+msgstr "%(_player_)s, considérez nous comme alliés dès maintenant."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "Je vais devenir votre allié, %(_player_)s, mais seulement si vous m'envoyer un tribut de %(_amount_)s %(_resource_)s."
+msgstr "Je vais devenir votre allié, %(_player_)s, mais seulement si vous m'envoyez un tribut de %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
@@ -265,7 +266,7 @@ msgstr "%(_player_)s, vous devez m'envoyer un tribut de %(_amount_)s %(_resource
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr "À moins que vous ne m'envoyer %(_amount_)s %(_resource_)s, une alliance ne sera pas conclue, %(_player_)s."
+msgstr "À moins que vous ne m'envoyez %(_amount_)s %(_resource_)s, une alliance ne sera pas conclue, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -389,7 +390,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra est l'IA par défaut pour les joueurs contrôlés par l'ordinateur. Merci de signaler tout problème à Wildfire Games (lien dans le menu principal).\n\nLe taux de collecte de l'IA et son revenu commercial dépendent de la difficulté choisie (bac à sable −58 %, très facile −44 %, facile −25 %, intermédiaire ±0%, difficile +25%, très difficile +56 %). Les niveaux les plus faciles ont des vitesses de recherche, d'entraînement, et de construction plus lentes. De plus, il n'y a pas d'élargissement ni d'attaque en niveau bac à sable."
+msgstr "Petra est l'IA par défaut pour les joueurs contrôlés par l'ordinateur. Merci de signaler tout problème à Wildfire Games (lien dans le menu principal).\n\nLe taux de collecte de l'IA et son revenu commercial dépendent de la difficulté choisie (bac à sable −58 %, très facile −44 %, facile −25 %, intermédiaire ±0%, difficile +25%, très difficile +56 %). Les niveaux les plus faciles ont des vitesses de recherche, d'entraînement, et de construction plus lentes. De plus, il n'y a pas d'expansion ni d'attaque en niveau bac à sable."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -866,7 +867,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Soyez le premier à construire ou à capturer une Merveille et gardez la pendant un certain temps pour gagner la partie. Le chronomètre sera réinitialisé quand La Merveille est détruite ou capturée. Si le mode Victoire Alliée est activé, le chronomètre sera aussi réinitialisé quand les détenteurs de celle-ci change d'alliance."
+msgstr "Soyez le premier à construire ou à capturer une Merveille et gardez la pendant un certain temps pour gagner la partie. Le chronomètre sera réinitialisé quand la Merveille est détruite ou capturée. Si le mode Victoire alliée est activé, le chronomètre sera aussi réinitialisé quand les détenteurs de celle-ci change d'alliance."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -924,7 +925,7 @@ msgstr "Une ou plusieurs unité(s) ne peuvent pas retourner travailler"
 #: simulation/helpers/Commands.js:924
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr "%(unit)s ne peut être contrôlée."
+msgstr "%(unit)s ne peut être contrôlé(e)."
 
 #: simulation/helpers/Commands.js:1175
 msgid "The building's technology requirements are not met."

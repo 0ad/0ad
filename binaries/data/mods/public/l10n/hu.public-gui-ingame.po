@@ -16,6 +16,7 @@
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2014-2016
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2021
+# János Fehér <feher.janos@mindworks.hu>, 2021
 # Kristóf Kófiás <kristof.kofias@gmail.com>, 2014
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2014
@@ -30,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 07:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-25 22:45+0000\n"
+"Last-Translator: János Fehér <feher.janos@mindworks.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +110,7 @@ msgstr "Kilépés"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Csúszás az élő adásban: %(delay)ssec"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -889,11 +890,11 @@ msgstr "Tétlen munkás keresése"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — Tömörített"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Tömörített"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -965,7 +966,7 @@ msgstr "Jelenlegi/maximum gyűjtögető"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -974,11 +975,11 @@ msgstr "Foglalási pontok:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr ""
+msgstr "Helyőrség mérete"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1119,22 +1120,22 @@ msgstr "Fejlesztés közben nem lehet kiképezni."
 #: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Frissítés a következőre: %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Frissítés a következőre: %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Frissítés a következőre: %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Frissítés a következőre: %(primaryName)s."
 
 #: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
@@ -1633,7 +1634,7 @@ msgstr "Jobb kattintás a célpiacként való beállításhoz"
 #: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "Jelenlegi lövegtornyok: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
@@ -1661,7 +1662,7 @@ msgstr "Összes kirakása."
 
 #: gui/session/unit_actions.js:1336
 msgid "Unload Turrets."
-msgstr ""
+msgstr "Lövegek csövének kiürítése."
 
 #: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
@@ -1682,7 +1683,7 @@ msgstr "Kijelölt egységek utasítása egy épületbe vagy egységbe történő
 
 #: gui/session/unit_actions.js:1452
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "A kiválasztott egység utasítása a lövegtorony elfoglalására."
 
 #: gui/session/unit_actions.js:1474
 msgid "Unload"

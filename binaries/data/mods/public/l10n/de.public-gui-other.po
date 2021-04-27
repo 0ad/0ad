@@ -55,9 +55,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-19 07:15+0000\n"
-"PO-Revision-Date: 2021-04-19 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 09:27+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1538,6 +1538,11 @@ msgstr "(halten um zu erfassen)"
 msgid "Enter new Hotkey, hold to register."
 msgstr "Gib einen neuen Hotkey ein, halten zum erfassen."
 
+#: gui/hotkeys/HotkeyPicker.js:107
+msgctxt "Unassigned hotkey"
+msgid "(unused)"
+msgstr "(unbenutzt)"
+
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr "Kann in Konflikt treten mit:"
@@ -1563,7 +1568,7 @@ msgstr "Bestätigung"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Kein Tooltip verfügbar."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1872,7 +1877,7 @@ msgstr "Kamera gegen den Uhrzeigersinn um das Gelände drehen - der Effekt häng
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Die Kamera im Uhrzeigersinn um das Gelände drehen - der Effekt hängt von den FPS ab."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -1927,27 +1932,27 @@ msgstr "Auszoomen"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "Kamera-Zoom-Geschwindigkeit reduzieren."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "Zoom-Geschwindigkeit verringern"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "Kamera-Zoom-Geschwindigkeit erhöhen."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "Zoomgeschwindigkeit erhöhen"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Kamera einzoomen - der Effekt hängt von der Bildrate ab."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
@@ -1957,12 +1962,12 @@ msgstr "Einzoomen (Schritt für Schritt)"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Kamera auszoomen - der Effekt hängt von der Bildrate ab."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Auszoomen (Schritt für Schritt)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
@@ -2142,52 +2147,52 @@ msgstr "Das Wort links vom Cursor löschen."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Vor dem Cursor löschen"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Das Wort rechts vom Cursor löschen."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Nach dem Cursor löschen"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Den Cursor an den Anfang des Wortes links vom Cursor bewegen."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Cursor zum linken Wort bewegen"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Den Cursor an den Anfang des Wortes rechts vom Cursor bewegen."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Cursor zum rechten Wort bewegen"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "Vollbild/Fenster-Modus umschalten."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Vollbild umschalten"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Drahtgittermodelle umschalten."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
@@ -2197,7 +2202,7 @@ msgstr "Drahtgittermodelle umschalten"
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr ""
+msgstr "Aktive Hotkeys im Spielerstellungsbildschirm."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2217,7 +2222,7 @@ msgstr "Kartenbrowser öffnen"
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Hotkeys im Spiel."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
@@ -2580,7 +2585,7 @@ msgstr "Standardformation umschalten"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Einquartierte Einheiten ausladen, wenn ein Gebäude/eine mechanische Einheit ausgewählt ist."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2590,17 +2595,17 @@ msgstr "Ausquartieren"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Einheiten in Geschützen ausladen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Geschütze ausladen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Zusatztaste, um alle Eineiten eines Typs auszuladen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
@@ -2610,7 +2615,7 @@ msgstr "Einheitentyp ausladen"
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Hotkeys für die Benutzeroberfläche im Spiel."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
@@ -2842,22 +2847,22 @@ msgstr "Statusleisten umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr "Schnellvorlauf-Modus aktivieren. Zeitkrümmung muss aktiviert sein."
+msgstr "Schnellvorlauf-Modus aktivieren. Zeitreisemodus muss aktiviert sein."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr "Schnellvorlauf (Zeitkrümmung)"
+msgstr "Schnellvorlauf (Zeitreisemodus)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr "Zeit zurückdrehen. Zeitkrümmung muss aktiviert sein."
+msgstr "Zeit zurückdrehen. Zeitreisemodus muss aktiviert sein."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
-msgid "Rewing (timewarp)"
-msgstr "Zurückspulen (Zeitkrümmung)"
+msgid "Rewind (timewarp)"
+msgstr "Zurückspulen (Zeitreisemodus)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
@@ -2874,22 +2879,22 @@ msgstr "Angriffsreichweiten umschalten"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr ""
+msgstr "Anzeige der Aurareichweitenoverlays von ausgewählten Einheiten und Gebäuden umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr ""
+msgstr "Aurareichweiten umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr ""
+msgstr "Anzeige der Heilreichweitenoverlays von ausgewählten Einheiten umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr ""
+msgstr "Heilreichweiten umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
@@ -2944,7 +2949,7 @@ msgstr "Spielzeitoverlay umschalten"
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Hotkeys, um die Einheitenauswahl zu modifizieren."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
@@ -3274,12 +3279,12 @@ msgstr "Kontrollgruppe 9 auswählen"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "Den nächsten untätigen Bauarbeiter auswählen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "Den nächsten untätigen Bauarbeiter auswählen"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
@@ -3668,6 +3673,15 @@ msgstr "Karten: %(mapCount)s"
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Seite: %(currentPage)s/%(maxPage)s"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
+msgctxt "random map pick"
+msgid "Random"
+msgstr "Zufällig"
+
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+msgid "Pick a map at random."
+msgstr "Eine Karte zufällig auswählen."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -4956,9 +4970,11 @@ msgstr "Chat"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
-"webchat.quakenet.org)"
-msgstr "Anklicken, um den IRC-Chat über 0 A.D. im Browser zu öffnen. (#0ad auf webchat.quakenet.org)"
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
+" may take a while to get your question answered. Alternatively, you can use "
+"the forum (see Website)."
+msgstr "Anklicken, um den 0 A.D. IRC-Chat in deinem Browser zu öffnen (#0ad auf webchat.quakenet.org). Er wird von Freiwilligen betrieben, die alle möglichen Aufgaben übernehmen, es kann also eine Weile dauern, bis deine Frage beantwortet wird. Alternativ kannst du das Form benutzen (siehe die Webseite)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -4969,18 +4985,27 @@ msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Anklicken, um Trac von 0 A.D. zur Meldung eines Bugs, Absturzes oder Fehlers zu besuchen."
 
 #: gui/pregame/ProjectInformation.js:49
+msgctxt "Frequently Asked Questions"
+msgid "FAQ"
+msgstr "FAQ"
+
+#: gui/pregame/ProjectInformation.js:50
+msgid "Click to visit the Frequently Asked Questions page in your browser."
+msgstr "Anklicken, um die Seite zu den häufig gestellten Fragen in deinem Browser zu öffnen."
+
+#: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
 msgstr "Das Spiel Übersetzen"
 
-#: gui/pregame/ProjectInformation.js:50
+#: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Anklicken, um die Übersetzerseite von 0 A.D. im Browser zu öffnen."
 
-#: gui/pregame/ProjectInformation.js:57
+#: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
 msgstr "Spenden"
 
-#: gui/pregame/ProjectInformation.js:58
+#: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
 msgstr "Hilf durch eine Spende bei den Unkosten des Projekts."
 

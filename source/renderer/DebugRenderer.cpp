@@ -137,7 +137,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 #endif
 }
 
-void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, int intermediates) const
+void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates) const
 {
 #if CONFIG2_GLES
 #warning TODO: implement camera frustum for GLES
@@ -153,52 +153,73 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, int intermediates)
 		farPoints[i] = camera.m_Orientation.Transform(farPoints[i]);
 	}
 
-	// near plane
-	glBegin(GL_POLYGON);
-		glVertex3fv(&nearPoints[0].X);
-		glVertex3fv(&nearPoints[1].X);
-		glVertex3fv(&nearPoints[2].X);
-		glVertex3fv(&nearPoints[3].X);
-	glEnd();
+	CShaderTechniquePtr overlayTech =
+		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	overlayTech->BeginPass();
+	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
-	// far plane
-	glBegin(GL_POLYGON);
-		glVertex3fv(&farPoints[0].X);
-		glVertex3fv(&farPoints[1].X);
-		glVertex3fv(&farPoints[2].X);
-		glVertex3fv(&farPoints[3].X);
-	glEnd();
+	overlayShader->Bind();
+	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	overlayShader->Uniform(str_color, color);
 
-	// connection lines
-	glBegin(GL_QUAD_STRIP);
-		glVertex3fv(&nearPoints[0].X);
-		glVertex3fv(&farPoints[0].X);
-		glVertex3fv(&nearPoints[1].X);
-		glVertex3fv(&farPoints[1].X);
-		glVertex3fv(&nearPoints[2].X);
-		glVertex3fv(&farPoints[2].X);
-		glVertex3fv(&nearPoints[3].X);
-		glVertex3fv(&farPoints[3].X);
-		glVertex3fv(&nearPoints[0].X);
-		glVertex3fv(&farPoints[0].X);
-	glEnd();
+	std::vector<float> vertices;
+#define ADD(position) \
+	vertices.emplace_back((position).X); \
+	vertices.emplace_back((position).Y); \
+	vertices.emplace_back((position).Z);
 
-	// intermediate planes
+	// Near plane.
+	ADD(nearPoints[0]);
+	ADD(nearPoints[1]);
+	ADD(nearPoints[2]);
+	ADD(nearPoints[3]);
+
+	// Far plane.
+	ADD(farPoints[0]);
+	ADD(farPoints[1]);
+	ADD(farPoints[2]);
+	ADD(farPoints[3]);
+
+	// Intermediate planes.
 	CVector3D intermediatePoints[4];
 	for(int i = 0; i < intermediates; ++i)
 	{
-		float t = (i + 1.0f) / (intermediates + 1.0f);
+		const float t = (i + 1.0f) / (intermediates + 1.0f);
 
 		for(int j = 0; j < 4; ++j)
 			intermediatePoints[j] = nearPoints[j] * t + farPoints[j] * (1.0f - t);
 
-		glBegin(GL_POLYGON);
-			glVertex3fv(&intermediatePoints[0].X);
-			glVertex3fv(&intermediatePoints[1].X);
-			glVertex3fv(&intermediatePoints[2].X);
-			glVertex3fv(&intermediatePoints[3].X);
-		glEnd();
+		ADD(intermediatePoints[0]);
+		ADD(intermediatePoints[1]);
+		ADD(intermediatePoints[2]);
+		ADD(intermediatePoints[3]);
 	}
+
+	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->AssertPointersBound();
+	glDrawArrays(GL_QUADS, 0, vertices.size() / 3);
+
+	vertices.clear();
+
+	// Connection lines.
+	ADD(nearPoints[0]);
+	ADD(farPoints[0]);
+	ADD(nearPoints[1]);
+	ADD(farPoints[1]);
+	ADD(nearPoints[2]);
+	ADD(farPoints[2]);
+	ADD(nearPoints[3]);
+	ADD(farPoints[3]);
+	ADD(nearPoints[0]);
+	ADD(farPoints[0]);
+
+	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->AssertPointersBound();
+	glDrawArrays(GL_QUAD_STRIP, 0, vertices.size() / 3);
+#undef ADD
+
+	overlayShader->Unbind();
+	overlayTech->EndPass();
 #endif
 }
 

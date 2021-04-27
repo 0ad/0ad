@@ -18,6 +18,7 @@
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # LiberteCzech <liberte.czech@gmail.com>, 2015
+# Milan Stevanović <miki.stevanovic802@gmail.com>, 2021
 # OndraK <ondrej.kajinek@gmail.com>, 2014
 # fri, 2014-2020
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
@@ -31,15 +32,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 21:13+0000\n"
+"Last-Translator: Milan Stevanović <miki.stevanovic802@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+#: gui/gamesettings/attributes/PlayerName.js:113
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:53
+msgctxt "team placement"
+msgid "Circle"
+msgstr "Kruh"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:54
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "Spojenecký hráči jsou seskupeni a umístěni s protihráči na jednom kruhu přesahujícím mapu."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:58
+msgctxt "team placement"
+msgid "Line"
+msgstr "Linie"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:59
+msgid "Allied players are placed in a linear pattern."
+msgstr "Spojenci jsou umístěni lineárně."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:63
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "Náhodná skupina"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:64
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "Spojenci jsou na mapě umístěni pohromadě ale jinak náhodně."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:68
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Pevnost"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:69
+msgid "Allied players are grouped in one random place of the map."
+msgstr "Spojenci jsou na mapě umístěni pohromadě na náhodném místě."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -335,7 +379,7 @@ msgstr "Náhodná"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr ""
+msgstr "Vyberte náhodnou krajinou."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -584,7 +628,7 @@ msgstr "Vrátit se do hlavní nabídky."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zobrazit přehled civilizace / Strom staveb\nPo kliknutí se zobrazí naposledy otevřený."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -729,20 +773,20 @@ msgstr "Klikni pro přepnutí karty s nastavením %(name)s."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Stiskněte %(hotkey)s aby jste přešli do dalšího nastavení. "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Stiskněte %(hotkey)s aby jste přešli na předchozí kartu nastavení. "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "Není vybraná mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Kliknutím zobrazíte seznam dostupných mapy."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -793,7 +837,7 @@ msgstr "Byl jste zakázán."
 #: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[neplatná hodnota %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
@@ -901,7 +945,7 @@ msgstr "Ponechejte prázdné pro použití výchozí přípojky (port)."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Ponechejte prázdné není nutno."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -938,13 +982,13 @@ msgstr "“Zeus \\[…] ustanovil zákon: moudrosti člověk nabývá skrz utrpe
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr ""
+msgstr "“A \\[Helena] přinesla jako věno Íionu zánik” \\n— Aischylos, (“Agamemnon”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr ""
+msgstr "“V srdci každého tyrana nakonec vyvstane ten jed, že nemůže důvěřovat příteli” \\n— Aischylos (“Připoutaný Prometheus”, 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""

@@ -26,15 +26,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-04-23 07:10+0000\n"
+"PO-Revision-Date: 2021-04-23 09:19+0000\n"
+"Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/gamesettings/attributes/PlayerName.js:113
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:53
+msgctxt "team placement"
+msgid "Circle"
+msgstr "Melingkar"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:54
+msgid ""
+"Allied players are grouped and placed with opposing players on one circle "
+"spanning the map."
+msgstr "Pemain sekutu dikelompokkan dan ditempatkan dengan pemain lawan di satu lingkaran yang membentang di peta."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:58
+msgctxt "team placement"
+msgid "Line"
+msgstr "Deret"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:59
+msgid "Allied players are placed in a linear pattern."
+msgstr "Pemain sekutu ditempatkan berderet."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:63
+msgctxt "team placement"
+msgid "Random Group"
+msgstr "Grup Acak"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:64
+msgid "Allied players are grouped, but otherwise placed randomly on the map."
+msgstr "Pemain sekutu dikelompokkan, tetapi sebaliknya ditempatkan secara acak di peta."
+
+#: gui/gamesettings/attributes/TeamPlacement.js:68
+msgctxt "team placement"
+msgid "Stronghold"
+msgstr "Benteng"
+
+#: gui/gamesettings/attributes/TeamPlacement.js:69
+msgid "Allied players are grouped in one random place of the map."
+msgstr "Pemain sekutu dikelompokkan di satu tempat acak di peta."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
