@@ -747,7 +747,7 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 	{
 		// edged faces: need to make a second pass over the data:
 		// first switch on wireframe
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		// setup some renderstate ..
 		pglActiveTextureARB(GL_TEXTURE0);
@@ -757,8 +757,6 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 		// render tiles edges
 		m->terrainRenderer.RenderPatches(cullGroup, CColor(0.5f, 0.5f, 1.0f, 1.0f));
 
-		// set color for outline
-		glColor3f(0, 0, 1);
 		glLineWidth(4.0f);
 
 		// render outline of each patch

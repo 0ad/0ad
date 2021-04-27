@@ -46,7 +46,6 @@ public:
 
 	/**
 	 * Render: Renders the camera's frustum in world space.
-	 * The caller should set the color using glColorXy before calling Render.
 	 *
 	 * @param intermediates determines how many intermediate distance planes should
 	 * be hinted at between the near and far planes
