@@ -26,9 +26,11 @@
 #include "ps/Hotkey.h"
 #include "ps/XML/Xeromyces.h"
 
+#include <memory>
+
 class TestGuiManager : public CxxTest::TestSuite
 {
-	CConfigDB* configDB;
+	std::unique_ptr<CConfigDB> configDB;
 public:
 
 	void setUp()
@@ -37,7 +39,7 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir() / "mods" / "_test.gui" / "", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
 
-		configDB = new CConfigDB;
+		configDB = std::make_unique<CConfigDB>();
 
 		CXeromyces::Startup();
 
@@ -48,7 +50,7 @@ public:
 	{
 		delete g_GUI;
 		CXeromyces::Terminate();
-		delete configDB;
+		configDB.reset();
 		g_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");
 	}
@@ -189,7 +191,6 @@ public:
 		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
-		configDB->RemoveValue(CFG_SYSTEM, test_hotkey_name);
 		UnloadHotkeys();
 	}
 };

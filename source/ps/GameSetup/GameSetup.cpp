@@ -719,7 +719,7 @@ void Shutdown(int flags)
 
 from_config:
 	TIMER_BEGIN(L"shutdown ConfigDB");
-	delete &g_ConfigDB;
+	CConfigDB::Shutdown();
 	TIMER_END(L"shutdown ConfigDB");
 
 	SAFE_DELETE(g_Console);
