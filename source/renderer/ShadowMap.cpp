@@ -599,13 +599,6 @@ void ShadowMap::BeginRender()
 	c.GetOrientation() = m->InvLightTransform;
 	g_Renderer.SetViewCamera(c);
 
-#if !CONFIG2_GLES
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(&m->LightProjection._11);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(&m->LightTransform._11);
-#endif
-
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(1,1, m->EffectiveWidth-2, m->EffectiveHeight-2);
 }

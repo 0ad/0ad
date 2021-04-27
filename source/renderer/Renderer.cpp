@@ -344,29 +344,6 @@ public:
 	}
 
 	/**
-	 * Load the OpenGL projection and modelview matrices and the viewport according
-	 * to the given camera.
-	 */
-	void SetOpenGLCamera(const CCamera& camera)
-	{
-		CMatrix3D view;
-		camera.GetOrientation().GetInverse(view);
-		const CMatrix3D& proj = camera.GetProjection();
-
-#if CONFIG2_GLES
-#warning TODO: fix CRenderer camera handling for GLES (do not use global matrixes)
-#else
-		glMatrixMode(GL_PROJECTION);
-		glLoadMatrixf(&proj._11);
-
-		glMatrixMode(GL_MODELVIEW);
-		glLoadMatrixf(&view._11);
-#endif
-
-		g_Renderer.SetViewport(camera.GetViewPort());
-	}
-
-	/**
 	 * Renders all non-alpha-blended models with the given context.
 	 */
 	void CallModelRenderers(const CShaderDefines& context, int cullGroup, int flags)
@@ -739,7 +716,7 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 
 	m->shadow.EndRender();
 
-	m->SetOpenGLCamera(m_ViewCamera);
+	SetViewport(m_ViewCamera.GetViewPort());
 }
 
 void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
@@ -1016,7 +993,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 
 	ComputeReflectionCamera(m_ViewCamera, scissor);
 
-	m->SetOpenGLCamera(m_ViewCamera);
+	SetViewport(m_ViewCamera.GetViewPort());
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_ReflectionMatrix = m_ViewCamera.GetViewProjection();
@@ -1068,9 +1045,9 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 
 	glDisable(GL_SCISSOR_TEST);
 
-  	// Reset old camera
-  	m_ViewCamera = normalCamera;
-  	m->SetOpenGLCamera(m_ViewCamera);
+	// Reset old camera
+	m_ViewCamera = normalCamera;
+	SetViewport(m_ViewCamera.GetViewPort());
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
@@ -1092,7 +1069,7 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 2.0f);
 	SetObliqueFrustumClipping(m_ViewCamera, camPlane);
 
-	m->SetOpenGLCamera(m_ViewCamera);
+	SetViewport(m_ViewCamera.GetViewPort());
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = m_ViewCamera.GetViewProjection();
@@ -1127,9 +1104,9 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 
 	glDisable(GL_SCISSOR_TEST);
 
-  	// Reset old camera
-  	m_ViewCamera = normalCamera;
-  	m->SetOpenGLCamera(m_ViewCamera);
+	// Reset old camera
+	m_ViewCamera = normalCamera;
+	SetViewport(m_ViewCamera.GetViewPort());
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
@@ -1281,7 +1258,7 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	ogl_WarnIfError();
 
 	// Set the camera
-	m->SetOpenGLCamera(m_ViewCamera);
+	SetViewport(m_ViewCamera.GetViewPort());
 
 	// Prepare model renderers
 	{
