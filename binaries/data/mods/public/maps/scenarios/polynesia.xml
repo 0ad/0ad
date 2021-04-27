@@ -15,11 +15,12 @@
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Color r="0" g="0" b="0"/>
+				<Color r="0.509804" g="1" b="1"/>
+				<Tint r="0.501961" g="1" b="1"/>
 				<Height>36.5115</Height>
 				<Waviness>0.8</Waviness>
 				<Murkiness>0.62793</Murkiness>
-				<Tint r="0.501961" g="1" b="1"/>
+				<WindAngle>0</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
