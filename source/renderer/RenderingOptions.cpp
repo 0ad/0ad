@@ -185,9 +185,6 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 
 void CRenderingOptions::ClearHooks()
 {
-	if (CConfigDB::IsInitialised())
-		for (CConfigDBHook& hook : *m_ConfigHooks)
-			g_ConfigDB.UnregisterHook(std::move(hook));
 	m_ConfigHooks->clear();
 }
 

@@ -150,15 +150,12 @@ void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
 	shader->EndPass();
 }
 
-void ParticleRenderer::RenderBounds(int cullGroup, CShaderProgramPtr& shader)
+void ParticleRenderer::RenderBounds(int cullGroup)
 {
-	std::vector<CParticleEmitter*>& emitters = m->emitters[cullGroup];
-
-	for (size_t i = 0; i < emitters.size(); ++i)
+	for (const CParticleEmitter* emitter : m->emitters[cullGroup])
 	{
-		CParticleEmitter* emitter = emitters[i];
-
-		CBoundingBoxAligned bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
-		g_Renderer.GetDebugRenderer().DrawBoundingBox(bounds, shader);
+		const CBoundingBoxAligned bounds =
+			emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(bounds, CColor(0.0f, 1.0f, 0.0f, 1.0f));
 	}
 }

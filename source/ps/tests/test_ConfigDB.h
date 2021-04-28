@@ -20,11 +20,13 @@
 #include "lib/file/vfs/vfs.h"
 #include "ps/ConfigDB.h"
 
+#include <memory>
+
 extern PIVFS g_VFS;
 
 class TestConfigDB : public CxxTest::TestSuite
 {
-	CConfigDB* configDB;
+	std::unique_ptr<CConfigDB> configDB;
 public:
 
 	void setUp()
@@ -32,15 +34,14 @@ public:
 		g_VFS = CreateVfs();
 		TS_ASSERT_OK(g_VFS->Mount(L"config", DataDir() / "_testconfig" / ""));
 
-		configDB = new CConfigDB;
+		configDB = std::make_unique<CConfigDB>();
 	}
 
 	void tearDown()
 	{
 		DeleteDirectory(DataDir()/"_testconfig");
 		g_VFS.reset();
-
-		delete configDB;
+		configDB.reset();
 	}
 
 	void test_setting_int()

@@ -604,8 +604,6 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	CVector3D up = viewCamera.GetOrientation().GetUp();
 
-	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 

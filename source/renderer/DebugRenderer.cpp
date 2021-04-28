@@ -26,6 +26,7 @@
 #include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
+#include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "renderer/Renderer.h"
 
@@ -47,9 +48,8 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugLineTech->BeginPass();
-	CShaderProgramPtr debugLineShader = debugLineTech->GetShader();
 
-	debugLineShader->Bind();
+	CShaderProgramPtr debugLineShader = debugLineTech->GetShader();
 	debugLineShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	debugLineShader->Uniform(str_color, color);
 
@@ -86,7 +86,6 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 	debugLineShader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
-	debugLineShader->Unbind();
 	debugLineTech->EndPass();
 #endif
 }
@@ -99,11 +98,10 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 	CShaderTechniquePtr debugCircleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugCircleTech->BeginPass();
-	CShaderProgramPtr debugCircleShader = debugCircleTech->GetShader();
 
 	const CCamera& camera = g_Renderer.GetViewCamera();
 
-	debugCircleShader->Bind();
+	CShaderProgramPtr debugCircleShader = debugCircleTech->GetShader();
 	debugCircleShader->Uniform(str_transform, camera.GetViewProjection());
 	debugCircleShader->Uniform(str_color, color);
 
@@ -132,12 +130,11 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 	debugCircleShader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 3);
 
-	debugCircleShader->Unbind();
 	debugCircleTech->EndPass();
 #endif
 }
 
-void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates) const
+void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates)
 {
 #if CONFIG2_GLES
 #warning TODO: implement camera frustum for GLES
@@ -156,9 +153,8 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	overlayTech->BeginPass();
-	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
-	overlayShader->Bind();
+	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
@@ -218,13 +214,24 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	glDrawArrays(GL_QUAD_STRIP, 0, vertices.size() / 3);
 #undef ADD
 
-	overlayShader->Unbind();
 	overlayTech->EndPass();
 #endif
 }
 
-void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CShaderProgramPtr& shader) const
+void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color)
 {
+	DrawBoundingBox(boundingBox, color, g_Renderer.GetViewCamera().GetViewProjection());
+}
+
+void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
+{
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	shaderTech->BeginPass();
+
+	CShaderProgramPtr shader = shaderTech->GetShader();
+	shader->Uniform(str_color, color);
+	shader->Uniform(str_transform, transform);
+
 	std::vector<float> data;
 
 #define ADD_FACE(x, y, z) \
@@ -253,10 +260,24 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6*6);
+
+	shaderTech->EndPass();
 }
 
-void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CShaderProgramPtr& shader) const
+void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color)
 {
+	DrawBoundingBoxOutline(boundingBox, color, g_Renderer.GetViewCamera().GetViewProjection());
+}
+
+void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
+{
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	shaderTech->BeginPass();
+
+	CShaderProgramPtr shader = shaderTech->GetShader();
+	shader->Uniform(str_color, color);
+	shader->Uniform(str_transform, transform);
+
 	std::vector<float> data;
 
 #define ADD_FACE(x, y, z) \
@@ -287,10 +308,19 @@ void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingB
 
 	shader->AssertPointersBound();
 	glDrawArrays(GL_LINES, 0, 6*8);
+
+	shaderTech->EndPass();
 }
 
-void CDebugRenderer::DrawBrush(const CBrush& brush, const CShaderProgramPtr& shader) const
+void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 {
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	shaderTech->BeginPass();
+
+	CShaderProgramPtr shader = shaderTech->GetShader();
+	shader->Uniform(str_color, color);
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+
 	std::vector<float> data;
 
 	std::vector<std::vector<size_t>> faces;
@@ -325,10 +355,19 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CShaderProgramPtr& sha
 
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, data.size() / 5);
+
+	shaderTech->EndPass();
 }
 
-void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CShaderProgramPtr& shader) const
+void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CColor& color)
 {
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	shaderTech->BeginPass();
+
+	CShaderProgramPtr shader = shaderTech->GetShader();
+	shader->Uniform(str_color, color);
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+
 	std::vector<float> data;
 
 	std::vector<std::vector<size_t>> faces;
@@ -361,4 +400,6 @@ void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CShaderProgramP
 
 	shader->AssertPointersBound();
 	glDrawArrays(GL_LINES, 0, data.size() / 5);
+
+	shaderTech->EndPass();
 }

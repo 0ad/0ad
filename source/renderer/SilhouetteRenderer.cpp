@@ -444,20 +444,14 @@ void SilhouetteRenderer::RenderSubmitCasters(SceneCollector& collector)
 
 void SilhouetteRenderer::RenderDebugOverlays(const CCamera& camera)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
-	shaderTech->BeginPass();
-	CShaderProgramPtr shader = shaderTech->GetShader();
+	if (m_DebugBounds.empty() && m_DebugRects.empty())
+		return;
 
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
 
-	shader->Uniform(str_transform, camera.GetViewProjection());
-
 	for (size_t i = 0; i < m_DebugBounds.size(); ++i)
-	{
-		shader->Uniform(str_color, m_DebugBounds[i].color);
-		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m_DebugBounds[i].bounds, shader);
-	}
+		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m_DebugBounds[i].bounds, m_DebugBounds[i].color);
 
 	CMatrix3D m;
 	m.SetIdentity();
@@ -468,6 +462,11 @@ void SilhouetteRenderer::RenderDebugOverlays(const CCamera& camera)
 	proj.SetOrtho(0.f, g_MaxCoord, 0.f, g_MaxCoord, -1.f, 1000.f);
 	m = proj * m;
 
+
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	shaderTech->BeginPass();
+
+	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_transform, proj);
 
 	for (size_t i = 0; i < m_DebugRects.size(); ++i)

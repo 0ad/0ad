@@ -31,7 +31,7 @@
 
 class TestHotkey : public CxxTest::TestSuite
 {
-	CConfigDB* configDB;
+	std::unique_ptr<CConfigDB> configDB;
 	// Stores whether one of these was sent in the last fakeInput call.
 	bool hotkeyPress = false;
 	bool hotkeyUp = false;
@@ -64,14 +64,14 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"config", DataDir() / "_testconfig" / ""));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir() / "_testcache" / ""));
 
-		configDB = new CConfigDB;
+		configDB = std::make_unique<CConfigDB>();
 
 		g_scancodes = {};
 	}
 
 	void tearDown()
 	{
-		delete configDB;
+		configDB.reset();
 		g_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");
 		DeleteDirectory(DataDir()/"_testconfig");

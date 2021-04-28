@@ -51,7 +51,7 @@ CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& 
 {
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
-	m_QualityHook = std::make_unique<CConfigDBHook>(g_ConfigDB.RegisterHookAndCall("max_actor_quality", [this]() { this->ActorQualityChanged(); }));
+	m_QualityHook = std::make_unique<CConfigDBHook>(g_ConfigDB.RegisterHookAndCall("max_actor_quality", [this]() { ActorQualityChanged(); }));
 
 	if (!CXeromyces::AddValidator(g_VFS, "actor", "art/actors/actor.rng"))
 		LOGERROR("CObjectManager: failed to load actor grammar file 'art/actors/actor.rng'");
@@ -60,8 +60,6 @@ CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& 
 CObjectManager::~CObjectManager()
 {
 	UnloadObjects();
-
-	g_ConfigDB.UnregisterHook(std::move(m_QualityHook));
 
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }

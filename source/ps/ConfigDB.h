@@ -29,9 +29,11 @@
 
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
-#include "ps/Singleton.h"
 
+#include <array>
 #include <map>
+#include <memory>
+#include <mutex>
 #include <vector>
 
 /**
@@ -59,12 +61,22 @@ using CConfigValueSet = std::vector<CStr>;
 // Actually defined below - requires access to CConfigDB.
 class CConfigDBHook;
 
-#define g_ConfigDB CConfigDB::GetSingleton()
+#define g_ConfigDB (*CConfigDB::Instance())
 
-class CConfigDB : public Singleton<CConfigDB>
+class CConfigDB
 {
 	friend CConfigDBHook;
 public:
+	CConfigDB();
+	~CConfigDB();
+	CConfigDB(const CConfigDB&) = delete;
+	CConfigDB(CConfigDB&&) = delete;
+
+	static void Initialise();
+	static void Shutdown();
+	static bool IsInitialised();
+	static CConfigDB* Instance();
+
 	/**
 	 * Attempt to retrieve the value of a config variable with the given name;
 	 * will search CFG_COMMAND first, and then all namespaces from the specified
@@ -178,17 +190,22 @@ public:
 	 * Register a simple lambda that will be called anytime the value changes in any namespace
 	 * This is simple on purpose, the hook is responsible for checking if it should do something.
 	 * When RegisterHookAndCall is called, the hook is immediately triggered.
+	 * NB: CConfigDBHook will auto-unregister the hook when destroyed,
+	 * so you can use it to tie the lifetime of the hook to your object.
+	 * The hook will be deleted alongside ConfigDB anyways.
 	 */
-	CConfigDBHook RegisterHookAndCall(const CStr& name, std::function<void()> hook);
+	[[nodiscard]] CConfigDBHook RegisterHookAndCall(const CStr& name, std::function<void()> hook);
 
 	void UnregisterHook(CConfigDBHook&& hook);
 	void UnregisterHook(std::unique_ptr<CConfigDBHook> hook);
 
 private:
-	static std::map<CStr, CConfigValueSet> m_Map[];
-	static std::multimap<CStr, std::function<void()>> m_Hooks;
-	static VfsPath m_ConfigFile[];
-	static bool m_HasChanges[];
+	std::array<std::map<CStr, CConfigValueSet>, CFG_LAST> m_Map;
+	std::multimap<CStr, std::function<void()>> m_Hooks;
+	std::array<VfsPath, CFG_LAST> m_ConfigFile;
+	std::array<bool, CFG_LAST> m_HasChanges;
+
+	mutable std::recursive_mutex m_Mutex;
 };
 
 class CConfigDBHook
@@ -196,12 +213,23 @@ class CConfigDBHook
 	friend class CConfigDB;
 public:
 	CConfigDBHook() = delete;
+	CConfigDBHook(const CConfigDBHook&) = delete;
 	// Point the moved-from hook to end, which is checked for in UnregisterHook,
 	// to avoid a double-erase error.
-	CConfigDBHook(CConfigDBHook&& h) : m_ConfigDB(h.m_ConfigDB) { m_Ptr = std::move(h.m_Ptr); h.m_Ptr = m_ConfigDB.m_Hooks.end(); }
-	CConfigDBHook(const CConfigDBHook&) = delete;
+	CConfigDBHook(CConfigDBHook&& h) : m_ConfigDB(h.m_ConfigDB)
+	{
+		m_Ptr = std::move(h.m_Ptr);
+		h.m_Ptr = m_ConfigDB.m_Hooks.end();
+	}
+	// Unregisters the hook. Must be called before the original ConfigDB gets deleted.
+	~CConfigDBHook()
+	{
+		m_ConfigDB.UnregisterHook(std::move(*this));
+	}
 private:
-	CConfigDBHook(CConfigDB& cdb, std::multimap<CStr, std::function<void()>>::iterator p) : m_ConfigDB(cdb), m_Ptr(p) {};
+	CConfigDBHook(CConfigDB& cdb, std::multimap<CStr, std::function<void()>>::iterator p)
+		: m_ConfigDB(cdb), m_Ptr(p)
+	{};
 
 	std::multimap<CStr, std::function<void()>>::iterator m_Ptr;
 	CConfigDB& m_ConfigDB;
