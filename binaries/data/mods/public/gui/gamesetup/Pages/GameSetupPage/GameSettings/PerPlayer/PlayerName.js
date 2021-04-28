@@ -37,6 +37,10 @@ PlayerSettingControls.PlayerName = class PlayerName extends GameSettingControl
 			let status = this.guid ? g_PlayerAssignments[this.guid].status : this.ReadyTags.length - 1;
 			name = setStringTags(name, this.ReadyTags[status]);
 		}
+		else if (name && !this.guid)
+		{
+			name = translate(name);
+		}
 
 		this.playerName.caption = name;
 	}

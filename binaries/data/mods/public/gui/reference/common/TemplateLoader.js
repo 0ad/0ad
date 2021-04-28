@@ -86,6 +86,10 @@ class TemplateLoader
 			let data = Engine.ReadJSONFile(this.TechnologyPath + templateName + ".json");
 			translateObjectKeys(data, this.TechnologyTranslateKeys);
 
+			// Translate specificName as in GetTechnologyData() from gui/session/session.js
+			for (let civ in data.specificName)
+				data.specificName[civ] = translate(data.specificName[civ]);
+
 			this.technologyData[templateName] = data;
 		}
 

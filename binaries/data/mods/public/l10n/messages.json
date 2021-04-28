@@ -314,6 +314,7 @@
                     "gui/hotkeys/**.js",
                     "gui/loadgame/**.js",
                     "gui/locale/**.js",
+                    "gui/locale_advanced/**.js",
                     "gui/maps/**.js",
                     "gui/options/**.js",
                     "gui/pregame/**.js",
@@ -348,6 +349,7 @@
                     "gui/hotkeys/**.xml",
                     "gui/loadgame/**.xml",
                     "gui/locale/**.xml",
+                    "gui/locale_advanced/**.xml",
                     "gui/maps/**.xml",
                     "gui/options/**.xml",
                     "gui/pregame/**.xml",
@@ -493,6 +495,7 @@
                         "DisabledTooltip": {},
                         "FormationName": {},
                         "FromClass": {},
+                        "Shape": {},
                         "Rank": {
                             "tagAsContext": true
                         }

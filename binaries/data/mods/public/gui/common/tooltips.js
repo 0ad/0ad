@@ -391,7 +391,7 @@ function captureDetails(captureTemplate)
 function splashDetails(splashTemplate)
 {
 	let splashLabel = sprintf(headerFont(translate("%(splashShape)s Splash")), {
-		"splashShape": splashTemplate.shape
+		"splashShape": translate(splashTemplate.shape)
 	});
 	let splashDamageTooltip = sprintf(translate("%(label)s: %(effects)s"), {
 		"label": splashLabel,
@@ -560,7 +560,7 @@ function getGarrisonTooltip(template)
 				sprintf(translate("%(healRateLabel)s %(value)s %(health)s / %(second)s"), {
 					"healRateLabel": headerFont(translate("Heal:")),
 					"value": Math.round(template.garrisonHolder.buffHeal),
-					"health": unitFont(translate("Health")),
+					"health": unitFont(translateWithContext("garrison tooltip", "Health")),
 					"second": unitFont(translate("second")),
 				})
 			);
