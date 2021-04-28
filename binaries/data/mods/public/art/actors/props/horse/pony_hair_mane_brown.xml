@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant>
       <mesh>props/horse/pony_hair_mane_01.dae</mesh>
@@ -13,5 +12,5 @@
   <group>
     <variant file="quadraped/base_pony_chariot.xml"  name="Chariot Horse"/>
   </group>
-  <material>basic_trans_parallax_spec.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

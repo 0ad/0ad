@@ -5,14 +5,17 @@
     <variant file="quadraped/horse/props/blanket_kush_hero.xml" name="horse-blanket-kush-hero"/>
   </group>
   <group>
-    <variant file="quadraped/base_horse_javelin_fast.xml"  name="Javelinist-Fast-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_javelin_fast.xml" name="Javelinist-Fast-Horse" frequency="1"/>
     <variant file="quadraped/base_horse_archer_fast.xml" name="Archer-Fast-Horse" frequency="1"/>
-    <variant file="quadraped/base_horse_javelin.xml"  name="Javelinist-Horse" frequency="1"/>
-    <variant file="quadraped/base_horse_chariot.xml"  name="Chariot-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_javelin.xml" name="Javelinist-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_chariot.xml" name="Chariot-Horse" frequency="1"/>
     <variant file="quadraped/base_horse_archer.xml" name="Archer-Horse" frequency="1"/>
+    <variant file="quadraped/base_horse_trader.xml" name="Horse-Trader" frequency="1"/>
+    <variant file="quadraped/base_horse_fauna.xml" name="Horse-Fauna" frequency="1"/>
     <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
     <variant file="quadraped/base_horse_pace.xml" name="Horse-Pace" frequency="1"/>
     <variant file="quadraped/base_horse_walk.xml" name="Horse-Walk" frequency="1"/>
+    <variant file="quadraped/base_horse_gather_meat.xml" name="gather_meat"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
