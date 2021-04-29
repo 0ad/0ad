@@ -334,9 +334,7 @@ void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
 	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, color);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
 	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS);
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	dummyShader->Unbind();
 #endif
@@ -621,16 +619,12 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	waterSimpleShader->Uniform(str_time, static_cast<float>(time));
 	waterSimpleShader->Uniform(str_color, WaterMgr->m_WaterColor);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
 		data->RenderWater(waterSimpleShader, false, true);
 	}
-
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	waterSimpleShader->Unbind();
 	g_Renderer.BindTexture(1, 0);
