@@ -62,7 +62,7 @@
     <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>2500</Max>
+    <Max>2250</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_rome_sb</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -94,8 +94,8 @@
     <Entity>
       <Damage>
         <Hack>15</Hack>
-        <Pierce>25</Pierce>
-        <Crush>2</Crush>
+        <Pierce>35</Pierce>
+        <Crush>3</Crush>
       </Damage>
     </Entity>
   </Resistance>
