@@ -1,0 +1,27 @@
+{
+	"genericName": "Archery Training",
+	"description": "Encouraging soldiers to practice archery improves their accuracy.",
+	"cost": {
+		"food": 300,
+		"metal": 100
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{ "notciv": "brit" },
+			{ "notciv": "gaul" },
+			{ "notciv": "iber" },
+			{ "notciv": "rome" },
+			{ "notciv": "spart" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "archery_tradition.png",
+	"researchTime": 40,
+	"tooltip": "Archers −20% ranged attack spread.",
+	"modifications": [
+		{ "value": "Attack/Ranged/Spread", "multiply": 0.8 }
+	],
+	"affects": ["Archer"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
