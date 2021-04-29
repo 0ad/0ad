@@ -5,7 +5,7 @@
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <Max>1000</Max>
+    <Max>1200</Max>
   </Health>
   <Identity>
     <GenericName>Obelisk</GenericName>
@@ -20,15 +20,6 @@
     <Static width="4.0" depth="4.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>2</Hack>
-        <Pierce>10</Pierce>
-        <Crush>2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <TerritoryDecay disable=""/>
   <VisualActor>
     <Actor>props/special/eyecandy/obelisk.xml</Actor>

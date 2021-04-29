@@ -6,7 +6,7 @@
     <Height>4.0</Height>
   </Footprint>
   <Health>
-    <Max>200</Max>
+    <Max>220</Max>
   </Health>
   <Identity>
     <GenericName>Stone Fence</GenericName>
@@ -20,15 +20,6 @@
     <Static width="1.5" depth="10.5"/>
   </Obstruction>
   <ProductionQueue disable=""/>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>2</Hack>
-        <Pierce>10</Pierce>
-        <Crush>2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <StatusBars>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
