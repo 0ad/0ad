@@ -438,7 +438,7 @@ void ActorViewer::SetEnabled(bool enabled)
 	{
 		// Set shadows, sky and water.
 		m.OldShadows = g_RenderingOptions.GetShadows();
-		g_RenderingOptions.SetShadows(m.ShadowsEnabled);
+		SetShadowsEnabled(m.ShadowsEnabled);
 
 		m.OldSky = g_Renderer.GetSkyManager()->GetRenderSky();
 		g_Renderer.GetSkyManager()->SetRenderSky(false);
@@ -449,7 +449,7 @@ void ActorViewer::SetEnabled(bool enabled)
 	else
 	{
 		// Restore the old renderer state
-		g_RenderingOptions.SetShadows(m.OldShadows);
+		SetShadowsEnabled(m.OldShadows);
 		g_Renderer.GetSkyManager()->SetRenderSky(m.OldSky);
 		g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
 	}
@@ -472,7 +472,10 @@ void ActorViewer::SetWaterEnabled(bool enabled)
 	if (cmpWaterManager)
 		cmpWaterManager->SetWaterLevel(waterLevel);
 }
-void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
+void ActorViewer::SetShadowsEnabled(bool enabled) {
+	g_RenderingOptions.SetShadows(enabled);
+	m.ShadowsEnabled = enabled;
+}
 void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
 void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
 void ActorViewer::SetPropPointsMode(int mode)           { m.PropPointsMode = mode; }

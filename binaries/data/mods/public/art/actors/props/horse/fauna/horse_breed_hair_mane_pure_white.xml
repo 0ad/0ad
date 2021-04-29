@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant>
       <mesh>props/horse/hair_mane_01_breed.dae</mesh>
@@ -12,5 +11,5 @@
   <group>
     <variant file="quadraped/base_horse_breed_fauna.xml" name="fauna horse"/>
   </group>
-  <material>basic_trans_parallax_spec.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>
