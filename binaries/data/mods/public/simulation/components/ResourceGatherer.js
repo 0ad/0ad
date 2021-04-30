@@ -193,7 +193,6 @@ ResourceGatherer.prototype.StartGathering = function(target, callerIID)
 	// drop them first to ensure we're only ever carrying one type.
 	if (this.IsCarryingAnythingExcept(resourceType.generic))
 		this.DropResources();
-	this.AddToPlayerCounter(resourceType.generic);
 
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
@@ -227,7 +226,6 @@ ResourceGatherer.prototype.StopGathering = function(reason)
 	let cmpResourceSupply = Engine.QueryInterface(this.target, IID_ResourceSupply);
 	if (cmpResourceSupply)
 		cmpResourceSupply.RemoveGatherer(this.entity);
-	this.RemoveFromPlayerCounter();
 
 	delete this.target;
 
@@ -426,6 +424,13 @@ ResourceGatherer.prototype.DropResources = function()
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
+/**
+ * @return {string} - A generic resource type if we were tasked to gather.
+ */
+ResourceGatherer.prototype.LastGatheredType = function()
+{
+	return this.lastGathered;
+};
 
 /**
  * @param {string} type - A generic resource type.
