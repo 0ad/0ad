@@ -14,6 +14,7 @@
 # Ibraheem Essa <ibraheemplatinum2007@gmail.com>, 2021
 # Ibrahim Al-Darra <achtenacht88@gmail.com>, 2017
 # ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017-2019
+# تاكاشي الحسن <takashe1san@gmail.com>, 2021
 # Mohamed Mayla <mohamedmayla@gmail.com>, 2020
 # Mohamed Moanis <mohamed_moanis@outlook.com>, 2017
 # Nopar Despar <nopardespar@gmail.com>, 2017
@@ -21,13 +22,14 @@
 # Omar Rashad <o.rashad2020@gmail.com>, 2017
 # Saber Bousba <saber.bousba@gmail.com>, 2017
 # 6a39c688df6306dcd1a5e2f20d845515, 2018
+# تاكاشي الحسن <takashe1san@gmail.com>, 2021
 # صفا الفليج <safaalfulaij@hotmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-28 03:10+0000\n"
+"Last-Translator: تاكاشي الحسن <takashe1san@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +72,7 @@ msgstr "الاندفاع الدينيّ"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "زيادة سرعة التجميع لدى العمال بنسبة 15%"
+msgstr "العمال +15% سرعة تجميع"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -80,7 +82,7 @@ msgstr "الوطنيّة"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr " الجنود: سحق، اختراق، مقاومة اختراق +1 و  ضرر هجوم قريب و بعيد المدى +10%."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -88,7 +90,7 @@ msgstr "وجود استثنائي"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr ""
+msgstr "الأبطال:  صحة -5%."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -100,7 +102,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "مركز المعرفة"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -112,7 +114,7 @@ msgstr "الولاء"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "التجارة: سرعة الحركة +20%."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -120,7 +122,7 @@ msgstr "مرسوم آشوكا"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "العمال: معدل تجميع الحبوب +25%."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -171,7 +173,7 @@ msgstr "الحلف الدّيليّ"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr "المعالجين الحلفاء −20% من كلفة الموارد."
+msgstr "معالجين الحلفاء: كلفة الموارد −20%."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -191,7 +193,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "منتجات من الغاليون"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
@@ -273,7 +275,7 @@ msgstr ""
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "صوت مخيف"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -513,7 +515,7 @@ msgstr "عملة حديدية"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Builders +25% build rate."
-msgstr ""
+msgstr "عمال البناء +25% معدل البناء"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
@@ -539,7 +541,7 @@ msgstr "إعادة تشكيل البلتست"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
-msgstr ""
+msgstr "عمال البناء +15% معدل البناء"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -565,7 +567,7 @@ msgstr "قائد البحريّة"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
-msgstr ""
+msgstr "السفن -50% ثمن معدن، -20% وقت بناء"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
@@ -594,7 +596,7 @@ msgstr "قائد حرب العصابات"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
-msgstr ""
+msgstr "البشر +0.8 معدل تجديد الصحة."
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -684,7 +686,7 @@ msgstr "حماس المعركة"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr ""
+msgstr "الجنود -15% تكاليف الموارد، -20% وقت التدريب."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -692,7 +694,7 @@ msgstr "استنفار القوات"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
-msgstr ""
+msgstr "الجنود +20% سرعة حركة."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
@@ -716,7 +718,7 @@ msgstr "ملكة محاربة"
 msgid ""
 "Temple of Amun +20% resource costs and build time. Amun Temple Guard +20% "
 "resource costs and training time."
-msgstr ""
+msgstr "معبد آمون +20% تكاليف الموارد ووقت البناء. حراس معبد آمون +20% تكاليف الموارد ووقت التدريب."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"

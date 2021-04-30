@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 07:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-27 06:07+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,7 +138,7 @@ msgstr "退出"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "在线流延迟：%(delay)s秒"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -299,7 +299,7 @@ msgstr "网络通知"
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "键入要发送的消息。"
+msgstr "输入要发送的消息。"
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
@@ -422,7 +422,7 @@ msgstr "你已与 %(player)s 和解。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:90
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s 已和你结盟。"
+msgstr "%(player)s 已跟你结盟。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
@@ -432,12 +432,12 @@ msgstr "%(player)s 已向你宣战。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s 已与你和解。"
+msgstr "%(player)s 已跟你和解。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:95
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s 已与 %(player2)s 结盟。"
+msgstr "%(player)s 已和 %(player2)s 结盟。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:96
 #, javascript-format
@@ -447,7 +447,7 @@ msgstr "%(player)s 正与 %(player2)s 交战。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:97
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s 已与 %(player2)s 和解。"
+msgstr "%(player)s 已和 %(player2)s 和解。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:113
 #, javascript-format
@@ -479,12 +479,12 @@ msgstr "%(player)s 给你 %(amounts)s。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:165
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "你已给予 %(player2)s %(amounts)s。"
+msgstr "你给了 %(player2)s %(amounts)s。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:170
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s 给予 %(player2)s %(amounts)s。"
+msgstr "%(player)s 给了 %(player2)s %(amounts)s。"
 
 #: gui/session/chat/chat_window.xml:(caption):19
 msgctxt "chat input"
@@ -916,11 +916,11 @@ msgstr "寻找空闲工人"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "已解压%(secondaryName)s "
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "压缩"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -987,12 +987,12 @@ msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
-msgstr "现有/最大 采集者"
+msgstr "当前/最高 采集者"
 
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -1643,7 +1643,7 @@ msgstr "右键单击设置为目的贸易市场"
 #: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "当前防御塔： %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
@@ -1670,7 +1670,7 @@ msgstr "卸载全部。"
 
 #: gui/session/unit_actions.js:1336
 msgid "Unload Turrets."
-msgstr ""
+msgstr "卸载防御塔。"
 
 #: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
@@ -1691,7 +1691,7 @@ msgstr "让选取的单位驻守于建筑物或单位内。"
 
 #: gui/session/unit_actions.js:1452
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "让选取的单位占领防御塔。"
 
 #: gui/session/unit_actions.js:1474
 msgid "Unload"

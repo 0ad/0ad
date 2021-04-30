@@ -5,8 +5,10 @@
 # Translators:
 # Christian Xia <wood_elf@126.com>, 2016
 # green flute, 2020
+# green flute, 2020
 # Gring Archer <gongghy@gmail.com>, 2017
 # helinb <1696060289@qq.com>, 2015
+# Julian, 2019
 # Julian, 2019
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2014,2018
@@ -29,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-20 13:13+0000\n"
+"PO-Revision-Date: 2021-04-27 06:19+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -338,7 +340,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr "[color=\"red\"]重要提示：本图AI有bug，不发展[/color]\n\n这个曾经肥沃的山谷，被该地区中心的长期休眠火山喷发所摧毁。 经过多年空虚，烧焦的死亡，生命的迹象开始重新出现和蔓延。 现在这片土地已经到了昔日时代的茂盛之中。 唉，不是这样的：经过长时间的干旱，北方较高的地区已经开始出现无休止的降雨。 水位在急剧上升，缓慢迫使玩家寻找较小的，已灭绝的火山或现在再次休眠的大圆锥的高地。"
+msgstr "[color=\"red\"]重要提示：本图 AI 有 bug，不会发展[/color]\n\n这个曾经肥沃的山谷，被该地区中心的长期休眠火山喷发所摧毁。 经过多年空虚，烧焦的死亡，生命的迹象开始重新出现和蔓延。 现在这片土地已经到了昔日时代的茂盛之中。 唉，不是这样的：经过长时间的干旱，北方较高的地区已经开始出现无休止的降雨。 水位在急剧上升，缓慢迫使玩家寻找较小的，已灭绝的火山或现在再次休眠的大圆锥的高地。"
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -448,7 +450,7 @@ msgid ""
 "western civilization. Yet the land lacks unity, countless city-states vie "
 "for dominance. Will you lead your polis to glory and greatness or see it "
 "fall into oblivion, erased from the histories?"
-msgstr "伟大的希腊，西方文明的摇篮。如今，这片土地城邦林立，互相倾夺。你会带领城邦会走向荣耀与强大，还是眼睁睁看着她消失于历史长河中？"
+msgstr "伟大的希腊，西方文明的摇篮。如今，这片土地城邦林立，互相倾夺。你是会带领城邦步入荣耀与强大，还是眼睁睁看着她消失于历史长河中？"
 
 #: maps/random/hellas.jsonsettings.Name
 msgid "Hellas"
@@ -464,7 +466,7 @@ msgstr "陡峭山脉之间的一条狭窄的通道促进了紧张的防御战斗
 
 #: maps/random/hells_pass.jsonsettings.Name
 msgid "Hell's Pass"
-msgstr "地狱通行证"
+msgstr "地狱之路"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -546,7 +548,7 @@ msgstr "玩家在一片位于地图中央的湖泊周边开始游戏。"
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
-msgstr "湖"
+msgstr "湖泊"
 
 #: maps/random/latium.jsonsettings.Description
 msgid ""
@@ -1652,7 +1654,7 @@ msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr "伯罗奔尼撒半岛东南的拉科尼亚峡谷，是拉栖代孟人的家园。\n由于马其顿人侵犯拉栖代孟人的领土。在一场难分难解的酣战中失利后，拉栖代孟人必须在马其顿完全占领峡谷前，尽快重新建立一直军队。"
+msgstr "伯罗奔尼撒半岛东南的拉科尼亚峡谷，是斯巴达人的家园。\n由于马其顿人侵犯斯巴达人的领土。在一场难分难解的酣战中失利后，斯巴达人必须在马其顿完全占领峡谷前，尽快重新建立一直军队。"
 
 #: maps/scenarios/laconia.xml:Name:26
 msgid "Laconia"
@@ -1716,13 +1718,13 @@ msgstr "一个被用以测试单位运动程序的地图。"
 
 #: maps/scenarios/pathfinding_demo.xml:Name:38
 msgid "Pathfinding Demo"
-msgstr "寻找路线测试区"
+msgstr "寻路测试"
 
 #: maps/scenarios/pathfinding_terrain_demo.xml:Description:26
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
-msgstr "一个使用AI寻路算法测试移动花费和地形属性的地图。"
+msgstr "一个使用 AI 寻路算法测试移动花费和地形属性的地图。"
 
 #: maps/scenarios/pathfinding_terrain_demo.xml:Name:26
 msgid "Pathfinding Terrain Demo"
@@ -1730,19 +1732,19 @@ msgstr "地形寻路算法演示"
 
 #: maps/scenarios/peloponnese.xml:Description:38
 msgid "A real-world map of the Greek homeland."
-msgstr "一个反映希腊地形的真实地图。"
+msgstr "希腊地形图。"
 
 #: maps/scenarios/peloponnese.xml:Name:38
 msgid "Peloponnesian Wars"
-msgstr "伯罗奔尼撒之战"
+msgstr "伯罗奔尼撒战争"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:38
 msgid "Athens"
-msgstr "亚甸"
+msgstr "雅典"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[1].Name:38
 msgid "Sparta"
-msgstr "拉栖代孟"
+msgstr "斯巴达"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[2].Name:38
 msgid "Elis"
@@ -1834,22 +1836,22 @@ msgstr "坦塔罗斯"
 #: maps/scenarios/sandbox_athenians.xml:Description:38
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr "和亚甸在没有威胁的测试环境中游戏。"
+msgstr "和雅典在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/sandbox_athenians.xml:Name:38
 msgid "Sandbox - The Athenians"
-msgstr "测试区-亚甸"
+msgstr "沙盒-雅典"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:38
 msgid "The Athenians"
-msgstr "亚甸"
+msgstr "斯巴达"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[0].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[1].Name:38
 msgid "The Spartans"
-msgstr "拉栖代孟"
+msgstr "斯巴达"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[2].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[2].Name:38
@@ -1870,7 +1872,7 @@ msgstr "在悠闲的测试环境中试玩高卢文明。"
 
 #: maps/scenarios/sandbox_britons.xml:Name:38
 msgid "Sandbox - The Britons"
-msgstr "测试区-布立吞"
+msgstr "沙盒-布立吞"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
@@ -1883,7 +1885,7 @@ msgstr "探索迦太基的建筑和单位。"
 
 #: maps/scenarios/sandbox_carthaginians.xml:Name:38
 msgid "Sandbox - The Carthaginians"
-msgstr "测试区-迦太基"
+msgstr "沙盒-迦太基"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:38
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:26
@@ -1897,15 +1899,15 @@ msgstr "爬行"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:39
 msgid "Sandbox - The Gauls"
-msgstr "测试区- 高卢"
+msgstr "沙盒- 高卢"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
-msgstr "演示地图-伊比利亚人"
+msgstr "演示地图-伊比利亚"
 
 #: maps/scenarios/sandbox_iberians.xml:Name:38
 msgid "Sandbox - The Iberians"
-msgstr "测试区-伊比利亚人 "
+msgstr "沙盒——伊比利亚"
 
 #: maps/scenarios/sandbox_kushites.xml:Description:39
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
@@ -1913,7 +1915,7 @@ msgstr "在一个毫无威胁的沙盒场景下，以库什开局。"
 
 #: maps/scenarios/sandbox_kushites.xml:Name:39
 msgid "Sandbox - The Kushites"
-msgstr "沙盒-库什"
+msgstr "沙盒——库什"
 
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:39
 msgid "Kushites"
@@ -1926,11 +1928,11 @@ msgstr "埃及"
 #: maps/scenarios/sandbox_macedonians.xml:Description:38
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr "在没有威胁的测试区中与马其顿诸邦进行游戏。"
+msgstr "在没有威胁的沙盒中与马其顿诸邦进行游戏。"
 
 #: maps/scenarios/sandbox_macedonians.xml:Name:38
 msgid "Sandbox - The Macedonians"
-msgstr "测试区-马其顿"
+msgstr "沙盒——马其顿"
 
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:38
 msgid "The Macedonians"
@@ -1942,7 +1944,7 @@ msgstr "一个对印度各部分的展示地图。"
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:38
 msgid "Sandbox - The Mauryas"
-msgstr "沙盒 - 印度"
+msgstr "沙盒 —— 孔雀王朝"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
 msgid "Mauryan Indians"
@@ -1958,7 +1960,7 @@ msgstr "演示地图。在测试环境的波斯文明。"
 
 #: maps/scenarios/sandbox_persians.xml:Name:38
 msgid "Sandbox - The Persians"
-msgstr "测试区-波斯"
+msgstr "沙盒——波斯"
 
 #: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
 msgid "Achaemenids"
@@ -1971,7 +1973,7 @@ msgstr "一个布满岛屿的地图，适合激烈海战。"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Name:38
 msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "测试区 - 埃及托勒密"
+msgstr "沙盒——埃及托勒密"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:38
 msgid "Ptolemaios A' Soter"
@@ -1988,7 +1990,7 @@ msgstr "和埃及托勒密在没有威胁的测试环境中进行游戏。"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:Name:38
 msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "测试区 - 埃及托勒密2"
+msgstr "沙盒——埃及托勒密2"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:38
 msgid "Ptolemy \"Savior\""
@@ -1996,7 +1998,7 @@ msgstr "托勒密一世“救主”"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[2].Name:38
 msgid "Seleucids"
-msgstr "塞留西"
+msgstr "塞琉古"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[3].Name:38
 msgid "Libyans"
@@ -2008,19 +2010,19 @@ msgstr "一个罗马文明的测试场景。"
 
 #: maps/scenarios/sandbox_romans.xml:Name:38
 msgid "Sandbox - The Republican Romans"
-msgstr "测试区 - 罗马共和国"
+msgstr "沙盒 —— 罗马共和国"
 
 #: maps/scenarios/sandbox_seleucids.xml:Description:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
-msgstr "供玩家尝试塞留西文明的测试剧情。"
+msgstr "供玩家尝试塞琉古文明的测试剧情。"
 
 #: maps/scenarios/sandbox_seleucids.xml:Name:38
 msgid "Sandbox - The Seleucids"
-msgstr "测试区 - 塞留西"
+msgstr "沙盒 - 塞琉古"
 
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:38
 msgid "The Seleucids"
-msgstr "塞留西"
+msgstr "塞琉古"
 
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:38
 msgid "The Ptolemies"
@@ -2029,11 +2031,11 @@ msgstr "托勒密"
 #: maps/scenarios/sandbox_spartans.xml:Description:38
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr "和拉栖代孟在没有威胁的测试环境中游戏。"
+msgstr "和斯巴达在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/sandbox_spartans.xml:Name:38
 msgid "Sandbox - The Spartans"
-msgstr "测试区-拉栖代孟"
+msgstr "沙盒-斯巴达"
 
 #: maps/scenarios/savanna_ravine.xml:Description:38
 msgid ""
@@ -2278,11 +2280,11 @@ msgstr "热带群岛"
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
-msgstr ""
+msgstr "该地图旨在测试几类单位相互追逐的情况。"
 
 #: maps/scenarios/unit_chasing_test.xml:Name:40
 msgid "Unit Chasing test"
-msgstr ""
+msgstr "单位追逐测试"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
@@ -2308,11 +2310,11 @@ msgstr "单元运动集成测试"
 msgid ""
 "This map is designed to test the performance & functionality of unit "
 "pushing."
-msgstr ""
+msgstr "该地图旨在测试单位冲击的性能和功能。"
 
 #: maps/scenarios/unit_pushing_test.xml:Name:40
 msgid "Unit Pushing test"
-msgstr ""
+msgstr "单位冲击测试"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."
@@ -2653,7 +2655,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "为古埃及的而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞留西为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
+msgstr "为古埃及的而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞琉古为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
@@ -2752,7 +2754,7 @@ msgstr "双方皆位于一个大型的岩石高原上。\n\n探索这片土地�
 
 #: maps/skirmishes/greek_acropolis_2p.xml:Name:38
 msgid "Greek Acropolis (2)"
-msgstr "亚甸卫城 (2)"
+msgstr "雅典卫城 (2)"
 
 #: maps/skirmishes/greek_acropolis_4p.xml:Description:38
 msgid ""
@@ -2763,11 +2765,11 @@ msgstr "其中三方会发现自己安全的位于一个大型的岩石高原之
 
 #: maps/skirmishes/greek_acropolis_4p.xml:Name:38
 msgid "Greek Acropolis (4)"
-msgstr "亚甸卫城 (4)"
+msgstr "雅典卫城 (4)"
 
 #: maps/skirmishes/greek_acropolis_night_2p.xml:Name:38
 msgid "Greek Acropolis Night (2)"
-msgstr "亚甸卫城之夜 (2)"
+msgstr "雅典卫城之夜 (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -3024,7 +3026,7 @@ msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large plateau."
-msgstr "许多易于穿过的狭窄细流穿过绵延起伏的色萨利平原。有着可以大举扩张的开阔地图，每个玩家都在安全的大型亚甸卫城上开始游戏。"
+msgstr "许多易于穿过的狭窄细流穿过绵延起伏的色萨利平原。有着可以大举扩张的开阔地图，每个玩家都在安全的大型雅典卫城上开始游戏。"
 
 #: maps/skirmishes/thessalian_plains_4p.xml:Name:38
 msgid "Thessalian Plains (4)"

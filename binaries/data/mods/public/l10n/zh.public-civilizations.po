@@ -12,6 +12,7 @@
 # hyln9 <hyln9@live.cn>, 2015
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
 # Julian, 2019
+# Julian, 2019
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 # liulitchi <xingzuo88@qq.com>, 2018
 # loms126 <loms126@126.com>, 2014
@@ -28,7 +29,7 @@
 # Orwill Towne <sam990620@gmail.com>, 2018
 # volcano song <1677559@qq.com>, 2018
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014-2015,2017-2020
+# liulitchi <xingzuo88@qq.com>, 2014-2015,2017-2021
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
@@ -43,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-23 09:18+0000\n"
+"PO-Revision-Date: 2021-04-29 12:39+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -114,13 +115,13 @@ msgstr "米太亚德"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr "亚甸矿工在每阶段的金属采集效率+10%。"
+msgstr "雅典矿工在每阶段的金属采集效率+10%。"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "亚甸人从阿提卡的劳雷恩银矿采集丰富的银，铸造出著名且珍贵的银币，正面是亚甸娜，反面是她的圣鸟——鸮"
+msgstr "雅典人从阿提卡的劳雷恩银矿采集丰富的银，铸造出著名且珍贵的银币，正面是雅典娜，反面是她的圣鸟——鸮"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -132,11 +133,11 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "亚甸作为民主政治的诞生地，是希腊艺术、教育和哲学中心。亚甸的军力不俗，尤其是海军。巅峰时期，亚甸人统治了希腊的大部分土地数十年。"
+msgstr "雅典作为民主政治的诞生地，是希腊艺术、教育和哲学中心。雅典的军力不俗，尤其是海军。巅峰时期，雅典人统治了希腊的大部分土地数十年。"
 
 #: simulation/data/civs/athen.jsonName
 msgid "Athenians"
-msgstr "亚甸"
+msgstr "雅典"
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Karatakos"
@@ -144,7 +145,7 @@ msgstr "卡拉塔库士"
 
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr " 东方人"
+msgstr "沃森纽斯"
 
 #: simulation/data/civs/brit.jsonAINames[1]
 msgid "Kunobelinos"
@@ -176,7 +177,7 @@ msgstr "库克斯"
 
 #: simulation/data/civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr "行政管理"
+msgstr "阿维修斯"
 
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
@@ -200,7 +201,7 @@ msgstr "汉尼拔·巴卡"
 
 #: simulation/data/civs/cart.jsonAINames[10]
 msgid "Hampsicora"
-msgstr "Hampsicora"
+msgstr "汉姆普斯科纳"
 
 #: simulation/data/civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
@@ -282,7 +283,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "迦太基是现代突尼斯的一个城邦，在过去它是在地中海西部强大的力量，公元前三世纪最终征服了北非大部地区和现代西班牙地区。迦太基水手在公海是强大的争夺者，并精通海上贸易。他们在战场上部署战象以威慑对手，且城防坚不可摧。"
+msgstr "迦太基城邦，位于当今北非突尼斯。过去它是地中海西部的强大势力，公元前三世纪最终征服了北非大部地区和现代西班牙地区。迦太基水手在公海是强大的争夺者，并精通海上贸易。他们在战场上部署战象以威慑对手，且城防坚不可摧。"
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -389,7 +390,7 @@ msgstr "初始城墙"
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "碉楼驻军容量+3，默认箭矢+1。"
+msgstr "碉楼驻军容量 +3，默认箭矢 +1。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
@@ -435,11 +436,11 @@ msgstr "阿拉罗"
 
 #: simulation/data/civs/kush.jsonAINames[2]
 msgid "Pebatjma"
-msgstr "Pebatjma(古代努比亚女王)"
+msgstr "佩巴季马女王"
 
 #: simulation/data/civs/kush.jsonAINames[3]
 msgid "Shabaka"
-msgstr "法老沙巴卡"
+msgstr "沙巴卡法老"
 
 #: simulation/data/civs/kush.jsonAINames[4]
 msgid "Shebitku"
@@ -499,7 +500,7 @@ msgstr "库什"
 
 #: simulation/data/civs/mace.jsonAINames[0]
 msgid "Alexander the Great"
-msgstr "亚历山大大王"
+msgstr "亚历山大大帝"
 
 #: simulation/data/civs/mace.jsonAINames[10]
 msgid "Perseus"
@@ -557,7 +558,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "马其顿是希腊的一个王国，集中在希腊半岛的东北部。在亚历山大三世的领导下，马其顿军队和其盟友征服了埃及，波斯和北印度地区，促进了希腊文化和东方文化的交流。"
+msgstr "马其顿是位于希腊东北部的王国。在亚历山大大帝治下，马其顿和其盟友征服了埃及、波斯及印度北方，极大促进了希腊文化和东方文化的交流。"
 
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
@@ -577,7 +578,7 @@ msgstr "阿育王"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Dasharatha Maurya"
-msgstr "Dasharatha印度王朝"
+msgstr "达沙拉沙"
 
 #: simulation/data/civs/maur.jsonAINames[4]
 msgid "Samprati Maurya"
@@ -585,7 +586,7 @@ msgstr "三钵罗底"
 
 #: simulation/data/civs/maur.jsonAINames[5]
 msgid "Shalishuka Maurya"
-msgstr "Shalishuka 印度王朝"
+msgstr "舍利输迦"
 
 #: simulation/data/civs/maur.jsonAINames[6]
 msgid "Devavarman Maurya"
@@ -593,7 +594,7 @@ msgstr "提婆跋摩"
 
 #: simulation/data/civs/maur.jsonAINames[7]
 msgid "Shatadhanvan Maurya"
-msgstr "Shatadhanvan印度王朝"
+msgstr "萨塔陀拉"
 
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
@@ -613,7 +614,7 @@ msgstr "由旃陀罗笈多于公元前322年所建立，孔雀王朝是第一个
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
-msgstr "印度"
+msgstr "孔雀王朝"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -1062,8 +1063,8 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "拉栖代孟是希腊杰出的城邦，约在前650年称雄陆上。其文化迷恋军事训练，讲究精益求精，男孩在七岁时开始就严格的军事训练。由于其强大的军事力量，拉栖代孟在希波战争中胜利领导了希腊联军，此后，尽管付出了巨大的代价，拉栖代孟又在在伯罗奔尼撒战争中战胜了劲敌亚甸。"
+msgstr "斯巴达是希腊杰出的城邦，约在前650年称雄陆上。其文化迷恋军事训练，讲究精益求精，男孩在七岁时开始就严格的军事训练。由于其强大的军事力量，斯巴达在希波战争中胜利领导了希腊联军，此后，尽管付出了巨大的代价，斯巴达又在伯罗奔尼撒战争中战胜了劲敌雅典。"
 
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"
-msgstr "拉栖代孟"
+msgstr "斯巴达"
