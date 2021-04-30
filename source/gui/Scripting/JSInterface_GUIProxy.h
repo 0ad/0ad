@@ -55,13 +55,19 @@ public:
 	}
 
 	using PrivateData = IGUIObject*;
+
 	template<typename T>
 	static T* FromPrivateSlot(JSObject* obj)
+	{
+		return static_cast<T*>(FromPrivateSlot<IGUIObject>(obj));
+	}
+protected:
+	template<typename T>
+	static T* UnsafeFromPrivateSlot(JSObject* obj)
 	{
 		return static_cast<T*>(static_cast<PrivateData>(js::GetProxyPrivate(obj).toPrivate()));
 	}
 
-protected:
 	IGUIProxyObject() = default;
 	IGUIProxyObject(const IGUIProxyObject&) = delete;
 	IGUIProxyObject(IGUIProxyObject&&) = delete;
@@ -69,6 +75,8 @@ protected:
 	JS::PersistentRootedObject m_Object;
 	PrivateData m_Ptr;
 };
+// Declare the IGUIObject* specialization - it's defined in _impl.h
+template<> IGUIObject* IGUIProxyObject::FromPrivateSlot<IGUIObject>(JSObject*);
 
 /**
  * Proxies need to store some data whose lifetime is tied to an interface.
@@ -115,9 +123,6 @@ class JSI_GUIProxy : public js::BaseProxyHandler
 	template<typename T>
 	friend class JSI_GUIProxy;
 public:
-	// Access the js::Class of the Proxy.
-	static JSClass& ClassDefinition();
-
 	// For convenience, this is the single instantiated JSI_GUIProxy.
 	static JSI_GUIProxy& Singleton();
 
@@ -133,6 +138,8 @@ protected:
 	// Note: SM provides no virtual destructor for baseProxyHandler.
 	// This also enforces making proxy handlers dataless static variables.
 	~JSI_GUIProxy() {};
+
+	static GUIObjectType* FromPrivateSlot(const ScriptRequest&, JS::CallArgs& args);
 
 	// The default implementations need to know the type of the GUIProxyProps for this proxy type.
 	// This is done by specializing this struct's alias type.
