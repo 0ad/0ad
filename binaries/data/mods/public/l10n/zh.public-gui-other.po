@@ -89,9 +89,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-27 06:37+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 08:30+0000\n"
+"Last-Translator: loms126 <loms126@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1043,7 +1043,8 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgid "Heal:"
 msgstr "治疗："
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:563
+msgctxt "garrison tooltip"
 msgid "Health"
 msgstr "生命值"
 
@@ -1262,6 +1263,11 @@ msgstr "奔跑"
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
+
+#: gui/common/tooltips.js:1042
+msgid "Health"
+msgid_plural "Health"
+msgstr[0] ""
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1618,11 +1624,13 @@ msgid ""
 msgstr "单击任何已存在的快捷键以修改它。\\ n您最多可配置4个不同的热键。"
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
+#: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "同意"
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
 msgstr "取消"
@@ -3547,6 +3555,7 @@ msgid "Description"
 msgstr "描述"
 
 #: gui/locale/locale.xml:(caption):17
+#: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "语言:"
 
@@ -3562,6 +3571,55 @@ msgstr "地区:"
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "高级"
+
+#: gui/locale_advanced/locale_advanced.js:22
+#: gui/locale_advanced/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "无"
+
+#: gui/locale_advanced/locale_advanced.js:91
+msgid "invalid locale"
+msgstr "无效的场所"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):25
+msgid "Country:"
+msgstr "国家:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):34
+msgid "Script:"
+msgstr "脚本:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "变形 （未使用）："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "关键词(未使用):"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "由此产生的区域设置："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "使用的字典文件："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "自动检测"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):37
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr "与语言代码 （在 ISO 15924 中列出）一致的可选四字母脚本代码"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):44
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):51
+msgid "Not implemented yet."
+msgstr "尚未实施。"
 
 #: gui/maps/MapCache.js:59
 msgctxt "map selection"
@@ -4894,7 +4952,9 @@ msgstr "快捷键"
 msgid "Adjust hotkeys."
 msgstr "调整热键。"
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale_advanced/locale_advanced.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "语言"
 

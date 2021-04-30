@@ -1,0 +1,192 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2021 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
+# Translators:
+# Cheng-Chia Tseng <pswo10680@gmail.com>, 2021
+# 黃柏諺 <s8321414@gmail.com>, 2021
+# samrmrf, 2021
+# Karinsu Hsu <m80126colin@gmail.com>, 2021
+# JerryShen <jerry82422@gmail.com>, 2021
+# helen, 2021
+# StarAtt <tea55688@gmail.com>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-04-23 16:19+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>, 2021\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/wildfire-games/teams/17418/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: campaigns/tutorial.jsonDescription
+msgctxt "Campaign Template"
+msgid "Learn how to play 0 A.D."
+msgstr "學習如何玩 0 A.D."
+
+#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+msgctxt "Campaign Template"
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later. Warning: This is very"
+" fast at the start, be prepared to run through the initial bit several "
+"times."
+msgstr ""
+"這張地圖對於如何有效率的開始遊戲會有個概略性的說明。在遊戲的前期，最重要的事情就是盡可能快速的採集資源，這樣您才能在之後建造足夠的軍隊。警告：這個遊戲開始時速度非常快，所以準備好反覆通過初始階段數次。"
+
+#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "經濟概覽"
+
+#: campaigns/tutorial.jsonLevels.introduction.Description
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "這是協助你開始遊玩 0 A.D. 的基礎教程。"
+
+#: campaigns/tutorial.jsonLevels.introduction.Name
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "入門新手教程"
+
+#: campaigns/tutorial.jsonName
+msgctxt "Campaign Template"
+msgid "Tutorial"
+msgstr "新手教程"
+
+#: gui/campaigns/default_menu/CampaignMenu.js:97
+msgctxt "campaign status"
+msgid "Completed"
+msgstr "已完成"
+
+#: gui/campaigns/default_menu/CampaignMenu.js:99
+msgctxt "campaign status"
+msgid "Available"
+msgstr "可用"
+
+#: gui/campaigns/default_menu/CampaignMenu.js:158
+#, javascript-format
+msgid "Error loading campaign run %s: %s."
+msgstr "戰役載入錯誤 %s:%s。"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+msgid "Campaign Name"
+msgstr "戰役名稱"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+msgid "No scenario selected"
+msgstr "沒有被選取的劇情"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+msgid "Back to Main Menu"
+msgstr "返回主選單"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+msgid "Saved Games"
+msgstr "已儲存的遊戲"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+msgid "Start Scenario"
+msgstr "開始劇情"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+msgid "Resume Saved Game"
+msgstr "恢復已儲存的劇情"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+msgctxt "campaignLevelList"
+msgid "Scenario Name"
+msgstr "劇情名稱"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+msgctxt "campaignLevelList"
+msgid "Status"
+msgstr "狀態"
+
+#: gui/campaigns/load_modal/LoadModal.js:18
+msgid "file cannot be loaded"
+msgstr "不能載入檔案"
+
+#: gui/campaigns/load_modal/LoadModal.js:102
+#, javascript-format
+msgid "Are you sure you want to delete run %s? This cannot be undone."
+msgstr "確定要刪除存檔「%s」嗎？此操作無法復原。"
+
+#: gui/campaigns/load_modal/LoadModal.js:103
+msgid "Confirmation"
+msgstr "確認"
+
+#: gui/campaigns/load_modal/LoadModal.js:104
+msgid "No"
+msgstr "否"
+
+#: gui/campaigns/load_modal/LoadModal.js:104
+msgid "Yes"
+msgstr "是"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+msgid "Load Campaign"
+msgstr "載入戰役"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+msgid "No ongoing campaigns."
+msgstr "沒有進行中的戰役"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+msgid "Name of selected run:"
+msgstr "存檔名稱："
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+msgid "Cancel"
+msgstr "取消"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+msgid "Delete"
+msgstr "刪除"
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+msgid "Start a campaign"
+msgstr "開始戰役"
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+msgid "Please enter the name of your new campaign run: "
+msgstr "請輸入您的新戰役名稱"
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+msgid "Start Campaign"
+msgstr "開始戰役"
+
+#: gui/campaigns/setup/CampaignSetupPage.js:40
+msgid "No campaign selected."
+msgstr "沒有被選取的戰役。"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+msgid "Campaigns"
+msgstr "戰役"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
+msgid "No Campaign selected"
+msgstr "沒有被選取的戰役"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
+msgid "Main Menu"
+msgstr "主選單"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+msgctxt "campaignsetup"
+msgid "Name"
+msgstr "名稱"
+
+#: gui/common/campaigns/CampaignRun.js:95
+#, javascript-format
+msgid "%(userDesc)s - %(templateName)s"
+msgstr "%(userDesc)s - %(templateName)s"

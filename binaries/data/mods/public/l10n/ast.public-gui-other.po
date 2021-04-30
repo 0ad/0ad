@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-24 18:02+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 15:56+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -973,9 +973,10 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgid "Heal:"
 msgstr "Curar:"
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:563
+msgctxt "garrison tooltip"
 msgid "Health"
-msgstr "Salú"
+msgstr "Vida"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1197,6 +1198,12 @@ msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
+
+#: gui/common/tooltips.js:1042
+msgid "Health"
+msgid_plural "Health"
+msgstr[0] "Vida"
+msgstr[1] "Vida"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1553,11 +1560,13 @@ msgid ""
 msgstr "Calca en cualquier asignación pa camudala.\\n Puedes tener hasta 4 atayos distintos."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
+#: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Aceutar"
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
 msgstr "Encaboxar"
@@ -3482,6 +3491,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #: gui/locale/locale.xml:(caption):17
+#: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Llingua:"
 
@@ -3497,6 +3507,55 @@ msgstr "Rodiada:"
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "Avanzáu"
+
+#: gui/locale_advanced/locale_advanced.js:22
+#: gui/locale_advanced/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "Nengún"
+
+#: gui/locale_advanced/locale_advanced.js:91
+msgid "invalid locale"
+msgstr "locale non válida"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):25
+msgid "Country:"
+msgstr "País:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):34
+msgid "Script:"
+msgstr "Escritura:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "Variante (nun s'usa):"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "Pallabres clave (nun s'usa):"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "Locale resultante:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "Ficheros léxicos emplegaos:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "Deteición automática"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):37
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr "Script optativu de cuatro lletres según el códigu llingüísticu (talu como se recueye n'ISO 15924)"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):44
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):51
+msgid "Not implemented yet."
+msgstr "Entá nun s'implementó"
 
 #: gui/maps/MapCache.js:59
 msgctxt "map selection"
@@ -4829,7 +4888,9 @@ msgstr "Atayos"
 msgid "Adjust hotkeys."
 msgstr "Camudar los atayos."
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale_advanced/locale_advanced.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "Llingua"
 

@@ -1,0 +1,181 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2021 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-04-23 16:19+0000\n"
+"Language-Team: Turkmen (https://www.transifex.com/wildfire-games/teams/17418/tk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tk\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: campaigns/tutorial.jsonDescription
+msgctxt "Campaign Template"
+msgid "Learn how to play 0 A.D."
+msgstr ""
+
+#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+msgctxt "Campaign Template"
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later. Warning: This is very"
+" fast at the start, be prepared to run through the initial bit several "
+"times."
+msgstr ""
+
+#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr ""
+
+#: campaigns/tutorial.jsonLevels.introduction.Description
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr ""
+
+#: campaigns/tutorial.jsonLevels.introduction.Name
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr ""
+
+#: campaigns/tutorial.jsonName
+msgctxt "Campaign Template"
+msgid "Tutorial"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.js:97
+msgctxt "campaign status"
+msgid "Completed"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.js:99
+msgctxt "campaign status"
+msgid "Available"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.js:158
+#, javascript-format
+msgid "Error loading campaign run %s: %s."
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+msgid "Campaign Name"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+msgid "No scenario selected"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+msgid "Back to Main Menu"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+msgid "Saved Games"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+msgid "Start Scenario"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+msgid "Resume Saved Game"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+msgctxt "campaignLevelList"
+msgid "Scenario Name"
+msgstr ""
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+msgctxt "campaignLevelList"
+msgid "Status"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.js:18
+msgid "file cannot be loaded"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.js:102
+#, javascript-format
+msgid "Are you sure you want to delete run %s? This cannot be undone."
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.js:103
+msgid "Confirmation"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.js:104
+msgid "No"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.js:104
+msgid "Yes"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+msgid "Load Campaign"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+msgid "No ongoing campaigns."
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+msgid "Name of selected run:"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+msgid "Cancel"
+msgstr ""
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+msgid "Delete"
+msgstr ""
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+msgid "Start a campaign"
+msgstr ""
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+msgid "Please enter the name of your new campaign run: "
+msgstr ""
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+msgid "Start Campaign"
+msgstr ""
+
+#: gui/campaigns/setup/CampaignSetupPage.js:40
+msgid "No campaign selected."
+msgstr ""
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+msgid "Campaigns"
+msgstr ""
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
+msgid "No Campaign selected"
+msgstr ""
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
+msgid "Main Menu"
+msgstr ""
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+msgctxt "campaignsetup"
+msgid "Name"
+msgstr ""
+
+#: gui/common/campaigns/CampaignRun.js:95
+#, javascript-format
+msgid "%(userDesc)s - %(templateName)s"
+msgstr ""

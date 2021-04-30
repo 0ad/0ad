@@ -1,0 +1,197 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2021 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
+# Translators:
+# TotalNoobPL <krzysztof.gurbala@yahoo.com>, 2021
+# Andrzej Udodik <udo1992@gmail.com>, 2021
+# Leszek Szary, 2021
+# miragae <miragae@gmail.com>, 2021
+# Bartosz Bobin <bartosz@bobin.eu>, 2021
+# Przemysław Murach <moonshine133@vp.pl>, 2021
+# Szymon Blaut <szymonblaut315@gmail.com>, 2021
+# Marcin S <dzidek1003@o2.pl>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-04-23 16:19+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>, 2021\n"
+"Language-Team: Polish (https://www.transifex.com/wildfire-games/teams/17418/pl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: campaigns/tutorial.jsonDescription
+msgctxt "Campaign Template"
+msgid "Learn how to play 0 A.D."
+msgstr "Samouczek 0 A.D."
+
+#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+msgctxt "Campaign Template"
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later. Warning: This is very"
+" fast at the start, be prepared to run through the initial bit several "
+"times."
+msgstr ""
+"Ta mapa pozwala z grubsza przekonać się, jak rozpocząć grę efektywnie. Na "
+"początku gry, najważniejszą rzeczą jest zebranie surowców tak szybko, jak to"
+" możliwe, tak aby później być w stanie wytrenować wystarczającą ilość "
+"żołnierzy. Ostrzeżenie: Rozgrywka na początku gry jest bardzo szybka. Bądź "
+"przygotowany do podjęcia początkowej fazy kilka razy."
+
+#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "Samouczek ekonomiczny"
+
+#: campaigns/tutorial.jsonLevels.introduction.Description
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "To samouczek, który pomoże ci rozpocząć przygodę z 0 A.D."
+
+#: campaigns/tutorial.jsonLevels.introduction.Name
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "Samouczek"
+
+#: campaigns/tutorial.jsonName
+msgctxt "Campaign Template"
+msgid "Tutorial"
+msgstr "Samouczek"
+
+#: gui/campaigns/default_menu/CampaignMenu.js:97
+msgctxt "campaign status"
+msgid "Completed"
+msgstr "Wykonano"
+
+#: gui/campaigns/default_menu/CampaignMenu.js:99
+msgctxt "campaign status"
+msgid "Available"
+msgstr "Dostępne"
+
+#: gui/campaigns/default_menu/CampaignMenu.js:158
+#, javascript-format
+msgid "Error loading campaign run %s: %s."
+msgstr "Błąd podczas ładowania kampanii %s: %s."
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+msgid "Campaign Name"
+msgstr "Nazwa kampanii"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+msgid "No scenario selected"
+msgstr "Nie wybrano scenariusza"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+msgid "Back to Main Menu"
+msgstr "Wróć do Menu Głównego"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+msgid "Saved Games"
+msgstr "Zapisane gry"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+msgid "Start Scenario"
+msgstr "Wystartuj scenariusz"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+msgid "Resume Saved Game"
+msgstr "Wznów zapisaną grę"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+msgctxt "campaignLevelList"
+msgid "Scenario Name"
+msgstr "Nazwa scenariusza"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+msgctxt "campaignLevelList"
+msgid "Status"
+msgstr "Status"
+
+#: gui/campaigns/load_modal/LoadModal.js:18
+msgid "file cannot be loaded"
+msgstr "plik nie może być załadowany"
+
+#: gui/campaigns/load_modal/LoadModal.js:102
+#, javascript-format
+msgid "Are you sure you want to delete run %s? This cannot be undone."
+msgstr "Jesteś pewien że chcesz usunąć %s? Tego nie można odwrócić. "
+
+#: gui/campaigns/load_modal/LoadModal.js:103
+msgid "Confirmation"
+msgstr "Potwierdzenie"
+
+#: gui/campaigns/load_modal/LoadModal.js:104
+msgid "No"
+msgstr "Nie"
+
+#: gui/campaigns/load_modal/LoadModal.js:104
+msgid "Yes"
+msgstr "Tak"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+msgid "Load Campaign"
+msgstr "Załaduj kampanię"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+msgid "No ongoing campaigns."
+msgstr "Brak trwających kampanii."
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+msgid "Name of selected run:"
+msgstr "Nazwy wybranych gier:"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+msgid "Delete"
+msgstr "Usuń"
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+msgid "Start a campaign"
+msgstr "Wystartuj kampanię"
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+msgid "Please enter the name of your new campaign run: "
+msgstr "Podaj nazwę Twojej nowej kampanii:"
+
+#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+msgid "Start Campaign"
+msgstr "Wystartuj kampanię"
+
+#: gui/campaigns/setup/CampaignSetupPage.js:40
+msgid "No campaign selected."
+msgstr "Nie wybrano kampanii."
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+msgid "Campaigns"
+msgstr "Kampanie"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
+msgid "No Campaign selected"
+msgstr "Nie wybrano kampanii"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
+msgid "Main Menu"
+msgstr "Menu główne"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+msgctxt "campaignsetup"
+msgid "Name"
+msgstr "Nazwa"
+
+#: gui/common/campaigns/CampaignRun.js:95
+#, javascript-format
+msgid "%(userDesc)s - %(templateName)s"
+msgstr "%(userDesc)s - %(templateName)s"

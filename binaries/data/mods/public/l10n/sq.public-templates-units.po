@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 09:29+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -488,6 +488,20 @@ msgstr "Hero"
 msgid "Hero Cavalry"
 msgstr "Kalorës Hero"
 
+#: simulation/templates/template_unit_hero_cavalry.xml:39
+#: simulation/templates/template_unit_hero_elephant_melee.xml:52
+#: simulation/templates/template_unit_hero_healer.xml:43
+#: simulation/templates/template_unit_hero_infantry.xml:31
+#: simulation/templates/units/brit/hero_boudicca.xml:20
+#: simulation/templates/units/kush/hero_amanirenas.xml:21
+#: simulation/templates/units/maur/hero_ashoka.xml:20
+#: simulation/templates/units/pers/hero_darius_i.xml:20
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:20
+msgid ""
+"\n"
+"        "
+msgstr ""
+
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
 msgstr "Kalorës Shigjetar Hero"
@@ -632,6 +646,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
 msgstr ""
 
+#: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/units/theb_siege_fireraiser.xml:35
+msgid "Circular"
+msgstr ""
+
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
 msgstr "Anije Zjarrvënëse"
@@ -715,6 +734,10 @@ msgstr "Rrethim"
 #: simulation/templates/template_unit_siege_boltshooter.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
+msgstr ""
+
+#: simulation/templates/template_unit_siege_boltshooter.xml:27
+msgid "Linear"
 msgstr ""
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:52

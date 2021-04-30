@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-23 08:31+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 08:30+0000\n"
 "Last-Translator: ST Alfas\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -970,7 +970,8 @@ msgstr ""
 msgid "Heal:"
 msgstr ""
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:563
+msgctxt "garrison tooltip"
 msgid "Health"
 msgstr ""
 
@@ -1192,6 +1193,12 @@ msgstr ""
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/tooltips.js:1042
+msgid "Health"
+msgid_plural "Health"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1550,11 +1557,13 @@ msgid ""
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
+#: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "സ്വീകരിക്കൂ"
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
 msgstr "റദ്ദാക്കൂ"
@@ -3479,6 +3488,7 @@ msgid "Description"
 msgstr "വിവരണം"
 
 #: gui/locale/locale.xml:(caption):17
+#: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "ഭാഷ:"
 
@@ -3493,6 +3503,55 @@ msgstr "പ്രദേശം:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.js:22
+#: gui/locale_advanced/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "ഒന്നുമില്ല"
+
+#: gui/locale_advanced/locale_advanced.js:91
+msgid "invalid locale"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):25
+msgid "Country:"
+msgstr "രാജ്യം:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):34
+msgid "Script:"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):37
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):44
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):51
+msgid "Not implemented yet."
 msgstr ""
 
 #: gui/maps/MapCache.js:59
@@ -4826,7 +4885,9 @@ msgstr ""
 msgid "Adjust hotkeys."
 msgstr ""
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale_advanced/locale_advanced.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "ഭാഷ"
 
