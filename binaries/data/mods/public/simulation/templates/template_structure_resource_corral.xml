@@ -40,6 +40,13 @@
       gather_animals_stockbreeding
     </Technologies>
   </ProductionQueue>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>20</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_corral.xml</select>

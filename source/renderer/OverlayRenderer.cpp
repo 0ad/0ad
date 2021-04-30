@@ -604,9 +604,6 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	CVector3D up = viewCamera.GetOrientation().GetUp();
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
@@ -641,9 +638,6 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	}
 
 	tech->EndPass();
-
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
@@ -729,8 +723,6 @@ void OverlayRenderer::RenderSphereOverlays()
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
 
@@ -763,8 +755,6 @@ void OverlayRenderer::RenderSphereOverlays()
 	}
 
 	tech->EndPass();
-
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	glDepthMask(1);
 	glDisable(GL_BLEND);
