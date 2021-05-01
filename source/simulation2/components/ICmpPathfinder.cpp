@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Pathfinder)
-DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpPathfinder, SetDebugOverlay, bool)
-DEFINE_INTERFACE_METHOD_1("SetHierDebugOverlay", void, ICmpPathfinder, SetHierDebugOverlay, bool)
-DEFINE_INTERFACE_METHOD_CONST_1("GetPassabilityClass", pass_class_t, ICmpPathfinder, GetPassabilityClass, std::string)
-DEFINE_INTERFACE_METHOD_0("UpdateGrid", void, ICmpPathfinder, UpdateGrid)
+DEFINE_INTERFACE_METHOD("SetDebugOverlay", ICmpPathfinder, SetDebugOverlay)
+DEFINE_INTERFACE_METHOD("SetHierDebugOverlay", ICmpPathfinder, SetHierDebugOverlay)
+DEFINE_INTERFACE_METHOD("GetPassabilityClass", ICmpPathfinder, GetPassabilityClass)
+DEFINE_INTERFACE_METHOD("UpdateGrid", ICmpPathfinder, UpdateGrid)
 END_INTERFACE_WRAPPER(Pathfinder)

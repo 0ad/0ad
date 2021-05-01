@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(ProjectileManager)
-DEFINE_INTERFACE_METHOD_7("LaunchProjectileAtPoint", uint32_t, ICmpProjectileManager, LaunchProjectileAtPoint, CFixedVector3D, CFixedVector3D, fixed, fixed, std::wstring, std::wstring, fixed)
-DEFINE_INTERFACE_METHOD_1("RemoveProjectile", void, ICmpProjectileManager, RemoveProjectile, uint32_t)
+DEFINE_INTERFACE_METHOD("LaunchProjectileAtPoint", ICmpProjectileManager, LaunchProjectileAtPoint)
+DEFINE_INTERFACE_METHOD("RemoveProjectile", ICmpProjectileManager, RemoveProjectile)
 END_INTERFACE_WRAPPER(ProjectileManager)

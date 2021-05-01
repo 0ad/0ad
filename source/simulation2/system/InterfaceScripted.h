@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 #ifndef INCLUDED_INTERFACE_SCRIPTED
 #define INCLUDED_INTERFACE_SCRIPTED
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #define BEGIN_INTERFACE_WRAPPER(iname) \
@@ -41,53 +42,13 @@
 		ICmp##iname::InterfaceInit(scriptInterface); \
 	}
 
-#define DEFINE_INTERFACE_METHOD_0(scriptname, rettype, classname, methodname) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, &class_##classname, classname, &classname::methodname>), 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
+template <typename T, JSClass* jsClass>
+inline T* ComponentGetter(const ScriptRequest& rq, JS::CallArgs& args)
+{
+	return ScriptInterface::GetPrivate<T>(rq, args, jsClass);
+}
 
-#define DEFINE_INTERFACE_METHOD_1(scriptname, rettype, classname, methodname, arg1) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, &class_##classname, classname, &classname::methodname>), 1, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_2(scriptname, rettype, classname, methodname, arg1, arg2) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, arg2, &class_##classname, classname, &classname::methodname>), 2, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_3(scriptname, rettype, classname, methodname, arg1, arg2, arg3) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, arg2, arg3, &class_##classname, classname, &classname::methodname>), 3, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_4(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, &class_##classname, classname, &classname::methodname>), 4, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_5(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, &class_##classname, classname, &classname::methodname>), 5, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_6(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5, arg6) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, arg6, &class_##classname, classname, &classname::methodname>), 6, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_7(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5, arg6, arg7) \
-	JS_FN(scriptname, (ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, arg6, arg7, &class_##classname, classname, &classname::methodname>), 7, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-// const methods
-#define DEFINE_INTERFACE_METHOD_CONST_0(scriptname, rettype, classname, methodname) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, &class_##classname, classname, &classname::methodname>), 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_1(scriptname, rettype, classname, methodname, arg1) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, &class_##classname, classname, &classname::methodname>), 1, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_2(scriptname, rettype, classname, methodname, arg1, arg2) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, arg2, &class_##classname, classname, &classname::methodname>), 2, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_3(scriptname, rettype, classname, methodname, arg1, arg2, arg3) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, arg2, arg3, &class_##classname, classname, &classname::methodname>), 3, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_4(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, arg2, arg3, arg4, &class_##classname, classname, &classname::methodname>), 4, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_5(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, arg2, arg3, arg4, arg5, &class_##classname, classname, &classname::methodname>), 5, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_6(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5, arg6) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, arg2, arg3, arg4, arg5, arg6, &class_##classname, classname, &classname::methodname>), 6, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
-
-#define DEFINE_INTERFACE_METHOD_CONST_7(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5, arg6, arg7) \
-	JS_FN(scriptname, (ScriptInterface::callMethodConst<rettype, arg1, arg2, arg3, arg4, arg5, arg6, arg7, &class_##classname, classname, &classname::methodname>), 7, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT),
+#define DEFINE_INTERFACE_METHOD(scriptname, classname, methodname) \
+	ScriptFunction::Wrap<&classname::methodname, ComponentGetter<classname, &class_##classname>>(scriptname),
 
 #endif // INCLUDED_INTERFACE_SCRIPTED

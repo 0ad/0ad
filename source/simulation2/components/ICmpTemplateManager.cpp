@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,10 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(TemplateManager)
-DEFINE_INTERFACE_METHOD_1("GetTemplate", const CParamNode*, ICmpTemplateManager, GetTemplate, std::string)
-DEFINE_INTERFACE_METHOD_1("GetTemplateWithoutValidation", const CParamNode*, ICmpTemplateManager, GetTemplateWithoutValidation, std::string)
-DEFINE_INTERFACE_METHOD_CONST_1("TemplateExists", bool, ICmpTemplateManager, TemplateExists, std::string)
-DEFINE_INTERFACE_METHOD_CONST_1("GetCurrentTemplateName", std::string, ICmpTemplateManager, GetCurrentTemplateName, entity_id_t)
-DEFINE_INTERFACE_METHOD_CONST_1("FindAllTemplates", std::vector<std::string>, ICmpTemplateManager, FindAllTemplates, bool)
-DEFINE_INTERFACE_METHOD_CONST_1("GetEntitiesUsingTemplate", std::vector<entity_id_t>, ICmpTemplateManager, GetEntitiesUsingTemplate, std::string)
+DEFINE_INTERFACE_METHOD("GetTemplate", ICmpTemplateManager, GetTemplate)
+DEFINE_INTERFACE_METHOD("GetTemplateWithoutValidation", ICmpTemplateManager, GetTemplateWithoutValidation)
+DEFINE_INTERFACE_METHOD("TemplateExists", ICmpTemplateManager, TemplateExists)
+DEFINE_INTERFACE_METHOD("GetCurrentTemplateName", ICmpTemplateManager, GetCurrentTemplateName)
+DEFINE_INTERFACE_METHOD("FindAllTemplates", ICmpTemplateManager, FindAllTemplates)
+DEFINE_INTERFACE_METHOD("GetEntitiesUsingTemplate", ICmpTemplateManager, GetEntitiesUsingTemplate)
 END_INTERFACE_WRAPPER(TemplateManager)

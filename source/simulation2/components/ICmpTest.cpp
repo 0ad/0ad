@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,5 +25,5 @@ BEGIN_INTERFACE_WRAPPER(Test1)
 END_INTERFACE_WRAPPER(Test1)
 
 BEGIN_INTERFACE_WRAPPER(Test2)
-DEFINE_INTERFACE_METHOD_0("GetX", int, ICmpTest2, GetX)
+DEFINE_INTERFACE_METHOD("GetX", ICmpTest2, GetX)
 END_INTERFACE_WRAPPER(Test2)

@@ -24,7 +24,6 @@
 // but bring in a lot of headers indirectly. Adding these to the precompiled header
 // cuts down compilation time by about half.
 #include "simulation2/system/Interface.h"
-#include "simulation2/system/InterfaceScripted.h"
 #include "maths/FixedVector2D.h"
 #include "maths/FixedVector3D.h"
 

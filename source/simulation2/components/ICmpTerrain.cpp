@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Terrain)
-DEFINE_INTERFACE_METHOD_CONST_2("GetGroundLevel", entity_pos_t, ICmpTerrain, GetGroundLevel, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_CONST_2("CalcNormal", CFixedVector3D, ICmpTerrain, CalcNormal, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_CONST_0("GetTilesPerSide", u16, ICmpTerrain, GetTilesPerSide)
-DEFINE_INTERFACE_METHOD_CONST_0("GetMapSize", u32, ICmpTerrain, GetMapSize)
+DEFINE_INTERFACE_METHOD("GetGroundLevel", ICmpTerrain, GetGroundLevel)
+DEFINE_INTERFACE_METHOD("CalcNormal", ICmpTerrain, CalcNormal)
+DEFINE_INTERFACE_METHOD("GetTilesPerSide", ICmpTerrain, GetTilesPerSide)
+DEFINE_INTERFACE_METHOD("GetMapSize", ICmpTerrain, GetMapSize)
 END_INTERFACE_WRAPPER(Terrain)

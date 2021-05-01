@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(OverlayRenderer)
-DEFINE_INTERFACE_METHOD_0("Reset", void, ICmpOverlayRenderer, Reset)
-DEFINE_INTERFACE_METHOD_5("AddSprite", void, ICmpOverlayRenderer, AddSprite, VfsPath, CFixedVector2D, CFixedVector2D, CFixedVector3D, std::string)
+DEFINE_INTERFACE_METHOD("Reset", ICmpOverlayRenderer, Reset)
+DEFINE_INTERFACE_METHOD("AddSprite", ICmpOverlayRenderer, AddSprite)
 END_INTERFACE_WRAPPER(OverlayRenderer)
 
 bool ICmpOverlayRenderer::m_OverrideVisible = true;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(SoundManager)
-DEFINE_INTERFACE_METHOD_2("PlaySoundGroup", void, ICmpSoundManager, PlaySoundGroup, std::wstring, entity_id_t)
-DEFINE_INTERFACE_METHOD_2("PlaySoundGroupAtPosition", void, ICmpSoundManager, PlaySoundGroupAtPosition, std::wstring, CFixedVector3D)
-DEFINE_INTERFACE_METHOD_CONST_2("PlaySoundGroupForPlayer", void, ICmpSoundManager, PlaySoundGroupForPlayer, VfsPath, player_id_t)
-DEFINE_INTERFACE_METHOD_0("StopMusic", void, ICmpSoundManager, StopMusic)
+DEFINE_INTERFACE_METHOD("PlaySoundGroup", ICmpSoundManager, PlaySoundGroup)
+DEFINE_INTERFACE_METHOD("PlaySoundGroupAtPosition", ICmpSoundManager, PlaySoundGroupAtPosition)
+DEFINE_INTERFACE_METHOD("PlaySoundGroupForPlayer", ICmpSoundManager, PlaySoundGroupForPlayer)
+DEFINE_INTERFACE_METHOD("StopMusic", ICmpSoundManager, StopMusic)
 END_INTERFACE_WRAPPER(SoundManager)
