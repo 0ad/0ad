@@ -442,7 +442,7 @@ void SilhouetteRenderer::RenderSubmitCasters(SceneCollector& collector)
 		collector.SubmitNonRecursive(m_VisibleModelCasters[i]);
 }
 
-void SilhouetteRenderer::RenderDebugOverlays(const CCamera& camera)
+void SilhouetteRenderer::RenderDebugOverlays(const CCamera& UNUSED(camera))
 {
 	if (m_DebugBounds.empty() && m_DebugRects.empty())
 		return;
