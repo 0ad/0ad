@@ -375,6 +375,45 @@ CVector3D CCamera::GetFocus() const
 	}
 }
 
+CBoundingBoxAligned CCamera::GetBoundsInViewPort(const CBoundingBoxAligned& boundigBox) const
+{
+	CVector4D v1 = GetViewProjection().Transform(CVector4D(boundigBox[0].X, boundigBox[1].Y, boundigBox[0].Z, 1.0f));
+	CVector4D v2 = GetViewProjection().Transform(CVector4D(boundigBox[1].X, boundigBox[1].Y, boundigBox[0].Z, 1.0f));
+	CVector4D v3 = GetViewProjection().Transform(CVector4D(boundigBox[0].X, boundigBox[1].Y, boundigBox[1].Z, 1.0f));
+	CVector4D v4 = GetViewProjection().Transform(CVector4D(boundigBox[1].X, boundigBox[1].Y, boundigBox[1].Z, 1.0f));
+	CBoundingBoxAligned viewPortBounds;
+	#define ADDBOUND(v1, v2, v3, v4) \
+		if (v1.Z >= -v1.W) \
+			viewPortBounds += CVector3D(v1.X, v1.Y, v1.Z) * (1.0f / v1.W); \
+		else \
+		{ \
+			float t = v1.Z + v1.W; \
+			if (v2.Z > -v2.W) \
+			{ \
+				CVector4D c2 = v1 + (v2 - v1) * (t / (t - (v2.Z + v2.W))); \
+				viewPortBounds += CVector3D(c2.X, c2.Y, c2.Z) * (1.0f / c2.W); \
+			} \
+			if (v3.Z > -v3.W) \
+			{ \
+				CVector4D c3 = v1 + (v3 - v1) * (t / (t - (v3.Z + v3.W))); \
+				viewPortBounds += CVector3D(c3.X, c3.Y, c3.Z) * (1.0f / c3.W); \
+			} \
+			if (v4.Z > -v4.W) \
+			{ \
+				CVector4D c4 = v1 + (v4 - v1) * (t / (t - (v4.Z + v4.W))); \
+				viewPortBounds += CVector3D(c4.X, c4.Y, c4.Z) * (1.0f / c4.W); \
+			} \
+		}
+	ADDBOUND(v1, v2, v3, v4);
+	ADDBOUND(v2, v1, v3, v4);
+	ADDBOUND(v3, v1, v2, v4);
+	ADDBOUND(v4, v1, v2, v3);
+	#undef ADDBOUND
+	if (viewPortBounds[0].X >= 1.0f || viewPortBounds[1].X <= -1.0f || viewPortBounds[0].Y >= 1.0f || viewPortBounds[1].Y <= -1.0f)
+		return CBoundingBoxAligned{};
+	return viewPortBounds;
+}
+
 void CCamera::LookAt(const CVector3D& camera, const CVector3D& focus, const CVector3D& up)
 {
 	CVector3D delta = focus - camera;
