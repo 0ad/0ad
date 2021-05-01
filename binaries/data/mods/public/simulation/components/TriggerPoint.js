@@ -34,7 +34,7 @@ TriggerPoint.prototype.OnDestroy = function()
  * data.players = [1,2,3,...]  * list of player ids
  * data.minRange = 0           * Minimum range for the query
  * data.maxRange = -1          * Maximum range for the query (-1 = no maximum)
- * data.requiredComponent = -1 * Required component id the entities will have
+ * data.requiredComponent = 0  * Required component id the entities will have
  * data.enabled = false        * If the query is enabled by default
  */
 TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
@@ -42,7 +42,7 @@ TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
 	var players = data.players || Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
 	var minRange = data.minRange || 0;
 	var maxRange = data.maxRange || -1;
-	var cid = data.requiredComponent || -1;
+	var cid = data.requiredComponent || 0;
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var tag = cmpRangeManager.CreateActiveQuery(this.entity, minRange, maxRange, players, cid, cmpRangeManager.GetEntityFlagMask("normal"), true);
