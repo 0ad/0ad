@@ -87,9 +87,6 @@ Promotion.prototype.IncreaseXp = function(amount)
 			promotedTemplateName = template.Promotion.Entity;
 		}
 		this.Promote(promotedTemplateName);
-		let cmpPromotion = Engine.QueryInterface(this.promotedUnitEntity, IID_Promotion);
-		if (cmpPromotion)
-			cmpPromotion.IncreaseXp(this.currentXp);
 	}
 
 	Engine.PostMessage(this.entity, MT_ExperienceChanged, {});
