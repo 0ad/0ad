@@ -30,13 +30,6 @@
 #include <string>
 
 template <typename T>
-JSClass& JSI_GUIProxy<T>::ClassDefinition()
-{
-	static JSClass c = PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy) | JSCLASS_HAS_RESERVED_SLOTS(1));
-	return c;
-}
-
-template <typename T>
 JSI_GUIProxy<T>& JSI_GUIProxy<T>::Singleton()
 {
 	static JSI_GUIProxy<T> s;
@@ -56,10 +49,11 @@ template class JSI_GUIProxy<Type>;
 // Use a common namespace to avoid duplicating the symbols un-necessarily.
 namespace JSInterface_GUIProxy
 {
-template<typename T>
-inline T* GuiObjectGetter(const ScriptRequest&, JS::CallArgs& args)
+// All proxy objects share a class definition.
+JSClass& ClassDefinition()
 {
-	return IGUIProxyObject::FromPrivateSlot<T>(args.thisv().toObjectOrNull());
+	static JSClass c = PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy) | JSCLASS_HAS_RESERVED_SLOTS(1));
+	return c;
 }
 
 // Default implementation of the cache via unordered_map
@@ -89,12 +83,29 @@ protected:
 };
 }
 
+template<>
+IGUIObject* IGUIProxyObject::FromPrivateSlot<IGUIObject>(JSObject* obj)
+{
+	if (!obj)
+		return nullptr;
+	if (JS_GetClass(obj) != &JSInterface_GUIProxy::ClassDefinition())
+		return nullptr;
+	return UnsafeFromPrivateSlot<IGUIObject>(obj);
+}
+
 // The default propcache is a MapCache.
 template<typename T>
 struct JSI_GUIProxy<T>::PropCache
 {
 	using type = JSInterface_GUIProxy::MapCache;
 };
+
+template <typename T>
+T* JSI_GUIProxy<T>::FromPrivateSlot(const ScriptRequest&, JS::CallArgs& args)
+{
+	// Call the unsafe version - this is only ever called from actual proxy objects.
+	return IGUIProxyObject::UnsafeFromPrivateSlot<T>(args.thisv().toObjectOrNull());
+}
 
 template <typename T>
 bool JSI_GUIProxy<T>::PropGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
@@ -130,14 +141,14 @@ template<typename T>
 template<auto callable>
 void JSI_GUIProxy<T>::CreateFunction(const ScriptRequest& rq, GUIProxyProps* cache, const std::string& name)
 {
-	cache->setFunction(rq, name, ScriptFunction::Create<callable, JSInterface_GUIProxy::GuiObjectGetter<T>>(rq, name.c_str()));
+	cache->setFunction(rq, name, ScriptFunction::Create<callable, FromPrivateSlot>(rq, name.c_str()));
 }
 
 template<typename T>
 std::unique_ptr<IGUIProxyObject> JSI_GUIProxy<T>::CreateJSObject(const ScriptRequest& rq, T* ptr, GUIProxyProps* dataPtr)
 {
 	js::ProxyOptions options;
-	options.setClass(&ClassDefinition());
+	options.setClass(&JSInterface_GUIProxy::ClassDefinition());
 
 	auto ret = std::make_unique<IGUIProxyObject>();
 	ret->m_Ptr = static_cast<IGUIObject*>(ptr);

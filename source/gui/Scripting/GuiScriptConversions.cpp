@@ -22,6 +22,7 @@
 #include "gui/SettingTypes/CGUIList.h"
 #include "gui/SettingTypes/CGUISeries.h"
 #include "gui/SettingTypes/CGUISize.h"
+#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "lib/external_libraries/libsdl.h"
 #include "maths/Size2D.h"
 #include "maths/Vector2D.h"
@@ -134,6 +135,22 @@ template<> void ScriptInterface::ToJSVal<IGUIObject*>(const ScriptRequest& UNUSE
 		ret.setNull();
 	else
 		ret.setObject(*val->GetJSObject());
+}
+
+template<> bool ScriptInterface::FromJSVal<IGUIObject*>(const ScriptRequest& rq, JS::HandleValue v, IGUIObject*& out)
+{
+	if (!v.isObject())
+	{
+		ScriptException::Raise(rq, "Value is not an IGUIObject.");
+		return false;
+	}
+	out = IGUIProxyObject::FromPrivateSlot<IGUIObject>(v.toObjectOrNull());
+	if (!out)
+	{
+		ScriptException::Raise(rq, "Value is not an IGUIObject.");
+		return false;
+	}
+	return true;
 }
 
 template<> void ScriptInterface::ToJSVal<CGUIString>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CGUIString& val)

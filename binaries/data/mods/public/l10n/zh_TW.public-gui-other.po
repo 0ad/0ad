@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-25 01:32+0000\n"
-"Last-Translator: helen\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 08:30+0000\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -976,7 +976,8 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgid "Heal:"
 msgstr "治療："
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:563
+msgctxt "garrison tooltip"
 msgid "Health"
 msgstr "生命值"
 
@@ -1195,6 +1196,11 @@ msgstr "奔走"
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
+
+#: gui/common/tooltips.js:1042
+msgid "Health"
+msgid_plural "Health"
+msgstr[0] ""
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1551,11 +1557,13 @@ msgid ""
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
+#: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "接受"
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
 msgstr "取消"
@@ -3480,6 +3488,7 @@ msgid "Description"
 msgstr "描述"
 
 #: gui/locale/locale.xml:(caption):17
+#: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "語言："
 
@@ -3495,6 +3504,55 @@ msgstr "所在區域："
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "進階"
+
+#: gui/locale_advanced/locale_advanced.js:22
+#: gui/locale_advanced/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "無"
+
+#: gui/locale_advanced/locale_advanced.js:91
+msgid "invalid locale"
+msgstr "無效的語系"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):25
+msgid "Country:"
+msgstr "國家："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):34
+msgid "Script:"
+msgstr "指令稿："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "變體(未使用)："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "關鍵字(未使用)："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "產生的區域設定："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "使用的字典檔："
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "自動偵測"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):37
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr "與語言代碼(在 ISO 15924中列出)一致的可選四字母指令稿代碼"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):44
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):51
+msgid "Not implemented yet."
+msgstr "尚未實現。"
 
 #: gui/maps/MapCache.js:59
 msgctxt "map selection"
@@ -4827,7 +4885,9 @@ msgstr "快捷鍵"
 msgid "Adjust hotkeys."
 msgstr ""
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale_advanced/locale_advanced.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "語言"
 

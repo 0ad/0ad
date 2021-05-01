@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-23 10:55+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 09:19+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1027,7 +1027,8 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgid "Heal:"
 msgstr "Ulecz:"
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:563
+msgctxt "garrison tooltip"
 msgid "Health"
 msgstr "Zdrowie"
 
@@ -1261,6 +1262,14 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
+
+#: gui/common/tooltips.js:1042
+msgid "Health"
+msgid_plural "Health"
+msgstr[0] "Zdrowie"
+msgstr[1] "Zdrowie"
+msgstr[2] "Zdrowia"
+msgstr[3] "Zdrowie"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1617,11 +1626,13 @@ msgid ""
 msgstr "Kliknij dowolne mapowanie, aby je zmodyfikować. \\n Możesz mieć do 4 różnych skrótów klawiszowych."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
+#: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Akceptuj"
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
 msgstr "Anuluj"
@@ -1668,7 +1679,7 @@ msgstr "Skróty klawiszowe nie zostaną zmodyfikowane"
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "Skróty klawiszowe dotyczące kamery."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
@@ -1788,7 +1799,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
 msgid "Enable scrolling by moving the mouse."
-msgstr ""
+msgstr "Włącz przewijanie przez przesuwanie myszy."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
@@ -1931,7 +1942,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Powiększ kamerę."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
@@ -1941,7 +1952,7 @@ msgstr "Powiększ"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Pomniejsz kamerę."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
@@ -1971,7 +1982,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Powiększ kamerę - efekt jest zależny od FPSów."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
@@ -1981,7 +1992,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Pomniejsz kamerę - efekt jest zależny od FPSów."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
@@ -2021,7 +2032,7 @@ msgstr "Zamknij/Anuluj"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Potwierdź obecną komendę."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2036,7 +2047,7 @@ msgstr "Otwórz/zamknij konsolę."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr "Przełącz konsolę"
+msgstr "Włącz konsolę"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -2136,7 +2147,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr "Przełącz znak wodny"
+msgstr "Włącz znak wodny"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
@@ -2201,12 +2212,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr "Przełącz pełny ekran/tryb okienkowy"
+msgstr "Włącz pełny ekran/tryb okienkowy"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Włącz pełny ekran"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
@@ -2639,7 +2650,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "Interfejs w grze"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2654,12 +2665,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Włącz okno czatu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr "Przełącz czat"
+msgstr "Włącz czat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
@@ -2669,17 +2680,17 @@ msgstr "Pokaż informacje o cywilizacji."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "Włącz informacje o cywilizacji"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr "Przełącz licznik \"klatek na sekundę\"."
+msgstr "Włącz licznik \"klatek na sekundę\"."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr "Przełącz licznik FPS"
+msgstr "Włącz licznik FPS"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2689,7 +2700,7 @@ msgstr "Pokaż poczekalnię w oknie dialogowym"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr "Przełącz lobby MP"
+msgstr "Włącz lobby MP"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
@@ -2699,7 +2710,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Włącz prywatny czat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
@@ -2761,7 +2772,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Włacz handel wymienny"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
@@ -2771,7 +2782,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr ""
+msgstr "Włącz dyplomację"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
@@ -2801,7 +2812,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Przełącz widoczność interfejsu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
@@ -2811,7 +2822,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr "Przełącz samouczek"
+msgstr "Włącz samouczek"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
@@ -2943,7 +2954,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr "Przełącz podsumowanie"
+msgstr "Włącz podsumowanie"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
@@ -3546,6 +3557,7 @@ msgid "Description"
 msgstr "Opis"
 
 #: gui/locale/locale.xml:(caption):17
+#: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Język:"
 
@@ -3561,6 +3573,55 @@ msgstr "Kod języka:"
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "Zaawansowane"
+
+#: gui/locale_advanced/locale_advanced.js:22
+#: gui/locale_advanced/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "Żaden"
+
+#: gui/locale_advanced/locale_advanced.js:91
+msgid "invalid locale"
+msgstr "nieprawidłowe ustawienia lokalizacji"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):25
+msgid "Country:"
+msgstr "Kraj:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):34
+msgid "Script:"
+msgstr "Skrypt:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "Wariant (nieużywane):"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "Słowa kluczowe (nieużywane):"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "Wynikowy język:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "Wykorzystane pliki słownika:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "Wykryj automatycznie"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):37
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr "Opcjonalny czteroliterowy kod następujący po kodzie języka (jak wymieniono w ISO 15924)"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):44
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):51
+msgid "Not implemented yet."
+msgstr "Nie zaimplementowano."
 
 #: gui/maps/MapCache.js:59
 msgctxt "map selection"
@@ -4893,7 +4954,9 @@ msgstr "Skróty klawiszowe"
 msgid "Adjust hotkeys."
 msgstr "Dostosuj skróty klawiszowe."
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale_advanced/locale_advanced.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "Język"
 

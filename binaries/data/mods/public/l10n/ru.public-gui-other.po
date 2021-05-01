@@ -48,8 +48,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-24 20:26+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 08:45+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1029,7 +1029,8 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgid "Heal:"
 msgstr "Лечение:"
 
-#: gui/common/tooltips.js:563 gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:563
+msgctxt "garrison tooltip"
 msgid "Health"
 msgstr "Здоровье"
 
@@ -1263,6 +1264,14 @@ msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
+
+#: gui/common/tooltips.js:1042
+msgid "Health"
+msgid_plural "Health"
+msgstr[0] "Здоровье"
+msgstr[1] "Здоровья"
+msgstr[2] "Здоровья"
+msgstr[3] "Здоровья"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1619,11 +1628,13 @@ msgid ""
 msgstr "Кликните на любое сочетание для модификации.\\n На каждое действие 4 разных горячих клавиши."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
+#: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Подтвердить"
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
 msgstr "Отмена"
@@ -2646,12 +2657,12 @@ msgstr "Интерфейс в игре"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Отображать таймер перемирия."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Отображать таймер перемирия"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
@@ -2661,7 +2672,7 @@ msgstr "Открыть/закрыть окно чата."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Показать чат"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
@@ -2696,12 +2707,12 @@ msgstr "Показать лобби"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Показать/скрыть окно переписки с предыдущим выбранным партнёром приватного чата"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Показать личный чат"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
@@ -2753,7 +2764,7 @@ msgstr "Переключить дипломатические цвета"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Переключить дипломатические цвета"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2793,7 +2804,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr ""
+msgstr "Показать задачи игры"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
@@ -2950,12 +2961,12 @@ msgstr "Сводная таблица"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Показать/скрыть окно переписки с союзниками."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Показать чат союзников"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -3548,6 +3559,7 @@ msgid "Description"
 msgstr "Описание"
 
 #: gui/locale/locale.xml:(caption):17
+#: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Язык:"
 
@@ -3563,6 +3575,55 @@ msgstr "Место:"
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "Дополнительно"
+
+#: gui/locale_advanced/locale_advanced.js:22
+#: gui/locale_advanced/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "Нет"
+
+#: gui/locale_advanced/locale_advanced.js:91
+msgid "invalid locale"
+msgstr ""
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):25
+msgid "Country:"
+msgstr "Страна:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):34
+msgid "Script:"
+msgstr "Код:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "Вариант (не используется):"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "Названия кнопок (не используется) :"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "Итоговая местность:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "Файлы перевода:"
+
+#: gui/locale_advanced/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "Автоопределение"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):37
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr "Дополнительный четерёхбуквенный код скрипта следует за языковым кодом (как принято в ISO 15924)"
+
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):44
+#: gui/locale_advanced/locale_advanced.xml:(tooltip):51
+msgid "Not implemented yet."
+msgstr "Ещё не реализовано."
 
 #: gui/maps/MapCache.js:59
 msgctxt "map selection"
@@ -4551,7 +4612,7 @@ msgstr "Членство в отряде"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr "Единственная"
+msgstr "Единственное"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -4562,7 +4623,7 @@ msgstr "При добавлении юнита или здания в отряд
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr "Одновременные"
+msgstr "Одновременное"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
@@ -4895,7 +4956,9 @@ msgstr "Горячие клавиши"
 msgid "Adjust hotkeys."
 msgstr "Настроить горячие клавиши."
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale_advanced/locale_advanced.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "Язык"
 

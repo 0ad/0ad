@@ -478,6 +478,16 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
+		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+		if (!cmpResourceGatherer)
+			return this.FinishOrder();
+
+		// We were given the order to gather while we were still gathering.
+		// This is needed because we don't re-enter the GATHER-state.
+		let lastGatheredType = cmpResourceGatherer.LastGatheredType();
+		if (lastGatheredType && msg.data.type.generic != lastGatheredType)
+			this.UnitFsm.SwitchToNextState(this, "INDIVIDUAL.GATHER");
+
 		if (!this.CanGather(msg.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.GATHER.FINDINGNEWTARGET");
@@ -485,20 +495,9 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		// If the unit is full go to the nearest dropsite instead of trying to gather.
-		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (cmpResourceGatherer && !cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
+		if (!cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
 		{
-			let nearestDropsite = this.FindNearestDropsite(msg.data.type.generic);
-			if (nearestDropsite)
-				this.PushOrderFront("ReturnResource", {
-					"target": nearestDropsite,
-					"force": false,
-					"type": msg.data.type
-				});
-			// Players expect the unit to move, so walk to the target instead of trying to gather.
-			else if (!this.FinishOrder())
-				this.WalkToTarget(msg.data.target, false);
-
+			this.SetNextState("INDIVIDUAL.GATHER.RETURNINGRESOURCE");
 			return ACCEPT_ORDER;
 		}
 
@@ -2339,7 +2338,18 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"GATHER": {
+			"enter": function() {
+				let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+				if (cmpResourceGatherer)
+					cmpResourceGatherer.AddToPlayerCounter(this.order.data.type.generic);
+				return false;
+			},
+
 			"leave": function() {
+				let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+				if (cmpResourceGatherer)
+					cmpResourceGatherer.RemoveFromPlayerCounter();
+
 				// Show the carried resource, if we've gathered anything.
 				this.SetDefaultAnimationVariant();
 			},
@@ -2378,9 +2388,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 					this.SetAnimationVariant("approach_" + this.order.data.type.specific);
-					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					if (cmpResourceGatherer)
-						cmpResourceGatherer.AddToPlayerCounter(this.order.data.type.generic);
 					return false;
 				},
 
@@ -2397,15 +2404,10 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					if (!this.gatheringTarget)
 						return;
-					// don't use ownership because this is called after a conversion/resignation
-					// and the ownership would be invalid then.
+
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
-
-					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					if (cmpResourceGatherer)
-						cmpResourceGatherer.RemoveFromPlayerCounter();
 
 					delete this.gatheringTarget;
 				},
@@ -2471,12 +2473,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"InventoryFilled": function(msg) {
-					let nearestDropsite = this.FindNearestDropsite(this.order.data.type.generic);
-					if (nearestDropsite)
-						this.PushOrderFront("ReturnResource", { "target": nearestDropsite, "force": false });
-					else
-						this.FinishOrder();
-
+					this.SetNextState("RETURNINGRESOURCE");
 				},
 
 				"OutOfRange": function(msg) {
@@ -2576,6 +2573,49 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 					// No dropsites - just give up.
 					return true;
+				},
+			},
+
+			"RETURNINGRESOURCE": {
+				"enter": function() {
+					let nearestDropsite = this.FindNearestDropsite(this.order.data.type.generic);
+					if (!nearestDropsite)
+					{
+						// The player expects the unit to move upon failure.
+						let formerTarget = this.order.data.target;
+						if (!this.FinishOrder())
+							this.WalkToTarget(formerTarget);
+						return true;
+					}
+					this.order.data.formerTarget = this.order.data.target;
+					this.order.data.target = nearestDropsite;
+					this.SetDefaultAnimationVariant();
+					this.SetNextState("APPROACHING");
+					return true;
+				},
+
+				"leave": function() {
+				},
+
+				"APPROACHING": "INDIVIDUAL.RETURNRESOURCE.APPROACHING",
+
+				"DROPPINGRESOURCES": {
+					"enter": function() {
+						let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+						if (this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
+						{
+							cmpResourceGatherer.CommitResources(this.order.data.target);
+							this.SetNextState("GATHER.APPROACHING");
+						}
+						else
+							this.SetNextState("RETURNINGRESOURCE");
+						this.order.data.target = this.order.data.formerTarget;
+
+						return true;
+					},
+
+					"leave": function() {
+					},
 				},
 			},
 		},

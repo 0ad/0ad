@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:20+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 08:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +37,11 @@ msgstr ""
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "拉栖代孟从小就被编入团队并进行军事训练，以成为最强悍的战士和忍受艰难的军旅生活。"
+msgstr "斯巴达人从小就被编入团队，并进行军事训练，以成为最强悍的战士，忍受艰难的军旅生活。"
 
 #: simulation/data/technologies/agoge.jsongenericName
 msgid "The Agoge"
-msgstr "拉栖代孟教育"
+msgstr "斯巴达教育"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
@@ -93,6 +93,49 @@ msgstr "都邑阶段解锁。"
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
 msgstr "精锐铜盾枪兵生命+25% ，训练时间+5%。"
 
+#: simulation/data/technologies/archer_attack_spread.jsondescription
+msgid "Encouraging soldiers to practice archery improves their accuracy."
+msgstr ""
+
+#: simulation/data/technologies/archer_attack_spread.jsongenericName
+msgid "Archery Training"
+msgstr ""
+
+#: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
+#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
+#: simulation/data/technologies/colonization.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_range.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
+#: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase."
+msgstr "城镇阶段解锁。"
+
+#: simulation/data/technologies/archer_attack_spread.jsontooltip
+msgid "Archers −20% ranged attack spread."
+msgstr ""
+
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
@@ -112,7 +155,7 @@ msgstr "射术传承"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "解锁乡村阶段。"
+msgstr "乡村阶段解锁。"
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
@@ -121,35 +164,6 @@ msgstr "弓箭手的射程 +10"
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
 msgstr "纪念设施"
-
-#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
-#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_range.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
-#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
-msgid "Unlocked in Town Phase."
-msgstr "城镇阶段解锁。"
 
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
@@ -320,7 +334,7 @@ msgstr "希腊建筑"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "建筑物生命+10%，忠诚+10% 。"
+msgstr "建筑物生命 +10%，忠诚 +10% 。"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -472,7 +486,7 @@ msgstr "生活条件"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr "建筑物的驻军治疗效率+1。"
+msgstr "建筑物的驻军治疗效率 +1。"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -484,7 +498,7 @@ msgstr "畜牧业"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr "家畜繁殖周期-25% 。"
+msgstr "家畜繁殖周期 -25% 。"
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
@@ -498,7 +512,7 @@ msgstr "篮"
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr "工人物资运载容量+5 。"
+msgstr "工人物资运载容量 +5 。"
 
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 msgid ""
@@ -787,7 +801,7 @@ msgstr "战地医疗"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "闲置有生单位生命恢复速率+0.5。"
+msgstr "闲置有生单位生命恢复速率 +0.5。"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -803,6 +817,18 @@ msgstr "希腊化大都会"
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
 msgstr "公署生命和忠诚+100% ，火力加倍。"
+
+#: simulation/data/technologies/hoplite_tradition.jsondescription
+msgid "Hoplite soldiers constituted most of the armies of Greece."
+msgstr ""
+
+#: simulation/data/technologies/hoplite_tradition.jsongenericName
+msgid "Hoplite Tradition"
+msgstr ""
+
+#: simulation/data/technologies/hoplite_tradition.jsontooltip
+msgid "Hoplites −25% training time and −50% promotion experience."
+msgstr ""
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -836,7 +862,7 @@ msgstr "步兵训练时间-10%."
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr "亚甸的三列桨战船可以训练海军剑士及克里特弓箭手。"
+msgstr "雅典的三列桨战船可以训练海军剑士及克里特弓箭手。"
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -844,7 +870,7 @@ msgstr "伊菲克拉特斯改革"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr "亚甸的三列桨战船可以训练海军剑士及克里特弓箭手。"
+msgstr "雅典的三列桨战船可以训练海军剑士及克里特弓箭手。"
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -852,11 +878,11 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "亚甸长墙，是在老谋深算的地米斯托克利的主持下修建的，它长达6公里连接着都邑比雷埃夫斯港口。它确保了都邑海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
+msgstr "雅典长墙，是在老谋深算的地米斯托克利的主持下修建的，它长达6公里连接着都邑比雷埃夫斯港口。它确保了都邑海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
 
 #: simulation/data/technologies/long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr "亚甸长墙"
+msgstr "雅典长墙"
 
 #: simulation/data/technologies/long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
@@ -867,7 +893,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "现已灭绝的尼西亚马曾是古代身型最大且强壮一种马。波斯人和塞流古人都非常热衷于这种马,随着时间的流逝，无论是骑士还是战马都披挂上了更厚重的铠甲。"
+msgstr "现已灭绝的尼西亚马曾是古代身型最大且强壮一种马。波斯和塞琉古都非常热衷于这种马,随着时间的流逝，无论是骑士还是战马都披挂上了更厚重的铠甲。"
 
 #: simulation/data/technologies/nisean_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -883,7 +909,7 @@ msgstr "骑兵生命+20%，训练时间+10%。"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr "传统抑或改革"
+msgstr "传统，抑或改革"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -903,7 +929,7 @@ msgstr "精锐单位训练时间-20%"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr "用于模板要求的虚拟技术，被phase_city_generic or phase_city_{civ} 替代。"
+msgstr "模板要求的虚拟技术，为 phase_city_generic 或 phase_city_{civ} 替代。"
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -916,7 +942,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "从繁华的城镇进展为一个名副其实的都邑，充满着奇观与现代技术。这就是亚甸人的都邑阶段，其中金属开采效率因为「银鸮」的加值而大大的提升。"
+msgstr "从繁华的城镇进展为一个名副其实的都邑，充满着奇观与现代技术。为雅典的都邑阶段，其中金属开采效率因为「银鸮」的加值而大大的提升。"
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -968,7 +994,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "从小乡村发展为繁华城镇，准备快速扩张。这就是亚甸人的城镇时期，其中金属采集效率因为“银鸮”的奖励而提升。"
+msgstr "从小乡村发展为繁华城镇，准备快速扩张。这就是雅典的城镇阶段，其中金属采集效率因为“银鸮”的奖励而提升。"
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1310,7 +1336,7 @@ msgstr "监察"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr "让你的单位被贿赂所需费用+50％。"
+msgstr "己方单位被贿赂时，费用 +50％。"
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
@@ -1346,7 +1372,7 @@ msgstr "稳固地基"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr "碉楼的生命+25%。"
+msgstr "碉楼的生命值 +25%。"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1370,7 +1396,7 @@ msgstr "强弓手"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr "望楼和碉楼的射击范围+8 。"
+msgstr "望楼和碉楼的射击范围 +8 。"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1394,7 +1420,7 @@ msgstr "警卫"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr "望楼和碉楼的默认箭矢+1 。"
+msgstr "望楼和碉楼的默认箭矢数 +1 。"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1420,7 +1446,7 @@ msgstr "改进工艺"
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% trade gain."
-msgstr "商队贸易收益+15%"
+msgstr "商队贸易收益 +15%"
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1440,7 +1466,7 @@ msgstr "商队生命+50%"
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr "马其顿风格的塞留西军队。"
+msgstr "马其顿风格的塞琉古军队。"
 
 #: simulation/data/technologies/traditional_army_sele.jsongenericName
 msgid "Traditional Army"

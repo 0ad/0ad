@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 08:20+0000\n"
+"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"PO-Revision-Date: 2021-04-30 08:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -81,6 +81,49 @@ msgstr "Desbloquéase na fase de cidade."
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
 msgstr ""
 
+#: simulation/data/technologies/archer_attack_spread.jsondescription
+msgid "Encouraging soldiers to practice archery improves their accuracy."
+msgstr ""
+
+#: simulation/data/technologies/archer_attack_spread.jsongenericName
+msgid "Archery Training"
+msgstr ""
+
+#: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
+#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
+#: simulation/data/technologies/colonization.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_range.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
+#: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
+#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
+msgid "Unlocked in Town Phase."
+msgstr "Desbloquéase na fase de vila."
+
+#: simulation/data/technologies/archer_attack_spread.jsontooltip
+msgid "Archers −20% ranged attack spread."
+msgstr ""
+
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
@@ -109,35 +152,6 @@ msgstr ""
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
 msgstr "Arquitectura monumental"
-
-#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
-#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_range.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
-#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
-msgid "Unlocked in Town Phase."
-msgstr "Desbloquéase na fase de vila."
 
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
@@ -790,6 +804,18 @@ msgstr "Metrópoles helenas"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
+
+#: simulation/data/technologies/hoplite_tradition.jsondescription
+msgid "Hoplite soldiers constituted most of the armies of Greece."
+msgstr ""
+
+#: simulation/data/technologies/hoplite_tradition.jsongenericName
+msgid "Hoplite Tradition"
+msgstr ""
+
+#: simulation/data/technologies/hoplite_tradition.jsontooltip
+msgid "Hoplites −25% training time and −50% promotion experience."
 msgstr ""
 
 #: simulation/data/technologies/immortals.jsondescription

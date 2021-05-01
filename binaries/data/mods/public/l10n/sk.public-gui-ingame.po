@@ -18,17 +18,19 @@
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
+# Rudolf Tisoň <rudotison5@gmail.com>, 2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2018,2020-2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tom Hanax, 2019
 # Tom Hanax, 2019
+# Zuzana Miadoková <akara.horse@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 07:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-04-26 11:01+0000\n"
+"Last-Translator: Rudolf Tisoň <rudotison5@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +45,7 @@ msgstr "Vybrať rýchlosť hry"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Stlač %(hotkey)s na otvorenie tohto menu."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -71,7 +73,7 @@ msgstr "Predsieň"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Stlač %(hotkey)s na otvorenie predsiene hry viacerých hráčov bez opustenia hry."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -106,7 +108,7 @@ msgstr "Ukončiť"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Oneskorenie živého vysielania: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -356,21 +358,21 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s, %(attacker)s zaútočil na tvoj dobytok!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s, zaútočil na teba %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:31
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Kliknutím presunieš kameru na napadnutú jednotku."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:50
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s vymenil %(amountGiven)s za %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
@@ -550,7 +552,7 @@ msgstr "Povoliť time warp"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Aktivuj test opakovaného pripojenia"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -558,19 +560,19 @@ msgstr "Povýšiť vybrané jednotky"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "Zapnúť culling"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Uzamknúť cull camera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Zobraziť kamerové frustum"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Zobraziť tieňové frustum"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -890,11 +892,11 @@ msgstr "Nájsť nečinného robotníka"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — Zbalené"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Zbalené"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -966,7 +968,7 @@ msgstr "Aktuálny/maximálny počet zberačov"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -979,7 +981,7 @@ msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr ""
+msgstr "Veľkosť posádky"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1031,19 +1033,19 @@ msgstr "Koniec poplachu."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Predvolená formácia je vypnutá."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Kliknutie pravým tlačidlom myši vypne funkciu predvolených formácii."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Toto je predvolená formácia, používaná na príkazy pohybu."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Kliknutie pravým tlačidlom myši nastaví túto formáciu ako predvolenú."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1122,22 +1124,22 @@ msgstr "Nie je možné začať tréning, kým prebieha vylepšovanie."
 #: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Vylepšiť na %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Vylepšiť na %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Vylepšiť na %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Vylepšiť na %(primaryName)s."
 
 #: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
@@ -1225,65 +1227,65 @@ msgstr "%(changer)s zníži limit o %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Môže byť postavené raz."
+msgstr[1] "Môže byť postavené %(limit)s-krát."
+msgstr[2] "Môže byť postavené %(limit)s-krát."
+msgstr[3] "Môže byť postavené %(limit)s-krát."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Môže byť postavené len raz."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Môže byť postavené ešte raz."
+msgstr[1] "Môže byť postavené ešte %(count)s-krát."
+msgstr[2] "Môže byť postavené ešte %(count)s-krát."
+msgstr[3] "Môže byť postavené ešte %(count)s-krát."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mohlo byť trénované len raz."
+msgstr[1] "Mohlo byť trénované %(limit)s-krát."
+msgstr[2] "Mohlo byť trénované %(limit)s-krát."
+msgstr[3] "Mohlo byť trénované %(limit)s-krát."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Mohlo byť trénované len raz."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Môže byť postavené ešte raz."
+msgstr[1] "Môže byť postavené ešte %(count)s-krát."
+msgstr[2] "Môže byť trénované ešte %(count)s-krát."
+msgstr[3] "Môže byť trénované ešte %(count)s-krát."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Mohlo byť vytvorené len raz."
+msgstr[1] "Mohlo byť vytvorené len %(limit)s-krát."
+msgstr[2] "Mohlo byť vytvorené %(limit)s-krát."
+msgstr[3] "Mohlo byť vytvorené %(limit)s-krát."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Mohlo byť vytvorené len raz."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Môže byť vytvorené %(count)s-krát."
+msgstr[1] "Môže byť vytvorené %(count)s-krát."
+msgstr[2] "Môže byť vytvorené %(count)s-krát."
+msgstr[3] "Môže byť vytvorené %(count)s-krát."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1342,7 +1344,7 @@ msgstr "Kliknite pre označenie skupiny jednotiek, kliknite dva krát, aby ste p
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alpha XXV: Y——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1350,7 +1352,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Zobraziť Civilizačný prehľad / Štruktúrny strom\nNaposledy otvorené bude znovu otvorený po kliknutí."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1668,7 +1670,7 @@ msgstr "Kliknite pravým tlačítkom myši, aby ste nastavili trh ako cieľový"
 #: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "Aktuálne veže: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
@@ -1687,10 +1689,10 @@ msgstr "Očakávaný zisk: %(gain)s"
 #: gui/session/unit_actions.js:1255
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Táto entita nemôže byť ovládaná."
+msgstr[1] "Tieto entity nemôžu byť ovládané."
+msgstr[2] "Tieto entity nemôžu byť ovládané."
+msgstr[3] "Tieto entity nemôžu byť ovládané."
 
 #: gui/session/unit_actions.js:1301
 msgid "Unload All."
@@ -1698,7 +1700,7 @@ msgstr "Vyložiť všetkých"
 
 #: gui/session/unit_actions.js:1336
 msgid "Unload Turrets."
-msgstr ""
+msgstr "Vyložiť veže."
 
 #: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
@@ -1715,11 +1717,11 @@ msgstr "Zrušte aktuálny príkaz."
 
 #: gui/session/unit_actions.js:1430
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Prikáž vybraným jednotkám obývať budovu alebo jednotku."
 
 #: gui/session/unit_actions.js:1452
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Prikáž vybraným jednotkám obsadiť vežu."
 
 #: gui/session/unit_actions.js:1474
 msgid "Unload"
@@ -1727,7 +1729,7 @@ msgstr "Vyložiť"
 
 #: gui/session/unit_actions.js:1494
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Prikáž vybraným jednotkám opraviť budovu, loď alebo obliehací stroj."
 
 #: gui/session/unit_actions.js:1515
 msgid "Focus on Rally Point."
@@ -1739,7 +1741,7 @@ msgstr "Naspäť k práci"
 
 #: gui/session/unit_actions.js:1573
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Prikáž vybraným jednotkám strážiť budovu alebo jednotku."
 
 #: gui/session/unit_actions.js:1593
 msgid "Remove guard"
@@ -1757,7 +1759,7 @@ msgstr "Hliadkovať"
 
 #: gui/session/unit_actions.js:1633
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Útoč na všetky nepriateľské jednotky v dohľade, ale vyhýbaj sa budovám."
 
 #: gui/session/unit_actions.js:1661
 msgid "Press to allow allies to use this dropsite"
@@ -1773,7 +1775,7 @@ msgstr "Použitie tohto úložného miesta je zakázané"
 
 #: gui/session/unit_actions.js:1707
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Spojenci môžu používať toto skladisko."
 
 #: gui/session/unit_actions.js:1708
 msgid "You are allowed to use this dropsite"
