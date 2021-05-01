@@ -44,7 +44,6 @@ private:
 	CStr m_PreviousTooltipName;
 	CVector2D m_PreviousMousePos;
 	double m_Time;
-	bool m_IsIconTooltip;
 };
 
 #endif // INCLUDED_GUITOOLTIP

@@ -153,9 +153,10 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 							SpriteCall.m_Area += displacement;
 					}
 					else if (tagAttrib.attrib == L"tooltip")
-						SpriteCall.m_Tooltip = tagAttrib.value;
-					else if (tagAttrib.attrib == L"tooltip_style")
-						SpriteCall.m_TooltipStyle = tagAttrib.value;
+					{
+						TextCall.m_Tooltip = tagAttrib.value;
+						LOGWARNING("setting tooltip to %s", TextCall.m_Tooltip.ToUTF8().c_str());
+					}
 				}
 
 				SpriteCall.m_Sprite = icon.m_SpriteName;
@@ -198,6 +199,9 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 				case TextChunk::Tag::TAG_FONT:
 					// TODO Gee: (2004-08-15) Check if Font exists?
 					TextCall.m_Font = CStrIntern(utf8_from_wstring(tag.m_TagValue));
+					break;
+				case TextChunk::Tag::TAG_TOOLTIP:
+					TextCall.m_Tooltip = tag.m_TagValue;
 					break;
 				default:
 					LOGERROR("Encountered unexpected tag applied to text");
@@ -256,6 +260,8 @@ CGUIString::TextChunk::Tag::TagType CGUIString::TextChunk::Tag::GetTagType(const
 		return TAG_IMGLEFT;
 	if (tagtype == L"imgright")
 		return TAG_IMGRIGHT;
+	if (tagtype == L"tooltip")
+		return TAG_TOOLTIP;
 
 	return TAG_INVALID;
 }

@@ -181,11 +181,6 @@ bool IGUIObject::IsMouseOver() const
 	return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
 }
 
-bool IGUIObject::MouseOverIcon()
-{
-	return false;
-}
-
 void IGUIObject::UpdateMouseOver(IGUIObject* const& pMouseOver)
 {
 	if (pMouseOver == this)

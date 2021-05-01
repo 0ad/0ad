@@ -86,11 +86,6 @@ public:
 	 */
 	virtual void DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, float z, const CRect& clipping = CRect());
 
-	/**
-	 * Test if mouse position is over an icon
-	 */
-	virtual bool MouseOverIcon();
-
 protected:
 	/**
 	 * Setup texts. Functions that sets up all texts when changes have been made.

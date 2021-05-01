@@ -59,8 +59,7 @@ void IGUITextOwner::HandleMessage(SGUIMessage& Message)
 		//  it is assumed that the text of the object will be dependent on
 		//  these. Although that is not certain, but one will have to manually
 		//  change it and disregard this function.
-		// TODO Gee: (2004-09-07) Make sure this is all options that can affect the text.
-		if (Message.value == "size" || Message.value == "z" ||
+		if (Message.value == "size" || Message.value == "tooltip" ||
 			Message.value == "absolute" || Message.value == "caption" ||
 			Message.value == "font" || Message.value == "textcolor" ||
 			Message.value == "text_align" || Message.value == "text_valign" ||
@@ -121,9 +120,4 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CVector2D& TextPos, CG
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");
 		break;
 	}
-}
-
-bool IGUITextOwner::MouseOverIcon()
-{
-	return false;
 }
