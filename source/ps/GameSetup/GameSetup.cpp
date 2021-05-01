@@ -78,6 +78,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
 #include "renderer/ModelRenderer.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
 #include "scriptinterface/ScriptContext.h"
@@ -1631,7 +1632,7 @@ void CancelLoad(const CStrW& message)
 	if (g_GUI &&
 	    g_GUI->GetPageCount() &&
 	    pScriptInterface->HasProperty(global, "cancelOnLoadGameError"))
-		pScriptInterface->CallFunctionVoid(global, "cancelOnLoadGameError", message);
+		ScriptFunction::CallVoid(rq, global, "cancelOnLoadGameError", message);
 }
 
 bool InDevelopmentCopy()

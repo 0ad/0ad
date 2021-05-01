@@ -41,6 +41,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/TimeManager.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -328,7 +329,7 @@ PSRETURN CGame::ReallyStartGame()
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
 		if (scriptInterface->HasProperty(global, "reallyStartGame"))
-			scriptInterface->CallFunctionVoid(global, "reallyStartGame");
+			ScriptFunction::CallVoid(rq, global, "reallyStartGame");
 	}
 
 	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");

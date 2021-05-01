@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -137,7 +138,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
 		JS::RootedValue hotloadDataVal(rq.cx);
-		scriptInterface->CallFunction(global, "getHotloadData", &hotloadDataVal);
+		ScriptFunction::Call(rq, global, "getHotloadData", &hotloadDataVal);
 		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
 	}
 
@@ -212,7 +213,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
 
 	if (scriptInterface->HasProperty(global, "init") &&
-	    !scriptInterface->CallFunctionVoid(global, "init", initDataVal, hotloadDataVal))
+	    !ScriptFunction::CallVoid(rq, global, "init", initDataVal, hotloadDataVal))
 		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(m_Name));
 }
 
@@ -301,7 +302,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 		ScriptRequest rq(*top()->GetScriptInterface());
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
-		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
+		if (ScriptFunction::Call(rq, global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
 			if (handled)
 				return IN_HANDLED;
 	}
@@ -319,7 +320,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 		JS::RootedValue global(rq.cx, rq.globalValue());
 
 		PROFILE("handleInputAfterGui");
-		if (top()->GetScriptInterface()->CallFunction(global, "handleInputAfterGui", handled, *ev))
+		if (ScriptFunction::Call(rq, global, "handleInputAfterGui", handled, *ev))
 			if (handled)
 				return IN_HANDLED;
 	}

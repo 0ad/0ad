@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 
 #include "lib/self_test.h"
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "ps/CLogger.h"
@@ -75,7 +76,7 @@ public:
 			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
 			std::string source;
-			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
+			TS_ASSERT(ScriptFunction::Call(rq2, obj2, "toSource", source));
 			TS_ASSERT_STR_EQUALS(source, "({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})");
 		}
 	}
@@ -97,7 +98,7 @@ public:
 			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
 			std::string source;
-			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
+			TS_ASSERT(ScriptFunction::Call(rq2, obj2, "toSource", source));
 			TS_ASSERT_STR_EQUALS(source, "({x:123, y:{w:{z:4}}})");
 		}
 	}
@@ -153,17 +154,15 @@ public:
 		JS::RootedValue nbrVal(rq.cx, JS::NumberValue(3));
 		int nbr = 0;
 
-		// CallFunctionVoid JS::RootedValue& parameter overload
-		script.CallFunctionVoid(val, "setTo", nbrVal);
+		ScriptFunction::CallVoid(rq, val, "setTo", nbrVal);
 
-		// CallFunction JS::RootedValue* out parameter overload
-		script.CallFunction(val, "inc", &out);
+		// Test that a mutable handle value as return value works.
+		ScriptFunction::Call(rq, val, "inc", &out);
 
 		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
 
-		// CallFunction const JS::RootedValue& parameter overload
-		script.CallFunction(val, "add", nbr, nbrVal);
+		ScriptFunction::Call(rq, val, "add", nbr, nbrVal);
 		TS_ASSERT_EQUALS(7, nbr);
 
 		// GetProperty JS::RootedValue* overload
@@ -187,17 +186,13 @@ public:
 
 		int nbr = 0;
 
-		// CallFunctionVoid JS::HandleValue parameter overload
-		script.CallFunctionVoid(val, "setTo", nbrVal);
-
-		// CallFunction JS::MutableHandleValue out parameter overload
-		script.CallFunction(val, "inc", out);
+		ScriptFunction::CallVoid(rq, val, "setTo", nbrVal);
+		ScriptFunction::Call(rq, val, "inc", out);
 
 		ScriptInterface::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
 
-		// CallFunction const JS::HandleValue& parameter overload
-		script.CallFunction(val, "add", nbr, nbrVal);
+		ScriptFunction::Call(rq, val, "add", nbr, nbrVal);
 		TS_ASSERT_EQUALS(7, nbr);
 
 		// GetProperty JS::MutableHandleValue overload

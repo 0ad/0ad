@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "ScriptComponent.h"
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/IDeserializer.h"
 
@@ -29,14 +30,16 @@ CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterfac
 
 void CComponentTypeScript::Init(const CParamNode& paramNode, entity_id_t ent)
 {
+	ScriptRequest rq(m_ScriptInterface);
 	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
 	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
-	m_ScriptInterface.CallFunctionVoid(m_Instance, "Init");
+	ScriptFunction::CallVoid(rq, m_Instance, "Init");
 }
 
 void CComponentTypeScript::Deinit()
 {
-	m_ScriptInterface.CallFunctionVoid(m_Instance, "Deinit");
+	ScriptRequest rq(m_ScriptInterface);
+	ScriptFunction::CallVoid(rq, m_Instance, "Deinit");
 }
 
 void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
@@ -47,7 +50,7 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 
 	JS::RootedValue msgVal(rq.cx, msg.ToJSValCached(m_ScriptInterface));
 
-	if (!m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal))
+	if (!ScriptFunction::CallVoid(rq, m_Instance, name, msgVal))
 		LOGERROR("Script message handler %s failed", name);
 }
 

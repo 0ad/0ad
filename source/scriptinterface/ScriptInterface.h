@@ -442,7 +442,6 @@ private:
 		return CreateObject_(rq, obj, args...) && JS_DefineProperty(rq.cx, obj, propertyName, val, JSPROP_ENUMERATE);
 	}
 
-	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const;
 	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate);
 	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const;
 	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const;
@@ -461,39 +460,7 @@ private:
 
 	boost::random::rand48* m_rng;
 	std::map<std::string, CustomType> m_CustomObjectTypes;
-
-// The nasty macro/template bits are split into a separate file so you don't have to look at them
-public:
-	#include "NativeWrapperDecls.h"
-	// This declares:
-	//
-	//   template <R, T0..., TR (*fptr) (void* cbdata, T0...)>
-	//   static JSNative call;
-	//
-	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) (T0...)>
-	//   static JSNative callMethod;
-	//
-	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) const (T0...)>
-	//   static JSNative callMethodConst;
-	//
-	//   template <T0...>
-	//   static size_t nargs();
-	//
-	//   template <R, T0...>
-	//   bool CallFunction(JS::HandleValue val, const char* name, R& ret, const T0&...) const;
-	//
-	//   template <R, T0...>
-	//   bool CallFunction(JS::HandleValue val, const char* name, JS::Rooted<R>* ret, const T0&...) const;
-	//
-	//   template <R, T0...>
-	//   bool CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const T0&...) const;
-	//
-	//   template <T0...>
-	//   bool CallFunctionVoid(JS::HandleValue val, const char* name, const T0&...) const;
 };
-
-// Implement those declared functions
-#include "NativeWrapperDefns.h"
 
 template<typename T>
 inline void ScriptInterface::AssignOrToJSVal(const ScriptRequest& rq, JS::MutableHandleValue handle, const T& a)

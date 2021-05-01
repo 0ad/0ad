@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "simulation2/system/TurnManager.h"
 
 class CCmpCommandQueue : public ICmpCommandQueue
@@ -109,14 +110,14 @@ public:
 
 		for (size_t i = 0; i < localCommands.size(); ++i)
 		{
-			bool ok = scriptInterface.CallFunctionVoid(global, "ProcessCommand", localCommands[i].player, localCommands[i].data);
+			bool ok = ScriptFunction::CallVoid(rq, global, "ProcessCommand", localCommands[i].player, localCommands[i].data);
 			if (!ok)
 				LOGERROR("Failed to call ProcessCommand() global script function");
 		}
 
 		for (size_t i = 0; i < commands.size(); ++i)
 		{
-			bool ok = scriptInterface.CallFunctionVoid(global, "ProcessCommand", commands[i].player, commands[i].data);
+			bool ok = ScriptFunction::CallVoid(rq, global, "ProcessCommand", commands[i].player, commands[i].data);
 			if (!ok)
 				LOGERROR("Failed to call ProcessCommand() global script function");
 		}

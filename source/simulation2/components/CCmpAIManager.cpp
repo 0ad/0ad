@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -174,19 +174,22 @@ private:
 		void Run(JS::HandleValue state, int playerID)
 		{
 			m_Commands.clear();
-			m_ScriptInterface->CallFunctionVoid(m_Obj, "HandleMessage", state, playerID);
+			ScriptRequest rq(m_ScriptInterface);
+			ScriptFunction::CallVoid(rq, m_Obj, "HandleMessage", state, playerID);
 		}
 		// overloaded with a sharedAI part.
 		// javascript can handle both natively on the same function.
 		void Run(JS::HandleValue state, int playerID, JS::HandleValue SharedAI)
 		{
 			m_Commands.clear();
-			m_ScriptInterface->CallFunctionVoid(m_Obj, "HandleMessage", state, playerID, SharedAI);
+			ScriptRequest rq(m_ScriptInterface);
+			ScriptFunction::CallVoid(rq, m_Obj, "HandleMessage", state, playerID, SharedAI);
 		}
 		void InitAI(JS::HandleValue state, JS::HandleValue SharedAI)
 		{
 			m_Commands.clear();
-			m_ScriptInterface->CallFunctionVoid(m_Obj, "Init", state, m_Player, SharedAI);
+			ScriptRequest rq(m_ScriptInterface);
+			ScriptFunction::CallVoid(rq, m_Obj, "Init", state, m_Player, SharedAI);
 		}
 
 		CAIWorker& m_Worker;
@@ -486,7 +489,7 @@ public:
 		{
 			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
-			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "init", state);
+			ScriptFunction::CallVoid(rq, m_SharedAIObj, "init", state);
 
 			for (size_t i = 0; i < m_Players.size(); ++i)
 			{
@@ -792,7 +795,7 @@ private:
 		if (m_HasSharedComponent)
 		{
 			PROFILE3("AI run shared component");
-			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "onUpdate", state);
+			ScriptFunction::CallVoid(rq, m_SharedAIObj, "onUpdate", state);
 		}
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
