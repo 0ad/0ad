@@ -36,8 +36,6 @@
 #include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
 #include "scriptinterface/ScriptInterface.h"
 
-#include <gloox/gloox.h>
-
 #include <iostream>
 
 //debug

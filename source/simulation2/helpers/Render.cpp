@@ -92,7 +92,7 @@ static void ConstructCircleOrClosedArc(
 	else
 		overlay.m_Coords.reserve((numPoints + 1) * 3);
 
-	float cy;
+	float cy = 0.f;
 	if (!isCircle)
 	{
 		// Start at the center point

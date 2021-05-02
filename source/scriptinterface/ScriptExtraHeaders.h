@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,7 @@
 
 #include "jsfriendapi.h"
 
+#include "js/AllocPolicy.h"
 #include "js/Array.h"
 #include "js/ArrayBuffer.h"
 #include "js/CompilationAndEvaluation.h"
@@ -54,6 +55,7 @@
 #include "js/ContextOptions.h"
 #include "js/ForOfIterator.h"
 #include "js/GCAPI.h"
+#include "js/GCHashTable.h"
 #include "js/JSON.h"
 #include "js/SourceText.h"
 #include "js/StructuredClone.h"

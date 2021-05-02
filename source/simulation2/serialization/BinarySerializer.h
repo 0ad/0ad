@@ -22,8 +22,7 @@
 
 #include "lib/byte_order.h"
 
-#include "js/AllocPolicy.h"
-#include "js/GCHashTable.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 #include <ostream>
 #include <streambuf>
