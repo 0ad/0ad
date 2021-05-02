@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,7 +123,7 @@ class CFixed
 private:
 	T value;
 
-	explicit CFixed(T v) : value(v) { }
+	constexpr explicit CFixed(T v) : value(v) { }
 
 public:
 	enum { fract_bits = fract_bits_ };
@@ -139,12 +139,12 @@ public:
 
 	// Conversion to/from primitive types:
 
-	static CFixed FromInt(int n)
+	static constexpr CFixed FromInt(int n)
 	{
 		return CFixed(n << fract_bits);
 	}
 
-	static CFixed FromFloat(float n)
+	static constexpr CFixed FromFloat(float n)
 	{
 		if (!std::isfinite(n))
 			return CFixed(0);
@@ -152,7 +152,7 @@ public:
 		return CFixed(round_away_from_zero<T>(scaled));
 	}
 
-	static CFixed FromDouble(double n)
+	static constexpr CFixed FromDouble(double n)
 	{
 		if (!std::isfinite(n))
 			return CFixed(0);
@@ -175,7 +175,7 @@ public:
 		return value / (double)fract_pow2;
 	}
 
-	int ToInt_RoundToZero() const
+	constexpr int ToInt_RoundToZero() const
 	{
 		if (value > 0)
 			return value >> fract_bits;
@@ -183,17 +183,17 @@ public:
 			return (value + fract_pow2 - 1) >> fract_bits;
 	}
 
-	int ToInt_RoundToInfinity() const
+	constexpr int ToInt_RoundToInfinity() const
 	{
 		return (value + fract_pow2 - 1) >> fract_bits;
 	}
 
-	int ToInt_RoundToNegInfinity() const
+	constexpr int ToInt_RoundToNegInfinity() const
 	{
 		return value >> fract_bits;
 	}
 
-	int ToInt_RoundToNearest() const // (ties to infinity)
+	constexpr int ToInt_RoundToNearest() const // (ties to infinity)
 	{
 		return (value + fract_pow2/2) >> fract_bits;
 	}
@@ -202,25 +202,25 @@ public:
 	CStr8 ToString() const;
 
 	/// Returns true if the number is precisely 0.
-	bool IsZero() const { return value == 0; }
+	constexpr bool IsZero() const { return value == 0; }
 
 	/// Equality.
-	bool operator==(CFixed n) const { return (value == n.value); }
+	constexpr bool operator==(CFixed n) const { return (value == n.value); }
 
 	/// Inequality.
-	bool operator!=(CFixed n) const { return (value != n.value); }
+	constexpr bool operator!=(CFixed n) const { return (value != n.value); }
 
 	/// Numeric comparison.
-	bool operator<=(CFixed n) const { return (value <= n.value); }
+	constexpr bool operator<=(CFixed n) const { return (value <= n.value); }
 
 	/// Numeric comparison.
-	bool operator<(CFixed n) const { return (value < n.value); }
+	constexpr bool operator<(CFixed n) const { return (value < n.value); }
 
 	/// Numeric comparison.
-	bool operator>=(CFixed n) const { return (value >= n.value); }
+	constexpr bool operator>=(CFixed n) const { return (value >= n.value); }
 
 	/// Numeric comparison.
-	bool operator>(CFixed n) const { return (value > n.value); }
+	constexpr bool operator>(CFixed n) const { return (value > n.value); }
 
 	// Basic arithmetic:
 
@@ -239,10 +239,10 @@ public:
 	}
 
 	/// Add a CFixed. Might overflow.
-	CFixed& operator+=(CFixed n) { *this = *this + n; return *this; }
+	constexpr CFixed& operator+=(CFixed n) { *this = *this + n; return *this; }
 
 	/// Subtract a CFixed. Might overflow.
-	CFixed& operator-=(CFixed n) { *this = *this - n; return *this; }
+	constexpr CFixed& operator-=(CFixed n) { *this = *this - n; return *this; }
 
 	/// Negate a CFixed.
 	CFixed operator-() const
@@ -282,7 +282,7 @@ public:
 	}
 
 	/// Multiply by an integer. Avoids overflow by clamping to min/max representable value.
-	CFixed MultiplyClamp(int n) const
+	constexpr CFixed MultiplyClamp(int n) const
 	{
 		i64 t = (i64)value * n;
 		t = std::max((i64)std::numeric_limits<T>::min(), std::min((i64)std::numeric_limits<T>::max(), t));
@@ -297,7 +297,7 @@ public:
 	}
 
 	/// Mod by a fixed. Must not have n == 0. Result has the same sign as n.
-	CFixed operator%(CFixed n) const
+	constexpr CFixed operator%(CFixed n) const
 	{
 		T t = value % n.value;
 		if (n.value > 0 && t < 0)
@@ -308,7 +308,7 @@ public:
 		return CFixed(t);
 	}
 
-	CFixed Absolute() const { return CFixed(abs(value)); }
+	constexpr CFixed Absolute() const { return CFixed(abs(value)); }
 
 	/**
 	 * Multiply by a CFixed. Likely to overflow if both numbers are large,
@@ -326,7 +326,7 @@ public:
 	/**
 	 * Multiply the value by itself. Might overflow.
 	 */
-	CFixed Square() const
+	constexpr CFixed Square() const
 	{
 		return (*this).Multiply(*this);
 	}
@@ -341,7 +341,7 @@ public:
 		return CFixed((T)t);
 	}
 
-	CFixed Sqrt() const
+	constexpr CFixed Sqrt() const
 	{
 		if (value <= 0)
 			return CFixed(0);

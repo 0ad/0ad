@@ -834,7 +834,7 @@ void CCmpTerritoryManager::UpdateColors()
 }
 
 TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager) :
-	TerrainTextureOverlay((float)Pathfinding::NAVCELLS_PER_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE),
+	TerrainTextureOverlay((float)Pathfinding::NAVCELLS_PER_TERRAIN_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE),
 	m_TerritoryManager(manager)
 { }
 

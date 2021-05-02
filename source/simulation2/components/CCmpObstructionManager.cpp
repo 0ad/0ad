@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
 #include "simulation2/system/Component.h"
 #include "ICmpObstructionManager.h"
 
-#include "ICmpTerrain.h"
 #include "ICmpPosition.h"
 
 #include "simulation2/MessageTypes.h"
@@ -32,7 +31,6 @@
 #include "simulation2/serialization/SerializedTypes.h"
 
 #include "graphics/Overlay.h"
-#include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
@@ -47,6 +45,14 @@
 #define UNIT_INDEX_TO_TAG(idx) tag_t(((idx) << 1) | 0)
 #define STATIC_INDEX_TO_TAG(idx) tag_t(((idx) << 1) | 1)
 #define TAG_TO_INDEX(tag) ((tag).n >> 1)
+
+namespace
+{
+/**
+ * Size of each obstruction subdivision square.
+ * TODO: find the optimal number instead of blindly guessing.
+ */
+constexpr entity_pos_t OBSTRUCTION_SUBDIVISION_SIZE = entity_pos_t::FromInt(32);
 
 /**
  * Internal representation of axis-aligned circular shapes for moving units
@@ -73,7 +79,7 @@ struct StaticShape
 	entity_id_t group;
 	entity_id_t group2;
 };
-
+} // anonymous namespace
 /**
  * Serialization helper template for UnitShape
  */
@@ -147,7 +153,6 @@ public:
 	entity_pos_t m_WorldZ0;
 	entity_pos_t m_WorldX1;
 	entity_pos_t m_WorldZ1;
-	u16 m_TerrainTiles;
 
 	static std::string GetSchema()
 	{
@@ -168,7 +173,6 @@ public:
 		m_PassabilityCircular = false;
 
 		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
-		m_TerrainTiles = 0;
 
 		// Initialise with bogus values (these will get replaced when
 		// SetBounds is called)
@@ -198,7 +202,6 @@ public:
 		serialize.NumberFixed_Unbounded("world z0", m_WorldZ0);
 		serialize.NumberFixed_Unbounded("world x1", m_WorldX1);
 		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
-		serialize.NumberU16_Unbounded("terrain tiles", m_TerrainTiles);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -215,7 +218,8 @@ public:
 
 		SerializeCommon(deserialize);
 
-		m_UpdateInformations.dirtinessGrid = Grid<u8>(m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE, m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE);
+		i32 size = ((m_WorldX1-m_WorldX0)/Pathfinding::NAVCELL_SIZE_INT).ToInt_RoundToInfinity();
+		m_UpdateInformations.dirtinessGrid = Grid<u8>(size, size);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -245,12 +249,8 @@ public:
 		ENSURE(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(x1, z1);
 
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-		if (!cmpTerrain)
-			return;
-
-		m_TerrainTiles = cmpTerrain->GetTilesPerSide();
-		m_UpdateInformations.dirtinessGrid = Grid<u8>(m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE, m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE);
+		i32 size = ((m_WorldX1-m_WorldX0)/Pathfinding::NAVCELL_SIZE_INT).ToInt_RoundToInfinity();
+		m_UpdateInformations.dirtinessGrid = Grid<u8>(size, size);
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -259,10 +259,8 @@ public:
 
 	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
 	{
-		// Use 8x8 tile subdivisions
-		// (TODO: find the optimal number instead of blindly guessing)
-		m_UnitSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*TERRAIN_TILE_SIZE));
-		m_StaticSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*TERRAIN_TILE_SIZE));
+		m_UnitSubdivision.Reset(x1, z1, OBSTRUCTION_SUBDIVISION_SIZE);
+		m_StaticSubdivision.Reset(x1, z1, OBSTRUCTION_SUBDIVISION_SIZE);
 
 		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 		{
@@ -557,9 +555,7 @@ private:
 
 	inline void MarkDirtinessGrid(const entity_pos_t& x, const entity_pos_t& z, const CFixedVector2D& hbox)
 	{
-		ENSURE(m_UpdateInformations.dirtinessGrid.m_W == m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE &&
-			m_UpdateInformations.dirtinessGrid.m_H == m_TerrainTiles*Pathfinding::NAVCELLS_PER_TILE);
-		if (m_TerrainTiles == 0)
+		if (m_UpdateInformations.dirtinessGrid.m_W == 0)
 			return;
 
 		u16 j0, j1, i0, i1;

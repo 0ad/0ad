@@ -290,7 +290,7 @@ public:
 	LongPathfinder& m_Pathfinder;
 
 	LongOverlay(LongPathfinder& pathfinder) :
-		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TILE), m_Pathfinder(pathfinder)
+		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TERRAIN_TILE), m_Pathfinder(pathfinder)
 	{
 	}
 

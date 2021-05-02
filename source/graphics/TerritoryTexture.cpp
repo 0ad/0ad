@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ void CTerritoryTexture::ConstructTexture(int unit)
 		return;
 
 	// Convert size from terrain tiles to territory tiles
-	m_MapSize = cmpTerrain->GetTilesPerSide() * Pathfinding::NAVCELLS_PER_TILE / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE;
+	m_MapSize = cmpTerrain->GetMapSize() * Pathfinding::NAVCELL_SIZE_INT / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE;
 
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
 

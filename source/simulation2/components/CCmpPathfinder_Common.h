@@ -83,7 +83,7 @@ public:
 
 	// Lazily-constructed dynamic state (not serialized):
 
-	u16 m_MapSize; // tiles per side
+	u16 m_GridSize; // Navcells per side of the map.
 	Grid<NavcellData>* m_Grid; // terrain/passability information
 	Grid<NavcellData>* m_TerrainOnlyGrid; // same as m_Grid, but only with terrain, to avoid some recomputations
 
@@ -266,7 +266,7 @@ public:
 	pass_class_t m_PassClass;
 
 	AtlasOverlay(const CCmpPathfinder* pathfinder, pass_class_t passClass) :
-		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TILE), m_Pathfinder(pathfinder), m_PassClass(passClass)
+		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TERRAIN_TILE), m_Pathfinder(pathfinder), m_PassClass(passClass)
 	{
 	}
 

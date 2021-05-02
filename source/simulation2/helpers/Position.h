@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
  * @file
  * Entity coordinate types
  *
- * The basic unit is the "meter". Terrain tiles are TERRAIN_TILE_SIZE (=4) meters square.
+ * The basic unit is the "meter".
  * To support deterministic computation across CPU architectures and compilers and
  * optimisation settings, the C++ simulation code must not use floating-point arithmetic.
  * We therefore use a fixed-point datatype for representing world positions.

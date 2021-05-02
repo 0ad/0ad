@@ -37,7 +37,6 @@
 #include "simulation2/serialization/SerializedTypes.h"
 
 #include "graphics/Overlay.h"
-#include "graphics/Terrain.h"
 #include "maths/FixedVector2D.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
@@ -50,38 +49,40 @@
 // instead of calling the pathfinder
 #define DISABLE_PATHFINDER 0
 
+namespace
+{
 /**
  * Min/Max range to restrict short path queries to. (Larger ranges are (much) slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  * NB: keep the max-range in sync with the vertex pathfinder "move the search space" heuristic.
  */
-static const entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3);
-static const entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*14);
-static const entity_pos_t SHORT_PATH_SEARCH_RANGE_INCREMENT = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
-static const u8 SHORT_PATH_SEARCH_RANGE_INCREASE_DELAY = 1;
+constexpr entity_pos_t SHORT_PATH_MIN_SEARCH_RANGE = entity_pos_t::FromInt(12 * Pathfinding::NAVCELL_SIZE_INT);
+constexpr entity_pos_t SHORT_PATH_MAX_SEARCH_RANGE = entity_pos_t::FromInt(56 * Pathfinding::NAVCELL_SIZE_INT);
+constexpr entity_pos_t SHORT_PATH_SEARCH_RANGE_INCREMENT = entity_pos_t::FromInt(4 * Pathfinding::NAVCELL_SIZE_INT);
+constexpr u8 SHORT_PATH_SEARCH_RANGE_INCREASE_DELAY = 1;
 
 /**
  * When using the short-pathfinder to rejoin a long-path waypoint, aim for a circle of this radius around the waypoint.
  */
-static const entity_pos_t SHORT_PATH_LONG_WAYPOINT_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
+constexpr entity_pos_t SHORT_PATH_LONG_WAYPOINT_RANGE = entity_pos_t::FromInt(4 * Pathfinding::NAVCELL_SIZE_INT);
 
 /**
  * Minimum distance to goal for a long path request
  */
-static const entity_pos_t LONG_PATH_MIN_DIST = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
+constexpr entity_pos_t LONG_PATH_MIN_DIST = entity_pos_t::FromInt(16 * Pathfinding::NAVCELL_SIZE_INT);
 
 /**
  * If we are this close to our target entity/point, then think about heading
  * for it in a straight line instead of pathfinding.
  */
-static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
+constexpr entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(24 * Pathfinding::NAVCELL_SIZE_INT);
 
 /**
  * To avoid recomputing paths too often, have some leeway for target range checks
  * based on our distance to the target. Increase that incertainty by one navcell
  * for every this many tiles of distance.
  */
-static const entity_pos_t TARGET_UNCERTAINTY_MULTIPLIER = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*2);
+constexpr entity_pos_t TARGET_UNCERTAINTY_MULTIPLIER = entity_pos_t::FromInt(8 * Pathfinding::NAVCELL_SIZE_INT);
 
 /**
  * When following a known imperfect path (i.e. a path that won't take us in range of our goal
@@ -90,7 +91,7 @@ static const entity_pos_t TARGET_UNCERTAINTY_MULTIPLIER = entity_pos_t::FromInt(
  * This is rather arbitrary and mostly for simplicity & optimisation (a better recomputing algorithm
  * would not need this).
  */
-static const u8 KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN = 12;
+constexpr u8 KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN = 12;
 
 /**
  * When we fail to move this many turns in a row, inform other components that the move will fail.
@@ -100,23 +101,24 @@ static const u8 KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN = 12;
  * this could probably be lowered.
  * TODO: when unit pushing is implemented, this number can probably be lowered.
  */
-static const u8 MAX_FAILED_MOVEMENTS = 35;
+constexpr u8 MAX_FAILED_MOVEMENTS = 35;
 
 /**
  * When computing paths but failing to move, we want to occasionally alternate pathfinder systems
  * to avoid getting stuck (the short pathfinder can unstuck the long-range one and vice-versa, depending).
  */
-static const u8 ALTERNATE_PATH_TYPE_DELAY = 3;
-static const u8 ALTERNATE_PATH_TYPE_EVERY = 6;
+constexpr u8 ALTERNATE_PATH_TYPE_DELAY = 3;
+constexpr u8 ALTERNATE_PATH_TYPE_EVERY = 6;
 
 /**
  * After this many failed computations, start sending "VERY_OBSTRUCTED" messages instead.
  * Should probably be larger than ALTERNATE_PATH_TYPE_DELAY.
  */
-static const u8 VERY_OBSTRUCTED_THRESHOLD = 10;
+constexpr u8 VERY_OBSTRUCTED_THRESHOLD = 10;
 
-static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
-static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
+const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
+const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
+} // anonymous namespace
 
 class CCmpUnitMotion final : public ICmpUnitMotion
 {
@@ -870,7 +872,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		if (m_LongPath.m_Waypoints.size() >= 2)
 		{
 			const Waypoint& firstWpt = m_LongPath.m_Waypoints.back();
-			if (CFixedVector2D(firstWpt.x - pos.X, firstWpt.z - pos.Y).CompareLength(fixed::FromInt(TERRAIN_TILE_SIZE)) <= 0)
+			if (CFixedVector2D(firstWpt.x - pos.X, firstWpt.z - pos.Y).CompareLength(Pathfinding::NAVCELL_SIZE * 4) <= 0)
 			{
 				CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 				ENSURE(cmpPathfinder);
@@ -1213,7 +1215,7 @@ bool CCmpUnitMotion::HandleObstructedMove(bool moved)
 		// NB: this number is tricky. Make it too high, and units start going down dead ends, which looks odd (#5795)
 		// Make it too low, and they might get stuck behind other obstructed entities.
 		// It also has performance implications because it calls the short-pathfinder.
-		fixed skipbeyond = std::max(ShortPathSearchRange() / 3, fixed::FromInt(TERRAIN_TILE_SIZE*2));
+		fixed skipbeyond = std::max(ShortPathSearchRange() / 3, Pathfinding::NAVCELL_SIZE * 8);
 		if (m_LongPath.m_Waypoints.size() > 1 &&
 		    (pos - CFixedVector2D(m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z)).CompareLength(skipbeyond) < 0)
 		{
@@ -1231,7 +1233,7 @@ bool CCmpUnitMotion::HandleObstructedMove(bool moved)
 
 		// Compute a short path in the general vicinity of the next waypoint, to help pathfinding in crowds.
 		// The goal here is to manage to move in the general direction of our target, not to be super accurate.
-		fixed radius = Clamp(skipbeyond/3, fixed::FromInt(TERRAIN_TILE_SIZE), fixed::FromInt(TERRAIN_TILE_SIZE*3));
+		fixed radius = Clamp(skipbeyond/3, Pathfinding::NAVCELL_SIZE * 4, Pathfinding::NAVCELL_SIZE * 12);
 		PathGoal subgoal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, radius };
 		RequestShortPath(pos, subgoal, false);
 		return true;
@@ -1559,7 +1561,7 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 			entity_pos_t goalDistance = moveRequest.m_MaxRange * 2 / 3; // multiply by slightly less than 1/sqrt(2)
 
 			out.type = PathGoal::SQUARE;
-			entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
+			entity_pos_t delta = std::max(goalDistance, m_Clearance + entity_pos_t::FromInt(4)/16); // ensure it's far enough to not intersect the building itself
 			out.hw = targetObstruction.hw + delta;
 			out.hh = targetObstruction.hh + delta;
 		}
