@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,11 +23,11 @@
 class CFixedVector2D;
 
 BEGIN_INTERFACE_WRAPPER(RallyPointRenderer)
-DEFINE_INTERFACE_METHOD_1("SetDisplayed", void, ICmpRallyPointRenderer, SetDisplayed, bool)
-DEFINE_INTERFACE_METHOD_1("SetPosition", void, ICmpRallyPointRenderer, SetPosition, CFixedVector2D)
-DEFINE_INTERFACE_METHOD_2("UpdatePosition", void, ICmpRallyPointRenderer, UpdatePosition, u32, CFixedVector2D)
-DEFINE_INTERFACE_METHOD_1("AddPosition", void, ICmpRallyPointRenderer, AddPosition_wrapper, CFixedVector2D)
-DEFINE_INTERFACE_METHOD_0("Reset", void, ICmpRallyPointRenderer, Reset)
-DEFINE_INTERFACE_METHOD_CONST_0("IsSet", bool, ICmpRallyPointRenderer, IsSet)
-DEFINE_INTERFACE_METHOD_0("UpdateColor", void, ICmpRallyPointRenderer, UpdateColor)
+DEFINE_INTERFACE_METHOD("SetDisplayed", ICmpRallyPointRenderer, SetDisplayed)
+DEFINE_INTERFACE_METHOD("SetPosition", ICmpRallyPointRenderer, SetPosition)
+DEFINE_INTERFACE_METHOD("UpdatePosition", ICmpRallyPointRenderer, UpdatePosition)
+DEFINE_INTERFACE_METHOD("AddPosition", ICmpRallyPointRenderer, AddPosition_wrapper)
+DEFINE_INTERFACE_METHOD("Reset", ICmpRallyPointRenderer, Reset)
+DEFINE_INTERFACE_METHOD("IsSet", ICmpRallyPointRenderer, IsSet)
+DEFINE_INTERFACE_METHOD("UpdateColor", ICmpRallyPointRenderer, UpdateColor)
 END_INTERFACE_WRAPPER(RallyPointRenderer)

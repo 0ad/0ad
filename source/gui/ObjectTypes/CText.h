@@ -49,10 +49,7 @@ public:
 	 */
 	CSize2D GetTextSize();
 
-	/**
-	 * Test if mouse position is over an icon
-	 */
-	virtual bool MouseOverIcon();
+	virtual const CStrW& GetTooltipText() const;
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been
@@ -91,8 +88,6 @@ protected:
 	EVAlign m_TextVAlign;
 	CGUIColor m_TextColor;
 	CGUIColor m_TextColorDisabled;
-	CStrW m_IconTooltip;
-	CStr m_IconTooltipStyle;
 };
 
 #endif // INCLUDED_CTEXT

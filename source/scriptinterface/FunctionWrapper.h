@@ -207,6 +207,71 @@ private:
 
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
+
+	struct IgnoreResult_t {};
+	static inline IgnoreResult_t IgnoreResult;
+
+	/**
+	 * Recursive helper to call AssignOrToJSVal
+	 */
+	template<int i, typename T, typename... Ts>
+	static void AssignOrToJSValHelper(const ScriptRequest& rq, JS::MutableHandleValueVector argv, const T& a, const Ts&... params)
+	{
+		ScriptInterface::AssignOrToJSVal(rq, argv[i], a);
+		AssignOrToJSValHelper<i+1>(rq, argv, params...);
+	}
+
+	template<int i, typename... Ts>
+	static void AssignOrToJSValHelper(const ScriptRequest& UNUSED(rq), JS::MutableHandleValueVector UNUSED(argv))
+	{
+		static_assert(sizeof...(Ts) == 0);
+		// Nop, for terminating the template recursion.
+	}
+
+	/**
+	 * Wrapper around calling a JS function from C++.
+	 * Arguments are const& to avoid lvalue/rvalue issues, and so can't be used as out-parameters.
+	 * In particular, the problem is that Rooted are deduced as Rooted, not Handle, and so can't be copied.
+	 * This could be worked around with more templates, but it doesn't seem particularly worth doing.
+	 */
+	template<typename R, typename ...Args>
+	static bool Call_(const ScriptRequest& rq, JS::HandleValue val, const char* name, R& ret, const Args&... args)
+	{
+		JS::RootedObject obj(rq.cx);
+		if (!JS_ValueToObject(rq.cx, val, &obj) || !obj)
+			return false;
+
+		// Check that the named function actually exists, to avoid ugly JS error reports
+		// when calling an undefined value
+		bool found;
+		if (!JS_HasProperty(rq.cx, obj, name, &found) || !found)
+			return false;
+
+		JS::RootedValueVector argv(rq.cx);
+		ignore_result(argv.resize(sizeof...(Args)));
+		AssignOrToJSValHelper<0>(rq, &argv, args...);
+
+		bool success;
+		if constexpr (std::is_same_v<R, JS::MutableHandleValue>)
+			success = JS_CallFunctionName(rq.cx, obj, name, argv, ret);
+		else
+		{
+			JS::RootedValue jsRet(rq.cx);
+			success = JS_CallFunctionName(rq.cx, obj, name, argv, &jsRet);
+			if constexpr (!std::is_same_v<R, IgnoreResult_t>)
+			{
+				if (success)
+					ScriptInterface::FromJSVal(rq, jsRet, ret);
+			}
+			else
+				UNUSED2(ret); // VS2017 complains.
+		}
+		// Even if everything succeeded, there could be pending exceptions
+		return !ScriptException::CatchPending(rq) && success;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
 public:
 	template <typename T>
 	using ObjectGetter = T*(*)(const ScriptRequest&, JS::CallArgs&);
@@ -277,6 +342,34 @@ public:
 			ScriptInterface::ToJSVal(rq, args.rval(), call<callable>(obj, outs));
 
 		return !ScriptException::IsPending(rq);
+	}
+
+	/**
+	 * Call a JS function @a name, property of object @a val, with the arguments @a args.
+	 * @a ret will be updated with the return value, if any.
+	 * @return the success (or failure) thereof.
+	 */
+	template<typename R, typename ...Args>
+	static bool Call(const ScriptRequest& rq, JS::HandleValue val, const char* name, R& ret, const Args&... args)
+	{
+		return Call_(rq, val, name, ret, std::forward<const Args>(args)...);
+	}
+
+	// Specialisation for MutableHandleValue return.
+	template<typename ...Args>
+	static bool Call(const ScriptRequest& rq, JS::HandleValue val, const char* name, JS::MutableHandleValue ret, const Args&... args)
+	{
+		return Call_(rq, val, name, ret, std::forward<const Args>(args)...);
+	}
+
+	/**
+	 * Call a JS function @a name, property of object @a val, with the arguments @a args.
+	 * @return the success (or failure) thereof.
+	 */
+	template<typename ...Args>
+	static bool CallVoid(const ScriptRequest& rq, JS::HandleValue val, const char* name, const Args&... args)
+	{
+		return Call(rq, val, name, IgnoreResult, std::forward<const Args>(args)...);
 	}
 
 	/**

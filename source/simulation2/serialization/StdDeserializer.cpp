@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "lib/byte_order.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // For typed arrays and ArrayBuffer
 #include "simulation2/serialization/ISerializer.h"
@@ -180,7 +181,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 					ScriptVal("data", &data);
 
 				JS::RootedValue objVal(rq.cx, JS::ObjectValue(*obj));
-				m_ScriptInterface.CallFunctionVoid(objVal, "Deserialize", data);
+				ScriptFunction::CallVoid(rq, objVal, "Deserialize", data);
 
 				return JS::ObjectValue(*obj);
 			}

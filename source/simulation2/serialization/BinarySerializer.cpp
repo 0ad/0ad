@@ -22,6 +22,7 @@
 #include "lib/alignment.h"
 #include "ps/CLogger.h"
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "SerializedScriptTypes.h"
@@ -246,7 +247,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 						if (!protoInfo.hasNullSerialize)
 						{
 							JS::RootedValue data(rq.cx);
-							if (!m_ScriptInterface.CallFunction(val, "Serialize", &data))
+							if (!ScriptFunction::Call(rq, val, "Serialize", &data))
 								throw PSERROR_Serialize_ScriptError("Prototype Serialize function failed");
 							m_Serializer.ScriptVal("data", &data);
 						}

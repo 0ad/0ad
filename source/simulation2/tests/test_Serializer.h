@@ -21,6 +21,7 @@
 #include "simulation2/serialization/HashSerializer.h"
 #include "simulation2/serialization/StdSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -333,7 +334,7 @@ public:
 		deserialize2.ScriptVal("script2", &newobj);
 
 		std::string source;
-		TSM_ASSERT(msg, script.CallFunction(newobj, "toSource", source));
+		TSM_ASSERT(msg, ScriptFunction::Call(rq, newobj, "toSource", source));
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
 
@@ -867,7 +868,7 @@ public:
 			if (i == 0)
 			{
 				std::string source;
-				TS_ASSERT(script.CallFunction(newobj, "toSource", source));
+				TS_ASSERT(ScriptFunction::Call(rq, newobj, "toSource", source));
 				std::cout << source << "\n";
 			}
 		}

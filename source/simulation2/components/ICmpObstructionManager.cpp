@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,13 +22,13 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(ObstructionManager)
-DEFINE_INTERFACE_METHOD_1("SetPassabilityCircular", void, ICmpObstructionManager, SetPassabilityCircular, bool)
-DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpObstructionManager, SetDebugOverlay, bool)
-DEFINE_INTERFACE_METHOD_CONST_3("DistanceToPoint", fixed, ICmpObstructionManager, DistanceToPoint, entity_id_t, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_CONST_3("MaxDistanceToPoint", fixed, ICmpObstructionManager, MaxDistanceToPoint, entity_id_t, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_CONST_2("DistanceToTarget", fixed, ICmpObstructionManager, DistanceToTarget, entity_id_t, entity_id_t)
-DEFINE_INTERFACE_METHOD_CONST_2("MaxDistanceToTarget", fixed, ICmpObstructionManager, MaxDistanceToTarget, entity_id_t, entity_id_t)
-DEFINE_INTERFACE_METHOD_CONST_6("IsInPointRange", bool, ICmpObstructionManager, IsInPointRange, entity_id_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, bool)
-DEFINE_INTERFACE_METHOD_CONST_5("IsInTargetRange", bool, ICmpObstructionManager, IsInTargetRange, entity_id_t, entity_id_t, entity_pos_t, entity_pos_t, bool)
-DEFINE_INTERFACE_METHOD_CONST_6("IsPointInPointRange", bool, ICmpObstructionManager, IsPointInPointRange, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD("SetPassabilityCircular", ICmpObstructionManager, SetPassabilityCircular)
+DEFINE_INTERFACE_METHOD("SetDebugOverlay", ICmpObstructionManager, SetDebugOverlay)
+DEFINE_INTERFACE_METHOD("DistanceToPoint", ICmpObstructionManager, DistanceToPoint)
+DEFINE_INTERFACE_METHOD("MaxDistanceToPoint", ICmpObstructionManager, MaxDistanceToPoint)
+DEFINE_INTERFACE_METHOD("DistanceToTarget", ICmpObstructionManager, DistanceToTarget)
+DEFINE_INTERFACE_METHOD("MaxDistanceToTarget", ICmpObstructionManager, MaxDistanceToTarget)
+DEFINE_INTERFACE_METHOD("IsInPointRange", ICmpObstructionManager, IsInPointRange)
+DEFINE_INTERFACE_METHOD("IsInTargetRange", ICmpObstructionManager, IsInTargetRange)
+DEFINE_INTERFACE_METHOD("IsPointInPointRange", ICmpObstructionManager, IsPointInPointRange)
 END_INTERFACE_WRAPPER(ObstructionManager)

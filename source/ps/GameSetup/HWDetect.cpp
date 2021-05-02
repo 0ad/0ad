@@ -226,7 +226,7 @@ void RunHardwareDetection()
 
 	// Run the detection script:
 	JS::RootedValue global(rq.cx, rq.globalValue());
-	scriptInterface.CallFunctionVoid(global, "RunHardwareDetection", settings);
+	ScriptFunction::CallVoid(rq, global, "RunHardwareDetection", settings);
 }
 
 static void ReportSDL(const ScriptInterface& scriptInterface, JS::HandleValue settings)

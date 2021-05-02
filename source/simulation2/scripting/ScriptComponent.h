@@ -18,6 +18,7 @@
 #ifndef INCLUDED_SCRIPTCOMPONENT
 #define INCLUDED_SCRIPTCOMPONENT
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "simulation2/system/Component.h"
 
 #include "ps/CLogger.h"
@@ -41,7 +42,8 @@ public:
 	R Call(const char* funcname, const Ts&... params) const
 	{
 		R ret;
-		if (m_ScriptInterface.CallFunction(m_Instance, funcname, ret, params...))
+		ScriptRequest rq(m_ScriptInterface);
+		if (ScriptFunction::Call(rq, m_Instance, funcname, ret, params...))
 			return ret;
 		LOGERROR("Error calling component script function %s", funcname);
 		return R();
@@ -51,14 +53,16 @@ public:
 	template<typename R, typename... Ts>
 	void CallRef(const char* funcname, R ret, const Ts&... params) const
 	{
-		if (!m_ScriptInterface.CallFunction(m_Instance, funcname, ret, params...))
+		ScriptRequest rq(m_ScriptInterface);
+		if (!ScriptFunction::Call(rq, m_Instance, funcname, ret, params...))
 			LOGERROR("Error calling component script function %s", funcname);
 	}
 
 	template<typename... Ts>
 	void CallVoid(const char* funcname, const Ts&... params) const
 	{
-		if (!m_ScriptInterface.CallFunctionVoid(m_Instance, funcname, params...))
+		ScriptRequest rq(m_ScriptInterface);
+		if (!ScriptFunction::CallVoid(rq, m_Instance, funcname, params...))
 			LOGERROR("Error calling component script function %s", funcname);
 	}
 

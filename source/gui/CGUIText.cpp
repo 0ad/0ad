@@ -390,10 +390,18 @@ bool CGUIText::AssembleCalls(
 
 				// Sprite call can exist within only a newline segment,
 				//  therefore we need this.
-				m_SpriteCalls.insert(
-					m_SpriteCalls.end(),
-					std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
-					std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
+				if (!Feedback2.m_SpriteCalls.empty())
+				{
+					auto newEnd = std::remove_if(Feedback2.m_TextCalls.begin(), Feedback2.m_TextCalls.end(), [](const STextCall& call) { return !call.m_pSpriteCall; });
+					m_TextCalls.insert(
+						m_TextCalls.end(),
+						std::make_move_iterator(Feedback2.m_TextCalls.begin()),
+						std::make_move_iterator(newEnd));
+					m_SpriteCalls.insert(
+						m_SpriteCalls.end(),
+						std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
+						std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
+				}
 				break;
 			}
 			else if (x > width_range_to && j == temp_from)

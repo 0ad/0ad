@@ -1639,7 +1639,7 @@ void CRenderer::RenderScene(Scene& scene)
 	CBoundingBoxAligned waterScissor;
 	if (m_WaterManager->m_RenderWater)
 	{
-		waterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera.GetViewProjection());
+		waterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
 
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{

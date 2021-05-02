@@ -40,9 +40,7 @@ CText::CText(CGUI& pGUI)
 	  m_TextAlign(),
 	  m_TextVAlign(),
 	  m_TextColor(),
-	  m_TextColorDisabled(),
-	  m_IconTooltip(),
-	  m_IconTooltipStyle()
+	  m_TextColorDisabled()
 {
 	RegisterSetting("buffer_zone", m_BufferZone);
 	RegisterSetting("caption", m_Caption);
@@ -57,9 +55,6 @@ CText::CText(CGUI& pGUI)
 	RegisterSetting("text_valign", m_TextVAlign);
 	RegisterSetting("textcolor", m_TextColor);
 	RegisterSetting("textcolor_disabled", m_TextColorDisabled);
-	// Private settings
-	RegisterSetting("_icon_tooltip", m_IconTooltip);
-	RegisterSetting("_icon_tooltip_style", m_IconTooltipStyle);
 
 	//SetSetting<bool>("ghost", true, true);
 	SetSetting<bool>("scrollbar", false, true);
@@ -136,6 +131,20 @@ CSize2D CText::GetTextSize()
 {
 	UpdateText();
 	return m_GeneratedTexts[0].GetSize();
+}
+
+const CStrW& CText::GetTooltipText() const
+{
+	for (const CGUIText& text : m_GeneratedTexts)
+		for (const CGUIText::STextCall& textChunk : text.GetTextCalls())
+		{
+			if (textChunk.m_Tooltip.empty())
+				continue;
+			CRect area(textChunk.m_Pos - CVector2D(0.f, textChunk.m_Size.Height), textChunk.m_Size);
+			if (area.PointInside(m_pGUI.GetMousePos() - m_CachedActualSize.TopLeft()))
+				return textChunk.m_Tooltip;
+		}
+	return m_Tooltip;
 }
 
 void CText::HandleMessage(SGUIMessage& Message)
@@ -232,26 +241,4 @@ void CText::Draw()
 		DrawText(0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), bz + 0.1f, cliparea);
 	else
 		DrawText(0, color, m_TextPos, bz + 0.1f, cliparea);
-}
-
-bool CText::MouseOverIcon()
-{
-	for (const CGUIText& guitext : m_GeneratedTexts)
-		for (const CGUIText::SSpriteCall& spritecall : guitext.GetSpriteCalls())
-		{
-			// Check mouse over sprite
-			if (!spritecall.m_Area.PointInside(m_pGUI.GetMousePos() - m_CachedActualSize.TopLeft()))
-				continue;
-
-			// If tooltip exists, set the property
-			if (!spritecall.m_Tooltip.empty())
-			{
-				SetSettingFromString("_icon_tooltip_style", spritecall.m_TooltipStyle, true);
-				SetSettingFromString("_icon_tooltip", spritecall.m_Tooltip, true);
-			}
-
-			return true;
-		}
-
-	return false;
 }

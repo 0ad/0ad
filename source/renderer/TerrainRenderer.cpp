@@ -22,42 +22,32 @@
 
 #include "precompiled.h"
 
+#include "renderer/TerrainRenderer.h"
+
 #include "graphics/Camera.h"
 #include "graphics/Decal.h"
+#include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/Patch.h"
-#include "graphics/GameView.h"
 #include "graphics/Model.h"
 #include "graphics/ShaderManager.h"
-#include "renderer/ShadowMap.h"
-#include "renderer/SkyManager.h"
 #include "graphics/TerritoryTexture.h"
 #include "graphics/TextRenderer.h"
-
 #include "maths/MathUtil.h"
-
-#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
-
 #include "renderer/DecalRData.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/ShadowMap.h"
-#include "renderer/TerrainRenderer.h"
+#include "renderer/SkyManager.h"
 #include "renderer/VertexArray.h"
 #include "renderer/WaterManager.h"
-
-#include "tools/atlas/GameInterface/GameLoop.h"
-
-extern GameLoopState* g_AtlasGameLoop;
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// TerrainRenderer implementation
 
 namespace
 {
@@ -358,56 +348,23 @@ void TerrainRenderer::RenderOutlines(int cullGroup)
 
 ///////////////////////////////////////////////////////////////////
 // Scissor rectangle of water patches
-CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CMatrix3D &viewproj)
+CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& camera)
 {
-	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
-
 	CBoundingBoxAligned scissor;
-	for (size_t i = 0; i < visiblePatches.size(); ++i)
+	for (const CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		CPatchRData* data = visiblePatches[i];
 		const CBoundingBoxAligned& waterBounds = data->GetWaterBounds();
 		if (waterBounds.IsEmpty())
 			continue;
 
-		CVector4D v1 = viewproj.Transform(CVector4D(waterBounds[0].X, waterBounds[1].Y, waterBounds[0].Z, 1.0f));
-		CVector4D v2 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[0].Z, 1.0f));
-		CVector4D v3 = viewproj.Transform(CVector4D(waterBounds[0].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
-		CVector4D v4 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
-		CBoundingBoxAligned screenBounds;
-		#define ADDBOUND(v1, v2, v3, v4) \
-			if (v1.Z >= -v1.W) \
-				screenBounds += CVector3D(v1.X, v1.Y, v1.Z) * (1.0f / v1.W); \
-			else \
-			{ \
-				float t = v1.Z + v1.W; \
-				if (v2.Z > -v2.W) \
-				{ \
-					CVector4D c2 = v1 + (v2 - v1) * (t / (t - (v2.Z + v2.W))); \
-					screenBounds += CVector3D(c2.X, c2.Y, c2.Z) * (1.0f / c2.W); \
-				} \
-				if (v3.Z > -v3.W) \
-				{ \
-					CVector4D c3 = v1 + (v3 - v1) * (t / (t - (v3.Z + v3.W))); \
-					screenBounds += CVector3D(c3.X, c3.Y, c3.Z) * (1.0f / c3.W); \
-				} \
-				if (v4.Z > -v4.W) \
-				{ \
-					CVector4D c4 = v1 + (v4 - v1) * (t / (t - (v4.Z + v4.W))); \
-					screenBounds += CVector3D(c4.X, c4.Y, c4.Z) * (1.0f / c4.W); \
-				} \
-			}
-		ADDBOUND(v1, v2, v3, v4);
-		ADDBOUND(v2, v1, v3, v4);
-		ADDBOUND(v3, v1, v2, v4);
-		ADDBOUND(v4, v1, v2, v3);
-		#undef ADDBOUND
-		if (screenBounds[0].X >= 1.0f || screenBounds[1].X <= -1.0f || screenBounds[0].Y >= 1.0f || screenBounds[1].Y <= -1.0f)
-			continue;
-		scissor += screenBounds;
+		const CBoundingBoxAligned waterBoundsInViewPort =
+			camera.GetBoundsInViewPort(waterBounds);
+		if (!waterBoundsInViewPort.IsEmpty())
+			scissor += waterBoundsInViewPort;
 	}
-	return CBoundingBoxAligned(CVector3D(Clamp(scissor[0].X, -1.0f, 1.0f), Clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
-				  CVector3D(Clamp(scissor[1].X, -1.0f, 1.0f), Clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));
+	return CBoundingBoxAligned(
+		CVector3D(Clamp(scissor[0].X, -1.0f, 1.0f), Clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
+		CVector3D(Clamp(scissor[1].X, -1.0f, 1.0f), Clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));
 }
 
 // Render fancy water

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "DebugSerializer.h"
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "lib/secure_crt.h"
@@ -156,7 +157,7 @@ void CDebugSerializer::PutScriptVal(const char* name, JS::MutableHandleValue val
 	{
 		// If the value has a Serialize property, pretty-parse that instead.
 		// (this gives more accurate OOS reports).
-		m_ScriptInterface.CallFunction(value, "Serialize", &serialize);
+		ScriptFunction::Call(rq, value, "Serialize", &serialize);
 		std::string serialized_source = m_ScriptInterface.ToString(&serialize, true);
 		m_Stream << INDENT << name << ": " << serialized_source << "\n";
 	}

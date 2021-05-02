@@ -23,10 +23,16 @@
 #ifndef INCLUDED_TERRAINRENDERER
 #define INCLUDED_TERRAINRENDERER
 
+#include "graphics/Color.h"
 #include "maths/BoundingBoxAligned.h"
 
+class CCamera;
+class CMatrix3D;
+class CModelDecal;
 class CPatch;
+class CShaderDefines;
 class CSimulation2;
+
 class ShadowMap;
 class WaterManager;
 
@@ -127,7 +133,7 @@ public:
 	/**
 	 * Calculate a scissor rectangle for the visible water patches.
 	 */
-	CBoundingBoxAligned ScissorWater(int cullGroup, const CMatrix3D& viewproj);
+	CBoundingBoxAligned ScissorWater(int cullGroup, const CCamera& camera);
 
 	/**
 	 * Render priority text for all submitted patches, for debugging.

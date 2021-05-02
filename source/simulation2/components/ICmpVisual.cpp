@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,17 +22,17 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Visual)
-DEFINE_INTERFACE_METHOD_2("SetVariant", void, ICmpVisual, SetVariant, CStr, CStr)
-DEFINE_INTERFACE_METHOD_CONST_0("GetAnimationName", std::string, ICmpVisual, GetAnimationName)
-DEFINE_INTERFACE_METHOD_CONST_0("GetProjectileActor", std::wstring, ICmpVisual, GetProjectileActor)
-DEFINE_INTERFACE_METHOD_CONST_0("GetProjectileLaunchPoint", CFixedVector3D, ICmpVisual, GetProjectileLaunchPoint)
-DEFINE_INTERFACE_METHOD_3("SelectAnimation", void, ICmpVisual, SelectAnimation, std::string, bool, fixed)
-DEFINE_INTERFACE_METHOD_1("SetAnimationSyncRepeat", void, ICmpVisual, SetAnimationSyncRepeat, fixed)
-DEFINE_INTERFACE_METHOD_1("SetAnimationSyncOffset", void, ICmpVisual, SetAnimationSyncOffset, fixed)
-DEFINE_INTERFACE_METHOD_4("SetShadingColor", void, ICmpVisual, SetShadingColor, fixed, fixed, fixed, fixed)
-DEFINE_INTERFACE_METHOD_2("SetVariable", void, ICmpVisual, SetVariable, std::string, float)
-DEFINE_INTERFACE_METHOD_CONST_0("GetActorSeed", u32, ICmpVisual, GetActorSeed)
-DEFINE_INTERFACE_METHOD_1("SetActorSeed", void, ICmpVisual, SetActorSeed, u32)
-DEFINE_INTERFACE_METHOD_0("RecomputeActorName", void, ICmpVisual, RecomputeActorName)
-DEFINE_INTERFACE_METHOD_CONST_0("HasConstructionPreview", bool, ICmpVisual, HasConstructionPreview)
+DEFINE_INTERFACE_METHOD("SetVariant", ICmpVisual, SetVariant)
+DEFINE_INTERFACE_METHOD("GetAnimationName", ICmpVisual, GetAnimationName)
+DEFINE_INTERFACE_METHOD("GetProjectileActor", ICmpVisual, GetProjectileActor)
+DEFINE_INTERFACE_METHOD("GetProjectileLaunchPoint", ICmpVisual, GetProjectileLaunchPoint)
+DEFINE_INTERFACE_METHOD("SelectAnimation", ICmpVisual, SelectAnimation)
+DEFINE_INTERFACE_METHOD("SetAnimationSyncRepeat", ICmpVisual, SetAnimationSyncRepeat)
+DEFINE_INTERFACE_METHOD("SetAnimationSyncOffset", ICmpVisual, SetAnimationSyncOffset)
+DEFINE_INTERFACE_METHOD("SetShadingColor", ICmpVisual, SetShadingColor)
+DEFINE_INTERFACE_METHOD("SetVariable", ICmpVisual, SetVariable)
+DEFINE_INTERFACE_METHOD("GetActorSeed", ICmpVisual, GetActorSeed)
+DEFINE_INTERFACE_METHOD("SetActorSeed", ICmpVisual, SetActorSeed)
+DEFINE_INTERFACE_METHOD("RecomputeActorName", ICmpVisual, RecomputeActorName)
+DEFINE_INTERFACE_METHOD("HasConstructionPreview", ICmpVisual, HasConstructionPreview)
 END_INTERFACE_WRAPPER(Visual)

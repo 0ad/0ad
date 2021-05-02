@@ -86,11 +86,6 @@ public:
 	 */
 	virtual bool IsMouseHovering() const { return m_MouseHovering; }
 
-	/**
-	 * Test if mouse position is over an icon
-	 */
-	virtual bool MouseOverIcon();
-
 	//--------------------------------------------------------
 	/** @name Leaf Functions */
 	//--------------------------------------------------------
@@ -219,6 +214,9 @@ public:
 	 * Updates and returns the size of the object.
 	 */
 	CRect GetComputedSize();
+
+	virtual const CStrW& GetTooltipText() const { return m_Tooltip; }
+	virtual const CStr& GetTooltipStyle() const { return m_TooltipStyle; }
 
 	/**
 	 * Reset internal state of this object.

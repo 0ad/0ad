@@ -83,31 +83,16 @@ const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
 bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 {
-	if (obj && obj->SettingExists("_icon_tooltip_style") && obj->MouseOverIcon())
-	{
-		style = obj->GetSetting<CStr>("_icon_tooltip_style");
-		if (!obj->GetSetting<CStrW>("_icon_tooltip").empty())
-		{
-			if (style.empty())
-				style = "default";
-			m_IsIconTooltip = true;
-			return true;
-		}
-	}
+	if (!obj)
+		return false;
 
-	if (obj && obj->SettingExists("tooltip_style"))
-	{
-		style = obj->GetSetting<CStr>("tooltip_style");
-		if (!obj->GetSetting<CStrW>("tooltip").empty())
-		{
-			if (style.empty())
-				style = "default";
-			m_IsIconTooltip = false;
-			return true;
-		}
-	}
+	if (obj->GetTooltipText().empty())
+		return false;
 
-	return false;
+	style = obj->GetTooltipStyle();
+	if (style.empty())
+		style = "default";
+	return true;
 }
 
 void GUITooltip::ShowTooltip(IGUIObject* obj, const CVector2D& pos, const CStr& style, CGUI& pGUI)
@@ -154,7 +139,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CVector2D& pos, const CStr& 
 
 	if (usedobj->SettingExists("caption"))
 	{
-		const CStrW& text = obj->GetSetting<CStrW>(m_IsIconTooltip ? "_icon_tooltip" : "tooltip");
+		const CStrW& text = obj->GetTooltipText();
 		usedobj->SetSettingFromString("caption", text, true);
 	}
 	else
@@ -271,12 +256,14 @@ void GUITooltip::Update(IGUIObject* Nearest, const CVector2D& MousePos, CGUI& GU
 		break;
 
 	case ST_SHOWING:
-		// Handle special case of icon tooltips
-		if (Nearest == m_PreviousObject && (!m_IsIconTooltip || Nearest->MouseOverIcon()))
+		// Handle sub-object tooltips.
+		if (Nearest == m_PreviousObject)
 		{
 			// Still showing the same object's tooltip, but the text might have changed
 			if (GetTooltip(Nearest, style))
 				ShowTooltip(Nearest, MousePos, style, GUI);
+			else
+				nextstate = ST_COOLING;
 		}
 		else
 		{

@@ -102,6 +102,8 @@ class CCamera
 		// Get the point on the terrain (or water plane) the camera is pointing towards
 		CVector3D GetFocus() const;
 
+		CBoundingBoxAligned GetBoundsInViewPort(const CBoundingBoxAligned& boundigBox) const;
+
 		// Build an orientation matrix from camera position, camera focus point, and up-vector
 		void LookAt(const CVector3D& camera, const CVector3D& focus, const CVector3D& up);
 

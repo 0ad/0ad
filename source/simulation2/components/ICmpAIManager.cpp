@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,9 +28,9 @@
 #include <boost/filesystem.hpp>
 
 BEGIN_INTERFACE_WRAPPER(AIManager)
-DEFINE_INTERFACE_METHOD_4("AddPlayer", void, ICmpAIManager, AddPlayer, std::wstring, player_id_t, uint8_t, std::wstring)
-DEFINE_INTERFACE_METHOD_0("TryLoadSharedComponent", void, ICmpAIManager, TryLoadSharedComponent)
-DEFINE_INTERFACE_METHOD_0("RunGamestateInit", void, ICmpAIManager, RunGamestateInit)
+DEFINE_INTERFACE_METHOD("AddPlayer", ICmpAIManager, AddPlayer)
+DEFINE_INTERFACE_METHOD("TryLoadSharedComponent", ICmpAIManager, TryLoadSharedComponent)
+DEFINE_INTERFACE_METHOD("RunGamestateInit", ICmpAIManager, RunGamestateInit)
 END_INTERFACE_WRAPPER(AIManager)
 
 // Implement the static method that finds all AI scripts

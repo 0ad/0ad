@@ -75,16 +75,6 @@ public:
 		 * Sprite from global GUI sprite database.
 		 */
 		CGUISpriteInstance m_Sprite;
-
-		/**
-		 * Tooltip text
-		 */
-		CStrW m_Tooltip;
-
-		/**
-		 * Tooltip style
-		 */
-		CStrW m_TooltipStyle;
 	};
 
 	/**
@@ -135,6 +125,11 @@ public:
 		 * Settings
 		 */
 		bool m_Bold, m_Italic, m_Underlined;
+
+		/**
+		 * Tooltip text
+		 */
+		CStrW m_Tooltip;
 
 		/**
 		 * *IF* an icon, then this is not nullptr.

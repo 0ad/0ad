@@ -472,26 +472,6 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const
 	return JS_NewObjectWithGivenProto(rq.cx, it->second.m_Class, prototype);
 }
 
-bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const
-{
-	ScriptRequest rq(this);
-	JS::RootedObject obj(rq.cx);
-	if (!JS_ValueToObject(rq.cx, val, &obj) || !obj)
-		return false;
-
-	// Check that the named function actually exists, to avoid ugly JS error reports
-	// when calling an undefined value
-	bool found;
-	if (!JS_HasProperty(rq.cx, obj, name, &found) || !found)
-		return false;
-
-	if (JS_CallFunctionName(rq.cx, obj, name, argv, ret))
-		return true;
-
-	ScriptException::CatchPending(rq);
-	return false;
-}
-
 bool ScriptInterface::CreateObject_(const ScriptRequest& rq, JS::MutableHandleObject object)
 {
 	object.set(JS_NewPlainObject(rq.cx));
@@ -977,7 +957,7 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 	// so fall back to obj.toSource()
 
 	std::wstring source = L"(error)";
-	CallFunction(obj, "toSource", source);
+	ScriptFunction::Call(rq, obj, "toSource", source);
 	return utf8_from_wstring(source);
 }
 

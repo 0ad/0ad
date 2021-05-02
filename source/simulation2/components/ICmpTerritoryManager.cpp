@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,11 +22,11 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(TerritoryManager)
-DEFINE_INTERFACE_METHOD_2("GetOwner", player_id_t, ICmpTerritoryManager, GetOwner, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_3("GetNeighbours", std::vector<u32>, ICmpTerritoryManager, GetNeighbours, entity_pos_t, entity_pos_t, bool)
-DEFINE_INTERFACE_METHOD_2("IsConnected", bool, ICmpTerritoryManager, IsConnected, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_3("SetTerritoryBlinking", void, ICmpTerritoryManager, SetTerritoryBlinking, entity_pos_t, entity_pos_t, bool)
-DEFINE_INTERFACE_METHOD_2("IsTerritoryBlinking", bool, ICmpTerritoryManager, IsTerritoryBlinking, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_1("GetTerritoryPercentage", u8, ICmpTerritoryManager, GetTerritoryPercentage, player_id_t)
-DEFINE_INTERFACE_METHOD_0("UpdateColors", void, ICmpTerritoryManager, UpdateColors)
+DEFINE_INTERFACE_METHOD("GetOwner", ICmpTerritoryManager, GetOwner)
+DEFINE_INTERFACE_METHOD("GetNeighbours", ICmpTerritoryManager, GetNeighbours)
+DEFINE_INTERFACE_METHOD("IsConnected", ICmpTerritoryManager, IsConnected)
+DEFINE_INTERFACE_METHOD("SetTerritoryBlinking", ICmpTerritoryManager, SetTerritoryBlinking)
+DEFINE_INTERFACE_METHOD("IsTerritoryBlinking", ICmpTerritoryManager, IsTerritoryBlinking)
+DEFINE_INTERFACE_METHOD("GetTerritoryPercentage", ICmpTerritoryManager, GetTerritoryPercentage)
+DEFINE_INTERFACE_METHOD("UpdateColors", ICmpTerritoryManager, UpdateColors)
 END_INTERFACE_WRAPPER(TerritoryManager)
