@@ -22,6 +22,7 @@
 #include "maths/Fixed.h"
 #include "ps/Errors.h"
 #include "scriptinterface/ScriptExceptions.h"
+#include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/ScriptTypes.h"
 
 #include <map>
@@ -58,34 +59,6 @@ class ScriptContext;
 extern thread_local shared_ptr<ScriptContext> g_ScriptContext;
 
 namespace boost { namespace random { class rand48; } }
-
-/**
- * RAII structure which encapsulates an access to the context and compartment of a ScriptInterface.
- * This struct provides:
- * - a pointer to the context, while acting like JSAutoRequest
- * - a pointer to the global object of the compartment, while acting like JSAutoRealm
- *
- * This way, getting and using those pointers is safe with respect to the GC
- * and to the separation of compartments.
- */
-class ScriptRequest
-{
-public:
-	ScriptRequest() = delete;
-	ScriptRequest(const ScriptRequest& rq) = delete;
-	ScriptRequest& operator=(const ScriptRequest& rq) = delete;
-	ScriptRequest(const ScriptInterface& scriptInterface);
-	ScriptRequest(const ScriptInterface* scriptInterface) : ScriptRequest(*scriptInterface) {}
-	ScriptRequest(shared_ptr<ScriptInterface> scriptInterface) : ScriptRequest(*scriptInterface) {}
-	~ScriptRequest();
-
-	JS::Value globalValue() const;
-	JSContext* cx;
-	JSObject* glob;
-	JS::HandleObject nativeScope;
-private:
-	JS::Realm* m_formerRealm;
-};
 
 /**
  * Abstraction around a SpiderMonkey JS::Realm.

@@ -22,7 +22,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
 
 #include <string>
 #include <unordered_set>

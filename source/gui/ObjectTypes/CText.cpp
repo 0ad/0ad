@@ -22,7 +22,6 @@
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/CGUIText.h"
-#include "scriptinterface/ScriptInterface.h"
 
 CText::CText(CGUI& pGUI)
 	: IGUIObject(pGUI),

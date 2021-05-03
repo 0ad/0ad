@@ -23,7 +23,7 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
 
 namespace JSI_L10n
 {

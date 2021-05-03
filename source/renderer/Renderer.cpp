@@ -69,7 +69,6 @@
 #include "renderer/TimeManager.h"
 #include "renderer/VertexBufferManager.h"
 #include "renderer/WaterManager.h"
-#include "scriptinterface/ScriptInterface.h"
 
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
