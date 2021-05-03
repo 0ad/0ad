@@ -11,13 +11,14 @@
 # Tuğberk Korkut <t7krkt@gmail.com>, 2021
 # Günay Yılmaz, 2021
 # Volkan Sarıoğlu <volkan60volkan@gmail.com>, 2021
+# Cem Aktas <cemwstone@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Volkan Sarıoğlu <volkan60volkan@gmail.com>, 2021\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>, 2021\n"
 "Language-Team: Turkish (https://www.transifex.com/wildfire-games/teams/17418/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "0 A.D. nasıl oynanır öğren."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -43,7 +44,7 @@ msgstr ""
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "Adım Adım Ekonomi"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -68,41 +69,41 @@ msgstr "Tamamlandı"
 #: gui/campaigns/default_menu/CampaignMenu.js:99
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Mevcut"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Kampanya turu %s:%s yükleme hatası"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
 msgid "Campaign Name"
-msgstr ""
+msgstr "Kampanya adı"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
 msgid "No scenario selected"
-msgstr ""
+msgstr "Senaryo seçilmedi"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "Ana menuye dön"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
 msgid "Saved Games"
-msgstr ""
+msgstr "Kaydedilmiş Oyunlar"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
 msgid "Start Scenario"
-msgstr ""
+msgstr "Senaryo başlat"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Kaydedilmiş oyunu başlat"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "Senaryo adı"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
 msgctxt "campaignLevelList"
@@ -111,12 +112,12 @@ msgstr "Durum"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "dosya yüklenemiyor"
 
 #: gui/campaigns/load_modal/LoadModal.js:102
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
+msgstr "%s silmek istediğinizden emin misinz? Bu işlem geri alınamaz."
 
 #: gui/campaigns/load_modal/LoadModal.js:103
 msgid "Confirmation"
@@ -133,15 +134,15 @@ msgstr "Evet"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "Kampanyayı yükle"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Devam eden kampanyalar yok."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Seçili turun adı;"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -154,20 +155,20 @@ msgstr "Sil"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Kampanya başlat"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run: "
-msgstr ""
+msgstr "Lütfen yeni kampanyanızın tur adını giriniz:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "Kampanya başlat"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "Kampanya seçilmedi."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -175,7 +176,7 @@ msgstr "Mücadeleler "
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "Kampanya seçilmedi."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
@@ -189,4 +190,4 @@ msgstr "İsim"
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s- %(templateName)s"

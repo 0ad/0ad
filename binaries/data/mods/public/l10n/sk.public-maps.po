@@ -21,13 +21,13 @@
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2018,2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Tom Hanax, 2021
-# Zuzana Miadoková <akara.horse@gmail.com>, 2019
+# Zuzana Miadoková <akara.horse@gmail.com>, 2019,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 07:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-01 14:37+0000\n"
+"Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +335,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr ""
+msgstr "[color=\"red\"]DÔLEŽITÁ POZNÁMKA: AI HRÁČI NA TEJTO MAPE NEFUNGUJÚ[/color]\n\nKedysi plodné údolie, zdevastované erupciou dlho nečinnej sopky v jeho samom srdci. Po rokoch neúrodnej, popolavej prázdnoty sa v regióne začali znova objavovať známky života. Krajina pomaly zelenie a navracia sa k svojej starej kráse, ktorá jej však nie je súdená: Po dlhom suchu sa vo vyšších regiónoch na severe usadili nekončiace dažde. Hladina vody v údolí stúpa drastickou rýchlosťou a pomaly núti hráčov zaujať pozície na výšinách poskytnutých vyhasnutými sopkami."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -1511,7 +1511,7 @@ msgstr "Cutscéna začne po 5 sekundách "
 
 #: maps/scenarios/cinema_demo.xml:Description:39
 msgid "Demo map for cinematic camera movements."
-msgstr ""
+msgstr "Mapa demonštrujúca filmové pohyby kamerou."
 
 #: maps/scenarios/cinema_demo.xml:Name:39
 msgid "Cinema Demo"
@@ -2350,7 +2350,7 @@ msgstr "Sme légia"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s a ich spojenci získali kontrolu nad všetkými relikviami a vyhrajú za %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
@@ -2365,7 +2365,7 @@ msgstr ""
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Získal si kontrolu nad všetkými relikviami a vyhráš za %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
@@ -2404,7 +2404,7 @@ msgstr ""
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr ""
+msgstr "%(player)s bol porazený (stratil všetky jednotky)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
@@ -2414,7 +2414,7 @@ msgstr ""
 #: maps/scripts/Regicide.js:130
 #, javascript-format
 msgid "%(player)s has been defeated (lost hero)."
-msgstr ""
+msgstr "%(player)s bol porazený (prišiel o hrdinu)."
 
 #: maps/scripts/WonderVictory.js:80
 #, javascript-format
@@ -2457,10 +2457,10 @@ msgstr[3] ""
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s bol porazený (výhra Divom sveta)."
+msgstr[1] "%(players)s a %(lastPlayer)s boli porazení (výhra Divom sveta)."
+msgstr[2] "%(players)s a %(lastPlayer)s boli porazení (výhra Divom sveta)."
+msgstr[3] "%(players)s a %(lastPlayer)s boli porazení (výhra Divom sveta)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""
@@ -2998,7 +2998,7 @@ msgstr "Ukážková mapa pre šarvátky."
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Name:38
 msgid "Skirmish Demo (2)"
-msgstr ""
+msgstr "Demonštrácia šarvátky (2)"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:38
 msgid "Sporades Islands (2)"
@@ -3084,7 +3084,7 @@ msgstr "Všetky cesty vedú do Ríma. Via Julia Augusta - rímska cesta postaven
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
-msgstr ""
+msgstr "Via Augusta (4)"
 
 #: maps/skirmishes/watering_holes_4p.xml:Description:38
 msgid ""

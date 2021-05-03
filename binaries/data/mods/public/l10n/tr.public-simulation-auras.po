@@ -6,7 +6,7 @@
 # ali topçu <ali134636@gmail.com>, 2018
 # Atakan Karaçengel <proqtakan@gmail.com>, 2018
 # Bahar Gürsoy <sbahargursoy@gmail.com>, 2021
-# Cem Aktas <cemwstone@gmail.com>, 2018
+# Cem Aktas <cemwstone@gmail.com>, 2018,2021
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
 # Ege Arda Anılan <ege_9933@hotmail.com>, 2018
 # Emir Öksüz <emir-2901@hotmail.com>, 2019
@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-02 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-02 20:52+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +54,7 @@ msgstr "Silah Deposu Tamiri"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr "Birimler kışlada konuşlandırıldıklarında deneyim kazanırlar."
+msgstr "Birimler kışlalara konuşlandırıldıklarında deneyim kazanırlar."
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -70,7 +70,7 @@ msgstr "Tersane Onarımı"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Askerlere  +%20 yakın dövüş ve menzilli saldırı hasarı."
+msgstr "Askerlere  +20% yakın dövüş ve menzilli saldırı hasarı."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -79,7 +79,7 @@ msgstr "Dini Coşku"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "İşçilere +%15 toplama hızı."
+msgstr "İşçilere +15% toplama hızı."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -89,7 +89,7 @@ msgstr "Yurtseverlik"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "Askerler +1 yıkım, darbe, delme direnci ve +% 10 yakın dövüş ve menzilli saldırı gücü."
+msgstr "Askerler +1 yıkım, darbe, delme direnci ve +10% yakın dövüş ve menzilli saldırı gücü."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -154,7 +154,7 @@ msgstr "Helenleştirme"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Kuledeki askerler +3 ezme, parçalama, delme direnci ve +20 görüş alanı"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -196,15 +196,15 @@ msgstr "Ticaret ustaları"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr "%-15 teknoloji maliyeti ve araştırma süresi meydana getirir."
+msgstr "-15% teknoloji maliyeti ve araştırma süresi meydana getirir."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr "Galya Mahsülleri"
+msgstr "Galya Ürünleri"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr "Müttefik Ciritçi vatandaşlar -%10 kaynak maliyeti."
+msgstr "Müttefik Vatandaş Ciritçi  -%10 kaynak maliyeti."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -522,7 +522,7 @@ msgstr "Demir Pelanorlar"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Builders +25% build rate."
-msgstr ""
+msgstr "İnşaatçılar +25% inşa oranı "
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
@@ -548,7 +548,7 @@ msgstr "Peltast Reformları"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
-msgstr ""
+msgstr "İnşaatçılar +15% inşa oranı "
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -669,7 +669,7 @@ msgstr "Savaş Hazırlığı"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "Yapı içine konuşlanılmış ise +2 ele geçirme puanı garnizon yenileme oranı"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -885,7 +885,7 @@ msgstr "Düşman Kahramanları -%10 sağlık."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
-msgstr ""
+msgstr "İnşaatçılar +10% inşa oranı "
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"

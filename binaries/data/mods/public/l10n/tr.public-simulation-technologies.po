@@ -5,7 +5,7 @@
 # Translators:
 # Ender Türsen <ado.ender@gmail.com>, 2014
 # ali topçu <ali134636@gmail.com>, 2018,2021
-# Cem Aktas <cemwstone@gmail.com>, 2018
+# Cem Aktas <cemwstone@gmail.com>, 2018,2021
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
 # coolland, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 08:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-02 20:55+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,11 +100,11 @@ msgstr "Şampiyon Mızrakçı Piyadeler +%25 sağlık ama +%5 eğitim süresi."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr ""
+msgstr "Askerleri okçuluk talimine teşvik etmek, onların isabet oranlarını arttırır."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
-msgstr ""
+msgstr "Okçu Eğitimi"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
@@ -139,7 +139,7 @@ msgstr "Kasaba Aşaması açıldı."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr ""
+msgstr "Okçular -20% menzilli saldırı yayılımı "
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -164,7 +164,7 @@ msgstr "Köy Aşaması açıldı."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
-msgstr ""
+msgstr "Okçular +10 saldırı mesafesi"
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -829,7 +829,7 @@ msgstr ""
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
-msgstr ""
+msgstr "Mızraklı Ağır Piyade Geleneği"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
