@@ -195,6 +195,47 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 };
 
 /**
+ * Can be used to spawn turreted units on top of a building/ship.
+ *
+ * @param entity Entity id of the turret holder on which units will be turreted
+ * @param template Name of the template
+ * @param count Number of units to spawn
+ * @param owner Player id of the owner of the new units. By default, the owner
+ * of the turretholder entity.
+ */
+TriggerHelper.SpawnTurretedUnits = function(entity, template, count, owner)
+{
+	let entities = [];
+
+	let cmpTurretHolder = Engine.QueryInterface(entity, IID_TurretHolder);
+	if (!cmpTurretHolder)
+	{
+		error("tried to create turreted entities inside a non-turretholder");
+		return entities;
+	}
+
+	if (owner == null)
+		owner = TriggerHelper.GetOwner(entity);
+
+	for (let i = 0; i < count; ++i)
+	{
+		let ent = Engine.AddEntity(template);
+
+		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		if (cmpOwnership)
+			cmpOwnership.SetOwner(owner);
+
+		let cmpTurretable = Engine.QueryInterface(ent, IID_Turretable);
+		if (cmpTurretable && cmpTurretable.OccupyTurret(entity))
+			entities.push(ent);
+		else
+			error("failed to turret entity " + ent + " (" + template + ") inside " + entity);
+	}
+
+	return entities;
+};
+
+/**
  * Spawn units from all trigger points with this reference
  * If player is defined, only spaw units from the trigger points
  * that belong to that player
@@ -508,11 +549,39 @@ TriggerHelper.SpawnAndGarrisonAtClasses = function(playerID, classes, templates,
 		if (!cmpGarrisonHolder)
 			continue;
 
-		// TODO: account for already garrisoned entities
+		// TODO: account for already garrisoned entities and garrison size.
 		results[entGarrisonHolder] = this.RandomTemplateComposition(templates, Math.floor(cmpGarrisonHolder.GetCapacity() * capacityPercent));
 
 		for (let template in results[entGarrisonHolder])
 			TriggerHelper.SpawnGarrisonedUnits(entGarrisonHolder, template, results[entGarrisonHolder][template], playerID);
+	}
+
+	return results;
+};
+
+/**
+ * This will spawn random compositions of entities of the given templates in all turretholders of the given targetClass of the given player.
+ * The turretholder will be filled to capacityPercent.
+ * Returns an object where keys are entityIDs of the affected turretholders and the properties are template compositions, see RandomTemplateComposition.
+ */
+TriggerHelper.SpawnAndTurretAtClasses = function(playerID, classes, templates, capacityPercent)
+{
+	let results = {};
+
+	for (let entTurretHolder of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(playerID))
+	{
+		let cmpTurretHolder = Engine.QueryInterface(entTurretHolder, IID_TurretHolder);
+		if (!cmpTurretHolder)
+			continue;
+
+		let cmpIdentity = Engine.QueryInterface(entTurretHolder, IID_Identity);
+		if (!cmpIdentity || !MatchesClassList(cmpIdentity.GetClassesList(), classes))
+			continue;
+
+		results[entTurretHolder] = this.RandomTemplateComposition(templates, Math.max(Math.floor(cmpTurretHolder.GetTurretPoints().length * capacityPercent - cmpTurretHolder.GetEntities().length), 0));
+
+		for (let template in results[entTurretHolder])
+			TriggerHelper.SpawnTurretedUnits(entTurretHolder, template, results[entTurretHolder][template], playerID);
 	}
 
 	return results;
