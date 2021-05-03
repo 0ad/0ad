@@ -184,7 +184,7 @@ class GameSettingsController
 			return;
 		this.loading = loading;
 		for (let handler of this.loadingChangeHandlers)
-			handler();
+			handler(loading);
 	}
 
 	/**

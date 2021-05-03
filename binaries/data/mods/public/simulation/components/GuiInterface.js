@@ -251,6 +251,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 {
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
+	if (!ent)
+		return null;
+
 	// All units must have a template; if not then it's a nonexistent entity id.
 	let template = cmpTemplateManager.GetCurrentTemplateName(ent);
 	if (!template)

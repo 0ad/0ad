@@ -41,8 +41,8 @@ PlayerSettingControls.PlayerName = class PlayerName extends GameSettingControl
 		{
 			name = translate(name);
 		}
-
-		this.playerName.caption = name;
+		if (name)
+			this.playerName.caption = name;
 	}
 };
 

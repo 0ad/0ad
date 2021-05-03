@@ -15,7 +15,7 @@ AIGameSettingControls.AISelection = class extends AIGameSettingControlDropdown
 		]);
 
 		this.dropdown.list = this.values.Title;
-		this.dropdown.list_data = this.values.Id;
+		this.dropdown.list_data = this.values.Id.map(x => x || "undefined");
 	}
 
 	render()

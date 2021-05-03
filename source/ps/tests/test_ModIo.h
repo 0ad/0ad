@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -140,10 +140,10 @@ public:
 		TS_ASSERT_PARSE("{\"data\": [{\"foo\":\"bar\"}]}", "Failed to get name from el.");
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":null}]}", "Failed to get name from el.");
 
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":42}]}", "Failed to get name_id from el."); // no conversion warning, but converting numbers to strings and vice-versa seems ok
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":false}]}", "Failed to get name_id from el."); // also some script value conversion check warning
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":{}}]}", "Failed to get name_id from el."); // also some script value conversion check warning
-		TS_ASSERT_PARSE("{\"data\": [{\"name\":[]}]}", "Failed to get name_id from el."); // also some script value conversion check warning
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":42}]}", "Failed to get name_id from el."); // 'name' works, integers implicitly convertible to string.
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":false}]}", "Failed to get name_id from el."); // 'name' works, booleans implicitly convertible to string.
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":{}}]}", "Failed to get name from el."); // Fails at 'name', not convertible to string.
+		TS_ASSERT_PARSE("{\"data\": [{\"name\":[]}]}", "Failed to get name from el."); // Fails at 'name', not convertible to string.
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"foobar\"}]}", "Failed to get name_id from el.");
 
 		TS_ASSERT_PARSE("{\"data\": [{\"name\":\"\",\"name_id\":\"\",\"summary\":\"\"}]}", "modfile not an object.");
