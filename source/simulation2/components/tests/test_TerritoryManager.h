@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerritoryBoundary.h"
 #include "simulation2/helpers/Grid.h"
+#include "simulation2/components/ICmpTerritoryManager.h"
 
 class TestCmpTerritoryManager : public CxxTest::TestSuite
 {
@@ -49,7 +50,7 @@ public:
 		TS_ASSERT_EQUALS((player_id_t)7, boundaries[0].owner);
 		TS_ASSERT_EQUALS(false, boundaries[0].blinking); // high bits aren't set by GetGrid
 
-		// assumes CELL_SIZE is 2; dealt with in TestBoundaryPointsEqual
+		// assumes NAVCELLS_PER_TERRITORY_TILE is 8; dealt with in TestBoundaryPointsEqual
 		int expectedPoints[][2] = {{ 4, 8}, {12, 8}, {20, 8}, {28, 8}, {36, 8}, {44, 8},
 		                           {48,12}, {48,20}, {48,28},
 		                           {44,32}, {36,32}, {28,32}, {20,32}, {12,32}, { 4,32},
@@ -281,10 +282,10 @@ private:
 		// version of 'points', so that the starting position doesn't need to match exactly.
 		for (size_t i = 0; i < points.size(); i++)
 		{
-			// the input numbers in expectedPoints are defined under the assumption that CELL_SIZE is 2, so let's include
-			// a scaling factor to protect against that should CELL_SIZE ever change
-			TS_ASSERT_DELTA(points[i].X, float(expectedPoints[i][0]) * 4.f / TERRAIN_TILE_SIZE, 1e-7);
-			TS_ASSERT_DELTA(points[i].Y, float(expectedPoints[i][1]) * 4.f / TERRAIN_TILE_SIZE, 1e-7);
+			// the input numbers in expectedPoints are defined under the assumption that NAVCELLS_PER_TERRITORY_TILE is 8, so let's include
+			// a scaling factor to protect against that should NAVCELLS_PER_TERRITORY_TILE ever change
+			TS_ASSERT_DELTA(points[i].X, float(expectedPoints[i][0]) * 8.f / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE, 1e-7);
+			TS_ASSERT_DELTA(points[i].Y, float(expectedPoints[i][1]) * 8.f / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE, 1e-7);
 		}
 	}
 };

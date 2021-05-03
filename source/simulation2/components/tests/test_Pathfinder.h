@@ -203,7 +203,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		const entity_pos_t range = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*12);
+		const entity_pos_t range = entity_pos_t::FromInt(48);
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionMan(sim2, SYSTEM_ENTITY);
 		CmpPtr<ICmpPathfinder> cmpPathfinder(sim2, SYSTEM_ENTITY);
@@ -405,7 +405,7 @@ public:
 		stream << " title='length: " << length << "; tiles explored: " << debugSteps << "; time: " << debugTime*1000 << " msec'";
 		stream << " class='path' points='";
 		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
-			stream << path.m_Waypoints[i].x.ToDouble()*Pathfinding::NAVCELLS_PER_TILE/TERRAIN_TILE_SIZE << "," << path.m_Waypoints[i].z.ToDouble()*Pathfinding::NAVCELLS_PER_TILE/TERRAIN_TILE_SIZE << " ";
+			stream << path.m_Waypoints[i].x.ToDouble()*Pathfinding::NAVCELL_SIZE_INT << "," << path.m_Waypoints[i].z.ToDouble()*Pathfinding::NAVCELL_SIZE_INT << " ";
 		stream << "'/>\n";
 	}
 

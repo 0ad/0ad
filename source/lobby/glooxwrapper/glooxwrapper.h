@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,6 +78,12 @@ General design and rules:
 #include <gloox/jinglesessionmanager.h>
 
 #include <cstring>
+
+// Gloox leaves some #define up, we need to undefine them.
+#undef lookup
+#undef lookup2
+#undef deflookup
+#undef deflookup2
 
 #if OS_WIN
 #define GLOOXWRAPPER_API __declspec(dllexport)

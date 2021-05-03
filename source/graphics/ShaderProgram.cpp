@@ -83,7 +83,7 @@ public:
 		return true;
 	}
 
-	virtual void Reload()
+	void Reload() override
 	{
 		Unload();
 
@@ -115,7 +115,7 @@ public:
 		m_IsValid = false;
 	}
 
-	virtual void Bind()
+	void Bind() override
 	{
 		glEnable(GL_VERTEX_PROGRAM_ARB);
 		glEnable(GL_FRAGMENT_PROGRAM_ARB);
@@ -125,7 +125,7 @@ public:
 		BindClientStates();
 	}
 
-	virtual void Unbind()
+	void Unbind() override
 	{
 		glDisable(GL_VERTEX_PROGRAM_ARB);
 		glDisable(GL_FRAGMENT_PROGRAM_ARB);
@@ -153,7 +153,7 @@ public:
 		return it->second;
 	}
 
-	virtual Binding GetTextureBinding(texture_id_t id)
+	Binding GetTextureBinding(texture_id_t id) override
 	{
 		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
@@ -163,7 +163,7 @@ public:
 			return Binding((int)fPair.second, index);
 	}
 
-	virtual void BindTexture(texture_id_t id, Handle tex)
+	void BindTexture(texture_id_t id, Handle tex) override
 	{
 		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
@@ -176,7 +176,7 @@ public:
 		}
 	}
 
-	virtual void BindTexture(texture_id_t id, GLuint tex)
+	void BindTexture(texture_id_t id, GLuint tex) override
 	{
 		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
@@ -187,19 +187,19 @@ public:
 		}
 	}
 
-	virtual void BindTexture(Binding id, Handle tex)
+	void BindTexture(Binding id, Handle tex) override
 	{
 		int index = id.second;
 		if (index != -1)
 			ogl_tex_bind(tex, index);
 	}
 
-	virtual Binding GetUniformBinding(uniform_id_t id)
+	Binding GetUniformBinding(uniform_id_t id) override
 	{
 		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id).first);
 	}
 
-	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	void Uniform(Binding id, float v0, float v1, float v2, float v3) override
 	{
 		if (id.first != -1)
 			pglProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first, v0, v1, v2, v3);
@@ -208,7 +208,7 @@ public:
 			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second, v0, v1, v2, v3);
 	}
 
-	virtual void Uniform(Binding id, const CMatrix3D& v)
+	void Uniform(Binding id, const CMatrix3D& v) override
 	{
 		if (id.first != -1)
 		{
@@ -227,19 +227,19 @@ public:
 		}
 	}
 
-	virtual void Uniform(Binding id, size_t count, const CMatrix3D* v)
+	void Uniform(Binding id, size_t count, const CMatrix3D* v) override
 	{
 		ENSURE(count == 1);
 		Uniform(id, v[0]);
 	}
 
-	virtual void Uniform(Binding id, size_t count, const float* v)
+	void Uniform(Binding id, size_t count, const float* v) override
 	{
 		ENSURE(count == 4);
 		Uniform(id, v[0], v[1], v[2], v[3]);
 	}
 
-	virtual std::vector<VfsPath> GetFileDependencies() const override
+	std::vector<VfsPath> GetFileDependencies() const override
 	{
 		return {m_VertexFile, m_FragmentFile};
 	}
@@ -428,7 +428,7 @@ public:
 		return true;
 	}
 
-	virtual void Reload()
+	void Reload() override
 	{
 		Unload();
 
@@ -508,7 +508,7 @@ public:
 		// The shader objects can be reused and don't need to be deleted here
 	}
 
-	virtual void Bind()
+	void Bind() override
 	{
 		pglUseProgramObjectARB(m_Program);
 
@@ -516,7 +516,7 @@ public:
 			pglEnableVertexAttribArrayARB(it->second);
 	}
 
-	virtual void Unbind()
+	void Unbind() override
 	{
 		pglUseProgramObjectARB(0);
 
@@ -526,7 +526,7 @@ public:
 		// TODO: should unbind textures, probably
 	}
 
-	virtual Binding GetTextureBinding(texture_id_t id)
+	Binding GetTextureBinding(texture_id_t id) override
 	{
 		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
@@ -535,7 +535,7 @@ public:
 			return Binding((int)it->second.first, it->second.second);
 	}
 
-	virtual void BindTexture(texture_id_t id, Handle tex)
+	void BindTexture(texture_id_t id, Handle tex) override
 	{
 		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
@@ -547,7 +547,7 @@ public:
 		glBindTexture(it->second.first, h);
 	}
 
-	virtual void BindTexture(texture_id_t id, GLuint tex)
+	void BindTexture(texture_id_t id, GLuint tex) override
 	{
 		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
@@ -557,7 +557,7 @@ public:
 		glBindTexture(it->second.first, tex);
 	}
 
-	virtual void BindTexture(Binding id, Handle tex)
+	void BindTexture(Binding id, Handle tex) override
 	{
 		if (id.second == -1)
 			return;
@@ -568,7 +568,7 @@ public:
 		glBindTexture(id.first, h);
 	}
 
-	virtual Binding GetUniformBinding(uniform_id_t id)
+	Binding GetUniformBinding(uniform_id_t id) override
 	{
 		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(id);
 		if (it == m_Uniforms.end())
@@ -577,7 +577,7 @@ public:
 			return Binding(it->second.first, (int)it->second.second);
 	}
 
-	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	void Uniform(Binding id, float v0, float v1, float v2, float v3) override
 	{
 		if (id.first != -1)
 		{
@@ -594,7 +594,7 @@ public:
 		}
 	}
 
-	virtual void Uniform(Binding id, const CMatrix3D& v)
+	void Uniform(Binding id, const CMatrix3D& v) override
 	{
 		if (id.first != -1)
 		{
@@ -605,7 +605,7 @@ public:
 		}
 	}
 
-	virtual void Uniform(Binding id, size_t count, const CMatrix3D* v)
+	void Uniform(Binding id, size_t count, const CMatrix3D* v) override
 	{
 		if (id.first != -1)
 		{
@@ -616,7 +616,7 @@ public:
 		}
 	}
 
-	virtual void Uniform(Binding id, size_t count, const float* v)
+	void Uniform(Binding id, size_t count, const float* v) override
 	{
 		if (id.first != -1)
 		{
@@ -630,31 +630,31 @@ public:
 	// Map the various fixed-function Pointer functions onto generic vertex attributes
 	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
 
-	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
+	void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
 		pglVertexAttribPointerARB(0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_POS;
 	}
 
-	virtual void NormalPointer(GLenum type, GLsizei stride, const void* pointer)
+	void NormalPointer(GLenum type, GLsizei stride, const void* pointer) override
 	{
 		pglVertexAttribPointerARB(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
-	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
+	void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
 		pglVertexAttribPointerARB(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 
-	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer)
+	void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
 		pglVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
-	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer)
+	void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer) override
 	{
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
@@ -663,7 +663,7 @@ public:
 		}
 	}
 
-	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer)
+	void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
@@ -676,7 +676,7 @@ public:
 		}
 	}
 
-	virtual std::vector<VfsPath> GetFileDependencies() const
+	std::vector<VfsPath> GetFileDependencies() const override
 	{
 		return m_FileDependencies;
 	}

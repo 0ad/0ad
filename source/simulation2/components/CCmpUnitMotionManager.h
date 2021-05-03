@@ -172,8 +172,8 @@ void CCmpUnitMotionManager::ResetSubdivisions()
 	if (!cmpTerrain)
 		return;
 
-	size_t size = cmpTerrain->GetVerticesPerSide() - 1;
-	u16 gridSquareSize = static_cast<u16>(size * TERRAIN_TILE_SIZE / 20 + 1);
+	size_t size = cmpTerrain->GetMapSize();
+	u16 gridSquareSize = static_cast<u16>(size / 20 + 1);
 	m_MovingUnits.resize(gridSquareSize, gridSquareSize);
 }
 

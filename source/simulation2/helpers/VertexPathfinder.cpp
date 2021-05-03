@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -530,10 +530,10 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	// (this makes it possible to use smaller search ranges, but still find good paths).
 	// Don't do this for the largest ranges: it makes it harder to backtrack, and large search domains
 	// indicate a rather stuck unit, which means having to backtrack is probable.
-	// (keep this in sync with unitMotion's max-search range).
+	// (keep this in sync, slightly below unitMotion's max-search range).
 	// (this also ensures symmetrical behaviour for goals inside/outside the max search range).
 	CFixedVector2D toGoal = CFixedVector2D(request.goal.x, request.goal.z) - CFixedVector2D(request.x0, request.z0);
-	if (toGoal.CompareLength(request.range) >= 0 && request.range < fixed::FromInt(TERRAIN_TILE_SIZE) * 10)
+	if (toGoal.CompareLength(request.range) >= 0 && request.range < Pathfinding::NAVCELL_SIZE * 46)
 	{
 		fixed toGoalLength = toGoal.Length();
 		fixed inv = fixed::FromInt(1) / toGoalLength;
@@ -667,8 +667,8 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	// Add terrain obstructions
 	{
 		u16 i0, j0, i1, j1;
-		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
-		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+		Pathfinding::NearestNavcell(rangeXMin, rangeZMin, i0, j0, m_GridSize, m_GridSize);
+		Pathfinding::NearestNavcell(rangeXMax, rangeZMax, i1, j1, m_GridSize, m_GridSize);
 		AddTerrainEdges(m_Edges, m_Vertexes, i0, j0, i1, j1, request.passClass, *m_TerrainOnlyGrid);
 	}
 

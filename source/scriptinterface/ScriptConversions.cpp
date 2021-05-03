@@ -92,7 +92,7 @@ template<> bool ScriptInterface::FromJSVal<u8>(const ScriptRequest& rq,  JS::Han
 
 template<> bool ScriptInterface::FromJSVal<std::wstring>(const ScriptRequest& rq,  JS::HandleValue v, std::wstring& out)
 {
-	WARN_IF_NOT(v.isString() || v.isNumber(), v); // allow implicit number conversions
+	WARN_IF_NOT(v.isString() || v.isNumber() || v.isBoolean(), v); // allow implicit boolean/number conversions
 	JS::RootedString str(rq.cx, JS::ToString(rq.cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");

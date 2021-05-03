@@ -303,7 +303,7 @@ public:
 	HierarchicalPathfinder& m_PathfinderHier;
 
 	HierarchicalOverlay(HierarchicalPathfinder& pathfinderHier) :
-		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TILE), m_PathfinderHier(pathfinderHier)
+		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TERRAIN_TILE), m_PathfinderHier(pathfinderHier)
 	{
 	}
 

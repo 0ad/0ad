@@ -39,7 +39,6 @@
 #include "simulation2/serialization/SerializedTypes.h"
 
 #include "graphics/Overlay.h"
-#include "graphics/Terrain.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
@@ -47,13 +46,25 @@
 
 #define DEBUG_RANGE_MANAGER_BOUNDS 0
 
+namespace
+{
+/**
+ * How many LOS vertices to have per region.
+ * LOS regions are used to keep track of units.
+ */
 constexpr int LOS_REGION_RATIO = 8;
+
+/**
+ * Tolerance for parabolic range calculations.
+ * TODO C++20: change this to constexpr by fixing CFixed with std::is_constant_evaluated
+ */
+const fixed PARABOLIC_RANGE_TOLERANCE = fixed::FromInt(1)/2;
 
 /**
  * Convert an owner ID (-1 = unowned, 0 = gaia, 1..30 = players)
  * into a 32-bit mask for quick set-membership tests.
  */
-static inline u32 CalcOwnerMask(player_id_t owner)
+u32 CalcOwnerMask(player_id_t owner)
 {
 	if (owner >= -1 && owner < 31)
 		return 1 << (1+owner);
@@ -64,7 +75,7 @@ static inline u32 CalcOwnerMask(player_id_t owner)
 /**
  * Returns LOS mask for given player.
  */
-static inline u32 CalcPlayerLosMask(player_id_t player)
+u32 CalcPlayerLosMask(player_id_t player)
 {
 	if (player > 0 && player <= 16)
 		return (u32)LosState::MASK << (2*(player-1));
@@ -74,7 +85,7 @@ static inline u32 CalcPlayerLosMask(player_id_t player)
 /**
  * Returns shared LOS mask for given list of players.
  */
-static u32 CalcSharedLosMask(std::vector<player_id_t> players)
+u32 CalcSharedLosMask(std::vector<player_id_t> players)
 {
 	u32 playerMask = 0;
 	for (size_t i = 0; i < players.size(); i++)
@@ -87,7 +98,7 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
  * Add/remove a player to/from mask, which is a 1-bit mask representing a list of players.
  * Returns true if the mask is modified.
  */
-static bool SetPlayerSharedDirtyVisibilityBit(u16& mask, player_id_t player, bool enable)
+bool SetPlayerSharedDirtyVisibilityBit(u16& mask, player_id_t player, bool enable)
 {
 	if (player <= 0 || player > 16)
 		return false;
@@ -105,7 +116,7 @@ static bool SetPlayerSharedDirtyVisibilityBit(u16& mask, player_id_t player, boo
 /**
  * Computes the 2-bit visibility for one player, given the total 32-bit visibilities
  */
-static inline LosVisibility GetPlayerVisibility(u32 visibilities, player_id_t player)
+LosVisibility GetPlayerVisibility(u32 visibilities, player_id_t player)
 {
 	if (player > 0 && player <= 16)
 		return static_cast<LosVisibility>( (visibilities >> (2 *(player-1))) & 0x3 );
@@ -115,7 +126,7 @@ static inline LosVisibility GetPlayerVisibility(u32 visibilities, player_id_t pl
 /**
  * Test whether the visibility is dirty for a given LoS region and a given player
  */
-static inline bool IsVisibilityDirty(u16 dirty, player_id_t player)
+bool IsVisibilityDirty(u16 dirty, player_id_t player)
 {
 	if (player > 0 && player <= 16)
 		return (dirty >> (player - 1)) & 0x1;
@@ -125,7 +136,7 @@ static inline bool IsVisibilityDirty(u16 dirty, player_id_t player)
 /**
  * Test whether a player share this vision
  */
-static inline bool HasVisionSharing(u16 visionSharing, player_id_t player)
+bool HasVisionSharing(u16 visionSharing, player_id_t player)
 {
 	return (visionSharing & (1 << (player - 1))) != 0;
 }
@@ -133,7 +144,7 @@ static inline bool HasVisionSharing(u16 visionSharing, player_id_t player)
 /**
  * Computes the shared vision mask for the player
  */
-static inline u16 CalcVisionSharingMask(player_id_t player)
+u16 CalcVisionSharingMask(player_id_t player)
 {
 	return 1 << (player-1);
 }
@@ -234,7 +245,39 @@ struct EntityData
 	inline void SetFlag(u8 mask, bool val) { flags = val ? (flags | mask) : (flags & ~mask); }
 };
 
-cassert(sizeof(EntityData) == 24);
+static_assert(sizeof(EntityData) == 24);
+
+/**
+ * Functor for sorting entities by distance from a source point.
+ * It must only be passed entities that are in 'entities'
+ * and are currently in the world.
+ */
+class EntityDistanceOrdering
+{
+public:
+	EntityDistanceOrdering(const EntityMap<EntityData>& entities, const CFixedVector2D& source) :
+		m_EntityData(entities), m_Source(source)
+	{
+	}
+
+	EntityDistanceOrdering(const EntityDistanceOrdering& entity) = default;
+
+	bool operator()(entity_id_t a, entity_id_t b) const
+	{
+		const EntityData& da = m_EntityData.find(a)->second;
+		const EntityData& db = m_EntityData.find(b)->second;
+		CFixedVector2D vecA = CFixedVector2D(da.x, da.z) - m_Source;
+		CFixedVector2D vecB = CFixedVector2D(db.x, db.z) - m_Source;
+		return (vecA.CompareLength(vecB) < 0);
+	}
+
+	const EntityMap<EntityData>& m_EntityData;
+	CFixedVector2D m_Source;
+
+private:
+	EntityDistanceOrdering& operator=(const EntityDistanceOrdering&);
+};
+} // anonymous namespace
 
 /**
  * Serialization helper template for Query
@@ -272,8 +315,8 @@ struct SerializeHelper<Query>
 		uint32_t id;
 		deserialize.NumberU32_Unbounded("source", id);
 		value.source = context.GetComponentManager().LookupEntityHandle(id, true);
-			// the referenced entity might not have been deserialized yet,
-			// so tell LookupEntityHandle to allocate the handle if necessary
+		// the referenced entity might not have been deserialized yet,
+		// so tell LookupEntityHandle to allocate the handle if necessary
 	}
 };
 
@@ -295,37 +338,6 @@ struct SerializeHelper<EntityData>
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8_Unbounded("flags", value.flags);
 	}
-};
-
-/**
- * Functor for sorting entities by distance from a source point.
- * It must only be passed entities that are in 'entities'
- * and are currently in the world.
- */
-class EntityDistanceOrdering
-{
-public:
-	EntityDistanceOrdering(const EntityMap<EntityData>& entities, const CFixedVector2D& source) :
-		m_EntityData(entities), m_Source(source)
-	{
-	}
-
-	EntityDistanceOrdering(const EntityDistanceOrdering& entity) = default;
-
-	bool operator()(entity_id_t a, entity_id_t b) const
-	{
-		const EntityData& da = m_EntityData.find(a)->second;
-		const EntityData& db = m_EntityData.find(b)->second;
-		CFixedVector2D vecA = CFixedVector2D(da.x, da.z) - m_Source;
-		CFixedVector2D vecB = CFixedVector2D(db.x, db.z) - m_Source;
-		return (vecA.CompareLength(vecB) < 0);
-	}
-
-	const EntityMap<EntityData>& m_EntityData;
-	CFixedVector2D m_Source;
-
-private:
-	EntityDistanceOrdering& operator=(const EntityDistanceOrdering&);
 };
 
 /**
@@ -1303,7 +1315,7 @@ public:
 			return r;
 
 		// angle = 0 goes in the positive Z direction
-		u64 precisionSquared = SQUARE_U64_FIXED(entity_pos_t::FromInt(static_cast<int>(TERRAIN_TILE_SIZE)) / 8);
+		u64 precisionSquared = SQUARE_U64_FIXED(PARABOLIC_RANGE_TOLERANCE);
 
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 		entity_pos_t waterLevel = cmpWaterManager ? cmpWaterManager->GetWaterLevel(pos.X, pos.Z) : entity_pos_t::Zero();

@@ -49,7 +49,7 @@ REGISTER_COMPONENT_TYPE(Pathfinder)
 
 void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 {
-	m_MapSize = 0;
+	m_GridSize = 0;
 	m_Grid = NULL;
 	m_TerrainOnlyGrid = NULL;
 
@@ -59,7 +59,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
 	m_AtlasOverlay = NULL;
 
-	m_VertexPathfinder = std::make_unique<VertexPathfinder>(m_MapSize, m_TerrainOnlyGrid);
+	m_VertexPathfinder = std::make_unique<VertexPathfinder>(m_GridSize, m_TerrainOnlyGrid);
 	m_LongPathfinder = std::make_unique<LongPathfinder>();
 	m_PathfinderHier = std::make_unique<HierarchicalPathfinder>();
 
@@ -145,7 +145,7 @@ void CCmpPathfinder::SerializeCommon(S& serialize)
 	Serializer(serialize, "long requests", m_LongPathRequests.m_Requests);
 	Serializer(serialize, "short requests", m_ShortPathRequests.m_Requests);
 	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
-	serialize.NumberU16_Unbounded("map size", m_MapSize);
+	serialize.NumberU16_Unbounded("grid size", m_GridSize);
 }
 
 void CCmpPathfinder::Serialize(ISerializer& serialize)
@@ -365,14 +365,16 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 	// avoid integer overflow in intermediate calculation
 	const u16 shoreMax = 32767;
 
+	u16 shoreGridSize = terrain.GetTilesPerSide();
+
 	// First pass - find underwater tiles
-	Grid<u8> waterGrid(m_MapSize, m_MapSize);
-	for (u16 j = 0; j < m_MapSize; ++j)
+	Grid<u8> waterGrid(shoreGridSize, shoreGridSize);
+	for (u16 j = 0; j < shoreGridSize; ++j)
 	{
-		for (u16 i = 0; i < m_MapSize; ++i)
+		for (u16 i = 0; i < shoreGridSize; ++i)
 		{
 			fixed x, z;
-			Pathfinding::TileCenter(i, j, x, z);
+			Pathfinding::TerrainTileCenter(i, j, x, z);
 
 			bool underWater = cmpWaterManager && (cmpWaterManager->GetWaterLevel(x, z) > terrain.GetExactGroundLevelFixed(x, z));
 			waterGrid.set(i, j, underWater ? 1 : 0);
@@ -380,18 +382,18 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 	}
 
 	// Second pass - find shore tiles
-	Grid<u16> shoreGrid(m_MapSize, m_MapSize);
-	for (u16 j = 0; j < m_MapSize; ++j)
+	Grid<u16> shoreGrid(shoreGridSize, shoreGridSize);
+	for (u16 j = 0; j < shoreGridSize; ++j)
 	{
-		for (u16 i = 0; i < m_MapSize; ++i)
+		for (u16 i = 0; i < shoreGridSize; ++i)
 		{
 			// Find a land tile
 			if (!waterGrid.get(i, j))
 			{
 				// If it's bordered by water, it's a shore tile
-				if ((i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < m_MapSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1))
-					|| (i < m_MapSize-1 && waterGrid.get(i+1, j)) || (i < m_MapSize-1 && j < m_MapSize-1 && waterGrid.get(i+1, j+1)) || (i < m_MapSize-1 && j > 0 && waterGrid.get(i+1, j-1))
-					|| (j > 0 && waterGrid.get(i, j-1)) || (j < m_MapSize-1 && waterGrid.get(i, j+1))
+				if ((i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < shoreGridSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1))
+					|| (i < shoreGridSize-1 && waterGrid.get(i+1, j)) || (i < shoreGridSize-1 && j < shoreGridSize-1 && waterGrid.get(i+1, j+1)) || (i < shoreGridSize-1 && j > 0 && waterGrid.get(i+1, j-1))
+					|| (j > 0 && waterGrid.get(i, j-1)) || (j < shoreGridSize-1 && waterGrid.get(i, j+1))
 					)
 					shoreGrid.set(i, j, 0);
 				else
@@ -404,10 +406,10 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 	}
 
 	// Expand influences on land to find shore distance
-	for (u16 y = 0; y < m_MapSize; ++y)
+	for (u16 y = 0; y < shoreGridSize; ++y)
 	{
 		u16 min = shoreMax;
-		for (u16 x = 0; x < m_MapSize; ++x)
+		for (u16 x = 0; x < shoreGridSize; ++x)
 		{
 			if (!waterGrid.get(x, y) || expandOnWater)
 			{
@@ -420,7 +422,7 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 				++min;
 			}
 		}
-		for (u16 x = m_MapSize; x > 0; --x)
+		for (u16 x = shoreGridSize; x > 0; --x)
 		{
 			if (!waterGrid.get(x-1, y) || expandOnWater)
 			{
@@ -434,10 +436,10 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 			}
 		}
 	}
-	for (u16 x = 0; x < m_MapSize; ++x)
+	for (u16 x = 0; x < shoreGridSize; ++x)
 	{
 		u16 min = shoreMax;
-		for (u16 y = 0; y < m_MapSize; ++y)
+		for (u16 y = 0; y < shoreGridSize; ++y)
 		{
 			if (!waterGrid.get(x, y) || expandOnWater)
 			{
@@ -450,7 +452,7 @@ Grid<u16> CCmpPathfinder::ComputeShoreGrid(bool expandOnWater)
 				++min;
 			}
 		}
-		for (u16 y = m_MapSize; y > 0; --y)
+		for (u16 y = shoreGridSize; y > 0; --y)
 		{
 			if (!waterGrid.get(x, y-1) || expandOnWater)
 			{
@@ -476,12 +478,12 @@ void CCmpPathfinder::UpdateGrid()
 	if (!cmpTerrain)
 		return; // error
 
-	u16 terrainSize = cmpTerrain->GetTilesPerSide();
-	if (terrainSize == 0)
+	u16 gridSize = cmpTerrain->GetMapSize() / Pathfinding::NAVCELL_SIZE_INT;
+	if (gridSize == 0)
 		return;
 
 	// If the terrain was resized then delete the old grid data
-	if (m_Grid && m_MapSize != terrainSize)
+	if (m_Grid && m_GridSize != gridSize)
 	{
 		SAFE_DELETE(m_Grid);
 		SAFE_DELETE(m_TerrainOnlyGrid);
@@ -490,12 +492,12 @@ void CCmpPathfinder::UpdateGrid()
 	// Initialise the terrain data when first needed
 	if (!m_Grid)
 	{
-		m_MapSize = terrainSize;
-		m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+		m_GridSize = gridSize;
+		m_Grid = new Grid<NavcellData>(m_GridSize, m_GridSize);
 		SAFE_DELETE(m_TerrainOnlyGrid);
-		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+		m_TerrainOnlyGrid = new Grid<NavcellData>(m_GridSize, m_GridSize);
 
-		m_DirtinessInformation = { true, true, Grid<u8>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE) };
+		m_DirtinessInformation = { true, true, Grid<u8>(m_GridSize, m_GridSize) };
 		m_AIPathfinderDirtinessInformation = m_DirtinessInformation;
 
 		m_TerrainDirty = true;
@@ -505,7 +507,7 @@ void CCmpPathfinder::UpdateGrid()
 #ifdef NDEBUG
 	ENSURE(m_DirtinessInformation.dirtinessGrid.compare_sizes(m_Grid));
 #else
-	ENSURE(m_DirtinessInformation.dirtinessGrid == Grid<u8>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE));
+	ENSURE(m_DirtinessInformation.dirtinessGrid == Grid<u8>(m_GridSize, m_GridSize));
 #endif
 
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
@@ -578,25 +580,25 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 	if (!cmpTerrain || !cmpObstructionManager)
 		return;
 
-	u16 terrainSize = cmpTerrain->GetTilesPerSide();
-	if (terrainSize == 0)
+	u16 gridSize = cmpTerrain->GetMapSize() / Pathfinding::NAVCELL_SIZE_INT;
+	if (gridSize == 0)
 		return;
 
-	const bool needsNewTerrainGrid = !m_TerrainOnlyGrid || m_MapSize != terrainSize;
+	const bool needsNewTerrainGrid = !m_TerrainOnlyGrid || m_GridSize != gridSize;
 	if (needsNewTerrainGrid)
 	{
-		m_MapSize = terrainSize;
+		m_GridSize = gridSize;
 
 		SAFE_DELETE(m_TerrainOnlyGrid);
-		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+		m_TerrainOnlyGrid = new Grid<NavcellData>(m_GridSize, m_GridSize);
 
 		// If this update comes from a map resizing, we must reinitialize the other grids as well
 		if (!m_TerrainOnlyGrid->compare_sizes(m_Grid))
 		{
 			SAFE_DELETE(m_Grid);
-			m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
+			m_Grid = new Grid<NavcellData>(m_GridSize, m_GridSize);
 
-			m_DirtinessInformation = { true, true, Grid<u8>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE) };
+			m_DirtinessInformation = { true, true, Grid<u8>(m_GridSize, m_GridSize) };
 			m_AIPathfinderDirtinessInformation = m_DirtinessInformation;
 		}
 	}
@@ -606,17 +608,17 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 	const bool partialTerrainGridUpdate =
 		!expandPassability && !needsNewTerrainGrid &&
 		itile0 != -1 && jtile0 != -1 && itile1 != -1 && jtile1 != -1;
-	int istart = 0, iend = m_MapSize * Pathfinding::NAVCELLS_PER_TILE;
-	int jstart = 0, jend = m_MapSize * Pathfinding::NAVCELLS_PER_TILE;
+	int istart = 0, iend = m_GridSize;
+	int jstart = 0, jend = m_GridSize;
 	if (partialTerrainGridUpdate)
 	{
 		// We need to extend the boundaries by 1 tile, because slope and ground
 		// level are calculated by multiple neighboring tiles.
 		// TODO: add CTerrain constant instead of 1.
-		istart = Clamp<int>(itile0 - 1, 0, m_MapSize) * Pathfinding::NAVCELLS_PER_TILE;
-		iend = Clamp<int>(itile1 + 1, 0, m_MapSize) * Pathfinding::NAVCELLS_PER_TILE;
-		jstart = Clamp<int>(jtile0 - 1, 0, m_MapSize) * Pathfinding::NAVCELLS_PER_TILE;
-		jend = Clamp<int>(jtile1 + 1, 0, m_MapSize) * Pathfinding::NAVCELLS_PER_TILE;
+		istart = Clamp<int>(itile0 - 1, 0, m_GridSize);
+		iend = Clamp<int>(itile1 + 1, 0, m_GridSize);
+		jstart = Clamp<int>(jtile0 - 1, 0, m_GridSize);
+		jend = Clamp<int>(jtile1 + 1, 0, m_GridSize);
 	}
 
 	// Compute initial terrain-dependent passability
@@ -629,8 +631,8 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 			Pathfinding::NavcellCenter(i, j, x, z);
 
 			// Terrain-tile coordinates for this navcell
-			int itile = i / Pathfinding::NAVCELLS_PER_TILE;
-			int jtile = j / Pathfinding::NAVCELLS_PER_TILE;
+			int itile = i / Pathfinding::NAVCELLS_PER_TERRAIN_TILE;
+			int jtile = j / Pathfinding::NAVCELLS_PER_TERRAIN_TILE;
 
 			// Gather all the data potentially needed to determine passability:
 
@@ -659,7 +661,7 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 	}
 
 	// Compute off-world passability
-	const int edgeSize = MAP_EDGE_TILES * Pathfinding::NAVCELLS_PER_TILE;
+	const int edgeSize = MAP_EDGE_TILES * Pathfinding::NAVCELLS_PER_TERRAIN_TILE;
 
 	NavcellData edgeMask = 0;
 	for (const PathfinderPassability& passability : m_PassClasses)
@@ -818,7 +820,7 @@ bool CCmpPathfinder::IsGoalReachable(entity_pos_t x0, entity_pos_t z0, const Pat
 	PROFILE2("IsGoalReachable");
 
 	u16 i, j;
-	Pathfinding::NearestNavcell(x0, z0, i, j, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+	Pathfinding::NearestNavcell(x0, z0, i, j, m_GridSize, m_GridSize);
 	if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
 		m_PathfinderHier->FindNearestPassableNavcell(i, j, passClass);
 
@@ -857,7 +859,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObst
 	// Test against terrain and static obstructions:
 
 	u16 i, j;
-	Pathfinding::NearestNavcell(x, z, i, j, m_MapSize*Pathfinding::NAVCELLS_PER_TILE, m_MapSize*Pathfinding::NAVCELLS_PER_TILE);
+	Pathfinding::NearestNavcell(x, z, i, j, m_GridSize, m_GridSize);
 	if (!IS_PASSABLE(m_Grid->get(i, j), passClass))
 		return ICmpObstruction::FOUNDATION_CHECK_FAIL_TERRAIN_CLASS;
 

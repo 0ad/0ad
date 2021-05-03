@@ -153,10 +153,7 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 							SpriteCall.m_Area += displacement;
 					}
 					else if (tagAttrib.attrib == L"tooltip")
-					{
 						TextCall.m_Tooltip = tagAttrib.value;
-						LOGWARNING("setting tooltip to %s", TextCall.m_Tooltip.ToUTF8().c_str());
-					}
 				}
 
 				SpriteCall.m_Sprite = icon.m_SpriteName;

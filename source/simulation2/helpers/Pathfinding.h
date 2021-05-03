@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@ private:
 	u32 data;
 };
 
-static const int PASS_CLASS_BITS = 16;
+inline constexpr int PASS_CLASS_BITS = 16;
 typedef u16 NavcellData; // 1 bit per passability class (up to PASS_CLASS_BITS)
 #define IS_PASSABLE(item, classmask) (((item) & (classmask)) == 0)
 #define PASS_CLASS_MASK_FROM_INDEX(id) ((pass_class_t)(1u << id))
@@ -137,23 +137,24 @@ namespace Pathfinding
 	 * obstructions, all expanded outwards by the radius of the units.
 	 * Since units are much smaller than terrain tiles, the nav grid should be
 	 * higher resolution than the tiles.
-	 * We therefore split each terrain tile into NxN "nav cells" (for some integer N,
+	 * We therefore split each the world into NxN "nav cells" (for some integer N,
 	 * preferably a power of two).
 	 */
-	const int NAVCELLS_PER_TILE = 4;
+	inline constexpr fixed NAVCELL_SIZE = fixed::FromInt(1);
+	inline constexpr int NAVCELL_SIZE_INT = 1;
+	inline constexpr int NAVCELL_SIZE_LOG2 = 0;
 
 	/**
-	 * Size of a navcell in metres ( = TERRAIN_TILE_SIZE / NAVCELLS_PER_TILE)
+	 * The terrain grid is coarser, and it is often convenient to convert from one to the other.
 	 */
-	const fixed NAVCELL_SIZE = fixed::FromInt((int)TERRAIN_TILE_SIZE) / Pathfinding::NAVCELLS_PER_TILE;
-	const int NAVCELL_SIZE_INT = 1;
-	const int NAVCELL_SIZE_LOG2 = 0;
+	inline constexpr int NAVCELLS_PER_TERRAIN_TILE = TERRAIN_TILE_SIZE / NAVCELL_SIZE_INT;
+	static_assert(TERRAIN_TILE_SIZE % NAVCELL_SIZE_INT == 0, "Terrain tile size is not a multiple of navcell size");
 
 	/**
 	 * To make sure the long-range pathfinder is more strict than the short-range one,
 	 * we need to slightly over-rasterize. So we extend the clearance radius by 1.
 	 */
-	const entity_pos_t CLEARANCE_EXTENSION_RADIUS = fixed::FromInt(1);
+	inline constexpr entity_pos_t CLEARANCE_EXTENSION_RADIUS = fixed::FromInt(1);
 
 	/**
 	 * Compute the navcell indexes on the grid nearest to a given point
@@ -167,11 +168,11 @@ namespace Pathfinding
 	}
 
 	/**
-	 * Returns the position of the center of the given tile
+	 * Returns the position of the center of the given terrain tile
 	 */
-	inline void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
+	inline void TerrainTileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 	{
-		cassert(TERRAIN_TILE_SIZE % 2 == 0);
+		static_assert(TERRAIN_TILE_SIZE % 2 == 0);
 		x = entity_pos_t::FromInt(i*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE / 2);
 		z = entity_pos_t::FromInt(j*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE / 2);
 	}

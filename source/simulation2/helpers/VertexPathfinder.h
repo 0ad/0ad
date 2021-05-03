@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ class SceneCollector;
 class VertexPathfinder
 {
 public:
-	VertexPathfinder(const u16& mapSize, Grid<NavcellData>* const & terrainOnlyGrid) : m_MapSize(mapSize), m_TerrainOnlyGrid(terrainOnlyGrid), m_DebugOverlay(false) {};
+	VertexPathfinder(const u16& gridSize, Grid<NavcellData>* const & terrainOnlyGrid) : m_GridSize(gridSize), m_TerrainOnlyGrid(terrainOnlyGrid), m_DebugOverlay(false) {};
 
 	/**
 	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
@@ -96,7 +96,7 @@ private:
 	void DebugRenderEdges(const CSimContext& simContext, bool visible, CFixedVector2D curr, CFixedVector2D npos) const;
 
 	// References to the Pathfinder for convenience.
-	const u16& m_MapSize;
+	const u16& m_GridSize;
 	Grid<NavcellData>* const & m_TerrainOnlyGrid;
 
 	std::atomic<bool> m_DebugOverlay;
