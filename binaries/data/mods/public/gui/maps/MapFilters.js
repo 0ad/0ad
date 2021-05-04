@@ -66,7 +66,10 @@ class MapFilters
 				maps.push({
 					"file": mapPath,
 					"name": translate(mapData.settings.Name),
-					"description": translate(mapData.settings.Description)
+					"description": translate(mapData.settings.Description),
+					// For convenience when filtering, store which type/filter tuple returned this map.
+					"mapType": mapTypeName,
+					"filter": filterName
 				});
 			}
 		}

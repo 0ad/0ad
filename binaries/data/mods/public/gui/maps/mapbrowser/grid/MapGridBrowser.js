@@ -37,9 +37,9 @@ class MapGridBrowser extends GridBrowser
 		Engine.UnsetGlobalHotkey(this.HotkeyConfigPrevious, "Press");
 	}
 
-	getSelectedFile()
+	getSelected()
 	{
-		return this.mapList[this.selected].file || undefined;
+		return this.mapList[this.selected] || undefined;
 	}
 
 	select(mapFile)
@@ -50,34 +50,35 @@ class MapGridBrowser extends GridBrowser
 
 	updateMapList()
 	{
-		let selectedMap =
-			this.mapList[this.selected] &&
-			this.mapList[this.selected].file || undefined;
+		const selectedMap = this.mapList[this.selected]?.file;
+		const mapType = this.mapBrowserPage.controls.MapFiltering.getSelectedMapType();
+		const mapFilter = this.mapBrowserPage.controls.MapFiltering.getSelectedMapFilter();
+		const filterText = this.mapBrowserPage.controls.MapFiltering.getSearchText();
+		const randomMap = {
+			"file": "random",
+			"name": translateWithContext("map selection", "Random"),
+			"description": translate("Pick a map at random."),
+			"mapType": "random",
+			"filter": "default"
+		};
 
-		let mapList = this.mapFilters.getFilteredMaps(
-			this.mapBrowserPage.controls.MapFiltering.getSelectedMapType(),
-			this.mapBrowserPage.controls.MapFiltering.getSelectedMapFilter());
+		let mapList = this.mapFilters.getFilteredMaps(mapType, mapFilter);
 
-		let filterText = this.mapBrowserPage.controls.MapFiltering.getSearchText();
+		if (mapType === "random")
+			mapList.unshift(randomMap);
+
 		if (filterText)
 		{
 			mapList = MatchSort.get(filterText, mapList, "name");
 			if (!mapList.length)
 			{
-				let filter = "all";
+				const filter = "all";
+				mapList.push(randomMap);
 				for (let type of g_MapTypes.Name)
 					for (let map of this.mapFilters.getFilteredMaps(type, filter))
 						mapList.push(Object.assign({ "type": type, "filter": filter }, map));
 				mapList = MatchSort.get(filterText, mapList, "name");
 			}
-		}
-		if (this.mapBrowserPage.controls.MapFiltering.getSelectedMapType() == "random")
-		{
-			mapList = [{
-				"file": "random",
-				"name": translateWithContext("random map pick", "Random"),
-				"description": translate("Pick a map at random."),
-			}, ...mapList];
 		}
 		this.mapList = mapList;
 		this.itemCount = this.mapList.length;
@@ -92,3 +93,7 @@ MapGridBrowser.prototype.ItemRatio = 4 / 3;
 MapGridBrowser.prototype.DefaultItemWidth = 200;
 
 MapGridBrowser.prototype.MinItemWidth = 100;
+
+MapGridBrowser.prototype.HotkeyConfigNext = "tab.next";
+
+MapGridBrowser.prototype.HotkeyConfigPrevious = "tab.prev";

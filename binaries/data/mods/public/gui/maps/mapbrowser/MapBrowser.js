@@ -19,10 +19,19 @@ class MapBrowser
 
 	submitMapSelection()
 	{
+		let file = this.gridBrowser.getSelected();
+		let type = this.controls.MapFiltering.getSelectedMapType();
+		let filter = this.controls.MapFiltering.getSelectedMapFilter();
+		if (file)
+		{
+			type = file.mapType;
+			filter = file.filter;
+			file = file.file;
+		}
 		this.onSubmitMapSelection(
-			this.gridBrowser.getSelectedFile(),
-			this.controls.MapFiltering.getSelectedMapType(),
-			this.controls.MapFiltering.getSelectedMapFilter()
+			file,
+			type,
+			filter
 		);
 		this.closePage();
 	}
