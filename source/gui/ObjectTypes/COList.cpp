@@ -180,10 +180,10 @@ void COList::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
+bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child)
 {
-	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
-	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
+	#define ELMT(x) int elmt_##x = xmb.GetElementID(#x)
+	#define ATTR(x) int attr_##x = xmb.GetAttributeID(#x)
 	ELMT(item);
 	ELMT(column);
 	ELMT(translatableAttribute);
@@ -203,7 +203,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 		for (XMBAttribute attr : child.GetAttributes())
 		{
-			std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
+			std::string_view attr_name(xmb.GetAttributeStringView(attr.Name));
 			CStr attr_value(attr.Value);
 
 			if (attr_name == "color")

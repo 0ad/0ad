@@ -86,10 +86,20 @@ IGUIObject::~IGUIObject()
 	// m_Children is deleted along all other GUI Objects in the CGUI destructor
 }
 
-void IGUIObject::AddChild(IGUIObject& pChild)
+void IGUIObject::RegisterChild(IGUIObject* child)
 {
-	pChild.SetParent(this);
-	m_Children.push_back(&pChild);
+	child->SetParent(this);
+	m_Children.push_back(child);
+}
+
+void IGUIObject::UnregisterChild(IGUIObject* child)
+{
+	std::vector<IGUIObject*>::iterator it = std::find(m_Children.begin(), m_Children.end(), child);
+	if (it != m_Children.end())
+	{
+		(*it)->m_pParent = nullptr;
+		m_Children.erase(it);
+	}
 }
 
 template<typename T>

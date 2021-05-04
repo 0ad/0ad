@@ -411,9 +411,9 @@ void CList::AddItem(const CGUIString& strAndData)
 	AddItem(strAndData, strAndData);
 }
 
-bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
+bool CList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child)
 {
-	int elmt_item = pFile->GetElementID("item");
+	int elmt_item = xmb.GetElementID("item");
 
 	if (child.GetNodeName() == elmt_item)
 	{

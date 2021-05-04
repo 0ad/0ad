@@ -357,7 +357,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std::unordered_set<VfsPath>& Paths);
+	void Xeromyces_ReadRootObjects(const XMBData& xmb, XMBElement element, std::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the root element \<sprites\> (the DOMElement).
@@ -368,7 +368,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadRootSprites(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the root element \<styles\> (the DOMElement).
@@ -379,7 +379,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadRootStyles(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the root element \<setup\> (the DOMElement).
@@ -390,7 +390,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadRootSetup(const XMBData& xmb, XMBElement element);
 
 	// Read Subs
 
@@ -416,7 +416,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	IGUIObject* Xeromyces_ReadObject(const XMBData& xmb, XMBElement element, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
@@ -424,7 +424,7 @@ private:
 	 * 'var' enclosed in square brackets) in its descendants' names with "[0]",
 	 * "[1]", etc.
 	 */
-	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadRepeat(const XMBData& xmb, XMBElement element, IGUIObject* pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, std::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<script\> (the XMBElement) and executes
@@ -437,7 +437,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::unordered_set<VfsPath>& Paths);
+	void Xeromyces_ReadScript(const XMBData& xmb, XMBElement element, std::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element \<sprite\> (the XMBElement) and stores the
@@ -449,7 +449,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadSprite(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the element \<image\> (the XMBElement) and stores the
@@ -462,7 +462,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite& parent);
+	void Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprite& parent);
 
 	/**
 	 * Reads in the element \<effect\> (the XMBElement) and stores the
@@ -475,7 +475,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects& effects);
+	void Xeromyces_ReadEffects(const XMBData& xmb, XMBElement element, SGUIImageEffects& effects);
 
 	/**
 	 * Reads in the element \<style\> (the XMBElement) and stores the
@@ -487,7 +487,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadStyle(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the element \<scrollbar\> (the XMBElement) and stores the
@@ -499,7 +499,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadScrollBarStyle(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the element \<icon\> (the XMBElement) and stores the
@@ -511,7 +511,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadIcon(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the element \<tooltip\> (the XMBElement) and stores the
@@ -523,7 +523,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadTooltip(const XMBData& xmb, XMBElement element);
 
 	/**
 	 * Reads in the element \<color\> (the XMBElement) and stores the
@@ -535,7 +535,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadColor(const XMBData& xmb, XMBElement element);
 
 	//@}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@ protected:
 	/**
 	 * Handle the \<item\> tag.
 	 */
-	virtual bool HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile);
+	virtual bool HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child);
 	virtual void AdditionalChildrenHandled();
 
 	void DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor);

@@ -102,11 +102,6 @@ public:
 	CStr GetPresentableName() const;
 
 	/**
-	 * Builds the object hierarchy with references.
-	 */
-	void AddChild(IGUIObject& pChild);
-
-	/**
 	 * Return all child objects of the current object.
 	 */
 	const std::vector<IGUIObject*>& GetChildren() const { return m_Children; }
@@ -245,8 +240,7 @@ protected:
 	 * Methods that the CGUI will call using
 	 * its friendship, these should not
 	 * be called by user.
-	 * These functions' security are a lot
-	 * what constitutes the GUI's
+	 * TODO: this comment is old and the following interface should be cleaned up.
 	 */
 	//--------------------------------------------------------
 	//@{
@@ -332,6 +326,16 @@ protected:
 	virtual float GetBufferedZ() const;
 
 	/**
+	 * Add an object to the hierarchy.
+	 */
+	void RegisterChild(IGUIObject* child);
+
+	/**
+	 * Remove an object from the hierarchy.
+	 */
+	void UnregisterChild(IGUIObject* child);
+
+	/**
 	 * Set parent of this object
 	 */
 	void SetParent(IGUIObject* pParent) { m_pParent = pParent; }
@@ -376,7 +380,7 @@ protected:
 	 * Notice 'false' is default, because an object not using this function, should not
 	 * have any additional children (and this function should never be called).
 	 */
-	virtual bool HandleAdditionalChildren(const XMBElement& UNUSED(child), CXeromyces* UNUSED(pFile))
+	virtual bool HandleAdditionalChildren(const XMBData& UNUSED(file), const XMBElement& UNUSED(child))
 	{
 		return false;
 	}
