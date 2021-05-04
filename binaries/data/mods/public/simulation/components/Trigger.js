@@ -70,52 +70,58 @@ Trigger.prototype.GetTriggerPoints = function(ref)
 };
 
 /**
- * Binds a function to the specified event.
+ * Create a trigger listening on a specific event.
  *
  * @param {string} event - One of eventNames
- * @param {string} action - Name of a function available to this object
- * @param {Object} data - f.e. enabled or not, delay for timers, range for range triggers
+ * @param {string} name - Name of the trigger.
+ *     If no action is specified in triggerData, the action will be the trigger name.
+ * @param {Object} triggerData - f.e. enabled or not, delay for timers, range for range triggers.
  *
  * @example
- * data = { enabled: true, interval: 1000, delay: 500 }
+ * triggerData = { enabled: true, interval: 1000, delay: 500 }
+ *
+ * General settings:
+ *     enabled = false       * If the trigger is enabled by default.
+ *     action = name         * The function (on Trigger) to call. Defaults to the trigger name.
  *
  * Range trigger:
- * data.entities = [id1, id2] * Ids of the source
- * data.players = [1,2,3,...] * list of player ids
- * data.minRange = 0          * Minimum range for the query
- * data.maxRange = -1         * Maximum range for the query (-1 = no maximum)
- * data.requiredComponent = 0 * Required component id the entities will have
- * data.enabled = false       * If the query is enabled by default
+ *     entities = [id1, id2] * Ids of the source
+ *     players = [1,2,3,...] * list of player ids
+ *     minRange = 0          * Minimum range for the query
+ *     maxRange = -1         * Maximum range for the query (-1 = no maximum)
+ *     requiredComponent = 0 * Required component id the entities will have
  */
-Trigger.prototype.RegisterTrigger = function(event, action, data)
+Trigger.prototype.RegisterTrigger = function(event, name, triggerData)
 {
 	if (!this[event])
 	{
 		warn("Trigger.js: Invalid trigger event \"" + event + "\".");
 		return;
 	}
-	if (this[event][action])
+	if (this[event][name])
 	{
-		warn("Trigger.js: Trigger \"" + action + "\" has been registered before. Aborting...");
+		warn("Trigger.js: Trigger \"" + name + "\" has been registered before. Aborting...");
 		return;
 	}
 	// clone the data to be sure it's only modified locally
 	// We could run into triggers overwriting each other's data otherwise.
 	// F.e. getting the wrong timer tag
-	data = clone(data) || { "enabled": false };
+	triggerData = clone(triggerData) || { "enabled": false };
+	if (!triggerData.action)
+		triggerData.action = name;
 
-	this[event][action] = data;
+	this[event][name] = triggerData;
 
 	// setup range query
 	if (event == "OnRange")
 	{
-		if (!data.entities)
+		if (!triggerData.entities)
 		{
 			warn("Trigger.js: Range triggers should carry extra data");
 			return;
 		}
-		data.queries = [];
-		for (let ent of data.entities)
+		triggerData.queries = [];
+		for (let ent of triggerData.entities)
 		{
 			let cmpTriggerPoint = Engine.QueryInterface(ent, IID_TriggerPoint);
 			if (!cmpTriggerPoint)
@@ -123,22 +129,22 @@ Trigger.prototype.RegisterTrigger = function(event, action, data)
 				warn("Trigger.js: Range triggers must be defined on trigger points");
 				continue;
 			}
-			data.queries.push(cmpTriggerPoint.RegisterRangeTrigger(action, data));
+			triggerData.queries.push(cmpTriggerPoint.RegisterRangeTrigger(name, triggerData));
 		}
 	}
 
-	if (data.enabled)
-		this.EnableTrigger(event, action);
+	if (triggerData.enabled)
+		this.EnableTrigger(event, name);
 };
 
-Trigger.prototype.DisableTrigger = function(event, action)
+Trigger.prototype.DisableTrigger = function(event, name)
 {
-	if (!this[event][action])
+	if (!this[event][name])
 	{
 		warn("Trigger.js: Disabling unknown trigger");
 		return;
 	}
-	let data = this[event][action];
+	let data = this[event][name];
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
@@ -163,14 +169,14 @@ Trigger.prototype.DisableTrigger = function(event, action)
 	data.enabled = false;
 };
 
-Trigger.prototype.EnableTrigger = function(event, action)
+Trigger.prototype.EnableTrigger = function(event, name)
 {
-	if (!this[event][action])
+	if (!this[event][name])
 	{
 		warn("Trigger.js: Enabling unknown trigger");
 		return;
 	}
-	let data = this[event][action];
+	let data = this[event][name];
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
@@ -183,7 +189,7 @@ Trigger.prototype.EnableTrigger = function(event, action)
 		}
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		data.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
-			data.delay || 0, data.interval, { "action": action });
+			data.delay || 0, data.interval, { "name": name });
 	}
 	else if (event == "OnRange")
 	{
@@ -216,9 +222,9 @@ Trigger.prototype.CallEvent = function(event, data)
 		return;
 	}
 
-	for (let action in this[event])
-		if (this[event][action].enabled)
-			this.DoAction({ "action": action, "data": data });
+	for (let name in this[event])
+		if (this[event][name].enabled)
+			this.DoAction({ "action": this[event][name].action, "data": data });
 };
 
 Trigger.prototype.OnGlobalInitGame = function(msg)
