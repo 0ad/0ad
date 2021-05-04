@@ -423,7 +423,7 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 		});
 
 		let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-		cmpTrigger.CallEvent("TrainingQueued", {
+		cmpTrigger.CallEvent("OnTrainingQueued", {
 		    "playerid": player,
 		    "unitTemplate": templateName,
 		    "count": count,
@@ -476,7 +476,7 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 		});
 
 		let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-		cmpTrigger.CallEvent("ResearchQueued", {
+		cmpTrigger.CallEvent("OnResearchQueued", {
 		    "playerid": player,
 		    "technologyTemplate": templateName,
 		    "researcherEntity": this.entity
