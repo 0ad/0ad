@@ -111,7 +111,7 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 
 		let selected = this.dropdown.list_data?.[this.dropdown.selected];
 		this.dropdown.list = this.values.Caption;
-		this.dropdown.list_data = this.values.Value;
+		this.dropdown.list_data = this.values.Value.map(x => x || "undefined");
 		this.setSelectedValue(selected);
 		Engine.ProfileStop();
 	}

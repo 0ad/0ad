@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 bool ScriptException::IsPending(const ScriptRequest& rq)
@@ -36,11 +37,11 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 
 	JS::RootedValue excn(rq.cx);
 	ENSURE(JS_GetPendingException(rq.cx, &excn));
+	JS_ClearPendingException(rq.cx);
 
 	if (excn.isUndefined())
 	{
 		LOGERROR("JavaScript error: (undefined)");
-		JS_ClearPendingException(rq.cx);
 		return true;
 	}
 
@@ -50,7 +51,6 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 		CStr error;
 		ScriptInterface::FromJSVal(rq, excn, error);
 		LOGERROR("JavaScript error: %s", error);
-		JS_ClearPendingException(rq.cx);
 		return true;
 	}
 
@@ -62,7 +62,6 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 		CStr error;
 		ScriptInterface::FromJSVal(rq, excn, error);
 		LOGERROR("JavaScript error: %s", error);
-		JS_ClearPendingException(rq.cx);
 		return true;
 	}
 
@@ -78,10 +77,11 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 
 	JS::RootedObject stackObj(rq.cx, ExceptionStackOrNull(excnObj));
 	JS::RootedValue stackVal(rq.cx, JS::ObjectOrNullValue(stackObj));
+
 	if (!stackVal.isNull())
 	{
 		std::string stackText;
-		ScriptInterface::FromJSVal(rq, stackVal, stackText);
+		ScriptFunction::Call(rq, stackVal, "toString", stackText);
 
 		std::istringstream stream(stackText);
 		for (std::string line; std::getline(stream, line);)
@@ -93,7 +93,6 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 	// When running under Valgrind, print more information in the error message
 	//	VALGRIND_PRINTF_BACKTRACE("->");
 
-	JS_ClearPendingException(rq.cx);
 	return true;
 }
 
@@ -101,6 +100,10 @@ void ScriptException::Raise(const ScriptRequest& rq, const char* format, ...)
 {
 	va_list ap;
 	va_start(ap, format);
-	JS_ReportErrorUTF8(rq.cx, format, ap);
+	// SM is single-threaded, so a static thread_local buffer needs no locking.
+	thread_local static char buffer[256];
+	vsprintf_s(buffer, ARRAY_SIZE(buffer), format, ap);
 	va_end(ap);
+	// Rather annoyingly, there are no va_list versions of this function, hence the preformatting above.
+	JS_ReportErrorUTF8(rq.cx, "%s", buffer);
 }

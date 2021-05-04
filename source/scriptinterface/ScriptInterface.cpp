@@ -71,11 +71,18 @@ struct ScriptInterface_impl
 		JS::PersistentRootedObject m_nativeScope; // native function scope object
 };
 
+/**
+ * Constructor for ScriptRequest - here because it needs access into ScriptInterface_impl.
+ */
 ScriptRequest::ScriptRequest(const ScriptInterface& scriptInterface) :
-	cx(scriptInterface.m->m_cx), nativeScope(scriptInterface.m->m_nativeScope)
+	cx(scriptInterface.m->m_cx), glob(scriptInterface.m->m_glob), nativeScope(scriptInterface.m->m_nativeScope)
 {
 	m_formerRealm = JS::EnterRealm(cx, scriptInterface.m->m_glob);
-	glob = JS::CurrentGlobalOrNull(cx);
+}
+
+ScriptRequest::~ScriptRequest()
+{
+	JS::LeaveRealm(cx, m_formerRealm);
 }
 
 JS::Value ScriptRequest::globalValue() const
@@ -83,10 +90,6 @@ JS::Value ScriptRequest::globalValue() const
 	return JS::ObjectValue(*glob);
 }
 
-ScriptRequest::~ScriptRequest()
-{
-	JS::LeaveRealm(cx, m_formerRealm);
-}
 
 namespace
 {

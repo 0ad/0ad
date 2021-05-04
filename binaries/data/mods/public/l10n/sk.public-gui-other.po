@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 08:30+0000\n"
-"Last-Translator: MiroslavR <miroslavr256@gmail.com>\n"
+"PO-Revision-Date: 2021-05-01 14:34+0000\n"
+"Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1246,10 +1246,10 @@ msgstr[3] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1042
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zdravie"
+msgstr[1] "Zdravie"
+msgstr[2] "Zdravie"
+msgstr[3] "Zdravie"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -2610,7 +2610,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Vyložiť veže"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
@@ -2650,7 +2650,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Prepni správy"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
@@ -2690,7 +2690,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Prepni súkromné správy"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
@@ -2722,7 +2722,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Prepni vrstvu reálneho času"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
@@ -2807,7 +2807,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Prepni zvýraznenie strážených jednotiek."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
@@ -3374,7 +3374,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Odstrániť jednotky z výberu"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
@@ -3394,7 +3394,7 @@ msgstr "Vymazať uloženú hru pomocou %(hotkey)s."
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Podrž %(hotkey)s na preskočenie potvrdzovacieho dialógu pri mazaní."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -3562,7 +3562,7 @@ msgstr "Žiadne"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "neplatná lokalizácia"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3662,7 +3662,7 @@ msgstr "Všetky mapy vybraného typu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Prehliadač máp"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
@@ -3693,7 +3693,7 @@ msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Hľadať mapu:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3701,12 +3701,12 @@ msgstr "Filter máp:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Vybrať náhodnú mapu"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Vybrať"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
@@ -3727,12 +3727,12 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Mapy: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Stránka: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
 msgctxt "random map pick"
@@ -3741,7 +3741,7 @@ msgstr "Náhodné"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Vyberie náhodnú mapu."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3866,43 +3866,43 @@ msgstr "Zobraziť čas, kedy bola správa v konverzácii odoslaná."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Pomenovania entít."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
-msgstr ""
+msgstr "Primárne špecifické."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Show specific names as primary and generic names as secondary."
-msgstr ""
+msgstr "Ukazuj primárne špecifické mená a sekundárne všeobecné mená."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic primary."
-msgstr ""
+msgstr "Primárne všeobecné."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
-msgstr ""
+msgstr "Ukazuj primárne všeobecné mená a sekundárne špecifické mená."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
-msgstr ""
+msgstr "Len špecifické."
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Show only specific names for units."
-msgstr ""
+msgstr "Ukazuj len špecifické mená jednotiek."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only Generic."
-msgstr ""
+msgstr "Len všeobecné."
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Show only generic names for units."
-msgstr ""
+msgstr "Ukazuj len všeobecné mená jednotiek."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Ako ukazovať mená jednotiek."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -4159,7 +4159,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "Kvalita modelov"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label
@@ -4168,7 +4168,7 @@ msgstr "Nízske"
 
 #: gui/options/options.json[1].options[7].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Jednoduchšie modely pre lepší výkon."
 
 #: gui/options/options.json[1].options[10].list[2].label
 #: gui/options/options.json[1].options[7].list[1].label
@@ -4178,7 +4178,7 @@ msgstr "Stredné"
 
 #: gui/options/options.json[1].options[7].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Priemerná kvalita a priemerný výkon."
 
 #: gui/options/options.json[1].options[10].list[3].label
 #: gui/options/options.json[1].options[7].list[2].label
@@ -4187,11 +4187,11 @@ msgstr "Vysoké"
 
 #: gui/options/options.json[1].options[7].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Modely vysokej kvality."
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Nastavenie kvality modelov."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shader effects"
@@ -4395,7 +4395,7 @@ msgstr "Šifrovanie TLS"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Ochráni prihlasovacie údaje a dáta zaslané predsieni za pomoci TLS šifrovania."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
@@ -4823,7 +4823,7 @@ msgstr "Zobraziť rôzne mapy v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Pokračovať v kampani"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
@@ -4832,7 +4832,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Chyba pri otváraní kampaňového behu:"
 
 #: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -4856,7 +4856,7 @@ msgstr "Načítať uloženú hru."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr ""
+msgstr "Nová kampaň"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
@@ -5049,11 +5049,11 @@ msgstr "Kliknutím otvoríte stránku 0 A.D., kde môžete hlásiť chyby, pády
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "Často kladené otázky"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "Kliknutím otvoríš stránku Často kladených otázok vo svojom prehliadači."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5147,11 +5147,11 @@ msgstr "Môžete nám automaticky poslať spätnú väzbu, ktorá nám pomôže 
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Zatvor bonusy katafalkov."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Katafalkové bonusy"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -6457,7 +6457,7 @@ msgstr "Verbujú liečiteľov, ktorí liečia jednotky na bojisku."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr "Skúmať technológie uzdravovania."
+msgstr "Skúma technológie uzdravovania."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."

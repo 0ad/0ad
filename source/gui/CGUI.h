@@ -32,7 +32,7 @@
 #include "maths/Size2D.h"
 #include "maths/Vector2D.h"
 #include "ps/XML/Xeromyces.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptForward.h"
 
 #include <map>
 #include <unordered_map>
@@ -47,7 +47,6 @@ class IGUIObject;
 struct SGUIImageEffects;
 struct SGUIScrollBarStyle;
 
-namespace js { class BaseProxyHandler; }
 class GUIProxyProps;
 
 using map_pObjects = std::map<CStr, IGUIObject*>;

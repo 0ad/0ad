@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,6 @@
 #define INCLUDED_WORLD
 
 #include "ps/Errors.h"
-#include "scriptinterface/ScriptInterface.h"
 
 #ifndef ERROR_GROUP_GAME_DEFINED
 #define ERROR_GROUP_GAME_DEFINED
@@ -39,6 +38,7 @@ class CUnitManager;
 class CTerrain;
 class CStrW;
 class CMapReader;
+class ScriptContext;
 
 /**
  * CWorld is a general data class containing whatever is needed to accurately represent the world.

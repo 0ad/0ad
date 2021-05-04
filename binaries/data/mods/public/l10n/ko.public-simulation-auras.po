@@ -5,15 +5,15 @@
 # Translators:
 # 9d55e3ee15627ad1d8f4f40620dcb50d, 2018
 # Asakura, 2017
-# Bruce Lee <daemul72@gmail.com>, 2019,2021
-# Bruce Lee <daemul72@gmail.com>, 2019
-# Bruce Lee <daemul72@gmail.com>, 2019,2021
+# JungHee Lee <daemul72@gmail.com>, 2019,2021
+# JungHee Lee <daemul72@gmail.com>, 2019
+# JungHee Lee <daemul72@gmail.com>, 2019,2021
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # ks k, 2019
 # ks k, 2019-2020
 # 9d55e3ee15627ad1d8f4f40620dcb50d, 2018
-# Bruce Lee <daemul72@gmail.com>, 2019
+# JungHee Lee <daemul72@gmail.com>, 2019
 # Muk Myung-Hee MyungHee <exploration@ponp.be>, 2018
 # red hare <www3@hotmail.co.jp>, 2017
 # Takaki IEKURA <tacostea@gmail.com>, 2018
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-17 12:35+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2021-04-30 20:00+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -278,7 +278,7 @@ msgstr "솔론이 상업과 농업을 장려하는 몇 가지 실리적인 개�
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
-msgstr "실리적인 개혁"
+msgstr "개선된 경제"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
@@ -325,7 +325,7 @@ msgstr "중기병 사령관"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "로마인들과 전쟁을 벌이던 암비오릭스는 공공연한 전투의 무의미함을 깨닫고 대신 매복 전술에 의지했습니다. 가울은 언제, 어디서 기습 공격을 시도해야 하는지를 빨리 알게되었습니다.\n병사의 근접 및 원거리 공격 피해량이 +5% 증가하고 진급은 -25% 적은 경험치만으로 할 수 있습니다."
+msgstr "로마인들과 전쟁을 벌이던 암비오릭스는 공공연한 전투의 무의미함을 깨닫고 대신 매복 전술에 의지했습니다. 가울은 언제, 어디서 기습 공격을 시도해야 하는지를 빨리 알게되었습니다.\n병사의 근접 및 원거리 공격 피해량이 +5% 증가하고, 진급 경험치가 -25% 감소합니다"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -490,7 +490,7 @@ msgstr "리쿠르고스는 여러가지 군사개혁을 단행했기 때문에 �
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
 msgid "Lycurgan Military Reforms"
-msgstr "리쿠르간 군대 개편"
+msgstr "개선된 리쿠르간 군대"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
@@ -522,7 +522,7 @@ msgstr "그의 진영세서 병사들의 격파, 난도질, 관통 저항력이 
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
-msgstr "진형 개편"
+msgstr "개선된 진형"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
@@ -530,7 +530,7 @@ msgstr "투창 보병들의 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
-msgstr "작은 방패병 개편"
+msgstr "개선된 작은 방패병"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
@@ -715,7 +715,7 @@ msgstr "아문 사원의 자원 비용과 건설 시간이 +20% 증가합니다.
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
-msgstr "전승의 도전자"
+msgstr "전통의 도전자"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid ""
@@ -956,7 +956,7 @@ msgstr "시민 투창 보병의 격파, 난도질, 관통 저항력이 +1, 원�
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr "헬롯 개편"
+msgstr "개선된 천민"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."

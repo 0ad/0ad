@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "ps/FileIo.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptTypes.h"
 #include "simulation2/system/Entity.h"
 
 class CObjectEntry;
@@ -38,10 +38,11 @@ class CTriggerManager;
 class CSimulation2;
 class CSimContext;
 class CTerrainTextureEntry;
-class ScriptInterface;
 class CGameView;
 class CXMLReader;
 class CMapGenerator;
+class ScriptContext;
+class ScriptInterface;
 
 class CMapReader : public CMapIO
 {

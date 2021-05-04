@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "ScriptConversions.h"
+#include "ScriptExceptions.h"
 #include "ScriptExtraHeaders.h"
 
 #include "graphics/Entity.h"
@@ -26,14 +27,19 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 
-#define FAIL(msg) STMT(LOGERROR(msg); return false)
+// Catch the raised exception right away to ensure the stack trace gets printed.
+#define FAIL(msg) STMT(ScriptException::Raise(rq, msg); ScriptException::CatchPending(rq); return false)
 
-// Implicit type conversions often hide bugs, so warn about them
-#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS::WarnUTF8(rq.cx, "Script value conversion check failed: %s (got type %s)", #c, JS::InformalValueTypeName(v)); })
+// Implicit type conversions often hide bugs, so fail.
+#define FAIL_IF_NOT(c, v) STMT(if (!(c)) { \
+	ScriptException::Raise(rq, "Script value conversion check failed: %s (got type %s)", #c, JS::InformalValueTypeName(v)); \
+	ScriptException::CatchPending(rq); \
+	return false; \
+})
 
 template<> bool ScriptInterface::FromJSVal<bool>(const ScriptRequest& rq, JS::HandleValue v, bool& out)
 {
-	WARN_IF_NOT(v.isBoolean(), v);
+	FAIL_IF_NOT(v.isBoolean(), v);
 	out = JS::ToBoolean(v);
 	return true;
 }
@@ -41,7 +47,7 @@ template<> bool ScriptInterface::FromJSVal<bool>(const ScriptRequest& rq, JS::Ha
 template<> bool ScriptInterface::FromJSVal<float>(const ScriptRequest& rq, JS::HandleValue v, float& out)
 {
 	double tmp;
-	WARN_IF_NOT(v.isNumber(), v);
+	FAIL_IF_NOT(v.isNumber(), v);
 	if (!JS::ToNumber(rq.cx, v, &tmp))
 		return false;
 	out = tmp;
@@ -50,7 +56,7 @@ template<> bool ScriptInterface::FromJSVal<float>(const ScriptRequest& rq, JS::H
 
 template<> bool ScriptInterface::FromJSVal<double>(const ScriptRequest& rq,  JS::HandleValue v, double& out)
 {
-	WARN_IF_NOT(v.isNumber(), v);
+	FAIL_IF_NOT(v.isNumber(), v);
 	if (!JS::ToNumber(rq.cx, v, &out))
 		return false;
 	return true;
@@ -58,7 +64,7 @@ template<> bool ScriptInterface::FromJSVal<double>(const ScriptRequest& rq,  JS:
 
 template<> bool ScriptInterface::FromJSVal<i32>(const ScriptRequest& rq,  JS::HandleValue v, i32& out)
 {
-	WARN_IF_NOT(v.isNumber(), v);
+	FAIL_IF_NOT(v.isNumber(), v);
 	if (!JS::ToInt32(rq.cx, v, &out))
 		return false;
 	return true;
@@ -66,7 +72,7 @@ template<> bool ScriptInterface::FromJSVal<i32>(const ScriptRequest& rq,  JS::Ha
 
 template<> bool ScriptInterface::FromJSVal<u32>(const ScriptRequest& rq,  JS::HandleValue v, u32& out)
 {
-	WARN_IF_NOT(v.isNumber(), v);
+	FAIL_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint32(rq.cx, v, &out))
 		return false;
 	return true;
@@ -74,7 +80,7 @@ template<> bool ScriptInterface::FromJSVal<u32>(const ScriptRequest& rq,  JS::Ha
 
 template<> bool ScriptInterface::FromJSVal<u16>(const ScriptRequest& rq,  JS::HandleValue v, u16& out)
 {
-	WARN_IF_NOT(v.isNumber(), v);
+	FAIL_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint16(rq.cx, v, &out))
 		return false;
 	return true;
@@ -83,7 +89,7 @@ template<> bool ScriptInterface::FromJSVal<u16>(const ScriptRequest& rq,  JS::Ha
 template<> bool ScriptInterface::FromJSVal<u8>(const ScriptRequest& rq,  JS::HandleValue v, u8& out)
 {
 	u16 tmp;
-	WARN_IF_NOT(v.isNumber(), v);
+	FAIL_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint16(rq.cx, v, &tmp))
 		return false;
 	out = (u8)tmp;
@@ -92,7 +98,7 @@ template<> bool ScriptInterface::FromJSVal<u8>(const ScriptRequest& rq,  JS::Han
 
 template<> bool ScriptInterface::FromJSVal<std::wstring>(const ScriptRequest& rq,  JS::HandleValue v, std::wstring& out)
 {
-	WARN_IF_NOT(v.isString() || v.isNumber() || v.isBoolean(), v); // allow implicit boolean/number conversions
+	FAIL_IF_NOT(v.isString() || v.isNumber() || v.isBoolean(), v); // allow implicit boolean/number conversions
 	JS::RootedString str(rq.cx, JS::ToString(rq.cx, v));
 	if (!str)
 		FAIL("Argument must be convertible to a string");
@@ -318,4 +324,4 @@ template<> bool ScriptInterface::FromJSVal<std::vector<Entity>>(const ScriptRequ
 }
 
 #undef FAIL
-#undef WARN_IF_NOT
+#undef FAIL_IF_NOT

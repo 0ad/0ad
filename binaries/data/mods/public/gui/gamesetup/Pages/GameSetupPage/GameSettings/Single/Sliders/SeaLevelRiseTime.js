@@ -14,8 +14,11 @@ GameSettingControls.SeaLevelRiseTime = class SeaLevelRiseTime extends GameSettin
 
 	render()
 	{
-		this.setHidden(g_GameSettings.seaLevelRise.value === undefined);
+		let hidden = g_GameSettings.seaLevelRise.value === undefined;
+		this.setHidden(hidden);
 		this.setEnabled(g_GameSettings.map.type != "scenario");
+		if (hidden)
+			return;
 
 		let value = g_GameSettings.seaLevelRise.value;
 		this.sprintfValue.minutes = value;

@@ -19,7 +19,6 @@
 #include "precompiled.h"
 
 #include "StunClient.h"
-#include "scriptinterface/ScriptInterface.h"
 
 #include <chrono>
 #include <cstdio>
@@ -44,7 +43,6 @@
 #include "lib/sysdep/os/win/wposix/wtime.h"
 #endif
 
-#include "scriptinterface/ScriptInterface.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
