@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant name="decal_runway">
       <decal width="40" depth="160" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="structural/runway.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/runway.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>terrain_base.xml</material>
