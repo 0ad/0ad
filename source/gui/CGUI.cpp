@@ -532,7 +532,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::unordered_set<VfsPath>& Pat
 		return;
 
 	XMBElement node = XeroFile.GetRoot();
-	CStr root_name(XeroFile.GetElementString(node.GetNodeName()));
+	std::string_view root_name(XeroFile.GetElementStringView(node.GetNodeName()));
 
 	if (root_name == "objects")
 		Xeromyces_ReadRootObjects(node, &XeroFile, Paths);
@@ -543,7 +543,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::unordered_set<VfsPath>& Pat
 	else if (root_name == "setup")
 		Xeromyces_ReadRootSetup(node, &XeroFile);
 	else
-		LOGERROR("CGUI::LoadXmlFile encountered an unknown XML root node type: %s", root_name.c_str());
+		LOGERROR("CGUI::LoadXmlFile encountered an unknown XML root node type: %s", root_name.data());
 }
 
 void CGUI::LoadedXmlFiles()
@@ -595,7 +595,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 {
 	for (XMBElement child : Element.GetChildNodes())
 	{
-		CStr name(pFile->GetElementString(child.GetNodeName()));
+		std::string_view name(pFile->GetElementStringView(child.GetNodeName()));
 
 		if (name == "scrollbar")
 			Xeromyces_ReadScrollBarStyle(child, pFile);
@@ -989,7 +989,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 
 	for (XMBElement child : Element.GetChildNodes())
 	{
-		CStr ElementName(pFile->GetElementString(child.GetNodeName()));
+		std::string_view ElementName(pFile->GetElementStringView(child.GetNodeName()));
 
 		if (ElementName == "image")
 			Xeromyces_ReadImage(child, pFile, *Sprite);
@@ -1026,7 +1026,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		CStr attr_name(pFile->GetAttributeString(attr.Name));
+		std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
 		CStrW attr_value(attr.Value.FromUTF8());
 
 		if (attr_name == "texture")
@@ -1109,7 +1109,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	// Look for effects
 	for (XMBElement child : Element.GetChildNodes())
 	{
-		CStr ElementName(pFile->GetElementString(child.GetNodeName()));
+		std::string_view ElementName(pFile->GetElementStringView(child.GetNodeName()));
 		if (ElementName == "effect")
 		{
 			if (Image->m_Effects)
@@ -1131,7 +1131,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 {
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		CStr attr_name(pFile->GetAttributeString(attr.Name));
+		std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
 
 		if (attr_name == "add_color")
 		{
@@ -1152,14 +1152,14 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		CStr attr_name(pFile->GetAttributeString(attr.Name));
+		std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
 
 		// The "name" setting is actually the name of the style
 		//  and not a new default
 		if (attr_name == "name")
 			name = attr.Value;
 		else
-			style.m_SettingsDefaults.emplace(attr_name, attr.Value.FromUTF8());
+			style.m_SettingsDefaults.emplace(std::string(attr_name), attr.Value.FromUTF8());
 	}
 
 	m_Styles.erase(name);
@@ -1179,7 +1179,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		CStr attr_name = pFile->GetAttributeString(attr.Name);
+		std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
 		CStr attr_value(attr.Value);
 
 		if (attr_value == "null")
@@ -1256,7 +1256,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		CStr attr_name(pFile->GetAttributeString(attr.Name));
+		std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
 		CStr attr_value(attr.Value);
 
 		if (attr_value == "null")
@@ -1288,13 +1288,13 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 
 	for (XMBAttribute attr : Element.GetAttributes())
 	{
-		CStr attr_name(pFile->GetAttributeString(attr.Name));
+		std::string_view attr_name(pFile->GetAttributeStringView(attr.Name));
 		CStr attr_value(attr.Value);
 
 		if (attr_name == "name")
 			object->SetName("__tooltip_" + attr_value);
 		else
-			object->SetSettingFromString(attr_name, attr_value.FromUTF8(), true);
+			object->SetSettingFromString(std::string(attr_name), attr_value.FromUTF8(), true);
 	}
 
 	if (!AddObject(*m_BaseObject, *object))

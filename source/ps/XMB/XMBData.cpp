@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,16 +17,9 @@
 
 #include "precompiled.h"
 
-#include "Xeromyces.h"
-
 #include "lib/byte_order.h"	// FOURCC_LE
-
-// external linkage (also used by Xeromyces.cpp)
-const char* HeaderMagicStr = "XMB0";
-const char* UnfinishedHeaderMagicStr = "XMBu";
-// Arbitrary version number - change this if we update the code and
-// need to invalidate old users' caches
-const u32 XMBVersion = 3;
+#include "ps/XMB/XMBStorage.h"
+#include "ps/XML/Xeromyces.h"
 
 template<typename T>
 static inline T read(const void* ptr)
@@ -36,85 +29,42 @@ static inline T read(const void* ptr)
 	return ret;
 }
 
-bool XMBFile::Initialise(const char* FileData)
+bool XMBData::Initialise(const XMBStorage& doc)
 {
-	m_Pointer = FileData;
+	const char* start = reinterpret_cast<const char*>(doc.m_Buffer.get());
+	m_Pointer = start;
 	char Header[5] = { 0 };
 	strncpy_s(Header, 5, m_Pointer, 4);
 	m_Pointer += 4;
-	// (c.f. @return documentation of this function)
-	if(!strcmp(Header, UnfinishedHeaderMagicStr))
+
+	if (strcmp(Header, XMBStorage::UnfinishedHeaderMagicStr) == 0)
 		return false;
-	ENSURE(!strcmp(Header, HeaderMagicStr) && "Invalid XMB header!");
+	ENSURE(strcmp(Header, XMBStorage::HeaderMagicStr) == 0 && "Invalid XMB header!");
 
 	u32 Version = read<u32>(m_Pointer);
 	m_Pointer += 4;
-	if (Version != XMBVersion)
+	if (Version != XMBStorage::XMBVersion)
 		return false;
-
-	int i;
 
 	// FIXME Check that m_Pointer doesn't end up past the end of the buffer
 	// (it shouldn't be all that dangerous since we're only doing read-only
 	// access, but it might crash on an invalid file, reading a couple of
 	// billion random element names from RAM)
 
-#ifdef XERO_USEMAP
-	// Build a std::map of all the names->ids
-	u32 ElementNameCount = read<u32>(m_Pointer); m_Pointer += 4;
-	for (i = 0; i < ElementNameCount; ++i)
-		m_ElementNames[ReadZStr8()] = i;
-
-	u32 AttributeNameCount = read<u32>(m_Pointer); m_Pointer += 4;
-	for (i = 0; i < AttributeNameCount; ++i)
-		m_AttributeNames[ReadZStr8()] = i;
-#else
-	// Ignore all the names for now, and skip over them
-	// (remembering the position of the first)
+	m_ElementPointer = start + read<u32>(m_Pointer); m_Pointer += 4;
 	m_ElementNameCount = read<int>(m_Pointer); m_Pointer += 4;
-	m_ElementPointer = m_Pointer;
-	for (i = 0; i < m_ElementNameCount; ++i)
-		m_Pointer += 4 + read<int>(m_Pointer); // skip over the string
-
+	m_AttributePointer = start + read<u32>(m_Pointer); m_Pointer += 4;
 	m_AttributeNameCount = read<int>(m_Pointer); m_Pointer += 4;
-	m_AttributePointer = m_Pointer;
-	for (i = 0; i < m_AttributeNameCount; ++i)
-		m_Pointer += 4 + read<int>(m_Pointer); // skip over the string
-#endif
-
+	// At this point m_Pointer points to the element start, as expected.
 	return true;	// success
 }
 
-std::string XMBFile::ReadZStr8()
-{
-	int Length = read<int>(m_Pointer);
-	m_Pointer += 4;
-	std::string String (m_Pointer); // reads up until the first NULL
-	m_Pointer += Length;
-	return String;
-}
-
-XMBElement XMBFile::GetRoot() const
+XMBElement XMBData::GetRoot() const
 {
 	return XMBElement(m_Pointer);
 }
 
-
-#ifdef XERO_USEMAP
-
-int XMBFile::GetElementID(const char* Name) const
-{
-	return m_ElementNames[Name];
-}
-
-int XMBFile::GetAttributeID(const char* Name) const
-{
-	return m_AttributeNames[Name];
-}
-
-#else // #ifdef XERO_USEMAP
-
-int XMBFile::GetElementID(const char* Name) const
+int XMBData::GetElementID(const char* Name) const
 {
 	const char* Pos = m_ElementPointer;
 
@@ -126,7 +76,7 @@ int XMBFile::GetElementID(const char* Name) const
 		// See if this could be the right string, checking its
 		// length and then its contents
 		if (read<int>(Pos) == len && strncasecmp(Pos+4, Name, len) == 0)
-			return i;
+			return static_cast<int>(Pos - m_ElementPointer);
 		// If not, jump to the next string
 		Pos += 4 + read<int>(Pos);
 	}
@@ -134,7 +84,7 @@ int XMBFile::GetElementID(const char* Name) const
 	return -1;
 }
 
-int XMBFile::GetAttributeID(const char* Name) const
+int XMBData::GetAttributeID(const char* Name) const
 {
 	const char* Pos = m_AttributePointer;
 
@@ -146,35 +96,33 @@ int XMBFile::GetAttributeID(const char* Name) const
 		// See if this could be the right string, checking its
 		// length and then its contents
 		if (read<int>(Pos) == len && strncasecmp(Pos+4, Name, len) == 0)
-			return i;
+			return static_cast<int>(Pos - m_AttributePointer);
 		// If not, jump to the next string
 		Pos += 4 + read<int>(Pos);
 	}
 	// Failed
 	return -1;
 }
-#endif // #ifdef XERO_USEMAP / #else
 
-
-// Relatively inefficient, so only use when
-// laziness overcomes the need for speed
-std::string XMBFile::GetElementString(const int ID) const
+const char* XMBData::GetElementString(const int ID) const
 {
-	const char* Pos = m_ElementPointer;
-	for (int i = 0; i < ID; ++i)
-		Pos += 4 + read<int>(Pos);
-	return std::string(Pos+4);
+	return reinterpret_cast<const char*>(m_ElementPointer + ID + 4);
 }
 
-std::string XMBFile::GetAttributeString(const int ID) const
+const char* XMBData::GetAttributeString(const int ID) const
 {
-	const char* Pos = m_AttributePointer;
-	for (int i = 0; i < ID; ++i)
-		Pos += 4 + read<int>(Pos);
-	return std::string(Pos+4);
+	return reinterpret_cast<const char*>(m_AttributePointer + ID + 4);
 }
 
+std::string_view XMBData::GetElementStringView(const int ID) const
+{
+	return std::string_view(reinterpret_cast<const char*>(m_ElementPointer + ID + 4), read<int>(m_ElementPointer + ID) - 1);
+}
 
+std::string_view XMBData::GetAttributeStringView(const int ID) const
+{
+	return std::string_view(reinterpret_cast<const char*>(m_AttributePointer + ID + 4), read<int>(m_AttributePointer + ID) - 1);
+}
 
 int XMBElement::GetNodeName() const
 {

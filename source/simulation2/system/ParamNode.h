@@ -27,7 +27,7 @@
 #include <map>
 #include <string>
 
-class XMBFile;
+class XMBData;
 class XMBElement;
 
 class ScriptRequest;
@@ -165,7 +165,7 @@ public:
 	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
 	 *        the data getting loaded. Used for output to log messages if an error occurs.
 	 */
-	static void LoadXML(CParamNode& ret, const XMBFile& file, const wchar_t* sourceIdentifier = NULL);
+	static void LoadXML(CParamNode& ret, const XMBData& xmb, const wchar_t* sourceIdentifier = NULL);
 
 	/**
 	 * Loads the XML data specified by @a path into the node @a ret.
@@ -276,7 +276,7 @@ private:
 	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
 	 *        the data getting applied. Used for output to log messages if an error occurs.
 	 */
-	void ApplyLayer(const XMBFile& xmb, const XMBElement& element, const wchar_t* sourceIdentifier = NULL);
+	void ApplyLayer(const XMBData& xmb, const XMBElement& element, const wchar_t* sourceIdentifier = NULL);
 
 	void ResetScriptVal();
 

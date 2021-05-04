@@ -195,7 +195,7 @@ bool CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 
 	if (variant.GetNodeName() != el_variant)
 	{
-		LOGERROR("Invalid variant format (unrecognised root element '%s')", XeroFile.GetElementString(variant.GetNodeName()).c_str());
+		LOGERROR("Invalid variant format (unrecognised root element '%s')", XeroFile.GetElementString(variant.GetNodeName()));
 		return false;
 	}
 
@@ -821,7 +821,7 @@ bool CActorDef::Load(const VfsPath& pathname)
 	if (root.GetNodeName() != el_actor && root.GetNodeName() != el_qualitylevels)
 	{
 		LOGERROR("Invalid actor format (actor '%s', unrecognised root element '%s')",
-				 pathname.string8().c_str(), XeroFile.GetElementString(root.GetNodeName()).c_str());
+				 pathname.string8().c_str(), XeroFile.GetElementString(root.GetNodeName()));
 		return false;
 	}
 

@@ -329,7 +329,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 
 	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOGERROR("Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR("Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()));
 		return false;
 	}
 

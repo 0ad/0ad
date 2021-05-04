@@ -227,7 +227,7 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 				}
 				else
 				{
-					LOGERROR("Invalid attribute name <file %s='...'>", XeroFile.GetAttributeString(attr.Name).c_str());
+					LOGERROR("Invalid attribute name <file %s='...'>", XeroFile.GetAttributeString(attr.Name));
 				}
 			}
 

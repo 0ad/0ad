@@ -30,19 +30,17 @@ ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 ERROR_TYPE(Xeromyces, XMLValidationFailed);
 
-#include "XeroXMB.h"
+#include "ps/XMB/XMBData.h"
+#include "ps/XMB/XMBStorage.h"
 
 #include "lib/file/vfs/vfs.h"
 
 class RelaxNGValidator;
-class WriteBuffer;
 
-typedef struct _xmlDoc xmlDoc;
-typedef xmlDoc* xmlDocPtr;
-
-class CXeromyces : public XMBFile
+class CXeromyces : public XMBData
 {
-	friend class TestXeroXMB;
+	friend class TestXMBData;
+	friend class XMBData;
 public:
 	/**
 	 * Load from an XML file (with invisible XMB caching).
@@ -81,11 +79,7 @@ private:
 
 	PSRETURN ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath, const std::string& validatorName);
 
-	bool ReadXMBFile(const PIVFS& vfs, const VfsPath& filename);
-
-	static PSRETURN CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer);
-
-	shared_ptr<u8> m_XMBBuffer;
+	XMBStorage m_Data;
 };
 
 

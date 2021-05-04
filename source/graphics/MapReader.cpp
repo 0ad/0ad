@@ -491,7 +491,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 #undef EL
 
 	XMBElement root = xmb_file.GetRoot();
-	ENSURE(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
+	ENSURE(xmb_file.GetElementStringView(root.GetNodeName()) == "Scenario");
 	nodes = root.GetChildNodes();
 
 	// find out total number of entities+nonentities
@@ -517,7 +517,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 CStr CXMLReader::ReadScriptSettings()
 {
 	XMBElement root = xmb_file.GetRoot();
-	ENSURE(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
+	ENSURE(xmb_file.GetElementStringView(root.GetNodeName()) == "Scenario");
 	nodes = root.GetChildNodes();
 
 	XMBElement settings = nodes.GetFirstNamedItem(xmb_file.GetElementID("ScriptSettings"));
