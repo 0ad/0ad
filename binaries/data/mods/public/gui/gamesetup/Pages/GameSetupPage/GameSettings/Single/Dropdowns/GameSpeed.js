@@ -10,6 +10,13 @@ GameSettingControls.GameSpeed = class GameSpeed extends GameSettingControlDropdo
 		this.render();
 	}
 
+	onLoad()
+	{
+		// We may need to reset after deserializing attributes.
+		this.previousAllowFastForward = undefined;
+		this.render();
+	}
+
 	onPlayerAssignmentsChange()
 	{
 		this.render();
@@ -25,17 +32,22 @@ GameSettingControls.GameSpeed = class GameSpeed extends GameSettingControlDropdo
 				break;
 			}
 
-		if (this.previousAllowFastForward !== allowFastForward)
+		if (this.previousAllowFastForward === allowFastForward)
 		{
-			this.previousAllowFastForward = allowFastForward;
-			let values = prepareForDropdown(
-				g_Settings.GameSpeeds.filter(speed => !speed.FastForward || allowFastForward));
-
-			this.dropdown.list = values.Title;
-			this.dropdown.list_data = values.Speed;
+			this.setSelectedValue(g_GameSettings.gameSpeed.gameSpeed);
+			return;
 		}
+		this.previousAllowFastForward = allowFastForward;
+		let values = prepareForDropdown(
+			g_Settings.GameSpeeds.filter(speed => !speed.FastForward || allowFastForward));
+		let currentSpeed = +this.dropdown.list_data?.[this.dropdown.selected];
+		let resetToDefault = values.Speed.indexOf(currentSpeed) === -1;
 
-		this.setSelectedValue(g_GameSettings.gameSpeed.gameSpeed);
+		this.dropdown.list = values.Title;
+		this.dropdown.list_data = values.Speed;
+
+		if (resetToDefault)
+			g_GameSettings.gameSpeed.setSpeed(this.dropdown.list_data[values.Default]);
 	}
 
 	onSelectionChange(itemIdx)
