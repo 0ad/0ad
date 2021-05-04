@@ -59,6 +59,7 @@ protected:
 	bool OutputElements(WriteBuffer&, Args...)
 	{
 		static_assert(sizeof...(Args) != sizeof...(Args), "OutputElements must be specialized.");
+		return false;
 	}
 
 	int m_ElementSize = 0;
