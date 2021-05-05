@@ -37,7 +37,7 @@ CParamNode::CParamNode(bool isOk) :
 {
 }
 
-void CParamNode::LoadXML(CParamNode& ret, const XMBFile& xmb, const wchar_t* sourceIdentifier /*= NULL*/)
+void CParamNode::LoadXML(CParamNode& ret, const XMBData& xmb, const wchar_t* sourceIdentifier /*= NULL*/)
 {
 	ret.ApplyLayer(xmb, xmb.GetRoot(), sourceIdentifier);
 }
@@ -64,11 +64,11 @@ PSRETURN CParamNode::LoadXMLString(CParamNode& ret, const char* xml, const wchar
 	return PSRETURN_OK;
 }
 
-void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const wchar_t* sourceIdentifier /*= NULL*/)
+void CParamNode::ApplyLayer(const XMBData& xmb, const XMBElement& element, const wchar_t* sourceIdentifier /*= NULL*/)
 {
 	ResetScriptVal();
 
-	std::string name = xmb.GetElementString(element.GetNodeName()); // TODO: is GetElementString inefficient?
+	std::string name = xmb.GetElementString(element.GetNodeName());
 	CStr value = element.GetText();
 
 	bool hasSetValue = false;
@@ -224,8 +224,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 		if (attr.Name == at_replace || attr.Name == at_op || attr.Name == at_merge || attr.Name == at_filtered)
 			continue;
 		// Add any others
-		std::string attrName = xmb.GetAttributeString(attr.Name);
-		node.m_Childs["@" + attrName].m_Value = attr.Value;
+		const char* attrName(xmb.GetAttributeString(attr.Name));
+		node.m_Childs[CStr("@") + attrName].m_Value = attr.Value;
 	}
 }
 

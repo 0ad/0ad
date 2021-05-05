@@ -73,11 +73,34 @@ Resistance.prototype.Schema =
 Resistance.prototype.Init = function()
 {
 	this.invulnerable = false;
+	this.attackers = new Set();
 };
 
 Resistance.prototype.IsInvulnerable = function()
 {
 	return this.invulnerable;
+};
+
+/**
+ * @param {number} attacker - The entity ID of the attacker to add.
+ * @return {boolean} - Whether the attacker was added sucessfully.
+ */
+Resistance.prototype.AddAttacker = function(attacker)
+{
+	if (this.attackers.has(attacker))
+		return false;
+
+	this.attackers.add(attacker);
+	return true;
+};
+
+/**
+ * @param {number} attacker - The entity ID of the attacker to remove.
+ * @return {boolean} - Whether the attacker was attacking us previously.
+ */
+Resistance.prototype.RemoveAttacker = function(attacker)
+{
+	return this.attackers.delete(attacker);
 };
 
 Resistance.prototype.SetInvulnerability = function(invulnerability)
@@ -149,6 +172,13 @@ Resistance.prototype.GetResistanceOfForm = function(entityForm)
 	}
 
 	return ret;
+};
+
+Resistance.prototype.OnOwnershipChanged = function(msg)
+{
+	if (msg.to === INVALID_PLAYER)
+		for (let attacker of this.attackers)
+			Engine.QueryInterface(attacker, IID_Attack)?.StopAttacking("TargetInvalidated");
 };
 
 Engine.RegisterComponentType(IID_Resistance, "Resistance", Resistance);

@@ -73,6 +73,10 @@ class LobbyGameRegistrationController
 		if (!g_IsController || !Engine.HasXmppClient())
 			return;
 
+		// Wait until a map has been selected.
+		if (!g_GameSettings.map.map)
+			return;
+
 		Engine.ProfileStart("sendRegisterGameStanza");
 
 		if (this.timer !== undefined)

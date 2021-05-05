@@ -221,8 +221,13 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	scriptInterface.GetProperty(attribs, "mapType", mapType);
 
 	float speed;
-	if (scriptInterface.HasProperty(attribs, "gameSpeed") && scriptInterface.GetProperty(attribs, "gameSpeed", speed))
-		SetSimRate(speed);
+	if (scriptInterface.HasProperty(attribs, "gameSpeed"))
+	{
+		if (scriptInterface.GetProperty(attribs, "gameSpeed", speed))
+			SetSimRate(speed);
+		else
+			LOGERROR("GameSpeed could not be parsed.");
+	}
 
 	LDR_BeginRegistering();
 

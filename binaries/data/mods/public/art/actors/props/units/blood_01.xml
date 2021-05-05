@@ -1,51 +1,66 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <actor version="1">
-  <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="blood-01">
+    <variant frequency="1" name="Base">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_01.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="blood-01">
+      <textures>
+        <texture file="props/blood_01.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-02">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_02.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_02.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-03">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_03.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_03.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-04">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_04.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_04.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-05">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_05.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_05.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-06">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_06.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_06.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-07">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_07.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_07.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-08">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_08.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_08.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-09">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_09.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_09.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-10">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_10.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_10.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="blood-11">
-      <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/blood_11.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/blood_11.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>terrain_base.xml</material>

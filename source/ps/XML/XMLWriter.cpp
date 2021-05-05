@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -114,20 +114,20 @@ const CStr& XMLWriter_File::GetOutput()
 }
 
 
-void XMLWriter_File::XMB(const XMBFile& file)
+void XMLWriter_File::XMB(const XMBData& xmb)
 {
-	ElementXMB(file, file.GetRoot());
+	ElementXMB(xmb, xmb.GetRoot());
 }
 
-void XMLWriter_File::ElementXMB(const XMBFile& file, XMBElement el)
+void XMLWriter_File::ElementXMB(const XMBData& xmb, XMBElement el)
 {
-	XMLWriter_Element writer(*this, file.GetElementString(el.GetNodeName()).c_str());
+	XMLWriter_Element writer(*this, xmb.GetElementString(el.GetNodeName()));
 
 	XERO_ITER_ATTR(el, attr)
-		writer.Attribute(file.GetAttributeString(attr.Name).c_str(), attr.Value);
+		writer.Attribute(xmb.GetAttributeString(attr.Name), attr.Value);
 
 	XERO_ITER_EL(el, child)
-		ElementXMB(file, child);
+		ElementXMB(xmb, child);
 }
 
 void XMLWriter_File::Comment(const char* text)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 
 	if (root.GetNodeName() != el_terrain)
 	{
-		LOGERROR("Invalid terrain format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR("Invalid terrain format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()));
 		return;
 	}
 

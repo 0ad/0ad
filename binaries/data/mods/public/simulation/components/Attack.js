@@ -455,6 +455,10 @@ Attack.prototype.StartAttacking = function(target, type, callerIID)
 	if (!this.CanAttack(target, [type]))
 		return false;
 
+	let cmpResistance = Engine.QueryInterface(target, IID_Resistance);
+	if (!cmpResistance || !cmpResistance.AddAttacker(this.entity))
+		return false;
+
 	let timings = this.GetTimers(type);
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
@@ -495,6 +499,10 @@ Attack.prototype.StopAttacking = function(reason)
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	cmpTimer.CancelTimer(this.timer);
 	delete this.timer;
+
+	let cmpResistance = Engine.QueryInterface(this.target, IID_Resistance);
+	if (cmpResistance)
+		cmpResistance.RemoveAttacker(this.entity);
 
 	delete this.target;
 
@@ -539,10 +547,7 @@ Attack.prototype.Attack = function(type, lateness)
 		this.PerformAttack(type, this.target);
 
 	if (!this.target)
-	{
-		this.StopAttacking("TargetInvalidated");
 		return;
-	}
 
 	// We check the range after the attack to facilitate chasing.
 	if (!this.IsTargetInRange(this.target, type))

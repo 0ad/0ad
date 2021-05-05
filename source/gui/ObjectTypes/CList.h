@@ -99,7 +99,7 @@ protected:
 	/**
 	 * Handle the \<item\> tag.
 	 */
-	virtual bool HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile);
+	virtual bool HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child);
 
 	// Called every time the auto-scrolling should be checked.
 	void UpdateAutoScroll();

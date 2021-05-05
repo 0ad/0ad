@@ -8,25 +8,25 @@ Trigger.prototype.Schema =
  */
 Trigger.prototype.eventNames =
 [
-	"CinemaPathEnded",
-	"CinemaQueueEnded",
-	"ConstructionStarted",
-	"DiplomacyChanged",
-	"Deserialized",
-	"InitGame",
-	"Interval",
-	"EntityRenamed",
-	"OwnershipChanged",
-	"PlayerCommand",
-	"PlayerDefeated",
-	"PlayerWon",
-	"Range",
-	"ResearchFinished",
-	"ResearchQueued",
-	"StructureBuilt",
-	"TrainingFinished",
-	"TrainingQueued",
-	"TreasureCollected"
+	"OnCinemaPathEnded",
+	"OnCinemaQueueEnded",
+	"OnConstructionStarted",
+	"OnDiplomacyChanged",
+	"OnDeserialized",
+	"OnInitGame",
+	"OnInterval",
+	"OnEntityRenamed",
+	"OnOwnershipChanged",
+	"OnPlayerCommand",
+	"OnPlayerDefeated",
+	"OnPlayerWon",
+	"OnRange",
+	"OnResearchFinished",
+	"OnResearchQueued",
+	"OnStructureBuilt",
+	"OnTrainingFinished",
+	"OnTrainingQueued",
+	"OnTreasureCollected"
 ];
 
 Trigger.prototype.Init = function()
@@ -38,7 +38,7 @@ Trigger.prototype.Init = function()
 
 	// Each event has its own set of actions determined by the map maker.
 	for (let eventName of this.eventNames)
-		this["On" + eventName + "Actions"] = {};
+		this[eventName] = {};
 };
 
 Trigger.prototype.RegisterTriggerPoint = function(ref, ent)
@@ -70,53 +70,58 @@ Trigger.prototype.GetTriggerPoints = function(ref)
 };
 
 /**
- * Binds a function to the specified event.
+ * Create a trigger listening on a specific event.
  *
  * @param {string} event - One of eventNames
- * @param {string} action - Name of a function available to this object
- * @param {Object} data - f.e. enabled or not, delay for timers, range for range triggers
+ * @param {string} name - Name of the trigger.
+ *     If no action is specified in triggerData, the action will be the trigger name.
+ * @param {Object} triggerData - f.e. enabled or not, delay for timers, range for range triggers.
  *
  * @example
- * data = { enabled: true, interval: 1000, delay: 500 }
+ * triggerData = { enabled: true, interval: 1000, delay: 500 }
+ *
+ * General settings:
+ *     enabled = false       * If the trigger is enabled by default.
+ *     action = name         * The function (on Trigger) to call. Defaults to the trigger name.
  *
  * Range trigger:
- * data.entities = [id1, id2] * Ids of the source
- * data.players = [1,2,3,...] * list of player ids
- * data.minRange = 0          * Minimum range for the query
- * data.maxRange = -1         * Maximum range for the query (-1 = no maximum)
- * data.requiredComponent = 0 * Required component id the entities will have
- * data.enabled = false       * If the query is enabled by default
+ *     entities = [id1, id2] * Ids of the source
+ *     players = [1,2,3,...] * list of player ids
+ *     minRange = 0          * Minimum range for the query
+ *     maxRange = -1         * Maximum range for the query (-1 = no maximum)
+ *     requiredComponent = 0 * Required component id the entities will have
  */
-Trigger.prototype.RegisterTrigger = function(event, action, data)
+Trigger.prototype.RegisterTrigger = function(event, name, triggerData)
 {
-	let eventString = event + "Actions";
-	if (!this[eventString])
+	if (!this[event])
 	{
 		warn("Trigger.js: Invalid trigger event \"" + event + "\".");
 		return;
 	}
-	if (this[eventString][action])
+	if (this[event][name])
 	{
-		warn("Trigger.js: Trigger \"" + action + "\" has been registered before. Aborting...");
+		warn("Trigger.js: Trigger \"" + name + "\" has been registered before. Aborting...");
 		return;
 	}
 	// clone the data to be sure it's only modified locally
 	// We could run into triggers overwriting each other's data otherwise.
 	// F.e. getting the wrong timer tag
-	data = clone(data) || { "enabled": false };
+	triggerData = clone(triggerData) || { "enabled": false };
+	if (!triggerData.action)
+		triggerData.action = name;
 
-	this[eventString][action] = data;
+	this[event][name] = triggerData;
 
 	// setup range query
 	if (event == "OnRange")
 	{
-		if (!data.entities)
+		if (!triggerData.entities)
 		{
 			warn("Trigger.js: Range triggers should carry extra data");
 			return;
 		}
-		data.queries = [];
-		for (let ent of data.entities)
+		triggerData.queries = [];
+		for (let ent of triggerData.entities)
 		{
 			let cmpTriggerPoint = Engine.QueryInterface(ent, IID_TriggerPoint);
 			if (!cmpTriggerPoint)
@@ -124,23 +129,22 @@ Trigger.prototype.RegisterTrigger = function(event, action, data)
 				warn("Trigger.js: Range triggers must be defined on trigger points");
 				continue;
 			}
-			data.queries.push(cmpTriggerPoint.RegisterRangeTrigger(action, data));
+			triggerData.queries.push(cmpTriggerPoint.RegisterRangeTrigger(name, triggerData));
 		}
 	}
 
-	if (data.enabled)
-		this.EnableTrigger(event, action);
+	if (triggerData.enabled)
+		this.EnableTrigger(event, name);
 };
 
-Trigger.prototype.DisableTrigger = function(event, action)
+Trigger.prototype.DisableTrigger = function(event, name)
 {
-	let eventString = event + "Actions";
-	if (!this[eventString][action])
+	if (!this[event][name])
 	{
 		warn("Trigger.js: Disabling unknown trigger");
 		return;
 	}
-	let data = this[eventString][action];
+	let data = this[event][name];
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
@@ -165,15 +169,14 @@ Trigger.prototype.DisableTrigger = function(event, action)
 	data.enabled = false;
 };
 
-Trigger.prototype.EnableTrigger = function(event, action)
+Trigger.prototype.EnableTrigger = function(event, name)
 {
-	let eventString = event + "Actions";
-	if (!this[eventString][action])
+	if (!this[event][name])
 	{
 		warn("Trigger.js: Enabling unknown trigger");
 		return;
 	}
-	let data = this[eventString][action];
+	let data = this[event][name];
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
@@ -186,7 +189,7 @@ Trigger.prototype.EnableTrigger = function(event, action)
 		}
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		data.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
-			data.delay || 0, data.interval, { "action": action });
+			data.delay || 0, data.interval, { "name": name });
 	}
 	else if (event == "OnRange")
 	{
@@ -213,32 +216,30 @@ Trigger.prototype.EnableTrigger = function(event, action)
  */
 Trigger.prototype.CallEvent = function(event, data)
 {
-	let eventString = "On" + event + "Actions";
-
-	if (!this[eventString])
+	if (!this[event])
 	{
 		warn("Trigger.js: Unknown trigger event called:\"" + event + "\".");
 		return;
 	}
 
-	for (let action in this[eventString])
-		if (this[eventString][action].enabled)
-			this.DoAction({ "action": action, "data": data });
+	for (let name in this[event])
+		if (this[event][name].enabled)
+			this.DoAction({ "action": this[event][name].action, "data": data });
 };
 
 Trigger.prototype.OnGlobalInitGame = function(msg)
 {
-	this.CallEvent("InitGame", {});
+	this.CallEvent("OnInitGame", {});
 };
 
 Trigger.prototype.OnGlobalConstructionFinished = function(msg)
 {
-	this.CallEvent("StructureBuilt", { "building": msg.newentity, "foundation": msg.entity });
+	this.CallEvent("OnStructureBuilt", { "building": msg.newentity, "foundation": msg.entity });
 };
 
 Trigger.prototype.OnGlobalTrainingFinished = function(msg)
 {
-	this.CallEvent("TrainingFinished", msg);
+	this.CallEvent("OnTrainingFinished", msg);
 	// The data for this one is {"entities": createdEnts,
 	//							 "owner": cmpOwnership.GetOwner(),
 	//							 "metadata": metadata}
@@ -247,49 +248,49 @@ Trigger.prototype.OnGlobalTrainingFinished = function(msg)
 
 Trigger.prototype.OnGlobalResearchFinished = function(msg)
 {
-	this.CallEvent("ResearchFinished", msg);
+	this.CallEvent("OnResearchFinished", msg);
 	// The data for this one is { "player": playerID, "tech": tech }
 };
 
 Trigger.prototype.OnGlobalCinemaPathEnded = function(msg)
 {
-	this.CallEvent("CinemaPathEnded", msg);
+	this.CallEvent("OnCinemaPathEnded", msg);
 };
 
 Trigger.prototype.OnGlobalCinemaQueueEnded = function(msg)
 {
-	this.CallEvent("CinemaQueueEnded", msg);
+	this.CallEvent("OnCinemaQueueEnded", msg);
 };
 
 Trigger.prototype.OnGlobalDeserialized = function(msg)
 {
-	this.CallEvent("Deserialized", msg);
+	this.CallEvent("OnDeserialized", msg);
 };
 
 Trigger.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	this.CallEvent("EntityRenamed", msg);
+	this.CallEvent("OnEntityRenamed", msg);
 };
 
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	this.CallEvent("OwnershipChanged", msg);
+	this.CallEvent("OnOwnershipChanged", msg);
 	// data is {"entity": ent, "from": playerId, "to": playerId}
 };
 
 Trigger.prototype.OnGlobalPlayerDefeated = function(msg)
 {
-	this.CallEvent("PlayerDefeated", msg);
+	this.CallEvent("OnPlayerDefeated", msg);
 };
 
 Trigger.prototype.OnGlobalPlayerWon = function(msg)
 {
-	this.CallEvent("PlayerWon", msg);
+	this.CallEvent("OnPlayerWon", msg);
 };
 
 Trigger.prototype.OnGlobalDiplomacyChanged = function(msg)
 {
-	this.CallEvent("DiplomacyChanged", msg);
+	this.CallEvent("OnDiplomacyChanged", msg);
 };
 
 /**

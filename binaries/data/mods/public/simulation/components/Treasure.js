@@ -75,7 +75,7 @@ Treasure.prototype.Reward = function(entity)
 		cmpStatisticsTracker.IncreaseTreasuresCollectedCounter();
 
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.CallEvent("TreasureCollected", {
+	cmpTrigger.CallEvent("OnTreasureCollected", {
 		"player": cmpPlayer.GetPlayerID(),
 		"treasure": this.entity
 	});

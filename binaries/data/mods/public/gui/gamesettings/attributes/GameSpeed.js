@@ -8,7 +8,7 @@ GameSettings.prototype.Attributes.GameSpeed = class GameSpeed extends GameSettin
 
 	toInitAttributes(attribs)
 	{
-		attribs.gameSpeed = this.gameSpeed;
+		attribs.gameSpeed = +this.gameSpeed;
 	}
 
 	fromInitAttributes(attribs)
@@ -27,6 +27,6 @@ GameSettings.prototype.Attributes.GameSpeed = class GameSpeed extends GameSettin
 
 	setSpeed(speed)
 	{
-		this.gameSpeed = speed;
+		this.gameSpeed = +speed;
 	}
 };

@@ -22,7 +22,10 @@ MapBrowserPageControls.prototype.MapFiltering = class
 	onOpenPage()
 	{
 		// setTimeout avoids having the hotkey key inserted into the input text.
-		setTimeout(() => this.searchBox.focus(), 0);
+		setTimeout(() => {
+			this.searchBox.control.caption = "";
+			this.searchBox.focus();
+		}, 0);
 	}
 
 	onClosePage()

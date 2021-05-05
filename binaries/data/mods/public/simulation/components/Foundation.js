@@ -285,7 +285,7 @@ Foundation.prototype.Commit = function()
 		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
 
 	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.CallEvent("ConstructionStarted", {
+	cmpTrigger.CallEvent("OnConstructionStarted", {
 		"foundation": this.entity,
 		"template": this.finalTemplateName
 	});

@@ -2156,9 +2156,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.SetNextState("FINDINGNEWTARGET");
 				},
 
-				// TODO: respond to target deaths immediately, rather than waiting
-				// until the next Timer event
-
 				"Attacked": function(msg) {
 					if (this.order.data.attackType == "Capture" && (this.GetStance().targetAttackersAlways || !this.order.data.force) &&
 						this.order.data.target != msg.data.attacker && this.GetBestAttackAgainst(msg.data.attacker, true) != "Capture")

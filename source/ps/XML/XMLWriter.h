@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@
 #include "ps/CStr.h"
 
 class XMBElement;
-class XMBFile;
+class XMBData;
 class XMLWriter_Element;
 
 class XMLWriter_File
@@ -77,7 +77,7 @@ public:
 
 	void Comment(const char* text);
 
-	void XMB(const XMBFile& file);
+	void XMB(const XMBData& xmb);
 
 	bool StoreVFS(const PIVFS& vfs, const VfsPath& pathname);
 	const CStr8& GetOutput();
@@ -86,7 +86,7 @@ private:
 
 	friend class XMLWriter_Element;
 
-	void ElementXMB(const XMBFile& file, XMBElement el);
+	void ElementXMB(const XMBData& xmb, XMBElement el);
 
 	void ElementStart(XMLWriter_Element* element, const char* name);
 	void ElementText(const char* text, bool cdata);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,41 +18,68 @@
 #include "lib/self_test.h"
 
 #include "ps/XML/Xeromyces.h"
-
-#include "lib/file/io/write_buffer.h"
+#include "ps/XMB/XMBStorage.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include <libxml/parser.h>
+#include <memory>
 
-class TestXeroXMB : public CxxTest::TestSuite
+class TestXMBData : public CxxTest::TestSuite
 {
 private:
 	shared_ptr<u8> m_Buffer;
 
-	XMBFile parse(const char* doc)
+	std::unique_ptr<ScriptInterface> m_ScriptInterface;
+
+	CXeromyces parseXML(const char* doc)
 	{
 		xmlDocPtr xmlDoc = xmlReadMemory(doc, int(strlen(doc)), "", NULL,
 			XML_PARSE_NONET|XML_PARSE_NOCDATA);
-		WriteBuffer buffer;
-		PSRETURN ret = CXeromyces::CreateXMB(xmlDoc, buffer);
+		CXeromyces xmb;
+		bool ok = xmb.m_Data.LoadXMLDoc(xmlDoc);
 		xmlFreeDoc(xmlDoc);
+		TS_ASSERT_EQUALS(ok, true);
 
-		TS_ASSERT_EQUALS(ret, PSRETURN_OK);
-
-		XMBFile xmb;
-		m_Buffer = buffer.Data(); // hold a reference
-		TS_ASSERT(xmb.Initialise((const char*)m_Buffer.get()));
+		TS_ASSERT(xmb.Initialise(xmb.m_Data));
 		return xmb;
+	}
+
+	CXeromyces parseJS(const std::string rootName, const char* code)
+	{
+		ScriptRequest rq(*m_ScriptInterface);
+		JS::RootedValue val(rq.cx);
+		m_ScriptInterface->Eval(code, &val);
+		CXeromyces xmb;
+		bool ok = xmb.m_Data.LoadJSValue(*m_ScriptInterface, val, rootName);
+		TS_ASSERT_EQUALS(ok, true);
+
+		TS_ASSERT(xmb.Initialise(xmb.m_Data));
+		return xmb;
+	}
+
+	void setUp()
+	{
+		m_ScriptInterface = std::make_unique<ScriptInterface>("Test", "Test", g_ScriptContext);
 	}
 
 	void tearDown()
 	{
+		m_ScriptInterface.reset();
 		m_Buffer.reset();
 	}
 
 public:
 	void test_basic()
 	{
-		XMBFile xmb (parse("<test>\n<foo x=' y '> bar </foo><foo>\n\n\nbar</foo>\n</test>"));
+		basic(parseXML("<test>\n<foo x=' y '> bar </foo><foo>\n\n\nbar</foo>\n</test>"), true);
+		// Array format for same-named elements.
+		basic(parseJS("test", "({ 'foo': [{ '@x': ' y ', '_string': 'bar' }, { '_string': '\\n\\n\\nbar' }] })"), false);
+		// Alternative format for same-named elements.
+		basic(parseJS("test", "({ 'foo@0@': { '@x': ' y ', '_string': 'bar' }, 'foo@1@': { '_string': '\\n\\n\\nbar' }})"), false);
+	}
+
+	void basic(const CXeromyces& xmb, bool checkLines)
+	{
 
 		TS_ASSERT_DIFFERS(xmb.GetElementID("test"), -1);
 		TS_ASSERT_DIFFERS(xmb.GetElementID("foo"), -1);
@@ -68,17 +95,20 @@ public:
 
 		XMBElement root = xmb.GetRoot();
 		TS_ASSERT_EQUALS(root.GetNodeName(), el_test);
-		TS_ASSERT_EQUALS(root.GetLineNumber(), -1);
+		if (checkLines)
+			TS_ASSERT_EQUALS(root.GetLineNumber(), -1);
 		TS_ASSERT_EQUALS(CStr(root.GetText()), "");
 
 		TS_ASSERT_EQUALS(root.GetChildNodes().size(), 2);
 		XMBElement child = root.GetChildNodes()[0];
 		TS_ASSERT_EQUALS(child.GetNodeName(), el_foo);
-		TS_ASSERT_EQUALS(child.GetLineNumber(), 2);
+		if (checkLines)
+			TS_ASSERT_EQUALS(child.GetLineNumber(), 2);
 		TS_ASSERT_EQUALS(child.GetChildNodes().size(), 0);
 		TS_ASSERT_EQUALS(CStr(child.GetText()), "bar");
 
-		TS_ASSERT_EQUALS(root.GetChildNodes()[1].GetLineNumber(), 5);
+		if (checkLines)
+			TS_ASSERT_EQUALS(root.GetChildNodes()[1].GetLineNumber(), 5);
 
 		TS_ASSERT_EQUALS(child.GetAttributes().size(), 1);
 		XMBAttribute attr = child.GetAttributes()[0];
@@ -88,8 +118,13 @@ public:
 
 	void test_GetFirstNamedItem()
 	{
-		XMBFile xmb (parse("<test> <x>A</x> <x>B</x> <y>C</y> <z>D</z> </test>"));
+		GetFirstNamedItem(parseXML("<test> <x>A</x> <x>B</x> <y>C</y> <z>D</z> </test>"), true);
+		GetFirstNamedItem(parseJS("test", "({ 'x': [{ '_string': 'A' }, 'B'], 'y': 'C', 'z': 'D' })"), false);
+		GetFirstNamedItem(parseJS("test", "({ 'x@0@': 'A', 'x@1@': 'B', 'y': 'C', 'z': 'D' })"), false);
+	}
 
+	void GetFirstNamedItem(const CXeromyces& xmb, bool checkLines)
+	{
 		XMBElement root = xmb.GetRoot();
 		TS_ASSERT_EQUALS(root.GetChildNodes().size(), 4);
 
@@ -105,27 +140,28 @@ public:
 
 		TS_ASSERT_EQUALS(w.GetNodeName(), -1);
 		TS_ASSERT_EQUALS(CStr(w.GetText()), "");
-		TS_ASSERT_EQUALS(w.GetLineNumber(), -1);
+		if (checkLines)
+			TS_ASSERT_EQUALS(w.GetLineNumber(), -1);
 		TS_ASSERT_EQUALS(w.GetChildNodes().size(), 0);
 		TS_ASSERT_EQUALS(w.GetAttributes().size(), 0);
 	}
 
 	void test_doctype_ignored()
 	{
-		XMBFile xmb (parse("<!DOCTYPE foo SYSTEM \"file:///dev/urandom\"><foo/>"));
+		CXeromyces xmb (parseXML("<!DOCTYPE foo SYSTEM \"file:///dev/urandom\"><foo/>"));
 
 		TS_ASSERT_DIFFERS(xmb.GetElementID("foo"), -1);
 	}
 
 	void test_complex_parse()
 	{
-		XMBFile xmb (parse("<test>\t\n \tx &lt;>&amp;&quot;&apos;<![CDATA[foo]]>bar\n<x/>\nbaz<?cheese?>qux</test>"));
+		CXeromyces xmb (parseXML("<test>\t\n \tx &lt;>&amp;&quot;&apos;<![CDATA[foo]]>bar\n<x/>\nbaz<?cheese?>qux</test>"));
 		TS_ASSERT_EQUALS(CStr(xmb.GetRoot().GetText()), "x <>&\"'foobar\n\nbazqux");
 	}
 
 	void test_unicode()
 	{
-		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
+		CXeromyces xmb (parseXML("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
 
 		text = xmb.GetRoot().GetText().FromUTF8();
@@ -141,7 +177,7 @@ public:
 
 	void test_iso88591()
 	{
-		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
+		CXeromyces xmb (parseXML("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
 
 		text = xmb.GetRoot().GetText().FromUTF8();

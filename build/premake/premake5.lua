@@ -731,6 +731,7 @@ function setup_all_libs ()
 		"ps/scripting",
 		"network/scripting",
 		"ps/GameSetup",
+		"ps/XMB",
 		"ps/XML",
 		"soundmanager",
 		"soundmanager/data",

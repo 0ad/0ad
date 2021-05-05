@@ -180,10 +180,10 @@ void COList::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
+bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child)
 {
-	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
-	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
+	#define ELMT(x) int elmt_##x = xmb.GetElementID(#x)
+	#define ATTR(x) int attr_##x = xmb.GetAttributeID(#x)
 	ELMT(item);
 	ELMT(column);
 	ELMT(translatableAttribute);
@@ -203,13 +203,13 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 		for (XMBAttribute attr : child.GetAttributes())
 		{
-			CStr attr_name(pFile->GetAttributeString(attr.Name));
+			std::string_view attr_name(xmb.GetAttributeStringView(attr.Name));
 			CStr attr_value(attr.Value);
 
 			if (attr_name == "color")
 			{
 				if (!CGUI::ParseString<CGUIColor>(&m_pGUI, attr_value.FromUTF8(), column.m_TextColor))
-					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.data(), attr_value.c_str());
 			}
 			else if (attr_name == "id")
 			{
@@ -219,7 +219,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			{
 				bool hidden = false;
 				if (!CGUI::ParseString<bool>(&m_pGUI, attr_value.FromUTF8(), hidden))
-					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.data(), attr_value.c_str());
 				else
 					column.m_Hidden = hidden;
 			}
@@ -227,7 +227,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			{
 				float width;
 				if (!CGUI::ParseString<float>(&m_pGUI, attr_value.FromUTF8(), width))
-					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.data(), attr_value.c_str());
 				else
 				{
 					// Check if it's a relative value, and save as decimal if so.
