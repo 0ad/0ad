@@ -73,7 +73,7 @@ class LoadModal extends AutoWatcher
 			}
 			catch(err)
 			{
-				warn(err);
+				warn(err.toString());
 				out.push(new BrokenRun(name));
 			}
 		}
