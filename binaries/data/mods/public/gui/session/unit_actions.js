@@ -1715,7 +1715,47 @@ var g_EntityCommands =
 			// This command button is always disabled.
 		},
 		"allowedPlayers": ["Ally", "Observer"]
-	}
+	},
+
+	"autoqueue-on": {
+		"getInfo": function(entStates)
+		{
+			if (entStates.every(entState => !entState.production || !entState.production.entities || entState.production.autoqueue))
+				return false;
+			return {
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.queueunit.autoqueueon") +
+						   translate("Activate auto-queue for selected structures."),
+				"icon": "autoqueue-on.png",
+				"enabled": true
+			};
+		},
+		"execute": function(entStates)
+		{
+			if (entStates.length)
+				turnAutoQueueOn();
+		},
+		"allowedPlayers": ["Player"]
+	},
+
+	"autoqueue-off": {
+		"getInfo": function(entStates)
+		{
+			if (entStates.every(entState => !entState.production || !entState.production.entities || !entState.production.autoqueue))
+				return false;
+			return {
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.queueunit.autoqueueoff") +
+						   translate("Deactivate auto-queue for selected structures."),
+				"icon": "autoqueue-off.png",
+				"enabled": true
+			};
+		},
+		"execute": function(entStates)
+		{
+			if (entStates.length)
+				turnAutoQueueOff();
+		},
+		"allowedPlayers": ["Player"]
+	},
 };
 
 function playerCheck(entState, targetState, validPlayers)

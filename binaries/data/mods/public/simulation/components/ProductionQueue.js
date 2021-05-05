@@ -74,6 +74,30 @@ ProductionQueue.prototype.GetEntitiesList = function()
 };
 
 /**
+ * @return {boolean} - Whether we are automatically queuing items.
+ */
+ProductionQueue.prototype.IsAutoQueueing = function()
+{
+	return !!this.autoqueuing;
+};
+
+/**
+ * Turn on Auto-Queue.
+ */
+ProductionQueue.prototype.EnableAutoQueue = function()
+{
+	this.autoqueuing = true;
+};
+
+/**
+ * Turn off Auto-Queue.
+ */
+ProductionQueue.prototype.DisableAutoQueue = function()
+{
+	delete this.autoqueuing;
+};
+
+/**
  * Calculate the new list of producible entities
  * and update any entities currently being produced.
  */
@@ -781,6 +805,13 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 				this.SetAnimation("training");
 
 				cmpPlayer.UnBlockTraining();
+
+				// AutoQueue: We add the second batch after starting the first.
+				// (As opposed to when the first batch finishes.)
+				// This is to make the feature not infinitely better than good micro.
+				if (this.autoqueuing)
+					this.AddItem(item.unitTemplate, "unit", item.count, item.metadata);
+
 				Engine.PostMessage(this.entity, MT_TrainingStarted, { "entity": this.entity });
 			}
 			if (item.technologyTemplate)
