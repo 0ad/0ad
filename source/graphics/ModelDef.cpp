@@ -33,7 +33,9 @@
 
 void CModelDef::GetMaxBounds(CSkeletonAnimDef* anim, bool loop, CBoundingBoxAligned& result)
 {
-	std::unordered_map<u32, CBoundingBoxAligned>::const_iterator it = m_MaxBoundsPerAnimDef.find(anim ? anim->m_UID : 0);
+	const u32 animIndex = anim ? anim->m_UID : 0;
+
+	std::unordered_map<u32, CBoundingBoxAligned>::const_iterator it = m_MaxBoundsPerAnimDef.find(animIndex);
 	if (it != m_MaxBoundsPerAnimDef.end())
 	{
 		result = it->second;
@@ -47,19 +49,28 @@ void CModelDef::GetMaxBounds(CSkeletonAnimDef* anim, bool loop, CBoundingBoxAlig
 	{
 		for (size_t i = 0; i < numverts; ++i)
 			result += verts[i].m_Coords;
-		m_MaxBoundsPerAnimDef[0] = result;
+		m_MaxBoundsPerAnimDef[animIndex] = result;
 		return;
 	}
-	ENSURE(anim->m_UID != 0);
+	ENSURE(animIndex != 0);
+	CMatrix3D* inverseBindBoneMatrix = GetInverseBindBoneMatrices();
 	std::vector<CMatrix3D> boneMatrix(anim->GetNumKeys());
-	// NB: by using frames, the bounds are technically pessimistic (since interpolation could end up outside of them).
-	for (size_t j = 0; j < anim->GetNumFrames(); ++j)
+
+	const size_t numFrames = anim->GetNumFrames();
+	const float frameTime = anim->GetFrameTime();
+	const size_t numBones = GetNumBones();
+
+	// NB: by using frames, the bounds are technically pessimistic,
+	// since interpolation between frames can put vertices farther.
+	for (size_t j = 0; j < numFrames; ++j)
 	{
-		anim->BuildBoneMatrices(j*anim->GetFrameTime(), boneMatrix.data(), loop);
+		anim->BuildBoneMatrices(j * frameTime, boneMatrix.data(), loop);
+		for (size_t i = 0; i < numBones; ++i)
+			boneMatrix[i] *= inverseBindBoneMatrix[i];
 		for (size_t i = 0; i < numverts; ++i)
 			result += SkinPoint(verts[i], boneMatrix.data());
 	}
-	m_MaxBoundsPerAnimDef[anim->m_UID] = result;
+	m_MaxBoundsPerAnimDef[animIndex] = result;
 }
 
 CVector3D CModelDef::SkinPoint(const SModelVertex& vtx,

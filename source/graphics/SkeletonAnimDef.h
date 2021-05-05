@@ -96,7 +96,6 @@ public:
 	// Unique identifier - used by CModelDef to cache bounds per-animDef.
 	// (hopefully we won't run into the u32 limit too soon).
 	u32 m_UID;
-	static u32 nextUID;
 };
 
 #endif
