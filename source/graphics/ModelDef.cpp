@@ -66,7 +66,7 @@ void CModelDef::GetMaxBounds(CSkeletonAnimDef* anim, bool loop, CBoundingBoxAlig
 	{
 		anim->BuildBoneMatrices(j * frameTime, boneMatrix.data(), loop);
 		for (size_t i = 0; i < numBones; ++i)
-			boneMatrix[i] *= inverseBindBoneMatrix[i];
+			boneMatrix[i] = boneMatrix[i] * inverseBindBoneMatrix[i];
 		for (size_t i = 0; i < numverts; ++i)
 			result += SkinPoint(verts[i], boneMatrix.data());
 	}
