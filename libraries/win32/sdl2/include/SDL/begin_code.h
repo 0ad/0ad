@@ -51,11 +51,15 @@
 
 /* Some compilers use a special export keyword */
 #ifndef DECLSPEC
-# if defined(__WIN32__) || defined(__WINRT__) || defined(__CYGWIN__)
-#  ifdef DLL_EXPORT
-#   define DECLSPEC __declspec(dllexport)
+# if defined(__WIN32__) || defined(__WINRT__)
+#  ifdef __BORLANDC__
+#   ifdef BUILD_SDL
+#    define DECLSPEC
+#   else
+#    define DECLSPEC    __declspec(dllimport)
+#   endif
 #  else
-#   define DECLSPEC
+#   define DECLSPEC __declspec(dllexport)
 #  endif
 # elif defined(__OS2__)
 #   ifdef BUILD_SDL
