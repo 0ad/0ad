@@ -34,6 +34,19 @@ Repairable.prototype.GetBuildProgress = function()
 };
 
 /**
+ * @return whether this entity can be repaired (this does not account for health).
+ */
+Repairable.prototype.IsRepairable = function()
+{
+	return !this.unrepairable;
+};
+
+Repairable.prototype.SetRepairability = function(repairable)
+{
+	this.unrepairable = !repairable;
+};
+
+/**
  * Returns the current builders.
  *
  * @return {number[]} - An array containing the entity IDs of assigned builders.
