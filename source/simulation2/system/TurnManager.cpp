@@ -62,22 +62,6 @@ void CTurnManager::SetPlayerID(int playerId)
 	m_PlayerId = playerId;
 }
 
-bool CTurnManager::WillUpdate(float simFrameLength) const
-{
-	// Keep this in sync with the return value of Update()
-
-	if (m_CurrentTurn > m_FinalTurn)
-		return false;
-
-	if (m_DeltaSimTime + simFrameLength < 0)
-		return false;
-
-	if (m_ReadyTurn <= m_CurrentTurn)
-		return false;
-
-	return true;
-}
-
 bool CTurnManager::Update(float simFrameLength, size_t maxTurns)
 {
 	if (m_CurrentTurn > m_FinalTurn)
@@ -123,6 +107,10 @@ bool CTurnManager::Update(float simFrameLength, size_t maxTurns)
 		// Check that the i'th next turn is still ready
 		if (m_ReadyTurn <= m_CurrentTurn && m_CommandDelay > 1)
 			break;
+
+		// To avoid confusing the profiler, we need to trigger the new turn
+		// while we're not nested inside any PROFILE blocks
+		g_Profiler.Turn();
 
 		NotifyFinishedOwnCommands(m_CurrentTurn + m_CommandDelay);
 

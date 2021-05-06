@@ -112,12 +112,6 @@ public:
 	bool UpdateFastForward();
 
 	/**
-	 * Returns whether Update(simFrameLength, ...) will process at least one new turn.
-	 * @param simFrameLength Length of the previous frame, in simulation seconds
-	 */
-	bool WillUpdate(float simFrameLength) const;
-
-	/**
 	 * Advance the graphics by a certain time.
 	 * @param simFrameLength Length of the previous frame, in simulation seconds
 	 * @param realFrameLength Length of the previous frame, in real time seconds
