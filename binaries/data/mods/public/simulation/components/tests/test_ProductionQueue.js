@@ -545,8 +545,81 @@ function test_token_changes()
 	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue().length, 1);
 }
 
+function test_auto_queue()
+{
+	let playerEnt = 2;
+	let playerID = 1;
+	let testEntity = 3;
+
+	ConstructComponent(playerEnt, "EntityLimits", {
+		"Limits": {
+			"some_limit": 8
+		},
+		"LimitChangers": {},
+		"LimitRemovers": {}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_GuiInterface, {
+		"PushNotification": () => {}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_Trigger, {
+		"CallEvent": () => {}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_Timer, {
+		"SetInterval": (ent, iid, func) => 1
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+		"TemplateExists": () => true,
+		"GetTemplate": name => ({
+			"Cost": {
+				"BuildTime": 0,
+				"Population": 1,
+				"Resources": {}
+			},
+			"TrainingRestrictions": {
+				"Category": "some_limit"
+			}
+		})
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": id => playerEnt
+	});
+
+	AddMock(playerEnt, IID_Player, {
+		"GetCiv": () => "iber",
+		"GetPlayerID": () => playerID,
+		"GetTimeMultiplier": () => 0,
+		"BlockTraining": () => {},
+		"UnBlockTraining": () => {},
+		"UnReservePopulationSlots": () => {},
+		"TrySubtractResources": () => true,
+		"TryReservePopulationSlots": () => false // Always have pop space.
+	});
+
+	AddMock(testEntity, IID_Ownership, {
+		"GetOwner": () => playerID
+	});
+
+	let cmpProdQueue = ConstructComponent(testEntity, "ProductionQueue", {
+		"Entities": { "_string": "some_template" },
+		"BatchTimeModifier": 1
+	});
+
+	cmpProdQueue.EnableAutoQueue();
+
+	cmpProdQueue.AddItem("some_template", "unit", 3);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
+	cmpProdQueue.ProgressTimeout(null, 0);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 2);
+}
+
 testEntitiesList();
 regression_test_d1879();
 test_batch_adding();
 test_batch_removal();
+test_auto_queue();
 test_token_changes();

@@ -877,6 +877,27 @@ var g_Commands = {
 				cmpResourceDropsite.SetSharing(cmd.shared);
 		}
 	},
+
+	"autoqueue-on": function(player, cmd, data)
+	{
+		for (let ent of data.entities)
+		{
+			let cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
+			if (cmpProductionQueue)
+				cmpProductionQueue.EnableAutoQueue();
+		}
+	},
+
+	"autoqueue-off": function(player, cmd, data)
+	{
+		for (let ent of data.entities)
+		{
+			let cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
+			if (cmpProductionQueue)
+				cmpProductionQueue.DisableAutoQueue();
+		}
+	},
+
 };
 
 /**

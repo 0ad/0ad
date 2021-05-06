@@ -28,19 +28,22 @@
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
 
+namespace
+{
 // Start IDs at 1 to leave 0 as a special value.
-u32 CSkeletonAnimDef::nextUID = 1;
+u32 g_NextSkeletonDefUID = 1;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimDef constructor
 CSkeletonAnimDef::CSkeletonAnimDef() : m_FrameTime(0), m_NumKeys(0), m_NumFrames(0)
 {
-	m_UID = nextUID++;
+	m_UID = g_NextSkeletonDefUID++;
 	// Log a warning if we ever overflow. Should that not result from a bug, bumping to u64 ought to suffice.
-	if (nextUID == 0)
+	if (g_NextSkeletonDefUID == 0)
 	{
 		// Reset to 1.
-		nextUID++;
+		g_NextSkeletonDefUID++;
 		LOGWARNING("CSkeletonAnimDef unique ID overflowed to 0 - model-animation bounds may be incorrect.");
 	}
 }

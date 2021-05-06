@@ -34,4 +34,14 @@
 	<object hotkey="session.queueunit.7">
 		<action on="KeyDown">addTrainingByPosition(6);</action>
 	</object>
+
+	<!-- enable autoqueue  -->
+	<object hotkey="session.queueunit.autoqueueon">
+		<action on="KeyDown">turnAutoQueueOn();</action>
+	</object>
+
+	<!-- disable autoqueue  -->
+	<object hotkey="session.queueunit.autoqueueoff">
+		<action on="KeyDown">turnAutoQueueOff();</action>
+	</object>
 </object>

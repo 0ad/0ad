@@ -26,7 +26,7 @@ ICONV_VERSION="libiconv-1.16"
 XML2_VERSION="libxml2-2.9.10"
 SDL2_VERSION="SDL2-2.0.12"
 # NOTE: remember to also update LIB_URL below when changing version
-BOOST_VERSION="boost_1_74_0"
+BOOST_VERSION="boost_1_76_0"
 # NOTE: remember to also update LIB_URL below when changing version
 WXWIDGETS_VERSION="wxWidgets-3.1.4"
 # libpng was included as part of X11 but that's removed from Mountain Lion
@@ -348,7 +348,7 @@ echo -e "Building Boost..."
 LIB_VERSION="${BOOST_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="https://dl.bintray.com/boostorg/release/1.74.0/source/"
+LIB_URL="https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/"
 
 mkdir -p boost
 pushd boost > /dev/null

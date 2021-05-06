@@ -74,7 +74,7 @@ var g_MainMenuItems = [
 			catch(err)
 			{
 				error(translate("Error opening campaign run:"));
-				error(err);
+				error(err.toString());
 			}
 		},
 		"enabled": () => CampaignRun.hasCurrentRun()
@@ -108,7 +108,7 @@ var g_MainMenuItems = [
 					catch(err)
 					{
 						error(translate("Error opening campaign run:"));
-						error(err);
+						error(err.toString());
 					}
 				},
 				"enabled": () => CampaignRun.hasCurrentRun()
