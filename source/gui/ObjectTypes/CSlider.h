@@ -61,12 +61,12 @@ protected:
 	void IncrementallyChangeValue(const float value);
 
 	// Settings
-	float m_ButtonSide;
-	float m_MinValue;
-	float m_MaxValue;
-	CGUISpriteInstance m_Sprite;
-	CGUISpriteInstance m_SpriteBar;
-	float m_Value;
+	CGUISimpleSetting<float> m_ButtonSide;
+	CGUISimpleSetting<float> m_MinValue;
+	CGUISimpleSetting<float> m_MaxValue;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteBar;
+	CGUISimpleSetting<float> m_Value;
 
 private:
 	CVector2D m_Mouse;

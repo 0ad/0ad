@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,6 @@ CRadioButton::CRadioButton(CGUI& pGUI)
 void CRadioButton::HandleMessage(SGUIMessage& Message)
 {
 	IGUIButtonBehavior::HandleMessage(Message);
-
 	switch (Message.type)
 	{
 	case GUIM_PRESSED:
@@ -36,10 +35,11 @@ void CRadioButton::HandleMessage(SGUIMessage& Message)
 			// Notice, if you use other objects within the parent object that has got
 			//  the setting "checked", it too will change. Hence NO OTHER OBJECTS THAN
 			//  RADIO BUTTONS SHOULD BE WITHIN IT!
-			obj->SetSetting<bool>("checked", false, true);
+			// TODO: this should be enforced in the engine, and then we could cast IGUIObject* to CRadioButton*.
+			obj->SetSettingFromString("checked", L"false", true);
 		}
 
-		SetSetting<bool>("checked", true, true);
+		m_Checked.Set(true, true);
 		break;
 
 	default:

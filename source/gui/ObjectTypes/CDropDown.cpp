@@ -32,46 +32,27 @@ CDropDown::CDropDown(CGUI& pGUI)
 	  m_Open(),
 	  m_HideScrollBar(),
 	  m_ElementHighlight(-1),
-	  m_ButtonWidth(),
-	  m_DropDownSize(),
-	  m_DropDownBuffer(),
-	  m_MinimumVisibleItems(),
-	  m_SoundClosed(),
-	  m_SoundEnter(),
-	  m_SoundLeave(),
-	  m_SoundOpened(),
-	  m_SpriteDisabled(),
-	  m_SpriteList(),
-	  m_Sprite2(),
-	  m_Sprite2Over(),
-	  m_Sprite2Pressed(),
-	  m_Sprite2Disabled(),
-	  m_TextColorDisabled(),
-	  m_TextVAlign()
+	  m_ButtonWidth(this, "button_width"),
+	  m_DropDownSize(this, "dropdown_size"),
+	  m_DropDownBuffer(this, "dropdown_buffer"),
+	  m_MinimumVisibleItems(this, "minimum_visible_items"),
+	  m_SoundClosed(this, "sound_closed"),
+	  m_SoundEnter(this, "sound_enter"),
+	  m_SoundLeave(this, "sound_leave"),
+	  m_SoundOpened(this, "sound_opened"),
+	  // Setting "sprite" is registered by CList and used as the background
+	  m_SpriteDisabled(this, "sprite_disabled"),
+	  m_SpriteList(this, "sprite_list"), // Background of the drop down list
+	  m_Sprite2(this, "sprite2"), // Button that sits to the right
+	  m_Sprite2Over(this, "sprite2_over"),
+	  m_Sprite2Pressed(this, "sprite2_pressed"),
+	  m_Sprite2Disabled(this, "sprite2_disabled"),
+	  m_TextColorDisabled(this, "textcolor_disabled")
+	  // Add these in CList! And implement TODO
+	  //RegisterSetting("textcolor_over");
+	  //RegisterSetting("textcolor_pressed");
 {
-	RegisterSetting("button_width", m_ButtonWidth);
-	RegisterSetting("dropdown_size", m_DropDownSize);
-	RegisterSetting("dropdown_buffer", m_DropDownBuffer);
-	RegisterSetting("minimum_visible_items", m_MinimumVisibleItems);
-	RegisterSetting("sound_closed", m_SoundClosed);
-	RegisterSetting("sound_enter", m_SoundEnter);
-	RegisterSetting("sound_leave", m_SoundLeave);
-	RegisterSetting("sound_opened", m_SoundOpened);
-	// Setting "sprite" is registered by CList and used as the background
-	RegisterSetting("sprite_disabled", m_SpriteDisabled);
-	RegisterSetting("sprite_list", m_SpriteList); // Background of the drop down list
-	RegisterSetting("sprite2", m_Sprite2); // Button that sits to the right
-	RegisterSetting("sprite2_over", m_Sprite2Over);
-	RegisterSetting("sprite2_pressed", m_Sprite2Pressed);
-	RegisterSetting("sprite2_disabled", m_Sprite2Disabled);
-	RegisterSetting("textcolor_disabled", m_TextColorDisabled);
-	RegisterSetting("text_valign", m_TextVAlign);
-	// Add these in CList! And implement TODO
-	//RegisterSetting("textcolor_over");
-	//RegisterSetting("textcolor_pressed");
-
-	// Scrollbar is forced to be true.
-	SetSetting<bool>("scrollbar", true, true);
+	m_ScrollBar.Set(true, true);
 }
 
 CDropDown::~CDropDown()
@@ -128,7 +109,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		CRect rect = GetListRect();
 		mouse.Y += scroll;
 		int set = -1;
-		for (int i = 0; i < static_cast<int>(m_List.m_Items.size()); ++i)
+		for (int i = 0; i < static_cast<int>(m_List->m_Items.size()); ++i)
 		{
 			if (mouse.Y >= rect.top + m_ItemsYPositions[i] &&
 				mouse.Y < rect.top + m_ItemsYPositions[i+1] &&
@@ -178,7 +159,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 
 		if (!m_Open)
 		{
-			if (m_List.m_Items.empty())
+			if (m_List->m_Items.empty())
 				return;
 
 			m_Open = true;
@@ -228,7 +209,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			break;
 
 		++m_ElementHighlight;
-		SetSetting<i32>("selected", m_ElementHighlight, true);
+		m_Selected.Set(m_ElementHighlight, true);
 		break;
 	}
 
@@ -243,7 +224,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			break;
 
 		--m_ElementHighlight;
-		SetSetting<i32>("selected", m_ElementHighlight, true);
+		m_Selected.Set(m_ElementHighlight, true);
 		break;
 	}
 
@@ -299,7 +280,7 @@ InReaction CDropDown::ManuallyHandleKeys(const SDL_Event_* ev)
 				return IN_PASS;
 			// Set current selected item to highlighted, before
 			//  then really processing these in CList::ManuallyHandleKeys()
-			SetSetting<i32>("selected", m_ElementHighlight, true);
+			m_Selected.Set(m_ElementHighlight, true);
 			update_highlight = true;
 			break;
 
@@ -324,13 +305,13 @@ InReaction CDropDown::ManuallyHandleKeys(const SDL_Event_* ev)
 				int closest = -1;
 				int bestIndex = -1;
 				int difference = 1250;
-				for (int i = 0; i < static_cast<int>(m_List.m_Items.size()); ++i)
+				for (int i = 0; i < static_cast<int>(m_List->m_Items.size()); ++i)
 				{
 					int indexOfDifference = 0;
 					int diff = 0;
 					for (size_t j = 0; j < m_InputBuffer.length(); ++j)
 					{
-						diff = std::abs(static_cast<int>(m_List.m_Items[i].GetRawString().LowerCase()[j]) - static_cast<int>(m_InputBuffer[j]));
+						diff = std::abs(static_cast<int>(m_List->m_Items[i].GetRawString().LowerCase()[j]) - static_cast<int>(m_InputBuffer[j]));
 						if (diff == 0)
 							indexOfDifference = j+1;
 						else
@@ -346,7 +327,7 @@ InReaction CDropDown::ManuallyHandleKeys(const SDL_Event_* ev)
 				// let's select the closest element. There should basically always be one.
 				if (closest != -1)
 				{
-					SetSetting<i32>("selected", closest, true);
+					m_Selected.Set(closest, true);
 					update_highlight = true;
 					GetScrollBar(0).SetPos(m_ItemsYPositions[closest] - 60);
 				}
@@ -453,15 +434,15 @@ void CDropDown::Draw()
 
 		if (!m_Enabled)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, bz + 0.05f, rect);
 		}
 		else if (m_Open)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, bz + 0.05f, rect);
 		}
 		else if (m_MouseHovering)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Over ? m_Sprite2Over : m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Over ? m_Sprite2Over : m_Sprite2, bz + 0.05f, rect);
 		}
 		else
 			m_pGUI.DrawSprite(m_Sprite2, bz + 0.05f, rect);
@@ -483,12 +464,12 @@ void CDropDown::Draw()
 
 		// TODO: drawScrollbar as an argument of DrawList?
 		if (m_HideScrollBar)
-			m_ScrollBar = false;
+			m_ScrollBar.Set(false, false);
 
 		DrawList(m_ElementHighlight, m_SpriteList, m_SpriteSelectArea, m_TextColor);
 
 		if (m_HideScrollBar)
-			m_ScrollBar = old;
+			m_ScrollBar.Set(old, false);
 	}
 }
 

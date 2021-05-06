@@ -27,34 +27,18 @@ CButton::CButton(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
 	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
-	  m_BufferZone(),
-	  m_Caption(),
-	  m_Font(),
-	  m_Sprite(),
-	  m_SpriteOver(),
-	  m_SpritePressed(),
-	  m_SpriteDisabled(),
-	  m_TextAlign(),
-	  m_TextVAlign(),
-	  m_TextColor(),
-	  m_TextColorOver(),
-	  m_TextColorPressed(),
-	  m_TextColorDisabled()
+	  m_BufferZone(this, "buffer_zone"),
+	  m_Caption(this, "caption"),
+	  m_Font(this, "font"),
+	  m_Sprite(this, "sprite"),
+	  m_SpriteOver(this, "sprite_over"),
+	  m_SpritePressed(this, "sprite_pressed"),
+	  m_SpriteDisabled(this, "sprite_disabled"),
+	  m_TextColor(this, "textcolor"),
+	  m_TextColorOver(this, "textcolor_over"),
+	  m_TextColorPressed(this, "textcolor_pressed"),
+	  m_TextColorDisabled(this, "textcolor_disabled")
 {
-	RegisterSetting("buffer_zone", m_BufferZone);
-	RegisterSetting("caption", m_Caption);
-	RegisterSetting("font", m_Font);
-	RegisterSetting("sprite", m_Sprite);
-	RegisterSetting("sprite_over", m_SpriteOver);
-	RegisterSetting("sprite_pressed", m_SpritePressed);
-	RegisterSetting("sprite_disabled", m_SpriteDisabled);
-	RegisterSetting("text_align", m_TextAlign);
-	RegisterSetting("text_valign", m_TextVAlign);
-	RegisterSetting("textcolor", m_TextColor);
-	RegisterSetting("textcolor_over", m_TextColorOver);
-	RegisterSetting("textcolor_pressed", m_TextColorPressed);
-	RegisterSetting("textcolor_disabled", m_TextColorDisabled);
-
 	AddText();
 }
 
@@ -66,7 +50,7 @@ void CButton::SetupText()
 {
 	ENSURE(m_GeneratedTexts.size() == 1);
 
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, m_CachedActualSize.GetWidth(), m_BufferZone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, m_CachedActualSize.GetWidth(), m_BufferZone, m_TextAlign, this);
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);
 }
 
@@ -110,13 +94,13 @@ void CButton::Draw()
 const CGUIColor& CButton::ChooseColor()
 {
 	if (!m_Enabled)
-		return m_TextColorDisabled ? m_TextColorDisabled : m_TextColor;
+		return *m_TextColorDisabled ? m_TextColorDisabled : m_TextColor;
 
 	if (!m_MouseHovering)
 		return m_TextColor;
 
 	if (m_Pressed)
-		return m_TextColorPressed ? m_TextColorPressed : m_TextColor;
+		return *m_TextColorPressed ? m_TextColorPressed : m_TextColor;
 
-	return m_TextColorOver ? m_TextColorOver : m_TextColor;
+	return *m_TextColorOver ? m_TextColorOver : m_TextColor;
 }

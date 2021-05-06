@@ -24,25 +24,16 @@
 CCheckBox::CCheckBox(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
-	  m_Checked(),
-	  m_SpriteUnchecked(),
-	  m_SpriteUncheckedOver(),
-	  m_SpriteUncheckedPressed(),
-	  m_SpriteUncheckedDisabled(),
-	  m_SpriteChecked(),
-	  m_SpriteCheckedOver(),
-	  m_SpriteCheckedPressed(),
-	  m_SpriteCheckedDisabled()
+	  m_Checked(this, "checked"),
+	  m_SpriteUnchecked(this, "sprite"),
+	  m_SpriteUncheckedOver(this, "sprite_over"),
+	  m_SpriteUncheckedPressed(this, "sprite_pressed"),
+	  m_SpriteUncheckedDisabled(this, "sprite_disabled"),
+	  m_SpriteChecked(this, "sprite2"),
+	  m_SpriteCheckedOver(this, "sprite2_over"),
+	  m_SpriteCheckedPressed(this, "sprite2_pressed"),
+	  m_SpriteCheckedDisabled(this, "sprite2_disabled")
 {
-	RegisterSetting("checked", m_Checked),
-	RegisterSetting("sprite", m_SpriteUnchecked);
-	RegisterSetting("sprite_over", m_SpriteUncheckedOver);
-	RegisterSetting("sprite_pressed", m_SpriteUncheckedPressed);
-	RegisterSetting("sprite_disabled", m_SpriteUncheckedDisabled);
-	RegisterSetting("sprite2", m_SpriteChecked);
-	RegisterSetting("sprite2_over", m_SpriteCheckedOver);
-	RegisterSetting("sprite2_pressed", m_SpriteCheckedPressed);
-	RegisterSetting("sprite2_disabled", m_SpriteCheckedDisabled);
 }
 
 CCheckBox::~CCheckBox()
@@ -64,7 +55,7 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 	{
 	case GUIM_PRESSED:
 	{
-		SetSetting<bool>("checked", !m_Checked, true);
+		m_Checked.Set(!m_Checked, true);
 		break;
 	}
 

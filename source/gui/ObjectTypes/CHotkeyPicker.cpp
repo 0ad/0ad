@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,9 +45,8 @@ template<> bool ScriptInterface::FromJSVal(const ScriptRequest&, const JS::Handl
 
 JSVAL_VECTOR(CHotkeyPicker::Key);
 
-CHotkeyPicker::CHotkeyPicker(CGUI& pGUI) : IGUIObject(pGUI), m_TimeToCombination(1.f)
+CHotkeyPicker::CHotkeyPicker(CGUI& pGUI) : IGUIObject(pGUI), m_TimeToCombination(this, "time_to_combination", 1.f)
 {
-	RegisterSetting("time_to_combination", m_TimeToCombination);
 	// 8 keys at the same time is probably more than we'll ever need.
 	m_KeysPressed.reserve(8);
 }

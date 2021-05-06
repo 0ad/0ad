@@ -33,26 +33,19 @@ const CStr COList::EventNameSelectionColumnChange = "SelectionColumnChange";
 
 COList::COList(CGUI& pGUI)
 	: CList(pGUI),
-	  m_SpriteHeading(),
-	  m_Sortable(),
-	  m_SelectedColumn(),
-	  m_SelectedColumnOrder(),
-	  m_SpriteAsc(),
-	  m_SpriteDesc(),
-	  m_SpriteNotSorted()
+	  m_SpriteHeading(this, "sprite_heading"),
+	  m_Sortable(this, "sortable"), // The actual sorting is done in JS for more versatility
+	  m_SelectedColumn(this, "selected_column"),
+	  m_SelectedColumnOrder(this, "selected_column_order"),
+	  m_SpriteAsc(this, "sprite_asc"), // Show the order of sorting
+	  m_SpriteDesc(this, "sprite_desc"),
+	  m_SpriteNotSorted(this, "sprite_not_sorted")
 {
-	RegisterSetting("sprite_heading", m_SpriteHeading);
-	RegisterSetting("sortable", m_Sortable); // The actual sorting is done in JS for more versatility
-	RegisterSetting("selected_column", m_SelectedColumn);
-	RegisterSetting("selected_column_order", m_SelectedColumnOrder);
-	RegisterSetting("sprite_asc", m_SpriteAsc);  // Show the order of sorting
-	RegisterSetting("sprite_desc", m_SpriteDesc);
-	RegisterSetting("sprite_not_sorted", m_SpriteNotSorted);
 }
 
 void COList::SetupText()
 {
-	m_ItemsYPositions.resize(m_List.m_Items.size() + 1);
+	m_ItemsYPositions.resize(m_List->m_Items.size() + 1);
 
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
@@ -82,7 +75,7 @@ void COList::SetupText()
 	// Generate texts
 	float buffered_y = 0.f;
 
-	for (size_t i = 0; i < m_List.m_Items.size(); ++i)
+	for (size_t i = 0; i < m_List->m_Items.size(); ++i)
 	{
 		m_ItemsYPositions[i] = buffered_y;
 		float shift = 0.0f;
@@ -93,8 +86,8 @@ void COList::SetupText()
 				width *= m_TotalAvailableColumnWidth;
 
 			CGUIText* text;
-			if (!column.m_List.m_Items[i].GetOriginalString().empty())
-				text = &AddText(column.m_List.m_Items[i], m_Font, width, m_BufferZone);
+			if (!column.m_List->m_Items[i].GetOriginalString().empty())
+				text = &AddText(column.m_List->m_Items[i], m_Font, width, m_BufferZone);
 			else
 			{
 				// Minimum height of a space character of the current font size
@@ -107,7 +100,7 @@ void COList::SetupText()
 		buffered_y += shift;
 	}
 
-	m_ItemsYPositions[m_List.m_Items.size()] = buffered_y;
+	m_ItemsYPositions[m_List->m_Items.size()] = buffered_y;
 
 	if (m_ScrollBar)
 	{
@@ -158,14 +151,14 @@ void COList::HandleMessage(SGUIMessage& Message)
 				mouse.X < leftTopCorner.X + width &&
 				mouse.Y < leftTopCorner.Y + m_HeadingHeight)
 			{
-				if (column.m_Id != m_SelectedColumn)
+				if (column.m_Id != static_cast<CStr>(m_SelectedColumn))
 				{
-					SetSetting<i32>("selected_column_order", -1, true);
+					m_SelectedColumnOrder.Set(-1, true);
 					CStr selected_column = column.m_Id;
-					SetSetting<CStr>("selected_column", selected_column, true);
+					m_SelectedColumn.Set(selected_column, true);
 				}
 				else
-					SetSetting<i32>("selected_column_order", -m_SelectedColumnOrder, true);
+					m_SelectedColumnOrder.Set(-m_SelectedColumnOrder, true);
 
 				ScriptEvent(EventNameSelectionColumnChange);
 				PlaySound(m_SoundSelected);
@@ -199,7 +192,14 @@ bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& chil
 	}
 	else if (child.GetNodeName() == elmt_column)
 	{
-		COListColumn column;
+		CStr id;
+		XERO_ITER_ATTR(child, attr)
+		{
+			if (attr.Name == attr_id)
+				id = attr.Value;
+		}
+
+		COListColumn column(this, id);
 
 		for (XMBAttribute attr : child.GetAttributes())
 		{
@@ -211,17 +211,13 @@ bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& chil
 				if (!CGUI::ParseString<CGUIColor>(&m_pGUI, attr_value.FromUTF8(), column.m_TextColor))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.data(), attr_value.c_str());
 			}
-			else if (attr_name == "id")
-			{
-				column.m_Id = attr_value;
-			}
 			else if (attr_name == "hidden")
 			{
 				bool hidden = false;
 				if (!CGUI::ParseString<bool>(&m_pGUI, attr_value.FromUTF8(), hidden))
 					LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name.data(), attr_value.c_str());
 				else
-					column.m_Hidden = hidden;
+					column.m_Hidden.Set(hidden, false);
 			}
 			else if (attr_name == "width")
 			{
@@ -282,13 +278,6 @@ bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& chil
 void COList::AdditionalChildrenHandled()
 {
 	SetupText();
-
-	// Do this after the last push_back call to avoid iterator invalidation
-	for (COListColumn& column : m_Columns)
-	{
-		RegisterSetting("list_" + column.m_Id, column.m_List);
-		RegisterSetting("hidden_" + column.m_Id, column.m_Hidden);
-	}
 }
 
 void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor)
@@ -367,18 +356,18 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 		if (m_Sortable)
 		{
 			const CGUISpriteInstance* pSprite;
-			if (m_SelectedColumn == column.m_Id)
+			if (*m_SelectedColumn == column.m_Id)
 			{
 				if (m_SelectedColumnOrder == 0)
 					LOGERROR("selected_column_order must not be 0");
 
 				if (m_SelectedColumnOrder != -1)
-					pSprite = &m_SpriteAsc;
+					pSprite = &*m_SpriteAsc;
 				else
-					pSprite = &m_SpriteDesc;
+					pSprite = &*m_SpriteDesc;
 			}
 			else
-				pSprite = &m_SpriteNotSorted;
+				pSprite = &*m_SpriteNotSorted;
 
 			m_pGUI.DrawSprite(*pSprite, bz + 0.1f, CRect(leftTopCorner + CVector2D(width - SORT_SPRITE_DIM, 0), leftTopCorner + CVector2D(width, SORT_SPRITE_DIM)));
 		}
@@ -391,7 +380,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 
 	// Draw list items for each column
 	const size_t objectsCount = m_Columns.size();
-	for (size_t i = 0; i < m_List.m_Items.size(); ++i)
+	for (size_t i = 0; i < m_List->m_Items.size(); ++i)
 	{
 		if (m_ItemsYPositions[i+1] - scroll < 0 ||
 			m_ItemsYPositions[i] - scroll > rect.GetHeight())

@@ -38,49 +38,25 @@ CList::CList(CGUI& pGUI)
 	  m_Modified(false),
 	  m_PrevSelectedItem(-1),
 	  m_LastItemClickTime(0),
-	  m_BufferZone(),
-	  m_Font(),
-	  m_ScrollBar(),
-	  m_ScrollBarStyle(),
-	  m_ScrollBottom(false),
-	  m_SoundDisabled(),
-	  m_SoundSelected(),
-	  m_Sprite(),
-	  m_SpriteSelectArea(),
-	  m_TextAlign(),
-	  m_TextColor(),
-	  m_TextColorSelected(),
-	  m_Selected(),
-	  m_AutoScroll(),
-	  m_Hovered(),
-	  m_List(),
-	  m_ListData()
+	  m_BufferZone(this, "buffer_zone"),
+	  m_Font(this, "font"),
+	  m_ScrollBar(this, "scrollbar", false),
+	  m_ScrollBarStyle(this, "scrollbar_style"),
+	  m_ScrollBottom(this, "scroll_bottom", false),
+	  m_SoundDisabled(this, "sound_disabled"),
+	  m_SoundSelected(this, "sound_selected"),
+	  m_Sprite(this, "sprite"),
+	  // Add sprite_disabled! TODO
+	  m_SpriteSelectArea(this, "sprite_selectarea"),
+	  m_TextColor(this, "textcolor"),
+	  m_TextColorSelected(this, "textcolor_selected"),
+	  m_Selected(this, "selected", -1), // Index selected. -1 is none.
+	  m_AutoScroll(this, "auto_scroll", false),
+	  m_Hovered(this, "hovered", -1),
+	  // Each list item has both a name (in 'list') and an associated data string (in 'list_data')
+	  m_List(this, "list"),
+	  m_ListData(this, "list_data")
 {
-	RegisterSetting("buffer_zone", m_BufferZone);
-	RegisterSetting("font", m_Font);
-	RegisterSetting("scrollbar", m_ScrollBar);
-	RegisterSetting("scrollbar_style", m_ScrollBarStyle);
-	RegisterSetting("scroll_bottom", m_ScrollBottom);
-	RegisterSetting("sound_disabled", m_SoundDisabled);
-	RegisterSetting("sound_selected", m_SoundSelected);
-	RegisterSetting("sprite", m_Sprite);
-	// Add sprite_disabled! TODO
-	RegisterSetting("sprite_selectarea", m_SpriteSelectArea);
-	RegisterSetting("text_align", m_TextAlign);
-	RegisterSetting("textcolor", m_TextColor);
-	RegisterSetting("textcolor_selected", m_TextColorSelected);
-	RegisterSetting("selected", m_Selected); // Index selected. -1 is none.
-	RegisterSetting("auto_scroll", m_AutoScroll);
-	RegisterSetting("hovered", m_Hovered);
-	// Each list item has both a name (in 'list') and an associated data string (in 'list_data')
-	RegisterSetting("list", m_List);
-	RegisterSetting("list_data", m_ListData);
-
-	SetSetting<bool>("scrollbar", false, true);
-	SetSetting<i32>("selected", -1, true);
-	SetSetting<i32>("hovered", -1, true);
-	SetSetting<bool>("auto_scroll", false, true);
-
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
 	bar->SetRightAligned(true);
@@ -123,14 +99,14 @@ void CList::SetupText(bool append)
 	if (append && !m_ItemsYPositions.empty())
 		buffered_y = m_ItemsYPositions.back();
 
-	m_ItemsYPositions.resize(m_List.m_Items.size() + 1);
+	m_ItemsYPositions.resize(m_List->m_Items.size() + 1);
 
-	for (size_t i = append ? m_List.m_Items.size() - 1 : 0; i < m_List.m_Items.size(); ++i)
+	for (size_t i = append ? m_List->m_Items.size() - 1 : 0; i < m_List->m_Items.size(); ++i)
 	{
 		CGUIText* text;
 
-		if (!m_List.m_Items[i].GetOriginalString().empty())
-			text = &AddText(m_List.m_Items[i], m_Font, width, m_BufferZone);
+		if (!m_List->m_Items[i].GetOriginalString().empty())
+			text = &AddText(m_List->m_Items[i], m_Font, width, m_BufferZone);
 		else
 		{
 			// Minimum height of a space character of the current font size
@@ -143,7 +119,7 @@ void CList::SetupText(bool append)
 		buffered_y += text->GetSize().Height;
 	}
 
-	m_ItemsYPositions[m_List.m_Items.size()] = buffered_y;
+	m_ItemsYPositions[m_List->m_Items.size()] = buffered_y;
 
 	// Setup scrollbar
 	if (m_ScrollBar)
@@ -221,7 +197,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		int hovered = GetHoveredItem();
 		if (hovered == -1)
 			break;
-		SetSetting<i32>("selected", hovered, true);
+		m_Selected.Set(hovered, true);
 		UpdateAutoScroll();
 		PlaySound(m_SoundSelected);
 
@@ -240,7 +216,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		if (m_Hovered == -1)
 			break;
 
-		SetSetting<i32>("hovered", -1, true);
+		m_Hovered.Set(-1, true);
 		ScriptEvent(EventNameHoverChange);
 		break;
 	}
@@ -251,7 +227,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 		if (hovered == m_Hovered)
 			break;
 
-		SetSetting<i32>("hovered", hovered, true);
+		m_Hovered.Set(hovered, true);
 		ScriptEvent(EventNameHoverChange);
 		break;
 	}
@@ -369,7 +345,7 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 			}
 		}
 
-		for (size_t i = 0; i < m_List.m_Items.size(); ++i)
+		for (size_t i = 0; i < m_List->m_Items.size(); ++i)
 		{
 			if (m_ItemsYPositions[i+1] - scroll < 0 ||
 				m_ItemsYPositions[i] - scroll > rect.GetHeight())
@@ -400,8 +376,8 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 void CList::AddItem(const CGUIString& str, const CGUIString& data)
 {
 	// Do not send a settings-changed message
-	m_List.m_Items.push_back(str);
-	m_ListData.m_Items.push_back(data);
+	m_List.GetMutable().m_Items.push_back(str);
+	m_ListData.GetMutable().m_Items.push_back(data);
 
 	SetupText(true);
 }
@@ -428,9 +404,9 @@ bool CList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child
 
 void CList::SelectNextElement()
 {
-	if (m_Selected != static_cast<int>(m_List.m_Items.size()) - 1)
+	if (m_Selected != static_cast<int>(m_List->m_Items.size()) - 1)
 	{
-		SetSetting<i32>("selected", m_Selected + 1, true);
+		m_Selected.Set(m_Selected + 1, true);
 		PlaySound(m_SoundSelected);
 	}
 }
@@ -439,7 +415,7 @@ void CList::SelectPrevElement()
 {
 	if (m_Selected > 0)
 	{
-		SetSetting<i32>("selected", m_Selected - 1, true);
+		m_Selected.Set(m_Selected - 1, true);
 		PlaySound(m_SoundSelected);
 	}
 }
@@ -447,15 +423,15 @@ void CList::SelectPrevElement()
 void CList::SelectFirstElement()
 {
 	if (m_Selected >= 0)
-		SetSetting<i32>("selected", 0, true);
+		m_Selected.Set(0, true);
 }
 
 void CList::SelectLastElement()
 {
-	const int index = static_cast<int>(m_List.m_Items.size()) - 1;
+	const int index = static_cast<int>(m_List->m_Items.size()) - 1;
 
 	if (m_Selected != index)
-		SetSetting<i32>("selected", index, true);
+		m_Selected.Set(index, true);
 }
 
 void CList::UpdateAutoScroll()
@@ -494,7 +470,7 @@ int CList::GetHoveredItem()
 	    mouse.X <= GetScrollBar(0).GetOuterRect().right)
 		return -1;
 
-	for (size_t i = 0; i < m_List.m_Items.size(); ++i)
+	for (size_t i = 0; i < m_List->m_Items.size(); ++i)
 		if (mouse.Y >= rect.top + m_ItemsYPositions[i] &&
 		    mouse.Y < rect.top + m_ItemsYPositions[i + 1])
 			return i;

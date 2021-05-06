@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ protected:
 	void FireEvent(const CStr& event);
 
 	// Time without changes until a "combination" event is sent.
-	float m_TimeToCombination;
+	CGUISimpleSetting<float> m_TimeToCombination;
 	// Time of the last registered key change.
 	double m_LastKeyChange;
 

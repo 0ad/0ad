@@ -27,38 +27,18 @@ CText::CText(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIScrollBarOwner(*static_cast<IGUIObject*>(this)),
 	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
-	  m_BufferZone(),
-	  m_Caption(),
-	  m_Clip(),
-	  m_Font(),
-	  m_ScrollBar(),
-	  m_ScrollBarStyle(),
-	  m_ScrollBottom(),
-	  m_ScrollTop(),
-	  m_Sprite(),
-	  m_TextAlign(),
-	  m_TextVAlign(),
-	  m_TextColor(),
-	  m_TextColorDisabled()
+	  m_BufferZone(this, "buffer_zone"),
+	  m_Caption(this, "caption"),
+	  m_Clip(this, "clip", true),
+	  m_Font(this, "font"),
+	  m_ScrollBar(this, "scrollbar", false),
+	  m_ScrollBarStyle(this, "scrollbar_style"),
+	  m_ScrollBottom(this, "scroll_bottom"),
+	  m_ScrollTop(this, "scroll_top"),
+	  m_Sprite(this, "sprite"),
+	  m_TextColor(this, "textcolor"),
+	  m_TextColorDisabled(this, "textcolor_disabled")
 {
-	RegisterSetting("buffer_zone", m_BufferZone);
-	RegisterSetting("caption", m_Caption);
-	RegisterSetting("clip", m_Clip);
-	RegisterSetting("font", m_Font);
-	RegisterSetting("scrollbar", m_ScrollBar);
-	RegisterSetting("scrollbar_style", m_ScrollBarStyle);
-	RegisterSetting("scroll_bottom", m_ScrollBottom);
-	RegisterSetting("scroll_top", m_ScrollTop);
-	RegisterSetting("sprite", m_Sprite);
-	RegisterSetting("text_align", m_TextAlign);
-	RegisterSetting("text_valign", m_TextVAlign);
-	RegisterSetting("textcolor", m_TextColor);
-	RegisterSetting("textcolor_disabled", m_TextColorDisabled);
-
-	//SetSetting<bool>("ghost", true, true);
-	SetSetting<bool>("scrollbar", false, true);
-	SetSetting<bool>("clip", true, true);
-
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
 	bar->SetRightAligned(true);
@@ -82,7 +62,7 @@ void CText::SetupText()
 	if (m_ScrollBar && GetScrollBar(0).GetStyle())
 		width -= GetScrollBar(0).GetStyle()->m_Width;
 
-	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, width, m_BufferZone, this);
+	m_GeneratedTexts[0] = CGUIText(m_pGUI, m_Caption, m_Font, width, m_BufferZone, m_TextAlign, this);
 
 	if (!m_ScrollBar)
 		CalculateTextPosition(m_CachedActualSize, m_TextPos, m_GeneratedTexts[0]);

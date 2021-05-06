@@ -123,22 +123,21 @@ protected:
 	double m_TimeOfLastInput;
 
 	// Settings
-	float m_ButtonWidth;
-	float m_DropDownSize;
-	float m_DropDownBuffer;
-	u32 m_MinimumVisibleItems;
-	CStrW m_SoundClosed;
-	CStrW m_SoundEnter;
-	CStrW m_SoundLeave;
-	CStrW m_SoundOpened;
-	CGUISpriteInstance m_SpriteDisabled;
-	CGUISpriteInstance m_SpriteList;
-	CGUISpriteInstance m_Sprite2;
-	CGUISpriteInstance m_Sprite2Over;
-	CGUISpriteInstance m_Sprite2Pressed;
-	CGUISpriteInstance m_Sprite2Disabled;
-	CGUIColor m_TextColorDisabled;
-	EVAlign m_TextVAlign;
+	CGUISimpleSetting<float> m_ButtonWidth;
+	CGUISimpleSetting<float> m_DropDownSize;
+	CGUISimpleSetting<float> m_DropDownBuffer;
+	CGUISimpleSetting<u32> m_MinimumVisibleItems;
+	CGUISimpleSetting<CStrW> m_SoundClosed;
+	CGUISimpleSetting<CStrW> m_SoundEnter;
+	CGUISimpleSetting<CStrW> m_SoundLeave;
+	CGUISimpleSetting<CStrW> m_SoundOpened;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteDisabled;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteList;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Over;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Pressed;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Disabled;
+	CGUISimpleSetting<CGUIColor> m_TextColorDisabled;
 };
 
 #endif // INCLUDED_CDROPDOWN

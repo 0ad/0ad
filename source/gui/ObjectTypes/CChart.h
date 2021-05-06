@@ -82,15 +82,14 @@ protected:
 	bool m_EqualX, m_EqualY;
 
 	// Settings
-	CGUIColor m_AxisColor;
-	float m_AxisWidth;
-	float m_BufferZone;
-	CStrW m_Font;
-	CStrW m_FormatX;
-	CStrW m_FormatY;
-	CGUIList m_SeriesColor;
-	CGUISeries m_SeriesSetting;
-	EAlign m_TextAlign;
+	CGUISimpleSetting<CGUIColor> m_AxisColor;
+	CGUISimpleSetting<float> m_AxisWidth;
+	CGUISimpleSetting<float> m_BufferZone;
+	CGUISimpleSetting<CStrW> m_Font;
+	CGUISimpleSetting<CStrW> m_FormatX;
+	CGUISimpleSetting<CStrW> m_FormatY;
+	CGUISimpleSetting<CGUIList> m_SeriesColor;
+	CGUISimpleSetting<CGUISeries> m_SeriesSetting;
 
 private:
 	/**

@@ -20,7 +20,7 @@
 #include "GUITooltip.h"
 
 #include "gui/CGUI.h"
-#include "gui/ObjectBases/IGUIObject.h"
+#include "gui/ObjectTypes/CTooltip.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 
@@ -102,30 +102,21 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CVector2D& pos, const CStr& 
 	if (style.empty())
 		return;
 
-	// Must be a CTooltip*
-	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
+	// Objects in __tooltip_ are guaranteed to be CTooltip* by the engine.
+	CTooltip* tooltipobj = static_cast<CTooltip*>(pGUI.FindObjectByName("__tooltip_" + style));
 	if (!tooltipobj || !tooltipobj->SettingExists("use_object"))
 	{
 		LOGERROR("Cannot find tooltip named '%s'", style.c_str());
 		return;
 	}
 
-	IGUIObject* usedobj; // object actually used to display the tooltip in
+	IGUIObject* usedobj; // object actually used to display the tooltip in.
 
-	const CStr& usedObjectName = tooltipobj->GetSetting<CStr>("use_object");
+	const CStr& usedObjectName = tooltipobj->GetUsedObject();
 	if (usedObjectName.empty())
 	{
 		usedobj = tooltipobj;
-
-		if (usedobj->SettingExists("_mousepos"))
-		{
-			usedobj->SetSetting<CVector2D>("_mousepos", pos, true);
-		}
-		else
-		{
-			LOGERROR("Object '%s' used by tooltip '%s' isn't a tooltip object!", usedObjectName.c_str(), style.c_str());
-			return;
-		}
+		tooltipobj->SetMousePos(pos);
 	}
 	else
 	{
@@ -148,8 +139,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CVector2D& pos, const CStr& 
 		return;
 	}
 
-	// Every IGUIObject has a "hidden" setting
-	usedobj->SetSetting<bool>("hidden", false, true);
+	usedobj->SetHidden(false);
 }
 
 void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
@@ -157,15 +147,14 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 	if (style.empty())
 		return;
 
-	// Must be a CTooltip*
-	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
+	// Objects in __tooltip_ are guaranteed to be CTooltip* by the engine.
+	CTooltip* tooltipobj = static_cast<CTooltip*>(pGUI.FindObjectByName("__tooltip_" + style));
 	if (!tooltipobj || !tooltipobj->SettingExists("use_object") || !tooltipobj->SettingExists("hide_object"))
 	{
 		LOGERROR("Cannot find tooltip named '%s' or it is not a tooltip", style.c_str());
 		return;
 	}
-
-	const CStr& usedObjectName = tooltipobj->GetSetting<CStr>("use_object");
+	const CStr& usedObjectName = tooltipobj->GetUsedObject();
 	if (!usedObjectName.empty())
 	{
 		IGUIObject* usedobj = pGUI.FindObjectByName(usedObjectName);
@@ -179,18 +168,17 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI& pGUI)
 			return;
 		}
 
-		if (tooltipobj->GetSetting<bool>("hide_object"))
-			// Every IGUIObject has a "hidden" setting
-			usedobj->SetSetting<bool>("hidden", true, true);
+		if (tooltipobj->ShouldHideObject())
+			usedobj->SetHidden(true);
 	}
 	else
-		tooltipobj->SetSetting<bool>("hidden", true, true);
+		tooltipobj->SetHidden(true);
 }
 
 static i32 GetTooltipDelay(const CStr& style, CGUI& pGUI)
 {
-	// Must be a CTooltip*
-	IGUIObject* tooltipobj = pGUI.FindObjectByName("__tooltip_" + style);
+	// Objects in __tooltip_ are guaranteed to be CTooltip* by the engine.
+	CTooltip* tooltipobj = static_cast<CTooltip*>(pGUI.FindObjectByName("__tooltip_" + style));
 
 	if (!tooltipobj)
 	{
@@ -198,7 +186,7 @@ static i32 GetTooltipDelay(const CStr& style, CGUI& pGUI)
 		return 500;
 	}
 
-	return tooltipobj->GetSetting<i32>("delay");
+	return tooltipobj->GetTooltipDelay();
 }
 
 void GUITooltip::Update(IGUIObject* Nearest, const CVector2D& MousePos, CGUI& GUI)

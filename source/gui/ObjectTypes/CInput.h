@@ -216,24 +216,23 @@ protected:
 	static const CStr EventNamePress;
 	static const CStr EventNameTab;
 
-	// Settings
-	i32 m_BufferPosition;
-	float m_BufferZone;
-	CStrW m_Caption;
-	CGUIString m_PlaceholderText;
-	CStrW m_Font;
-	CStrW m_MaskChar;
-	bool m_Mask;
-	i32 m_MaxLength;
-	bool m_MultiLine;
-	bool m_Readonly;
-	bool m_ScrollBar;
-	CStr m_ScrollBarStyle;
-	CGUISpriteInstance m_Sprite;
-	CGUISpriteInstance m_SpriteSelectArea;
-	CGUIColor m_TextColor;
-	CGUIColor m_TextColorSelected;
-	CGUIColor m_PlaceholderColor;
+	CGUISimpleSetting<i32> m_BufferPosition;
+	CGUISimpleSetting<float> m_BufferZone;
+	CGUISimpleSetting<CStrW> m_Caption;
+	CGUISimpleSetting<CGUIString> m_PlaceholderText;
+	CGUISimpleSetting<CStrW> m_Font;
+	CGUISimpleSetting<CStrW> m_MaskChar;
+	CGUISimpleSetting<bool> m_Mask;
+	CGUISimpleSetting<i32> m_MaxLength;
+	CGUISimpleSetting<bool> m_MultiLine;
+	CGUISimpleSetting<bool> m_Readonly;
+	CGUISimpleSetting<bool> m_ScrollBar;
+	CGUISimpleSetting<CStr> m_ScrollBarStyle;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteSelectArea;
+	CGUISimpleSetting<CGUIColor> m_TextColor;
+	CGUISimpleSetting<CGUIColor> m_TextColorSelected;
+	CGUISimpleSetting<CGUIColor> m_PlaceholderColor;
 };
 
 #endif // INCLUDED_CINPUT

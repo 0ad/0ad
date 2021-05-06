@@ -23,9 +23,8 @@
 
 CImage::CImage(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  m_Sprite()
+	  m_Sprite(this, "sprite")
 {
-	RegisterSetting("sprite", m_Sprite);
 }
 
 CImage::~CImage()

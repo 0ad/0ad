@@ -109,11 +109,9 @@ const CStr CMiniMap::EventNameWorldClick = "WorldClick";
 CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
 	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
-	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(false),
+	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(this, "mask", false),
 	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false), m_WaterHeight(0.0)
 {
-	RegisterSetting("mask", m_Mask);
-
 	m_Clicking = false;
 	m_MouseHovering = false;
 

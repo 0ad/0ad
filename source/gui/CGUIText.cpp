@@ -59,7 +59,7 @@ void SGenerateTextImage::SetupSpriteCall(
 	m_Indentation = Size.Width + BufferZone * 2;
 }
 
-CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject)
+CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const EAlign align, const IGUIObject* pObject)
 {
 	if (string.m_Words.empty())
 		return;
@@ -75,13 +75,6 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& Font
 	SGenerateTextImages Images;
 	int pos_last_img = -1;	// Position in the string where last img (either left or right) were encountered.
 							//  in order to avoid duplicate processing.
-
-	// get the alignment type for the control we are computing the text for since
-	// we are computing the horizontal alignment in this method in order to not have
-	// to run through the TextCalls a second time in the CalculateTextPosition method again
-	EAlign align = EAlign::LEFT;
-	if (pObject->SettingExists("text_align"))
-		align = pObject->GetSetting<EAlign>("text_align");
 
 	// Go through string word by word
 	for (int i = 0; i < static_cast<int>(string.m_Words.size()) - 1; ++i)

@@ -15,28 +15,26 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_CRADIOBUTTON
-#define INCLUDED_CRADIOBUTTON
+#ifndef INCLUDED_CGUIHOTKEY
+#define INCLUDED_CGUIHOTKEY
 
-#include "gui/ObjectTypes/CCheckBox.h"
+#include "gui/CGUISetting.h"
+#include "ps/CStr.h"
 
 /**
- * Just like a check box, but it'll nullify its siblings,
- * and it won't switch itself.
- *
- * @see CCheckBox
+ * Manages a hotkey setting for a GUI object.
  */
-class CRadioButton : public CCheckBox
+class CGUIHotkey : public CGUISimpleSetting<CStr>
 {
-	GUI_OBJECT(CRadioButton)
-
 public:
-	CRadioButton(CGUI& pGUI);
+	CGUIHotkey(IGUIObject* pObject, const CStr& Name) : CGUISimpleSetting<CStr>(pObject, Name)
+	{}
+	NONCOPYABLE(CGUIHotkey);
+	MOVABLE(CGUIHotkey);
 
-	/**
-	 * @see IGUIObject#HandleMessage()
-	 */
-	virtual void HandleMessage(SGUIMessage& Message);
+	bool DoFromString(const CStrW& value) override;
+	bool DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value) override;
+	void OnSettingChange(const CStr& setting, bool sendMessage) override;
 };
 
-#endif // INCLUDED_CRADIOBUTTON
+#endif // INCLUDED_CGUIHOTKEY

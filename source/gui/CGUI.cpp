@@ -441,8 +441,7 @@ void CGUI::SetObjectStyle(IGUIObject* pObject, const CStr& styleName)
 {
 	// If the style is not recognised (or an empty string) then ApplyStyle will
 	// emit an error message. Thus we don't need to handle it here.
-	if (pObject->ApplyStyle(styleName))
-		pObject->m_Style = styleName;
+	pObject->ApplyStyle(styleName);
 }
 
 void CGUI::UnsetObjectStyle(IGUIObject* pObject)
@@ -684,6 +683,12 @@ IGUIObject* CGUI::Xeromyces_ReadObject(const XMBData& xmb, XMBElement element, I
 		{
 			CStr name(attr.Value);
 
+			if (name.Left(2) == "__")
+			{
+				LOGERROR("GUI: Names starting with '__' are reserved for the engine (object: %s)", name.c_str());
+				continue;
+			}
+
 			for (const std::pair<CStr, CStr>& sub : NameSubst)
 				name.Replace(sub.first, sub.second);
 
@@ -894,10 +899,10 @@ IGUIObject* CGUI::Xeromyces_ReadObject(const XMBData& xmb, XMBElement element, I
 		if (object->m_Absolute)
 			// If the object is absolute, we'll have to get the parent's Z buffered,
 			// and add to that!
-			object->SetSetting<float>("z", pParent->GetBufferedZ() + 10.f, false);
+			object->m_Z.Set(pParent->GetBufferedZ() + 10.f, false);
 		else
 			// If the object is relative, then we'll just store Z as "10"
-			object->SetSetting<float>("z", 10.f, false);
+			object->m_Z.Set(10.f, false);
 	}
 
 	if (!AddObject(*pParent, *object))

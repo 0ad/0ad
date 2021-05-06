@@ -33,25 +33,15 @@
 CChart::CChart(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
-	  m_AxisColor(),
-	  m_AxisWidth(),
-	  m_BufferZone(),
-	  m_Font(),
-	  m_FormatX(),
-	  m_FormatY(),
-	  m_SeriesColor(),
-	  m_SeriesSetting(),
-	  m_TextAlign()
+	  m_AxisColor(this, "axis_color"),
+	  m_AxisWidth(this, "axis_width"),
+	  m_BufferZone(this, "buffer_zone"),
+	  m_Font(this, "font"),
+	  m_FormatX(this, "format_x"),
+	  m_FormatY(this, "format_y"),
+	  m_SeriesColor(this, "series_color"),
+	  m_SeriesSetting(this, "series")
 {
-	RegisterSetting("axis_color", m_AxisColor);
-	RegisterSetting("axis_width", m_AxisWidth);
-	RegisterSetting("buffer_zone", m_BufferZone);
-	RegisterSetting("font", m_Font);
-	RegisterSetting("format_x", m_FormatX);
-	RegisterSetting("format_y", m_FormatY);
-	RegisterSetting("series_color", m_SeriesColor);
-	RegisterSetting("series", m_SeriesSetting);
-	RegisterSetting("text_align", m_TextAlign);
 }
 
 CChart::~CChart()
@@ -184,16 +174,16 @@ CRect CChart::GetChartRect() const
 void CChart::UpdateSeries()
 {
 	m_Series.clear();
-	m_Series.resize(m_SeriesSetting.m_Series.size());
+	m_Series.resize(m_SeriesSetting->m_Series.size());
 
-	for (size_t i = 0; i < m_SeriesSetting.m_Series.size(); ++i)
+	for (size_t i = 0; i < m_SeriesSetting->m_Series.size(); ++i)
 	{
 		CChartData& data = m_Series[i];
 
-		if (i < m_SeriesColor.m_Items.size() && !data.m_Color.ParseString(m_pGUI, m_SeriesColor.m_Items[i].GetOriginalString().ToUTF8(), 0))
-			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(m_SeriesColor.m_Items[i].GetOriginalString()));
+		if (i < m_SeriesColor->m_Items.size() && !data.m_Color.ParseString(m_pGUI, m_SeriesColor->m_Items[i].GetOriginalString().ToUTF8(), 0))
+			LOGWARNING("GUI: Error parsing 'series_color' (\"%s\")", utf8_from_wstring(m_SeriesColor->m_Items[i].GetOriginalString()));
 
-		data.m_Points = m_SeriesSetting.m_Series[i];
+		data.m_Points = m_SeriesSetting->m_Series[i];
 	}
 	UpdateBounds();
 
