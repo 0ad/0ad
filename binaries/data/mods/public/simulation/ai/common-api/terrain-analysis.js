@@ -406,7 +406,7 @@ m.SharedScript.prototype.createResourceMaps = function()
 		let x = Math.floor(ent.position()[0] / cellSize);
 		let z = Math.floor(ent.position()[1] / cellSize);
 		let grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
-		let strength = Math.floor(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
+		let strength = ent.resourceSupplyMax() / this.normalizationFactor[grp];
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2, "constant");
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2);
 		this.ccResourceMaps[resource].addInfluence(x, z, this.ccInfluenceRadius[grp] / cellSize, strength, "constant");
@@ -448,7 +448,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 		let x = Math.floor(ent.position()[0] / cellSize);
 		let z = Math.floor(ent.position()[1] / cellSize);
 		let grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
-		let strength = -Math.floor(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
+		let strength = -(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2, "constant");
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2);
 		this.ccResourceMaps[resource].addInfluence(x, z, this.ccInfluenceRadius[grp] / cellSize, strength, "constant");
@@ -467,7 +467,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 		let x = Math.floor(ent.position()[0] / cellSize);
 		let z = Math.floor(ent.position()[1] / cellSize);
 		let grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
-		let strength = Math.floor(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
+		let strength = ent.resourceSupplyMax() / this.normalizationFactor[grp];
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2, "constant");
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2);
 		this.ccResourceMaps[resource].addInfluence(x, z, this.ccInfluenceRadius[grp] / cellSize, strength, "constant");
