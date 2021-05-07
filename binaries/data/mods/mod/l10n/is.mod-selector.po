@@ -3,136 +3,129 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
-# ali topçu <ali134636@gmail.com>, 2018
-# Cem Aktas <cemwstone@gmail.com>, 2021
-# Emre Cıklatekerlio <bosmail@programmer.net>, 2014
-# Ferhat Olçum <ferhatolcum@gmail.com>, 2018
-# Günay Yılmaz, 2019-2020
-# yakup <mutouk@yandex.ru>, 2014,2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-05-04 16:45+0000\n"
-"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
+"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"Language-Team: Icelandic (http://www.transifex.com/wildfire-games/0ad/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
 #: gui/common/functions_msgbox.js:25
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "Varsayılan tarayıcıda %(url)s açılıyor. Lütfen bekleyin... "
+msgstr ""
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
-msgstr "Sayfa açılıyor"
+msgstr ""
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr "B"
+msgstr ""
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr "KiB"
+msgstr ""
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr "MiB"
+msgstr ""
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr "GiB"
+msgstr ""
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr "%(filesize)s %(unit)s"
+msgstr ""
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime
 #. for a guide to the meaning of the letters.
 #: gui/common/l10n.js:46
 msgid "mm:ss"
-msgstr "dd:ss"
+msgstr ""
 
 #: gui/common/l10n.js:46
 msgid "HH:mm:ss"
-msgstr "SS:dd:ss"
+msgstr ""
 
 #: gui/common/l10n.js:143
 msgctxt "enumeration"
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #: gui/common/mod.js:17
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr "%(mod)s (%(version)s)"
+msgstr ""
 
 #: gui/common/mod.js:20
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #: gui/common/mod.js:28
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr "Gerekli: %(mods)s"
+msgstr ""
 
 #: gui/common/mod.js:30
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr "Aktif: %(mods)s"
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "0 A.D. Empires Etkin mod.io Yasal Uyarısı"
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "Belge Tarihi: 2018-10-12"
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "mod.io çevrimiçi hizmetlerine bağlanmak üzeresiniz."
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Bu hizmet, topluluk yapımı modların kolayca indirilmesi ve kurulmasını sağlar ve IndieDB ve ModDB yaratıcısı firma olan DBolical Pty Ltd tarafından sunulmaktadır."
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr "Bu hizmet 13 yaş ve üzeri içindir."
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games bu bağlantıyı güvenli yapmak için özen gösterdi ve modları güvenlik kusurları açısından inceledi fakat bunun herhangi bir risk barındırmadığını garanti edemez."
+msgstr ""
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Bu hizmeti kullanarak, mod.io'nun kullanım koşulları ve gizlilik politikasına tabii olduğunu ve Wildfire Games'in bu hizmetten kaynaklanan herhangi bir hasardan sorumlu olmadığını kabul edersiniz."
+msgstr ""
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -141,21 +134,21 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Oyun ID'si geri alınamaz\n\n%(technicalDetails)s"
+msgstr ""
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Açılma Hatası"
+msgstr ""
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr "Tekrar dene"
+msgstr ""
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
 msgid "Abort"
-msgstr "İptal"
+msgstr ""
 
 #: gui/modio/modio.js:91
 #, javascript-format
@@ -164,12 +157,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Mod Listesi geri alınamaz\n\n%(technicalDetails)s"
+msgstr ""
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Veri Alma Hatası"
+msgstr ""
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -178,12 +171,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Dosya Yüklenirken Sorun Oluştu\n\n%(technicalDetails)s"
+msgstr ""
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "Yükleme Hatası"
+msgstr ""
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -192,54 +185,54 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Dosya Doğrulama Hatası\n\n%(technicalDetails)s"
+msgstr ""
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Doğrulama Hatası"
+msgstr ""
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "mod.io arayüzü açılıyor."
+msgstr ""
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "Açılıyor"
+msgstr ""
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
 msgid "Cancel"
-msgstr "İptal"
+msgstr ""
 
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr "Geçersiz mod: %(error)s"
+msgstr ""
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
-msgstr "Mevcut modların listesi çekilip, güncelleniyor."
+msgstr ""
 
 #: gui/modio/modio.js:247
 msgid "Updating"
-msgstr "Güncelleniyor"
+msgstr ""
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "Güncellemeyi İptal Et"
+msgstr ""
 
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Yükleniyor “%(modname)s”"
+msgstr ""
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr "Yükleniyor"
+msgstr ""
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Yüklemeyi İptal Et"
+msgstr ""
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -247,7 +240,7 @@ msgstr "Yüklemeyi İptal Et"
 #: gui/modio/modio.js:337
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr "%(current)s / %(total)s (%(percent)s%%)"
+msgstr ""
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:347
@@ -256,11 +249,11 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Geçen Süre: %(elapsed)s\nTahmini Kalan Süre: %(remaining)s\nOrtalama Hız: %(avgSpeed)s"
+msgstr ""
 
 #: gui/modio/modio.js:349
 msgid "∞"
-msgstr "∞"
+msgstr ""
 
 #. Translation: Average download speed, used to give the user a very rough and
 #. naive idea of
@@ -268,61 +261,61 @@ msgstr "∞"
 #: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr "%(number)s %(unit)s/s"
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io Modları"
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr "Kullanılabilir Modlar"
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):81
 msgid "Filter valid mods"
-msgstr "Geçerli modları filtrele"
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):87
 msgid "Back"
-msgstr "Geri"
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):92
 msgid "Refresh List"
-msgstr "Listeyi Yenile"
+msgstr ""
 
 #: gui/modio/modio.xml:(caption):97
 msgid "Download"
-msgstr "Yükle"
+msgstr ""
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
-msgstr "İsim"
+msgstr ""
 
 #: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
-msgstr "Sürüm"
+msgstr ""
 
 #: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
-msgstr "Mod Etiketi"
+msgstr ""
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
-msgstr "Dosya Boyutu"
+msgstr ""
 
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
-msgstr "Bağımlılıklar"
+msgstr ""
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. kolayca Mod Yaratılması için tasarlanmıştır. Modlar .pyromod dosyaları şeklinde dağıtılır ve bunlar aynı .zip dosyaları gibi açılırlar."
+msgstr ""
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -332,13 +325,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Bir mod'u yüklemek için dosyayı 0 A.D. ile açın (dosyayı oyunla açmak için çift tıklayın ya da \"pyrogenesis dosyası.pyromod\"'u bir terminalde çalıştırın). Daha sonra mod, mod seçicide hazır olacak. Dilediğiniz zaman aktif hale getirebilir ya da etkisiz hale getirebilirsiniz. Dosya görüntüleyiciniz ile modları manuel olarak silebilirsiniz (bkz. https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr ""
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Mod yaratma ilgili daha fazla bilgi için Online Mod Rehberi'ne bakın (Aşağıdaki Mod Yaratma Rehberi butonuna Tıklayın)."
+msgstr ""
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -347,49 +340,49 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "mod.io servisi, IndieDB ve ModDB'nin yaratıcısı DBolical tarafından geliştirilmiştir. Bu websiteleri 0 A.D.'nin ve diğer bağımsız oyunların duyulmasına uzun süredir katkıda bulunuyorlar! Bugün, mod.io, ekibimiz tarafından onaylanan tüm modların listelenmesine ve yüklenmesine imkan sağlıyor. \"Modları Yükle\"ye tıklayarak bazılarını yükleyip deneyebilirsiniz!"
+msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Pyrogenesis Mod Seçici"
+msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
-msgstr "Kapat"
+msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Mod Yaratma Rehberi"
+msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr "mod.io'yu ziyaret et."
+msgstr ""
 
 #: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
 msgctxt "mod activation"
 msgid "Enable"
-msgstr "Aktif"
+msgstr ""
 
 #: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
-msgstr "Süzgeç"
+msgstr ""
 
 #: gui/modmod/modmod.js:415
 msgctxt "mod activation"
 msgid "Disable"
-msgstr "Devre dışı"
+msgstr ""
 
 #: gui/modmod/modmod.js:423
 msgid "No mod has been selected."
-msgstr "Hiçbir mod seçilmemiştir."
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "Değişiklikler"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
-msgstr "Reddet"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
@@ -397,86 +390,86 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
-msgstr "Açıklama"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
-msgstr "Aktif Modlar"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):182
 msgid "Visit Website"
-msgstr "Website'yi ziyaret et."
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):191
 msgid "Quit"
-msgstr "Çıkış"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):201
 msgid "Help"
-msgstr "Yardım"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):206
 msgid "Download Mods"
-msgstr "Modları Yükle"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):211
 msgid "Save Configuration"
-msgstr "Yapılandırmayı Kaydet"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
-msgstr "Modları Başlat"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
-msgstr "(Klasör)"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
-msgstr "Websitesi"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Modların yüklü olduğu sıralamayı değiştir.Bu modun bağlılığıyla eşleşmelidir."
+msgstr ""
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr "Yasal Uyarı"
+msgstr ""
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr "mod.io Kullanım Koşulları"
+msgstr ""
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "mod.io Gizlilik Politikası"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
-msgstr "Tamam"
+msgstr ""
 
 #. Translation: Label of a button that when pressed opens the Terms and
 #. Conditions in the
 #. default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr "Çevrimiçi görüntüle"
+msgstr ""
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr "Tarayıcıda aç %(url)s"
+msgstr ""
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
-msgstr "Dil"
+msgstr ""
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr "Vazgeç"
+msgstr ""
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
-msgstr "Kabul et"
+msgstr ""

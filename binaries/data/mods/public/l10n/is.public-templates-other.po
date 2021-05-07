@@ -3,20 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Rok Kepa <rokkepa@gmail.com>, 2014
-# bb2bbe51ae9c098f8fd4e724658828da_da8f605, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-05-05 21:19+0000\n"
-"Last-Translator: Lukas Kotnik <kotnik.lukas2000@gmail.com>\n"
-"Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Language-Team: Icelandic (http://www.transifex.com/wildfire-games/0ad/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
@@ -36,7 +33,7 @@ msgstr ""
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
 msgid "Capture"
-msgstr "Zavzemi"
+msgstr ""
 
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
@@ -66,7 +63,7 @@ msgstr ""
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
 msgid "Fire"
-msgstr "Ogenj"
+msgstr ""
 
 #: simulation/data/damage_types/hack.jsondescription
 msgctxt "damage type"
@@ -134,11 +131,11 @@ msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
-msgstr "Vojska Aleksandra Velikega"
+msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
-msgstr "Vojska Aleksandra Velikega"
+msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
@@ -148,19 +145,19 @@ msgstr ""
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr "Makedonska vojska"
+msgstr ""
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr "Makedonska vojska"
+msgstr ""
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
-msgstr "Vojska Leonidasa I."
+msgstr ""
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:25
 msgid "Army of Leonidas I"
-msgstr "Vojska Leonidasa I"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:21
 #: simulation/templates/campaigns/campaign_city_test.xml:21
@@ -170,31 +167,31 @@ msgstr ""
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:22
 #: simulation/templates/campaigns/campaign_city_test.xml:22
 msgid "Settlement"
-msgstr "Naselbina"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
-msgstr "Manjši grški polis"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "To je manjše grško mesto."
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
-msgstr "Grški polis"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
-msgstr "To je veliko grško mesto."
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr "Svetišče"
+msgstr ""
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Grško svetišče"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
@@ -288,7 +285,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
-msgstr "Piščanec"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
@@ -301,11 +298,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
-msgstr "Nilski krokodil"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:24
 msgid "Crocodylus niloticus"
-msgstr "Crocodylus niloticus"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_deer.xml:11
 msgid "Red Deer"
@@ -322,7 +319,7 @@ msgstr ""
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr "Čekani"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:24
 msgid "Mastiff"
@@ -350,11 +347,11 @@ msgstr ""
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr "Rilec"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
-msgstr "Afriški savanski slon"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
@@ -367,7 +364,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:25
 msgid "Asian Elephant"
-msgstr "Azijski slon"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
@@ -425,7 +422,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_goat.xml:17
 msgid "Goat"
-msgstr "Koza"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_goat.xml:18
 msgid "Capra aegagrus hircus"
@@ -441,7 +438,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_horse.xml:11
 msgid "Horse"
-msgstr "Konj"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_horse.xml:12
 msgid "Equus ferus caballus"
@@ -453,7 +450,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_lion.xml:23
 msgid "Lion"
-msgstr "Lev"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Panthera leo"
@@ -461,11 +458,11 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
-msgstr "Levinja"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_muskox.xml:11
 msgid "Muskox"
-msgstr "Moškatno govedo"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
@@ -473,7 +470,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
-msgstr "Pav"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Pavo cristatus"
@@ -481,7 +478,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_pig.xml:17
 msgid "Pig"
-msgstr "Prašič"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_pig.xml:18
 msgid "Sus scrofa domesticus"
@@ -497,7 +494,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
-msgstr "Zajec"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
@@ -526,7 +523,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_sheep.xml:17
 msgid "Sheep"
-msgstr "Ovca"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_sheep.xml:18
 msgid "Ovis aries"
@@ -534,7 +531,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_tiger.xml:23
 msgid "Tiger"
-msgstr "Tiger"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_tiger.xml:24
 msgid "Panthera tigris"
@@ -542,7 +539,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
-msgstr "Mrož"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
@@ -550,7 +547,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:11
 msgid "Fin Whale"
-msgstr "Brazdasti kit"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
 msgid "Balaenoptera physalus"
@@ -558,7 +555,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
-msgstr "Kit grbavec"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
@@ -574,7 +571,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
-msgstr "Volk"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_wolf.xml:25
 msgid "Canis lupus"
@@ -614,21 +611,21 @@ msgstr ""
 #: simulation/templates/gaia/fruit/berry_04.xml:4
 #: simulation/templates/gaia/fruit/berry_05.xml:4
 msgid "Berries"
-msgstr "Jagode"
+msgstr ""
 
 #: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
-msgstr "Datljevec"
+msgstr ""
 
 #: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
-msgstr "Figa"
+msgstr ""
 
 #: simulation/templates/gaia/fruit/grapes.xml:4
 msgid "Grapes"
-msgstr "Grozdje"
+msgstr ""
 
 #: simulation/templates/gaia/fruit/olive.xml:7
 msgid "Olive"
@@ -636,24 +633,24 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
-msgstr "Starodavne razvaline"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
-msgstr "Velika piramida"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/pyramid_minor.xml:8
 msgid "Minor Pyramid"
-msgstr "Manjša piramida"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
 msgid "Celtic Standing Stone"
-msgstr "Keltski menhir"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Ptolemaic Egyptian Statues"
-msgstr "Ptolemejski egipčanski kipi"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
@@ -661,11 +658,11 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
-msgstr "Rimski kipi"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
-msgstr "Nedokončan grški tempelj"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
@@ -676,7 +673,7 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "Delno zakopani sodi"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
@@ -688,7 +685,7 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
-msgstr "Zlato runo"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/metal.xml:8
 msgid "Secret Box"
@@ -700,22 +697,22 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
 msgid "Persian Rugs"
-msgstr "Perzijske preproge"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
-msgstr "Pegaz"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/shipwreck.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:8
 msgid "Shipwreck"
-msgstr "Ladijska razbitina"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
-msgstr "Tovor ladijske razbitine"
+msgstr ""
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -750,7 +747,7 @@ msgstr ""
 #: simulation/templates/gaia/tree/baobab_3_mature.xml:8
 #: simulation/templates/gaia/tree/baobab_4_dead.xml:8
 msgid "Baobab"
-msgstr "Baoab (opičji kruhovec)"
+msgstr ""
 
 #: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
@@ -768,7 +765,7 @@ msgstr ""
 #: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
 #: simulation/templates/gaia/tree/bush_tropic.xml:4
 msgid "Bush"
-msgstr "Grm"
+msgstr ""
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
@@ -840,7 +837,7 @@ msgstr ""
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr "Evropska palma"
+msgstr ""
 
 #: simulation/templates/gaia/tree/oak.xml:4
 #: simulation/templates/gaia/tree/oak_aut.xml:4
@@ -877,11 +874,11 @@ msgstr ""
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
 msgid "Palm"
-msgstr "Palma"
+msgstr ""
 
 #: simulation/templates/gaia/tree/palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr "Tropska palma"
+msgstr ""
 
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
@@ -939,7 +936,7 @@ msgstr ""
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
-msgstr "Najemnik"
+msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -964,7 +961,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "Bojna črta"
+msgstr ""
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1000,7 +997,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
-msgstr "Nihče"
+msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
@@ -1008,7 +1005,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "Falanga"
+msgstr ""
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1020,7 +1017,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Spopad"
+msgstr ""
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
@@ -1056,12 +1053,12 @@ msgstr ""
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
-msgstr "Gaja"
+msgstr ""
 
 #: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8
 msgid "Fish"
-msgstr "Ribe"
+msgstr ""
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
@@ -1069,7 +1066,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
-msgstr "Sadje"
+msgstr ""
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
@@ -1093,7 +1090,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
-msgstr "Razvaline"
+msgstr ""
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
@@ -1101,7 +1098,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
-msgstr "Zaklad"
+msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
@@ -1109,7 +1106,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
-msgstr "Drevo"
+msgstr ""
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
@@ -1117,11 +1114,11 @@ msgstr ""
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
-msgstr "Zgradba"
+msgstr ""
 
 #: simulation/templates/template_unit.xml:39
 msgid "Unit"
-msgstr "Enota"
+msgstr ""
 
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11

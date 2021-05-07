@@ -3,43 +3,32 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# CAGD_lulofun滷肉飯 <cagd.lulofun@gmail.com>, 2019
-# Yuan <daan0014119@gmail.com>, 2017
-# 黃柏諺 <s8321414@gmail.com>, 2014-2018
-# JerryShen <jerry82422@gmail.com>, 2018
-# Shoichi Chou <shoichi.chou@gmail.com>, 2018
-# StarAtt <tea55688@gmail.com>, 2021
-# WY Liu <amberwyliu@icloud.com>, 2020
-# Yuan <daan0014119@gmail.com>, 2020
-# 張峻瑜 <a728728728@gmail.com>, 2018
-# StarAtt <tea55688@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-05-06 13:23+0000\n"
-"Last-Translator: StarAtt <tea55688@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Icelandic (http://www.transifex.com/wildfire-games/0ad/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. 遊戲手冊[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:2
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "感謝您安裝 0 A.D.！這個頁面將概述這個尚未完全、仍在開發、alpha 版本的遊戲之特性。"
+msgstr ""
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
-msgstr "畫面設定"
+msgstr ""
 
 #: gui/manual/intro.txt:5
 msgid ""
@@ -47,11 +36,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "使用 Alt+Enter 切換全螢幕和視窗模式。在視窗模式下可以調整視窗大小。 當遊戲進行的太慢時，可以於設定視窗中取消「高畫質水面特效」 ，與「陰影」 選項。"
+msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]進行遊戲[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -59,45 +48,45 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "遊戲的控制方式和玩法應該對傳統即時戰略（RTS）遊戲玩家來說相當熟悉。目前仍有許多缺失的功能和數據平衡問題——您可能需要等到 beta 版它們才能正常運作。"
+msgstr ""
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr "基礎操作（預設）："
+msgstr ""
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "左鍵點擊來選擇單位。"
+msgstr ""
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "左鍵點擊及拖曳來選擇一組單位"
+msgstr ""
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "右鍵點擊來指示單位至目的地"
+msgstr ""
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• 方向鍵或 WASD 鍵來移動視野"
+msgstr ""
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + 方向鍵或 shift + 滑鼠滾輪來旋轉視野"
+msgstr ""
 
 #: gui/manual/intro.txt:16
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr "．用滑鼠滾輪或按 hotkey.camera.zoom.in 和 hotkey.camera.zoom.out 以縮放畫面"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]模組[font=\"sans-14\"]"
+msgstr ""
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr "在主選單可以選擇兩種遊戲模式："
+msgstr ""
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -105,13 +94,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "．[font=\"sans-bold-14\"]單人遊戲[font=\"sans-14\"]——遊玩沙盒模式或對抗一個以上的電腦玩家（AI）。預設 AI（Petra）仍在開發中且可能不會使用新功能，但您仍可以與其一同遊玩。"
+msgstr ""
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "．[font=\"sans-bold-14\"]多人遊戲[font=\"sans-14\"]——與人類玩家線上對戰。"
+msgstr ""
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -131,7 +120,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
-msgstr "首先，選取您要遊玩的地圖類型："
+msgstr ""
 
 #: gui/manual/intro.txt:29
 msgid ""
@@ -732,12 +721,12 @@ msgstr ""
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"
-msgstr "手冊"
+msgstr ""
 
 #: gui/manual/manual.xml:(caption):21
 msgid "Close"
-msgstr "關閉"
+msgstr ""
 
 #: gui/manual/manual.xml:(caption):26
 msgid "View Online"
-msgstr "線上查看"
+msgstr ""
