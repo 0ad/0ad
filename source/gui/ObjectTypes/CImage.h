@@ -45,8 +45,7 @@ protected:
 	 */
 	virtual void Draw();
 
-	// Settings
-	CGUISpriteInstance m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
 };
 
 #endif // INCLUDED_CIMAGE

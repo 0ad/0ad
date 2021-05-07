@@ -15,39 +15,32 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_CPROGRESSBAR
-#define INCLUDED_CPROGRESSBAR
+#include "precompiled.h"
+
+#include "CGUIHotkey.h"
 
 #include "gui/ObjectBases/IGUIObject.h"
-#include "gui/CGUISprite.h"
+#include "scriptinterface/ScriptInterface.h"
 
-/**
- * Object used to draw a value (e.g. progress) from 0 to 100 visually.
- */
-class CProgressBar : public IGUIObject
+bool CGUIHotkey::DoFromString(const CStrW& value)
 {
-	GUI_OBJECT(CProgressBar)
+	m_pObject.GetGUI().UnsetObjectHotkey(&m_pObject, m_Setting);
+	m_Setting = value.ToUTF8();
+	m_pObject.GetGUI().SetObjectHotkey(&m_pObject, m_Setting);
+	return true;
+}
 
-public:
-	CProgressBar(CGUI& pGUI);
-	virtual ~CProgressBar();
+bool CGUIHotkey::DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value)
+{
+	m_pObject.GetGUI().UnsetObjectHotkey(&m_pObject, m_Setting);
+	if (!ScriptInterface::FromJSVal(rq, value, m_Setting))
+		return false;
+	m_pObject.GetGUI().SetObjectHotkey(&m_pObject, m_Setting);
+	return true;
+}
 
-protected:
-	/**
-	 * Draws the progress bar
-	 */
-	virtual void Draw();
+void CGUIHotkey::OnSettingChange(const CStr& setting, bool sendMessage)
+{
+	IGUISetting::OnSettingChange(setting, sendMessage);
+}
 
-	/**
-	 * @see IGUIObject#HandleMessage()
-	 * If the progress is changed, ensure the interval is between 0 and 100.
-	 */
-	void HandleMessage(SGUIMessage& Message);
-
-	// Settings
-	CGUISimpleSetting<CGUISpriteInstance> m_SpriteBackground;
-	CGUISimpleSetting<CGUISpriteInstance> m_SpriteBar;
-	CGUISimpleSetting<float> m_Progress;
-};
-
-#endif // INCLUDED_CPROGRESSBAR

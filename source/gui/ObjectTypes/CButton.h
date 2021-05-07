@@ -77,19 +77,17 @@ protected:
 	virtual void CreateJSObject();
 
 	// Settings
-	float m_BufferZone;
-	CGUIString m_Caption;
-	CStrW m_Font;
-	CGUISpriteInstance m_Sprite;
-	CGUISpriteInstance m_SpriteOver;
-	CGUISpriteInstance m_SpritePressed;
-	CGUISpriteInstance m_SpriteDisabled;
-	EAlign m_TextAlign;
-	EVAlign m_TextVAlign;
-	CGUIColor m_TextColor;
-	CGUIColor m_TextColorOver;
-	CGUIColor m_TextColorPressed;
-	CGUIColor m_TextColorDisabled;
+	CGUISimpleSetting<float> m_BufferZone;
+	CGUISimpleSetting<CGUIString> m_Caption;
+	CGUISimpleSetting<CStrW> m_Font;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteOver;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpritePressed;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteDisabled;
+	CGUISimpleSetting<CGUIColor> m_TextColor;
+	CGUISimpleSetting<CGUIColor> m_TextColorOver;
+	CGUISimpleSetting<CGUIColor> m_TextColorPressed;
+	CGUISimpleSetting<CGUIColor> m_TextColorDisabled;
 };
 
 #endif // INCLUDED_CBUTTON

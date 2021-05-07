@@ -30,6 +30,8 @@ GUI Object Base - Text Owner
 #ifndef INCLUDED_IGUITEXTOWNER
 #define INCLUDED_IGUITEXTOWNER
 
+#include "gui/CGUISetting.h"
+#include "gui/SettingTypes/EAlign.h"
 #include "maths/Rect.h"
 
 #include <vector>
@@ -111,6 +113,9 @@ protected:
 	 * Calculate the position for the text, based on the alignment.
 	 */
 	void CalculateTextPosition(CRect& ObjSize, CVector2D& TextPos, CGUIText& Text);
+
+	CGUISimpleSetting<EAlign> m_TextAlign;
+	CGUISimpleSetting<EVAlign> m_TextVAlign;
 
 private:
 	/**

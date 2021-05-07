@@ -47,15 +47,15 @@ public:
 
 protected:
 	// Settings
-	bool m_Checked;
-	CGUISpriteInstance m_SpriteUnchecked;
-	CGUISpriteInstance m_SpriteUncheckedOver;
-	CGUISpriteInstance m_SpriteUncheckedPressed;
-	CGUISpriteInstance m_SpriteUncheckedDisabled;
-	CGUISpriteInstance m_SpriteChecked;
-	CGUISpriteInstance m_SpriteCheckedOver;
-	CGUISpriteInstance m_SpriteCheckedPressed;
-	CGUISpriteInstance m_SpriteCheckedDisabled;
+	CGUISimpleSetting<bool> m_Checked;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteUnchecked;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteUncheckedOver;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteUncheckedPressed;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteUncheckedDisabled;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteChecked;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteCheckedOver;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteCheckedPressed;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteCheckedDisabled;
 };
 
 #endif // INCLUDED_CCHECKBOX

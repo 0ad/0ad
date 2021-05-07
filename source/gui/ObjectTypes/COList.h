@@ -25,18 +25,21 @@
 /**
  * Represents a column.
  */
-struct COListColumn
+class COListColumn
 {
+public:
+	COListColumn(IGUIObject* owner, const CStr& cid)
+		: m_Width(0), m_Id(cid), m_List(owner, "list_" + cid), m_Hidden(owner, "hidden_" + cid, false)
+	{}
 	// Avoid copying the strings.
 	NONCOPYABLE(COListColumn);
 	MOVABLE(COListColumn);
-	COListColumn() : m_Width(0), m_Hidden(false) {}
 	CGUIColor m_TextColor;
 	CStr m_Id;
 	float m_Width;
 	CStrW m_Heading; // CGUIString??
-	CGUIList m_List;
-	bool m_Hidden;
+	CGUISimpleSetting<CGUIList> m_List;
+	CGUISimpleSetting<bool> m_Hidden;
 };
 
 /**
@@ -73,14 +76,13 @@ protected:
 	 */
 	std::vector<COListColumn> m_Columns;
 
-	// Settings
-	CGUISpriteInstance m_SpriteHeading;
-	bool m_Sortable;
-	CStr m_SelectedColumn;
-	i32 m_SelectedColumnOrder;
-	CGUISpriteInstance m_SpriteAsc;
-	CGUISpriteInstance m_SpriteDesc;
-	CGUISpriteInstance m_SpriteNotSorted;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteHeading;
+	CGUISimpleSetting<bool> m_Sortable;
+	CGUISimpleSetting<CStr> m_SelectedColumn;
+	CGUISimpleSetting<i32> m_SelectedColumnOrder;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteAsc;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteDesc;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteNotSorted;
 
 private:
 	static const CStr EventNameSelectionColumnChange;

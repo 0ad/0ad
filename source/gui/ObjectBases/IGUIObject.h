@@ -25,6 +25,8 @@
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
 
+#include "gui/CGUISetting.h"
+#include "gui/SettingTypes/CGUIHotkey.h"
 #include "gui/SettingTypes/CGUISize.h"
 #include "gui/SGUIMessage.h"
 #include "lib/input.h" // just for IN_PASS
@@ -54,6 +56,9 @@ public: \
 class IGUIObject
 {
 	friend class CGUI;
+
+	// For triggering message update handlers.
+	friend class IGUISetting;
 
 	// Allow getProperty to access things like GetParent()
 	template <typename T>
@@ -113,14 +118,11 @@ public:
 	//@{
 
 	/**
-	 * Registers the given setting variables with the GUI object.
+	 * Registers the given setting with the GUI object.
 	 * Enable XML and JS to modify the given variable.
-	 *
-	 * @param Type Setting type
-	 * @param Name Setting reference name
 	 */
-	template<typename T>
-	void RegisterSetting(const CStr& Name, T& Value);
+	void RegisterSetting(const CStr& Name, IGUISetting* setting);
+	void ReregisterSetting(const CStr& Name, IGUISetting* setting);
 
 	/**
 	 * Returns whether there is a setting with the given name registered.
@@ -131,38 +133,12 @@ public:
 	bool SettingExists(const CStr& Setting) const;
 
 	/**
-	 * Get a mutable reference to the setting.
-	 * If no such setting exists, an exception of type std::out_of_range is thrown.
-	 * If the value is modified, there is no GUIM_SETTINGS_UPDATED message sent.
-	 */
-	template <typename T>
-	T& GetSetting(const CStr& Setting);
-
-	template <typename T>
-	const T& GetSetting(const CStr& Setting) const;
-
-	/**
 	 * Set a setting by string, regardless of what type it is.
 	 * Used to parse setting values from XML files.
 	 * For example a CRect(10,10,20,20) is created from "10 10 20 20".
-	 * Returns false if the conversion fails, otherwise true.
+	 * @return false if the setting does not exist or the conversion fails, otherwise true.
 	 */
 	bool SetSettingFromString(const CStr& Setting, const CStrW& Value, const bool SendMessage);
-
-	/**
-	 * Assigns the given value to the setting identified by the given name.
-	 * Uses move semantics, so do not read from Value after this call.
-	 *
-	 * @param SendMessage If true, a GUIM_SETTINGS_UPDATED message will be broadcasted to all GUI objects.
-	 */
-	template <typename T>
-	void SetSetting(const CStr& Setting, T& Value, const bool SendMessage);
-
-	/**
-	 * This variant will copy the value.
-	 */
-	template <typename T>
-	void SetSetting(const CStr& Setting, const T& Value, const bool SendMessage);
 
 	/**
 	 * Returns whether this object is set to be hidden or ghost.
@@ -173,6 +149,8 @@ public:
 	 * Returns whether this is object is set to be hidden.
 	 */
 	bool IsHidden() const;
+
+	void SetHidden(bool hidden) { m_Hidden.Set(hidden, true); }
 
 	/**
 	 * Returns whether this object is set to be hidden or ghost.
@@ -473,7 +451,6 @@ private:
 	/**
 	 * Updates some internal data depending on the setting changed.
 	 */
-	void PreSettingChange(const CStr& Setting);
 	void SettingChanged(const CStr& Setting, const bool SendMessage);
 
 	/**
@@ -545,18 +522,17 @@ protected:
 	// Cached JSObject representing this GUI object.
 	std::unique_ptr<IGUIProxyObject> m_JSObject;
 
-	// Cache references to settings for performance
-	bool m_Enabled;
-	bool m_Hidden;
-	CGUISize m_Size;
-	CStr m_Style;
-	CStr m_Hotkey;
-	float m_Z;
-	bool m_Absolute;
-	bool m_Ghost;
-	float m_AspectRatio;
-	CStrW m_Tooltip;
-	CStr m_TooltipStyle;
+	CGUISimpleSetting<bool> m_Enabled;
+	CGUISimpleSetting<bool> m_Hidden;
+	CGUISimpleSetting<CGUISize> m_Size;
+	CGUISimpleSetting<CStr> m_Style;
+	CGUIHotkey m_Hotkey;
+	CGUISimpleSetting<float> m_Z;
+	CGUISimpleSetting<bool> m_Absolute;
+	CGUISimpleSetting<bool> m_Ghost;
+	CGUISimpleSetting<float> m_AspectRatio;
+	CGUISimpleSetting<CStrW> m_Tooltip;
+	CGUISimpleSetting<CStr> m_TooltipStyle;
 };
 
 #endif // INCLUDED_IGUIOBJECT

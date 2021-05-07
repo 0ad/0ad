@@ -35,6 +35,11 @@ public:
 	CTooltip(CGUI& pGUI);
 	virtual ~CTooltip();
 
+	const CStr& GetUsedObject() const { return m_UseObject; }
+	i32 GetTooltipDelay() const { return m_Delay; }
+	bool ShouldHideObject() const { return m_HideObject; }
+	void SetMousePos(const CVector2D& vec) { m_MousePos.Set(vec, true); }
+
 protected:
 	void SetupText();
 
@@ -52,21 +57,19 @@ protected:
 
 	virtual float GetBufferedZ() const;
 
-	// Settings
-	float m_BufferZone;
-	CGUIString m_Caption;
-	CStrW m_Font;
-	CGUISpriteInstance m_Sprite;
-	i32 m_Delay;
-	CGUIColor m_TextColor;
-	float m_MaxWidth;
-	CVector2D m_Offset;
-	EVAlign m_Anchor;
-	EAlign m_TextAlign;
-	bool m_Independent;
-	CVector2D m_MousePos;
-	CStr m_UseObject;
-	bool m_HideObject;
+	CGUISimpleSetting<float> m_BufferZone;
+	CGUISimpleSetting<CGUIString> m_Caption;
+	CGUISimpleSetting<CStrW> m_Font;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<i32> m_Delay;
+	CGUISimpleSetting<CGUIColor> m_TextColor;
+	CGUISimpleSetting<float> m_MaxWidth;
+	CGUISimpleSetting<CVector2D> m_Offset;
+	CGUISimpleSetting<EVAlign> m_Anchor;
+	CGUISimpleSetting<bool> m_Independent;
+	CGUISimpleSetting<CVector2D> m_MousePos;
+	CGUISimpleSetting<CStr> m_UseObject;
+	CGUISimpleSetting<bool> m_HideObject;
 };
 
 #endif // INCLUDED_CTOOLTIP

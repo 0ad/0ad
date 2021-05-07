@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Spartan Siege Ram">
+    <variant frequency="100" name="Athenian Siege Ram">
       <animations>
         <animation file="mechanical/spart_siege_ram_idle.dae" name="Idle" speed="100"/>
         <animation file="mechanical/spart_siege_ram_move.dae" name="Walk" speed="15"/>
@@ -18,18 +18,18 @@
   <group>
     <variant frequency="100" name="Shields 01">
       <props>
-        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_left_front"/>
-        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_right_front"/>
-        <prop actor="props/units/shields/aspis_spart_skiritai.xml" attachpoint="shield_left_back"/>
-        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_right_back"/>
+        <prop actor="props/units/shields/aspis_athen_a.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/aspis_athen_b.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/aspis_athen_c.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/aspis_athen_a.xml" attachpoint="shield_right_back"/>
       </props>
     </variant>
     <variant frequency="100" name="Shields 02">
       <props>
-        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_left_front"/>
-        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_right_front"/>
-        <prop actor="props/units/shields/aspis_spart_skiritai.xml" attachpoint="shield_left_back"/>
-        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_right_back"/>
+        <prop actor="props/units/shields/aspis_athen_b.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/aspis_athen_c.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/aspis_athen_a.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/aspis_athen_b.xml" attachpoint="shield_right_back"/>
       </props>
     </variant>
   </group>

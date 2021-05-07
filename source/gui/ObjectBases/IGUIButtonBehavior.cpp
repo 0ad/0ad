@@ -33,17 +33,12 @@ IGUIButtonBehavior::IGUIButtonBehavior(IGUIObject& pObject)
 	: m_pObject(pObject),
 	  m_Pressed(),
 	  m_PressedRight(),
-	  m_SoundDisabled(),
-	  m_SoundEnter(),
-	  m_SoundLeave(),
-	  m_SoundPressed(),
-	  m_SoundReleased()
+	  m_SoundDisabled(&pObject, "sound_disabled"),
+	  m_SoundEnter(&pObject, "sound_enter"),
+	  m_SoundLeave(&pObject, "sound_leave"),
+	  m_SoundPressed(&pObject, "sound_pressed"),
+	  m_SoundReleased(&pObject, "sound_released")
 {
-	m_pObject.RegisterSetting("sound_disabled", m_SoundDisabled);
-	m_pObject.RegisterSetting("sound_enter", m_SoundEnter);
-	m_pObject.RegisterSetting("sound_leave", m_SoundLeave);
-	m_pObject.RegisterSetting("sound_pressed", m_SoundPressed);
-	m_pObject.RegisterSetting("sound_released", m_SoundReleased);
 }
 
 IGUIButtonBehavior::~IGUIButtonBehavior()

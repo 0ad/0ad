@@ -74,20 +74,17 @@ protected:
 	 */
 	CVector2D m_TextPos;
 
-	// Settings
-	float m_BufferZone;
-	CGUIString m_Caption;
-	bool m_Clip;
-	CStrW m_Font;
-	bool m_ScrollBar;
-	CStr m_ScrollBarStyle;
-	bool m_ScrollBottom;
-	bool m_ScrollTop;
-	CGUISpriteInstance m_Sprite;
-	EAlign m_TextAlign;
-	EVAlign m_TextVAlign;
-	CGUIColor m_TextColor;
-	CGUIColor m_TextColorDisabled;
+	CGUISimpleSetting<float> m_BufferZone;
+	CGUISimpleSetting<CGUIString> m_Caption;
+	CGUISimpleSetting<bool> m_Clip;
+	CGUISimpleSetting<CStrW> m_Font;
+	CGUISimpleSetting<bool> m_ScrollBar;
+	CGUISimpleSetting<CStr> m_ScrollBarStyle;
+	CGUISimpleSetting<bool> m_ScrollBottom;
+	CGUISimpleSetting<bool> m_ScrollTop;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUIColor> m_TextColor;
+	CGUISimpleSetting<CGUIColor> m_TextColorDisabled;
 };
 
 #endif // INCLUDED_CTEXT

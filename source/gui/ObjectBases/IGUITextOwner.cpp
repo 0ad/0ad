@@ -28,8 +28,10 @@
 #include <math.h>
 
 IGUITextOwner::IGUITextOwner(IGUIObject& pObject)
-	: m_pObject(pObject),
-	  m_GeneratedTextsValid()
+: m_pObject(pObject),
+	m_GeneratedTextsValid(),
+	m_TextAlign(&pObject, "text_align", EAlign::LEFT),
+	m_TextVAlign(&pObject, "text_valign", EVAlign::TOP)
 {
 }
 
@@ -46,7 +48,7 @@ CGUIText& IGUITextOwner::AddText()
 CGUIText& IGUITextOwner::AddText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone)
 {
 	// Avoids a move constructor
-	m_GeneratedTexts.emplace_back(m_pObject.GetGUI(), Text, Font, Width, BufferZone, &m_pObject);
+	m_GeneratedTexts.emplace_back(m_pObject.GetGUI(), Text, Font, Width, BufferZone, m_TextAlign, &m_pObject);
 	return m_GeneratedTexts.back();
 }
 
@@ -104,7 +106,7 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CVector2D& TextPos, CG
 	// loop through all of the TextCall objects again.
 	TextPos.X = ObjSize.left;
 
-	switch (m_pObject.GetSetting<EVAlign>("text_valign"))
+	switch (m_TextVAlign)
 	{
 	case EVAlign::TOP:
 		TextPos.Y = ObjSize.top;

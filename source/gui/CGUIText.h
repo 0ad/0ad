@@ -159,10 +159,11 @@ public:
 	 *		  can be changed by tags.
 	 * @param Width Width, 0 if no word-wrapping.
 	 * @param BufferZone space between text and edge, and space between text and images.
+	 * @param Align Horizontal alignment (left / center / right).
 	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
 	 *		  and we need to be able to output which object the error occurred in to aid the user.
 	 */
-	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject);
+	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const EAlign align, const IGUIObject* pObject);
 
 	/**
 	 * Draw this CGUIText object

@@ -23,13 +23,10 @@
 
 CProgressBar::CProgressBar(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  m_SpriteBackground(),
-	  m_SpriteBar(),
-	  m_Progress()
+	  m_SpriteBackground(this, "sprite_background"),
+	  m_SpriteBar(this, "sprite_bar"),
+	  m_Progress(this, "progress") // Between 0 and 100.
 {
-	RegisterSetting("sprite_background", m_SpriteBackground);
-	RegisterSetting("sprite_bar", m_SpriteBar);
-	RegisterSetting("progress", m_Progress); // between 0 and 100
 }
 
 CProgressBar::~CProgressBar()
@@ -46,9 +43,9 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 		if (Message.value == "progress")
 		{
 			if (m_Progress > 100.f)
-				SetSetting<float>("progress", 100.f, true);
+				m_Progress.Set(100.f, true);
 			else if (m_Progress < 0.f)
-				SetSetting<float>("progress", 0.f, true);
+				m_Progress.Set(0.f, true);
 		}
 		break;
 	default:

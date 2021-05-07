@@ -126,24 +126,22 @@ protected:
 
 	virtual int GetHoveredItem();
 
-	// Settings
-	float m_BufferZone;
-	CStrW m_Font;
-	bool m_ScrollBar;
-	CStr m_ScrollBarStyle;
-	bool m_ScrollBottom;
-	CStrW m_SoundDisabled;
-	CStrW m_SoundSelected;
-	CGUISpriteInstance m_Sprite;
-	CGUISpriteInstance m_SpriteSelectArea;
-	EAlign m_TextAlign;
-	CGUIColor m_TextColor;
-	CGUIColor m_TextColorSelected;
-	i32 m_Selected;
-	bool m_AutoScroll;
-	i32 m_Hovered;
-	CGUIList m_List;
-	CGUIList m_ListData;
+	CGUISimpleSetting<float> m_BufferZone;
+	CGUISimpleSetting<CStrW> m_Font;
+	CGUISimpleSetting<bool> m_ScrollBar;
+	CGUISimpleSetting<CStr> m_ScrollBarStyle;
+	CGUISimpleSetting<bool> m_ScrollBottom;
+	CGUISimpleSetting<CStrW> m_SoundDisabled;
+	CGUISimpleSetting<CStrW> m_SoundSelected;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteSelectArea;
+	CGUISimpleSetting<CGUIColor> m_TextColor;
+	CGUISimpleSetting<CGUIColor> m_TextColorSelected;
+	CGUISimpleSetting<i32> m_Selected;
+	CGUISimpleSetting<bool> m_AutoScroll;
+	CGUISimpleSetting<i32> m_Hovered;
+	CGUISimpleSetting<CGUIList> m_List;
+	CGUISimpleSetting<CGUIList> m_ListData;
 
 private:
 	static const CStr EventNameSelectionChange;

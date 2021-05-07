@@ -109,7 +109,8 @@ Health.prototype.SetHitpoints = function(value)
 
 Health.prototype.IsRepairable = function()
 {
-	return Engine.QueryInterface(this.entity, IID_Repairable) != null;
+	let cmpRepairable = Engine.QueryInterface(this.entity, IID_Repairable);
+	return cmpRepairable && cmpRepairable.IsRepairable();
 };
 
 Health.prototype.IsUnhealable = function()

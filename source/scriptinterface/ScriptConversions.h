@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,7 @@ template<typename T> static bool FromJSVal_vector(const ScriptRequest& rq, JS::H
 	if (!JS::GetArrayLength(rq.cx, obj, &length))
 		FAIL("Failed to get array length");
 
+	out.clear();
 	out.reserve(length);
 	for (u32 i = 0; i < length; ++i)
 	{

@@ -27,21 +27,14 @@ const CStr CSlider::EventNameValueChange = "ValueChange";
 CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
-	  m_ButtonSide(),
-	  m_MaxValue(),
-	  m_MinValue(),
-	  m_Sprite(),
-	  m_SpriteBar(),
-	  m_Value()
+	  m_ButtonSide(this, "button_width"),
+	  m_MaxValue(this, "max_value"),
+	  m_MinValue(this, "min_value"),
+	  m_Sprite(this, "sprite"),
+	  m_SpriteBar(this, "sprite_bar"),
+	  m_Value(this, "value")
 {
-	RegisterSetting("button_width", m_ButtonSide);
-	RegisterSetting("max_value", m_MaxValue);
-	RegisterSetting("min_value", m_MinValue);
-	RegisterSetting("sprite", m_Sprite);
-	RegisterSetting("sprite_bar", m_SpriteBar);
-	RegisterSetting("value", m_Value);
-
-	m_Value = Clamp(m_Value, m_MinValue, m_MaxValue);
+	m_Value.Set(Clamp<float>(m_Value, m_MinValue, m_MaxValue), false);
 }
 
 CSlider::~CSlider()
@@ -61,7 +54,7 @@ float CSlider::GetSliderRatio() const
 
 void CSlider::IncrementallyChangeValue(const float difference)
 {
-	m_Value = Clamp(m_Value + difference, m_MinValue, m_MaxValue);
+	m_Value.Set(Clamp<float>(m_Value + difference, m_MinValue, m_MaxValue), true);
 	UpdateValue();
 }
 
@@ -72,11 +65,13 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 
 	switch (Message.type)
 	{
+	/*
 	case GUIM_SETTINGS_UPDATED:
 	{
-		m_Value = Clamp(m_Value, m_MinValue, m_MaxValue);
+		m_Value.Set(Clamp<float>(m_Value, m_MinValue, m_MaxValue), true);
 		break;
 	}
+	*/
 	case GUIM_MOUSE_WHEEL_DOWN:
 	{
 		if (m_Pressed)
@@ -119,7 +114,6 @@ void CSlider::Draw()
 
 void CSlider::UpdateValue()
 {
-	SetSetting<float>("value", m_Value, true);
 	ScriptEvent(EventNameValueChange);
 }
 

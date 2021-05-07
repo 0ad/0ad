@@ -75,7 +75,7 @@ Builder.prototype.CanRepair = function(target)
 {
 	let cmpFoundation = QueryMiragedInterface(target, IID_Foundation);
 	let cmpRepairable = QueryMiragedInterface(target, IID_Repairable);
-	if (!cmpFoundation && !cmpRepairable)
+	if (!cmpFoundation && (!cmpRepairable || !cmpRepairable.IsRepairable()))
 		return false;
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);

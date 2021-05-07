@@ -43,43 +43,22 @@ IGUIObject::IGUIObject(CGUI& pGUI)
 	  m_pParent(),
 	  m_MouseHovering(),
 	  m_LastClickTime(),
-	  m_Enabled(),
-	  m_Hidden(),
-	  m_Size(),
-	  m_Style(),
-	  m_Hotkey(),
-	  m_Z(),
-	  m_Absolute(),
-	  m_Ghost(),
-	  m_AspectRatio(),
-	  m_Tooltip(),
-	  m_TooltipStyle()
+	  m_Enabled(this, "enabled", true),
+	  m_Hidden(this, "hidden", false),
+	  m_Size(this, "size"),
+	  m_Style(this, "style"),
+	  m_Hotkey(this, "hotkey"),
+	  m_Z(this, "z"),
+	  m_Absolute(this, "absolute", true),
+	  m_Ghost(this, "ghost", false),
+	  m_AspectRatio(this, "aspectratio"),
+	  m_Tooltip(this, "tooltip"),
+	  m_TooltipStyle(this, "tooltip_style")
 {
-	RegisterSetting("enabled", m_Enabled);
-	RegisterSetting("hidden", m_Hidden);
-	RegisterSetting("size", m_Size);
-	RegisterSetting("style", m_Style);
-	RegisterSetting("hotkey", m_Hotkey);
-	RegisterSetting("z", m_Z);
-	RegisterSetting("absolute", m_Absolute);
-	RegisterSetting("ghost", m_Ghost);
-	RegisterSetting("aspectratio", m_AspectRatio);
-	RegisterSetting("tooltip", m_Tooltip);
-	RegisterSetting("tooltip_style", m_TooltipStyle);
-
-	// Setup important defaults
-	// TODO: Should be in the default style?
-	SetSetting<bool>("hidden", false, true);
-	SetSetting<bool>("ghost", false, true);
-	SetSetting<bool>("enabled", true, true);
-	SetSetting<bool>("absolute", true, true);
 }
 
 IGUIObject::~IGUIObject()
 {
-	for (const std::pair<const CStr, IGUISetting*>& p : m_Settings)
-		delete p.second;
-
 	if (!m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetGeneralJSContext(), Trace, this);
 
@@ -102,30 +81,25 @@ void IGUIObject::UnregisterChild(IGUIObject* child)
 	}
 }
 
-template<typename T>
-void IGUIObject::RegisterSetting(const CStr& Name, T& Value)
+void IGUIObject::RegisterSetting(const CStr& Name, IGUISetting* setting)
 {
 	if (SettingExists(Name))
 		LOGERROR("The setting '%s' already exists on the object '%s'!", Name.c_str(), GetPresentableName().c_str());
 	else
-		m_Settings.emplace(Name, new CGUISetting<T>(*this, Name, Value));
+		m_Settings.emplace(Name, setting);
+}
+
+void IGUIObject::ReregisterSetting(const CStr& Name, IGUISetting* setting)
+{
+	if (!SettingExists(Name))
+		LOGERROR("The setting '%s' must already exist on the object '%s'!", Name.c_str(), GetPresentableName().c_str());
+	else
+		m_Settings.at(Name) = setting;
 }
 
 bool IGUIObject::SettingExists(const CStr& Setting) const
 {
 	return m_Settings.find(Setting) != m_Settings.end();
-}
-
-template <typename T>
-T& IGUIObject::GetSetting(const CStr& Setting)
-{
-	return static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting;
-}
-
-template <typename T>
-const T& IGUIObject::GetSetting(const CStr& Setting) const
-{
-	return static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting;
 }
 
 bool IGUIObject::SetSettingFromString(const CStr& Setting, const CStrW& Value, const bool SendMessage)
@@ -137,28 +111,6 @@ bool IGUIObject::SetSettingFromString(const CStr& Setting, const CStrW& Value, c
 		return false;
 	}
 	return it->second->FromString(Value, SendMessage);
-}
-
-template <typename T>
-void IGUIObject::SetSetting(const CStr& Setting, T& Value, const bool SendMessage)
-{
-	PreSettingChange(Setting);
-	static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting = std::move(Value);
-	SettingChanged(Setting, SendMessage);
-}
-
-template <typename T>
-void IGUIObject::SetSetting(const CStr& Setting, const T& Value, const bool SendMessage)
-{
-	PreSettingChange(Setting);
-	static_cast<CGUISetting<T>* >(m_Settings.at(Setting))->m_pSetting = Value;
-	SettingChanged(Setting, SendMessage);
-}
-
-void IGUIObject::PreSettingChange(const CStr& Setting)
-{
-	if (Setting == "hotkey")
-		m_pGUI.UnsetObjectHotkey(this, GetSetting<CStr>(Setting));
 }
 
 void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
@@ -174,10 +126,8 @@ void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
 		if (m_Hidden)
 			RecurseObject(nullptr, &IGUIObject::ResetStates);
 	}
-	else if (Setting == "hotkey")
-		m_pGUI.SetObjectHotkey(this, GetSetting<CStr>(Setting));
 	else if (Setting == "style")
-		m_pGUI.SetObjectStyle(this, GetSetting<CStr>(Setting));
+		m_pGUI.SetObjectStyle(this, m_Style);
 
 	if (SendMessage)
 	{
@@ -254,9 +204,9 @@ void IGUIObject::UpdateCachedSize()
 	//  use its cached size instead of the screen. Notice
 	//  it must have just been cached for it to work.
 	if (!m_Absolute && m_pParent && !IsRootObject())
-		m_CachedActualSize = m_Size.GetSize(m_pParent->m_CachedActualSize);
+		m_CachedActualSize = m_Size->GetSize(m_pParent->m_CachedActualSize);
 	else
-		m_CachedActualSize = m_Size.GetSize(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
+		m_CachedActualSize = m_Size->GetSize(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
 
 	// In a few cases, GUI objects have to resize to fill the screen
 	// but maintain a constant aspect ratio.
@@ -300,7 +250,7 @@ bool IGUIObject::ApplyStyle(const CStr& StyleName)
 	for (const std::pair<const CStr, CStrW>& p : m_pGUI.GetStyle(StyleName).m_SettingsDefaults)
 	{
 		if (SettingExists(p.first))
-			SetSettingFromString(p.first, p.second, true);
+			m_Settings.at(p.first)->FromString(p.second, true);
 		else if (StyleName != "default")
 			LOGWARNING("GUI object has no setting \"%s\", but the style \"%s\" defines it", p.first, StyleName.c_str());
 	}
@@ -548,23 +498,3 @@ void IGUIObject::TraceMember(JSTracer* trc)
 	for (std::pair<const CStr, JS::Heap<JSObject*>>& handler : m_ScriptHandlers)
 		JS::TraceEdge(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
-
-// Instantiate templated functions:
-// These functions avoid copies by working with a reference and move semantics.
-#define TYPE(T) \
-	template void IGUIObject::RegisterSetting<T>(const CStr& Name, T& Value); \
-	template T& IGUIObject::GetSetting<T>(const CStr& Setting); \
-	template const T& IGUIObject::GetSetting<T>(const CStr& Setting) const; \
-	template void IGUIObject::SetSetting<T>(const CStr& Setting, T& Value, const bool SendMessage); \
-
-#include "gui/GUISettingTypes.h"
-#undef TYPE
-
-// Copying functions - discouraged except for primitives.
-#define TYPE(T) \
-	template void IGUIObject::SetSetting<T>(const CStr& Setting, const T& Value, const bool SendMessage); \
-
-#define GUITYPE_IGNORE_NONCOPYABLE
-#include "gui/GUISettingTypes.h"
-#undef GUITYPE_IGNORE_NONCOPYABLE
-#undef TYPE

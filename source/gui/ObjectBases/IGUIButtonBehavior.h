@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,12 +84,11 @@ protected:
 	bool m_Pressed;
 	bool m_PressedRight;
 
-	// Settings
-	CStrW m_SoundDisabled;
-	CStrW m_SoundEnter;
-	CStrW m_SoundLeave;
-	CStrW m_SoundPressed;
-	CStrW m_SoundReleased;
+	CGUISimpleSetting<CStrW> m_SoundDisabled;
+	CGUISimpleSetting<CStrW> m_SoundEnter;
+	CGUISimpleSetting<CStrW> m_SoundLeave;
+	CGUISimpleSetting<CStrW> m_SoundPressed;
+	CGUISimpleSetting<CStrW> m_SoundReleased;
 
 private:
 	/**
