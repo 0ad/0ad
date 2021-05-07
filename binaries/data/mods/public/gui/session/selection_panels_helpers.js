@@ -553,7 +553,8 @@ function turnAutoQueueOn()
 		"type": "autoqueue-on",
 		"entities": g_Selection.toList().filter(ent => {
 			let state = GetEntityState(ent);
-			return state && !!state.production.entities;
+			return !!state?.production?.entities.length &&
+				!state.production.autoqueue;
 		})
 	});
 }
@@ -564,7 +565,8 @@ function turnAutoQueueOff()
 		"type": "autoqueue-off",
 		"entities": g_Selection.toList().filter(ent => {
 			let state = GetEntityState(ent);
-			return state && !!state.production.entities;
+			return !!state?.production?.entities.length &&
+				state.production.autoqueue;
 		})
 	});
 }
