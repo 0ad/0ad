@@ -558,9 +558,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.ReturnResource": function(msg) {
 		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
-			this.SetNextState("RETURNRESOURCE.DROPPINGRESOURCES");
+			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.DROPPINGRESOURCES");
 		else if (this.AbleToMove())
-			this.SetNextState("RETURNRESOURCE.APPROACHING");
+			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.APPROACHING");
 		else
 			return this.FinishOrder();
 		return ACCEPT_ORDER;
