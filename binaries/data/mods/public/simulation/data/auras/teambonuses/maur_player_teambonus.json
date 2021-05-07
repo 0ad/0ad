@@ -1,7 +1,7 @@
 {
 	"type": "global",
 	"affects": ["Temple"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "maur",
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.5 },
@@ -14,5 +14,5 @@
 		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.5 }
 	],
 	"auraName": "Ashoka's Religious Support",
-	"auraDescription": "Allied Temples −50% resource costs and building time; Temple technologies −50% resource costs and research time."
+	"auraDescription": "Temples −50% resource costs and building time; Temple technologies −50% resource costs and research time."
 }

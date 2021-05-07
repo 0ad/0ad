@@ -1,7 +1,7 @@
 {
 	"type": "player",
 	"affects": ["Player"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "mace",
 	"modifications": [
 		{ "value": "Player/BarterMultiplier/Sell/food", "multiply": 1.2 },
@@ -10,5 +10,5 @@
 		{ "value": "Player/BarterMultiplier/Sell/metal", "multiply": 1.2 }
 	],
 	"auraName": "Standardized Currency",
-	"auraDescription": "Allies +20% barter sell prices."
+	"auraDescription": "+20% barter sell prices."
 }

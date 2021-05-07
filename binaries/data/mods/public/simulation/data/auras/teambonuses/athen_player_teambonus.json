@@ -1,11 +1,11 @@
 {
 	"type": "global",
 	"affects": ["Warship"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "athen",
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.75 }
 	],
 	"auraName": "Delian League",
-	"auraDescription": "Allied Warships −25% construction time."
+	"auraDescription": "Warships −25% construction time."
 }

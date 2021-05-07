@@ -1,7 +1,7 @@
 {
 	"type": "global",
 	"affects": ["Elephant"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "kush",
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.8 },
@@ -11,5 +11,5 @@
 		{ "value": "Cost/Resources/metal", "multiply": 0.8 }
 	],
 	"auraName": "Elephant Suppliers",
-	"auraDescription": "Allied Elephants −20% resource costs and training time."
+	"auraDescription": "Elephants −20% resource costs and training time."
 }
