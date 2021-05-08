@@ -40,7 +40,7 @@ GameSettingControls.Biome = class Biome extends GameSettingControlDropdown
 
 	getAutocompleteEntries()
 	{
-		return g_GameSettings.biome.biomes;
+		return g_GameSettings.biome.getAvailableBiomeData().map(biome => biome.Title);
 	}
 
 	onSelectionChange(itemIdx)
