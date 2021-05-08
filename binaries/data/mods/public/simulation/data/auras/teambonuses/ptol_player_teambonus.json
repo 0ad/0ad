@@ -1,11 +1,11 @@
 {
 	"type": "player",
 	"affects": ["Player"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "ptol",
 	"modifications": [
 		{ "value": "ResourceTrickle/Rates/food", "add": 1 }
 	],
 	"auraName": "Breadbasket of the Mediterranean",
-	"auraDescription": "Allies +1.0 food trickle rate."
+	"auraDescription": "+1.0 food trickle rate."
 }

@@ -1,7 +1,7 @@
 {
 	"type": "global",
 	"affects": ["Healer"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "brit",
 	"modifications": [
 		{ "value": "Cost/Resources/food", "multiply": 0.8 },
@@ -10,5 +10,5 @@
 		{ "value": "Cost/Resources/metal", "multiply": 0.8 }
 	],
 	"auraName": "Druids",
-	"auraDescription": "Allied Healers −20% resource costs."
+	"auraDescription": "Healers −20% resource costs."
 }

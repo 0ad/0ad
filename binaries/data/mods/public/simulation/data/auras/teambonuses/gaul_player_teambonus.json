@@ -1,7 +1,7 @@
 {
 	"type": "global",
 	"affects": ["Forge"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "gaul",
 	"modifications": [
 		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.85 },

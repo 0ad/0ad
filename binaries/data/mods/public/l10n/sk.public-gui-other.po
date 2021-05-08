@@ -22,13 +22,13 @@
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tom Hanax, 2019
 # Tom Hanax, 2021
-# Zuzana Miadoková <akara.horse@gmail.com>, 2021
+# Zuzana Miadoková, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-05-01 14:34+0000\n"
-"Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
+"PO-Revision-Date: 2021-05-04 11:27+0000\n"
+"Last-Translator: Zuzana Miadoková\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1997,22 +1997,22 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Veľká snímka obrazovky"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "Zatvoriť alebo zrušiť aktuálne dialógové/vyskakovacie okno."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Zatvoriť/zrušiť"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Potvrdiť príkaz."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2052,12 +2052,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid "Exit to desktop."
-msgstr ""
+msgstr "Odísť na pracovnú plochu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Exit to desktop"
-msgstr ""
+msgstr "Odísť na pracovnú plochu"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2087,7 +2087,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Uložiť profil"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
@@ -2117,17 +2117,17 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Snímka obrazovky"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Zapnúť zobrazovanie vodoznaku produktu/spoločnosti pre oficiálne snímky obrazovky."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Prepnúť vodoznak"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
@@ -3369,7 +3369,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Odstrániť jednotky z výberu."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
@@ -3379,12 +3379,12 @@ msgstr "Odstrániť jednotky z výberu"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Vybrať len ranené jednotky."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Vybrať len ranené jednotky"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -3667,7 +3667,7 @@ msgstr "Prehliadač máp"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Zatvoriť prehliadač máp bez uloženia výberu."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3679,7 +3679,7 @@ msgstr "Zavrieť"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Zatvoriť prehliadač máp."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -4718,7 +4718,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Zobrazenie dosahu aury"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -4728,7 +4728,7 @@ msgstr "Zobraz dosah aury označených jednotiek a budov (môže byť zmenené v
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Zobrazenie dosahu liečenia"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
@@ -4828,7 +4828,7 @@ msgstr "Pokračovať v kampani"
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Preži históriu prostredníctvom historických vojenských kampaní."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"

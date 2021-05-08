@@ -1,7 +1,7 @@
 {
 	"type": "global",
 	"affects": ["CivilCentre"],
-	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"affectedPlayers": ["MutualAlly"],
 	"civ": "sele",
 	"modifications": [
 		{ "value": "Cost/Resources/food", "multiply": 0.8 },
@@ -10,5 +10,5 @@
 		{ "value": "Cost/Resources/metal", "multiply": 0.8 }
 	],
 	"auraName": "Syrian Tetrapolis",
-	"auraDescription": "Allied Civil Centers −20% resource costs."
+	"auraDescription": "Civil Centers −20% resource costs."
 }

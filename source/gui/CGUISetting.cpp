@@ -79,6 +79,7 @@ bool CGUISimpleSetting<CGUIColor>::DoFromJSVal(const ScriptRequest& rq, JS::Hand
 			LOGERROR("Invalid color '%s'", name.c_str());
 			return false;
 		}
+		return true;
 	}
 
 	return ScriptInterface::FromJSVal<CColor>(rq, value, m_Setting);

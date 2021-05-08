@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-23 14:31+0000\n"
+"PO-Revision-Date: 2021-05-05 02:29+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -884,11 +884,11 @@ msgstr "尋找閒置工人"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s——打包"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "打包"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -960,7 +960,7 @@ msgstr "目前/最大採集人數"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "（%(secondaryName)s）"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -1042,11 +1042,11 @@ msgstr "右鍵點擊以將其設定為預設編隊。"
 #: gui/session/selection_panels.js:338
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr "卸下 %(name)s"
+msgstr "卸載 %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
+msgstr "單擊卸載 1 名單位。按住 Shift 點擊卸載所有該類型的單位。"
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:863
 #, javascript-format
@@ -1113,22 +1113,22 @@ msgstr "升級時無法訓練。"
 #: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "升級成%(primaryName)s（%(secondaryName)s）。%(tooltip)s"
 
 #: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "升級成%(primaryName)s（%(secondaryName)s）。"
 
 #: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "升級成%(primaryName)s。%(tooltip)s"
 
 #: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "升級成%(primaryName)s。"
 
 #: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
@@ -1611,7 +1611,7 @@ msgstr "右鍵點擊以設為貿易市集目的地。"
 #: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "塔樓：%(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
 #, javascript-format
@@ -1634,11 +1634,11 @@ msgstr[0] "無法控制這些實體。"
 
 #: gui/session/unit_actions.js:1301
 msgid "Unload All."
-msgstr "卸下所有。"
+msgstr "卸載所有。"
 
 #: gui/session/unit_actions.js:1336
 msgid "Unload Turrets."
-msgstr ""
+msgstr "卸載塔樓。"
 
 #: gui/session/unit_actions.js:1356
 msgid "Destroy the selected units or structures."
@@ -1663,7 +1663,7 @@ msgstr "命令選取的單位據守塔樓。"
 
 #: gui/session/unit_actions.js:1474
 msgid "Unload"
-msgstr "卸下"
+msgstr "卸載"
 
 #: gui/session/unit_actions.js:1494
 msgid "Order the selected units to repair a structure, ship, or siege engine."
