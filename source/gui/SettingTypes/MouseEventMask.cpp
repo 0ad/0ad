@@ -100,8 +100,8 @@ public:
 		}
 
 		auto mask = std::make_unique<CGUIMouseEventMaskTexture>();
-		mask->m_Width = tex.m_Width;
-		mask->m_Height = tex.m_Height;
+		mask->m_Width = static_cast<u16>(tex.m_Width);
+		mask->m_Height = static_cast<u16>(tex.m_Height);
 		mask->m_Data.reserve(mask->m_Width * mask->m_Height);
 		for (u8* ptr = tex.get_data(); ptr < tex.get_data() + tex.m_DataSize; ptr += tex.m_Bpp/8)
 		{
@@ -124,7 +124,7 @@ public:
 		if (x < 0 || y < 0 || x >= m_Width || y >= m_Height)
 			return false;
 
-		return m_Data[x + y * m_Width] > 0;
+		return m_Data[x + y * m_Width];
 	}
 
 private:
