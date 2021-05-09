@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+	<script directory="gui/common/"/>
+	<script directory="gui/incompatible_mods/"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-274 50%-200 50%+274 50%+200">
+
+		<object type="text" style="ModernLabelText" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Welcome!</translatableAttribute>
+		</object>
+
+		<object name="mainText" type="text" style="ModernTextPanel" size="20 20 100%-20 100%-52">
+		</object>
+
+		<object name="btnClose" type="button" style="ModernButtonRed" size="18 100%-45 100%-18 100%-17" hotkey="cancel">
+			<translatableAttribute id="caption">Ok</translatableAttribute>
+			<action on="Press">closePage();</action>
+		</object>
+
+	</object>
+</objects>

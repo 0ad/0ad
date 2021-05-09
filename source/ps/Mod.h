@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,9 @@ extern CmdLineArgs g_args;
 namespace Mod
 {
 	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface);
-
+	const std::vector<CStr>& GetEnabledMods();
+	const std::vector<CStr>& GetIncompatibleMods();
+	const std::vector<CStr>& GetFailedMods();
 	/**
 	 * This reads the version numbers from the launched mods.
 	 * It caches the result, since the reading of zip files is slow and
@@ -38,6 +40,13 @@ namespace Mod
 	 * Make sure this is called after each MountMods call.
 	 */
 	void CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext);
+
+	const std::vector<CStr>& GetModsFromArguments(const CmdLineArgs& args, int flags);
+	bool AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods);
+	bool CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods);
+	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version);
+	void SetDefaultMods(const CmdLineArgs& args, int flags);
+	void ClearIncompatibleMods();
 
 	/**
 	 * Get the loaded mods and their version.

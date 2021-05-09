@@ -103,6 +103,7 @@ extern void RestartEngine();
 #include <iostream>
 
 #include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/join.hpp>
 #include <boost/algorithm/string/split.hpp>
 
 ERROR_GROUP(System);
@@ -379,24 +380,6 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 	return ERI_NOT_IMPLEMENTED;
 }
 
-const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
-{
-	const bool init_mods = (flags & INIT_MODS) == INIT_MODS;
-	const bool add_public = (flags & INIT_MODS_PUBLIC) == INIT_MODS_PUBLIC;
-
-	if (!init_mods)
-		return g_modsLoaded;
-
-	g_modsLoaded = args.GetMultiple("mod");
-
-	if (add_public)
-		g_modsLoaded.insert(g_modsLoaded.begin(), "public");
-
-	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
-
-	return g_modsLoaded;
-}
-
 void MountMods(const Paths& paths, const std::vector<CStr>& mods)
 {
 	OsPath modPath = paths.RData()/"mods";
@@ -457,7 +440,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	// Engine localization files (regular priority, these can be overwritten).
 	g_VFS->Mount(L"l10n/", paths.RData()/"l10n"/"");
 
-	MountMods(paths, GetMods(args, flags));
+	MountMods(paths, Mod::GetModsFromArguments(args, flags));
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.
@@ -864,6 +847,26 @@ bool Autostart(const CmdLineArgs& args);
  */
 bool AutostartVisualReplay(const std::string& replayFile);
 
+bool EnableModsOrSetDefault(const CmdLineArgs& args, int flags, const std::vector<CStr>& mods, bool fromConfig)
+{
+	ScriptInterface scriptInterface("Engine", "CheckAndEnableMods", g_ScriptContext);
+	if (Mod::CheckAndEnableMods(scriptInterface, mods))
+		return true;
+	// Here we refuse to start as there is no gui anyway
+	if (args.Has("autostart-nonvisual"))
+	{
+		if (fromConfig)
+			LOGERROR("Trying to start with incompatible mods from configuration file: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
+		else
+			LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
+		return false;
+	}
+	Mod::SetDefaultMods(args, flags);
+	RestartEngine();
+	return false;
+}
+
+
 bool Init(const CmdLineArgs& args, int flags)
 {
 	h_mgr_init();
@@ -924,20 +927,25 @@ bool Init(const CmdLineArgs& args, int flags)
 	// else check if there are mods that should be loaded specified
 	// in the config and load those (by aborting init and restarting
 	// the engine).
-	if (!args.Has("mod") && (flags & INIT_MODS) == INIT_MODS)
+	if ((flags & INIT_MODS) == INIT_MODS)
 	{
-		CStr modstring;
-		CFG_GET_VAL("mod.enabledmods", modstring);
-		if (!modstring.empty())
+		if (!args.Has("mod"))
 		{
-			std::vector<CStr> mods;
-			boost::split(mods, modstring, boost::is_any_of(" "), boost::token_compress_on);
-			std::swap(g_modsLoaded, mods);
+			CStr modstring;
+			CFG_GET_VAL("mod.enabledmods", modstring);
+			if (!modstring.empty())
+			{
+				std::vector<CStr> mods;
+				boost::split(mods, modstring, boost::is_any_of(" "), boost::token_compress_on);
+				if (!EnableModsOrSetDefault(args, flags, mods, true))
+					return false;
 
-			// Abort init and restart
-			RestartEngine();
-			return false;
+				RestartEngine();
+				return false;
+			}
 		}
+		else if (!EnableModsOrSetDefault(args, flags, g_modsLoaded, false))
+			return false;
 	}
 
 	new L10n;
