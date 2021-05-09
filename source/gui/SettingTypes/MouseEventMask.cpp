@@ -74,8 +74,8 @@ bool CGUIMouseEventMask::IsMouseOver(const CVector2D& mousePos, const CRect& obj
 class CGUIMouseEventMaskTexture final : public CGUIMouseEventMask::Impl
 {
 public:
-	static constexpr const char* identifier = "texture:";
-	static constexpr size_t specOffset = sizeof(identifier);
+	static constexpr std::string_view identifier = "texture:";
+	static constexpr size_t specOffset = identifier.size();
 
 	static std::unique_ptr<CGUIMouseEventMaskTexture> Create(const std::string& spec)
 	{
