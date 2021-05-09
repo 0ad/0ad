@@ -87,8 +87,11 @@ class TemplateLoader
 			translateObjectKeys(data, this.TechnologyTranslateKeys);
 
 			// Translate specificName as in GetTechnologyData() from gui/session/session.js
-			for (let civ in data.specificName)
-				data.specificName[civ] = translate(data.specificName[civ]);
+			if (typeof (data.specificName) === 'object')
+				for (let civ in data.specificName)
+					data.specificName[civ] = translate(data.specificName[civ]);
+			else if (data.specificName)
+				warn("specificName should be an object of civ->name mappings in " + templateName + ".json");
 
 			this.technologyData[templateName] = data;
 		}
