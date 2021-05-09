@@ -45,7 +45,7 @@ namespace Mod
 	bool AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods);
 	bool CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods);
 	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version);
-	void SetDefaultMods(const CmdLineArgs& args, int flags);
+	void SetDefaultMods();
 	void ClearIncompatibleMods();
 
 	/**

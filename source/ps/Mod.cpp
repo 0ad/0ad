@@ -143,7 +143,7 @@ const std::vector<CStr>& Mod::GetModsFromArguments(const CmdLineArgs& args, int 
 	return g_modsLoaded;
 }
 
-void Mod::SetDefaultMods(const CmdLineArgs& args, int flags)
+void Mod::SetDefaultMods()
 {
 	g_modsLoaded.clear();
 	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
@@ -243,6 +243,7 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 					g_incompatibleMods.push_back(mod);
 					continue;
 				}
+				break;
 			}
 		}
 
@@ -270,10 +271,10 @@ bool Mod::CompareVersionStrings(const CStr& version, const CStr& op, const CStr&
 	for (size_t i = 0; i < min; ++i)
 	{
 		const int diff = versionSplit[i].ToInt() - requiredSplit[i].ToInt();
-		if (gt && diff > 0 || lt && diff < 0)
+		if ((gt && diff > 0) || (lt && diff < 0))
 			return true;
 
-		if (gt && diff < 0 || lt && diff > 0 || eq && diff)
+		if ((gt && diff < 0) || (lt && diff > 0) || (eq && diff))
 			return false;
 	}
 

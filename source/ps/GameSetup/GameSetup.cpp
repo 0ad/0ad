@@ -847,7 +847,7 @@ bool Autostart(const CmdLineArgs& args);
  */
 bool AutostartVisualReplay(const std::string& replayFile);
 
-bool EnableModsOrSetDefault(const CmdLineArgs& args, int flags, const std::vector<CStr>& mods, bool fromConfig)
+bool EnableModsOrSetDefault(const CmdLineArgs& args, const std::vector<CStr>& mods, bool fromConfig)
 {
 	ScriptInterface scriptInterface("Engine", "CheckAndEnableMods", g_ScriptContext);
 	if (Mod::CheckAndEnableMods(scriptInterface, mods))
@@ -861,7 +861,7 @@ bool EnableModsOrSetDefault(const CmdLineArgs& args, int flags, const std::vecto
 			LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
 		return false;
 	}
-	Mod::SetDefaultMods(args, flags);
+	Mod::SetDefaultMods();
 	RestartEngine();
 	return false;
 }
@@ -937,14 +937,14 @@ bool Init(const CmdLineArgs& args, int flags)
 			{
 				std::vector<CStr> mods;
 				boost::split(mods, modstring, boost::is_any_of(" "), boost::token_compress_on);
-				if (!EnableModsOrSetDefault(args, flags, mods, true))
+				if (!EnableModsOrSetDefault(args, mods, true))
 					return false;
 
 				RestartEngine();
 				return false;
 			}
 		}
-		else if (!EnableModsOrSetDefault(args, flags, g_modsLoaded, false))
+		else if (!EnableModsOrSetDefault(args, g_modsLoaded, false))
 			return false;
 	}
 

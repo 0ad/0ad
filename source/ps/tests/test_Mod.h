@@ -128,6 +128,19 @@ public:
 		TS_ASSERT(script.ParseJSON(jsonStringG, &jsonG));
 		JS_SetProperty(rq.cx, obj, "good", jsonG);
 
+		JS::RootedValue jsonG2(rq.cx);
+		CStr jsonStringG2 = "{\
+				\"name\": \"good\",\
+				\"version\" : \"0.0.25\",\
+				\"label\" : \"good mod\",\
+				\"url\" : \"\",\
+				\"description\" : \"ok\",\
+				\"dependencies\" : [\"0ad>=0.0.24\"]\
+				}\
+			";
+		TS_ASSERT(script.ParseJSON(jsonStringG2, &jsonG2));
+		JS_SetProperty(rq.cx, obj, "good2", jsonG2);
+
 		JS::RootedValue availableMods(rq.cx, JS::ObjectValue(*obj));
 
 		std::vector<CStr> mods;
@@ -146,6 +159,12 @@ public:
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("good");
+		Mod::ClearIncompatibleMods();
+		TS_ASSERT(Mod::AreModsCompatible(script, mods, availableMods));
+
+		mods.clear();
+		mods.push_back("public");
+		mods.push_back("good2");
 		Mod::ClearIncompatibleMods();
 		TS_ASSERT(Mod::AreModsCompatible(script, mods, availableMods));
 
