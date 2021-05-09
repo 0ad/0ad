@@ -282,6 +282,7 @@ Game.prototype.StanzaKeys = [
 	"name",
 	"hasPassword",
 	"hostUsername",
+	"hostJID",
 	"state",
 	"nbp",
 	"maxnbp",

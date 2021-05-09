@@ -32,6 +32,7 @@
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/GUID.h"
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
 #include "scriptinterface/ScriptInterface.h"
@@ -109,7 +110,8 @@ XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string
 
 	m_xpartamuppId = sXpartamupp + "@" + m_server + "/CC";
 	m_echelonId = sEchelon + "@" + m_server + "/CC";
-	glooxwrapper::JID clientJid(sUsername + "@" + m_server + "/0ad");
+	// Generate a unique, unpredictable resource to allow multiple 0 A.D. instances to connect to the lobby.
+	glooxwrapper::JID clientJid(sUsername + "@" + m_server + "/0ad-" + ps_generate_guid());
 	glooxwrapper::JID roomJid(m_room + "@conference." + m_server + "/" + sNick);
 
 	// If we are connecting, use the full jid and a password
@@ -425,7 +427,7 @@ void XmppClient::SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::
 	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
 
 	// Setup some base stanza attributes
-	GameListQuery* g = new GameListQuery();
+	std::unique_ptr<GameListQuery> g = std::make_unique<GameListQuery>();
 	g->m_Command = "register";
 	glooxwrapper::Tag* game = glooxwrapper::Tag::allocate("game");
 
@@ -434,17 +436,27 @@ void XmppClient::SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::
 	scriptInterface.EnumeratePropertyNames(data, true, properties);
 	for (const std::string& p : properties)
 	{
-		std::wstring value;
-		scriptInterface.GetProperty(data, p.c_str(), value);
-		game->addAttribute(p, utf8_from_wstring(value));
+		std::string value;
+		if (!scriptInterface.GetProperty(data, p.c_str(), value))
+		{
+			LOGERROR("Could not parse attribute '%s' as string.", p);
+			return;
+		}
+		game->addAttribute(p, value);
 	}
+
+	// Overwrite some attributes to make it slightly less trivial to do bad things,
+	// and explicit some invariants.
+
+	// The JID must point to ourself.
+	game->addAttribute("hostJID", GetJID());
 
 	// Push the stanza onto the IQ
 	g->m_GameList.emplace_back(game);
 
 	// Send IQ
 	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
-	iq.addExtension(g);
+	iq.addExtension(g.release());
 	DbgXMPP("SendIqRegisterGame [" << tag_xml(iq) << "]");
 	m_client->send(iq);
 }
@@ -504,7 +516,7 @@ void XmppClient::SendIqLobbyAuth(const std::string& to, const std::string& token
 	LobbyAuth* auth = new LobbyAuth();
 	auth->m_Token = token;
 
-	glooxwrapper::JID clientJid(to + "@" + m_server + "/0ad");
+	glooxwrapper::JID clientJid(to);
 	glooxwrapper::IQ iq(gloox::IQ::Set, clientJid, m_client->getID());
 	iq.addExtension(auth);
 	DbgXMPP("SendIqLobbyAuth [" << tag_xml(iq) << "]");
@@ -595,7 +607,7 @@ JS::Value XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface)
 	ScriptInterface::CreateArray(rq, &ret);
 	int j = 0;
 
-	const char* stats[] = { "name", "hostUsername", "state", "hasPassword",
+	const char* stats[] = { "name", "hostUsername", "hostJID", "state", "hasPassword",
 		"nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType",
 		"victoryConditions", "startTime", "mods" };
 
@@ -850,7 +862,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 			}
 
 			if (!m_connectionDataIqId.empty() && m_connectionDataIqId.compare(iq.id().to_string()) != 0) {
-				LOGWARNING("XmppClient: Received connection data with invalid id");
+				LOGMESSAGE("XmppClient: Received connection data with invalid id");
 				return true;
 			}
 
@@ -943,7 +955,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 			if (g_NetServer)
 				g_NetServer->OnLobbyAuth(iq.from().username(), lobbyAuth->m_Token.to_string());
 			else
-				LOGERROR("Received lobby authentication request, but not hosting currently!");
+				LOGMESSAGE("Received lobby authentication request, but not hosting currently!");
 		}
 	}
 	else if (iq.subtype() == gloox::IQ::Get)
@@ -1164,9 +1176,14 @@ void XmppClient::SetNick(const std::string& nick)
 /**
  * Get current nickname.
  */
-std::string XmppClient::GetNick()
+std::string XmppClient::GetNick() const
 {
 	return m_mucRoom->nick().to_string();
+}
+
+std::string XmppClient::GetJID() const
+{
+	return m_client->getJID().to_string();
 }
 
 /**

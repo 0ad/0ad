@@ -87,7 +87,8 @@ CStr HashPassword(const CStr& password)
 	return CStr(Hexify(encrypted, DIGESTSIZE)).UpperCase();
 }
 
-void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useSTUN, const CStr& password)
+
+void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u16 serverPort, bool useSTUN, const CStr& password)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -138,7 +139,8 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
-	g_NetClient->SetHostingPlayerName(hostLobbyName);
+	if (hasLobby)
+		g_NetClient->SetHostJID(g_XmppClient->GetJID());
 	g_NetClient->SetGamePassword(hashedPass);
 	g_NetClient->SetupServerData("127.0.0.1", serverPort, false);
 	g_NetClient->SetControllerSecret(secret);
@@ -151,7 +153,7 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 	}
 }
 
-void StartNetworkJoin(const ScriptRequest& rq, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID)
+void StartNetworkJoin(const ScriptRequest& rq, const CStrW& playerName, const CStr& serverAddress, u16 serverPort)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -160,8 +162,7 @@ void StartNetworkJoin(const ScriptRequest& rq, const CStrW& playerName, const CS
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
-	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
-	g_NetClient->SetupServerData(serverAddress, serverPort, useSTUN);
+	g_NetClient->SetupServerData(serverAddress, serverPort, false);
 
 	if (!g_NetClient->SetupConnection(nullptr))
 	{
@@ -187,7 +188,7 @@ void StartNetworkJoinLobby(const CStrW& playerName, const CStr& hostJID, const C
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
-	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
+	g_NetClient->SetHostJID(hostJID);
 	g_NetClient->SetGamePassword(hashedPass);
 	g_XmppClient->SendIqGetConnectionData(hostJID, hashedPass.c_str());
 }
