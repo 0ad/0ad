@@ -74,7 +74,7 @@ msgstr "Доступно"
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Ошибка загрузки прохождения кампании %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
 msgid "Campaign Name"
@@ -118,6 +118,8 @@ msgstr "Файл не может быть загружен"
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
+"Вы действительно уверены, что желаете удалить прохождение %s? Это "
+"необратимо."
 
 #: gui/campaigns/load_modal/LoadModal.js:103
 msgid "Confirmation"
@@ -142,7 +144,7 @@ msgstr ""
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Название выбранного прохождения:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -159,7 +161,7 @@ msgstr "Начать кампанию"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run: "
-msgstr ""
+msgstr "Пожалуйста введите название прохождения кампании:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55

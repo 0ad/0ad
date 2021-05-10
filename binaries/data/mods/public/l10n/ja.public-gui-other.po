@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 08:30+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 08:30+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2472,6 +2472,26 @@ msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
 msgstr ""
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr ""
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
@@ -3545,7 +3565,7 @@ msgstr "言語コードの後に続く、省略可能な4文字の文字体系�
 msgid "Not implemented yet."
 msgstr "未実装です。"
 
-#: gui/maps/MapCache.js:59
+#: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "ランダム"
@@ -3554,51 +3574,51 @@ msgstr "ランダム"
 msgid "A randomly selected map."
 msgstr "ランダムに選択されるマップです。"
 
-#: gui/maps/MapFilters.js:88
+#: gui/maps/MapFilters.js:91
 msgid "Default"
 msgstr "デフォルト"
 
-#: gui/maps/MapFilters.js:89
+#: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
 msgstr "海軍マップとデモマップを除いた全てのマップ"
 
-#: gui/maps/MapFilters.js:94
+#: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
 msgstr "海洋マップ"
 
-#: gui/maps/MapFilters.js:95
+#: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "敵に到達するためには船が必要となるマップ"
 
-#: gui/maps/MapFilters.js:100
+#: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
 msgstr "デモマップ"
 
-#: gui/maps/MapFilters.js:101
+#: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "これらはデモ用のマップでプレイに適していません。"
 
-#: gui/maps/MapFilters.js:106
+#: gui/maps/MapFilters.js:109
 msgid "New Maps"
 msgstr "新マップ"
 
-#: gui/maps/MapFilters.js:107
+#: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
 msgstr "このリリースでの全く新しいマップです。"
 
-#: gui/maps/MapFilters.js:112
+#: gui/maps/MapFilters.js:115
 msgid "Trigger Maps"
 msgstr ""
 
-#: gui/maps/MapFilters.js:113
+#: gui/maps/MapFilters.js:116
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "予定されたイベントが起こり、敵ユニットが生成されるマップ"
 
-#: gui/maps/MapFilters.js:118
+#: gui/maps/MapFilters.js:121
 msgid "All Maps"
 msgstr "すべてのマップ"
 
-#: gui/maps/MapFilters.js:119
+#: gui/maps/MapFilters.js:122
 msgid "Every map of the chosen maptype."
 msgstr "選択したタイプの全マップ"
 
@@ -3676,12 +3696,7 @@ msgstr ""
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr ""
 
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
-msgctxt "random map pick"
-msgid "Random"
-msgstr "ランダム"
-
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
 msgstr ""
 

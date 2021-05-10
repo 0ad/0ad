@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-23 06:27+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 13:28+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1753,15 +1753,23 @@ msgstr "Σύμμαχοι επιτρέπετε να χρησιμοποιήσου�
 msgid "You are allowed to use this dropsite"
 msgstr "Σου επιτρέπεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr "Ενεργοποίηση αυτόματης εισαγωγής σε σειρά για επιλεγμένες κατασκευές."
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr "Απενεργοποίηση  αυτόματης εισαγωγής σε σειρά για επιλεγμένες κατασκευές."
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Η οντότητα πρέπει να εξουδετερωθεί ώστε να συλλεχθεί."
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Δεν μπορείς να καταστρέψεις αυτήν την οντότητα γιατί εχεις λιγότερους απο τους μισούς πόντους κατάκτησης"
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Η οντότητα δεν διαγράφεται."

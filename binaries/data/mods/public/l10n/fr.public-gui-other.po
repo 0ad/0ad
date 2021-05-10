@@ -67,9 +67,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 08:30+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 08:30+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2541,6 +2541,26 @@ msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
 msgstr "Ajouter la 8ème unité en file d'attente"
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr ""
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
@@ -3614,7 +3634,7 @@ msgstr "Code de quatre lettres optionnel suivant le code de la langue (défini p
 msgid "Not implemented yet."
 msgstr "Pas encore implémenté."
 
-#: gui/maps/MapCache.js:59
+#: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aléatoire"
@@ -3623,51 +3643,51 @@ msgstr "Aléatoire"
 msgid "A randomly selected map."
 msgstr "Une carte sélectionnée au hasard."
 
-#: gui/maps/MapFilters.js:88
+#: gui/maps/MapFilters.js:91
 msgid "Default"
 msgstr "Par défaut"
 
-#: gui/maps/MapFilters.js:89
+#: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
 msgstr "Toutes les cartes, exceptées les cartes navales et de démonstration."
 
-#: gui/maps/MapFilters.js:94
+#: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
 msgstr "Cartes navales"
 
-#: gui/maps/MapFilters.js:95
+#: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Cartes où des navires sont requis pour atteindre l'ennemi."
 
-#: gui/maps/MapFilters.js:100
+#: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
 msgstr "Cartes de démonstration"
 
-#: gui/maps/MapFilters.js:101
+#: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Ces cartes ne sont pas jouables mais servent uniquement à la démonstration."
 
-#: gui/maps/MapFilters.js:106
+#: gui/maps/MapFilters.js:109
 msgid "New Maps"
 msgstr "Nouvelles cartes"
 
-#: gui/maps/MapFilters.js:107
+#: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
 msgstr "Cartes qui sont neuves dans cette version du jeu. "
 
-#: gui/maps/MapFilters.js:112
+#: gui/maps/MapFilters.js:115
 msgid "Trigger Maps"
 msgstr "Cartes à déclencheurs"
 
-#: gui/maps/MapFilters.js:113
+#: gui/maps/MapFilters.js:116
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Cartes qui comprennent des événements particuliers et potentiellement l'apparition d'unités ennemies."
 
-#: gui/maps/MapFilters.js:118
+#: gui/maps/MapFilters.js:121
 msgid "All Maps"
 msgstr "Toutes les cartes"
 
-#: gui/maps/MapFilters.js:119
+#: gui/maps/MapFilters.js:122
 msgid "Every map of the chosen maptype."
 msgstr "Toutes les cartes du type de carte choisi."
 
@@ -3745,12 +3765,7 @@ msgstr "Cartes : %(mapCount)s"
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Page : %(currentPage)s/%(maxPage)s"
 
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
-msgctxt "random map pick"
-msgid "Random"
-msgstr "Aléatoire"
-
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
 msgstr ""
 

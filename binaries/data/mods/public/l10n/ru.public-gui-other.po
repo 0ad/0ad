@@ -48,8 +48,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-05-04 21:52+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-08 03:39+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -503,7 +503,7 @@ msgstr "Игра уже началась, набладатели не допус
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr "Вас отключили."
+msgstr "Вас исключили."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
@@ -2552,6 +2552,26 @@ msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
 msgstr "В очередь 8-ого юнита"
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr ""
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
@@ -3584,7 +3604,7 @@ msgstr "Нет"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "неверная локаль"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3625,7 +3645,7 @@ msgstr "Дополнительный четерёхбуквенный код с�
 msgid "Not implemented yet."
 msgstr "Ещё не реализовано."
 
-#: gui/maps/MapCache.js:59
+#: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайное"
@@ -3634,51 +3654,51 @@ msgstr "Случайное"
 msgid "A randomly selected map."
 msgstr "Случайно выбранная карта."
 
-#: gui/maps/MapFilters.js:88
+#: gui/maps/MapFilters.js:91
 msgid "Default"
 msgstr "По умолчанию"
 
-#: gui/maps/MapFilters.js:89
+#: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
 msgstr "Все карты, кроме морских и демо карт."
 
-#: gui/maps/MapFilters.js:94
+#: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
 msgstr "Морские карты"
 
-#: gui/maps/MapFilters.js:95
+#: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Карты, где нужны корабли, чтобы добраться до врага."
 
-#: gui/maps/MapFilters.js:100
+#: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
 msgstr "Демонстрационные карты"
 
-#: gui/maps/MapFilters.js:101
+#: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Эти карты предназначены только для демонстрации."
 
-#: gui/maps/MapFilters.js:106
+#: gui/maps/MapFilters.js:109
 msgid "New Maps"
 msgstr "Новые карты"
 
-#: gui/maps/MapFilters.js:107
+#: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
 msgstr "Карты, появившиеся в этом релизе игры."
 
-#: gui/maps/MapFilters.js:112
+#: gui/maps/MapFilters.js:115
 msgid "Trigger Maps"
 msgstr "Триггер карты"
 
-#: gui/maps/MapFilters.js:113
+#: gui/maps/MapFilters.js:116
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Карты, содержащие сценарные события воспроизводящие вражеских юнитов."
 
-#: gui/maps/MapFilters.js:118
+#: gui/maps/MapFilters.js:121
 msgid "All Maps"
 msgstr "Все карты"
 
-#: gui/maps/MapFilters.js:119
+#: gui/maps/MapFilters.js:122
 msgid "Every map of the chosen maptype."
 msgstr "Все карты выбранного типа."
 
@@ -3756,12 +3776,7 @@ msgstr "Карты: %(mapCount)s"
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "Страница: %(currentPage)s/%(maxPage)s"
 
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
-msgctxt "random map pick"
-msgid "Random"
-msgstr "Случайное"
-
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
 msgstr "Выбор случайной карты."
 

@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 09:19+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-08 18:45+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -2550,6 +2550,26 @@ msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
 msgstr "Zakolejkuj ósmą jednostkę"
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr ""
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
@@ -3623,7 +3643,7 @@ msgstr "Opcjonalny czteroliterowy kod następujący po kodzie języka (jak wymie
 msgid "Not implemented yet."
 msgstr "Nie zaimplementowano."
 
-#: gui/maps/MapCache.js:59
+#: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe"
@@ -3632,51 +3652,51 @@ msgstr "Losowe"
 msgid "A randomly selected map."
 msgstr "Losowo wybrana mapa."
 
-#: gui/maps/MapFilters.js:88
+#: gui/maps/MapFilters.js:91
 msgid "Default"
 msgstr "Domyślny"
 
-#: gui/maps/MapFilters.js:89
+#: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
 msgstr "Wszystkie mapy z wyjątkiem morskich i demonstracyjnych."
 
-#: gui/maps/MapFilters.js:94
+#: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
 msgstr "Mapy morskie"
 
-#: gui/maps/MapFilters.js:95
+#: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Mapy, na których niezbędne są statki, aby dotrzeć do wroga."
 
-#: gui/maps/MapFilters.js:100
+#: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
 msgstr "Mapy demonstracyjne"
 
-#: gui/maps/MapFilters.js:101
+#: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Te mapy nie są grywalne, służą jedynie do celów demonstracyjnych."
 
-#: gui/maps/MapFilters.js:106
+#: gui/maps/MapFilters.js:109
 msgid "New Maps"
 msgstr "Nowe mapy"
 
-#: gui/maps/MapFilters.js:107
+#: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
 msgstr "Nowe mapy z ostatniego wydania gry."
 
-#: gui/maps/MapFilters.js:112
+#: gui/maps/MapFilters.js:115
 msgid "Trigger Maps"
 msgstr "Mapa Wyzwalacz"
 
-#: gui/maps/MapFilters.js:113
+#: gui/maps/MapFilters.js:116
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Mapy zawierające scenariusz i mogące tworzyć wrogie jednostki."
 
-#: gui/maps/MapFilters.js:118
+#: gui/maps/MapFilters.js:121
 msgid "All Maps"
 msgstr "Wszystkie mapy"
 
-#: gui/maps/MapFilters.js:119
+#: gui/maps/MapFilters.js:122
 msgid "Every map of the chosen maptype."
 msgstr "Wszystkie mapy dla wybranego typu mapy."
 
@@ -3754,12 +3774,7 @@ msgstr "Mapy: %(mapCount)s"
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr "%(currentPage)s/%(maxPage)s"
 
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
-msgctxt "random map pick"
-msgid "Random"
-msgstr "Losowe"
-
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
 msgstr ""
 
@@ -4852,7 +4867,7 @@ msgstr "Przeżyj historię na nowo dzięki historycznym kampaniom militarnym."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Błąd podczas otwierania kampanii:"
 
 #: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"

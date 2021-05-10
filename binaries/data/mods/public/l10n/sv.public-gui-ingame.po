@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 07:29+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 10:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -1741,15 +1741,23 @@ msgstr "Allierade får använda det här lagret."
 msgid "You are allowed to use this dropsite"
 msgstr "Du får använda det här lagret"
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Enheten måste dödas innan det kan samlas från den"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Du kan inte förstöra denna enhet för att du äger mindre än hälften av enhetens erövringspoäng"
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Denna enhet kan inte tas bort"

@@ -58,8 +58,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-27 06:07+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-08 14:09+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -1751,15 +1751,23 @@ msgstr "允许盟友使用此资源回收点。"
 msgid "You are allowed to use this dropsite"
 msgstr "已允许你使用此资源回收点"
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr "选定的建筑激活自动队列。"
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr "选定的建筑取消自动队列。"
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "你无法破坏此建筑，因为你的占领点数不到一半。"
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "该独立存在的实体是不可删除的"

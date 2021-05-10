@@ -46,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-05-04 16:47+0000\n"
-"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 10:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1759,15 +1759,23 @@ msgstr "Müttefiklerin bu geçici depoyu kullanmalarına izin verildi."
 msgid "You are allowed to use this dropsite"
 msgstr "Bu açılır listeyi kullanmanıza izniniz var"
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "İşletme, toplanmadan önce öldürülmelidir."
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Bu nesneyi yok edemezsiniz çünkü yarısından azı görürür bir şekilde."
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Bu unite silinemez"

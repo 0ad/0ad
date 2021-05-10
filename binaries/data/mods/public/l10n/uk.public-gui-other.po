@@ -17,15 +17,15 @@
 # Victor Ptah, 2015
 # Victor Ptah, 2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2016
-# Микола Франчук <thekolian1996@gmail.com>, 2018-2020
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2021
 # Назарій Високінський <n.vysokinskyi@gmail.com>, 2020
 # Сергій Дубик <dubyk@ukr.net>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 08:30+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-09 19:59+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1012,7 +1012,7 @@ msgstr "Здоров'я"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
@@ -1021,12 +1021,12 @@ msgstr ""
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
@@ -1142,12 +1142,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Нагорода:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1243,10 +1243,10 @@ msgstr[3] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1042
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Здоров'я"
+msgstr[1] "Здоров'я"
+msgstr[2] "Здоров'я"
+msgstr[3] "Здоров'я"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1266,12 +1266,12 @@ msgstr "Дистанція:"
 #: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1149
 msgid "Classes:"
@@ -1408,7 +1408,7 @@ msgstr "Латина"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Напатан"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1528,43 +1528,43 @@ msgstr "Хоча доволі легкий для досвідченого гр�
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Інші гарячі клавіші"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr "(утримуйте для реєстрації)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Введіть нову Гарячу Клавішу, утримуйте для реєстрації."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(невикористано)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Може конфліктувати з:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Усі гарячі клавіші"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "Усі доступні гарячі клавіші."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Скинути усі гарячі клавіші до значень за замовчуванням?\nПОПЕРЕДЖЕННЯ: цю дію не можна буде відмінити."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1573,7 +1573,7 @@ msgstr "Підтвердження"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Немає доступних підказок."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1590,11 +1590,11 @@ msgstr "Скинути"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Гаряча клавіша"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Опис гарячою клавіші"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1635,23 +1635,23 @@ msgstr "Зберегти зміни"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Незбережені зміни будуть втрачені"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Клацніть для задання гарячої клавіші"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Клацніть для видалення гарячої клавіші"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Змінити гарячі клавіші та закрити"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Гарячі клавіші не будуть змінені"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
@@ -1661,7 +1661,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
@@ -1671,7 +1671,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Прокрутити/Повернути вниз"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
@@ -1766,12 +1766,12 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Прокрутити або повернути ліворуч."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Прокрутити/Повернути ліворуч"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -1806,34 +1806,34 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Прокрутити або повернути праворуч."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Прокрутити/Повернути праворуч"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Обертати камеру проти годинникової стрілки навколо місцевості."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Обертати проти годинникової стрілки"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Обертати камеру за годинниковою стрілкою навколо місцевості."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Обертати за годинниковою стрілкою"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
@@ -1848,22 +1848,22 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Зменшити швидкість обертання камери."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Зменшити швидкість обертання"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Збільшити швидкість обертання камери."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Збільшити швидкість обертання"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
@@ -1884,27 +1884,27 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Обертати камеру за годинниковою стрілкою навколо місцевості - це впливає на FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "Зменшити швидкість прокручування камери."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Зменшити швидкість прокручування"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "Збільшити швидкість прокручування камери."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "Збільшити швидкість прокручування"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
@@ -1919,22 +1919,22 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Приблизити камеру."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Приблизити"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Віддалити камеру."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "Віддалити"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -1959,22 +1959,22 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Приблизити камеру  - це впливає на FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Приблизити (покроково)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Віддалити камеру - це впливає на FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Віддалити (покроково)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
@@ -1989,12 +1989,12 @@ msgstr "Загальні"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "Зробити великий BMP знімок екрану."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Великий знімок екрану"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
@@ -2004,12 +2004,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Закрити/Скасувати"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Підтвердити поточну команду."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2024,47 +2024,47 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Перемкнути консоль"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Скопіювати в буфер обміну."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Скопіювати в буфер обміну"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Вирізати вибраний текст та скопіювати в буфер обміну."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Вирізати в буфер обміну"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid "Exit to desktop."
-msgstr ""
+msgstr "Вийти на робочий стіл."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Exit to desktop"
-msgstr ""
+msgstr "Вийти на робочий стіл"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "Вставити з буферу обміну."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Вставити з буферу обміну"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
@@ -2079,12 +2079,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Зберегти поточні дані профайлера до logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Зберегти профіль"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
@@ -2109,12 +2109,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "Зробити PNG знімок екрану."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Знімок екрану"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
@@ -2129,42 +2129,42 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Показати наступну вкладку."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Наступна вкладка"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Показати попередню вкладку."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Попередня вкладка"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Видалити слово ліворуч від курсору."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Видалити перед курсором"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Видалити слово праворуч від курсору."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Видалити після курсору"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
@@ -2189,7 +2189,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "Перемкнути повноекранний/віконний режим."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
@@ -2219,17 +2219,17 @@ msgstr "Налаштування гри"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "Відкрити переглядач карт."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Відкрити переглядач карт"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Внутрішньоігрові гарячі клавіші."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
@@ -2279,7 +2279,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "Юніт повернеться до роботи."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2390,12 +2390,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Не запитувати підтвердження при видаленні споруди/юніту."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Знищувати без підтвердження"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
@@ -2527,6 +2527,26 @@ msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
 msgstr ""
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr ""
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
@@ -2545,7 +2565,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Обертати споруду проти годинникової стрілки"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
@@ -2555,7 +2575,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Обертати споруду за годинниковою стрілкою"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
@@ -2961,17 +2981,17 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "Вибір Юнітів"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Додати юнітів до вибору."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "Додати до вибору"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
@@ -3600,7 +3620,7 @@ msgstr "Додатковий чотирибуквений скриптовий �
 msgid "Not implemented yet."
 msgstr "Ще не реалізовано."
 
-#: gui/maps/MapCache.js:59
+#: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "Випадкова"
@@ -3609,51 +3629,51 @@ msgstr "Випадкова"
 msgid "A randomly selected map."
 msgstr "Випадково вибрана мапа."
 
-#: gui/maps/MapFilters.js:88
+#: gui/maps/MapFilters.js:91
 msgid "Default"
 msgstr "За замовчуванням"
 
-#: gui/maps/MapFilters.js:89
+#: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
 msgstr "Усі мапи, крім морських та демонстраційних."
 
-#: gui/maps/MapFilters.js:94
+#: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
 msgstr "Морські мапи"
 
-#: gui/maps/MapFilters.js:95
+#: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Мапи, де кораблі потрібні для досягнення ворога."
 
-#: gui/maps/MapFilters.js:100
+#: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
 msgstr "Демонстраційні мапи"
 
-#: gui/maps/MapFilters.js:101
+#: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Ці не придатні для гри мапи призначені виключно для демонстраційних цілей."
 
-#: gui/maps/MapFilters.js:106
+#: gui/maps/MapFilters.js:109
 msgid "New Maps"
 msgstr "Нові мапи"
 
-#: gui/maps/MapFilters.js:107
+#: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
 msgstr "Мапи, які є новими для цього випуску гри."
 
-#: gui/maps/MapFilters.js:112
+#: gui/maps/MapFilters.js:115
 msgid "Trigger Maps"
 msgstr "Мапи з тріггерами"
 
-#: gui/maps/MapFilters.js:113
+#: gui/maps/MapFilters.js:116
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Мапи, які надходять зі сценаріями подій та можуть створювати ворожі підрозділи."
 
-#: gui/maps/MapFilters.js:118
+#: gui/maps/MapFilters.js:121
 msgid "All Maps"
 msgstr "Усі мапи"
 
-#: gui/maps/MapFilters.js:119
+#: gui/maps/MapFilters.js:122
 msgid "Every map of the chosen maptype."
 msgstr "Кожна мапа з обраного типу мап."
 
@@ -3724,21 +3744,16 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Мапи: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Сторінка: %(currentPage)s/%(maxPage)s"
 
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
-msgctxt "random map pick"
-msgid "Random"
-msgstr "Випадкова"
-
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Вибрати мапу випадковим чином."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3863,7 +3878,7 @@ msgstr "Відображає час, коли повідомлення у чат
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Іменування сутностей."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific primary."
@@ -4156,7 +4171,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Model quality"
-msgstr ""
+msgstr "Якість моделей"
 
 #: gui/options/options.json[1].options[10].list[1].label
 #: gui/options/options.json[1].options[7].list[0].label
@@ -4165,7 +4180,7 @@ msgstr "Низькі"
 
 #: gui/options/options.json[1].options[7].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Простіші моделі для кращої продуктивності."
 
 #: gui/options/options.json[1].options[10].list[2].label
 #: gui/options/options.json[1].options[7].list[1].label
@@ -4175,7 +4190,7 @@ msgstr "Середні"
 
 #: gui/options/options.json[1].options[7].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Середня якість і середня продуктивність."
 
 #: gui/options/options.json[1].options[10].list[3].label
 #: gui/options/options.json[1].options[7].list[2].label
@@ -4184,11 +4199,11 @@ msgstr "Високі"
 
 #: gui/options/options.json[1].options[7].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Високоякісні моделі."
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Налаштування якості моделей."
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shader effects"
@@ -5007,7 +5022,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alpha XXV: Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5772,7 +5787,7 @@ msgstr "Зібрано"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Кількість"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -6187,7 +6202,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "ГЕРОЇ"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
@@ -6378,7 +6393,7 @@ msgstr ""
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Вирівнювання споруд дозволяє зберегти простір для майбутнього будівництва."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""

@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-21 14:37+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-09 16:47+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -1736,15 +1736,23 @@ msgstr "Liittolaiset saavat käyttää tätä pudotusaluetta."
 msgid "You are allowed to use this dropsite"
 msgstr "Sinulla on lupa käyttää tätä pudotusaluetta."
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr "Ota automaattinen jonotus käyttöön valituille rakenteille."
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr "Poista automaattinen jonotus käytöstä valituilta rakenteilta."
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Kohde on tapettava ennen kuin siitä voi kerätä"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Et voi tuhota kohdetta sillä sinulla on alle puolet valtauspisteistä"
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Tätä kohdetta ei voi tuhota."

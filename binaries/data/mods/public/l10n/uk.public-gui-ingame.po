@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 07:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-09 11:16+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -967,7 +967,7 @@ msgstr "Поточна/макс. кількість збирачів"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -976,7 +976,7 @@ msgstr "Очки захоплення:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
@@ -1044,7 +1044,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Клацнути правою кнопкою миші, щоб встановити цей стрій за замовчуванням."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1123,22 +1123,22 @@ msgstr "Не можливо провести тренування під час 
 #: gui/session/selection_panels.js:1081
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Вдосконалення до %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1087
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Вдосконалення до %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1095
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Вдосконалення до %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Вдосконалення до %(primaryName)s."
 
 #: gui/session/selection_panels.js:1137
 msgid "Cancel Upgrading"
@@ -1226,10 +1226,10 @@ msgstr "%(changer)s зменшує ліміт за допомогою %(change)s
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Може бути споруджено одноразово."
+msgstr[1] "Може бути споруджено %(limit)s рази."
+msgstr[2] "Може бути споруджено %(limit)s разів."
+msgstr[3] "Може бути споруджено %(limit)s разів."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1247,10 +1247,10 @@ msgstr[3] "Може бути споруджено ще %(count)s разів."
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Може бути треновано одноразово."
+msgstr[1] "Може бути треновано %(limit)s рази."
+msgstr[2] "Може бути треновано %(limit)s разів."
+msgstr[3] "Може бути треновано %(limit)s разів."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
@@ -1268,10 +1268,10 @@ msgstr[3] "Може бути треновано ще %(count)s разів."
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Може бути створено одноразово."
+msgstr[1] "Може бути створено %(limit)s рази."
+msgstr[2] "Може бути створено %(limit)s разів."
+msgstr[3] "Може бути створено %(limit)s разів."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
@@ -1343,7 +1343,7 @@ msgstr "Клацнути, щоб вибрати згруповані підро�
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alpha XXV: Y——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1780,15 +1780,23 @@ msgstr "Союзникам дозволено використовувати ц�
 msgid "You are allowed to use this dropsite"
 msgstr "Вам дозволено використовувати це місце збору"
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Об'єкт повинен бути вбитий, перш ніж його можна буде зібрати"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Ви не можете зруйнувати цей об'єкт, так як Ви володієте менш, ніж половиною від очок захоплення"
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Цей об'єкт неможливо видалити"

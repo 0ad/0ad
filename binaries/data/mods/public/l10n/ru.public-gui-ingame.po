@@ -69,8 +69,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 21:27+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-08 03:30+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -357,7 +357,7 @@ msgstr "%(username)s заблокирован"
 #: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s отключён"
+msgstr "%(username)s исключён"
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
@@ -1822,15 +1822,23 @@ msgstr "Союзникам разрешено использовать эту т
 msgid "You are allowed to use this dropsite"
 msgstr "Вам разрешено использовать эту точку сбора ресурсов"
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr ""
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Чтобы получить возможность добычи ресурсов из этого объекта, его следует убить"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Вы не можете уничтожить этого врага, поскольку владеете меньше, чем половиной точек захвата."
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Этот объект невозможно удалить"

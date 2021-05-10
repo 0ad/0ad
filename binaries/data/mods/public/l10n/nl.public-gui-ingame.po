@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 19:02+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 14:13+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1762,15 +1762,23 @@ msgstr "Bondgenoten mogen dit pakhuis gebruiken."
 msgid "You are allowed to use this dropsite"
 msgstr "U kan dit pakhuis gebruiken."
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr "Wachtrij voor geselecteerde gebouwen aanzetten."
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr "Wachtrij voor geselecteerde gebouwen uitzetten."
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Dit dier moet gedood worden voordat er voedsel kan worden verzameld."
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "U kunt dit niet vernietigen omdat u niet de meerderheid van de veroverpunten bezit."
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Deze entiteit kan niet worden verwijderd."

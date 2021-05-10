@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-05-06 13:23+0000\n"
+"PO-Revision-Date: 2021-05-10 07:05+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -67,23 +67,23 @@ msgstr "基礎操作（預設）："
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "左鍵點擊來選擇單位。"
+msgstr "．左鍵點擊以選取單位"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "左鍵點擊及拖曳來選擇一組單位"
+msgstr "．左鍵點擊並拖曳以選取一組單位"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "右鍵點擊來指示單位至目的地"
+msgstr "．右鍵點擊以指示單位至目的地 "
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• 方向鍵或 WASD 鍵來移動視野"
+msgstr "．方向鍵或 WASD 鍵以移動鏡頭"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Ctrl + 方向鍵或 shift + 滑鼠滾輪來旋轉視野"
+msgstr "．Ctrl + 方向鍵或 Shift + 滑鼠滾輪以旋轉鏡頭"
 
 #: gui/manual/intro.txt:16
 msgid ""
@@ -119,15 +119,15 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "若要創建多人遊戲，玩家得選擇「主持遊戲」按鈕。遊戲使用 UDP 埠 20595，主持人得設定 NAT／防火牆／等等以允許連線。其他玩家可以選擇「加入遊戲」並輸入主持人的 IP 位址。"
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]遊戲設定[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "在多人遊戲中，只有主持人能調整遊戲設定。"
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -137,19 +137,19 @@ msgstr "首先，選取您要遊玩的地圖類型："
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "．[font=\"sans-bold-14\"]隨機地圖[font=\"sans-14\"]——由指令稿自動生成的地圖"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "．[font=\"sans-bold-14\"]劇情地圖[font=\"sans-14\"]——由設計者創造且文明固定的地圖"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "．[font=\"sans-bold-14\"]衝突戰[font=\"sans-14\"]由設計者創造且可以選擇文明的地圖"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -158,7 +158,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "地圖可以進一步篩選。預設地圖是一般遊玩的地圖，海戰地圖中敵人無法直接經由陸地到達，演示地圖則僅供測試用途（通常不用於遊玩）。「所有地圖」篩選器會在列表中顯示所有地圖。"
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -167,79 +167,79 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "最後更改地圖設定。對隨機地圖來說這包括玩家人數、地圖大小等等；劇情戰役只能選擇由誰操控哪名玩家（決定地圖起始點位等」，這個選項可以是人類玩家、電腦玩家或完全沒有（對手將會閒置）。"
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "當您準備好開始時，點擊「開始遊戲」按鈕。"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]快捷鍵[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "您可以在[font=\"sans-bold-14\"]選項 > 快捷鍵[font=\"sans-14\"]依喜好更改快捷鍵。"
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]全域[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  hotkey.exit——不經確認直接關閉遊戲"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  hotkey.togglefullscreen——切換全螢幕或視窗模式"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr "  hotkey.console.toggle——開關主控臺"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  hotkey.fps.toggle——顯示幀數（FPS）"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "  hotkey.profile.toggle——啟用即時分析工具（循環切換顯示資訊）"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save——儲存目前的分析數據到 “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.screenshot——螢幕擷圖（儲存為 .png 格式，路徑顯示在圖形介面的左上方，若錯過也可以在主控臺／日誌中檢閱）"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.bigscreenshot——巨大螢幕擷圖（6400×4800 像素，儲存為 .bmp 格式，路徑顯示在圖形介面的左上方，若錯過也可以在主控臺／日誌中檢閱）"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "  hotkey.tab.next——切換到下個頁籤"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  hotkey.tab.prev——切換到上個頁籤"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]遊戲中[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:55
 msgid ""
