@@ -76,6 +76,7 @@ Trigger.prototype.GetTriggerPoints = function(ref)
  * @param {string} name - Name of the trigger.
  *     If no action is specified in triggerData, the action will be the trigger name.
  * @param {Object} triggerData - f.e. enabled or not, delay for timers, range for range triggers.
+ * @param {Object} customData - User-defined data that will be forwarded to the action.
  *
  * @example
  * triggerData = { enabled: true, interval: 1000, delay: 500 }
@@ -91,7 +92,7 @@ Trigger.prototype.GetTriggerPoints = function(ref)
  *     maxRange = -1         * Maximum range for the query (-1 = no maximum)
  *     requiredComponent = 0 * Required component id the entities will have
  */
-Trigger.prototype.RegisterTrigger = function(event, name, triggerData)
+Trigger.prototype.RegisterTrigger = function(event, name, triggerData, customData = undefined)
 {
 	if (!this[event])
 	{
@@ -110,7 +111,7 @@ Trigger.prototype.RegisterTrigger = function(event, name, triggerData)
 	if (!triggerData.action)
 		triggerData.action = name;
 
-	this[event][name] = triggerData;
+	this[event][name] = { "triggerData": triggerData, "customData": customData };
 
 	// setup range query
 	if (event == "OnRange")
@@ -141,90 +142,70 @@ Trigger.prototype.DisableTrigger = function(event, name)
 {
 	if (!this[event][name])
 	{
-		warn("Trigger.js: Disabling unknown trigger");
+		warn("Trigger.js: Disabling unknown trigger " + name);
 		return;
 	}
-	let data = this[event][name];
+
+	let triggerData = this[event][name].triggerData;
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
-		if (!data.timer) // don't disable it a second time
+		if (!triggerData.timer) // don't disable it a second time
 			return;
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(data.timer);
-		data.timer = null;
+		cmpTimer.CancelTimer(triggerData.timer);
+		triggerData.timer = null;
 	}
 	else if (event == "OnRange")
 	{
-		if (!data.queries)
+		if (!triggerData.queries)
 		{
 			warn("Trigger.js: Range query wasn't set up before trying to disable it.");
 			return;
 		}
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		for (let query of data.queries)
+		for (let query of triggerData.queries)
 			cmpRangeManager.DisableActiveQuery(query);
 	}
 
-	data.enabled = false;
+	triggerData.enabled = false;
 };
 
 Trigger.prototype.EnableTrigger = function(event, name)
 {
 	if (!this[event][name])
 	{
-		warn("Trigger.js: Enabling unknown trigger");
+		warn("Trigger.js: Enabling unknown trigger " + name);
 		return;
 	}
-	let data = this[event][name];
+	let triggerData = this[event][name].triggerData;
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
-		if (data.timer) // don't enable it a second time
+		if (triggerData.timer) // don't enable it a second time
 			return;
-		if (!data.interval)
+		if (!triggerData.interval)
 		{
 			warn("Trigger.js: An interval trigger should have an intervel in its data");
 			return;
 		}
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		data.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
-			data.delay || 0, data.interval, { "name": name });
+		triggerData.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
+			triggerData.delay || 0, triggerData.interval, { "name": name });
 	}
 	else if (event == "OnRange")
 	{
-		if (!data.queries)
+		if (!triggerData.queries)
 		{
 			warn("Trigger.js: Range query wasn't set up before");
 			return;
 		}
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		for (let query of data.queries)
+		for (let query of triggerData.queries)
 			cmpRangeManager.EnableActiveQuery(query);
 	}
 
-	data.enabled = true;
-};
-
-/**
- * This function executes the actions bound to the events.
- * It's either called directlty from other simulation scripts,
- * or from message listeners in this file
- *
- * @param {string} event - One of eventNames
- * @param {Object} data - will be passed to the actions
- */
-Trigger.prototype.CallEvent = function(event, data)
-{
-	if (!this[event])
-	{
-		warn("Trigger.js: Unknown trigger event called:\"" + event + "\".");
-		return;
-	}
-
-	for (let name in this[event])
-		if (this[event][name].enabled)
-			this.DoAction({ "action": this[event][name].action, "data": data });
+	triggerData.enabled = true;
 };
 
 Trigger.prototype.OnGlobalInitGame = function(msg)
@@ -298,15 +279,15 @@ Trigger.prototype.OnGlobalDiplomacyChanged = function(msg)
  *
  * @param {number} time - Delay in milliseconds.
  * @param {string} action - Name of the action function.
- * @param {Object} data - Arbitrary object that will be passed to the action function.
+ * @param {Object} eventData - Arbitrary object that will be passed to the action function.
  * @return {number} The ID of the timer, so it can be stopped later.
  */
-Trigger.prototype.DoAfterDelay = function(time, action, data)
+Trigger.prototype.DoAfterDelay = function(time, action, eventData)
 {
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	return cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger, "DoAction", time, {
 		"action": action,
-		"data": data
+		"eventData": eventData
 	});
 };
 
@@ -315,27 +296,78 @@ Trigger.prototype.DoAfterDelay = function(time, action, data)
  *
  * @param {number} interval - Interval in milleseconds between consecutive calls.
  * @param {string} action - Name of the action function.
- * @param {Object} data - Arbitrary object that will be passed to the action function.
+ * @param {Object} eventData - Arbitrary object that will be passed to the action function.
  * @param {number} [start] - Optional initial delay in milleseconds before starting the calls.
  *                           If not given, interval will be used.
  * @return {number} the ID of the timer, so it can be stopped later.
  */
-Trigger.prototype.DoRepeatedly = function(time, action, data, start)
+Trigger.prototype.DoRepeatedly = function(time, action, eventData, start)
 {
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	return cmpTimer.SetInterval(SYSTEM_ENTITY, IID_Trigger, "DoAction", start !== undefined ? start : time, time, {
 		"action": action,
-		"data": data
+		"eventData": eventData
 	});
 };
 
 /**
- * Called by the trigger listeners to exucute the actual action. Including sanity checks.
+ * This function executes the actions bound to the events.
+ * It's either called directlty from other simulation scripts,
+ * or from message listeners in this file
+ *
+ * @param {string} event - One of eventNames
+ * @param {Object} data - will be passed to the actions
+ */
+Trigger.prototype.CallEvent = function(event, eventData)
+{
+	if (!this[event])
+	{
+		warn("Trigger.js: Unknown trigger event called:\"" + event + "\".");
+		return;
+	}
+
+	for (let name in this[event])
+		if (this[event][name].triggerData.enabled)
+			this.DoAction({
+				"action": this[event][name].triggerData.action,
+				"eventData": eventData,
+				"customData": this[event][name].customData,
+				"triggerData": this[event][name].triggerData
+			});
+};
+
+/**
+ * Call the action method of a trigger with the given event Data.
+ * By default, call the trigger even if it is currently disabled.
+ */
+Trigger.prototype.CallTrigger = function(event, name, eventData, evenIfDisabled = true)
+{
+	if (!this?.[event]?.[name])
+	{
+		warn(`Trigger.js: called a trigger '${name}' for event '${event}' that wasn't found`);
+		return;
+	}
+
+	if (!evenIfDisabled && !this[event][name].triggerData.enabled)
+		return;
+
+	this.DoAction({
+		"action": this[event][name].triggerData.action,
+		"eventData": eventData,
+		"customData": this[event][name].customData,
+		"triggerData": this[event][name].triggerData
+	});
+};
+
+
+/**
+ * Called by the trigger listeners to execute the actual action. Including sanity checks.
+ * Intended for internal use, prefer CallEvent or CallTrigger.
  */
 Trigger.prototype.DoAction = function(msg)
 {
 	if (this[msg.action])
-		this[msg.action](msg.data || null);
+		this[msg.action](msg?.eventData, msg?.customData, msg?.triggerData);
 	else
 		warn("Trigger.js: called a trigger action '" + msg.action + "' that wasn't found");
 };

@@ -128,6 +128,8 @@ function loadReplays(replaySelectionData, compareFiles)
 		}
 
 		replay.isMultiplayer = nonAIPlayers > 1;
+		if (replay.attribs.campaignData)
+			replay.isCampaign = true;
 
 		replay.isRated = nonAIPlayers == 2 &&
 			replay.attribs.settings.PlayerData.length == 2 &&

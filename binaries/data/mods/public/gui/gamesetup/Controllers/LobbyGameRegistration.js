@@ -90,6 +90,7 @@ class LobbyGameRegistrationController
 		let stanza = {
 			"name": this.serverName,
 			"hostUsername": Engine.LobbyGetNick(),
+			"hostJID": "", // Overwritten by C++, placeholder.
 			"mapName": g_GameSettings.map.map,
 			// TODO: if the map name was always up-to-date we wouldn't need the mapcache here.
 			"niceMapName": this.mapCache.getTranslatableMapName(g_GameSettings.map.type, g_GameSettings.map.map),

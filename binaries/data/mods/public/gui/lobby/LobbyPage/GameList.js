@@ -98,13 +98,13 @@ class GameList
 			let newGames = {};
 			for (let stanza of gameListData)
 			{
-				let game = this.games[stanza.hostUsername] || undefined;
+				let game = this.games[stanza.hostJID] || undefined;
 				let exists = !!game;
 				if (!exists)
 					game = new Game(this.mapCache);
 
 				game.update(stanza, selectedColumn);
-				newGames[stanza.hostUsername] = game;
+				newGames[stanza.hostJID] = game;
 			}
 			this.games = newGames;
 			Engine.ProfileStop();
@@ -160,7 +160,7 @@ class GameList
 				this.list_maxnbp[i] = displayData.playerCount;
 				this.list_gameRating[i] = game.gameRating;
 				this.list[i] = "";
-				if (selectedGame && game.stanza.hostUsername == selectedGame.stanza.hostUsername && game.stanza.name == selectedGame.stanza.name)
+				if (selectedGame && game.stanza.hostJID == selectedGame.stanza.hostJID && game.stanza.name == selectedGame.stanza.name)
 					selectedGameIndex = i;
 			});
 			Engine.ProfileStop();

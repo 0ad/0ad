@@ -73,7 +73,7 @@ class JoinButton
 			"name": g_Nickname,
 			"rating": this.getRejoinRating(stanza),
 			"hasPassword": !!stanza.hasPassword,
-			"hostJID": stanza.hostUsername + "@" + Engine.ConfigDB_GetValue("user", "lobby.server") + "/0ad"
+			"hostJID": stanza.hostJID
 		});
 	}
 

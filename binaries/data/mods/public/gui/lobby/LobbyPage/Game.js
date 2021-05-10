@@ -154,7 +154,7 @@ class Game
 			Engine.ProfileStop();
 		}
 
-		displayData.private = newStanza.hasPassword ? '[icon="icon_private"]' : '[icon="icon_public"]';
+		displayData.private = newStanza.hasPassword ? '[icon="icon_private"]' : '';
 
 		this.stanza = newStanza;
 		this.sortValue = this.sortValues[sortKey];
@@ -282,6 +282,7 @@ Game.prototype.StanzaKeys = [
 	"name",
 	"hasPassword",
 	"hostUsername",
+	"hostJID",
 	"state",
 	"nbp",
 	"maxnbp",

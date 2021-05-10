@@ -263,6 +263,11 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="mouse_event_mask">
+          <text/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="mask_char">
           <data type="string">
             <param name="minLength">1</param>

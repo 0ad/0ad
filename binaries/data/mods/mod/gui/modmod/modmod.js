@@ -61,6 +61,17 @@ var g_ModsCompatibility = [];
  */
 var g_InstalledMods;
 
+var g_HasFailedMods;
+
+var g_FakeMod = {
+	"name": translate("This mod does not exist"),
+	"version": "",
+	"label": "",
+	"url": "",
+	"description": "",
+	"dependencies": []
+};
+
 var g_ColorNoModSelected = "255 255 100";
 var g_ColorDependenciesMet = "100 255 100";
 var g_ColorDependenciesNotMet = "255 100 100";
@@ -68,9 +79,12 @@ var g_ColorDependenciesNotMet = "255 100 100";
 function init(data, hotloadData)
 {
 	g_InstalledMods = data && data.installedMods || hotloadData && hotloadData.installedMods || [];
+	g_HasFailedMods = Engine.HasFailedMods();
 
 	initMods();
 	initGUIButtons(data);
+	if (g_HasFailedMods)
+		Engine.PushGuiPage("page_incompatible_mods.xml", {});
 }
 
 function initMods()
@@ -93,9 +107,20 @@ function loadMods()
 	deepfreeze(g_Mods);
 }
 
+/**
+ * Return fake mod for mods which do not exist
+*/
+function getMod(folder)
+{
+	return !!g_Mods[folder] ? g_Mods[folder] : g_FakeMod;
+}
+
 function loadEnabledMods()
 {
-	g_ModsEnabled = Engine.ConfigDB_GetValue("user", "mod.enabledmods").split(/\s+/).filter(folder => !!g_Mods[folder]);
+	if (g_HasFailedMods)
+		g_ModsEnabled = Engine.GetFailedMods().filter(folder => folder != "mod");
+	else
+		g_ModsEnabled = Engine.GetEnabledMods().filter(folder => !!g_Mods[folder]);
 	g_ModsDisabled = Object.keys(g_Mods).filter(folder => g_ModsEnabled.indexOf(folder) == -1);
 	g_ModsEnabledFiltered = g_ModsEnabled;
 	g_ModsDisabledFiltered = g_ModsDisabled;
@@ -118,9 +143,11 @@ function initGUIFilters()
 function initGUIButtons(data)
 {
 	// Either get back to the previous page or quit if there is no previous page
-	let cancelButton = !data || data.cancelbutton;
-	Engine.GetGUIObjectByName("cancelButton").hidden = !cancelButton;
-	Engine.GetGUIObjectByName("quitButton").hidden = cancelButton;
+	let hasPreviousPage = !data || data.cancelbutton;
+	Engine.GetGUIObjectByName("cancelButton").hidden = !hasPreviousPage;
+	Engine.GetGUIObjectByName("quitButton").hidden = hasPreviousPage;
+	Engine.GetGUIObjectByName("startModsButton").hidden = !hasPreviousPage;
+	Engine.GetGUIObjectByName("startButton").hidden = hasPreviousPage;
 	Engine.GetGUIObjectByName("toggleModButton").caption = translateWithContext("mod activation", "Enable");
 }
 
@@ -134,8 +161,8 @@ function saveMods()
 function startMods()
 {
 	sortEnabledMods();
-	Engine.SetMods(["mod"].concat(g_ModsEnabled));
-	Engine.RestartEngine();
+	if (!Engine.SetModsAndRestartEngine(["mod"].concat(g_ModsEnabled)))
+		Engine.GetGUIObjectByName("message").caption = coloredText(translate('Dependencies not met'), g_ColorDependenciesNotMet);
 }
 
 function displayModLists()
@@ -150,7 +177,7 @@ function displayModList(listObjectName, folders, enabled)
 
 	if (listObjectName == "modsDisabledList")
 	{
-		let sortFolder = folder => String(g_Mods[folder][listObject.selected_column] || folder);
+		let sortFolder = folder => String(getMod(folder)[listObject.selected_column] || folder);
 		folders.sort((folder1, folder2) =>
 			listObject.selected_column_order *
 			sortFolder(folder1).localeCompare(sortFolder(folder2)));
@@ -162,12 +189,12 @@ function displayModList(listObjectName, folders, enabled)
 
 	let selected = listObject.selected !== -1 ? listObject.list_name[listObject.selected] : null;
 
-	listObject.list_name = folders.map(folder => colorMod(folder, g_Mods[folder].name, enabled));
+	listObject.list_name = folders.map(folder => colorMod(folder, getMod(folder).name, enabled));
 	listObject.list_folder = folders.map(folder => colorMod(folder, folder, enabled));
-	listObject.list_label = folders.map(folder => colorMod(folder, g_Mods[folder].label, enabled));
-	listObject.list_url = folders.map(folder => colorMod(folder, g_Mods[folder].url || "", enabled));
-	listObject.list_version = folders.map(folder => colorMod(folder, g_Mods[folder].version, enabled));
-	listObject.list_dependencies = folders.map(folder => colorMod(folder, g_Mods[folder].dependencies.join(" "), enabled));
+	listObject.list_label = folders.map(folder => colorMod(folder, getMod(folder).label, enabled));
+	listObject.list_url = folders.map(folder => colorMod(folder, getMod(folder).url || "", enabled));
+	listObject.list_version = folders.map(folder => colorMod(folder, getMod(folder).version, enabled));
+	listObject.list_dependencies = folders.map(folder => colorMod(folder, getMod(folder).dependencies.join(" "), enabled));
 	listObject.list = folders;
 
 	listObject.selected = selected ? listObject.list_name.indexOf(selected) : -1;
@@ -179,7 +206,7 @@ function getModColor(folder, enabled)
 {
 	if (!g_ModsCompatibility[folder])
 		return enabled ? g_ColorDependenciesNotMet : "gray";
-	if (g_InstalledMods.indexOf(g_Mods[folder].name) != -1)
+	if (g_InstalledMods.indexOf(getMod(folder).name) != -1)
 		return "green";
 	return false;
 }
@@ -211,6 +238,7 @@ function enableMod()
 		--pos;
 
 	displayModLists();
+	Engine.GetGUIObjectByName("message").caption = "";
 	modsDisabledList.selected = pos;
 }
 
@@ -230,7 +258,8 @@ function disableMod()
 			break;
 		}
 
-	g_ModsDisabled.push(disabledMod);
+	if (!!g_Mods[disabledMod])
+		g_ModsDisabled.push(disabledMod);
 
 	// Remove mods that required the removed mod and cascade
 	// Sort them, so we know which ones can depend on the removed mod
@@ -247,12 +276,13 @@ function disableMod()
 
 	recomputeCompatibility(true);
 	displayModLists();
+	Engine.GetGUIObjectByName("message").caption = "";
 	modsEnabledList.selected = Math.min(pos, g_ModsEnabledFiltered.length - 1);
 }
 
 function filterMod(folder)
 {
-	let mod = g_Mods[folder];
+	let mod = getMod(folder);
 
 	let negateFilter = Engine.GetGUIObjectByName("negateFilter").checked;
 	let searchText = Engine.GetGUIObjectByName("modGenericFilter").caption;
@@ -316,7 +346,10 @@ function areDependenciesMet(folder, disabledAction = false)
 	if (disabledAction && !g_ModsCompatibility[folder])
 		return g_ModsCompatibility[folder];
 
-	for (let dependency of g_Mods[folder].dependencies)
+	if (!g_Mods[folder])
+		return false;
+
+	for (let dependency of getMod(folder).dependencies)
 	{
 		if (!isDependencyMet(dependency))
 			return false;
@@ -340,8 +373,8 @@ function isDependencyMet(dependency)
 	let [name, version] = operator ? dependency.split(operator[0]) : [dependency, undefined];
 
 	return g_ModsEnabled.some(folder =>
-		g_Mods[folder].name == name &&
-		(!operator || versionSatisfied(g_Mods[folder].version, operator[0], version)));
+		getMod(folder).name == name &&
+		(!operator || versionSatisfied(getMod(folder).version, operator[0], version)));
 }
 
 /**
@@ -385,11 +418,11 @@ function sortEnabledMods()
 {
 	let dependencies = {};
 	for (let folder of g_ModsEnabled)
-		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split(g_RegExpComparisonOperator)[0]);
+		dependencies[folder] = getMod(folder).dependencies.map(d => d.split(g_RegExpComparisonOperator)[0]);
 
 	g_ModsEnabled.sort((folder1, folder2) =>
-		dependencies[folder1].indexOf(g_Mods[folder2].name) != -1 ? 1 :
-			dependencies[folder2].indexOf(g_Mods[folder1].name) != -1 ? -1 : 0);
+		dependencies[folder1].indexOf(getMod(folder2).name) != -1 ? 1 :
+			dependencies[folder2].indexOf(getMod(folder1).name) != -1 ? -1 : 0);
 
 	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled, true);
 }
@@ -419,8 +452,21 @@ function selectedMod(listObjectName)
 
 	Engine.GetGUIObjectByName("globalModDescription").caption =
 		listObject.list[listObject.selected] ?
-			g_Mods[listObject.list[listObject.selected]].description :
+			getMod(listObject.list[listObject.selected]).description :
 			'[color="' + g_ColorNoModSelected + '"]' + translate("No mod has been selected.") + '[/color]';
+
+	if (!g_ModsEnabled.length)
+	{
+		if (!Engine.GetGUIObjectByName("startButton").hidden)
+			Engine.GetGUIObjectByName("message").caption = coloredText(translate('Enable at least 0ad mod and save configuration'), g_ColorDependenciesNotMet);
+		else
+			Engine.GetGUIObjectByName("message").caption = coloredText(translate('Enable at least 0ad mod'), g_ColorDependenciesNotMet);
+	}
+	if (!Engine.GetGUIObjectByName("startButton").hidden)
+		Engine.GetGUIObjectByName("startButton").enabled = g_ModsEnabled.length > 0;
+	if (!Engine.GetGUIObjectByName("startModsButton").hidden)
+		Engine.GetGUIObjectByName("startModsButton").enabled = g_ModsEnabled.length > 0;
+
 }
 
 /**
@@ -433,7 +479,7 @@ function getSelectedModUrl()
 
 	let list = modsEnabledList.selected == -1 ? modsDisabledList : modsEnabledList;
 	let folder = list.list[list.selected];
-	return folder && g_Mods[folder] && g_Mods[folder].url || undefined;
+	return folder && getMod(folder) && getMod(folder).url || undefined;
 }
 
 function visitModWebsite()

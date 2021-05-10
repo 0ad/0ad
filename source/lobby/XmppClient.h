@@ -91,7 +91,8 @@ public:
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
 	void SendIqLobbyAuth(const std::string& to, const std::string& token);
 	void SetNick(const std::string& nick);
-	std::string GetNick();
+	std::string GetNick() const;
+	std::string GetJID() const;
 	void kick(const std::string& nick, const std::string& reason);
 	void ban(const std::string& nick, const std::string& reason);
 	void SetPresence(const std::string& presence);

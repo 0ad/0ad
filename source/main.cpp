@@ -49,6 +49,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Loader.h"
+#include "ps/Mod.h"
 #include "ps/ModInstaller.h"
 #include "ps/Profile.h"
 #include "ps/Profiler2.h"
@@ -595,7 +596,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		g_VFS = CreateVfs();
 		// Mount with highest priority, we don't want mods overwriting this.
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE, VFS_MAX_PRIORITY);
-		MountMods(paths, GetMods(args, INIT_MODS));
+		MountMods(paths, Mod::GetModsFromArguments(args, INIT_MODS));
 
 		{
 			CReplayPlayer replay;
@@ -695,6 +696,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
+		Mod::ClearIncompatibleMods();
 
 		Shutdown(0);
 		MainControllerShutdown();

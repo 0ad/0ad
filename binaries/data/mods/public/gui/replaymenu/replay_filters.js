@@ -141,8 +141,13 @@ function initDurationFilter(filters)
 function initSingleplayerFilter(filters)
 {
 	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
-	singleplayerFilter.list = [translate("Single-player and multiplayer"), translate("Single-player"), translate("Multiplayer")];
-	singleplayerFilter.list_data = ["", "Single-player", "Multiplayer"];
+	singleplayerFilter.list = [
+		translateWithContext("replay filter", "Any"),
+		translateWithContext("replay filter", "Single-player"),
+		translateWithContext("replay filter", "Multiplayer"),
+		translateWithContext("replay filter", "Campaigns")
+	];
+	singleplayerFilter.list_data = ["", "Single-player", "Multiplayer", "Campaigns"];
 
 	if (filters && filters.singleplayer)
 		singleplayerFilter.selected = singleplayerFilter.list_data.indexOf(filters.singleplayer);
@@ -239,8 +244,9 @@ function filterReplay(replay)
 	// Filter by single-player or multiplayer.
 	let singleplayerFilter = Engine.GetGUIObjectByName("singleplayerFilter");
 	let selectedSingleplayerFilter = singleplayerFilter.list_data[singleplayerFilter.selected] || "";
-	if (selectedSingleplayerFilter == "Single-player" && replay.isMultiplayer ||
-	    selectedSingleplayerFilter == "Multiplayer" && !replay.isMultiplayer)
+	if (selectedSingleplayerFilter == "Campaigns" && !replay.isCampaign ||
+	    selectedSingleplayerFilter == "Single-player" && (replay.isMultiplayer || replay.isCampaign) ||
+	    selectedSingleplayerFilter == "Multiplayer" && (!replay.isMultiplayer || replay.isCampaign))
 		return false;
 
 	// Filter by victory condition
@@ -274,7 +280,7 @@ function filterReplay(replay)
 
 	// Filter by map name
 	let mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
-	if (mapNameFilter.selected > 0 && getReplayMapName(replay) != mapNameFilter.list_data[mapNameFilter.selected])
+	if (mapNameFilter.selected > 0 && replay.attribs.settings.Name != mapNameFilter.list_data[mapNameFilter.selected])
 		return false;
 
 	// Filter by map size

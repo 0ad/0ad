@@ -112,7 +112,7 @@ function confirmSetup()
 		let joinServer = Engine.GetGUIObjectByName("joinServer").caption;
 		let joinPort = Engine.GetGUIObjectByName("joinPort").caption;
 
-		if (startJoin(joinPlayerName, joinServer, getValidPort(joinPort), false, ""))
+		if (startJoin(joinPlayerName, joinServer, getValidPort(joinPort)))
 			switchSetupPage("pageConnecting");
 	}
 	else if (!Engine.GetGUIObjectByName("pageHost").hidden)
@@ -365,7 +365,7 @@ function startHost(playername, servername, port, password)
 
 	try
 	{
-		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, playername, useSTUN, password);
+		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, useSTUN, password);
 	}
 	catch (e)
 	{
@@ -388,13 +388,13 @@ function startHost(playername, servername, port, password)
 }
 
 /**
- * Connects via STUN if the hostJID is given.
+ * Connect via direct IP (used by the 'simple' MP screen)
  */
-function startJoin(playername, ip, port, useSTUN, hostJID)
+function startJoin(playername, ip, port)
 {
 	try
 	{
-		Engine.StartNetworkJoin(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), ip, port, useSTUN, hostJID);
+		Engine.StartNetworkJoin(playername, ip, port);
 	}
 	catch (e)
 	{
@@ -409,18 +409,20 @@ function startJoin(playername, ip, port, useSTUN, hostJID)
 
 	startConnectionStatus("client");
 
+	// Future-proofing: there could be an XMPP client even if we join a game directly.
 	if (Engine.HasXmppClient())
 		Engine.LobbySetPlayerPresence("playing");
-	else
-	{
-		// Only save the player name and host address if they're valid and we're not in the lobby
-		Engine.ConfigDB_CreateAndWriteValueToFile("user", "playername.multiplayer", playername, "config/user.cfg");
-		Engine.ConfigDB_CreateAndWriteValueToFile("user", "multiplayerserver", ip, "config/user.cfg");
-		Engine.ConfigDB_CreateAndWriteValueToFile("user", "multiplayerjoining.port", port, "config/user.cfg");
-	}
+
+	// Only save the player name and host address if they're valid.
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "playername.multiplayer", playername, "config/user.cfg");
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "multiplayerserver", ip, "config/user.cfg");
+	Engine.ConfigDB_CreateAndWriteValueToFile("user", "multiplayerjoining.port", port, "config/user.cfg");
 	return true;
 }
 
+/**
+ * Connect via the lobby.
+ */
 function startJoinFromLobby(playername, hostJID, password)
 {
 	if (!Engine.HasXmppClient())

@@ -23,6 +23,7 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUITextOwner.h"
 #include "gui/SettingTypes/CGUIString.h"
+#include "gui/SettingTypes/MouseEventMask.h"
 #include "maths/Vector2D.h"
 
 class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavior
@@ -57,6 +58,11 @@ public:
 	 */
 	virtual void Draw();
 
+	/**
+	 * @see IGUIObject#IsMouseOver()
+	 */
+	virtual bool IsMouseOver() const;
+
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been
@@ -88,6 +94,7 @@ protected:
 	CGUISimpleSetting<CGUIColor> m_TextColorOver;
 	CGUISimpleSetting<CGUIColor> m_TextColorPressed;
 	CGUISimpleSetting<CGUIColor> m_TextColorDisabled;
+	CGUIMouseEventMask m_MouseEventMask;
 };
 
 #endif // INCLUDED_CBUTTON

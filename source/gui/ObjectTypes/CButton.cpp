@@ -37,7 +37,8 @@ CButton::CButton(CGUI& pGUI)
 	  m_TextColor(this, "textcolor"),
 	  m_TextColorOver(this, "textcolor_over"),
 	  m_TextColorPressed(this, "textcolor_pressed"),
-	  m_TextColorDisabled(this, "textcolor_disabled")
+	  m_TextColorDisabled(this, "textcolor_disabled"),
+	  m_MouseEventMask(this)
 {
 	AddText();
 }
@@ -89,6 +90,15 @@ void CButton::Draw()
 		m_CachedActualSize);
 
 	DrawText(0, ChooseColor(), m_TextPos, bz + 0.1f);
+}
+
+bool CButton::IsMouseOver() const
+{
+	if (!IGUIObject::IsMouseOver())
+		return false;
+	if (!m_MouseEventMask)
+		return true;
+	return m_MouseEventMask.IsMouseOver(m_pGUI.GetMousePos(), m_CachedActualSize);
 }
 
 const CGUIColor& CButton::ChooseColor()

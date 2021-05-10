@@ -27,36 +27,28 @@ extern void RestartEngine();
 
 namespace
 {
-JS::Value GetEngineInfo(ScriptInterface::CmptPrivate* pCmptPrivate)
+bool SetModsAndRestartEngine(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStr>& mods)
 {
-	return Mod::GetEngineInfo(*(pCmptPrivate->pScriptInterface));
+	Mod::ClearIncompatibleMods();
+	if (!Mod::CheckAndEnableMods(*(pCmptPrivate->pScriptInterface), mods))
+		return false;
+
+	RestartEngine();
+	return true;
+}
 }
 
-/**
- * Returns a JS object containing a listing of available mods that
- * have a modname.json file in their modname folder. The returned
- * object looks like { modname1: json1, modname2: json2, ... } where
- * jsonN is the content of the modnameN/modnameN.json file as a JS
- * object.
- *
- * @return JS object with available mods as the keys of the modname.json
- *         properties.
- */
-JS::Value GetAvailableMods(ScriptInterface::CmptPrivate* pCmptPrivate)
+bool HasFailedMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
-	return Mod::GetAvailableMods(*(pCmptPrivate->pScriptInterface));
-}
-
-void SetMods(const std::vector<CStr>& mods)
-{
-	g_modsLoaded = mods;
-}
+	return Mod::GetFailedMods().size() > 0;
 }
 
 void JSI_Mod::RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	ScriptFunction::Register<&GetEngineInfo>(rq, "GetEngineInfo");
-	ScriptFunction::Register<&GetAvailableMods>(rq, "GetAvailableMods");
-	ScriptFunction::Register<&RestartEngine>(rq, "RestartEngine");
-	ScriptFunction::Register<&SetMods>(rq, "SetMods");
+	ScriptFunction::Register<&Mod::GetEngineInfo>(rq, "GetEngineInfo");
+	ScriptFunction::Register<&Mod::GetAvailableMods>(rq, "GetAvailableMods");
+	ScriptFunction::Register<&Mod::GetEnabledMods>(rq, "GetEnabledMods");
+	ScriptFunction::Register<HasFailedMods> (rq, "HasFailedMods");
+	ScriptFunction::Register<&Mod::GetFailedMods>(rq, "GetFailedMods");
+	ScriptFunction::Register<&SetModsAndRestartEngine>(rq, "SetModsAndRestartEngine");
 }

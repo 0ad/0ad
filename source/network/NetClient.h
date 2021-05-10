@@ -92,10 +92,10 @@ public:
 	void SetUserName(const CStrW& username);
 
 	/**
-	 * Set the name of the hosting player.
+	 * Store the JID of the host.
 	 * This is needed for the secure lobby authentication.
 	 */
-	void SetHostingPlayerName(const CStr& hostingPlayerName);
+	void SetHostJID(const CStr& jid);
 
 	void SetControllerSecret(const std::string& secret);
 
@@ -295,7 +295,8 @@ private:
 
 	CGame *m_Game;
 	CStrW m_UserName;
-	CStr m_HostingPlayerName;
+
+	CStr m_HostJID;
 	CStr m_ServerAddress;
 	u16 m_ServerPort;
 	bool m_UseSTUN;

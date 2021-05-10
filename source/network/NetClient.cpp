@@ -176,9 +176,9 @@ void CNetClient::SetUserName(const CStrW& username)
 	m_UserName = username;
 }
 
-void CNetClient::SetHostingPlayerName(const CStr& hostingPlayerName)
+void CNetClient::SetHostJID(const CStr& jid)
 {
-	m_HostingPlayerName = hostingPlayerName;
+	m_HostJID = jid;
 }
 
 void CNetClient::SetGamePassword(const CStr& hashedPassword)
@@ -632,8 +632,8 @@ bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 
 	if (message->m_Flags & PS_NETWORK_FLAG_REQUIRE_LOBBYAUTH)
 	{
-		if (g_XmppClient && !client->m_HostingPlayerName.empty())
-			g_XmppClient->SendIqLobbyAuth(client->m_HostingPlayerName, client->m_GUID);
+		if (g_XmppClient && !client->m_HostJID.empty())
+			g_XmppClient->SendIqLobbyAuth(client->m_HostJID, client->m_GUID);
 		else
 		{
 			client->PushGuiMessage(

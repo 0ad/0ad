@@ -15,7 +15,7 @@ TriggerPoint.prototype.Init = function()
 		cmpTrigger.RegisterTriggerPoint(this.template.Reference, this.entity);
 	}
 	this.currentCollections = {};
-	this.actions = {};
+	this.triggers = {};
 };
 
 TriggerPoint.prototype.OnDestroy = function()
@@ -28,7 +28,7 @@ TriggerPoint.prototype.OnDestroy = function()
 };
 
 /**
- * @param action Name of the action function defined under Trigger
+ * @param name Name of the trigger.
  * @param data The data is an object containing information for the range query
  * Some of the data has sendible defaults (mentionned next to the object)
  * data.players = [1,2,3,...]  * list of player ids
@@ -37,7 +37,7 @@ TriggerPoint.prototype.OnDestroy = function()
  * data.requiredComponent = 0  * Required component id the entities will have
  * data.enabled = false        * If the query is enabled by default
  */
-TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
+TriggerPoint.prototype.RegisterRangeTrigger = function(name, data)
 {
 	var players = data.players || Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
 	var minRange = data.minRange || 0;
@@ -48,7 +48,7 @@ TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
 	var tag = cmpRangeManager.CreateActiveQuery(this.entity, minRange, maxRange, players, cid, cmpRangeManager.GetEntityFlagMask("normal"), true);
 
 	this.currentCollections[tag] = [];
-	this.actions[tag] = action;
+	this.triggers[tag] = name;
 	return tag;
 };
 
@@ -72,7 +72,7 @@ TriggerPoint.prototype.OnRangeUpdate = function(msg)
 	r.added = msg.added;
 	r.removed = msg.removed;
 	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.DoAction({ "action": this.actions[msg.tag], "data": r });
+	cmpTrigger.CallTrigger("OnRange", this.triggers[msg.tag], r);
 };
 
 

@@ -216,5 +216,10 @@
 			<translatableAttribute id="caption">Start Mods</translatableAttribute>
 			<action on="Press">startMods();</action>
 		</object>
+
+		<object name="startButton" type="button" style="ModernButtonRed" size="100%-196 100%-44 100%-16 100%-16">
+			<translatableAttribute id="caption">Start</translatableAttribute>
+			<action on="Press">startMods();</action>
+		</object>
 	</object>
 </objects>
