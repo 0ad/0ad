@@ -28,7 +28,7 @@
 #include "ps/Replay.h"
 #include "ps/World.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 #include "simulation2/system/TurnManager.h"
 #include "simulation2/Simulation2.h"
 #include "soundmanager/SoundManager.h"
@@ -40,7 +40,7 @@ bool IsGameStarted()
 	return g_Game;
 }
 
-void StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs, int playerID)
+void StartGame(const ScriptInterface& guiInterface, JS::HandleValue attribs, int playerID)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -48,12 +48,11 @@ void StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attri
 
 	g_Game = new CGame(true);
 
-	// Convert from GUI script context to sim script context
+	// Convert from GUI script context to sim script context/
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ScriptRequest rqSim(sim->GetScriptInterface());
 
-	JS::RootedValue gameAttribs(rqSim.cx,
-		sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), attribs));
+	JS::RootedValue gameAttribs(rqSim.cx, Script::CloneValueFromOtherCompartment(sim->GetScriptInterface(), guiInterface, attribs));
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(&gameAttribs, "");

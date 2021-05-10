@@ -26,6 +26,7 @@
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
@@ -55,11 +56,11 @@ JS::Value GuiInterfaceCall(const ScriptInterface& scriptInterface, const std::ws
 		return JS::UndefinedValue();
 
 	ScriptRequest rqSim(sim->GetScriptInterface());
-	JS::RootedValue arg(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, data));
+	JS::RootedValue arg(rqSim.cx, Script::CloneValueFromOtherCompartment(sim->GetScriptInterface(), scriptInterface, data));
 	JS::RootedValue ret(rqSim.cx);
 	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
 
-	return scriptInterface.CloneValueFromOtherCompartment(sim->GetScriptInterface(), ret);
+	return Script::CloneValueFromOtherCompartment(scriptInterface, sim->GetScriptInterface(), ret);
 }
 
 void PostNetworkCommand(const ScriptInterface& scriptInterface, JS::HandleValue cmd)
@@ -75,8 +76,7 @@ void PostNetworkCommand(const ScriptInterface& scriptInterface, JS::HandleValue 
 		return;
 
 	ScriptRequest rqSim(sim->GetScriptInterface());
-	JS::RootedValue cmd2(rqSim.cx,
-		sim->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, cmd));
+	JS::RootedValue cmd2(rqSim.cx, Script::CloneValueFromOtherCompartment(sim->GetScriptInterface(), scriptInterface, cmd));
 
 	cmpCommandQueue->PostNetworkCommand(cmd2);
 }

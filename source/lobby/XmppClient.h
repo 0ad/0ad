@@ -27,7 +27,7 @@
 #include <string>
 #include <vector>
 
-class ScriptInterface;
+class ScriptRequest;
 
 namespace glooxwrapper
 {
@@ -159,8 +159,8 @@ protected:
 	virtual void handleSessionInitiation(glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle);
 
 public:
-	JS::Value GuiPollNewMessages(const ScriptInterface& scriptInterface);
-	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
+	JS::Value GuiPollNewMessages(const ScriptInterface& guiInterface);
+	JS::Value GuiPollHistoricMessages(const ScriptInterface& guiInterface);
 	bool GuiPollHasPlayerListUpdate();
 	void SendMUCMessage(const std::string& message);
 

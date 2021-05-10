@@ -225,7 +225,7 @@ double CMapGeneratorWorker::GetMicroseconds()
 	return JS_Now();
 }
 
-ScriptInterface::StructuredClone CMapGeneratorWorker::GetResults()
+Script::StructuredClone CMapGeneratorWorker::GetResults()
 {
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_MapData;
@@ -235,7 +235,7 @@ void CMapGeneratorWorker::ExportMap(JS::HandleValue data)
 {
 	// Copy results
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
-	m_MapData = m_ScriptInterface->WriteStructuredClone(data);
+	m_MapData = Script::WriteStructuredClone(ScriptRequest(m_ScriptInterface), data);
 	m_Progress = 0;
 }
 
@@ -422,7 +422,7 @@ int CMapGenerator::GetProgress()
 	return m_Worker->GetProgress();
 }
 
-ScriptInterface::StructuredClone CMapGenerator::GetResults()
+Script::StructuredClone CMapGenerator::GetResults()
 {
 	return m_Worker->GetResults();
 }

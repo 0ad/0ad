@@ -20,7 +20,8 @@
 
 #include "scriptinterface/ScriptTypes.h"
 
-class ScriptInterface;
+class ScriptRequest;
+
 namespace StunClient {
 	struct StunEndpoint;
 }
@@ -58,8 +59,8 @@ public:
 	virtual JS::Value GUIGetBoardList(const ScriptInterface& scriptInterface) = 0;
 	virtual JS::Value GUIGetProfile(const ScriptInterface& scriptInterface) = 0;
 
-	virtual JS::Value GuiPollNewMessages(const ScriptInterface& scriptInterface) = 0;
-	virtual JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface) = 0;
+	virtual JS::Value GuiPollNewMessages(const ScriptInterface& guiInterface) = 0;
+	virtual JS::Value GuiPollHistoricMessages(const ScriptInterface& guiInterface) = 0;
 	virtual bool GuiPollHasPlayerListUpdate() = 0;
 
 	virtual void SendMUCMessage(const std::string& message) = 0;

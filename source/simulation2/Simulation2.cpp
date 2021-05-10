@@ -22,6 +22,7 @@
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ComponentManager.h"
@@ -161,7 +162,7 @@ public:
 	void InitRNGSeedSimulation();
 	void InitRNGSeedAI();
 
-	static std::vector<SimulationCommand> CloneCommandsFromOtherCompartment(const ScriptInterface& oldScript, const ScriptInterface& newScript,
+	static std::vector<SimulationCommand> CloneCommandsFromOtherCompartment(const ScriptInterface& newScript, const ScriptInterface& oldScript,
 		const std::vector<SimulationCommand>& commands)
 	{
 		std::vector<SimulationCommand> newCommands;
@@ -170,7 +171,7 @@ public:
 		ScriptRequest rqNew(newScript);
 		for (const SimulationCommand& command : commands)
 		{
-			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data));
+			JS::RootedValue tmpCommand(rqNew.cx, Script::CloneValueFromOtherCompartment(newScript, oldScript, command.data));
 			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, rqNew.cx, tmpCommand);
 			newCommands.emplace_back(std::move(cmd));
@@ -414,9 +415,9 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		// Load the trigger scripts after we have loaded the simulation.
 		{
+			ScriptRequest rq(scriptInterface);
 			ScriptRequest rq2(m_SecondaryComponentManager->GetScriptInterface());
-			JS::RootedValue mapSettingsCloned(rq2.cx,
-				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, m_MapSettings));
+			JS::RootedValue mapSettingsCloned(rq2.cx, Script::CloneValueFromOtherCompartment(m_SecondaryComponentManager->GetScriptInterface(), scriptInterface, m_MapSettings));
 			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts.get()));
 		}
 
@@ -469,7 +470,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			ENSURE(m_ComponentManager.ComputeStateHash(primaryStateAfter.hash, false));
 
 		UpdateComponents(*m_SecondaryContext, turnLengthFixed,
-			CloneCommandsFromOtherCompartment(scriptInterface, m_SecondaryComponentManager->GetScriptInterface(), commands));
+			CloneCommandsFromOtherCompartment(m_SecondaryComponentManager->GetScriptInterface(), scriptInterface, commands));
 		SerializationTestState secondaryStateAfter;
 		ENSURE(m_SecondaryComponentManager->SerializeState(secondaryStateAfter.state));
 		if (serializationTestHash)

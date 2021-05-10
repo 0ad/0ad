@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,15 +24,15 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/GameSetup/Config.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 namespace JSI_GUIManager
 {
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
-void PushGuiPage(const ScriptInterface& scriptInterface, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
+void PushGuiPage(const ScriptRequest& rq, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
 {
-	g_GUI->PushPage(name, scriptInterface.WriteStructuredClone(initData), callbackFunction);
+	g_GUI->PushPage(name, Script::WriteStructuredClone(rq, initData), callbackFunction);
 }
 
 void SwitchGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData)
@@ -40,16 +40,15 @@ void SwitchGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstrin
 	g_GUI->SwitchPage(name, pCmptPrivate->pScriptInterface, initData);
 }
 
-void PopGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue args)
+void PopGuiPage(const ScriptRequest& rq, JS::HandleValue args)
 {
 	if (g_GUI->GetPageCount() < 2)
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
 		ScriptException::Raise(rq, "Can't pop GUI pages when less than two pages are opened!");
 		return;
 	}
 
-	g_GUI->PopPage(pCmptPrivate->pScriptInterface->WriteStructuredClone(args));
+	g_GUI->PopPage(Script::WriteStructuredClone(rq, args));
 }
 
 std::wstring SetCursor(const std::wstring& name)

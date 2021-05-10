@@ -19,6 +19,7 @@
 
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include "ps/CLogger.h"
 
@@ -73,7 +74,7 @@ public:
 		{
 			ScriptRequest rq2(script2);
 
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, Script::CloneValueFromOtherCompartment(script2, script1, obj1));
 
 			std::string source;
 			TS_ASSERT(ScriptFunction::Call(rq2, obj2, "toSource", source));
@@ -95,7 +96,7 @@ public:
 		{
 			ScriptRequest rq2(script2);
 
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, Script::CloneValueFromOtherCompartment(script2, script1, obj1));
 
 			std::string source;
 			TS_ASSERT(ScriptFunction::Call(rq2, obj2, "toSource", source));
@@ -115,7 +116,7 @@ public:
 
 		{
 			ScriptRequest rq2(script2);
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, Script::CloneValueFromOtherCompartment(script2, script1, obj1));
 
 			// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
 			JS::RootedValue prop_a(rq2.cx);
@@ -244,7 +245,7 @@ public:
 		TS_ASSERT_STR_EQUALS(script.ToString(&val), "({x:1, z:[2, \"3\\u263A\\uD800\"], y:true})");
 	}
 
-	// This function tests a common way to mod functions, by crating a wrapper that
+	// This function tests a common way to mod functions, by creating a wrapper that
 	// extends the functionality and is then assigned to the name of the function.
 	void test_function_override()
 	{

@@ -29,6 +29,7 @@
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 CGUIManager* g_GUI = nullptr;
 
@@ -88,17 +89,18 @@ void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptIn
 {
 	// The page stack is cleared (including the script context where initData came from),
 	// therefore we have to clone initData.
+	ScriptRequest rq(srcScriptInterface);
 
-	ScriptInterface::StructuredClone initDataClone;
+	Script::StructuredClone initDataClone;
 	if (!initData.isUndefined())
-		initDataClone = srcScriptInterface->WriteStructuredClone(initData);
+		initDataClone = Script::WriteStructuredClone(rq, initData);
 
 	m_PageStack.clear();
 
 	PushPage(pageName, initDataClone, JS::UndefinedHandleValue);
 }
 
-void CGUIManager::PushPage(const CStrW& pageName, ScriptInterface::StructuredClone initData, JS::HandleValue callbackFunction)
+void CGUIManager::PushPage(const CStrW& pageName, Script::StructuredClone initData, JS::HandleValue callbackFunction)
 {
 	// Store the callback handler in the current GUI page before opening the new one
 	if (!m_PageStack.empty() && !callbackFunction.isUndefined())
@@ -110,7 +112,7 @@ void CGUIManager::PushPage(const CStrW& pageName, ScriptInterface::StructuredClo
 	m_PageStack.back().LoadPage(m_ScriptContext);
 }
 
-void CGUIManager::PopPage(ScriptInterface::StructuredClone args)
+void CGUIManager::PopPage(Script::StructuredClone args)
 {
 	if (m_PageStack.size() < 2)
 	{
@@ -122,7 +124,7 @@ void CGUIManager::PopPage(ScriptInterface::StructuredClone args)
 	m_PageStack.back().PerformCallbackFunction(args);
 }
 
-CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const ScriptInterface::StructuredClone initData)
+CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const Script::StructuredClone initData)
 	: m_Name(pageName), initData(initData), inputs(), gui(), callbackFunction()
 {
 }
@@ -130,7 +132,7 @@ CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const ScriptInterface::St
 void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 {
 	// If we're hotloading then try to grab some data from the previous page
-	ScriptInterface::StructuredClone hotloadData;
+	Script::StructuredClone hotloadData;
 	if (gui)
 	{
 		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
@@ -139,7 +141,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 		JS::RootedValue global(rq.cx, rq.globalValue());
 		JS::RootedValue hotloadDataVal(rq.cx);
 		ScriptFunction::Call(rq, global, "getHotloadData", &hotloadDataVal);
-		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
+		hotloadData = Script::WriteStructuredClone(rq, hotloadDataVal);
 	}
 
 	g_CursorName = g_DefaultCursor;
@@ -207,10 +209,10 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 	JS::RootedValue global(rq.cx, rq.globalValue());
 
 	if (initData)
-		scriptInterface->ReadStructuredClone(initData, &initDataVal);
+		Script::ReadStructuredClone(rq, initData, &initDataVal);
 
 	if (hotloadData)
-		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
+		Script::ReadStructuredClone(rq, hotloadData, &hotloadDataVal);
 
 	if (scriptInterface->HasProperty(global, "init") &&
 	    !ScriptFunction::CallVoid(rq, global, "init", initDataVal, hotloadDataVal))
@@ -236,7 +238,7 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 	callbackFunction = std::make_shared<JS::PersistentRootedValue>(scriptInterface.GetGeneralJSContext(), callbackFunc);
 }
 
-void CGUIManager::SGUIPage::PerformCallbackFunction(ScriptInterface::StructuredClone args)
+void CGUIManager::SGUIPage::PerformCallbackFunction(Script::StructuredClone args)
 {
 	if (!callbackFunction)
 		return;
@@ -253,7 +255,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(ScriptInterface::StructuredC
 
 	JS::RootedValue argVal(rq.cx);
 	if (args)
-		scriptInterface->ReadStructuredClone(args, &argVal);
+		Script::ReadStructuredClone(rq, args, &argVal);
 
 	JS::RootedValueVector paramData(rq.cx);
 	ignore_result(paramData.append(argVal));

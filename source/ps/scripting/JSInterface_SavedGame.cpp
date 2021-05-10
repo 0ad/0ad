@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 #include "ps/Game.h"
 #include "ps/SavedGame.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 
@@ -41,16 +41,16 @@ bool DeleteSavedGame(const std::wstring& name)
 	return SavedGames::DeleteSavedGame(name);
 }
 
-void SaveGame(const ScriptInterface& scriptInterface, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
+void SaveGame(const ScriptRequest& rq, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
-	ScriptInterface::StructuredClone GUIMetadataClone = scriptInterface.WriteStructuredClone(GUIMetadata);
+	Script::StructuredClone GUIMetadataClone = Script::WriteStructuredClone(rq, GUIMetadata);
 	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
 }
 
-void SaveGamePrefix(const ScriptInterface& scriptInterface, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
+void SaveGamePrefix(const ScriptRequest& rq, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
-	ScriptInterface::StructuredClone GUIMetadataClone = scriptInterface.WriteStructuredClone(GUIMetadata);
+	Script::StructuredClone GUIMetadataClone = Script::WriteStructuredClone(rq, GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
 }
@@ -101,8 +101,7 @@ JS::Value StartSavedGame(const ScriptInterface& scriptInterface, const std::wstr
 		CSimulation2* sim = g_Game->GetSimulation2();
 		ScriptRequest rqGame(sim->GetScriptInterface());
 
-		JS::RootedValue gameContextMetadata(rqGame.cx,
-			sim->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, guiContextMetadata));
+		JS::RootedValue gameContextMetadata(rqGame.cx, Script::CloneValueFromOtherCompartment(sim->GetScriptInterface(), scriptInterface, guiContextMetadata));
 		JS::RootedValue gameInitAttributes(rqGame.cx);
 		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
 

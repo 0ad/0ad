@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "gui/GUIManager.h"
 #include "ps/CLogger.h"
 #include "ps/Util.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
 const CStr CReplayTurnManager::EventNameReplayFinished = "ReplayFinished";
@@ -94,11 +95,11 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	ignore_result(paramData.append(JS::NumberValue(turn)));
 
 	JS::RootedValue hashVal(rq.cx);
-	scriptInterface.ToJSVal(rq, &hashVal, hash);
+	ScriptInterface::ToJSVal(rq, &hashVal, hash);
 	ignore_result(paramData.append(hashVal));
 
 	JS::RootedValue expectedHashVal(rq.cx);
-	scriptInterface.ToJSVal(rq, &expectedHashVal, expectedHash);
+	ScriptInterface::ToJSVal(rq, &expectedHashVal, expectedHash);
 	ignore_result(paramData.append(expectedHashVal));
 
 	g_GUI->SendEventToAll(EventNameReplayOutOfSync, paramData);

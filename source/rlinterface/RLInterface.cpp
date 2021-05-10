@@ -26,6 +26,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpTemplateManager.h"

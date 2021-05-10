@@ -21,7 +21,7 @@
 #include "lib/posix/posix_pthread.h"
 #include "ps/FileIo.h"
 #include "ps/TemplateLoader.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include <boost/random/linear_congruential.hpp>
 
@@ -67,7 +67,7 @@ public:
 	 *
 	 * @return StructuredClone containing map data
 	 */
-	ScriptInterface::StructuredClone GetResults();
+	Script::StructuredClone GetResults();
 
 private:
 	CMapGeneratorWorker* m_Worker;
@@ -110,7 +110,7 @@ public:
 	 *
 	 * @return StructuredClone containing map data
 	 */
-	ScriptInterface::StructuredClone GetResults();
+	Script::StructuredClone GetResults();
 
 	/**
 	 * Set initial seed, callback data.
@@ -196,7 +196,7 @@ private:
 	/**
 	 * Result of the mapscript generation including terrain, entities and environment settings.
 	 */
-	ScriptInterface::StructuredClone m_MapData;
+	Script::StructuredClone m_MapData;
 
 	/**
 	 * Deterministic random number generator.

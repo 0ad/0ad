@@ -34,7 +34,7 @@ constexpr int DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER = 2 * 1024 * 1024;
  * should only be used on a single thread.
  *
  * (One means to share data between threads and contexts is to create
- * a ScriptInterface::StructuredClone.)
+ * a Script::StructuredClone.)
  */
 
 class ScriptContext

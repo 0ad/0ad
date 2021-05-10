@@ -40,6 +40,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpGarrisonHolder.h"
@@ -1294,11 +1295,11 @@ int CMapReader::GenerateMap()
 	else if (progress == 0)
 	{
 		// Finished, get results as StructuredClone object, which must be read to obtain the JS::Value
-		ScriptInterface::StructuredClone results = m_MapGen->GetResults();
+		Script::StructuredClone results = m_MapGen->GetResults();
 
 		// Parse data into simulation context
 		JS::RootedValue data(rq.cx);
-		pSimulation2->GetScriptInterface().ReadStructuredClone(results, &data);
+		Script::ReadStructuredClone(rq, results, &data);
 
 		if (data.isUndefined())
 		{

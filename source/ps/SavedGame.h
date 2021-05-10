@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,8 @@
 #ifndef INCLUDED_SAVEDGAME
 #define INCLUDED_SAVEDGAME
 
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
+
 class CSimulation2;
 class CGUIManager;
 
@@ -45,7 +46,7 @@ namespace SavedGames
 	 * @param guiMetadataClone if not NULL, store some UI-related data with the saved game
 	 * @return INFO::OK if successfully saved, else an error Status
 	 */
-	Status Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const ScriptInterface::StructuredClone& guiMetadataClone);
+	Status Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const Script::StructuredClone& guiMetadataClone);
 
 	/**
 	 * Create new saved game archive with given prefix and simulation data
@@ -56,7 +57,7 @@ namespace SavedGames
 	 * @param guiMetadataClone if not NULL, store some UI-related data with the saved game
 	 * @return INFO::OK if successfully saved, else an error Status
 	 */
-	Status SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const ScriptInterface::StructuredClone& guiMetadataClone);
+	Status SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const Script::StructuredClone& guiMetadataClone);
 
 	/**
 	 * Load saved game archive with the given name
