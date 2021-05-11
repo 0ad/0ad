@@ -22,7 +22,7 @@
 #include "lib/input.h"
 #include "ps/CStr.h"
 #include "ps/TemplateLoader.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include <string>
 #include <unordered_set>
@@ -68,13 +68,13 @@ public:
 	 * user inputs.
 	 * If given, the callbackHandler function will be executed once this page is closed.
 	 */
-	void PushPage(const CStrW& pageName, ScriptInterface::StructuredClone initData, JS::HandleValue callbackFunc);
+	void PushPage(const CStrW& pageName, Script::StructuredClone initData, JS::HandleValue callbackFunc);
 
 	/**
 	 * Unload the currently active GUI page, and make the previous page active.
 	 * (There must be at least two pages when you call this.)
 	 */
-	void PopPage(ScriptInterface::StructuredClone args);
+	void PopPage(Script::StructuredClone args);
 
 	/**
 	 * Called when a file has been modified, to hotload changes.
@@ -131,7 +131,7 @@ private:
 		/**
 		 * Initializes the data that will be used to create the CGUI page one or multiple times (hotloading).
 		 */
-		SGUIPage(const CStrW& pageName, const ScriptInterface::StructuredClone initData);
+		SGUIPage(const CStrW& pageName, const Script::StructuredClone initData);
 
 		/**
 		 * Create the CGUI with it's own ScriptInterface. Deletes the previous CGUI if it existed.
@@ -146,11 +146,11 @@ private:
 		/**
 		 * Execute the stored callback function with the given arguments.
 		 */
-		void PerformCallbackFunction(ScriptInterface::StructuredClone args);
+		void PerformCallbackFunction(Script::StructuredClone args);
 
 		CStrW m_Name;
 		std::unordered_set<VfsPath> inputs; // for hotloading
-		ScriptInterface::StructuredClone initData; // data to be passed to the init() function
+		Script::StructuredClone initData; // data to be passed to the init() function
 		shared_ptr<CGUI> gui; // the actual GUI page
 
 		/**

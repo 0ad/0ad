@@ -34,6 +34,7 @@
 #include "ps/Util.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/StructuredClone.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -67,7 +68,7 @@ extern void QuitEngine();
  * will block until it's actually completed, so the rest of the engine should avoid
  * reading it for as long as possible.
  *
- * JS::Values are passed between the game and AI threads using ScriptInterface::StructuredClone.
+ * JS::Values are passed between the game and AI threads using Script::StructuredClone.
  *
  * TODO: actually the thread isn't implemented yet, because performance hasn't been
  * sufficiently problematic to justify the complexity yet, but the CAIWorker interface
@@ -204,14 +205,14 @@ private:
 		shared_ptr<ScriptInterface> m_ScriptInterface;
 
 		JS::PersistentRootedValue m_Obj;
-		std::vector<ScriptInterface::StructuredClone > m_Commands;
+		std::vector<Script::StructuredClone > m_Commands;
 	};
 
 public:
 	struct SCommandSets
 	{
 		player_id_t player;
-		std::vector<ScriptInterface::StructuredClone > commands;
+		std::vector<Script::StructuredClone > commands;
 	};
 
 	CAIWorker() :
@@ -291,11 +292,12 @@ public:
 
 	void PostCommand(int playerid, JS::HandleValue cmd)
 	{
+		ScriptRequest rq(m_ScriptInterface);
 		for (size_t i=0; i<m_Players.size(); i++)
 		{
 			if (m_Players[i]->m_Player == playerid)
 			{
-				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd));
+				m_Players[i]->m_Commands.push_back(Script::WriteStructuredClone(rq, cmd));
 				return;
 			}
 		}
@@ -465,7 +467,7 @@ public:
 		return true;
 	}
 
-	bool RunGamestateInit(const ScriptInterface::StructuredClone& gameState, const Grid<NavcellData>& passabilityMap, const Grid<u8>& territoryMap,
+	bool RunGamestateInit(const Script::StructuredClone& gameState, const Grid<NavcellData>& passabilityMap, const Grid<u8>& territoryMap,
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		// this will be run last by InitGame.js, passing the full game representation.
@@ -474,7 +476,7 @@ public:
 		ScriptRequest rq(m_ScriptInterface);
 
 		JS::RootedValue state(rq.cx);
-		m_ScriptInterface->ReadStructuredClone(gameState, &state);
+		Script::ReadStructuredClone(rq, gameState, &state);
 		ScriptInterface::ToJSVal(rq, &m_PassabilityMapVal, passabilityMap);
 		ScriptInterface::ToJSVal(rq, &m_TerritoryMapVal, territoryMap);
 
@@ -501,7 +503,7 @@ public:
 		return true;
 	}
 
-	void UpdateGameState(const ScriptInterface::StructuredClone& gameState)
+	void UpdateGameState(const Script::StructuredClone& gameState)
 	{
 		ENSURE(m_CommandsComputed);
 		m_GameState = gameState;
@@ -661,7 +663,7 @@ public:
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
 			{
 				JS::RootedValue val(rq.cx);
-				m_ScriptInterface->ReadStructuredClone(m_Players[i]->m_Commands[j], &val);
+				Script::ReadStructuredClone(rq, m_Players[i]->m_Commands[j], &val);
 				serializer.ScriptVal("command", &val);
 			}
 
@@ -726,7 +728,7 @@ public:
 			{
 				JS::RootedValue val(rq.cx);
 				deserializer.ScriptVal("command", &val);
-				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val));
+				m_Players.back()->m_Commands.push_back(Script::WriteStructuredClone(rq, val));
 			}
 
 			deserializer.ScriptObjectAssign("data", m_Players.back()->m_Obj);
@@ -780,7 +782,7 @@ private:
 		JS::RootedValue state(rq.cx);
 		{
 			PROFILE3("AI compute read state");
-			m_ScriptInterface->ReadStructuredClone(m_GameState, &state);
+			Script::ReadStructuredClone(rq, m_GameState, &state);
 			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
 		}
@@ -831,7 +833,7 @@ private:
 
 	std::set<std::wstring> m_LoadedModules;
 
-	ScriptInterface::StructuredClone m_GameState;
+	Script::StructuredClone m_GameState;
 	Grid<NavcellData> m_PassabilityMap;
 	JS::PersistentRootedValue m_PassabilityMapVal;
 	Grid<u8> m_TerritoryMap;
@@ -959,7 +961,7 @@ public:
 		if (cmpPathfinder)
 			cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
-		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state),
+		m_Worker.RunGamestateInit(Script::WriteStructuredClone(rq, state),
 			*passabilityMap, *territoryMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
@@ -985,7 +987,7 @@ public:
 		LoadPathfinderClasses(state); // add the pathfinding classes to it
 
 		// Update the game state
-		m_Worker.UpdateGameState(scriptInterface.WriteStructuredClone(state));
+		m_Worker.UpdateGameState(Script::WriteStructuredClone(rq, state));
 
 		// Update the pathfinding data
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
@@ -1039,7 +1041,7 @@ public:
 		{
 			for (size_t j = 0; j < commands[i].commands.size(); ++j)
 			{
-				scriptInterface.ReadStructuredClone(commands[i].commands[j], &clonedCommandVal);
+				Script::ReadStructuredClone(rq, commands[i].commands[j], &clonedCommandVal);
 				cmpCommandQueue->PushLocalCommand(commands[i].player, clonedCommandVal);
 			}
 		}

@@ -14,6 +14,7 @@
 # ryat <mj0011@yopmail.com>, 2015
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
+# StarAtt <tea55688@gmail.com>, 2021
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 # Yuan <daan0014119@gmail.com>, 2020
 # 又齊 劉 <bill19981002@gmail.com>, 2018
@@ -22,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-04-30 08:30+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-08 14:23+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,7 +474,7 @@ msgstr "您已被封禁。"
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "玩家名稱已被使用。若您剛剛斷線，請在數秒後重試。"
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -505,7 +506,7 @@ msgstr ""
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "找不到 STUN 目標。"
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -2481,6 +2482,26 @@ msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
 msgstr ""
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr ""
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
@@ -3554,7 +3575,7 @@ msgstr "與語言代碼(在 ISO 15924中列出)一致的可選四字母指令稿
 msgid "Not implemented yet."
 msgstr "尚未實現。"
 
-#: gui/maps/MapCache.js:59
+#: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "隨機"
@@ -3563,51 +3584,51 @@ msgstr "隨機"
 msgid "A randomly selected map."
 msgstr "隨機選取地圖。"
 
-#: gui/maps/MapFilters.js:88
+#: gui/maps/MapFilters.js:91
 msgid "Default"
 msgstr "預設"
 
-#: gui/maps/MapFilters.js:89
+#: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
 msgstr "除了海洋與展示地圖外的所有地圖。"
 
-#: gui/maps/MapFilters.js:94
+#: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
 msgstr "海洋地圖"
 
-#: gui/maps/MapFilters.js:95
+#: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "需要船隻才能接觸到敵人的地圖。"
 
-#: gui/maps/MapFilters.js:100
+#: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
 msgstr "展示地圖"
 
-#: gui/maps/MapFilters.js:101
+#: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "這些地圖僅供展示用途，無法遊玩。"
 
-#: gui/maps/MapFilters.js:106
+#: gui/maps/MapFilters.js:109
 msgid "New Maps"
 msgstr "新地圖"
 
-#: gui/maps/MapFilters.js:107
+#: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
 msgstr "這版本的遊戲所新增的地圖。"
 
-#: gui/maps/MapFilters.js:112
+#: gui/maps/MapFilters.js:115
 msgid "Trigger Maps"
 msgstr "觸發器地圖"
 
-#: gui/maps/MapFilters.js:113
+#: gui/maps/MapFilters.js:116
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "帶有指令稿事件的地圖，可能自動產生敵方單位。"
 
-#: gui/maps/MapFilters.js:118
+#: gui/maps/MapFilters.js:121
 msgid "All Maps"
 msgstr "所有地圖"
 
-#: gui/maps/MapFilters.js:119
+#: gui/maps/MapFilters.js:122
 msgid "Every map of the chosen maptype."
 msgstr "選定地圖類型的每張地圖。"
 
@@ -3685,12 +3706,7 @@ msgstr ""
 msgid "Page: %(currentPage)s/%(maxPage)s"
 msgstr ""
 
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:78
-msgctxt "random map pick"
-msgid "Random"
-msgstr "隨機"
-
-#: gui/maps/mapbrowser/grid/MapGridBrowser.js:79
+#: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
 msgstr ""
 
@@ -4533,7 +4549,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "此選項能讓新建築與附近的建築對齊。"
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
@@ -4689,7 +4705,7 @@ msgstr ""
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr "改變關於 in-game的設定"
+msgstr "更改遊戲選項。"
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"

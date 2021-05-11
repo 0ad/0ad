@@ -51,7 +51,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-26 18:04+0000\n"
+"PO-Revision-Date: 2021-05-08 14:22+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -68,31 +68,31 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesettings/attributes/TeamPlacement.js:53
 msgctxt "team placement"
 msgid "Circle"
-msgstr "圓形"
+msgstr "圆形"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:54
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "同盟玩家和敵對玩家聚集出現並環形佈局於地圖中"
+msgstr "联盟的玩家被分组，并与对手横跨一个圆圈上。"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:58
 msgctxt "team placement"
 msgid "Line"
-msgstr "線"
+msgstr "线形"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:59
 msgid "Allied players are placed in a linear pattern."
-msgstr "佈局同盟玩家在ㄧ條線上"
+msgstr "同盟玩家在ㄧ条线上"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgctxt "team placement"
 msgid "Random Group"
-msgstr "隨機聚集"
+msgstr "随机聚集"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:64
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "聚集同盟玩家，但隨機放置在地圖中"
+msgstr "聚集同盟玩家，但位置随机。"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgctxt "team placement"
@@ -101,7 +101,7 @@ msgstr "堡垒"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:69
 msgid "Allied players are grouped in one random place of the map."
-msgstr "同盟玩家聚集出現於隨機的地圖上"
+msgstr "同盟玩家随机聚集出现。"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -179,7 +179,7 @@ msgstr "选择玩家"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "人工智能: %(ai)s"
+msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
@@ -369,7 +369,7 @@ msgstr "白天"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
-msgstr "選擇競賽發生在白天或晚上"
+msgstr "选择比赛在白天还是晚上。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
@@ -379,7 +379,7 @@ msgstr "随机"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "隨機選擇時間"
+msgstr "随机选择时间"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
 msgid "Game Speed"
@@ -387,7 +387,7 @@ msgstr "游戏速度"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
 msgid "Select game speed."
-msgstr "选择游戏速度."
+msgstr "选择游戏速度。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
@@ -401,11 +401,11 @@ msgstr "随机选取一张地图"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
-msgstr "景觀"
+msgstr "景观"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
-msgstr "選擇地圖的景觀"
+msgstr "选择地图的景观"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
 msgid "Map Filter"
@@ -496,11 +496,11 @@ msgstr "每一位玩家"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
-msgstr "分隊配制"
+msgstr "分队配制"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
-msgstr "選擇開始時地圖的位置佈局"
+msgstr "选择开局地图布局。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
@@ -510,7 +510,7 @@ msgstr "随机"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "選擇遊戲開始時隨機分隊佈局"
+msgstr "开局选择随机地图。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
@@ -518,7 +518,7 @@ msgstr "难度"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:44
 msgid "Select the difficulty of this scenario."
-msgstr "选择这一场景的难度。"
+msgstr "选择场景的难度。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
@@ -553,7 +553,7 @@ msgstr "无停火"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] "分鐘"
+msgstr[0] "%(minutes)s分"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
@@ -563,7 +563,7 @@ msgstr "遗迹数"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] "%(number)s遺跡"
+msgstr[0] "%(number)s遗迹"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
@@ -586,7 +586,7 @@ msgstr "距离玩家获得遗迹胜利只剩数分钟"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s分鐘"
+msgstr[0] "%(min)s分"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:50
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:47
@@ -611,7 +611,7 @@ msgstr[0] "%(minutes)s分钟"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"
-msgstr "奇迹保持时长"
+msgstr "奇迹保有时长"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
@@ -650,7 +650,7 @@ msgstr "保持就绪"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr "我还没准备好 ！"
+msgstr "我还没准备好呢 ！"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
@@ -804,7 +804,7 @@ msgstr "加载中"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
-msgstr "正在加载地图。请稍等..."
+msgstr "正在加载地图。请稍等......"
 
 #: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
@@ -926,7 +926,7 @@ msgstr "服务器密码:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr "使用STUN解决防火墙问题"
+msgstr "使用 STUN 解决防火墙问题"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"

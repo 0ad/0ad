@@ -292,16 +292,9 @@ void CTurnManager::QuickSave(JS::HandleValue GUIMetadata)
 
 	ScriptRequest rq(m_Simulation2.GetScriptInterface());
 
-	if (JS_StructuredClone(rq.cx, GUIMetadata, &m_QuickSaveMetadata, nullptr, nullptr))
-	{
-		// Freeze state to ensure that consectuvie loads don't modify the state
-		m_Simulation2.GetScriptInterface().FreezeObject(m_QuickSaveMetadata, true);
-	}
-	else
-	{
-		LOGERROR("Could not copy savegame GUI metadata");
-		m_QuickSaveMetadata = JS::UndefinedValue();
-	}
+	m_QuickSaveMetadata.set(Script::DeepCopy(rq, GUIMetadata));
+	// Freeze state to ensure that consectuvie loads don't modify the state
+	m_Simulation2.GetScriptInterface().FreezeObject(m_QuickSaveMetadata, true);
 
 	LOGMESSAGERENDER("Quicksaved game");
 }
@@ -332,12 +325,7 @@ void CTurnManager::QuickLoad()
 	ScriptRequest rq(m_Simulation2.GetScriptInterface());
 
 	// Provide a copy, so that GUI components don't have to clone to get mutable objects
-	JS::RootedValue quickSaveMetadataClone(rq.cx);
-	if (!JS_StructuredClone(rq.cx, m_QuickSaveMetadata, &quickSaveMetadataClone, nullptr, nullptr))
-	{
-		LOGERROR("Failed to clone quicksave state!");
-		return;
-	}
+	JS::RootedValue quickSaveMetadataClone(rq.cx, Script::DeepCopy(rq, m_QuickSaveMetadata));
 
 	JS::RootedValueArray<1> paramData(rq.cx);
 	paramData[0].set(quickSaveMetadataClone);

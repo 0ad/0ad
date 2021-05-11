@@ -32,7 +32,7 @@
 #include "ps/GUID.h"
 #include "ps/Util.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include "third_party/encryption/pkcs5_pbkdf2.h"
 
@@ -210,7 +210,7 @@ CStr GetPlayerGUID()
 	return g_NetClient->GetGUID();
 }
 
-JS::Value PollNetworkClient(const ScriptInterface& scriptInterface)
+JS::Value PollNetworkClient(const ScriptInterface& guiInterface)
 {
 	if (!g_NetClient)
 		return JS::UndefinedValue();
@@ -219,7 +219,7 @@ JS::Value PollNetworkClient(const ScriptInterface& scriptInterface)
 	ScriptRequest rqNet(g_NetClient->GetScriptInterface());
 	JS::RootedValue pollNet(rqNet.cx);
 	g_NetClient->GuiPoll(&pollNet);
-	return scriptInterface.CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
+	return Script::CloneValueFromOtherCompartment(guiInterface, g_NetClient->GetScriptInterface(), pollNet);
 }
 
 void SendGameSetupMessage(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)

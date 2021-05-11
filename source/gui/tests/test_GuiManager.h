@@ -25,6 +25,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Hotkey.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include <memory>
 
@@ -63,7 +64,7 @@ public:
 		JS::RootedValue val(rq.cx);
 		scriptInterface.CreateObject(rq, &val);
 
-		ScriptInterface::StructuredClone data = scriptInterface.WriteStructuredClone(JS::NullHandleValue);
+		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
 		g_GUI->PushPage(L"event/page_event.xml", data, JS::UndefinedHandleValue);
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
@@ -127,7 +128,7 @@ public:
 		JS::RootedValue val(rq.cx);
 		scriptInterface.CreateObject(rq, &val);
 
-		ScriptInterface::StructuredClone data = scriptInterface.WriteStructuredClone(JS::NullHandleValue);
+		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
 		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data, JS::UndefinedHandleValue);
 
 		// Press 'a'.

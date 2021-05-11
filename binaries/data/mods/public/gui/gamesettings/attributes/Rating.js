@@ -4,6 +4,7 @@ GameSettings.prototype.Attributes.Rating = class Rating extends GameSetting
 	{
 		this.hasXmppClient = Engine.HasXmppClient();
 		this.settings.playerCount.watch(() => this.maybeUpdate(), ["nbPlayers"]);
+		this.settings.cheats.watch(() => this.maybeUpdate(), ["enabled"]);
 		this.maybeUpdate();
 	}
 
@@ -30,7 +31,9 @@ GameSettings.prototype.Attributes.Rating = class Rating extends GameSetting
 	maybeUpdate()
 	{
 		// This setting is activated by default if it's possible.
-		this.available = this.hasXmppClient && this.settings.playerCount.nbPlayers === 2;
+		this.available = this.hasXmppClient &&
+			this.settings.playerCount.nbPlayers === 2 &&
+			!this.settings.cheats.enabled;
 		this.enabled = this.available;
 	}
 };

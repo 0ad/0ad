@@ -22,6 +22,7 @@
 #include "ScriptExtraHeaders.h"
 #include "ScriptInterface.h"
 #include "ScriptStats.h"
+#include "StructuredClone.h"
 
 #include "lib/debug.h"
 #include "lib/utf8.h"
@@ -187,8 +188,8 @@ JS::Value deepcopy(const ScriptRequest& rq, JS::HandleValue val)
 		return JS::UndefinedValue();
 	}
 
-	JS::RootedValue ret(rq.cx);
-	if (!JS_StructuredClone(rq.cx, val, &ret, NULL, NULL))
+	JS::RootedValue ret(rq.cx, Script::DeepCopy(rq, val));
+	if (ret.isNullOrUndefined())
 	{
 		ScriptException::Raise(rq, "deepcopy StructureClone copy failed.");
 		return JS::UndefinedValue();
@@ -343,7 +344,7 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 
 	ScriptRequest rq(this);
 	m_CmptPrivate.pScriptInterface = this;
-	JS_SetCompartmentPrivate(js::GetObjectCompartment(rq.glob), (void*)&m_CmptPrivate);
+	JS::SetRealmPrivate(JS::GetObjectRealmOrNull(rq.glob), (void*)&m_CmptPrivate);
 }
 
 ScriptInterface::~ScriptInterface()
@@ -362,7 +363,7 @@ void ScriptInterface::SetCallbackData(void* pCBData)
 
 ScriptInterface::CmptPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSContext* cx)
 {
-	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS_GetCompartmentPrivate(js::GetContextCompartment(cx));
+	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS::GetRealmPrivate(JS::GetCurrentRealmOrNull(cx));
 	return pCmptPrivate;
 }
 
@@ -962,37 +963,4 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 	std::wstring source = L"(error)";
 	ScriptFunction::Call(rq, obj, "toSource", source);
 	return utf8_from_wstring(source);
-}
-
-JS::Value ScriptInterface::CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const
-{
-	PROFILE("CloneValueFromOtherCompartment");
-	ScriptRequest rq(this);
-	JS::RootedValue out(rq.cx);
-	ScriptInterface::StructuredClone structuredClone = otherCompartment.WriteStructuredClone(val);
-	ReadStructuredClone(structuredClone, &out);
-	return out.get();
-}
-
-ScriptInterface::StructuredClone ScriptInterface::WriteStructuredClone(JS::HandleValue v) const
-{
-	ScriptRequest rq(this);
-	ScriptInterface::StructuredClone ret(new JSStructuredCloneData(JS::StructuredCloneScope::SameProcess));
-	JS::CloneDataPolicy policy;
-	if (!JS_WriteStructuredClone(rq.cx, v, ret.get(), JS::StructuredCloneScope::SameProcess, policy, nullptr, nullptr, JS::UndefinedHandleValue))
-	{
-		debug_warn(L"Writing a structured clone with JS_WriteStructuredClone failed!");
-		ScriptException::CatchPending(rq);
-		return ScriptInterface::StructuredClone();
-	}
-
-	return ret;
-}
-
-void ScriptInterface::ReadStructuredClone(const ScriptInterface::StructuredClone& ptr, JS::MutableHandleValue ret) const
-{
-	ScriptRequest rq(this);
-	JS::CloneDataPolicy policy;
-	if (!JS_ReadStructuredClone(rq.cx, *ptr, JS_STRUCTURED_CLONE_VERSION, ptr->scope(), ret, policy, nullptr, nullptr))
-		ScriptException::CatchPending(rq);
 }

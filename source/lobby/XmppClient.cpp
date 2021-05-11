@@ -34,8 +34,8 @@
 #include "ps/ConfigDB.h"
 #include "ps/GUID.h"
 #include "ps/Pyrogenesis.h"
-#include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include <iostream>
 
@@ -734,7 +734,7 @@ bool XmppClient::GuiPollHasPlayerListUpdate()
 	return hasUpdate;
 }
 
-JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
+JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& guiInterface)
 {
 	if ((m_isConnected && !m_initialLoadComplete) || m_GuiMessageQueue.empty())
 		return JS::UndefinedValue();
@@ -765,8 +765,8 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 		if (level != "room-message" && level != "private-message")
 			continue;
 
-		JS::RootedValue historicMessage(rq.cx);
-		if (JS_StructuredClone(rq.cx, rootedMessage, &historicMessage, nullptr, nullptr))
+		JS::RootedValue historicMessage(rq.cx, Script::DeepCopy(rq, rootedMessage));
+		if (true)
 		{
 			m_ScriptInterface->SetProperty(historicMessage, "historic", true);
 			m_ScriptInterface->FreezeObject(historicMessage, true);
@@ -778,10 +778,10 @@ JS::Value XmppClient::GuiPollNewMessages(const ScriptInterface& scriptInterface)
 	m_GuiMessageQueue.clear();
 
 	// Copy the messages over to the caller script interface.
-	return scriptInterface.CloneValueFromOtherCompartment(*m_ScriptInterface, messages);
+	return Script::CloneValueFromOtherCompartment(guiInterface, *m_ScriptInterface, messages);
 }
 
-JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInterface)
+JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& guiInterface)
 {
 	if (m_HistoricGuiMessages.empty())
 		return JS::UndefinedValue();
@@ -796,7 +796,7 @@ JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInter
 		m_ScriptInterface->SetPropertyInt(messages, j++, message);
 
 	// Copy the messages over to the caller script interface.
-	return scriptInterface.CloneValueFromOtherCompartment(*m_ScriptInterface, messages);
+	return Script::CloneValueFromOtherCompartment(guiInterface, *m_ScriptInterface, messages);
 }
 
 /**

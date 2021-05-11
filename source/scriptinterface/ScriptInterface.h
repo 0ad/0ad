@@ -48,8 +48,6 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 // but as large as necessary for all wrapped functions)
 #define SCRIPT_INTERFACE_MAX_ARGS 8
 
-class JSStructuredCloneData;
-
 class ScriptInterface;
 struct ScriptInterface_impl;
 
@@ -313,26 +311,6 @@ public:
 	 * stored per ScriptInterface. It calls MathRandom of the current ScriptInterface instance.
 	 */
 	bool MathRandom(double& nbr);
-
-	/**
-	 * Structured clones are a way to serialize 'simple' JS::Values into a buffer
-	 * that can safely be passed between compartments and between threads.
-	 * A StructuredClone can be stored and read multiple times if desired.
-	 * We wrap them in shared_ptr so memory management is automatic and
-	 * thread-safe.
-	 */
-	using StructuredClone = shared_ptr<JSStructuredCloneData>;
-
-	StructuredClone WriteStructuredClone(JS::HandleValue v) const;
-	void ReadStructuredClone(const StructuredClone& ptr, JS::MutableHandleValue ret) const;
-
-	/**
-	 * Construct a new value (usable in this ScriptInterface's compartment) by cloning
-	 * a value from a different compartment.
-	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
-	 * types and cyclic references should be fine.
-	 */
-	JS::Value CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const;
 
 	/**
 	 * Retrieve the private data field of a JSObject that is an instance of the given JSClass.

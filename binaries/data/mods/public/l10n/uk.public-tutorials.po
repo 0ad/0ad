@@ -6,14 +6,14 @@
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2017
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Oleg Adept <adeptoleg@gmail.com>, 2020
-# Микола Франчук <thekolian1996@gmail.com>, 2020
+# Микола Франчук <thekolian1996@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-04-09 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>, 2020\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>, 2021\n"
 "Language-Team: Ukrainian (https://www.transifex.com/wildfire-games/teams/17418/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,9 @@ msgid ""
 "that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"Клацніть лівою кнопкою миші по Городянці, а потім клацніть правою кнопкою "
+"миші на кущ ягід, щоб ця Городянка збирала їжу. Городянки збирають ягоди та "
+"овочі швидше ніж інші юніти."
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
@@ -38,6 +41,9 @@ msgid ""
 "begin gathering wood. Citizen Soldiers gather wood faster than Female "
 "Citizens."
 msgstr ""
+"Виберіть Городянина, права кнопка миші по дереву поблизу Громадського "
+"Центру, щоб розпочати збір деревини. Городянин збирає деревину швидше, ніж "
+"городянка."
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -69,6 +75,9 @@ msgid ""
 "Select the two idle Female Citizens and build a House nearby by selecting "
 "the House icon. Place the House by left-clicking on a piece of land."
 msgstr ""
+"Виберіть двох непрацюючих Городянок і побудуйте Будинок поблизу, вибравши "
+"піктограму Будинку. Помістіть Будинок, клацнувши лівою кнопкою миші на "
+"ділянку землі."
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
@@ -76,6 +85,9 @@ msgid ""
 "build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
 msgstr ""
+"Виберіть щойно натренованих Гоплітів та накажіть їм звести Сховище поруч з "
+"деревами, що поблизу. Вони почнуть збирати деревину після того, як завершать"
+" зведення."
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -95,10 +107,12 @@ msgid ""
 "Build a Farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Збудуйте Садибу на відкритій площі біля Громадянського Центру, "
+"використовуючи будь-яких непрацюючих будівельників."
 
 #: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the Farmstead to be built."
-msgstr ""
+msgstr "Давайте почекаємо, доки Садиба буде побудована."
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
@@ -106,6 +120,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a Field beside the Farmstead."
 msgstr ""
+"Коли Садиба буде збудована, її будівельники автоматично розпочнуть збирати "
+"їжу поблизу. Виберіть будівельників та замість цього накажіть їм засіяти "
+"Поле поруч із Садибою."
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
@@ -113,6 +130,9 @@ msgid ""
 "Field. Using the newly created group of skirmishers, get them to build "
 "another House nearby."
 msgstr ""
+"Працівники, що засівали Поле, тепер автоматично почнуть збирати їжу з Поля. "
+"Використовуючи щойно натреновану групу застрільників, віддайте їм наказ "
+"побудувати поруч інший Будинок."
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
@@ -120,12 +140,18 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather wood."
 msgstr ""
+"Натренуйте групу Гоплітів в Громадському Центрі. Виберіть Громадський Центр "
+"та натисніть правою кнопкою на дерево поблизу. Юніти з Громадського Центру "
+"тепер автоматично будуть збирати деревину."
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a wood icon."
 msgstr ""
+"Виберіть Громадський Центр, потім наведіть курсор на дерево і клацніть "
+"правою кнопкою миші коли ви побачите, що курсор змінився на піктограму "
+"деревини."
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
@@ -141,6 +167,9 @@ msgid ""
 "II icon (you have to wait for the barracks to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Виберіть Громадський центр знову та перейдіть до Стадії Містечка, натиснувши"
+" на піктограму ІІ (вам потрібно для початку збудувати Казарми).  Це "
+"дозволить зводити будівлі Стадії Містечка."
 
 #: maps/tutorials/introductory_tutorial.js:205
 msgid ""
@@ -161,6 +190,8 @@ msgid ""
 "Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"Почніть тренувати групу Городянок у Громадському Центрі та вкажіть їм точку "
+"збору на фермі (натисніть правою кнопкою миші по ній)."
 
 #: maps/tutorials/introductory_tutorial.js:246
 #: maps/tutorials/starting_economy_walkthrough.js:345
@@ -229,10 +260,14 @@ msgid ""
 "find the enemy Civic Center on the map. Once the enemy's base has been "
 "spotted, send your Siege Engines and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Зупиніть всіх ваших солдатів, що збирають ресурси, та замість цього накажіть"
+" їм шукати маленькими групами ворожий Громадський Центр на карті. Як тільки "
+"ворожа база була виявлена, надішліть свої Облогові Знаряддя і всіх воїнів, "
+"що залишились, знищити її.\n"
 
 #: maps/tutorials/introductory_tutorial.js:360
 msgid "Female Citizens should continue to gather resources."
-msgstr ""
+msgstr "Городянкам слід продовжувати збір ресурсів."
 
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
@@ -332,6 +367,11 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more food and wood resources."
 msgstr ""
+"У верхньому рядку кнопок містяться портрети юнітів, які можуть бути "
+"треновані в будівлі, тоді як нижній один або два рядки матимуть досліджувані"
+" технології. Наведіть курсор на піктограму \"II\". Підказка покаже нам, що "
+"перехід до «Стадії Містечка» вимагає як більше побудованих споруд, так і "
+"більше ресурсів їжі та деревини."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -343,6 +383,13 @@ msgid ""
 " Soldiers can gather any land resources while Cavalry Citizen Soldiers can "
 "only gather meat from animals.\n"
 msgstr ""
+"У вас є два основних типи стартових юнітів: Городянки та Городяни. Городянки"
+" є суто економічними юнітами; вони мають низький рівень здоров'я і майже не "
+"мають очок атаки. Городяни —  це працівники за замовчуванням, але в разі "
+"потреби можуть використовувати зброю для боротьби. У вас є дві категорії "
+"Городян: Піхота та Кавалерія. Городянки та Городяни-Піхотинці можуть збирати"
+" будь-які земельні ресурси, тоді як  Городяни-Кавалеристи можуть тільки "
+"збирати м'ясо з тварин.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -359,6 +406,9 @@ msgid ""
 " your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
+"На цьому етапі їжа та деревина є найважливішими ресурсами для розвитку вашої"
+" економіки, тому давайте почнемо збирання їжі. Городянки збирають ягоди та "
+"овочі швидше, ніж інші юніти.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -399,6 +449,11 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the Female Citizens selected."
 msgstr ""
+"Ви можете натиснути на порожнє місце на карті, щоб скинути виділення. "
+"Спробуйте кожен з цих методів, перш ніж поставити завдання всім вашим "
+"Городянкам збирати виноград на південному сході від вашого Громадського "
+"Центру, клацнувши правою кнопкою миші на винограді, коли вибрані всі "
+"Городянки."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -406,12 +461,17 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"Тепер давайте зберемо трохи деревини Городянами-Піхотинцями. Виберіть "
+"Городян-Піхотинців і накажіть їм збирати деревину, натиснувши правою кнопкою"
+" миші на найближчому дереві."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Кавалерія хороша в полюванні. Виберіть свою Кавалерію і накажіть їм "
+"вполювати кур навколо свого Громадянського Центру аналогічним чином."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -429,6 +489,12 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"По-перше, давайте встановимо пункт збору. Встановлення пункту збору для "
+"будівлі, що тренує юніти, автоматично призначить завдання новому юніту після"
+" завершення тренувань. Ми хочемо відправити щойно тренованих юнітів збирати "
+"деревину з групи дерев, що на півдні від Громадського Центру. Для цього "
+"виберіть Громадський Центр, натиснувши по ньому, а потім натисніть правою "
+"кнопкою миші по одному з дерев.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -440,6 +506,9 @@ msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a wood icon."
 msgstr ""
+"Виберіть Громадський Центр, потім наведіть курсор на дерево і натисніть "
+"правою кнопкою миші, коли ви побачите, що курсор змінився на піктограму "
+"деревини."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -457,6 +526,11 @@ msgid ""
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
+"Городяни-Солдати збирають деревину швидше, ніж Городянки. Виберіть "
+"Громадський Центр і, утримуючи Shift, натисніть піктограму другого юніта, "
+"Гопліта (утримуючи Shift тренується група з п'яти юнітів). Ви також можете "
+"тренувати юнітів індивідуально просто натискаючи, але тренування 5 юнітів "
+"разом займає менше часу, ніж тренування 5 юнітів окремо."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -479,6 +553,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Поки чекаємо, зверніть увагу на панель у верхній частині екрана. У верхньому"
+" лівому куті ви побачите поточний запас ресурсів (їжа, деревина, камінь та "
+"метал). Оскільки кожен працівник приносить ресурси до Громадського Центру "
+"(або до іншої точки збору ресурсів), ви побачите суму відповідного "
+"збільшення ресурсу.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -497,6 +576,8 @@ msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "wood.\n"
 msgstr ""
+"Щойно натреновані юніти автоматично ідуть до дерев і починають збирати "
+"деревину.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -508,6 +589,13 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Але, оскільки вони повинні повернути їх до Громадянського Центру для "
+"накопичення, ефективність їх збирання страждає від відстані. Для того, щоб "
+"це виправити, ми можемо побудувати Сховище, точку збору для деревини, каменю"
+" та металу, поруч із деревами. Для цього виділіть п'ять новоспечених Городян"
+" і знайдіть панель будівництва внизу праворуч, натисніть піктограму Сховища,"
+" перемістіть мишу якомога ближче до дерев, які хочете зібрати, та натисніть "
+"на дійсне місце для побудови точки збору.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -522,12 +610,16 @@ msgid ""
 "The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
+"Вибрані Городяни автоматично почнуть спорудження будівлі після розміщення "
+"фундаменту."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering wood "
 "automatically.\n"
 msgstr ""
+"Коли будівництво закінчено, будівники за замовчуванням починають збір "
+"деревини автоматично.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -535,6 +627,9 @@ msgid ""
 "Center, hold Shift and click on the Female Citizen icon to train five Female"
 " Citizens."
 msgstr ""
+"Давайте натренуємо ще декількох Городянок, щоб збирати більше їжі. Виберіть "
+"Громадський Центр, утримуйте клавішу \"Shift\" та натисніть піктограму "
+"Городянки, щоб тренувати п'ять Городянок."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
@@ -553,6 +648,10 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Тим часом у нас, здається, досить робочих, які збирають деревину. Слід "
+"прибрати нинішній пункт збору Громадського Центру від заготівлі деревини. "
+"Для цього натисніть правою кнопкою миші на Громадському Центрі, коли він "
+"обраний (піктограма прапора, яка вказує на точку збору, з хрестиком)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -578,12 +677,17 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the House.\n"
 msgstr ""
+"Оскільки ви майже досягли межі населення, ви повинні збільшити її шляхом "
+"створення нових будівель, якщо ви хочете тренувати більше юнітів. "
+"Найвигідніша будівля для збільшення вашої межі населення – це Будинок.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several Houses in a "
 "row."
 msgstr ""
+"Тепер, коли юніти готові, давайте подивимося як побудувати кілька Будинків "
+"одразу."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -598,12 +702,24 @@ msgid ""
 "Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
+"Виберіть двох своїх щойно натренованих Городянок та дайте їм наказ "
+"побудувати ці Будинки у порожньому місці на схід від Громадського Центру. "
+"Для цього, після вибору Городянок, натисніть піктограму Будинку в нижній "
+"правій панелі і, утримуючи \"Shift\", спочатку натисніть на місце на карті, "
+"де ви хочете побудувати перший Будинок, а потім натисніть на місце, де ви "
+"хочете побудувати другий (коли ви даєте наказ, утримуючи \"Shift\", ви "
+"кладете наказ в чергу; юніти автоматично перемикаються до наступного наказу "
+"в їх черзі, коли вони закінчують свій поточний наказ). Натисніть \"Escape\","
+" щоб вийти з режиму побудови Будинку, щоб ви не понабудовували Будинки по "
+"всій карті.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
+"Нагадування: щоб вибрати лише двох Городянок, натисніть на першу, а потім "
+"утримуйте Shift і натисніть на другу."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -620,6 +736,8 @@ msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a Farmstead."
 msgstr ""
+"Але щоб звести до мінімуму відстань між фермою та відповідною точкою збору "
+"ресурсів, ми спочатку побудуємо Садибу."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
@@ -627,6 +745,9 @@ msgid ""
 "Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Виберіть трьох (байдикуючих) Городянок, що залишись, та накажіть їм "
+"побудувати Садибу в центрі великої відкритої зони на захід від Громадського "
+"Центру.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -634,6 +755,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Нам знадобиться пристойний шматок вільного простору навколо Садиби, щоб "
+"будувати Поля. Крім того, ми бачимо кіз на західній стороні, щоб ще більше "
+"підвищити ефективність збору їжі, якщо ми коли-небудь вирішимо полювати на "
+"них.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -644,18 +769,29 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Якщо ви намагаєтеся вибрати трьох непрацюючих Городянок, натискаючи та "
+"перетягуючи прямокутник виділення, ви випадково можете вибрати додаткових "
+"юнітів. Щоб уникнути цього, утримуйте клавішу I під час вибору, щоб вибрати "
+"лише непрацюючих юнітів. Якщо ви випадково виберете кавалеристів, утримуйте "
+"Ctrl і натисніть на піктограмі кавалерії на панелі вибору внизу екрана, щоб "
+"видалити кавалеристів з поточного вибору."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Коли будівництво Садиби закінчиться, його будівельники автоматично почнуть "
+"шукати їжу, і в цьому випадку вони підуть за козами поблизу.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your House builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the Houses."
 msgstr ""
+"Але ваші будівельники шукатимуть щось інше для побудови, і, якщо нічого не "
+"знайдеться, перестануть працювати. Давайте зачекаємо, поки вони збудують "
+"Будинки."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -663,12 +799,17 @@ msgid ""
 "to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Коли обидва Будинки побудовані, оберіть двох своїх Городянок і дайте їм "
+"наказ побудувати Поле максимально близько до Садиби, яка є точкою збору для "
+"всіх видів їжі."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the Field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"Коли Поле буде побудовано, будівельники автоматично розпочнуть збір "
+"урожаю.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -698,13 +839,15 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the Field."
-msgstr ""
+msgstr "Виберіть Громадський Центр та клацніть правою кнопкою миші на Полі."
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Тепер натисніть тричі на піктограмі Городянки в нижній правій панелі, щоб "
+"натренувати ще трьох фермерів."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
@@ -726,6 +869,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Наприклад, рівень сільського господарства може бути покращений за допомогою "
+"досліджуваних технологій в Садибі. Виберіть Садибу та подивіться на її "
+"виробничу панель у правому нижньому кутку. Ви побачите декілька "
+"досліджуваних технологій. Наведіть курсор на них, щоб побачити їхню вартість"
+" та вплив і натисніть на ту, яку ви хочете досліджувати."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -767,6 +915,12 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the Hoplite icon twice."
 msgstr ""
+"Давайте почекаємо, коли Казарми будуть збудовані. Оскільки це будівництво "
+"займає багато часу, ви можете додати двох солдатів, щоб збудувати їх швидше."
+" Для цього виберіть свій Громадський Центр та встановіть пункт збору на "
+"фундаменті казарми, натиснувши на ньому правою кнопкою миші (ви побачите "
+"піктограму молотка). Потім підготуйте ще двох будівельників, двічі "
+"натиснувши піктограму Гопліта."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -791,6 +945,10 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
+"На пізніших стадіях вам, як правило, потрібні камінь та метал, щоб будувати "
+"більші будівлі та тренувати кращих солдатів. Отже, очікуючи проведення "
+"дослідження, відправте половину ваших непрацюючих Городян (які закінчили "
+"будівництво Казарми) збирати камінь, а іншу половину збирати метал.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -800,6 +958,11 @@ msgid ""
 "soldiers were gathering wood, so they may still carry some wood which would "
 "be lost when starting to gather another resource."
 msgstr ""
+"Для цього ми можемо вибрати трьох Городян і натиснути правою кнопкою миші на"
+" кам'яному кар'єрі на захід від Громадянського Центру (курсор зміниться при "
+"наведенні на кам'яний кар'єр з вибраними воїнами). Однак ці солдати збирали "
+"деревину, так що вони можуть все ще нести деревину, яка втратиться, якщо "
+"розпочати збір іншого ресурсу."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -809,12 +972,20 @@ msgid ""
 "their wood and then hold Shift and right-click on the stone quarry to gather"
 " it.\n"
 msgstr ""
+"Таким чином, ми повинні віддати наказ по шляху до кам'яної копальні віднести"
+" зібрану ними деревину в Громадський Центр. Щоб зробити це, утримуйте "
+"клавішу Shift, створюючи послідовність команд: виберіть ваших солдатів, "
+"утримуйте Shift і натисніть правою кнопкою миші на Громадський Центр, щоб "
+"скласти деревину, а потім утримуйте Shift і натисніть правою кнопкою миші на"
+" кам'яній копальні, щоб приступити до видобутку каменю.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
 msgstr ""
+"Виконайте аналогічну послідовність команд з солдатами, що залишились, для "
+"копальні з металами на заході."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -830,6 +1001,9 @@ msgid ""
 " the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Ця карта дасть орієнтовний посібник для ефективного початку гри. Спочатку "
+"гри найголовніше — зібрати ресурси якомога швидше, щоб потім ви змогли "
+"натренувати достатньо солдат."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

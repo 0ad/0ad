@@ -80,8 +80,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-17 20:44+0000\n"
+"POT-Creation-Date: 2021-05-07 07:30+0000\n"
+"PO-Revision-Date: 2021-05-07 19:11+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1793,15 +1793,23 @@ msgstr "Verbündete dürfen dieses Lager benützen."
 msgid "You are allowed to use this dropsite"
 msgstr "Du darfst dieses Lager verwenden"
 
-#: gui/session/unit_actions.js:1772
+#: gui/session/unit_actions.js:1727
+msgid "Activate auto-queue for selected structures."
+msgstr "Auto-Ausbildung für ausgewählte Gebäude aktvieren."
+
+#: gui/session/unit_actions.js:1747
+msgid "Deactivate auto-queue for selected structures."
+msgstr "Auto-Ausbildung für ausgewählte Gebäude deaktivieren."
+
+#: gui/session/unit_actions.js:1812
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Die Einheit muss getötet werden, bevor ihre Ressourcen gesammelt werden können."
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1815
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Du kannst dieses Objekt nicht zerstören, da du weniger als die Hälfte der Kontrollpunkte besitzt"
 
-#: gui/session/unit_actions.js:1778
+#: gui/session/unit_actions.js:1818
 msgid "This entity is undeletable"
 msgstr "Diese Einheit kann nicht gelöscht werden."

@@ -31,12 +31,12 @@
 #include "ps/Game.h"
 #include "ps/Mod.h"
 #include "ps/Pyrogenesis.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
 #include "simulation2/Simulation2.h"
 
 // TODO: we ought to check version numbers when loading files
 
-Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const ScriptInterface::StructuredClone& guiMetadataClone)
+Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const Script::StructuredClone& guiMetadataClone)
 {
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + prefix + L"-%04d");
@@ -51,7 +51,7 @@ Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSi
 	return Save(filename.Filename().string(), description, simulation, guiMetadataClone);
 }
 
-Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const ScriptInterface::StructuredClone& guiMetadataClone)
+Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const Script::StructuredClone& guiMetadataClone)
 {
 	ScriptRequest rq(simulation.GetScriptInterface());
 
@@ -93,7 +93,7 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 		"initAttributes", initAttributes);
 
 	JS::RootedValue guiMetadata(rq.cx);
-	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
+	Script::ReadStructuredClone(rq, guiMetadataClone, &guiMetadata);
 
 	// get some camera data
 	const CVector3D cameraPosition = g_Game->GetView()->GetCameraPosition();
