@@ -117,8 +117,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"type": "collect-treasure",
 				"entities": spawnedEnts,
 				"target": data[i].target,
-				"queued": true,
-				"autocontinue": i == rallyPos.length - 1
+				"queued": true
 			});
 			break;
 		case "collect-treasure-near-position":
@@ -127,8 +126,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"entities": spawnedEnts,
 				"x": rallyPos[i].x,
 				"z": rallyPos[i].z,
-				"queued": true,
-				"autocontinue": i == rallyPos.length - 1
+				"queued": true
 			});
 			break;
 		default:
