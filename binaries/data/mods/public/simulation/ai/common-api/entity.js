@@ -859,12 +859,11 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"collectTreasure": function(target, autocontinue = false, queued = false, pushFront = false) {
+	"collectTreasure": function(target, queued = false, pushFront = false) {
 		Engine.PostCommand(PlayerID, {
 			"type": "collect-treasure",
 			"entities": [this.id()],
 			"target": target.id(),
-			"autocontinue": autocontinue,
 			"queued": queued,
 			"pushFront": pushFront
 		});

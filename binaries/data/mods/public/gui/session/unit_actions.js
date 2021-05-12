@@ -893,7 +893,6 @@ var g_UnitActions =
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
-				"autocontinue": true,
 				"formation": g_AutoFormation.getNull()
 			});
 
