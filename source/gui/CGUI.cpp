@@ -20,6 +20,7 @@
 #include "CGUI.h"
 
 #include "gui/IGUIScrollBar.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectTypes/CGUIDummyObject.h"
 #include "gui/ObjectTypes/CTooltip.h"
 #include "gui/Scripting/ScriptFunctions.h"

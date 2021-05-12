@@ -19,6 +19,7 @@
 
 #include "CGUIHotkey.h"
 
+#include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "scriptinterface/ScriptInterface.h"
 

@@ -19,6 +19,7 @@
 
 #include "graphics/LOSTexture.h"
 #include "lib/timer.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/Los.h"
 

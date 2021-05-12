@@ -20,6 +20,8 @@
 #include "IGUIButtonBehavior.h"
 
 #include "gui/CGUISprite.h"
+#include "gui/ObjectBases/IGUIObject.h"
+
 
 const CStr IGUIButtonBehavior::EventNamePress = "Press";
 const CStr IGUIButtonBehavior::EventNamePressRight = "PressRight";

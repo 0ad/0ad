@@ -20,6 +20,8 @@
 #include "XMBStorage.h"
 
 #include "lib/file/io/write_buffer.h"
+#include "lib/file/vfs/vfs.h"
+#include "ps/CLogger.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 

@@ -25,6 +25,8 @@
 #include "simulation2/helpers/Position.h"
 #include "simulation2/helpers/Player.h"
 
+#include <vector>
+
 class FastSpatialSubdivision;
 
 /**

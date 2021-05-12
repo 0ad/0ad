@@ -18,10 +18,11 @@
 #ifndef INCLUDED_CGUISETTINGS
 #define INCLUDED_CGUISETTINGS
 
-#include "gui/ObjectBases/IGUIObject.h"
+#include "ps/CStr.h"
+#include "scriptinterface/ScriptForward.h"
+
 
 class IGUIObject;
-class ScriptRequest;
 
 /**
  * This setting interface allows GUI objects to call setting function functions without having to know the setting type.

@@ -20,6 +20,8 @@
 
 #include "StunClient.h"
 
+#include "lib/sysdep/os.h"
+
 #include <chrono>
 #include <cstdio>
 
@@ -27,7 +29,7 @@
 #include <string.h>
 
 #include <sys/types.h>
-#ifdef WIN32
+#if OS_WIN
 #  include <winsock2.h>
 #  include <ws2tcpip.h>
 #else
