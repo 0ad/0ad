@@ -4,9 +4,15 @@
   <group>
     <variant frequency="1" name="Berry Bush Mesh 01">
       <mesh>gaia/berry_bush_01.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/berry_mud.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="1" name="Berry Bush Mesh 02">
       <mesh>gaia/berry_bush_02.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/berry_mud.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>
