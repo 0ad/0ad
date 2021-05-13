@@ -323,7 +323,7 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(const VfsPath& filename)
 
 	ScriptRequest rq(m_ScriptInterface);
 	JS::RootedValue returnValue(rq.cx);
-	ToJSVal_vector(rq, &returnValue, heightmap);
+	Script::ToJSVal(rq, &returnValue, heightmap);
 	return returnValue;
 }
 

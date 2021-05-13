@@ -313,11 +313,11 @@ public:
 		std::vector<CFixedVector2D> waypoints;
 		JS::RootedValue retVal(rq.cx);
 
-		m_ScriptInterface->FromJSVal<CFixedVector2D>(rq, position, pos);
-		m_ScriptInterface->FromJSVal<CFixedVector2D>(rq, goal, goalPos);
+		Script::FromJSVal(rq, position, pos);
+		Script::FromJSVal(rq, goal, goalPos);
 
 		ComputePath(pos, goalPos, passClass, waypoints);
-		m_ScriptInterface->ToJSVal<std::vector<CFixedVector2D> >(rq, &retVal, waypoints);
+		Script::ToJSVal(rq, &retVal, waypoints);
 
 		return retVal;
 	}
@@ -426,7 +426,7 @@ public:
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
 			JS::RootedValue val(rq.cx);
-			m_ScriptInterface->ToJSVal(rq, &val, m_Players[i]->m_Player);
+			Script::ToJSVal(rq, &val, m_Players[i]->m_Player);
 			m_ScriptInterface->SetPropertyInt(playersID, i, val, true);
 		}
 
@@ -477,8 +477,8 @@ public:
 
 		JS::RootedValue state(rq.cx);
 		Script::ReadStructuredClone(rq, gameState, &state);
-		ScriptInterface::ToJSVal(rq, &m_PassabilityMapVal, passabilityMap);
-		ScriptInterface::ToJSVal(rq, &m_TerritoryMapVal, territoryMap);
+		Script::ToJSVal(rq, &m_PassabilityMapVal, passabilityMap);
+		Script::ToJSVal(rq, &m_TerritoryMapVal, territoryMap);
 
 		m_PassabilityMap = passabilityMap;
 		m_NonPathfindingPassClasses = nonPathfindingPassClassMasks;
@@ -529,7 +529,7 @@ public:
 
 		ScriptRequest rq(m_ScriptInterface);
 		if (dimensionChange || justDeserialized)
-			ScriptInterface::ToJSVal(rq, &m_PassabilityMapVal, m_PassabilityMap);
+			Script::ToJSVal(rq, &m_PassabilityMapVal, m_PassabilityMap);
 		else
 		{
 			// Avoid a useless memory reallocation followed by a garbage collection.
@@ -557,7 +557,7 @@ public:
 
 		ScriptRequest rq(m_ScriptInterface);
 		if (dimensionChange)
-			ScriptInterface::ToJSVal(rq, &m_TerritoryMapVal, m_TerritoryMap);
+			Script::ToJSVal(rq, &m_TerritoryMapVal, m_TerritoryMap);
 		else
 		{
 			// Avoid a useless memory reallocation followed by a garbage collection.

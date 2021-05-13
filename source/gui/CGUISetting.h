@@ -41,12 +41,12 @@ public:
 	bool FromString(const CStrW& value, const bool sendMessage);
 
 	/**
-	 * Parses the given JS::Value using ScriptInterface::FromJSVal and assigns it to the setting data.
+	 * Parses the given JS::Value using Script::FromJSVal and assigns it to the setting data.
 	 */
 	bool FromJSVal(const ScriptRequest& rq, JS::HandleValue value, const bool sendMessage);
 
 	/**
-	 * Converts the setting data to a JS::Value using ScriptInterface::ToJSVal.
+	 * Converts the setting data to a JS::Value using Script::ToJSVal.
 	 */
 	virtual void ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue value) = 0;
 

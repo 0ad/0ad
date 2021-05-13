@@ -23,7 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
 
 bool ScriptException::IsPending(const ScriptRequest& rq)
 {
@@ -49,7 +49,7 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 	if (!excn.isObject())
 	{
 		CStr error;
-		ScriptInterface::FromJSVal(rq, excn, error);
+		Script::FromJSVal(rq, excn, error);
 		LOGERROR("JavaScript error: %s", error);
 		return true;
 	}
@@ -60,7 +60,7 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 	if (!report)
 	{
 		CStr error;
-		ScriptInterface::FromJSVal(rq, excn, error);
+		Script::FromJSVal(rq, excn, error);
 		LOGERROR("JavaScript error: %s", error);
 		return true;
 	}

@@ -94,7 +94,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 
 	JS::RootedObject filenameArrayObj(s->rq.cx, s->filename_array);
 	JS::RootedValue val(s->rq.cx);
-	ScriptInterface::ToJSVal(s->rq, &val, CStrW(pathname.string()) );
+	Script::ToJSVal(s->rq, &val, CStrW(pathname.string()) );
 	JS_SetElement(s->rq.cx, filenameArrayObj, s->cur_idx++, val);
 	return INFO::OK;
 }
@@ -164,7 +164,7 @@ JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
 
 	// Decode as UTF-8
 	JS::RootedValue ret(rq.cx);
-	ScriptInterface::ToJSVal(rq, &ret, contents.FromUTF8());
+	Script::ToJSVal(rq, &ret, contents.FromUTF8());
 	return ret;
 }
 
@@ -195,7 +195,7 @@ JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstri
 	{
 		// Decode each line as UTF-8
 		JS::RootedValue val(rq.cx);
-		ScriptInterface::ToJSVal(rq, &val, CStr(line).FromUTF8());
+		Script::ToJSVal(rq, &val, CStr(line).FromUTF8());
 		scriptInterface.SetPropertyInt(line_array, cur_line++, val);
 	}
 

@@ -160,7 +160,7 @@ public:
 		// Test that a mutable handle value as return value works.
 		ScriptFunction::Call(rq, val, "inc", &out);
 
-		ScriptInterface::FromJSVal(rq, out, nbr);
+		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
 
 		ScriptFunction::Call(rq, val, "add", nbr, nbrVal);
@@ -169,13 +169,13 @@ public:
 		// GetProperty JS::RootedValue* overload
 		nbr = 0;
 		script.GetProperty(val, "0", &out);
-		ScriptInterface::FromJSVal(rq, out, nbr);
+		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::RootedValue* overload
 		nbr = 0;
 		script.GetPropertyInt(val, 0, &out);
-		ScriptInterface::FromJSVal(rq, out, nbr);
+		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		handle_templates_test(script, val, &out, nbrVal);
@@ -190,7 +190,7 @@ public:
 		ScriptFunction::CallVoid(rq, val, "setTo", nbrVal);
 		ScriptFunction::Call(rq, val, "inc", out);
 
-		ScriptInterface::FromJSVal(rq, out, nbr);
+		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
 
 		ScriptFunction::Call(rq, val, "add", nbr, nbrVal);
@@ -199,13 +199,13 @@ public:
 		// GetProperty JS::MutableHandleValue overload
 		nbr = 0;
 		script.GetProperty(val, "0", out);
-		ScriptInterface::FromJSVal(rq, out, nbr);
+		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::MutableHandleValue overload
 		nbr = 0;
 		script.GetPropertyInt(val, 0, out);
-		ScriptInterface::FromJSVal(rq, out, nbr);
+		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 	}
 
@@ -263,7 +263,7 @@ public:
 		TS_ASSERT(script.Eval("f()", &out));
 
 		int outNbr = 0;
-		ScriptInterface::FromJSVal(rq, out, outNbr);
+		Script::FromJSVal(rq, out, outNbr);
 		TS_ASSERT_EQUALS(2, outNbr);
 	}
 };

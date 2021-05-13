@@ -38,7 +38,6 @@ class CHotkeyPicker : public IGUIObject
 {
 	GUI_OBJECT(CHotkeyPicker)
 
-	friend class ScriptInterface;
 public:
 	CHotkeyPicker(CGUI& pGUI);
 	virtual ~CHotkeyPicker();
@@ -54,6 +53,14 @@ public:
 
 	// Pre-empt events: this is our sole purpose.
 	virtual InReaction PreemptEvent(const SDL_Event_* ev);
+
+	struct Key
+	{
+		// The scancode is used for fast comparisons.
+		SDL_Scancode code;
+		// This is the name ultimately stored in the config file.
+		CStr scancodeName;
+	};
 protected:
 	// Fire an event with m_KeysPressed as argument.
 	void FireEvent(const CStr& event);
@@ -64,13 +71,6 @@ protected:
 	double m_LastKeyChange;
 
 	// Keep track of which keys we are pressing, and precompute their name for JS code.
-	struct Key
-	{
-		// The scancode is used for fast comparisons.
-		SDL_Scancode code;
-		// This is the name ultimately stored in the config file.
-		CStr scancodeName;
-	};
 	std::vector<Key> m_KeysPressed;
 
 	static const CStr EventNameCombination;

@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "scriptinterface/ScriptConversions.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include "graphics/Color.h"
 #include "maths/Fixed.h"
@@ -34,7 +35,7 @@
 #define FAIL(msg) STMT(LOGERROR(msg); return false)
 #define FAIL_VOID(msg) STMT(ScriptException::Raise(rq, msg); return)
 
-template<> void ScriptInterface::ToJSVal<IComponent*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, IComponent* const& val)
+template<> void Script::ToJSVal<IComponent*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, IComponent* const& val)
 {
 	if (val == NULL)
 	{
@@ -65,7 +66,7 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(const ScriptRequest& rq,  
 	ret.setObject(*obj);
 }
 
-template<> void ScriptInterface::ToJSVal<CParamNode>(const ScriptRequest& rq,  JS::MutableHandleValue ret, CParamNode const& val)
+template<> void Script::ToJSVal<CParamNode>(const ScriptRequest& rq,  JS::MutableHandleValue ret, CParamNode const& val)
 {
 	val.ToJSVal(rq, true, ret);
 
@@ -78,7 +79,7 @@ template<> void ScriptInterface::ToJSVal<CParamNode>(const ScriptRequest& rq,  J
 	}
 }
 
-template<> void ScriptInterface::ToJSVal<const CParamNode*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CParamNode* const& val)
+template<> void Script::ToJSVal<const CParamNode*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CParamNode* const& val)
 {
 	if (val)
 		ToJSVal(rq, ret, *val);
@@ -86,7 +87,7 @@ template<> void ScriptInterface::ToJSVal<const CParamNode*>(const ScriptRequest&
 		ret.setUndefined();
 }
 
-template<> bool ScriptInterface::FromJSVal<CColor>(const ScriptRequest& rq,  JS::HandleValue v, CColor& out)
+template<> bool Script::FromJSVal<CColor>(const ScriptRequest& rq,  JS::HandleValue v, CColor& out)
 {
 	if (!v.isObject())
 		FAIL("CColor has to be an object");
@@ -109,9 +110,9 @@ template<> bool ScriptInterface::FromJSVal<CColor>(const ScriptRequest& rq,  JS:
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<CColor>(const ScriptRequest& rq,  JS::MutableHandleValue ret, CColor const& val)
+template<> void Script::ToJSVal<CColor>(const ScriptRequest& rq,  JS::MutableHandleValue ret, CColor const& val)
 {
-	CreateObject(
+	ScriptInterface::CreateObject(
 		rq,
 		ret,
 		"r", val.r,
@@ -120,7 +121,7 @@ template<> void ScriptInterface::ToJSVal<CColor>(const ScriptRequest& rq,  JS::M
 		"a", val.a);
 }
 
-template<> bool ScriptInterface::FromJSVal<fixed>(const ScriptRequest& rq,  JS::HandleValue v, fixed& out)
+template<> bool Script::FromJSVal<fixed>(const ScriptRequest& rq,  JS::HandleValue v, fixed& out)
 {
 	double ret;
 	if (!JS::ToNumber(rq.cx, v, &ret))
@@ -131,12 +132,12 @@ template<> bool ScriptInterface::FromJSVal<fixed>(const ScriptRequest& rq,  JS::
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<fixed>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const fixed& val)
+template<> void Script::ToJSVal<fixed>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const fixed& val)
 {
 	ret.set(JS::NumberValue(val.ToDouble()));
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(const ScriptRequest& rq,  JS::HandleValue v, CFixedVector3D& out)
+template<> bool Script::FromJSVal<CFixedVector3D>(const ScriptRequest& rq,  JS::HandleValue v, CFixedVector3D& out)
 {
 	if (!v.isObject())
 		return false; // TODO: report type error
@@ -156,7 +157,7 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(const ScriptRequest& 
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<CFixedVector3D>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CFixedVector3D& val)
+template<> void Script::ToJSVal<CFixedVector3D>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CFixedVector3D& val)
 {
 	JS::RootedObject global(rq.cx, rq.glob);
 	JS::RootedValue valueVector3D(rq.cx);
@@ -175,7 +176,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(const ScriptRequest& rq
 	ret.setObject(*objVec);
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(const ScriptRequest& rq,  JS::HandleValue v, CFixedVector2D& out)
+template<> bool Script::FromJSVal<CFixedVector2D>(const ScriptRequest& rq,  JS::HandleValue v, CFixedVector2D& out)
 {
 	if (!v.isObject())
 		return false; // TODO: report type error
@@ -192,7 +193,7 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(const ScriptRequest& 
 	return true;
 }
 
-template<> void ScriptInterface::ToJSVal<CFixedVector2D>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CFixedVector2D& val)
+template<> void Script::ToJSVal<CFixedVector2D>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CFixedVector2D& val)
 {
 	JS::RootedObject global(rq.cx, rq.glob);
 	JS::RootedValue valueVector2D(rq.cx);
@@ -210,7 +211,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(const ScriptRequest& rq
 	ret.setObject(*objVec);
 }
 
-template<> void ScriptInterface::ToJSVal<Grid<u8> >(const ScriptRequest& rq,  JS::MutableHandleValue ret, const Grid<u8>& val)
+template<> void Script::ToJSVal<Grid<u8> >(const ScriptRequest& rq,  JS::MutableHandleValue ret, const Grid<u8>& val)
 {
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u8));
@@ -223,7 +224,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(const ScriptRequest& rq,  JS
 	}
 
 	JS::RootedValue data(rq.cx, JS::ObjectValue(*objArr));
-	CreateObject(
+	ScriptInterface::CreateObject(
 		rq,
 		ret,
 		"width", val.m_W,
@@ -231,7 +232,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(const ScriptRequest& rq,  JS
 		"data", data);
 }
 
-template<> void ScriptInterface::ToJSVal<Grid<u16> >(const ScriptRequest& rq,  JS::MutableHandleValue ret, const Grid<u16>& val)
+template<> void Script::ToJSVal<Grid<u16> >(const ScriptRequest& rq,  JS::MutableHandleValue ret, const Grid<u16>& val)
  {
 	u32 length = (u32)(val.m_W * val.m_H);
 	u32 nbytes = (u32)(length * sizeof(u16));
@@ -244,7 +245,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(const ScriptRequest& rq,  J
 	}
 
 	JS::RootedValue data(rq.cx, JS::ObjectValue(*objArr));
-	CreateObject(
+	ScriptInterface::CreateObject(
 		rq,
 		ret,
 		"width", val.m_W,
@@ -252,7 +253,7 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(const ScriptRequest& rq,  J
 		"data", data);
 }
 
-template<> bool ScriptInterface::FromJSVal<TNSpline>(const ScriptRequest& rq,  JS::HandleValue v, TNSpline& out)
+template<> bool Script::FromJSVal<TNSpline>(const ScriptRequest& rq,  JS::HandleValue v, TNSpline& out)
 {
 	if (!v.isObject())
 		FAIL("Argument must be an object");
@@ -289,7 +290,7 @@ template<> bool ScriptInterface::FromJSVal<TNSpline>(const ScriptRequest& rq,  J
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<CCinemaPath>(const ScriptRequest& rq,  JS::HandleValue v, CCinemaPath& out)
+template<> bool Script::FromJSVal<CCinemaPath>(const ScriptRequest& rq,  JS::HandleValue v, CCinemaPath& out)
 {
 	if (!v.isObject())
 		FAIL("Argument must be an object");

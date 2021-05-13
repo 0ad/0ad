@@ -72,7 +72,7 @@ bool CGUISimpleSetting<CGUIColor>::DoFromJSVal(const ScriptRequest& rq, JS::Hand
 	if (value.isString())
 	{
 		CStr name;
-		if (!ScriptInterface::FromJSVal(rq, value, name))
+		if (!Script::FromJSVal(rq, value, name))
 			return false;
 
 		if (!m_Setting.ParseString(m_pObject.GetGUI(), name))
@@ -82,20 +82,19 @@ bool CGUISimpleSetting<CGUIColor>::DoFromJSVal(const ScriptRequest& rq, JS::Hand
 		}
 		return true;
 	}
-
-	return ScriptInterface::FromJSVal<CColor>(rq, value, m_Setting);
+	return Script::FromJSVal<CColor>(rq, value, m_Setting);
 };
 
 template<typename T>
 bool CGUISimpleSetting<T>::DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value)
 {
-	return ScriptInterface::FromJSVal<T>(rq, value, m_Setting);
+	return Script::FromJSVal<T>(rq, value, m_Setting);
 };
 
 template<typename T>
 void CGUISimpleSetting<T>::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue value)
 {
-	ScriptInterface::ToJSVal<T>(rq, value, m_Setting);
+	Script::ToJSVal<T>(rq, value, m_Setting);
 };
 
 /**

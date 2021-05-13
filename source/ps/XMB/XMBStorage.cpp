@@ -22,6 +22,7 @@
 #include "lib/file/io/write_buffer.h"
 #include "lib/file/vfs/vfs.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -251,7 +252,7 @@ bool JSNodeData::Setup(XMBStorageWriter& xmb, JS::HandleValue value)
 		if (attrib)
 		{
 			std::string attrVal;
-			if (!ScriptInterface::FromJSVal(rq, child, attrVal))
+			if (!Script::FromJSVal(rq, child, attrVal))
 			{
 				LOGERROR("Attributes must be convertible to string");
 				return false;
@@ -305,7 +306,7 @@ bool JSNodeData::Output(WriteBuffer& writeBuffer, JS::HandleValue value) const
 			if (!scriptInterface.GetProperty(value, "_string", &actualValue))
 				return false;
 			std::string strVal;
-			if (!ScriptInterface::FromJSVal(rq, actualValue, strVal))
+			if (!Script::FromJSVal(rq, actualValue, strVal))
 			{
 				LOGERROR("'_string' value must be convertible to string");
 				return false;
@@ -317,7 +318,7 @@ bool JSNodeData::Output(WriteBuffer& writeBuffer, JS::HandleValue value) const
 		case JSTYPE_NUMBER:
 		{
 			std::string strVal;
-			if (!ScriptInterface::FromJSVal(rq, value, strVal))
+			if (!Script::FromJSVal(rq, value, strVal))
 				return false;
 
 			WriteStringAndLineNumber(writeBuffer, strVal, 0);

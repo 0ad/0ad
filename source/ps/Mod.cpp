@@ -314,7 +314,7 @@ JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue returnValue(rq.cx);
-	scriptInterface.ToJSVal(rq, &returnValue, g_LoadedModVersions);
+	Script::ToJSVal(rq, &returnValue, g_LoadedModVersions);
 	return returnValue;
 }
 

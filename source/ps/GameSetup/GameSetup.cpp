@@ -197,7 +197,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	ignore_result(paramData.append(JS::NumberValue(percent)));
 
 	JS::RootedValue valPendingTask(rq.cx);
-	scriptInterface.ToJSVal(rq, &valPendingTask, pending_task);
+	Script::ToJSVal(rq, &valPendingTask, pending_task);
 	ignore_result(paramData.append(valPendingTask));
 
 	g_GUI->SendEventToAll(g_EventNameGameLoadProgress, paramData);
@@ -1493,7 +1493,7 @@ bool Autostart(const CmdLineArgs& args)
 	if (scriptInterface.HasProperty(settings, "TriggerScripts"))
 	{
 		scriptInterface.GetProperty(settings, "TriggerScripts", &triggerScripts);
-		FromJSVal_vector(rq, triggerScripts, triggerScriptsVector);
+		Script::FromJSVal(rq, triggerScripts, triggerScriptsVector);
 	}
 
 	if (!CRenderer::IsInitialised())
@@ -1523,7 +1523,7 @@ bool Autostart(const CmdLineArgs& args)
 			&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
 		{
 			std::vector<CStrW> victoryScriptsVector;
-			FromJSVal_vector(rq, victoryScripts, victoryScriptsVector);
+			Script::FromJSVal(rq, victoryScripts, victoryScriptsVector);
 			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
 		}
 		else
@@ -1533,7 +1533,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 	}
 
-	ToJSVal_vector(rq, &triggerScripts, triggerScriptsVector);
+	Script::ToJSVal(rq, &triggerScripts, triggerScriptsVector);
 	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
 
 	int wonderDuration = 10;

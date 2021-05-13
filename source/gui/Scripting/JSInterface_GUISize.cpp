@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,6 +124,6 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	SIDE(bottom);
 #undef SIDE
 
-	ScriptInterface::ToJSVal(rq, args.rval(), buffer);
+	Script::ToJSVal(rq, args.rval(), buffer);
 	return true;
 }

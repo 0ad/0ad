@@ -692,7 +692,7 @@ template<typename T, typename... Args>
 void SetGUIMessageProperty(const ScriptRequest& rq, JS::HandleObject messageObj, const std::string& propertyName, const T& propertyValue, Args const&... args)
 {
 	JS::RootedValue scriptPropertyValue(rq.cx);
-	ScriptInterface::AssignOrToJSVal(rq, &scriptPropertyValue, propertyValue);
+	Script::ToJSVal(rq, &scriptPropertyValue, propertyValue);
 	JS_DefineProperty(rq.cx, messageObj, propertyName.c_str(), scriptPropertyValue, JSPROP_ENUMERATE);
 	SetGUIMessageProperty(rq, messageObj, args...);
 }

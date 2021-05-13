@@ -26,7 +26,7 @@
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
 
 class IGUIObject;
 class IGUISetting;
@@ -53,13 +53,13 @@ CGUIMouseEventMask::~CGUIMouseEventMask()
 
 void CGUIMouseEventMask::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue Value)
 {
-	ScriptInterface::ToJSVal(rq, Value, m_Spec);
+	Script::ToJSVal(rq, Value, m_Spec);
 }
 
 bool CGUIMouseEventMask::DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value)
 {
 	CStrW spec;
-	if (!ScriptInterface::FromJSVal(rq, value, spec))
+	if (!Script::FromJSVal(rq, value, spec))
 		return false;
 	return DoFromString(spec);
 }

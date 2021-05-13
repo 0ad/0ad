@@ -117,7 +117,7 @@ bool print(JSContext* cx, uint argc, JS::Value* vp)
 	for (uint i = 0; i < args.length(); ++i)
 	{
 		std::wstring str;
-		if (!ScriptInterface::FromJSVal(rq, args[i], str))
+		if (!Script::FromJSVal(rq, args[i], str))
 			return false;
 		debug_printf("%s", utf8_from_wstring(str).c_str());
 	}
@@ -137,7 +137,7 @@ bool logmsg(JSContext* cx, uint argc, JS::Value* vp)
 
 	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
 	std::wstring str;
-	if (!ScriptInterface::FromJSVal(rq, args[0], str))
+	if (!Script::FromJSVal(rq, args[0], str))
 		return false;
 	LOGMESSAGE("%s", utf8_from_wstring(str));
 	args.rval().setUndefined();
@@ -155,7 +155,7 @@ bool warn(JSContext* cx, uint argc, JS::Value* vp)
 
 	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
 	std::wstring str;
-	if (!ScriptInterface::FromJSVal(rq, args[0], str))
+	if (!Script::FromJSVal(rq, args[0], str))
 		return false;
 	LOGWARNING("%s", utf8_from_wstring(str));
 	args.rval().setUndefined();
@@ -173,7 +173,7 @@ bool error(JSContext* cx, uint argc, JS::Value* vp)
 
 	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
 	std::wstring str;
-	if (!ScriptInterface::FromJSVal(rq, args[0], str))
+	if (!Script::FromJSVal(rq, args[0], str))
 		return false;
 	LOGERROR("%s", utf8_from_wstring(str));
 	args.rval().setUndefined();
@@ -712,7 +712,7 @@ bool ScriptInterface::EnumeratePropertyNames(JS::HandleValue objVal, bool enumer
 			continue;
 
 		std::string propName;
-		if (!FromJSVal(rq, val, propName))
+		if (!Script::FromJSVal(rq, val, propName))
 			return false;
 
 		out.emplace_back(std::move(propName));

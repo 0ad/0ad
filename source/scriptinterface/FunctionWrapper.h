@@ -18,14 +18,15 @@
 #ifndef INCLUDED_FUNCTIONWRAPPER
 #define INCLUDED_FUNCTIONWRAPPER
 
-#include "ScriptInterface.h"
+#include "ScriptConversions.h"
 #include "ScriptExceptions.h"
+#include "ScriptInterface.h"
 
 /**
  * This class introduces templates to conveniently wrap C++ functions in JSNative functions.
  * This _is_ rather template heavy, so compilation times beware.
  * The C++ code can have arbitrary arguments and arbitrary return types, so long
- * as they can be converted to/from JS using ScriptInterface::ToJSVal (FromJSVal respectively),
+ * as they can be converted to/from JS using Script::ToJSVal (FromJSVal respectively),
  * and they are default-constructible (TODO: that can probably changed).
  * (This could be a namespace, but I like being able to specify public/private).
  */
@@ -107,7 +108,7 @@ private:
 			else
 			{
 				T ret;
-				went_ok &= ScriptInterface::FromJSVal<T>(rq, args[idx], ret);
+				went_ok &= Script::FromJSVal<T>(rq, args[idx], ret);
 				return std::forward_as_tuple(ret);
 			}
 		}
@@ -217,7 +218,7 @@ private:
 	template<int i, typename T, typename... Ts>
 	static void AssignOrToJSValHelper(const ScriptRequest& rq, JS::MutableHandleValueVector argv, const T& a, const Ts&... params)
 	{
-		ScriptInterface::AssignOrToJSVal(rq, argv[i], a);
+		Script::ToJSVal(rq, argv[i], a);
 		AssignOrToJSValHelper<i+1>(rq, argv, params...);
 	}
 
@@ -261,7 +262,7 @@ private:
 			if constexpr (!std::is_same_v<R, IgnoreResult_t>)
 			{
 				if (success)
-					ScriptInterface::FromJSVal(rq, jsRet, ret);
+					Script::FromJSVal(rq, jsRet, ret);
 			}
 			else
 				UNUSED2(ret); // VS2017 complains.
@@ -339,7 +340,7 @@ public:
 		else if constexpr (std::is_same_v<JS::Value, typename args_info<decltype(callable)>::return_type>)
 			args.rval().set(call<callable>(obj, outs));
 		else
-			ScriptInterface::ToJSVal(rq, args.rval(), call<callable>(obj, outs));
+			Script::ToJSVal(rq, args.rval(), call<callable>(obj, outs));
 
 		return !ScriptException::IsPending(rq);
 	}

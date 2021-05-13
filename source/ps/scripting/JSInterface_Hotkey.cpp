@@ -49,20 +49,20 @@ static void ToJSVal_unordered_map(const ScriptRequest& rq, JS::MutableHandleValu
 	for (const std::pair<T, U>& item : val)
 	{
 		JS::RootedValue el(rq.cx);
-		ScriptInterface::ToJSVal<U>(rq, &el, item.second);
+		Script::ToJSVal<U>(rq, &el, item.second);
 		JS_SetProperty(rq.cx, obj, item.first.c_str(), el);
 	}
 	ret.setObject(*obj);
 }
 
 template<>
-void ScriptInterface::ToJSVal<std::unordered_map<std::string, std::vector<std::vector<std::string>>>>(const ScriptRequest& rq, JS::MutableHandleValue ret, const std::unordered_map<std::string, std::vector<std::vector<std::string>>>& val)
+void Script::ToJSVal<std::unordered_map<std::string, std::vector<std::vector<std::string>>>>(const ScriptRequest& rq, JS::MutableHandleValue ret, const std::unordered_map<std::string, std::vector<std::vector<std::string>>>& val)
 {
 	ToJSVal_unordered_map(rq, ret, val);
 }
 
 template<>
-void ScriptInterface::ToJSVal<std::unordered_map<std::string, std::string>>(const ScriptRequest& rq, JS::MutableHandleValue ret, const std::unordered_map<std::string, std::string>& val)
+void Script::ToJSVal<std::unordered_map<std::string, std::string>>(const ScriptRequest& rq, JS::MutableHandleValue ret, const std::unordered_map<std::string, std::string>& val)
 {
 	ToJSVal_unordered_map(rq, ret, val);
 }
@@ -90,7 +90,7 @@ JS::Value GetHotkeyMap(const ScriptRequest& rq)
 			if (keymap.size() < 2 || keymap[0] < keymap[1])
 				hotkeys[mapping.name].emplace_back(keymap);
 		}
-	ScriptInterface::ToJSVal(rq, &hotkeyMap, hotkeys);
+	Script::ToJSVal(rq, &hotkeyMap, hotkeys);
 
 	return hotkeyMap;
 }
@@ -107,7 +107,7 @@ JS::Value GetScancodeKeyNames(const ScriptRequest& rq)
 	// This is slightly wasteful but should be fine overall, they are dense.
 	for (int i = 0; i < MOUSE_LAST; ++i)
 		map[FindScancodeName(static_cast<SDL_Scancode>(i))] = FindKeyName(static_cast<SDL_Scancode>(i));
-	ScriptInterface::ToJSVal(rq, &obj, map);
+	Script::ToJSVal(rq, &obj, map);
 
 	return obj;
 }
@@ -121,7 +121,7 @@ void ReloadHotkeys()
 JS::Value GetConflicts(const ScriptRequest& rq, JS::HandleValue combination)
 {
 	std::vector<std::string> keys;
-	if (!ScriptInterface::FromJSVal(rq, combination, keys))
+	if (!Script::FromJSVal(rq, combination, keys))
 	{
 		LOGERROR("Invalid hotkey combination");
 		return JS::NullValue();
@@ -157,7 +157,7 @@ JS::Value GetConflicts(const ScriptRequest& rq, JS::HandleValue combination)
 		return JS::NullValue();
 
 	JS::RootedValue ret(rq.cx);
-	ScriptInterface::ToJSVal(rq, &ret, conflicts);
+	Script::ToJSVal(rq, &ret, conflicts);
 	return ret;
 }
 }
