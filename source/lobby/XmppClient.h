@@ -84,8 +84,8 @@ public:
 	void recv();
 	void SendIqGetBoardList();
 	void SendIqGetProfile(const std::string& player);
-	void SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data);
-	void SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data);
+	void SendIqGameReport(const ScriptRequest& rq, JS::HandleValue data);
+	void SendIqRegisterGame(const ScriptRequest& rq, JS::HandleValue data);
 	void SendIqGetConnectionData(const std::string& jid, const std::string& password);
 	void SendIqUnregisterGame();
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
@@ -101,10 +101,10 @@ public:
 	std::wstring GetRating(const std::string& nickname);
 	const std::wstring& GetSubject();
 
-	JS::Value GUIGetPlayerList(const ScriptInterface& scriptInterface);
-	JS::Value GUIGetGameList(const ScriptInterface& scriptInterface);
-	JS::Value GUIGetBoardList(const ScriptInterface& scriptInterface);
-	JS::Value GUIGetProfile(const ScriptInterface& scriptInterface);
+	JS::Value GUIGetPlayerList(const ScriptRequest& rq);
+	JS::Value GUIGetGameList(const ScriptRequest& rq);
+	JS::Value GUIGetBoardList(const ScriptRequest& rq);
+	JS::Value GUIGetProfile(const ScriptRequest& rq);
 
 	void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID);
 

@@ -21,6 +21,7 @@
 
 #include "gui/Scripting/JSInterface_GUISize.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/Object.h"
 
 CGUISize::CGUISize()
 	: pixel(), percent()
@@ -159,7 +160,7 @@ void CGUISize::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) cons
 	}
 
 #define P(x, y, z)\
-	if (!pScriptInterface->SetProperty(ret, #z, x.y)) \
+	if (!Script::SetProperty(rq, ret, #z, x.y)) \
 	{ \
 		ScriptException::Raise(rq, "Could not SetProperty '%s'", #z); \
 		return; \
@@ -177,8 +178,6 @@ void CGUISize::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) cons
 
 bool CGUISize::FromJSVal(const ScriptRequest& rq, JS::HandleValue v)
 {
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface;
-
 	if (v.isString())
 	{
 		CStrW str;
@@ -210,7 +209,7 @@ bool CGUISize::FromJSVal(const ScriptRequest& rq, JS::HandleValue v)
 	}
 
 #define P(x, y, z) \
-	if (!pScriptInterface->GetProperty(v, #z, x.y))\
+	if (!Script::GetProperty(rq, v, #z, x.y))\
 	{\
 		LOGERROR("CGUISize could not get object property '%s'", #z);\
 		return false;\

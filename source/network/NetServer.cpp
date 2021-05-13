@@ -1178,9 +1178,9 @@ bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)
 	const ScriptInterface& scriptInterface = server.GetScriptInterface();
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue settings(rq.cx);
-	scriptInterface.GetProperty(server.m_InitAttributes, "settings", &settings);
-	if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
-		scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);
+	Script::GetProperty(rq, server.m_InitAttributes, "settings", &settings);
+	if (Script::HasProperty(rq, settings, "CheatsEnabled"))
+		Script::GetProperty(rq, settings, "CheatsEnabled", cheatsEnabled);
 
 	PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.find(session->GetGUID());
 	// When cheating is disabled, fail if the player the message claims to

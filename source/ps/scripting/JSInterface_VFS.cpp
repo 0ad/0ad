@@ -169,7 +169,7 @@ JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
 }
 
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstring& filename)
+JS::Value ReadFileLines(const ScriptRequest& rq, const std::wstring& filename)
 {
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -183,10 +183,8 @@ JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstri
 	// split into array of strings (one per line)
 	std::stringstream ss(contents);
 
-	ScriptRequest rq(scriptInterface);
-
 	JS::RootedValue line_array(rq.cx);
-	ScriptInterface::CreateArray(rq, &line_array);
+	Script::CreateArray(rq, &line_array);
 
 	std::string line;
 	int cur_line = 0;
@@ -196,7 +194,7 @@ JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstri
 		// Decode each line as UTF-8
 		JS::RootedValue val(rq.cx);
 		Script::ToJSVal(rq, &val, CStr(line).FromUTF8());
-		scriptInterface.SetPropertyInt(line_array, cur_line++, val);
+		Script::SetPropertyInt(rq, line_array, cur_line++, val);
 	}
 
 	return line_array;

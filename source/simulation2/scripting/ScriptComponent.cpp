@@ -20,6 +20,7 @@
 #include "ScriptComponent.h"
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/IDeserializer.h"
 
@@ -31,8 +32,8 @@ CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterfac
 void CComponentTypeScript::Init(const CParamNode& paramNode, entity_id_t ent)
 {
 	ScriptRequest rq(m_ScriptInterface);
-	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
-	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
+	Script::SetProperty(rq, m_Instance, "entity", (int)ent, true, false);
+	Script::SetProperty(rq, m_Instance, "template", paramNode, true, false);
 	ScriptFunction::CallVoid(rq, m_Instance, "Init");
 }
 
@@ -65,8 +66,8 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 {
 	ScriptRequest rq(m_ScriptInterface);
 
-	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
-	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
+	Script::SetProperty(rq, m_Instance, "entity", (int)ent, true, false);
+	Script::SetProperty(rq, m_Instance, "template", paramNode, true, false);
 
 	deserialize.ScriptObjectAssign("comp", m_Instance);
 }

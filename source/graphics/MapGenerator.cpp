@@ -126,7 +126,7 @@ bool CMapGeneratorWorker::Run()
 	}
 
 	// Prevent unintentional modifications to the settings object by random map scripts
-	if (!m_ScriptInterface->FreezeObject(settingsVal, true))
+	if (!Script::FreezeObject(rq, settingsVal, true))
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to deepfreeze settings");
 		return false;
@@ -134,8 +134,8 @@ bool CMapGeneratorWorker::Run()
 
 	// Init RNG seed
 	u32 seed = 0;
-	if (!m_ScriptInterface->HasProperty(settingsVal, "Seed") ||
-	    !m_ScriptInterface->GetProperty(settingsVal, "Seed", seed))
+	if (!Script::HasProperty(rq, settingsVal, "Seed") ||
+		!Script::GetProperty(rq, settingsVal, "Seed", seed))
 		LOGWARNING("CMapGeneratorWorker::Run: No seed value specified - using 0");
 
 	InitScriptInterface(seed);
@@ -144,7 +144,7 @@ bool CMapGeneratorWorker::Run()
 
 	// Copy settings to global variable
 	JS::RootedValue global(rq.cx, rq.globalValue());
-	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal, true, true))
+	if (!Script::SetProperty(rq, global, "g_MapSettings", settingsVal, true, true))
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to define g_MapSettings");
 		return false;
@@ -390,7 +390,7 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(const VfsPath& filename)
 
 	JS::RootedValue returnValue(rq.cx);
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&returnValue,
 		"height", heightmap,

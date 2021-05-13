@@ -137,9 +137,9 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 			OsPath fileName;
 			double fileSize;
 			double fileMtime;
-			scriptInterface.GetProperty(replay, "directory", fileName);
-			scriptInterface.GetProperty(replay, "fileSize", fileSize);
-			scriptInterface.GetProperty(replay, "fileMTime", fileMtime);
+			Script::GetProperty(rq, replay, "directory", fileName);
+			Script::GetProperty(rq, replay, "fileSize", fileSize);
+			Script::GetProperty(rq, replay, "fileMTime", fileMtime);
 
 			fileList[fileName] = std::make_tuple(j, fileMtime, fileSize);
 		}
@@ -193,7 +193,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 				CFileInfo fileInfo;
 				GetFileInfo(replayFile, &fileInfo);
 
-				ScriptInterface::CreateObject(
+				Script::CreateObject(
 					rq,
 					&replayData,
 					"directory", directory.string(),
@@ -240,7 +240,7 @@ JS::Value VisualReplay::GetReplays(const ScriptInterface& scriptInterface, bool 
 	JS::RootedObject replays(rq.cx, ReloadReplayCache(scriptInterface, compareFiles));
 	// Only take entries with data
 	JS::RootedValue replaysWithoutNullEntries(rq.cx);
-	ScriptInterface::CreateArray(rq, &replaysWithoutNullEntries);
+	Script::CreateArray(rq, &replaysWithoutNullEntries);
 
 	u32 replaysLength = 0;
 	JS::GetArrayLength(rq.cx, replays, &replaysLength);
@@ -248,8 +248,8 @@ JS::Value VisualReplay::GetReplays(const ScriptInterface& scriptInterface, bool 
 	{
 		JS::RootedValue replay(rq.cx);
 		JS_GetElement(rq.cx, replays, j, &replay);
-		if (scriptInterface.HasProperty(replay, "attribs"))
-			scriptInterface.SetPropertyInt(replaysWithoutNullEntries, i++, replay);
+		if (Script::HasProperty(rq, replay, "attribs"))
+			Script::SetPropertyInt(rq, replaysWithoutNullEntries, i++, replay);
 	}
 	return replaysWithoutNullEntries;
 }
@@ -409,7 +409,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	// Return the actual data
 	JS::RootedValue replayData(rq.cx);
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&replayData,
 		"directory", directory.string(),
@@ -417,7 +417,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 		"fileMTime", static_cast<double>(fileInfo.MTime()),
 		"duration", duration);
 
-	scriptInterface.SetProperty(replayData, "attribs", attribs);
+	Script::SetProperty(rq, replayData, "attribs", attribs);
 
 	return replayData;
 }
@@ -436,7 +436,7 @@ JS::Value VisualReplay::GetReplayAttributes(const ScriptInterface& scriptInterfa
 	// Create empty JS object
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue attribs(rq.cx);
-	ScriptInterface::CreateObject(rq, &attribs);
+	Script::CreateObject(rq, &attribs);
 
 	// Return empty object if file doesn't exist
 	const OsPath replayFile = GetDirectoryPath() / directoryName / L"commands.txt";

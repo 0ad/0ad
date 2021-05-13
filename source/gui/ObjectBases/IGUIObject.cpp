@@ -27,6 +27,7 @@
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -370,7 +371,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 
 	const CVector2D& mousePos = m_pGUI.GetMousePos();
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&mouse,
 		"x", mousePos.X,

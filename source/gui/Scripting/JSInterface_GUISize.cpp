@@ -21,6 +21,7 @@
 
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/Object.h"
 
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0, &JSI_GUISize::JSI_classops
@@ -111,8 +112,8 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	double val, valr;
 
 #define SIDE(side) \
-	pScriptInterface->GetProperty(args.thisv(), #side, val); \
-	pScriptInterface->GetProperty(args.thisv(), "r"#side, valr); \
+	Script::GetProperty(rq, args.thisv(), #side, val); \
+	Script::GetProperty(rq, args.thisv(), "r"#side, valr); \
 	buffer += ToPercentString(val, valr);
 
 	SIDE(left);

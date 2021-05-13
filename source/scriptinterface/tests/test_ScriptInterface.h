@@ -20,6 +20,7 @@
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
+#include "scriptinterface/Object.h"
 
 #include "ps/CLogger.h"
 
@@ -122,11 +123,11 @@ public:
 			JS::RootedValue prop_a(rq2.cx);
 			JS::RootedValue prop_b(rq2.cx);
 			JS::RootedValue prop_x1(rq2.cx);
-			TS_ASSERT(script2.GetProperty(obj2, "a", &prop_a));
-			TS_ASSERT(script2.GetProperty(obj2, "b", &prop_b));
+			TS_ASSERT(Script::GetProperty(rq2, obj2, "a", &prop_a));
+			TS_ASSERT(Script::GetProperty(rq2, obj2, "b", &prop_b));
 			TS_ASSERT(prop_a.isObject());
 			TS_ASSERT(prop_b.isObject());
-			TS_ASSERT(script2.GetProperty(prop_a, "0", &prop_x1));
+			TS_ASSERT(Script::GetProperty(rq2, prop_a, "0", &prop_x1));
 			TS_ASSERT(prop_x1.get() == prop_a.get());
 			TS_ASSERT(prop_x1.get() == prop_b.get());
 		}
@@ -168,13 +169,13 @@ public:
 
 		// GetProperty JS::RootedValue* overload
 		nbr = 0;
-		script.GetProperty(val, "0", &out);
+		Script::GetProperty(rq, val, "0", &out);
 		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::RootedValue* overload
 		nbr = 0;
-		script.GetPropertyInt(val, 0, &out);
+		Script::GetPropertyInt(rq, val, 0, &out);
 		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
@@ -198,13 +199,13 @@ public:
 
 		// GetProperty JS::MutableHandleValue overload
 		nbr = 0;
-		script.GetProperty(val, "0", out);
+		Script::GetProperty(rq, val, "0", out);
 		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::MutableHandleValue overload
 		nbr = 0;
-		script.GetPropertyInt(val, 0, out);
+		Script::GetPropertyInt(rq, val, 0, out);
 		Script::FromJSVal(rq, out, nbr);
 		TS_ASSERT_EQUALS(nbr, 7);
 	}

@@ -103,10 +103,10 @@ JS::Value StartSavedGame(const ScriptInterface& scriptInterface, const std::wstr
 
 		JS::RootedValue gameContextMetadata(rqGame.cx, Script::CloneValueFromOtherCompartment(sim->GetScriptInterface(), scriptInterface, guiContextMetadata));
 		JS::RootedValue gameInitAttributes(rqGame.cx);
-		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
+		Script::GetProperty(rqGame, gameContextMetadata, "initAttributes", &gameInitAttributes);
 
 		int playerID;
-		sim->GetScriptInterface().GetProperty(gameContextMetadata, "playerID", playerID);
+		Script::GetProperty(rqGame, gameContextMetadata, "playerID", playerID);
 
 		g_Game->SetPlayerID(playerID);
 		g_Game->StartGame(&gameInitAttributes, savedState);

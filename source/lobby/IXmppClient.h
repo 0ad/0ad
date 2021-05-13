@@ -38,8 +38,8 @@ public:
 	virtual void recv() = 0;
 	virtual void SendIqGetBoardList() = 0;
 	virtual void SendIqGetProfile(const std::string& player) = 0;
-	virtual void SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
-	virtual void SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
+	virtual void SendIqGameReport(const ScriptRequest& rq, JS::HandleValue data) = 0;
+	virtual void SendIqRegisterGame(const ScriptRequest& rq, JS::HandleValue data) = 0;
 	virtual void SendIqGetConnectionData(const std::string& jid, const std::string& password) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
@@ -54,10 +54,10 @@ public:
 	virtual const char* GetRole(const std::string& nickname) = 0;
 	virtual std::wstring GetRating(const std::string& nickname) = 0;
 	virtual const std::wstring& GetSubject() = 0;
-	virtual JS::Value GUIGetPlayerList(const ScriptInterface& scriptInterface) = 0;
-	virtual JS::Value GUIGetGameList(const ScriptInterface& scriptInterface) = 0;
-	virtual JS::Value GUIGetBoardList(const ScriptInterface& scriptInterface) = 0;
-	virtual JS::Value GUIGetProfile(const ScriptInterface& scriptInterface) = 0;
+	virtual JS::Value GUIGetPlayerList(const ScriptRequest& rq) = 0;
+	virtual JS::Value GUIGetGameList(const ScriptRequest& rq) = 0;
+	virtual JS::Value GUIGetBoardList(const ScriptRequest& rq) = 0;
+	virtual JS::Value GUIGetProfile(const ScriptRequest& rq) = 0;
 
 	virtual JS::Value GuiPollNewMessages(const ScriptInterface& guiInterface) = 0;
 	virtual JS::Value GuiPollHistoricMessages(const ScriptInterface& guiInterface) = 0;

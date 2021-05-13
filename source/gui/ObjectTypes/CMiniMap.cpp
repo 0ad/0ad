@@ -43,6 +43,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
@@ -281,7 +282,7 @@ bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 	GetMouseWorldCoordinates(x, z);
 
 	JS::RootedValue coords(rq.cx);
-	ScriptInterface::CreateObject(rq, &coords, "x", x, "z", z);
+	Script::CreateObject(rq, &coords, "x", x, "z", z);
 
 	JS::RootedValue buttonJs(rq.cx);
 	Script::ToJSVal(rq, &buttonJs, button);

@@ -206,7 +206,7 @@ JS::Value deepfreeze(const ScriptInterface& scriptInterface, JS::HandleValue val
 		return JS::UndefinedValue();
 	}
 
-	scriptInterface.FreezeObject(val, true);
+	Script::FreezeObject(rq, val, true);
 	return val;
 }
 
@@ -476,23 +476,6 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const
 	return JS_NewObjectWithGivenProto(rq.cx, it->second.m_Class, prototype);
 }
 
-bool ScriptInterface::CreateObject_(const ScriptRequest& rq, JS::MutableHandleObject object)
-{
-	object.set(JS_NewPlainObject(rq.cx));
-
-	if (!object)
-		throw PSERROR_Scripting_CreateObjectFailed();
-
-	return true;
-}
-
-void ScriptInterface::CreateArray(const ScriptRequest& rq, JS::MutableHandleValue objectValue, size_t length)
-{
-	objectValue.setObjectOrNull(JS::NewArrayObject(rq.cx, length));
-	if (!objectValue.isObject())
-		throw PSERROR_Scripting_CreateObjectFailed();
-}
-
 bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate)
 {
 	ScriptRequest rq(this);
@@ -537,121 +520,6 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 	return JS_DefineProperty(rq.cx, global, name, value, attrs);
 }
 
-bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const
-{
-	ScriptRequest rq(this);
-	uint attrs = 0;
-	if (constant)
-		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
-	if (enumerate)
-		attrs |= JSPROP_ENUMERATE;
-
-	if (!obj.isObject())
-		return false;
-	JS::RootedObject object(rq.cx, &obj.toObject());
-
-	return JS_DefineProperty(rq.cx, object, name, value, attrs);
-}
-
-bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const
-{
-	ScriptRequest rq(this);
-	uint attrs = 0;
-	if (constant)
-		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
-	if (enumerate)
-		attrs |= JSPROP_ENUMERATE;
-
-	if (!obj.isObject())
-		return false;
-	JS::RootedObject object(rq.cx, &obj.toObject());
-
-	utf16string name16(name, name + wcslen(name));
-	return JS_DefineUCProperty(rq.cx, object, reinterpret_cast<const char16_t*>(name16.c_str()), name16.length(), value, attrs);
-}
-
-bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate) const
-{
-	ScriptRequest rq(this);
-	uint attrs = 0;
-	if (constant)
-		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
-	if (enumerate)
-		attrs |= JSPROP_ENUMERATE;
-
-	if (!obj.isObject())
-		return false;
-	JS::RootedObject object(rq.cx, &obj.toObject());
-
-	JS::RootedId id(rq.cx, INT_TO_JSID(name));
-	return JS_DefinePropertyById(rq.cx, object, id, value, attrs);
-}
-
-bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleObject out) const
-{
-	ScriptRequest rq(this);
-	return GetProperty(rq, obj, name, out);
-}
-
-bool ScriptInterface::GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, JS::MutableHandleObject out)
-{
-	JS::RootedValue val(rq.cx);
-	if (!GetProperty(rq, obj, name, &val))
-		return false;
-	if (!val.isObject())
-	{
-		LOGERROR("GetProperty failed: trying to get an object, but the property is not an object!");
-		return false;
-	}
-
-	out.set(&val.toObject());
-	return true;
-}
-
-bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const
-{
-	ScriptRequest rq(this);
-	return GetProperty(rq, obj, name, out);
-}
-
-bool ScriptInterface::GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, JS::MutableHandleValue out)
-{
-	if (!obj.isObject())
-		return false;
-	JS::RootedObject object(rq.cx, &obj.toObject());
-
-	return JS_GetProperty(rq.cx, object, name, out);
-}
-
-bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, JS::MutableHandleValue out) const
-{
-	ScriptRequest rq(this);
-	return GetPropertyInt(rq,obj, name, out);
-}
-
-bool ScriptInterface::GetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int name, JS::MutableHandleValue out)
-{
-	JS::RootedId nameId(rq.cx, INT_TO_JSID(name));
-	if (!obj.isObject())
-		return false;
-	JS::RootedObject object(rq.cx, &obj.toObject());
-
-	return JS_GetPropertyById(rq.cx, object, nameId, out);
-}
-
-bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name) const
-{
-	ScriptRequest rq(this);
-	if (!obj.isObject())
-		return false;
-	JS::RootedObject object(rq.cx, &obj.toObject());
-
-	bool found;
-	if (!JS_HasProperty(rq.cx, object, name, &found))
-		return false;
-	return found;
-}
-
 bool ScriptInterface::GetGlobalProperty(const ScriptRequest& rq, const std::string& name, JS::MutableHandleValue out)
 {
 	// Try to get the object as a property of the global object.
@@ -682,45 +550,6 @@ bool ScriptInterface::GetGlobalProperty(const ScriptRequest& rq, const std::stri
 	return false;
 }
 
-bool ScriptInterface::EnumeratePropertyNames(JS::HandleValue objVal, bool enumerableOnly, std::vector<std::string>& out) const
-{
-	ScriptRequest rq(this);
-
-	if (!objVal.isObjectOrNull())
-	{
-		LOGERROR("EnumeratePropertyNames expected object type!");
-		return false;
-	}
-
-	JS::RootedObject obj(rq.cx, &objVal.toObject());
-	JS::RootedIdVector props(rq.cx);
-	// This recurses up the prototype chain on its own.
-	if (!js::GetPropertyKeys(rq.cx, obj, enumerableOnly? 0 : JSITER_HIDDEN, &props))
-		return false;
-
-	out.reserve(out.size() + props.length());
-	for (size_t i = 0; i < props.length(); ++i)
-	{
-		JS::RootedId id(rq.cx, props[i]);
-		JS::RootedValue val(rq.cx);
-		if (!JS_IdToValue(rq.cx, id, &val))
-			return false;
-
-		// Ignore integer properties for now.
-		// TODO: is this actually a thing in ECMAScript 6?
-		if (!val.isString())
-			continue;
-
-		std::string propName;
-		if (!Script::FromJSVal(rq, val, propName))
-			return false;
-
-		out.emplace_back(std::move(propName));
-	}
-
-	return true;
-}
-
 bool ScriptInterface::SetPrototype(JS::HandleValue objVal, JS::HandleValue protoVal)
 {
 	ScriptRequest rq(this);
@@ -729,20 +558,6 @@ bool ScriptInterface::SetPrototype(JS::HandleValue objVal, JS::HandleValue proto
 	JS::RootedObject obj(rq.cx, &objVal.toObject());
 	JS::RootedObject proto(rq.cx, &protoVal.toObject());
 	return JS_SetPrototype(rq.cx, obj, proto);
-}
-
-bool ScriptInterface::FreezeObject(JS::HandleValue objVal, bool deep) const
-{
-	ScriptRequest rq(this);
-	if (!objVal.isObject())
-		return false;
-
-	JS::RootedObject obj(rq.cx, &objVal.toObject());
-
-	if (deep)
-		return JS_DeepFreezeObject(rq.cx, obj);
-	else
-		return JS_FreezeObject(rq.cx, obj);
 }
 
 bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& code) const

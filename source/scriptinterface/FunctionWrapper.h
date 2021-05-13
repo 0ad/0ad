@@ -18,9 +18,11 @@
 #ifndef INCLUDED_FUNCTIONWRAPPER
 #define INCLUDED_FUNCTIONWRAPPER
 
+#include "Object.h"
 #include "ScriptConversions.h"
 #include "ScriptExceptions.h"
 #include "ScriptInterface.h"
+#include "ScriptRequest.h"
 
 /**
  * This class introduces templates to conveniently wrap C++ functions in JSNative functions.

@@ -233,7 +233,7 @@ void CComponentManager::Script_RegisterComponentType_Common(int iid, const std::
 	}
 
 	JS::RootedValue protoVal(rq.cx);
-	if (!m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
+	if (!Script::GetProperty(rq, ctor, "prototype", &protoVal))
 	{
 		ScriptException::Raise(rq, "Failed to get property 'prototype'");
 		return;
@@ -245,8 +245,8 @@ void CComponentManager::Script_RegisterComponentType_Common(int iid, const std::
 	}
 	std::string schema = "<empty/>";
 
-	if (m_ScriptInterface.HasProperty(protoVal, "Schema"))
-		m_ScriptInterface.GetProperty(protoVal, "Schema", schema);
+	if (Script::HasProperty(rq, protoVal, "Schema"))
+		Script::GetProperty(rq, protoVal, "Schema", schema);
 
 	// Construct a new ComponentType, using the wrapper's alloc functions
 	ComponentType ct{
@@ -265,7 +265,7 @@ void CComponentManager::Script_RegisterComponentType_Common(int iid, const std::
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
 	std::vector<std::string> methods;
 
-	if (!m_ScriptInterface.EnumeratePropertyNames(protoVal, false, methods))
+	if (!Script::EnumeratePropertyNames(rq, protoVal, false, methods))
 	{
 		ScriptException::Raise(rq, "Failed to enumerate component properties.");
 		return;

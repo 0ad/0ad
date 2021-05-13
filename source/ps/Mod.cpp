@@ -26,6 +26,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Pyrogenesis.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <algorithm>
@@ -182,12 +183,12 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 		JS::RootedValue modData(rq.cx);
 
 		// Requested mod is not available, fail
-		if (!scriptInterface.HasProperty(availableMods, mod.c_str()))
+		if (!Script::HasProperty(rq, availableMods, mod.c_str()))
 		{
 			g_incompatibleMods.push_back(mod);
 			continue;
 		}
-		if (!scriptInterface.GetProperty(availableMods, mod.c_str(), &modData))
+		if (!Script::GetProperty(rq, availableMods, mod.c_str(), &modData))
 		{
 			g_incompatibleMods.push_back(mod);
 			continue;
@@ -196,9 +197,9 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 		std::vector<CStr> dependencies;
 		CStr version;
 		CStr name;
-		scriptInterface.GetProperty(modData, "dependencies", dependencies);
-		scriptInterface.GetProperty(modData, "version", version);
-		scriptInterface.GetProperty(modData, "name", name);
+		Script::GetProperty(rq, modData, "dependencies", dependencies);
+		Script::GetProperty(rq, modData, "version", version);
+		Script::GetProperty(rq, modData, "name", name);
 
 		modNameVersions.emplace(name, version);
 		modDependencies.emplace(mod, dependencies);
@@ -303,8 +304,8 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext
 
 		CStr version;
 		JS::RootedValue modData(rq.cx);
-		if (scriptInterface.GetProperty(availableMods, mod.c_str(), &modData))
-			scriptInterface.GetProperty(modData, "version", version);
+		if (Script::GetProperty(rq, availableMods, mod.c_str(), &modData))
+			Script::GetProperty(rq, modData, "version", version);
 
 		g_LoadedModVersions.push_back({mod, version});
 	}
@@ -325,13 +326,13 @@ JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
 	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
 	JS::RootedValue metainfo(rq.cx);
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&metainfo,
 		"engine_version", engine_version,
 		"mods", mods);
 
-	scriptInterface.FreezeObject(metainfo, true);
+	Script::FreezeObject(rq, metainfo, true);
 
 	return metainfo;
 }

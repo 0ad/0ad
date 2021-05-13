@@ -20,6 +20,7 @@
 #include "DebugSerializer.h"
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "lib/secure_crt.h"
@@ -153,7 +154,7 @@ void CDebugSerializer::PutScriptVal(const char* name, JS::MutableHandleValue val
 	ScriptRequest rq(m_ScriptInterface);
 
 	JS::RootedValue serialize(rq.cx);
-	if (m_ScriptInterface.GetProperty(value, "Serialize", &serialize) && !serialize.isNullOrUndefined())
+	if (Script::GetProperty(rq, value, "Serialize", &serialize) && !serialize.isNullOrUndefined())
 	{
 		// If the value has a Serialize property, pretty-parse that instead.
 		// (this gives more accurate OOS reports).

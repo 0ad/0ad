@@ -22,6 +22,7 @@
 #include "lib/file/io/write_buffer.h"
 #include "lib/file/vfs/vfs.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -217,7 +218,7 @@ bool JSNodeData::Setup(XMBStorageWriter& xmb, JS::HandleValue value)
 		return true;
 
 	std::vector<std::string> props;
-	if (!scriptInterface.EnumeratePropertyNames(value, true, props))
+	if (!Script::EnumeratePropertyNames(rq, value, true, props))
 	{
 		LOGERROR("Failed to enumerate component properties.");
 		return false;
@@ -246,7 +247,7 @@ bool JSNodeData::Setup(XMBStorageWriter& xmb, JS::HandleValue value)
 			name = std::string_view(prop.c_str()+1, prop.length()-1);
 
 		JS::RootedValue child(rq.cx);
-		if (!scriptInterface.GetProperty(value, prop.c_str(), &child))
+		if (!Script::GetProperty(rq, value, prop.c_str(), &child))
 			return false;
 
 		if (attrib)
@@ -278,7 +279,7 @@ bool JSNodeData::Setup(XMBStorageWriter& xmb, JS::HandleValue value)
 		for (size_t i = 0; i < length; ++i)
 		{
 			JS::RootedValue arrayChild(rq.cx);
-			scriptInterface.GetPropertyInt(child, i, &arrayChild);
+			Script::GetPropertyInt(rq, child, i, &arrayChild);
 			m_Children.emplace_back(xmb.GetElementName(std::string(name)), arrayChild);
 		}
 	}
@@ -297,13 +298,13 @@ bool JSNodeData::Output(WriteBuffer& writeBuffer, JS::HandleValue value) const
 		}
 		case JSTYPE_OBJECT:
 		{
-			if (!scriptInterface.HasProperty(value, "_string"))
+			if (!Script::HasProperty(rq, value, "_string"))
 			{
 				writeBuffer.Append("\0\0\0\0", 4);
 				break;
 			}
 			JS::RootedValue actualValue(rq.cx);
-			if (!scriptInterface.GetProperty(value, "_string", &actualValue))
+			if (!Script::GetProperty(rq, value, "_string", &actualValue))
 				return false;
 			std::string strVal;
 			if (!Script::FromJSVal(rq, actualValue, strVal))

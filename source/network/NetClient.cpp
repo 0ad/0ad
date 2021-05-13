@@ -390,20 +390,20 @@ void CNetClient::PostPlayerAssignmentsToScript()
 	ScriptRequest rq(GetScriptInterface());
 
 	JS::RootedValue newAssignments(rq.cx);
-	ScriptInterface::CreateObject(rq, &newAssignments);
+	Script::CreateObject(rq, &newAssignments);
 
 	for (const std::pair<const CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
 		JS::RootedValue assignment(rq.cx);
 
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&assignment,
 			"name", p.second.m_Name,
 			"player", p.second.m_PlayerID,
 			"status", p.second.m_Status);
 
-		GetScriptInterface().SetProperty(newAssignments, p.first.c_str(), assignment);
+		Script::SetProperty(rq, newAssignments, p.first.c_str(), assignment);
 	}
 
 	PushGuiMessage(

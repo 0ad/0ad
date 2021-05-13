@@ -34,6 +34,7 @@
 #include "ps/Mod.h"
 #include "ps/Util.h"
 #include "ps/VisualReplay.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
@@ -67,12 +68,12 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	ScriptRequest rq(m_ScriptInterface);
 
 	// Add timestamp, since the file-modification-date can change
-	m_ScriptInterface.SetProperty(attribs, "timestamp", (double)std::time(nullptr));
+	Script::SetProperty(rq, attribs, "timestamp", (double)std::time(nullptr));
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
-	m_ScriptInterface.SetProperty(attribs, "engine_version", engine_version);
+	Script::SetProperty(rq, attribs, "engine_version", engine_version);
 	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
-	m_ScriptInterface.SetProperty(attribs, "mods", mods);
+	Script::SetProperty(rq, attribs, "mods", mods);
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryPath());
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());
@@ -165,7 +166,7 @@ void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::
 	ScriptRequest rq(scriptInterface);
 
 	std::vector<std::vector<CStr>> replayMods;
-	scriptInterface.GetProperty(attribs, "mods", replayMods);
+	Script::GetProperty(rq, attribs, "mods", replayMods);
 
 	std::vector<std::vector<CStr>> enabledMods;
 	JS::RootedValue enabledModsJS(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
@@ -265,7 +266,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 			std::getline(*m_Stream, line);
 			JS::RootedValue data(rq.cx);
 			g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
-			g_Game->GetSimulation2()->GetScriptInterface().FreezeObject(data, true);
+			Script::FreezeObject(rq, data, true);
 			commands.emplace_back(SimulationCommand(player, rq.cx, data));
 		}
 		else if (type == "hash" || type == "hash-quick")

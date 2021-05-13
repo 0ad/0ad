@@ -208,10 +208,10 @@ bool JSI_GUIProxy<T>::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue
 	}
 	else if (propName == "children")
 	{
-		ScriptInterface::CreateArray(rq, vp);
+		Script::CreateArray(rq, vp);
 
 		for (size_t i = 0; i < e->m_Children.size(); ++i)
-			pScriptInterface->SetPropertyInt(vp, i, e->m_Children[i]);
+			Script::SetPropertyInt(rq, vp, i, e->m_Children[i]);
 
 		return true;
 	}

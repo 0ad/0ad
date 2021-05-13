@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -73,10 +74,7 @@ template<> void Script::ToJSVal<CParamNode>(const ScriptRequest& rq,  JS::Mutabl
 	// Prevent modifications to the object, so that it's safe to share between
 	// components and to reconstruct on deserialization
 	if (ret.isObject())
-	{
-		JS::RootedObject obj(rq.cx, &ret.toObject());
-		JS_DeepFreezeObject(rq.cx, obj);
-	}
+		Script::FreezeObject(rq, ret, true);
 }
 
 template<> void Script::ToJSVal<const CParamNode*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CParamNode* const& val)
@@ -112,7 +110,7 @@ template<> bool Script::FromJSVal<CColor>(const ScriptRequest& rq,  JS::HandleVa
 
 template<> void Script::ToJSVal<CColor>(const ScriptRequest& rq,  JS::MutableHandleValue ret, CColor const& val)
 {
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		ret,
 		"r", val.r,
@@ -224,7 +222,7 @@ template<> void Script::ToJSVal<Grid<u8> >(const ScriptRequest& rq,  JS::Mutable
 	}
 
 	JS::RootedValue data(rq.cx, JS::ObjectValue(*objArr));
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		ret,
 		"width", val.m_W,
@@ -245,7 +243,7 @@ template<> void Script::ToJSVal<Grid<u16> >(const ScriptRequest& rq,  JS::Mutabl
 	}
 
 	JS::RootedValue data(rq.cx, JS::ObjectValue(*objArr));
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		ret,
 		"width", val.m_W,

@@ -28,8 +28,8 @@
 #include "maths/Vector2D.h"
 #include "ps/Hotkey.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptConversions.h"
-#include "scriptinterface/ScriptInterface.h" // CreateObject
 
 #include <string>
 
@@ -184,7 +184,7 @@ template<> bool Script::FromJSVal<CGUIColor>(const ScriptRequest& rq, JS::Handle
 
 template<> void Script::ToJSVal<CRect>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CRect& val)
 {
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		ret,
 		"left", val.left,
@@ -327,7 +327,7 @@ template<> bool Script::FromJSVal<CGUISpriteInstance>(const ScriptRequest& rq, J
 
 template<> void Script::ToJSVal<CSize2D>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CSize2D& val)
 {
-	ScriptInterface::CreateObject(rq, ret, "width", val.Width, "height", val.Height);
+	Script::CreateObject(rq, ret, "width", val.Width, "height", val.Height);
 }
 
 template<> bool Script::FromJSVal<CSize2D>(const ScriptRequest& rq, JS::HandleValue v, CSize2D& out)
@@ -355,7 +355,7 @@ template<> bool Script::FromJSVal<CSize2D>(const ScriptRequest& rq, JS::HandleVa
 
 template<> void Script::ToJSVal<CVector2D>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CVector2D& val)
 {
-	ScriptInterface::CreateObject(rq, ret, "x", val.X, "y", val.Y);
+	Script::CreateObject(rq, ret, "x", val.X, "y", val.Y);
 }
 
 template<> bool Script::FromJSVal<CVector2D>(const ScriptRequest& rq, JS::HandleValue v, CVector2D& out)

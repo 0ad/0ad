@@ -23,8 +23,8 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptConversions.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // For typed arrays and ArrayBuffer
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/SerializedScriptTypes.h"
