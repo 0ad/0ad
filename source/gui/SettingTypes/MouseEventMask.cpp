@@ -21,10 +21,15 @@
 
 #include "gui/CGUISetting.h"
 #include "lib/tex/tex.h"
+#include "maths/Rect.h"
+#include "maths/Vector2D.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
+
+class IGUIObject;
+class IGUISetting;
 
 namespace
 {

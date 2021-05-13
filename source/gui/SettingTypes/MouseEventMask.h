@@ -18,12 +18,16 @@
 #ifndef INCLUDED_GUI_MOUSE_EVENT_MASK
 #define INCLUDED_GUI_MOUSE_EVENT_MASK
 
+#include "gui/CGUISetting.h"
+#include "ps/CStr.h"
+
 #include <string>
 #include <memory>
 
 class CRect;
 class CVector2D;
 class IGUIObject;
+class ScriptRequest;
 
 /**
  * A custom shape that changes the object's "over-ability", and thus where one can click on it.

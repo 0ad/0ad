@@ -18,6 +18,7 @@
 #ifndef INCLUDED_SAVEDGAME
 #define INCLUDED_SAVEDGAME
 
+#include "ps/CStr.h"
 #include "scriptinterface/StructuredClone.h"
 
 class CSimulation2;

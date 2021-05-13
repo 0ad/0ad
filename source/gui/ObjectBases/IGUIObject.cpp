@@ -21,6 +21,7 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "js/Conversions.h"
 #include "ps/CLogger.h"

@@ -19,7 +19,11 @@
 #define INCLUDED_CGUIHOTKEY
 
 #include "gui/CGUISetting.h"
+#include "scriptinterface/ScriptForward.h"
 #include "ps/CStr.h"
+
+class IGUIObject;
+class ScriptRequest;
 
 /**
  * Manages a hotkey setting for a GUI object.

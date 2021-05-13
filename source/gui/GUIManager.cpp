@@ -89,11 +89,13 @@ void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptIn
 {
 	// The page stack is cleared (including the script context where initData came from),
 	// therefore we have to clone initData.
-	ScriptRequest rq(srcScriptInterface);
 
 	Script::StructuredClone initDataClone;
 	if (!initData.isUndefined())
+	{
+		ScriptRequest rq(srcScriptInterface);
 		initDataClone = Script::WriteStructuredClone(rq, initData);
+	}
 
 	m_PageStack.clear();
 

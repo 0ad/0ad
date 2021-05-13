@@ -30,6 +30,7 @@
 #include "gui/SettingTypes/CGUISize.h"
 #include "gui/SGUIMessage.h"
 #include "lib/input.h" // just for IN_PASS
+#include "ps/CStr.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptTypes.h"
 
@@ -37,6 +38,7 @@
 #include <vector>
 
 class CGUI;
+class CGUISize;
 class IGUIObject;
 class IGUIProxyObject;
 class IGUISetting;

@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "ps/Profile.h"
 #include "ScriptExceptions.h"
 #include "ScriptInterface.h"
 #include "ScriptRequest.h"
