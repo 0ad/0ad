@@ -11,7 +11,7 @@
 # scinart <akubeej@gmail.com>, 2018
 # Vince Luo <vinceluo11@gmail.com>, 2017
 # Wolfson Liu <wolfsonliu@foxmail.com>, 2020
-# liulitchi <xingzuo88@qq.com>, 2014,2018,2020
+# liulitchi <xingzuo88@qq.com>, 2014,2018,2020-2021
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015,2021
 # 越 杨 <tsugaku@163.com>, 2018
@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-23 09:27+0000\n"
+"PO-Revision-Date: 2021-05-14 04:43+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "创建游戏"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "当前Mods与此游戏Mods不匹配。"
+msgstr "当前模组不匹配其它模组。"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
@@ -80,7 +80,7 @@ msgstr "是否要切换到mod选项？"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr "无法兼容的Mods"
+msgstr "模组不兼容"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
@@ -114,7 +114,7 @@ msgstr "主菜单"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr "指令‘%(cmd)s’不被支持。"
+msgstr "不支持 %(cmd)s 指令。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
 #, javascript-format
@@ -128,11 +128,11 @@ msgstr "“%(cmd)s”命令至少需要添加一个参数。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
-msgstr "将你的状态设为“离开”"
+msgstr "设置状态为“离开”。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
 msgid "Set your state to 'Online'."
-msgstr "将你的状态设为“在线”"
+msgstr "设置状态为“在线”。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -235,7 +235,7 @@ msgstr "%(nick)s已被静音。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr "你现在是主持人。"
+msgstr "现在你是主机。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format

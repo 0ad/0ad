@@ -24,7 +24,7 @@ msgstr ""
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "Ikasi 0 A.D. jolasten"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -35,11 +35,15 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Mapa honek jokoa zuzen hasteko nolabaiteko gida emango dizu. Jokoaren "
+"hasieran baliabideak ahalik eta lasterren biltzea da garrantzitsuena gerora "
+"nahiko tropa osatu ahal izateko. Abisua: hasieran oso azkarra da. Prest egon"
+" hasierako bita hainbat aldiz exekutatzeko."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "Ekonomia tutoriala"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -64,41 +68,41 @@ msgstr "Osaturik"
 #: gui/campaigns/default_menu/CampaignMenu.js:99
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Eskuragarri"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Errorea kanpainaren exekuzioa kargatzean %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
 msgid "Campaign Name"
-msgstr ""
+msgstr "Kanpainaren izena"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
 msgid "No scenario selected"
-msgstr ""
+msgstr "Ez da jokalekurik hautatu"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "Joan menu nagusira"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
 msgid "Saved Games"
-msgstr ""
+msgstr "Gordetako partidak"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
 msgid "Start Scenario"
-msgstr ""
+msgstr "Hasi jokalekua"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Berrekin gordetako partida"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "Jokalekuaren izaena"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
 msgctxt "campaignLevelList"
@@ -107,12 +111,12 @@ msgstr "Egoera"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "Fitxategia ezin izan da kargatu"
 
 #: gui/campaigns/load_modal/LoadModal.js:102
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
+msgstr "Ziur zaude %s exekutatzea ezabatu nahi duzula? Hau ezin da desegin."
 
 #: gui/campaigns/load_modal/LoadModal.js:103
 msgid "Confirmation"
@@ -133,11 +137,11 @@ msgstr "Kargatu kanpaina"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Ez dago kanpainarik abian"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Aukeratutako exekuzioaren izena:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -150,20 +154,20 @@ msgstr "Ezabatu"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Hasi kanpaina bat"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run: "
-msgstr ""
+msgstr "Mesedez sartu kanpaina exekuzio berriaren izena:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "Hasi kanpaina "
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "Ez da kanpainarik hautatu."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -171,7 +175,7 @@ msgstr "Kanpainak"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "Ez da kanpainarik hautatu"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

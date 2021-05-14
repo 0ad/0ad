@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-07 07:30+0000\n"
-"PO-Revision-Date: 2021-05-07 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-10 08:32+0000\n"
+"Last-Translator: Beāte Lakševica <tava.unochka@inbox.lv>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -539,7 +539,7 @@ msgstr "Lietotāji ( %(num)s): %(users)s"
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
 #: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
 #: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
-#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
+#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:284
 msgid ", "
 msgstr ","
 
@@ -3380,7 +3380,7 @@ msgstr ""
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr ""
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr ""
@@ -4818,7 +4818,7 @@ msgstr ""
 msgid "Error opening campaign run:"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
 msgstr ""
 
@@ -4854,7 +4854,7 @@ msgstr "Atkārtojumi"
 msgid "Playback previous games."
 msgstr "Skatiet iepriekšējo spēļu atkārtojumus novērotāju režīmā."
 
-#: gui/pregame/MainMenuItems.js:149 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:149
 msgid "Multiplayer"
 msgstr "Vairāki spēlētāji"
 
@@ -5384,46 +5384,62 @@ msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_filters.js:144
-msgid "Single-player and multiplayer"
+#: gui/replaymenu/replay_filters.js:145
+msgctxt "replay filter"
+msgid "Any"
+msgstr "Jebkurš"
+
+#: gui/replaymenu/replay_filters.js:146
+msgctxt "replay filter"
+msgid "Single-player"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:157
+#: gui/replaymenu/replay_filters.js:147
+msgctxt "replay filter"
+msgid "Multiplayer"
+msgstr "Vairāki spēlētāji"
+
+#: gui/replaymenu/replay_filters.js:148
+msgctxt "replay filter"
+msgid "Campaigns"
+msgstr "Kampaņas"
+
+#: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
 msgstr "Vērtētas spēles un nē"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Rated games"
 msgstr "Vērtētas spēles"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Unrated games"
 msgstr "Nevērtētas spēles"
 
-#: gui/replaymenu/replay_menu.js:194
+#: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:198
+#: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:285
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:307
+#: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd.MM.yyyy HH:mm"
 
-#: gui/replaymenu/replay_menu.js:337
+#: gui/replaymenu/replay_menu.js:339
 msgid "yyyy-MM"
 msgstr "MM.yyyy"
 

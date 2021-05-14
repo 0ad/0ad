@@ -12,13 +12,14 @@
 # Матвей Зарубежнов <zarubezhnov@gmail.com>, 2021
 # Bogdan Artemyev <bogarto@mail.ru>, 2021
 # nwtour <nwtour@mail.ru>, 2021
+# Alexander Berezin <prophetesseer@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: nwtour <nwtour@mail.ru>, 2021\n"
+"Last-Translator: Alexander Berezin <prophetesseer@gmail.com>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/wildfire-games/teams/17418/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,6 +41,11 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Эта карта даст приблизительное руководство по эффективному началу игры. В "
+"начале игры самое важное - как можно быстрее собирать ресурсы, чтобы Вы "
+"смогли обучить достаточно войск позже. Предупреждение: в начале все "
+"происходит очень быстро, поэтому будьте готовы к тому, что начальную часть "
+"придется пройти несколько раз."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -140,7 +146,7 @@ msgstr "Загрузить кампанию"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Текущих кампаний нет."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"

@@ -5,12 +5,13 @@
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Asakura, 2015,2017
-# JungHee Lee <daemul72@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2021
 # Cheung Hung, 2015
-# JungHee Lee <daemul72@gmail.com>, 2019-2020
+# Jung Hee Lee <daemul72@gmail.com>, 2019-2020
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2021
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-07 07:30+0000\n"
-"PO-Revision-Date: 2021-05-07 16:35+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-12 15:01+0000\n"
+"Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -547,7 +548,7 @@ msgstr "사용자 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
 #: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
 #: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
-#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
+#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:284
 msgid ", "
 msgstr ", "
 
@@ -3366,7 +3367,7 @@ msgstr "부상당한 유닛만 선택"
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr "%(hotkey)s을(를) 사용하여 선택한 저장 게임을 삭제하십시오."
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "삭제하는 동안 확인 대화상자를 건너뛰려면 %(hotkey)s 을(를) 유지하십시오."
@@ -4647,7 +4648,7 @@ msgstr "같은 팀이 잠긴 경우 동료가 다른 팀 구성원에게 자원�
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr "대화 알림 교환"
+msgstr "물물교환 대화 알림"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -4804,7 +4805,7 @@ msgstr "역사적으로 유명한 호전적인 캠페인을 통해 역사를 다
 msgid "Error opening campaign run:"
 msgstr "캠페인 여는 중 오류 발생:"
 
-#: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
 msgstr "싱글플레이어"
 
@@ -4840,7 +4841,7 @@ msgstr "다시보기"
 msgid "Playback previous games."
 msgstr "이전 게임을 재생합니다."
 
-#: gui/pregame/MainMenuItems.js:149 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:149
 msgid "Multiplayer"
 msgstr "멀티플레이어"
 
@@ -5356,46 +5357,62 @@ msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s 분"
 
-#: gui/replaymenu/replay_filters.js:144
-msgid "Single-player and multiplayer"
-msgstr "싱글플레이어 및 멀티플레이어"
+#: gui/replaymenu/replay_filters.js:145
+msgctxt "replay filter"
+msgid "Any"
+msgstr "아무거나"
 
-#: gui/replaymenu/replay_filters.js:157
+#: gui/replaymenu/replay_filters.js:146
+msgctxt "replay filter"
+msgid "Single-player"
+msgstr "싱글플레이어"
+
+#: gui/replaymenu/replay_filters.js:147
+msgctxt "replay filter"
+msgid "Multiplayer"
+msgstr "멀티플레이어"
+
+#: gui/replaymenu/replay_filters.js:148
+msgctxt "replay filter"
+msgid "Campaigns"
+msgstr "캠페인"
+
+#: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
 msgstr "모든 승리 조건"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
 msgstr "평점 및 등급 없음 게임"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Rated games"
 msgstr "게임 순위 등급"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Unrated games"
 msgstr "등급이 매겨지지 않은 게임들"
 
-#: gui/replaymenu/replay_menu.js:194
+#: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "하나 이상의 부분 또는 전체 플레이어 이름을 입력하여 재생을 걸러냅니다."
 
-#: gui/replaymenu/replay_menu.js:198
+#: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr "%(hotkey)s 을(를) 사용하여 선택한 재생을 삭제하십시오."
 
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:285
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "플레이어: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:307
+#: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:337
+#: gui/replaymenu/replay_menu.js:339
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -5651,7 +5668,7 @@ msgstr "교역 수입"
 
 #: gui/summary/layout.js:164
 msgid "Barter efficiency"
-msgstr "거래 효율"
+msgstr "물물교환 효율"
 
 #. Translation: use %(resourceWithinSentence)s if needed
 #: gui/summary/layout.js:170
@@ -6461,7 +6478,7 @@ msgstr "3단 노선"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr "중형 전함."
+msgstr "중형 군함."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."

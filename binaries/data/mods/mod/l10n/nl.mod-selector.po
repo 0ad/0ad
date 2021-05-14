@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-03-27 21:12+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-12 12:09+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -102,6 +102,34 @@ msgstr "Vereist %(mods)s"
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr "Actief: %(mods)s"
+
+#: gui/incompatible_mods/incompatible_mods.txt:1
+msgid ""
+"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
+" mods!"
+msgstr "[font=\"sans-bold-20\"] U probeert een spel te starten met niet-compatibele of ontbrekende mods!"
+
+#: gui/incompatible_mods/incompatible_mods.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/incompatible_mods/incompatible_mods.txt:3
+msgid "Solve the compatibility and start game again."
+msgstr "Stel de compatibele mods in en start het spel opnieuw."
+
+#: gui/incompatible_mods/incompatible_mods.txt:4
+msgid ""
+"You might want to save configuration before starting, when you see this page"
+" again."
+msgstr "Als je deze pagina opnieuw ziet zou je de configuratie kunnen opslaan voordat je het spel start."
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+msgid "Welcome!"
+msgstr "Welkom!"
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+msgid "Ok"
+msgstr "Oké"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -371,23 +399,39 @@ msgstr "Modding Handleiding"
 msgid "Visit mod.io"
 msgstr "Bezoek mod.io"
 
-#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:67
+msgid "This mod does not exist"
+msgstr "Deze mod bestaat niet"
+
+#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activeer"
 
-#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:165
+msgid "Dependencies not met"
+msgstr "Afhankelijkheden niet correct"
+
+#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Filter"
 
-#: gui/modmod/modmod.js:415
+#: gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/modmod/modmod.js:423
+#: gui/modmod/modmod.js:456
 msgid "No mod has been selected."
 msgstr "Er is geen modificatie geselecteerd."
+
+#: gui/modmod/modmod.js:461
+msgid "Enable at least 0ad mod and save configuration"
+msgstr "Schakel tenminste de 0ad mod in en sla de configuratie op"
+
+#: gui/modmod/modmod.js:463
+msgid "Enable at least 0ad mod"
+msgstr "Tenminste 0ad mod inschakelen"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -432,6 +476,10 @@ msgstr "Configuratie Opslaan"
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Start Mods"
+
+#: gui/modmod/modmod.xml:(caption):221
+msgid "Start"
+msgstr "Start"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

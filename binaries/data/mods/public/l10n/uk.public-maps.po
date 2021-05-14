@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-05-09 10:26+0000\n"
+"PO-Revision-Date: 2021-05-10 16:22+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1134,7 +1134,7 @@ msgstr "Невідоме."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
-msgstr ""
+msgstr "Вибрати випадковий сухопутний ландшафт."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -1152,7 +1152,7 @@ msgstr "Центральна ріка"
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
-msgstr ""
+msgstr "Гравці розташовані на смузі суші з морями, що межують з однієї або обох сторін, на яких можуть бути острови."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
 msgid "Edge Seas"
@@ -1200,7 +1200,7 @@ msgstr "Випадкова земля"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr ""
+msgstr "Вибрати випадковий морський ландшафт."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
@@ -2275,7 +2275,7 @@ msgstr "Тропічний острів"
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
-msgstr ""
+msgstr "Ця карта призначена для перевірки декількох різних випадків, коли юніти переслідують один одного."
 
 #: maps/scenarios/unit_chasing_test.xml:Name:40
 msgid "Unit Chasing test"
@@ -2441,10 +2441,10 @@ msgstr "Ви володієте Чудом і виграєте через %(time
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s переміг (Чудо побудовано)."
+msgstr[1] "%(players)s і %(lastPlayer)s перемогли (Чудо побудовано)."
+msgstr[2] "%(players)s і %(lastPlayer)s перемогли (Чудо побудовано)."
+msgstr[3] "%(players)s і %(lastPlayer)s перемогли (Чудо побудовано)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format

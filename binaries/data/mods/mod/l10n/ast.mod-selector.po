@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-03-22 18:43+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-10 18:48+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,34 @@ msgstr "Ríquese: %(mods)s"
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr "Activóse: %(mods)s"
+
+#: gui/incompatible_mods/incompatible_mods.txt:1
+msgid ""
+"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
+" mods!"
+msgstr "[font=\"sans-bold-20\"] ¡Tentesti d'aniciar el xuegu con camudos incompatibles o desapaecíos!"
+
+#: gui/incompatible_mods/incompatible_mods.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/incompatible_mods/incompatible_mods.txt:3
+msgid "Solve the compatibility and start game again."
+msgstr "Igua la compatibilidá y volvi aniciar el xuegu."
+
+#: gui/incompatible_mods/incompatible_mods.txt:4
+msgid ""
+"You might want to save configuration before starting, when you see this page"
+" again."
+msgstr "Pue que quieras guardar la configuración agora, pa nun volver ver esti ventanu al empezar."
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+msgid "Welcome!"
+msgstr "¡Afáyate!"
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+msgid "Ok"
+msgstr "Aceutar"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -361,23 +389,39 @@ msgstr "Guía de camudos"
 msgid "Visit mod.io"
 msgstr "Visitar mod.io"
 
-#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:67
+msgid "This mod does not exist"
+msgstr "Esti camudu nun esiste"
+
+#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activar"
 
-#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:165
+msgid "Dependencies not met"
+msgstr "Nun se cumplen les dependencies"
+
+#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Peñera"
 
-#: gui/modmod/modmod.js:415
+#: gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Desactivar"
 
-#: gui/modmod/modmod.js:423
+#: gui/modmod/modmod.js:456
 msgid "No mod has been selected."
 msgstr "Nun s'esbilló camudu dalu."
+
+#: gui/modmod/modmod.js:461
+msgid "Enable at least 0ad mod and save configuration"
+msgstr "Activar pelo menos 0ad mod y guardar la configuración"
+
+#: gui/modmod/modmod.js:463
+msgid "Enable at least 0ad mod"
+msgstr "Activar pelo menos 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -422,6 +466,10 @@ msgstr "Guardar configuración"
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Emprimar camudos"
+
+#: gui/modmod/modmod.xml:(caption):221
+msgid "Start"
+msgstr "Aniciar"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

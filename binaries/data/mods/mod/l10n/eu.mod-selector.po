@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-03-22 19:25+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-11 19:06+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -95,6 +95,34 @@ msgstr "Behar du:  %(mods)s"
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr "Aktibatua:  %(mods)s"
+
+#: gui/incompatible_mods/incompatible_mods.txt:1
+msgid ""
+"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
+" mods!"
+msgstr "[font=\"sans-bold-20\"] Jokoa ez dauden edo bateraezin diren moldaketez hasten saiatu zara!"
+
+#: gui/incompatible_mods/incompatible_mods.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/incompatible_mods/incompatible_mods.txt:3
+msgid "Solve the compatibility and start game again."
+msgstr "Konpondu bateragarritasuna eta hasi berriro jokoarekin."
+
+#: gui/incompatible_mods/incompatible_mods.txt:4
+msgid ""
+"You might want to save configuration before starting, when you see this page"
+" again."
+msgstr "Agian konfigurazioa gorde nahi duzu hasi aurretik, orrialde hau berriro ez ikusteko."
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+msgid "Welcome!"
+msgstr "Ongi etorri!"
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+msgid "Ok"
+msgstr "Ados"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -364,23 +392,39 @@ msgstr "Modding gida"
 msgid "Visit mod.io"
 msgstr "mod.io bisitatu"
 
-#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:67
+msgid "This mod does not exist"
+msgstr "Moldaketa hau ez dago"
+
+#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Gaitu"
 
-#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:165
+msgid "Dependencies not met"
+msgstr "Ez dira dependentziak betetzen"
+
+#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Iragazkia"
 
-#: gui/modmod/modmod.js:415
+#: gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Desgaitu"
 
-#: gui/modmod/modmod.js:423
+#: gui/modmod/modmod.js:456
 msgid "No mod has been selected."
 msgstr "Ez da mod-ik aukeratu."
+
+#: gui/modmod/modmod.js:461
+msgid "Enable at least 0ad mod and save configuration"
+msgstr "Gaitu gutxienez 0ad mod eta gorde konfigurazioa"
+
+#: gui/modmod/modmod.js:463
+msgid "Enable at least 0ad mod"
+msgstr "Gaitu gutxienez 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -425,6 +469,10 @@ msgstr "Gorde konfigurazioa"
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Hasieratu mod-ak"
+
+#: gui/modmod/modmod.xml:(caption):221
+msgid "Start"
+msgstr "Hasi"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

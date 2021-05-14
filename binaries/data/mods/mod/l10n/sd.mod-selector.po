@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-03-22 10:15+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-10 10:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Sindhi (http://www.transifex.com/wildfire-games/0ad/language/sd/)\n"
 "MIME-Version: 1.0\n"
@@ -89,6 +89,34 @@ msgstr ""
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.txt:1
+msgid ""
+"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
+" mods!"
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.txt:3
+msgid "Solve the compatibility and start game again."
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.txt:4
+msgid ""
+"You might want to save configuration before starting, when you see this page"
+" again."
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+msgid "Welcome!"
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+msgid "Ok"
 msgstr ""
 
 #: gui/modio/Disclaimer.txt:1
@@ -359,22 +387,38 @@ msgstr ""
 msgid "Visit mod.io"
 msgstr ""
 
-#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:67
+msgid "This mod does not exist"
+msgstr ""
+
+#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
 msgid "Enable"
 msgstr ""
 
-#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:165
+msgid "Dependencies not met"
+msgstr ""
+
+#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr ""
 
-#: gui/modmod/modmod.js:415
+#: gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Disable"
 msgstr ""
 
-#: gui/modmod/modmod.js:423
+#: gui/modmod/modmod.js:456
 msgid "No mod has been selected."
+msgstr ""
+
+#: gui/modmod/modmod.js:461
+msgid "Enable at least 0ad mod and save configuration"
+msgstr ""
+
+#: gui/modmod/modmod.js:463
+msgid "Enable at least 0ad mod"
 msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):12
@@ -419,6 +463,10 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):221
+msgid "Start"
 msgstr ""
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
