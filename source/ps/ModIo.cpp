@@ -36,7 +36,9 @@
 #include "ps/ModInstaller.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptConversions.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptRequest.h"
+#include "scriptinterface/JSON.h"
 
 #include <boost/algorithm/string.hpp>
 #include <iomanip>
@@ -589,7 +591,7 @@ bool ModIo::ParseGameIdResponse(const ScriptInterface& scriptInterface, const st
 
 	JS::RootedValue gameResponse(rq.cx);
 
-	if (!scriptInterface.ParseJSON(responseData, &gameResponse))
+	if (!Script::ParseJSON(rq, responseData, &gameResponse))
 		FAIL("Failed to parse response as JSON.");
 
 	if (!gameResponse.isObject())
@@ -660,7 +662,7 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 
 	JS::RootedValue modResponse(rq.cx);
 
-	if (!scriptInterface.ParseJSON(responseData, &modResponse))
+	if (!Script::ParseJSON(rq, responseData, &modResponse))
 		FAIL("Failed to parse response as JSON.");
 
 	if (!modResponse.isObject())
@@ -749,7 +751,7 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 			INVALIDATE_DATA_AND_CONTINUE("Failed to get metadata_blob from modFile.");
 
 		JS::RootedValue metadata(rq.cx);
-		if (!scriptInterface.ParseJSON(metadata_blob, &metadata))
+		if (!Script::ParseJSON(rq, metadata_blob, &metadata))
 			INVALIDATE_DATA_AND_CONTINUE("Failed to parse metadata_blob as JSON.");
 
 		if (!metadata.isObject())

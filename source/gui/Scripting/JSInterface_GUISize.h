@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 #ifndef INCLUDED_JSI_GUISIZE
 #define INCLUDED_JSI_GUISIZE
 
-#include "scriptinterface/ScriptInterface.h"
-#include "ps/CStr.h"
+class CStr8;
+class ScriptInterface;
 
 namespace JSI_GUISize
 {
@@ -33,7 +33,7 @@ namespace JSI_GUISize
 	bool construct(JSContext* cx, uint argc, JS::Value* vp);
 	bool toString(JSContext* cx, uint argc, JS::Value* vp);
 
-	CStr ToPercentString(double pix, double per);
+	CStr8 ToPercentString(double pix, double per);
 }
 
 #endif // INCLUDED_JSI_GUISIZE

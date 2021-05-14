@@ -33,8 +33,7 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
 #include "ps/Util.h"
-#include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptExtraHeaders.h"
+#include "scriptinterface/JSON.h"
 
 #include <fstream>
 
@@ -85,7 +84,7 @@ bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::Mut
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue cachedReplays(rq.cx);
-	if (scriptInterface.ParseJSON(cacheStr, &cachedReplays))
+	if (Script::ParseJSON(rq, cacheStr, &cachedReplays))
 	{
 		cachedReplaysObject.set(&cachedReplays.toObject());
 		bool isArray;
@@ -104,7 +103,7 @@ void VisualReplay::StoreCacheFile(const ScriptInterface& scriptInterface, JS::Ha
 
 	JS::RootedValue replaysRooted(rq.cx, JS::ObjectValue(*replays));
 	std::ofstream cacheStream(OsString(GetTempCacheFilePath()).c_str(), std::ofstream::out | std::ofstream::trunc);
-	cacheStream << scriptInterface.StringifyJSON(&replaysRooted);
+	cacheStream << Script::StringifyJSON(rq, &replaysRooted);
 	cacheStream.close();
 
 	wunlink(GetCacheFilePath());
@@ -375,7 +374,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 	std::getline(*replayStream, header);
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue attribs(rq.cx);
-	if (!scriptInterface.ParseJSON(header, &attribs))
+	if (!Script::ParseJSON(rq, header, &attribs))
 	{
 		LOGERROR("Couldn't parse replay header of %s", replayFile.string8().c_str());
 		SAFE_DELETE(replayStream);
@@ -450,7 +449,7 @@ JS::Value VisualReplay::GetReplayAttributes(const ScriptInterface& scriptInterfa
 
 	// Read and return first line
 	std::getline(*replayStream, line);
-	scriptInterface.ParseJSON(line, &attribs);
+	Script::ParseJSON(rq, line, &attribs);
 	SAFE_DELETE(replayStream);;
 	return attribs;
 }
@@ -502,7 +501,7 @@ JS::Value VisualReplay::GetReplayMetadata(const ScriptInterface& scriptInterface
 	std::getline(*stream, line);
 	stream->close();
 	SAFE_DELETE(stream);
-	scriptInterface.ParseJSON(line, &metadata);
+	Script::ParseJSON(rq, line, &metadata);
 
 	return metadata;
 }

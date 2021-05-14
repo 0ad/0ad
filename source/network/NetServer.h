@@ -35,10 +35,11 @@
 class CNetServerSession;
 class CNetServerTurnManager;
 class CFsmEvent;
-class ScriptInterface;
 class CPlayerAssignmentMessage;
 class CNetStatsTable;
 class CSimulationMessage;
+class ScriptInterface;
+class ScriptRequest;
 
 class CNetServerWorker;
 
@@ -132,9 +133,9 @@ public:
 	/**
 	 * Call from the GUI to update the game setup attributes.
 	 * The changes won't be propagated to clients until game start.
-	 * @param attrs init attributes, in the script context of scriptInterface
+	 * @param attrs init attributes, in the script context of rq
 	 */
-	void UpdateInitAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface);
+	void UpdateInitAttributes(JS::MutableHandleValue attrs, const ScriptRequest& rq);
 
 	/**
 	 * Set the turn length to a fixed value.

@@ -83,6 +83,7 @@
 #include "scriptinterface/ScriptStats.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
 #include "lobby/IXmppClient.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
@@ -1255,7 +1256,7 @@ bool Autostart(const CmdLineArgs& args)
 		// Random map definition will be loaded from JSON file, so we need to parse it
 		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
 		JS::RootedValue scriptData(rq.cx);
-		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+		Script::ReadJSONFile(rq, scriptPath, &scriptData);
 		if (!scriptData.isUndefined() && Script::GetProperty(rq, scriptData, "settings", &settings))
 		{
 			// JSON loaded ok - copy script name over to game attributes
@@ -1307,7 +1308,7 @@ bool Autostart(const CmdLineArgs& args)
 		// (e.g. name of map) are always present, even when autostart is
 		// partially configured
 		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
-		scriptInterface.ParseJSON(mapSettingsJSON, &settings);
+		Script::ParseJSON(rq, mapSettingsJSON, &settings);
 
 		// Initialize the playerData array being modified by autostart
 		// with the real map data, so sensible values are present:
@@ -1518,7 +1519,7 @@ bool Autostart(const CmdLineArgs& args)
 		JS::RootedValue victoryScripts(rq.cx);
 
 		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + victory.FromUTF8() + L".json";
-		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+		Script::ReadJSONFile(rq, scriptPath, &scriptData);
 		if (!scriptData.isUndefined() && Script::GetProperty(rq, scriptData, "Data", &data) && !data.isUndefined()
 			&& Script::GetProperty(rq, data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
 		{

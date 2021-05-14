@@ -22,7 +22,9 @@
 #include "gui/GUIManager.h"
 #include "ps/CLogger.h"
 #include "ps/Util.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
+#include "scriptinterface/ScriptRequest.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
 
 const CStr CReplayTurnManager::EventNameReplayFinished = "ReplayFinished";
@@ -117,7 +119,7 @@ void CReplayTurnManager::DoTurn(u32 turn)
 	for (const std::pair<player_id_t, std::string>& p : m_ReplayCommands[turn])
 	{
 		JS::RootedValue command(rq.cx);
-		m_Simulation2.GetScriptInterface().ParseJSON(p.second, &command);
+		Script::ParseJSON(rq, p.second, &command);
 		AddCommand(m_ClientId, p.first, command, m_CurrentTurn + 1);
 	}
 

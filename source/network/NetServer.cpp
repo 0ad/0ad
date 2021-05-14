@@ -35,6 +35,7 @@
 #include "ps/Threading.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 
@@ -129,7 +130,7 @@ public:
 
 		// Send the init attributes alongside - these should be correct since the game should be started.
 		CJoinSyncStartMessage message;
-		message.m_InitAttributes = m_Server.GetScriptInterface().StringifyJSON(&m_Server.m_InitAttributes);
+		message.m_InitAttributes = Script::StringifyJSON(ScriptRequest(m_Server.GetScriptInterface()), &m_Server.m_InitAttributes);
 		session->SendMessage(&message);
 	}
 
@@ -423,7 +424,7 @@ void CNetServerWorker::Run()
 
 		// Implement autostart mode
 		if (m_State == SERVER_STATE_PREGAME && (int)m_PlayerAssignments.size() == m_AutostartPlayers)
-			StartGame(m_ScriptInterface->StringifyJSON(&m_InitAttributes));
+			StartGame(Script::StringifyJSON(ScriptRequest(m_ScriptInterface), &m_InitAttributes));
 
 		// Update profiler stats
 		m_Stats->LatchHostState(m_Host);
@@ -469,7 +470,7 @@ bool CNetServerWorker::RunStep()
 		else
 		{
 			JS::RootedValue gameAttributesVal(rq.cx);
-			GetScriptInterface().ParseJSON(newGameAttributes.back(), &gameAttributesVal);
+			Script::ParseJSON(rq, newGameAttributes.back(), &gameAttributesVal);
 			m_InitAttributes = gameAttributesVal;
 		}
 	}
@@ -1550,7 +1551,7 @@ void CNetServerWorker::StartGame(const CStr& initAttribs)
 	SendPlayerAssignments();
 
 	// Update init attributes. They should no longer change.
-	m_ScriptInterface->ParseJSON(initAttribs, &m_InitAttributes);
+	Script::ParseJSON(ScriptRequest(m_ScriptInterface), initAttribs, &m_InitAttributes);
 
 	CGameStartMessage gameStart;
 	gameStart.m_InitAttributes = initAttribs;
@@ -1697,11 +1698,11 @@ void CNetServer::StartGame()
 	m_Worker->m_StartGameQueue.push_back(true);
 }
 
-void CNetServer::UpdateInitAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface)
+void CNetServer::UpdateInitAttributes(JS::MutableHandleValue attrs, const ScriptRequest& rq)
 {
 	// Pass the attributes as JSON, since that's the easiest safe
 	// cross-thread way of passing script data
-	std::string attrsJSON = scriptInterface.StringifyJSON(attrs, false);
+	std::string attrsJSON = Script::StringifyJSON(rq, attrs, false);
 
 	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_InitAttributesQueue.push_back(attrsJSON);

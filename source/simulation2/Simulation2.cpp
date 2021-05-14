@@ -22,6 +22,7 @@
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 #include "scriptinterface/StructuredClone.h"
 
 #include "simulation2/MessageTypes.h"
@@ -813,7 +814,7 @@ void CSimulation2::GetInitAttributes(JS::MutableHandleValue ret)
 
 void CSimulation2::SetMapSettings(const std::string& settings)
 {
-	m->m_ComponentManager.GetScriptInterface().ParseJSON(settings, &m->m_MapSettings);
+	Script::ParseJSON(ScriptRequest(m->m_ComponentManager.GetScriptInterface()), settings, &m->m_MapSettings);
 }
 
 void CSimulation2::SetMapSettings(JS::HandleValue settings)
@@ -826,7 +827,7 @@ void CSimulation2::SetMapSettings(JS::HandleValue settings)
 
 std::string CSimulation2::GetMapSettingsString()
 {
-	return m->m_ComponentManager.GetScriptInterface().StringifyJSON(&m->m_MapSettings);
+	return Script::StringifyJSON(ScriptRequest(m->m_ComponentManager.GetScriptInterface()), &m->m_MapSettings);
 }
 
 void CSimulation2::GetMapSettings(JS::MutableHandleValue ret)
@@ -997,5 +998,5 @@ std::string CSimulation2::GetAIData()
 	if (!Script::CreateObject(rq, &ais, "AIData", aiData))
 		return std::string();
 
-	return scriptInterface.StringifyJSON(&ais);
+	return Script::StringifyJSON(rq, &ais);
 }

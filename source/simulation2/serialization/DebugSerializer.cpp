@@ -21,7 +21,8 @@
 
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/Object.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
+#include "scriptinterface/JSON.h"
 
 #include "lib/secure_crt.h"
 #include "lib/utf8.h"
@@ -159,12 +160,12 @@ void CDebugSerializer::PutScriptVal(const char* name, JS::MutableHandleValue val
 		// If the value has a Serialize property, pretty-parse that instead.
 		// (this gives more accurate OOS reports).
 		ScriptFunction::Call(rq, value, "Serialize", &serialize);
-		std::string serialized_source = m_ScriptInterface.ToString(&serialize, true);
+		std::string serialized_source = Script::ToString(rq, &serialize, true);
 		m_Stream << INDENT << name << ": " << serialized_source << "\n";
 	}
 	else
 	{
-		std::string source = m_ScriptInterface.ToString(value, true);
+		std::string source = Script::ToString(rq, value, true);
 		m_Stream << INDENT << name << ": " << source << "\n";
 	}
 }

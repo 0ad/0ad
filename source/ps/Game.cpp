@@ -43,6 +43,7 @@
 #include "renderer/WaterManager.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
@@ -196,7 +197,7 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue attribs(rq.cx);
-	scriptInterface.ParseJSON(line, &attribs);
+	Script::ParseJSON(rq, line, &attribs);
 	StartGame(&attribs, "");
 
 	return true;

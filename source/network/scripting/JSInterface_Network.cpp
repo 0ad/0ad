@@ -33,6 +33,7 @@
 #include "ps/Util.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/StructuredClone.h"
+#include "scriptinterface/JSON.h"
 
 #include "third_party/encryption/pkcs5_pbkdf2.h"
 
@@ -275,7 +276,7 @@ void StartNetworkGame(const ScriptInterface& scriptInterface, JS::HandleValue at
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue attribs(rq.cx, attribs1);
-	g_NetClient->SendStartGameMessage(scriptInterface.StringifyJSON(&attribs));
+	g_NetClient->SendStartGameMessage(Script::StringifyJSON(rq, &attribs));
 }
 
 void SetTurnLength(int length)

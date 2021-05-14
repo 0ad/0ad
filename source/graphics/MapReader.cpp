@@ -41,7 +41,8 @@
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpGarrisonHolder.h"
@@ -386,7 +387,7 @@ void CMapSummaryReader::GetMapSettings(const ScriptInterface& scriptInterface, J
 		return;
 
 	JS::RootedValue scriptSettingsVal(rq.cx);
-	scriptInterface.ParseJSON(m_ScriptSettings, &scriptSettingsVal);
+	Script::ParseJSON(rq, m_ScriptSettings, &scriptSettingsVal);
 	Script::SetProperty(rq, ret, "settings", scriptSettingsVal, false);
 }
 
@@ -1280,7 +1281,7 @@ int CMapReader::GenerateMap()
 			scriptPath = L"maps/random/"+m_ScriptFile;
 
 		// Stringify settings to pass across threads
-		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(&m_ScriptSettings);
+		std::string scriptSettings = Script::StringifyJSON(rq, &m_ScriptSettings);
 
 		// Try to generate map
 		m_MapGen->GenerateMap(scriptPath, scriptSettings);

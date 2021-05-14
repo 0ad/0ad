@@ -18,8 +18,6 @@
 #ifndef INCLUDED_SCRIPTINTERFACE
 #define INCLUDED_SCRIPTINTERFACE
 
-#include "lib/file/vfs/vfs_path.h"
-#include "maths/Fixed.h"
 #include "ps/Errors.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptExceptions.h"
@@ -55,9 +53,12 @@ struct ScriptInterface_impl;
 class ScriptContext;
 // Using a global object for the context is a workaround until Simulation, AI, etc,
 // use their own threads and also their own contexts.
-extern thread_local shared_ptr<ScriptContext> g_ScriptContext;
+extern thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
 namespace boost { namespace random { class rand48; } }
+
+class Path;
+using VfsPath = Path;
 
 /**
  * Abstraction around a SpiderMonkey JS::Realm.
@@ -144,31 +145,6 @@ public:
 	static bool GetGlobalProperty(const ScriptRequest& rq, const std::string& name, JS::MutableHandleValue out);
 
 	bool SetPrototype(JS::HandleValue obj, JS::HandleValue proto);
-
-	/**
-	 * Convert an object to a UTF-8 encoded string, either with JSON
-	 * (if pretty == true and there is no JSON error) or with toSource().
-	 *
-	 * We have to use a mutable handle because JS_Stringify requires that for unknown reasons.
-	 */
-	std::string ToString(JS::MutableHandleValue obj, bool pretty = false) const;
-
-	/**
-	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error
-	 * and prints an error message.
-	 * @return true on success; false otherwise
-	 */
-	bool ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out) const;
-
-	/**
-	 * Read a JSON file. Returns the unmodified value on error and prints an error message.
-	 */
-	void ReadJSONFile(const VfsPath& path, JS::MutableHandleValue out) const;
-
-	/**
-	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
-	 */
-	std::string StringifyJSON(JS::MutableHandleValue obj, bool indent = true) const;
 
 	/**
 	 * Load and execute the given script in a new function scope.

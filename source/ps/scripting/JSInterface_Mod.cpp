@@ -21,7 +21,6 @@
 
 #include "ps/Mod.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
 
 extern void RestartEngine();
 

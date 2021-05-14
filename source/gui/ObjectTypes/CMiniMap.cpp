@@ -44,7 +44,6 @@
 #include "renderer/RenderingOptions.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
 #include "simulation2/components/ICmpRangeManager.h"

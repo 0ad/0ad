@@ -21,6 +21,7 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
+#include "scriptinterface/JSON.h"
 
 #include "lib/file/vfs/vfs_util.h"
 #include "ps/Filesystem.h"
@@ -68,7 +69,7 @@ public:
 		Script::CreateObject(rq, &ai);
 
 		JS::RootedValue data(rq.cx);
-		self->m_ScriptInterface.ReadJSONFile(pathname, &data);
+		Script::ReadJSONFile(rq, pathname, &data);
 		Script::SetProperty(rq, ai, "id", dirname, true);
 		Script::SetProperty(rq, ai, "data", data, true);
 		u32 length;

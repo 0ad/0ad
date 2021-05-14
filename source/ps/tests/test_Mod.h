@@ -24,6 +24,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/Mod.h"
+#include "scriptinterface/JSON.h"
 #include "scriptinterface/ScriptInterface.h"
 
 class TestMod : public CxxTest::TestSuite
@@ -99,7 +100,7 @@ public:
 				}\
 			";
 		JS::RootedValue json(rq.cx);
-		TS_ASSERT(script.ParseJSON(jsonString, &json));
+		TS_ASSERT(Script::ParseJSON(rq, jsonString, &json));
 		JS_SetProperty(rq.cx, obj, "public", json);
 
 		JS::RootedValue jsonW(rq.cx);
@@ -112,7 +113,7 @@ public:
 				\"dependencies\" : [\"0ad=0.0.24\"]\
 				}\
 			";
-		TS_ASSERT(script.ParseJSON(jsonStringW, &jsonW));
+		TS_ASSERT(Script::ParseJSON(rq, jsonStringW, &jsonW));
 		JS_SetProperty(rq.cx, obj, "wrong", jsonW);
 
 		JS::RootedValue jsonG(rq.cx);
@@ -125,7 +126,7 @@ public:
 				\"dependencies\" : [\"0ad=0.0.25\"]\
 				}\
 			";
-		TS_ASSERT(script.ParseJSON(jsonStringG, &jsonG));
+		TS_ASSERT(Script::ParseJSON(rq, jsonStringG, &jsonG));
 		JS_SetProperty(rq.cx, obj, "good", jsonG);
 
 		JS::RootedValue jsonG2(rq.cx);
@@ -138,7 +139,7 @@ public:
 				\"dependencies\" : [\"0ad>=0.0.24\"]\
 				}\
 			";
-		TS_ASSERT(script.ParseJSON(jsonStringG2, &jsonG2));
+		TS_ASSERT(Script::ParseJSON(rq, jsonStringG2, &jsonG2));
 		JS_SetProperty(rq.cx, obj, "good2", jsonG2);
 
 		JS::RootedValue availableMods(rq.cx, JS::ObjectValue(*obj));
