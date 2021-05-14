@@ -111,7 +111,7 @@ public:
 	bool LoadGlobalScripts();
 
 	/**
-	 * Replace the default JS random number geenrator with a seeded, network-sync'd one.
+	 * Replace the default JS random number generator with a seeded, network-synced one.
 	 */
 	bool ReplaceNondeterministicRNG(boost::random::rand48& rng);
 
@@ -258,7 +258,6 @@ private:
 	// members have to be called before the custom destructor of ScriptInterface_impl.
 	std::unique_ptr<ScriptInterface_impl> m;
 
-	boost::random::rand48* m_rng;
 	std::map<std::string, CustomType> m_CustomObjectTypes;
 };
 
