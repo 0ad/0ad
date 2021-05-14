@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 		JS::RootedValue name_val(rq.cx);
 		if (!JS_GetProperty(rq.cx, json_obj, "name", &name_val))
 			return FAIL_ON_EXTRACT_NAME;
-		ScriptInterface::FromJSVal(rq, name_val, modName);
+		Script::FromJSVal(rq, name_val, modName);
 		if (modName.empty())
 			return FAIL_ON_EXTRACT_NAME;
 	}

@@ -26,6 +26,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIInterface.h"
@@ -357,12 +358,12 @@ void Interface::ApplyMessage(const GameMessage& msg)
 			else
 			{
 				JS::RootedValue initData(rq.cx);
-				scriptInterface.CreateObject(rq, &initData);
-				scriptInterface.SetProperty(initData, "attribs", attrs);
+				Script::CreateObject(rq, &initData);
+				Script::SetProperty(rq, initData, "attribs", attrs);
 
 				JS::RootedValue playerAssignments(rq.cx);
-				scriptInterface.CreateObject(rq, &playerAssignments);
-				scriptInterface.SetProperty(initData, "playerAssignments", playerAssignments);
+				Script::CreateObject(rq, &playerAssignments);
+				Script::SetProperty(rq, initData, "playerAssignments", playerAssignments);
 
 				g_GUI->SwitchPage(L"page_loading.xml", &scriptInterface, initData);
 				m_NeedsGameState = true;

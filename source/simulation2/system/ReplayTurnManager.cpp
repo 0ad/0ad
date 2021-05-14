@@ -95,11 +95,11 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	ignore_result(paramData.append(JS::NumberValue(turn)));
 
 	JS::RootedValue hashVal(rq.cx);
-	ScriptInterface::ToJSVal(rq, &hashVal, hash);
+	Script::ToJSVal(rq, &hashVal, hash);
 	ignore_result(paramData.append(hashVal));
 
 	JS::RootedValue expectedHashVal(rq.cx);
-	ScriptInterface::ToJSVal(rq, &expectedHashVal, expectedHash);
+	Script::ToJSVal(rq, &expectedHashVal, expectedHash);
 	ignore_result(paramData.append(expectedHashVal));
 
 	g_GUI->SendEventToAll(EventNameReplayOutOfSync, paramData);

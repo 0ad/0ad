@@ -21,7 +21,7 @@
 
 #include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
 
 bool CGUIHotkey::DoFromString(const CStrW& value)
 {
@@ -34,7 +34,7 @@ bool CGUIHotkey::DoFromString(const CStrW& value)
 bool CGUIHotkey::DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value)
 {
 	m_pObject.GetGUI().UnsetObjectHotkey(&m_pObject, m_Setting);
-	if (!ScriptInterface::FromJSVal(rq, value, m_Setting))
+	if (!Script::FromJSVal(rq, value, m_Setting))
 		return false;
 	m_pObject.GetGUI().SetObjectHotkey(&m_pObject, m_Setting);
 	return true;

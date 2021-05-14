@@ -94,7 +94,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 
 	JS::RootedObject filenameArrayObj(s->rq.cx, s->filename_array);
 	JS::RootedValue val(s->rq.cx);
-	ScriptInterface::ToJSVal(s->rq, &val, CStrW(pathname.string()) );
+	Script::ToJSVal(s->rq, &val, CStrW(pathname.string()) );
 	JS_SetElement(s->rq.cx, filenameArrayObj, s->cur_idx++, val);
 	return INFO::OK;
 }
@@ -164,12 +164,12 @@ JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
 
 	// Decode as UTF-8
 	JS::RootedValue ret(rq.cx);
-	ScriptInterface::ToJSVal(rq, &ret, contents.FromUTF8());
+	Script::ToJSVal(rq, &ret, contents.FromUTF8());
 	return ret;
 }
 
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstring& filename)
+JS::Value ReadFileLines(const ScriptRequest& rq, const std::wstring& filename)
 {
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -183,10 +183,8 @@ JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstri
 	// split into array of strings (one per line)
 	std::stringstream ss(contents);
 
-	ScriptRequest rq(scriptInterface);
-
 	JS::RootedValue line_array(rq.cx);
-	ScriptInterface::CreateArray(rq, &line_array);
+	Script::CreateArray(rq, &line_array);
 
 	std::string line;
 	int cur_line = 0;
@@ -195,8 +193,8 @@ JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstri
 	{
 		// Decode each line as UTF-8
 		JS::RootedValue val(rq.cx);
-		ScriptInterface::ToJSVal(rq, &val, CStr(line).FromUTF8());
-		scriptInterface.SetPropertyInt(line_array, cur_line++, val);
+		Script::ToJSVal(rq, &val, CStr(line).FromUTF8());
+		Script::SetPropertyInt(rq, line_array, cur_line++, val);
 	}
 
 	return line_array;

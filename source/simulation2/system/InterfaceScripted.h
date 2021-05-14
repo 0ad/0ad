@@ -19,6 +19,7 @@
 #define INCLUDED_INTERFACE_SCRIPTED
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #define BEGIN_INTERFACE_WRAPPER(iname) \

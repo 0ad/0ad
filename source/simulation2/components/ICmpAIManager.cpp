@@ -65,12 +65,12 @@ public:
 		std::wstring dirname = GetWstringFromWpath(*it);
 
 		JS::RootedValue ai(rq.cx);
-		ScriptInterface::CreateObject(rq, &ai);
+		Script::CreateObject(rq, &ai);
 
 		JS::RootedValue data(rq.cx);
 		self->m_ScriptInterface.ReadJSONFile(pathname, &data);
-		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
-		self->m_ScriptInterface.SetProperty(ai, "data", data, true);
+		Script::SetProperty(rq, ai, "id", dirname, true);
+		Script::SetProperty(rq, ai, "data", data, true);
 		u32 length;
 		JS::GetArrayLength(rq.cx, self->m_AIs, &length);
 		JS_SetElement(rq.cx, self->m_AIs, length, ai);

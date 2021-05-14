@@ -105,19 +105,19 @@ public:
 
 		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1");
 		JS::RootedValue val(rq.cx);
-		ScriptInterface::ToJSVal(rq, &val, inherit1);
+		Script::ToJSVal(rq, &val, inherit1);
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Test1A:{'@a':\"a1\", '@b':\"b1\", '@c':\"c1\", d:\"d1\", e:\"e1\", f:\"f1\"}})");
 
 		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2");
-		ScriptInterface::ToJSVal(rq, &val, inherit2);
+		Script::ToJSVal(rq, &val, inherit2);
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({'@parent':\"inherit1\", Test1A:{'@a':\"a2\", '@b':\"b1\", '@c':\"c1\", d:\"d2\", e:\"e1\", f:\"f1\", g:\"g2\"}})");
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1");
-		ScriptInterface::ToJSVal(rq, &val, &actor->GetChild("VisualActor"));
+		Script::ToJSVal(rq, &val, &actor->GetChild("VisualActor"));
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Actor:\"example1\", ActorOnly:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 
 		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1");
-		ScriptInterface::ToJSVal(rq, &val, &foundation->GetChild("VisualActor"));
+		Script::ToJSVal(rq, &val, &foundation->GetChild("VisualActor"));
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Actor:\"example1\", ActorOnly:(void 0), Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 
 #define GET_FIRST_ELEMENT(n, templateName) \
@@ -126,7 +126,7 @@ public:
 		{ \
 			if (it->first[0] == '@') \
 				continue; \
-			ScriptInterface::ToJSVal(rq, &val, it->second); \
+			Script::ToJSVal(rq, &val, it->second); \
 			break; \
 		}
 

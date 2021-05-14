@@ -250,7 +250,7 @@ static void PumpEvents()
 		if (g_GUI)
 		{
 			JS::RootedValue tmpVal(rq.cx);
-			ScriptInterface::ToJSVal(rq, &tmpVal, ev);
+			Script::ToJSVal(rq, &tmpVal, ev);
 			std::string data = g_GUI->GetScriptInterface()->StringifyJSON(&tmpVal);
 			PROFILE2_ATTR("%s", data.c_str());
 		}

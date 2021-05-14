@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/Object.h"
 
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0, &JSI_GUISize::JSI_classops
@@ -111,8 +112,8 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	double val, valr;
 
 #define SIDE(side) \
-	pScriptInterface->GetProperty(args.thisv(), #side, val); \
-	pScriptInterface->GetProperty(args.thisv(), "r"#side, valr); \
+	Script::GetProperty(rq, args.thisv(), #side, val); \
+	Script::GetProperty(rq, args.thisv(), "r"#side, valr); \
 	buffer += ToPercentString(val, valr);
 
 	SIDE(left);
@@ -124,6 +125,6 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	SIDE(bottom);
 #undef SIDE
 
-	ScriptInterface::ToJSVal(rq, args.rval(), buffer);
+	Script::ToJSVal(rq, args.rval(), buffer);
 	return true;
 }

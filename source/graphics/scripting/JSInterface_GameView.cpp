@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ JS::Value GetCameraPivot(const ScriptRequest& rq)
 		pivot = g_Game->GetView()->GetCameraPivot();
 
 	JS::RootedValue pivotValue(rq.cx);
-	ScriptInterface::CreateObject(rq, &pivotValue, "x", pivot.X, "z", pivot.Z);
+	Script::CreateObject(rq, &pivotValue, "x", pivot.X, "z", pivot.Z);
 	return pivotValue;
 }
 

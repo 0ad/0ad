@@ -21,7 +21,7 @@
 #include "network/fsm.h"
 #include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/Object.h"
 
 #include "ps/CStr.h"
 
@@ -176,7 +176,7 @@ public:
 		ScriptRequest rq(GetScriptInterface());
 
 		JS::RootedValue message(rq.cx);
-		ScriptInterface::CreateObject(rq, &message, args...);
+		Script::CreateObject(rq, &message, args...);
 		m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
 	}
 

@@ -153,7 +153,7 @@ public:
 		CNetServer server("no_secret");
 
 		JS::RootedValue attrs(rq.cx);
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&attrs,
 			"mapType", "scenario",
@@ -187,7 +187,7 @@ public:
 
 		{
 			JS::RootedValue cmd(rq.cx);
-			ScriptInterface::CreateObject(
+			Script::CreateObject(
 				rq,
 				&cmd,
 				"type", "debug-print",
@@ -197,7 +197,7 @@ public:
 
 		{
 			JS::RootedValue cmd(rq.cx);
-			ScriptInterface::CreateObject(
+			Script::CreateObject(
 				rq,
 				&cmd,
 				"type", "debug-print",
@@ -232,7 +232,7 @@ public:
 		CNetServer server("no_secret");
 
 		JS::RootedValue attrs(rq.cx);
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&attrs,
 			"mapType", "scenario",
@@ -270,7 +270,7 @@ public:
 
 		{
 			JS::RootedValue cmd(rq.cx);
-			ScriptInterface::CreateObject(
+			Script::CreateObject(
 				rq,
 				&cmd,
 				"type", "debug-print",
@@ -287,7 +287,7 @@ public:
 
 		{
 			JS::RootedValue cmd(rq.cx);
-			ScriptInterface::CreateObject(
+			Script::CreateObject(
 				rq,
 				&cmd,
 				"type", "debug-print",
@@ -347,7 +347,7 @@ public:
 
 		{
 			JS::RootedValue cmd(rq.cx);
-			ScriptInterface::CreateObject(
+			Script::CreateObject(
 				rq,
 				&cmd,
 				"type", "debug-print",
@@ -364,7 +364,7 @@ public:
 
 		{
 			JS::RootedValue cmd(rq.cx);
-			ScriptInterface::CreateObject(
+			Script::CreateObject(
 				rq,
 				&cmd,
 				"type", "debug-print",

@@ -26,6 +26,7 @@
 #include "ps/CLogger.h"
 #include "ps/Replay.h"
 #include "ps/Util.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -221,9 +222,10 @@ void CTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 
 		return;
 	}
 
-	m_Simulation2.GetScriptInterface().FreezeObject(data, true);
-
 	ScriptRequest rq(m_Simulation2.GetScriptInterface());
+
+	Script::FreezeObject(rq, data, true);
+
 	size_t command_in_turns = turn - (m_CurrentTurn+1);
 	if (m_QueuedCommands.size() <= command_in_turns)
 		m_QueuedCommands.resize(command_in_turns+1);
@@ -294,7 +296,7 @@ void CTurnManager::QuickSave(JS::HandleValue GUIMetadata)
 
 	m_QuickSaveMetadata.set(Script::DeepCopy(rq, GUIMetadata));
 	// Freeze state to ensure that consectuvie loads don't modify the state
-	m_Simulation2.GetScriptInterface().FreezeObject(m_QuickSaveMetadata, true);
+	Script::FreezeObject(rq, m_QuickSaveMetadata, true);
 
 	LOGMESSAGERENDER("Quicksaved game");
 }

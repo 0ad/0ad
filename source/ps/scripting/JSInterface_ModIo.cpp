@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ void StartGetGameId()
 }
 
 // TODO: could provide a FromJSVal for ModIoModData
-JS::Value GetMods(const ScriptInterface& scriptInterface)
+JS::Value GetMods(const ScriptRequest& rq)
 {
 	if (!g_ModIo)
 	{
@@ -54,24 +54,22 @@ JS::Value GetMods(const ScriptInterface& scriptInterface)
 		return JS::NullValue();
 	}
 
-	ScriptRequest rq(scriptInterface);
-
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
 	JS::RootedValue mods(rq.cx);
-	ScriptInterface::CreateArray(rq, &mods, availableMods.size());
+	Script::CreateArray(rq, &mods, availableMods.size());
 
 	u32 i = 0;
 	for (const ModIoModData& mod : availableMods)
 	{
 		JS::RootedValue m(rq.cx);
-		ScriptInterface::CreateObject(rq, &m);
+		Script::CreateObject(rq, &m);
 
 		for (const std::pair<const std::string, std::string>& prop : mod.properties)
-			scriptInterface.SetProperty(m, prop.first.c_str(), prop.second, true);
+			Script::SetProperty(rq, m, prop.first.c_str(), prop.second, true);
 
-		scriptInterface.SetProperty(m, "dependencies", mod.dependencies, true);
-		scriptInterface.SetPropertyInt(mods, i++, m);
+		Script::SetProperty(rq, m, "dependencies", mod.dependencies, true);
+		Script::SetPropertyInt(rq, mods, i++, m);
 	}
 
 	return mods;
@@ -92,7 +90,7 @@ const std::map<DownloadProgressStatus, std::string> statusStrings = {
 };
 
 // TODO: could provide a FromJSVal for DownloadProgressData
-JS::Value GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate)
+JS::Value GetDownloadProgress(const ScriptRequest& rq)
 {
 	if (!g_ModIo)
 	{
@@ -100,16 +98,14 @@ JS::Value GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate)
 		return JS::NullValue();
 	}
 
-	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
-	ScriptRequest rq(scriptInterface);
 
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 
 	JS::RootedValue progressData(rq.cx);
-	ScriptInterface::CreateObject(rq, &progressData);
-	scriptInterface->SetProperty(progressData, "status", statusStrings.at(progress.status), true);
-	scriptInterface->SetProperty(progressData, "progress", progress.progress, true);
-	scriptInterface->SetProperty(progressData, "error", progress.error, true);
+	Script::CreateObject(rq, &progressData);
+	Script::SetProperty(rq, progressData, "status", statusStrings.at(progress.status), true);
+	Script::SetProperty(rq, progressData, "progress", progress.progress, true);
+	Script::SetProperty(rq, progressData, "error", progress.error, true);
 
 	return progressData;
 }

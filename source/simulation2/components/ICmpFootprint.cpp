@@ -41,9 +41,9 @@ JS::Value ICmpFootprint::GetShape_wrapper() const
 		JS::RootedValue ptype(rq.cx);
 		JS::RootedValue pradius(rq.cx);
 		JS::RootedValue pheight(rq.cx);
-		ScriptInterface::ToJSVal<std::string>(rq, &ptype, "circle");
-		ScriptInterface::ToJSVal(rq, &pradius, size0);
-		ScriptInterface::ToJSVal(rq, &pheight, height);
+		Script::ToJSVal<std::string>(rq, &ptype, "circle");
+		Script::ToJSVal(rq, &pradius, size0);
+		Script::ToJSVal(rq, &pheight, height);
 		JS_SetProperty(rq.cx, obj, "type", ptype);
 		JS_SetProperty(rq.cx, obj, "radius", pradius);
 		JS_SetProperty(rq.cx, obj, "height", pheight);
@@ -54,10 +54,10 @@ JS::Value ICmpFootprint::GetShape_wrapper() const
 		JS::RootedValue pwidth(rq.cx);
 		JS::RootedValue pdepth(rq.cx);
 		JS::RootedValue pheight(rq.cx);
-		ScriptInterface::ToJSVal<std::string>(rq, &ptype, "square");
-		ScriptInterface::ToJSVal(rq, &pwidth, size0);
-		ScriptInterface::ToJSVal(rq, &pdepth, size1);
-		ScriptInterface::ToJSVal(rq, &pheight, height);
+		Script::ToJSVal<std::string>(rq, &ptype, "square");
+		Script::ToJSVal(rq, &pwidth, size0);
+		Script::ToJSVal(rq, &pdepth, size1);
+		Script::ToJSVal(rq, &pheight, height);
 		JS_SetProperty(rq.cx, obj, "type", ptype);
 		JS_SetProperty(rq.cx, obj, "width", pwidth);
 		JS_SetProperty(rq.cx, obj, "depth", pdepth);

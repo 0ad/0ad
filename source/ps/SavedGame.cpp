@@ -31,6 +31,7 @@
 #include "ps/Game.h"
 #include "ps/Mod.h"
 #include "ps/Pyrogenesis.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/StructuredClone.h"
 #include "simulation2/Simulation2.h"
 
@@ -83,7 +84,7 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 
 	JS::RootedValue metadata(rq.cx);
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&metadata,
 		"engine_version", engine_version,
@@ -101,7 +102,7 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 
 	JS::RootedValue cameraMetadata(rq.cx);
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&cameraMetadata,
 		"PosX", cameraPosition.X,
@@ -111,10 +112,10 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 		"RotY", cameraRotation.Y,
 		"Zoom", g_Game->GetView()->GetCameraZoom());
 
-	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
+	Script::SetProperty(rq, guiMetadata, "camera", cameraMetadata);
 
-	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
-	simulation.GetScriptInterface().SetProperty(metadata, "description", description);
+	Script::SetProperty(rq, metadata, "gui", guiMetadata);
+	Script::SetProperty(rq, metadata, "description", description);
 
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(&metadata, true);
 
@@ -230,7 +231,7 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue games(rq.cx);
-	ScriptInterface::CreateArray(rq, &games);
+	Script::CreateArray(rq, &games);
 
 	Status err;
 
@@ -266,13 +267,13 @@ JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 		JS::RootedValue metadata(rq.cx, loader.GetMetadata());
 
 		JS::RootedValue game(rq.cx);
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&game,
 			"id", pathnames[i].Basename(),
 			"metadata", metadata);
 
-		scriptInterface.SetPropertyInt(games, i, game);
+		Script::SetPropertyInt(rq, games, i, game);
 	}
 
 	return games;

@@ -43,6 +43,7 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
@@ -108,10 +109,10 @@ QUERYHANDLER(GenerateMap)
 
 		JS::RootedValue settings(rq.cx);
 		scriptInterface.ParseJSON(*msg->settings, &settings);
-		scriptInterface.SetProperty(settings, "mapType", "random");
+		Script::SetProperty(rq, settings, "mapType", "random");
 
 		JS::RootedValue attrs(rq.cx);
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&attrs,
 			"mapType", "random",
@@ -136,24 +137,24 @@ QUERYHANDLER(GenerateMap)
 
 		// Set up 8-element array of empty objects to satisfy init
 		JS::RootedValue playerData(rq.cx);
-		ScriptInterface::CreateArray(rq, &playerData);
+		Script::CreateArray(rq, &playerData);
 
 		for (int i = 0; i < 8; ++i)
 		{
 			JS::RootedValue player(rq.cx);
-			ScriptInterface::CreateObject(rq, &player);
-			scriptInterface.SetPropertyInt(playerData, i, player);
+			Script::CreateObject(rq, &player);
+			Script::SetPropertyInt(rq, playerData, i, player);
 		}
 
 		JS::RootedValue settings(rq.cx);
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&settings,
 			"mapType", "scenario",
 			"PlayerData", playerData);
 
 		JS::RootedValue attrs(rq.cx);
-		ScriptInterface::CreateObject(
+		Script::CreateObject(
 			rq,
 			&attrs,
 			"mapType", "scenario",
@@ -179,7 +180,7 @@ MESSAGEHANDLER(LoadMap)
 
 	JS::RootedValue attrs(rq.cx);
 
-	ScriptInterface::CreateObject(
+	Script::CreateObject(
 		rq,
 		&attrs,
 		"mapType", "scenario",

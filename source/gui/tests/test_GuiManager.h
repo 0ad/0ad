@@ -28,6 +28,7 @@
 #include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
+#include "scriptinterface/Object.h"
 
 #include <memory>
 
@@ -64,7 +65,7 @@ public:
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
 		ScriptRequest rq(scriptInterface);
 		JS::RootedValue val(rq.cx);
-		scriptInterface.CreateObject(rq, &val);
+		Script::CreateObject(rq, &val);
 
 		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
 		g_GUI->PushPage(L"event/page_event.xml", data, JS::UndefinedHandleValue);
@@ -82,38 +83,38 @@ public:
 		// first and second object. We don't want the fourth object to be
 		// called, to avoid infinite additions of objects.
 		g_GUI->TickObjects();
-		pageScriptInterface.GetProperty(global, "called1", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called1", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 1);
 
-		pageScriptInterface.GetProperty(global, "called2", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called2", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 1);
 
-		pageScriptInterface.GetProperty(global, "called3", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called3", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 0);
 
-		pageScriptInterface.GetProperty(global, "called4", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called4", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 0);
 
 		// Ticking again will still call the second object, but also the fourth.
 		g_GUI->TickObjects();
-		pageScriptInterface.GetProperty(global, "called1", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called1", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 1);
 
-		pageScriptInterface.GetProperty(global, "called2", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called2", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 2);
 
-		pageScriptInterface.GetProperty(global, "called3", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called3", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 0);
 
-		pageScriptInterface.GetProperty(global, "called4", &js_called_value);
-		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		Script::GetProperty(prq, global, "called4", &js_called_value);
+		Script::FromJSVal(prq, js_called_value, called_value);
 		TS_ASSERT_EQUALS(called_value, 1);
 	}
 
@@ -128,7 +129,7 @@ public:
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
 		ScriptRequest rq(scriptInterface);
 		JS::RootedValue val(rq.cx);
-		scriptInterface.CreateObject(rq, &val);
+		Script::CreateObject(rq, &val);
 
 		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
 		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data, JS::UndefinedHandleValue);
@@ -154,13 +155,13 @@ public:
 		bool hotkey_pressed_value = false;
 		JS::RootedValue js_hotkey_pressed_value(prq.cx);
 
-		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
+		Script::GetProperty(prq, global, "state_before", &js_hotkey_pressed_value);
+		Script::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkey_pressed_value = false;
-		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
+		Script::GetProperty(prq, global, "state_after", &js_hotkey_pressed_value);
+		Script::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		// We are listening to KeyDown events, so repeat shouldn't matter.
@@ -170,13 +171,13 @@ public:
 			in_dispatch_event(&ev);
 
 		hotkey_pressed_value = false;
-		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
+		Script::GetProperty(prq, global, "state_before", &js_hotkey_pressed_value);
+		Script::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkey_pressed_value = false;
-		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
+		Script::GetProperty(prq, global, "state_after", &js_hotkey_pressed_value);
+		Script::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, true);
 
 		hotkeyNotification.ev.type = SDL_KEYUP;
@@ -185,13 +186,13 @@ public:
 			in_dispatch_event(&ev);
 
 		hotkey_pressed_value = true;
-		pageScriptInterface.GetProperty(global, "state_before", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
+		Script::GetProperty(prq, global, "state_before", &js_hotkey_pressed_value);
+		Script::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
 		hotkey_pressed_value = true;
-		pageScriptInterface.GetProperty(global, "state_after", &js_hotkey_pressed_value);
-		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
+		Script::GetProperty(prq, global, "state_after", &js_hotkey_pressed_value);
+		Script::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
 		UnloadHotkeys();

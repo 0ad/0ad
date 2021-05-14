@@ -29,7 +29,7 @@
 #define SET_MSG_PROPERTY(name) \
 	do { \
 		JS::RootedValue prop(rq.cx);\
-		ScriptInterface::ToJSVal(rq, &prop, this->name); \
+		Script::ToJSVal(rq, &prop, this->name); \
 		if (! JS_SetProperty(rq.cx, obj, #name, prop)) \
 			return JS::UndefinedValue(); \
 	} while (0);
@@ -46,7 +46,7 @@
 	{ \
 	if (! JS_GetProperty(rq.cx, obj, #name, &prop)) \
 		return NULL; \
-	if (! ScriptInterface::FromJSVal(rq, prop, name)) \
+	if (! Script::FromJSVal(rq, prop, name)) \
 		return NULL; \
 	}
 
