@@ -24,6 +24,7 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/GameSetup/Config.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
 
 namespace JSI_GUIManager
@@ -35,9 +36,9 @@ void PushGuiPage(const ScriptRequest& rq, const std::wstring& name, JS::HandleVa
 	g_GUI->PushPage(name, Script::WriteStructuredClone(rq, initData), callbackFunction);
 }
 
-void SwitchGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData)
+void SwitchGuiPage(const ScriptInterface& scriptInterface, const std::wstring& name, JS::HandleValue initData)
 {
-	g_GUI->SwitchPage(name, pCmptPrivate->pScriptInterface, initData);
+	g_GUI->SwitchPage(name, &scriptInterface, initData);
 }
 
 void PopGuiPage(const ScriptRequest& rq, JS::HandleValue args)
@@ -84,8 +85,8 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&TemplateExists>(rq, "TemplateExists");
 	ScriptFunction::Register<&GetTemplate>(rq, "GetTemplate");
 
-	ScriptFunction::Register<&CGUI::FindObjectByName, &ScriptFunction::ObjectFromCBData<CGUI>>(rq, "GetGUIObjectByName");
-	ScriptFunction::Register<&CGUI::SetGlobalHotkey, &ScriptFunction::ObjectFromCBData<CGUI>>(rq, "SetGlobalHotkey");
-	ScriptFunction::Register<&CGUI::UnsetGlobalHotkey, &ScriptFunction::ObjectFromCBData<CGUI>>(rq, "UnsetGlobalHotkey");
+	ScriptFunction::Register<&CGUI::FindObjectByName, &ScriptInterface::ObjectFromCBData<CGUI>>(rq, "GetGUIObjectByName");
+	ScriptFunction::Register<&CGUI::SetGlobalHotkey, &ScriptInterface::ObjectFromCBData<CGUI>>(rq, "SetGlobalHotkey");
+	ScriptFunction::Register<&CGUI::UnsetGlobalHotkey, &ScriptInterface::ObjectFromCBData<CGUI>>(rq, "UnsetGlobalHotkey");
 }
 }

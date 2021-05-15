@@ -163,9 +163,9 @@ bool CMapGeneratorWorker::Run()
 }
 
 #define REGISTER_MAPGEN_FUNC(func) \
-	ScriptFunction::Register<&CMapGeneratorWorker::func, ScriptFunction::ObjectFromCBData<CMapGeneratorWorker>>(rq, #func);
+	ScriptFunction::Register<&CMapGeneratorWorker::func, ScriptInterface::ObjectFromCBData<CMapGeneratorWorker>>(rq, #func);
 #define REGISTER_MAPGEN_FUNC_NAME(func, name) \
-	ScriptFunction::Register<&CMapGeneratorWorker::func, ScriptFunction::ObjectFromCBData<CMapGeneratorWorker>>(rq, name);
+	ScriptFunction::Register<&CMapGeneratorWorker::func, ScriptInterface::ObjectFromCBData<CMapGeneratorWorker>>(rq, name);
 
 void CMapGeneratorWorker::InitScriptInterface(const u32 seed)
 {

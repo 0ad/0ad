@@ -26,6 +26,7 @@
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // For typed arrays and ArrayBuffer
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/SerializedScriptTypes.h"
 #include "simulation2/serialization/StdSerializer.h" // for DEBUG_SERIALIZER_ANNOTATE
@@ -33,14 +34,14 @@
 CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
-	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), CStdDeserializer::Trace, this);
+	JS_AddExtraGCRootsTracer(ScriptRequest(scriptInterface).cx, CStdDeserializer::Trace, this);
 	// Insert a dummy object in front, as valid tags start at 1.
 	m_ScriptBackrefs.emplace_back(nullptr);
 }
 
 CStdDeserializer::~CStdDeserializer()
 {
-	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), CStdDeserializer::Trace, this);
+	JS_RemoveExtraGCRootsTracer(ScriptRequest(m_ScriptInterface).cx, CStdDeserializer::Trace, this);
 }
 
 void CStdDeserializer::Trace(JSTracer *trc, void *data)

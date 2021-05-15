@@ -71,12 +71,30 @@ public:
 	ScriptRequest(std::shared_ptr<ScriptInterface> scriptInterface) : ScriptRequest(*scriptInterface) {}
 	~ScriptRequest();
 
+	/**
+	 * Create a script request from a JSContext.
+	 * This can be used to get the script interface in a JSNative function.
+	 * In general, you shouldn't have to rely on this otherwise.
+	 */
+	ScriptRequest(JSContext* cx);
+
+	/**
+	 * Return the scriptInterface active when creating this ScriptRequest.
+	 * Note that this is multi-request safe: even if another ScriptRequest is created,
+	 * it will point to the original scriptInterface, and thus can be used to re-enter the realm.
+	 */
+	const ScriptInterface& GetScriptInterface() const;
+
 	JS::Value globalValue() const;
+
+	// Note that JSContext actually changes behind the scenes when creating another ScriptRequest for another realm,
+	// so be _very_ careful when juggling between different realms.
 	JSContext* cx;
 	JS::HandleObject glob;
 	JS::HandleObject nativeScope;
 private:
-	JS::Realm* m_formerRealm;
+	const ScriptInterface& m_ScriptInterface;
+	JS::Realm* m_FormerRealm;
 };
 
 

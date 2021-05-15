@@ -236,7 +236,7 @@ public:
 
 		ScriptRequest rq(m_ScriptInterface);
 #define REGISTER_FUNC_NAME(func, name) \
-	ScriptFunction::Register<&CAIWorker::func, ScriptFunction::ObjectFromCBData<CAIWorker>>(rq, name);
+	ScriptFunction::Register<&CAIWorker::func, ScriptInterface::ObjectFromCBData<CAIWorker>>(rq, name);
 
 		REGISTER_FUNC_NAME(PostCommand, "PostCommand");
 		REGISTER_FUNC_NAME(LoadScripts, "IncludeModule");
@@ -343,7 +343,7 @@ public:
 	/**
 	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
 	 */
-	void DumpImage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
+	void DumpImage(const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
 	{
 		// TODO: this is totally not threadsafe.
 		VfsPath filename = L"screenshots/aidump/" + name;

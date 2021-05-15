@@ -24,25 +24,24 @@
 
 extern void RestartEngine();
 
-namespace
+namespace JSI_Mod
 {
-bool SetModsAndRestartEngine(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStr>& mods)
+bool SetModsAndRestartEngine(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods)
 {
 	Mod::ClearIncompatibleMods();
-	if (!Mod::CheckAndEnableMods(*(pCmptPrivate->pScriptInterface), mods))
+	if (!Mod::CheckAndEnableMods(scriptInterface, mods))
 		return false;
 
 	RestartEngine();
 	return true;
 }
-}
 
-bool HasFailedMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool HasFailedMods()
 {
 	return Mod::GetFailedMods().size() > 0;
 }
 
-void JSI_Mod::RegisterScriptFunctions(const ScriptRequest& rq)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&Mod::GetEngineInfo>(rq, "GetEngineInfo");
 	ScriptFunction::Register<&Mod::GetAvailableMods>(rq, "GetAvailableMods");
@@ -50,4 +49,5 @@ void JSI_Mod::RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<HasFailedMods> (rq, "HasFailedMods");
 	ScriptFunction::Register<&Mod::GetFailedMods>(rq, "GetFailedMods");
 	ScriptFunction::Register<&SetModsAndRestartEngine>(rq, "SetModsAndRestartEngine");
+}
 }

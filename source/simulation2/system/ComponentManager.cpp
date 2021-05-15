@@ -70,7 +70,7 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptCont
 	{
 		JSI_VFS::RegisterScriptFunctions_Simulation(m_ScriptInterface);
 		ScriptRequest rq(m_ScriptInterface);
-		constexpr ScriptFunction::ObjectGetter<CComponentManager> Getter = &ScriptFunction::ObjectFromCBData<CComponentManager>;
+		constexpr ScriptFunction::ObjectGetter<CComponentManager> Getter = &ScriptInterface::ObjectFromCBData<CComponentManager>;
 		ScriptFunction::Register<&CComponentManager::Script_RegisterComponentType, Getter>(rq, "RegisterComponentType");
 		ScriptFunction::Register<&CComponentManager::Script_RegisterSystemComponentType, Getter>(rq, "RegisterSystemComponentType");
 		ScriptFunction::Register<&CComponentManager::Script_ReRegisterComponentType, Getter>(rq, "ReRegisterComponentType");

@@ -110,11 +110,11 @@ IXmppClient* XmppGetter(const ScriptRequest&, JS::CallArgs&)
 	return g_XmppClient;
 }
 
-void SendRegisterGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue data)
+void SendRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data)
 {
 	if (!g_XmppClient)
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
+		ScriptRequest rq(scriptInterface);
 		ScriptException::Raise(rq, "Cannot call SendRegisterGame without an initialized XmppClient!");
 		return;
 	}
@@ -126,7 +126,7 @@ void SendRegisterGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValu
 		return;
 	}
 
-	g_XmppClient->SendIqRegisterGame(*(pCmptPrivate->pScriptInterface), data);
+	g_XmppClient->SendIqRegisterGame(scriptInterface, data);
 }
 
 // Unlike other functions, this one just returns Undefined if XmppClient isn't initialised.
