@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,20 +18,20 @@
 #ifndef INCLUDED_GAME
 #define INCLUDED_GAME
 
-#include <vector>
-
+#include "graphics/Color.h"
 #include "ps/CStr.h"
 #include "ps/Errors.h"
-#include "ps/Filesystem.h"
+#include "lib/os_path.h"
 #include "scriptinterface/ScriptTypes.h"
 #include "simulation2/helpers/Player.h"
 
-class CWorld;
-class CSimulation2;
+#include <vector>
+
 class CGameView;
+class CSimulation2;
 class CTurnManager;
+class CWorld;
 class IReplayLogger;
-struct CColor;
 
 /**
  * The container that holds the rules, resources and attributes of the game.

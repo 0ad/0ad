@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,11 @@
 #define INCLUDED_CCMPRALLYPOINTRENDERER
 
 #include "ICmpRallyPointRenderer.h"
+
 #include "graphics/Overlay.h"
 #include "graphics/TextureManager.h"
+#include "ps/CLogger.h"
+#include "renderer/Renderer.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpFootprint.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -35,10 +38,6 @@
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/system/Component.h"
-
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
-#include "renderer/Renderer.h"
 
 struct SVisibilitySegment
 {

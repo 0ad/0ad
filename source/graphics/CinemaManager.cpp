@@ -23,6 +23,7 @@
 #include "graphics/CinemaManager.h"
 
 #include "graphics/Camera.h"
+#include "graphics/Color.h"
 #include "graphics/GameView.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
@@ -41,6 +42,7 @@
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ComponentManager.h"
 #include "simulation2/Simulation2.h"

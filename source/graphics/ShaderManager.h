@@ -18,19 +18,13 @@
 #ifndef INCLUDED_SHADERMANAGER
 #define INCLUDED_SHADERMANAGER
 
-#define USE_SHADER_XML_VALIDATION 1
-
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechnique.h"
 
-#if USE_SHADER_XML_VALIDATION
-# include "ps/XML/RelaxNG.h"
-#endif
-
-#include <unordered_map>
 #include <memory>
 #include <set>
+#include <unordered_map>
 
 /**
  * Shader manager: loads and caches shader programs.

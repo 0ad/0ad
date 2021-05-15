@@ -22,6 +22,7 @@
 #include "graphics/Camera.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/Overlay.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
 #include "lib/hash.h"

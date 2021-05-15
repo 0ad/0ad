@@ -18,11 +18,9 @@
 #ifndef INCLUDED_CINEMAMANAGER
 #define INCLUDED_CINEMAMANAGER
 
-#include "lib/input.h" // InReaction - can't forward-declare enum
-#include "graphics/Color.h"
-#include "ps/CStr.h"
-#include "simulation2/helpers/CinemaPath.h"
+class RNSpline;
 
+struct CColor;
 
 /**
  * Class for in game playing of cinematics. Should only be instantiated in CGameView.

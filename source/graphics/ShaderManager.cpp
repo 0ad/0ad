@@ -29,12 +29,15 @@
 #include "ps/CStrIntern.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
-#if USE_SHADER_XML_VALIDATION
-# include "ps/XML/RelaxNG.h"
-#endif
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
 #include "renderer/Renderer.h"
+
+#define USE_SHADER_XML_VALIDATION 1
+
+#if USE_SHADER_XML_VALIDATION
+# include "ps/XML/RelaxNG.h"
+#endif
 
 TIMER_ADD_CLIENT(tc_ShaderValidation);
 

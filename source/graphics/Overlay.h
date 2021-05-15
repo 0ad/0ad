@@ -22,7 +22,6 @@
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
-#include "maths/FixedVector3D.h"
 #include "ps/CStrIntern.h"
 
 #include <vector>

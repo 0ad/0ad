@@ -19,6 +19,7 @@
 
 #include "TexturedLineRData.h"
 
+#include "graphics/ShaderProgram.h"
 #include "graphics/Terrain.h"
 #include "maths/Frustum.h"
 #include "maths/MathUtil.h"

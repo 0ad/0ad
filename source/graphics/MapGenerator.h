@@ -18,13 +18,11 @@
 #ifndef INCLUDED_MAPGENERATOR
 #define INCLUDED_MAPGENERATOR
 
-#include "lib/posix/posix_pthread.h"
 #include "ps/FileIo.h"
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/StructuredClone.h"
 
 #include <boost/random/linear_congruential.hpp>
-
 #include <mutex>
 #include <set>
 #include <string>

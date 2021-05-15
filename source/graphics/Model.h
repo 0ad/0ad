@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,12 +22,11 @@
 #ifndef INCLUDED_MODEL
 #define INCLUDED_MODEL
 
-#include <vector>
-
-#include "graphics/Texture.h"
 #include "graphics/Material.h"
 #include "graphics/MeshManager.h"
 #include "graphics/ModelAbstract.h"
+
+#include <vector>
 
 struct SPropPoint;
 class CObjectEntry;

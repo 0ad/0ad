@@ -29,7 +29,6 @@
 #include "gui/SGUIStyle.h"
 #include "lib/input.h"
 #include "maths/Rect.h"
-#include "maths/Size2D.h"
 #include "maths/Vector2D.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptForward.h"
