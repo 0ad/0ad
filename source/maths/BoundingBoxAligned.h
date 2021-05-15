@@ -107,6 +107,8 @@ public:
 	 */
 	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, float& tmin, float& tmax) const;
 
+	bool IsPointInside(const CVector3D& point) const;
+
 	// return the volume of this bounding box
 	float GetVolume() const
 	{

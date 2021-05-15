@@ -989,6 +989,8 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 	CCamera normalCamera = m_ViewCamera;
 
 	ComputeReflectionCamera(m_ViewCamera, scissor);
+	const CBoundingBoxAligned reflectionScissor =
+		m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
 
 	SetViewport(m_ViewCamera.GetViewPort());
 
@@ -999,10 +1001,10 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 	float vpWidth = wm.m_RefTextureSize;
 
 	SScreenRect screenScissor;
-	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vpHeight);
-	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x1 = (GLint)floor((reflectionScissor[0].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y1 = (GLint)floor((reflectionScissor[0].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x2 = (GLint)ceil((reflectionScissor[1].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y2 = (GLint)ceil((reflectionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
@@ -1062,6 +1064,8 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	CCamera normalCamera = m_ViewCamera;
 
 	ComputeRefractionCamera(m_ViewCamera, scissor);
+	const CBoundingBoxAligned refractionScissor =
+		m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
 
 	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 2.0f);
 	SetObliqueFrustumClipping(m_ViewCamera, camPlane);
@@ -1077,19 +1081,22 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	float vpWidth = wm.m_RefTextureSize;
 
 	SScreenRect screenScissor;
-	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vpHeight);
-	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x1 = (GLint)floor((refractionScissor[0].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y1 = (GLint)floor((refractionScissor[0].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x2 = (GLint)ceil((refractionScissor[1].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y2 = (GLint)ceil((refractionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	glEnable(GL_SCISSOR_TEST);
-	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	//glEnable(GL_SCISSOR_TEST);
+	//glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
 	// try binding the framebuffer
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
 
 	glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
 	// Render terrain and models
 	RenderPatches(context, CULL_REFRACTIONS);

@@ -263,3 +263,11 @@ void CBoundingBoxAligned::Expand(float amount)
 	m_Data[0] -= CVector3D(amount, amount, amount);
 	m_Data[1] += CVector3D(amount, amount, amount);
 }
+
+bool CBoundingBoxAligned::IsPointInside(const CVector3D& point) const
+{
+	return
+		m_Data[0].X <= point.X && point.X <= m_Data[1].X &&
+		m_Data[0].Y <= point.Y && point.Y <= m_Data[1].Y &&
+		m_Data[0].Z <= point.Z && point.Z <= m_Data[1].Z;
+}

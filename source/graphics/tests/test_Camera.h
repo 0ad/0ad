@@ -19,7 +19,9 @@
 
 #include "graphics/Camera.h"
 #include "maths/MathUtil.h"
+#include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
 
 #include <cmath>
 #include <vector>
@@ -341,4 +343,82 @@ public:
 			CompareVectors(dir, expectedDir, EPS);
 		}
 	}
+
+	void CompareBoundingBoxes(const CBoundingBoxAligned& bb1, const CBoundingBoxAligned& bb2)
+	{
+		constexpr float EPS = 1e-3f;
+		CompareVectors(bb1[0], bb2[0], EPS);
+		CompareVectors(bb1[1], bb2[1], EPS);
+	}
+
+	void test_viewport_bounds_perspective()
+	{
+		SViewPort viewPort;
+		viewPort.m_X = 0;
+		viewPort.m_Y = 0;
+		viewPort.m_Width = 512;
+		viewPort.m_Height = 512;
+
+		CCamera camera;
+		camera.SetViewPort(viewPort);
+		camera.LookAlong(
+			CVector3D(0.0f, 0.0f, 0.0f),
+			CVector3D(0.0f, 0.0f, 1.0f),
+			CVector3D(0.0f, 1.0f, 0.0f)
+		);
+		camera.SetPerspectiveProjection(1.0f, 101.0f, DEGTORAD(90.0f));
+		camera.UpdateFrustum();
+
+		struct TestCase
+		{
+			CBoundingBoxAligned worldSpaceBoundingBox;
+			CBoundingBoxAligned expectedViewPortBoundingBox;
+		};
+		const TestCase testCases[] = {
+			// Box is in front of the camera.
+			{
+				{{-1.0f, 0.0f, 5.0f}, {1.0f, 0.0f, 7.0f}},
+				{{-0.2f, 0.0f, 0.616f}, {0.2f, 0.0f, 0.731429f}}
+			},
+			// Box is out of the camera view.
+			{
+				{{-10.0f, -1.0f, 5.0f}, {-8.0f, 1.0f, 7.0f}},
+				{}
+			},
+			{
+				{{-1.0f, -10.0f, 5.0f}, {1.0f, -8.0f, 7.0f}},
+				{}
+			},
+			// Box is in the bottom part of the camera view.
+			{
+				{{-1.0f, -3.0f, 5.0f}, {1.0f, -3.0f, 7.0f}},
+				{{-0.2f, -0.6f, 0.616f}, {0.2f, -0.428571f, 0.731429f}}
+			},
+			{
+				{{-1.0f, -3.0f, 0.0f}, {1.0f, -3.0f, 7.0f}},
+				{{-1.0f, -3.0f, -1.0f}, {1.0f, -0.428571f, 0.731429f}}
+			},
+			{
+				{{-1.0f, -3.0f, -7.0f}, {1.0f, -3.0f, 7.0f}},
+				{{-1.0f, -3.0f, -1.0f}, {1.0f, -0.428571f, 0.731429f}}
+			},
+		};
+
+		for (const TestCase& testCase : testCases)
+		{
+			TS_ASSERT(testCase.worldSpaceBoundingBox[0].X <= testCase.worldSpaceBoundingBox[1].X);
+			TS_ASSERT(testCase.worldSpaceBoundingBox[0].Y <= testCase.worldSpaceBoundingBox[1].Y);
+			TS_ASSERT(testCase.worldSpaceBoundingBox[0].Z <= testCase.worldSpaceBoundingBox[1].Z);
+
+			const CBoundingBoxAligned result =
+				camera.GetBoundsInViewPort(testCase.worldSpaceBoundingBox);
+			if (testCase.expectedViewPortBoundingBox.IsEmpty())
+			{
+				TS_ASSERT(result.IsEmpty());
+			}
+			else
+				CompareBoundingBoxes(result, testCase.expectedViewPortBoundingBox);
+		}
+	}
+
 };
