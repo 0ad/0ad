@@ -35,6 +35,7 @@
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/StructuredClone.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -768,7 +769,7 @@ private:
 		if (m_PlayerMetadata.find(path) == m_PlayerMetadata.end())
 		{
 			// Load and cache the AI player metadata
-			m_ScriptInterface->ReadJSONFile(path, out);
+			Script::ReadJSONFile(ScriptRequest(m_ScriptInterface), path, out);
 			m_PlayerMetadata[path] = JS::Heap<JS::Value>(out);
 			return;
 		}

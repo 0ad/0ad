@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,7 +25,6 @@
 
 #include "lib/external_libraries/curl.h"
 #include "lib/os_path.h"
-#include "scriptinterface/ScriptInterface.h"
 
 #include <sodium.h>
 #include <string>

@@ -17,7 +17,7 @@
 #include "precompiled.h"
 
 #include "ps/CLogger.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
 #include "simulation2/MessageTypes.h"
 
 #define TOJSVAL_SETUP() \
@@ -52,8 +52,9 @@
 
 JS::Value CMessage::ToJSValCached(const ScriptInterface& scriptInterface) const
 {
+	ScriptRequest rq(scriptInterface);
 	if (!m_Cached)
-		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetGeneralJSContext(), ToJSVal(scriptInterface)));
+		m_Cached.reset(new JS::PersistentRootedValue(rq.cx, ToJSVal(scriptInterface)));
 
 	return m_Cached->get();
 }

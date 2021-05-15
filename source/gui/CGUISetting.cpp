@@ -22,7 +22,7 @@
 #include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/CLogger.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
 
 IGUISetting::IGUISetting(const CStr& name, IGUIObject* owner) : m_pObject(*owner)
 {

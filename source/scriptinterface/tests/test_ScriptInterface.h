@@ -18,9 +18,10 @@
 #include "lib/self_test.h"
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/JSON.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
-#include "scriptinterface/Object.h"
 
 #include "ps/CLogger.h"
 
@@ -239,11 +240,11 @@ public:
 		JS::RootedValue val(rq.cx);
 		TS_ASSERT(script.Eval(input.c_str(), &val));
 
-		std::string stringified = script.StringifyJSON(&val);
+		std::string stringified = Script::StringifyJSON(rq, &val);
 		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\": 1,\n  \"z\": [\n    2,\n    \"3\u263A\\ud800\"\n  ],\n  \"y\": true\n}");
 
-		TS_ASSERT(script.ParseJSON(stringified, &val));
-		TS_ASSERT_STR_EQUALS(script.ToString(&val), "({x:1, z:[2, \"3\\u263A\\uD800\"], y:true})");
+		TS_ASSERT(Script::ParseJSON(rq, stringified, &val));
+		TS_ASSERT_STR_EQUALS(Script::ToString(rq, &val), "({x:1, z:[2, \"3\\u263A\\uD800\"], y:true})");
 	}
 
 	// This function tests a common way to mod functions, by creating a wrapper that

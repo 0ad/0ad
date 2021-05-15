@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Alexander Berezin <prophetesseer@gmail.com>, 2021
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Artur Miller <director.mill@yandex.ru>, 2019
 # Homunkul <Behal.inc@gmail.com>, 2020
@@ -36,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-05-07 11:00+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-13 21:43+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +82,7 @@ msgstr "Религиозное рвение"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "Работники добывают на 15% быстрее."
+msgstr "Работники добывают ресурсы на 15% быстрее."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -173,24 +174,24 @@ msgid "Glorious Expansion"
 msgstr "Славное расширение"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Allied Warships −25% construction time."
-msgstr "Корабли союзников строятся на 25% быстрее."
+msgid "Warships −25% construction time."
+msgstr "Боевые корабли создаются на 25% быстрее."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
 msgstr "Делосский союз"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
-msgid "Allied Healers −20% resource costs."
-msgstr "Стоимость целителей союзников снижается на 20%."
+msgid "Healers −20% resource costs."
+msgstr "Стоимость обучения целителей уменьшена на 20%."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
 msgstr "Друиды"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "Allies +10% international trade bonus."
-msgstr "Союзники получают на 10% больше выгоды в международной торговле."
+msgid "+10% international trade bonus."
+msgstr "+10% к выгоде от международной торговли."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -205,24 +206,24 @@ msgid "Products from Gaul"
 msgstr "Товары из Галлии"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr "Стоимость дротометателей-граждан союзников снижается на 10%."
+msgid "Citizen Javelineers −10% resource costs."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
 msgstr "Сарипеко"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
-msgid "Allied Elephants −20% resource costs and training time."
-msgstr "Стоимость и время обучения слонов союзников снижается на 20%."
+msgid "Elephants −20% resource costs and training time."
+msgstr "Стоимость и время обучения слонов уменьшены на 20%."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
 msgstr "Поставщики слонов"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
-msgid "Allies +20% barter sell prices."
-msgstr "Выгода от обмена с союзниками повышается на 20%."
+msgid "+20% barter sell prices."
+msgstr "+20% к выгоде от продажи ресурсов."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -230,49 +231,49 @@ msgstr "Единая валюта"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
-"Allied Temples −50% resource costs and building time; Temple technologies "
-"−50% resource costs and research time."
-msgstr "На строительство храмов и исследование храмовых технологий союзников затрачивается на 50% меньше времени и ресурсов."
+"Temples −50% resource costs and building time; Temple technologies −50% "
+"resource costs and research time."
+msgstr "Стоимость и время постройки храмов уменьшены на 50%. Стоимость и время исследования технологий в храме уменьшены на 50%."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
 msgstr "Религиозная поддержка Ашоки"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Allied Land Traders +15% trade gain."
-msgstr "Сухопутные торговцы союзников приносят на 15% больше прибыли."
+msgid "Land Traders +15% trade gain."
+msgstr "Сухопутные торговцы приносят на 15% больше прибыли."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
 msgstr "Царская дорога"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
-msgid "Allies +1.0 food trickle rate."
-msgstr "Союзники получают +1.0 к скорости сбора пищи."
+msgid "+1.0 food trickle rate."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
 msgstr "Житница Средиземноморья"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Infantry −10% training time."
-msgstr "Время обучения пеших воинов-граждан союзников снижается на 10%."
+msgid "Citizen Infantry −10% training time."
+msgstr "Время обучения пеших воинов-граждан снижается на 10%."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
 msgstr "Воинская повинность"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid "Allied Civil Centers −20% resource costs."
-msgstr "Стоимость городских Центров союзников снижается на 20%."
+msgid "Civil Centers −20% resource costs."
+msgstr "Стоимость городских центров снижается на 20%."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Сирийский тетраполис (Четырёхградье)"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr "Пешие копейщики-граждане союзников получают +10% к здоровью."
+msgid "Citizen Infantry Spearmen +10% health."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"

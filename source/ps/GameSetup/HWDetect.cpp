@@ -45,7 +45,7 @@
 #include "ps/VideoMode.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/Object.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 
 #if OS_LINUX
 #include <fstream>
@@ -222,8 +222,8 @@ void RunHardwareDetection()
 	g_UserReporter.SubmitReport(
 		"hwdetect",
 		reportVersion,
-		scriptInterface.StringifyJSON(&settings, false),
-		scriptInterface.StringifyJSON(&settings, true));
+		Script::StringifyJSON(rq, &settings, false),
+		Script::StringifyJSON(rq, &settings, true));
 
 	// Run the detection script:
 	JS::RootedValue global(rq.cx, rq.globalValue());

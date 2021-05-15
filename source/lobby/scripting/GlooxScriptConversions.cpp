@@ -21,7 +21,7 @@
 #if CONFIG2_LOBBY
 
 #include "lobby/XmppClient.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptConversions.h"
 
 template<> void Script::ToJSVal<glooxwrapper::string>(const ScriptRequest& rq, JS::MutableHandleValue ret, const glooxwrapper::string& val)
 {

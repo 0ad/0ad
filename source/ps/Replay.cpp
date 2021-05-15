@@ -36,8 +36,9 @@
 #include "ps/VisualReplay.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/ScriptStats.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/helpers/Player.h"
 #include "simulation2/helpers/SimulationCommand.h"
@@ -79,7 +80,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	debug_printf("Writing replay to %s\n", m_Directory.string8().c_str());
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);
-	*m_Stream << "start " << m_ScriptInterface.StringifyJSON(attribs, false) << "\n";
+	*m_Stream << "start " << Script::StringifyJSON(rq, attribs, false) << "\n";
 }
 
 void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& commands)
@@ -89,7 +90,7 @@ void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& 
 	*m_Stream << "turn " << n << " " << turnLength << "\n";
 
 	for (SimulationCommand& command : commands)
-		*m_Stream << "cmd " << command.player << " " << m_ScriptInterface.StringifyJSON(&command.data, false) << "\n";
+		*m_Stream << "cmd " << command.player << " " << Script::StringifyJSON(rq, &command.data, false) << "\n";
 
 	*m_Stream << "end\n";
 	m_Stream->flush();
@@ -123,7 +124,7 @@ void CReplayLogger::SaveMetadata(const CSimulation2& simulation)
 	CreateDirectories(fileName.Parent(), 0700);
 
 	std::ofstream stream (OsString(fileName).c_str(), std::ofstream::out | std::ofstream::trunc);
-	stream << scriptInterface.StringifyJSON(&metadata, false);
+	stream << Script::StringifyJSON(rq, &metadata, false);
 	stream.close();
 	debug_printf("Saved replay metadata to %s\n", fileName.string8().c_str());
 }
@@ -240,7 +241,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 			std::string line;
 			std::getline(*m_Stream, line);
 			JS::RootedValue attribs(rq.cx);
-			ENSURE(g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
+			ENSURE(Script::ParseJSON(rq, line, &attribs));
 
 			CheckReplayMods(g_Game->GetSimulation2()->GetScriptInterface(), attribs);
 
@@ -265,7 +266,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 			std::string line;
 			std::getline(*m_Stream, line);
 			JS::RootedValue data(rq.cx);
-			g_Game->GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
+			Script::ParseJSON(rq, line, &data);
 			Script::FreezeObject(rq, data, true);
 			commands.emplace_back(SimulationCommand(player, rq.cx, data));
 		}

@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-30 07:08+0000\n"
-"PO-Revision-Date: 2021-05-06 12:04+0000\n"
+"PO-Revision-Date: 2021-05-13 04:18+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,7 @@ msgstr "骏马"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr "骑兵生命值 +10%"
+msgstr "骑兵生命值 +10%."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -281,7 +281,7 @@ msgstr "赛马"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "骑兵移动速度 +10% 。"
+msgstr "骑兵移动速度 +10%."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -373,13 +373,13 @@ msgstr "转轮王"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr "人口上限+10%。"
+msgstr "人口上限 +10%."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr "印度人使用当地丰富的自然物资——木材来修筑他们的城墙。"
+msgstr "印度人使用当地丰富的自然资源——木材来修筑他们的城墙。"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -387,7 +387,7 @@ msgstr "木墙"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "印度的城墙生命-20％，建造时间-20％。"
+msgstr "印度的城墙生命值 -20％，建造时间 -20％."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -417,7 +417,7 @@ msgstr "土坯房"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "民居和经济设施的木材成本和生命−40％。"
+msgstr "民居和经济设施的木材成本和生命值 −40％."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -431,7 +431,7 @@ msgstr "殖民主义"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time."
-msgstr "迦太基人是殖民者，其公署、神庙、民居建造时间 -25% 。"
+msgstr "迦太基人是殖民者，其公署、神庙、民居建造时间 -25%."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -442,7 +442,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "早期的阿契美尼德统治者致力于使波斯成为亚洲第一个海洋霸权国家。伟大的国王不仅表现出他对水手们的偏爱以换取他们的忠诚，而且他还鼓励出海活动。在大流士国王的统治期间，波斯在埃及修了一条运河，并派出了一支海军去探索印度河。据史学家希多罗德记载，大约300条船被改装成运输船以用来搭载士兵和战马。"
+msgstr "早期的阿契美尼德统治者致力于使波斯成为亚洲第一个海洋霸权国家。伟大的国王不仅表现出他对水手们的偏爱以换取他们的忠诚，而且他还鼓励出海活动。在大流士国王的统治期间，波斯在埃及修了一条运河，并派出了一支海军去探索印度河。据史学家希多罗德记载，大约 300 条船被改装成运输船以用来搭载士兵和战马。"
 
 #: simulation/data/technologies/equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -462,7 +462,7 @@ msgstr "咸鱼"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "渔船食物容量+20。"
+msgstr "渔船食物容量 +20."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
@@ -474,7 +474,7 @@ msgstr "渔网"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr "渔船捕鱼效率+30% 。"
+msgstr "渔船捕鱼效率 +30%."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -498,11 +498,11 @@ msgstr "畜牧业"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr "家畜繁殖周期 -25% 。"
+msgstr "家畜培育周期 -25%."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr "工人使用篮，增加所有物资的载运容量。"
+msgstr "工人使用篮子，增加所有物资的载运容量。"
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -545,7 +545,7 @@ msgstr "肥料"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "工人种田效率 +20%  。"
+msgstr "工人种田效率 +20%."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -559,7 +559,7 @@ msgstr "收割机"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "农民耕作效率+10%"
+msgstr "农民耕作效率 +10%."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -593,7 +593,7 @@ msgstr "铁斧"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr "工人伐木效率 +25%  。"
+msgstr "工人伐木效率 +25%."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -607,7 +607,7 @@ msgstr "坚斧"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "强迫农奴开采石料。石料开采效率+15% 。"
+msgstr "强迫农奴开采石料。石料开采效率 +15%."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -621,7 +621,7 @@ msgstr "奴隶"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr "工人采石效率 +25%  。"
+msgstr "工人采石效率 +25%."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -651,7 +651,7 @@ msgstr "竖井挖掘"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "工人挖金效率 +25%  。"
+msgstr "工人挖金效率 +25%."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -710,7 +710,7 @@ msgstr "柳条筐"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "工人采果效率+50%  。"
+msgstr "工人采果效率+50%."
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -732,7 +732,7 @@ msgstr "奥林匹克万神殿"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr "医师治疗范围+5"
+msgstr "医师治疗范围 +5."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -762,7 +762,7 @@ msgstr "解剖学"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr "医师治疗耗时-20%。"
+msgstr "医师治疗耗时 -20%."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -789,7 +789,7 @@ msgstr "织机"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr "妇女生命值 +100%。"
+msgstr "妇女生命值 +100%."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -828,7 +828,7 @@ msgstr "希腊重步传统"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr "重装步兵训练时间 -25%，升级经验所需-50%。"
+msgstr "重装步兵训练时间 -25%，升级经验所需-50% ."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -842,7 +842,7 @@ msgstr "长生军"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr "长生军训练时间-50%，生命-10%。"
+msgstr "长生军训练时间 -50% ，生命-10% ."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -856,7 +856,7 @@ msgstr "征召步兵"
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."
-msgstr "步兵训练时间-10%."
+msgstr "步兵训练时间 -10% ."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -878,7 +878,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "雅典长墙，是在老谋深算的地米斯托克利的主持下修建的，它长达6公里连接着都邑比雷埃夫斯港口。它确保了都邑海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
+msgstr "雅典长墙，是在老谋深算的地米斯托克利的主持下修建的，它长达 6 公里连接着都邑比雷埃夫斯港口。它确保了都邑海上补给线的安全，防止敌人的围城使公民陷入饥荒。"
 
 #: simulation/data/technologies/long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -905,7 +905,7 @@ msgstr "尼西亚马"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "精锐矛骑兵生命值 +20%，训练时间 +10%。"
+msgstr "精锐矛骑兵生命值 +20%，训练时间 +10% ."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -923,7 +923,7 @@ msgstr "桂冠游行"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "精锐单位训练时间 -20%"
+msgstr "精锐单位训练时间 -20% ."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -962,7 +962,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "升级到城市阶段，解锁了更多建筑物及单位。市政中心的疆域影响范围也再度增加了 +50%。银鸮的文明奖励让工人的金属开采效率 +10% 。民兵生命值 +10%。所有建筑物的忠诚恢复效率 +9。"
+msgstr "升级到城市阶段，解锁了更多建筑物及单位.市政中心的疆域影响范围也再度增加了 +50% .银鸮的文明奖励让工人的金属开采效率 +10% .民兵生命值 +10% .所有建筑物的忠诚恢复效率 +9 ."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -975,7 +975,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "升级到城市阶段，解锁了更多建筑物及单位。公署的领土影响范围 +50%。民兵的生命值 +10%。所有建筑物的忠诚恢复效率 +9。"
+msgstr "升级到城市阶段，解锁了更多建筑物及单位。公署的领土影响范围 +50%.民兵的生命值 +10%.所有建筑物的忠诚恢复效率 +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1014,7 +1014,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "进展到城镇阶段，解锁了更多建筑物及单位。市政中心的领土影响距离 +30%。民兵生命值 +20%。所有建筑物的忠诚恢复效率 +7。"
+msgstr "进展到城镇阶段，解锁了更多建筑物及单位。市政中心的领土影响距离 +30%.民兵生命值 +20%.所有建筑物的忠诚恢复效率 +7."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1026,7 +1026,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "进展到城镇阶段，解锁了更多建筑物及单位。市政中心的领土影响距离 +30%。民兵生命值 +20%。所有建筑物的忠诚恢复效率 +7。"
+msgstr "进展到城镇阶段，解锁了更多建筑物及单位。市政中心的领土影响距离 +30%.民兵生命值 +20%.所有建筑物的忠诚恢复效率 +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1061,7 +1061,7 @@ msgstr "院落"
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr "民居人口容量+20%"
+msgstr "民居人口容量 +20%."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1100,7 +1100,7 @@ msgstr "海军工程师"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr "船舶建造时间-20%。"
+msgstr "船舶建造时间-20%."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1126,7 +1126,7 @@ msgstr "老练水手"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr "船舶航速+10%。"
+msgstr "船舶航速 +10%."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1138,7 +1138,7 @@ msgstr "高级攻城机械"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "攻城机械破碎伤害+25% 。"
+msgstr "攻城机械破碎伤害 +25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1150,7 +1150,7 @@ msgstr "射击精度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr "车弩远程攻击散布-20%。"
+msgstr "车弩远程攻击散布 -20%."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
@@ -1162,12 +1162,12 @@ msgstr "攻城技术"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr "攻城机械建造时间-20%。"
+msgstr "攻城机械建造时间 -20%."
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr "包覆铁板，以防御矢石和火油"
+msgstr "包裹铁板，防御矢石和火油。"
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
@@ -1175,7 +1175,7 @@ msgstr "附加装甲"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr "临车和冲车的生命+25%"
+msgstr "临车和冲车的生命 +25%."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
@@ -1187,7 +1187,7 @@ msgstr "攻城技师"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr "攻城机械组装及拆卸耗时-40%."
+msgstr "攻城机械组装及拆卸耗时 -40%."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1231,7 +1231,7 @@ msgstr "短兵"
 #: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
 msgid "Soldiers +15% melee attack damage."
-msgstr "士兵近战伤害+15％。"
+msgstr "士兵近战伤害 +15％."
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -1252,7 +1252,7 @@ msgstr "铁镞"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr "士兵远程伤害+15%。"
+msgstr "士兵远程伤害 +15%."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
@@ -1264,7 +1264,7 @@ msgstr "三叶镞"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr "远程士兵经验+25% 。"
+msgstr "远程士兵经验 +25% ."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
@@ -1285,7 +1285,7 @@ msgstr "衬垫甲"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr "士兵对近战防护+1。"
+msgstr "士兵对近战防护 +1."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
@@ -1316,7 +1316,7 @@ msgstr "木盾"
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
 msgid "Soldiers +1 pierce resistance."
-msgstr "士兵远程防护+1"
+msgstr "士兵远程防护 +1."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
@@ -1336,7 +1336,7 @@ msgstr "监察"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr "己方单位被贿赂时，费用 +50％。"
+msgstr "己方单位被贿赂时，费用 +50％."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
@@ -1346,7 +1346,7 @@ msgstr "通过批量训练，来大幅度提高训练骑兵的速度。"
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr "马厩单位的批量训练时间 -10% 。"
+msgstr "马厩单位的批量训练时间 -10% ."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1360,7 +1360,7 @@ msgstr "垛口"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr "每增加一名驻军，望楼和碉楼的火力+40% 。"
+msgstr "每增加一名驻军，望楼和碉楼的火力 +40%."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1372,7 +1372,7 @@ msgstr "稳固地基"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr "碉楼的生命值 +25%。"
+msgstr "碉楼的生命值 +25%."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1396,7 +1396,7 @@ msgstr "强弓手"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr "望楼和碉楼的射击范围 +8 。"
+msgstr "望楼和碉楼的射击范围 +8."
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1420,7 +1420,7 @@ msgstr "警卫"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr "望楼和碉楼的默认箭矢数 +1 。"
+msgstr "望楼和碉楼的默认箭矢数 +1."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1432,7 +1432,7 @@ msgstr "贸易协定"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr "国际贸易收益+10% 。"
+msgstr "国际贸易收益 +10%."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1446,7 +1446,7 @@ msgstr "改进工艺"
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% trade gain."
-msgstr "商队贸易收益 +15%"
+msgstr "商队贸易收益 +15%."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1462,7 +1462,7 @@ msgstr "贸易车队"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr "商队生命+50%"
+msgstr "商队生命值 +50%."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1482,19 +1482,19 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "进阶及精锐单位训练时间 +20％，生命值+ 25％，占领能力 +0.7，掠夺 +20％，采集率 -30％；治疗单位的效果 +5，治疗范围 +3；近战单位反击 + 1，攻击力 +20％； 远程单位的速度 -20％ 。"
+msgstr "进阶及精锐单位训练时间 +20％，生命值+ 25％，占领能力 +0.7，掠夺 +20％，采集率 -30％；治疗单位的效果 +5，治疗范围 +3；近战单位反击 + 1，攻击力 +20％； 远程单位的速度 -20％."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr "非洲战象的物资成本、训练时间、生命、攻击和战利品全部 -10%。"
+msgstr "非洲战象的物资成本、训练时间、生命、攻击和战利品全部 -10%."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr "印度战象的物资成本、训练时长、生命、攻击力和战利品全部-10%。"
+msgstr "印度战象的物资成本、训练时长、生命、攻击力和战利品全部 -10%."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1502,7 +1502,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "进阶及精锐单位训练时间 +20％，生命值+ 25％，占领能力 +0.8，掠夺 +20％，采集率 -30％；治疗单位的效果 +5，治疗范围 +3；近战单位反击 + 1，攻击力 +20％； 远程单位的速度 -20％ 。"
+msgstr "进阶及精锐单位训练时间 +20％，生命值+ 25％，占领能力 +0.8，掠夺 +20％，采集率 -30％；治疗单位的效果 +5，治疗范围 +3；近战单位反击 + 1，攻击力 +20％； 远程单位的速度 -20％."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1652,4 +1652,4 @@ msgstr "光荣扩张"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "启用“光荣扩张”光环：每座奇观让人口上限 +20％。"
+msgstr "启用“光荣扩张”光环：每座奇观让人口上限 +20％."

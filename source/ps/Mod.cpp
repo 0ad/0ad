@@ -28,6 +28,7 @@
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 
 #include <algorithm>
 #include <boost/algorithm/string/split.hpp>
@@ -74,7 +75,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 			continue;
 
 		JS::RootedValue json(rq.cx);
-		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json))
+		if (!Script::ParseJSON(rq, modinfo.GetAsString(), &json))
 			continue;
 
 		// Valid mod, add it to our structure
@@ -101,7 +102,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 			continue;
 
 		JS::RootedValue json(rq.cx);
-		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json))
+		if (!Script::ParseJSON(rq, modinfo.GetAsString(), &json))
 			continue;
 
 		// Valid mod, add it to our structure

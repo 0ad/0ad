@@ -24,6 +24,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/system/TurnManager.h"
 
 class CCmpCommandQueue : public ICmpCommandQueue
@@ -92,7 +93,7 @@ public:
 		JS::RootedValue cmd(rq.cx, cmd1.get());
 
 		PROFILE2_EVENT("post net command");
-		PROFILE2_ATTR("command: %s", GetSimContext().GetScriptInterface().StringifyJSON(&cmd, false).c_str());
+		PROFILE2_ATTR("command: %s", Script::StringifyJSON(rq, &cmd, false).c_str());
 
 		// TODO: would be nicer to not use globals
 		if (g_Game && g_Game->GetTurnManager())

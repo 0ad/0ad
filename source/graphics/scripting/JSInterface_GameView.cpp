@@ -27,7 +27,6 @@
 #include "ps/World.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/helpers/Position.h"
 
 namespace JSI_GameView

@@ -20,7 +20,6 @@
 
 #include "ps/CStr.h"
 #include "ps/GameSetup/CmdLineArgs.h"
-#include "scriptinterface/ScriptInterface.h"
 
 class ScriptContext;
 

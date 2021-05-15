@@ -27,8 +27,6 @@
 #include "ps/Replay.h"
 #include "ps/Util.h"
 #include "scriptinterface/Object.h"
-#include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
-#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
 #if 0
@@ -42,9 +40,10 @@ const CStr CTurnManager::EventNameSavegameLoaded = "SavegameLoaded";
 CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, u32 commandDelay, int clientId, IReplayLogger& replay)
 	: m_Simulation2(simulation), m_CurrentTurn(0), m_CommandDelay(commandDelay), m_ReadyTurn(commandDelay - 1), m_TurnLength(defaultTurnLength),
 	m_PlayerId(-1), m_ClientId(clientId), m_DeltaSimTime(0), m_Replay(replay),
-	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0),
-	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetGeneralJSContext())
+	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0)
 {
+	ScriptRequest rq(m_Simulation2.GetScriptInterface());
+	m_QuickSaveMetadata.init(rq.cx);
 	m_QueuedCommands.resize(1);
 }
 

@@ -45,6 +45,7 @@
 #include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 
 CConsole* g_Console = 0;
 
@@ -560,7 +561,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	JS::RootedValue rval(rq.cx);
 	pScriptInterface->Eval(CStrW(szLine).ToUTF8().c_str(), &rval);
 	if (!rval.isUndefined())
-		InsertMessage(pScriptInterface->ToString(&rval));
+		InsertMessage(Script::ToString(rq, &rval));
 }
 
 void CConsole::LoadHistory()

@@ -46,7 +46,7 @@
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptContext.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAttack.h"
 #include "simulation2/components/ICmpOwnership.h"

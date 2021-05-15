@@ -24,8 +24,7 @@
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptExtraHeaders.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 
 #include <sstream>
 
@@ -208,7 +207,7 @@ JS::Value ReadJSONFile(const ScriptInterface& scriptInterface, const std::vector
 		return JS::NullValue();
 
 	JS::RootedValue out(rq.cx);
-	scriptInterface.ReadJSONFile(filePath, &out);
+	Script::ReadJSONFile(rq, filePath, &out);
 	return out;
 }
 
@@ -220,7 +219,7 @@ void WriteJSONFile(const ScriptInterface& scriptInterface, const std::wstring& f
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 	JS::RootedValue val(rq.cx, val1);
 
-	std::string str(scriptInterface.StringifyJSON(&val, false));
+	std::string str(Script::StringifyJSON(rq, &val, false));
 
 	VfsPath path(filePath);
 	WriteBuffer buf;

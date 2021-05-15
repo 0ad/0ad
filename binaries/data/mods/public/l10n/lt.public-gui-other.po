@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-07 07:30+0000\n"
-"PO-Revision-Date: 2021-05-07 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-10 08:32+0000\n"
+"Last-Translator: banginis <asesuarbanesu@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -542,7 +542,7 @@ msgstr "Naudotojai (%(num)s): %(users)s"
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
 #: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
 #: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
-#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
+#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:284
 msgid ", "
 msgstr ","
 
@@ -3394,7 +3394,7 @@ msgstr ""
 msgid "Delete the selected savegame using %(hotkey)s."
 msgstr "Ištrinkite pasirinktą išsaugojimą naudojant %(hotkey)s."
 
-#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
+#: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Laikykite %(hotkey)s trynimo patvirtinimui praleisti."
@@ -4832,7 +4832,7 @@ msgstr "Išgyvenkite istorines karines kampanijas."
 msgid "Error opening campaign run:"
 msgstr "Klaida atveriant kampaniją."
 
-#: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
 msgstr "Vieno-Žaidėjo"
 
@@ -4868,7 +4868,7 @@ msgstr "Peržiūros"
 msgid "Playback previous games."
 msgstr "Žiūrėti ankstesnius žaidimus."
 
-#: gui/pregame/MainMenuItems.js:149 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:149
 msgid "Multiplayer"
 msgstr "Daugelio žaidėjų režimas"
 
@@ -5405,46 +5405,62 @@ msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
 msgstr "%(min)s - %(max)s min"
 
-#: gui/replaymenu/replay_filters.js:144
-msgid "Single-player and multiplayer"
-msgstr "(Vieno/Kelių)-žaidėjų"
+#: gui/replaymenu/replay_filters.js:145
+msgctxt "replay filter"
+msgid "Any"
+msgstr "Betkoks5"
 
-#: gui/replaymenu/replay_filters.js:157
+#: gui/replaymenu/replay_filters.js:146
+msgctxt "replay filter"
+msgid "Single-player"
+msgstr "Vieno-Žaidėjo"
+
+#: gui/replaymenu/replay_filters.js:147
+msgctxt "replay filter"
+msgid "Multiplayer"
+msgstr "Daugelio žaidėjų režimas"
+
+#: gui/replaymenu/replay_filters.js:148
+msgctxt "replay filter"
+msgid "Campaigns"
+msgstr "Kampanijos"
+
+#: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
 msgstr "Betkokia pergalės sąlyga"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
 msgstr "Reitinguojami ir nereitinguojami žaidimai"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Rated games"
 msgstr "Reitinguojami žaidimai"
 
-#: gui/replaymenu/replay_filters.js:170
+#: gui/replaymenu/replay_filters.js:175
 msgid "Unrated games"
 msgstr "Nereitinguojami žaidimai"
 
-#: gui/replaymenu/replay_menu.js:194
+#: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
 msgstr "Filtruoti peržiūras įvedant vieną ar daugiau, dalinų ar pilnų žaidėjų vardų."
 
-#: gui/replaymenu/replay_menu.js:198
+#: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
 msgstr "Ištrinti pasirinktą peržūrą naudojant %(hotkey)s."
 
-#: gui/replaymenu/replay_menu.js:283
+#: gui/replaymenu/replay_menu.js:285
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Žaidėjai: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:307
+#: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:337
+#: gui/replaymenu/replay_menu.js:339
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 

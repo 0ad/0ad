@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-03-22 19:19+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-11 05:54+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -95,6 +95,34 @@ msgstr "Απαιτείται: %(mods)s"
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr "Ενεργοποίηση: %(mods)s"
+
+#: gui/incompatible_mods/incompatible_mods.txt:1
+msgid ""
+"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
+" mods!"
+msgstr "[font=\"sans-bold-20\"]  Προσπαθήσατε να ξεκινήσετε το παιχνίδι με μή συμβατές ή λάθος λειτουργίες."
+
+#: gui/incompatible_mods/incompatible_mods.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/incompatible_mods/incompatible_mods.txt:3
+msgid "Solve the compatibility and start game again."
+msgstr "Επίλυση συμβατότητας και ξεκίνημα του παιχνιδιού ξανά."
+
+#: gui/incompatible_mods/incompatible_mods.txt:4
+msgid ""
+"You might want to save configuration before starting, when you see this page"
+" again."
+msgstr "Ισως θα θέλατε να αποθηκέυσετε τη ρύθμιση πρίν ξεκινήσετε,όταν ξαναδείτε αυτη τη σελίδα."
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+msgid "Welcome!"
+msgstr "Καλώς ήρθατε"
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+msgid "Ok"
+msgstr "Εντάξει "
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -364,23 +392,39 @@ msgstr "Οδηγός Μετατροπής"
 msgid "Visit mod.io"
 msgstr "Επίσκεψη mod.io"
 
-#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:67
+msgid "This mod does not exist"
+msgstr "Αυτή η λειτουργία δέν υπάρχει."
+
+#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Ενεργοποίηση"
 
-#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:165
+msgid "Dependencies not met"
+msgstr "Οι εξαρτήσεις δέν απαντήθηκαν."
+
+#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Φίλτρο"
 
-#: gui/modmod/modmod.js:415
+#: gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: gui/modmod/modmod.js:423
+#: gui/modmod/modmod.js:456
 msgid "No mod has been selected."
 msgstr "Δεν έχει επιλεχθεί κάποιο mod."
+
+#: gui/modmod/modmod.js:461
+msgid "Enable at least 0ad mod and save configuration"
+msgstr "Ενεργοποιείστε τουλάχιστον μία λειτουργία για το 0ad και αποθηκεύστε τη ρύθμιση."
+
+#: gui/modmod/modmod.js:463
+msgid "Enable at least 0ad mod"
+msgstr "Ενεργοποιείστε τουλάχιστον μία λειτουργία στο 0ad."
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -425,6 +469,10 @@ msgstr "Αποθήκευση Ρυθμίσεων"
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Έναρξη Mods"
+
+#: gui/modmod/modmod.xml:(caption):221
+msgid "Start"
+msgstr "Εκινηση"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

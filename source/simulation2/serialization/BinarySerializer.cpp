@@ -23,8 +23,10 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
+#include "scriptinterface/ScriptRequest.h"
+#include "scriptinterface/JSON.h"
+
 #include "SerializedScriptTypes.h"
 
 static u8 GetArrayType(js::Scalar::Type arrayType)
@@ -59,13 +61,13 @@ CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& 
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefsNext(0)
 {
 	ScriptRequest rq(m_ScriptInterface);
-
-	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), Trace, this);
+	JS_AddExtraGCRootsTracer(rq.cx, Trace, this);
 }
 
 CBinarySerializerScriptImpl::~CBinarySerializerScriptImpl()
 {
-	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), Trace, this);
+	ScriptRequest rq(m_ScriptInterface);
+	JS_RemoveExtraGCRootsTracer(rq.cx, Trace, this);
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -480,7 +482,7 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 		if (!m_ScriptBackrefTags.put(JS::Heap<JSObject*>(obj.get()), ++m_ScriptBackrefsNext))
 		{
 			JS::RootedValue objval(rq.cx, JS::ObjectValue(*obj.get()));
-			LOGERROR("BinarySerializer: error at insertion. Object was %s", m_ScriptInterface.ToString(&objval));
+			LOGERROR("BinarySerializer: error at insertion. Object was %s", Script::ToString(rq, &objval));
 			return 0;
 		}
 		// Return 0 to mean "you have to serialize this object";

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-27 06:47+0000\n"
+"PO-Revision-Date: 2021-05-14 04:39+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -373,7 +373,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra是默认的AI。 可向Wildfire Games提交问题（请参阅主菜单中的链接）。\n\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％。 最易的AI科研、训练和建筑较慢。沙盒级别的AI既不会扩张，也不会主动攻击。"
+msgstr "Petra 是默认的 AI 。 可向 Wildfire Games 提交问题（请参阅主菜单中的链接）。\n\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％ 。 最易的AI科研、训练和建筑较慢。沙盒级别的 AI 既不会扩张，也不会主动攻击。"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -483,7 +483,7 @@ msgstr[0] "%(name)s 离 %(category)s 太远，距离必须在 %(distance)s 米�
 #: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "own"
-msgstr "自己的"
+msgstr "己方"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -512,7 +512,7 @@ msgstr "敌对"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "你可以在 %(time)s 后攻击"
+msgstr " %(time)s 后攻击。"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
@@ -522,7 +522,7 @@ msgstr "你现在可以攻击了！"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(players)s 和 %(lastPlayer)s 获得胜利 (胜者为王）。"
+msgstr[0] "%(players)s 和 %(lastPlayer)s 获胜 (胜者为王）。"
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -761,7 +761,7 @@ msgstr "极易"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "新手玩家，建议选择本难度。"
+msgstr "建议新手玩家选择本难度。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -805,7 +805,7 @@ msgstr "获取所有遗迹，并保留一段时间来赢得游戏。"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr "取得遗迹"
+msgstr "获得遗迹"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid ""
@@ -905,8 +905,8 @@ msgstr "某些单位无法返回工作岗位"
 #: simulation/helpers/Commands.js:924
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr "%(unit)s 无法控制。"
+msgstr " 不可控制%(unit)s。"
 
 #: simulation/helpers/Commands.js:1175
 msgid "The building's technology requirements are not met."
-msgstr "未达到该建筑的科技要求。"
+msgstr "未满足本建筑的科技要求。"

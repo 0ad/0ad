@@ -36,6 +36,7 @@
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 #include "simulation2/helpers/MapEdgeTiles.h"
 
 #include <string>
@@ -119,7 +120,7 @@ bool CMapGeneratorWorker::Run()
 
 	// Parse settings
 	JS::RootedValue settingsVal(rq.cx);
-	if (!m_ScriptInterface->ParseJSON(m_Settings, &settingsVal) && settingsVal.isUndefined())
+	if (!Script::ParseJSON(rq, m_Settings, &settingsVal) && settingsVal.isUndefined())
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to parse settings");
 		return false;

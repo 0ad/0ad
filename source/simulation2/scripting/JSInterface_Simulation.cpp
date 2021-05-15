@@ -25,7 +25,6 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"

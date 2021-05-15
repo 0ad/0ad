@@ -31,7 +31,6 @@
 #include "ps/Hotkey.h"
 #include "ps/Util.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
 extern void QuitEngine();

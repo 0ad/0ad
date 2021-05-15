@@ -22,6 +22,8 @@
 #include "lib/file/vfs/vfs_util.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/JSON.h"
 
 #ifdef OS_WIN
 #include <fstream>
@@ -69,7 +71,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue json_val(rq.cx);
-		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json_val))
+		if (!Script::ParseJSON(rq, modinfo.GetAsString(), &json_val))
 			return FAIL_ON_PARSE_JSON;
 		JS::RootedObject json_obj(rq.cx, json_val.toObjectOrNull());
 		JS::RootedValue name_val(rq.cx);

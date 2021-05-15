@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-22 08:08+0000\n"
-"PO-Revision-Date: 2021-04-18 17:01+0000\n"
+"POT-Creation-Date: 2021-05-10 07:08+0000\n"
+"PO-Revision-Date: 2021-05-12 20:10+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -100,6 +100,34 @@ msgstr "Требуются: %(mods)s"
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr "Активны: %(mods)s"
+
+#: gui/incompatible_mods/incompatible_mods.txt:1
+msgid ""
+"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
+" mods!"
+msgstr "[font=\"sans-bold-20\"] Вы пытаетесь запустить игру с несовместимыми или пропавшими модами!"
+
+#: gui/incompatible_mods/incompatible_mods.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/incompatible_mods/incompatible_mods.txt:3
+msgid "Solve the compatibility and start game again."
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.txt:4
+msgid ""
+"You might want to save configuration before starting, when you see this page"
+" again."
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+msgid "Ok"
+msgstr "Лады"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -369,23 +397,39 @@ msgstr "Руководство по моддингу"
 msgid "Visit mod.io"
 msgstr "Посетить mod.io"
 
-#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:67
+msgid "This mod does not exist"
+msgstr "Этот мод отсутствует"
+
+#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Включить"
 
-#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:165
+msgid "Dependencies not met"
+msgstr ""
+
+#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Фильтр"
 
-#: gui/modmod/modmod.js:415
+#: gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Disable"
-msgstr "Отключено"
+msgstr "Отключить"
 
-#: gui/modmod/modmod.js:423
+#: gui/modmod/modmod.js:456
 msgid "No mod has been selected."
 msgstr "Ни один мод не выбран."
+
+#: gui/modmod/modmod.js:461
+msgid "Enable at least 0ad mod and save configuration"
+msgstr ""
+
+#: gui/modmod/modmod.js:463
+msgid "Enable at least 0ad mod"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -430,6 +474,10 @@ msgstr "Сохранить конфигурацию"
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Запустить моды"
+
+#: gui/modmod/modmod.xml:(caption):221
+msgid "Start"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
