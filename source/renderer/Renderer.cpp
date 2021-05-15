@@ -1086,17 +1086,14 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	screenScissor.x2 = (GLint)ceil((refractionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((refractionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	//glEnable(GL_SCISSOR_TEST);
-	//glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
 	// try binding the framebuffer
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
 
 	glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glEnable(GL_SCISSOR_TEST);
-	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
 	// Render terrain and models
 	RenderPatches(context, CULL_REFRACTIONS);

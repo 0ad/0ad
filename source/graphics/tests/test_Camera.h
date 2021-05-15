@@ -421,4 +421,71 @@ public:
 		}
 	}
 
+	void test_viewport_bounds_ortho()
+	{
+		SViewPort viewPort;
+		viewPort.m_X = 0;
+		viewPort.m_Y = 0;
+		viewPort.m_Width = 512;
+		viewPort.m_Height = 512;
+
+		CCamera camera;
+		camera.SetViewPort(viewPort);
+		camera.LookAlong(
+			CVector3D(0.0f, 0.0f, 0.0f),
+			CVector3D(0.0f, 0.0f, 1.0f),
+			CVector3D(0.0f, 1.0f, 0.0f)
+		);
+		camera.SetOrthoProjection(1.0f, 101.0f, 2.0f);
+		camera.UpdateFrustum();
+
+		struct TestCase
+		{
+			CBoundingBoxAligned worldSpaceBoundingBox;
+			CBoundingBoxAligned expectedViewPortBoundingBox;
+		};
+		const TestCase testCases[] = {
+			// A box is in front of the camera.
+			{
+				{{-1.0f, 0.0f, 5.0f}, {1.0f, 0.0f, 7.0f}},
+				{{-1.0f, 0.0f, -1.1599f}, {1.0f, 0.0f,-1.1200f}}
+			},
+			// A box is out of the camera view.
+			{
+				{{-10.0f, -1.0f, 5.0f}, {-8.0f, 1.0f, 7.0f}},
+				{}
+			},
+			{
+				{{-1.0f, -10.0f, 5.0f}, {1.0f, -8.0f, 7.0f}},
+				{}
+			},
+			// The camera is inside a box.
+			{
+				{{-1.0f, 0.0f, -7.0f}, {1.0f, 0.0f, 7.0f}},
+				{{-1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 0.0f}}
+			},
+			// A box intersects with the near plane.
+			{
+				{{-1.0f, 0.0f, 0.5f}, {1.0f, 0.0f, 7.0f}},
+				{{-1.0f, 0.0f, -1.1599f}, {1.0f, 0.0f, -1.1599f}}
+			},
+		};
+
+		for (const TestCase& testCase : testCases)
+		{
+			TS_ASSERT(testCase.worldSpaceBoundingBox[0].X <= testCase.worldSpaceBoundingBox[1].X);
+			TS_ASSERT(testCase.worldSpaceBoundingBox[0].Y <= testCase.worldSpaceBoundingBox[1].Y);
+			TS_ASSERT(testCase.worldSpaceBoundingBox[0].Z <= testCase.worldSpaceBoundingBox[1].Z);
+
+			const CBoundingBoxAligned result =
+				camera.GetBoundsInViewPort(testCase.worldSpaceBoundingBox);
+			if (testCase.expectedViewPortBoundingBox.IsEmpty())
+			{
+				TS_ASSERT(result.IsEmpty());
+			}
+			else
+				CompareBoundingBoxes(result, testCase.expectedViewPortBoundingBox);
+		}
+	}
+
 };
