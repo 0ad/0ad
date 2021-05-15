@@ -18,8 +18,9 @@
 #ifndef INCLUDED_JSI_GUISIZE
 #define INCLUDED_JSI_GUISIZE
 
-class CStr8;
-class ScriptInterface;
+#include "ps/CStr.h"
+#include "scriptinterface/ScriptForward.h"
+#include "scriptinterface/ScriptTypes.h"
 
 namespace JSI_GUISize
 {
@@ -33,7 +34,7 @@ namespace JSI_GUISize
 	bool construct(JSContext* cx, uint argc, JS::Value* vp);
 	bool toString(JSContext* cx, uint argc, JS::Value* vp);
 
-	CStr8 ToPercentString(double pix, double per);
+	CStr ToPercentString(double pix, double per);
 }
 
 #endif // INCLUDED_JSI_GUISIZE

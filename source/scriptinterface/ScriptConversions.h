@@ -23,6 +23,7 @@
 #include "ScriptExtraHeaders.h" // for typed arrays
 
 #include <limits>
+#include <vector>
 
 namespace Script
 {

@@ -19,7 +19,7 @@
 
 #include "lib/config2.h"
 #if CONFIG2_LOBBY
-
+#include "lib/utf8.h"
 #include "lobby/XmppClient.h"
 #include "scriptinterface/ScriptConversions.h"
 

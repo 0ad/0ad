@@ -18,6 +18,8 @@
 #include "lib/self_test.h"
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class TestFunctionWrapper : public CxxTest::TestSuite
 {
