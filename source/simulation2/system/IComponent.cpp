@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,8 @@
 
 #include "IComponent.h"
 
+#include "simulation2/system/ComponentManager.h"
+
 #include <string>
 
 IComponent::~IComponent()
@@ -29,6 +31,16 @@ std::string IComponent::GetSchema()
 {
 	// No schema specified -> allow only empty elements
 	return "<empty/>";
+}
+
+void IComponent::RegisterComponentType(CComponentManager& mgr, EInterfaceId iid, EComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc, const char* name, const std::string& schema)
+{
+	mgr.RegisterComponentType(iid, cid, alloc, dealloc, name, schema);
+}
+
+void IComponent::RegisterComponentTypeScriptWrapper(CComponentManager& mgr, EInterfaceId iid, EComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc, const char* name, const std::string& schema)
+{
+	mgr.RegisterComponentTypeScriptWrapper(iid, cid, alloc, dealloc, name, schema);
 }
 
 void IComponent::HandleMessage(const CMessage& UNUSED(msg), bool UNUSED(global))

@@ -23,6 +23,7 @@
 #include "simulation2/helpers/Player.h"
 #include "simulation2/system/Components.h"
 #include "simulation2/system/Entity.h"
+#include "simulation2/system/IComponent.h"
 
 #include <boost/random/linear_congruential.hpp>
 #include <map>
@@ -46,9 +47,8 @@ public:
 	typedef int MessageTypeId;
 
 private:
-	// Component allocation types
-	typedef IComponent* (*AllocFunc)(const ScriptInterface& scriptInterface, JS::HandleValue ctor);
-	typedef void (*DeallocFunc)(IComponent*);
+	using AllocFunc = IComponent::AllocFunc;
+	using DeallocFunc = IComponent::DeallocFunc;
 
 	// ComponentTypes come in three types:
 	//   Native: normal C++ component

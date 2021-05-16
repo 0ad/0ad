@@ -18,6 +18,8 @@
 #ifndef INCLUDED_COMPONENT
 #define INCLUDED_COMPONENT
 
+// These headers are included because they are required in component implementation,
+// so including them here transitively makes sense.
 #include "simulation2/system/CmpPtr.h"
 #include "simulation2/system/Components.h"
 #include "simulation2/system/ComponentManager.h"
@@ -30,7 +32,7 @@
 #define REGISTER_COMPONENT_TYPE(cname) \
 	void RegisterComponentType_##cname(CComponentManager& mgr) \
 	{ \
-		mgr.RegisterComponentType(CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname, CCmp##cname::GetSchema()); \
+		IComponent::RegisterComponentType(mgr, CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname, CCmp##cname::GetSchema()); \
 		CCmp##cname::ClassInit(mgr); \
 	}
 

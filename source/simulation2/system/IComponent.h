@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,9 +32,16 @@ class IDeserializer;
 class IComponent
 {
 public:
+	// Component allocation types
+	using AllocFunc = IComponent* (*)(const ScriptInterface& scriptInterface, JS::HandleValue ctor);
+	using DeallocFunc = void (*)(IComponent*);
+
 	virtual ~IComponent();
 
 	static std::string GetSchema();
+
+	static void RegisterComponentType(CComponentManager& mgr, EInterfaceId iid, EComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc, const char* name, const std::string& schema);
+	static void RegisterComponentTypeScriptWrapper(CComponentManager& mgr, EInterfaceId iid, EComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc, const char* name, const std::string& schema);
 
 	virtual void Init(const CParamNode& paramNode) = 0;
 	virtual void Deinit() = 0;
