@@ -19,12 +19,14 @@
 
 #include "ps/Mod.h"
 
+#include "i18n/L10n.h"
 #include "lib/file/file_system.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/utf8.h"
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
+#include "ps/Profiler2.h"
 #include "ps/Pyrogenesis.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -33,22 +35,71 @@
 #include <algorithm>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
+#include <fstream>
+#include <sstream>
 #include <unordered_map>
 
-std::vector<CStr> g_modsLoaded;
-std::vector<CStr> g_incompatibleMods;
-std::vector<CStr> g_failedMods;
+namespace Mod
+{
+std::vector<CStr> g_ModsLoaded;
+std::vector<CStr> g_IncompatibleMods;
+std::vector<CStr> g_FailedMods;
 
 std::vector<std::vector<CStr>> g_LoadedModVersions;
 
-CmdLineArgs g_args;
-
-JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
+bool ParseModJSON(const ScriptRequest& rq, const PIVFS& vfs, OsPath modsPath, OsPath mod, JS::MutableHandleValue json)
 {
-	ScriptRequest rq(scriptInterface);
-	JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
+	// Attempt to open mod.json first.
+	std::ifstream modjson;
+	modjson.open((modsPath / mod / L"mod.json").string8());
 
-	const Paths paths(g_args);
+	if (!modjson.is_open())
+	{
+		modjson.close();
+
+		// Fallback: open the archive and read mod.json there.
+		// This can take in the hundreds of milliseconds with large mods.
+		vfs->Clear();
+		if (vfs->Mount(L"", modsPath / mod / "", VFS_MOUNT_MUST_EXIST, VFS_MIN_PRIORITY) < 0)
+			return false;
+
+		CVFSFile modinfo;
+		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
+			return false;
+
+		if (!Script::ParseJSON(rq, modinfo.GetAsString(), json))
+			return false;
+
+		// Attempt to write the mod.json file so we'll take the fast path next time.
+		std::ofstream out_mod_json((modsPath / mod / L"mod.json").string8());
+		if (out_mod_json.good())
+		{
+			out_mod_json << modinfo.GetAsString();
+			out_mod_json.close();
+		}
+		else
+		{
+			// Print a warning - we'll keep trying, which could have adverse effects.
+			if (L10n::IsInitialised())
+				LOGWARNING(g_L10n.Translate("Could not write external mod.json for zipped mod '%s'. The mod should be reinstalled."), mod.string8());
+			else
+				LOGWARNING("Could not write external mod.json for zipped mod '%s'. The mod should be reinstalled.", mod.string8());
+		}
+		return true;
+	}
+	else
+	{
+		std::stringstream buffer;
+		buffer << modjson.rdbuf();
+		return Script::ParseJSON(rq, buffer.str(), json);
+	}
+}
+
+JS::Value GetAvailableMods(const ScriptInterface& scriptInterface)
+{
+	PROFILE2("GetAvailableMods");
+
+	const Paths paths(g_CmdLineArgs);
 
 	// loop over all possible paths
 	OsPath modPath = paths.RData()/"mods";
@@ -63,115 +114,96 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 
 	PIVFS vfs = CreateVfs();
 
+	ScriptRequest rq(scriptInterface);
+	JS::RootedValue value(rq.cx, Script::CreateObject(rq));
+
 	for (DirectoryNames::iterator iter = modDirs.begin(); iter != modDirs.end(); ++iter)
 	{
-		vfs->Clear();
-		// Mount with lowest priority, we don't want to overwrite anything
-		if (vfs->Mount(L"", modPath / *iter / "", VFS_MOUNT_MUST_EXIST, VFS_MIN_PRIORITY) < 0)
-			continue;
-
-		CVFSFile modinfo;
-		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
-			continue;
-
 		JS::RootedValue json(rq.cx);
-		if (!Script::ParseJSON(rq, modinfo.GetAsString(), &json))
+		if (!ParseModJSON(rq, vfs, modPath, *iter, &json))
 			continue;
-
-		// Valid mod, add it to our structure
-		JS_SetProperty(rq.cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
+		// Valid mod data, add it to our structure
+		Script::SetProperty(rq, value, utf8_from_wstring(iter->string()).c_str(), json);
 	}
 
 	GetDirectoryEntries(modUserPath, NULL, &modDirsUser);
-	bool dev = InDevelopmentCopy();
 
 	for (DirectoryNames::iterator iter = modDirsUser.begin(); iter != modDirsUser.end(); ++iter)
 	{
-		// If we are in a dev copy we do not mount mods in the user mod folder that
-		// are already present in the mod folder, thus we skip those here.
-		if (dev && std::binary_search(modDirs.begin(), modDirs.end(), *iter))
-			continue;
-
-		vfs->Clear();
-		// Mount with lowest priority, we don't want to overwrite anything
-		if (vfs->Mount(L"", modUserPath / *iter / "", VFS_MOUNT_MUST_EXIST, VFS_MIN_PRIORITY) < 0)
-			continue;
-
-		CVFSFile modinfo;
-		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
+		// Ignore mods in the user folder if we have already found them in modDirs.
+		if (std::binary_search(modDirs.begin(), modDirs.end(), *iter))
 			continue;
 
 		JS::RootedValue json(rq.cx);
-		if (!Script::ParseJSON(rq, modinfo.GetAsString(), &json))
+		if (!ParseModJSON(rq, vfs, modUserPath, *iter, &json))
 			continue;
-
-		// Valid mod, add it to our structure
-		JS_SetProperty(rq.cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
+		// Valid mod data, add it to our structure
+		Script::SetProperty(rq, value, utf8_from_wstring(iter->string()).c_str(), json);
 	}
 
-	return JS::ObjectValue(*obj);
+	return value.get();
 }
 
-const std::vector<CStr>& Mod::GetEnabledMods()
+const std::vector<CStr>& GetEnabledMods()
 {
-	return g_modsLoaded;
+	return g_ModsLoaded;
 }
 
-const std::vector<CStr>& Mod::GetIncompatibleMods()
+const std::vector<CStr>& GetIncompatibleMods()
 {
-	return g_incompatibleMods;
+	return g_IncompatibleMods;
 }
 
-const std::vector<CStr>& Mod::GetFailedMods()
+const std::vector<CStr>& GetFailedMods()
 {
-	return g_failedMods;
+	return g_FailedMods;
 }
 
-const std::vector<CStr>& Mod::GetModsFromArguments(const CmdLineArgs& args, int flags)
+const std::vector<CStr>& GetModsFromArguments(const CmdLineArgs& args, int flags)
 {
 	const bool initMods = (flags & INIT_MODS) == INIT_MODS;
 	const bool addPublic = (flags & INIT_MODS_PUBLIC) == INIT_MODS_PUBLIC;
 
 	if (!initMods)
-		return g_modsLoaded;
+		return g_ModsLoaded;
 
-	g_modsLoaded = args.GetMultiple("mod");
+	g_ModsLoaded = args.GetMultiple("mod");
 
 	if (addPublic)
-		g_modsLoaded.insert(g_modsLoaded.begin(), "public");
+		g_ModsLoaded.insert(g_ModsLoaded.begin(), "public");
 
-	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
+	g_ModsLoaded.insert(g_ModsLoaded.begin(), "mod");
 
-	return g_modsLoaded;
+	return g_ModsLoaded;
 }
 
-void Mod::SetDefaultMods()
+void SetDefaultMods()
 {
-	g_modsLoaded.clear();
-	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
+	g_ModsLoaded.clear();
+	g_ModsLoaded.insert(g_ModsLoaded.begin(), "mod");
 }
 
-void Mod::ClearIncompatibleMods()
+void ClearIncompatibleMods()
 {
-	g_incompatibleMods.clear();
-	g_failedMods.clear();
+	g_IncompatibleMods.clear();
+	g_FailedMods.clear();
 }
 
-bool Mod::CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods)
+bool CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods)
 {
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));
 	if (!AreModsCompatible(scriptInterface, mods, availableMods))
 	{
-		g_failedMods = mods;
+		g_FailedMods = mods;
 		return false;
 	}
-	g_modsLoaded = mods;
+	g_ModsLoaded = mods;
 	return true;
 }
 
-bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods)
+bool AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods)
 {
 	ScriptRequest rq(scriptInterface);
 	std::unordered_map<CStr, std::vector<CStr>> modDependencies;
@@ -186,12 +218,12 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 		// Requested mod is not available, fail
 		if (!Script::HasProperty(rq, availableMods, mod.c_str()))
 		{
-			g_incompatibleMods.push_back(mod);
+			g_IncompatibleMods.push_back(mod);
 			continue;
 		}
 		if (!Script::GetProperty(rq, availableMods, mod.c_str(), &modData))
 		{
-			g_incompatibleMods.push_back(mod);
+			g_IncompatibleMods.push_back(mod);
 			continue;
 		}
 
@@ -236,13 +268,13 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 				const std::unordered_map<CStr, CStr>::iterator it = modNameVersions.find(modToCheck);
 				if (it == modNameVersions.end())
 				{
-					g_incompatibleMods.push_back(mod);
+					g_IncompatibleMods.push_back(mod);
 					continue;
 				}
 				// 0.0.25(0ad) , <=, 0.0.24(required version)
 				if (!CompareVersionStrings(it->second, op, versionToCheck))
 				{
-					g_incompatibleMods.push_back(mod);
+					g_IncompatibleMods.push_back(mod);
 					continue;
 				}
 				break;
@@ -251,10 +283,10 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 
 	}
 
-	return g_incompatibleMods.empty();
+	return g_IncompatibleMods.empty();
 }
 
-bool Mod::CompareVersionStrings(const CStr& version, const CStr& op, const CStr& required)
+bool CompareVersionStrings(const CStr& version, const CStr& op, const CStr& required)
 {
 	std::vector<CStr> versionSplit;
 	std::vector<CStr> requiredSplit;
@@ -288,7 +320,7 @@ bool Mod::CompareVersionStrings(const CStr& version, const CStr& op, const CStr&
 }
 
 
-void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext)
+void CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext)
 {
 	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptContext);
 	ScriptRequest rq(scriptInterface);
@@ -297,7 +329,7 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext
 
 	g_LoadedModVersions.clear();
 
-	for (const CStr& mod : g_modsLoaded)
+	for (const CStr& mod : g_ModsLoaded)
 	{
 		// Ignore mod mod as it is irrelevant for compatibility checks
 		if (mod == "mod")
@@ -312,7 +344,7 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext
 	}
 }
 
-JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
+JS::Value GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue returnValue(rq.cx);
@@ -320,11 +352,11 @@ JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 	return returnValue;
 }
 
-JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
+JS::Value GetEngineInfo(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 
-	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
+	JS::RootedValue mods(rq.cx, GetLoadedModsWithVersions(scriptInterface));
 	JS::RootedValue metainfo(rq.cx);
 
 	Script::CreateObject(
@@ -336,4 +368,5 @@ JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface)
 	Script::FreezeObject(rq, metainfo, true);
 
 	return metainfo;
+}
 }

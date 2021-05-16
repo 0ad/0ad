@@ -25,9 +25,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
 
-#ifdef OS_WIN
 #include <fstream>
-#endif
 
 CModInstaller::CModInstaller(const OsPath& modsdir, const OsPath& tempdir) :
 	m_ModsDir(modsdir), m_TempDir(tempdir / "_modscache"), m_CacheDir("cache/")
@@ -88,23 +86,20 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 	// Create a directory with the following structure:
 	//   mod-name/
 	//     mod-name.zip
+	//     mod.json
 	CreateDirectories(modDir, 0700);
 	if (wrename(modTemp, modPath) != 0)
 		return FAIL_ON_MOD_MOVE;
 	DeleteDirectory(modTemp.Parent());
 
-#ifdef OS_WIN
-	// On Windows, write the contents of mod.json to a separate file next to the archive:
-	//   mod-name/
-	//     mod-name.zip
-	//     mod.json
 	std::ofstream mod_json((modDir / "mod.json").string8());
 	if (mod_json.good())
 	{
 		mod_json << modinfo.GetAsString();
 		mod_json.close();
 	}
-#endif // OS_WIN
+	else
+		return FAIL_ON_JSON_WRITE;
 
 	m_InstalledMods.emplace_back(modName);
 

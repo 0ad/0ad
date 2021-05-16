@@ -309,7 +309,7 @@ void ModIo::StartDownloadMod(u32 idx)
 	if (idx >= m_ModData.size())
 		return;
 
-	const Paths paths(g_args);
+	const Paths paths(g_CmdLineArgs);
 	const OsPath modUserPath = paths.UserData()/"mods";
 	const OsPath modPath = modUserPath/m_ModData[idx].properties["name_id"];
 	if (!DirectoryExists(modPath) && INFO::OK != CreateDirectories(modPath, 0700, false))
@@ -482,7 +482,7 @@ bool ModIo::AdvanceRequest(const ScriptInterface& scriptInterface)
 		m_DownloadProgressData.status = DownloadProgressStatus::SUCCESS;
 
 		{
-			Paths paths(g_args);
+			Paths paths(g_CmdLineArgs);
 			CModInstaller installer(paths.UserData() / "mods", paths.Cache());
 			installer.Install(m_DownloadFilePath, g_ScriptContext, false);
 		}
