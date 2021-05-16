@@ -86,7 +86,7 @@ public:
 	void SendIqGetProfile(const std::string& player);
 	void SendIqGameReport(const ScriptRequest& rq, JS::HandleValue data);
 	void SendIqRegisterGame(const ScriptRequest& rq, JS::HandleValue data);
-	void SendIqGetConnectionData(const std::string& jid, const std::string& password);
+	void SendIqGetConnectionData(const std::string& jid, const std::string& password, bool localIP);
 	void SendIqUnregisterGame();
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
 	void SendIqLobbyAuth(const std::string& to, const std::string& token);

@@ -300,6 +300,9 @@ ConnectionData::ConnectionData(const glooxwrapper::Tag* tag)
 	const glooxwrapper::Tag* p= tag->findTag_clone("connectiondata/port");
 	if (p)
 		m_Port = p->cdata();
+	const glooxwrapper::Tag* pip = tag->findTag_clone("connectiondata/isLocalIP");
+	if (pip)
+		m_IsLocalIP = pip->cdata();
 	const glooxwrapper::Tag* s = tag->findTag_clone("connectiondata/useSTUN");
 	if (s)
 		m_UseSTUN = s->cdata();
@@ -312,6 +315,7 @@ ConnectionData::ConnectionData(const glooxwrapper::Tag* tag)
 
 	glooxwrapper::Tag::free(c);
 	glooxwrapper::Tag::free(p);
+	glooxwrapper::Tag::free(pip);
 	glooxwrapper::Tag::free(s);
 	glooxwrapper::Tag::free(pw);
 	glooxwrapper::Tag::free(e);
@@ -338,6 +342,8 @@ glooxwrapper::Tag* ConnectionData::tag() const
 		t->addChild(glooxwrapper::Tag::allocate("ip", m_Ip));
 	if (!m_Port.empty())
 		t->addChild(glooxwrapper::Tag::allocate("port", m_Port));
+	if (!m_IsLocalIP.empty())
+		t->addChild(glooxwrapper::Tag::allocate("isLocalIP", m_IsLocalIP));
 	if (!m_UseSTUN.empty())
 		t->addChild(glooxwrapper::Tag::allocate("useSTUN", m_UseSTUN));
 	if (!m_Password.empty())

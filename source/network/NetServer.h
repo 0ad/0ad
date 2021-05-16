@@ -153,9 +153,20 @@ public:
 
 	bool GetUseSTUN() const;
 
+	/**
+	 * Return the externally accessible IP.
+	 */
 	CStr GetPublicIp() const;
 
+	/**
+	 * Return the externally accessible port.
+	 */
 	u16 GetPublicPort() const;
+
+	/**
+	 * Return the serving port on the local machine.
+	 */
+	u16 GetLocalPort() const;
 
 	/**
 	 * Check if password is valid. If is not, increase number of failed attempts of the lobby user.

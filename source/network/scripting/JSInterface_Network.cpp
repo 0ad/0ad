@@ -191,7 +191,7 @@ void StartNetworkJoinLobby(const CStrW& playerName, const CStr& hostJID, const C
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostJID(hostJID);
 	g_NetClient->SetGamePassword(hashedPass);
-	g_XmppClient->SendIqGetConnectionData(hostJID, hashedPass.c_str());
+	g_XmppClient->SendIqGetConnectionData(hostJID, hashedPass.c_str(), false);
 }
 
 void DisconnectNetworkGame()

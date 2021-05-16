@@ -1640,14 +1640,22 @@ bool CNetServer::SetupConnection(const u16 port)
 	return m_Worker->SetupConnection(port);
 }
 
+CStr CNetServer::GetPublicIp() const
+{
+	return m_PublicIp;
+}
+
 u16 CNetServer::GetPublicPort() const
 {
 	return m_PublicPort;
 }
 
-CStr CNetServer::GetPublicIp() const
+u16 CNetServer::GetLocalPort() const
 {
-	return m_PublicIp;
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
+	if (!m_Worker->m_Host)
+		return 0;
+	return m_Worker->m_Host->address.port;
 }
 
 void CNetServer::SetConnectionData(const CStr& ip, const u16 port, bool useSTUN)

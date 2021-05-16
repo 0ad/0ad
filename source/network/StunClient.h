@@ -37,9 +37,15 @@ void SendStunRequest(ENetHost& transactionHost, u32 targetIp, u16 targetPort);
 
 bool FindStunEndpointHost(CStr8& ip, u16& port);
 
-bool FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint);
+bool FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint, CStr8& ip);
 
 void SendHolePunchingMessages(ENetHost& enetClient, const std::string& serverAddress, u16 serverPort);
+
+/**
+ * Return the local IP.
+ * Technically not a STUN method, but convenient to define here.
+ */
+bool FindLocalIP(CStr8& ip);
 }
 
 #endif // STUNCLIENT_H
