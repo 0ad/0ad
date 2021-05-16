@@ -19,7 +19,6 @@
 #define INCLUDED_DECALRDATA
 
 #include "graphics/RenderableObject.h"
-#include "graphics/ShaderProgramPtr.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "renderer/VertexBufferManager.h"

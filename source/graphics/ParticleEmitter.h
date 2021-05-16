@@ -20,7 +20,6 @@
 
 #include "graphics/ModelAbstract.h"
 #include "graphics/ParticleEmitterType.h"
-#include "graphics/Texture.h"
 #include "maths/Quaternion.h"
 #include "renderer/VertexArray.h"
 

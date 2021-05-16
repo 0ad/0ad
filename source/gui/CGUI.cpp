@@ -33,6 +33,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "maths/Size2D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/Config.h"

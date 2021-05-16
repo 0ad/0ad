@@ -22,6 +22,7 @@
 #include "graphics/GameView.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/MiniPatch.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"

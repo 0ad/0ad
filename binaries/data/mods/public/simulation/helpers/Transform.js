@@ -77,7 +77,10 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	let cmpPromotion = Engine.QueryInterface(oldEnt, IID_Promotion);
 	let cmpNewPromotion = Engine.QueryInterface(newEnt, IID_Promotion);
 	if (cmpPromotion && cmpNewPromotion)
+	{
+		cmpPromotion.SetPromotedEntity(newEnt);
 		cmpNewPromotion.IncreaseXp(cmpPromotion.GetCurrentXp());
+	}
 
 	let cmpResGatherer = Engine.QueryInterface(oldEnt, IID_ResourceGatherer);
 	let cmpNewResGatherer = Engine.QueryInterface(newEnt, IID_ResourceGatherer);

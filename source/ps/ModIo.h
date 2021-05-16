@@ -25,9 +25,12 @@
 
 #include "lib/external_libraries/curl.h"
 #include "lib/os_path.h"
+#include "scriptinterface/ScriptForward.h"
 
+#include <map>
 #include <sodium.h>
 #include <string>
+#include <vector>
 
 // TODO: Allocate instance of the below two using sodium_malloc?
 struct PKStruct

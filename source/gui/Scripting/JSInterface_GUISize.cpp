@@ -48,10 +48,10 @@ void JSI_GUISize::RegisterScriptClass(ScriptInterface& scriptInterface)
 bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	ScriptRequest rq(*pScriptInterface);
+	ScriptRequest rq(cx);
+	const ScriptInterface& scriptInterface = rq.GetScriptInterface();
 
-	JS::RootedObject obj(rq.cx, pScriptInterface->CreateCustomObject("GUISize"));
+	JS::RootedObject obj(rq.cx, scriptInterface.CreateCustomObject("GUISize"));
 
 	if (args.length() == 8)
 	{
@@ -107,8 +107,7 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	CStr buffer;
 
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	ScriptRequest rq(*pScriptInterface);
+	ScriptRequest rq(cx);
 	double val, valr;
 
 #define SIDE(side) \

@@ -36,7 +36,6 @@ Promotion.prototype.GetPromotedTemplateName = function()
 
 Promotion.prototype.Promote = function(promotedTemplateName)
 {
-	// If the unit is dead, don't promote it
 	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth && cmpHealth.GetHitpoints() == 0)
 	{
@@ -44,8 +43,15 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 		return;
 	}
 
-	// Save the entity id.
-	this.promotedUnitEntity = ChangeEntityTemplate(this.entity, promotedTemplateName);
+	ChangeEntityTemplate(this.entity, promotedTemplateName);
+};
+
+/**
+ * @param {number} entity - The entity ID of the entity that this unit has promoted to.
+ */
+Promotion.prototype.SetPromotedEntity = function(entity)
+{
+	this.promotedUnitEntity = entity;
 };
 
 Promotion.prototype.IncreaseXp = function(amount)

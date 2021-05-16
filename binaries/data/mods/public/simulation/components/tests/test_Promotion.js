@@ -41,12 +41,13 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 let ChangeEntityTemplate = function(ent, template)
 {
 	let newEnt = ent + 1;
-	let exp = cmpPromotion.GetCurrentXp();
-	cmpPromotion = ConstructComponent(newEnt, "Promotion", {
+	let cmpNewPromotion = ConstructComponent(newEnt, "Promotion", {
 		"Entity": entTemplates[newEnt],
 		"RequiredXp": 1000
 	});
-	cmpPromotion.IncreaseXp(exp);
+	cmpPromotion.SetPromotedEntity(newEnt);
+	cmpNewPromotion.IncreaseXp(cmpPromotion.GetCurrentXp());
+	cmpPromotion = cmpNewPromotion;
 	return newEnt;
 };
 Engine.RegisterGlobal("ChangeEntityTemplate", ChangeEntityTemplate);

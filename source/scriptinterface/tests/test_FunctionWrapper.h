@@ -18,6 +18,8 @@
 #include "lib/self_test.h"
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class TestFunctionWrapper : public CxxTest::TestSuite
 {
@@ -43,8 +45,8 @@ public:
 	static void _handle(JS::HandleValue) {};
 	static void _handle_2(int, JS::HandleValue, bool) {};
 
-	static void _cmpt_private(ScriptInterface::CmptPrivate*) {};
-	static int _cmpt_private_2(ScriptInterface::CmptPrivate*, int a, bool) { return a; };
+	static void _script_interface(const ScriptInterface&) {};
+	static int _script_interface_2(const ScriptInterface&, int a, bool) { return a; };
 
 	static void _script_request(const ScriptRequest&) {};
 	static int _script_request_2(const ScriptRequest&, int a, bool) { return a; };
@@ -53,8 +55,8 @@ public:
 	{
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_handle>), JSNative>);
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_handle_2>), JSNative>);
-		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_cmpt_private>), JSNative>);
-		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_cmpt_private_2>), JSNative>);
+		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_script_interface>), JSNative>);
+		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_script_interface_2>), JSNative>);
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_script_request>), JSNative>);
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::_script_request_2>), JSNative>);
 	}
@@ -71,13 +73,13 @@ public:
 	void test_method_wrappers()
 	{
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::method_1,
-											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+											  &ScriptInterface::ObjectFromCBData<test_method>>), JSNative>);
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::method_2,
-											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+											  &ScriptInterface::ObjectFromCBData<test_method>>), JSNative>);
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::const_method_1,
-											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+											  &ScriptInterface::ObjectFromCBData<test_method>>), JSNative>);
 		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::const_method_2,
-											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+											  &ScriptInterface::ObjectFromCBData<test_method>>), JSNative>);
 	}
 
 	void test_calling()
@@ -100,7 +102,7 @@ public:
 			TS_ASSERT_EQUALS(ret, 4);
 		}
 
-		ScriptFunction::Register<&TestFunctionWrapper::_cmpt_private_2>(script, "_cmpt_private_2");
+		ScriptFunction::Register<&TestFunctionWrapper::_script_interface_2>(script, "_cmpt_private_2");
 		{
 			std::string input = "Test._cmpt_private_2(4);";
 			int ret = 0;

@@ -22,6 +22,7 @@
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
+#include "lib/os_path.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CConsole.h"

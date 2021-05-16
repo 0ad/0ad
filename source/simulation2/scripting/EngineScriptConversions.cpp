@@ -55,7 +55,7 @@ template<> void Script::ToJSVal<IComponent*>(const ScriptRequest& rq,  JS::Mutab
 	// Otherwise we need to construct a wrapper object
 	// (TODO: cache wrapper objects?)
 	JS::RootedObject obj(rq.cx);
-	if (!val->NewJSObject(*ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface, &obj))
+	if (!val->NewJSObject(rq.GetScriptInterface(), &obj))
 	{
 		// Report as an error, since scripts really shouldn't try to use unscriptable interfaces
 		LOGERROR("IComponent does not have a scriptable interface");

@@ -52,7 +52,6 @@
  * directly accessing the underlying JS api.
  */
 
-
 struct ScriptInterface_impl
 {
 	ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptContext>& context);
@@ -76,14 +75,21 @@ struct ScriptInterface_impl
  * Constructor for ScriptRequest - here because it needs access into ScriptInterface_impl.
  */
 ScriptRequest::ScriptRequest(const ScriptInterface& scriptInterface) :
-	cx(scriptInterface.m->m_cx), glob(scriptInterface.m->m_glob), nativeScope(scriptInterface.m->m_nativeScope)
+	cx(scriptInterface.m->m_cx),
+	glob(scriptInterface.m->m_glob),
+	nativeScope(scriptInterface.m->m_nativeScope),
+	m_ScriptInterface(scriptInterface)
 {
-	m_formerRealm = JS::EnterRealm(cx, scriptInterface.m->m_glob);
+	m_FormerRealm = JS::EnterRealm(cx, scriptInterface.m->m_glob);
 }
 
 ScriptRequest::~ScriptRequest()
 {
-	JS::LeaveRealm(cx, m_formerRealm);
+	JS::LeaveRealm(cx, m_FormerRealm);
+}
+
+ScriptRequest::ScriptRequest(JSContext* cx) : ScriptRequest(ScriptInterface::CmptPrivate::GetScriptInterface(cx))
+{
 }
 
 JS::Value ScriptRequest::globalValue() const
@@ -91,6 +97,10 @@ JS::Value ScriptRequest::globalValue() const
 	return JS::ObjectValue(*glob);
 }
 
+const ScriptInterface& ScriptRequest::GetScriptInterface() const
+{
+	return m_ScriptInterface;
+}
 
 namespace
 {
@@ -112,7 +122,7 @@ JSClass global_class = {
 bool print(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
+	ScriptRequest rq(cx);
 
 	for (uint i = 0; i < args.length(); ++i)
 	{
@@ -135,7 +145,7 @@ bool logmsg(JSContext* cx, uint argc, JS::Value* vp)
 		return true;
 	}
 
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
+	ScriptRequest rq(cx);
 	std::wstring str;
 	if (!Script::FromJSVal(rq, args[0], str))
 		return false;
@@ -153,7 +163,7 @@ bool warn(JSContext* cx, uint argc, JS::Value* vp)
 		return true;
 	}
 
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
+	ScriptRequest rq(cx);
 	std::wstring str;
 	if (!Script::FromJSVal(rq, args[0], str))
 		return false;
@@ -171,7 +181,7 @@ bool error(JSContext* cx, uint argc, JS::Value* vp)
 		return true;
 	}
 
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
+	ScriptRequest rq(cx);
 	std::wstring str;
 	if (!Script::FromJSVal(rq, args[0], str))
 		return false;
@@ -271,24 +281,24 @@ static double generate_uniform_real(boost::rand48& rng, double min, double max)
 	}
 }
 
-bool Math_random(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	double r;
-	if (!ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->MathRandom(r))
-		return false;
+} // anonymous namespace
 
-	args.rval().setNumber(r);
+bool ScriptInterface::MathRandom(double& nbr) const
+{
+	if (m->m_rng == nullptr)
+		return false;
+	nbr = generate_uniform_real(*(m->m_rng), 0.0, 1.0);
 	return true;
 }
 
-} // anonymous namespace
-
-bool ScriptInterface::MathRandom(double& nbr)
+bool ScriptInterface::Math_random(JSContext* cx, uint argc, JS::Value* vp)
 {
-	if (m->m_rng == NULL)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	double r;
+	if (!ScriptInterface::CmptPrivate::GetScriptInterface(cx).MathRandom(r))
 		return false;
-	nbr = generate_uniform_real(*(m->m_rng), 0.0, 1.0);
+
+	args.rval().setNumber(r);
 	return true;
 }
 
@@ -356,17 +366,29 @@ ScriptInterface::~ScriptInterface()
 	}
 }
 
+const ScriptInterface& ScriptInterface::CmptPrivate::GetScriptInterface(JSContext *cx)
+{
+	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS::GetRealmPrivate(JS::GetCurrentRealmOrNull(cx));
+	ENSURE(pCmptPrivate);
+	return *pCmptPrivate->pScriptInterface;
+}
+
+void* ScriptInterface::CmptPrivate::GetCBData(JSContext *cx)
+{
+	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS::GetRealmPrivate(JS::GetCurrentRealmOrNull(cx));
+	return pCmptPrivate ? pCmptPrivate->pCBData : nullptr;
+}
+
 void ScriptInterface::SetCallbackData(void* pCBData)
 {
 	m_CmptPrivate.pCBData = pCBData;
 }
 
-ScriptInterface::CmptPrivate* ScriptInterface::GetScriptInterfaceAndCBData(JSContext* cx)
+template <>
+void* ScriptInterface::ObjectFromCBData<void>(const ScriptRequest& rq)
 {
-	CmptPrivate* pCmptPrivate = (CmptPrivate*)JS::GetRealmPrivate(JS::GetCurrentRealmOrNull(cx));
-	return pCmptPrivate;
+	return ScriptInterface::CmptPrivate::GetCBData(rq.cx);
 }
-
 
 bool ScriptInterface::LoadGlobalScripts()
 {

@@ -21,6 +21,7 @@
 
 #include "gui/Scripting/JSInterface_GUISize.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -72,7 +73,7 @@ bool CGUISize::FromString(const CStr& Value)
 
 	// Check the input is only numeric
 	const char* input = Value.c_str();
-	CStr buffer = "";
+	CStr buffer;
 	unsigned int coord = 0;
 	float pixels[4] = {0, 0, 0, 0};
 	float percents[4] = {0, 0, 0, 0};
@@ -144,8 +145,8 @@ bool CGUISize::FromString(const CStr& Value)
 
 void CGUISize::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) const
 {
-	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pScriptInterface;
-	ret.setObjectOrNull(pScriptInterface->CreateCustomObject("GUISize"));
+	const ScriptInterface& scriptInterface = rq.GetScriptInterface();
+	ret.setObjectOrNull(scriptInterface.CreateCustomObject("GUISize"));
 
 	if (!ret.isObject())
 	{

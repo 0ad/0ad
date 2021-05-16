@@ -20,8 +20,8 @@
 #include "BinarySerializer.h"
 
 #include "lib/alignment.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
-
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptRequest.h"

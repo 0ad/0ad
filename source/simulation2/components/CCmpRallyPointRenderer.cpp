@@ -18,6 +18,7 @@
 #include "precompiled.h"
 #include "CCmpRallyPointRenderer.h"
 
+#include "ps/Profile.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/helpers/Los.h"
 

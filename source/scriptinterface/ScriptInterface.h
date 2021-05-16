@@ -73,6 +73,7 @@ class ScriptInterface
 	NONCOPYABLE(ScriptInterface);
 
 	friend class ScriptRequest;
+
 public:
 
 	/**
@@ -88,12 +89,36 @@ public:
 
 	struct CmptPrivate
 	{
+		friend class ScriptInterface;
+	public:
+		static const ScriptInterface& GetScriptInterface(JSContext* cx);
+		static void* GetCBData(JSContext* cx);
+	protected:
 		ScriptInterface* pScriptInterface; // the ScriptInterface object the compartment belongs to
 		void* pCBData; // meant to be used as the "this" object for callback functions
-	} m_CmptPrivate;
+	};
 
 	void SetCallbackData(void* pCBData);
-	static CmptPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
+
+	/**
+	 * Convert the CmptPrivate callback data to T*
+	 */
+	template <typename T>
+	static T* ObjectFromCBData(const ScriptRequest& rq)
+	{
+		static_assert(!std::is_same_v<void, T>);
+		ScriptInterface::CmptPrivate::GetCBData(rq.cx);
+		return static_cast<T*>(ObjectFromCBData<void>(rq));
+	}
+
+	/**
+	 * Variant for the function wrapper.
+	 */
+	template <typename T>
+	static T* ObjectFromCBData(const ScriptRequest& rq, JS::CallArgs&)
+	{
+		return ObjectFromCBData<T>(rq);
+	}
 
 	/**
 	 * GetGeneralJSContext returns the context without starting a GC request and without
@@ -177,12 +202,14 @@ public:
 	template<typename T> bool Eval(const char* code, T& out) const;
 
 	/**
-	 * MathRandom (this function) calls the random number generator assigned to this ScriptInterface instance and
-	 * returns the generated number.
-	 * Math_random (with underscore, not this function) is a global function, but different random number generators can be
-	 * stored per ScriptInterface. It calls MathRandom of the current ScriptInterface instance.
+	 * Calls the random number generator assigned to this ScriptInterface instance and returns the generated number.
 	 */
-	bool MathRandom(double& nbr);
+	bool MathRandom(double& nbr) const;
+
+	/**
+	 * JSNative wrapper of the above.
+	 */
+	static bool Math_random(JSContext* cx, uint argc, JS::Value* vp);
 
 	/**
 	 * Retrieve the private data field of a JSObject that is an instance of the given JSClass.
@@ -230,12 +257,18 @@ private:
 		JSNative m_Constructor;
 	};
 
+	CmptPrivate m_CmptPrivate;
+
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the custom destructor of ScriptInterface_impl.
 	std::unique_ptr<ScriptInterface_impl> m;
 
 	std::map<std::string, CustomType> m_CustomObjectTypes;
 };
+
+// Explicitly instantiate void* as that is used for the generic template,
+// and we want to define it in the .cpp file.
+template <> void* ScriptInterface::ObjectFromCBData(const ScriptRequest& rq);
 
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace, bool constant, bool enumerate)

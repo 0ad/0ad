@@ -22,13 +22,12 @@
 #ifndef INCLUDED_MODELDEF
 #define INCLUDED_MODELDEF
 
-#include "ps/CStr.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Matrix3D.h"
-#include "maths/Vector2D.h"
-#include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
+#include "maths/Vector3D.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
 #include "renderer/VertexArray.h"
 
 #include <cstring>

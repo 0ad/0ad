@@ -23,8 +23,6 @@
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/helpers/Pathfinding.h"
 
-#include "maths/FixedVector2D.h"
-
 #include <map>
 
 class IObstructionTestFilter;

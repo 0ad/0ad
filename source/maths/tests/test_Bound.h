@@ -208,4 +208,34 @@ public:
 		TS_ASSERT(!isnan(result.m_Basis[2].X) && !isnan(result.m_Basis[2].Y) && !isnan(result.m_Basis[2].Z));
 	}
 
+	void test_point_visibility()
+	{
+		const CBoundingBoxAligned bb(CVector3D(1.0f, -10.0f, 3.0f), CVector3D(3.0f, -8.0f, 5.0f));
+
+		TS_ASSERT(!bb.IsPointInside(CVector3D(0.0f, 0.0f, 0.0f)));
+		TS_ASSERT(bb.IsPointInside(bb[0]));
+		TS_ASSERT(bb.IsPointInside(bb[1]));
+
+		CVector3D center;
+		bb.GetCenter(center);
+		TS_ASSERT(bb.IsPointInside(center));
+
+		for (int offsetX = -1; offsetX <= 1; ++offsetX)
+			for (int offsetY = -1; offsetY <= 1; ++offsetY)
+				for (int offsetZ = -1; offsetZ <= 1; ++offsetZ)
+				{
+					TS_ASSERT(bb.IsPointInside(
+						center + CVector3D(offsetX, offsetY, offsetZ) * 0.9f));
+					const bool isInside = bb.IsPointInside(
+						center + CVector3D(offsetX, offsetY, offsetZ) * 1.1f);
+					if (offsetX == 0 && offsetY == 0 && offsetZ == 0)
+					{
+						TS_ASSERT(isInside);
+					}
+					else
+					{
+						TS_ASSERT(!isInside);
+					}
+				}
+	}
 };

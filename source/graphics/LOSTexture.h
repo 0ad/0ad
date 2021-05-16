@@ -17,10 +17,8 @@
 
 #include "lib/ogl.h"
 
-#include "maths/Matrix3D.h"
-
-#include "graphics/ShaderManager.h"
 #include "graphics/ShaderTechniquePtr.h"
+#include "maths/Matrix3D.h"
 
 class CLosQuerier;
 class CSimulation2;

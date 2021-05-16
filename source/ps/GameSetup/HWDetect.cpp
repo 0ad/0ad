@@ -44,8 +44,9 @@
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
 #include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/Object.h"
 #include "scriptinterface/JSON.h"
+#include "scriptinterface/Object.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #if OS_LINUX
 #include <fstream>

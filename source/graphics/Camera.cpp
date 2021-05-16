@@ -377,38 +377,42 @@ CVector3D CCamera::GetFocus() const
 
 CBoundingBoxAligned CCamera::GetBoundsInViewPort(const CBoundingBoxAligned& boundigBox) const
 {
-	CVector4D v1 = GetViewProjection().Transform(CVector4D(boundigBox[0].X, boundigBox[1].Y, boundigBox[0].Z, 1.0f));
-	CVector4D v2 = GetViewProjection().Transform(CVector4D(boundigBox[1].X, boundigBox[1].Y, boundigBox[0].Z, 1.0f));
-	CVector4D v3 = GetViewProjection().Transform(CVector4D(boundigBox[0].X, boundigBox[1].Y, boundigBox[1].Z, 1.0f));
-	CVector4D v4 = GetViewProjection().Transform(CVector4D(boundigBox[1].X, boundigBox[1].Y, boundigBox[1].Z, 1.0f));
+	const CVector3D cameraPosition = GetOrientation().GetTranslation();
+	if (boundigBox.IsPointInside(cameraPosition))
+		return CBoundingBoxAligned(CVector3D(-1.0f, -1.0f, 0.0f), CVector3D(1.0f, 1.0f, 0.0f));
+
+	const CMatrix3D viewProjection = GetViewProjection();
 	CBoundingBoxAligned viewPortBounds;
-	#define ADDBOUND(v1, v2, v3, v4) \
-		if (v1.Z >= -v1.W) \
-			viewPortBounds += CVector3D(v1.X, v1.Y, v1.Z) * (1.0f / v1.W); \
-		else \
-		{ \
-			float t = v1.Z + v1.W; \
-			if (v2.Z > -v2.W) \
-			{ \
-				CVector4D c2 = v1 + (v2 - v1) * (t / (t - (v2.Z + v2.W))); \
-				viewPortBounds += CVector3D(c2.X, c2.Y, c2.Z) * (1.0f / c2.W); \
-			} \
-			if (v3.Z > -v3.W) \
-			{ \
-				CVector4D c3 = v1 + (v3 - v1) * (t / (t - (v3.Z + v3.W))); \
-				viewPortBounds += CVector3D(c3.X, c3.Y, c3.Z) * (1.0f / c3.W); \
-			} \
-			if (v4.Z > -v4.W) \
-			{ \
-				CVector4D c4 = v1 + (v4 - v1) * (t / (t - (v4.Z + v4.W))); \
-				viewPortBounds += CVector3D(c4.X, c4.Y, c4.Z) * (1.0f / c4.W); \
-			} \
+#define ADD_VISIBLE_POINT_TO_VIEWBOUNDS(POSITION) STMT( \
+		CVector4D v = viewProjection.Transform(CVector4D((POSITION).X, (POSITION).Y, (POSITION).Z, 1.0f)); \
+		if (v.W != 0.0f) \
+			viewPortBounds += CVector3D(v.X, v.Y, v.Z) * (1.0f / v.W); )
+
+	std::array<CVector3D, 8> worldPositions;
+	std::array<bool, 8> isBehindNearPlane;
+	const CVector3D lookDirection = GetOrientation().GetIn();
+	// Check corners.
+	for (size_t idx = 0; idx < 8; ++idx)
+	{
+		worldPositions[idx] = CVector3D(boundigBox[(idx >> 0) & 0x1].X, boundigBox[(idx >> 1) & 0x1].Y, boundigBox[(idx >> 2) & 0x1].Z);
+		isBehindNearPlane[idx] = lookDirection.Dot(worldPositions[idx]) < lookDirection.Dot(cameraPosition) + GetNearPlane();
+		if (!isBehindNearPlane[idx])
+			ADD_VISIBLE_POINT_TO_VIEWBOUNDS(worldPositions[idx]);
+	}
+	// Check edges for intersections with the near plane.
+	for (size_t idxBegin = 0; idxBegin < 8; ++idxBegin)
+		for (size_t nextComponent = 0; nextComponent < 3; ++nextComponent)
+		{
+			const size_t idxEnd = idxBegin | (1u << nextComponent);
+			if (idxBegin == idxEnd || isBehindNearPlane[idxBegin] == isBehindNearPlane[idxEnd])
+				continue;
+			CVector3D intersection;
+			// Intersect the segment with the near plane.
+			if (!m_ViewFrustum[5].FindLineSegIntersection(worldPositions[idxBegin], worldPositions[idxEnd], &intersection))
+				continue;
+			ADD_VISIBLE_POINT_TO_VIEWBOUNDS(intersection);
 		}
-	ADDBOUND(v1, v2, v3, v4);
-	ADDBOUND(v2, v1, v3, v4);
-	ADDBOUND(v3, v1, v2, v4);
-	ADDBOUND(v4, v1, v2, v3);
-	#undef ADDBOUND
+#undef ADD_VISIBLE_POINT_TO_VIEWBOUNDS
 	if (viewPortBounds[0].X >= 1.0f || viewPortBounds[1].X <= -1.0f || viewPortBounds[0].Y >= 1.0f || viewPortBounds[1].Y <= -1.0f)
 		return CBoundingBoxAligned{};
 	return viewPortBounds;
