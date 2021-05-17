@@ -22,10 +22,6 @@
 
 class ScriptRequest;
 
-namespace StunClient {
-	struct StunEndpoint;
-}
-
 class IXmppClient
 {
 public:
@@ -64,7 +60,7 @@ public:
 	virtual bool GuiPollHasPlayerListUpdate() = 0;
 
 	virtual void SendMUCMessage(const std::string& message) = 0;
-	virtual void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID) = 0;
+	virtual void SendStunEndpointToHost(const std::string& ip, u16 port, const std::string& hostJID) = 0;
 };
 
 extern IXmppClient *g_XmppClient;

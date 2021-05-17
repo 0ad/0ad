@@ -149,7 +149,8 @@ public:
 
 	void SendHolePunchingMessage(const CStr& ip, u16 port);
 
-	void SetConnectionData(const CStr& ip, u16 port, bool useSTUN);
+	void SetConnectionData(const CStr& ip, u16 port);
+	bool SetConnectionDataViaSTUN();
 
 	bool GetUseSTUN() const;
 
