@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,6 @@
 #define DECLARE_INTERFACE_TYPE(iname) \
 	virtual bool NewJSObject(const ScriptInterface& scriptInterface, JS::MutableHandleObject out) const; \
 	static void InterfaceInit(ScriptInterface& scriptInterface); \
-	static int GetInterfaceId() { return IID_##iname; }
+	static EInterfaceId GetInterfaceId() { return IID_##iname; }
 
 #endif // INCLUDED_INTERFACE

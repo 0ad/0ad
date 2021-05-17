@@ -945,7 +945,7 @@ bool Init(const CmdLineArgs& args, int flags)
 				return false;
 			}
 		}
-		else if (!EnableModsOrSetDefault(args, g_modsLoaded, false))
+		else if (!EnableModsOrSetDefault(args, Mod::g_ModsLoaded, false))
 			return false;
 	}
 

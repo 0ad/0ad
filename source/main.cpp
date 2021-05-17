@@ -99,7 +99,7 @@ that of Atlas depending on commandline parameters.
 
 #include <chrono>
 
-extern CmdLineArgs g_args;
+extern CmdLineArgs g_CmdLineArgs;
 extern CStrW g_UniqueLogPostfix;
 
 // Marks terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
@@ -183,7 +183,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 	case SDL_DROPFILE:
 	{
 		char* dropped_filedir = ev->ev.drop.file;
-		const Paths paths(g_args);
+		const Paths paths(g_CmdLineArgs);
 		CModInstaller installer(paths.UserData() / "mods", paths.Cache());
 		installer.Install(std::string(dropped_filedir), g_ScriptContext, true);
 		SDL_free(dropped_filedir);
@@ -512,7 +512,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 {
 	CmdLineArgs args(argc, argv);
 
-	g_args = args;
+	g_CmdLineArgs = args;
 
 	if (args.Has("version"))
 	{

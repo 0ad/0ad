@@ -25,8 +25,9 @@
 #include "simulation2/serialization/IDeserializer.h"
 
 CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterface, JS::HandleValue instance) :
-	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetGeneralJSContext(), instance)
+	m_ScriptInterface(scriptInterface)
 {
+	m_Instance.init(ScriptRequest(m_ScriptInterface).cx, instance);
 }
 
 void CComponentTypeScript::Init(const CParamNode& paramNode, entity_id_t ent)

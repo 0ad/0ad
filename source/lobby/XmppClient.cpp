@@ -370,12 +370,13 @@ void XmppClient::SendIqGetProfile(const std::string& player)
 /**
  * Request the Connection data (ip, port...) from the server.
  */
-void XmppClient::SendIqGetConnectionData(const std::string& jid, const std::string& password)
+void XmppClient::SendIqGetConnectionData(const std::string& jid, const std::string& password, bool localIP)
 {
 	glooxwrapper::JID targetJID(jid);
 
 	ConnectionData* connectionData = new ConnectionData();
 	connectionData->m_Password = password;
+	connectionData->m_IsLocalIP = localIP ? "1" : "0";
 	glooxwrapper::IQ iq(gloox::IQ::Get, targetJID, m_client->getID());
 	iq.addExtension(connectionData);
 	m_connectionDataJid = iq.from().full();
@@ -978,7 +979,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				m_client->send(response);
 				return true;
 			}
-			if (!g_NetServer->CheckPasswordAndIncrement(CStr(cd->m_Password.c_str()), iq.from().username()))
+			if (!g_NetServer->CheckPasswordAndIncrement(CStr(cd->m_Password.to_string()), iq.from().username()))
 			{
 				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
 				ConnectionData* connectionData = new ConnectionData();
@@ -992,9 +993,25 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 
 			glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
 			ConnectionData* connectionData = new ConnectionData();
-			connectionData->m_Ip = g_NetServer->GetPublicIp();;
-			connectionData->m_Port = std::to_string(g_NetServer->GetPublicPort());
-			connectionData->m_UseSTUN = g_NetServer->GetUseSTUN() ? "true" : "";
+
+			if (cd->m_IsLocalIP.to_string() == "0")
+			{
+				connectionData->m_Ip = g_NetServer->GetPublicIp();
+				connectionData->m_Port = std::to_string(g_NetServer->GetPublicPort());
+				connectionData->m_UseSTUN = g_NetServer->GetUseSTUN() ? "true" : "";
+			}
+			else
+			{
+				CStr ip;
+				if (StunClient::FindLocalIP(ip))
+				{
+					connectionData->m_Ip = ip;
+					connectionData->m_Port = std::to_string(g_NetServer->GetLocalPort());
+					connectionData->m_UseSTUN = "";
+				}
+				else
+					connectionData->m_Error = "local_ip_failed";
+			}
 
 			response.addExtension(connectionData);
 

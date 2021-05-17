@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,11 +25,15 @@
 
 #import "osx_atlas.h"
 
-#include <vector>
 #include "lib/types.h"
 #include "ps/CStr.h"
 
-extern std::vector<CStr> g_modsLoaded;
+#include <vector>
+
+namespace Mod
+{
+extern std::vector<CStr> g_ModsLoaded;
+}
 
 void startNewAtlasProcess()
 {
@@ -39,7 +43,7 @@ void startNewAtlasProcess()
 	[args addObject:@"--editor"];
 
 	// Pass mods on the command line.
-	for (const CStr& mod : g_modsLoaded)
+	for (const CStr& mod : Mod::g_ModsLoaded)
 	{
 		std::string arg = std::string("-mod=") + mod;
 		[args addObject:[[NSString alloc] initWithUTF8String:arg.c_str()]];

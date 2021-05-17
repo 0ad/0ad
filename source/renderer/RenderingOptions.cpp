@@ -84,7 +84,7 @@ CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 	m_WaterRealDepth = false;
 	m_WaterRefraction = false;
 	m_WaterReflection = false;
-	m_ShadowAlphaFix = true;
+	m_ShadowAlphaFix = false;
 	m_ARBProgramShadow = true;
 	m_ShadowPCF = false;
 	m_Particles = false;

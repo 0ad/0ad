@@ -165,6 +165,7 @@ function getConnectionFailReason(reason)
 	case "not_server": return translate("Server is not running.");
 	case "invalid_password": return translate("Password is invalid.");
 	case "banned": return translate("You have been banned.");
+	case "local_ip_failed": return translate("Failed to get local IP of the server (it was assumed to be on the same network).");
 	default:
 		warn("Unknown connection failure reason: " + reason);
 		return sprintf(translate("\\[Invalid value %(reason)s]"), { "reason": reason });

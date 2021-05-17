@@ -18,8 +18,16 @@
 #ifndef INCLUDED_SCRIPTCOMPONENT
 #define INCLUDED_SCRIPTCOMPONENT
 
+// These headers are included because they are required in component implementation,
+// so including them here transitively makes sense.
 #include "scriptinterface/FunctionWrapper.h"
-#include "simulation2/system/Component.h"
+#include "simulation2/system/CmpPtr.h"
+#include "simulation2/system/Components.h"
+#include "simulation2/system/IComponent.h"
+#include "simulation2/system/ParamNode.h"
+#include "simulation2/system/SimContext.h"
+#include "simulation2/serialization/ISerializer.h"
+#include "simulation2/serialization/IDeserializer.h"
 
 #include "ps/CLogger.h"
 
@@ -74,7 +82,7 @@ private:
 #define REGISTER_COMPONENT_SCRIPT_WRAPPER(cname) \
 	void RegisterComponentType_##cname(CComponentManager& mgr) \
 	{ \
-		mgr.RegisterComponentTypeScriptWrapper(CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname, CCmp##cname::GetSchema()); \
+		IComponent::RegisterComponentTypeScriptWrapper(mgr, CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname, CCmp##cname::GetSchema()); \
 		CCmp##cname::ClassInit(mgr); \
 	}
 

@@ -260,13 +260,24 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 		}
 
 		StunClient::StunEndpoint stunEndpoint;
-		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint))
+		CStr ip;
+		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint, ip))
 		{
 			PushGuiMessage(
 				"type", "netstatus",
 				"status", "disconnected",
 				"reason", static_cast<i32>(NDR_STUN_ENDPOINT_FAILED));
 			return false;
+		}
+
+		// If the host is on the same network, we risk failing to connect
+		// on routers that don't support NAT hairpinning/NAT loopback.
+		// To work around that, send again a connection data request, but for internal IP this time.
+		if (ip == m_ServerAddress)
+		{
+			g_XmppClient->SendIqGetConnectionData(m_HostJID, m_Password, true);
+			// Return true anyways - we're on a success path here.
+			return true;
 		}
 
 		g_XmppClient->SendStunEndpointToHost(stunEndpoint, hostJID);

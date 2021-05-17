@@ -371,7 +371,7 @@ bool STUNRequestAndResponse(ENetHost& transactionHost)
 	       ParseStunResponse(buffer);
 }
 
-bool StunClient::FindStunEndpointHost(CStr8& ip, u16& port)
+bool StunClient::FindStunEndpointHost(CStr& ip, u16& port)
 {
 	ENetAddress hostAddr{ENET_HOST_ANY, static_cast<u16>(port)};
 	ENetHost* transactionHost = enet_host_create(&hostAddr, 1, 1, 0, 0);
@@ -394,7 +394,7 @@ bool StunClient::FindStunEndpointHost(CStr8& ip, u16& port)
 	return result == 0;
 }
 
-bool StunClient::FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint)
+bool StunClient::FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint, CStr& ip)
 {
 	if (!STUNRequestAndResponse(transactionHost))
 		return false;
@@ -405,6 +405,7 @@ bool StunClient::FindStunEndpointJoin(ENetHost& transactionHost, StunClient::Stu
 	addr.host = ntohl(m_IP);
 	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
 
+	ip = ipStr;
 	stunEndpoint.ip = m_IP;
 	stunEndpoint.port = m_Port;
 
@@ -427,4 +428,34 @@ void StunClient::SendHolePunchingMessages(ENetHost& enetClient, const std::strin
 		StunClient::SendStunRequest(enetClient, htonl(addr.host), serverPort);
 		usleep(delay * 1000);
 	}
+}
+
+bool StunClient::FindLocalIP(CStr& ip)
+{
+	// Open an UDP socket.
+	ENetSocket socket = enet_socket_create(ENET_SOCKET_TYPE_DATAGRAM);
+
+	ENetAddress addr;
+	addr.port = 9; // Use the debug port (which we pick does not matter).
+	// Connect to a random address. It does not need to be valid, only to not be the loopback address.
+	if (enet_address_set_host(&addr, "100.0.100.0") == -1)
+		return false;
+
+	// Connect the socket. Being UDP, there is no actual outgoing traffic, this just binds it
+	// to a valid port locally, allowing us to get the local IP of the machine.
+	if (enet_socket_connect(socket, &addr) == -1)
+		return false;
+
+	// Fetch the local port & IP.
+	if (enet_socket_get_address(socket, &addr) == -1)
+		return false;
+
+	// Convert to a human readable string.
+	char buf[INET_ADDRSTRLEN];
+	if (enet_address_get_host_ip(&addr, buf, INET_ADDRSTRLEN) == -1)
+		return false;
+
+	ip = buf;
+
+	return true;
 }

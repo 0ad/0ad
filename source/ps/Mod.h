@@ -22,11 +22,14 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "scriptinterface/ScriptForward.h"
 
-extern std::vector<CStr> g_modsLoaded;
-extern CmdLineArgs g_args;
+#include <vector>
+
+extern CmdLineArgs g_CmdLineArgs;
 
 namespace Mod
 {
+	extern std::vector<CStr> g_ModsLoaded;
+
 	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface);
 	const std::vector<CStr>& GetEnabledMods();
 	const std::vector<CStr>& GetIncompatibleMods();
