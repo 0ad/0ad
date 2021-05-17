@@ -43,6 +43,15 @@
 #include "simulation2/helpers/Render.h"
 #include "simulation2/system/SimContext.h"
 
+#include <mutex>
+
+namespace
+{
+static std::mutex g_DebugMutex;
+}
+
+VertexPathfinderDebugOverlay g_VertexPathfinderDebugOverlay;
+
 /* Quadrant optimisation:
  * (loosely based on GPG2 "Optimizing Points-of-Visibility Pathfinding")
  *
@@ -515,7 +524,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 {
 	PROFILE2("ComputeShortPath");
 
-	DebugRenderGoal(cmpObstructionManager->GetSimContext(), request.goal);
+	g_VertexPathfinderDebugOverlay.DebugRenderGoal(cmpObstructionManager->GetSimContext(), request.goal);
 
 	// Create impassable edges at the max-range boundary, so we can't escape the region
 	// where we're meant to be searching
@@ -694,7 +703,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 
 	ENSURE(m_Vertexes.size() < 65536); // We store array indexes as u16.
 
-	DebugRenderGraph(cmpObstructionManager->GetSimContext(), m_Vertexes, m_Edges, m_EdgeSquares);
+	g_VertexPathfinderDebugOverlay.DebugRenderGraph(cmpObstructionManager->GetSimContext(), m_Vertexes, m_Edges, m_EdgeSquares);
 
 	// Do an A* search over the vertex/visibility graph:
 
@@ -786,7 +795,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 				CheckVisibility(m_Vertexes[curr.id].p, npos, m_EdgesUnaligned);
 
 			// Render the edges that we examine.
-			DebugRenderEdges(cmpObstructionManager->GetSimContext(), visible, m_Vertexes[curr.id].p, npos);
+			g_VertexPathfinderDebugOverlay.DebugRenderEdges(cmpObstructionManager->GetSimContext(), visible, m_Vertexes[curr.id].p, npos);
 
 			if (visible)
 			{
@@ -854,12 +863,14 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	return path;
 }
 
-void VertexPathfinder::DebugRenderGoal(const CSimContext& simContext, const PathGoal& goal) const
+void VertexPathfinderDebugOverlay::DebugRenderGoal(const CSimContext& simContext, const PathGoal& goal)
 {
 	if (!m_DebugOverlay)
 		return;
 
-	m_DebugOverlayShortPathLines.clear();
+	std::lock_guard<std::mutex> lock(g_DebugMutex);
+
+	g_VertexPathfinderDebugOverlay.m_DebugOverlayShortPathLines.clear();
 
 	// Render the goal shape
 	m_DebugOverlayShortPathLines.push_back(SOverlayLine());
@@ -887,10 +898,12 @@ void VertexPathfinder::DebugRenderGoal(const CSimContext& simContext, const Path
 	}
 }
 
-void VertexPathfinder::DebugRenderGraph(const CSimContext& simContext, const std::vector<Vertex>& vertexes, const std::vector<Edge>& edges, const std::vector<Square>& edgeSquares) const
+void VertexPathfinderDebugOverlay::DebugRenderGraph(const CSimContext& simContext, const std::vector<Vertex>& vertexes, const std::vector<Edge>& edges, const std::vector<Square>& edgeSquares)
 {
 	if (!m_DebugOverlay)
 		return;
+
+	std::lock_guard<std::mutex> lock(g_DebugMutex);
 
 #define PUSH_POINT(p) STMT(xz.push_back(p.X.ToFloat()); xz.push_back(p.Y.ToFloat()))
 	// Render the vertexes as little Pac-Man shapes to indicate quadrant direction
@@ -962,10 +975,12 @@ void VertexPathfinder::DebugRenderGraph(const CSimContext& simContext, const std
 	}
 }
 
-void VertexPathfinder::DebugRenderEdges(const CSimContext& UNUSED(simContext), bool UNUSED(visible), CFixedVector2D UNUSED(curr), CFixedVector2D UNUSED(npos)) const
+void VertexPathfinderDebugOverlay::DebugRenderEdges(const CSimContext& UNUSED(simContext), bool UNUSED(visible), CFixedVector2D UNUSED(curr), CFixedVector2D UNUSED(npos))
 {
 	if (!m_DebugOverlay)
 		return;
+
+	std::lock_guard<std::mutex> lock(g_DebugMutex);
 
 	// Disabled by default.
 	/*
@@ -983,11 +998,13 @@ void VertexPathfinder::DebugRenderEdges(const CSimContext& UNUSED(simContext), b
 	*/
 }
 
-void VertexPathfinder::RenderSubmit(SceneCollector& collector)
+void VertexPathfinderDebugOverlay::RenderSubmit(SceneCollector& collector)
 {
 	if (!m_DebugOverlay)
 		return;
 
-	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
-		collector.Submit(&m_DebugOverlayShortPathLines[i]);
+	std::lock_guard<std::mutex> lock(g_DebugMutex);
+	m_DebugOverlayShortPathLines.swap(m_DebugOverlayShortPathLinesSubmitted);
+	for (size_t i = 0; i < m_DebugOverlayShortPathLinesSubmitted.size(); ++i)
+		collector.Submit(&m_DebugOverlayShortPathLinesSubmitted[i]);
 }
