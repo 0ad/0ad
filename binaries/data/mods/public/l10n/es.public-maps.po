@@ -28,12 +28,13 @@
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Swyter <Swyterzone@gmail.com>, 2014-2018
+# Víctor Rodríguez Bouza, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-26 09:36+0000\n"
-"Last-Translator: Jesús Asenjo <jasenjot@gmail.com>\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-16 13:51+0000\n"
+"Last-Translator: Víctor Rodríguez Bouza\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1765,19 +1766,19 @@ msgstr "Escenario de test para seleccionar unidades con mar y dos islas. Se han 
 msgid "Pickup test map"
 msgstr "Selecciona un mapa de prueba"
 
-#: maps/scenarios/polynesia.xml:Description:38
+#: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Mapa de demostración para los nuevos chachi efectos de agua."
 
-#: maps/scenarios/polynesia.xml:Name:38
+#: maps/scenarios/polynesia.xml:Name:39
 msgid "Polynesia"
 msgstr "Polinesia"
 
-#: maps/scenarios/polynesia.xml:PlayerData[0].Name:38
+#: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "Samoa"
 
-#: maps/scenarios/polynesia.xml:PlayerData[1].Name:38
+#: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
@@ -2388,6 +2389,18 @@ msgstr[1] "%(players)s y %(lastPlayer)s han sido derrotados (captura la reliquia
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
 msgstr "%(player)s ha sido derrotado (perdió todas sus unidades y estructuras)."
+
+#: maps/scripts/ConquestCivicCentres.js:5
+#, javascript-format
+msgid "%(player)s has been defeated (lost all civic centres)."
+msgstr "%(player)sha sido derrotado (perdió todos sus centros cívicos)."
+
+#: maps/scripts/ConquestCivicCentres.js:9
+#, javascript-format
+msgid ""
+"%(player)s has been defeated (lost all civic centres and critical units and "
+"structures)."
+msgstr "%(player)sha sido derrotado (perdió todos sus centros cívicos, unidades críticas y estructuras)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format

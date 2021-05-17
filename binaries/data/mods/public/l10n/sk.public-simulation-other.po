@@ -19,13 +19,13 @@
 # Rudolf Tisoň <rudotison5@gmail.com>, 2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2019
 # Tom Hanax, 2019
-# Zuzana Miadoková <akara.horse@gmail.com>, 2021
+# Zuzana Miadoková, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-26 08:20+0000\n"
-"Last-Translator: Rudolf Tisoň <rudotison5@gmail.com>\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-14 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,15 +581,15 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Chýbajúce suroviny - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:340
+#: simulation/components/ProductionQueue.js:364
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Práve prebieha vylepšenie. Nemožno začať produkciu."
 
-#: simulation/components/ProductionQueue.js:351
+#: simulation/components/ProductionQueue.js:375
 msgid "The production queue is full."
 msgstr "Produkčný front je plný."
 
-#: simulation/components/ProductionQueue.js:832
+#: simulation/components/ProductionQueue.js:863
 msgid "Can't find free space to spawn trained units"
 msgstr "Nie je možné nájsť voľné miesto na uloženie vytrénovaných jednotiek"
 
@@ -828,6 +828,14 @@ msgstr "Poraz oponentov zabitím všetkých ich jednotiek a zničením všetkýc
 msgid "Conquest"
 msgstr "Dobytie"
 
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
+msgid "Defeat opponents by destroying all their fully build civic centres."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
+msgid "Conquest Civic Centres"
+msgstr ""
+
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
 msgstr "Poraz oponentov zničením všetkých ich budov. "
@@ -905,19 +913,19 @@ msgstr "Žiada sa útok na %(_player_)s."
 msgid "There are no bribable units"
 msgstr "Nie sú tam žiadne podplatiteľné jednotky."
 
-#: simulation/helpers/Commands.js:891
+#: simulation/helpers/Commands.js:912
 msgid "Unable to unload unit(s)."
 msgstr "Nie je schopné vyložiť jednotku/y."
 
-#: simulation/helpers/Commands.js:905
+#: simulation/helpers/Commands.js:926
 msgid "Some unit(s) can't go back to work"
 msgstr "Niektoré jednotky sa nemôžu vrátiť do práce."
 
-#: simulation/helpers/Commands.js:924
+#: simulation/helpers/Commands.js:945
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s nemožno ovládať."
 
-#: simulation/helpers/Commands.js:1175
+#: simulation/helpers/Commands.js:1196
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požiadavky pre budovu nie sú splnené."

@@ -6,8 +6,6 @@
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2021
 # 黃柏諺 <s8321414@gmail.com>, 2021
 # samrmrf, 2021
-# Karinsu Hsu <m80126colin@gmail.com>, 2021
-# JerryShen <jerry82422@gmail.com>, 2021
 # helen, 2021
 # StarAtt <tea55688@gmail.com>, 2021
 # 
@@ -38,27 +36,27 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
-"這張地圖對於如何有效率的開始遊戲會有個概略性的說明。在遊戲的前期，最重要的事情就是盡可能快速的採集資源，這樣您才能在之後建造足夠的軍隊。警告：這個遊戲開始時速度非常快，所以準備好反覆通過初始階段數次。"
+"這張地圖會概略說明如何有效率地開始遊戲。遊戲前期最重要的就是盡快採集資源，這樣您才能在之後建造足夠的軍隊。提醒：這剛開始速度會非常快，準備多練習幾次開場。"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr "經濟概覽"
+msgstr "經濟演練"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "這是協助你開始遊玩 0 A.D. 的基礎教程。"
+msgstr "這是讓您上手 0 A.D. 的基礎教程。"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
 msgid "Introductory Tutorial"
-msgstr "入門新手教程"
+msgstr "入門教程"
 
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr "新手教程"
+msgstr "教程"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:97
 msgctxt "campaign status"
@@ -73,7 +71,7 @@ msgstr "可用"
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "戰役載入錯誤 %s:%s。"
+msgstr "戰役載入錯誤 %s：%s。"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
 msgid "Campaign Name"
@@ -81,7 +79,7 @@ msgstr "戰役名稱"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
 msgid "No scenario selected"
-msgstr "沒有被選取的劇情"
+msgstr "未選取劇情"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
 msgid "Back to Main Menu"
@@ -89,7 +87,7 @@ msgstr "返回主選單"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
 msgid "Saved Games"
-msgstr "已儲存的遊戲"
+msgstr "遊戲存檔"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
 msgid "Start Scenario"
@@ -97,7 +95,7 @@ msgstr "開始劇情"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Resume Saved Game"
-msgstr "恢復已儲存的劇情"
+msgstr "恢復遊戲存檔"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
 msgctxt "campaignLevelList"
@@ -111,7 +109,7 @@ msgstr "狀態"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr "不能載入檔案"
+msgstr "無法載入檔案"
 
 #: gui/campaigns/load_modal/LoadModal.js:102
 #, javascript-format
@@ -167,7 +165,7 @@ msgstr "開始戰役"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr "沒有被選取的戰役。"
+msgstr "未選取戰役。"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -175,7 +173,7 @@ msgstr "戰役"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr "沒有被選取的戰役"
+msgstr "未選取戰役"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-09 06:48+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-14 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -571,15 +571,15 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:340
+#: simulation/components/ProductionQueue.js:364
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Η Οντότητα είναι σε διαδικασία αναβάθμισης. Δέ μπορεί να ξεκινήσει τη παραγωγή"
 
-#: simulation/components/ProductionQueue.js:351
+#: simulation/components/ProductionQueue.js:375
 msgid "The production queue is full."
 msgstr "Η σειρά παραγωγής είναι πλήρης."
 
-#: simulation/components/ProductionQueue.js:832
+#: simulation/components/ProductionQueue.js:863
 msgid "Can't find free space to spawn trained units"
 msgstr "Δεν μπορεί να βρεθεί ελεύθερος χώρος για να βγουν οι εκπαιδευμένες μονάδες"
 
@@ -818,6 +818,14 @@ msgstr "Νίκησε τους αντιπάλους σκοτώνοντας όλε
 msgid "Conquest"
 msgstr "Κατάκτηση"
 
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
+msgid "Defeat opponents by destroying all their fully build civic centres."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
+msgid "Conquest Civic Centres"
+msgstr ""
+
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
 msgstr "Νίκησε τους αντιπάλους καταστρέφοντας όλα τα κτήριά τους."
@@ -895,19 +903,19 @@ msgstr "Ζητείτε επίθεση εναντίον του παίχτη %(_pl
 msgid "There are no bribable units"
 msgstr "Δεν υπάρχουν δωροδοκήσιμες μονάδες"
 
-#: simulation/helpers/Commands.js:891
+#: simulation/helpers/Commands.js:912
 msgid "Unable to unload unit(s)."
 msgstr "Δέν είναι δυνατή  η εκφόρτωση μονάδας/δων"
 
-#: simulation/helpers/Commands.js:905
+#: simulation/helpers/Commands.js:926
 msgid "Some unit(s) can't go back to work"
 msgstr "Μερικές μονάδες δεν μπορούν να επιστρέψουν στην εργασία τους."
 
-#: simulation/helpers/Commands.js:924
+#: simulation/helpers/Commands.js:945
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)sδέ μπορεί να ελεγχθεί."
 
-#: simulation/helpers/Commands.js:1175
+#: simulation/helpers/Commands.js:1196
 msgid "The building's technology requirements are not met."
 msgstr "Οι απαιτήσεις της τεχνολογίας του κτιρίου δεν πληρούνται."

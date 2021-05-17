@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-05-14 04:39+0000\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-14 21:34+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -570,15 +570,15 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "资源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:340
+#: simulation/components/ProductionQueue.js:364
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "实体正在升级，无法开始生产制造。"
 
-#: simulation/components/ProductionQueue.js:351
+#: simulation/components/ProductionQueue.js:375
 msgid "The production queue is full."
 msgstr "生产队列已满。"
 
-#: simulation/components/ProductionQueue.js:832
+#: simulation/components/ProductionQueue.js:863
 msgid "Can't find free space to spawn trained units"
 msgstr "无法找到可用空间来部署受训单位"
 
@@ -817,6 +817,14 @@ msgstr "杀死对手所有单位，并摧毁对方所有建筑来击败对手。
 msgid "Conquest"
 msgstr "征服单位"
 
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
+msgid "Defeat opponents by destroying all their fully build civic centres."
+msgstr "摧毁对方所有市政中心，赢得胜利。"
+
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
+msgid "Conquest Civic Centres"
+msgstr "征服市政中心"
+
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
 msgstr "摧毁对方所有建筑，赢得胜利。"
@@ -894,19 +902,19 @@ msgstr "已请求向 %(_player_)s 发动攻击。"
 msgid "There are no bribable units"
 msgstr "没有可贿赂的单位"
 
-#: simulation/helpers/Commands.js:891
+#: simulation/helpers/Commands.js:912
 msgid "Unable to unload unit(s)."
 msgstr "无法卸载单位"
 
-#: simulation/helpers/Commands.js:905
+#: simulation/helpers/Commands.js:926
 msgid "Some unit(s) can't go back to work"
 msgstr "某些单位无法返回工作岗位"
 
-#: simulation/helpers/Commands.js:924
+#: simulation/helpers/Commands.js:945
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr " 不可控制%(unit)s。"
 
-#: simulation/helpers/Commands.js:1175
+#: simulation/helpers/Commands.js:1196
 msgid "The building's technology requirements are not met."
 msgstr "未满足本建筑的科技要求。"

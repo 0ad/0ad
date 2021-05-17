@@ -90,8 +90,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:32+0000\n"
-"Last-Translator: Christian Xia <wood_elf@126.com>\n"
+"PO-Revision-Date: 2021-05-17 00:22+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,7 +346,7 @@ msgstr "关闭"
 #: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "在前 %(min)s 分钟, 其他玩家保持中立。"
+msgstr[0] "前 %(min)s 分钟里, 其他玩家保持中立。"
 
 #: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
@@ -371,7 +371,7 @@ msgstr "地图类型"
 
 #: gui/common/gamedescription.js:320
 msgid "Map Size"
-msgstr "地图大小"
+msgstr "地图尺寸"
 
 #: gui/common/gamedescription.js:329
 msgctxt "biome"
@@ -398,7 +398,7 @@ msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
-msgstr "玩家以一个公署开局。"
+msgstr "玩家以一座市政中心开局。"
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -512,7 +512,7 @@ msgstr "与 %(player)s 的连接不稳定(%(milliseconds)s 毫秒)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr "这通常是由 UDP 端口20595未在主机端、防火墙或防病毒软件上转发引起的。"
+msgstr "通常是由 UDP 端口 20595 未在主机端、防火墙或防病毒软件上转发引起的。"
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -622,7 +622,7 @@ msgstr "测试"
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr "极简单"
+msgstr "极易"
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
@@ -642,7 +642,7 @@ msgstr "困难"
 #: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "极困难"
+msgstr "极难"
 
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
@@ -673,7 +673,7 @@ msgstr "遭遇战"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "“预设景观和玩家人数的地图，可自由选择其他游戏设置。"
+msgstr "预设景观和玩家人数的地图，可自由选择其他游戏设置。"
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -1340,7 +1340,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "0 A.D. 职员名单"
+msgstr "0 A.D. 职员"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1433,7 +1433,7 @@ msgstr "Napatan"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
-msgstr "波斯"
+msgstr "波斯语"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
@@ -1621,7 +1621,7 @@ msgstr "热键说明"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "单击任何已存在的快捷键以修改它。\\ n您最多可配置4个不同的热键。"
+msgstr "单击任何已存在的快捷键以修改它。\\n您最多可配置4个不同的热键。"
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -2336,7 +2336,7 @@ msgstr "将急需贸易资源调至100%的修饰键."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "设置贸易至100%"
+msgstr "设置贸易为 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -6391,7 +6391,7 @@ msgstr "独立的碉楼可以提供大面积的防御。"
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr "一般要成本100木材和100石料。伊比利亚的碉楼要成本300石料(因为它们生命更高)。"
+msgstr "一般要花费 100 木材和 100 石料。伊比利亚的碉楼要成本 300 石料(更高的生命值)。"
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
@@ -6502,13 +6502,13 @@ msgstr "陷落"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr "没有和公署（自身或盟友的）连接的建筑物，会逐步失落。"
+msgstr "一座建筑，要是没有和自己或盟友的市政中心连接，会逐步失落。"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "- 可以在建筑中驻扎单位，来减慢或者逆转失落过程。"
+msgstr "可以在建筑中驻扎单位，来减慢或者逆转失落过程。"
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -6518,7 +6518,7 @@ msgstr "最终失落时，建筑物会被周围最有影响力的邻国获取。
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr "第米斯托克利"
+msgstr "地米斯托克利"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
@@ -6590,11 +6590,11 @@ msgstr "文明：迦太基、库什、印度、波斯、托勒密和塞留西。
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr "鲸"
+msgstr "鲸鱼"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr "海洋物资"
+msgstr "海洋资源"
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-05 07:30+0000\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-14 07:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Occitan (post 1500) (http://www.transifex.com/wildfire-games/0ad/language/oc/)\n"
 "MIME-Version: 1.0\n"
@@ -1740,19 +1740,19 @@ msgstr ""
 msgid "Pickup test map"
 msgstr ""
 
-#: maps/scenarios/polynesia.xml:Description:38
+#: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr ""
 
-#: maps/scenarios/polynesia.xml:Name:38
+#: maps/scenarios/polynesia.xml:Name:39
 msgid "Polynesia"
 msgstr ""
 
-#: maps/scenarios/polynesia.xml:PlayerData[0].Name:38
+#: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr ""
 
-#: maps/scenarios/polynesia.xml:PlayerData[1].Name:38
+#: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr ""
 
@@ -2362,6 +2362,18 @@ msgstr[1] ""
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
+msgstr ""
+
+#: maps/scripts/ConquestCivicCentres.js:5
+#, javascript-format
+msgid "%(player)s has been defeated (lost all civic centres)."
+msgstr ""
+
+#: maps/scripts/ConquestCivicCentres.js:9
+#, javascript-format
+msgid ""
+"%(player)s has been defeated (lost all civic centres and critical units and "
+"structures)."
 msgstr ""
 
 #: maps/scripts/ConquestStructures.js:5
