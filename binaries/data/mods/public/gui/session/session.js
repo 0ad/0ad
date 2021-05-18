@@ -613,7 +613,7 @@ function onTick()
 	{
 		g_Selection.dirty = false;
 		// When selection changed, get the entityStates of new entities
-		GetMultipleEntityStates(g_Selection.toList().filter(entId => !g_EntityStates[entId]));
+		GetMultipleEntityStates(g_Selection.filter(entId => !g_EntityStates[entId]));
 
 		for (let handler of g_EntitySelectionChangeHandlers)
 			handler();
@@ -779,8 +779,8 @@ function recalculateStatusBarDisplay(remove = false)
 	else
 	{
 		let selected = g_Selection.toList();
-		for (let ent in g_Selection.highlighted)
-			selected.push(g_Selection.highlighted[ent]);
+		for (const ent of g_Selection.highlighted)
+			selected.push(ent);
 
 		// Remove selected entities from the 'all entities' array,
 		// to avoid disabling their status bars.
@@ -830,14 +830,14 @@ function updateAdditionalHighlight()
 	let entsAdd = []; // list of entities units to be highlighted
 	let entsRemove = [];
 	let highlighted = g_Selection.toList();
-	for (let ent in g_Selection.highlighted)
-		highlighted.push(g_Selection.highlighted[ent]);
+	for (const ent of g_Selection.highlighted)
+		highlighted.push(ent);
 
 	if (g_ShowGuarding)
 		// flag the guarding entities to add in this additional highlight
-		for (let sel in g_Selection.selected)
+		for (const sel of g_Selection.toList())
 		{
-			let state = GetEntityState(g_Selection.selected[sel]);
+			const state = GetEntityState(sel);
 			if (!state.guard || !state.guard.entities.length)
 				continue;
 
@@ -848,9 +848,9 @@ function updateAdditionalHighlight()
 
 	if (g_ShowGuarded)
 		// flag the guarded entities to add in this additional highlight
-		for (let sel in g_Selection.selected)
+		for (const sel of g_Selection.toList())
 		{
-			let state = GetEntityState(g_Selection.selected[sel]);
+			const state = GetEntityState(sel);
 			if (!state.unitAI || !state.unitAI.isGuarding)
 				continue;
 			let ent = state.unitAI.isGuarding;

@@ -294,7 +294,7 @@ function tryPlaceBuilding(queued, pushFront)
 	{
 		Engine.GuiInterfaceCall("PlaySound", {
 			"name": "invalid_building_placement",
-			"entity": g_Selection.toList()[0]
+			"entity": g_Selection.getFirstSelected()
 		});
 		return false;
 	}
@@ -318,7 +318,7 @@ function tryPlaceBuilding(queued, pushFront)
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_build", "entity": selection[0] });
 
-	if (!queued || !g_Selection.toList().length)
+	if (!queued || !g_Selection.size())
 		placementSupport.Reset();
 	else
 		placementSupport.RandomizeActorSeed();
@@ -578,7 +578,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				let queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued, Engine.HotkeyIsPressed("session.pushorderfront")))
 				{
-					if (queued && g_Selection.toList().length)
+					if (queued && g_Selection.size())
 						inputState = INPUT_BUILDING_PLACEMENT;
 					else
 						inputState = INPUT_NORMAL;
@@ -736,7 +736,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				let queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued, Engine.HotkeyIsPressed("session.pushorderfront")))
 				{
-					if (queued && g_Selection.toList().length)
+					if (queued && g_Selection.size())
 						inputState = INPUT_BUILDING_PLACEMENT;
 					else
 						inputState = INPUT_NORMAL;
@@ -887,7 +887,7 @@ function handleInputAfterGui(ev)
 			}
 		default:
 			// Slight hack: If selection is empty, reset the input state.
-			if (g_Selection.toList().length == 0)
+			if (!g_Selection.size())
 			{
 				preSelectedAction = ACTION_NONE;
 				inputState = INPUT_NORMAL;
@@ -1163,7 +1163,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	for (let i = 1; i < inputLine.length; ++i)
 		lengthOfLine += inputLine[i].distanceTo(inputLine[i - 1]);
 
-	let selection = g_Selection.toList().filter(ent => !!GetEntityState(ent).unitAI).sort((a, b) => a - b);
+	const selection = g_Selection.filter(ent => !!GetEntityState(ent).unitAI).sort((a, b) => a - b);
 
 	// Checking the line for a minimum length to save performance.
 	if (lengthOfLine < g_FreehandSelection_MinLengthOfLine || selection.length < g_FreehandSelection_MinNumberOfUnits)

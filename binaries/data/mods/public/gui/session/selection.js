@@ -165,11 +165,10 @@ EntityGroups.prototype.getEntsByKeyInverse = function(key)
 function EntitySelection()
 {
 	// Private properties:
-	this.selected = {}; // { id:id, id:id, ... } for each selected entity ID 'id'
+	this.selected = new Set();
 
-	// { id:id, ... } for mouseover-highlighted entity IDs in these, the key is a string and the value is an int;
-	//	we want to use the int form wherever possible since it's more efficient to send to the simulation code)
-	this.highlighted = {};
+	// For mouseover-highlighted entity IDs in these.
+	this.highlighted = new Set();
 
 	this.motionDebugOverlay = false;
 
@@ -196,11 +195,10 @@ EntitySelection.prototype.makePrimarySelection = function(key, inverse)
  */
 EntitySelection.prototype.getTemplateNames = function()
 {
-	var templateNames = [];
-
-	for (let ent in this.selected)
+	const templateNames = [];
+	for (const ent of this.selected)
 	{
-		let entState = GetEntityState(+ent);
+		const entState = GetEntityState(ent);
 		if (entState)
 			templateNames.push(entState.template);
 	}
@@ -208,26 +206,25 @@ EntitySelection.prototype.getTemplateNames = function()
 };
 
 /**
- * Update the selection to take care of changes (like units that have been killed)
+ * Update the selection to take care of changes (like units that have been killed).
  */
 EntitySelection.prototype.update = function()
 {
 	this.checkRenamedEntities();
 
-	let controlsAll = g_SimState.players[g_ViewedPlayer] && g_SimState.players[g_ViewedPlayer].controlsAll;
-	let removeOwnerChanges = !g_IsObserver && !controlsAll && this.toList().length > 1;
+	const controlsAll = g_SimState.players[g_ViewedPlayer] && g_SimState.players[g_ViewedPlayer].controlsAll;
+	const removeOwnerChanges = !g_IsObserver && !controlsAll && this.selected.size > 1;
 
 	let changed = false;
 
-	for (let ent in this.selected)
+	for (const ent of this.selected)
 	{
-		let entState = GetEntityState(+ent);
+		const entState = GetEntityState(ent);
 
-		// Remove deleted units
 		if (!entState)
 		{
-			delete this.selected[ent];
-			this.groups.removeEnt(+ent);
+			this.selected.delete(ent);
+			this.groups.removeEnt(ent);
 			changed = true;
 			continue;
 		}
@@ -240,12 +237,12 @@ EntitySelection.prototype.update = function()
 			removeOwnerChanges && entState.player != g_ViewedPlayer)
 		{
 			// Disable any highlighting of the disappeared unit
-			_setHighlight([+ent], 0, false);
-			_setStatusBars([+ent], false);
-			_setMotionOverlay([+ent], false);
+			_setHighlight([ent], 0, false);
+			_setStatusBars([ent], false);
+			_setMotionOverlay([ent], false);
 
-			delete this.selected[ent];
-			this.groups.removeEnt(+ent);
+			this.selected.delete(ent);
+			this.groups.removeEnt(ent);
 			changed = true;
 			continue;
 		}
@@ -269,7 +266,7 @@ EntitySelection.prototype.checkRenamedEntities = function()
 
 		// Reconstruct the selection if at least one entity has been renamed.
 		for (let renamedEntity of renamedEntities)
-			if (this.selected[renamedEntity.entity])
+			if (this.selected.has(renamedEntity.entity))
 			{
 				this.rebuildSelection(renamedLookup);
 				return;
@@ -282,25 +279,22 @@ EntitySelection.prototype.checkRenamedEntities = function()
  */
 EntitySelection.prototype.addList = function(ents, quiet, force = false)
 {
-	let selection = this.toList();
-
-	// If someone else's player is the sole selected unit, don't allow adding to the selection
-	let firstEntState = selection.length == 1 && GetEntityState(selection[0]);
+	// If someone else's player is the sole selected unit, don't allow adding to the selection.
+	const firstEntState = this.selected.size == 1 && GetEntityState(this.getFirstSelected());
 	if (firstEntState && firstEntState.player != g_ViewedPlayer && !force)
 		return;
 
-	let i = 1;
 	let added = [];
 
-	for (let ent of ents)
+	for (const ent of ents)
 	{
-		if (selection.length + i > g_MaxSelectionSize)
+		if (this.selected.size >= g_MaxSelectionSize)
 			break;
 
-		if (this.selected[ent])
+		if (this.selected.has(ent))
 			continue;
 
-		var entState = GetEntityState(ent);
+		const entState = GetEntityState(ent);
 		if (!entState)
 			continue;
 
@@ -308,12 +302,11 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false)
 		                g_ViewedPlayer == -1 && entState.player == 0;
 
 		// Don't add unowned entities to the list, unless a single entity was selected
-		if (isUnowned && (ents.length > 1 || selection.length) && !force)
+		if (isUnowned && (ents.length > 1 || this.selected.size) && !force)
 			continue;
 
 		added.push(ent);
-		this.selected[ent] = ent;
-		++i;
+		this.selected.add(ent);
 	}
 
 	_setHighlight(added, 1, true);
@@ -336,11 +329,11 @@ EntitySelection.prototype.removeList = function(ents)
 	var removed = [];
 
 	for (let ent of ents)
-		if (this.selected[ent])
+		if (this.selected.has(ent))
 		{
 			this.groups.removeEnt(ent);
 			removed.push(ent);
-			delete this.selected[ent];
+			this.selected.delete(ent);
 		}
 
 	_setHighlight(removed, 0, false);
@@ -355,27 +348,25 @@ EntitySelection.prototype.reset = function()
 	_setHighlight(this.toList(), 0, false);
 	_setStatusBars(this.toList(), false);
 	_setMotionOverlay(this.toList(), false);
-	this.selected = {};
+	this.selected.clear();
 	this.groups.reset();
 	this.onChange();
 };
 
 EntitySelection.prototype.rebuildSelection = function(renamed)
 {
-	var oldSelection = this.selected;
+	const toAdd = [];
+	for (const ent of this.selected)
+		toAdd.push(renamed[ent] || ent);
 	this.reset();
-
-	var toAdd = [];
-	for (let ent in oldSelection)
-		toAdd.push(renamed[ent] || +ent);
 
 	this.addList(toAdd, true); // don't play selection sounds
 };
 
 EntitySelection.prototype.getFirstSelected = function()
 {
-	for (let ent in this.selected)
-		return +ent;
+	for (const ent of this.selected)
+		return ent;
 	return undefined;
 };
 
@@ -384,39 +375,57 @@ EntitySelection.prototype.getFirstSelected = function()
  */
 EntitySelection.prototype.toList = function()
 {
-	let ents = [];
-	for (let ent in this.selected)
-		ents.push(+ent);
-	return ents;
+	return Array.from(this.selected);
+};
+
+/**
+ * @return {number} - The number of entities selected.
+ */
+EntitySelection.prototype.size = function()
+{
+	return this.selected.size;
 };
 
 EntitySelection.prototype.find = function(condition)
 {
-	for (let ent in this.selected)
+	for (const ent of this.selected)
 		if (condition(ent))
-			return +ent;
+			return ent;
 	return null;
+};
+
+/**
+ * @param {function} condition - A function.
+ * @return {number[]} - The entities passing the condition.
+ */
+EntitySelection.prototype.filter = function(condition)
+{
+	const result = [];
+	for (const ent of this.selected)
+		if (condition(ent))
+			result.push(ent);
+	return result;
 };
 
 EntitySelection.prototype.setHighlightList = function(ents)
 {
-	var highlighted = {};
-	for (let ent of ents)
-		highlighted[ent] = ent;
+	const highlighted = new Set();
+	for (const ent of ents)
+		highlighted.add(ent);
 
-	var removed = [];
-	var added = [];
+	const removed = [];
+	const added = [];
 
 	// Remove highlighting for the old units that are no longer highlighted
-	// (excluding ones that are actively selected too)
-	for (let ent in this.highlighted)
-		if (!highlighted[ent] && !this.selected[ent])
-			removed.push(+ent);
+	// (excluding ones that are actively selected too).
+	for (const ent of this.highlighted)
+		if (!highlighted.has(ent) && !this.selected.has(ent))
+			removed.push(ent);
 
-	// Add new highlighting for units that aren't already highlighted
-	for (let ent of ents)
-		if (!this.highlighted[ent] && !this.selected[ent])
-			added.push(+ent);
+	// Add new highlighting for units that aren't already highlighted.
+	for (const ent of ents)
+		if (!this.highlighted.has(ent) && !this.selected.has(ent))
+			added.push(ent);
 
 	_setHighlight(removed, 0, false);
 	_setStatusBars(removed, false);
@@ -424,7 +433,6 @@ EntitySelection.prototype.setHighlightList = function(ents)
 	_setHighlight(added, g_HighlightedAlpha, true);
 	_setStatusBars(added, true);
 
-	// Store the new highlight list
 	this.highlighted = highlighted;
 };
 
