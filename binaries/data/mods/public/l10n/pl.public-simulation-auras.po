@@ -14,7 +14,7 @@
 # Karol Korczak <kvdb@wp.pl>, 2017
 # Krzysztof Ogonowski <kogonowski@icloud.com>, 2017
 # Leszek Szary, 2017
-# Marcin S <dzidek1003@o2.pl>, 2016-2017,2019
+# Marcin S <dzidek1003@o2.pl>, 2016-2017,2019,2021
 # Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Mateusz Kubicz <zabsik1@wp.pl>, 2017
@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:32+0000\n"
-"Last-Translator: Robert x <jankinowski11@gmail.com>\n"
+"PO-Revision-Date: 2021-05-14 09:08+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +165,7 @@ msgstr "Wielki Podbój"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."
-msgstr ""
+msgstr "Okręty bojowe -25% czasu budowy."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -173,7 +173,7 @@ msgstr "Symmachia Delijska"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr ""
+msgstr "Uzdrowiciele są tańsi o 20%."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -197,7 +197,7 @@ msgstr "Produkty z Galii"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Oszczepnicy są o 10% tańsi."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -205,7 +205,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Słonie są tańsze o 20% oraz ich czas szkolenia jest skrócony o 20%."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -213,7 +213,7 @@ msgstr "Dostawcy Słoni"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% barter sell prices."
-msgstr ""
+msgstr "+20% do ceny sprzedarzy w handlu wymiennym."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -223,7 +223,7 @@ msgstr "Standaryzacja Waluty"
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr ""
+msgstr "Świątynie kosztują o połowę mniej i połowę krócej się budują. Technologie świątynne kosztują o połowę mniej i o połowę szybciej się je odkrywa."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -231,7 +231,7 @@ msgstr "Wsparcie religijne Asioki"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Land Traders +15% trade gain."
-msgstr ""
+msgstr "Kupcy +15% utargu."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -239,7 +239,7 @@ msgstr "Droga Królewska"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
-msgstr ""
+msgstr "+1.0 do napływu żywności."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -247,7 +247,7 @@ msgstr "Spichlerz Morza Śródziemnego"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr ""
+msgstr "Piechota szkoli się 10% szybciej."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -255,7 +255,7 @@ msgstr "Pobór"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Civil Centers −20% resource costs."
-msgstr ""
+msgstr "Centra osad -20% do kosztów budowy."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -263,7 +263,7 @@ msgstr "Syryjski Tetrapolis "
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Włócznicy mają 10% więcej zdrowia."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"

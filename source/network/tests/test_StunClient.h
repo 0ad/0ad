@@ -20,6 +20,7 @@
 #include "network/StunClient.h"
 
 #include "lib/external_libraries/enet.h"
+#include "ps/ConfigDB.h"
 #include "ps/CStr.h"
 
 class TestStunClient : public CxxTest::TestSuite
@@ -59,5 +60,20 @@ public:
 		}
 		if (dots != 3)
 			TS_FAIL("StunClient::FindLocalIP did not return a valid IPV4 address: wrong separators");
+	}
+
+	void test_stun_DISABLED()
+	{
+		// Disabled test -> should return your external IP by connecting to our STUN server.
+		CConfigDB::Initialise();
+		CStr ip;
+		u16 port;
+		g_ConfigDB.SetValueString(CFG_COMMAND, "lobby.stun.server", "lobby.wildfiregames.com");
+		g_ConfigDB.SetValueString(CFG_COMMAND, "lobby.stun.port", "3478");
+		ENetAddress addr { ENET_HOST_ANY, ENET_PORT_ANY };
+		ENetHost* host = enet_host_create(&addr, 1, 1, 0, 0);
+		StunClient::FindPublicIP(*host, ip, port);
+		LOGWARNING("%s %i", ip.c_str(), port);
+		CConfigDB::Shutdown();
 	}
 };

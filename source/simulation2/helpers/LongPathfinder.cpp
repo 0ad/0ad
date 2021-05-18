@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,13 @@
 
 #include "Geometry.h"
 #include "HierarchicalPathfinder.h"
+
+#include <mutex>
+
+namespace
+{
+static std::mutex g_DebugMutex;
+}
 
 /**
  * Jump point cache.
@@ -87,7 +94,7 @@ class JumpPointCache
 		 * Returns the coordinate of the next jump point xp (where x < xp),
 		 * and whether it's an obstruction point or jump point.
 		 */
-		void Get(int x, int& xp, bool& obstruction)
+		void Get(int x, int& xp, bool& obstruction) const
 		{
 			ENSURE(0 <= x && x < (int)data.size());
 			xp = data[x] >> 1;
@@ -178,7 +185,7 @@ class JumpPointCache
 			data.swap(tree);
 		}
 
-		void Get(int x, int& xp, bool& obstruction)
+		void Get(int x, int& xp, bool& obstruction) const
 		{
 			// Search the binary tree for an interval which contains x
 			int i = 0;
@@ -323,7 +330,7 @@ public:
 	 * at (ip, j) where i < ip.
 	 * Returns i if there is no such point.
 	 */
-	int GetJumpPointRight(int i, int j, const PathGoal& goal)
+	int GetJumpPointRight(int i, int j, const PathGoal& goal) const
 	{
 		int ip;
 		bool obstruction;
@@ -336,7 +343,7 @@ public:
 		return i;
 	}
 
-	int GetJumpPointLeft(int i, int j, const PathGoal& goal)
+	int GetJumpPointLeft(int i, int j, const PathGoal& goal) const
 	{
 		int mip; // mirrored value, because m_JumpPointsLeft is generated from a mirrored map
 		bool obstruction;
@@ -347,7 +354,7 @@ public:
 		return i;
 	}
 
-	int GetJumpPointUp(int i, int j, const PathGoal& goal)
+	int GetJumpPointUp(int i, int j, const PathGoal& goal) const
 	{
 		int jp;
 		bool obstruction;
@@ -357,7 +364,7 @@ public:
 		return j;
 	}
 
-	int GetJumpPointDown(int i, int j, const PathGoal& goal)
+	int GetJumpPointDown(int i, int j, const PathGoal& goal) const
 	{
 		int mjp; // mirrored value
 		bool obstruction;
@@ -373,16 +380,8 @@ public:
 
 LongPathfinder::LongPathfinder() :
 	m_UseJPSCache(false),
-	m_Grid(NULL), m_GridSize(0),
-	m_DebugOverlay(NULL), m_DebugGrid(NULL), m_DebugPath(NULL)
+	m_Grid(NULL), m_GridSize(0)
 {
-}
-
-LongPathfinder::~LongPathfinder()
-{
-	SAFE_DELETE(m_DebugOverlay);
-	SAFE_DELETE(m_DebugGrid);
-	SAFE_DELETE(m_DebugPath);
 }
 
 #define PASSABLE(i, j) IS_PASSABLE(state.terrain->get(i, j), state.passClass)
@@ -715,20 +714,25 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 
 void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path) const
 {
-	PROFILE("ComputePathJPS");
-	PROFILE2_IFSPIKE("ComputePathJPS", 0.0002);
+	PROFILE2("ComputePathJPS");
 	PathfinderState state = { 0 };
 
-	std::map<pass_class_t, shared_ptr<JumpPointCache> >::const_iterator it = m_JumpPointCache.find(passClass);
-	if (it != m_JumpPointCache.end())
-		state.jpc = it->second.get();
-	
-	if (m_UseJPSCache && !state.jpc)
+	if (m_UseJPSCache)
 	{
-		state.jpc = new JumpPointCache;
-		state.jpc->reset(m_Grid, passClass);
-		debug_printf("PATHFINDER: JPC memory: %d kB\n", (int)state.jpc->GetMemoryUsage() / 1024);
-		m_JumpPointCache[passClass] = shared_ptr<JumpPointCache>(state.jpc);
+		// Needs to lock for construction, or several threads might try doing that at the same time.
+		static std::mutex JPCMutex;
+		std::unique_lock<std::mutex> lock(JPCMutex);
+		std::map<pass_class_t, shared_ptr<JumpPointCache> >::const_iterator it = m_JumpPointCache.find(passClass);
+		if (it != m_JumpPointCache.end())
+			state.jpc = it->second.get();
+
+		if (!state.jpc)
+		{
+			m_JumpPointCache[passClass] = std::make_shared<JumpPointCache>();
+			m_JumpPointCache[passClass]->reset(m_Grid, passClass);
+			debug_printf("PATHFINDER: JPC memory: %d kB\n", (int)state.jpc->GetMemoryUsage() / 1024);
+			state.jpc = m_JumpPointCache[passClass].get();
+		}
 	}
 
 	// Convert the start coordinates to tile indexes
@@ -901,10 +905,16 @@ void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, enti
 	ImprovePathWaypoints(path, passClass, origGoal.maxdist, x0, z0);
 
 	// Save this grid for debug display
-	delete m_DebugGrid;
-	m_DebugGrid = state.tiles;
-	m_DebugSteps = state.steps;
-	m_DebugGoal = state.goal;
+	if (m_Debug.Overlay)
+	{
+		std::lock_guard<std::mutex> lock(g_DebugMutex);
+		delete m_Debug.Grid;
+		m_Debug.Grid = state.tiles;
+		m_Debug.Steps = state.steps;
+		m_Debug.Goal = state.goal;
+	}
+	else
+		SAFE_DELETE(state.tiles);
 }
 
 #undef PASSABLE
@@ -963,34 +973,28 @@ void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passC
 
 void LongPathfinder::GetDebugDataJPS(u32& steps, double& time, Grid<u8>& grid) const
 {
-	steps = m_DebugSteps;
-	time = m_DebugTime;
+	steps = m_Debug.Steps;
+	time = m_Debug.Time;
 
-	if (!m_DebugGrid)
+	if (!m_Debug.Grid)
 		return;
 
-	u16 iGoal, jGoal;
-	Pathfinding::NearestNavcell(m_DebugGoal.x, m_DebugGoal.z, iGoal, jGoal, m_GridSize, m_GridSize);
+	std::lock_guard<std::mutex> lock(g_DebugMutex);
 
-	grid = Grid<u8>(m_DebugGrid->m_W, m_DebugGrid->m_H);
+	u16 iGoal, jGoal;
+	Pathfinding::NearestNavcell(m_Debug.Goal.x, m_Debug.Goal.z, iGoal, jGoal, m_GridSize, m_GridSize);
+
+	grid = Grid<u8>(m_Debug.Grid->m_W, m_Debug.Grid->m_H);
 	for (u16 j = 0; j < grid.m_H; ++j)
 	{
 		for (u16 i = 0; i < grid.m_W; ++i)
 		{
 			if (i == iGoal && j == jGoal)
 				continue;
-			PathfindTile t = m_DebugGrid->get(i, j);
+			PathfindTile t = m_Debug.Grid->get(i, j);
 			grid.set(i, j, (t.IsOpen() ? 1 : 0) | (t.IsClosed() ? 2 : 0));
 		}
 	}
-}
-
-void LongPathfinder::SetDebugOverlay(bool enabled)
-{
-	if (enabled && !m_DebugOverlay)
-		m_DebugOverlay = new LongOverlay(*this);
-	else if (!enabled && m_DebugOverlay)
-		SAFE_DELETE(m_DebugOverlay);
 }
 
 void LongPathfinder::ComputePath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal,
@@ -1044,4 +1048,109 @@ void LongPathfinder::GenerateSpecialMap(pass_class_t passClass, std::vector<Circ
 			m_Grid->set(i, j, n);
 		}
 	}
+}
+
+/**
+ * Terrain overlay for pathfinder debugging.
+ * Renders a representation of the most recent pathfinding operation.
+ */
+class LongOverlay : public TerrainTextureOverlay
+{
+public:
+	LongPathfinder& m_Pathfinder;
+
+	LongOverlay(LongPathfinder& pathfinder) :
+	TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TERRAIN_TILE), m_Pathfinder(pathfinder)
+	{
+	}
+
+	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h)
+	{
+		// Grab the debug data for the most recently generated path
+		u32 steps;
+		double time;
+		Grid<u8> debugGrid;
+		m_Pathfinder.GetDebugData(steps, time, debugGrid);
+
+		// Render navcell passability
+		u8* p = data;
+		for (size_t j = 0; j < h; ++j)
+		{
+			for (size_t i = 0; i < w; ++i)
+			{
+				SColor4ub color(0, 0, 0, 0);
+				if (!IS_PASSABLE(m_Pathfinder.m_Grid->get((int)i, (int)j), m_Pathfinder.m_Debug.PassClass))
+					color = SColor4ub(255, 0, 0, 127);
+
+				if (debugGrid.m_W && debugGrid.m_H)
+				{
+					u8 n = debugGrid.get((int)i, (int)j);
+
+					if (n == 1)
+						color = SColor4ub(255, 255, 0, 127);
+					else if (n == 2)
+						color = SColor4ub(0, 255, 0, 127);
+
+					if (m_Pathfinder.m_Debug.Goal.NavcellContainsGoal(i, j))
+						color = SColor4ub(0, 0, 255, 127);
+				}
+
+				*p++ = color.R;
+				*p++ = color.G;
+				*p++ = color.B;
+				*p++ = color.A;
+			}
+		}
+
+		// Render the most recently generated path
+		if (m_Pathfinder.m_Debug.Path && !m_Pathfinder.m_Debug.Path->m_Waypoints.empty())
+		{
+			std::vector<Waypoint>& waypoints = m_Pathfinder.m_Debug.Path->m_Waypoints;
+			u16 ip = 0, jp = 0;
+			for (size_t k = 0; k < waypoints.size(); ++k)
+			{
+				u16 i, j;
+				Pathfinding::NearestNavcell(waypoints[k].x, waypoints[k].z, i, j, m_Pathfinder.m_GridSize, m_Pathfinder.m_GridSize);
+				if (k == 0)
+				{
+					ip = i;
+					jp = j;
+				}
+				else
+				{
+					bool firstCell = true;
+					do
+					{
+						if (data[(jp*w + ip)*4+3] == 0)
+						{
+							data[(jp*w + ip)*4+0] = 0xFF;
+							data[(jp*w + ip)*4+1] = 0xFF;
+							data[(jp*w + ip)*4+2] = 0xFF;
+							data[(jp*w + ip)*4+3] = firstCell ? 0xA0 : 0x60;
+						}
+						ip = ip < i ? ip+1 : ip > i ? ip-1 : ip;
+						jp = jp < j ? jp+1 : jp > j ? jp-1 : jp;
+						firstCell = false;
+					}
+					while (ip != i || jp != j);
+				}
+			}
+		}
+	}
+};
+
+// These two functions must come below LongOverlay's definition.
+void LongPathfinder::SetDebugOverlay(bool enabled)
+{
+	if (enabled && !m_Debug.Overlay)
+		m_Debug.Overlay = new LongOverlay(*this);
+	else if (!enabled && m_Debug.Overlay)
+		SAFE_DELETE(m_Debug.Overlay);
+}
+
+LongPathfinder::~LongPathfinder()
+{
+	SAFE_DELETE(m_Debug.Overlay);
+	SAFE_DELETE(m_Debug.Grid);
+	SAFE_DELETE(m_Debug.Path);
 }

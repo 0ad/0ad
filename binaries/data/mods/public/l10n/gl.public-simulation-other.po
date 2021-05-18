@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 09:30+0000\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-14 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -564,15 +564,15 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(resourceType1)s, %(resourceAmount2)s unidades de %(resourceType2)s, %(resourceAmount3)s unidades de %(resourceType3)s e %(resourceAmount4)s unidades de %(resourceType4)s."
 
-#: simulation/components/ProductionQueue.js:340
+#: simulation/components/ProductionQueue.js:364
 msgid "Entity is being upgraded. Cannot start production."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:351
+#: simulation/components/ProductionQueue.js:375
 msgid "The production queue is full."
 msgstr "A cola de produción está completa."
 
-#: simulation/components/ProductionQueue.js:832
+#: simulation/components/ProductionQueue.js:863
 msgid "Can't find free space to spawn trained units"
 msgstr "Non é posíbel atopar espazo libre no que facer aparecer as unidades adestradas."
 
@@ -811,6 +811,14 @@ msgstr "Derrota aos opoñentes matando a todas as súas unidades e destruíndo t
 msgid "Conquest"
 msgstr "Conquista"
 
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
+msgid "Defeat opponents by destroying all their fully build civic centres."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
+msgid "Conquest Civic Centres"
+msgstr ""
+
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
 msgstr "Derrota aos opoñentes destruíndo todas as súas estruturas."
@@ -888,19 +896,19 @@ msgstr "Ataque contra %(_player_)s solicitado."
 msgid "There are no bribable units"
 msgstr "Non hai unidades ás que se poida subornar"
 
-#: simulation/helpers/Commands.js:891
+#: simulation/helpers/Commands.js:912
 msgid "Unable to unload unit(s)."
 msgstr ""
 
-#: simulation/helpers/Commands.js:905
+#: simulation/helpers/Commands.js:926
 msgid "Some unit(s) can't go back to work"
 msgstr "Algunhas unidad(es) non volver ao traballo"
 
-#: simulation/helpers/Commands.js:924
+#: simulation/helpers/Commands.js:945
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr ""
 
-#: simulation/helpers/Commands.js:1175
+#: simulation/helpers/Commands.js:1196
 msgid "The building's technology requirements are not met."
 msgstr "Non conta cos requisitos tecnolóxicos necesarios para a estrutura."

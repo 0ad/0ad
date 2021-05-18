@@ -4,14 +4,14 @@
 # project.
 # Translators:
 # ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2021
-# Jagadeesh Vijay Varma B, 2021
+# Jagadeeshvarma, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Jagadeesh Vijay Varma B, 2021\n"
+"Last-Translator: Jagadeeshvarma, 2021\n"
 "Language-Team: Telugu (https://www.transifex.com/wildfire-games/teams/17418/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "0 ఎ.డి. ఎలా ఆడాలో నేర్చుకోండి."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -33,11 +33,16 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"ఈ పటం ఆటను సమర్థవంతంగా ప్రారంభించడానికి కఠినమైన మార్గదర్శిని ఇస్తుంది. ఆట "
+"ప్రారంభంలో చాలా ముఖ్యమైన విషయం ఏమిటంటే వనరులను వీలైనంత వేగంగా సేకరించాలి, "
+"కాబట్టి మీరు తరువాత తగినంత దళాలను నిర్మించగలుగుతారు. హెచ్చరిక: ఇది "
+"ప్రారంభంలో చాలా వేగంగా ఉంటుంది, ప్రారంభ బిట్ ద్వారా చాలాసార్లు "
+"పరుగెత్తడానికి సిద్ధంగా ఉండండి."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "ఆర్థిక వ్యవస్థ వాక్‌థ్రూ"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -52,65 +57,65 @@ msgstr "పరిచయ ట్యుటోరియల్"
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr ""
+msgstr "ట్యుటోరియల్"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:97
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "పూర్తయింది"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:99
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "అందుబాటులో ఉంది"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "క్యాంపేన్ లోడింగ్లో లోపం రన్ %s:%s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
 msgid "Campaign Name"
-msgstr ""
+msgstr "క్యాంపేన్ పేరు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
 msgid "No scenario selected"
-msgstr ""
+msgstr "దృష్టాంతం ఎంచుకోబడలేదు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "ప్రధాన మెనూకు తిరిగి వెళ్ళు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
 msgid "Saved Games"
-msgstr ""
+msgstr "సేవ్ చేసిన ఆటలు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
 msgid "Start Scenario"
-msgstr ""
+msgstr "దృష్టాంతం ప్రారంభిఅంచు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "సేవ్ చేసిన ఆటను పునఃప్రారంభించు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "దృష్టాంతం పేరు"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
 msgctxt "campaignLevelList"
 msgid "Status"
-msgstr ""
+msgstr "స్థితి"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "ఫైల్ లోడ్ చేయబడదు"
 
 #: gui/campaigns/load_modal/LoadModal.js:102
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
+msgstr "మీరు ఖచ్చితంగా రన్ తొలగించాలనుకుంటున్నారా %s? దీన్ని రద్దు చేయలేము."
 
 #: gui/campaigns/load_modal/LoadModal.js:103
 msgid "Confirmation"
@@ -127,15 +132,15 @@ msgstr "అవును"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "లోడ్ క్యాంపేన్"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "కొనసాగుతున్న క్యాంపేన్ ఏమిలేవు"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "ఎంచుకున్న రన్ పేరు:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -148,28 +153,28 @@ msgstr "తొలగించు"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "క్యాంపేన్ మొదలు పెట్టు"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run: "
-msgstr ""
+msgstr "దయచేసి మీ కొత్త క్యాంపేన్ రన్ పేరును నమోదు చేయండి:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "క్యాంపేన్ ప్రారంభించు"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "ఏ క్యాంపేన్ ఎంచుకోబడలేదు."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr ""
+msgstr "క్యాంపేన్ స్"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "ఏ క్యాంపేన్ ఎంచుకోబడలేదు"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
@@ -183,4 +188,4 @@ msgstr "పేరు"
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

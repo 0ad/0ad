@@ -673,7 +673,7 @@ namespace glooxwrapper
 			Session(gloox::Jingle::Session* wrapped, bool owned);
 			~Session();
 
-			bool sessionInitiate(char* ipStr, uint16_t port);
+			bool sessionInitiate(const char* ipStr, uint16_t port);
 		};
 
 		class GLOOXWRAPPER_API SessionHandler

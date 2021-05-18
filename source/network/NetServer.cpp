@@ -1658,11 +1658,20 @@ u16 CNetServer::GetLocalPort() const
 	return m_Worker->m_Host->address.port;
 }
 
-void CNetServer::SetConnectionData(const CStr& ip, const u16 port, bool useSTUN)
+void CNetServer::SetConnectionData(const CStr& ip, const u16 port)
 {
 	m_PublicIp = ip;
 	m_PublicPort = port;
-	m_UseSTUN = useSTUN;
+	m_UseSTUN = false;
+}
+
+bool CNetServer::SetConnectionDataViaSTUN()
+{
+	m_UseSTUN = true;
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
+	if (!m_Worker->m_Host)
+		return false;
+	return StunClient::FindPublicIP(*m_Worker->m_Host, m_PublicIp, m_PublicPort);
 }
 
 bool CNetServer::CheckPasswordAndIncrement(const CStr& password, const std::string& username)

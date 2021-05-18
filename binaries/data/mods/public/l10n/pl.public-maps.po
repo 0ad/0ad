@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-05 07:08+0000\n"
-"PO-Revision-Date: 2021-04-16 07:40+0000\n"
+"POT-Creation-Date: 2021-05-14 07:08+0000\n"
+"PO-Revision-Date: 2021-05-14 09:01+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1770,19 +1770,19 @@ msgstr "Mapa testowa z morzem i dwoma wyspami, na której można wypróbować je
 msgid "Pickup test map"
 msgstr "Testowa mapka"
 
-#: maps/scenarios/polynesia.xml:Description:38
+#: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
 msgstr "Mapa demonstracyjna z nowymi efektami wody."
 
-#: maps/scenarios/polynesia.xml:Name:38
+#: maps/scenarios/polynesia.xml:Name:39
 msgid "Polynesia"
 msgstr "Polinezja"
 
-#: maps/scenarios/polynesia.xml:PlayerData[0].Name:38
+#: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "Samoa"
 
-#: maps/scenarios/polynesia.xml:PlayerData[1].Name:38
+#: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
@@ -2401,6 +2401,18 @@ msgstr[3] "%(players)s i %(lastPlayer)s zostali pokonani (przejęciem reliktu)."
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
 msgstr "%(player)s został zabity (stracił wszystkie jednostki i struktury)"
+
+#: maps/scripts/ConquestCivicCentres.js:5
+#, javascript-format
+msgid "%(player)s has been defeated (lost all civic centres)."
+msgstr "%(player)s został pokonany (utrata centrów osady)."
+
+#: maps/scripts/ConquestCivicCentres.js:9
+#, javascript-format
+msgid ""
+"%(player)s has been defeated (lost all civic centres and critical units and "
+"structures)."
+msgstr "%(player)s został pokonany (stracił wszystkie centra osady oraz ważne jednostki i struktury)"
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format

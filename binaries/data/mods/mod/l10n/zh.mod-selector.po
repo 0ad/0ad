@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 16:41+0000\n"
+"PO-Revision-Date: 2021-05-16 11:52+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -141,14 +141,14 @@ msgstr "文档日期: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "即将连接到mod.io在线服务。"
+msgstr "即将连接到 mod.io 在线服务。"
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "这项服务提供了一种简单的方式来下载和安装社区制作的mod，由IndolDB和ModDB背后的公司DBolical Pty Ltd提供。"
+msgstr "这项服务提供了一种简单的方式来下载和安装社区制作的 mod，由 IndolDB 和 ModDB 背后的公司 DBolical Pty Ltd 提供。"
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -159,14 +159,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games已经注意使这种连接安全，并审查了安全漏洞，但不能保证零风险。"
+msgstr "Wildfire Games 已经注意使这种连接安全，并审查了安全漏洞，但不能保证零风险。"
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "通过使用该服务，你了解mod.io的使用条款和隐私政策，并且Wildfire Games不对此服务造成的任何损害承担责任。"
+msgstr "通过使用该服务，你了解 mod.io 的使用条款和隐私政策，并且 Wildfire Games 不对此服务造成的任何损害承担责任。"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -175,7 +175,7 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "无法检索游戏ID\n\n%(technicalDetails)s"
+msgstr "无法检索游戏 ID\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
@@ -235,7 +235,7 @@ msgstr "验证错误"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "正在初始化mod.io接口"
+msgstr "正在初始化 mod.io 接口"
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
@@ -306,7 +306,7 @@ msgstr "%(number)s %(unit)s/s"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io模组"
+msgstr "mod.io 模组"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
@@ -356,7 +356,7 @@ msgstr "依赖"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D可轻松修改，其模组以.pyromod文件的形式发布，此格式像.zip文件一样通过压缩包管理器打开。"
+msgstr "0 A.D可轻松修改，其模组以 pyromod 文件的形式发布，此格式像 zip 文件一样通过压缩包管理器打开。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -366,7 +366,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "要安装模组，只需用0 A.D.打开模组文件（双击模组文件并选择用游戏打开，或者在终端中运行\"pyrogenesis file.pyromod\"）。随后模组将出现在游戏的模组选择其中，您可以随意启用或禁用任意的模组。如果需要的话您可以使用文件浏览器手动删除模组（详见https://trac.wildfiregames.com/wiki/GameDataPaths）。"
+msgstr "要安装模组，只需用0 A.D.打开模组文件（双击模组文件并选择用游戏打开，或者在终端中运行 \"pyrogenesis file.pyromod\"）。随后模组将出现在游戏的模组选择其中，您可以随意启用或禁用任意的模组。如果需要的话您可以使用文件浏览器手动删除模组（详见 https://trac.wildfiregames.com/wiki/GameDataPaths）。"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
@@ -397,7 +397,7 @@ msgstr "模组指南"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr "访问模组网站mod.io"
+msgstr "访问模组网站 mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"

@@ -196,7 +196,7 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 
 void CCmpPathfinder::RenderSubmit(SceneCollector& collector)
 {
-	m_VertexPathfinder->RenderSubmit(collector);
+	g_VertexPathfinderDebugOverlay.RenderSubmit(collector);
 	m_PathfinderHier->RenderSubmit(collector);
 }
 
@@ -207,7 +207,7 @@ void CCmpPathfinder::SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGo
 
 void CCmpPathfinder::SetDebugOverlay(bool enabled)
 {
-	m_VertexPathfinder->SetDebugOverlay(enabled);
+	g_VertexPathfinderDebugOverlay.SetDebugOverlay(enabled);
 	m_LongPathfinder->SetDebugOverlay(enabled);
 }
 

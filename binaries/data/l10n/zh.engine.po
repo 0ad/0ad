@@ -51,7 +51,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-15 08:08+0000\n"
-"PO-Revision-Date: 2021-03-17 05:53+0000\n"
+"PO-Revision-Date: 2021-05-14 22:10+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgstr "服务器已关闭媒体流"
 
 #: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
-msgstr "发生了一个I/O错误"
+msgstr "发生一条 输入/输出 错误"
 
 #: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
@@ -203,11 +203,11 @@ msgstr "系统内存耗尽"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "不能验证服务器证书或TLS握手未能成功完成"
+msgstr "不能验证服务器证书，或 TLS 握手未能成功完成"
 
 #: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
-msgstr "服务器没有提供必须的TLS加密"
+msgstr "服务器未提供必须的 TLS 加密"
 
 #: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -223,7 +223,7 @@ msgstr "没有活动连接"
 
 #: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
-msgstr "你的帐户已成功注册"
+msgstr "帐号成功注册"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
@@ -236,22 +236,22 @@ msgstr "用户名已存在"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "开始游戏ID队列失败，错误代码: 1%s; 1%s"
+msgstr "开始游戏 ID 队列失败，错误代码: 1%s; 1%s"
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "开始mods队列失败。错误：%s, %s"
+msgstr "开启模组队列失败。错误：%s, %s"
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "不能创建mod文件夹: %s"
+msgstr "不能创建模组文件夹: %s"
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "不能打开临时文件来下载mod: %s"
+msgstr "不能打开临时文件以下载模组: %s"
 
 #: ps/ModIo.cpp:352
 #, c-format
@@ -275,7 +275,7 @@ msgstr "文件大小不匹配。"
 #: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "非法文件。预期md5 %s , 得到 %s "
+msgstr "非法文件。预期 md5 值 %s , 得到 %s "
 
 #: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."

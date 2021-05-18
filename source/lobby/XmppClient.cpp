@@ -20,12 +20,7 @@
 #include "XmppClient.h"
 #include "StanzaExtensions.h"
 
-#ifdef WIN32
-#  include <winsock2.h>
-#endif
-
 #include "i18n/L10n.h"
-#include "lib/external_libraries/enet.h"
 #include "lib/utf8.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
@@ -883,7 +878,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 					LOGWARNING("XmppClient: Received game with no IP in response to Game Register");
 					return true;
 				}
-				g_NetServer->SetConnectionData(publicIP, g_NetServer->GetPublicPort(), false);
+				g_NetServer->SetConnectionData(publicIP, g_NetServer->GetPublicPort());
 				return true;
 			}
 
@@ -1484,18 +1479,13 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 #undef CASE
 }
 
-void XmppClient::SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJIDStr)
+void XmppClient::SendStunEndpointToHost(const std::string& ip, u16 port, const std::string& hostJIDStr)
 {
 	DbgXMPP("SendStunEndpointToHost " << hostJIDStr);
 
-	char ipStr[256] = "(error)";
-	ENetAddress addr;
-	addr.host = ntohl(stunEndpoint.ip);
-	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
-
 	glooxwrapper::JID hostJID(hostJIDStr);
 	glooxwrapper::Jingle::Session session = m_sessionManager->createSession(hostJID);
-	session.sessionInitiate(ipStr, stunEndpoint.port);
+	session.sessionInitiate(ip.c_str(), port);
 }
 
 void XmppClient::handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session& session, const glooxwrapper::Jingle::Session::Jingle& jingle)

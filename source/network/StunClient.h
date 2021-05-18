@@ -27,18 +27,20 @@ class CStr8;
 
 namespace StunClient
 {
+/**
+ * Return the publicly accessible IP of the given ENet host/socket.
+ * This is done by contacting STUN server.
+ * The return IP & port should only be considered valid for the give host/socket.
+ */
+bool FindPublicIP(ENetHost& enetClient, CStr8& ip, u16& port);
 
-struct StunEndpoint {
-	u32 ip;
-	u16 port;
-};
-
-void SendStunRequest(ENetHost& transactionHost, u32 targetIp, u16 targetPort);
-
-bool FindStunEndpointHost(CStr8& ip, u16& port);
-
-bool FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint, CStr8& ip);
-
+/**
+ * Send a message to the target server with the given ENet host/socket.
+ * This will open a port on the local gateway (if any) to receive trafic,
+ * allowing the recipient to answer (thus 'punching a hole' in the NAT).
+ * NB: this assumes consistent NAT, i.e. the outgoing port is always the same for the given client,
+ * thus allowing the IP discovered via STUN to be sent to the target server.
+ */
 void SendHolePunchingMessages(ENetHost& enetClient, const std::string& serverAddress, u16 serverPort);
 
 /**

@@ -106,7 +106,7 @@ public:
 	JS::Value GUIGetBoardList(const ScriptRequest& rq);
 	JS::Value GUIGetProfile(const ScriptRequest& rq);
 
-	void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID);
+	void SendStunEndpointToHost(const std::string& ip, u16 port, const std::string& hostJID);
 
 	/**
 	 * Convert gloox values to string or time.

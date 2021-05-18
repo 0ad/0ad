@@ -154,7 +154,7 @@ struct PathfinderState
 	PathCost hBest; // heuristic of closest discovered tile to goal
 	u16 iBest, jBest; // closest tile
 
-	JumpPointCache* jpc;
+	const JumpPointCache* jpc;
 };
 
 class LongOverlay;
@@ -171,14 +171,14 @@ public:
 
 	void SetDebugPath(const HierarchicalPathfinder& hierPath, entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass)
 	{
-		if (!m_DebugOverlay)
+		if (!m_Debug.Overlay)
 			return;
 
-		SAFE_DELETE(m_DebugGrid);
-		delete m_DebugPath;
-		m_DebugPath = new WaypointPath();
-		ComputePath(hierPath, x0, z0, goal, passClass, *m_DebugPath);
-		m_DebugPassClass = passClass;
+		SAFE_DELETE(m_Debug.Grid);
+		delete m_Debug.Path;
+		m_Debug.Path = new WaypointPath();
+		ComputePath(hierPath, x0, z0, goal, passClass, *m_Debug.Path);
+		m_Debug.PassClass = passClass;
 	}
 
 	void Reload(Grid<NavcellData>* passabilityGrid)
@@ -225,15 +225,20 @@ public:
 	u16 m_GridSize;
 
 	// Debugging - output from last pathfind operation.
-	// mutable as making these const would require a lot of boilerplate code
-	// and they do not change the behavioural const-ness of the pathfinder.
-	mutable LongOverlay* m_DebugOverlay;
-	mutable PathfindTileGrid* m_DebugGrid;
-	mutable u32 m_DebugSteps;
-	mutable double m_DebugTime;
-	mutable PathGoal m_DebugGoal;
-	mutable WaypointPath* m_DebugPath;
-	mutable pass_class_t m_DebugPassClass;
+	struct Debug
+	{
+		// Atomic - used to toggle debugging.
+		std::atomic<LongOverlay*> Overlay = nullptr;
+		// Mutable - set by ComputeJPSPath (thus possibly from different threads).
+		// Synchronized via mutex if necessary.
+		mutable PathfindTileGrid* Grid = nullptr;
+		mutable u32 Steps;
+		mutable double Time;
+		mutable PathGoal Goal;
+
+		WaypointPath* Path = nullptr;
+		pass_class_t PassClass;
+	} m_Debug;
 
 private:
 	PathCost CalculateHeuristic(int i, int j, int iGoal, int jGoal) const;
@@ -278,95 +283,6 @@ private:
 	// Obviously, this means that the cache should actually be a cache and not return different results
 	// from what would happen if things hadn't been cached.
 	mutable std::map<pass_class_t, shared_ptr<JumpPointCache> > m_JumpPointCache;
-};
-
-/**
- * Terrain overlay for pathfinder debugging.
- * Renders a representation of the most recent pathfinding operation.
- */
-class LongOverlay : public TerrainTextureOverlay
-{
-public:
-	LongPathfinder& m_Pathfinder;
-
-	LongOverlay(LongPathfinder& pathfinder) :
-		TerrainTextureOverlay(Pathfinding::NAVCELLS_PER_TERRAIN_TILE), m_Pathfinder(pathfinder)
-	{
-	}
-
-	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h)
-	{
-		// Grab the debug data for the most recently generated path
-		u32 steps;
-		double time;
-		Grid<u8> debugGrid;
-		m_Pathfinder.GetDebugData(steps, time, debugGrid);
-
-		// Render navcell passability
-		u8* p = data;
-		for (size_t j = 0; j < h; ++j)
-		{
-			for (size_t i = 0; i < w; ++i)
-			{
-				SColor4ub color(0, 0, 0, 0);
-				if (!IS_PASSABLE(m_Pathfinder.m_Grid->get((int)i, (int)j), m_Pathfinder.m_DebugPassClass))
-					color = SColor4ub(255, 0, 0, 127);
-
-				if (debugGrid.m_W && debugGrid.m_H)
-				{
-					u8 n = debugGrid.get((int)i, (int)j);
-
-					if (n == 1)
-						color = SColor4ub(255, 255, 0, 127);
-					else if (n == 2)
-						color = SColor4ub(0, 255, 0, 127);
-
-					if (m_Pathfinder.m_DebugGoal.NavcellContainsGoal(i, j))
-						color = SColor4ub(0, 0, 255, 127);
-				}
-
-				*p++ = color.R;
-				*p++ = color.G;
-				*p++ = color.B;
-				*p++ = color.A;
-			}
-		}
-
-		// Render the most recently generated path
-		if (m_Pathfinder.m_DebugPath && !m_Pathfinder.m_DebugPath->m_Waypoints.empty())
-		{
-			std::vector<Waypoint>& waypoints = m_Pathfinder.m_DebugPath->m_Waypoints;
-			u16 ip = 0, jp = 0;
-			for (size_t k = 0; k < waypoints.size(); ++k)
-			{
-				u16 i, j;
-				Pathfinding::NearestNavcell(waypoints[k].x, waypoints[k].z, i, j, m_Pathfinder.m_GridSize, m_Pathfinder.m_GridSize);
-				if (k == 0)
-				{
-					ip = i;
-					jp = j;
-				}
-				else
-				{
-					bool firstCell = true;
-					do
-					{
-						if (data[(jp*w + ip)*4+3] == 0)
-						{
-							data[(jp*w + ip)*4+0] = 0xFF;
-							data[(jp*w + ip)*4+1] = 0xFF;
-							data[(jp*w + ip)*4+2] = 0xFF;
-							data[(jp*w + ip)*4+3] = firstCell ? 0xA0 : 0x60;
-						}
-						ip = ip < i ? ip+1 : ip > i ? ip-1 : ip;
-						jp = jp < j ? jp+1 : jp > j ? jp-1 : jp;
-						firstCell = false;
-					}
-					while (ip != i || jp != j);
-				}
-			}
-		}
-	}
 };
 
 #endif // INCLUDED_LONGPATHFINDER

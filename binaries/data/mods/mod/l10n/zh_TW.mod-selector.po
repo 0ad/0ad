@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 10:18+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
+"PO-Revision-Date: 2021-05-17 07:22+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "即將使用預設的網頁瀏覽器開啟 %(url)s，請稍候..."
+msgstr "正在使用預設的網頁瀏覽器開啟 %(url)s，請稍候……"
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
@@ -103,7 +103,7 @@ msgstr "啟用：%(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
 " mods!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]您使用了不相容或不存在的模組啟動遊戲！"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -111,13 +111,13 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
 msgid "Solve the compatibility and start game again."
-msgstr ""
+msgstr "解決相容性問題再重新啟動遊戲。"
 
 #: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
 "You might want to save configuration before starting, when you see this page"
 " again."
-msgstr ""
+msgstr "再次見到此頁面時，您可能會想在開始前儲存設定。"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Welcome!"
@@ -133,36 +133,36 @@ msgstr "0 A.D. Empires Ascendant mod.io 免責聲明"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "文件日期: 2018-10-12"
+msgstr "文件日期：2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "您即將連接到mod.io線上服務。"
+msgstr "您即將連接到 mod.io 線上服務。"
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "這項服務提供了一種簡單的方式來下載和安裝社群所製作的模組，技術提供者是IndolDB 和ModDB 背後的公司：DBolical Pty Ltd。"
+msgstr "本服務提供下載與安裝社群模組的簡易管道，提供者為 IndieDB 和 ModDB 背後的 DBolical Pty Ltd。"
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr "該服務適用於13歲及以上的用戶。"
+msgstr "該服務適用於 13 歲以上的用戶。"
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games已經留意連線的安全性也審查了這個模組有無安全漏洞，但不保證這沒有任何風險。"
+msgstr "Wildfire Games 會注意連線的安全性並審核模組有無安全漏洞，但不保證沒有任何風險。"
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "使用本服務時，您了解mod.io 的使用條款和隱私政策聲明，且Wildfire Games 不對此服務造成的任何損害承擔責任。"
+msgstr "使用本服務，代表您了解 mod.io 的使用條款和隱私政策聲明，且 Wildfire Games 不為此服務造成的任何損害負責。"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -176,7 +176,7 @@ msgstr "無法取得遊戲 ID。\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "安裝錯誤"
+msgstr "初始化錯誤"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -194,12 +194,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "無法取得 Mod 列表。\n\n%(technicalDetails)s"
+msgstr "無法取得模組列表。\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "存取錯誤"
+msgstr "抓取失敗"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -208,7 +208,7 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "檔案下載失敗\n\n%(technicalDetails)s"
+msgstr "檔案下載失敗。\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
@@ -227,15 +227,15 @@ msgstr "檔案驗證錯誤。\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "錯誤驗證"
+msgstr "驗證錯誤"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "安裝 mod.io 介面。"
+msgstr "初始化 mod.io 介面。"
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "正在安裝"
+msgstr "正在初始化"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
 msgid "Cancel"
@@ -248,7 +248,7 @@ msgstr "無效的 Mod：%(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
-msgstr "存取並更新列表當中可用的模組。"
+msgstr "正在抓取並更新列表中可用的模組。"
 
 #: gui/modio/modio.js:247
 msgid "Updating"
@@ -261,7 +261,7 @@ msgstr "取消更新"
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "下載中 “%(modname)s”"
+msgstr "正在下載 “%(modname)s”"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
@@ -277,7 +277,7 @@ msgstr "取消下載"
 #: gui/modio/modio.js:337
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr "%(current)s/ %(total)s (%(percent)s%%)"
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:347
@@ -286,7 +286,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "花費時間:%(elapsed)s\n估計剩餘時間:%(remaining)s\n平均速度:%(avgSpeed)s"
+msgstr "經過時間：%(elapsed)s\n估計剩餘時間：%(remaining)s\n平均速度：%(avgSpeed)s"
 
 #: gui/modio/modio.js:349
 msgid "∞"
@@ -298,7 +298,7 @@ msgstr "∞"
 #: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr "%(number)s%(unit)s/s"
+msgstr "%(number)s%(unit)s/秒"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -337,7 +337,7 @@ msgstr "版本"
 #: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
-msgstr "Mod 標籤"
+msgstr "模組標籤"
 
 #: gui/modio/modio.xml:(heading):62
 msgid "File Size"
@@ -352,7 +352,7 @@ msgstr "相依性"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. 被設計成能輕易套用模組。模組的格式副檔名為 .pyromod，就和 .zip 檔一樣能被開啟。"
+msgstr "0 A.D. 設計得能輕易模組化。模組的發行形式為 .pyromod 檔，能像 .zip 檔一樣被開啟。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -362,13 +362,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "安裝 Mod 只需要在 0 A.D. 裡打開檔案 (雙擊檔案並且選擇以遊戲開啟，或者在是在電腦上執行「pyrogenesis file.pyromod」)。Mod 便會出現在〔Mod 選擇〕清單裡。你可以自由地選擇套用與否。如果有需要，你可以直接從遊戲目錄資料夾裡手動刪除 Mod 檔案 (詳見 https://trac.wildfiregames.com/wiki/GameDataPaths)。"
+msgstr "要安裝模組，只要以 0 A.D. 開啟檔案（雙擊檔案並選擇以遊戲開啟，或在終端機執行 \"pyrogenesis file.pyromod\" ），其就能在模組選擇器中使用。您可以任意啟用或關閉模組，需要時也可手動使用檔案管理員刪除（見 https://trac.wildfiregames.com/wiki/GameDataPaths）。"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "如需了解更多關於 Mod 的訊息，請參見 Modding Guide online (雙擊底下的 Modding Guide 的按鈕)。"
+msgstr "若要了解更多關於模組化遊戲的資訊，請參見線上模組指南（點擊底下的模組指南按鈕）。"
 
 #: gui/modmod/help/help.txt:7
 msgid ""

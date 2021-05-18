@@ -240,15 +240,8 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 	ENetHost* enetClient = nullptr;
 	if (g_XmppClient && m_UseSTUN)
 	{
-		// Find an unused port
-		for (int i = 0; i < 5 && !enetClient; ++i)
-		{
-			// Ports below 1024 are privileged on unix
-			u16 port = 1024 + rand() % (UINT16_MAX - 1024);
-			ENetAddress hostAddr{ ENET_HOST_ANY, port };
-			enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
-			++hostAddr.port;
-		}
+		ENetAddress hostAddr{ ENET_HOST_ANY, ENET_PORT_ANY };
+		enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
 
 		if (!enetClient)
 		{
@@ -259,9 +252,9 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 			return false;
 		}
 
-		StunClient::StunEndpoint stunEndpoint;
 		CStr ip;
-		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint, ip))
+		u16 port;
+		if (!StunClient::FindPublicIP(*enetClient, ip, port))
 		{
 			PushGuiMessage(
 				"type", "netstatus",
@@ -280,7 +273,7 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 			return true;
 		}
 
-		g_XmppClient->SendStunEndpointToHost(stunEndpoint, hostJID);
+		g_XmppClient->SendStunEndpointToHost(ip, port, hostJID);
 
 		SDL_Delay(1000);
 

@@ -98,35 +98,29 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 	// Always use lobby authentication for lobby matches to prevent impersonation and smurfing, in particular through mods that implemented an UI for arbitrary or other players nicknames.
 	bool hasLobby = !!g_XmppClient;
 	g_NetServer = new CNetServer(hasLobby);
-	// In lobby, we send our public ip and port on request to the players, who want to connect.
-	// In either case we need to know our public IP. If using STUN, we'll use that,
-	// otherwise, the lobby's reponse to the game registration stanza will tell us our public IP.
-	if (hasLobby)
-	{
-		CStr ip;
-		if (!useSTUN)
-			// Don't store IP - the lobby bot will send it later.
-			// (if a client tries to connect before it's setup, they'll be disconnected)
-			g_NetServer->SetConnectionData("", serverPort, false);
-		else
-		{
-			u16 port = serverPort;
-			// This is using port variable to store return value, do not pass serverPort itself.
-			if (!StunClient::FindStunEndpointHost(ip, port))
-			{
-				ScriptException::Raise(rq, "Failed to host via STUN.");
-				SAFE_DELETE(g_NetServer);
-				return;
-			}
-			g_NetServer->SetConnectionData(ip, port, true);
-		}
-	}
 
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
 		ScriptException::Raise(rq, "Failed to start server");
 		SAFE_DELETE(g_NetServer);
 		return;
+	}
+
+	// In lobby, we send our public ip and port on request to the players who want to connect.
+	// Thus we need to know our public IP. Use STUN if that's available,
+	// otherwise, the lobby's reponse to the game registration stanza will tell us our public IP.
+	if (hasLobby)
+	{
+		if (!useSTUN)
+			// Don't store IP - the lobby bot will send it later.
+			// (if a client tries to connect before it's setup, they'll be disconnected)
+			g_NetServer->SetConnectionData("", serverPort);
+		else if (!g_NetServer->SetConnectionDataViaSTUN())
+		{
+			ScriptException::Raise(rq, "Failed to host via STUN.");
+			SAFE_DELETE(g_NetServer);
+			return;
+		}
 	}
 
 	// Generate a secret to identify the host client.

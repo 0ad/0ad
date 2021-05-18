@@ -841,7 +841,7 @@ glooxwrapper::Jingle::Session::~Session()
 		delete m_Wrapped;
 }
 
-bool glooxwrapper::Jingle::Session::sessionInitiate(char* ipStr, u16 port)
+bool glooxwrapper::Jingle::Session::sessionInitiate(const char* ipStr, u16 port)
 {
 	gloox::Jingle::ICEUDP::CandidateList candidateList;
 

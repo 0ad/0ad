@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-15 08:08+0000\n"
-"PO-Revision-Date: 2021-03-20 12:56+0000\n"
+"PO-Revision-Date: 2021-05-14 16:32+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "捲動速度降低到 %.1f"
 #: graphics/CameraController.cpp:699
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "旋轉速度降低到 X=%.3f、Y=%.3f"
+msgstr "旋轉速度提升到 X=%.3f、Y=%.3f"
 
 #: graphics/CameraController.cpp:706
 #, c-format
@@ -68,31 +68,31 @@ msgstr "未知的子類型（見記錄檔）"
 
 #: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
-msgstr "憑證未受信任"
+msgstr "憑證未受信任。"
 
 #: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
-msgstr "憑證沒有已知的發行人"
+msgstr "憑證沒有已知的發行人。"
 
 #: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
-msgstr "憑證已被吊銷"
+msgstr "憑證已被吊銷。"
 
 #: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
-msgstr "憑證已失效"
+msgstr "憑證已過期。"
 
 #: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
-msgstr "憑證尚未被啟用"
+msgstr "憑證尚未生效。"
 
 #: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "憑證尚未被發出鄰機連接"
+msgstr "憑證尚未被發行以使鄰機連線。"
 
 #: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
-msgstr "憑證簽署人非官方發證人"
+msgstr "憑證簽署人非認證機構。"
 
 #: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
 #: lobby/XmppClient.cpp:1444
@@ -125,7 +125,7 @@ msgstr "未授權"
 
 #: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
-msgstr "暫時找不到接收者"
+msgstr "接收者暫時不可用"
 
 #: lobby/XmppClient.cpp:1380
 msgid "Registration required"
@@ -149,11 +149,11 @@ msgstr "不支援傳入的串流版本"
 
 #: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
-msgstr "串流已由伺服器關閉"
+msgstr "串流已被伺服器關閉"
 
 #: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
-msgstr "一個 輸入/輸出 錯誤發生了"
+msgstr "發生了一個輸入／輸出錯誤"
 
 #: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
@@ -165,21 +165,21 @@ msgstr "解析伺服器主機名稱失敗"
 
 #: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
-msgstr "這個系統的記憶體已耗盡"
+msgstr "系統記憶體已耗盡"
 
 #: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "伺服器的憑證無法被驗證或是 TLS 交握並未成功完成"
+msgstr "無法驗證伺服器憑證或 TLS 交握未成功完成"
 
 #: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
-msgstr "伺服器並未提供必須的 TLS 加密"
+msgstr "伺服器未提供必要的 TLS 加密"
 
 #: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "認證失敗。不正確的密碼或是帳號不存在"
+msgstr "驗證失敗。密碼不正確或帳號不存在"
 
 #: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
@@ -187,15 +187,15 @@ msgstr "使用者或系統請求斷線"
 
 #: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
-msgstr "沒有活躍中的連線"
+msgstr "沒有活躍的連線"
 
 #: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
-msgstr "你的帳號已經成功地註冊了"
+msgstr "成功註冊你的帳號"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
-msgstr "未提供所有必須的資訊"
+msgstr "未提供所有必要資訊"
 
 #: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
@@ -204,37 +204,37 @@ msgstr "使用者名稱已存在"
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "查詢遊戲 id 時發生失敗，錯誤:%s; %s"
+msgstr "查詢遊戲 id 失敗。錯誤：%s; %s。"
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "查詢模組時發生失敗，錯誤:%s; %s"
+msgstr "查詢模組失敗。錯誤：%s; %s。"
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "無法創建模組目錄：%s。"
+msgstr "無法建立模組目錄：%s。"
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr " Mod 下載無法開啟暫存檔案: %s。"
+msgstr "無法開啟下載模組的暫存檔案：%s。"
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "開始下載時發生失敗，錯誤: %s; %s。"
+msgstr "無法開始下載。錯誤：%s; %s。"
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "非同步下載發生錯誤: %s; %s。"
+msgstr "異步下載錯誤：%s; %s。"
 
 #: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "下載失敗。伺服器回應: %s; %s。"
+msgstr "下載失敗。伺服器回應：%s; %s。"
 
 #: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
@@ -243,7 +243,7 @@ msgstr "檔案大小不相符。"
 #: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "無效檔案。預期 MD5 %s，得到 %s。"
+msgstr "無效檔案。預期 md5 %s，得到 %s。"
 
 #: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
@@ -256,7 +256,7 @@ msgstr "驗證簽章失敗。"
 #: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "將遊戲儲存到「%s」"
+msgstr "儲存遊戲到「%s」"
 
 #: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format

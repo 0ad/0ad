@@ -75,7 +75,9 @@ class SceneCollector;
 class VertexPathfinder
 {
 public:
-	VertexPathfinder(const u16& gridSize, Grid<NavcellData>* const & terrainOnlyGrid) : m_GridSize(gridSize), m_TerrainOnlyGrid(terrainOnlyGrid), m_DebugOverlay(false) {};
+	VertexPathfinder(const u16& gridSize, Grid<NavcellData>* const & terrainOnlyGrid) : m_GridSize(gridSize), m_TerrainOnlyGrid(terrainOnlyGrid) {};
+	VertexPathfinder(const VertexPathfinder&) = delete;
+	VertexPathfinder(VertexPathfinder&& o) : m_GridSize(o.m_GridSize), m_TerrainOnlyGrid(o.m_TerrainOnlyGrid) {}
 
 	/**
 	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
@@ -86,21 +88,11 @@ public:
 	 */
 	WaypointPath ComputeShortPath(const ShortPathRequest& request, CmpPtr<ICmpObstructionManager> cmpObstructionManager) const;
 
-	void SetDebugOverlay(bool enabled) { m_DebugOverlay = enabled; }
-	void RenderSubmit(SceneCollector& collector);
-
 private:
-
-	void DebugRenderGoal(const CSimContext& simContext, const PathGoal& goal) const;
-	void DebugRenderGraph(const CSimContext& simContext, const std::vector<Vertex>& vertexes, const std::vector<Edge>& edges, const std::vector<Square>& edgeSquares) const;
-	void DebugRenderEdges(const CSimContext& simContext, bool visible, CFixedVector2D curr, CFixedVector2D npos) const;
 
 	// References to the Pathfinder for convenience.
 	const u16& m_GridSize;
 	Grid<NavcellData>* const & m_TerrainOnlyGrid;
-
-	std::atomic<bool> m_DebugOverlay;
-	mutable std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
 
 	// These vectors are expensive to recreate on every call, so we cache them here.
 	// They are made mutable to allow using them in the otherwise const ComputeShortPath.
@@ -119,5 +111,31 @@ private:
 	mutable std::vector<Edge> m_Edges;
 	mutable std::vector<Square> m_EdgeSquares; // Axis-aligned squares; equivalent to 4 edges.
 };
+
+/**
+ * If there are several vertex pathfinders running asynchronously, their debug output might conflict.
+ * To remain thread-safe, this single class will handle the debug data.
+ * NB: though threadsafe, the way things are setup means you can have a few
+ * more graphs and edges than you'd expect showing up in the rendered graph.
+ */
+class VertexPathfinderDebugOverlay
+{
+	friend class VertexPathfinder;
+public:
+	void SetDebugOverlay(bool enabled) { m_DebugOverlay = enabled; }
+	void RenderSubmit(SceneCollector& collector);
+protected:
+
+	void DebugRenderGoal(const CSimContext& simContext, const PathGoal& goal);
+	void DebugRenderGraph(const CSimContext& simContext, const std::vector<Vertex>& vertexes, const std::vector<Edge>& edges, const std::vector<Square>& edgeSquares);
+	void DebugRenderEdges(const CSimContext& simContext, bool visible, CFixedVector2D curr, CFixedVector2D npos);
+
+	std::atomic<bool> m_DebugOverlay = false;
+	// The data is double buffered: the first is the 'work-in-progress' state, the second the last RenderSubmit state.
+	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
+	std::vector<SOverlayLine> m_DebugOverlayShortPathLinesSubmitted;
+};
+
+extern VertexPathfinderDebugOverlay g_VertexPathfinderDebugOverlay;
 
 #endif // INCLUDED_VERTEXPATHFINDER
