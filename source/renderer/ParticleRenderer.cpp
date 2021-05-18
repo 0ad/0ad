@@ -23,6 +23,7 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"

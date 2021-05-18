@@ -26,6 +26,7 @@
 #include "maths/Vector4D.h"
 #include "maths/Matrix3D.h"
 
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 
 #include "graphics/GameView.h"

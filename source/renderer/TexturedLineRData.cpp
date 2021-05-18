@@ -24,6 +24,7 @@
 #include "maths/Frustum.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
+#include "ps/CStrInternStatic.h"
 #include "renderer/OverlayRenderer.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"

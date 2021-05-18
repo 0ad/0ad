@@ -31,6 +31,7 @@
 #include "lib/allocators/STLAllocators.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"

@@ -26,6 +26,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CConsole.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"

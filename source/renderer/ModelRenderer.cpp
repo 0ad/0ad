@@ -31,6 +31,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/MikktspaceWrap.h"
 #include "renderer/ModelRenderer.h"

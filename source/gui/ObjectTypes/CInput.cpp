@@ -27,6 +27,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/ConfigDB.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
