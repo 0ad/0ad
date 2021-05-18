@@ -33,6 +33,7 @@
 #include "ps/Compress.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
+#include "ps/Hashing.h"
 #include "ps/Loader.h"
 #include "ps/Profile.h"
 #include "ps/Threading.h"
@@ -184,7 +185,9 @@ void CNetClient::SetHostJID(const CStr& jid)
 
 void CNetClient::SetGamePassword(const CStr& hashedPassword)
 {
-	m_Password = hashedPassword;
+	// Hash on top with the user's name, to make sure not all
+	// hashing data is in control of the host.
+	m_Password = HashCryptographically(hashedPassword, m_UserName.ToUTF8());
 }
 
 void CNetClient::SetControllerSecret(const std::string& secret)
@@ -200,6 +203,11 @@ bool CNetClient::SetupConnection(ENetHost* enetClient)
 	SetAndOwnSession(session);
 	m_PollingThread = std::thread(Threading::HandleExceptions<CNetClientSession::RunNetLoop>::Wrapper, m_Session);
 	return ok;
+}
+
+void CNetClient::SetupConnectionViaLobby()
+{
+	g_XmppClient->SendIqGetConnectionData(m_HostJID, m_Password, m_UserName.ToUTF8(), false);
 }
 
 void CNetClient::SetupServerData(CStr address, u16 port, bool stun)
@@ -268,7 +276,7 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 		// To work around that, send again a connection data request, but for internal IP this time.
 		if (ip == m_ServerAddress)
 		{
-			g_XmppClient->SendIqGetConnectionData(m_HostJID, m_Password, true);
+			g_XmppClient->SendIqGetConnectionData(m_HostJID, m_Password, m_UserName.ToUTF8(), true);
 			// Return true anyways - we're on a success path here.
 			return true;
 		}

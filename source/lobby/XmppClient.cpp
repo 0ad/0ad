@@ -365,12 +365,13 @@ void XmppClient::SendIqGetProfile(const std::string& player)
 /**
  * Request the Connection data (ip, port...) from the server.
  */
-void XmppClient::SendIqGetConnectionData(const std::string& jid, const std::string& password, bool localIP)
+void XmppClient::SendIqGetConnectionData(const std::string& jid, const std::string& password, const std::string& clientSalt, bool localIP)
 {
 	glooxwrapper::JID targetJID(jid);
 
 	ConnectionData* connectionData = new ConnectionData();
 	connectionData->m_Password = password;
+	connectionData->m_ClientSalt = clientSalt;
 	connectionData->m_IsLocalIP = localIP ? "1" : "0";
 	glooxwrapper::IQ iq(gloox::IQ::Get, targetJID, m_client->getID());
 	iq.addExtension(connectionData);
@@ -974,7 +975,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				m_client->send(response);
 				return true;
 			}
-			if (!g_NetServer->CheckPasswordAndIncrement(CStr(cd->m_Password.to_string()), iq.from().username()))
+			if (!g_NetServer->CheckPasswordAndIncrement(iq.from().username(), cd->m_Password.to_string(), cd->m_ClientSalt.to_string()))
 			{
 				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
 				ConnectionData* connectionData = new ConnectionData();

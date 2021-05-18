@@ -36,7 +36,7 @@ public:
 	virtual void SendIqGetProfile(const std::string& player) = 0;
 	virtual void SendIqGameReport(const ScriptRequest& rq, JS::HandleValue data) = 0;
 	virtual void SendIqRegisterGame(const ScriptRequest& rq, JS::HandleValue data) = 0;
-	virtual void SendIqGetConnectionData(const std::string& jid, const std::string& password, bool localIP) = 0;
+	virtual void SendIqGetConnectionData(const std::string& jid, const std::string& password, const std::string& clientSalt, bool localIP) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
 	virtual void SendIqLobbyAuth(const std::string& to, const std::string& token) = 0;

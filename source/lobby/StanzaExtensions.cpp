@@ -309,6 +309,9 @@ ConnectionData::ConnectionData(const glooxwrapper::Tag* tag)
 	const glooxwrapper::Tag* pw = tag->findTag_clone("connectiondata/password");
 	if (pw)
 		m_Password = pw->cdata();
+	const glooxwrapper::Tag* cs = tag->findTag_clone("connectiondata/clientsalt");
+	if (cs)
+		m_ClientSalt = cs->cdata();
 	const glooxwrapper::Tag* e = tag->findTag_clone("connectiondata/error");
 	if (e)
 		m_Error= e->cdata();
@@ -318,6 +321,7 @@ ConnectionData::ConnectionData(const glooxwrapper::Tag* tag)
 	glooxwrapper::Tag::free(pip);
 	glooxwrapper::Tag::free(s);
 	glooxwrapper::Tag::free(pw);
+	glooxwrapper::Tag::free(cs);
 	glooxwrapper::Tag::free(e);
 }
 
@@ -348,6 +352,8 @@ glooxwrapper::Tag* ConnectionData::tag() const
 		t->addChild(glooxwrapper::Tag::allocate("useSTUN", m_UseSTUN));
 	if (!m_Password.empty())
 		t->addChild(glooxwrapper::Tag::allocate("password", m_Password));
+	if (!m_ClientSalt.empty())
+		t->addChild(glooxwrapper::Tag::allocate("clientsalt", m_ClientSalt));
 	if (!m_Error.empty())
 		t->addChild(glooxwrapper::Tag::allocate("error", m_Error));
 	return t;
