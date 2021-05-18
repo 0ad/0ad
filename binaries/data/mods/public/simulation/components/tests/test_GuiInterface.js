@@ -33,7 +33,7 @@ Engine.LoadComponentScript("interfaces/Trader.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/Treasure.js");
-Engine.LoadComponentScript("interfaces/TreasureCollecter.js");
+Engine.LoadComponentScript("interfaces/TreasureCollector.js");
 Engine.LoadComponentScript("interfaces/Turretable.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");

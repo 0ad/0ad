@@ -905,7 +905,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.treasureCollecter ||
+			if (!entState.treasureCollector ||
 				!targetState || !targetState.treasure)
 				return false;
 

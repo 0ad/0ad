@@ -642,7 +642,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.CollectTreasure": function(msg) {
-		if (this.CheckTargetRange(msg.data.target, IID_TreasureCollecter))
+		if (this.CheckTargetRange(msg.data.target, IID_TreasureCollector))
 			this.SetNextState("INDIVIDUAL.COLLECTTREASURE.COLLECTING");
 		else if (this.AbleToMove())
 			this.SetNextState("INDIVIDUAL.COLLECTTREASURE.APPROACHING");
@@ -2786,7 +2786,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
-					if (!this.MoveToTargetRange(this.order.data.target, IID_TreasureCollecter))
+					if (!this.MoveToTargetRange(this.order.data.target, IID_TreasureCollector))
 					{
 						this.SetNextState("FINDINGNEWTARGET");
 						return true;
@@ -2799,7 +2799,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function(msg) {
-					if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
+					if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollector))
 						this.SetNextState("COLLECTING");
 					else if (msg.likelyFailure)
 						this.SetNextState("FINDINGNEWTARGET");
@@ -2808,8 +2808,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"COLLECTING": {
 				"enter": function() {
-					let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
-					if (!cmpTreasureCollecter.StartCollecting(this.order.data.target, IID_UnitAI))
+					let cmpTreasureCollector = Engine.QueryInterface(this.entity, IID_TreasureCollector);
+					if (!cmpTreasureCollector.StartCollecting(this.order.data.target, IID_UnitAI))
 					{
 						this.ProcessMessage("TargetInvalidated");
 						return true;
@@ -2819,9 +2819,9 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"leave": function() {
-					let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
-					if (cmpTreasureCollecter)
-						cmpTreasureCollecter.StopCollecting();
+					let cmpTreasureCollector = Engine.QueryInterface(this.entity, IID_TreasureCollector);
+					if (cmpTreasureCollector)
+						cmpTreasureCollector.StopCollecting();
 				},
 
 				"OutOfRange": function(msg) {
@@ -4451,8 +4451,8 @@ UnitAI.prototype.FindNearbyTreasure = function(position)
 	if (!position)
 		return undefined;
 
-	let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
-	if (!cmpTreasureCollecter)
+	let cmpTreasureCollector = Engine.QueryInterface(this.entity, IID_TreasureCollector);
+	if (!cmpTreasureCollector)
 		return undefined;
 
 	let players = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
@@ -4461,7 +4461,7 @@ UnitAI.prototype.FindNearbyTreasure = function(position)
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	// Don't account for entity size, we need to match LOS visibility.
 	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Treasure, false);
-	return nearby.find(ent => cmpTreasureCollecter.CanCollect(ent));
+	return nearby.find(ent => cmpTreasureCollector.CanCollect(ent));
 };
 
 /**

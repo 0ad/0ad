@@ -26,14 +26,14 @@ Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Player.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/Treasure.js");
-Engine.LoadComponentScript("interfaces/TreasureCollecter.js");
+Engine.LoadComponentScript("interfaces/TreasureCollector.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Player.js");
 Engine.LoadComponentScript("Timer.js");
 Engine.LoadComponentScript("Treasure.js");
-Engine.LoadComponentScript("TreasureCollecter.js");
+Engine.LoadComponentScript("TreasureCollector.js");
 Engine.LoadComponentScript("Trigger.js");
 
 let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer", {});
@@ -73,7 +73,7 @@ let cmpTreasure = ConstructComponent(treasure, "Treasure", {
 });
 cmpTreasure.OnOwnershipChanged({ "to": 0 });
 
-let cmpTreasurer = ConstructComponent(treasurer, "TreasureCollecter", {
+let cmpTreasurer = ConstructComponent(treasurer, "TreasureCollector", {
 	"MaxDistance": "2.0"
 });
 

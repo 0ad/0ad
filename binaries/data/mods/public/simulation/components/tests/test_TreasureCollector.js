@@ -1,10 +1,10 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/Treasure.js");
-Engine.LoadComponentScript("interfaces/TreasureCollecter.js");
+Engine.LoadComponentScript("interfaces/TreasureCollector.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Timer.js");
-Engine.LoadComponentScript("TreasureCollecter.js");
+Engine.LoadComponentScript("TreasureCollector.js");
 
 AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
 	"IsInTargetRange": () => true
@@ -14,7 +14,7 @@ const entity = 11;
 let treasure = 12;
 let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer", {});
 
-let cmpTreasurer = ConstructComponent(entity, "TreasureCollecter", {
+let cmpTreasurer = ConstructComponent(entity, "TreasureCollector", {
 	"MaxDistance": "2.0"
 });
 
