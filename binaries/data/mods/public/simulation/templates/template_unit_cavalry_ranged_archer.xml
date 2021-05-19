@@ -34,4 +34,7 @@
       <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.85</WalkSpeed>
+  </UnitMotion>
 </Entity>
