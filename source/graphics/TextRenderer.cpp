@@ -24,6 +24,7 @@
 #include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
 #include "ps/CStrIntern.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
 

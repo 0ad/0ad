@@ -103,6 +103,7 @@ public:
 
 	/**
 	 * Set the game password.
+	 * Must be called after SetUserName, as that is used to hash further.
 	 */
 	void SetGamePassword(const CStr& hashedPassword);
 
@@ -124,6 +125,11 @@ public:
 	 * @return true on success, false on connection failure
 	 */
 	bool SetupConnection(ENetHost* enetClient);
+
+	/**
+	 * Request connection information over the lobby.
+	 */
+	void SetupConnectionViaLobby();
 
 	/**
 	 * Connect to the remote networked server using lobby.

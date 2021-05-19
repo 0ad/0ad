@@ -31,6 +31,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/GUID.h"
+#include "ps/Hashing.h"
 #include "ps/Profile.h"
 #include "ps/Threading.h"
 #include "scriptinterface/ScriptContext.h"
@@ -203,6 +204,12 @@ void CNetServerWorker::SetPassword(const CStr& hashedPassword)
 void CNetServerWorker::SetControllerSecret(const std::string& secret)
 {
 	m_ControllerSecret = secret;
+}
+
+
+bool CNetServerWorker::CheckPassword(const std::string& password, const std::string& salt) const
+{
+	return HashCryptographically(m_Password, salt) == password;
 }
 
 
@@ -999,7 +1006,8 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	}
 
 	// Check the password before anything else.
-	if (server.m_Password != message->m_Password)
+	// NB: m_Name must match the client's salt, @see CNetClient::SetGamePassword
+	if (!server.CheckPassword(message->m_Password, message->m_Name.ToUTF8()))
 	{
 		// Noisy logerror because players are not supposed to be able to get the IP,
 		// so this might be someone targeting the host for some reason
@@ -1674,10 +1682,10 @@ bool CNetServer::SetConnectionDataViaSTUN()
 	return StunClient::FindPublicIP(*m_Worker->m_Host, m_PublicIp, m_PublicPort);
 }
 
-bool CNetServer::CheckPasswordAndIncrement(const CStr& password, const std::string& username)
+bool CNetServer::CheckPasswordAndIncrement(const std::string& username, const std::string& password, const std::string& salt)
 {
 	std::unordered_map<std::string, int>::iterator it = m_FailedAttempts.find(username);
-	if (m_Password == password)
+	if (m_Worker->CheckPassword(password, salt))
 	{
 		if (it != m_FailedAttempts.end())
 			it->second = 0;

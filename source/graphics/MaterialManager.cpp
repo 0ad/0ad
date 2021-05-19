@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "maths/Vector4D.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/RenderingOptions.h"

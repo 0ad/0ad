@@ -569,7 +569,7 @@ m.Template = m.Class({
 
 	"canOccupyTurret": function() { return "Turretable" in this._template; },
 
-	"isTreasureCollecter": function() { return this.get("TreasureCollecter") !== undefined; },
+	"isTreasureCollector": function() { return this.get("TreasureCollector") !== undefined; },
 });
 
 

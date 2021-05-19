@@ -175,7 +175,7 @@ public:
 	 * when guessing password trying to get connection data from the host.
 	 * @return true iff password is valid
 	 */
-	bool CheckPasswordAndIncrement(const CStr& password, const std::string& username);
+	bool CheckPasswordAndIncrement(const std::string& username, const std::string& password, const std::string& salt);
 
 	/**
 	 * Check if user reached certain number of failed attempts.
@@ -238,6 +238,8 @@ private:
 
 	CNetServerWorker(bool useLobbyAuth, int autostartPlayers);
 	~CNetServerWorker();
+
+	bool CheckPassword(const std::string& password, const std::string& salt) const;
 
 	void SetPassword(const CStr& hashedPassword);
 

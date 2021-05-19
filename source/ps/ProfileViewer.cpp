@@ -30,6 +30,7 @@
 #include "gui/GUIMatrix.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"

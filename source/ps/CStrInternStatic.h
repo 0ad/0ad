@@ -26,6 +26,13 @@
 //   X2(foo_0, "foo[0]")
 // defines a variable str_foo_0 with value "foo[0]".
 
+// For direct inclusion, we presumably just want the extern definitions.
+#ifndef X
+#include "CStrIntern.h"
+#define X(id) extern CStrIntern str_##id;
+#define X2(id, str) extern CStrIntern str_##id;
+#endif
+
 X(0)
 X(1)
 X(2)
@@ -164,3 +171,6 @@ X(width)
 X(windAngle)
 X(zFar)
 X(zNear)
+
+#undef X
+#undef X2

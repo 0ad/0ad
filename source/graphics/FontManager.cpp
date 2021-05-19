@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "graphics/TextureManager.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 

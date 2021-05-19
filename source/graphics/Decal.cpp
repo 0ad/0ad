@@ -21,6 +21,7 @@
 
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
+#include "ps/CStrInternStatic.h"
 
 CModelAbstract* CModelDecal::Clone() const
 {

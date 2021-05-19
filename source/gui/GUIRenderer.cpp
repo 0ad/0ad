@@ -31,6 +31,7 @@
 #include "lib/tex/tex.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 

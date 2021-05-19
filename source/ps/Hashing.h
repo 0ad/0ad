@@ -15,10 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lib/precompiled.h"	// common precompiled header
+#ifndef INCLUDED_HASHING
+#define INCLUDED_HASHING
 
-// "graphics"-specific PCH:
-#include "scriptinterface/ScriptTypes.h"
-#include "lib/ogl.h"
-#include "ps/CStr.h"
-#include "maths/Matrix3D.h"
+class CStr8;
+
+/**
+ * Hash a string in a cryptographically secure manner.
+ * This method is intended to be 'somewhat fast' for password hashing,
+ * and should neither be used where a fast real-time hash is wanted,
+ * nor for more sensitive passwords.
+ * @return a hex-encoded string.
+ */
+CStr8 HashCryptographically(const CStr8& password, const CStr8& salt);
+
+#endif

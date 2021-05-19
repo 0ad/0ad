@@ -63,6 +63,7 @@ public:
 	glooxwrapper::string m_IsLocalIP;
 	glooxwrapper::string m_UseSTUN;
 	glooxwrapper::string m_Password;
+	glooxwrapper::string m_ClientSalt;
 	glooxwrapper::string m_Error;
 };
 

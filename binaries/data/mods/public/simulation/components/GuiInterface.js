@@ -570,9 +570,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"resources": cmpTreasure.Resources()
 		};
 
-	let cmpTreasureCollecter = Engine.QueryInterface(ent, IID_TreasureCollecter);
-	if (cmpTreasureCollecter)
-		ret.treasureCollecter = true;
+	let cmpTreasureCollector = Engine.QueryInterface(ent, IID_TreasureCollector);
+	if (cmpTreasureCollector)
+		ret.treasureCollector = true;
 
 	let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 	if (cmpUnitMotion)

@@ -28,8 +28,11 @@
 #include "network/NetServer.h"
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/GUID.h"
+#include "ps/Hashing.h"
+#include "ps/Pyrogenesis.h"
 #include "ps/Util.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/StructuredClone.h"
@@ -58,36 +61,6 @@ bool HasNetClient()
 {
 	return !!g_NetClient;
 }
-
-CStr HashPassword(const CStr& password)
-{
-	if (password.empty())
-		return password;
-
-	ENSURE(sodium_init() >= 0);
-	const int DIGESTSIZE = crypto_hash_sha256_BYTES;
-	constexpr int ITERATIONS = 1737;
-
-	cassert(DIGESTSIZE == 32);
-
-	static const unsigned char salt_base[DIGESTSIZE] = {
-			244, 243, 249, 244, 32, 33, 19, 35, 16, 11, 12, 13, 14, 15, 16, 17,
-			18, 19, 20, 32, 33, 244, 224, 127, 129, 130, 140, 153, 88, 123, 234, 123 };
-
-	// initialize the salt buffer
-	unsigned char salt_buffer[DIGESTSIZE] = { 0 };
-	crypto_hash_sha256_state state;
-	crypto_hash_sha256_init(&state);
-	crypto_hash_sha256_update(&state, salt_base, sizeof(salt_base));
-
-	crypto_hash_sha256_final(&state, salt_buffer);
-
-	// PBKDF2 to create the buffer
-	unsigned char encrypted[DIGESTSIZE];
-	pbkdf2(encrypted, (unsigned char*)password.c_str(), password.length(), salt_buffer, DIGESTSIZE, ITERATIONS);
-	return CStr(Hexify(encrypted, DIGESTSIZE)).UpperCase();
-}
-
 
 void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u16 serverPort, bool useSTUN, const CStr& password)
 {
@@ -125,18 +98,38 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 
 	// Generate a secret to identify the host client.
 	std::string secret = ps_generate_guid();
-
-	// We will get hashed password from clients, so hash it once for server
-	CStr hashedPass = HashPassword(password);
-	g_NetServer->SetPassword(hashedPass);
 	g_NetServer->SetControllerSecret(secret);
 
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
+
 	if (hasLobby)
-		g_NetClient->SetHostJID(g_XmppClient->GetJID());
-	g_NetClient->SetGamePassword(hashedPass);
+	{
+		CStr hostJID = g_XmppClient->GetJID();
+
+		/**
+		 * Password security - we want 0 A.D. to protect players from malicious hosts. We assume that clients
+		 * might mistakenly send a personal password instead of the game password (e.g. enter their mail account's password on autopilot).
+		 * Malicious dedicated servers might be set up to farm these failed logins and possibly obtain user credentials.
+		 * Therefore, we hash the passwords on the client side before sending them to the server.
+		 * This still makes the passwords potentially recoverable, but makes it much harder at scale.
+		 * To prevent the creation of rainbow tables, hash with:
+		 * - the host name
+		 * - the client name (this makes rainbow tables completely unworkable unless a specific user is targeted,
+		 *   but that would require both computing the matching rainbow table _and_ for that specific user to mistype a personal password,
+		 *   at which point we assume the attacker would/could probably just rather use another means of obtaining the password).
+		 * - the password itself
+		 * - the engine version (so that the hashes change periodically)
+		 * TODO: it should be possible to implement SRP or something along those lines to completely protect from this,
+		 * but the cost/benefit ratio is probably not worth it.
+		 */
+		CStr hashedPass = HashCryptographically(password, hostJID + password + engine_version);
+		g_NetServer->SetPassword(hashedPass);
+		g_NetClient->SetHostJID(hostJID);
+		g_NetClient->SetGamePassword(hashedPass);
+	}
+
 	g_NetClient->SetupServerData("127.0.0.1", serverPort, false);
 	g_NetClient->SetControllerSecret(secret);
 
@@ -179,13 +172,13 @@ void StartNetworkJoinLobby(const CStrW& playerName, const CStr& hostJID, const C
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
-	CStr hashedPass = HashPassword(password);
+	CStr hashedPass = HashCryptographically(password, hostJID + password + engine_version);
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostJID(hostJID);
 	g_NetClient->SetGamePassword(hashedPass);
-	g_XmppClient->SendIqGetConnectionData(hostJID, hashedPass.c_str(), false);
+	g_NetClient->SetupConnectionViaLobby();
 }
 
 void DisconnectNetworkGame()

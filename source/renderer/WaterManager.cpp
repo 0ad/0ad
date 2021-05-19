@@ -32,6 +32,7 @@
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/WaterManager.h"

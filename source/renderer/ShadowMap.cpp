@@ -32,6 +32,7 @@
 #include "maths/Matrix3D.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"

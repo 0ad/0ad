@@ -1,9 +1,20 @@
 function TerritoryDecay() {}
 
-TerritoryDecay.prototype.Schema =
-	"<element name='DecayRate' a:help='Decay rate in capture points per second'>" +
-		"<choice><ref name='positiveDecimal'/><value>Infinity</value></choice>" +
-	"</element>";
+TerritoryDecay.prototype.Schema = `
+	<element name='DecayRate' a:help='Decay rate in capture points per second'>
+		<choice><ref name='positiveDecimal'/><value>Infinity</value></choice>
+	</element>
+	<element name='Territory' a:help='Specifies territory in which this entity will decay.'>
+		<list>
+			<oneOrMore>
+				<choice>
+					<value>neutral</value>
+					<value>enemy</value>
+				</choice>
+			</oneOrMore>
+		</list>
+	</element>
+	`;
 
 TerritoryDecay.prototype.Init = function()
 {
@@ -24,25 +35,29 @@ TerritoryDecay.prototype.IsConnected = function()
 	if (!cmpPlayer)
 		return true;// something without ownership can't decay
 
+	const decayTerritory = ApplyValueModificationsToEntity("TerritoryDecay/Territory", this.template.Territory, this.entity);
+
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
 	if (tileOwner == 0)
 	{
 		this.connectedNeighbours[0] = 1;
-		return cmpPlayer.GetPlayerID() == 0; // Gaia building on gaia ground -> don't decay
+		return cmpPlayer.GetPlayerID() == 0 || decayTerritory.indexOf("neutral") === -1;
 	}
 
 	var tileConnected = cmpTerritoryManager.IsConnected(pos.x, pos.y);
 	if (tileConnected && !cmpPlayer.IsMutualAlly(tileOwner))
 	{
 		this.connectedNeighbours[tileOwner] = 1;
-		return false;
+		return decayTerritory.indexOf("enemy") === -1;
 	}
 
 	if (tileConnected)
 		return true;
 
+	// Special-case: if the tile is unconnected, non-own territory, decay towards gaia.
+	// TODO: this is not great, see #4749
 	if (cmpPlayer.GetPlayerID() != tileOwner)
 	{
 		this.connectedNeighbours[0] = 1;

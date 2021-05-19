@@ -25,6 +25,7 @@
 #include "gui/SettingTypes/CGUISeries.h"
 #include "gui/SettingTypes/CGUIString.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 

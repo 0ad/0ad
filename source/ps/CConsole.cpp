@@ -37,6 +37,7 @@
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"

@@ -905,7 +905,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.treasureCollecter ||
+			if (!entState.treasureCollector ||
 				!targetState || !targetState.treasure)
 				return false;
 
@@ -1007,8 +1007,8 @@ var g_UnitActions =
 			if (targetState && (!Engine.HotkeyIsPressed("session.autorallypoint") ||
 			    !targetState.production ||
 			    !targetState.production.entities.length))
-				for (let ent in g_Selection.selected)
-					if (targetState.id == +ent)
+				for (const ent of g_Selection.toList())
+					if (targetState.id == ent)
 						return false;
 
 			let tooltip;

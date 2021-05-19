@@ -31,6 +31,7 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"

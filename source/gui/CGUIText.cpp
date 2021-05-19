@@ -25,6 +25,7 @@
 #include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/SettingTypes/CGUIString.h"
+#include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
 
 #include <math.h>

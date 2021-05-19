@@ -28,6 +28,7 @@
 #include "maths/Brush.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
+#include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
 
 #include <cmath>

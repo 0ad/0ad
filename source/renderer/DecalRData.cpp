@@ -27,6 +27,7 @@
 #include "lib/allocators/DynamicArena.h"
 #include "lib/allocators/STLAllocators.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"

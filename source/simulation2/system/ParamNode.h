@@ -20,7 +20,6 @@
 
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/Fixed.h"
-#include "ps/CStrIntern.h"
 #include "ps/Errors.h"
 #include "scriptinterface/ScriptTypes.h"
 
@@ -30,6 +29,7 @@
 class XMBData;
 class XMBElement;
 
+class CStrIntern;
 class ScriptRequest;
 
 /**

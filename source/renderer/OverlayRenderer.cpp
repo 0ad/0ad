@@ -29,6 +29,7 @@
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/DebugRenderer.h"

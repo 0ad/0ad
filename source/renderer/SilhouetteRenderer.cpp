@@ -25,6 +25,7 @@
 #include "graphics/Patch.h"
 #include "graphics/ShaderManager.h"
 #include "maths/MathUtil.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
