@@ -10,8 +10,6 @@ uniform vec3 sunDir;
 uniform vec3 sunColor;
 uniform mat4 skyBoxRot;
 
-uniform vec3 cameraPos;
-
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 uniform vec3 color;				// color of the water
 uniform vec3 tint;				// Tint for refraction (used to simulate particles in water)
