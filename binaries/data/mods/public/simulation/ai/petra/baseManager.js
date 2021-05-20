@@ -430,7 +430,7 @@ PETRA.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 		{
 			if (ent.unitAIState() == "INDIVIDUAL.GATHER.GATHERING")
 				++this.gatherers[type].used;
-			else if (ent.unitAIState() == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+			else if (ent.unitAIState() == "INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING")
 				++this.gatherers[type].lost;
 		}
 		// TODO  add also a test on remaining resources.

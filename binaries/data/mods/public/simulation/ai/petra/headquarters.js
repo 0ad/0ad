@@ -2448,7 +2448,7 @@ PETRA.HQ.prototype.assignGatherers = function()
 	{
 		for (let worker of base.workers.values())
 		{
-			if (worker.unitAIState().split(".")[1] != "RETURNRESOURCE")
+			if (worker.unitAIState().split(".").indexOf("RETURNRESOURCE") === -1)
 				continue;
 			let orders = worker.unitAIOrderData();
 			if (orders.length < 2 || !orders[1].target || orders[1].target != worker.getMetadata(PlayerID, "supply"))

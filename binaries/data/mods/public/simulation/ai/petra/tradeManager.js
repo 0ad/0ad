@@ -110,7 +110,7 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 PETRA.TradeManager.prototype.updateTrader = function(gameState, ent)
 {
 	if (ent.hasClass("Ship") && gameState.ai.playedTurn % 5 == 0 &&
-	    !ent.unitAIState().startsWith("INDIVIDUAL.GATHER") &&
+	    !ent.unitAIState().startsWith("INDIVIDUAL.COLLECTTREASURE") &&
 	    PETRA.gatherTreasure(gameState, ent, true))
 		return;
 

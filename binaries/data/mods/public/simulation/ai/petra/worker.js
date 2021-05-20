@@ -253,37 +253,37 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 					}
 				}
 			}
-		}
-		else if (unitAIState == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
-		{
-			if (gameState.ai.playedTurn % 10 == 0)
+			if (unitAIState == "INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING")
 			{
-				// Check from time to time that UnitAI does not send us to an inaccessible dropsite
-				let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
-				if (dropsite && dropsite.position() && this.entAccess != PETRA.getLandAccess(gameState, dropsite))
-					PETRA.returnResources(gameState, this.ent);
-			}
-
-			// If gathering a sparse resource, we may have been sent to a faraway resource if the one nearby was full.
-			// Let's check if it is still the case. If so, we reset its metadata supplyId so that the unit will be
-			// reordered to gather after having returned the resources (when comparing its supplyId with the UnitAI one).
-			let gatherType = ent.getMetadata(PlayerID, "gather-type");
-			let influenceGroup = Resources.GetResource(gatherType).aiAnalysisInfluenceGroup;
-			if (influenceGroup && influenceGroup == "sparse")
-			{
-				let supplyId = ent.getMetadata(PlayerID, "supply");
-				if (supplyId)
+				if (gameState.ai.playedTurn % 10 == 0)
 				{
-					let nearby = this.base.dropsiteSupplies[gatherType].nearby;
-					if (!nearby.some(sup => sup.id == supplyId))
+					// Check from time to time that UnitAI does not send us to an inaccessible dropsite
+					let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
+					if (dropsite && dropsite.position() && this.entAccess != PETRA.getLandAccess(gameState, dropsite))
+						PETRA.returnResources(gameState, this.ent);
+				}
+
+				// If gathering a sparse resource, we may have been sent to a faraway resource if the one nearby was full.
+				// Let's check if it is still the case. If so, we reset its metadata supplyId so that the unit will be
+				// reordered to gather after having returned the resources (when comparing its supplyId with the UnitAI one).
+				let gatherType = ent.getMetadata(PlayerID, "gather-type");
+				let influenceGroup = Resources.GetResource(gatherType).aiAnalysisInfluenceGroup;
+				if (influenceGroup && influenceGroup == "sparse")
+				{
+					let supplyId = ent.getMetadata(PlayerID, "supply");
+					if (supplyId)
 					{
-						if (nearby.length)
-							ent.setMetadata(PlayerID, "supply", undefined);
-						else
+						let nearby = this.base.dropsiteSupplies[gatherType].nearby;
+						if (!nearby.some(sup => sup.id == supplyId))
 						{
-							let medium = this.base.dropsiteSupplies[gatherType].medium;
-							if (!medium.some(sup => sup.id == supplyId) && medium.length)
+							if (nearby.length)
 								ent.setMetadata(PlayerID, "supply", undefined);
+							else
+							{
+								let medium = this.base.dropsiteSupplies[gatherType].medium;
+								if (!medium.some(sup => sup.id == supplyId) && medium.length)
+									ent.setMetadata(PlayerID, "supply", undefined);
+							}
 						}
 					}
 				}
@@ -379,13 +379,13 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 		}
 		else	// Perform some sanity checks
 		{
-			if (unitAIStateOrder == "GATHER" || unitAIStateOrder == "RETURNRESOURCE")
+			if (unitAIStateOrder == "GATHER")
 			{
 				// we may have drifted towards ennemy territory during the hunt, if yes go home
 				let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(ent.position());
 				if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 					this.startHunting(gameState);
-				else if (unitAIState == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+				else if (unitAIState == "INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING")
 				{
 					// Check that UnitAI does not send us to an inaccessible dropsite
 					let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);

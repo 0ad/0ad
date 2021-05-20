@@ -560,7 +560,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 		let unitAIState = ship.unitAIState();
 		if (ship.getMetadata(PlayerID, "transporter") !== undefined ||
 		    unitAIState == "INDIVIDUAL.GATHER.APPROACHING" ||
-		    unitAIState == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+		    unitAIState == "INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING")
 		{
 			let previousPosition = ship.getMetadata(PlayerID, "previousPosition");
 			if (!previousPosition || previousPosition[0] != shipPosition[0] ||
@@ -675,7 +675,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 			let unitAIState = blockingShip.unitAIState();
 			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined &&
 			    unitAIState != "INDIVIDUAL.GATHER.APPROACHING" &&
-			    unitAIState != "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
+			    unitAIState != "INDIVIDUAL.GATHER.RETURNINGRESOURCE.APPROACHING")
 			{
 				if (distSquare < 1600)
 					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 45);
