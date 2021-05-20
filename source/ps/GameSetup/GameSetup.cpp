@@ -906,14 +906,9 @@ bool Init(const CmdLineArgs& args, int flags)
 				LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
 				return false;
 			}
-			LOGWARNING("Invalid mods specified, starting with default mods.");
-			g_Mods.EnableDefaultMods(modInterface);
-		}
-		// Sanity check.
-		if (!g_Mods.GetIncompatibleMods().empty())
-		{
-			LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
-			return false;
+			// Disable all mods but "mod", we want to use the JS fallback code.
+			// TODO: it'd be nicer if the control flow was more obvious here.
+			g_Mods.SwitchToModSelector(modInterface);
 		}
 	}
 	MountMods(Paths(args), g_Mods.GetEnabledMods());

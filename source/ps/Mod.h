@@ -37,9 +37,11 @@ public:
 	const std::vector<CStr>& GetIncompatibleMods() const;
 
 	/**
-	 * Enable the default mods. De-activates any non-default mod currently enabled.
+	 * Enables the mod selector only, leaving incompatible mods as-is.
+	 * This is used, in combination with the JS code, to show the user
+	 * a clear interface in case of incompatible mods.
 	 */
-	void EnableDefaultMods(const ScriptInterface& scriptInterface);
+	void SwitchToModSelector(const ScriptInterface& scriptInterface);
 
 	/**
 	 * Enables specified mods (& mods required by the engine).

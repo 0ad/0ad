@@ -159,11 +159,9 @@ const std::vector<CStr>& Mod::GetIncompatibleMods() const
 	return m_IncompatibleMods;
 }
 
-void Mod::EnableDefaultMods(const ScriptInterface& scriptInterface)
+void Mod::SwitchToModSelector(const ScriptInterface& scriptInterface)
 {
-	m_IncompatibleMods.clear();
-	m_ModsLoaded.clear();
-	m_ModsLoaded.insert(m_ModsLoaded.begin(), "mod");
+	m_ModsLoaded = { "mod" };
 	CacheEnabledModVersions(scriptInterface);
 }
 

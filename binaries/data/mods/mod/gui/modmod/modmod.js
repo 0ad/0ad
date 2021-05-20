@@ -118,7 +118,7 @@ function getMod(folder)
 function loadEnabledMods()
 {
 	if (g_HasIncompatibleMods)
-		g_ModsEnabled = Engine.GetFailedMods().filter(folder => folder != "mod");
+		g_ModsEnabled = Engine.GetIncompatibleMods().filter(folder => folder != "mod");
 	else
 		g_ModsEnabled = Engine.GetEnabledMods().filter(folder => !!g_Mods[folder]);
 	g_ModsDisabled = Object.keys(g_Mods).filter(folder => g_ModsEnabled.indexOf(folder) == -1);
@@ -446,7 +446,7 @@ function selectedMod(listObjectName)
 	toggleModButton.caption = isPickedDisabledList ?
 		translateWithContext("mod activation", "Enable") :
 		translateWithContext("mod activation", "Disable");
-	toggleModButton.enabled = isPickedDisabledList ? isModSelected && g_ModsCompatibility[listObject.list[listObject.selected]] : isModSelected;
+	toggleModButton.enabled = isPickedDisabledList ? isModSelected && g_ModsCompatibility[listObject.list[listObject.selected]] || false : isModSelected;
 	Engine.GetGUIObjectByName("enabledModUp").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
 	Engine.GetGUIObjectByName("enabledModDown").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
 
