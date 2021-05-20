@@ -37,8 +37,9 @@ Trigger.prototype.Init = function()
 	this.triggerPoints = {};
 
 	// Each event has its own set of actions determined by the map maker.
-	for (let eventName of this.eventNames)
-		this[eventName] = {};
+	this.triggers = {};
+	for (const eventName of this.eventNames)
+		this.triggers[eventName] = {};
 };
 
 Trigger.prototype.RegisterTriggerPoint = function(ref, ent)
@@ -55,7 +56,7 @@ Trigger.prototype.RemoveRegisteredTriggerPoint = function(ref, ent)
 		warn("no trigger points found with ref "+ref);
 		return;
 	}
-	let i = this.triggerPoints[ref].indexOf(ent);
+	const i = this.triggerPoints[ref].indexOf(ent);
 	if (i == -1)
 	{
 		warn("entity " + ent + " wasn't found under the trigger points with ref "+ref);
@@ -94,12 +95,12 @@ Trigger.prototype.GetTriggerPoints = function(ref)
  */
 Trigger.prototype.RegisterTrigger = function(event, name, triggerData, customData = undefined)
 {
-	if (!this[event])
+	if (!this.triggers[event])
 	{
 		warn("Trigger.js: Invalid trigger event \"" + event + "\".");
 		return;
 	}
-	if (this[event][name])
+	if (this.triggers[event][name])
 	{
 		warn("Trigger.js: Trigger \"" + name + "\" has been registered before. Aborting...");
 		return;
@@ -111,7 +112,7 @@ Trigger.prototype.RegisterTrigger = function(event, name, triggerData, customDat
 	if (!triggerData.action)
 		triggerData.action = name;
 
-	this[event][name] = { "triggerData": triggerData, "customData": customData };
+	this.triggers[event][name] = { "triggerData": triggerData, "customData": customData };
 
 	// setup range query
 	if (event == "OnRange")
@@ -122,9 +123,9 @@ Trigger.prototype.RegisterTrigger = function(event, name, triggerData, customDat
 			return;
 		}
 		triggerData.queries = [];
-		for (let ent of triggerData.entities)
+		for (const ent of triggerData.entities)
 		{
-			let cmpTriggerPoint = Engine.QueryInterface(ent, IID_TriggerPoint);
+			const cmpTriggerPoint = Engine.QueryInterface(ent, IID_TriggerPoint);
 			if (!cmpTriggerPoint)
 			{
 				warn("Trigger.js: Range triggers must be defined on trigger points");
@@ -140,19 +141,19 @@ Trigger.prototype.RegisterTrigger = function(event, name, triggerData, customDat
 
 Trigger.prototype.DisableTrigger = function(event, name)
 {
-	if (!this[event][name])
+	if (!this.triggers[event][name])
 	{
 		warn("Trigger.js: Disabling unknown trigger " + name);
 		return;
 	}
 
-	let triggerData = this[event][name].triggerData;
+	const triggerData = this.triggers[event][name].triggerData;
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
 		if (!triggerData.timer) // don't disable it a second time
 			return;
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		const cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		cmpTimer.CancelTimer(triggerData.timer);
 		triggerData.timer = null;
 	}
@@ -163,8 +164,8 @@ Trigger.prototype.DisableTrigger = function(event, name)
 			warn("Trigger.js: Range query wasn't set up before trying to disable it.");
 			return;
 		}
-		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		for (let query of triggerData.queries)
+		const cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		for (const query of triggerData.queries)
 			cmpRangeManager.DisableActiveQuery(query);
 	}
 
@@ -173,12 +174,12 @@ Trigger.prototype.DisableTrigger = function(event, name)
 
 Trigger.prototype.EnableTrigger = function(event, name)
 {
-	if (!this[event][name])
+	if (!this.triggers[event][name])
 	{
 		warn("Trigger.js: Enabling unknown trigger " + name);
 		return;
 	}
-	let triggerData = this[event][name].triggerData;
+	const triggerData = this.triggers[event][name].triggerData;
 	// special casing interval and range triggers for performance
 	if (event == "OnInterval")
 	{
@@ -189,7 +190,7 @@ Trigger.prototype.EnableTrigger = function(event, name)
 			warn("Trigger.js: An interval trigger should have an intervel in its data");
 			return;
 		}
-		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		const cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		triggerData.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
 			triggerData.delay || 0, triggerData.interval, { "name": name });
 	}
@@ -200,8 +201,8 @@ Trigger.prototype.EnableTrigger = function(event, name)
 			warn("Trigger.js: Range query wasn't set up before");
 			return;
 		}
-		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		for (let query of triggerData.queries)
+		const cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		for (const query of triggerData.queries)
 			cmpRangeManager.EnableActiveQuery(query);
 	}
 
@@ -284,7 +285,7 @@ Trigger.prototype.OnGlobalDiplomacyChanged = function(msg)
  */
 Trigger.prototype.DoAfterDelay = function(time, action, eventData)
 {
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	const cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	return cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger, "DoAction", time, {
 		"action": action,
 		"eventData": eventData
@@ -303,7 +304,7 @@ Trigger.prototype.DoAfterDelay = function(time, action, eventData)
  */
 Trigger.prototype.DoRepeatedly = function(time, action, eventData, start)
 {
-	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	const cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	return cmpTimer.SetInterval(SYSTEM_ENTITY, IID_Trigger, "DoAction", start !== undefined ? start : time, time, {
 		"action": action,
 		"eventData": eventData
@@ -320,19 +321,19 @@ Trigger.prototype.DoRepeatedly = function(time, action, eventData, start)
  */
 Trigger.prototype.CallEvent = function(event, eventData)
 {
-	if (!this[event])
+	if (!this.triggers[event])
 	{
 		warn("Trigger.js: Unknown trigger event called:\"" + event + "\".");
 		return;
 	}
 
-	for (let name in this[event])
-		if (this[event][name].triggerData.enabled)
+	for (const name in this.triggers[event])
+		if (this.triggers[event][name].triggerData.enabled)
 			this.DoAction({
-				"action": this[event][name].triggerData.action,
+				"action": this.triggers[event][name].triggerData.action,
 				"eventData": eventData,
-				"customData": this[event][name].customData,
-				"triggerData": this[event][name].triggerData
+				"customData": this.triggers[event][name].customData,
+				"triggerData": this.triggers[event][name].triggerData
 			});
 };
 
@@ -348,14 +349,14 @@ Trigger.prototype.CallTrigger = function(event, name, eventData, evenIfDisabled 
 		return;
 	}
 
-	if (!evenIfDisabled && !this[event][name].triggerData.enabled)
+	if (!evenIfDisabled && !this.triggers[event][name].triggerData.enabled)
 		return;
 
 	this.DoAction({
-		"action": this[event][name].triggerData.action,
+		"action": this.triggers[event][name].triggerData.action,
 		"eventData": eventData,
-		"customData": this[event][name].customData,
-		"triggerData": this[event][name].triggerData
+		"customData": this.triggers[event][name].customData,
+		"triggerData": this.triggers[event][name].triggerData
 	});
 };
 
