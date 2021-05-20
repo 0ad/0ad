@@ -17,6 +17,7 @@
 
 #include "lib/self_test.h"
 
+#include "lib/timer.h"
 #include "ps/Hashing.h"
 
 class TestHashing : public CxxTest::TestSuite
