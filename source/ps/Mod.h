@@ -23,14 +23,11 @@
 
 #include <vector>
 
-class CmdLineArgs;
-
-extern CmdLineArgs g_CmdLineArgs;
-
 #define g_Mods (Mod::Instance())
 
 class Mod
 {
+	friend class TestMod;
 public:
 	// Singleton-like interface.
 	static Mod& Instance();
@@ -38,22 +35,19 @@ public:
 	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface) const;
 	const std::vector<CStr>& GetEnabledMods() const;
 	const std::vector<CStr>& GetIncompatibleMods() const;
-	const std::vector<CStr>& GetFailedMods() const;
 
 	/**
-	 * This reads the version numbers from the launched mods.
-	 * It caches the result, since the reading of zip files is slow and
-	 * JS pages can request the version numbers too often easily.
-	 * Make sure this is called after each MountMods call.
+	 * Enable the default mods. De-activates any non-default mod currently enabled.
 	 */
-	void CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext);
+	void EnableDefaultMods(const ScriptInterface& scriptInterface);
 
-	const std::vector<CStr>& GetModsFromArguments(const CmdLineArgs& args, int flags);
-	bool AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods);
-	bool CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods);
-	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version) const;
-	void SetDefaultMods();
-	void ClearIncompatibleMods();
+	/**
+	 * Enables specified mods (& mods required by the engine).
+	 * @param addPublic - if true, enable the public mod.
+	 * @return whether the mods were enabled successfully. This can fail if e.g. mods are incompatible.
+	 * If true, GetEnabledMods() should be non-empty, GetIncompatibleMods() empty. Otherwise, GetIncompatibleMods() is non-empty.
+	 */
+	bool EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic);
 
 	/**
 	 * Get the loaded mods and their version.
@@ -73,9 +67,23 @@ public:
 	JS::Value GetEngineInfo(const ScriptInterface& scriptInterface) const;
 
 private:
+	/**
+	 * This reads the version numbers from the launched mods.
+	 * It caches the result, since the reading of zip files is slow and
+	 * JS pages can request the version numbers too often easily.
+	 * Make sure this is called after each MountMods call.
+	 */
+	void CacheEnabledModVersions(const ScriptInterface& scriptInterface);
+
+	/**
+	 * Checks a list of @a mods and returns the incompatible mods, if any.
+	 */
+	std::vector<CStr> CheckForIncompatibleMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods) const;
+	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version) const;
+
 	std::vector<CStr> m_ModsLoaded;
+	// Of the currently loaded mods, these are the incompatible with the engine and cannot be loaded.
 	std::vector<CStr> m_IncompatibleMods;
-	std::vector<CStr> m_FailedMods;
 
 	std::vector<std::vector<CStr>> m_LoadedModVersions;
 };

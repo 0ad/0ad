@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,6 +89,7 @@ extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
  * Make sure to call CacheEnabledModVersions after every call to this.
  */
 extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
+
 /**
  * Returns true if successful, false if mods changed and restart_engine was called.
  * In the latter case the caller should call Shutdown() with SHUTDOWN_FROM_CONFIG.

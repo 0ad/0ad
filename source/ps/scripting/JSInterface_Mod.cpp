@@ -33,17 +33,16 @@ Mod* ModGetter(const ScriptRequest&, JS::CallArgs&)
 
 bool SetModsAndRestartEngine(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods)
 {
-	g_Mods.ClearIncompatibleMods();
-	if (!g_Mods.CheckAndEnableMods(scriptInterface, mods))
+	if (!g_Mods.EnableMods(scriptInterface, mods, false))
 		return false;
 
 	RestartEngine();
 	return true;
 }
 
-bool HasFailedMods()
+bool HasIncompatibleMods()
 {
-	return g_Mods.GetFailedMods().size() > 0;
+	return g_Mods.GetIncompatibleMods().size() > 0;
 }
 
 void RegisterScriptFunctions(const ScriptRequest& rq)
@@ -51,8 +50,8 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&Mod::GetEngineInfo, ModGetter>(rq, "GetEngineInfo");
 	ScriptFunction::Register<&Mod::GetAvailableMods, ModGetter>(rq, "GetAvailableMods");
 	ScriptFunction::Register<&Mod::GetEnabledMods, ModGetter>(rq, "GetEnabledMods");
-	ScriptFunction::Register<HasFailedMods> (rq, "HasFailedMods");
-	ScriptFunction::Register<&Mod::GetFailedMods, ModGetter>(rq, "GetFailedMods");
+	ScriptFunction::Register<HasIncompatibleMods> (rq, "HasIncompatibleMods");
+	ScriptFunction::Register<&Mod::GetIncompatibleMods, ModGetter>(rq, "GetIncompatibleMods");
 	ScriptFunction::Register<&SetModsAndRestartEngine>(rq, "SetModsAndRestartEngine");
 }
 }

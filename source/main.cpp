@@ -99,7 +99,6 @@ that of Atlas depending on commandline parameters.
 
 #include <chrono>
 
-extern CmdLineArgs g_CmdLineArgs;
 extern CStrW g_UniqueLogPostfix;
 
 // Marks terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
@@ -587,18 +586,10 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 	if (isNonVisualReplay)
 	{
-		if (!args.Has("mod"))
-		{
-			LOGERROR("At least one mod should be specified! Did you mean to add the argument '-mod=public'?");
-			CXeromyces::Terminate();
-			return;
-		}
-
 		Paths paths(args);
 		g_VFS = CreateVfs();
 		// Mount with highest priority, we don't want mods overwriting this.
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE, VFS_MAX_PRIORITY);
-		MountMods(paths, g_Mods.GetModsFromArguments(args, INIT_MODS));
 
 		{
 			CReplayPlayer replay;
@@ -698,7 +689,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
-		g_Mods.ClearIncompatibleMods();
 
 		Shutdown(0);
 		MainControllerShutdown();

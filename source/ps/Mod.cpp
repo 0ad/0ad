@@ -24,7 +24,6 @@
 #include "lib/file/vfs/vfs.h"
 #include "lib/utf8.h"
 #include "ps/Filesystem.h"
-#include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Profiler2.h"
@@ -160,58 +159,50 @@ const std::vector<CStr>& Mod::GetIncompatibleMods() const
 	return m_IncompatibleMods;
 }
 
-const std::vector<CStr>& Mod::GetFailedMods() const
-{
-	return m_FailedMods;
-}
-
-const std::vector<CStr>& Mod::GetModsFromArguments(const CmdLineArgs& args, int flags)
-{
-	const bool initMods = (flags & INIT_MODS) == INIT_MODS;
-	const bool addPublic = (flags & INIT_MODS_PUBLIC) == INIT_MODS_PUBLIC;
-
-	if (!initMods)
-		return m_ModsLoaded;
-
-	m_ModsLoaded = args.GetMultiple("mod");
-
-	if (addPublic)
-		m_ModsLoaded.insert(m_ModsLoaded.begin(), "public");
-
-	m_ModsLoaded.insert(m_ModsLoaded.begin(), "mod");
-
-	return m_ModsLoaded;
-}
-
-void Mod::SetDefaultMods()
-{
-	m_ModsLoaded.clear();
-	m_ModsLoaded.insert(m_ModsLoaded.begin(), "mod");
-}
-
-void Mod::ClearIncompatibleMods()
+void Mod::EnableDefaultMods(const ScriptInterface& scriptInterface)
 {
 	m_IncompatibleMods.clear();
-	m_FailedMods.clear();
+	m_ModsLoaded.clear();
+	m_ModsLoaded.insert(m_ModsLoaded.begin(), "mod");
+	CacheEnabledModVersions(scriptInterface);
 }
 
-bool Mod::CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods)
+bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic)
 {
-	ScriptRequest rq(scriptInterface);
+	m_IncompatibleMods.clear();
+	m_ModsLoaded.clear();
 
-	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));
-	if (!AreModsCompatible(scriptInterface, mods, availableMods))
+	std::unordered_map<CStr, int> counts;
+	for (const CStr& mod : mods)
 	{
-		m_FailedMods = mods;
-		return false;
+		// Ignore duplicates.
+		if (counts.try_emplace(mod, 0).first->second++ > 0)
+			continue;
+		m_ModsLoaded.emplace_back(mod);
 	}
-	m_ModsLoaded = mods;
-	return true;
+
+	if (addPublic && counts["public"] == 0)
+		m_ModsLoaded.insert(m_ModsLoaded.begin(), "public");
+
+	if (counts["mod"] == 0)
+		m_ModsLoaded.insert(m_ModsLoaded.begin(), "mod");
+
+	ScriptRequest rq(scriptInterface);
+	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));
+	m_IncompatibleMods = CheckForIncompatibleMods(scriptInterface, m_ModsLoaded, availableMods);
+
+	for (const CStr& mod : m_IncompatibleMods)
+		m_ModsLoaded.erase(std::find(m_ModsLoaded.begin(), m_ModsLoaded.end(), mod));
+
+	CacheEnabledModVersions(scriptInterface);
+
+	return m_IncompatibleMods.empty();
 }
 
-bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods)
+std::vector<CStr> Mod::CheckForIncompatibleMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods) const
 {
 	ScriptRequest rq(scriptInterface);
+	std::vector<CStr> incompatibleMods;
 	std::unordered_map<CStr, std::vector<CStr>> modDependencies;
 	std::unordered_map<CStr, CStr> modNameVersions;
 	for (const CStr& mod : mods)
@@ -224,12 +215,12 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 		// Requested mod is not available, fail
 		if (!Script::HasProperty(rq, availableMods, mod.c_str()))
 		{
-			m_IncompatibleMods.push_back(mod);
+			incompatibleMods.push_back(mod);
 			continue;
 		}
 		if (!Script::GetProperty(rq, availableMods, mod.c_str(), &modData))
 		{
-			m_IncompatibleMods.push_back(mod);
+			incompatibleMods.push_back(mod);
 			continue;
 		}
 
@@ -274,13 +265,13 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 				const std::unordered_map<CStr, CStr>::iterator it = modNameVersions.find(modToCheck);
 				if (it == modNameVersions.end())
 				{
-					m_IncompatibleMods.push_back(mod);
+					incompatibleMods.push_back(mod);
 					continue;
 				}
 				// 0.0.25(0ad) , <=, 0.0.24(required version)
 				if (!CompareVersionStrings(it->second, op, versionToCheck))
 				{
-					m_IncompatibleMods.push_back(mod);
+					incompatibleMods.push_back(mod);
 					continue;
 				}
 				break;
@@ -289,7 +280,7 @@ bool Mod::AreModsCompatible(const ScriptInterface& scriptInterface, const std::v
 
 	}
 
-	return m_IncompatibleMods.empty();
+	return incompatibleMods;
 }
 
 bool Mod::CompareVersionStrings(const CStr& version, const CStr& op, const CStr& required) const
@@ -326,9 +317,8 @@ bool Mod::CompareVersionStrings(const CStr& version, const CStr& op, const CStr&
 }
 
 
-void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext)
+void Mod::CacheEnabledModVersions(const ScriptInterface& scriptInterface)
 {
-	ScriptInterface scriptInterface("Engine", "CacheEnabledModVersions", scriptContext);
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));

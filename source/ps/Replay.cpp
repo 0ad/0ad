@@ -24,8 +24,11 @@
 #include "lib/file/file_system.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
-#include "ps/Game.h"
 #include "ps/CLogger.h"
+#include "ps/Game.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/GameSetup/CmdLineArgs.h"
+#include "ps/GameSetup/Paths.h"
 #include "ps/Loader.h"
 #include "ps/Mod.h"
 #include "ps/Profile.h"
@@ -36,6 +39,7 @@
 #include "ps/VisualReplay.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/ScriptStats.h"
 #include "scriptinterface/JSON.h"
@@ -208,43 +212,65 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptContext = ScriptContext::CreateContext(contextSize, heapGrowthBytesGCTrigger);
 
-	g_Mods.CacheEnabledModVersions(g_ScriptContext);
-
-	g_Game = new CGame(false);
-	if (serializationtest)
-		g_Game->GetSimulation2()->EnableSerializationTest();
-	if (rejointestturn >= 0)
-		g_Game->GetSimulation2()->EnableRejoinTest(rejointestturn);
-	if (ooslog)
-		g_Game->GetSimulation2()->EnableOOSLog();
-
-	// Need some stuff for terrain movement costs:
-	// (TODO: this ought to be independent of any graphics code)
-	new CTerrainTextureManager;
-	g_TexMan.LoadTerrainTextures();
-
-	// Initialise h_mgr so it doesn't crash when emitting sounds
-	h_mgr_init();
-
 	std::vector<SimulationCommand> commands;
 	u32 turn = 0;
 	u32 turnLength = 0;
 
 	{
-	ScriptRequest rq(g_Game->GetSimulation2()->GetScriptInterface());
 	std::string type;
 
 	while ((*m_Stream >> type).good())
 	{
 		if (type == "start")
 		{
-			std::string line;
-			std::getline(*m_Stream, line);
+			std::string attribsStr;
+			{
+				// TODO: it'd be nice to not create a scriptInterface to load JSON.
+				ScriptInterface scriptInterface("Engine", "Replay", g_ScriptContext);
+				ScriptRequest rq(scriptInterface);
+				std::getline(*m_Stream, attribsStr);
+				JS::RootedValue attribs(rq.cx);
+				if (!Script::ParseJSON(rq, attribsStr, &attribs))
+				{
+					LOGERROR("Error parsing JSON attributes: %s", attribsStr);
+					// TODO: do something cleverer than crashing.
+					ENSURE(false);
+				}
+
+				// Load the mods specified in the replay.
+				std::vector<std::vector<CStr>> replayMods;
+				Script::GetProperty(rq, attribs, "mods", replayMods);
+				std::vector<CStr> mods;
+				for (const std::vector<CStr>& ModAndVersion : replayMods)
+					if (!ModAndVersion.empty())
+						mods.emplace_back(ModAndVersion[0]);
+
+				// Ignore the return value, we check below.
+				g_Mods.EnableMods(scriptInterface, mods, false);
+				MountMods(Paths(g_CmdLineArgs), g_Mods.GetEnabledMods());
+
+				CheckReplayMods(scriptInterface, attribs);
+			}
+
+			g_Game = new CGame(false);
+			if (serializationtest)
+				g_Game->GetSimulation2()->EnableSerializationTest();
+			if (rejointestturn >= 0)
+				g_Game->GetSimulation2()->EnableRejoinTest(rejointestturn);
+			if (ooslog)
+				g_Game->GetSimulation2()->EnableOOSLog();
+
+			// Need some stuff for terrain movement costs:
+			// (TODO: this ought to be independent of any graphics code)
+			new CTerrainTextureManager;
+			g_TexMan.LoadTerrainTextures();
+
+			// Initialise h_mgr so it doesn't crash when emitting sounds
+			h_mgr_init();
+
+			ScriptRequest rq(g_Game->GetSimulation2()->GetScriptInterface());
 			JS::RootedValue attribs(rq.cx);
-			ENSURE(Script::ParseJSON(rq, line, &attribs));
-
-			CheckReplayMods(g_Game->GetSimulation2()->GetScriptInterface(), attribs);
-
+			ENSURE(Script::ParseJSON(rq, attribsStr, &attribs));
 			g_Game->StartGame(&attribs, "");
 
 			// TODO: Non progressive load can fail - need a decent way to handle this
@@ -265,6 +291,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 
 			std::string line;
 			std::getline(*m_Stream, line);
+			ScriptRequest rq(g_Game->GetSimulation2()->GetScriptInterface());
 			JS::RootedValue data(rq.cx);
 			Script::ParseJSON(rq, line, &data);
 			Script::FreezeObject(rq, data, true);
