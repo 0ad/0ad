@@ -1210,3 +1210,20 @@ function showTemplateViewerOnClickTooltip()
 	// Translation: Appears in a tooltip to indicate that clicking the corresponding GUI element will open the Template Details GUI page.
 	return translate("Click to view more information.");
 }
+
+/**
+ * @param {number} number - A number to shorten using SI prefix.
+ */
+function abbreviateLargeNumbers(number)
+{
+     if (number >= 1e6)
+        return Math.floor(number / 1e6) + translateWithContext("One letter abbreviation for million", 'M');
+
+     if (number >= 1e5)
+        return Math.floor(number / 1e3) + translateWithContext("One letter abbreviation for thousand", 'k');
+
+     if (number >= 1e4)
+        return (number / 1e3).toFixed(1).replace(/\.0$/, '') + translateWithContext("One letter abbreviation for thousand", 'k');
+
+     return number;
+}

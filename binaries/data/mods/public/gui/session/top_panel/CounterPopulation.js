@@ -22,16 +22,14 @@ class CounterPopulation
 		let total = 0;
 		for (let resCode of g_ResourceData.GetCodes())
 			total += playerState.resourceGatherers[resCode];
-		// Do not show zeroes.
-		this.stats.caption = total || "";
+
+		this.stats.caption = total ? coloredText(total, this.DefaultTotalGatherersColor) : 0;
 
 		this.isTrainingBlocked = playerState.trainingBlocked;
 
 		this.panel.tooltip =
-			setStringTags(translate(this.PopulationTooltip), CounterManager.ResourceTitleTags) + "\n" +
-			sprintf(translate(this.MaximumPopulationTooltip), { "popCap": playerState.popMax }) +
-			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" +
-			(total > 0 ? sprintf(translate("Current gatherers: %(amount)s"), { "amount" : total }) : "");
+			setStringTags(translate(this.PopulationTooltip), CounterManager.ResourceTitleTags) +
+			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" + this.CurrentGatherersTooltip;
 	}
 
 	getTooltipData(playerState, playername)
@@ -59,15 +57,21 @@ class CounterPopulation
 		this.count.textcolor = newColor;
 	}
 }
+// Translation: Do not insert spaces around the slash symbol for this exact string. Keep only one space between popLimit and popMax.
+CounterPopulation.prototype.CounterCaption = markForTranslation("%(popCount)s/%(popLimit)s (%(popMax)s)");
 
-CounterPopulation.prototype.CounterCaption = markForTranslation("%(popCount)s/%(popLimit)s");
+CounterPopulation.prototype.PopulationTooltip = markForTranslation("Population: current/limit (max)");
 
-CounterPopulation.prototype.PopulationTooltip = markForTranslation("Population (current / limit)");
+CounterPopulation.prototype.AllyPopulationTooltip = markForTranslation("%(popCount)s/%(popLimit)s (%(popMax)s)");
 
-CounterPopulation.prototype.MaximumPopulationTooltip = markForTranslation("Maximum population: %(popCap)s");
-
-CounterPopulation.prototype.AllyPopulationTooltip = markForTranslation("%(popCount)s/%(popLimit)s/%(popMax)s");
-
+/**
+ * Storing the translated and formatted gatherer string in the prototype.
+ */
+CounterPopulation.prototype.CurrentGatherersTooltip = setStringTags(translate("Gatherers: current"), {"font": "sans-bold-16"});
+/**
+ * Color to highlight the total gatherers.
+ */
+CounterPopulation.prototype.DefaultTotalGatherersColor = "gold";
 /**
  * Colors to flash when pop limit reached.
  */
