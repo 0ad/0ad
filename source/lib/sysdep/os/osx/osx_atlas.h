@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,11 +23,14 @@
 #ifndef OSX_ATLAS_H
 #define OSX_ATLAS_H
 
+#include <vector>
+
+class CStr8;
 
 /**
  * Runs a new pyrogenesis process with the -editor argument.
  * Necessary because SDL and WxWidgets conflict.
  */
-void startNewAtlasProcess();
+void startNewAtlasProcess(const std::vector<CStr8>& mods);
 
 #endif // OSX_ATLAS_H

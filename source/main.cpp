@@ -598,7 +598,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		g_VFS = CreateVfs();
 		// Mount with highest priority, we don't want mods overwriting this.
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE, VFS_MAX_PRIORITY);
-		MountMods(paths, Mod::GetModsFromArguments(args, INIT_MODS));
+		MountMods(paths, g_Mods.GetModsFromArguments(args, INIT_MODS));
 
 		{
 			CReplayPlayer replay;
@@ -698,7 +698,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
-		Mod::ClearIncompatibleMods();
+		g_Mods.ClearIncompatibleMods();
 
 		Shutdown(0);
 		MainControllerShutdown();
@@ -708,7 +708,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 #if OS_MACOSX
 	if (g_Shutdown == ShutdownType::RestartAsAtlas)
-		startNewAtlasProcess();
+		startNewAtlasProcess(g_Mods.GetEnabledMods());
 #else
 	if (g_Shutdown == ShutdownType::RestartAsAtlas)
 		ATLAS_RunIfOnCmdLine(args, true);

@@ -441,7 +441,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	// Engine localization files (regular priority, these can be overwritten).
 	g_VFS->Mount(L"l10n/", paths.RData()/"l10n"/"");
 
-	MountMods(paths, Mod::GetModsFromArguments(args, flags));
+	MountMods(paths, g_Mods.GetModsFromArguments(args, flags));
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.
@@ -851,18 +851,18 @@ bool AutostartVisualReplay(const std::string& replayFile);
 bool EnableModsOrSetDefault(const CmdLineArgs& args, const std::vector<CStr>& mods, bool fromConfig)
 {
 	ScriptInterface scriptInterface("Engine", "CheckAndEnableMods", g_ScriptContext);
-	if (Mod::CheckAndEnableMods(scriptInterface, mods))
+	if (g_Mods.CheckAndEnableMods(scriptInterface, mods))
 		return true;
 	// Here we refuse to start as there is no gui anyway
 	if (args.Has("autostart-nonvisual"))
 	{
 		if (fromConfig)
-			LOGERROR("Trying to start with incompatible mods from configuration file: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
+			LOGERROR("Trying to start with incompatible mods from configuration file: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
 		else
-			LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
+			LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
 		return false;
 	}
-	Mod::SetDefaultMods();
+	g_Mods.SetDefaultMods();
 	RestartEngine();
 	return false;
 }
@@ -901,7 +901,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptContext = ScriptContext::CreateContext(contextSize, heapGrowthBytesGCTrigger);
 
-	Mod::CacheEnabledModVersions(g_ScriptContext);
+	g_Mods.CacheEnabledModVersions(g_ScriptContext);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
@@ -945,7 +945,7 @@ bool Init(const CmdLineArgs& args, int flags)
 				return false;
 			}
 		}
-		else if (!EnableModsOrSetDefault(args, Mod::g_ModsLoaded, false))
+		else if (!EnableModsOrSetDefault(args, g_Mods.GetEnabledMods(), false))
 			return false;
 	}
 

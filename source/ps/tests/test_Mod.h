@@ -42,45 +42,45 @@ public:
 		CStr version = "0.0.24";// 0ad version
 
 		// 0.0.24 = 0.0.24
-		TS_ASSERT(Mod::CompareVersionStrings(version, eq, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, lt, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, gt, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, leq, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, geq, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, eq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, lt, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, gt, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, leq, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, geq, required));
 
 		// 0.0.23 <= 0.0.24
 		version = "0.0.23";
-		TS_ASSERT(!Mod::CompareVersionStrings(version, eq, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, lt, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, gt, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, leq, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, geq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, eq, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, lt, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, gt, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, leq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, geq, required));
 
 		// 0.0.25 >= 0.0.24
 		version = "0.0.25";
-		TS_ASSERT(!Mod::CompareVersionStrings(version, eq, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, lt, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, gt, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, leq, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, geq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, eq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, lt, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, gt, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, leq, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, geq, required));
 
 		// 0.0.9 <= 0.1.0
 		version = "0.0.9";
 		required = "0.1.0";
-		TS_ASSERT(!Mod::CompareVersionStrings(version, eq, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, lt, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, gt, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, leq, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, geq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, eq, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, lt, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, gt, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, leq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, geq, required));
 
 		// 5.3 <= 5.3.0
 		version = "5.3";
 		required = "5.3.0";
-		TS_ASSERT(!Mod::CompareVersionStrings(version, eq, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, lt, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, gt, required));
-		TS_ASSERT(Mod::CompareVersionStrings(version, leq, required));
-		TS_ASSERT(!Mod::CompareVersionStrings(version, geq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, eq, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, lt, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, gt, required));
+		TS_ASSERT(g_Mods.CompareVersionStrings(version, leq, required));
+		TS_ASSERT(!g_Mods.CompareVersionStrings(version, geq, required));
 	}
 
 	void test_compatible()
@@ -148,38 +148,38 @@ public:
 
 		mods.clear();
 		mods.push_back("public");
-		Mod::ClearIncompatibleMods();
-		TS_ASSERT(Mod::AreModsCompatible(script, mods, availableMods));
+		g_Mods.ClearIncompatibleMods();
+		TS_ASSERT(g_Mods.AreModsCompatible(script, mods, availableMods));
 
 		mods.clear();
 		mods.push_back("mod");
 		mods.push_back("public");
-		Mod::ClearIncompatibleMods();
-		TS_ASSERT(Mod::AreModsCompatible(script, mods, availableMods));
+		g_Mods.ClearIncompatibleMods();
+		TS_ASSERT(g_Mods.AreModsCompatible(script, mods, availableMods));
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("good");
-		Mod::ClearIncompatibleMods();
-		TS_ASSERT(Mod::AreModsCompatible(script, mods, availableMods));
+		g_Mods.ClearIncompatibleMods();
+		TS_ASSERT(g_Mods.AreModsCompatible(script, mods, availableMods));
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("good2");
-		Mod::ClearIncompatibleMods();
-		TS_ASSERT(Mod::AreModsCompatible(script, mods, availableMods));
+		g_Mods.ClearIncompatibleMods();
+		TS_ASSERT(g_Mods.AreModsCompatible(script, mods, availableMods));
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("wrong");
-		Mod::ClearIncompatibleMods();
-		TS_ASSERT(!Mod::AreModsCompatible(script, mods, availableMods));
+		g_Mods.ClearIncompatibleMods();
+		TS_ASSERT(!g_Mods.AreModsCompatible(script, mods, availableMods));
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("does_not_exist");
-		Mod::ClearIncompatibleMods();
-		TS_ASSERT(!Mod::AreModsCompatible(script, mods, availableMods));
+		g_Mods.ClearIncompatibleMods();
+		TS_ASSERT(!g_Mods.AreModsCompatible(script, mods, availableMods));
 
 	}
 };

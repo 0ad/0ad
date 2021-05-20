@@ -73,7 +73,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
 	Script::SetProperty(rq, attribs, "engine_version", engine_version);
-	JS::RootedValue mods(rq.cx, Mod::GetLoadedModsWithVersions(m_ScriptInterface));
+	JS::RootedValue mods(rq.cx, g_Mods.GetLoadedModsWithVersions(m_ScriptInterface));
 	Script::SetProperty(rq, attribs, "mods", mods);
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryPath());
@@ -170,7 +170,7 @@ void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::
 	Script::GetProperty(rq, attribs, "mods", replayMods);
 
 	std::vector<std::vector<CStr>> enabledMods;
-	JS::RootedValue enabledModsJS(rq.cx, Mod::GetLoadedModsWithVersions(scriptInterface));
+	JS::RootedValue enabledModsJS(rq.cx, g_Mods.GetLoadedModsWithVersions(scriptInterface));
 	Script::FromJSVal(rq, enabledModsJS, enabledMods);
 
 	CStr warn;
@@ -208,7 +208,7 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptContext = ScriptContext::CreateContext(contextSize, heapGrowthBytesGCTrigger);
 
-	Mod::CacheEnabledModVersions(g_ScriptContext);
+	g_Mods.CacheEnabledModVersions(g_ScriptContext);
 
 	g_Game = new CGame(false);
 	if (serializationtest)

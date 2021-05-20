@@ -19,21 +19,27 @@
 #define INCLUDED_MOD
 
 #include "ps/CStr.h"
-#include "ps/GameSetup/CmdLineArgs.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <vector>
 
+class CmdLineArgs;
+
 extern CmdLineArgs g_CmdLineArgs;
 
-namespace Mod
-{
-	extern std::vector<CStr> g_ModsLoaded;
+#define g_Mods (Mod::Instance())
 
-	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface);
-	const std::vector<CStr>& GetEnabledMods();
-	const std::vector<CStr>& GetIncompatibleMods();
-	const std::vector<CStr>& GetFailedMods();
+class Mod
+{
+public:
+	// Singleton-like interface.
+	static Mod& Instance();
+
+	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface) const;
+	const std::vector<CStr>& GetEnabledMods() const;
+	const std::vector<CStr>& GetIncompatibleMods() const;
+	const std::vector<CStr>& GetFailedMods() const;
+
 	/**
 	 * This reads the version numbers from the launched mods.
 	 * It caches the result, since the reading of zip files is slow and
@@ -45,7 +51,7 @@ namespace Mod
 	const std::vector<CStr>& GetModsFromArguments(const CmdLineArgs& args, int flags);
 	bool AreModsCompatible(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods);
 	bool CheckAndEnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods);
-	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version);
+	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version) const;
 	void SetDefaultMods();
 	void ClearIncompatibleMods();
 
@@ -56,7 +62,7 @@ namespace Mod
 	 * @param scriptInterface the ScriptInterface in which to create the return data.
 	 * @return list of loaded mods with the format [[modA, versionA], [modB, versionB], ...]
 	 */
-	JS::Value GetLoadedModsWithVersions(const ScriptInterface& scriptInterface);
+	JS::Value GetLoadedModsWithVersions(const ScriptInterface& scriptInterface) const;
 
 	/**
 	 * Gets info (version and mods loaded) on the running engine
@@ -64,6 +70,14 @@ namespace Mod
 	 * @param scriptInterface the ScriptInterface in which to create the return data.
 	 * @return list of objects containing data
 	 */
-	JS::Value GetEngineInfo(const ScriptInterface& scriptInterface);
-}
+	JS::Value GetEngineInfo(const ScriptInterface& scriptInterface) const;
+
+private:
+	std::vector<CStr> m_ModsLoaded;
+	std::vector<CStr> m_IncompatibleMods;
+	std::vector<CStr> m_FailedMods;
+
+	std::vector<std::vector<CStr>> m_LoadedModVersions;
+};
+
 #endif // INCLUDED_MOD
