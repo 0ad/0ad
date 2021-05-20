@@ -222,41 +222,45 @@ Attack.prototype.GetRestrictedClasses = function(type)
 
 Attack.prototype.CanAttack = function(target, wantedTypes)
 {
-	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	const cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		return true;
 
-	let cmpThisPosition = Engine.QueryInterface(this.entity, IID_Position);
-	let cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	const cmpThisPosition = Engine.QueryInterface(this.entity, IID_Position);
+	const cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpThisPosition || !cmpTargetPosition || !cmpThisPosition.IsInWorld() || !cmpTargetPosition.IsInWorld())
 		return false;
 
-	let cmpIdentity = QueryMiragedInterface(target, IID_Identity);
+	const cmpResistance = QueryMiragedInterface(target, IID_Resistance);
+	if (!cmpResistance)
+		return false;
+
+	const cmpIdentity = QueryMiragedInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return false;
 
-	let cmpHealth = QueryMiragedInterface(target, IID_Health);
-	let targetClasses = cmpIdentity.GetClassesList();
+	const cmpHealth = QueryMiragedInterface(target, IID_Health);
+	const targetClasses = cmpIdentity.GetClassesList();
 	if (targetClasses.indexOf("Domestic") != -1 && this.template.Slaughter && cmpHealth && cmpHealth.GetHitpoints() &&
 	   (!wantedTypes || !wantedTypes.filter(wType => wType.indexOf("!") != 0).length || wantedTypes.indexOf("Slaughter") != -1))
 		return true;
 
-	let cmpEntityPlayer = QueryOwnerInterface(this.entity);
-	let cmpTargetPlayer = QueryOwnerInterface(target);
+	const cmpEntityPlayer = QueryOwnerInterface(this.entity);
+	const cmpTargetPlayer = QueryOwnerInterface(target);
 	if (!cmpTargetPlayer || !cmpEntityPlayer)
 		return false;
 
-	let types = this.GetAttackTypes(wantedTypes);
-	let entityOwner = cmpEntityPlayer.GetPlayerID();
-	let targetOwner = cmpTargetPlayer.GetPlayerID();
-	let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
+	const types = this.GetAttackTypes(wantedTypes);
+	const entityOwner = cmpEntityPlayer.GetPlayerID();
+	const targetOwner = cmpTargetPlayer.GetPlayerID();
+	const cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
 
 	// Check if the relative height difference is larger than the attack range
 	// If the relative height is bigger, it means they will never be able to
 	// reach each other, no matter how close they come.
-	let heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
+	const heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
 
-	for (let type of types)
+	for (const type of types)
 	{
 		if (type != "Capture" && (!cmpEntityPlayer.IsEnemy(targetOwner) || !cmpHealth || !cmpHealth.GetHitpoints()))
 			continue;
@@ -267,7 +271,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 		if (heightDiff > this.GetRange(type).max)
 			continue;
 
-		let restrictedClasses = this.GetRestrictedClasses(type);
+		const restrictedClasses = this.GetRestrictedClasses(type);
 		if (!restrictedClasses.length)
 			return true;
 

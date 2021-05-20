@@ -29,6 +29,7 @@ Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("Attack.js");
 
@@ -171,6 +172,9 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 
 	AddMock(defender, IID_Health, {
 		"GetHitpoints": () => 100
+	});
+
+	AddMock(defender, IID_Resistance, {
 	});
 
 	test_function(attacker, cmpAttack, defender);

@@ -1,0 +1,14 @@
+{
+	"genericName": "Carrier Pigeons",
+	"description": "Increases outpost vision.",
+	"cost": { "food": 300 },
+	"requirements": { "tech": "phase_village" },
+	"icon": "pigeon.png",
+	"researchTime": 40,
+	"tooltip": "Outposts +33% vision range.",
+	"modifications": [
+		{ "value": "Vision/Range", "multiply": 1.333333 }
+	],
+	"affects": ["Outpost"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

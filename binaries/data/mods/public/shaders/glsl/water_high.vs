@@ -9,7 +9,6 @@ uniform float repeatScale;
 uniform float windAngle;
 // "Wildness" of the reflections and refractions; choose based on texture
 uniform float waviness;
-uniform vec3 sunDir;
 
 uniform float time;
 
@@ -37,7 +36,6 @@ varying vec2 WindCosSin;
 
 attribute vec3 a_vertex;
 attribute vec2 a_waterInfo;
-attribute vec3 a_otherPosition;
 
 void main()
 {
