@@ -267,7 +267,7 @@ static void PumpEvents()
  */
 inline static void LimitFPS()
 {
-	if (g_VSync)
+	if (g_VideoMode.IsVSyncEnabled())
 		return;
 
 	double fpsLimit = 0.0;

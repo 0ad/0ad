@@ -35,7 +35,6 @@ bool g_PauseOnFocusLoss = false;
 
 int g_xres, g_yres;
 float g_GuiScale = 1.0f;
-bool g_VSync = false;
 
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
@@ -47,8 +46,6 @@ bool g_DisableAudio = false;
 // Fill in the globals from the config files.
 static void LoadGlobals()
 {
-	CFG_GET_VAL("vsync", g_VSync);
-
 	CFG_GET_VAL("pauseonfocusloss", g_PauseOnFocusLoss);
 
 	CFG_GET_VAL("gui.scale", g_GuiScale);

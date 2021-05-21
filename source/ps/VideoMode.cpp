@@ -23,8 +23,8 @@
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
 #include "lib/config2.h"
-#include "lib/ogl.h"
 #include "lib/external_libraries/libsdl.h"
+#include "lib/ogl.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
 #include "ps/CConsole.h"
@@ -33,14 +33,13 @@
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
-#include "ps/Pyrogenesis.h"
 #include "ps/GameSetup/Config.h"
+#include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"
 
 #if OS_MACOSX
 # include "lib/sysdep/os/osx/osx_sys_version.h"
 #endif
-
 
 static int DEFAULT_WINDOW_W = 1024;
 static int DEFAULT_WINDOW_H = 768;
@@ -51,13 +50,8 @@ static int DEFAULT_FULLSCREEN_H = 768;
 CVideoMode g_VideoMode;
 
 CVideoMode::CVideoMode() :
-	m_IsFullscreen(false), m_IsInitialised(false), m_Window(NULL),
-	m_PreferredW(0), m_PreferredH(0), m_PreferredBPP(0), m_PreferredFreq(0),
-	m_ConfigW(0), m_ConfigH(0), m_ConfigBPP(0), m_ConfigFullscreen(false),
 	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H), m_WindowedX(0), m_WindowedY(0)
 {
-	// (m_ConfigFullscreen defaults to false, so users don't get stuck if
-	// e.g. half the filesystem is missing and the config files aren't loaded)
 }
 
 void CVideoMode::ReadConfig()
@@ -70,6 +64,8 @@ void CVideoMode::ReadConfig()
 	CFG_GET_VAL("yres", m_ConfigH);
 	CFG_GET_VAL("bpp", m_ConfigBPP);
 	CFG_GET_VAL("display", m_ConfigDisplay);
+
+	CFG_GET_VAL("vsync", m_ConfigVSync);
 }
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
@@ -265,7 +261,7 @@ bool CVideoMode::InitSDL()
 			return false;
 	}
 
-	SDL_GL_SetSwapInterval(g_VSync ? 1 : 0);
+	SDL_GL_SetSwapInterval(m_ConfigVSync ? 1 : 0);
 
 	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
 	// The driver appears to register its own atexit hook on context creation.
@@ -457,43 +453,49 @@ int CVideoMode::GetBestBPP()
 	return 32;
 }
 
-int CVideoMode::GetXRes()
+int CVideoMode::GetXRes() const
 {
 	ENSURE(m_IsInitialised);
 	return m_CurrentW;
 }
 
-int CVideoMode::GetYRes()
+int CVideoMode::GetYRes() const
 {
 	ENSURE(m_IsInitialised);
 	return m_CurrentH;
 }
 
-int CVideoMode::GetBPP()
+int CVideoMode::GetBPP() const
 {
 	ENSURE(m_IsInitialised);
 	return m_CurrentBPP;
 }
 
-int CVideoMode::GetDesktopXRes()
+bool CVideoMode::IsVSyncEnabled() const
+{
+	ENSURE(m_IsInitialised);
+	return m_ConfigVSync;
+}
+
+int CVideoMode::GetDesktopXRes() const
 {
 	ENSURE(m_IsInitialised);
 	return m_PreferredW;
 }
 
-int CVideoMode::GetDesktopYRes()
+int CVideoMode::GetDesktopYRes() const
 {
 	ENSURE(m_IsInitialised);
 	return m_PreferredH;
 }
 
-int CVideoMode::GetDesktopBPP()
+int CVideoMode::GetDesktopBPP() const
 {
 	ENSURE(m_IsInitialised);
 	return m_PreferredBPP;
 }
 
-int CVideoMode::GetDesktopFreq()
+int CVideoMode::GetDesktopFreq() const
 {
 	ENSURE(m_IsInitialised);
 	return m_PreferredFreq;
