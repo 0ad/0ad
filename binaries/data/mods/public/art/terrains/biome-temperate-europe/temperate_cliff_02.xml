@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/temperate/cliff_02.png"/>
+		<texture name="normTex" file="types/alpine_arctic/cliff_02_norm.png"/>
+		<texture name="specTex" file="types/alpine_arctic/cliff_02_spec.png"/>
+	</textures>
+	<props size="64.0"/> 
+	<material>terrain_norm_strong_spec.xml</material>
+</terrain>

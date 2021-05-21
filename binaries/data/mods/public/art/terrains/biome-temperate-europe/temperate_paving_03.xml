@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/temperate/paving_003.png"/>
+		<texture name="normTex" file="types/temperate/paving_003_norm.png"/>
+		<texture name="specTex" file="types/temperate/paving_003_spec.png"/>
+	</textures>
+	<props size="20.0" angle="-45.0"/> 
+	<material>terrain_norm_strong_spec.xml</material>
+</terrain>

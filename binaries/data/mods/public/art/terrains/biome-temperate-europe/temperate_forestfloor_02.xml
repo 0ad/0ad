@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/temperate/forestfloor_004.png"/>
+		<texture name="normTex" file="types/temperate/forestfloor_004_norm.png"/>
+		<texture name="specTex" file="types/temperate/forestfloor_004_spec.png"/>
+	</textures>
+	<props size="24.0"/> 
+	<material>terrain_norm_strong_spec.xml</material>
+</terrain>
