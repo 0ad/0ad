@@ -539,16 +539,17 @@ g_SelectionPanels.Queue = {
 
 		data.button.onPress = function() { removeFromProductionQueue(data.item.producingEnt, queuedItem.id); };
 
-		let tooltip = getEntityNames(template);
+		const tooltips = [getEntityNames(template)];
 		if (queuedItem.neededSlots)
 		{
-			tooltip += "\n" + coloredText(translate("Insufficient population capacity:"), "red");
-			tooltip += "\n" + sprintf(translate("%(population)s %(neededSlots)s"), {
+			tooltips.push(coloredText(translate("Insufficient population capacity:"), "red"));
+			tooltips.push(sprintf(translate("%(population)s %(neededSlots)s"), {
 				"population": resourceIcon("population"),
 				"neededSlots": queuedItem.neededSlots
-			});
+			}));
 		}
-		data.button.tooltip = tooltip;
+		tooltips.push(showTemplateViewerOnRightClickTooltip(template));
+		data.button.tooltip = tooltips.join("\n");
 
 		data.countDisplay.caption = queuedItem.count > 1 ? queuedItem.count : "";
 
@@ -568,6 +569,10 @@ g_SelectionPanels.Queue = {
 			data.icon.sprite = "stretched:session/portraits/" + template.icon;
 
 		data.button.enabled = controlsPlayer(data.player);
+
+		const showTemplateFunc = () => { showTemplateDetails(data.item.queuedItem.unitTemplate || data.item.queuedItem.technologyTemplate, data.playerState.civ); };
+		data.button.onPressRight = showTemplateFunc;
+		data.button.onPressRightDisabled = showTemplateFunc;
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);
 		return true;
