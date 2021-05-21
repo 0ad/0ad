@@ -50,8 +50,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-extern int g_yres;
-
 const double SELECT_DBLCLICK_RATE = 0.5;
 const u32 MAX_OBJECT_DEPTH = 100; // Max number of nesting for GUI includes. Used to detect recursive inclusion
 

@@ -42,8 +42,6 @@
 #include <fstream>
 #include <ctime>
 
-extern int g_xres, g_yres;
-
 struct CProfileViewerInternals
 {
 	NONCOPYABLE(CProfileViewerInternals); // because of the ofstream
