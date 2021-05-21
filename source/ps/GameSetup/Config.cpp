@@ -43,10 +43,6 @@ bool g_DisableAudio = false;
 // flag to switch on drawing terrain overlays
 bool g_ShowPathfindingOverlay = false;
 
-// If non-empty, specified map will be automatically loaded
-CStr g_AutostartMap = "";
-
-
 //----------------------------------------------------------------------------
 // config
 //----------------------------------------------------------------------------
