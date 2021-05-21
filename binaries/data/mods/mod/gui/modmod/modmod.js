@@ -61,7 +61,7 @@ var g_ModsCompatibility = [];
  */
 var g_InstalledMods;
 
-var g_HasFailedMods;
+var g_HasIncompatibleMods;
 
 var g_FakeMod = {
 	"name": translate("This mod does not exist"),
@@ -79,11 +79,11 @@ var g_ColorDependenciesNotMet = "255 100 100";
 function init(data, hotloadData)
 {
 	g_InstalledMods = data && data.installedMods || hotloadData && hotloadData.installedMods || [];
-	g_HasFailedMods = Engine.HasFailedMods();
+	g_HasIncompatibleMods = Engine.HasIncompatibleMods();
 
 	initMods();
 	initGUIButtons(data);
-	if (g_HasFailedMods)
+	if (g_HasIncompatibleMods)
 		Engine.PushGuiPage("page_incompatible_mods.xml", {});
 }
 
@@ -117,8 +117,8 @@ function getMod(folder)
 
 function loadEnabledMods()
 {
-	if (g_HasFailedMods)
-		g_ModsEnabled = Engine.GetFailedMods().filter(folder => folder != "mod");
+	if (g_HasIncompatibleMods)
+		g_ModsEnabled = Engine.GetIncompatibleMods().filter(folder => folder != "mod");
 	else
 		g_ModsEnabled = Engine.GetEnabledMods().filter(folder => !!g_Mods[folder]);
 	g_ModsDisabled = Object.keys(g_Mods).filter(folder => g_ModsEnabled.indexOf(folder) == -1);
@@ -446,7 +446,7 @@ function selectedMod(listObjectName)
 	toggleModButton.caption = isPickedDisabledList ?
 		translateWithContext("mod activation", "Enable") :
 		translateWithContext("mod activation", "Disable");
-	toggleModButton.enabled = isPickedDisabledList ? isModSelected && g_ModsCompatibility[listObject.list[listObject.selected]] : isModSelected;
+	toggleModButton.enabled = isPickedDisabledList ? isModSelected && g_ModsCompatibility[listObject.list[listObject.selected]] || false : isModSelected;
 	Engine.GetGUIObjectByName("enabledModUp").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
 	Engine.GetGUIObjectByName("enabledModDown").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
 

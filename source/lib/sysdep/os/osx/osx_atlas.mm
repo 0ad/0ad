@@ -28,14 +28,7 @@
 #include "lib/types.h"
 #include "ps/CStr.h"
 
-#include <vector>
-
-namespace Mod
-{
-extern std::vector<CStr> g_ModsLoaded;
-}
-
-void startNewAtlasProcess()
+void startNewAtlasProcess(const std::vector<CStr8>& mods)
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
@@ -43,7 +36,7 @@ void startNewAtlasProcess()
 	[args addObject:@"--editor"];
 
 	// Pass mods on the command line.
-	for (const CStr& mod : Mod::g_ModsLoaded)
+	for (const CStr8& mod : mods)
 	{
 		std::string arg = std::string("-mod=") + mod;
 		[args addObject:[[NSString alloc] initWithUTF8String:arg.c_str()]];

@@ -14,11 +14,10 @@ class CounterResource
 
 	rebuild(playerState, getAllyStatTooltip)
 	{
-		this.count.caption = Math.floor(playerState.resourceCounts[this.resCode]);
+		this.count.caption = abbreviateLargeNumbers(Math.floor(playerState.resourceCounts[this.resCode]));
 
-		// Do not show zeroes.
 		let gatherers = playerState.resourceGatherers[this.resCode];
-		this.stats.caption = gatherers || "";
+		this.stats.caption = gatherers ? coloredText(gatherers, this.DefaultResourceGatherersColor) : 0;
 
 		// TODO: Set the tooltip only if hovered?
 		let description = g_ResourceData.GetResource(this.resCode).description;
@@ -28,8 +27,7 @@ class CounterResource
 		this.panel.tooltip =
 			setStringTags(resourceNameFirstWord(this.resCode), CounterManager.ResourceTitleTags) +
 			description +
-			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" +
-			(gatherers > 0 ? sprintf(translate("Gatherers: %(amount)s"), { "amount" : gatherers }) : "");
+			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" + CounterPopulation.prototype.CurrentGatherersTooltip;
 	}
 
 	getTooltipData(playerState, playername)
@@ -41,3 +39,8 @@ class CounterResource
 		};
 	}
 }
+
+/**
+ * Color to highlight the resource gatherers.
+ */
+CounterResource.prototype.DefaultResourceGatherersColor = "gold";

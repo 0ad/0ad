@@ -31,6 +31,7 @@
 #include "maths/MD5.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Mod.h"
 #include "ps/ModInstaller.h"

@@ -2,44 +2,41 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Acacia">
-      <props>
-        <prop actor="flora/trees/acacia_top.xml" attachpoint="root"/>
-      </props>
+    <variant frequency="1" name="Acacia Top">
       <textures>
         <texture file="gaia/acacia.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <!-- Need to keep the variant names in sync with the children. -->
+    <!-- Need to keep the variant names in sync with the parent. -->
     <variant frequency="1" name="Variant-01">
-      <mesh>gaia/trees/trunks/acacia_01.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_01.dae</mesh>
     </variant>
     <variant frequency="5" name="Variant-02">
-      <mesh>gaia/trees/trunks/acacia_02.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_02.dae</mesh>
     </variant>
     <variant frequency="6" name="Variant-03">
-      <mesh>gaia/trees/trunks/acacia_03.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_03.dae</mesh>
     </variant>
     <variant frequency="1" name="Variant-04">
-      <mesh>gaia/trees/trunks/acacia_04.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_04.dae</mesh>
     </variant>
     <variant frequency="1" name="Variant-05">
-      <mesh>gaia/trees/trunks/acacia_05.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_05.dae</mesh>
     </variant>
     <variant frequency="10" name="Variant-06">
-      <mesh>gaia/trees/trunks/acacia_06.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_06.dae</mesh>
     </variant>
     <variant frequency="1" name="Variant-07">
-      <mesh>gaia/trees/trunks/acacia_07.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_07.dae</mesh>
     </variant>
     <variant frequency="2" name="Variant-08">
-      <mesh>gaia/trees/trunks/acacia_08.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_08.dae</mesh>
     </variant>
     <variant frequency="1" name="Variant-09">
-      <mesh>gaia/trees/trunks/acacia_09.dae</mesh>
+      <mesh>gaia/trees/leaves/acacia_09.dae</mesh>
     </variant>
   </group>
-  <material>trans_wind.xml</material>
+  <material>basic_trans_wind.xml</material>
 </actor>

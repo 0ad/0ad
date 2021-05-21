@@ -709,7 +709,7 @@ m.Entity = m.Class({
 			return undefined;
 
 		if (this.unitAIOrderData().length &&
-			(this.unitAIState().split(".")[1] == "GATHER" || this.unitAIState().split(".")[1] == "RETURNRESOURCE"))
+			this.unitAIState().split(".")[1] == "GATHER")
 		{
 			let res;
 			// this is an abuse of "_ai" but it works.

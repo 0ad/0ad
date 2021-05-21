@@ -441,7 +441,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	// Engine localization files (regular priority, these can be overwritten).
 	g_VFS->Mount(L"l10n/", paths.RData()/"l10n"/"");
 
-	MountMods(paths, Mod::GetModsFromArguments(args, flags));
+	// Mods will be mounted later.
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.
@@ -848,26 +848,6 @@ bool Autostart(const CmdLineArgs& args);
  */
 bool AutostartVisualReplay(const std::string& replayFile);
 
-bool EnableModsOrSetDefault(const CmdLineArgs& args, const std::vector<CStr>& mods, bool fromConfig)
-{
-	ScriptInterface scriptInterface("Engine", "CheckAndEnableMods", g_ScriptContext);
-	if (Mod::CheckAndEnableMods(scriptInterface, mods))
-		return true;
-	// Here we refuse to start as there is no gui anyway
-	if (args.Has("autostart-nonvisual"))
-	{
-		if (fromConfig)
-			LOGERROR("Trying to start with incompatible mods from configuration file: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
-		else
-			LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(Mod::GetIncompatibleMods(), ", "));
-		return false;
-	}
-	Mod::SetDefaultMods();
-	RestartEngine();
-	return false;
-}
-
-
 bool Init(const CmdLineArgs& args, int flags)
 {
 	h_mgr_init();
@@ -901,7 +881,37 @@ bool Init(const CmdLineArgs& args, int flags)
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
 	g_ScriptContext = ScriptContext::CreateContext(contextSize, heapGrowthBytesGCTrigger);
 
-	Mod::CacheEnabledModVersions(g_ScriptContext);
+	// On the first Init (INIT_MODS), check for command-line arguments
+	// or use the default mods from the config and enable those.
+	// On later engine restarts (e.g. the mod selector), we will skip this path,
+	// to avoid overwriting the newly selected mods.
+	if (flags & INIT_MODS)
+	{
+		ScriptInterface modInterface("Engine", "Mod", g_ScriptContext);
+		std::vector<CStr> mods;
+		if (args.Has("mod"))
+			mods = args.GetMultiple("mod");
+		else
+		{
+			CStr modsStr;
+			CFG_GET_VAL("mod.enabledmods", modsStr);
+			boost::split(mods, modsStr, boost::algorithm::is_space(), boost::token_compress_on);
+		}
+
+		if (!g_Mods.EnableMods(modInterface, mods, flags & INIT_MODS_PUBLIC))
+		{
+			// In non-visual mode, fail entirely.
+			if (args.Has("autostart-nonvisual"))
+			{
+				LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
+				return false;
+			}
+			// Disable all mods but "mod", we want to use the JS fallback code.
+			// TODO: it'd be nicer if the control flow was more obvious here.
+			g_Mods.SwitchToModSelector(modInterface);
+		}
+	}
+	MountMods(Paths(args), g_Mods.GetEnabledMods());
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
@@ -922,32 +932,6 @@ bool Init(const CmdLineArgs& args, int flags)
 	if (!args.Has("autostart-nonvisual") && !g_DisableAudio)
 		ISoundManager::CreateSoundManager();
 #endif
-
-	// Check if there are mods specified on the command line,
-	// or if we already set the mods (~INIT_MODS),
-	// else check if there are mods that should be loaded specified
-	// in the config and load those (by aborting init and restarting
-	// the engine).
-	if ((flags & INIT_MODS) == INIT_MODS)
-	{
-		if (!args.Has("mod"))
-		{
-			CStr modstring;
-			CFG_GET_VAL("mod.enabledmods", modstring);
-			if (!modstring.empty())
-			{
-				std::vector<CStr> mods;
-				boost::split(mods, modstring, boost::is_any_of(" "), boost::token_compress_on);
-				if (!EnableModsOrSetDefault(args, mods, true))
-					return false;
-
-				RestartEngine();
-				return false;
-			}
-		}
-		else if (!EnableModsOrSetDefault(args, Mod::g_ModsLoaded, false))
-			return false;
-	}
 
 	new L10n;
 
