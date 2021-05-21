@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/temperate/rocks_dirt_01.png"/>
+		<texture name="normTex" file="types/india/rocks_dirt_01_norm.png"/>
+		<texture name="specTex" file="types/india/rocks_dirt_01_spec.png"/>
+	</textures>
+	<props size="120.0"/>
+	<material>terrain_norm_spec.xml</material>
+</terrain>
