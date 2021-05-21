@@ -40,9 +40,6 @@ bool g_VSync = false;
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
 
-// flag to switch on drawing terrain overlays
-bool g_ShowPathfindingOverlay = false;
-
 //----------------------------------------------------------------------------
 // config
 //----------------------------------------------------------------------------
