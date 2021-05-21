@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/sahara/dirt_cracks_01.png"/>
+		<texture name="normTex" file="types/sahara/dirt_cracks_01_norm.png"/>
+		<texture name="specTex" file="types/sahara/dirt_cracks_01_spec.png"/>
+	</textures>
+	<props size="40.0" angle="45.0"/>
+	<material>terrain_norm_spec.xml</material>
+</terrain>
