@@ -37,10 +37,6 @@
 #include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"
 
-#if OS_MACOSX
-# include "lib/sysdep/os/osx/osx_sys_version.h"
-#endif
-
 static int DEFAULT_WINDOW_W = 1024;
 static int DEFAULT_WINDOW_H = 768;
 
