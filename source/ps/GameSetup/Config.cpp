@@ -84,9 +84,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		}
 	}
 
-//	if (args.Has("listfiles"))
-//		trace_enable(true);
-
 	if (args.Has("profile"))
 		g_ConfigDB.SetValueString(CFG_COMMAND, "profile", args.Get("profile"));
 
