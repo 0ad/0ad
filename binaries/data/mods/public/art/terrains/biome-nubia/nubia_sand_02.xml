@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/nubia/sand_02.png"/>
+		<texture name="normTex" file="types/sahara/sand_04_norm.png"/>
+		<texture name="specTex" file="types/sahara/sand_04_spec.png"/>
+	</textures>
+	<props size="32.0"/>
+	<material>terrain_norm_spec.xml</material>
+</terrain>

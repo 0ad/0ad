@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/nubia/dirt_04.png"/>
+		<texture name="normTex" file="types/nubia/dirt_04_norm.png"/>
+		<texture name="specTex" file="types/nubia/dirt_04_spec.png"/>
+	</textures>
+	<props size="48.0"/>
+	<material>terrain_norm_spec.xml</material>
+</terrain>
