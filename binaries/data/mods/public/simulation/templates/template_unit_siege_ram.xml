@@ -9,7 +9,7 @@
       <MaxRange>6.5</MaxRange>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1500</RepeatTime>
-      <PreferredClasses datatype="tokens">Gate Defensive Structure</PreferredClasses>
+      <PreferredClasses datatype="tokens">Structure</PreferredClasses>
       <RestrictedClasses datatype="tokens">Field Organic</RestrictedClasses>
     </Melee>
   </Attack>
@@ -32,9 +32,9 @@
     <Max>400</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Melee Ram</VisibleClasses>
     <GenericName>Battering Ram</GenericName>
     <Tooltip>Cannot attack Fields or Organic Units.</Tooltip>
+    <VisibleClasses datatype="tokens">Melee Ram</VisibleClasses>
   </Identity>
   <Loot>
     <xp>200</xp>
