@@ -667,8 +667,6 @@ IGUIObject* CGUI::Xeromyces_ReadObject(const XMBData& xmb, XMBElement element, I
 	bool NameSet = false;
 	bool ManuallySetZ = false;
 
-	CStrW inclusionPath;
-
 	for (XMBAttribute attr : attributes)
 	{
 		// If value is "null", then it is equivalent as never being entered
