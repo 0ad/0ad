@@ -67,9 +67,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-23 09:19+0000\n"
-"Last-Translator: André Schwarz <andrschwarz@protonmail.com>\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-17 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -398,11 +398,11 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Faz um sorteiro para decidir entre a versão noturna e a diurna."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
 msgstr "Ritmo do jogo"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
 msgstr "Indique a velocidade do jogo."
 
@@ -614,15 +614,15 @@ msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "Vitória Imediata."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Sea Level Rise Time"
 msgstr "Tempo Subida do Nível do Mar"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
 msgstr "Defina o tempo em que a água do mar começará a subir."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
@@ -861,52 +861,58 @@ msgstr "Senha inválida"
 msgid "You have been banned."
 msgstr "Você foi banido."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid ""
+"Failed to get local IP of the server (it was assumed to be on the same "
+"network)."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Valor inválido %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Falha ao conectar ao servidor."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr "Conexão falhou."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Mensagem da rede: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:275
+#: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
 msgstr "Registrando com servidor..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:281
+#: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
 msgstr "O jogo já começou, juntando-se novamente..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:360
+#: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
 msgstr "Este nome já está em uso."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Não é possível hospedar o jogo: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
-#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
+#: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
+#: gui/gamesetup_mp/gamesetup_mp.js:435 gui/gamesetup_mp/gamesetup_mp.js:450
 msgid "Error"
 msgstr "Erro"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
+#: gui/gamesetup_mp/gamesetup_mp.js:405 gui/gamesetup_mp/gamesetup_mp.js:449
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Não é possível entrar no jogo: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:461
+#: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Jogo do %(playername)s"

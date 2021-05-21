@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-15 08:08+0000\n"
-"PO-Revision-Date: 2021-05-14 16:32+0000\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-20 12:47+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -28,32 +28,32 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: graphics/CameraController.cpp:686
+#: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "捲動速度提升到 %.1f"
 
-#: graphics/CameraController.cpp:692
+#: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "捲動速度降低到 %.1f"
 
-#: graphics/CameraController.cpp:699
+#: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "旋轉速度提升到 X=%.3f、Y=%.3f"
 
-#: graphics/CameraController.cpp:706
+#: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "旋轉速度降低到 X=%.3f、Y=%.3f"
 
-#: graphics/CameraController.cpp:712
+#: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "縮放速度提升到 %.1f"
 
-#: graphics/CameraController.cpp:718
+#: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "縮放速度降低到 %.1f"
@@ -62,198 +62,205 @@ msgstr "縮放速度降低到 %.1f"
 msgid "Long strings"
 msgstr "長字串"
 
-#: lobby/XmppClient.cpp:1007
+#: lobby/XmppClient.cpp:1026
 msgid "unknown subtype (see logs)"
 msgstr "未知的子類型（見記錄檔）"
 
-#: lobby/XmppClient.cpp:1333
+#: lobby/XmppClient.cpp:1357
 msgid "The certificate is not trusted."
 msgstr "憑證未受信任。"
 
-#: lobby/XmppClient.cpp:1334
+#: lobby/XmppClient.cpp:1358
 msgid "The certificate hasn't got a known issuer."
 msgstr "憑證沒有已知的發行人。"
 
-#: lobby/XmppClient.cpp:1335
+#: lobby/XmppClient.cpp:1359
 msgid "The certificate has been revoked."
 msgstr "憑證已被吊銷。"
 
-#: lobby/XmppClient.cpp:1336
+#: lobby/XmppClient.cpp:1360
 msgid "The certificate has expired."
 msgstr "憑證已過期。"
 
-#: lobby/XmppClient.cpp:1337
+#: lobby/XmppClient.cpp:1361
 msgid "The certificate is not yet active."
 msgstr "憑證尚未生效。"
 
-#: lobby/XmppClient.cpp:1338
+#: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "憑證尚未被發行以使鄰機連線。"
 
-#: lobby/XmppClient.cpp:1339
+#: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
 msgstr "憑證簽署人非認證機構。"
 
-#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
-#: lobby/XmppClient.cpp:1444
+#: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
+#: lobby/XmppClient.cpp:1468
 msgid "Error"
 msgstr "錯誤"
 
-#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
+#: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
 msgid "No error"
 msgstr "沒有錯誤"
 
-#: lobby/XmppClient.cpp:1366
+#: lobby/XmppClient.cpp:1390
 msgid "Player already logged in"
 msgstr "玩家已登入"
 
-#: lobby/XmppClient.cpp:1368
+#: lobby/XmppClient.cpp:1392
 msgid "Forbidden"
 msgstr "被拒絕"
 
-#: lobby/XmppClient.cpp:1370
+#: lobby/XmppClient.cpp:1394
 msgid "Internal server error"
 msgstr "內部伺服器錯誤"
 
-#: lobby/XmppClient.cpp:1374
+#: lobby/XmppClient.cpp:1398
 msgid "Not allowed"
 msgstr "不被允許"
 
-#: lobby/XmppClient.cpp:1375
+#: lobby/XmppClient.cpp:1399
 msgid "Not authorized"
 msgstr "未授權"
 
-#: lobby/XmppClient.cpp:1378
+#: lobby/XmppClient.cpp:1402
 msgid "Recipient temporarily unavailable"
 msgstr "接收者暫時不可用"
 
-#: lobby/XmppClient.cpp:1380
+#: lobby/XmppClient.cpp:1404
 msgid "Registration required"
 msgstr "需要註冊"
 
-#: lobby/XmppClient.cpp:1384
+#: lobby/XmppClient.cpp:1408
 msgid "Service unavailable"
 msgstr "服務不可用"
 
-#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
+#: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
 msgid "Unknown error"
 msgstr "未知的錯誤"
 
-#: lobby/XmppClient.cpp:1409
+#: lobby/XmppClient.cpp:1433
 msgid "Stream error"
 msgstr "串流錯誤"
 
-#: lobby/XmppClient.cpp:1410
+#: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
 msgstr "不支援傳入的串流版本"
 
-#: lobby/XmppClient.cpp:1411
+#: lobby/XmppClient.cpp:1435
 msgid "The stream has been closed by the server"
 msgstr "串流已被伺服器關閉"
 
-#: lobby/XmppClient.cpp:1415
+#: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
 msgstr "發生了一個輸入／輸出錯誤"
 
-#: lobby/XmppClient.cpp:1417
+#: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
 msgstr "連線被伺服器拒絕"
 
-#: lobby/XmppClient.cpp:1418
+#: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
 msgstr "解析伺服器主機名稱失敗"
 
-#: lobby/XmppClient.cpp:1419
+#: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
 msgstr "系統記憶體已耗盡"
 
-#: lobby/XmppClient.cpp:1421
+#: lobby/XmppClient.cpp:1445
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "無法驗證伺服器憑證或 TLS 交握未成功完成"
 
-#: lobby/XmppClient.cpp:1422
+#: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
 msgstr "伺服器未提供必要的 TLS 加密"
 
-#: lobby/XmppClient.cpp:1424
+#: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "驗證失敗。密碼不正確或帳號不存在"
 
-#: lobby/XmppClient.cpp:1425
+#: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
 msgstr "使用者或系統請求斷線"
 
-#: lobby/XmppClient.cpp:1426
+#: lobby/XmppClient.cpp:1450
 msgid "There is no active connection"
 msgstr "沒有活躍的連線"
 
-#: lobby/XmppClient.cpp:1447
+#: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
 msgstr "成功註冊你的帳號"
 
-#: lobby/XmppClient.cpp:1448
+#: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
 msgstr "未提供所有必要資訊"
 
-#: lobby/XmppClient.cpp:1449
+#: lobby/XmppClient.cpp:1473
 msgid "Username already exists"
 msgstr "使用者名稱已存在"
 
-#: ps/ModIo.cpp:261
+#: ps/Mod.cpp:84
+#, c-format
+msgid ""
+"Could not write external mod.json for zipped mod '%s'. The mod should be "
+"reinstalled."
+msgstr "無法為壓縮的模組「%s」寫入外部 mod.json。此模組需要重新安裝。"
+
+#: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "查詢遊戲 id 失敗。錯誤：%s; %s。"
 
-#: ps/ModIo.cpp:291
+#: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "查詢模組失敗。錯誤：%s; %s。"
 
-#: ps/ModIo.cpp:317
+#: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "無法建立模組目錄：%s。"
 
-#: ps/ModIo.cpp:342
+#: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "無法開啟下載模組的暫存檔案：%s。"
 
-#: ps/ModIo.cpp:352
+#: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "無法開始下載。錯誤：%s; %s。"
 
-#: ps/ModIo.cpp:397
+#: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "異步下載錯誤：%s; %s。"
 
-#: ps/ModIo.cpp:425
+#: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "下載失敗。伺服器回應：%s; %s。"
 
-#: ps/ModIo.cpp:528
+#: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
 msgstr "檔案大小不相符。"
 
-#: ps/ModIo.cpp:546
+#: ps/ModIo.cpp:548
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "無效檔案。預期 md5 %s，得到 %s。"
 
-#: ps/ModIo.cpp:561
+#: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."
 msgstr "計算最終雜湊失敗。"
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
 msgstr "驗證簽章失敗。"
 
-#: ps/SavedGame.cpp:139
+#: ps/SavedGame.cpp:141
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "儲存遊戲到「%s」"

@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-23 09:19+0000\n"
-"Last-Translator: V S <v32itas@slacknet.eu>\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-17 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,11 +342,11 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Atsitiktinai parinkti paros metą."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
 msgstr "Žaidimo greitis"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
 msgstr "Pasirinkite žaidimo greitį."
 
@@ -564,15 +564,15 @@ msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "Staigi Pergalė."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Sea Level Rise Time"
 msgstr "Jūros Lygis Kylantis Per Laiką"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
 msgstr "Nustatyti laiką kada vandens lygis pradės kilti."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
@@ -813,52 +813,58 @@ msgstr "Slaptažodis Neteisingas."
 msgid "You have been banned."
 msgstr "Jūs buvote užbaninti."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid ""
+"Failed to get local IP of the server (it was assumed to be on the same "
+"network)."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Negalima reikšmė %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Nepavyko prisijungti prie serverio."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr "Prisijungimas nepavyko"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Tinklo žinutė: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:275
+#: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
 msgstr "Registruojamasi prie serverio..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:281
+#: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
 msgstr "Žaidimas jau prasidėjo, jungiamasi iš naujo..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:360
+#: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
 msgstr "Žaidimo pavadinimas jau naudojamas."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Negalima surengti žaidimo: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
-#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
+#: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
+#: gui/gamesetup_mp/gamesetup_mp.js:435 gui/gamesetup_mp/gamesetup_mp.js:450
 msgid "Error"
 msgstr "Klaida"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
+#: gui/gamesetup_mp/gamesetup_mp.js:405 gui/gamesetup_mp/gamesetup_mp.js:449
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Negalima prisijungti į žaidimą: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:461
+#: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s žaidimas"

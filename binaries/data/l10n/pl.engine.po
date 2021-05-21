@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-15 08:08+0000\n"
-"PO-Revision-Date: 2021-03-30 13:19+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-17 10:18+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,32 +30,32 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: graphics/CameraController.cpp:686
+#: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "Szybkość przewijania zwiększona do %.1f"
 
-#: graphics/CameraController.cpp:692
+#: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "Szybkość przewijania zmniejszona do %.1f"
 
-#: graphics/CameraController.cpp:699
+#: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "Szybkość obracania zwiększona do X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:706
+#: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "Szybkość obracania zmniejszona do X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:712
+#: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "Szybkość przybliżania zwiększona do %.1f"
 
-#: graphics/CameraController.cpp:718
+#: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "Szybkość przybliżania zmniejszona do %.1f"
@@ -64,198 +64,205 @@ msgstr "Szybkość przybliżania zmniejszona do %.1f"
 msgid "Long strings"
 msgstr "Długie ciągi"
 
-#: lobby/XmppClient.cpp:1007
+#: lobby/XmppClient.cpp:1026
 msgid "unknown subtype (see logs)"
 msgstr "nieznany podtyp (sprawdź log)"
 
-#: lobby/XmppClient.cpp:1333
+#: lobby/XmppClient.cpp:1357
 msgid "The certificate is not trusted."
 msgstr "Niezaufany certyfikat."
 
-#: lobby/XmppClient.cpp:1334
+#: lobby/XmppClient.cpp:1358
 msgid "The certificate hasn't got a known issuer."
 msgstr "Wydawca certyfikatu nie jest znany."
 
-#: lobby/XmppClient.cpp:1335
+#: lobby/XmppClient.cpp:1359
 msgid "The certificate has been revoked."
 msgstr "Certyfikat cofnięto."
 
-#: lobby/XmppClient.cpp:1336
+#: lobby/XmppClient.cpp:1360
 msgid "The certificate has expired."
 msgstr "Certyfikat wygasł."
 
-#: lobby/XmppClient.cpp:1337
+#: lobby/XmppClient.cpp:1361
 msgid "The certificate is not yet active."
 msgstr "Certyfikat nie jest aktywny."
 
-#: lobby/XmppClient.cpp:1338
+#: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "Certyfikatu nie wydano jeszcze dla podłączonego klienta."
 
-#: lobby/XmppClient.cpp:1339
+#: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
 msgstr "Podpisujący certyfikat nie jest rozpoznawalny."
 
-#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
-#: lobby/XmppClient.cpp:1444
+#: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
+#: lobby/XmppClient.cpp:1468
 msgid "Error"
 msgstr "Błąd"
 
-#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
+#: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
 msgid "No error"
 msgstr "Bez błędu"
 
-#: lobby/XmppClient.cpp:1366
+#: lobby/XmppClient.cpp:1390
 msgid "Player already logged in"
 msgstr "Gracz jest już zalogowany"
 
-#: lobby/XmppClient.cpp:1368
+#: lobby/XmppClient.cpp:1392
 msgid "Forbidden"
 msgstr "Zabronione"
 
-#: lobby/XmppClient.cpp:1370
+#: lobby/XmppClient.cpp:1394
 msgid "Internal server error"
 msgstr "Wewnętrzny błąd serwera"
 
-#: lobby/XmppClient.cpp:1374
+#: lobby/XmppClient.cpp:1398
 msgid "Not allowed"
 msgstr "Nie jest dozwolona"
 
-#: lobby/XmppClient.cpp:1375
+#: lobby/XmppClient.cpp:1399
 msgid "Not authorized"
 msgstr "Nie jest autoryzowana"
 
-#: lobby/XmppClient.cpp:1378
+#: lobby/XmppClient.cpp:1402
 msgid "Recipient temporarily unavailable"
 msgstr "Odbiorca czasowo niedostępny"
 
-#: lobby/XmppClient.cpp:1380
+#: lobby/XmppClient.cpp:1404
 msgid "Registration required"
 msgstr "Wymagana rejestracja"
 
-#: lobby/XmppClient.cpp:1384
+#: lobby/XmppClient.cpp:1408
 msgid "Service unavailable"
 msgstr "Usługa niedostępna"
 
-#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
+#: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
-#: lobby/XmppClient.cpp:1409
+#: lobby/XmppClient.cpp:1433
 msgid "Stream error"
 msgstr "Błąd transmisji"
 
-#: lobby/XmppClient.cpp:1410
+#: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
 msgstr "Wersja transmisji przychodzącej nie jest wspierana"
 
-#: lobby/XmppClient.cpp:1411
+#: lobby/XmppClient.cpp:1435
 msgid "The stream has been closed by the server"
 msgstr "Transmisja została zamknięta przez serwer"
 
-#: lobby/XmppClient.cpp:1415
+#: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
 msgstr "Wystąpił błąd wejścia / wyjścia"
 
-#: lobby/XmppClient.cpp:1417
+#: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
 msgstr "Serwer odmówił połączenia"
 
-#: lobby/XmppClient.cpp:1418
+#: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
 msgstr "Nie udało się potwierdzić nazwy hosta serwera"
 
-#: lobby/XmppClient.cpp:1419
+#: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
 msgstr "W tym systemie brakuje pamięci"
 
-#: lobby/XmppClient.cpp:1421
+#: lobby/XmppClient.cpp:1445
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Certyfikat serwera nie mógł być zweryfikowany lub TLS handshake nie został ukończony z powodzeniem"
 
-#: lobby/XmppClient.cpp:1422
+#: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
 msgstr "Serwer nie oferuje wymaganego szyfrowania TLS"
 
-#: lobby/XmppClient.cpp:1424
+#: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Identyfikacja nie udała się. Niepoprawne hasło lub konto nie istnieje"
 
-#: lobby/XmppClient.cpp:1425
+#: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
 msgstr "Użytkownik lub system zażądał rozłączenia"
 
-#: lobby/XmppClient.cpp:1426
+#: lobby/XmppClient.cpp:1450
 msgid "There is no active connection"
 msgstr "Nie ma aktywnego połączenia"
 
-#: lobby/XmppClient.cpp:1447
+#: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
 msgstr "Twoje konto zostało pomyślnie zarejestrowane"
 
-#: lobby/XmppClient.cpp:1448
+#: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
 msgstr "Nie zapewniono wszystkich koniecznych informacji"
 
-#: lobby/XmppClient.cpp:1449
+#: lobby/XmppClient.cpp:1473
 msgid "Username already exists"
 msgstr "Nazwa użytkownika już istnieje"
 
-#: ps/ModIo.cpp:261
+#: ps/Mod.cpp:84
+#, c-format
+msgid ""
+"Could not write external mod.json for zipped mod '%s'. The mod should be "
+"reinstalled."
+msgstr ""
+
+#: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Błąd podczas odpytywania o identyfikator gry. Błąd: %s; %s."
 
-#: ps/ModIo.cpp:291
+#: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Błąd podczas odpytywania o modyfikacje. Błąd: %s; %s."
 
-#: ps/ModIo.cpp:317
+#: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Nie można stworzyć katalogu dla modyfikacji: %s."
 
-#: ps/ModIo.cpp:342
+#: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Nie można otworzyć tymczasowego pliku w celu pobrania modyfikacji: %s."
 
-#: ps/ModIo.cpp:352
+#: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Nie można rozpocząć pobierania. Błąd: %s; %s."
 
-#: ps/ModIo.cpp:397
+#: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Błąd asynchronicznego pobierania: %s, %s."
 
-#: ps/ModIo.cpp:425
+#: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Błąd pobierania. Odpowiedź serwera: %s; %s."
 
-#: ps/ModIo.cpp:528
+#: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
 msgstr "Niepasujący rozmiar pliku."
 
-#: ps/ModIo.cpp:546
+#: ps/ModIo.cpp:548
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Błędny plik. Oczekiwane md5 %s, otrzymane %s."
 
-#: ps/ModIo.cpp:561
+#: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."
 msgstr "Nie udało się obliczyć końcowego hash'a."
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
 msgstr "Nie udało się zweryfikować sygnatury."
 
-#: ps/SavedGame.cpp:139
+#: ps/SavedGame.cpp:141
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Zapisano grę w '%s'"

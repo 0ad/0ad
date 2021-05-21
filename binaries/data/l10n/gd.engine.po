@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-15 08:08+0000\n"
-"PO-Revision-Date: 2021-03-15 10:16+0000\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-17 10:18+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -18,32 +18,32 @@ msgstr ""
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: graphics/CameraController.cpp:686
+#: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr ""
 
-#: graphics/CameraController.cpp:692
+#: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr ""
 
-#: graphics/CameraController.cpp:699
+#: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr ""
 
-#: graphics/CameraController.cpp:706
+#: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr ""
 
-#: graphics/CameraController.cpp:712
+#: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr ""
 
-#: graphics/CameraController.cpp:718
+#: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr ""
@@ -52,198 +52,205 @@ msgstr ""
 msgid "Long strings"
 msgstr "Sreangan fada"
 
-#: lobby/XmppClient.cpp:1007
+#: lobby/XmppClient.cpp:1026
 msgid "unknown subtype (see logs)"
 msgstr "fo-sheòrsa nach aithne duinn (thoir sùil air na logaichean)"
 
-#: lobby/XmppClient.cpp:1333
+#: lobby/XmppClient.cpp:1357
 msgid "The certificate is not trusted."
 msgstr "Chan eil earbsa san teisteanas seo."
 
-#: lobby/XmppClient.cpp:1334
+#: lobby/XmppClient.cpp:1358
 msgid "The certificate hasn't got a known issuer."
 msgstr "Chan eil foillsichear aithnichte aig an teisteanas seo."
 
-#: lobby/XmppClient.cpp:1335
+#: lobby/XmppClient.cpp:1359
 msgid "The certificate has been revoked."
 msgstr "Chaidh an teisteanas a chùl-ghairm."
 
-#: lobby/XmppClient.cpp:1336
+#: lobby/XmppClient.cpp:1360
 msgid "The certificate has expired."
 msgstr "Dh’fhalbh an ùine air an teisteanas."
 
-#: lobby/XmppClient.cpp:1337
+#: lobby/XmppClient.cpp:1361
 msgid "The certificate is not yet active."
 msgstr "Chan eil an teisteanas gnìomhach fhathast."
 
-#: lobby/XmppClient.cpp:1338
+#: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "Cha deach an teisteanas fhoillseachadh dhan t-seise a chaidh a cheangal ris."
 
-#: lobby/XmppClient.cpp:1339
+#: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
 msgstr "Chan eil foillsichear an teisteanais ’na ùghdarras teisteanachaidh."
 
-#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
-#: lobby/XmppClient.cpp:1444
+#: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
+#: lobby/XmppClient.cpp:1468
 msgid "Error"
 msgstr "Mearachd"
 
-#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
+#: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
 msgid "No error"
 msgstr "Gun mhearachd"
 
-#: lobby/XmppClient.cpp:1366
+#: lobby/XmppClient.cpp:1390
 msgid "Player already logged in"
 msgstr "Tha an cluicheadair air a chlàradh a-steach mar-thà"
 
-#: lobby/XmppClient.cpp:1368
+#: lobby/XmppClient.cpp:1392
 msgid "Forbidden"
 msgstr "Toirmisgte"
 
-#: lobby/XmppClient.cpp:1370
+#: lobby/XmppClient.cpp:1394
 msgid "Internal server error"
 msgstr "Mearachd taobh a-staigh an fhrithealaiche"
 
-#: lobby/XmppClient.cpp:1374
+#: lobby/XmppClient.cpp:1398
 msgid "Not allowed"
 msgstr "Chan eil seo ceadaichte"
 
-#: lobby/XmppClient.cpp:1375
+#: lobby/XmppClient.cpp:1399
 msgid "Not authorized"
 msgstr "Tha cead a dhìth"
 
-#: lobby/XmppClient.cpp:1378
+#: lobby/XmppClient.cpp:1402
 msgid "Recipient temporarily unavailable"
 msgstr "Chan eil am faighteir ann rè seal"
 
-#: lobby/XmppClient.cpp:1380
+#: lobby/XmppClient.cpp:1404
 msgid "Registration required"
 msgstr "Tha clàradh riatanach"
 
-#: lobby/XmppClient.cpp:1384
+#: lobby/XmppClient.cpp:1408
 msgid "Service unavailable"
 msgstr "Chan eil an t-seirbheis seo ri làimh"
 
-#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
+#: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
 msgid "Unknown error"
 msgstr "Mearachd nach aithne dhuinn"
 
-#: lobby/XmppClient.cpp:1409
+#: lobby/XmppClient.cpp:1433
 msgid "Stream error"
 msgstr "Mearachd sruthaidh"
 
-#: lobby/XmppClient.cpp:1410
+#: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
 msgstr "Cha chuirear taic ris an tionndadh dhen t-sruth a-steach"
 
-#: lobby/XmppClient.cpp:1411
+#: lobby/XmppClient.cpp:1435
 msgid "The stream has been closed by the server"
 msgstr "Chaidh an sruth a dhùnadh leis an fhrithealaiche"
 
-#: lobby/XmppClient.cpp:1415
+#: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
 msgstr "Thachair mearachd le ion- no às-chur"
 
-#: lobby/XmppClient.cpp:1417
+#: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
 msgstr "Chaidh an ceangal a dhiùltadh leis an fhrithealaiche"
 
-#: lobby/XmppClient.cpp:1418
+#: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
 msgstr "Cha deach leinn ainm-òstair an fhrithealaiche fhuasgladh"
 
-#: lobby/XmppClient.cpp:1419
+#: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
 msgstr "Chan eil cuimhne air fhàgail air an t-siostam"
 
-#: lobby/XmppClient.cpp:1421
+#: lobby/XmppClient.cpp:1445
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Cha deach leinn teisteanas an fhrithealaiche a dhearbhadh no cha deach an crathadh-làimhe TLS a choileanadh"
 
-#: lobby/XmppClient.cpp:1422
+#: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
 msgstr "Cha do thairg am frithealaiche an crioptachadh TLS riatanach"
 
-#: lobby/XmppClient.cpp:1424
+#: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Dh’fhàillig leis an dearbhadh. Chan eil am facal-faire mar bu chòir no chan eil an cunntas ann"
 
-#: lobby/XmppClient.cpp:1425
+#: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
 msgstr "Dh’iarr an cleachdaiche no an siostam briseadh a’ cheangail"
 
-#: lobby/XmppClient.cpp:1426
+#: lobby/XmppClient.cpp:1450
 msgid "There is no active connection"
 msgstr "Chan eil ceangal gnìomhach ann"
 
-#: lobby/XmppClient.cpp:1447
+#: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
 msgstr "Chaidh an cunntas agad a chlàradh"
 
-#: lobby/XmppClient.cpp:1448
+#: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
 msgstr "Cha deach gach fiosrachadh riatanach a sholar"
 
-#: lobby/XmppClient.cpp:1449
+#: lobby/XmppClient.cpp:1473
 msgid "Username already exists"
 msgstr "Tha am far-ainm ann mar-thà"
 
-#: ps/ModIo.cpp:261
+#: ps/Mod.cpp:84
+#, c-format
+msgid ""
+"Could not write external mod.json for zipped mod '%s'. The mod should be "
+"reinstalled."
+msgstr ""
+
+#: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Thachair mearachd nuair a bha sinn ag iarraidh aithnichear a’ gheama. Mearachd: %s; %s."
 
-#: ps/ModIo.cpp:291
+#: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Thachair mearachd nuair a bha sinn ag iarraidh fiosrachadh nan tuilleadan. Mearachd: %s; %s."
 
-#: ps/ModIo.cpp:317
+#: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Cha b’ urrainn dhuinn pasgan nan tuilleadan a chruthachadh: %s."
 
-#: ps/ModIo.cpp:342
+#: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Cha b’ urrainn dhuinn faidhle sealach fhosgladh airson tuilleadan a luchdadh a-nuas: %s."
 
-#: ps/ModIo.cpp:352
+#: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Cha b’ urrainn dhuinn tòiseachadh air an luchdadh a-nuas. Mearachd: %s; %s."
 
-#: ps/ModIo.cpp:397
+#: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Dh’fhàillig le luchdadh a-nuas neo-shioncronaichte: %s, %s."
 
-#: ps/ModIo.cpp:425
+#: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Dh’fhàillig leis an luchdadh a-nuas. Freagairt an fhrithealaiche: %s, %s."
 
-#: ps/ModIo.cpp:528
+#: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
 msgstr "Chan eil meud nam faidhle a-rèir a chèile."
 
-#: ps/ModIo.cpp:546
+#: ps/ModIo.cpp:548
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Faidhle mì-dhligheach. An dùil air md5 %s, ach fhuair sinn %s."
 
-#: ps/ModIo.cpp:561
+#: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."
 msgstr "Cha deach leinn an hais dheireannach àireamhachadh."
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
 msgstr "Cha deach leinn an soidhneadh a dhearbhadh."
 
-#: ps/SavedGame.cpp:139
+#: ps/SavedGame.cpp:141
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Chaidh an geama a shàbhaladh gu “%s”"

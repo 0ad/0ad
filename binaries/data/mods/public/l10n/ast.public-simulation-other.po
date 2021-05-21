@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-16 22:56+0000\n"
+"PO-Revision-Date: 2021-05-17 22:23+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Toi acabando los entamos p'atacar a %(_player_)s."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Perdona, ye que me falten soldaos; pero darréu voi atacar a %(_player_)s."
+msgstr "Perdona, ye que me falten soldaos; pero darréu ataco a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
@@ -205,7 +205,7 @@ msgstr "Convendría que nos aliemos, %(_player_)s."
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr "Qu'entrambos pueblos probalezamos nuna asociación pacetible, %(_player_)s."
+msgstr "Que los dos pueblos probalezamos nuna asociación pacetible, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
@@ -222,7 +222,7 @@ msgstr "D'equí p'arriba cuntáis con nós, %(_player_)s."
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "Voi aliame contigo, %(_player_)s, si me das un tributu de %(_amount_)s de %(_resource_)s."
+msgstr "Mentanto tu me deas un tributu de %(_amount_)s de %(_resource_)s, yo m'alío contigo, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
@@ -288,21 +288,21 @@ msgstr "Acueyo la paz ente los nuesos pueblos, %(_player_)s. Acepto."
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr "Acepto la propuesta de neutralidá, %(_player_)s. Que sirva a los pueblos nuesos."
+msgstr "Acepto la propuesta de neutralidá, %(_player_)s. Que sirva a los nuesos pueblos."
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr "Si me das un tributu de %(_amount_)s de %(_resource_)s, voi aceptar la propuesta de neutralidá, %(_player_)s."
+msgstr "Mentanto tu, %(_player_)s, me deas un tributu de %(_amount_)s de %(_resource_)s, yo acepto la propuesta de neutralidá."
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "Á %(_player_)s, si m'unvies %(_amount_)s de %(_resource_)s, voi aceptar el pautu de neutralidá."
+msgstr "Á %(_player_)s, si tu m'unvies %(_amount_)s de %(_resource_)s, yo acepto'l pautu de neutralidá."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
@@ -316,7 +316,7 @@ msgstr "Á %(_player_)s, como nun entaínes n'apurrime %(_amount_)s de %(_resour
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr "Á %(_player_)s, los pueblos nuesos sedríen más fuertes como aliaos. Si tu t'alíes conmigo, yo contigo fago lo mesmo."
+msgstr "Á %(_player_)s, los pueblos nuesos sedríen más fuertes como aliaos. Si tu t'alíes conmigo, yo fago lo mesmo contigo."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
@@ -334,14 +334,14 @@ msgstr "Ta retirada la ufierta d'alianza, %(_player_)s."
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr "Á %(_player_)s, propongo un pautu de neutralidá. Si vós vos volvéis neutral con nosotros, nós con vosotros facemos lo mesmo."
+msgstr "Á %(_player_)s, propongo un pautu de neutralidá. Si vós vos volvéis neutral con nós, nós facemos lo mesmo con vós."
 
 #: simulation/ai/petra/chatHelper.js:126
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr "Á %(_player_)s, a los dos nos convendría si negociáremos un pautu de neutralidá. Yo me vuelvo neutral contigo si tu conmigo faes lo propio."
+msgstr "Á %(_player_)s, a los dos nos convendría si negociáremos un pautu de neutralidá. Yo me vuelvo neutral contigo si tu faes lo propio conmigo."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ye la intelixencia artificial por defeutu de 0 A.D. Fai'l favor d'informar de problemes a Wildfire Games (ver l'enllaz en menú principal).\n\nLa rapidez cola que Petra llogra recursos y ganancies comerciales mana nel so nivel de competencia, (Quedu −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Nos niveles fáciles esto tamién cinca al desendolcu, l'allistamientu y la construcción ya nel nivel «Quedu», Petra nun constrúi nin ataca."
+msgstr "Petra ye la intelixencia artificial por defeutu de 0 A.D. Fai'l favor d'informar de fallos a Wildfire Games (ver l'enllaz en menú principal).\n\nLa rapidez cola que Petra llogra recursos y ganancies comerciales mana nel so nivel de dificultá, (Quedu −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Nos niveles fáciles esti tamién ye'l casu de los ritmos de desendolcu, d'allistamientu y de construcción ya nel nivel «Quedu», Petra nun constrúi nin ataca."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -374,7 +374,7 @@ msgstr "%(name)s nun pue construyise pola mor d'un fallu desconocíu"
 #: simulation/components/BuildRestrictions.js:115
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)s nun pue construyise nun área non esplorada"
+msgstr "%(name)s nun pue construyise nuna área non esplorada"
 
 #: simulation/components/BuildRestrictions.js:163
 #, javascript-format
@@ -392,7 +392,7 @@ msgstr "%(name)s nun pue construyise en tarrén non válido."
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "own"
-msgstr "propio"
+msgstr "propiu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -400,7 +400,7 @@ msgstr "propio"
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr "propio & non axacente"
+msgstr "propiu non axacente"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -408,7 +408,7 @@ msgstr "propio & non axacente"
 #: simulation/components/BuildRestrictions.js:199
 msgctxt "Territory type"
 msgid "allied"
-msgstr "aliao"
+msgstr "aliáu"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -416,7 +416,7 @@ msgstr "aliao"
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr "aliao & non axacente"
+msgstr "aliáu non axacente"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -432,14 +432,14 @@ msgstr "neutral"
 #: simulation/components/BuildRestrictions.js:215
 msgctxt "Territory type"
 msgid "enemy"
-msgstr "enemigo"
+msgstr "enemigu"
 
 #: simulation/components/BuildRestrictions.js:220
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)s nun pue construyise en territoriu %(territoryType)s. Territorios válidos: %(validTerritories)s"
+msgstr "%(name)s nun pue construyise en campu %(territoryType)s. Terrenes válidos: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:234
 #, javascript-format
@@ -463,8 +463,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s queda demasiao lloñe de %(category)s, ha tar a %(distance)s metru"
-msgstr[1] "%(name)s queda demasiao lloñe de %(category)s, ha tar a %(distance)s metros"
+msgstr[0] "%(name)s queda perlloñe de %(category)s, ha tar a %(distance)s metru de distancia"
+msgstr[1] "%(name)s queda perlloñe de %(category)s, ha tar a %(distance)s metros de distancia"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -501,11 +501,11 @@ msgstr "enemigu"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "Pues atacar en %(time)s"
+msgstr "Puedes atacar en %(time)s"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "¡Agora pues atacar!"
+msgstr "¡Agora puedes atacar!"
 
 #: simulation/components/EndGameManager.js:174
 #, javascript-format
