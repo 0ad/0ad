@@ -29,7 +29,6 @@
 
 #include "graphics/CinemaManager.h"
 #include "graphics/Color.h"
-#include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"
@@ -454,19 +453,7 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcSc
 		// console
 		TIMER(L"ps_console");
 
-		g_Console->UpdateScreenSize(g_xres, g_yres);
-
-		// Calculate and store the line spacing
-		CFontMetrics font(CStrIntern(CONSOLE_FONT));
-		g_Console->m_iFontHeight = font.GetLineSpacing();
-		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
-		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
-		// Offset by an arbitrary amount, to make it fit more nicely
-		g_Console->m_iFontOffset = 7;
-
-		double blinkRate = 0.5;
-		CFG_GET_VAL("gui.cursorblinkrate", blinkRate);
-		g_Console->SetCursorBlinkRate(blinkRate);
+		g_Console->Init();
 	}
 
 	// hotkeys

@@ -128,11 +128,6 @@ void CONFIG_Init(const CmdLineArgs& args)
 
 	ProcessCommandLineArgs(args);
 
-	// Initialise console history file
-	int max_history_lines = 200;
-	CFG_GET_VAL("console.history.size", max_history_lines);
-	g_Console->UseHistoryFile(L"config/console.txt", max_history_lines);
-
 	// Collect information from system.cfg, the profile file,
 	// and any command-line overrides to fill in the globals.
 	LoadGlobals();	// 64ms
