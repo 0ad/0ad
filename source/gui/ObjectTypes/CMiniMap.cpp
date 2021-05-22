@@ -383,7 +383,7 @@ static void inline addVertex(const MinimapUnitVertex& v,
 }
 
 
-void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z) const
+void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2) const
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
 	// Scale square maps to fit in circular minimap area
@@ -401,13 +401,13 @@ void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle
 		m*(-c + s + 1.f), m*(-c + -s + 1.f)
 	};
 	float quadVerts[] = {
-		x, y, z,
-		x2, y, z,
-		x2, y2, z,
+		x, y, 0.0f,
+		x2, y, 0.0f,
+		x2, y2, 0.0f,
 
-		x2, y2, z,
-		x, y2, z,
-		x, y, z
+		x2, y2, 0.0f,
+		x, y2, 0.0f,
+		x, y, 0.0f
 	};
 
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
@@ -464,7 +464,6 @@ void CMiniMap::Draw()
 
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
-	const float z = GetBufferedZ();
 	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
 	const float angle = GetAngle();
 	const float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
@@ -506,7 +505,7 @@ void CMiniMap::Draw()
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	DrawTexture(shader, texCoordMax, angle, x, y, x2, y2, z);
+	DrawTexture(shader, texCoordMax, angle, x, y, x2, y2);
 
 	if (!m_Mask)
 	{
@@ -527,7 +526,7 @@ void CMiniMap::Draw()
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, *territoryTransform);
 
-	DrawTexture(shader, 1.0f, angle, x, y, x2, y2, z);
+	DrawTexture(shader, 1.0f, angle, x, y, x2, y2);
 	tech->EndPass();
 
 	// Draw the LOS quad in black, using alpha values from the LOS texture
@@ -544,7 +543,7 @@ void CMiniMap::Draw()
 		shader->Uniform(str_transform, baseTransform);
 		shader->Uniform(str_textureTransform, *losTransform);
 
-		DrawTexture(shader, 1.0f, angle, x, y, x2, y2, z);
+		DrawTexture(shader, 1.0f, angle, x, y, x2, y2);
 		tech->EndPass();
 	}
 
@@ -571,7 +570,7 @@ void CMiniMap::Draw()
 	// Move the minimap back to it's starting position.
 	unitMatrix.Translate((x2 - x) / 2.f, (y2 - y) / 2.f, 0.f);
 	// Move the minimap to it's final location.
-	unitMatrix.Translate(x, y, z);
+	unitMatrix.Translate(x, y, 0.0f);
 	// Apply the gui matrix.
 	unitMatrix *= GetDefaultGuiMatrix();
 	// Load the transform into the shader.

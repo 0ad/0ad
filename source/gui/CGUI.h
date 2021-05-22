@@ -101,11 +101,10 @@ public:
 	 *
 	 * @param Sprite Object referring to the sprite (which also caches
 	 *        calculations for faster rendering)
-	 * @param Z Drawing order, depth value
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(const CGUISpriteInstance& Sprite, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
+	void DrawSprite(const CGUISpriteInstance& Sprite, const CRect& Rect, const CRect& Clipping = CRect());
 
 	/**
 	 * The replacement of Process(), handles an SDL_Event_

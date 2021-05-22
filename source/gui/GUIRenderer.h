@@ -53,7 +53,6 @@ namespace GUIRenderer
 		CColor m_ShaderColorParameter;
 
 		CRect m_Vertices;
-		float m_DeltaZ;
 
 		CGUIColor* m_BorderColor; // == nullptr for no border
 		CGUIColor* m_BackColor;
@@ -70,7 +69,7 @@ namespace GUIRenderer
 
 	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, std::map<CStr8, const CGUISprite*>& Sprites);
 
-	void Draw(DrawCalls& Calls, float Z);
+	void Draw(DrawCalls& Calls);
 }
 
 #endif // INCLUDED_GUIRENDERER

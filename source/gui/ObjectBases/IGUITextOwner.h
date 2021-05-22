@@ -82,11 +82,10 @@ public:
 	 * @param index Index value of text. Mostly this will be 0
 	 * @param color
 	 * @param pos Position
-	 * @param z Z value
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
-	virtual void DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, float z, const CRect& clipping = CRect());
+	virtual void DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, const CRect& clipping = CRect());
 
 protected:
 	/**

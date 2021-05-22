@@ -168,7 +168,7 @@ public:
 	/**
 	 * Draw this CGUIText object
 	 */
-	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, const float z, const CRect& clipping) const;
+	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, const CRect& clipping) const;
 
 	const CSize2D& GetSize() const { return m_Size; }
 

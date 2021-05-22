@@ -133,9 +133,8 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
-	const float z = GetBufferedZ();
-	m_pGUI.DrawSprite(m_Sprite, z, m_CachedActualSize);
-	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft(), z + 0.1f);
+	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
+	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft());
 }
 
 float CTooltip::GetBufferedZ() const

@@ -184,12 +184,10 @@ void CText::HandleMessage(SGUIMessage& Message)
 
 void CText::Draw()
 {
-	float bz = GetBufferedZ();
-
 	if (m_ScrollBar)
 		IGUIScrollBarOwner::Draw();
 
-	m_pGUI.DrawSprite(m_Sprite, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)
@@ -217,7 +215,7 @@ void CText::Draw()
 	const CGUIColor& color = m_Enabled ? m_TextColor : m_TextColorDisabled;
 
 	if (m_ScrollBar)
-		DrawText(0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), bz + 0.1f, cliparea);
+		DrawText(0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), cliparea);
 	else
-		DrawText(0, color, m_TextPos, bz + 0.1f, cliparea);
+		DrawText(0, color, m_TextPos, cliparea);
 }

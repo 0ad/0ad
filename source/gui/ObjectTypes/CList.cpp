@@ -304,69 +304,66 @@ void CList::Draw()
 
 void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selectarea, const CGUIColor& textcolor)
 {
-	float bz = GetBufferedZ();
+	CRect rect = GetListRect();
 
+	m_pGUI.DrawSprite(sprite, rect);
+
+	float scroll = 0.f;
+	if (m_ScrollBar)
+		scroll = GetScrollBar(0).GetPos();
+
+	if (selected >= 0 && selected+1 < (int)m_ItemsYPositions.size())
 	{
-		CRect rect = GetListRect();
+		// Get rectangle of selection:
+		CRect rect_sel(
+			rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
+			rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
 
-		m_pGUI.DrawSprite(sprite, bz, rect);
-
-		float scroll = 0.f;
-		if (m_ScrollBar)
-			scroll = GetScrollBar(0).GetPos();
-
-		if (selected >= 0 && selected+1 < (int)m_ItemsYPositions.size())
+		if (rect_sel.top <= rect.bottom &&
+			rect_sel.bottom >= rect.top)
 		{
-			// Get rectangle of selection:
-			CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
-					       rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
-
-			if (rect_sel.top <= rect.bottom &&
-				rect_sel.bottom >= rect.top)
-			{
-				if (rect_sel.bottom > rect.bottom)
-					rect_sel.bottom = rect.bottom;
-				if (rect_sel.top < rect.top)
-					rect_sel.top = rect.top;
-
-				if (m_ScrollBar)
-				{
-					// Remove any overlapping area of the scrollbar.
-					if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
-						rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
-						rect_sel.right = GetScrollBar(0).GetOuterRect().left;
-
-					if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
-						rect_sel.left < GetScrollBar(0).GetOuterRect().right)
-						rect_sel.left = GetScrollBar(0).GetOuterRect().right;
-				}
-
-				m_pGUI.DrawSprite(sprite_selectarea, bz + 0.05f, rect_sel);
-			}
-		}
-
-		for (size_t i = 0; i < m_List->m_Items.size(); ++i)
-		{
-			if (m_ItemsYPositions[i+1] - scroll < 0 ||
-				m_ItemsYPositions[i] - scroll > rect.GetHeight())
-				continue;
-
-			// Clipping area (we'll have to substract the scrollbar)
-			CRect cliparea = GetListRect();
+			if (rect_sel.bottom > rect.bottom)
+				rect_sel.bottom = rect.bottom;
+			if (rect_sel.top < rect.top)
+				rect_sel.top = rect.top;
 
 			if (m_ScrollBar)
 			{
-				if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
-					cliparea.right <= GetScrollBar(0).GetOuterRect().right)
-					cliparea.right = GetScrollBar(0).GetOuterRect().left;
+				// Remove any overlapping area of the scrollbar.
+				if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
+					rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
+					rect_sel.right = GetScrollBar(0).GetOuterRect().left;
 
-				if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
-					cliparea.left < GetScrollBar(0).GetOuterRect().right)
-					cliparea.left = GetScrollBar(0).GetOuterRect().right;
+				if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
+					rect_sel.left < GetScrollBar(0).GetOuterRect().right)
+					rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			DrawText(i, textcolor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), bz + 0.1f, cliparea);
+			m_pGUI.DrawSprite(sprite_selectarea, rect_sel);
 		}
+	}
+
+	for (size_t i = 0; i < m_List->m_Items.size(); ++i)
+	{
+		if (m_ItemsYPositions[i+1] - scroll < 0 ||
+			m_ItemsYPositions[i] - scroll > rect.GetHeight())
+			continue;
+
+		// Clipping area (we'll have to substract the scrollbar)
+		CRect cliparea = GetListRect();
+
+		if (m_ScrollBar)
+		{
+			if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+				cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+				cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+			if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+				cliparea.left < GetScrollBar(0).GetOuterRect().right)
+				cliparea.left = GetScrollBar(0).GetOuterRect().right;
+		}
+
+		DrawText(i, textcolor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
 	}
 
 	if (m_ScrollBar)

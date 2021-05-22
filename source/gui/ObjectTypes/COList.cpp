@@ -282,14 +282,12 @@ void COList::AdditionalChildrenHandled()
 
 void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor)
 {
-	const float bz = GetBufferedZ();
-
 	if (m_ScrollBar)
 		IGUIScrollBarOwner::Draw();
 
 	CRect rect = GetListRect();
 
-	m_pGUI.DrawSprite(sprite, bz, rect);
+	m_pGUI.DrawSprite(sprite, rect);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)
@@ -325,14 +323,14 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			}
 
 			// Draw item selection
-			m_pGUI.DrawSprite(sprite_selected, bz + 0.05f, rect_sel);
+			m_pGUI.DrawSprite(sprite_selected, rect_sel);
 		}
 	}
 
 	// Draw line above column header
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
 									m_CachedActualSize.top + m_HeadingHeight);
-	m_pGUI.DrawSprite(m_SpriteHeading, bz, rect_head);
+	m_pGUI.DrawSprite(m_SpriteHeading, rect_head);
 
 	// Draw column headers
 	float xpos = 0;
@@ -369,11 +367,11 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			else
 				pSprite = &*m_SpriteNotSorted;
 
-			m_pGUI.DrawSprite(*pSprite, bz + 0.1f, CRect(leftTopCorner + CVector2D(width - SORT_SPRITE_DIM, 0), leftTopCorner + CVector2D(width, SORT_SPRITE_DIM)));
+			m_pGUI.DrawSprite(*pSprite, CRect(leftTopCorner + CVector2D(width - SORT_SPRITE_DIM, 0), leftTopCorner + CVector2D(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text
-		DrawText(col, textcolor, leftTopCorner + COLUMN_SHIFT, bz + 0.1f, rect_head);
+		DrawText(col, textcolor, leftTopCorner + COLUMN_SHIFT, rect_head);
 		xpos += width;
 		++col;
 	}
@@ -424,7 +422,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			cliparea2.bottom = std::min(cliparea2.bottom, textPos.Y + rowHeight);
 
 			// Draw list item
-			DrawText(objectsCount * (i +/*Heading*/1) + colIdx, column.m_TextColor, textPos, bz + 0.1f, cliparea2);
+			DrawText(objectsCount * (i +/*Heading*/1) + colIdx, column.m_TextColor, textPos, cliparea2);
 			xpos += width;
 		}
 	}

@@ -345,7 +345,7 @@ void CGUI::Draw()
 		visibleObject.object->Draw();
 }
 
-void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
+void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const CRect& Rect, const CRect& UNUSED(Clipping))
 {
 	// If the sprite doesn't exist (name == ""), don't bother drawing anything
 	if (!Sprite)
@@ -353,7 +353,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const float& Z, const CR
 
 	// TODO: Clipping?
 
-	Sprite.Draw(*this, Rect, m_Sprites, Z);
+	Sprite.Draw(*this, Rect, m_Sprites);
 }
 
 void CGUI::UpdateResolution()
@@ -1080,14 +1080,6 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 				Image->m_WrapMode = GL_CLAMP_TO_EDGE;
 			else
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-		}
-		else if (attr_name == "z_level")
-		{
-			float z_level;
-			if (!ParseString<float>(this, attr_value, z_level))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_DeltaZ = z_level/100.f;
 		}
 		else if (attr_name == "backcolor")
 		{

@@ -55,12 +55,10 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 
 void CProgressBar::Draw()
 {
-	float bz = GetBufferedZ();
-
-	m_pGUI.DrawSprite(m_SpriteBackground, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_SpriteBackground, m_CachedActualSize);
 
 	// Get size of bar (notice it is drawn slightly closer, to appear above the background)
 	CRect size = m_CachedActualSize;
 	size.right = size.left + m_CachedActualSize.GetWidth() * (m_Progress / 100.f),
-	m_pGUI.DrawSprite(m_SpriteBar, bz + 0.01f, size);
+	m_pGUI.DrawSprite(m_SpriteBar, size);
 }

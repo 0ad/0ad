@@ -61,7 +61,6 @@ void CGUIScrollBarVertical::Draw()
 
 		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBackVertical,
-			m_Z+0.1f,
 			CRect(
 				outline.left,
 				outline.top + (GetStyle()->m_UseEdgeButtons ? GetStyle()->m_Width : 0),
@@ -97,7 +96,6 @@ void CGUIScrollBarVertical::Draw()
 
 			m_pGUI.DrawSprite(
 				*button_top,
-				m_Z+0.2f,
 				CRect(
 					outline.left,
 					outline.top,
@@ -108,7 +106,6 @@ void CGUIScrollBarVertical::Draw()
 
 			m_pGUI.DrawSprite(
 				*button_bottom,
-				m_Z+0.2f,
 				CRect(
 					outline.left,
 					outline.bottom-GetStyle()->m_Width,
@@ -120,7 +117,6 @@ void CGUIScrollBarVertical::Draw()
 
 		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBarVertical,
-			m_Z + 0.2f,
 			GetBarRect()
 		);
 	}
