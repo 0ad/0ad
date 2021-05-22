@@ -389,6 +389,76 @@ m.copyPrototype = function(descendant, parent)
 		descendant.prototype[p] = parent.prototype[p];
 };
 
+/** creates a map of resource density */
+m.SharedScript.prototype.createResourceMaps = function()
+{
+	for (const resource of Resources.GetCodes())
+	{
+		if (this.resourceMaps[resource] ||
+			!(Resources.GetResource(resource).aiAnalysisInfluenceGroup in this.normalizationFactor))
+			continue;
+		// We're creating them 8-bit. Things could go above 255 if there are really tons of resources
+		// But at that point the precision is not really important anyway. And it saves memory.
+		this.resourceMaps[resource] = new m.Map(this, "resource");
+		this.ccResourceMaps[resource] = new m.Map(this, "resource");
+	}
+	for (const ent of this._entities.values())
+		this.addEntityToResourceMap(ent);
+};
+
+/**
+ * @param {Object} events - The events from a turn.
+ */
+m.SharedScript.prototype.updateResourceMaps = function(events)
+{
+	for (const e of events.Destroy)
+		if (e.entityObj)
+			this.removeEntityFromResourceMap(e.entityObj);
+
+	for (const e of events.Create)
+		if (e.entity && this._entities.has(e.entity))
+			this.addEntityToResourceMap(this._entities.get(e.entity));
+};
+
+/**
+ * @param {entity} entity - The entity to add to the resource map.
+ */
+m.SharedScript.prototype.addEntityToResourceMap = function(entity)
+{
+	this.changeEntityInResourceMapHelper(entity, 1);
+};
+
+/**
+ * @param {entity} entity - The entity to remove from the resource map.
+ */
+m.SharedScript.prototype.removeEntityFromResourceMap = function(entity)
+{
+	this.changeEntityInResourceMapHelper(entity, -1);
+};
+
+/**
+ * @param {entity} ent - The entity to add to the resource map.
+ */
+m.SharedScript.prototype.changeEntityInResourceMapHelper = function(ent, multiplication = 1)
+{
+	if (!ent)
+		return;
+	const entPos = ent.position();
+	if (!entPos)
+		return;
+	const resource = ent.resourceSupplyType()?.generic;
+	if (!resource || !this.resourceMaps[resource])
+		return;
+	const cellSize = this.resourceMaps[resource].cellSize;
+	const x = Math.floor(entPos[0] / cellSize);
+	const y = Math.floor(entPos[1] / cellSize);
+	const grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
+	const strength = multiplication * ent.resourceSupplyMax() / this.normalizationFactor[grp];
+	this.resourceMaps[resource].addInfluence(x, y, this.influenceRadius[grp] / cellSize, strength / 2, "constant");
+	this.resourceMaps[resource].addInfluence(x, y, this.influenceRadius[grp] / cellSize, strength / 2);
+	this.ccResourceMaps[resource].addInfluence(x, y, this.ccInfluenceRadius[grp] / cellSize, strength, "constant");
+};
+
 return m;
 
 }(API3);
