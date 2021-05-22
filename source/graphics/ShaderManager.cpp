@@ -32,6 +32,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
 #include "renderer/Renderer.h"
+#include "renderer/RenderingOptions.h"
 
 #define USE_SHADER_XML_VALIDATION 1
 
@@ -165,7 +166,10 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 
 	XMBElement Root = XeroFile.GetRoot();
 
-	bool isGLSL = (Root.GetAttributes().GetNamedItem(at_type) == "glsl");
+	const bool isGLSL = (Root.GetAttributes().GetNamedItem(at_type) == "glsl");
+	if (!isGLSL && g_RenderingOptions.GetPreferGLSL())
+		LOGWARNING("CShaderManager::NewProgram: '%s': trying to load a non-GLSL program with enabled GLSL", name);
+
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
 	CShaderDefines defines = baseDefines;

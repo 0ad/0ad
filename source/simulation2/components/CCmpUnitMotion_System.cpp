@@ -41,10 +41,23 @@ namespace {
 	/**
 	 * Pushing is ignored if the combined push force has lower magnitude than this.
 	 */
-	static const entity_pos_t MINIMAL_PUSHING = entity_pos_t::FromInt(1)/10;
+	static const entity_pos_t MINIMAL_PUSHING = entity_pos_t::FromInt(3) / 10;
 
 	/**
-	 * When moving, units extert a pushing influence at a greater distance.
+	 * For pushing, treat the clearances as a circle - they're defined as squares,
+	 * so we'll take the circumscribing square (approximately).
+	 * Clerances are also full-width instead of half, so we want to divide by two. sqrt(2)/2 is about 0.71 < 5/7.
+	 */
+	static const entity_pos_t PUSHING_CORRECTION = entity_pos_t::FromInt(5) / 7;
+
+	/**
+	 * The maximum distance at which units exert a pushing influence on each other, as a multiple of clearance.
+	 * (This is multiplied by PUSHING_CORRECTION for convenience).
+	 */
+	static const entity_pos_t PUSHING_RADIUS = (entity_pos_t::FromInt(8) / 5).Multiply(PUSHING_CORRECTION);
+
+	/**
+	 * When moving, units exert a pushing influence at a greater distance.
 	 */
 	static const entity_pos_t PUSHING_MOVING_INFLUENCE_EXTENSION = entity_pos_t::FromInt(1);
 
@@ -229,9 +242,7 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 	if (movingPush == 1)
 		return;
 
-	// Treat the clearances as a circle - they're defined as squares, so we'll slightly overcompensate the diagonal
-	// (they're also full-width instead of half, so we want to divide by two. sqrt(2)/2 is about 0.71 < 5/7).
-	entity_pos_t combinedClearance = (a.second.cmpUnitMotion->m_Clearance + b.second.cmpUnitMotion->m_Clearance) * 5 / 7;
+	entity_pos_t combinedClearance = (a.second.cmpUnitMotion->m_Clearance + b.second.cmpUnitMotion->m_Clearance).Multiply(PUSHING_RADIUS);
 	entity_pos_t maxDist = combinedClearance;
 	if (movingPush)
 		maxDist += PUSHING_MOVING_INFLUENCE_EXTENSION;

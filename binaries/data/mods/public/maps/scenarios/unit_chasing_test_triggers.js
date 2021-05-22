@@ -253,7 +253,7 @@ Trigger.prototype.SetupUnits = function()
 	}
 };
 
-Trigger.prototype.OnOwnershipChanged = function(msg)
+Trigger.prototype.OwnershipChanged = function(msg)
 {
 	if (msg.to === -1 && msg.entity in onDelete)
 	{
@@ -262,7 +262,7 @@ Trigger.prototype.OnOwnershipChanged = function(msg)
 	}
 };
 
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "OnOwnershipChanged", { "enabled": true });
+cmpTrigger.RegisterTrigger("OnOwnershipChanged", "OwnershipChanged", { "enabled": true });
 
 var cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
 

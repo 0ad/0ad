@@ -35,21 +35,9 @@ bool g_PauseOnFocusLoss = false;
 
 int g_xres, g_yres;
 float g_GuiScale = 1.0f;
-bool g_VSync = false;
 
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
-
-// flag to switch on drawing terrain overlays
-bool g_ShowPathfindingOverlay = false;
-
-// flag to switch on triangulation pathfinding
-bool g_TriPathfind = false;
-
-
-// If non-empty, specified map will be automatically loaded
-CStr g_AutostartMap = "";
-
 
 //----------------------------------------------------------------------------
 // config
@@ -58,8 +46,6 @@ CStr g_AutostartMap = "";
 // Fill in the globals from the config files.
 static void LoadGlobals()
 {
-	CFG_GET_VAL("vsync", g_VSync);
-
 	CFG_GET_VAL("pauseonfocusloss", g_PauseOnFocusLoss);
 
 	CFG_GET_VAL("gui.scale", g_GuiScale);
@@ -83,9 +69,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 			g_ConfigDB.SetValueString(CFG_COMMAND, name, value);
 		}
 	}
-
-//	if (args.Has("listfiles"))
-//		trace_enable(true);
 
 	if (args.Has("profile"))
 		g_ConfigDB.SetValueString(CFG_COMMAND, "profile", args.Get("profile"));
@@ -144,11 +127,6 @@ void CONFIG_Init(const CmdLineArgs& args)
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 
 	ProcessCommandLineArgs(args);
-
-	// Initialise console history file
-	int max_history_lines = 200;
-	CFG_GET_VAL("console.history.size", max_history_lines);
-	g_Console->UseHistoryFile(L"config/console.txt", max_history_lines);
 
 	// Collect information from system.cfg, the profile file,
 	// and any command-line overrides to fill in the globals.

@@ -5,8 +5,8 @@
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# JungHee Lee <daemul72@gmail.com>, 2019,2021
-# JungHee Lee <daemul72@gmail.com>, 2019-2020
+# Jung Hee Lee <daemul72@gmail.com>, 2019,2021
+# Jung Hee Lee <daemul72@gmail.com>, 2019-2020
 # Dalrae Jin <lovely.serotonin@gmail.com>, 2014
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
@@ -16,11 +16,12 @@
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2019,2021
+# Jung Hee Lee <daemul72@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2019,2021
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Jung Hee Lee <daemul72@gmail.com>, 2019
 # moolow <copyhyeon@gmail.com>, 2018
 # Suhyeon Park <qkr5145@gmail.com>, 2018
 # Taejin Kim <manowar72@gmail.com>, 2015
@@ -32,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-23 09:19+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-18 15:24+0000\n"
+"Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -363,11 +364,11 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "하루 중 시간을 무작위 선택한다."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
 msgstr "게임 속도"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
 msgstr "게임 속도를 선택합니다."
 
@@ -576,15 +577,15 @@ msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "즉각적인 승리."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Sea Level Rise Time"
 msgstr "해수면 상승 시간"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
 msgstr "물이 상승하기 시작하는 시간을 지정합니다. (만조 시간 설정)"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
@@ -822,52 +823,58 @@ msgstr "비밀번호가 잘못되었습니다."
 msgid "You have been banned."
 msgstr "당신은 차단당했습니다."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid ""
+"Failed to get local IP of the server (it was assumed to be on the same "
+"network)."
+msgstr "서버의 로컬 IP를 가져오지 못했습니다(동일한 네트워크에 있는 것으로 가정됨)."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[잘못된 값 %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "서버에 연결하는 데 실패했습니다."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr "연결 실패"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "총 메시지 수: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:275
+#: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
 msgstr "서버에 등록하는 중..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:281
+#: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
 msgstr "게임이 이미 시작되었습니다. 다시 합류 중..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:360
+#: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
 msgstr "게임 이름이 이미 사용되고 있습니다."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "게임을 호스트할 수 없음: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
-#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
+#: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
+#: gui/gamesetup_mp/gamesetup_mp.js:435 gui/gamesetup_mp/gamesetup_mp.js:450
 msgid "Error"
 msgstr "오류"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
+#: gui/gamesetup_mp/gamesetup_mp.js:405 gui/gamesetup_mp/gamesetup_mp.js:449
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "게임에 참여할 수 없음: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:461
+#: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s의 게임"

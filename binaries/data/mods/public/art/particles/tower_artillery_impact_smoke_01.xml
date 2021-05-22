@@ -5,10 +5,11 @@
     <blend mode="over"/>
     <constant name="emissionrate" value="4.0"/>
     <constant name="lifetime" value="1"/>
-    <constant name="size" value="8"/>
+    <constant name="size" value="5"/>
+    <constant name="size.growthRate" value="2.0"/>
     <uniform name="angle" min="-3.14" max="3.14"/>
     <constant name="position.x" value="-2"/>
-    <constant name="velocity.y" value="7"/>
+    <constant name="velocity.y" value="6"/>
     <constant name="color.r" value="0.4" />
     <constant name="color.g" value="0.2"/>
     <constant name="color.b" value="0.16"/>

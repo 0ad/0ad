@@ -4,11 +4,8 @@
 	<include>common/modern/styles.xml</include>
 	<include>common/modern/sprites.xml</include>
 
+	<include>common/global.xml</include>
 	<include>common/sprites.xml</include>
 
 	<include>manual/manual.xml</include>
-
-	<!-- Work around a render bug:
-	     Needs to be drawn last, as it should overlay everything -->
-	<include>common/global.xml</include>
 </page>

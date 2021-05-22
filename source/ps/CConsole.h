@@ -22,22 +22,16 @@
 #ifndef INCLUDED_CCONSOLE
 #define INCLUDED_CCONSOLE
 
+#include "graphics/ShaderProgramPtr.h"
+#include "lib/file/vfs/vfs_path.h"
+#include "lib/input.h"
+
 #include <deque>
 #include <mutex>
 #include <stdarg.h>
 #include <string>
 
-#include "graphics/ShaderProgramPtr.h"
-#include "lib/file/vfs/vfs_path.h"
-#include "lib/input.h"
-#include "ps/CStr.h"
-
 class CTextRenderer;
-
-#define CONSOLE_BUFFER_SIZE 1024 // for text being typed into the console
-#define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console
-
-#define CONSOLE_FONT "mono-10"
 
 /**
  * In-game console.
@@ -54,13 +48,12 @@ public:
 	CConsole();
 	~CConsole();
 
-	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
+	void Init();
+
 	void UpdateScreenSize(int w, int h);
 
 	void ToggleVisible();
 	void SetVisible(bool visible);
-
-	void SetCursorBlinkRate(double rate);
 
 	/**
 	 * @param deltaRealTime Elapsed real time since the last frame.
@@ -75,22 +68,20 @@ public:
 
 	void SetBuffer(const wchar_t* szMessage);
 
-	void UseHistoryFile(const VfsPath& filename, int historysize);
-
 	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
 	const wchar_t* GetBuffer();
 	void FlushBuffer();
 
 	bool IsActive() const { return m_bVisible; }
 
+private:
+	// Lock for all state modified by InsertMessage
+	std::mutex m_Mutex;
+
 	int m_iFontHeight;
 	int m_iFontWidth;
 	int m_iFontOffset; // distance to move up before drawing
 	size_t m_charsPerPage;
-
-private:
-	// Lock for all state modified by InsertMessage
-	std::mutex m_Mutex;
 
 	float m_fX;
 	float m_fY;
@@ -125,10 +116,12 @@ private:
 	void DrawBuffer(CTextRenderer& textRenderer);
 	void DrawCursor(CTextRenderer& textRenderer);
 
-	bool IsEOB() { return (m_iBufferPos == m_iBufferLength); } // Is end of Buffer?
-	bool IsBOB() { return (m_iBufferPos == 0); } // Is beginning of Buffer?
-	bool IsFull() { return (m_iBufferLength == CONSOLE_BUFFER_SIZE); }
-	bool IsEmpty() { return (m_iBufferLength == 0); }
+	// Is end of Buffer?
+	bool IsEOB() const;
+	// Is beginning of Buffer?
+	bool IsBOB() const;
+	bool IsFull() const;
+	bool IsEmpty() const;
 
 	void ProcessBuffer(const wchar_t* szLine);
 
@@ -140,4 +133,4 @@ extern CConsole* g_Console;
 
 extern InReaction conInputHandler(const SDL_Event_* ev);
 
-#endif
+#endif // INCLUDED_CCONSOLE

@@ -4,6 +4,7 @@
 	<include>common/modern/styles.xml</include>
 	<include>common/modern/sprites.xml</include>
 
+	<include>common/global.xml</include>
 	<include>common/setup.xml</include>
 	<include>common/sprites.xml</include>
 	<include>common/styles.xml</include>
@@ -11,8 +12,4 @@
 	<include>loading/styles.xml</include>
 	<include>loading/sprites.xml</include>
 	<include>loading/loading.xml</include>
-
-	<!-- Work around a render bug:
-	     Needs to be drawn last, as it should overlay everything -->
-	<include>common/global.xml</include>
 </page>

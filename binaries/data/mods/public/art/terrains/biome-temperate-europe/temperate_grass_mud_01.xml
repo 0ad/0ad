@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/temperate/grass_mud_01.png"/>
+		<texture name="normTex" file="types/temperate/grass_mud_01_norm.png"/>
+		<texture name="specTex" file="types/temperate/grass_mud_01_spec.png"/>
+	</textures>
+	<props size="50.0"/>
+	<material>terrain_norm_spec.xml</material>
+</terrain>

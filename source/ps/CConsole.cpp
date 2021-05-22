@@ -37,6 +37,7 @@
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/Config.h"
@@ -47,6 +48,16 @@
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
+
+namespace
+{
+
+// For text being typed into the console.
+constexpr int CONSOLE_BUFFER_SIZE = 1024;
+
+const char* CONSOLE_FONT = "mono-10";
+
+} // anonymous namespace
 
 CConsole* g_Console = 0;
 
@@ -76,21 +87,37 @@ CConsole::~CConsole()
 	delete[] m_szBuffer;
 }
 
-
-void CConsole::SetSize(float X, float Y, float W, float H)
+void CConsole::Init()
 {
-	m_fX = X;
-	m_fY = Y;
-	m_fWidth = W;
-	m_fHeight = H;
+	// Initialise console history file
+	m_MaxHistoryLines = 200;
+	CFG_GET_VAL("console.history.size", m_MaxHistoryLines);
+
+	m_sHistoryFile = L"config/console.txt";
+	LoadHistory();
+
+	UpdateScreenSize(g_xres, g_yres);
+
+	// Calculate and store the line spacing
+	const CFontMetrics font{CStrIntern(CONSOLE_FONT)};
+	m_iFontHeight = font.GetLineSpacing();
+	m_iFontWidth = font.GetCharacterWidth(L'C');
+	m_charsPerPage = static_cast<size_t>(g_xres / m_iFontWidth);
+	// Offset by an arbitrary amount, to make it fit more nicely
+	m_iFontOffset = 7;
+
+	m_cursorBlinkRate = 0.5;
+	CFG_GET_VAL("gui.cursorblinkrate", m_cursorBlinkRate);
 }
 
 void CConsole::UpdateScreenSize(int w, int h)
 {
+	m_fX = 0;
+	m_fY = 0;
 	float height = h * 0.6f;
-	SetSize(0, 0, w / g_GuiScale, height / g_GuiScale);
+	m_fWidth = w / g_GuiScale;
+	m_fHeight = height / g_GuiScale;
 }
-
 
 void CConsole::ToggleVisible()
 {
@@ -116,18 +143,12 @@ void CConsole::SetVisible(bool visible)
 	}
 }
 
-void CConsole::SetCursorBlinkRate(double rate)
-{
-	m_cursorBlinkRate = rate;
-}
-
 void CConsole::FlushBuffer()
 {
 	// Clear the buffer and set the cursor and length to 0
 	memset(m_szBuffer, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
 	m_iBufferPos = m_iBufferLength = 0;
 }
-
 
 void CConsole::Update(const float deltaRealTime)
 {
@@ -315,6 +336,25 @@ void CConsole::DrawCursor(CTextRenderer& textRenderer)
 	}
 }
 
+bool CConsole::IsEOB() const
+{
+	return m_iBufferPos == m_iBufferLength;
+}
+
+bool CConsole::IsBOB() const
+{
+	return m_iBufferPos == 0;
+}
+
+bool CConsole::IsFull() const
+{
+	return m_iBufferLength == CONSOLE_BUFFER_SIZE;
+}
+
+bool CConsole::IsEmpty() const
+{
+	return m_iBufferLength == 0;
+}
 
 //Inserts a character into the buffer.
 void CConsole::InsertChar(const int szChar, const wchar_t cooked)
@@ -534,14 +574,6 @@ void CConsole::SetBuffer(const wchar_t* szMessage)
 	m_szBuffer[CONSOLE_BUFFER_SIZE-1] = 0;
 	m_iBufferLength = static_cast<int>(wcslen(m_szBuffer));
 	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
-}
-
-void CConsole::UseHistoryFile(const VfsPath& filename, int max_history_lines)
-{
-	m_MaxHistoryLines = max_history_lines;
-
-	m_sHistoryFile = filename;
-	LoadHistory();
 }
 
 void CConsole::ProcessBuffer(const wchar_t* szLine)

@@ -168,7 +168,7 @@ var mercenaryCampGuards = {
 		{ "Template": "units/rome/infantry_swordsman_b", "Count": 4 },
 		{ "Template": "units/rome/cavalry_spearman_e", "Count": 3 },
 		{ "Template": "units/rome/infantry_javelineer_a", "Count": 4 },
-		{ "Template": "units/rome/champion_infantry", "Count": 3 }
+		{ "Template": "units/rome/champion_infantry_swordsman", "Count": 3 }
 	],
 	"generic/mediterranean": [
 		{ "Template": "structures/merc_camp_egyptian" },

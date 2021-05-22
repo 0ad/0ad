@@ -4,13 +4,14 @@
 # project.
 # Translators:
 # Ravi Kumar, 2021
+# Mangat Ram <mangatram346@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Ravi Kumar, 2021\n"
+"Last-Translator: Mangat Ram <mangatram346@gmail.com>, 2021\n"
 "Language-Team: Hindi (https://www.transifex.com/wildfire-games/teams/17418/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "सीखिए कि कैसे खेलें 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -32,16 +33,18 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"ये नक्शा खेल को लगभग उचित प्रकार से शुरू करने के लिए पथ प्रदर्शन करता है। खेल की शुरुआत में सबसे जरूरी वस्तु है, जितनी तेजी से हो सके साधन इक्कठे करना ताकि आप बाद में पर्याप्त सैनिक तैयार कर सके।\n"
+"चेतावनी: ये शुुुरुआत में बहुत तेज रहेगा, इस दौर को कई बार चलाने केे लिए तैयार रहें।"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "आर्थिक पूर्वाभ्यास"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "ये आपको 0 A.D. खेलने की शुरूआत करने के लिए आधारभूत पाठ है।"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -51,65 +54,67 @@ msgstr "आरंभिक ट्यूटोरियल"
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr ""
+msgstr "पाठ"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:97
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "समाप्त"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:99
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "उपलब्ध"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "मुहिम के चलने में दिक्कत %s:%s"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
 msgid "Campaign Name"
-msgstr ""
+msgstr "मुहिम का नाम"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
 msgid "No scenario selected"
-msgstr ""
+msgstr "किसी भी पटकथा का चयन नहीं"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "प्रमुख तालिका सूची पर लौटे"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
 msgid "Saved Games"
-msgstr ""
+msgstr "संरक्षित खेल"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
 msgid "Start Scenario"
-msgstr ""
+msgstr "पटकथा शुरू करें"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "संरक्षित खेल जारी रखें"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "पटकथा का नाम"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
 msgctxt "campaignLevelList"
 msgid "Status"
-msgstr ""
+msgstr "स्थिति"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "दस्तावेज नहीं उठा सकते"
 
 #: gui/campaigns/load_modal/LoadModal.js:102
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
+"क्या आप चाल %s को मिटाने के प्रति आस्वस्त है ? इसको वापस सुधारा नहीं जा "
+"सकेगा।"
 
 #: gui/campaigns/load_modal/LoadModal.js:103
 msgid "Confirmation"
@@ -126,15 +131,15 @@ msgstr "हाँ"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "मुहिम उठाएं"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "कोई चलायमान मुहिम नहीं"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "चयनित चाल का नाम:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -143,43 +148,43 @@ msgstr "रद्द करें"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):35
 msgid "Delete"
-msgstr ""
+msgstr "मिटाएं"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "एक मुहिम चलाएं"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run: "
-msgstr ""
+msgstr "कृपया अपनी नई मुहिम का नाम डालें:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "मुहिम चलाएं"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "किसी भी मुहिम का चयन नहीं"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr ""
+msgstr "मुहिमें"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "किसी भी मुहिम का चयन नहीं"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
-msgstr ""
+msgstr "प्रमुख तालिका सूची"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
 msgctxt "campaignsetup"
 msgid "Name"
-msgstr ""
+msgstr "नाम"
 
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

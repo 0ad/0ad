@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-14 09:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-17 16:37+0000\n"
+"Last-Translator: Zuzana Miadoková\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,7 +251,7 @@ msgstr "%(_player_)s, musíš mi poslať dar %(_amount_)s %(_resource_)s predtý
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr "Kým mi nepošleš %(_amount_)s %(_resource_)s, spojenectvo nebude vytvorené, %(_player_)s."
+msgstr "%(_player_)s, neuzavriem s tebou spojenectvo dokým mi nepošleš %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -375,7 +375,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra je predvolené AI pre 0 A.D. Poprosím o nahlásenie problémov do Wildfire Games (pozri odkaz v hlavnom menu). \n\nRýchlosť akým AI zbiera zdroje a výnos z obchodu závisí od úrovne obtiažnosti (Pieskovisko -58%, Veľmi ľahká -44, Ľahká -25, Priemerná 0, Ťažká 25, Veľmi ťažká 56). Najľahšie levely majú pomalší výskum, tréning a rýchlosť stavania budov. Navyše, Pieskovisko nerozširuje teritórium a neútočí."
+msgstr "Petra je predvolené AI pre 0 A.D. Prosíme nahlásiť jeho prípadné problémy Wildfire Games (pozri odkaz v hlavnom menu). \n\nRýchlosť akým AI zbiera zdroje a výnos z obchodu závisí od úrovne obtiažnosti (Pieskovisko −58%, Veľmi ľahká −44%, Ľahká −25%, Priemerná ±0%, Ťažká +25%, Veľmi ťažká +56%). Najľahšie levely majú pomalší výskum, tréning a rýchlosť stavania budov. Navyše, Pieskovisko nerozširuje teritórium a neútočí."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -830,11 +830,11 @@ msgstr "Dobytie"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centres."
-msgstr ""
+msgstr "Poraz oponentov zničením všetkých ich plne dostavaných Občianskych centier. "
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
 msgid "Conquest Civic Centres"
-msgstr ""
+msgstr "Dobytie Občianskych centier"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."

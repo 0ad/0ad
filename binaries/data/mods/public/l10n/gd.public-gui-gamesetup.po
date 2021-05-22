@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-23 07:10+0000\n"
-"PO-Revision-Date: 2021-04-23 09:19+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2021-05-17 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,11 +342,11 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Tagh latha no oidhche air thuaiream."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
 msgstr "Luaths a’ gheama"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
 msgstr "Tagh luaths a’ gheama."
 
@@ -564,15 +564,15 @@ msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "Buaidh sa bhad."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:35
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Sea Level Rise Time"
 msgstr "An t-àm ’s a dh’èireas am muir"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
 msgstr "Suidhich an t-àm a thòisicheas am muir air èirigh."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
@@ -813,52 +813,58 @@ msgstr "Chan eil am facal-faire dligheach."
 msgid "You have been banned."
 msgstr "Chaidh do thoirmeasg."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid ""
+"Failed to get local IP of the server (it was assumed to be on the same "
+"network)."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Luach mì-dhligheach %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Cha deach leinn ceangal ris an fhrithealaiche."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr "Dh’fhàillig leis a’ cheangal"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Teachdaireachd-lìonraidh: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:275
+#: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
 msgstr "A’ clàradh leis an fhrithealaiche…"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:281
+#: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
 msgstr "Tha an geama air a thòiseachadh mar-thà, a’ gabhail pàirt ann a-rithist…"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:360
+#: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
 msgstr "Tha ainm a’ gheama seo ’ga chleachdadh mu thràth."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Cha ghabh geama òstadh: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:376 gui/gamesetup_mp/gamesetup_mp.js:405
-#: gui/gamesetup_mp/gamesetup_mp.js:432 gui/gamesetup_mp/gamesetup_mp.js:447
+#: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
+#: gui/gamesetup_mp/gamesetup_mp.js:435 gui/gamesetup_mp/gamesetup_mp.js:450
 msgid "Error"
 msgstr "Mearachd"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:404 gui/gamesetup_mp/gamesetup_mp.js:446
+#: gui/gamesetup_mp/gamesetup_mp.js:405 gui/gamesetup_mp/gamesetup_mp.js:449
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Chan urrainn dhut pàirt a ghabhail sa gheama: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:461
+#: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "An geama aig %(playername)s"

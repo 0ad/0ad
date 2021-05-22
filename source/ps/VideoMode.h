@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,14 +73,16 @@ public:
 	 */
 	static void UpdateRenderer(int w, int h);
 
-	int GetXRes();
-	int GetYRes();
-	int GetBPP();
+	int GetXRes() const;
+	int GetYRes() const;
+	int GetBPP() const;
 
-	int GetDesktopXRes();
-	int GetDesktopYRes();
-	int GetDesktopBPP();
-	int GetDesktopFreq();
+	bool IsVSyncEnabled() const;
+
+	int GetDesktopXRes() const;
+	int GetDesktopYRes() const;
+	int GetDesktopBPP() const;
+	int GetDesktopFreq() const;
 
 	SDL_Window* GetWindow();
 
@@ -96,23 +98,27 @@ private:
 	 * important, just for verifying that the callers call our methods in
 	 * the right order.)
 	 */
-	bool m_IsInitialised;
+	bool m_IsInitialised = false;
 
-	SDL_Window* m_Window;
+	SDL_Window* m_Window = nullptr;
 
 	// Initial desktop settings.
 	// Frequency is in Hz, and BPP means bits per pixels (not bytes per pixels).
-	int m_PreferredW;
-	int m_PreferredH;
-	int m_PreferredBPP;
-	int m_PreferredFreq;
+	int m_PreferredW = 0;
+	int m_PreferredH = 0;
+	int m_PreferredBPP = 0;
+	int m_PreferredFreq = 0;
 
 	// Config file settings (0 if unspecified)
-	int m_ConfigW;
-	int m_ConfigH;
-	int m_ConfigBPP;
-	int m_ConfigDisplay;
-	bool m_ConfigFullscreen;
+	int m_ConfigW = 0;
+	int m_ConfigH = 0;
+	int m_ConfigBPP = 0;
+	int m_ConfigDisplay = 0;
+	bool m_ConfigVSync = false;
+
+	// (m_ConfigFullscreen defaults to false, so users don't get stuck if
+	// e.g. half the filesystem is missing and the config files aren't loaded).
+	bool m_ConfigFullscreen = false;
 
 	// If we're fullscreen, size/position of window when we were last windowed (or the default window
 	// size/position if we started fullscreen), to support switching back to the old window size/position
@@ -122,7 +128,7 @@ private:
 	int m_WindowedY;
 
 	// Whether we're currently being displayed fullscreen
-	bool m_IsFullscreen;
+	bool m_IsFullscreen = false;
 
 	// The last mode selected
 	int m_CurrentW;
