@@ -77,7 +77,7 @@ void GCSliceCallbackHook(JSContext* UNUSED(cx), JS::GCProgress progress, const J
 	#endif
 }
 
-shared_ptr<ScriptContext> ScriptContext::CreateContext(int contextSize, int heapGrowthBytesGCTrigger)
+std::shared_ptr<ScriptContext> ScriptContext::CreateContext(int contextSize, int heapGrowthBytesGCTrigger)
 {
 	return std::make_shared<ScriptContext>(contextSize, heapGrowthBytesGCTrigger);
 }

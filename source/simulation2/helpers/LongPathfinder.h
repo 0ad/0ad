@@ -282,7 +282,7 @@ private:
 	// This is thread-safe as it is order independent (no change in the output of the function for a given set of params).
 	// Obviously, this means that the cache should actually be a cache and not return different results
 	// from what would happen if things hadn't been cached.
-	mutable std::map<pass_class_t, shared_ptr<JumpPointCache> > m_JumpPointCache;
+	mutable std::map<pass_class_t, std::shared_ptr<JumpPointCache>> m_JumpPointCache;
 };
 
 #endif // INCLUDED_LONGPATHFINDER
