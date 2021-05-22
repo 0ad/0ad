@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,15 +39,6 @@
 // precompiled headers
 #ifndef CONFIG_ENABLE_PCH
 # define CONFIG_ENABLE_PCH 1	// improve build performance
-#endif
-
-// frame pointers
-#ifndef CONFIG_OMIT_FP
-# ifdef NDEBUG
-#  define CONFIG_OMIT_FP 1	// improve performance
-# else
-#  define CONFIG_OMIT_FP 0	// enable use of ia32's fast stack walk
-# endif
 #endif
 
 // try to prevent any exceptions from being thrown - even by the C++
