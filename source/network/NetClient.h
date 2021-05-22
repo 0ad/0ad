@@ -134,9 +134,10 @@ public:
 	/**
 	 * Connect to the remote networked server using lobby.
 	 * Push netstatus messages on failure.
+	 * @param localNetwork - if true, assume we are trying to connect on the local network.
 	 * @return true on success, false on connection failure
 	 */
-	bool TryToConnect(const CStr& hostJID);
+	bool TryToConnect(const CStr& hostJID, bool localNetwork);
 
 	/**
 	 * Destroy the connection to the server.

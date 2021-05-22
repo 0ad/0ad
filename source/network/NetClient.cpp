@@ -231,7 +231,7 @@ void CNetClient::HandleGetServerDataFailed(const CStr& error)
 	);
 }
 
-bool CNetClient::TryToConnect(const CStr& hostJID)
+bool CNetClient::TryToConnect(const CStr& hostJID, bool localNetwork)
 {
 	if (m_Session)
 		return false;
@@ -245,23 +245,22 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 		return false;
 	}
 
-	ENetHost* enetClient = nullptr;
+	ENetAddress hostAddr{ ENET_HOST_ANY, ENET_PORT_ANY };
+	ENetHost* enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
+
+	if (!enetClient)
+	{
+		PushGuiMessage(
+			"type", "netstatus",
+			"status", "disconnected",
+			"reason", static_cast<i32>(NDR_STUN_PORT_FAILED));
+		return false;
+	}
+
+	CStr ip;
+	u16 port;
 	if (g_XmppClient && m_UseSTUN)
 	{
-		ENetAddress hostAddr{ ENET_HOST_ANY, ENET_PORT_ANY };
-		enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
-
-		if (!enetClient)
-		{
-			PushGuiMessage(
-				"type", "netstatus",
-				"status", "disconnected",
-				"reason", static_cast<i32>(NDR_STUN_PORT_FAILED));
-			return false;
-		}
-
-		CStr ip;
-		u16 port;
 		if (!StunClient::FindPublicIP(*enetClient, ip, port))
 		{
 			PushGuiMessage(
@@ -280,11 +279,39 @@ bool CNetClient::TryToConnect(const CStr& hostJID)
 			// Return true anyways - we're on a success path here.
 			return true;
 		}
+	}
+	else if (g_XmppClient && localNetwork)
+	{
+		// We may need to punch a hole through the local firewall, so fetch our local IP.
+		// NB: we'll ignore failures here, and hope that the firewall will be open to connection
+		// if we fail to fetch the local IP (which is unlikely anyways).
+		if (!StunClient::FindLocalIP(ip))
+			ip = "";
+		// Check if we're hosting on localhost, and if so, explicitly use that
+		// (this circumvents, at least, the 'block all incoming connections' setting
+		// on the MacOS firewall).
+		if (ip == m_ServerAddress)
+		{
+			m_ServerAddress = "127.0.0.1";
+			ip = "";
+		}
+		port = enetClient->address.port;
+	}
 
+	LOGMESSAGE("NetClient: connecting to server at %s:%i", m_ServerAddress, m_ServerPort);
+
+	if (!ip.empty())
+	{
+		// UDP hole-punching
+		// Step 0: send a message, via XMPP, to the server with our external IP & port.
 		g_XmppClient->SendStunEndpointToHost(ip, port, hostJID);
 
+		// Step 1b: Wait some time - we need the host to receive the stun endpoint and start punching a hole themselves before
+		// we try to establish the connection below.
 		SDL_Delay(1000);
 
+		// Step 2: Send a message ourselves to the server so that the NAT, if any, routes incoming trafic correctly.
+		// TODO: verify if this step is necessary, since we'll try and connect anyways below.
 		StunClient::SendHolePunchingMessages(*enetClient, m_ServerAddress, m_ServerPort);
 	}
 
