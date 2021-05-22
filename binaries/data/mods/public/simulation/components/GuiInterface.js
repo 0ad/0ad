@@ -492,7 +492,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		}
 	}
 
-	let cmpResistance = Engine.QueryInterface(ent, IID_Resistance);
+	let cmpResistance = QueryMiragedInterface(ent, IID_Resistance);
 	if (cmpResistance)
 		ret.resistance = cmpResistance.GetResistanceOfForm(cmpFoundation ? "Foundation" : "Entity");
 

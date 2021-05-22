@@ -181,4 +181,41 @@ Resistance.prototype.OnOwnershipChanged = function(msg)
 			Engine.QueryInterface(attacker, IID_Attack)?.StopAttacking("TargetInvalidated");
 };
 
+
+function ResistanceMirage() {}
+ResistanceMirage.prototype.Init = function(cmpResistance)
+{
+	this.invulnerable = cmpResistance.invulnerable;
+	this.isFoundation = !!Engine.QueryInterface(cmpResistance.entity, IID_Foundation);
+	this.resistanceOfForm = {};
+	for (const entityForm in cmpResistance.template)
+		this.resistanceOfForm[entityForm] = cmpResistance.GetResistanceOfForm(entityForm);
+};
+
+ResistanceMirage.prototype.IsInvulnerable = Resistance.prototype.IsInvulnerable;
+
+ResistanceMirage.prototype.GetEffectiveResistanceAgainst = function(entityForm)
+{
+	return this.GetResistanceOfForm(this.isFoundation ? "Foundation" : "Entity");
+};
+
+ResistanceMirage.prototype.GetResistanceOfForm = function(entityForm)
+{
+	return this.resistanceOfForm[entityForm] || {};
+};
+
+ResistanceMirage.prototype.GetFullResistance = function()
+{
+	return this.resistanceOfForm;
+};
+
+Engine.RegisterGlobal("ResistanceMirage", ResistanceMirage);
+
+Resistance.prototype.Mirage = function()
+{
+	const mirage = new ResistanceMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
 Engine.RegisterComponentType(IID_Resistance, "Resistance", Resistance);

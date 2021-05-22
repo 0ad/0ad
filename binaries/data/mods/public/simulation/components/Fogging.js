@@ -19,6 +19,7 @@ Fogging.prototype.componentsToMirage = [
 	IID_Identity,
 	IID_Market,
 	IID_Repairable,
+	IID_Resistance,
 	IID_ResourceSupply
 ];
 
