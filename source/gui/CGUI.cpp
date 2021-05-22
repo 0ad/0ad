@@ -94,7 +94,7 @@ void CollectVisibleObjectsRecursively(const std::vector<IGUIObject*>& objects, C
 
 } // anonynous namespace
 
-CGUI::CGUI(const shared_ptr<ScriptContext>& context)
+CGUI::CGUI(const std::shared_ptr<ScriptContext>& context)
 	: m_BaseObject(std::make_unique<CGUIDummyObject>(*this)),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),

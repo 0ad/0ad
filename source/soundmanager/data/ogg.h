@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ public:
 	virtual Status GetNextChunk(u8* buffer, size_t size) = 0;
 };
 
-typedef shared_ptr<OggStream> OggStreamPtr;
+typedef std::shared_ptr<OggStream> OggStreamPtr;
 
 extern Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream);
 

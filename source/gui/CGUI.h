@@ -62,7 +62,7 @@ private:
 	using ConstructObjectFunction = IGUIObject* (*)(CGUI&);
 
 public:
-	CGUI(const shared_ptr<ScriptContext>& context);
+	CGUI(const std::shared_ptr<ScriptContext>& context);
 	~CGUI();
 
 	/**
@@ -246,7 +246,7 @@ public:
 
 	GUIProxyProps* GetProxyData(const js::BaseProxyHandler* ptr) { return m_ProxyData.at(ptr).get(); }
 
-	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
+	std::shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 
 private:
 	/**
@@ -546,7 +546,7 @@ private:
 	//--------------------------------------------------------
 	//@{
 
-	shared_ptr<ScriptInterface> m_ScriptInterface;
+	std::shared_ptr<ScriptInterface> m_ScriptInterface;
 
 	/**
 	 * don't want to pass this around with the
