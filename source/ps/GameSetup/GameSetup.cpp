@@ -115,7 +115,7 @@ bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
 bool g_DoRenderCursor = true;
 
-thread_local shared_ptr<ScriptContext> g_ScriptContext;
+thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -1044,7 +1044,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 		{
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 			// We only want to display the splash screen at startup
-			shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
+			std::shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
 			ScriptRequest rq(scriptInterface);
 			JS::RootedValue data(rq.cx);
 			if (g_GUI)
@@ -1603,7 +1603,7 @@ bool AutostartVisualReplay(const std::string& replayFile)
 
 void CancelLoad(const CStrW& message)
 {
-	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
+	std::shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	ScriptRequest rq(pScriptInterface);
 
 	JS::RootedValue global(rq.cx, rq.globalValue());

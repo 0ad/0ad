@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ public:
 	/**
 	 * Registers a file-receiving task.
 	 */
-	void StartTask(const shared_ptr<CNetFileReceiveTask>& task);
+	void StartTask(const std::shared_ptr<CNetFileReceiveTask>& task);
 
 	/**
 	 * Registers data to be sent in response to a request.
@@ -129,7 +129,7 @@ private:
 
 	u32 m_NextRequestID;
 
-	using FileReceiveTasksMap = std::map<u32, shared_ptr<CNetFileReceiveTask> >;
+	using FileReceiveTasksMap = std::map<u32, std::shared_ptr<CNetFileReceiveTask>>;
 	FileReceiveTasksMap m_FileReceiveTasks;
 
 	using FileSendTasksMap = std::map<u32, CNetFileSendTask>;

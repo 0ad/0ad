@@ -832,7 +832,7 @@ bool CNetClient::OnJoinSyncStart(void* context, CFsmEvent* event)
 
 	// The server wants us to start downloading the game state from it, so do so
 	client->m_Session->GetFileTransferer().StartTask(
-		shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ClientRejoin(*client, joinSyncStartMessage->m_InitAttributes))
+		std::shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ClientRejoin(*client, joinSyncStartMessage->m_InitAttributes))
 	);
 
 	return true;

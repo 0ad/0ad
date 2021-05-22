@@ -27,7 +27,7 @@
 class TestXMBData : public CxxTest::TestSuite
 {
 private:
-	shared_ptr<u8> m_Buffer;
+	std::shared_ptr<u8> m_Buffer;
 
 	std::unique_ptr<ScriptInterface> m_ScriptInterface;
 

@@ -307,9 +307,9 @@ class ClientImpl
 {
 public:
 	// List of registered callback wrappers, to get deleted when Client is deleted
-	std::list<shared_ptr<gloox::ConnectionListener> > m_ConnectionListeners;
-	std::list<shared_ptr<gloox::MessageHandler> > m_MessageHandlers;
-	std::list<shared_ptr<gloox::IqHandler> > m_IqHandlers;
+	std::list<std::shared_ptr<gloox::ConnectionListener>> m_ConnectionListeners;
+	std::list<std::shared_ptr<gloox::MessageHandler>> m_MessageHandlers;
+	std::list<std::shared_ptr<gloox::IqHandler>> m_IqHandlers;
 };
 
 static const std::string XMLNS = "xmlns";
@@ -394,21 +394,21 @@ void glooxwrapper::Client::registerConnectionListener(glooxwrapper::ConnectionLi
 {
 	gloox::ConnectionListener* listener = new ConnectionListenerWrapper(hnd);
 	m_Wrapped->registerConnectionListener(listener);
-	m_Impl->m_ConnectionListeners.push_back(shared_ptr<gloox::ConnectionListener>(listener));
+	m_Impl->m_ConnectionListeners.push_back(std::shared_ptr<gloox::ConnectionListener>(listener));
 }
 
 void glooxwrapper::Client::registerMessageHandler(glooxwrapper::MessageHandler* hnd)
 {
 	gloox::MessageHandler* handler = new MessageHandlerWrapper(hnd);
 	m_Wrapped->registerMessageHandler(handler);
-	m_Impl->m_MessageHandlers.push_back(shared_ptr<gloox::MessageHandler>(handler));
+	m_Impl->m_MessageHandlers.push_back(std::shared_ptr<gloox::MessageHandler>(handler));
 }
 
 void glooxwrapper::Client::registerIqHandler(glooxwrapper::IqHandler* ih, int exttype)
 {
 	gloox::IqHandler* handler = new IqHandlerWrapper(ih);
 	m_Wrapped->registerIqHandler(handler, exttype);
-	m_Impl->m_IqHandlers.push_back(shared_ptr<gloox::IqHandler>(handler));
+	m_Impl->m_IqHandlers.push_back(std::shared_ptr<gloox::IqHandler>(handler));
 }
 
 bool glooxwrapper::Client::removePresenceExtension(int type)
@@ -701,7 +701,7 @@ void glooxwrapper::Registration::registerRegistrationHandler(RegistrationHandler
 {
 	gloox::RegistrationHandler* handler = new RegistrationHandlerWrapper(rh);
 	m_Wrapped->registerRegistrationHandler(handler);
-	m_RegistrationHandlers.push_back(shared_ptr<gloox::RegistrationHandler>(handler));
+	m_RegistrationHandlers.push_back(std::shared_ptr<gloox::RegistrationHandler>(handler));
 }
 
 

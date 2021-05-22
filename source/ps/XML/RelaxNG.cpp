@@ -37,7 +37,7 @@ TIMER_ADD_CLIENT(xml_validation);
  * leak an indefinitely large amount of memory when repeatedly restarting the simulation.
  */
 class RelaxNGSchema;
-static std::map<std::string, shared_ptr<RelaxNGSchema> > g_SchemaCache;
+static std::map<std::string, std::shared_ptr<RelaxNGSchema>> g_SchemaCache;
 static std::mutex g_SchemaCacheLock;
 
 void ClearSchemaCache()
@@ -91,11 +91,11 @@ RelaxNGValidator::~RelaxNGValidator()
 
 bool RelaxNGValidator::LoadGrammar(const std::string& grammar)
 {
-	shared_ptr<RelaxNGSchema> schema;
+	std::shared_ptr<RelaxNGSchema> schema;
 
 	{
 		std::lock_guard<std::mutex> lock(g_SchemaCacheLock);
-		std::map<std::string, shared_ptr<RelaxNGSchema> >::iterator it = g_SchemaCache.find(grammar);
+		std::map<std::string, std::shared_ptr<RelaxNGSchema>>::iterator it = g_SchemaCache.find(grammar);
 		if (it == g_SchemaCache.end())
 		{
 			schema = std::make_shared<RelaxNGSchema>(grammar);

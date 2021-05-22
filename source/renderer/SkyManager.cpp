@@ -93,7 +93,7 @@ void SkyManager::LoadSkyTextures()
 	{
 		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds");
 
-		shared_ptr<u8> file;
+		std::shared_ptr<u8> file;
 		size_t fileSize;
 		if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
 		{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -141,7 +141,7 @@ public:
 
 private:
 	// the data read from file and used during unpack operations
-	shared_ptr<u8> m_buf;
+	std::shared_ptr<u8> m_buf;
 	size_t m_bufSize;
 
 	size_t m_unpackPos;	/// current unpack position in stream

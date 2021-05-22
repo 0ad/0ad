@@ -588,7 +588,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	               // a crash it's a useful record.
 
 	// Process it as JavaScript
-	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
+	std::shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	ScriptRequest rq(*pScriptInterface);
 
 	JS::RootedValue rval(rq.cx);
@@ -606,7 +606,7 @@ void CConsole::LoadHistory()
 	if (!VfsFileExists(m_sHistoryFile))
 		return;
 
-	shared_ptr<u8> buf; size_t buflen;
+	std::shared_ptr<u8> buf; size_t buflen;
 	if (g_VFS->LoadFile(m_sHistoryFile, buf, buflen) < 0)
 		return;
 

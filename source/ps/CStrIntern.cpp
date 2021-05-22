@@ -85,7 +85,7 @@ struct StringsKeyProxyEq
 	}
 };
 
-static std::unordered_map<StringsKey, shared_ptr<CStrInternInternals>, StringsKeyHash> g_Strings;
+static std::unordered_map<StringsKey, std::shared_ptr<CStrInternInternals>, StringsKeyHash> g_Strings;
 
 #define X(id) CStrIntern str_##id(#id);
 #define X2(id, str) CStrIntern str_##id(str);
@@ -100,12 +100,12 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 	// to be thread-safe, preferably without sacrificing performance.)
 	ENSURE(Threading::IsMainThread());
 
-	std::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it = g_Strings.find(str);
+	std::unordered_map<StringsKey, std::shared_ptr<CStrInternInternals> >::iterator it = g_Strings.find(str);
 
 	if (it != g_Strings.end())
 		return it->second.get();
 
-	shared_ptr<CStrInternInternals> internals = std::make_shared<CStrInternInternals>(str, len);
+	std::shared_ptr<CStrInternInternals> internals = std::make_shared<CStrInternInternals>(str, len);
 	g_Strings.insert(std::make_pair(internals->data, internals));
 	return internals.get();
 }

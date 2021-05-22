@@ -565,7 +565,7 @@ namespace glooxwrapper
 		NONCOPYABLE(Registration);
 	private:
 		gloox::Registration* m_Wrapped;
-		std::list<shared_ptr<gloox::RegistrationHandler> > m_RegistrationHandlers;
+		std::list<std::shared_ptr<gloox::RegistrationHandler> > m_RegistrationHandlers;
 	public:
 		Registration(Client* parent);
 		~Registration();

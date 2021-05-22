@@ -330,7 +330,7 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->GetPageCount())
 	{
-		shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
+		std::shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
