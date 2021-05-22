@@ -5548,7 +5548,12 @@ UnitAI.prototype.PerformGather = function(target, queued, force, pushFront = fal
 		this.order.data.lastPos = order.lastPos;
 		this.order.data.force = order.force;
 		if (order.force)
-			this.orderQueue = [this.order];
+		{
+			if (this.orderQueue[1]?.type === "Gather")
+				this.orderQueue = [this.order, this.orderQueue[1]];
+			else
+				this.orderQueue = [this.order];
+		}
 		return;
 	}
 
