@@ -409,6 +409,11 @@ m.Template = m.Class({
 		return types ? types.split(/\s+/) : [];
 	},
 
+	"isResourceDropsite": function(resourceType) {
+		const types = this.resourceDropsiteTypes();
+		return types && (!resourceType || types.indexOf(resourceType) !== -1);
+	},
+
 	"isTreasure": function() { return this.get("Treasure") !== undefined; },
 
 	"treasureResources": function() {

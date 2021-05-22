@@ -264,8 +264,12 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 
 	let obstructions = PETRA.createObstructionMap(gameState, this.accessIndex, template);
 
-	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	let dpEnts = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Storehouse", "Dock"])).toEntityArray();
+	const dpEnts = gameState.getOwnStructures().filter(API3.Filters.isDropsite(resource)).toEntityArray();
+
+	// Foundations don't have the dropsite properties yet, so treat them separately.
+	for (const foundation of gameState.getOwnFoundations().toEntityArray())
+		if (PETRA.getBuiltEntity(gameState, foundation).isResourceDropsite(resource))
+			dpEnts.push(foundation);
 
 	let bestIdx;
 	let bestVal = 0;
@@ -275,16 +279,18 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 	let width = territoryMap.width;
 	let cellSize = territoryMap.cellSize;
 
+	const droppableResources = template.resourceDropsiteTypes();
+
 	for (let j of this.territoryIndices)
 	{
 		let i = territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)  // no room around
 			continue;
 
-		// we add 3 times the needed resource and once the others (except food)
-		let total = 2*gameState.sharedScript.resourceMaps[resource].map[j];
-		for (let res in gameState.sharedScript.resourceMaps)
-			if (res != "food")
+		// We add 3 times the needed resource and once others that can be dropped here.
+		let total = 2 * gameState.sharedScript.resourceMaps[resource].map[j];
+		for (const res in gameState.sharedScript.resourceMaps)
+			if (droppableResources.indexOf(res) != -1)
 				total += gameState.sharedScript.resourceMaps[res].map[j];
 
 		total *= 0.7;   // Just a normalisation factor as the locateMap is limited to 255
@@ -310,22 +316,6 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 		if (total <= bestVal)
 			continue;
 
-		for (let cc of ccEnts)
-		{
-			let ccPos = cc.position();
-			if (!ccPos)
-				continue;
-			let dist = API3.SquareVectorDistance(ccPos, pos);
-			if (dist < 3600)
-			{
-				total = 0;
-				break;
-			}
-			else if (dist < 6400)
-				total *= (Math.sqrt(dist)-60)/20;
-		}
-		if (total <= bestVal)
-			continue;
 		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = total;
