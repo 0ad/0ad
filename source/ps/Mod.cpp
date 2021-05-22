@@ -159,12 +159,6 @@ const std::vector<CStr>& Mod::GetIncompatibleMods() const
 	return m_IncompatibleMods;
 }
 
-void Mod::SwitchToModSelector(const ScriptInterface& scriptInterface)
-{
-	m_ModsLoaded = { "mod" };
-	CacheEnabledModVersions(scriptInterface);
-}
-
 bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic)
 {
 	m_IncompatibleMods.clear();

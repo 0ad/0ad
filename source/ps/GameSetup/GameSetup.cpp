@@ -893,12 +893,13 @@ bool Init(const CmdLineArgs& args, int flags)
 				LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
 				return false;
 			}
-			// Disable all mods but "mod", we want to use the JS fallback code.
-			// TODO: it'd be nicer if the control flow was more obvious here.
-			g_Mods.SwitchToModSelector(modInterface);
 		}
 	}
-	MountMods(Paths(args), g_Mods.GetEnabledMods());
+	// If there are incompatible mods, switch to the mod selector so players can resolve the problem.
+	if (g_Mods.GetIncompatibleMods().empty())
+		MountMods(Paths(args), g_Mods.GetEnabledMods());
+	else
+		MountMods(Paths(args), { "mod" });
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
