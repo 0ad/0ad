@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -63,12 +63,6 @@ LIB_API uintptr_t os_cpu_ProcessorMask();
  * is not suppored on MacOSX, else we would use that.
  **/
 LIB_API size_t os_cpu_NumProcessors();
-
-// note: we do not provide an os_cpu_CurrentProcessor routine. that would
-// require Windows 2003 or a lot of work. worse, its results would be
-// worthless because they may change immediately afterwards. instead,
-// the recommended approach is to pin OpenMP threads (whose ID can be
-// queried) to the processor with the same number.
 
 
 //-----------------------------------------------------------------------------
