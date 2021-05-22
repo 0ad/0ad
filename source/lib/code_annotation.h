@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Wildfire Games.
+/* Copyright (c) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -249,11 +249,7 @@ switch(x % 2)
 #if GCC_VERSION
 # define PRINTF_ARGS(fmtpos) __attribute__ ((format (printf, fmtpos, fmtpos+1)))
 # define VPRINTF_ARGS(fmtpos) __attribute__ ((format (printf, fmtpos, 0)))
-# if CONFIG_DEHYDRA
-#  define WPRINTF_ARGS(fmtpos) __attribute__ ((user("format, w, printf, " #fmtpos ", +1")))
-# else
-#  define WPRINTF_ARGS(fmtpos) /* not currently supported in GCC */
-# endif
+# define WPRINTF_ARGS(fmtpos) /* not currently supported in GCC */
 # define VWPRINTF_ARGS(fmtpos) /* not currently supported in GCC */
 #else
 # define PRINTF_ARGS(fmtpos)
