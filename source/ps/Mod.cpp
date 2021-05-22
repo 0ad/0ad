@@ -151,7 +151,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface) const
 
 const std::vector<CStr>& Mod::GetEnabledMods() const
 {
-	return m_ModsLoaded;
+	return m_EnabledMods;
 }
 
 const std::vector<CStr>& Mod::GetIncompatibleMods() const
@@ -162,7 +162,7 @@ const std::vector<CStr>& Mod::GetIncompatibleMods() const
 bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic)
 {
 	m_IncompatibleMods.clear();
-	m_ModsLoaded.clear();
+	m_EnabledMods.clear();
 
 	std::unordered_map<CStr, int> counts;
 	for (const CStr& mod : mods)
@@ -170,21 +170,21 @@ bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<C
 		// Ignore duplicates.
 		if (counts.try_emplace(mod, 0).first->second++ > 0)
 			continue;
-		m_ModsLoaded.emplace_back(mod);
+		m_EnabledMods.emplace_back(mod);
 	}
 
 	if (addPublic && counts["public"] == 0)
-		m_ModsLoaded.insert(m_ModsLoaded.begin(), "public");
+		m_EnabledMods.insert(m_EnabledMods.begin(), "public");
 
 	if (counts["mod"] == 0)
-		m_ModsLoaded.insert(m_ModsLoaded.begin(), "mod");
+		m_EnabledMods.insert(m_EnabledMods.begin(), "mod");
 
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue availableMods(rq.cx, GetAvailableMods(scriptInterface));
-	m_IncompatibleMods = CheckForIncompatibleMods(scriptInterface, m_ModsLoaded, availableMods);
+	m_IncompatibleMods = CheckForIncompatibleMods(scriptInterface, m_EnabledMods, availableMods);
 
 	for (const CStr& mod : m_IncompatibleMods)
-		m_ModsLoaded.erase(std::find(m_ModsLoaded.begin(), m_ModsLoaded.end(), mod));
+		m_EnabledMods.erase(std::find(m_EnabledMods.begin(), m_EnabledMods.end(), mod));
 
 	CacheEnabledModVersions(scriptInterface);
 
@@ -317,7 +317,7 @@ void Mod::CacheEnabledModVersions(const ScriptInterface& scriptInterface)
 
 	m_LoadedModVersions.clear();
 
-	for (const CStr& mod : m_ModsLoaded)
+	for (const CStr& mod : m_EnabledMods)
 	{
 		// Ignore mod mod as it is irrelevant for compatibility checks
 		if (mod == "mod")

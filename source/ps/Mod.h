@@ -76,7 +76,7 @@ private:
 	std::vector<CStr> CheckForIncompatibleMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods) const;
 	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version) const;
 
-	std::vector<CStr> m_ModsLoaded;
+	std::vector<CStr> m_EnabledMods;
 	// Of the currently loaded mods, these are the incompatible with the engine and cannot be loaded.
 	std::vector<CStr> m_IncompatibleMods;
 
