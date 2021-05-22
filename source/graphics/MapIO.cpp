@@ -32,11 +32,11 @@
 #include <algorithm>
 #include <vector>
 
-Status ParseHeightmapImage(const shared_ptr<u8>& fileData, size_t fileSize, std::vector<u16>& heightmap);
+Status ParseHeightmapImage(const std::shared_ptr<u8>& fileData, size_t fileSize, std::vector<u16>& heightmap);
 
 Status LoadHeightmapImageVfs(const VfsPath& filepath, std::vector<u16>& heightmap)
 {
-	shared_ptr<u8> fileData;
+	std::shared_ptr<u8> fileData;
 	size_t fileSize;
 
 	RETURN_STATUS_IF_ERR(g_VFS->LoadFile(filepath, fileData, fileSize));
@@ -52,7 +52,7 @@ Status LoadHeightmapImageOs(const OsPath& filepath, std::vector<u16>& heightmap)
 	size_t fileSize = lseek(file.Descriptor(), 0, SEEK_END);
 	lseek(file.Descriptor(), 0, SEEK_SET);
 
-	shared_ptr<u8> fileData;
+	std::shared_ptr<u8> fileData;
 	RETURN_STATUS_IF_ERR(AllocateAligned(fileData, fileSize, maxSectorSize));
 
 	Status readvalue = read(file.Descriptor(), fileData.get(), fileSize);
@@ -63,7 +63,7 @@ Status LoadHeightmapImageOs(const OsPath& filepath, std::vector<u16>& heightmap)
 	return ParseHeightmapImage(fileData, fileSize, heightmap);
 }
 
-Status ParseHeightmapImage(const shared_ptr<u8>& fileData, size_t fileSize, std::vector<u16>& heightmap)
+Status ParseHeightmapImage(const std::shared_ptr<u8>& fileData, size_t fileSize, std::vector<u16>& heightmap)
 {
 	// Decode to a raw pixel format
 	Tex tex;

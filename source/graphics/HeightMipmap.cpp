@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -228,7 +228,7 @@ void CHeightMipmap::DumpToDisk(const VfsPath& filename) const
 
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(filename);
-	shared_ptr<u8> buf;
+	std::shared_ptr<u8> buf;
 	AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 	void* img = buf.get() + hdr_size;
 	Tex t;

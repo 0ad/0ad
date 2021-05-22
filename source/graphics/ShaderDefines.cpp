@@ -91,7 +91,7 @@ typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(con
 	typedef ItemNameCmp<value_t> Cmp;
 	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::binary_negate<Cmp>(Cmp())) == items.items.end());
 
-	shared_ptr<SItems> ptr = std::make_shared<SItems>(items);
+	std::shared_ptr<SItems> ptr = std::make_shared<SItems>(items);
 	s_InternedItems.insert(std::make_pair(items, ptr));
 	return ptr.get();
 }

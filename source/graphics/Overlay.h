@@ -116,7 +116,7 @@ struct SOverlayTexturedLine
 	 * recompute it, while at the same time maintaining copyability of this object (see also docs on
 	 * CTexturedLineRData).
 	 */
-	shared_ptr<CTexturedLineRData> m_RenderData;
+	std::shared_ptr<CTexturedLineRData> m_RenderData;
 
 	/**
 	 * Converts a string line cap type into its corresponding LineCap enum value, and returns

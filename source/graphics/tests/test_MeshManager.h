@@ -75,7 +75,7 @@ class TestMeshManager : public CxxTest::TestSuite
 	void copyFile(const VfsPath& src, const VfsPath& dst)
 	{
 		// Copy a file into the mod directory, so we can work on it:
-		shared_ptr<u8> data; size_t size = 0;
+		std::shared_ptr<u8> data; size_t size = 0;
 		TS_ASSERT_OK(g_VFS->LoadFile(src, data, size));
 		TS_ASSERT_OK(g_VFS->CreateFile(dst, data, size));
 	}
@@ -113,7 +113,7 @@ public:
 	{
 		copyFile(srcDAE, testDAE);
 		//buildArchive();
-		shared_ptr<u8> buf;
+		std::shared_ptr<u8> buf;
 		AllocateAligned(buf, 100, maxSectorSize);
 		strcpy_s((char*)buf.get(), 5, "Test");
 		g_VFS->CreateFile(testDAE, buf, 4);
@@ -179,7 +179,7 @@ public:
 		TestLogger logger;
 
 		copyFile(srcDAE, testDAE);
-		shared_ptr<u8> buf;
+		std::shared_ptr<u8> buf;
 		AllocateAligned(buf, 100, maxSectorSize);
 		strcpy_s((char*)buf.get(), 100, "Not valid XML");
 		g_VFS->CreateFile(testSkeletonDefs, buf, 13);
@@ -194,7 +194,7 @@ public:
 		TestLogger logger;
 
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
-		shared_ptr<u8> buf;
+		std::shared_ptr<u8> buf;
 		AllocateAligned(buf, 100, maxSectorSize);
 		strcpy_s((char*)buf.get(), 100, "Not valid XML");
 		g_VFS->CreateFile(testDAE, buf, 13);

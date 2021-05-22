@@ -90,7 +90,7 @@ public:
 		if (!m_DisableGL)
 		{
 			// Construct 1x1 24-bit texture
-			shared_ptr<u8> data(new u8[3], ArrayDeleter());
+			std::shared_ptr<u8> data(new u8[3], ArrayDeleter());
 			data.get()[0] = 64;
 			data.get()[1] = 64;
 			data.get()[2] = 64;
@@ -107,7 +107,7 @@ public:
 		if (!m_DisableGL)
 		{
 			// Construct 1x1 24-bit texture
-			shared_ptr<u8> data(new u8[3], ArrayDeleter());
+			std::shared_ptr<u8> data(new u8[3], ArrayDeleter());
 			data.get()[0] = 255;
 			data.get()[1] = 0;
 			data.get()[2] = 255;
@@ -449,13 +449,13 @@ public:
 
 		if (m_VFS->GetFileInfo(path, NULL) >= 0)
 		{
-			shared_ptr<CTextureConverter::SettingsFile> settings(m_TextureConverter.LoadSettings(path));
+			std::shared_ptr<CTextureConverter::SettingsFile> settings(m_TextureConverter.LoadSettings(path));
 			m_SettingsFiles.insert(std::make_pair(path, settings));
 			return settings.get();
 		}
 		else
 		{
-			m_SettingsFiles.insert(std::make_pair(path, shared_ptr<CTextureConverter::SettingsFile>()));
+			m_SettingsFiles.insert(std::make_pair(path, std::shared_ptr<CTextureConverter::SettingsFile>()));
 			return NULL;
 		}
 	}
@@ -520,7 +520,7 @@ private:
 
 	// Cache for the conversion settings files
 	using SettingsFilesMap =
-		std::unordered_map<VfsPath, shared_ptr<CTextureConverter::SettingsFile> >;
+		std::unordered_map<VfsPath, std::shared_ptr<CTextureConverter::SettingsFile>>;
 	SettingsFilesMap m_SettingsFiles;
 };
 

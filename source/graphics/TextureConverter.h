@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -214,8 +214,8 @@ private:
 	struct ConversionRequest;
 	struct ConversionResult;
 
-	std::deque<shared_ptr<ConversionRequest> > m_RequestQueue; // protected by m_WorkerMutex
-	std::deque<shared_ptr<ConversionResult> > m_ResultQueue; // protected by m_WorkerMutex
+	std::deque<std::shared_ptr<ConversionRequest>> m_RequestQueue; // protected by m_WorkerMutex
+	std::deque<std::shared_ptr<ConversionResult>> m_ResultQueue; // protected by m_WorkerMutex
 	bool m_Shutdown; // protected by m_WorkerMutex
 };
 
