@@ -126,7 +126,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
+	virtual Status CreateFile(const VfsPath& pathname, const std::shared_ptr<u8>& fileContents, size_t size)
 	{
 		std::lock_guard<std::mutex> lock(vfs_mutex);
 		VfsDirectory* directory;
@@ -148,7 +148,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size)
+	virtual Status LoadFile(const VfsPath& pathname, std::shared_ptr<u8>& fileContents, size_t& size)
 	{
 		std::lock_guard<std::mutex> lock(vfs_mutex);
 

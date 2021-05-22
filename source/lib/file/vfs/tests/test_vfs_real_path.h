@@ -74,7 +74,7 @@ public:
 		createRealDir(TEST_FOLDER / "cache" / "some_folder");
 		createRealDir(TEST_FOLDER / "some_mod" / "cache" / "some_mod");
 
-		shared_ptr<u8> buf(new u8(1));
+		std::shared_ptr<u8> buf(new u8(1));
 
 		g_VFS->Mount(L"", TEST_FOLDER / "some_mod" / "", 0, 0);
 

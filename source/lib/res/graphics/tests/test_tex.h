@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,7 +35,7 @@ public:
 	void test_mipmap_create()
 	{
 		static u8 imgData[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
-		shared_ptr<u8> img = DummySharedPtr(imgData);
+		std::shared_ptr<u8> img = DummySharedPtr(imgData);
 		// assumes 2x2 box filter algorithm with rounding
 		static const u8 mipmap[] = { 0x6C,0x79,0x87 };
 		Tex t;
@@ -49,7 +49,7 @@ public:
 
 	void test_img_size()
 	{
-		shared_ptr<u8> img(new u8[100*100*4], ArrayDeleter());
+		std::shared_ptr<u8> img(new u8[100*100*4], ArrayDeleter());
 
 		Tex t;
 		TS_ASSERT_OK(t.wrap(100, 100, 32, TEX_ALPHA, img, 0));
@@ -65,7 +65,7 @@ public:
 	{
 		const size_t w = 4, h = 4, bpp = 4;
 		const size_t size = w*h/2;
-		shared_ptr<u8> img(new u8[size], ArrayDeleter());
+		std::shared_ptr<u8> img(new u8[size], ArrayDeleter());
 		memcpy(img.get(), "\xFF\xFF\x00\x00\x00\xAA\xFF\x55", 8); // gradient from white to black
 		const u8 expected[] =
 			"\xFF\xFF\xFF" "\xFF\xFF\xFF" "\xFF\xFF\xFF" "\xFF\xFF\xFF"

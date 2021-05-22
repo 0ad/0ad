@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -92,7 +92,7 @@ Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames
 	WDIR* pDir = wopendir(path);
 	if(!pDir)
 		return StatusFromErrno();	// NOWARN
-	shared_ptr<WDIR> osDir(pDir, DirDeleter());
+	std::shared_ptr<WDIR> osDir(pDir, DirDeleter());
 
 	for(;;)
 	{

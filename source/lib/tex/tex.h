@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -213,7 +213,7 @@ struct Tex
 	 * (which may occur when being loaded), this may be replaced with
 	 * a new buffer (e.g. if decompressing file contents).
 	 **/
-	shared_ptr<u8> m_Data;
+	std::shared_ptr<u8> m_Data;
 
 	size_t m_DataSize;
 
@@ -262,7 +262,7 @@ struct Tex
 	 * @param data_size Its size [bytes].
 	 * @return Status.
 	 **/
-	Status decode(const shared_ptr<u8>& data, size_t data_size);
+	Status decode(const std::shared_ptr<u8>& data, size_t data_size);
 
 	/**
 	 * encode a texture into a memory buffer in the desired file format.
@@ -297,7 +297,7 @@ struct Tex
 	 * @param ofs
 	 * @return Status
 	 **/
-	Status wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs);
+	Status wrap(size_t w, size_t h, size_t bpp, size_t flags, const std::shared_ptr<u8>& data, size_t ofs);
 
 	//
 	// modify image

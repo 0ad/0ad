@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -45,7 +45,7 @@ struct IArchiveFile : public IFileLoader
 {
 };
 
-typedef shared_ptr<IArchiveFile> PIArchiveFile;
+typedef std::shared_ptr<IArchiveFile> PIArchiveFile;
 
 struct IArchiveReader
 {
@@ -59,7 +59,7 @@ struct IArchiveReader
 	virtual Status ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
 };
 
-typedef shared_ptr<IArchiveReader> PIArchiveReader;
+typedef std::shared_ptr<IArchiveReader> PIArchiveReader;
 
 // note: when creating an archive, any existing file with the given pathname
 // will be overwritten.
@@ -104,6 +104,6 @@ struct IArchiveWriter
 	virtual Status AddMemory(const u8* data, size_t size, time_t mtime, const OsPath& pathnameInArchive) = 0;
 };
 
-typedef shared_ptr<IArchiveWriter> PIArchiveWriter;
+typedef std::shared_ptr<IArchiveWriter> PIArchiveWriter;
 
 #endif	// #ifndef INCLUDED_ARCHIVE

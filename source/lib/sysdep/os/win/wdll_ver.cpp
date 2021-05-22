@@ -60,7 +60,7 @@ static Status ReadVersionString(const OsPath& modulePathname, wchar_t* out_ver, 
 		return ERR::NOT_SUPPORTED;	// NOWARN (module apparently lacks version information)
 	}
 
-	shared_ptr<u8> mem = Allocate(ver_size);
+	std::shared_ptr<u8> mem = Allocate(ver_size);
 	if(!GetFileVersionInfoW(OsString(modulePathname).c_str(), 0, ver_size, mem.get()))
 		WARN_RETURN(ERR::_3);
 

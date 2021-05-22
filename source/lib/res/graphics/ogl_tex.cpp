@@ -467,7 +467,7 @@ static Status OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathnam
 	// * this happens if the texture is "wrapped".
 	if(!(ot->flags & OT_TEX_VALID))
 	{
-		shared_ptr<u8> file; size_t fileSize;
+		std::shared_ptr<u8> file; size_t fileSize;
 		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
 		if(ot->t.decode(file, fileSize) >= 0)
 			ot->flags |= OT_TEX_VALID;

@@ -43,7 +43,7 @@ void WriteBuffer::EnsureSufficientCapacity(size_t size)
 	if(m_size + size > m_capacity)
 	{
 		m_capacity = round_up_to_pow2(m_size + size);
-		shared_ptr<u8> newData;
+		std::shared_ptr<u8> newData;
 		AllocateAligned(newData, m_capacity, maxSectorSize);
 		memcpy(newData.get(), m_data.get(), m_size);
 		m_data = newData;

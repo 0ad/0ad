@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -120,7 +120,7 @@ struct ITrace
 	virtual size_t NumEntries() const = 0;
 };
 
-typedef shared_ptr<ITrace> PITrace;
+typedef std::shared_ptr<ITrace> PITrace;
 
 extern PITrace CreateDummyTrace(size_t maxSize);
 extern PITrace CreateTrace(size_t maxSize);

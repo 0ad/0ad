@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -259,7 +259,7 @@ static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData,
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 	t->m_Flags |= TEX_MIPMAPS;	// must come before tex_img_size!
 	const size_t mipmap_size = t->img_size();
-	shared_ptr<u8> mipmapData;
+	std::shared_ptr<u8> mipmapData;
 	AllocateAligned(mipmapData, mipmap_size);
 	CreateLevelData cld = { bpp/8, w, h, (const u8*)newData, dataSize };
 	tex_util_foreach_mipmap(w, h, bpp, mipmapData.get(), 0, 1, create_level, &cld);
@@ -337,7 +337,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	//
 	// this is necessary even when not flipping because the initial data
 	// is read-only.
-	shared_ptr<u8> dstStorage;
+	std::shared_ptr<u8> dstStorage;
 	AllocateAligned(dstStorage, dstSize);
 
 	// setup row source/destination pointers (simplifies outer loop)
@@ -590,7 +590,7 @@ bool tex_is_known_extension(const VfsPath& pathname)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-Status Tex::wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs)
+Status Tex::wrap(size_t w, size_t h, size_t bpp, size_t flags, const std::shared_ptr<u8>& data, size_t ofs)
 {
 	m_Width    = w;
 	m_Height   = h;
@@ -657,7 +657,7 @@ u32 Tex::get_average_color() const
 	Tex basetex = *this;
 	uint8_t *data = new uint8_t[last_level_size];
 	memcpy(data, m_Data.get() + m_Ofs + size - last_level_size, last_level_size);
-	shared_ptr<uint8_t> sdata(data, ArrayDeleter());
+	std::shared_ptr<uint8_t> sdata(data, ArrayDeleter());
 	basetex.wrap(1, 1, m_Bpp, m_Flags, sdata, 0);
 
 	// convert to BGRA
@@ -716,7 +716,7 @@ size_t tex_hdr_size(const VfsPath& filename)
 // read/write from memory and disk
 //-----------------------------------------------------------------------------
 
-Status Tex::decode(const shared_ptr<u8>& Data, size_t DataSize)
+Status Tex::decode(const std::shared_ptr<u8>& Data, size_t DataSize)
 {
 	const ITexCodec* c;
 	RETURN_STATUS_IF_ERR(tex_codec_for_header(Data.get(), DataSize, &c));

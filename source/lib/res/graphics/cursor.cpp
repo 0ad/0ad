@@ -44,7 +44,7 @@ class SDLCursor
 public:
 	Status create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_, double scale)
 	{
-		shared_ptr<u8> file; size_t fileSize;
+		std::shared_ptr<u8> file; size_t fileSize;
 		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
 
 		Tex t;
@@ -221,7 +221,7 @@ static Status Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Ha
 	int hotspotx = 0, hotspoty = 0;
 	{
 		const VfsPath pathnameHotspot = pathname.ChangeExtension(L".txt");
-		shared_ptr<u8> buf; size_t size;
+		std::shared_ptr<u8> buf; size_t size;
 		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathnameHotspot, buf, size));
 		std::wstringstream s(std::wstring((const wchar_t*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
