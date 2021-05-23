@@ -428,7 +428,7 @@ bool CGUIText::AssembleCalls(
 	return done;
 }
 
-void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, const CRect& clipping) const
+void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -437,12 +437,18 @@ void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& 
 	bool isClipped = clipping != CRect();
 	if (isClipped)
 	{
+		// Make clipping rect as small as possible to prevent rounding errors
+		clipping.top = std::ceil(clipping.top);
+		clipping.bottom = std::floor(clipping.bottom);
+		clipping.left = std::ceil(clipping.left);
+		clipping.right = std::floor(clipping.right);
+
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(
-			clipping.left * g_GuiScale,
-			g_yres - clipping.bottom * g_GuiScale,
-			clipping.GetWidth() * g_GuiScale,
-			clipping.GetHeight() * g_GuiScale);
+			std::ceil(clipping.left * g_GuiScale),
+			std::ceil(g_yres - clipping.bottom * g_GuiScale),
+			std::floor(clipping.GetWidth() * g_GuiScale),
+			std::floor(clipping.GetHeight() * g_GuiScale));
 	}
 
 	CTextRenderer textRenderer(tech->GetShader());
