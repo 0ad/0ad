@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -89,6 +89,6 @@ public:
 	virtual u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const = 0;
 };
 
-typedef shared_ptr<ICodec> PICodec;
+typedef std::shared_ptr<ICodec> PICodec;
 
 #endif	// #ifndef INCLUDED_CODEC

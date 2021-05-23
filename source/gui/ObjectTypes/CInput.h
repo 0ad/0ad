@@ -116,7 +116,7 @@ protected:
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *        to get no clipping.
 	 */
-	virtual void DrawPlaceholderText(float z, const CRect& clipping = CRect());
+	virtual void DrawPlaceholderText(const CRect& clipping = CRect());
 
 	/**
 	 * Delete the current selection. Also places the pointer at the

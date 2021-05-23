@@ -118,7 +118,8 @@ function getMod(folder)
 function loadEnabledMods()
 {
 	if (g_HasIncompatibleMods)
-		g_ModsEnabled = Engine.GetIncompatibleMods().filter(folder => folder != "mod");
+		g_ModsEnabled = Engine.GetEnabledMods().concat(Engine.GetIncompatibleMods())
+			.filter(folder => folder != "mod");
 	else
 		g_ModsEnabled = Engine.GetEnabledMods().filter(folder => !!g_Mods[folder]);
 	g_ModsDisabled = Object.keys(g_Mods).filter(folder => g_ModsEnabled.indexOf(folder) == -1);

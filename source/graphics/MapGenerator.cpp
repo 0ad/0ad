@@ -92,7 +92,7 @@ void CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 	debug_SetThreadName("MapGenerator");
 	g_Profiler2.RegisterCurrentThread("MapGenerator");
 
-	shared_ptr<ScriptContext> mapgenContext = ScriptContext::CreateContext(RMS_CONTEXT_SIZE);
+	std::shared_ptr<ScriptContext> mapgenContext = ScriptContext::CreateContext(RMS_CONTEXT_SIZE);
 
 	// Enable the script to be aborted
 	JS_AddInterruptCallback(mapgenContext->GetGeneralJSContext(), MapGeneratorInterruptCallback);

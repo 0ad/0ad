@@ -70,6 +70,5 @@ void CCheckBox::Draw()
 		m_Checked ?
 			GetButtonSprite(m_SpriteChecked, m_SpriteCheckedOver, m_SpriteCheckedPressed, m_SpriteCheckedDisabled) :
 			GetButtonSprite(m_SpriteUnchecked, m_SpriteUncheckedOver, m_SpriteUncheckedPressed, m_SpriteUncheckedDisabled),
-		GetBufferedZ(),
 		m_CachedActualSize);
 }

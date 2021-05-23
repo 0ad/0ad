@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,7 +25,7 @@
 
 #include "lib/sysdep/compiler.h"
 
-// note: EXTERN_C cannot be used because shared_ptr is often returned
+// note: EXTERN_C cannot be used because std::shared_ptr is often returned
 // by value, which requires C++ linkage.
 
 #ifdef LIB_STATIC_LINK

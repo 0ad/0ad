@@ -54,7 +54,7 @@
 class CSimulation2Impl
 {
 public:
-	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptContext> cx, CTerrain* terrain) :
+	CSimulation2Impl(CUnitManager* unitManager, std::shared_ptr<ScriptContext> cx, CTerrain* terrain) :
 		m_SimContext(), m_ComponentManager(m_SimContext, cx),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
 		m_MapSettings(cx->GetGeneralJSContext()), m_InitAttributes(cx->GetGeneralJSContext())
@@ -636,7 +636,7 @@ void CSimulation2Impl::DumpState()
 
 ////////////////////////////////////////////////////////////////
 
-CSimulation2::CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptContext> cx, CTerrain* terrain) :
+CSimulation2::CSimulation2(CUnitManager* unitManager, std::shared_ptr<ScriptContext> cx, CTerrain* terrain) :
 	m(new CSimulation2Impl(unitManager, cx, terrain))
 {
 }

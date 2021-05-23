@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,12 +30,12 @@ class CFont;
 class CFontManager
 {
 public:
-	shared_ptr<CFont> LoadFont(CStrIntern fontName);
+	std::shared_ptr<CFont> LoadFont(CStrIntern fontName);
 
 private:
 	bool ReadFont(CFont* font, CStrIntern fontName);
 
-	using FontsMap = std::unordered_map<CStrIntern, shared_ptr<CFont> >;
+	using FontsMap = std::unordered_map<CStrIntern, std::shared_ptr<CFont>>;
 	FontsMap m_Fonts;
 };
 

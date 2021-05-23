@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -52,7 +52,7 @@ private:
 	size_t m_size;
 };
 
-shared_ptr<u8> Allocate(size_t size)
+std::shared_ptr<u8> Allocate(size_t size)
 {
 	ENSURE(size != 0);
 
@@ -61,5 +61,5 @@ shared_ptr<u8> Allocate(size_t size)
 	s_allocatorChecker.OnAllocate(p, size);
 #endif
 
-	return shared_ptr<u8>(p, CheckedArrayDeleter(size));
+	return std::shared_ptr<u8>(p, CheckedArrayDeleter(size));
 }

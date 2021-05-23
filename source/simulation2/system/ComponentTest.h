@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ class ComponentTestHelper
 	bool m_isSystemEntityInit = false;
 
 public:
-	ComponentTestHelper(shared_ptr<ScriptContext> scriptContext) :
+	ComponentTestHelper(std::shared_ptr<ScriptContext> scriptContext) :
 		m_Context(), m_ComponentManager(m_Context, scriptContext), m_Cmp(NULL)
 	{
 		m_ComponentManager.LoadComponentTypes();

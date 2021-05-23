@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,15 +41,6 @@
 # define CONFIG_ENABLE_PCH 1	// improve build performance
 #endif
 
-// frame pointers
-#ifndef CONFIG_OMIT_FP
-# ifdef NDEBUG
-#  define CONFIG_OMIT_FP 1	// improve performance
-# else
-#  define CONFIG_OMIT_FP 0	// enable use of ia32's fast stack walk
-# endif
-#endif
-
 // try to prevent any exceptions from being thrown - even by the C++
 // standard library. useful only for performance tests.
 #ifndef CONFIG_DISABLE_EXCEPTIONS
@@ -59,11 +50,6 @@
 // enable additional debug checks (potentially rather slow).
 #ifndef CONFIG_ENABLE_CHECKS
 # define CONFIG_ENABLE_CHECKS 0
-#endif
-
-// static type checking with Dehydra
-#ifndef CONFIG_DEHYDRA
-# define CONFIG_DEHYDRA 0
 #endif
 
 // allow the use of Boost? (affects PCH and several individual modules)

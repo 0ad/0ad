@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -96,6 +96,6 @@ private:
 	int m_OpenFlag;
 };
 
-typedef shared_ptr<File> PFile;
+typedef std::shared_ptr<File> PFile;
 
 #endif	// #ifndef INCLUDED_FILE

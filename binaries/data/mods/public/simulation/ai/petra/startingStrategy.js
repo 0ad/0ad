@@ -545,11 +545,10 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	}
 
 	// immediatly build a wood dropsite if possible.
-	let template = gameState.applyCiv("structures/{civ}/storehouse");
-	if (!gameState.getOwnEntitiesByClass("Storehouse", true).hasEntities() && this.canBuild(gameState, template))
+	if (!gameState.getOwnEntitiesByClass("DropsiteWood", true).hasEntities())
 	{
-		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
-		if (newDP.quality > 40)
+		const newDP = this.baseManagers[1].findBestDropsiteAndLocation(gameState, "wood");
+		if (newDP.quality > 40 && this.canBuild(gameState, newDP.templateName))
 		{
 			// if we start with enough workers, put our available resources in this first dropsite
 			// same thing if our pop exceed the allowed one, as we will need several houses
@@ -557,16 +556,16 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 			if (numWorkers > 12 && newDP.quality > 60 ||
 				gameState.getPopulation() > gameState.getPopulationLimit() + 20)
 			{
-				let cost = new API3.Resources(gameState.getTemplate(template).cost());
+				const cost = new API3.Resources(gameState.getTemplate(newDP.templateName).cost());
 				gameState.ai.queueManager.setAccounts(gameState, cost, "dropsites");
 			}
-			gameState.ai.queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
+			gameState.ai.queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, newDP.templateName, { "base": this.baseManagers[1].ID }, newDP.pos));
 		}
 	}
 	// and build immediately a corral if needed
 	if (this.needCorral)
 	{
-		template = gameState.applyCiv("structures/{civ}/corral");
+		const template = gameState.applyCiv("structures/{civ}/corral");
 		if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities() && this.canBuild(gameState, template))
 			gameState.ai.queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }));
 	}

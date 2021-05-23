@@ -102,7 +102,7 @@ protected:
 
 	float m_WaterHeight;
 
-	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z) const;
+	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2) const;
 
 	void DrawViewRect(const CMatrix3D& transform) const;
 

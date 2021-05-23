@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,9 +35,9 @@ struct DummyDeleter
 };
 
 template<class T>
-inline shared_ptr<T> DummySharedPtr(T* ptr)
+inline std::shared_ptr<T> DummySharedPtr(T* ptr)
 {
-	return shared_ptr<T>(ptr, DummyDeleter());
+	return std::shared_ptr<T>(ptr, DummyDeleter());
 }
 
 struct ArrayDeleter
@@ -50,7 +50,7 @@ struct ArrayDeleter
 };
 
 // (note: uses CheckedArrayDeleter)
-LIB_API shared_ptr<u8> Allocate(size_t size);
+LIB_API std::shared_ptr<u8> Allocate(size_t size);
 
 
 struct AlignedDeleter
@@ -63,7 +63,7 @@ struct AlignedDeleter
 };
 
 template<class T>
-static inline Status AllocateAligned(shared_ptr<T>& p, size_t size, size_t alignment = cacheLineSize)
+static inline Status AllocateAligned(std::shared_ptr<T>& p, size_t size, size_t alignment = cacheLineSize)
 {
 	void* mem = rtl_AllocateAligned(size, alignment);
 	if(!mem)

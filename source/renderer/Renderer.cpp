@@ -1776,7 +1776,7 @@ int CRenderer::LoadAlphaMaps()
 	size_t tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
 	size_t total_w = round_up_to_pow2(tile_w * NumAlphaMaps);
 	size_t total_h = base; ENSURE(is_pow2(total_h));
-	shared_ptr<u8> data;
+	std::shared_ptr<u8> data;
 	AllocateAligned(data, total_w*total_h, maxSectorSize);
 	// for each tile on row
 	for (size_t i = 0; i < NumAlphaMaps; i++)
@@ -1833,7 +1833,7 @@ int CRenderer::LoadAlphaMaps()
 	// write to disk
 	//Status ret = INFO::OK;
 	{
-		shared_ptr<u8> file = DummySharedPtr(da.base);
+		std::shared_ptr<u8> file = DummySharedPtr(da.base);
 		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
 			ENSURE(bytes_written == (ssize_t)da.pos);

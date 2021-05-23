@@ -420,7 +420,7 @@ void CNetServerWorker::Run()
 	g_Profiler2.RegisterCurrentThread("Net server");
 
 	// We create a new ScriptContext for this network thread, with a single ScriptInterface.
-	shared_ptr<ScriptContext> netServerContext = ScriptContext::CreateContext();
+	std::shared_ptr<ScriptContext> netServerContext = ScriptContext::CreateContext();
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", netServerContext);
 	m_InitAttributes.init(m_ScriptInterface->GetGeneralJSContext(), JS::UndefinedValue());
 
@@ -1164,7 +1164,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		CNetServerSession* sourceSession = server.m_Sessions.at(0);
 
 		sourceSession->GetFileTransferer().StartTask(
-			shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ServerRejoin(server, newHostID))
+			std::shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ServerRejoin(server, newHostID))
 		);
 
 		session->SetNextState(NSS_JOIN_SYNCING);

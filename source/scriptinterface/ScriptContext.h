@@ -50,7 +50,7 @@ public:
 	 * @param contextSize Maximum size in bytes of the new context
 	 * @param heapGrowthBytesGCTrigger Size in bytes of cumulated allocations after which a GC will be triggered
 	 */
-	static shared_ptr<ScriptContext> CreateContext(
+	static std::shared_ptr<ScriptContext> CreateContext(
 		int contextSize = DEFAULT_CONTEXT_SIZE,
 		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
 

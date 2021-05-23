@@ -30,14 +30,14 @@ void CGUISprite::AddImage(SGUIImage* image)
 	m_Images.push_back(image);
 }
 
-void CGUISpriteInstance::Draw(CGUI& pGUI, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites, float Z) const
+void CGUISpriteInstance::Draw(CGUI& pGUI, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const
 {
 	if (m_CachedSize != Size)
 	{
 		GUIRenderer::UpdateDrawCallCache(pGUI, m_DrawCallCache, m_SpriteName, Size, Sprites);
 		m_CachedSize = Size;
 	}
-	GUIRenderer::Draw(m_DrawCallCache, Z);
+	GUIRenderer::Draw(m_DrawCallCache);
 }
 
 // Plus a load of constructors / assignment operators, which don't copy the

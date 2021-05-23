@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,7 +101,7 @@ public:
 	CStr8 DecodeUTF8() const;
 
 private:
-	shared_ptr<u8> m_Buffer;
+	std::shared_ptr<u8> m_Buffer;
 	size_t m_BufferSize;
 };
 

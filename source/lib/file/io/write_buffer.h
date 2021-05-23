@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,7 +34,7 @@ public:
 	void Reserve(size_t size);
 	void Overwrite(const void* data, size_t size, size_t offset);
 
-	shared_ptr<u8> Data() const
+	std::shared_ptr<u8> Data() const
 	{
 		return m_data;
 	}
@@ -49,7 +49,7 @@ private:
 
 	size_t m_capacity;	// must come first (init order)
 
-	shared_ptr<u8> m_data;
+	std::shared_ptr<u8> m_data;
 	size_t m_size;
 };
 
@@ -76,11 +76,11 @@ private:
 	Status WriteBlock() const;
 
 	PFile m_file;
-	shared_ptr<u8> m_alignedBuf;
+	std::shared_ptr<u8> m_alignedBuf;
 	mutable off_t m_alignedOfs;
 	mutable size_t m_bytesUsed;
 };
 
-typedef shared_ptr<UnalignedWriter> PUnalignedWriter;
+typedef std::shared_ptr<UnalignedWriter> PUnalignedWriter;
 
 #endif	// #ifndef INCLUDED_WRITE_BUFFER

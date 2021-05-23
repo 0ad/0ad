@@ -33,5 +33,5 @@ CImage::~CImage()
 
 void CImage::Draw()
 {
-	m_pGUI.DrawSprite(m_Sprite, GetBufferedZ(), m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
 }

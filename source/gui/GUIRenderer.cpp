@@ -229,7 +229,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 
 		Call.m_BackColor = &(*cit)->m_BackColor;
 		Call.m_BorderColor = (*cit)->m_Border ? &(*cit)->m_BorderColor : nullptr;
-		Call.m_DeltaZ = (*cit)->m_DeltaZ;
 
 		if (!Call.m_HasTexture)
 		{
@@ -329,7 +328,7 @@ CRect SDrawCall::ComputeTexCoords() const
 	return TexCoords;
 }
 
-void GUIRenderer::Draw(DrawCalls& Calls, float Z)
+void GUIRenderer::Draw(DrawCalls& Calls)
 {
 	if (Calls.empty())
 		return;
@@ -377,13 +376,13 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 
 			std::vector<float> data;
 #define ADD(u, v, x, y, z) STMT(data.push_back(u); data.push_back(v); data.push_back(x); data.push_back(y); data.push_back(z))
-			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
-			ADD(TexCoords.right, TexCoords.bottom, Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
-			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, Z + cit->m_DeltaZ);
+			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, 0.0f);
+			ADD(TexCoords.right, TexCoords.bottom, Verts.right, Verts.bottom, 0.0f);
+			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, 0.0f);
 
-			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, Z + cit->m_DeltaZ);
-			ADD(TexCoords.left, TexCoords.top, Verts.left, Verts.top, Z + cit->m_DeltaZ);
-			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, 0.0f);
+			ADD(TexCoords.left, TexCoords.top, Verts.left, Verts.top, 0.0f);
+			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, 0.0f);
 #undef ADD
 
 			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
@@ -409,13 +408,13 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 
 			std::vector<float> data;
 #define ADD(x, y, z) STMT(data.push_back(x); data.push_back(y); data.push_back(z))
-			ADD(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
-			ADD(Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
-			ADD(Verts.right, Verts.top, Z + cit->m_DeltaZ);
+			ADD(Verts.left, Verts.bottom, 0.0f);
+			ADD(Verts.right, Verts.bottom, 0.0f);
+			ADD(Verts.right, Verts.top, 0.0f);
 
-			ADD(Verts.right, Verts.top, Z + cit->m_DeltaZ);
-			ADD(Verts.left, Verts.top, Z + cit->m_DeltaZ);
-			ADD(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(Verts.right, Verts.top, 0.0f);
+			ADD(Verts.left, Verts.top, 0.0f);
+			ADD(Verts.left, Verts.bottom, 0.0f);
 
 			shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -425,10 +424,10 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 				shader->Uniform(str_color, *cit->m_BorderColor);
 
 				data.clear();
-				ADD(Verts.left + 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
-				ADD(Verts.right - 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
-				ADD(Verts.right - 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
-				ADD(Verts.left + 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
+				ADD(Verts.left + 0.5f, Verts.top + 0.5f, 0.0f);
+				ADD(Verts.right - 0.5f, Verts.top + 0.5f, 0.0f);
+				ADD(Verts.right - 0.5f, Verts.bottom - 0.5f, 0.0f);
+				ADD(Verts.left + 0.5f, Verts.bottom - 0.5f, 0.0f);
 
 				shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
 				glDrawArrays(GL_LINE_LOOP, 0, 4);

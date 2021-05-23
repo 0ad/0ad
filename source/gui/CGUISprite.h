@@ -56,7 +56,6 @@ public:
 		m_WrapMode(GL_REPEAT),
 		m_Effects(),
 		m_Border(false),
-		m_DeltaZ(0.f),
 		m_Size(CGUISize::Full()),
 		m_TextureSize(CGUISize::Full())
 	{
@@ -102,13 +101,6 @@ public:
 
 	// 0 or 1 pixel border is the only option
 	bool m_Border;
-
-	/**
-	 * Z value modification of the image.
-	 * Inputted in XML as x-level, although it just an easier and safer
-	 * way of declaring delta-z.
-	 */
-	float m_DeltaZ;
 };
 
 /**
@@ -150,7 +142,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(CGUI& pGUI, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
+	void Draw(CGUI& pGUI, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const;
 
 	/**
 	 * Whether this Sprite has no texture name set.

@@ -115,7 +115,7 @@ bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
 bool g_DoRenderCursor = true;
 
-thread_local shared_ptr<ScriptContext> g_ScriptContext;
+thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -893,12 +893,13 @@ bool Init(const CmdLineArgs& args, int flags)
 				LOGERROR("Trying to start with incompatible mods: %s.", boost::algorithm::join(g_Mods.GetIncompatibleMods(), ", "));
 				return false;
 			}
-			// Disable all mods but "mod", we want to use the JS fallback code.
-			// TODO: it'd be nicer if the control flow was more obvious here.
-			g_Mods.SwitchToModSelector(modInterface);
 		}
 	}
-	MountMods(Paths(args), g_Mods.GetEnabledMods());
+	// If there are incompatible mods, switch to the mod selector so players can resolve the problem.
+	if (g_Mods.GetIncompatibleMods().empty())
+		MountMods(Paths(args), g_Mods.GetEnabledMods());
+	else
+		MountMods(Paths(args), { "mod" });
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
@@ -1043,7 +1044,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 		{
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 			// We only want to display the splash screen at startup
-			shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
+			std::shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
 			ScriptRequest rq(scriptInterface);
 			JS::RootedValue data(rq.cx);
 			if (g_GUI)
@@ -1602,7 +1603,7 @@ bool AutostartVisualReplay(const std::string& replayFile)
 
 void CancelLoad(const CStrW& message)
 {
-	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
+	std::shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
 	ScriptRequest rq(pScriptInterface);
 
 	JS::RootedValue global(rq.cx, rq.globalValue());

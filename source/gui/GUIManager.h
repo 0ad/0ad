@@ -45,12 +45,12 @@ public:
 	CGUIManager();
 	~CGUIManager();
 
-	shared_ptr<ScriptInterface> GetScriptInterface()
+	std::shared_ptr<ScriptInterface> GetScriptInterface()
 	{
 		return m_ScriptInterface;
 	}
-	shared_ptr<ScriptContext> GetContext() { return m_ScriptContext; }
-	shared_ptr<CGUI> GetActiveGUI() { return top(); }
+	std::shared_ptr<ScriptContext> GetContext() { return m_ScriptContext; }
+	std::shared_ptr<CGUI> GetActiveGUI() { return top(); }
 
 	/**
 	 * Returns the number of currently open GUI pages.
@@ -136,7 +136,7 @@ private:
 		/**
 		 * Create the CGUI with it's own ScriptInterface. Deletes the previous CGUI if it existed.
 		 */
-		void LoadPage(shared_ptr<ScriptContext> scriptContext);
+		void LoadPage(std::shared_ptr<ScriptContext> scriptContext);
 
 		/**
 		 * Sets the callback handler when a new page is opened that will be performed when the page is closed.
@@ -151,21 +151,21 @@ private:
 		CStrW m_Name;
 		std::unordered_set<VfsPath> inputs; // for hotloading
 		Script::StructuredClone initData; // data to be passed to the init() function
-		shared_ptr<CGUI> gui; // the actual GUI page
+		std::shared_ptr<CGUI> gui; // the actual GUI page
 
 		/**
 		 * Function executed by this parent GUI page when the child GUI page it pushed is popped.
 		 * Notice that storing it in the SGUIPage instead of CGUI means that it will survive the hotloading CGUI reset.
 		 */
-		shared_ptr<JS::PersistentRootedValue> callbackFunction;
+		std::shared_ptr<JS::PersistentRootedValue> callbackFunction;
 	};
 
 	const static CStr EventNameWindowResized;
 
-	shared_ptr<CGUI> top() const;
+	std::shared_ptr<CGUI> top() const;
 
-	shared_ptr<ScriptContext> m_ScriptContext;
-	shared_ptr<ScriptInterface> m_ScriptInterface;
+	std::shared_ptr<ScriptContext> m_ScriptContext;
+	std::shared_ptr<ScriptInterface> m_ScriptInterface;
 
 	using PageStackType = std::vector<SGUIPage>;
 	PageStackType m_PageStack;

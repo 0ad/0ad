@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ public:
 		: this_(this__), func(func_), arg(arg_) {}
 };
 
-template<class T, class Arg> static int MemFun1Thunk(shared_ptr<void> param, double UNUSED(time_left))
+template<class T, class Arg> static int MemFun1Thunk(std::shared_ptr<void> param, double UNUSED(time_left))
 {
 	MemFun1_t<T, Arg>* const mf = static_cast<MemFun1_t<T, Arg>*>(param.get());
 	return (mf->this_->*mf->func)(mf->arg);

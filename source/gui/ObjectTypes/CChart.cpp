@@ -95,11 +95,10 @@ void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor&
 
 void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 {
-	const float bz = GetBufferedZ();
 	CRect rect = GetChartRect();
 	std::vector<float> vertices;
 	vertices.reserve(30);
-#define ADD(x, y) vertices.push_back(x); vertices.push_back(y); vertices.push_back(bz + 0.5f);
+#define ADD(x, y) vertices.push_back(x); vertices.push_back(y); vertices.push_back(0.0f);
 	ADD(m_CachedActualSize.right, m_CachedActualSize.bottom);
 	ADD(rect.right + m_AxisWidth, rect.bottom);
 	ADD(m_CachedActualSize.left, m_CachedActualSize.bottom);
@@ -117,7 +116,6 @@ void CChart::Draw()
 	if (m_Series.empty())
 		return;
 
-	const float bz = GetBufferedZ();
 	CRect rect = GetChartRect();
 	const float width = rect.GetWidth();
 	const float height = rect.GetHeight();
@@ -143,7 +141,7 @@ void CChart::Draw()
 			{
 				vertices.push_back(rect.left + (point.X - m_LeftBottom.X) * scale.X);
 				vertices.push_back(rect.bottom - (point.Y - m_LeftBottom.Y) * scale.Y);
-				vertices.push_back(bz + 0.5f);
+				vertices.push_back(0.0f);
 			}
 			else
 			{
@@ -161,7 +159,7 @@ void CChart::Draw()
 	tech->EndPass();
 
 	for (size_t i = 0; i < m_TextPositions.size(); ++i)
-		DrawText(i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i], bz + 0.5f);
+		DrawText(i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i]);
 }
 
 CRect CChart::GetChartRect() const

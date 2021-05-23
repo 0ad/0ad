@@ -158,7 +158,7 @@ private:
 		size_t chars; // sum of runs[i].text->size()
 		CMatrix3D transform;
 		CColor color;
-		shared_ptr<CFont> font;
+		std::shared_ptr<CFont> font;
 		std::list<SBatchRun> runs;
 	};
 
@@ -171,7 +171,7 @@ private:
 
 	CColor m_Color;
 	CStrIntern m_FontName;
-	shared_ptr<CFont> m_Font;
+	std::shared_ptr<CFont> m_Font;
 
 	bool m_Dirty;
 

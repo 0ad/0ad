@@ -87,7 +87,7 @@ private:
 		NONCOPYABLE(CAIPlayer);
 	public:
 		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior,
-				shared_ptr<ScriptInterface> scriptInterface) :
+			std::shared_ptr<ScriptInterface> scriptInterface) :
 			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), m_Behavior(behavior),
 			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetGeneralJSContext())
 		{
@@ -203,7 +203,7 @@ private:
 
 		// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 		// members have to be called before the context destructor.
-		shared_ptr<ScriptInterface> m_ScriptInterface;
+		std::shared_ptr<ScriptInterface> m_ScriptInterface;
 
 		JS::PersistentRootedValue m_Obj;
 		std::vector<Script::StructuredClone > m_Commands;
@@ -365,7 +365,7 @@ public:
 
 		const size_t img_size = w * h * bpp/8;
 		const size_t hdr_size = tex_hdr_size(filename);
-		shared_ptr<u8> buf;
+		std::shared_ptr<u8> buf;
 		AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 		Tex t;
 		if (t.wrap(w, h, bpp, flags, buf, hdr_size) < 0)
@@ -455,7 +455,7 @@ public:
 
 	bool AddPlayer(const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior)
 	{
-		shared_ptr<CAIPlayer> ai = std::make_shared<CAIPlayer>(*this, aiName, player, difficulty, behavior, m_ScriptInterface);
+		std::shared_ptr<CAIPlayer> ai = std::make_shared<CAIPlayer>(*this, aiName, player, difficulty, behavior, m_ScriptInterface);
 		if (!ai->Initialise())
 			return false;
 
@@ -816,17 +816,17 @@ private:
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the context destructor.
-	shared_ptr<ScriptContext> m_ScriptContext;
+	std::shared_ptr<ScriptContext> m_ScriptContext;
 
-	shared_ptr<ScriptInterface> m_ScriptInterface;
+	std::shared_ptr<ScriptInterface> m_ScriptInterface;
 	boost::rand48 m_RNG;
 	u32 m_TurnNum;
 
 	JS::PersistentRootedValue m_EntityTemplates;
 	bool m_HasLoadedEntityTemplates;
 
-	std::map<VfsPath, JS::Heap<JS::Value> > m_PlayerMetadata;
-	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
+	std::map<VfsPath, JS::Heap<JS::Value>> m_PlayerMetadata;
+	std::vector<std::shared_ptr<CAIPlayer>> m_Players; // use shared_ptr just to avoid copying
 
 	bool m_HasSharedComponent;
 	JS::PersistentRootedValue m_SharedAIObj;

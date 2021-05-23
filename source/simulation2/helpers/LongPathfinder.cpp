@@ -722,7 +722,7 @@ void LongPathfinder::ComputeJPSPath(const HierarchicalPathfinder& hierPath, enti
 		// Needs to lock for construction, or several threads might try doing that at the same time.
 		static std::mutex JPCMutex;
 		std::unique_lock<std::mutex> lock(JPCMutex);
-		std::map<pass_class_t, shared_ptr<JumpPointCache> >::const_iterator it = m_JumpPointCache.find(passClass);
+		std::map<pass_class_t, std::shared_ptr<JumpPointCache>>::const_iterator it = m_JumpPointCache.find(passClass);
 		if (it != m_JumpPointCache.end())
 			state.jpc = it->second.get();
 

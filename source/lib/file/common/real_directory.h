@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -49,9 +49,9 @@ public:
 	{
 		return m_path;
 	}
-	virtual Status Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const;
+	virtual Status Load(const OsPath& name, const std::shared_ptr<u8>& buf, size_t size) const;
 
-	Status Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size);
+	Status Store(const OsPath& name, const std::shared_ptr<u8>& fileContents, size_t size);
 
 	void Watch();
 
@@ -70,7 +70,7 @@ private:
 	PDirWatch m_watch;
 };
 
-typedef shared_ptr<RealDirectory> PRealDirectory;
+typedef std::shared_ptr<RealDirectory> PRealDirectory;
 
 extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const OsPath& subdirectoryName);
 

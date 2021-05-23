@@ -119,7 +119,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		// recompute the best dropsite location in case some conditions have changed
 		let base = HQ.getBaseByID(this.metadata.base);
 		let type = this.metadata.type ? this.metadata.type : "wood";
-		let newpos = base.findBestDropsiteLocation(gameState, type);
+		const newpos = base.findBestDropsiteLocation(gameState, type, template._templateName);
 		if (newpos && newpos.quality > 0)
 		{
 			let pos = newpos.pos;

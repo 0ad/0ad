@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -614,7 +614,7 @@ private:
 			for (size_t j = 0; j < m_QueryTypes.size(); ++j)
 			{
 				size_t size = m_QueryTypes[j].counterBufferSize;
-				shared_ptr<char> buf(new char[size], ArrayDeleter());
+				std::shared_ptr<char> buf(new char[size], ArrayDeleter());
 
 				for (size_t i = 0; i < frame.events.size(); ++i)
 				{

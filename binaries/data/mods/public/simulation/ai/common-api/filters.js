@@ -113,7 +113,7 @@ m.Filters = {
 	}),
 
 	"isDropsite": resourceType => ({
-		"func": ent => ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) != -1),
+		"func": ent => ent.isResourceDropsite(resourceType),
 		"dynamicProperties": []
 	}),
 

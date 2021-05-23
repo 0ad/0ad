@@ -330,7 +330,7 @@ CTextureConverter::~CTextureConverter()
 
 bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath& src, const VfsPath& dest, const Settings& settings)
 {
-	shared_ptr<u8> file;
+	std::shared_ptr<u8> file;
 	size_t fileSize;
 	if (m_VFS->LoadFile(src, file, fileSize) < 0)
 	{
@@ -385,7 +385,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 
 #if CONFIG2_NVTT
 
-	shared_ptr<ConversionRequest> request = std::make_shared<ConversionRequest>();
+	std::shared_ptr<ConversionRequest> request = std::make_shared<ConversionRequest>();
 	request->dest = dest;
 	request->texture = texture;
 
@@ -485,7 +485,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 {
 #if CONFIG2_NVTT
-	shared_ptr<ConversionResult> result;
+	std::shared_ptr<ConversionResult> result;
 
 	// Grab the first result (if any)
 	{
@@ -512,7 +512,7 @@ bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 
 	// Move output into a correctly-aligned buffer
 	size_t size = result->output.buffer.size();
-	shared_ptr<u8> file;
+	std::shared_ptr<u8> file;
 	AllocateAligned(file, size, maxSectorSize);
 	memcpy(file.get(), &result->output.buffer[0], size);
 	if (m_VFS->CreateFile(result->dest, file, size) < 0)
@@ -559,7 +559,7 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 		g_Profiler2.RecordSyncMarker();
 		PROFILE2_EVENT("wakeup");
 
-		shared_ptr<ConversionRequest> request;
+		std::shared_ptr<ConversionRequest> request;
 
 		{
 			std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
@@ -572,7 +572,7 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 		}
 
 		// Set up the result object
-		shared_ptr<ConversionResult> result = std::make_shared<ConversionResult>();
+		std::shared_ptr<ConversionResult> result = std::make_shared<ConversionResult>();
 		result->dest = request->dest;
 		result->texture = request->texture;
 

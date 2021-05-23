@@ -181,7 +181,7 @@ static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_inf
 		flags |= TEX_GREY;
 
 	const size_t img_size = pitch * h;
-	shared_ptr<u8> data;
+	std::shared_ptr<u8> data;
 	AllocateAligned(data, img_size, g_PageSize);
 
 	std::vector<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);

@@ -140,7 +140,7 @@ struct IVFS
 	 * @param size [bytes] of the contents, will match that of the file.
 	 * @return Status.
 	 **/
-	virtual Status CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
+	virtual Status CreateFile(const VfsPath& pathname, const std::shared_ptr<u8>& fileContents, size_t size) = 0;
 
 	/**
 	 * Read an entire file into memory.
@@ -150,7 +150,7 @@ struct IVFS
 	 * @param size receives the size [bytes] of the file contents.
 	 * @return Status.
 	 **/
-	virtual Status LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size) = 0;
+	virtual Status LoadFile(const VfsPath& pathname, std::shared_ptr<u8>& fileContents, size_t& size) = 0;
 
 	/**
 	 * @return a string representation of all files and directories.
@@ -217,7 +217,7 @@ struct IVFS
 	virtual void Clear() = 0;
 };
 
-typedef shared_ptr<IVFS> PIVFS;
+typedef std::shared_ptr<IVFS> PIVFS;
 
 /**
  * create an instance of a Virtual File System.

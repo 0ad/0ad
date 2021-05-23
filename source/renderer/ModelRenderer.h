@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,16 +32,16 @@
 #include "renderer/VertexArray.h"
 
 class RenderModifier;
-typedef shared_ptr<RenderModifier> RenderModifierPtr;
+typedef std::shared_ptr<RenderModifier> RenderModifierPtr;
 
 class LitRenderModifier;
-typedef shared_ptr<LitRenderModifier> LitRenderModifierPtr;
+typedef std::shared_ptr<LitRenderModifier> LitRenderModifierPtr;
 
 class ModelVertexRenderer;
-typedef shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
+typedef std::shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
 
 class ModelRenderer;
-typedef shared_ptr<ModelRenderer> ModelRendererPtr;
+typedef std::shared_ptr<ModelRenderer> ModelRendererPtr;
 
 class CModel;
 class CShaderDefines;

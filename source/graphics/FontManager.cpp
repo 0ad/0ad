@@ -29,13 +29,13 @@
 
 #include <cfloat>
 
-shared_ptr<CFont> CFontManager::LoadFont(CStrIntern fontName)
+std::shared_ptr<CFont> CFontManager::LoadFont(CStrIntern fontName)
 {
 	FontsMap::iterator it = m_Fonts.find(fontName);
 	if (it != m_Fonts.end())
 		return it->second;
 
-	shared_ptr<CFont> font(new CFont());
+	std::shared_ptr<CFont> font(new CFont());
 
 	if (!ReadFont(font.get(), fontName))
 	{
@@ -55,7 +55,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	const VfsPath path(L"fonts/");
 
 	// Read font definition file into a stringstream
-	shared_ptr<u8> buf;
+	std::shared_ptr<u8> buf;
 	size_t size;
 	const VfsPath fntName(fontName.string() + ".fnt");
 	if (g_VFS->LoadFile(path / fntName, buf, size) < 0)

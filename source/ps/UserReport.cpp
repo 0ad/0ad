@@ -199,7 +199,7 @@ public:
 	/**
 	 * Called by main thread to add a new report to the queue.
 	 */
-	void Submit(const shared_ptr<CUserReport>& report)
+	void Submit(const std::shared_ptr<CUserReport>& report)
 	{
 		{
 			std::lock_guard<std::mutex> lock(m_WorkerMutex);
@@ -325,7 +325,7 @@ private:
 	{
 		PROFILE2("process report");
 
-		shared_ptr<CUserReport> report;
+		std::shared_ptr<CUserReport> report;
 
 		{
 			std::lock_guard<std::mutex> lock(m_WorkerMutex);
@@ -482,7 +482,7 @@ private:
 
 	// Shared by main thread and worker thread:
 	// These variables are all protected by m_WorkerMutex
-	std::deque<shared_ptr<CUserReport> > m_ReportQueue;
+	std::deque<std::shared_ptr<CUserReport>> m_ReportQueue;
 	bool m_Enabled;
 	bool m_Shutdown;
 	std::string m_Status;
@@ -629,7 +629,7 @@ void CUserReporter::SubmitReport(const std::string& type, int version, const std
 		return;
 
 	// Actual submit
-	shared_ptr<CUserReport> report = std::make_shared<CUserReport>();
+	std::shared_ptr<CUserReport> report = std::make_shared<CUserReport>();
 	report->m_Time = time(NULL);
 	report->m_Type = type;
 	report->m_Version = version;

@@ -1188,8 +1188,6 @@ void CInput::UpdateCachedSize()
 
 void CInput::Draw()
 {
-	float bz = GetBufferedZ();
-
 	if (m_CursorBlinkRate > 0.0)
 	{
 		// check if the cursor visibility state needs to be changed
@@ -1214,7 +1212,7 @@ void CInput::Draw()
 	if (m_Mask && m_MaskChar->length() > 0)
 		mask_char = (*m_MaskChar)[0];
 
-	m_pGUI.DrawSprite(m_Sprite, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (m_ScrollBar && m_MultiLine)
@@ -1279,7 +1277,7 @@ void CInput::Draw()
 	textRenderer.Translate(
 		(float)(int)(m_CachedActualSize.left) + m_BufferZone,
 		(float)(int)(m_CachedActualSize.top+h) + m_BufferZone,
-		bz+0.1f);
+		0.0f);
 
 	// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
 	// (sort of like a | which is aligned to the left of most characters)
@@ -1403,7 +1401,7 @@ void CInput::Draw()
 							rect.right = m_CachedActualSize.right;
 					}
 
-					m_pGUI.DrawSprite(m_SpriteSelectArea, bz + 0.05f, rect);
+					m_pGUI.DrawSprite(m_SpriteSelectArea, rect);
 				}
 
 				if (i < (int)it->m_ListOfX.size())
@@ -1530,15 +1528,15 @@ void CInput::Draw()
 	tech->EndPass();
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
-		DrawPlaceholderText(bz, cliparea);
+		DrawPlaceholderText(cliparea);
 }
 
-void CInput::DrawPlaceholderText(float z, const CRect& clipping)
+void CInput::DrawPlaceholderText(const CRect& clipping)
 {
 	if (!m_GeneratedPlaceholderTextValid)
 		SetupGeneratedPlaceholderText();
 
-	m_GeneratedPlaceholderText.Draw(m_pGUI, m_PlaceholderColor, m_CachedActualSize.TopLeft(), z, clipping);
+	m_GeneratedPlaceholderText.Draw(m_pGUI, m_PlaceholderColor, m_CachedActualSize.TopLeft(), clipping);
 }
 
 void CInput::UpdateText(int from, int to_before, int to_after)

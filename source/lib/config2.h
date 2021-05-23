@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,14 +46,6 @@
 // significantly slow things down except when needed.
 #ifndef CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
 # define CONFIG2_ALLOCATORS_OVERRUN_PROTECTION 0
-#endif
-
-// zero-copy IO means all clients share the cached buffer; changing their
-// contents is forbidden. this flag causes the buffers to be marked as
-// read-only via MMU (writes would cause an exception), which takes a
-// bit of extra time.
-#ifndef CONFIG2_CACHE_READ_ONLY
-#define CONFIG2_CACHE_READ_ONLY 1
 #endif
 
 #ifndef CONFIG2_FILE_ENABLE_AIO

@@ -319,7 +319,7 @@ public:
 		return m_file->Pathname();
 	}
 
-	virtual Status Load(const OsPath& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
+	virtual Status Load(const OsPath& UNUSED(name), const std::shared_ptr<u8>& buf, size_t size) const
 	{
 		AdjustOffset();
 
@@ -472,7 +472,7 @@ public:
 			{
 				const OsPath name = relativePathname.Filename();
 				CFileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
-				shared_ptr<ArchiveFile_Zip> archiveFile = std::make_shared<ArchiveFile_Zip>(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method());
+				std::shared_ptr<ArchiveFile_Zip> archiveFile = std::make_shared<ArchiveFile_Zip>(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method());
 				cb(relativePathname, fileInfo, archiveFile, cbData);
 			}
 

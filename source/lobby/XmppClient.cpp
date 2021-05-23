@@ -862,7 +862,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 			}
 
 			g_NetClient->SetupServerData(cd->m_Ip.to_string(), stoi(cd->m_Port.to_string()), !cd->m_UseSTUN.empty());
-			g_NetClient->TryToConnect(iq.from().full());
+			g_NetClient->TryToConnect(iq.from().full(), !cd->m_IsLocalIP.empty());
 		}
 		if (gq)
 		{
@@ -995,6 +995,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				connectionData->m_Ip = g_NetServer->GetPublicIp();
 				connectionData->m_Port = std::to_string(g_NetServer->GetPublicPort());
 				connectionData->m_UseSTUN = g_NetServer->GetUseSTUN() ? "true" : "";
+				connectionData->m_IsLocalIP = "";
 			}
 			else
 			{
@@ -1004,6 +1005,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 					connectionData->m_Ip = ip;
 					connectionData->m_Port = std::to_string(g_NetServer->GetLocalPort());
 					connectionData->m_UseSTUN = "";
+					connectionData->m_IsLocalIP = "true";
 				}
 				else
 					connectionData->m_Error = "local_ip_failed";

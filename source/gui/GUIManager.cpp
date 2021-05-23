@@ -131,13 +131,13 @@ CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const Script::StructuredC
 {
 }
 
-void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
+void CGUIManager::SGUIPage::LoadPage(std::shared_ptr<ScriptContext> scriptContext)
 {
 	// If we're hotloading then try to grab some data from the previous page
 	Script::StructuredClone hotloadData;
 	if (gui)
 	{
-		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
+		std::shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
@@ -203,7 +203,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 
 	gui->LoadedXmlFiles();
 
-	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
+	std::shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue initDataVal(rq.cx);
@@ -245,7 +245,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(Script::StructuredClone args
 	if (!callbackFunction)
 		return;
 
-	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
+	std::shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedObject globalObj(rq.cx, rq.glob);
@@ -403,7 +403,7 @@ const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 // This returns a shared_ptr to make sure the CGUI doesn't get deallocated
 // while we're in the middle of calling a function on it (e.g. if a GUI script
 // calls SwitchPage)
-shared_ptr<CGUI> CGUIManager::top() const
+std::shared_ptr<CGUI> CGUIManager::top() const
 {
 	ENSURE(m_PageStack.size());
 	return m_PageStack.back().gui;

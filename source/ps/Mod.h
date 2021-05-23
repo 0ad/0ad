@@ -37,13 +37,6 @@ public:
 	const std::vector<CStr>& GetIncompatibleMods() const;
 
 	/**
-	 * Enables the mod selector only, leaving incompatible mods as-is.
-	 * This is used, in combination with the JS code, to show the user
-	 * a clear interface in case of incompatible mods.
-	 */
-	void SwitchToModSelector(const ScriptInterface& scriptInterface);
-
-	/**
 	 * Enables specified mods (& mods required by the engine).
 	 * @param addPublic - if true, enable the public mod.
 	 * @return whether the mods were enabled successfully. This can fail if e.g. mods are incompatible.
@@ -83,7 +76,7 @@ private:
 	std::vector<CStr> CheckForIncompatibleMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods) const;
 	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version) const;
 
-	std::vector<CStr> m_ModsLoaded;
+	std::vector<CStr> m_EnabledMods;
 	// Of the currently loaded mods, these are the incompatible with the engine and cannot be loaded.
 	std::vector<CStr> m_IncompatibleMods;
 

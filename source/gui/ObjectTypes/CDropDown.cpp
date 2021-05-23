@@ -422,10 +422,9 @@ bool CDropDown::IsMouseOver() const
 
 void CDropDown::Draw()
 {
-	const float bz = GetBufferedZ();
 	const CGUISpriteInstance& sprite = m_Enabled ? m_Sprite : m_SpriteDisabled;
 
-	m_pGUI.DrawSprite(sprite, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, m_CachedActualSize);
 
 	if (m_ButtonWidth > 0.f)
 	{
@@ -434,18 +433,18 @@ void CDropDown::Draw()
 
 		if (!m_Enabled)
 		{
-			m_pGUI.DrawSprite(*m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, rect);
 		}
 		else if (m_Open)
 		{
-			m_pGUI.DrawSprite(*m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, rect);
 		}
 		else if (m_MouseHovering)
 		{
-			m_pGUI.DrawSprite(*m_Sprite2Over ? m_Sprite2Over : m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Over ? m_Sprite2Over : m_Sprite2, rect);
 		}
 		else
-			m_pGUI.DrawSprite(m_Sprite2, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2, rect);
 	}
 
 	if (m_Selected != -1) // TODO: Maybe check validity completely?
@@ -454,7 +453,7 @@ void CDropDown::Draw()
 					   m_CachedActualSize.right - m_ButtonWidth, m_CachedActualSize.bottom);
 
 		CVector2D pos(m_CachedActualSize.left, m_CachedActualSize.top);
-		DrawText(m_Selected, m_Enabled ? m_TextColorSelected : m_TextColorDisabled, pos, bz + 0.1f, cliparea);
+		DrawText(m_Selected, m_Enabled ? m_TextColorSelected : m_TextColorDisabled, pos, cliparea);
 	}
 
 	if (m_Open)

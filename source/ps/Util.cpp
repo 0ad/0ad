@@ -194,7 +194,7 @@ Status tex_write(Tex* t, const VfsPath& filename)
 	// write to disk
 	Status ret = INFO::OK;
 	{
-		shared_ptr<u8> file = DummySharedPtr(da.base);
+		std::shared_ptr<u8> file = DummySharedPtr(da.base);
 		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
 			ENSURE(bytes_written == (ssize_t)da.pos);
@@ -273,7 +273,7 @@ void WriteScreenshot(const VfsPath& extension)
 
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(filename);
-	shared_ptr<u8> buf;
+	std::shared_ptr<u8> buf;
 	AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 	GLvoid* img = buf.get() + hdr_size;
 	Tex t;
@@ -342,7 +342,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles, int tileWidth, int 
 		WARN_IF_ERR(ERR::NO_MEM);
 		return;
 	}
-	shared_ptr<u8> img_buf;
+	std::shared_ptr<u8> img_buf;
 	AllocateAligned(img_buf, hdr_size + img_size, maxSectorSize);
 
 	Tex t;

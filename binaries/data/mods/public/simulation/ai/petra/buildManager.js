@@ -98,22 +98,31 @@ PETRA.BuildManager.prototype.checkEvents = function(gameState, events)
 
 
 /**
+ * Get the buildable structures passing a filter.
+ */
+PETRA.BuildManager.prototype.findStructuresByFilter = function(gameState, filter)
+{
+	const result = [];
+	for (let [templateName, count] of this.builderCounters)
+	{
+		if (!count || gameState.isTemplateDisabled(templateName))
+			continue;
+		let template = gameState.getTemplate(templateName);
+		if (!template || !template.available(gameState))
+			continue;
+		if (filter.func(template))
+			result.push(templateName);
+	}
+	return result;
+};
+
+/**
  * Get the first buildable structure with a given class
  * TODO when several available, choose the best one
  */
 PETRA.BuildManager.prototype.findStructureWithClass = function(gameState, classes)
 {
-	for (let [templateName, count] of this.builderCounters)
-	{
-		if (count == 0 || gameState.isTemplateDisabled(templateName))
-			continue;
-		let template = gameState.getTemplate(templateName);
-		if (!template || !template.available(gameState))
-			continue;
-		if (MatchesClassList(template.classes(), classes))
-			return templateName;
-	}
-	return undefined;
+	return this.findStructuresByFilter(gameState, API3.Filters.byClassesOr(classes))[0];
 };
 
 PETRA.BuildManager.prototype.hasBuilder = function(template)

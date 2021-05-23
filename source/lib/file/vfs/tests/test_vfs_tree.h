@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,7 +40,7 @@ public:
 	size_t Precedence() const { return m_Precedence; }
 	wchar_t LocationCode() const { return L'\0'; }
 	OsPath Path() const { return L"";}
-	Status Load(const OsPath& UNUSED(name), const shared_ptr<u8>& UNUSED(buf), size_t UNUSED(size)) const {return INFO::OK; }
+	Status Load(const OsPath& UNUSED(name), const std::shared_ptr<u8>& UNUSED(buf), size_t UNUSED(size)) const {return INFO::OK; }
 };
 
 class TestVfsTree : public CxxTest::TestSuite

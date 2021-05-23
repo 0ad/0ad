@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -67,7 +67,7 @@ private:
 	u8* m_buffer;
 	size_t m_size;
 
-	shared_ptr<u8> m_mem;
+	std::shared_ptr<u8> m_mem;
 	// size of m_mem. allows reusing previously allocated buffers
 	// (user-specified buffers can't be reused because we have no control
 	// over their lifetime)

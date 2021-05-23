@@ -378,7 +378,7 @@ std::string CProfiler2::ThreadStorage::GetBuffer()
 	//
 	// See comments on m_BufferPos0 etc.
 
-	shared_ptr<u8> buffer(new u8[BUFFER_SIZE], ArrayDeleter());
+	std::shared_ptr<u8> buffer(new u8[BUFFER_SIZE], ArrayDeleter());
 
 	u32 pos1 = m_BufferPos1;
 	COMPILER_FENCE; // must read m_BufferPos1 before m_Buffer

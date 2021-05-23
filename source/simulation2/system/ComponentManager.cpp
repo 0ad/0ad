@@ -54,7 +54,7 @@ public:
 	JS::PersistentRootedValue msg;
 };
 
-CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptContext> cx, bool skipScriptFunctions) :
+CComponentManager::CComponentManager(CSimContext& context, std::shared_ptr<ScriptContext> cx, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative),
 	m_ScriptInterface("Engine", "Simulation", cx),
 	m_SimContext(context), m_CurrentlyHotloading(false)

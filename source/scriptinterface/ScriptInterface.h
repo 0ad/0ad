@@ -83,7 +83,7 @@ public:
 	 * @param debugName Name of this interface for CScriptStats purposes.
 	 * @param context ScriptContext to use when initializing this interface.
 	 */
-	ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptContext>& context);
+	ScriptInterface(const char* nativeScopeName, const char* debugName, const std::shared_ptr<ScriptContext>& context);
 
 	~ScriptInterface();
 
@@ -128,7 +128,7 @@ public:
 	 * ScriptInterface::Request and use the context from that.
 	 */
 	JSContext* GetGeneralJSContext() const;
-	shared_ptr<ScriptContext> GetContext() const;
+	std::shared_ptr<ScriptContext> GetContext() const;
 
 	/**
 	 * Load global scripts that most script interfaces need,

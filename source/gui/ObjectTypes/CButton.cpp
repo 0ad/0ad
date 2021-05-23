@@ -82,14 +82,11 @@ void CButton::HandleMessage(SGUIMessage& Message)
 
 void CButton::Draw()
 {
-	const float bz = GetBufferedZ();
-
 	m_pGUI.DrawSprite(
 		GetButtonSprite(m_Sprite, m_SpriteOver, m_SpritePressed, m_SpriteDisabled),
-		bz,
 		m_CachedActualSize);
 
-	DrawText(0, ChooseColor(), m_TextPos, bz + 0.1f);
+	DrawText(0, ChooseColor(), m_TextPos);
 }
 
 bool CButton::IsMouseOver() const

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -144,7 +144,7 @@ private:
 class VorbisBufferAdapter
 {
 public:
-	VorbisBufferAdapter(const shared_ptr<u8>& buffer, size_t size)
+	VorbisBufferAdapter(const std::shared_ptr<u8>& buffer, size_t size)
 		: buffer(buffer)
 		, size(size)
 		, offset(0)
@@ -202,7 +202,7 @@ public:
 	}
 
 private:
-	shared_ptr<u8> buffer;
+	std::shared_ptr<u8> buffer;
 	off_t size;
 	off_t offset;
 };
@@ -310,7 +310,7 @@ Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream)
 	PFile file(new File);
     RETURN_STATUS_IF_ERR(file->Open(pathname, L'r'));
 
-	shared_ptr<OggStreamImpl<VorbisFileAdapter>> tmp = std::make_shared<OggStreamImpl<VorbisFileAdapter>>(VorbisFileAdapter(file));
+	std::shared_ptr<OggStreamImpl<VorbisFileAdapter>> tmp = std::make_shared<OggStreamImpl<VorbisFileAdapter>>(VorbisFileAdapter(file));
 	RETURN_STATUS_IF_ERR(tmp->Open());
 	stream = tmp;
 	return INFO::OK;
@@ -318,11 +318,11 @@ Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream)
 
 Status OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream)
 {
-	shared_ptr<u8> contents;
+	std::shared_ptr<u8> contents;
 	size_t size;
 	RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, contents, size));
 
-	shared_ptr<OggStreamImpl<VorbisBufferAdapter>> tmp = std::make_shared<OggStreamImpl<VorbisBufferAdapter>>(VorbisBufferAdapter(contents, size));
+	std::shared_ptr<OggStreamImpl<VorbisBufferAdapter>> tmp = std::make_shared<OggStreamImpl<VorbisBufferAdapter>>(VorbisBufferAdapter(contents, size));
 	RETURN_STATUS_IF_ERR(tmp->Open());
 	stream = tmp;
 	return INFO::OK;

@@ -68,7 +68,7 @@ public:
 			SDL_Delay(10);
 		}
 
-		shared_ptr<u8> file;
+		std::shared_ptr<u8> file;
 		size_t fileSize = 0;
 		TS_ASSERT_OK(m_VFS->LoadFile(dest, file, fileSize));
 

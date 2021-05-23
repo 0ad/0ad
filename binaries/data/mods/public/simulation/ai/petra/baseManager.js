@@ -245,12 +245,37 @@ PETRA.BaseManager.prototype.removeDropsite = function(gameState, ent)
 };
 
 /**
- * Returns the position of the best place to build a new dropsite for the specified resource
+ * @return {Object} - The position of the best place to build a new dropsite for the specified resource,
+ *			its quality and its template name.
  */
-PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
+PETRA.BaseManager.prototype.findBestDropsiteAndLocation = function(gameState, resource)
 {
+	let bestResult = {
+		"quality": 0,
+		"pos": [0, 0]
+	};
+	for (const templateName of gameState.ai.HQ.buildManager.findStructuresByFilter(gameState, API3.Filters.isDropsite(resource)))
+	{
+		const dp = this.findBestDropsiteLocation(gameState, resource, templateName);
+		if (dp.quality < bestResult.quality)
+			continue;
+		bestResult = dp;
+		bestResult.templateName = templateName;
+	}
+	return bestResult;
+};
 
-	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}/storehouse"));
+/**
+ * Returns the position of the best place to build a new dropsite for the specified resource and dropsite template.
+ */
+PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource, templateName)
+{
+	const template = gameState.getTemplate(gameState.applyCiv(templateName));
+
+	// CCs and Docks are handled elsewhere.
+	if (template.hasClass("CivCentre") || template.hasClass("Dock"))
+		return { "quality": 0, "pos": [0, 0] };
+
 	let halfSize = 0;
 	if (template.get("Footprint/Square"))
 		halfSize = Math.max(+template.get("Footprint/Square/@depth"), +template.get("Footprint/Square/@width")) / 2;
@@ -264,8 +289,12 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 
 	let obstructions = PETRA.createObstructionMap(gameState, this.accessIndex, template);
 
-	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	let dpEnts = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Storehouse", "Dock"])).toEntityArray();
+	const dpEnts = gameState.getOwnStructures().filter(API3.Filters.isDropsite(resource)).toEntityArray();
+
+	// Foundations don't have the dropsite properties yet, so treat them separately.
+	for (const foundation of gameState.getOwnFoundations().toEntityArray())
+		if (PETRA.getBuiltEntity(gameState, foundation).isResourceDropsite(resource))
+			dpEnts.push(foundation);
 
 	let bestIdx;
 	let bestVal = 0;
@@ -275,16 +304,18 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 	let width = territoryMap.width;
 	let cellSize = territoryMap.cellSize;
 
+	const droppableResources = template.resourceDropsiteTypes();
+
 	for (let j of this.territoryIndices)
 	{
 		let i = territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)  // no room around
 			continue;
 
-		// we add 3 times the needed resource and once the others (except food)
-		let total = 2*gameState.sharedScript.resourceMaps[resource].map[j];
-		for (let res in gameState.sharedScript.resourceMaps)
-			if (res != "food")
+		// We add 3 times the needed resource and once others that can be dropped here.
+		let total = 2 * gameState.sharedScript.resourceMaps[resource].map[j];
+		for (const res in gameState.sharedScript.resourceMaps)
+			if (droppableResources.indexOf(res) != -1)
 				total += gameState.sharedScript.resourceMaps[res].map[j];
 
 		total *= 0.7;   // Just a normalisation factor as the locateMap is limited to 255
@@ -310,22 +341,6 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 		if (total <= bestVal)
 			continue;
 
-		for (let cc of ccEnts)
-		{
-			let ccPos = cc.position();
-			if (!ccPos)
-				continue;
-			let dist = API3.SquareVectorDistance(ccPos, pos);
-			if (dist < 3600)
-			{
-				total = 0;
-				break;
-			}
-			else if (dist < 6400)
-				total *= (Math.sqrt(dist)-60)/20;
-		}
-		if (total <= bestVal)
-			continue;
 		if (gameState.ai.HQ.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = total;
@@ -440,17 +455,17 @@ PETRA.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 			let ratio = this.gatherers[type].lost / total;
 			if (ratio > 0.15)
 			{
-				let newDP = this.findBestDropsiteLocation(gameState, type);
-				if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}/storehouse"))
-					queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/storehouse", { "base": this.ID, "type": type }, newDP.pos));
+				const newDP = this.findBestDropsiteAndLocation(gameState, type);
+				if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, newDP.templateName))
+					queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, newDP.templateName, { "base": this.ID, "type": type }, newDP.pos));
 				else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() && !queues.civilCentre.hasQueuedUnits())
 				{
 					// No good dropsite, try to build a new base if no base already planned,
 					// and if not possible, be less strict on dropsite quality.
 					if ((!gameState.ai.HQ.canExpand || !gameState.ai.HQ.buildNewBase(gameState, queues, type)) &&
 					    newDP.quality > Math.min(25, 50*0.15/ratio) &&
-					    gameState.ai.HQ.canBuild(gameState, "structures/{civ}/storehouse"))
-						queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/storehouse", { "base": this.ID, "type": type }, newDP.pos));
+					    gameState.ai.HQ.canBuild(gameState, newDP.templateName))
+						queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, newDP.templateName, { "base": this.ID, "type": type }, newDP.pos));
 				}
 			}
 			this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;
