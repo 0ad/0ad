@@ -77,7 +77,14 @@
 
 #endif
 
+#if SDL_VERSION_ATLEAST(2, 0, 8)
+#include <SDL_vulkan.h>
+#endif
+
+#include <string>
+
 static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings);
+static void ReportVulkan(const ScriptRequest& rq, JS::HandleValue settings);
 static void ReportGLLimits(const ScriptRequest& rq, JS::HandleValue settings);
 
 void SetDisableAudio(bool disabled)
@@ -156,9 +163,11 @@ void RunHardwareDetection()
 		Script::SetProperty(rq, settings, "snd_drv_ver", g_SoundManager->GetOpenALVersion());
 	}
 #endif
-	ReportSDL(scriptInterface, settings);
+	ReportSDL(rq, settings);
 
-	ReportGLLimits(scriptInterface, settings);
+	ReportVulkan(rq, settings);
+
+	ReportGLLimits(rq, settings);
 
 	Script::SetProperty(rq, settings, "video_desktop_xres", g_VideoMode.GetDesktopXRes());
 	Script::SetProperty(rq, settings, "video_desktop_yres", g_VideoMode.GetDesktopYRes());
@@ -217,7 +226,7 @@ void RunHardwareDetection()
 	Script::SetProperty(rq, settings, "timer_resolution", timer_Resolution());
 
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 14;
+	const int reportVersion = 15;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
@@ -247,6 +256,29 @@ static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings)
 	// This is null in atlas (and further the call triggers an assertion).
 	const char* backend = g_VideoMode.GetWindow() ? GetSDLSubsystem(g_VideoMode.GetWindow()) : "none";
 	Script::SetProperty(rq, settings, "sdl_video_backend", backend ? backend : "unknown");
+}
+
+static void ReportVulkan(const ScriptRequest& rq, JS::HandleValue settings)
+{
+	std::string vulkanSupport = "unsupported";
+	// According to http://wiki.libsdl.org/SDL_Vulkan_LoadLibrary the following
+	// functionality is supported since SDL 2.0.8.
+#if SDL_VERSION_ATLEAST(2, 0, 8)
+	if (!SDL_Vulkan_LoadLibrary(nullptr))
+	{
+		void* vkGetInstanceProcAddr = SDL_Vulkan_GetVkGetInstanceProcAddr();
+		if (vkGetInstanceProcAddr)
+			vulkanSupport = "supported";
+		else
+			vulkanSupport = "noprocaddr";
+		SDL_Vulkan_UnloadLibrary();
+	}
+	else
+	{
+		vulkanSupport = "cantload";
+	}
+#endif
+	Script::SetProperty(rq, settings, "vulkan", vulkanSupport);
 }
 
 static void ReportGLLimits(const ScriptRequest& rq, JS::HandleValue settings)
