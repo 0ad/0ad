@@ -4,9 +4,6 @@
     <PlacementType>land-shore</PlacementType>
     <Category>Wall</Category>
   </BuildRestrictions>
-  <Capturable>
-    <CapturePoints>1200</CapturePoints>
-  </Capturable>
   <Footprint>
     <Square width="6.0" depth="6.0"/>
     <Height>8.0</Height>
@@ -32,9 +29,6 @@
       <constructed>interface/complete/building/complete_wall.xml</constructed>
     </SoundGroups>
   </Sound>
-  <TerritoryDecay>
-    <DecayRate>5.0</DecayRate>
-  </TerritoryDecay>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>20</Radius>

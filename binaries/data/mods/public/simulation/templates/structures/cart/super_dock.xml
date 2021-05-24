@@ -9,7 +9,7 @@
     <Category>Dock</Category>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>2000</CapturePoints>
+    <CapturePoints op="mul">4</CapturePoints>
     <GarrisonRegenRate>10</GarrisonRegenRate>
   </Capturable>
   <Cost>

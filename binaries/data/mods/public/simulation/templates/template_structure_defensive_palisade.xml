@@ -5,10 +5,6 @@
     <Territory>own neutral</Territory>
     <Category>Wall</Category>
   </BuildRestrictions>
-  <Capturable>
-    <CapturePoints>300</CapturePoints>
-    <RegenRate>1.0</RegenRate>
-  </Capturable>
   <Health>
     <Max>1000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
@@ -37,7 +33,4 @@
       <constructed>interface/complete/building/complete_wall.xml</constructed>
     </SoundGroups>
   </Sound>
-  <TerritoryDecay>
-    <DecayRate>2.0</DecayRate>
-  </TerritoryDecay>
 </Entity>
