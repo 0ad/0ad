@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:32+0000\n"
-"Last-Translator: Roman Kalivoda <kalivodaroman@gmail.com>\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1312,6 +1312,16 @@ msgstr "Pro zobrazení více informací klepněte pravým tlačítkem myši."
 #: gui/common/tooltips.js:1211
 msgid "Click to view more information."
 msgstr "Klepněte pro zobrazení více informací."
+
+#: gui/common/tooltips.js:1220
+msgctxt "One letter abbreviation for million"
+msgid "M"
+msgstr ""
+
+#: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
+msgctxt "One letter abbreviation for thousand"
+msgid "k"
+msgstr ""
 
 #: gui/credits/credits.js:83
 #, javascript-format

@@ -4,14 +4,14 @@
 # project.
 # Translators:
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# JungHee Lee <daemul72@gmail.com>, 2021
-# JungHee Lee <daemul72@gmail.com>, 2019-2020
+# Jung Hee Lee <daemul72@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2019-2020
 # dalrae jin <greenpolidol@gmail.com>, 2014
 # EK lee <sodadida@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # moolow <copyhyeon@gmail.com>, 2018
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2021
 # jun lee <sulriun@gmail.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017,2019
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-25 15:24+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 10:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1326,22 +1326,22 @@ msgstr "아르쿠스 트리움파리스"
 msgid "TriumphalArch"
 msgstr "승리를 축하하는 아치형 구조물"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:70
 msgid "Army Camp"
 msgstr "군대 막사"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Castra"
 msgstr "카스트라"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
 " Soldiers for additional arrows."
 msgstr "중립 또는 적지에 건설하십시오. 상급 근거리 보병을 훈련합니다. 화살 공격이 추가된 주둔지 병사입니다."
 
-#: simulation/templates/structures/rome/army_camp.xml:38
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "ArmyCamp"
 msgstr "군대막사"
 
@@ -1603,26 +1603,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "활"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:77
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 msgid "Civic Center"
 msgstr "시민 회관"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "자체 또는 중립 영역을 구축하십시오. 넓은 영토를 획득하십시오. 영토에 정착합니다. 시민과 연구 기술을 교육하십시오. 화살 공격이 추가된 주둔지 병사입니다."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:44
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "시빌센트레"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Defensive"
 msgstr "방어형"
 
@@ -1694,10 +1694,8 @@ msgid "Outpost"
 msgstr "전초기지"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
-msgid ""
-"Build in own or neutral territory. No vision range unless garrisoned. Slowly"
-" converts to Gaia while in neutral territory."
-msgstr "자신의 영토 또는 중립 영토에 건설합니다. 주둔하지 않으면 시야 범위가 없습니다. 중립 영토에 있는 동안 천천히 가이아로 전환됩니다."
+msgid "Build in own or neutral territory."
+msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1711,9 +1709,9 @@ msgstr "방어벽"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "지역을 차단하십시오. 자신 또는 중립 영역에서 건설하십시오."
 
-#: simulation/templates/template_structure_defensive_tower.xml:34
-#: simulation/templates/template_structure_defensive_tower.xml:50
-#: simulation/templates/template_structure_defensive_tower.xml:51
+#: simulation/templates/template_structure_defensive_tower.xml:36
+#: simulation/templates/template_structure_defensive_tower.xml:52
+#: simulation/templates/template_structure_defensive_tower.xml:53
 msgid "Tower"
 msgstr "탑"
 
@@ -1722,11 +1720,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "돌"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:49
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
 msgid "Artillery Tower"
 msgstr "대포탑"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
 msgid "ArtilleryTower"
 msgstr "대포탑"
 
@@ -1748,7 +1746,7 @@ msgid "Sentry Tower"
 msgstr "보초 탑"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:31
+#: simulation/templates/template_structure_defensive_tower_stone.xml:28
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
@@ -1758,15 +1756,15 @@ msgstr "화살 공격이 추가된 주둔지 보병. 발을 보호하기 위해 
 msgid "SentryTower"
 msgstr "보초 탑"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:63
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "돌로 보강하고 방어탑으로 업그레이드하십시오."
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:26
 msgid "Stone Tower"
 msgstr "돌 탑"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "StoneTower"
 msgstr "돌탑"
 
@@ -1864,7 +1862,7 @@ msgstr "대표전사 보병 석궁병을 훈련하고, 공성 전차를 만들�
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
@@ -1926,13 +1924,13 @@ msgstr "대장간"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "공격 피해 및 피해 저항 기술을 연구합니다."
 
-#: simulation/templates/template_structure_military_fortress.xml:37
-#: simulation/templates/template_structure_military_fortress.xml:67
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:65
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"
 msgstr "요새"
 
-#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "영토에 정착합니다. 화살 공격이 추가된 주둔지 병사입니다."
 

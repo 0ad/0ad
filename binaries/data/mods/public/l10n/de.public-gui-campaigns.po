@@ -9,15 +9,15 @@
 # Martin H <pilino@posteo.de>, 2021
 # Latein Lebt, 2021
 # nautilusx, 2021
-# xtother90, 2021
 # Heraklit of Ephesos, 2021
+# xtother90, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Heraklit of Ephesos, 2021\n"
+"Last-Translator: xtother90, 2021\n"
 "Language-Team: German (https://www.transifex.com/wildfire-games/teams/17418/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,51 +65,51 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "Einführung"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:97
+#: gui/campaigns/default_menu/CampaignMenu.js:119
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Abgeschlossen"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:99
+#: gui/campaigns/default_menu/CampaignMenu.js:121
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Verfügbar"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:158
+#: gui/campaigns/default_menu/CampaignMenu.js:183
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Fehler beim Laden des Kampagnenlaufs %s: %s.-"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
 msgstr "Kampagnenname"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
 msgstr "Kein Szenario ausgewählt"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
 msgstr "Zurück zum Hauptmenü"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
 msgstr "Gespeicherte Spiele"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
 msgstr "Szenario starten"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
 msgstr "Gespeichertes Spiel fortsetzen"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "Szenarioname"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "Status"
@@ -118,22 +118,22 @@ msgstr "Status"
 msgid "file cannot be loaded"
 msgstr "Datei kann nicht geladen werden"
 
-#: gui/campaigns/load_modal/LoadModal.js:102
+#: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
 "Bist du sicher, dass du den Lauf %s löschen willst? Dies kann nicht "
 "rückgängig gemacht werden."
 
-#: gui/campaigns/load_modal/LoadModal.js:103
+#: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
 msgstr "Bestätigung"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
 msgstr "Nein"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "Yes"
 msgstr "Ja"
 
@@ -164,8 +164,8 @@ msgid "Start a campaign"
 msgstr "Eine Kampagne starten"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
-msgid "Please enter the name of your new campaign run: "
-msgstr "Bitte gib einen Namen für deinen neuen Kampagnenlauf ein:"
+msgid "Please enter the name of your new campaign run:"
+msgstr "Gib einen Namen für deinen neuen Kampagnenlauf ein:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -193,7 +193,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "Name"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"

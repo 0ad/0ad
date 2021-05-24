@@ -55,9 +55,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:32+0000\n"
-"Last-Translator: Yves_G\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-23 14:26+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1313,6 +1313,16 @@ msgstr "Rechtsklicken, um mehr Informationen anzuzeigen."
 #: gui/common/tooltips.js:1211
 msgid "Click to view more information."
 msgstr "Klicken, um mehr Informationen anzuzeigen,"
+
+#: gui/common/tooltips.js:1220
+msgctxt "One letter abbreviation for million"
+msgid "M"
+msgstr "M"
+
+#: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
+msgctxt "One letter abbreviation for thousand"
+msgid "k"
+msgstr "k"
 
 #: gui/credits/credits.js:83
 #, javascript-format
@@ -4812,7 +4822,7 @@ msgstr "%(hotkey)s: Schau dir den Gebäudebaum der Zivilisationen in 0 A.D. an."
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr "Zivilisationsübersicht"
+msgstr "Zivilisations-Übersicht"
 
 #: gui/pregame/MainMenuItems.js:40
 #, javascript-format
@@ -4821,7 +4831,7 @@ msgstr "%(hotkey)s: Erfahre mehr über die Zivilisationen in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
-msgstr "Katafalk Übersicht"
+msgstr "Katafalk-Übersicht"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
@@ -4829,7 +4839,7 @@ msgstr "Vergleiche die Boni der Katafalke in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
-msgstr "Kartenübersicht"
+msgstr "Karten-Übersicht"
 
 #: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
@@ -5161,11 +5171,11 @@ msgstr "Du kannst uns automatisch Feedback senden, das uns dabei helfen kann, Pr
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr "%(hotkey)s: Schließe Katafalke-Browser."
+msgstr "%(hotkey)s: Die Katafalk-Boni schließen."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr "Katafalke-Boni"
+msgstr "Katafalk-Boni"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.

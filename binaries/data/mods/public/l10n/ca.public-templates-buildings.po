@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-03-29 07:28+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 10:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -1320,22 +1320,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Arc de triomf"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:70
 msgid "Army Camp"
 msgstr "Campament militar"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
 " Soldiers for additional arrows."
 msgstr ""
 
-#: simulation/templates/structures/rome/army_camp.xml:38
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "ArmyCamp"
 msgstr "CampamentMilitar"
 
@@ -1597,26 +1597,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Arc"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:77
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 msgid "Civic Center"
 msgstr "Centre cívic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "Es pot construir en territori propi o neutral. Afegeix grans extensions de territori, projectant-hi una zona de control. Recluta soldats ciutadans i investiga tecnologies. S'hi poden refugiar soldats per disparar més fletxes."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:44
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Centre cívic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Defensive"
 msgstr "Defensiu"
 
@@ -1688,10 +1688,8 @@ msgid "Outpost"
 msgstr "Destacament"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
-msgid ""
-"Build in own or neutral territory. No vision range unless garrisoned. Slowly"
-" converts to Gaia while in neutral territory."
-msgstr "Es pot construir tant en territori neutral com en propi. No té camp visual si no hi ha unitats refugiades. Passa gradualment a pertànyer a la Natura en territori neutral."
+msgid "Build in own or neutral territory."
+msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1705,9 +1703,9 @@ msgstr "Palissada"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "Emmuralla una àrea. Es pot construir en territori propi o neutral."
 
-#: simulation/templates/template_structure_defensive_tower.xml:34
-#: simulation/templates/template_structure_defensive_tower.xml:50
-#: simulation/templates/template_structure_defensive_tower.xml:51
+#: simulation/templates/template_structure_defensive_tower.xml:36
+#: simulation/templates/template_structure_defensive_tower.xml:52
+#: simulation/templates/template_structure_defensive_tower.xml:53
 msgid "Tower"
 msgstr "Torre"
 
@@ -1716,11 +1714,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Pedra"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:49
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
 msgid "Artillery Tower"
 msgstr "Torre d'artilleria"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
 msgid "ArtilleryTower"
 msgstr "Torre d'artilleria"
 
@@ -1742,7 +1740,7 @@ msgid "Sentry Tower"
 msgstr "Torre de vigilància"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:31
+#: simulation/templates/template_structure_defensive_tower_stone.xml:28
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
@@ -1752,15 +1750,15 @@ msgstr "Refugieu-hi infanteria per disparar més fletxes. Necessita la tecnologi
 msgid "SentryTower"
 msgstr "Torre de vigilància"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:63
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Reforça la torre amb pedra per millorar-la a torre defensiva."
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:26
 msgid "Stone Tower"
 msgstr "Torre de pedra"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "StoneTower"
 msgstr "Torre de pedra"
 
@@ -1858,7 +1856,7 @@ msgstr "Recluta ballesters d'infanteria campions, construeix màquines de setge 
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
@@ -1920,13 +1918,13 @@ msgstr "Forja"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Investiga tecnologies per millorar l'atac i la resistència al dany."
 
-#: simulation/templates/template_structure_military_fortress.xml:37
-#: simulation/templates/template_structure_military_fortress.xml:67
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:65
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"
 msgstr "Fortalesa"
 
-#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "Projecta una zona de control. S'hi poden refugiar soldats per disparar més fletxes."
 

@@ -8,15 +8,15 @@
 # Sven Baars <svenb.linux@gmail.com>, 2021
 # Ellen Roels, 2021
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2021
-# Bart <b.anthonisse@gmail.com>, 2021
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2021
+# Bart <b.anthonisse@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>, 2021\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/wildfire-games/teams/17418/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,51 +64,51 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "Oefening"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:97
+#: gui/campaigns/default_menu/CampaignMenu.js:119
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Voltooid"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:99
+#: gui/campaigns/default_menu/CampaignMenu.js:121
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Beschikbaar"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:158
+#: gui/campaigns/default_menu/CampaignMenu.js:183
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Fout bij inladen van veldtocht doorgang %s: %s."
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
 msgstr "Naam Veldtocht"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
 msgstr "Geen scenario geselecteerd"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
 msgstr "Terug naar Hoofdmenu"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
 msgstr "Opgeslagen Spellen"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
 msgstr "Start Scenario"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
 msgstr "Hervat Opgeslagen Spel"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "Naam Scenario"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "Status"
@@ -117,22 +117,22 @@ msgstr "Status"
 msgid "file cannot be loaded"
 msgstr "bestand kan niet geladen worden"
 
-#: gui/campaigns/load_modal/LoadModal.js:102
+#: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
 "Ben je zeker dat je doorgang %s wil verwijderen? Dit kan je niet meer "
 "ongedaan maken."
 
-#: gui/campaigns/load_modal/LoadModal.js:103
+#: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
 msgstr "Nee"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "Yes"
 msgstr "Ja"
 
@@ -163,8 +163,8 @@ msgid "Start a campaign"
 msgstr "Een veldtocht starten"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
-msgid "Please enter the name of your new campaign run: "
-msgstr "Geef de naam op van je nieuwe doorgang:"
+msgid "Please enter the name of your new campaign run:"
+msgstr "Gelieve de naam van je nieuwe campagne in te voeren:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -192,7 +192,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "Naam"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"

@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>, 2021\n"
 "Language-Team: Chinese (https://www.transifex.com/wildfire-games/teams/17418/zh/)\n"
@@ -58,51 +58,51 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "教学任务"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:97
+#: gui/campaigns/default_menu/CampaignMenu.js:119
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "完成"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:99
+#: gui/campaigns/default_menu/CampaignMenu.js:121
 msgctxt "campaign status"
 msgid "Available"
 msgstr "可用"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:158
+#: gui/campaigns/default_menu/CampaignMenu.js:183
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "加载战役错误%s：%s。"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
 msgstr "战役名"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
 msgstr "未选取场景"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
 msgstr "回到主菜单"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
 msgstr "已保存的游戏"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
 msgstr "开始场景战役"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
 msgstr "更改已保存的游戏名"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "场景名"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "状态"
@@ -111,20 +111,20 @@ msgstr "状态"
 msgid "file cannot be loaded"
 msgstr "无法加载文件"
 
-#: gui/campaigns/load_modal/LoadModal.js:102
+#: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr "确定要删除%s？该操作不可恢复。"
 
-#: gui/campaigns/load_modal/LoadModal.js:103
+#: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
 msgstr "确定"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
 msgstr "否"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "Yes"
 msgstr "是"
 
@@ -155,8 +155,8 @@ msgid "Start a campaign"
 msgstr "开始对战"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
-msgid "Please enter the name of your new campaign run: "
-msgstr "请输入昵称："
+msgid "Please enter the name of your new campaign run:"
+msgstr "请输入新战役名："
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -184,7 +184,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "名字"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s-%(templateName)s"

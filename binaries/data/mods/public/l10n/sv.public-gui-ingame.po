@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-07 07:30+0000\n"
-"PO-Revision-Date: 2021-05-07 10:29+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 10:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -162,7 +162,7 @@ msgid "Click to Resume Game"
 msgstr "Tryck för att fortsätta spelet"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:558
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -945,7 +945,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
 #: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1128
+#: gui/session/unit_actions.js:1127
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Vinst: %(gain)s"
@@ -1052,7 +1052,7 @@ msgstr "Lasta av %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klicka för att lasta av 1. Skift+klicka för att lasta av alla av denna sort."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:863
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Spelare: %(playername)s"
@@ -1090,56 +1090,56 @@ msgstr "Otillräcklig befolkningskapacitet:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:728
+#: gui/session/selection_panels.js:733
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entitet av rang %(class)s"
 msgstr[1] "%(number)s entiteter av rang %(class)s"
 
-#: gui/session/selection_panels.js:734
+#: gui/session/selection_panels.js:739
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Återstående: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:735
+#: gui/session/selection_panels.js:740
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:787
+#: gui/session/selection_panels.js:792
 msgid "Cannot research while upgrading."
 msgstr "Kan inte forska under pågående uppgradering."
 
-#: gui/session/selection_panels.js:1012
+#: gui/session/selection_panels.js:1017
 msgid "Cannot train while upgrading."
 msgstr "Kan inte träna under pågående uppgradering."
 
-#: gui/session/selection_panels.js:1081
+#: gui/session/selection_panels.js:1086
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1087
+#: gui/session/selection_panels.js:1092
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1095
+#: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1105
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 msgid "Cancel Upgrading"
 msgstr "Avbryt Uppgradering"
 
-#: gui/session/selection_panels.js:1152
+#: gui/session/selection_panels.js:1157
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1356,34 +1356,22 @@ msgstr "Ökande"
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/top_panel/CounterPopulation.js:34
+#. Translation: Do not insert spaces around the slash symbol for this exact
+#. string. Keep only
+#. one space between popLimit and popMax.
+#: gui/session/top_panel/CounterPopulation.js:61
+#: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
-msgid "Current gatherers: %(amount)s"
-msgstr "Aktuella samlare: %(amount)s"
+msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
+msgstr ""
 
 #: gui/session/top_panel/CounterPopulation.js:63
-#, javascript-format
-msgid "%(popCount)s/%(popLimit)s"
-msgstr "%(popCount)s/%(popLimit)s"
+msgid "Population: current/limit (max)"
+msgstr ""
 
-#: gui/session/top_panel/CounterPopulation.js:65
-msgid "Population (current / limit)"
-msgstr "Befolkning (nuvarande / gräns)"
-
-#: gui/session/top_panel/CounterPopulation.js:67
-#, javascript-format
-msgid "Maximum population: %(popCap)s"
-msgstr "Maximal befolkning: %(popCap)s"
-
-#: gui/session/top_panel/CounterPopulation.js:69
-#, javascript-format
-msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
-
-#: gui/session/top_panel/CounterResource.js:32
-#, javascript-format
-msgid "Gatherers: %(amount)s"
-msgstr "Samlare: %(amount)s"
+#: gui/session/top_panel/CounterPopulation.js:70
+msgid "Gatherers: current"
+msgstr ""
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1621,7 +1609,7 @@ msgstr "Målmarknad."
 msgid "Right-click to set as origin trade market"
 msgstr "Högerklicka för att ange som ursprungsmarknad"
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1134
+#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1133
 msgid "This market is too close to the origin market."
 msgstr "Denna marknad ligger för nära ursprungsmarknaden."
 
@@ -1629,135 +1617,135 @@ msgstr "Denna marknad ligger för nära ursprungsmarknaden."
 msgid "Right-click to set as destination trade market."
 msgstr "Högerklicka för att ange som målmarknad."
 
-#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
+#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1065
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
+#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1048
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nuvarande garnison: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1125
+#: gui/session/unit_actions.js:1124
 msgid "Right-click to establish a default route for new traders."
 msgstr "Högerklicka för att skapa en standardrutt för nya handelsmän."
 
-#: gui/session/unit_actions.js:1129
+#: gui/session/unit_actions.js:1128
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Du förväntas få: %(gain)s"
 
-#: gui/session/unit_actions.js:1255
+#: gui/session/unit_actions.js:1254
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Denna entitet kan inte kontrolleras."
 msgstr[1] "Dessa entiteter kan inte kontrolleras."
 
-#: gui/session/unit_actions.js:1301
+#: gui/session/unit_actions.js:1300
 msgid "Unload All."
 msgstr "Lasta av allt."
 
-#: gui/session/unit_actions.js:1336
+#: gui/session/unit_actions.js:1335
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1356
+#: gui/session/unit_actions.js:1355
 msgid "Destroy the selected units or structures."
 msgstr "Förstör valda enheter eller byggnader."
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1357
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Använd %(hotkey)s för att undvika bekräftelsedialogen."
 
-#: gui/session/unit_actions.js:1408
+#: gui/session/unit_actions.js:1407
 msgid "Abort the current order."
 msgstr "Avbryt den akutella ordern."
 
-#: gui/session/unit_actions.js:1430
+#: gui/session/unit_actions.js:1429
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Skicka valda enheter att garnisonera i en byggnad eller enhet."
 
-#: gui/session/unit_actions.js:1452
+#: gui/session/unit_actions.js:1451
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1474
+#: gui/session/unit_actions.js:1473
 msgid "Unload"
 msgstr "Lasta av"
 
-#: gui/session/unit_actions.js:1494
+#: gui/session/unit_actions.js:1493
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Skicka valda enheter att reparera en byggnad, ett skepp eller ett belägringsvapen."
 
-#: gui/session/unit_actions.js:1515
+#: gui/session/unit_actions.js:1514
 msgid "Focus on Rally Point."
 msgstr "Fokus på samlingsplats."
 
-#: gui/session/unit_actions.js:1552
+#: gui/session/unit_actions.js:1551
 msgid "Back to Work"
 msgstr "Tillbaka till arbetet"
 
-#: gui/session/unit_actions.js:1573
+#: gui/session/unit_actions.js:1572
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Skicka valda enheter att vakta en byggnad eller en enhet."
 
-#: gui/session/unit_actions.js:1593
+#: gui/session/unit_actions.js:1592
 msgid "Remove guard"
 msgstr "Ta bort vakt"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1612
+#: gui/session/unit_actions.js:1611
 msgid "Barter & Trade"
 msgstr "Byte & Handel"
 
-#: gui/session/unit_actions.js:1632
+#: gui/session/unit_actions.js:1631
 msgid "Patrol"
 msgstr "Patrullera"
 
-#: gui/session/unit_actions.js:1633
+#: gui/session/unit_actions.js:1632
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Attackera alla fientliga enheter men undvik byggnader."
 
-#: gui/session/unit_actions.js:1661
+#: gui/session/unit_actions.js:1660
 msgid "Press to allow allies to use this dropsite"
 msgstr "Tryck för att låta allierade använda detta lager"
 
-#: gui/session/unit_actions.js:1666
+#: gui/session/unit_actions.js:1665
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Tryck för att förhindra allierade från att använda detta lager"
 
-#: gui/session/unit_actions.js:1701
+#: gui/session/unit_actions.js:1700
 msgid "The use of this dropsite is prohibited"
 msgstr "Det är förbjudet att använda detta lager"
 
-#: gui/session/unit_actions.js:1707
+#: gui/session/unit_actions.js:1706
 msgid "Allies are allowed to use this dropsite."
 msgstr "Allierade får använda det här lagret."
 
-#: gui/session/unit_actions.js:1708
+#: gui/session/unit_actions.js:1707
 msgid "You are allowed to use this dropsite"
 msgstr "Du får använda det här lagret"
 
-#: gui/session/unit_actions.js:1727
+#: gui/session/unit_actions.js:1726
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1747
+#: gui/session/unit_actions.js:1746
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1812
+#: gui/session/unit_actions.js:1811
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Enheten måste dödas innan det kan samlas från den"
 
-#: gui/session/unit_actions.js:1815
+#: gui/session/unit_actions.js:1814
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Du kan inte förstöra denna enhet för att du äger mindre än hälften av enhetens erövringspoäng"
 
-#: gui/session/unit_actions.js:1818
+#: gui/session/unit_actions.js:1817
 msgid "This entity is undeletable"
 msgstr "Denna enhet kan inte tas bort"

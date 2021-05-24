@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Jagadeesh Vijay Varma B, 2020
+# Jagadeeshvarma, 2020
 # ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-07 07:30+0000\n"
-"PO-Revision-Date: 2021-05-07 10:29+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 10:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgid "Click to Resume Game"
 msgstr "ఆటను కొనసాగించుటకు నొక్కండి"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:558
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr ""
@@ -925,7 +925,7 @@ msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
 #: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1128
+#: gui/session/unit_actions.js:1127
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "రాబడి %(gain)s"
@@ -1032,7 +1032,7 @@ msgstr ""
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr ""
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:863
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "ఆటగాడు: %(playername)s"
@@ -1070,56 +1070,56 @@ msgstr "తగినంత జనాభా సామర్థ్యం లేద
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:728
+#: gui/session/selection_panels.js:733
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s క్లాస్ అర్హతలు %(class)s"
 msgstr[1] "%(number)s క్లాస్ అర్హతలు %(class)s"
 
-#: gui/session/selection_panels.js:734
+#: gui/session/selection_panels.js:739
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "మిగిలినవి: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:735
+#: gui/session/selection_panels.js:740
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:787
+#: gui/session/selection_panels.js:792
 msgid "Cannot research while upgrading."
 msgstr "అభివృధ్ధి చేస్తున్నప్పుడు పరిశోధన చేయలేరు."
 
-#: gui/session/selection_panels.js:1012
+#: gui/session/selection_panels.js:1017
 msgid "Cannot train while upgrading."
 msgstr "అభివృధ్ధి చేస్తున్నప్పుడు శిక్షణ ఇవ్వలేరు."
 
-#: gui/session/selection_panels.js:1081
+#: gui/session/selection_panels.js:1086
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1087
+#: gui/session/selection_panels.js:1092
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1095
+#: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1105
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 msgid "Cancel Upgrading"
 msgstr "అభివృధ్ధిని రద్దు చేయి"
 
-#: gui/session/selection_panels.js:1152
+#: gui/session/selection_panels.js:1157
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1336,34 +1336,22 @@ msgstr ""
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/top_panel/CounterPopulation.js:34
+#. Translation: Do not insert spaces around the slash symbol for this exact
+#. string. Keep only
+#. one space between popLimit and popMax.
+#: gui/session/top_panel/CounterPopulation.js:61
+#: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
-msgid "Current gatherers: %(amount)s"
-msgstr "ప్రస్తుత సేకరణదారులు: %(amount)s"
+msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
+msgstr ""
 
 #: gui/session/top_panel/CounterPopulation.js:63
-#, javascript-format
-msgid "%(popCount)s/%(popLimit)s"
-msgstr "%(popCount)s/%(popLimit)s"
+msgid "Population: current/limit (max)"
+msgstr ""
 
-#: gui/session/top_panel/CounterPopulation.js:65
-msgid "Population (current / limit)"
-msgstr "జనాభా (ప్రస్తుత/పరిమితి)"
-
-#: gui/session/top_panel/CounterPopulation.js:67
-#, javascript-format
-msgid "Maximum population: %(popCap)s"
-msgstr "గరిష్ట జనాభా: %(popCap)s"
-
-#: gui/session/top_panel/CounterPopulation.js:69
-#, javascript-format
-msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
-
-#: gui/session/top_panel/CounterResource.js:32
-#, javascript-format
-msgid "Gatherers: %(amount)s"
-msgstr "సేకరణదారులు: %(amount)s"
+#: gui/session/top_panel/CounterPopulation.js:70
+msgid "Gatherers: current"
+msgstr ""
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1601,7 +1589,7 @@ msgstr "గమ్యం వాణిజ్య మార్కెట్."
 msgid "Right-click to set as origin trade market"
 msgstr ""
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1134
+#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1133
 msgid "This market is too close to the origin market."
 msgstr ""
 
@@ -1609,135 +1597,135 @@ msgstr ""
 msgid "Right-click to set as destination trade market."
 msgstr ""
 
-#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1066
+#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1065
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1049
+#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1048
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "ప్రస్తుత రక్షక దళం: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1125
+#: gui/session/unit_actions.js:1124
 msgid "Right-click to establish a default route for new traders."
 msgstr "క్రొత్త వ్యాపారుల కోసం డిఫాల్ట్ మార్గాన్ని ఏర్పాటు చేయడానికి కుడి-క్లిక్ చేయండి."
 
-#: gui/session/unit_actions.js:1129
+#: gui/session/unit_actions.js:1128
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "ఊహించిన లాభం: %(gain)s"
 
-#: gui/session/unit_actions.js:1255
+#: gui/session/unit_actions.js:1254
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "ఈ ఎంటిటీలను నియంత్రించలేము."
 msgstr[1] "ఈ ఎంటిటీలను నియంత్రించలేము."
 
-#: gui/session/unit_actions.js:1301
+#: gui/session/unit_actions.js:1300
 msgid "Unload All."
 msgstr "అన్నీ దించండి."
 
-#: gui/session/unit_actions.js:1336
+#: gui/session/unit_actions.js:1335
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1356
+#: gui/session/unit_actions.js:1355
 msgid "Destroy the selected units or structures."
 msgstr "ఎంచుకున్న యూనిట్లు లేదా నిర్మాణాలను నాశనం చేయి."
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1357
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "నిర్ధారణ డైలాగ్‌ను నివారించడానికి %(hotkey)sని ఉపయోగించండి."
 
-#: gui/session/unit_actions.js:1408
+#: gui/session/unit_actions.js:1407
 msgid "Abort the current order."
 msgstr "ప్రస్తుత ఆజ్ఞ నిలిపివేయండి."
 
-#: gui/session/unit_actions.js:1430
+#: gui/session/unit_actions.js:1429
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "ఎంచుకున్న యూనిట్లను ఒక నిర్మాణంలో లేదా యూనిట్‌లో గారిసన్ చేయమని ఆదేశించండి."
 
-#: gui/session/unit_actions.js:1452
+#: gui/session/unit_actions.js:1451
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1474
+#: gui/session/unit_actions.js:1473
 msgid "Unload"
 msgstr "దించు"
 
-#: gui/session/unit_actions.js:1494
+#: gui/session/unit_actions.js:1493
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "నిర్మాణం, నౌక లేదా ముట్టడి ఇంజిన్‌ను రిపేర్ చేయడానికి ఎంచుకున్న యూనిట్లను ఆదేశించండి."
 
-#: gui/session/unit_actions.js:1515
+#: gui/session/unit_actions.js:1514
 msgid "Focus on Rally Point."
 msgstr "ర్యాలీ పాయింట్‌పై దృష్టి పెట్టండి."
 
-#: gui/session/unit_actions.js:1552
+#: gui/session/unit_actions.js:1551
 msgid "Back to Work"
 msgstr "తిరిగి పనిలోకి వెళ్ళు"
 
-#: gui/session/unit_actions.js:1573
+#: gui/session/unit_actions.js:1572
 msgid "Order the selected units to guard a structure or unit."
 msgstr "ఒక నిర్మాణం లేదా యూనిట్‌ను కాపలాకాయడానికి ఎంచుకున్న యూనిట్లను ఆదేశించండి."
 
-#: gui/session/unit_actions.js:1593
+#: gui/session/unit_actions.js:1592
 msgid "Remove guard"
 msgstr "కాపలాదార్డుని తొలగించండి"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1612
+#: gui/session/unit_actions.js:1611
 msgid "Barter & Trade"
 msgstr "మార్చుకొను మరియు వాణిజ్యం"
 
-#: gui/session/unit_actions.js:1632
+#: gui/session/unit_actions.js:1631
 msgid "Patrol"
 msgstr "కాపలాకాయుట"
 
-#: gui/session/unit_actions.js:1633
+#: gui/session/unit_actions.js:1632
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "నిర్మాణాలను తప్పించేటప్పుడు ఎదుర్కొన్న అన్ని శత్రు యూనిట్లపై దాడి చేయండి."
 
-#: gui/session/unit_actions.js:1661
+#: gui/session/unit_actions.js:1660
 msgid "Press to allow allies to use this dropsite"
 msgstr "ఈ డ్రాప్ సైట్‌ను మిత్రులు ఉపయోగించడానికి అనుమతించడానికి నొక్కండి"
 
-#: gui/session/unit_actions.js:1666
+#: gui/session/unit_actions.js:1665
 msgid "Press to prevent allies from using this dropsite"
 msgstr "ఈ డ్రాప్‌సైట్‌ను మిత్రులు ఉపయోగించకుండా నిరోధించడానికి నొక్కండి"
 
-#: gui/session/unit_actions.js:1701
+#: gui/session/unit_actions.js:1700
 msgid "The use of this dropsite is prohibited"
 msgstr "ఈ డ్రాప్‌సైట్ వాడకం నిషేధించబడింది"
 
-#: gui/session/unit_actions.js:1707
+#: gui/session/unit_actions.js:1706
 msgid "Allies are allowed to use this dropsite."
 msgstr ""
 
-#: gui/session/unit_actions.js:1708
+#: gui/session/unit_actions.js:1707
 msgid "You are allowed to use this dropsite"
 msgstr "ఈ డ్రాప్‌సైట్‌ను ఉపయోగించడానికి మీకు అనుమతి ఉంది"
 
-#: gui/session/unit_actions.js:1727
+#: gui/session/unit_actions.js:1726
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1747
+#: gui/session/unit_actions.js:1746
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1812
+#: gui/session/unit_actions.js:1811
 msgid "The entity has to be killed before it can be gathered from"
 msgstr ""
 
-#: gui/session/unit_actions.js:1815
+#: gui/session/unit_actions.js:1814
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr ""
 
-#: gui/session/unit_actions.js:1818
+#: gui/session/unit_actions.js:1817
 msgid "This entity is undeletable"
 msgstr "ఈ ఎంటిటీ తొలగించలేనిది"

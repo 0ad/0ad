@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-29 07:10+0000\n"
-"PO-Revision-Date: 2021-04-12 12:10+0000\n"
-"Last-Translator: János Fehér <feher.janos@mindworks.hu>\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 10:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1324,22 +1324,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Diadalív"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:70
 msgid "Army Camp"
 msgstr "Katonai Tábor"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Castra"
 msgstr "Tábor"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
 " Soldiers for additional arrows."
 msgstr "Semleges és ellenséges területre építhető. Közelharci gyalogság kiképzése. Katonák beszállásolása további nyilakért."
 
-#: simulation/templates/structures/rome/army_camp.xml:38
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "ArmyCamp"
 msgstr "Katonai tábor"
 
@@ -1601,26 +1601,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Íj"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:77
+#: simulation/templates/template_structure_civic_civil_centre.xml:75
 msgid "Civic Center"
 msgstr "Városháza"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "Saját és semleges területre építhető. Nagy méretű területet szerez meg. Terület gyökere. Polgárok kiképzése és fejlesztések kutatása. Katonák beszállásolása további nyilakhoz."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:44
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Városháza"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Defensive"
 msgstr "Védelmi"
 
@@ -1692,10 +1692,8 @@ msgid "Outpost"
 msgstr "Előőrs"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
-msgid ""
-"Build in own or neutral territory. No vision range unless garrisoned. Slowly"
-" converts to Gaia while in neutral territory."
-msgstr "Saját vagy semleges területre építhető. Beszállásolt egységek nélkül nincs látóhatára. Semleges területen lassan Gaiává alakul át."
+msgid "Build in own or neutral territory."
+msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1709,9 +1707,9 @@ msgstr "Palánk"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "Terület elfalazása. Saját vagy semleges területre építhető."
 
-#: simulation/templates/template_structure_defensive_tower.xml:34
-#: simulation/templates/template_structure_defensive_tower.xml:50
-#: simulation/templates/template_structure_defensive_tower.xml:51
+#: simulation/templates/template_structure_defensive_tower.xml:36
+#: simulation/templates/template_structure_defensive_tower.xml:52
+#: simulation/templates/template_structure_defensive_tower.xml:53
 msgid "Tower"
 msgstr "Torony"
 
@@ -1720,11 +1718,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Kő"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:49
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
 msgid "Artillery Tower"
 msgstr "Tüzértorony"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
 msgid "ArtilleryTower"
 msgstr "Tüzérségi torony"
 
@@ -1746,7 +1744,7 @@ msgid "Sentry Tower"
 msgstr "Őrtorony"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:31
+#: simulation/templates/template_structure_defensive_tower_stone.xml:28
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
@@ -1756,15 +1754,15 @@ msgstr "Gyalogság beszállásolása további nyilakhoz. A lábazat megvédésé
 msgid "SentryTower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:63
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Megerősítés kővel, és fejlesztés védőtoronnyá."
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:26
 msgid "Stone Tower"
 msgstr "Kőtorony"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:32
+#: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "StoneTower"
 msgstr "Kőtorony"
 
@@ -1862,7 +1860,7 @@ msgstr "Bajnok gyalogsági nyílpuskások kiképzése, ostromgépek építése �
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
@@ -1924,13 +1922,13 @@ msgstr "Kohó"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Sebzési és sebzésellenállási fejlesztések kutatása."
 
-#: simulation/templates/template_structure_military_fortress.xml:37
-#: simulation/templates/template_structure_military_fortress.xml:67
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:65
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"
 msgstr "Erőd"
 
-#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "Terület gyökere. Katonák beszállásolása további nyilakért."
 

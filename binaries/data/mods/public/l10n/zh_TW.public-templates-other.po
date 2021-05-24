@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-05-20 14:09+0000\n"
+"PO-Revision-Date: 2021-05-23 16:46+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "傷害"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "全然由力造成的傷害，如棍棒或踐踏。"
+msgstr "純由力量造成的傷害，如棍棒或踐踏。"
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -112,12 +112,12 @@ msgstr "毒"
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "此單位造成著火傷害。"
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr "燃燒中。"
+msgstr "此單位著火。"
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
@@ -127,12 +127,12 @@ msgstr "燃燒"
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "此單位造成中毒傷害。"
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "中毒。"
+msgstr "此單位中毒。"
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
@@ -210,7 +210,7 @@ msgstr "希臘宗教聖殿"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr "熊爪<br>"
+msgstr "熊爪"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
@@ -218,7 +218,7 @@ msgstr "黑熊"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:25
 msgid "Ursus americanus"
-msgstr ""
+msgstr "Ursus americanus"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:24
 msgid "Brown Bear"
@@ -226,7 +226,7 @@ msgstr "棕熊"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:25
 msgid "Ursus arctos"
-msgstr "棕熊"
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:24
 msgid "Polar Bear"
@@ -234,7 +234,7 @@ msgstr "北極熊"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:25
 msgid "Ursus maritimus"
-msgstr ""
+msgstr "Ursus maritimus"
 
 #: simulation/templates/gaia/fauna_boar.xml:5
 #: simulation/templates/gaia/fauna_hippopotamus.xml:5
@@ -249,15 +249,15 @@ msgstr "野豬"
 
 #: simulation/templates/gaia/fauna_boar.xml:24
 msgid "Sus scrofa"
-msgstr "野豬"
+msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:11
 msgid "Dromedary"
-msgstr "駱駝"
+msgstr "單峰駱駝"
 
 #: simulation/templates/gaia/fauna_camel.xml:12
 msgid "Camelus dromedarius"
-msgstr "駱駝"
+msgstr "Camelus dromedarius"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -266,12 +266,12 @@ msgstr "角"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
-msgstr "野牛"
+msgstr "公牛"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:26
 #: simulation/templates/gaia/fauna_cattle_cow.xml:18
 msgid "Bos taurus taurus"
-msgstr "野牛"
+msgstr "Bos taurus taurus"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:17
 msgid "Cow"
@@ -283,15 +283,15 @@ msgstr "桑加牛"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"
-msgstr ""
+msgstr "Bos taurus africanus"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:17
 msgid "Zebu"
-msgstr "犛牛"
+msgstr "肩峰牛"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:18
 msgid "Bos taurus indicus"
-msgstr ""
+msgstr "Bos taurus indicus"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -299,7 +299,7 @@ msgstr "雞"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr ""
+msgstr "Gallus gallus domesticus"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -312,7 +312,7 @@ msgstr "尼羅鱷"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:24
 msgid "Crocodylus niloticus"
-msgstr "尼羅鱷"
+msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:11
 msgid "Red Deer"
@@ -320,7 +320,7 @@ msgstr "紅鹿"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
 msgid "Cervus elaphus"
-msgstr ""
+msgstr "Cervus elaphus"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:5
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:5
@@ -338,7 +338,7 @@ msgstr "獒犬"
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:25
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:25
 msgid "Canis lupus familiaris"
-msgstr ""
+msgstr "Canis lupus familiaris"
 
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:24
 msgid "Wolfhound"
@@ -350,7 +350,7 @@ msgstr "驢"
 
 #: simulation/templates/gaia/fauna_donkey.xml:12
 msgid "Equus africanus asinus"
-msgstr ""
+msgstr "Equus africanus asinus"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:5
 #: simulation/templates/gaia/fauna_elephant_asian.xml:5
@@ -361,16 +361,16 @@ msgstr "象鼻"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
-msgstr "普通非洲象"
+msgstr "非洲草原象"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
 msgid "Loxodonta africana"
-msgstr ""
+msgstr "Loxodonta africana"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:11
 msgid "African Bush Elephant Calf"
-msgstr ""
+msgstr "小非洲草原象"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:25
 msgid "Asian Elephant"
@@ -379,7 +379,7 @@ msgstr "亞洲象"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
-msgstr ""
+msgstr "Elephas maximus"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:11
 msgid "Asian Elephant Calf"
@@ -387,19 +387,19 @@ msgstr "小亞洲象"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:25
 msgid "African Forest Elephant"
-msgstr ""
+msgstr "非洲森林象"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:26
 msgid "Loxodonta cyclotis"
-msgstr ""
+msgstr "Loxodonta cyclotis"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:24
 msgid "Arctic Fox"
-msgstr "白狐"
+msgstr "北極狐"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:25
 msgid "Vulpes lagopus"
-msgstr ""
+msgstr "Vulpes lagopus"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:24
 msgid "Red Fox"
@@ -407,15 +407,15 @@ msgstr "紅狐"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:25
 msgid "Vulpes vulpes"
-msgstr ""
+msgstr "Vulpes vulpes"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:11
 msgid "Thomson's Gazelle"
-msgstr ""
+msgstr "湯氏瞪羚"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:12
 msgid "Eudorcas thomsonii"
-msgstr ""
+msgstr "Eudorcas thomsonii"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
@@ -424,7 +424,7 @@ msgstr "長頸鹿"
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:12
 msgid "Giraffa camelopardalis"
-msgstr ""
+msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
@@ -436,7 +436,7 @@ msgstr "山羊"
 
 #: simulation/templates/gaia/fauna_goat.xml:18
 msgid "Capra aegagrus hircus"
-msgstr ""
+msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:24
 msgid "Hippopotamus"
@@ -444,7 +444,7 @@ msgstr "河馬"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus amphibius"
-msgstr ""
+msgstr "Hippopotamus amphibius"
 
 #: simulation/templates/gaia/fauna_horse.xml:11
 msgid "Horse"
@@ -452,7 +452,7 @@ msgstr "馬"
 
 #: simulation/templates/gaia/fauna_horse.xml:12
 msgid "Equus ferus caballus"
-msgstr ""
+msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_horse_pony.xml:8
 msgid "Pony"
@@ -464,7 +464,7 @@ msgstr "獅子"
 
 #: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Panthera leo"
-msgstr ""
+msgstr "Panthera leo"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -476,7 +476,7 @@ msgstr "麝牛"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
-msgstr ""
+msgstr "Ovibos moschatus"
 
 #: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
@@ -492,7 +492,7 @@ msgstr "豬"
 
 #: simulation/templates/gaia/fauna_pig.xml:18
 msgid "Sus scrofa domesticus"
-msgstr ""
+msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -500,7 +500,7 @@ msgstr "火焰豬"
 
 #: simulation/templates/gaia/fauna_piglet.xml:11
 msgid "Piglet"
-msgstr ""
+msgstr "小豬"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
@@ -508,12 +508,12 @@ msgstr "兔子"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr ""
+msgstr "Oryctolagus cuniculus"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "角"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
@@ -521,7 +521,7 @@ msgstr "白犀牛"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
 msgid "Ceratotherium simum"
-msgstr ""
+msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
@@ -529,7 +529,7 @@ msgstr "大白鯊"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr ""
+msgstr "Carcharodon carcharias"
 
 #: simulation/templates/gaia/fauna_sheep.xml:17
 msgid "Sheep"
@@ -537,15 +537,15 @@ msgstr "綿羊"
 
 #: simulation/templates/gaia/fauna_sheep.xml:18
 msgid "Ovis aries"
-msgstr ""
+msgstr "Ovis aries"
 
 #: simulation/templates/gaia/fauna_tiger.xml:23
 msgid "Tiger"
-msgstr "虎"
+msgstr "老虎"
 
 #: simulation/templates/gaia/fauna_tiger.xml:24
 msgid "Panthera tigris"
-msgstr ""
+msgstr "Panthera tigris"
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
@@ -553,7 +553,7 @@ msgstr "海象"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
-msgstr ""
+msgstr "Odobenus rosmarus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:11
 msgid "Fin Whale"
@@ -561,7 +561,7 @@ msgstr "長鬚鯨"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
 msgid "Balaenoptera physalus"
-msgstr ""
+msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
@@ -569,15 +569,15 @@ msgstr "座頭鯨"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
-msgstr ""
+msgstr "Megaptera novaeangliae"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:11
 msgid "Blue Wildebeest"
-msgstr ""
+msgstr "黑尾牛羚"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
 msgid "Connochaetes taurinus"
-msgstr ""
+msgstr "Connochaetes taurinus"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -585,7 +585,7 @@ msgstr "狼"
 
 #: simulation/templates/gaia/fauna_wolf.xml:25
 msgid "Canis lupus"
-msgstr "狼"
+msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_wolf_arctic.xml:4
 msgid "Arctic Wolf"
@@ -593,15 +593,15 @@ msgstr "北極狼"
 
 #: simulation/templates/gaia/fauna_zebra.xml:11
 msgid "Common Zebra"
-msgstr "常見斑馬"
+msgstr "平原斑馬"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
 msgid "Equus quagga"
-msgstr ""
+msgstr "Equus quagga"
 
 #: simulation/templates/gaia/fish/tilapia.xml:4
 msgid "Tilapia"
-msgstr ""
+msgstr "吳郭魚"
 
 #: simulation/templates/gaia/fish/tuna.xml:4
 msgid "Tuna"
@@ -627,7 +627,7 @@ msgstr "漿果"
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
-msgstr "海棗"
+msgstr "椰棗"
 
 #: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
@@ -656,7 +656,7 @@ msgstr "小金字塔"
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
 msgid "Celtic Standing Stone"
-msgstr "塞爾特地位石"
+msgstr "塞爾特立石"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Ptolemaic Egyptian Statues"
@@ -672,7 +672,7 @@ msgstr "羅馬雕像"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
-msgstr "未完成的希臘神殿"
+msgstr "未完成的希臘神廟"
 
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
@@ -683,11 +683,11 @@ msgstr "食物寶藏"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "半埋砲管"
+msgstr "半埋桶"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "波斯食物儲藏"
+msgstr "波斯食物"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
@@ -711,7 +711,7 @@ msgstr "波斯地毯"
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
-msgstr "珀伽索斯"
+msgstr "飛馬"
 
 #: simulation/templates/gaia/treasure/shipwreck.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:8
@@ -751,7 +751,7 @@ msgstr "龍竹"
 
 #: simulation/templates/gaia/tree/banyan.xml:8
 msgid "Banyan"
-msgstr ""
+msgstr "榕樹"
 
 #: simulation/templates/gaia/tree/baobab.xml:8
 #: simulation/templates/gaia/tree/baobab_3_mature.xml:8
@@ -761,11 +761,11 @@ msgstr "猴麵包樹"
 
 #: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr ""
+msgstr "猴麵包樹苗"
 
 #: simulation/templates/gaia/tree/baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr ""
+msgstr "年輕猴麵包樹"
 
 #: simulation/templates/gaia/tree/bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -779,71 +779,71 @@ msgstr "灌木"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "角豆"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr ""
+msgstr "亞特拉斯雪松苗"
 
 #: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
-msgstr ""
+msgstr "亞特拉斯雪松"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/tree/cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr "克里特島海棗"
+msgstr "克里特島椰棗"
 
 #: simulation/templates/gaia/tree/cypress.xml:4
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "柏"
 
 #: simulation/templates/gaia/tree/dead.xml:4
 #: simulation/templates/gaia/tree/temperate.xml:4
 #: simulation/templates/gaia/tree/temperate_autumn.xml:4
 #: simulation/templates/gaia/tree/temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr ""
+msgstr "落葉植物"
 
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "榆樹"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "歐洲山毛櫸"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
-msgstr ""
+msgstr "垂枝樺"
 
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "冷杉"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr ""
+msgstr "冷杉苗"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr ""
+msgstr "刺柏"
 
 #: simulation/templates/gaia/tree/mangrove.xml:4
 msgid "Mangrove"
-msgstr ""
+msgstr "紅樹林"
 
 #: simulation/templates/gaia/tree/maple.xml:4
 msgid "Maple"
-msgstr ""
+msgstr "楓"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -855,32 +855,32 @@ msgstr "叢櫚"
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "櫟"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 msgid "Holly Oak"
-msgstr ""
+msgstr "冬青櫟"
 
 #: simulation/templates/gaia/tree/oak_hungarian.xml:4
 #: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr ""
+msgstr "匈牙利櫟"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "大櫟"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
-msgstr ""
+msgstr "散尾葵"
 
 #: simulation/templates/gaia/tree/palm_doum.xml:4
 msgid "Doum Palm"
-msgstr ""
+msgstr "埃及棕櫚"
 
 #: simulation/templates/gaia/tree/palm_palmyra.xml:4
 msgid "Palmyra Palm"
-msgstr ""
+msgstr "糖棕"
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
 msgid "Palm"
@@ -893,28 +893,28 @@ msgstr "熱帶棕櫚"
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "松"
 
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr ""
+msgstr "黑松"
 
 #: simulation/templates/gaia/tree/pine_maritime.xml:4
 #: simulation/templates/gaia/tree/pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr ""
+msgstr "海岸松"
 
 #: simulation/templates/gaia/tree/poplar.xml:4
 #: simulation/templates/gaia/tree/poplar_dead.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_autumn.xml:4
 msgid "Poplar"
-msgstr ""
+msgstr "楊"
 
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "黑楊"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -922,27 +922,27 @@ msgstr "塞內加爾椰棗"
 
 #: simulation/templates/gaia/tree/strangler.xml:8
 msgid "Strangler Fig"
-msgstr ""
+msgstr "纏勒植物"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "檉柳"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
-msgstr ""
+msgstr "柚木"
 
 #: simulation/templates/gaia/tree/toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "香椿"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr ""
+msgstr "雨林植物"
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
-msgstr ""
+msgstr "建築工"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -952,30 +952,30 @@ msgstr "傭兵"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "將有那些房舍的文明變為10單位容量的房舍，其他文明的則刪除"
+msgstr "對有 10 人口房舍的文明變為房舍，對其他文明刪除"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "將有那些房舍的文明變為5單位容量的房舍，其他文明的則刪除"
+msgstr "對有 5 人口房舍的文明變為房舍，對其他文明刪除"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "僅限近戰步兵，需要至少 16 名。"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr ""
+msgstr "反騎兵"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "戰線"
+msgstr "線式戰陣"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr ""
+msgstr "需要至少 4 名士兵或攻城武器。"
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -983,27 +983,27 @@ msgstr "方陣"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "強制進展"
+msgstr "強行軍"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "分散縱隊"
+msgstr "開放縱隊"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr ""
+msgstr "需要至少 8 名士兵或攻城武器。"
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "翼形"
+msgstr "翼陣"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "關閉順序"
+msgstr "密陣"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
-msgstr "開放順序"
+msgstr "疏陣"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
@@ -1011,7 +1011,7 @@ msgstr "無"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "僅限重裝步兵，需要至少 10 名。"
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1023,15 +1023,15 @@ msgstr "分散"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "僅限遠程士兵，需要至少 2 名。"
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "小規模戰鬥"
+msgstr "散陣"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "僅限長槍步兵，需要至少 16 名。"
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1043,11 +1043,11 @@ msgstr "龜甲陣"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr ""
+msgstr "僅限騎兵，需要至少 6 名。"
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
-msgstr "楔形隊形"
+msgstr "錐形陣"
 
 #: simulation/templates/special/player/player.xml:57
 msgid "Player"
@@ -1059,7 +1059,7 @@ msgstr "間諜"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "需要至少 2 名士兵或攻城武器。"
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1072,7 +1072,7 @@ msgstr "魚場"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr ""
+msgstr "捕魚以取得食物。"
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1080,15 +1080,15 @@ msgstr "果樹"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr ""
+msgstr "採集水果以取得食物。"
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
-msgstr "金礦"
+msgstr "金屬礦"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
-msgstr ""
+msgstr "採集礦石以取得金屬。"
 
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
@@ -1096,7 +1096,7 @@ msgstr "採石場"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr ""
+msgstr "採石以取得石頭。"
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -1104,7 +1104,7 @@ msgstr "廢墟"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr ""
+msgstr "拆除廢墟以取得石頭。"
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -1112,7 +1112,7 @@ msgstr "寶藏"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr ""
+msgstr "收集寶藏以取得資源。"
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
@@ -1137,4 +1137,4 @@ msgstr "牆"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr ""
+msgstr "圍起一塊區域。"
