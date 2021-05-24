@@ -18,13 +18,13 @@
 		<object name="leftPanel" size="3% 5% 100%-255 100%-80">
 
 			<!-- Filters -->
-			<object name="filterPanel" size="0 0 100% 24">
+			<object name="filterPanel" size="0 0 100%-13 24">
 
-				<object name="dateTimeFilter" type="dropdown" style="ModernDropDown" size="5 0 12%-10 100%" font="sans-bold-13">
+				<object name="dateTimeFilter" type="dropdown" style="ModernDropDown" size="0 0 12%-5 100%" font="sans-bold-13">
 					<action on="SelectionChange">displayReplayList();</action>
 				</object>
 
-				<object name="playersFilter" type="input" style="ModernInput" size="12%-5 0 56%-10 100%" font="sans-bold-13">
+				<object name="playersFilter" type="input" style="ModernInput" size="12% 0 56%-5 100%" font="sans-bold-13">
 					<action on="Press">displayReplayList();</action>
 					<action on="Tab">
 						autoCompleteText(this, g_Playernames);
@@ -32,19 +32,19 @@
 					<translatableAttribute id="placeholder_text">Search for Player</translatableAttribute>
 				</object>
 
-				<object name="mapNameFilter" type="dropdown" style="ModernDropDown" size="56%-5 0 70%-10 100%" font="sans-bold-13">
+				<object name="mapNameFilter" type="dropdown" style="ModernDropDown" size="56% 0 70%-5 100%" font="sans-bold-13">
 					<action on="SelectionChange">displayReplayList();</action>
 				</object>
 
-				<object name="mapSizeFilter" type="dropdown" style="ModernDropDown" size="70%-5 0 80%-10 100%" font="sans-bold-13">
+				<object name="mapSizeFilter" type="dropdown" style="ModernDropDown" size="70% 0 80%-5 100%" font="sans-bold-13">
 					<action on="SelectionChange">displayReplayList();</action>
 				</object>
 
-				<object name="populationFilter" type="dropdown" style="ModernDropDown" size="80%-5 0 90%-10 100%" font="sans-bold-13">
+				<object name="populationFilter" type="dropdown" style="ModernDropDown" size="80% 0 90%-5 100%" font="sans-bold-13">
 					<action on="SelectionChange">displayReplayList();</action>
 				</object>
 
-				<object name="durationFilter" type="dropdown" style="ModernDropDown" size="90%-5 0 100%-10 100%" font="sans-bold-13">
+				<object name="durationFilter" type="dropdown" style="ModernDropDown" size="90% 0 100% 100%" font="sans-bold-13">
 					<action on="SelectionChange">displayReplayList();</action>
 				</object>
 
