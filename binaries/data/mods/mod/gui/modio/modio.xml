@@ -32,6 +32,7 @@
 			>
 				<action on="Press">displayMods();</action>
 				<action on="TextEdit">displayMods();</action>
+				<translatableAttribute id="placeholder_text" context="placeholder text for input field to filter mods">Filter</translatableAttribute>
 			</object>
 
 			<object name="modsAvailableList"

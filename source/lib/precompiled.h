@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -81,7 +81,6 @@ double __cdecl abs(double x);	// not declared by mathimf
 
 #include <array>
 #include <memory>
-using std::shared_ptr;
 
 // (must come after boost and common lib headers, but before re-enabling
 // warnings to avoid boost spew)
