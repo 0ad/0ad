@@ -218,10 +218,7 @@ void Render()
 
 	PROFILE3("render");
 
-	ogl_WarnIfError();
-
 	g_Profiler2.RecordGPUFrameStart();
-
 	ogl_WarnIfError();
 
 	// prepare before starting the renderer frame
@@ -237,9 +234,10 @@ void Render()
 	ogl_WarnIfError();
 
 	if (g_Game && g_Game->IsGameStarted())
+	{
 		g_Game->GetView()->Render();
-
-	ogl_WarnIfError();
+		ogl_WarnIfError();
+	}
 
 	g_Renderer.RenderTextOverlays();
 
@@ -251,45 +249,39 @@ void Render()
 	}
 
 	if (g_Game && g_Game->IsGameStarted())
+	{
 		g_Game->GetView()->GetCinema()->Render();
+		ogl_WarnIfError();
+	}
 
-	ogl_WarnIfError();
+	glDisable(GL_DEPTH_TEST);
 
 	if (g_DoRenderGui)
 	{
 		// All GUI elements are drawn in Z order to render semi-transparent
 		// objects correctly.
-		glDisable(GL_DEPTH_TEST);
 		g_GUI->Draw();
-		glEnable(GL_DEPTH_TEST);
+		ogl_WarnIfError();
 	}
 
-	ogl_WarnIfError();
-
-	// If we're in Atlas game view, render special overlays (e.g. editor bandbox)
+	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
 		g_AtlasGameLoop->view->DrawOverlays();
 		ogl_WarnIfError();
 	}
 
-	// Text:
-
- 	glDisable(GL_DEPTH_TEST);
-
 	g_Console->Render();
-
 	ogl_WarnIfError();
 
 	if (g_DoRenderLogger)
+	{
 		g_Logger->Render();
-
-	ogl_WarnIfError();
+		ogl_WarnIfError();
+	}
 
 	// Profile information
-
 	g_ProfileViewer.RenderProfile();
-
 	ogl_WarnIfError();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
@@ -355,7 +347,6 @@ void Render()
 	ogl_WarnIfError();
 
 	g_Profiler2.RecordGPUFrameEnd();
-
 	ogl_WarnIfError();
 }
 
