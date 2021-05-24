@@ -41,9 +41,11 @@
 		<image
 			backcolor="white"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="black"
 		/>
+		<image backcolor="black" size="0 0 100% 1"/>
+		<image backcolor="black" size="0 100%-1 100% 100%"/>
+		<image backcolor="black" size="0 0 1 100%"/>
+		<image backcolor="black" size="100%-1 0 100% 100%"/>
 	</sprite>
 
 	<!--

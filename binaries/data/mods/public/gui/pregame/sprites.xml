@@ -63,9 +63,11 @@
 	<sprite name="pgUserReportBox">
 		<image backcolor="0 0 0 220"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="200 200 200"
 		/>
+		<image backcolor="200 200 200" size="0 0 100% 1"/>
+		<image backcolor="200 200 200" size="0 100%-1 100% 100%"/>
+		<image backcolor="200 200 200" size="0 0 1 100%"/>
+		<image backcolor="200 200 200" size="100%-1 0 100% 100%"/>
 	</sprite>
 
 </sprites>

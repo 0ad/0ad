@@ -17,9 +17,11 @@
 	<sprite name="bgTooltipBox">
 		<image backcolor="0 0 0 200"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="white"
 		/>
+		<image backcolor="white" size="0 0 100% 1"/>
+		<image backcolor="white" size="0 100%-1 100% 100%"/>
+		<image backcolor="white" size="0 0 1 100%"/>
+		<image backcolor="white" size="100%-1 0 100% 100%"/>
 	</sprite>
 
 </sprites>

@@ -54,7 +54,6 @@ namespace GUIRenderer
 
 		CRect m_Vertices;
 
-		CGUIColor* m_BorderColor; // == nullptr for no border
 		CGUIColor* m_BackColor;
 	};
 

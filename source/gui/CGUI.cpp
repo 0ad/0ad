@@ -1086,19 +1086,6 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 			if (!ParseString<CGUIColor>(this, attr_value, Image->m_BackColor))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}
-		else if (attr_name == "bordercolor")
-		{
-			if (!ParseString<CGUIColor>(this, attr_value, Image->m_BorderColor))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-		}
-		else if (attr_name == "border")
-		{
-			bool b;
-			if (!ParseString<bool>(this, attr_value, b))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_Border = b;
-		}
 		else
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
 	}
