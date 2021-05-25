@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-11 05:54+0000\n"
+"PO-Revision-Date: 2021-05-21 12:30+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Ενεργοποίηση: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
 " mods!"
-msgstr "[font=\"sans-bold-20\"]  Προσπαθήσατε να ξεκινήσετε το παιχνίδι με μή συμβατές ή λάθος λειτουργίες."
+msgstr "[font=\"sans-bold-20\"]  Προσπαθήσατε να ξεκινήσετε το παιχνίδι με μή συμβατές ή λάθος τροποποιήσεις."
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -303,7 +303,7 @@ msgstr "Mods του mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr "Διαθέσιμα Mods"
+msgstr "Διαθέσιμες τροποποιήσεις."
 
 #: gui/modio/modio.xml:(caption):81
 msgid "Filter valid mods"
@@ -349,7 +349,7 @@ msgstr "Εξαρτήσεις"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "Το 0 A.D. έχει σχεδιαστεί για να μπορεί εύκολα να τροποποιηθεί. Τα mods διανέμονται με τη μορφή αρχείων .pyromod, τα οποία μπορούν να ανοιχτούν όπως τα αρχεία .zip."
+msgstr "Το 0 A.D. έχει σχεδιαστεί για να μπορεί εύκολα να τροποποιηθεί. Οι τροποποιήσεις  διανέμονται με τη μορφή αρχείων .pyromod, τα οποία μπορούν να ανοιχτούν όπως τα αρχεία .zip."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -359,7 +359,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Για να εγκαταστήσετε ένα mod, απλά ανοίξτε το αρχείο με το 0 A.D. (είτε κάνοντας διπλό κλικ στο αρχείο και επιλέγοντας να ανοίξει με το παιχνίδι, είτε εκτελέστε \"pyrogenesis file.pyromod\" σε μία γραμμή εντολών). Στη συνέχεια, το mod θα είναι διαθέσιμο στον επιλογέα mod. Μπορείτε να το ενεργοποιήσετε και να το απενεργοποιήσετε κατά βούληση. Μπορείτε να διαγράψετε το Mod χειροκίνητα χρησιμοποιώντας το πρόγραμμα περιήγησης αρχείων σας, αν χρειαστεί (δείτε https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Για να εγκαταστήσετε μια τροποποίηση, απλά ανοίξτε το αρχείο με το 0 A.D. (είτε κάνοντας διπλό κλικ στο αρχείο και επιλέγοντας να ανοίξει με το παιχνίδι, είτε εκτελέστε \"pyrogenesis file.pyromod\" σε μία γραμμή εντολών). Στη συνέχεια, το mod θα είναι διαθέσιμο στον επιλογέα mod. Μπορείτε να το ενεργοποιήσετε και να το απενεργοποιήσετε κατά βούληση. Μπορείτε να διαγράψετε το Mod χειροκίνητα χρησιμοποιώντας το πρόγραμμα περιήγησης αρχείων σας, αν χρειαστεί (δείτε https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
@@ -386,7 +386,7 @@ msgstr "Κλείσιμο"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Οδηγός Μετατροπής"
+msgstr "Οδηγός Τροποποίησης"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"

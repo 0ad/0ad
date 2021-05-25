@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 10:18+0000\n"
-"Last-Translator: Max Ihalempia\n"
+"PO-Revision-Date: 2021-05-22 10:02+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,7 @@ msgstr "Päällä: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
 " mods!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Yritit aloittaa pelin yhteensopivattomilla tai puuttuvilla modeilla!"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -109,13 +109,13 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
 msgid "Solve the compatibility and start game again."
-msgstr ""
+msgstr "Ratkaise yhteensopivuusongelmat ja käynnistä peli uudelleen."
 
 #: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
 "You might want to save configuration before starting, when you see this page"
 " again."
-msgstr ""
+msgstr "Saatat haluta tallentaa konfiguraation ennen aloittamista, kun näet tämän sivun uudelleen."
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Welcome!"
@@ -395,7 +395,7 @@ msgstr "Vieraile mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Tämä modi ei ole olemassa"
 
 #: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
 msgctxt "mod activation"
@@ -404,7 +404,7 @@ msgstr "Aktivoi"
 
 #: gui/modmod/modmod.js:165
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Riippuvuudet eivät täyty"
 
 #: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
@@ -421,11 +421,11 @@ msgstr "Modia ei ole valittu."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod and save configuration"
-msgstr ""
+msgstr "Ota käyttään ainakin 0ad-modi ja tallenna konfiguraatio"
 
 #: gui/modmod/modmod.js:463
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Ota käyttöön ainakin 0ad-modi"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -473,7 +473,7 @@ msgstr "Käynnistä modit"
 
 #: gui/modmod/modmod.xml:(caption):221
 msgid "Start"
-msgstr ""
+msgstr "Aloita"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

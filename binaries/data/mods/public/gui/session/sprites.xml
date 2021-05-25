@@ -503,27 +503,33 @@
 		<image
 			backcolor="darkbrown"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="gold"
 		/>
+		<image backcolor="gold" size="0 0 100% 1"/>
+		<image backcolor="gold" size="0 100%-1 100% 100%"/>
+		<image backcolor="gold" size="0 0 1 100%"/>
+		<image backcolor="gold" size="100%-1 0 100% 100%"/>
 	</sprite>
 
 	<sprite name="BackgroundInformationTooltip">
 		<image
 			backcolor="0 0 0 192"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="white"
 		/>
+		<image backcolor="white" size="0 0 100% 1"/>
+		<image backcolor="white" size="0 100%-1 100% 100%"/>
+		<image backcolor="white" size="0 0 1 100%"/>
+		<image backcolor="white" size="100%-1 0 100% 100%"/>
 	</sprite>
 
 	<sprite name="BackgroundErrorTooltip">
 		<image
 			backcolor="0 0 0 192"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="red"
 		/>
+		<image backcolor="red" size="0 0 100% 1"/>
+		<image backcolor="red" size="0 100%-1 100% 100%"/>
+		<image backcolor="red" size="0 0 1 100%"/>
+		<image backcolor="red" size="100%-1 0 100% 100%"/>
 	</sprite>
 
 	<!-- ================================  ================================ -->

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:32+0000\n"
-"Last-Translator: msidhard <msidhard@gmail.com>\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-22 09:42+0000\n"
+"Last-Translator: Ridhubharan V <ridhudon@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -1266,6 +1266,16 @@ msgstr ""
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Click to view more information."
+msgstr ""
+
+#: gui/common/tooltips.js:1220
+msgctxt "One letter abbreviation for million"
+msgid "M"
+msgstr ""
+
+#: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
+msgctxt "One letter abbreviation for thousand"
+msgid "k"
 msgstr ""
 
 #: gui/credits/credits.js:83
@@ -4662,7 +4672,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[6].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "முழுமை பெற்றது"
 
 #: gui/options/options.json[5].options[6].list[2].label
 msgid "All displayed"
@@ -4744,7 +4754,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "பயிற்சி"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the economic tutorial."
@@ -4828,7 +4838,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
-msgstr ""
+msgstr "முனைப்பியக்கத்தை ஏற்று"
 
 #: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
@@ -5434,7 +5444,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Main Menu"
-msgstr ""
+msgstr "முதன்மை பட்டியல்"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"

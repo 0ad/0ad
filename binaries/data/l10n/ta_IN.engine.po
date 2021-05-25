@@ -6,13 +6,14 @@
 # Merbin J Anselm <merbinjanselm@gmail.com>, 2017
 # msidhard <msidhard@gmail.com>, 2015
 # Navaneethasankar K, 2014
+# Ridhubharan V <ridhudon@gmail.com>, 2021
 # V V <vinod.vv@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-17 10:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-22 10:59+0000\n"
+"Last-Translator: Ridhubharan V <ridhudon@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,32 +24,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "உருள் வேகம் %.1f ஆக அதிகரித்தது"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "உருள் வேகம் %.1f ஆக குறைந்தது"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "சுழலும் வேகம் X=%.3f, Y=%.3f ஆக அதிகரித்தது"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "சுழலும் வேகம் X=%.3f, Y=%.3f ஆக குறைந்தது"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "பெரிதாக்க வேகம் %.1f ஆக அதிகரித்தது"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "பெரிதாக்க வேகம் %.1f ஆக குறைந்தது"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -60,31 +61,31 @@ msgstr "அறியப்படாத உட்பிரிவு (பதிவ
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "சான்றிதழ் நம்பப்படவில்லை."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "சான்றிதழ் அறியப்பட்ட வழங்குநரை பெறவில்லை."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "சான்றிதழ் ரத்து செய்யப்பட்டது."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has expired."
-msgstr ""
+msgstr "சான்றிதழ் காலாவதியானது."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "சான்றிதழ் இன்னும் செயலில் இல்லை."
 
 #: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "இணைக்கப்பட்டவருக்கு சான்றிதழ் வழங்கப்படவில்லை."
 
 #: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "சான்றிதழ் கையொப்பமிட்டவருக்கு சான்றிதழ் அதிகாரம் இல்லை."
 
 #: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
 #: lobby/XmppClient.cpp:1468
@@ -101,19 +102,19 @@ msgstr "போட்டியாளர் ஏற்கனவே உள்ந�
 
 #: lobby/XmppClient.cpp:1392
 msgid "Forbidden"
-msgstr " தடைசெய்யபட்டுளது "
+msgstr " தடைசெய்யப்பட்டது "
 
 #: lobby/XmppClient.cpp:1394
 msgid "Internal server error"
-msgstr "உட்புற சர்வர் பிழை"
+msgstr "உட்புற சேவையக பிழை"
 
 #: lobby/XmppClient.cpp:1398
 msgid "Not allowed"
-msgstr " அனுமதியில்லை "
+msgstr " அனுமதிக்க படாதது "
 
 #: lobby/XmppClient.cpp:1399
 msgid "Not authorized"
-msgstr "அங்கீகரிக்கப்படவில்லை "
+msgstr "அங்கீகரிக்க படாதது "
 
 #: lobby/XmppClient.cpp:1402
 msgid "Recipient temporarily unavailable"
@@ -133,7 +134,7 @@ msgstr "அறியப்படாத பிழை"
 
 #: lobby/XmppClient.cpp:1433
 msgid "Stream error"
-msgstr "ஸ்ட்ரீமில் பிழை"
+msgstr "தாரை பிழை"
 
 #: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
@@ -145,7 +146,7 @@ msgstr "சேவையகம் மூலம் ஸ்ட்ரீம் மூ
 
 #: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "ஒரு I/O பிழை ஏற்பட்டது"
 
 #: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
@@ -157,7 +158,7 @@ msgstr "சேவையகத்தின் பெயர் காணப்ப�
 
 #: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
-msgstr "இந்த கணினி நினைவகம் நிரம்பியுள்ளது"
+msgstr "கணினியில் போதிய நினைவகம் இல்லை"
 
 #: lobby/XmppClient.cpp:1445
 msgid ""
@@ -183,7 +184,7 @@ msgstr "இணைப்பு இல்லை"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "உங்கள் கணக்கு வெற்றிகரமாக பதிவு செய்யப்பட்டுள்ளது"
 
 #: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
@@ -198,69 +199,69 @@ msgstr "பயனர் பெயர் ஏற்கனவே உள்ளது
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "சுருக்கப்பட்ட 'மாற்றியமைத்தல்' '%s' கோப்பிற்கு வெளிப்புற mod.json ஐ எழுத முடியவில்லை. 'மாற்றியமைத்தல்' மீண்டும் நிறுவப்பட வேண்டும்."
 
 #: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "விளையாட்டு அடையாளத்திற்கான வினவலைத் துவங்கும்போது தோல்வி. பிழை: %s; %s."
 
 #: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "'மாற்றியமைத்தல்' வினவலைத் துவங்கும்போது தோல்வி. பிழை: %s; %s."
 
 #: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "'மாற்றியமைத்தல்' கோப்பகத்தை உருவாக்க முடியவில்லை: %s."
 
 #: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "'மாற்றியமைத்தல்' பதிவிறக்கத்திற்கான தற்காலிக கோப்பைத் திறக்க முடியவில்லை: %s."
 
 #: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "பதிவிறக்கத்தைத் தொடங்க முடியவில்லை. பிழை: %s; %s."
 
 #: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "ஒத்திசைவற்ற பதிவிறக்க தோல்வி: %s, %s."
 
 #: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "பதிவிறக்கம் தோல்வி. சேவையக பதில்: %s; %s."
 
 #: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "கோப்பு அளவு பொருந்தவில்லை."
 
 #: ps/ModIo.cpp:548
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "தவறான கோப்பு. எதிர்பார்க்கப்பட்டது md5 %s, பெற்றது %s."
 
 #: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "இறுதி ஹாஷைக் கணக்கிடுவதில் தோல்வி."
 
 #: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "கையொப்பத்தை சரிபார்க்க முடியவில்லை."
 
 #: ps/SavedGame.cpp:141
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "'%s' க்கு விளையாட்டு சேமிக்கப்பட்டது"
+msgstr "'%s' யில் விளையாட்டு சேமிக்கப்பட்டது"
 
 #: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "திரைப்பிடிப்பு '%s' க்கு எழுதப்பட்டது"
+msgstr "திரைப்பிடிப்பு '%s' யில் எழுதப்பட்டது"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"

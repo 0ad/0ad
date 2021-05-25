@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-17 22:23+0000\n"
+"PO-Revision-Date: 2021-05-24 01:36+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "Toi entamando una campaña militar contra %(_player_)s, veníi y echáime un gabitu."
+msgstr "Toi entamando una campaña militar contra %(_player_)s, ven y échame un gabitu."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
@@ -369,22 +369,22 @@ msgstr "El robó Petra"
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "%(name)s nun pue construyise pola mor d'un fallu desconocíu"
+msgstr "El/la/l' %(name)s nun pue construyise pola mor d'un fallu desconocíu"
 
 #: simulation/components/BuildRestrictions.js:115
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)s nun pue construyise nuna área non esplorada"
+msgstr "El/la/l' %(name)s nun pue construyise nuna área non esplorada"
 
 #: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)s nun pue construyise enriba d'un recursu o construcción"
+msgstr "El/la/l' %(name)s nun pue construyise enriba d'un recursu o construcción"
 
 #: simulation/components/BuildRestrictions.js:167
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "%(name)s nun pue construyise en tarrén non válido."
+msgstr "El/la/l' %(name)s nun pue construyise en tarrén non válido."
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -439,12 +439,12 @@ msgstr "enemigu"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)s nun pue construyise en campu %(territoryType)s. Terrenes válidos: %(validTerritories)s"
+msgstr "El/la/l' %(name)s nun pue construyise en campu %(territoryType)s. Terrenes válidos: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:234
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s ha construyise a una vera válida."
+msgstr "El/la/l' %(name)s ha construyise a una vera válida."
 
 #: simulation/components/BuildRestrictions.js:261
 #, javascript-format
@@ -454,8 +454,8 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)s ta percierca de %(category)s, ha tar pelo menos a %(distance)s metru de distancia"
-msgstr[1] "%(name)s ta percierca de %(category)s, ha tar pelo menos a %(distance)s metros de distancia"
+msgstr[0] "El/la/l' %(name)s ta percierca de %(category)s, ha tar pelo menos a %(distance)s metru de distancia"
+msgstr[1] "El/la/l' %(name)s ta percierca de %(category)s, ha tar pelo menos a %(distance)s metros de distancia"
 
 #: simulation/components/BuildRestrictions.js:282
 #, javascript-format
@@ -463,8 +463,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s queda perlloñe de %(category)s, ha tar a %(distance)s metru de distancia"
-msgstr[1] "%(name)s queda perlloñe de %(category)s, ha tar a %(distance)s metros de distancia"
+msgstr[0] "El/la/l' %(name)s queda perlloñe de %(category)s, ha tar a %(distance)s metru de distancia"
+msgstr[1] "El/la/l' %(name)s queda perlloñe de %(category)s, ha tar a %(distance)s metros de distancia"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -511,8 +511,8 @@ msgstr "¡Agora puedes atacar!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(lastPlayer)s gana (el caberu xugador vivu)."
-msgstr[1] "%(players)s & %(lastPlayer)s ganen (los caberos xugadores vivos)."
+msgstr[0] "%(lastPlayer)s gana (por siguir vivu)."
+msgstr[1] "%(players)s y %(lastPlayer)s ganen (por siguir vivos)."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."

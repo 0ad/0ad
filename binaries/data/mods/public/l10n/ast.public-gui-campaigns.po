@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2021\n"
 "Language-Team: Asturian (https://www.transifex.com/wildfire-games/teams/17418/ast/)\n"
@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Nesti mapa vamos deprender cómo empezar a xugar. Al principiu, lo más "
 "importante ye llograr recursos lo más rápido posible pa que más alantre "
-"puedas allistar abondos soldaos. Avisu: L'entamu del tutorial va perrápido, "
-"tate preparáu pa repetilu delles veces."
+"puedas allistar abondos soldaos. Avisu: El tutorial entama perrápido, tate "
+"preparáu pa repetilu delles veces."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -58,51 +58,51 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:97
+#: gui/campaigns/default_menu/CampaignMenu.js:119
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Completóse"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:99
+#: gui/campaigns/default_menu/CampaignMenu.js:121
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Disponible"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:158
+#: gui/campaigns/default_menu/CampaignMenu.js:183
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "Fallu al cargar la execución de campaña %s: %s."
+msgstr "Fallu al cargar l'entamu de campaña %s: %s."
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
 msgstr "Nome de la campaña"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
 msgstr "Nun s'esbilló escenariu dalu"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
 msgstr "Tornar pal menú principal"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
 msgstr "Partíes guardaes"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
 msgstr "Entamar l'escenariu"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
 msgstr "Siguir dende la partida guardada"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "Nome del escenariu"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "Estáu"
@@ -111,21 +111,20 @@ msgstr "Estáu"
 msgid "file cannot be loaded"
 msgstr "Nun pudo cargase'l ficheru"
 
-#: gui/campaigns/load_modal/LoadModal.js:102
+#: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
-"¿De xuru que quies desaniciar la execución %s? Esto nun pue desfacese."
+msgstr "¿De xuru que quies desaniciar l'entamu %s? Esto nun pue desfacese."
 
-#: gui/campaigns/load_modal/LoadModal.js:103
+#: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
 msgstr "Confirmanza"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
 msgstr "Non"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "Yes"
 msgstr "Sí"
 
@@ -140,7 +139,7 @@ msgstr "Nun hai campañes en marcha."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr "Nome de la execución esbillada:"
+msgstr "Nome del entamu esbilláu:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -156,8 +155,8 @@ msgid "Start a campaign"
 msgstr "Entamar una campaña"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
-msgid "Please enter the name of your new campaign run: "
-msgstr "Por favor, introduz el nome de la nueva execución de campaña:"
+msgid "Please enter the name of your new campaign run:"
+msgstr "Noma esti nuevu entamu de campaña, por favor:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -185,7 +184,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "Nome"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"

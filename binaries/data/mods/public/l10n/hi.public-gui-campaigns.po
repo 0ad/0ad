@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: Mangat Ram <mangatram346@gmail.com>, 2021\n"
 "Language-Team: Hindi (https://www.transifex.com/wildfire-games/teams/17418/hi/)\n"
@@ -56,51 +56,51 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "पाठ"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:97
+#: gui/campaigns/default_menu/CampaignMenu.js:119
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "समाप्त"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:99
+#: gui/campaigns/default_menu/CampaignMenu.js:121
 msgctxt "campaign status"
 msgid "Available"
 msgstr "उपलब्ध"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:158
+#: gui/campaigns/default_menu/CampaignMenu.js:183
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "मुहिम के चलने में दिक्कत %s:%s"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):11
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
 msgstr "मुहिम का नाम"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):42
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
 msgstr "किसी भी पटकथा का चयन नहीं"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):55
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
 msgstr "प्रमुख तालिका सूची पर लौटे"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):59
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
 msgstr "संरक्षित खेल"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):63
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
 msgstr "पटकथा शुरू करें"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
+#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
 msgstr "संरक्षित खेल जारी रखें"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):24
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "पटकथा का नाम"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):28
+#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "स्थिति"
@@ -109,22 +109,22 @@ msgstr "स्थिति"
 msgid "file cannot be loaded"
 msgstr "दस्तावेज नहीं उठा सकते"
 
-#: gui/campaigns/load_modal/LoadModal.js:102
+#: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
 "क्या आप चाल %s को मिटाने के प्रति आस्वस्त है ? इसको वापस सुधारा नहीं जा "
 "सकेगा।"
 
-#: gui/campaigns/load_modal/LoadModal.js:103
+#: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
 msgstr "पुष्टिकरण"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
 msgstr "नहीं"
 
-#: gui/campaigns/load_modal/LoadModal.js:104
+#: gui/campaigns/load_modal/LoadModal.js:106
 msgid "Yes"
 msgstr "हाँ"
 
@@ -155,8 +155,8 @@ msgid "Start a campaign"
 msgstr "एक मुहिम चलाएं"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
-msgid "Please enter the name of your new campaign run: "
-msgstr "कृपया अपनी नई मुहिम का नाम डालें:"
+msgid "Please enter the name of your new campaign run:"
+msgstr "कृपया अपनी नई चलने वाली मुहिम का नाम डालें:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -184,7 +184,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "नाम"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"

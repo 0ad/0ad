@@ -8,6 +8,8 @@ class MiniMapDiplomacyColorsButton
 		this.diplomacyColorsButton = Engine.GetGUIObjectByName("diplomacyColorsButton");
 		this.diplomacyColorsButton.onPress = diplomacyColors.toggle.bind(diplomacyColors);
 
+		this.diplomacyColorsButton.mouse_event_mask = this.SpriteMask;
+
 		diplomacyColors.registerDiplomacyColorsChangeHandler(this.onDiplomacyColorsChange.bind(this));
 		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
 	}
@@ -38,3 +40,5 @@ MiniMapDiplomacyColorsButton.prototype.SpriteDisabled = "session/minimap-diploma
 
 MiniMapDiplomacyColorsButton.prototype.SpriteEnabledOver = "session/minimap-diplomacy-on-highlight.png";
 MiniMapDiplomacyColorsButton.prototype.SpriteDisabledOver = "session/minimap-diplomacy-off-highlight.png";
+
+MiniMapDiplomacyColorsButton.prototype.SpriteMask = "texture:session/minimap-diplomacy-on.png";

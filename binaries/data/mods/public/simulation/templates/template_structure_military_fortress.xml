@@ -37,7 +37,7 @@
     </Distance>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>4000</CapturePoints>
+    <CapturePoints op="mul">8</CapturePoints>
     <RegenRate>10.0</RegenRate>
   </Capturable>
   <Cost>
@@ -91,6 +91,9 @@
       <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
+  <TerritoryDecay>
+    <DecayRate op="mul">2</DecayRate>
+  </TerritoryDecay>
   <TerritoryInfluence>
     <Root>true</Root>
     <Radius>80</Radius>

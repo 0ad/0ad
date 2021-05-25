@@ -39,16 +39,16 @@
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
-# Swyter <Swyterzone@gmail.com>, 2014-2018
-# Swyter <Swyterzone@gmail.com>, 2020
+# Swyter ™ <Swyterzone@gmail.com>, 2014-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2020
 # vega93 <arkadas_llisa@hotmail.com>, 2017
 # Víctor Rodríguez Bouza, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-16 13:39+0000\n"
-"Last-Translator: Víctor Rodríguez Bouza\n"
+"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"PO-Revision-Date: 2021-05-21 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1304,6 +1304,16 @@ msgstr "Clic derecho para ver más información."
 #: gui/common/tooltips.js:1211
 msgid "Click to view more information."
 msgstr "Haz clic para ver más información."
+
+#: gui/common/tooltips.js:1220
+msgctxt "One letter abbreviation for million"
+msgid "M"
+msgstr ""
+
+#: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
+msgctxt "One letter abbreviation for thousand"
+msgid "k"
+msgstr ""
 
 #: gui/credits/credits.js:83
 #, javascript-format

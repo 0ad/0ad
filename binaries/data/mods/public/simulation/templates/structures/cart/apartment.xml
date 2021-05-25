@@ -41,4 +41,7 @@
     <FoundationActor>structures/carthaginians/fndn_house.xml</FoundationActor>
     <Actor>structures/carthaginians/apartment.xml</Actor>
   </VisualActor>
+  <TerritoryDecay>
+    <DecayRate op="mul">2</DecayRate>
+  </TerritoryDecay>
 </Entity>

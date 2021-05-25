@@ -9,9 +9,11 @@
 	<sprite name = "ModernScrollBack">
 		<image backcolor="43 42 40"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="0 0 0"
 		/>
+		<image backcolor="0 0 0" size="0 0 100% 1"/>
+		<image backcolor="0 0 0" size="0 100%-1 100% 100%"/>
+		<image backcolor="0 0 0" size="0 0 1 100%"/>
+		<image backcolor="0 0 0" size="100%-1 0 100% 100%"/>
 		<image texture = "global/modern/scrollback.png"
 			real_texture_placement = "0 0 15 128"
 			size = "0 0 100% 100%"
@@ -513,9 +515,11 @@
 	<sprite name="BlackBorderOnGray">
 		<image backcolor="darkgray"
 			size="0 0 100% 100%"
-			border="true"
-			bordercolor="black"
 		/>
+		<image backcolor="0 0 0" size="0 0 100% 1"/>
+		<image backcolor="0 0 0" size="0 100%-1 100% 100%"/>
+		<image backcolor="0 0 0" size="0 0 1 100%"/>
+		<image backcolor="0 0 0" size="100%-1 0 100% 100%"/>
 	</sprite>
 	<!--
 	==========================================

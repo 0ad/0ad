@@ -55,7 +55,6 @@ public:
 		m_RoundCoordinates(true),
 		m_WrapMode(GL_REPEAT),
 		m_Effects(),
-		m_Border(false),
 		m_Size(CGUISize::Full()),
 		m_TextureSize(CGUISize::Full())
 	{
@@ -97,10 +96,6 @@ public:
 
 	// Color
 	CGUIColor m_BackColor;
-	CGUIColor m_BorderColor;
-
-	// 0 or 1 pixel border is the only option
-	bool m_Border;
 };
 
 /**

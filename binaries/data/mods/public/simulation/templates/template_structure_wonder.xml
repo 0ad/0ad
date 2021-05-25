@@ -7,8 +7,7 @@
     <Category>Wonder</Category>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>2000</CapturePoints>
-    <RegenRate>5.0</RegenRate>
+    <CapturePoints op="mul">4</CapturePoints>
   </Capturable>
   <Cost>
     <BuildTime>1000</BuildTime>

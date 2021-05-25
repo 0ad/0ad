@@ -828,16 +828,6 @@
           </attribute>
         </optional>
         <optional>
-          <attribute name="bordercolor">
-            <ref name="ccolor"/>
-          </attribute>
-        </optional>
-        <optional>
-          <attribute name="border">
-            <ref name="bool"/>
-          </attribute>
-        </optional>
-        <optional>
           <attribute name="fixed_h_aspect_ratio">
             <data type="decimal"/>
           </attribute>

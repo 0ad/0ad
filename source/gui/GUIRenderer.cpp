@@ -228,7 +228,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		}
 
 		Call.m_BackColor = &(*cit)->m_BackColor;
-		Call.m_BorderColor = (*cit)->m_Border ? &(*cit)->m_BorderColor : nullptr;
 
 		if (!Call.m_HasTexture)
 		{
@@ -418,20 +417,6 @@ void GUIRenderer::Draw(DrawCalls& Calls)
 
 			shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
-
-			if (cit->m_BorderColor != nullptr)
-			{
-				shader->Uniform(str_color, *cit->m_BorderColor);
-
-				data.clear();
-				ADD(Verts.left + 0.5f, Verts.top + 0.5f, 0.0f);
-				ADD(Verts.right - 0.5f, Verts.top + 0.5f, 0.0f);
-				ADD(Verts.right - 0.5f, Verts.bottom - 0.5f, 0.0f);
-				ADD(Verts.left + 0.5f, Verts.bottom - 0.5f, 0.0f);
-
-				shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
-				glDrawArrays(GL_LINE_LOOP, 0, 4);
-			}
 
 			if (cit->m_EnableBlending)
 				glDisable(GL_BLEND);
