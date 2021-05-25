@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Auras datatype="tokens">
-    structures/rotary_mill
-  </Auras>
   <Cost>
     <BuildTime>100</BuildTime>
     <Resources>
@@ -33,6 +30,10 @@
   </Obstruction>
   <ProductionQueue disable=""/>
   <RallyPoint disable=""/>
+  <ResourceDropsite>
+    <Types>food</Types>
+    <Sharable>true</Sharable>
+  </ResourceDropsite>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_ffactri.xml</select>
