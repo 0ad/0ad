@@ -141,6 +141,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		if (it != m_HotkeyObjects.end())
 			for (IGUIObject* const& obj : it->second)
 			{
+				if (!obj->IsEnabled())
+					continue;
 				if (ev->ev.type == SDL_HOTKEYPRESS)
 					ret = obj->SendEvent(GUIM_PRESSED, EventNamePress);
 				else if (ev->ev.type == SDL_HOTKEYDOWN)
