@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,14 +127,14 @@ void CSoundBase::SetGain(ALfloat gain)
 	}
 }
 
-void CSoundBase::SetRollOff(ALfloat rolls)
+void CSoundBase::SetRollOff(float rolls, float minDist, float maxDist)
 {
 	if ( m_ALSource )
 	{
 		std::lock_guard<std::mutex> lock(m_ItemMutex);
-		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
+		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, minDist);
 		AL_CHECK;
-		alSourcef(m_ALSource, AL_MAX_DISTANCE, 200.0);
+		alSourcef(m_ALSource, AL_MAX_DISTANCE, maxDist);
 		AL_CHECK;
 		alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, rolls);
 		AL_CHECK;
