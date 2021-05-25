@@ -216,7 +216,7 @@ std::vector<CStr> Mod::CheckForIncompatibleMods(const std::vector<CStr>& mods) c
 	std::unordered_map<CStr, CStr> modNameVersions;
 	for (const CStr& mod : mods)
 	{
-		if (mod == "mod")
+		if (mod == "mod" || mod == "user")
 			continue;
 
 		std::vector<ModData>::const_iterator it = std::find_if(m_AvailableMods.begin(), m_AvailableMods.end(),
@@ -235,7 +235,7 @@ std::vector<CStr> Mod::CheckForIncompatibleMods(const std::vector<CStr>& mods) c
 	static const std::vector<CStr> toCheck = { "<=", ">=", "=", "<", ">" };
 	for (const CStr& mod : mods)
 	{
-		if (mod == "mod")
+		if (mod == "mod" || mod == "user")
 			continue;
 
 		const std::unordered_map<CStr, std::vector<CStr>>::iterator res = modDependencies.find(mod);
@@ -318,6 +318,9 @@ JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 	std::vector<std::vector<CStr>> loadedMods;
 	for (const CStr& mod : m_EnabledMods)
 	{
+		if (mod == "mod" || mod == "user")
+			continue;
+
 		std::vector<ModData>::const_iterator it = std::find_if(m_AvailableMods.begin(), m_AvailableMods.end(),
 			[&mod](const ModData& modData) { return modData.m_Pathname == mod; });
 
