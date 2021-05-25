@@ -162,92 +162,6 @@ Status StatusFromWin()
 	}
 }
 
-
-//-----------------------------------------------------------------------------
-// command line
-
-// copy of GetCommandLine string. will be tokenized and then referenced by
-// the argv pointers.
-static wchar_t* argvContents;
-
-int s_argc = 0;
-wchar_t** s_argv = 0;
-
-static void ReadCommandLine()
-{
-	const wchar_t* commandLine = GetCommandLineW();
-	// (this changes as quotation marks are removed)
-	size_t numChars = wcslen(commandLine);
-	argvContents = (wchar_t*)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, (numChars+1)*sizeof(wchar_t));
-	wcscpy_s(argvContents, numChars+1, commandLine);
-
-	// first pass: tokenize string and count number of arguments
-	bool ignoreSpace = false;
-	for(size_t i = 0; i < numChars; i++)
-	{
-		switch(argvContents[i])
-		{
-		case '"':
-			ignoreSpace = !ignoreSpace;
-			// strip the " character
-			memmove(argvContents+i, argvContents+i+1, (numChars-i)*sizeof(wchar_t));
-			numChars--;
-			i--;
-			break;
-
-		case ' ':
-			if(!ignoreSpace)
-			{
-				argvContents[i] = '\0';
-				s_argc++;
-			}
-			break;
-		}
-	}
-	s_argc++;
-
-	// have argv entries point into the tokenized string
-	s_argv = (wchar_t**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, s_argc*sizeof(wchar_t*));
-	wchar_t* nextArg = argvContents;
-	for(int i = 0; i < s_argc; i++)
-	{
-		s_argv[i] = nextArg;
-		nextArg += wcslen(nextArg)+1;
-	}
-}
-
-
-int wutil_argc()
-{
-	return s_argc;
-}
-
-wchar_t** wutil_argv()
-{
-	ENSURE(s_argv);
-	return s_argv;
-}
-
-
-static void FreeCommandLine()
-{
-	HeapFree(GetProcessHeap(), 0, s_argv);
-	HeapFree(GetProcessHeap(), 0, argvContents);
-}
-
-
-bool wutil_HasCommandLineArgument(const wchar_t* arg)
-{
-	for(int i = 0; i < s_argc; i++)
-	{
-		if(!wcscmp(s_argv[i], arg))
-			return true;
-	}
-
-	return false;
-}
-
-
 //-----------------------------------------------------------------------------
 // directories
 
@@ -530,8 +444,6 @@ static Status wutil_Init()
 
 	EnableLowFragmentationHeap();
 
-	ReadCommandLine();
-
 	GetDirectories();
 
 	ImportWow64Functions();
@@ -543,8 +455,6 @@ static Status wutil_Init()
 
 static Status wutil_Shutdown()
 {
-	FreeCommandLine();
-
 	ShutdownLocks();
 
 	FreeDirectories();
