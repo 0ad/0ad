@@ -549,8 +549,7 @@ PETRA.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 		{
 		case "Town":
 			if (!queues.economicBuilding.hasQueuedUnits() &&
-			    !queues.militaryBuilding.hasQueuedUnits() &&
-			    !queues.defenseBuilding.hasQueuedUnits())
+			    !queues.militaryBuilding.hasQueuedUnits())
 			{
 				if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities() &&
 				    this.canBuild(gameState, "structures/{civ}/market"))
@@ -571,12 +570,6 @@ PETRA.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 				{
 					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/forge", { "phaseUp": true });
 					queue = "militaryBuilding";
-					break;
-				}
-				if (this.canBuild(gameState, "structures/{civ}/defense_tower"))
-				{
-					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/defense_tower", { "phaseUp": true });
-					queue = "defenseBuilding";
 					break;
 				}
 			}
