@@ -25,7 +25,7 @@ TILE_CENTERED_HEIGHT_MAP = true;
 
 const tWater = "medit_sand_wet";
 const tSnowedRocks = ["alpine_cliff_b", "alpine_cliff_snow"];
-setBiome("generic/mediterranean");
+setBiome("generic/aegean");
 
 const heightScale = num => num * g_MapSettings.Size / 320;
 
@@ -53,7 +53,7 @@ var climateZones = [
 		"tileClass": g_TileClasses.northern_europe,
 		"position1": new Vector2D(northernTopLeft.x, mapBounds.top),
 		"position2": new Vector2D(mapBounds.right, northernTopLeft.y),
-		"biome": "generic/snowy",
+		"biome": "generic/arctic",
 		"constraint": new NullConstraint()
 	},
 	{
@@ -74,14 +74,14 @@ var climateZones = [
 		"tileClass": g_TileClasses.southern_europe,
 		"position1": new Vector2D(mapBounds.left, africaTop),
 		"position2": new Vector2D(mapBounds.right, westernTopLeft.y),
-		"biome": "generic/mediterranean",
+		"biome": "generic/aegean",
 		"constraint": new NullConstraint()
 	},
 	{
 		"tileClass": g_TileClasses.africa,
 		"position1": new Vector2D(mapBounds.left, africaTop),
 		"position2": new Vector2D(mapBounds.right, mapBounds.bottom),
-		"biome": "generic/desert",
+		"biome": "generic/sahara",
 		"constraint": new NullConstraint()
 	}
 ];

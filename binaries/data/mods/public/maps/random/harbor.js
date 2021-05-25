@@ -345,7 +345,7 @@ function addSpines()
 	let numPlayers = getNumPlayers();
 	let spineTile = g_Terrains.dirt;
 
-	if (currentBiome() == "generic/snowy")
+	if (currentBiome() == "generic/arctic")
 		spineTile = g_Terrains.tier1Terrain;
 
 	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")

@@ -21,7 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-setBiome("generic/mediterranean");
+setBiome("generic/aegean");
 
 g_Terrains.lavaOuter = "LavaTest06";
 g_Terrains.lavaInner = "LavaTest05";

@@ -21,7 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-setBiome("generic/desert");
+setBiome("generic/sahara");
 setLandBiome();
 
 function setLandBiome()

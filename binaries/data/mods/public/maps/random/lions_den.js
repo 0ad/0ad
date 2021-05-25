@@ -432,7 +432,7 @@ function createSunkenTerrain()
 	var lower = g_Terrains.tier2Terrain;
 	var road = g_Terrains.road;
 
-	if (currentBiome() == "generic/snowy")
+	if (currentBiome() == "generic/arctic")
 	{
 		middle = g_Terrains.tier2Terrain;
 		lower = g_Terrains.tier1Terrain;
@@ -444,7 +444,7 @@ function createSunkenTerrain()
 		lower = g_Terrains.tier4Terrain;
 	}
 
-	if (currentBiome() == "generic/mediterranean")
+	if (currentBiome() == "generic/aegean")
 	{
 		middle = g_Terrains.tier1Terrain;
 		lower = g_Terrains.forestFloor1;
@@ -456,7 +456,7 @@ function createSunkenTerrain()
 		lower = g_Terrains.tier4Terrain;
 	}
 
-	if (currentBiome() == "generic/tropic" || currentBiome() == "generic/autumn")
+	if (currentBiome() == "generic/india" || currentBiome() == "generic/autumn")
 		road = g_Terrains.roadWild;
 
 	if (currentBiome() == "generic/autumn")

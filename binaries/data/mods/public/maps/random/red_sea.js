@@ -22,7 +22,7 @@ Engine.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-setBiome("generic/desert");
+setBiome("generic/sahara");
 
 g_Terrains.mainTerrain = new Array(4).fill("desert_sand_dunes_50").concat(["desert_sand_dunes_rocks", "desert_dirt_rough_2"]);
 g_Terrains.forestFloor1 = "desert_grass_a_sand";

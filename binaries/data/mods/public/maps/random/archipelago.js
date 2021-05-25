@@ -193,7 +193,7 @@ createMines(
 );
 Engine.SetProgress(65);
 
-var planetm = currentBiome() == "generic/tropic" ? 8 : 1;
+var planetm = currentBiome() == "generic/india" ? 8 : 1;
 createDecoration(
 	[
 		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],

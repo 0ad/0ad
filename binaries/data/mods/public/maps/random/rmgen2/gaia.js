@@ -93,7 +93,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 
 	let constrastTerrain = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "generic/tropic")
+	if (currentBiome() == "generic/india")
 		constrastTerrain = g_Terrains.dirt;
 
 	if (currentBiome() == "generic/autumn")
@@ -382,7 +382,7 @@ function addDecoration(constraint, size, deviation, fill)
 	];
 
 	var baseCount = 1;
-	if (currentBiome() == "generic/tropic")
+	if (currentBiome() == "generic/india")
 		baseCount = 8;
 
 	var counts = [
@@ -505,10 +505,10 @@ function addLakes(constraint, size, deviation, fill)
 
 	var lakeTile = g_Terrains.water;
 
-	if (currentBiome() == "generic/temperate" || currentBiome() == "generic/tropic")
+	if (currentBiome() == "generic/temperate" || currentBiome() == "generic/india")
 		lakeTile = g_Terrains.dirt;
 
-	if (currentBiome() == "generic/mediterranean")
+	if (currentBiome() == "generic/aegean")
 		lakeTile = g_Terrains.tier2Terrain;
 
 	if (currentBiome() == "generic/autumn")
@@ -625,7 +625,7 @@ function addPlateaus(constraint, size, deviation, fill)
 
 	var plateauTile = g_Terrains.dirt;
 
-	if (currentBiome() == "generic/snowy")
+	if (currentBiome() == "generic/arctic")
 		plateauTile = g_Terrains.tier1Terrain;
 
 	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")
@@ -752,13 +752,13 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
 	var valleySlope = g_Terrains.tier1Terrain;
 	var valleyFloor = g_Terrains.tier4Terrain;
 
-	if (currentBiome() == "generic/desert")
+	if (currentBiome() == "generic/sahara")
 	{
 		valleySlope = g_Terrains.tier3Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (currentBiome() == "generic/mediterranean")
+	if (currentBiome() == "generic/aegean")
 	{
 		valleySlope = g_Terrains.tier2Terrain;
 		valleyFloor = g_Terrains.dirt;
@@ -767,7 +767,7 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
 	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")
 		valleyFloor = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == "generic/tropic")
+	if (currentBiome() == "generic/india")
 		valleySlope = g_Terrains.dirt;
 
 	if (currentBiome() == "generic/autumn")
@@ -994,7 +994,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		var treesMax = max;
 
 		// Don't clump fruit trees
-		if (i == 2 && (currentBiome() == "generic/desert" || currentBiome() == "generic/mediterranean"))
+		if (i == 2 && (currentBiome() == "generic/sahara" || currentBiome() == "generic/aegean"))
 			treesMax = 1;
 
 		min = Math.min(min, treesMax);

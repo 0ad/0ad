@@ -185,7 +185,7 @@ Engine.SetProgress(65);
 // create decoration
 var planetm = 1;
 
-if (currentBiome() == "generic/tropic")
+if (currentBiome() == "generic/india")
 	planetm = 8;
 
 createDecoration(

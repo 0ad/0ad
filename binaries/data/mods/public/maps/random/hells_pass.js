@@ -251,7 +251,7 @@ function placeBarriers()
 {
 	var spineTerrain = g_Terrains.dirt;
 
-	if (currentBiome() == "generic/snowy")
+	if (currentBiome() == "generic/arctic")
 		spineTerrain = g_Terrains.tier1Terrain;
 
 	if (currentBiome() == "generic/alpine" || currentBiome() == "generic/savanna")

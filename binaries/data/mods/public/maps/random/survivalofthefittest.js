@@ -174,7 +174,7 @@ createPatches(
 Engine.SetProgress(80);
 
 var planetm = 1;
-if (currentBiome() == "generic/tropic")
+if (currentBiome() == "generic/india")
 	planetm = 8;
 
 createDecoration(
