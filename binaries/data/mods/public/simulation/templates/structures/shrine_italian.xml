@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="shrine|template_structure_civic_temple">
+  <Footprint replace="">
+    <Circle radius="12.0"/>
+    <Height>18.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Temple of Healing</GenericName>
+    <SpecificName>Aedēs Sanitatem</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="19.0" depth="19.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/romans/temple_vesta.xml</Actor>
+  </VisualActor>
+</Entity>

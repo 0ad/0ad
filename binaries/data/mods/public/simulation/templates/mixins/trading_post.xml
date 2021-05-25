@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity>
+  <Capturable>
+    <CapturePoints>500</CapturePoints>
+  </Capturable>
+  <Health disable=""/>
+  <Identity>
+    <GenericName>Trading Post</GenericName>
+	<Undeletable>true</Undeletable>
+  </Identity>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      -trader_health
+      -trade_gain_01
+      -trade_gain_02
+      -trade_commercial_treaty
+    </Technologies>
+  </ProductionQueue>
+  <Resistance replace=""/>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>

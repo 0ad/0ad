@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Territory>own neutral enemy</Territory>
+  </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>25</CapturePoints>
+    <RegenRate>0</RegenRate>
+    <GarrisonRegenRate>5</GarrisonRegenRate>
+  </Capturable>
+  <Cost>
+    <BuildTime>20</BuildTime>
+    <Resources>
+      <wood>50</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="12.0" depth="11.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>5</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry</List>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
+  <Health>
+    <Max>100</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Desert Army Tent</SpecificName>
+    <GenericName>Tent</GenericName>
+    <Icon>structures/mercenary_camp.png</Icon>
+    <VisibleClasses datatype="tokens">Tent</VisibleClasses>
+	<Tooltip>A temporary shelter for soldiers. +5 population bonus.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="10.0" depth="10.0"/>
+  </Obstruction>
+  <Population>
+    <Bonus>5</Bonus>
+  </Population>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+      <constructed>interface/complete/building/complete_universal.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
+  <TerritoryDecay>
+    <DecayRate>1</DecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <Actor>structures/tent_big.xml</Actor>
+  </VisualActor>
+</Entity>
