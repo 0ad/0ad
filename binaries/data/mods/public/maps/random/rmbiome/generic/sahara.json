@@ -1,0 +1,87 @@
+{
+	"Description": {
+		"Title": "Sahara",
+		"Description": "A semi-desert area that boasts numerous clumps of date palms and acacia trees. Herds of camels roam the wild and the occasional gazelle jumps up in fright at being disturbed."
+	},
+	"Environment": {
+		"SunColor": { "r": 0.976471, "g": 0.858824, "b": 0.74902 },
+		"AmbientColor": { "r": 0.231373, "g": 0.282353, "b": 0.356863 },
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.376, "g": 0.267, "b": 0.122 },
+				"Tint": { "r": 0.502, "g": 0.502, "b": 0 },
+				"Murkiness": 0.9,
+				"Waviness": 3
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.05,
+			"FogFactor": 0.003,
+			"FogColor": { "r": 0.992, "g": 0.949, "b": 0.839 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.9,
+			"Contrast": 1.02,
+			"Bloom": 0.120
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"sahara_sand_01",
+			"sahara_sand_02",
+			"sahara_sand_05"
+		],
+		"forestFloor1": "sahara_forestfloor_01",
+		"forestFloor2": "sahara_forestfloor_02",
+		"cliff": [
+			"sahara_rock_01"
+		],
+		"tier1Terrain": "sahara_rocks_dirt_01",
+		"tier2Terrain": "sahara_rocks_dirt_02",
+		"tier3Terrain": "sahara_sand_03",
+		"tier4Terrain": "sahara_sand_04",
+		"hill": [
+			"sahara_dirt_02"
+		],
+		"dirt": [
+			"sahara_dirt_01",
+			"sahara_dirt_02"
+		],
+		"road": "sahara_paving_stones_01",
+		"roadWild": "sahara_paving_stones_01_sand_01",
+		"shoreBlend": "sahara_sand_01_dunes",
+		"shore": "sahara_sand_02",
+		"water": "sahara_sand_04_wet"
+	},
+	"Gaia": {
+		"fruitBush": "gaia/fruit/date",
+		"chicken": "gaia/fauna_goat",
+		"mainHuntableAnimal": "gaia/fauna_camel",
+		"fish": "gaia/fish/generic",
+		"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+		"stoneLarge": "gaia/rock/desert_large",
+		"stoneSmall": "gaia/rock/desert_small",
+		"metalLarge": "gaia/ore/sahara_01",
+		"metalSmall": "gaia/ore/sahara_02",
+		"tree3": "gaia/tree/juniper_prickly"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/bush_desert_dry_a.xml",
+		"grassShort": "actor|props/flora/plant_desert_a.xml",
+		"reeds": "actor|props/flora/papyrus.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_desert_med.xml",
+		"rockMedium": "actor|geology/stone_desert_med.xml",
+		"bushMedium": "gaia/tree/bush_tropic",
+		"bushSmall": "actor|props/flora/bush_dry_a.xml",
+		"tree": "gaia/tree/date_palm_dead"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 500,
+			"max": 1000,
+			"forestProbability": 0.4
+		}
+	}
+}

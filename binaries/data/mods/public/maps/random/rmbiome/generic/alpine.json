@@ -4,83 +4,99 @@
 		"Description": "A region in the high snowy mountains. Biting winds sweep through the abundant conifer forests, making even the more resilient deer and mountain goats shiver."
 	},
 	"Environment": {
+		"SkySet": "cloudless",
+		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 1.06284 },
+		"SunElevation": 0.589049,
+		"SunRotation": -0.742871,
+		"AmbientColor": { "r": 0.219608, "g": 0.294118, "b": 0.403922 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.0, "g": 0.047, "b": 0.286 },
-				"Tint": { "r": 0.471, "g": 0.776, "b": 0.863 },
-				"Murkiness": 0.82,
+				"Type": "clap",
+				"Color": { "r": 0.0784314, "g": 0.247059, "b": 0.419608 },
+				"Tint": { "r": 0.471, "g": 1, "b": 0.501961 },
+				"Murkiness": 0.88,
 				"Waviness": 2
 			}
 		},
 		"Fog": {
-			"FogThickness": 0.26,
-			"FogFactor": 0.004
+			"FogThickness": 0.00195313,
+			"FogFactor": 0.00305664,
+			"FogColor": { "r": 0.8, "g": 0.8, "b": 0.9 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 0.96,
-			"Contrast": 1.03,
-			"Bloom": 0.176
+			"Brightness": 0.0341797,
+			"Saturation": 0.98,
+			"Contrast": 1,
+			"Bloom": 0.14
 		}
 	},
 	"Terrains": {
 		"mainTerrain": [
-			"alpine_dirt_grass_50"
+			"steppe_grass_02"
 		],
-		"forestFloor1": "alpine_forrestfloor",
-		"forestFloor2": "alpine_forrestfloor",
+		"forestFloor1": "alpine_forestfloor_01",
+		"forestFloor2": "alpine_forestfloor_01",
 		"cliff": [
-			"alpine_cliff_a",
-			"alpine_cliff_b",
-			"alpine_cliff_c"
+			"alpine_rock_01",
+			"alpine_rock_02"
 		],
-		"tier1Terrain": "alpine_dirt",
+		"tier1Terrain": [
+			"steppe_grass_dirt_02"
+		],
 		"tier2Terrain": [
-			"alpine_grass_snow_50",
-			"alpine_dirt_snow",
-			"alpine_dirt_snow"
+			"alpine_forestfloor_02"
 		],
 		"tier3Terrain": [
-			"alpine_snow_a",
-			"alpine_snow_b"
+			"steppe_rocks_dirt_01"
 		],
-		"tier4Terrain": "new_alpine_grass_a",
-		"hill": "alpine_cliff_snow",
+		"tier4Terrain": "aegean_grass_dirt_03",
+		"hill": [
+            "alpine_rock_01",
+            "alpine_rock_02"
+		],
 		"dirt": [
-			"alpine_dirt",
-			"alpine_grass_d"
+			"alpine_snow_01",
+			"alpine_snow_02"
 		],
-		"road": "new_alpine_citytile",
-		"roadWild": "new_alpine_citytile",
-		"shoreBlend": "alpine_shore_rocks",
-		"shore": "alpine_shore_rocks_grass_50",
-		"water": "alpine_shore_rocks"
+		"road": "alpine_paving_stones_02",
+		"roadWild": "alpine_paving_stones_02",
+		"shoreBlend": "alpine_rocks_dirt_01",
+		"shore": "alpine_rocks_dirt_01",
+		"water": "alpine_rocks_dirt_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/pine",
-		"tree2": "gaia/tree/pine",
-		"tree3": "gaia/tree/pine",
-		"tree4": "gaia/tree/pine",
-		"tree5": "gaia/tree/pine",
+        "tree1": "gaia/tree/pine",
+        "tree2": "gaia/tree/fir",
+        "tree3": "gaia/tree/oak_hungarian_autumn",
+        "tree4": "gaia/tree/fir_sapling",
+        "tree5": "gaia/tree/elm",
 		"fruitBush": "gaia/fruit/berry_01",
 		"chicken": "gaia/fauna_chicken",
 		"mainHuntableAnimal": "gaia/fauna_goat",
 		"fish": "gaia/fish/tuna",
 		"secondaryHuntableAnimal": "gaia/fauna_deer",
-		"stoneLarge": "gaia/rock/alpine_large",
-		"stoneSmall": "gaia/rock/alpine_small",
-		"metalLarge": "gaia/ore/alpine_large",
-		"metalSmall": "gaia/ore/alpine_small"
+		"stoneLarge": "gaia/rock/temperate_large_02",
+		"stoneSmall": "gaia/rock/temperate_large_03",
+		"metalLarge": "gaia/ore/temperate_02",
+		"metalSmall": "gaia/ore/temperate_01"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_small_tall.xml",
 		"grassShort": "actor|props/flora/grass_soft_large.xml",
-		"reeds": "actor|props/flora/reeds_pond_dry.xml",
+		"reeds": "actor|props/flora/cattails.xml",
 		"lillies": "actor|geology/stone_granite_large.xml",
 		"rockLarge": "actor|geology/stone_granite_large.xml",
 		"rockMedium": "actor|geology/stone_granite_med.xml",
-		"bushMedium": "actor|props/flora/bush_desert_a.xml",
-		"bushSmall": "actor|props/flora/bush_desert_a.xml",
+		"bushMedium": "gaia/tree/bush_temperate",
+		"bushSmall": "actor|flora/trees/lavender_bush_01.xml",
 		"tree": "actor|flora/trees/pine.xml"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 1000,
+			"max": 2000,
+			"forestProbability": 0.85
+		}
 	}
 }

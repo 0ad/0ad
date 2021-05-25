@@ -1,0 +1,93 @@
+{
+	"Description": {
+		"Title": "India",
+		"Description": "Explore the mysterious tropics. An extremely green, but also extremely humid environment awaits. The tall Toona trees look on disapprovingly at this invasion of their privacy and ferocious tigers are determined to defend their territory at all costs."
+	},
+	"Environment": {
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.584, "g": 0.824, "b": 0.929 },
+				"Tint": { "r": 0.569, "g": 0.965, "b": 0.945 },
+				"Murkiness": 0.45,
+				"Waviness": 1.5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.0,
+			"FogFactor": 0.0024,
+			"FogColor": { "r": 0.87451, "g": 0.87451, "b": 0.87451 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Contrast": 0.98,
+			"Saturation": 0.9,
+			"Bloom": 0.16
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"india_grass_01",
+			"india_grass_02",
+			"india_grass_dirt_01",
+			"india_grass_dirt_02"
+		],
+		"forestFloor1": "india_forestfloor_01",
+		"forestFloor2": "india_forestfloor_02",
+		"cliff": [
+			"india_cliff_02",
+			"india_cliff_03"
+		],
+		"tier1Terrain": "india_grass_02",
+		"tier2Terrain": "india_mud_01",
+		"tier3Terrain": "india_grass_dirt_01",
+		"tier4Terrain": "india_grass_dirt_02",
+		"hill": [
+			"india_dirt_01",
+			"india_dirt_02"
+		],
+		"dirt": [
+			"india_dirt_01",
+			"india_dirt_02",
+			"india_dirt_03"
+		],
+		"road": "india_paving_02",
+		"roadWild": "india_paving_02",
+		"shoreBlend": "india_grass_dirt_01",
+		"shore": "india_sand_01",
+		"water": "india_mud_01"
+	},
+	"Gaia": {
+		"tree1": "gaia/tree/banyan",
+		"tree2": "gaia/tree/strangler",
+		"tree3": "gaia/tree/teak",
+		"tree4": "gaia/tree/palm_palmyra",
+		"tree5": "gaia/tree/palm_tropical",
+		"fruitBush": "gaia/fruit/date",
+		"chicken": "gaia/fauna_peacock",
+		"mainHuntableAnimal": "gaia/fauna_peacock",
+		"fish": "gaia/fish/generic",
+		"secondaryHuntableAnimal": "gaia/fauna_elephant_asian",
+		"stoneLarge": "gaia/rock/temperate_large_02",
+		"stoneSmall": "gaia/rock/tropical_small",
+		"metalLarge": "gaia/ore/india_01",
+		"metalSmall": "gaia/ore/india_02"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_tropic_field.xml",
+		"grassShort": "actor|props/flora/plant_tropic_a.xml",
+		"reeds": "actor|flora/trees/palm_nipa.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_india_small.xml",
+		"rockMedium": "actor|geology/stone_india_small.xml",
+		"bushMedium": "gaia/tree/bush_tropic",
+		"bushSmall": "actor|props/flora/plant_tropic_large.xml",
+		"tree": "gaia/tree/palm_areca"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 1000,
+			"max": 6000,
+			"forestProbability": 0.8
+		}
+	}
+}

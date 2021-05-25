@@ -1,0 +1,90 @@
+{
+	"Description": {
+		"Title": "Nubia",
+		"Description": "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes or elephants roam the wild in search of food."
+	},
+	"Environment": {
+		"SunColor": { "r": 1.15039, "g": 1.10979, "b": 1.04212 },
+		"AmbientColor": { "r": 0.294118, "g": 0.301961, "b": 0.329412 },
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.337255, "g": 0.247059, "b": 0.0784314 },
+				"Tint": { "r": 0.337255, "g": 0.247059, "b": 0.0784314 },
+				"Murkiness": 0.96,
+				"Waviness": 5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.01,
+			"FogFactor": 0.00205078,
+			"FogColor": { "r": 0.929412, "g": 0.87451, "b": 0.839216 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Contrast": 1.09961,
+			"Saturation": 0.83,
+			"Bloom": 0.142969
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"nubia_sand_01",
+			"nubia_sand_ripples",
+			"nubia_sand_dunes_01"
+		],
+		"forestFloor1": "nubia_forestfloor_01",
+		"forestFloor2": "nubia_forestfloor_01",
+		"cliff": [
+			"nubia_rock_02",
+			"nubia_rock_01"
+		],
+		"tier1Terrain": "nubia_sand_03",
+		"tier2Terrain": "nubia_rocks_dirt_01",
+		"tier3Terrain": "nubia_rocks_dirt_02",
+		"tier4Terrain": "nubia_rocks_dirt_03",
+		"hill": [
+			"nubia_dirt_02",
+			"nubia_dirt_01"
+		],
+		"dirt": [
+			"nubia_dirt_01",
+			"nubia_dirt_02",
+			"nubia_dirt_03",
+			"nubia_dirt_04"
+		],
+		"road": "nubia_paving_stones_01",
+		"roadWild": "nubia_paving_stones_01_sand_01",
+		"shoreBlend": "nubia_dirt_cracks",
+		"shore": "nubia_sand_02",
+		"water": "nubia_sand_02_wet"
+	},
+	"Gaia": {
+		"tree3": "gaia/tree/baobab_4_dead",
+		"fruitBush": "gaia/fruit/date",
+		"chicken": "gaia/fauna_chicken",
+		"fish": "gaia/fish/generic",
+		"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+		"stoneLarge": "gaia/rock/savanna_large",
+		"stoneSmall": "gaia/rock/savanna_small",
+		"metalLarge": "gaia/ore/india_01",
+		"metalSmall": "gaia/ore/india_02"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_savanna_field_tall.xml",
+		"grassShort": "actor|props/flora/grass_savanna.xml",
+		"reeds": "actor|props/flora/papyrus.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_savanna_med.xml",
+		"rockMedium": "actor|geology/stone_savanna_med.xml",
+		"bushMedium": "gaia/tree/bush_tropic",
+		"bushSmall": "actor|props/flora/bush_dry_a.xml",
+		"tree": "gaia/tree/date_palm_dead"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 500,
+			"max": 1000,
+			"forestProbability": 0.1
+		}
+	}
+}

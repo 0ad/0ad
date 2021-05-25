@@ -4,43 +4,48 @@
 		"Description": "Lush grasslands carpet the land, in places giving way to magnificent and diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for supremacy but this root-war is a neverending struggle. Numerous apple trees dot the land, deer and sheep gorge themselves on this years fallen fruit."
 	},
 	"Environment": {
+		"SunColor": { "r": 1.032, "g": 0.99, "b": 0.866 },
+		"SunElevation": 0.846,
+		"SunRotation": -0.488,
+		"AmbientColor": { "r": 0.364706, "g": 0.376471, "b": 0.419608 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.114, "g": 0.192, "b": 0.463 },
-				"Tint": { "r": 0.255, "g": 0.361, "b": 0.651 },
-				"Murkiness": 0.83,
-				"Waviness": 5.5
+				"Color": { "r": 0.419608, "g": 0.364706, "b": 0.313726 },
+				"Tint": { "r": 0.501961, "g": 0.501961, "b": 0.247059 },
+				"Murkiness": 0.97,
+				"Waviness": 5
 			}
 		},
 		"Fog": {
-			"FogThickness": 0.25,
-			"FogFactor": 0.004
+			"FogThickness": 0.0,
+			"FogFactor": 0.0024,
+			"FogColor": { "r": 0.894118, "g": 0.894118, "b": 0.894118 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 1.24,
-			"Contrast": 1.12,
-			"Bloom": 0.14
+			"Saturation": 0.8,
+			"Contrast": 1.1,
+			"Bloom": 0.16
 		}
 	},
 	"Terrains": {
 		"cliff": [
-			"temp_cliff_a",
-			"temp_cliff_b"
+			"temperate_cliff_01",
+			"temperate_cliff_02"
 		],
 		"hill": [
-			"temp_dirt_gravel",
-			"temp_dirt_gravel_b"
+			"temperate_rocks_dirt_01",
+			"temperate_grass_dirt_03"
 		],
 		"dirt": [
-			"temp_dirt_gravel",
-			"temp_dirt_gravel_b"
+			"temperate_mud_01",
+			"temperate_grass_mud_01"
 		],
-		"road": "temp_road",
-		"roadWild": "temp_road_overgrown",
-		"shoreBlend": "temp_mud_plants",
-		"shore": "sand_grass_25",
-		"water": "medit_sand_wet"
+		"road": "temperate_paving_03",
+		"roadWild": "temperate_paving_03",
+		"shoreBlend": "temperate_grass_dirt_01",
+		"shore": "temperate_grass_mud_01",
+		"water": "temperate_mud_01"
 	},
 	"Gaia": {
 		"fruitBush": "gaia/fruit/berry_01",
@@ -48,21 +53,28 @@
 		"fish": "gaia/fish/generic",
 		"mainHuntableAnimal": "gaia/fauna_deer",
 		"secondaryHuntableAnimal": "gaia/fauna_sheep",
-		"stoneLarge": "gaia/rock/temperate_large",
-		"stoneSmall": "gaia/rock/temperate_small",
-		"metalLarge": "gaia/ore/temperate_large",
-		"metalSmall": "gaia/ore/temperate_small",
+		"stoneLarge": "gaia/rock/temperate_large_02",
+		"stoneSmall": "gaia/rock/temperate_cut",
+		"metalLarge": "gaia/ore/temperate_01",
+		"metalSmall": "gaia/ore/temperate_02",
 		"tree3": "gaia/fruit/apple"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_large_tall.xml",
 		"grassShort": "actor|props/flora/grass_soft_large.xml",
-		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+		"reeds": "actor|props/flora/cattails.xml",
 		"lillies": "actor|props/flora/water_lillies.xml",
-		"rockLarge": "actor|geology/stone_granite_large.xml",
-		"rockMedium": "actor|geology/stone_granite_med.xml",
-		"bushMedium": "actor|props/flora/bush_medit_me.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_small.xml",
+		"bushMedium": "gaia/tree/bush_temperate",
 		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
-		"tree": "actor|flora/trees/oak.xml"
+		"tree": "actor|flora/trees/elm_dead.xml"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 1000,
+			"max": 3000,
+			"forestProbability": 0.7
+		}
 	}
 }

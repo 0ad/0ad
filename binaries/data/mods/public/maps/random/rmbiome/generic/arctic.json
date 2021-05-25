@@ -1,0 +1,102 @@
+{
+	"Description": {
+		"Title": "Arctic",
+		"Description": "A region in the high snowy mountains. Biting winds sweep through the abundant conifer forests, making even the more resilient deer and mountain goats shiver."
+	},
+	"Environment": {
+		"SkySet": "stormy",
+		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 1.06284 },
+		"SunElevation": 0.502494,
+		"SunRotation": -0.626047,
+		"AmbientColor": { "r": 0.294118, "g": 0.392157, "b": 0.494118 },
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.0784314, "g": 0.247059, "b": 0.419608 },
+				"Tint": { "r": 0.471, "g": 1, "b": 0.501961 },
+				"Murkiness": 0.88,
+				"Waviness": 2
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.0,
+			"FogFactor": 0.005,
+			"FogColor": { "r": 0.784314, "g": 0.886275, "b": 0.976471 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Brightness": -0.015625,
+			"Saturation": 0.96,
+			"Contrast": 0.98,
+			"Bloom": 0.16
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"alpine_snow_01",
+			"alpine_snow_02"
+		],
+		"forestFloor1": "alpine_forestfloor_02",
+		"forestFloor2": "alpine_forestfloor_02",
+		"cliff": [
+			"alpine_rock_01",
+			"alpine_rock_02"
+		],
+		"tier1Terrain": [
+			"alpine_snow_01"
+		],
+		"tier2Terrain": [
+			"alpine_snow_02"
+		],
+		"tier3Terrain": [
+			"polar_snow_b"
+		],
+		"tier4Terrain": "alpine_snow_02",
+		"hill": [
+			"alpine_rock_01_snow",
+			"alpine_rock_02_snow"
+		],
+		"dirt": [
+			"alpine_snow_01",
+			"alpine_snow_02"
+		],
+		"road": "alpine_paving_stones_01",
+		"roadWild": "alpine_paving_stones_01",
+		"shoreBlend": "alpine_rock_01_snow",
+		"shore": "alpine_rocks_dirt_01",
+		"water": "alpine_rocks_dirt_01"
+	},
+	"Gaia": {
+		"tree1": "gaia/tree/fir_winter",
+		"tree2": "gaia/tree/pine_w",
+		"tree3": "gaia/tree/pine_w",
+		"tree4": "gaia/tree/fir_winter",
+		"tree5": "gaia/tree/fir_winter",
+		"fruitBush": "gaia/fruit/berry_02",
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"fish": "gaia/fish/tuna",
+		"secondaryHuntableAnimal": "gaia/fauna_goat",
+		"stoneLarge": "gaia/rock/temperate_large_03",
+		"stoneSmall": "gaia/rock/temperate_large_03",
+		"metalLarge": "gaia/ore/temperate_02",
+		"metalSmall": "gaia/ore/temperate_01"
+	},
+	"Decoratives": {
+		"grass": "gaia/tree/bush_temperate_winter",
+		"grassShort": "gaia/tree/bush_temperate_winter",
+		"reeds": "actor|props/flora/reeds_pond_dry.xml",
+		"lillies": "",
+		"rockLarge": "actor|geology/stone_granite_large.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "gaia/tree/bush_temperate_winter",
+		"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+		"tree": "actor|flora/trees/fir_tree_winter.xml"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 500,
+			"max": 2000,
+			"forestProbability": 0.6
+		}
+	}
+}
