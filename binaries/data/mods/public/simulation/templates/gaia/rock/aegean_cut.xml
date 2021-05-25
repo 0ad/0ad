@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_rock">
+  <Footprint>
+    <Circle radius="5.0"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Stone Quarry</SpecificName>
+    <Icon>gaia/geology_stone.png</Icon>
+  </Identity>
+  <Position>
+    <Altitude>2.0</Altitude>
+    <Anchor>upright</Anchor>
+  </Position>
+  <ResourceSupply>
+    <Max>2000</Max>
+    <MaxGatherers>4</MaxGatherers>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>geology/stone_aegean_quarried.xml</Actor>
+  </VisualActor>
+</Entity>
