@@ -91,90 +91,43 @@ public:
 		ScriptRequest rq(script);
 		JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 
-		CStr jsonString = "{\
-				\"name\": \"0ad\",\
-				\"version\" : \"0.0.25\",\
-				\"label\" : \"0 A.D. Empires Ascendant\",\
-				\"url\" : \"https://play0ad.com\",\
-				\"description\" : \"A free, open-source, historical RTS game.\",\
-				\"dependencies\" : []\
-				}\
-			";
-		JS::RootedValue json(rq.cx);
-		TS_ASSERT(Script::ParseJSON(rq, jsonString, &json));
-		JS_SetProperty(rq.cx, obj, "public", json);
-
-		JS::RootedValue jsonW(rq.cx);
-		CStr jsonStringW = "{\
-				\"name\": \"wrong\",\
-				\"version\" : \"0.0.25\",\
-				\"label\" : \"wrong mod\",\
-				\"url\" : \"\",\
-				\"description\" : \"fail\",\
-				\"dependencies\" : [\"0ad=0.0.24\"]\
-				}\
-			";
-		TS_ASSERT(Script::ParseJSON(rq, jsonStringW, &jsonW));
-		JS_SetProperty(rq.cx, obj, "wrong", jsonW);
-
-		JS::RootedValue jsonG(rq.cx);
-		CStr jsonStringG = "{\
-				\"name\": \"good\",\
-				\"version\" : \"0.0.25\",\
-				\"label\" : \"good mod\",\
-				\"url\" : \"\",\
-				\"description\" : \"ok\",\
-				\"dependencies\" : [\"0ad=0.0.25\"]\
-				}\
-			";
-		TS_ASSERT(Script::ParseJSON(rq, jsonStringG, &jsonG));
-		JS_SetProperty(rq.cx, obj, "good", jsonG);
-
-		JS::RootedValue jsonG2(rq.cx);
-		CStr jsonStringG2 = "{\
-				\"name\": \"good\",\
-				\"version\" : \"0.0.25\",\
-				\"label\" : \"good mod\",\
-				\"url\" : \"\",\
-				\"description\" : \"ok\",\
-				\"dependencies\" : [\"0ad>=0.0.24\"]\
-				}\
-			";
-		TS_ASSERT(Script::ParseJSON(rq, jsonStringG2, &jsonG2));
-		JS_SetProperty(rq.cx, obj, "good2", jsonG2);
-
-		JS::RootedValue availableMods(rq.cx, JS::ObjectValue(*obj));
+		m_Mods.m_AvailableMods = {
+			Mod::ModData{ "public", "0ad", "0.0.25", {}, "" },
+			Mod::ModData{ "wrong", "wrong", "0.0.1", { "0ad=0.0.24" }, "" },
+			Mod::ModData{ "good", "good", "0.0.2", { "0ad=0.0.25" }, "" },
+			Mod::ModData{ "good2", "good2", "0.0.4", { "0ad>=0.0.24" }, "" },
+		};
 
 		std::vector<CStr> mods;
 
 		mods.clear();
 		mods.push_back("public");
-		TS_ASSERT(m_Mods.CheckForIncompatibleMods(script, mods, availableMods).empty());
+		TS_ASSERT(m_Mods.CheckForIncompatibleMods(mods).empty());
 
 		mods.clear();
 		mods.push_back("mod");
 		mods.push_back("public");
-		TS_ASSERT(m_Mods.CheckForIncompatibleMods(script, mods, availableMods).empty());
+		TS_ASSERT(m_Mods.CheckForIncompatibleMods(mods).empty());
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("good");
-		TS_ASSERT(m_Mods.CheckForIncompatibleMods(script, mods, availableMods).empty());
+		TS_ASSERT(m_Mods.CheckForIncompatibleMods(mods).empty());
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("good2");
-		TS_ASSERT(m_Mods.CheckForIncompatibleMods(script, mods, availableMods).empty());
+		TS_ASSERT(m_Mods.CheckForIncompatibleMods(mods).empty());
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("wrong");
-		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(script, mods, availableMods).empty());
+		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(mods).empty());
 
 		mods.clear();
 		mods.push_back("public");
 		mods.push_back("does_not_exist");
-		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(script, mods, availableMods).empty());
+		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(mods).empty());
 
 	}
 };

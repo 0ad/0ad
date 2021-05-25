@@ -32,7 +32,6 @@ public:
 	// Singleton-like interface.
 	static Mod& Instance();
 
-	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface) const;
 	const std::vector<CStr>& GetEnabledMods() const;
 	const std::vector<CStr>& GetIncompatibleMods() const;
 
@@ -61,26 +60,51 @@ public:
 	 */
 	JS::Value GetEngineInfo(const ScriptInterface& scriptInterface) const;
 
-private:
 	/**
-	 * This reads the version numbers from the launched mods.
-	 * It caches the result, since the reading of zip files is slow and
-	 * JS pages can request the version numbers too often easily.
-	 * Make sure this is called after each MountMods call.
+	 * Gets a dictionary of available mods and their complete, parsed mod.json data.
 	 */
-	void CacheEnabledModVersions(const ScriptInterface& scriptInterface);
+	JS::Value GetAvailableMods(const ScriptRequest& rq) const;
+
+	/**
+	 * Fetches available mods and stores some metadata about them.
+	 * This may open the zipped mod archives, depending on the situation,
+	 * and/or try to write files to the user mod folder,
+	 * which can be quite slow, so should be run rarely.
+	 * TODO: if this did not need the scriptInterface to parse JSON,
+	 * we could run it in different contexts and possibly cleaner.
+	 */
+	void UpdateAvailableMods(const ScriptInterface& scriptInterface);
+
+	/**
+	 * Parsed mod.json data for C++ usage.
+	 */
+	struct ModData
+	{
+		// 'Folder name' of the mod, e.g. 'public' for the main 0 A.D. mod.
+		CStr m_Pathname;
+		// "name" property in the mod.json
+		CStr m_Name;
+
+		CStr m_Version;
+		std::vector<CStr> m_Dependencies;
+
+		// For convenience when exporting to JS, keep a record of the full file.
+		CStr m_Text;
+	};
+
+private:
 
 	/**
 	 * Checks a list of @a mods and returns the incompatible mods, if any.
 	 */
-	std::vector<CStr> CheckForIncompatibleMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const JS::RootedValue& availableMods) const;
+	std::vector<CStr> CheckForIncompatibleMods(const std::vector<CStr>& mods) const;
 	bool CompareVersionStrings(const CStr& required, const CStr& op, const CStr& version) const;
 
 	std::vector<CStr> m_EnabledMods;
 	// Of the currently loaded mods, these are the incompatible with the engine and cannot be loaded.
 	std::vector<CStr> m_IncompatibleMods;
 
-	std::vector<std::vector<CStr>> m_LoadedModVersions;
+	std::vector<ModData> m_AvailableMods;
 };
 
 #endif // INCLUDED_MOD
