@@ -4,8 +4,8 @@
     <texture>art/textures/particles/flame.png</texture>
     <blend mode="add"/>
 
-    <constant name="emissionrate" value="30.0"/>
-    <uniform name="lifetime" min="0.8" max="1.25"/>
+    <constant name="emissionrate" value="50.0"/>
+    <uniform name="lifetime" min="0.25" max="0.35"/>
 
     <uniform name="angle" min="-0.5" max="0.5"/>
 
@@ -14,7 +14,7 @@
     <uniform name="velocity.z" min="-0.3" max="0.3"/>
     <uniform name="velocity.angle" min="-0.5" max="0.5"/>
 
-    <uniform name="size" min="1.0" max="2.0"/>
+    <uniform name="size" min="0.75" max="1.0"/>
 
     <uniform name="color.r" min="0.8" max="1.0"/>
     <copy name="color.g" from="color.r"/>
