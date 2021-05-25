@@ -110,7 +110,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 			constraint,
 			1);
 
-		if (!areasBluff.length)
+		if (!areasBluff.length || !areasBluff[0].getPoints().length)
 			continue;
 
 		// Get a random starting position for the baseline and the endline
