@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="sword rack">
+      <mesh>props/sword_rack.dae</mesh>
+      <textures>
+	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
+	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+	    <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="barrel of swords">
+      <mesh>props/wrld_barrel_a_empty.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/sword_heap_03.xml" attachpoint="sword_heap_01" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="props/celt_prop_1.png" name="baseTex"/>
+        <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+        <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="spears">
+      <mesh>props/hele_blacksmith_spears_propsa.dae</mesh>
+      <textures>
+		<texture file="props/hele_props_a.dds" name="baseTex"/>
+          <texture file="props/hele_props_a_norm.png" name="normTex"/>
+          <texture file="props/hele_props_a_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="swords">
+      <mesh>props/hele_blacksmith_swords_propsa.dae</mesh>
+      <textures>
+		<texture file="props/hele_props_a.dds" name="baseTex"/>
+          <texture file="props/hele_props_a_norm.png" name="normTex"/>
+          <texture file="props/hele_props_a_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="bucket">
+      <mesh>props/hele_blacksmith_bucket_propsa.dae</mesh>
+      <textures>
+		<texture file="props/hele_props_a.dds" name="baseTex"/>
+        <texture file="props/hele_props_a_norm.png" name="normTex"/>
+        <texture file="props/hele_props_a_spec.png" name="specTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
