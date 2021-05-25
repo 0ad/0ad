@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Footprint replace="">
+    <Square width="6.0" depth="6.0"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Cut Stone</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="4.0" depth="4.0"/>
+  </Obstruction>
+  <Treasure>
+    <Resources>
+      <stone>300</stone>
+    </Resources>
+  </Treasure>
+  <VisualActor>
+    <Actor>props/special/eyecandy/brick_pile_06.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Footprint>
+    <Square width="3.5" depth="3.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Iron Weapons</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="2.75" depth="2.75"/>
+  </Obstruction>
+  <Selectable replace="">
+    <Overlay>
+      <Texture>
+        <MainTexture>128x128/ellipse.png</MainTexture>
+        <MainTextureMask>128x128/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Treasure>
+    <Resources>
+      <metal>100</metal>
+    </Resources>
+  </Treasure>
+  <VisualActor>
+    <Actor>props/special/eyecandy/treasure_weapons.xml</Actor>
+  </VisualActor>
+</Entity>

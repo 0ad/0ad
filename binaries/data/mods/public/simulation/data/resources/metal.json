@@ -4,7 +4,8 @@
 	"description": "Mine from metal mines or quarries.",
 	"order": 4,
 	"subtypes": {
-		"ore": "Ore"
+		"ore": "Ore",
+		"ruins": "Ruins"
 	},
 	"properties": ["barterable", "tradable", "tributable"],
 	"truePrice": 100,
