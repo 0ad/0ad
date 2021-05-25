@@ -342,37 +342,6 @@ static void FreeDirectories()
 	wutil_Free(personalPath);
 }
 
-
-//-----------------------------------------------------------------------------
-// user32 fix
-
-// HACK: make sure a reference to user32 is held, even if someone
-// decides to delay-load it. this fixes bug #66, which was the
-// Win32 mouse cursor (set via user32!SetCursor) appearing as a
-// black 32x32(?) rectangle. the underlying cause was as follows:
-// powrprof.dll was the first client of user32, causing it to be
-// loaded. after we were finished with powrprof, we freed it, in turn
-// causing user32 to unload. later code would then reload user32,
-// which apparently terminally confused the cursor implementation.
-//
-// since we hold a reference here, user32 will never unload.
-// of course, the benefits of delay-loading are lost for this DLL,
-// but that is unavoidable. it is safer to force loading it, rather
-// than documenting the problem and asking it not be delay-loaded.
-static HMODULE hUser32Dll;
-
-static void ForciblyLoadUser32Dll()
-{
-	hUser32Dll = LoadLibraryW(L"user32.dll");
-}
-
-// avoids Boundschecker warning
-static void FreeUser32Dll()
-{
-	FreeLibrary(hUser32Dll);
-}
-
-
 //-----------------------------------------------------------------------------
 // memory
 
@@ -559,8 +528,6 @@ static Status wutil_Init()
 {
 	InitLocks();
 
-	ForciblyLoadUser32Dll();
-
 	EnableLowFragmentationHeap();
 
 	ReadCommandLine();
@@ -577,8 +544,6 @@ static Status wutil_Init()
 static Status wutil_Shutdown()
 {
 	FreeCommandLine();
-
-	FreeUser32Dll();
 
 	ShutdownLocks();
 
