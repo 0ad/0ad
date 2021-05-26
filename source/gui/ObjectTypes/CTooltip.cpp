@@ -91,22 +91,30 @@ void CTooltip::SetupText()
 	}
 
 
-	// Reposition the tooltip if it's falling off the screen:
-
-	extern int g_xres, g_yres;
-	extern float g_GuiScale;
-	float screenw = g_xres / g_GuiScale;
-	float screenh = g_yres / g_GuiScale;
+	// Reposition the tooltip if it's falling off in the GUI window.
+	const CSize2D windowSize = m_pGUI.GetWindowSize();
 
 	if (size.pixel.top < 0.f)
-		size.pixel.bottom -= size.pixel.top, size.pixel.top = 0.f;
-	else if (size.pixel.bottom > screenh)
-		size.pixel.top -= (size.pixel.bottom-screenh), size.pixel.bottom = screenh;
+	{
+		size.pixel.bottom -= size.pixel.top;
+		size.pixel.top = 0.f;
+	}
+	else if (size.pixel.bottom > windowSize.Height)
+	{
+		size.pixel.top -= size.pixel.bottom - windowSize.Height;
+		size.pixel.bottom = windowSize.Height;
+	}
 
 	if (size.pixel.left < 0.f)
-		size.pixel.right -= size.pixel.left, size.pixel.left = 0.f;
-	else if (size.pixel.right > screenw)
-		size.pixel.left -= (size.pixel.right-screenw), size.pixel.right = screenw;
+	{
+		size.pixel.right -= size.pixel.left;
+		size.pixel.left = 0.f;
+	}
+	else if (size.pixel.right > windowSize.Width)
+	{
+		size.pixel.left -= size.pixel.right - windowSize.Width;
+		size.pixel.right = windowSize.Width;
+	}
 
 	m_Size.Set(size, true);
 }
