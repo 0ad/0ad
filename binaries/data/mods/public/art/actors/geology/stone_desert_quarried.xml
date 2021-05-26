@@ -7,7 +7,6 @@
         <texture file="gaia/stonequarry_desert.png" name="baseTex"/>
         <texture file="gaia/stonequarry_desert_spec.png" name="specTex"/>
         <texture file="gaia/stone_quarried_norm.png" name="normTex"/>
-        <texture file="gaia/stone_quarried_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
@@ -25,5 +24,5 @@
       <mesh>gaia/stone_quarried_4.dae</mesh>
     </variant>
   </group>
-  <material>no_trans_ao_parallax_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
