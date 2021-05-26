@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Identity>
+    <SpecificName>Cut Granite</SpecificName>
+  </Identity>
+  <Treasure>
+    <Resources>
+      <stone>200</stone>
+    </Resources>
+  </Treasure>
+  <VisualActor>
+    <Actor>props/special/eyecandy/stone_pile.xml</Actor>
+  </VisualActor>
+</Entity>

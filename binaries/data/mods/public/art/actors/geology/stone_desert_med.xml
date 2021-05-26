@@ -2,25 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="shape-a">
+    <variant frequency="2" name="shape-a">
       <mesh>gaia/stone_granite_me_a.dae</mesh>
     </variant>
-    <variant frequency="1" name="b">
+    <variant frequency="2" name="b">
       <mesh>gaia/stone_granite_me_b.dae</mesh>
     </variant>
-    <variant frequency="1" name="c">
+    <variant frequency="2" name="c">
       <mesh>gaia/stone_granite_me_c.dae</mesh>
     </variant>
-    <variant frequency="1" name="d">
+    <variant frequency="2" name="d">
       <mesh>gaia/stone_granite_me_d.dae</mesh>
     </variant>
-    <variant frequency="1" name="e">
+    <variant frequency="2" name="e">
       <mesh>gaia/stone_granite_me_e.dae</mesh>
     </variant>
-    <variant frequency="1" name="f">
+    <variant frequency="2" name="f">
       <mesh>gaia/stone_granite_me_f.dae</mesh>
     </variant>
-    <variant frequency="1" name="shape-g">
+    <variant frequency="2" name="shape-g">
       <mesh>gaia/stone_granite_me_g.dae</mesh>
     </variant>
     <variant frequency="1" name="1">
@@ -50,7 +50,10 @@
   </group>
   <group>
     <variant name="stone color a">
-      <textures><texture file="gaia/stone_desert_small_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/stone_desert_small_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <material>default.xml</material>
 </actor>

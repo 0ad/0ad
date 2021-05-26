@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="massive">
+      <mesh>gaia/grass_steppe.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <textures>
+        <texture file="gaia/grass_steppe.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

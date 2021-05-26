@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Metal Mine Round Temperate">
+      <props>
+        <prop actor="particle/sparkle_goldmine.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/metal_round_col_temperate.png" name="baseTex"/>
+        <texture file="gaia/stonemine_round_spec.png" name="specTex"/>
+        <texture file="gaia/stonemine_round_normal.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Round Mesh A">
+      <mesh>gaia/stonemine_round_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Round Mesh B">
+      <mesh>gaia/stonemine_round_b.dae</mesh>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>

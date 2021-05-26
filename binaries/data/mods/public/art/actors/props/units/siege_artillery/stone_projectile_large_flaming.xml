@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="rock">
+      <mesh>props/siege_artillery/projectile_stone_lrg.dae</mesh>
+      <props>
+        <prop actor="particle/smoke_catapult.xml" attachpoint="root"/>
+        <prop actor="particle/flame_catapult.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/stone_temperate_granite.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

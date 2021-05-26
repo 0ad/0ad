@@ -1,61 +1,61 @@
 {
 	"Environment": {
-		"AmbientColor": { "r": 0.447059, "g": 0.509804, "b": 0.54902 }
+		"AmbientColor": { "r": 0.364706, "g": 0.376471, "b": 0.419608 }
 	},
 	"Terrains": {
 		"mainTerrain": [
-			"temp_grass_long_b"
+			"temperate_grass_02"
 		],
-		"forestFloor1": "temp_forestfloor_pine",
-		"forestFloor2": "temp_plants_bog",
-		"tier1Terrain": "temp_grass_d",
-		"tier2Terrain": "temp_grass_c",
-		"tier3Terrain": "temp_grass_clovers_2",
-		"tier4Terrain": "temp_grass_plants",
+		"forestFloor1": "temperate_forestfloor_01",
+		"forestFloor2": "temperate_forestfloor_02",
+		"tier1Terrain": "temperate_grass_dirt_02",
+		"tier2Terrain": "temperate_grass_03",
+		"tier3Terrain": "temperate_grass_04",
+		"tier4Terrain": "temperate_grass_01",
 		"cliff": [
-			"temp_cliff_a",
-			"temp_cliff_b"
+			"temperate_cliff_01",
+			"temperate_cliff_02"
 		],
 		"hill": [
-			"temp_dirt_gravel",
-			"temp_dirt_gravel_b"
+			"temperate_rocks_dirt_01",
+			"temperate_grass_dirt_03"
 		],
 		"dirt": [
-			"temp_dirt_gravel",
-			"temp_dirt_gravel_b"
+			"temperate_mud_01",
+			"temperate_grass_mud_01"
 		],
-		"road": "temp_road",
-		"roadWild": "temp_road_overgrown",
-		"shoreBlend": "temp_mud_plants",
-		"shore": "sand_grass_25",
-		"water": "medit_sand_wet"
+		"road": "temperate_paving_03",
+		"roadWild": "temperate_paving_01",
+		"shoreBlend": "temperate_grass_dirt_01",
+		"shore": "temperate_rocks_dirt_01",
+		"water": "temperate_rocks_dirt_01"
 	},
 	"Gaia": {
 		"tree1": "gaia/tree/oak",
-		"tree2": "gaia/tree/oak_large",
-		"tree3": "gaia/fruit/apple",
-		"tree4": "gaia/tree/pine",
-		"tree5": "gaia/tree/aleppo_pine",
+		"tree2": "gaia/tree/oak_holly",
+		"tree3": "gaia/tree/oak_hungarian",
+		"tree4": "gaia/tree/pine_black",
+		"tree5": "gaia/tree/pine_maritime",
 		"fruitBush": "gaia/fruit/berry_01",
 		"chicken": "gaia/fauna_chicken",
 		"fish": "gaia/fish/generic",
 		"mainHuntableAnimal": "gaia/fauna_deer",
 		"secondaryHuntableAnimal": "gaia/fauna_sheep",
-		"stoneLarge": "gaia/rock/mediterranean_large",
-		"stoneSmall": "gaia/rock/mediterranean_small",
-		"metalLarge": "gaia/ore/mediterranean_large",
-		"metalSmall": "gaia/ore/mediterranean_small"
+		"stoneLarge": "gaia/rock/temperate_large",
+		"stoneSmall": "gaia/rock/temperate_cut",
+		"metalLarge": "gaia/ore/temperate_01",
+		"metalSmall": "gaia/ore/temperate_02"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_large_tall.xml",
 		"grassShort": "actor|props/flora/grass_soft_large.xml",
-		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
-		"lillies": "actor|props/flora/pond_lillies_large.xml",
-		"rockLarge": "actor|geology/stone_granite_large.xml",
-		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"reeds": "actor|props/flora/cattails.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_small.xml",
 		"bushMedium": "actor|props/flora/bush_medit_me.xml",
 		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
-		"tree": "actor|flora/trees/oak.xml"
+		"tree": "actor|flora/trees/elm_dead.xml"
 	},
 	"ResourceCounts": {
 		"trees": {

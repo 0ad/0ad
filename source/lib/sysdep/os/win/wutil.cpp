@@ -162,92 +162,6 @@ Status StatusFromWin()
 	}
 }
 
-
-//-----------------------------------------------------------------------------
-// command line
-
-// copy of GetCommandLine string. will be tokenized and then referenced by
-// the argv pointers.
-static wchar_t* argvContents;
-
-int s_argc = 0;
-wchar_t** s_argv = 0;
-
-static void ReadCommandLine()
-{
-	const wchar_t* commandLine = GetCommandLineW();
-	// (this changes as quotation marks are removed)
-	size_t numChars = wcslen(commandLine);
-	argvContents = (wchar_t*)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, (numChars+1)*sizeof(wchar_t));
-	wcscpy_s(argvContents, numChars+1, commandLine);
-
-	// first pass: tokenize string and count number of arguments
-	bool ignoreSpace = false;
-	for(size_t i = 0; i < numChars; i++)
-	{
-		switch(argvContents[i])
-		{
-		case '"':
-			ignoreSpace = !ignoreSpace;
-			// strip the " character
-			memmove(argvContents+i, argvContents+i+1, (numChars-i)*sizeof(wchar_t));
-			numChars--;
-			i--;
-			break;
-
-		case ' ':
-			if(!ignoreSpace)
-			{
-				argvContents[i] = '\0';
-				s_argc++;
-			}
-			break;
-		}
-	}
-	s_argc++;
-
-	// have argv entries point into the tokenized string
-	s_argv = (wchar_t**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, s_argc*sizeof(wchar_t*));
-	wchar_t* nextArg = argvContents;
-	for(int i = 0; i < s_argc; i++)
-	{
-		s_argv[i] = nextArg;
-		nextArg += wcslen(nextArg)+1;
-	}
-}
-
-
-int wutil_argc()
-{
-	return s_argc;
-}
-
-wchar_t** wutil_argv()
-{
-	ENSURE(s_argv);
-	return s_argv;
-}
-
-
-static void FreeCommandLine()
-{
-	HeapFree(GetProcessHeap(), 0, s_argv);
-	HeapFree(GetProcessHeap(), 0, argvContents);
-}
-
-
-bool wutil_HasCommandLineArgument(const wchar_t* arg)
-{
-	for(int i = 0; i < s_argc; i++)
-	{
-		if(!wcscmp(s_argv[i], arg))
-			return true;
-	}
-
-	return false;
-}
-
-
 //-----------------------------------------------------------------------------
 // directories
 
@@ -341,37 +255,6 @@ static void FreeDirectories()
 	personalPath->~OsPath();
 	wutil_Free(personalPath);
 }
-
-
-//-----------------------------------------------------------------------------
-// user32 fix
-
-// HACK: make sure a reference to user32 is held, even if someone
-// decides to delay-load it. this fixes bug #66, which was the
-// Win32 mouse cursor (set via user32!SetCursor) appearing as a
-// black 32x32(?) rectangle. the underlying cause was as follows:
-// powrprof.dll was the first client of user32, causing it to be
-// loaded. after we were finished with powrprof, we freed it, in turn
-// causing user32 to unload. later code would then reload user32,
-// which apparently terminally confused the cursor implementation.
-//
-// since we hold a reference here, user32 will never unload.
-// of course, the benefits of delay-loading are lost for this DLL,
-// but that is unavoidable. it is safer to force loading it, rather
-// than documenting the problem and asking it not be delay-loaded.
-static HMODULE hUser32Dll;
-
-static void ForciblyLoadUser32Dll()
-{
-	hUser32Dll = LoadLibraryW(L"user32.dll");
-}
-
-// avoids Boundschecker warning
-static void FreeUser32Dll()
-{
-	FreeLibrary(hUser32Dll);
-}
-
 
 //-----------------------------------------------------------------------------
 // memory
@@ -559,11 +442,7 @@ static Status wutil_Init()
 {
 	InitLocks();
 
-	ForciblyLoadUser32Dll();
-
 	EnableLowFragmentationHeap();
-
-	ReadCommandLine();
 
 	GetDirectories();
 
@@ -576,10 +455,6 @@ static Status wutil_Init()
 
 static Status wutil_Shutdown()
 {
-	FreeCommandLine();
-
-	FreeUser32Dll();
-
 	ShutdownLocks();
 
 	FreeDirectories();

@@ -149,14 +149,14 @@ var mercenaryCampGuards = {
 		{ "Template": "units/mace/infantry_archer_a", "Count": 4 },
 		{ "Template": "units/mace/champion_infantry_spearman", "Count": 3 }
 	],
-	"generic/snowy": [
+	"generic/arctic": [
 		{ "Template": "structures/ptol/mercenary_camp" },
 		{ "Template": "units/brit/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/brit/cavalry_swordsman_e", "Count": 3 },
 		{ "Template": "units/brit/infantry_slinger_a", "Count": 4 },
 		{ "Template": "units/brit/champion_infantry", "Count": 3 }
 	],
-	"generic/desert": [
+	"generic/sahara": [
 		{ "Template": "structures/ptol/mercenary_camp" },
 		{ "Template": "units/pers/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/pers/cavalry_axeman_e", "Count": 3 },
@@ -170,7 +170,7 @@ var mercenaryCampGuards = {
 		{ "Template": "units/rome/infantry_javelineer_a", "Count": 4 },
 		{ "Template": "units/rome/champion_infantry_swordsman", "Count": 3 }
 	],
-	"generic/mediterranean": [
+	"generic/aegean": [
 		{ "Template": "structures/merc_camp_egyptian" },
 		{ "Template": "units/iber/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/iber/cavalry_spearman_e", "Count": 3 },
@@ -184,7 +184,7 @@ var mercenaryCampGuards = {
 		{ "Template": "units/sele/infantry_spearman_a", "Count": 4 },
 		{ "Template": "units/sele/champion_infantry_swordsman", "Count": 3 }
 	],
-	"generic/tropic": [
+	"generic/india": [
 		{ "Template": "structures/merc_camp_egyptian" },
 		{ "Template": "units/ptol/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/ptol/cavalry_archer_e", "Count": 3 },
@@ -268,12 +268,12 @@ function placeGrove(point,
 
 var farmEntities = {
 	"generic/temperate": { "building": "structures/mace/farmstead", "animal": "gaia/fauna_pig" },
-	"generic/snowy": { "building": "structures/brit/farmstead", "animal": "gaia/fauna_sheep" },
-	"generic/desert": { "building": "structures/pers/farmstead", "animal": "gaia/fauna_camel" },
+	"generic/arctic": { "building": "structures/brit/farmstead", "animal": "gaia/fauna_sheep" },
+	"generic/sahara": { "building": "structures/pers/farmstead", "animal": "gaia/fauna_camel" },
 	"generic/alpine": { "building": "structures/rome/farmstead", "animal": "gaia/fauna_sheep" },
-	"generic/mediterranean": { "building": "structures/iber/farmstead", "animal": "gaia/fauna_pig" },
+	"generic/aegean": { "building": "structures/iber/farmstead", "animal": "gaia/fauna_pig" },
 	"generic/savanna": { "building": "structures/sele/farmstead", "animal": "gaia/fauna_horse" },
-	"generic/tropic": { "building": "structures/ptol/farmstead", "animal": "gaia/fauna_camel" },
+	"generic/india": { "building": "structures/ptol/farmstead", "animal": "gaia/fauna_camel" },
 	"generic/autumn": { "building": "structures/gaul/farmstead", "animal": "gaia/fauna_horse" }
 };
 

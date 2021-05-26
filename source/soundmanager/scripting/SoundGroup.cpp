@@ -22,6 +22,7 @@
 #include "graphics/GameView.h"
 #include "lib/rand.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -102,6 +103,17 @@ void CSoundGroup::SetDefaultValues()
 	m_Decay = 3.f;
 	m_Seed = 0;
 	m_IntensityThreshold = 3.f;
+
+	m_MinDist = 1.f;
+	m_MaxDist = 350.f;
+	// This is more than the default camera FOV: for now, our soundscape is not realistic anyways.
+	m_MaxStereoAngle = static_cast<float>(M_PI / 6);
+	if (CConfigDB::IsInitialised())
+	{
+		CFG_GET_VAL("sound.mindistance", m_MinDist);
+		CFG_GET_VAL("sound.maxdistance", m_MaxDist);
+		CFG_GET_VAL("sound.maxstereoangle", m_MaxStereoAngle);
+	}
 }
 
 CSoundGroup::CSoundGroup()
@@ -133,7 +145,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	const int screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
 	const float xBufferSize = screenWidth * 0.1f;
 	const float yBufferSize = 15.f;
-	const float radianCap = static_cast<float>(M_PI / 3);
+	const float radianCap = m_MaxStereoAngle;
 
 	float x, y;
 	g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, x, y);
@@ -218,7 +230,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& positio
 			LOGWARNING("OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName().string8());
 
 		hSound->SetLocation(CVector3D(itemDist * sin(offset), 0, -itemDist * cos(offset)));
-		hSound->SetRollOff(itemRollOff);
+		hSound->SetRollOff(itemRollOff, m_MinDist, m_MaxDist);
 	}
 
 	CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), source);

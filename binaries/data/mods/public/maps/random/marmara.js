@@ -20,7 +20,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
-setBiome("generic/mediterranean");
+setBiome("generic/aegean");
 
 g_Terrains.mainTerrain = ["grass_mediterranean_dry_1024test", "grass_field_dry","new_savanna_grass_b"];
 g_Terrains.forestFloor1 = "steppe_grass_dirt_66";

@@ -399,7 +399,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 var planetm = 1;
-if (currentBiome() == "generic/tropic")
+if (currentBiome() == "generic/india")
 	planetm = 8;
 
 g_Map.log("Creating small grass tufts");

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,6 +99,11 @@ private:
 	float m_Gain;
 	float m_GainUpper;
 	float m_GainLower;
+	// Distance attenuation settings
+	float m_MinDist;
+	float m_MaxDist;
+	// How much stereo separation to apply to sounds based on L-R position relative to the camera.
+	float m_MaxStereoAngle;
 	// The allowable intensity before a sound switch
 	float m_IntensityThreshold;
 	float m_Pitch;

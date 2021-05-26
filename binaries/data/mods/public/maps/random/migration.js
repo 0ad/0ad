@@ -331,7 +331,7 @@ createStragglerTrees(
 
 Engine.SetProgress(86);
 
-var planetm = currentBiome() == "generic/tropic" ? 8 : 1;
+var planetm = currentBiome() == "generic/india" ? 8 : 1;
 
 g_Map.log("Creating small grass tufts");
 group = new SimpleGroup(

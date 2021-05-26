@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Square width="10" depth="10"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Isis Cult Image</SpecificName>
+    <Icon>gaia/geology_metal.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="7.5" depth="7.5"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Max>800</Max>
+    <Type>metal.ruins</Type>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>structures/ptolemies/statue_isis.xml</Actor>
+  </VisualActor>
+</Entity>

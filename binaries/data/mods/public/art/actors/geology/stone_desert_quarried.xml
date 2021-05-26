@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="a">
+    <variant frequency="1" name="Stone Quarried - Desert">
       <textures>
         <texture file="gaia/stonequarry_desert.png" name="baseTex"/>
         <texture file="gaia/stonequarry_desert_spec.png" name="specTex"/>
@@ -14,6 +14,15 @@
   <group>
     <variant frequency="1" name="1">
       <mesh>gaia/stone_quarried_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/stone_quarried_2.dae</mesh>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/stone_quarried_3.dae</mesh>
+    </variant>
+    <variant frequency="1" name="4">
+      <mesh>gaia/stone_quarried_4.dae</mesh>
     </variant>
   </group>
   <material>no_trans_ao_parallax_spec.xml</material>

@@ -279,7 +279,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)],
 	clFood);
 
-if (currentBiome() == "generic/desert")
+if (currentBiome() == "generic/sahara")
 {
 	g_Map.log("Creating obelisks");
 	let group = new SimpleGroup(
@@ -376,7 +376,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 g_Map.log("Creating small grass tufts");
-let planetm = currentBiome() == "generic/tropic" ? 8 : 1;
+let planetm = currentBiome() == "generic/india" ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
 );

@@ -991,7 +991,7 @@ function createUnknownObjects()
 			[avoidClasses(clWater, 1, clForest, 1, clHill, 2, clPlayer, 0, clMetal, 6, clRock, 6, clBaseResource, 6), stayClasses(clLand, 4)],
 			num);
 
-	let planetm = currentBiome() == "generic/tropic" ? 8 : 1;
+	let planetm = currentBiome() == "generic/india" ? 8 : 1;
 
 	g_Map.log("Creating small grass tufts");
 	createObjectGroupsDeprecated(
