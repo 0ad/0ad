@@ -147,8 +147,8 @@ function initGUIButtons(data)
 	let hasPreviousPage = !data || data.cancelbutton;
 	Engine.GetGUIObjectByName("cancelButton").hidden = !hasPreviousPage;
 	Engine.GetGUIObjectByName("quitButton").hidden = hasPreviousPage;
-	Engine.GetGUIObjectByName("startModsButton").hidden = !hasPreviousPage;
-	Engine.GetGUIObjectByName("startButton").hidden = hasPreviousPage;
+	// Turn 'save' off, it will be enabled on any change.
+	Engine.GetGUIObjectByName("saveConfigurationButton").enabled = false;
 	Engine.GetGUIObjectByName("toggleModButton").caption = translateWithContext("mod activation", "Enable");
 }
 
@@ -157,11 +157,13 @@ function saveMods()
 	sortEnabledMods();
 	Engine.ConfigDB_CreateValue("user", "mod.enabledmods", ["mod"].concat(g_ModsEnabled).join(" "));
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+
+	Engine.GetGUIObjectByName("saveConfigurationButton").enabled = false;
 }
 
 function startMods()
 {
-	sortEnabledMods();
+	saveMods();
 	if (!Engine.SetModsAndRestartEngine(["mod"].concat(g_ModsEnabled)))
 		Engine.GetGUIObjectByName("message").caption = coloredText(translate('Dependencies not met'), g_ColorDependenciesNotMet);
 }
@@ -235,6 +237,8 @@ function enableMod()
 	reloadDisabledMods();
 	recomputeCompatibility();
 
+	Engine.GetGUIObjectByName("saveConfigurationButton").enabled = true;
+
 	if (pos >= g_ModsDisabledFiltered.length)
 		--pos;
 
@@ -274,6 +278,8 @@ function disableMod()
 			g_ModsDisabled.push(g_ModsEnabled.splice(i, 1)[0]);
 			--i;
 		}
+
+	Engine.GetGUIObjectByName("saveConfigurationButton").enabled = true;
 
 	recomputeCompatibility(true);
 	displayModLists();
@@ -457,16 +463,9 @@ function selectedMod(listObjectName)
 			'[color="' + g_ColorNoModSelected + '"]' + translate("No mod has been selected.") + '[/color]';
 
 	if (!g_ModsEnabled.length)
-	{
-		if (!Engine.GetGUIObjectByName("startButton").hidden)
-			Engine.GetGUIObjectByName("message").caption = coloredText(translate('Enable at least 0ad mod and save configuration'), g_ColorDependenciesNotMet);
-		else
-			Engine.GetGUIObjectByName("message").caption = coloredText(translate('Enable at least 0ad mod'), g_ColorDependenciesNotMet);
-	}
+		Engine.GetGUIObjectByName("message").caption = coloredText(translate('Enable at least 0ad mod'), g_ColorDependenciesNotMet);
 	if (!Engine.GetGUIObjectByName("startButton").hidden)
 		Engine.GetGUIObjectByName("startButton").enabled = g_ModsEnabled.length > 0;
-	if (!Engine.GetGUIObjectByName("startModsButton").hidden)
-		Engine.GetGUIObjectByName("startModsButton").enabled = g_ModsEnabled.length > 0;
 
 }
 
