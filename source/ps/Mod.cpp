@@ -331,7 +331,7 @@ JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface)
 			continue;
 		}
 
-		loadedMods.emplace_back(std::vector<CStr>{ it->m_Name, it->m_Version });
+		loadedMods.emplace_back(std::vector<CStr>{ it->m_Pathname, it->m_Version });
 	}
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue returnValue(rq.cx);
