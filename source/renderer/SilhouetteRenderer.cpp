@@ -464,7 +464,7 @@ void SilhouetteRenderer::RenderDebugOverlays(const CCamera& UNUSED(camera))
 	m = proj * m;
 
 
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
 
 	CShaderProgramPtr shader = shaderTech->GetShader();

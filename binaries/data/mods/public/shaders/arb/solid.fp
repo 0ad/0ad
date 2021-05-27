@@ -1,3 +1,7 @@
 !!ARBfp1.0
-MOV result.color, fragment.color;
+
+PARAM color = program.local[0];
+
+MOV result.color, color;
+
 END
