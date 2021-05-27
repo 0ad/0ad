@@ -151,14 +151,14 @@ class GameList
 			this.gameList.forEach((game, i) => {
 
 				let displayData = game.displayData;
-				this.list_buddy[i] = displayData.buddy;
-				this.list_private[i] = displayData.private;
-				this.list_gameName[i] = displayData.gameName;
-				this.list_mapName[i] = displayData.mapName;
-				this.list_mapSize[i] = displayData.mapSize;
-				this.list_mapType[i] = displayData.mapType;
-				this.list_maxnbp[i] = displayData.playerCount;
-				this.list_gameRating[i] = game.gameRating;
+				this.list_buddy[i] = displayData.buddy || "";
+				this.list_private[i] = displayData.private || "";
+				this.list_gameName[i] = displayData.gameName || "";
+				this.list_mapName[i] = displayData.mapName || "";
+				this.list_mapSize[i] = displayData.mapSize || "";
+				this.list_mapType[i] = displayData.mapType || "";
+				this.list_maxnbp[i] = displayData.playerCount || "";
+				this.list_gameRating[i] = game.gameRating || "";
 				this.list[i] = "";
 				if (selectedGame && game.stanza.hostJID == selectedGame.stanza.hostJID && game.stanza.name == selectedGame.stanza.name)
 					selectedGameIndex = i;

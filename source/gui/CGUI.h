@@ -29,6 +29,7 @@
 #include "gui/SGUIStyle.h"
 #include "lib/input.h"
 #include "maths/Rect.h"
+#include "maths/Size2D.h"
 #include "maths/Vector2D.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptForward.h"
@@ -177,14 +178,19 @@ public:
 	/**
 	 * Returns the current screen coordinates of the cursor.
 	 */
-	const CVector2D& GetMousePos() const { return m_MousePos; };
+	const CVector2D& GetMousePos() const { return m_MousePos; }
 
 	/**
 	 * Returns the currently pressed mouse buttons.
 	 */
-	const unsigned int& GetMouseButtons() { return m_MouseButtons; };
+	const unsigned int& GetMouseButtons() { return m_MouseButtons; }
 
 	const SGUIScrollBarStyle* GetScrollBarStyle(const CStr& style) const;
+
+	/**
+	 * Returns the current GUI window size.
+	 */
+	CSize2D GetWindowSize() const;
 
 	/**
 	 * The GUI needs to have all object types inputted and

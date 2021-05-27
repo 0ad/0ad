@@ -348,9 +348,7 @@ InReaction CDropDown::ManuallyHandleKeys(const SDL_Event_* ev)
 
 void CDropDown::SetupListRect()
 {
-	extern int g_yres;
-	extern float g_GuiScale;
-	const float yres = g_yres / g_GuiScale;
+	const CSize2D windowSize = m_pGUI.GetWindowSize();
 
 	if (m_ItemsYPositions.empty())
 	{
@@ -362,13 +360,13 @@ void CDropDown::SetupListRect()
 	else if (m_ItemsYPositions.back() > m_DropDownSize)
 	{
 		// Place items below if at least some items can be placed below
-		if (m_CachedActualSize.bottom + m_DropDownBuffer + m_DropDownSize <= yres)
+		if (m_CachedActualSize.bottom + m_DropDownBuffer + m_DropDownSize <= windowSize.Height)
 			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + m_DropDownBuffer,
 			                         m_CachedActualSize.right, m_CachedActualSize.bottom + m_DropDownBuffer + m_DropDownSize);
-		else if ((m_ItemsYPositions.size() > m_MinimumVisibleItems && yres - m_CachedActualSize.bottom - m_DropDownBuffer >= m_ItemsYPositions[m_MinimumVisibleItems]) ||
-		         m_CachedActualSize.top < yres - m_CachedActualSize.bottom)
+		else if ((m_ItemsYPositions.size() > m_MinimumVisibleItems && windowSize.Height - m_CachedActualSize.bottom - m_DropDownBuffer >= m_ItemsYPositions[m_MinimumVisibleItems]) ||
+		         m_CachedActualSize.top < windowSize.Height - m_CachedActualSize.bottom)
 			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + m_DropDownBuffer,
-			                         m_CachedActualSize.right, yres);
+			                         m_CachedActualSize.right, windowSize.Height);
 		// Not enough space below, thus place items above
 		else
 			m_CachedListRect = CRect(m_CachedActualSize.left, std::max(0.f, m_CachedActualSize.top - m_DropDownBuffer - m_DropDownSize),
@@ -379,18 +377,18 @@ void CDropDown::SetupListRect()
 	else
 	{
 		// Enough space below, no scrollbar needed
-		if (m_CachedActualSize.bottom + m_DropDownBuffer + m_ItemsYPositions.back() <= yres)
+		if (m_CachedActualSize.bottom + m_DropDownBuffer + m_ItemsYPositions.back() <= windowSize.Height)
 		{
 			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + m_DropDownBuffer,
 			                         m_CachedActualSize.right, m_CachedActualSize.bottom + m_DropDownBuffer + m_ItemsYPositions.back());
 			m_HideScrollBar = true;
 		}
 		// Enough space below for some items, but not all, so place items below and use a scrollbar
-		else if ((m_ItemsYPositions.size() > m_MinimumVisibleItems && yres - m_CachedActualSize.bottom - m_DropDownBuffer >= m_ItemsYPositions[m_MinimumVisibleItems]) ||
-		         m_CachedActualSize.top < yres - m_CachedActualSize.bottom)
+		else if ((m_ItemsYPositions.size() > m_MinimumVisibleItems && windowSize.Height - m_CachedActualSize.bottom - m_DropDownBuffer >= m_ItemsYPositions[m_MinimumVisibleItems]) ||
+		         m_CachedActualSize.top < windowSize.Height - m_CachedActualSize.bottom)
 		{
 			m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom + m_DropDownBuffer,
-			                         m_CachedActualSize.right, yres);
+			                         m_CachedActualSize.right, windowSize.Height);
 			m_HideScrollBar = false;
 		}
 		// Not enough space below, thus place items above. Hide the scrollbar accordingly

@@ -419,6 +419,11 @@ IGUIObject* CGUI::FindObjectUnderMouse()
 	return pNearest;
 }
 
+CSize2D CGUI::GetWindowSize() const
+{
+	return CSize2D{static_cast<float>(g_xres) / g_GuiScale, static_cast<float>(g_yres) / g_GuiScale};
+}
+
 void CGUI::SetFocusedObject(IGUIObject* pObject)
 {
 	if (pObject == m_FocusedObject)

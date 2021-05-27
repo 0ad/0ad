@@ -25,7 +25,6 @@
 #include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "js/Conversions.h"
 #include "ps/CLogger.h"
-#include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
@@ -208,7 +207,7 @@ void IGUIObject::UpdateCachedSize()
 	if (!m_Absolute && m_pParent && !IsRootObject())
 		m_CachedActualSize = m_Size->GetSize(m_pParent->m_CachedActualSize);
 	else
-		m_CachedActualSize = m_Size->GetSize(CRect(0.f, 0.f, g_xres / g_GuiScale, g_yres / g_GuiScale));
+		m_CachedActualSize = m_Size->GetSize(CRect(m_pGUI.GetWindowSize()));
 
 	// In a few cases, GUI objects have to resize to fill the screen
 	// but maintain a constant aspect ratio.

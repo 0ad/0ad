@@ -103,6 +103,13 @@ class CampaignMenu extends AutoWatcher
 
 	}
 
+	getLevelPreview(levelData)
+	{
+		if (levelData.Preview)
+			return "cropped:" + 400/512 + "," + 300/512 + ":" + levelData.Preview;
+		return this.mapCache.getMapPreview(levelData.MapType, "maps/" + levelData.Map);
+	}
+
 	displayLevelsList()
 	{
 		let list = [];
@@ -150,10 +157,7 @@ class CampaignMenu extends AutoWatcher
 
 		Engine.GetGUIObjectByName("scenarioName").caption = this.getLevelName(level);
 		Engine.GetGUIObjectByName("scenarioDesc").caption = this.getLevelDescription(level);
-		if (level.Preview)
-			Engine.GetGUIObjectByName('levelPreviewBox').sprite = "cropped:" + 400/512 + "," + 300/512 + ":" + level.Preview;
-		else
-			Engine.GetGUIObjectByName('levelPreviewBox').sprite = "cropped:" + 400/512 + "," + 300/512 + ":session/icons/mappreview/nopreview.png";
+		Engine.GetGUIObjectByName('levelPreviewBox').sprite = this.getLevelPreview(level);
 
 		Engine.GetGUIObjectByName("startButton").enabled = meetsRequirements(this.run, level);
 		Engine.GetGUIObjectByName("startButton").hidden = false;
