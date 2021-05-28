@@ -21,13 +21,13 @@
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2018,2020-2021
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Tom Hanax, 2019
-# Zuzana Miadoková <akara.horse@gmail.com>, 2019,2021
+# Zuzana Miadoková, 2019,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
 "PO-Revision-Date: 2021-05-01 14:19+0000\n"
-"Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
+"Last-Translator: Zuzana Miadoková\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,7 +121,7 @@ msgstr "Jazda na boj zblízka"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee.xml:8
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_siege_ram.xml:35
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Boj zblízka"
 
@@ -772,16 +772,16 @@ msgid "Ram"
 msgstr "Taran"
 
 #: simulation/templates/template_unit_siege_ram.xml:35
-msgid "Ram"
-msgstr "Taran"
-
-#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Battering Ram"
 msgstr "Baranidlo"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Nemôže útočiť na polia alebo prírodné jednotky."
+
+#: simulation/templates/template_unit_siege_ram.xml:37
+msgid "Ram"
+msgstr "Taran"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"

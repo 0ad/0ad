@@ -20,12 +20,13 @@
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2014
 # Tiago <tiago.henrique.cco@gmail.com>, 2018
 # William Ferreira Dantas Neto <william.ferreira.dantas.neto@gmail.com>, 2020
+# William Sandres, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-17 10:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-26 00:10+0000\n"
+"Last-Translator: William Sandres\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,32 +37,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "Velocidade de rolagem aumentada para %.1f"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "Velocidade de rolagem diminuída para %.1f"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Velocidade de rotação aumentada para X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Velocidade de rotação reduzida para X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "Velocidade do zoom aumentada para %.1f"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "A velocidade do zoom diminuída para %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -211,7 +212,7 @@ msgstr "Nome de usuário já existe"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "Não foi possível escrever mod.json externo para o mod compactado '%s'. O mod deve ser reinstalado."
 
 #: ps/ModIo.cpp:263
 #, c-format

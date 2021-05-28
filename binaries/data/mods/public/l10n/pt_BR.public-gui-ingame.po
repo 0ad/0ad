@@ -65,14 +65,15 @@
 # victoJ <vfriedrichj@gmail.com>, 2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2020
+# William Sandres, 2021
 # yurids, 2014
 # Yuri Laskowski <yurinikolai00@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 10:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-05-26 01:01+0000\n"
+"Last-Translator: William Sandres\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1405,15 +1406,15 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "População: atual/limite (máx)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Coletores: atuais"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1773,11 +1774,11 @@ msgstr "Você está permitido a usar este depósito"
 
 #: gui/session/unit_actions.js:1726
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Ative a fila automática para estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1746
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Desative a fila automática para estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1811
 msgid "The entity has to be killed before it can be gathered from"

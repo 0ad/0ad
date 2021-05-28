@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
 "PO-Revision-Date: 2021-04-30 14:43+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -104,7 +104,7 @@ msgstr "Caballería de choque"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee.xml:8
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_siege_ram.xml:35
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Cuerpu a cuerpu"
 
@@ -755,16 +755,16 @@ msgid "Ram"
 msgstr "Ariete"
 
 #: simulation/templates/template_unit_siege_ram.xml:35
-msgid "Ram"
-msgstr "Ariete"
-
-#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Battering Ram"
 msgstr "Ariete"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Nun pue atacar eros nin unidaes orgániques."
+
+#: simulation/templates/template_unit_siege_ram.xml:37
+msgid "Ram"
+msgstr "Ariete"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"

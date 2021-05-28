@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
 "PO-Revision-Date: 2021-05-01 07:58+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -111,7 +111,7 @@ msgstr "Lähitaisteluratsuväki"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee.xml:8
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_siege_ram.xml:35
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Lähitaistelu"
 
@@ -762,16 +762,16 @@ msgid "Ram"
 msgstr "Murtaja"
 
 #: simulation/templates/template_unit_siege_ram.xml:35
-msgid "Ram"
-msgstr "Murtaja"
-
-#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Battering Ram"
 msgstr "Muurinmurtaja"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Ei voi hyökätä peltojen tai orgaanisten yksiköiden kimppuun."
+
+#: simulation/templates/template_unit_siege_ram.xml:37
+msgid "Ram"
+msgstr "Murtaja"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"

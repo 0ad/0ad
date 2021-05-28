@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-23 07:36+0000\n"
-"Last-Translator: StarAtt <tea55688@gmail.com>\n"
+"PO-Revision-Date: 2021-05-28 07:18+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,7 +120,7 @@ msgstr "體育館"
 
 #: simulation/templates/structures/athen/gymnasium.xml:23
 msgid "Gymnasion"
-msgstr "體育館（ Gymnasion ）"
+msgstr "Gymnasion"
 
 #: simulation/templates/structures/athen/gymnasium.xml:24
 msgid "Train Champions."
@@ -156,11 +156,11 @@ msgstr "會議室"
 
 #: simulation/templates/structures/athen/prytaneion.xml:23
 msgid "Prytaneion"
-msgstr "市政廳（ Prytaneion ）"
+msgstr "Prytaneion"
 
 #: simulation/templates/structures/athen/prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr "訓練英雄及研發科技"
+msgstr "訓練英雄及研發科技。"
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
 #: simulation/templates/structures/gaul/assembly.xml:34
@@ -267,7 +267,7 @@ msgstr "Pyrgos"
 
 #: simulation/templates/structures/athen/wonder.xml:9
 msgid "Parthenōn"
-msgstr "Parthenōn"
+msgstr "帕德嫩神廟"
 
 #: simulation/templates/structures/bench.xml:11
 msgid "Bench"
@@ -275,7 +275,7 @@ msgstr "長凳"
 
 #: simulation/templates/structures/bench.xml:12
 msgid "Wooden Bench"
-msgstr "板凳"
+msgstr "木凳"
 
 #: simulation/templates/structures/bridge_hele.xml:12
 #: simulation/templates/structures/bridge_hele.xml:13
@@ -318,7 +318,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr "在自己的、中立的或是盟友的領土上建立海岸線。獲得大片領土。領土根。訓練公民、建造船隻並研究科技。駐紮士兵以獲得額外的射箭數量。"
+msgstr "在我方、中立或盟友領土的海岸線上建造。獲得大片領土。領土根。訓練公民、建造船隻和研發科技。進駐士兵以增加箭數。"
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -361,7 +361,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "領土根。訓練英雄。駐紮士兵來獲得額外的射箭數量。"
+msgstr "領土根。訓練英雄。進駐士兵以增加箭數。"
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -420,7 +420,7 @@ msgstr "Rate"
 
 #: simulation/templates/structures/brit/wonder.xml:9
 msgid "Emain Macha"
-msgstr "Emain Macha"
+msgstr "納萬堡"
 
 #: simulation/templates/structures/cart/apartment.xml:23
 msgid "Apartment Building"
@@ -452,7 +452,7 @@ msgstr "Mijdil"
 
 #: simulation/templates/structures/cart/dock.xml:17
 msgid "Commercial Port"
-msgstr "商港"
+msgstr "商埠"
 
 #: simulation/templates/structures/cart/dock.xml:18
 msgid "Namel"
@@ -460,15 +460,15 @@ msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr "訓練傭兵並研發傭兵科技"
+msgstr "訓練傭兵並研發傭兵科技。"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
-msgstr "塞爾特大使館"
+msgstr "凱爾特大使館"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr "訓練賽爾特傭兵並研發傭兵科技"
+msgstr "訓練凱爾特傭兵和研發傭兵科技。"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -476,7 +476,7 @@ msgstr "伊比利大使館"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr "訓練伊比利傭兵並研發傭兵科技"
+msgstr "訓練伊比利傭兵和研發傭兵科技。"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
@@ -484,7 +484,7 @@ msgstr "義大利大使館"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr "訓練義大利傭兵並研發傭兵科技"
+msgstr "訓練義大利傭兵和研發傭兵科技。"
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -523,7 +523,7 @@ msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart/super_dock.xml:39
 msgid "Naval Shipyard"
-msgstr "海軍造船廠"
+msgstr "海軍船塢"
 
 #: simulation/templates/structures/cart/super_dock.xml:40
 msgid "Cothon"
@@ -534,11 +534,11 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr "建於自有、中立，或同盟領土的水岸後會取得大片領域，是為領域的根基。造艦以及研發科技。"
+msgstr "在我方、中立或盟友領土的海岸線上建造。獲得大片領土。領土根。建造戰艦和研發科技。"
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 msgid "Shipyard"
-msgstr "造船廠"
+msgstr "船塢"
 
 #: simulation/templates/structures/cart/temple.xml:9
 msgid "Maqdaš"
@@ -546,15 +546,15 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart/temple.xml:10
 msgid "Train Healers and Champion Infantry and research healing technologies."
-msgstr "訓練英雄與鬥士步兵，以及研究治療科技。"
+msgstr "訓練治療者與鬥士步兵及研發治療科技。"
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
-msgstr "祭祀神廟"
+msgstr "獻祭神廟"
 
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
-msgstr "托菲特"
+msgstr "陀斐特"
 
 #: simulation/templates/structures/cart/wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -572,7 +572,7 @@ msgstr "Jdar"
 
 #: simulation/templates/structures/cart/wonder.xml:9
 msgid "Temple of Ba'al Hammon"
-msgstr "Ba'al Hammon 的神廟"
+msgstr "巴耳．哈蒙神廟"
 
 #: simulation/templates/structures/celt_hut.xml:20
 msgid "Hut"
@@ -662,7 +662,7 @@ msgstr "科朗聖所"
 
 #: simulation/templates/structures/gaul/wonder.xml:10
 msgid "Celicnon"
-msgstr "Celicnon"
+msgstr "賽里克農"
 
 #: simulation/templates/structures/generic_field.xml:8
 msgid "Wheat Field"
@@ -678,7 +678,7 @@ msgstr "帕德嫩神廟"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
-msgstr "可駐守單位以較快的速度治療他們。"
+msgstr "進駐單位以快速治療他們。"
 
 #: simulation/templates/structures/hellenic_propylaea.xml:20
 msgid "Portico"
@@ -771,7 +771,7 @@ msgstr "Zabal Horma"
 
 #: simulation/templates/structures/iber/wonder.xml:9
 msgid "Cancho Roano"
-msgstr "Cancho Roano"
+msgstr "坎喬．羅阿諾"
 
 #: simulation/templates/structures/ishtar_gate.xml:25
 msgid "Ishtar Gate of Babylon"
@@ -948,7 +948,7 @@ msgstr "sȝwt"
 
 #: simulation/templates/structures/kush/wonder.xml:9
 msgid "Mnw nht"
-msgstr "Mnw nht"
+msgstr "強壯的敏"
 
 #: simulation/templates/structures/mace/library.xml:5
 #: simulation/templates/structures/ptol/library.xml:5
@@ -958,7 +958,7 @@ msgstr "Bibliothēkē"
 
 #: simulation/templates/structures/mace/wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
-msgstr "Hieron tou Dios tou Olympiou"
+msgstr "宙斯奧林帕斯神殿"
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -970,7 +970,7 @@ msgstr "Rajadhanika"
 
 #: simulation/templates/structures/maur/corral.xml:8
 msgid "Gotra"
-msgstr "氏族"
+msgstr "Gotra"
 
 #: simulation/templates/structures/maur/defense_tower.xml:5
 #: simulation/templates/structures/maur/tower_double.xml:20
@@ -999,7 +999,7 @@ msgstr "Lohakāra"
 
 #: simulation/templates/structures/maur/fortress.xml:5
 msgid "Durg"
-msgstr "杜爾格（印度城市）"
+msgstr "Durg"
 
 #: simulation/templates/structures/maur/house.xml:8
 msgid "Griham"
@@ -1237,7 +1237,7 @@ msgstr "Paraspa"
 
 #: simulation/templates/structures/pers/storehouse.xml:5
 msgid "Asiyah"
-msgstr "阿西葉"
+msgstr "Asiyah"
 
 #: simulation/templates/structures/pers/tacara.xml:24
 msgid "Taçara"
@@ -1307,7 +1307,7 @@ msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol/wonder.xml:9
 msgid "Hieron tou Hōrou"
-msgstr "Hieron tou Hōrou"
+msgstr "荷魯斯神殿"
 
 #: simulation/templates/structures/rome/amphitheater_pompeii.xml:6
 msgid "Amphitheātrum"
@@ -1331,7 +1331,7 @@ msgstr "軍營"
 
 #: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Castra"
-msgstr "古羅馬軍營"
+msgstr "Castra"
 
 #: simulation/templates/structures/rome/army_camp.xml:72
 msgid ""
@@ -1510,11 +1510,11 @@ msgstr "隔離區域。建造於自己的、中立的或敵人的領土。"
 
 #: simulation/templates/structures/rome/wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
-msgstr "Aedēs Iovis Optimi Maximi"
+msgstr "朱庇特神廟"
 
 #: simulation/templates/structures/sele/wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
-msgstr "Hieron tou Apollōnos Pythiou"
+msgstr "阿波羅神殿"
 
 #: simulation/templates/structures/sele_colonnade.xml:11
 msgid "Colonnade"
@@ -1542,7 +1542,7 @@ msgstr "軍事食堂"
 
 #: simulation/templates/structures/spart/syssiton.xml:24
 msgid "Syssition"
-msgstr "可供密談的餐廳"
+msgstr "Syssition"
 
 #: simulation/templates/structures/spart/syssiton.xml:27
 msgid "Syssiton"
@@ -1550,7 +1550,7 @@ msgstr "Syssiton"
 
 #: simulation/templates/structures/spart/wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
-msgstr "Hieron tēs Artemidos Orthias"
+msgstr "公社食堂"
 
 #: simulation/templates/structures/stall_big.xml:11
 msgid "Big stall"
@@ -1690,7 +1690,7 @@ msgstr "防禦性建築"
 #: simulation/templates/template_structure_defensive_outpost.xml:28
 #: simulation/templates/template_structure_defensive_outpost.xml:31
 msgid "Outpost"
-msgstr "前哨站"
+msgstr "哨站"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
 msgid "Build in own or neutral territory."

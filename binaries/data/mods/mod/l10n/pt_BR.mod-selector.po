@@ -12,12 +12,13 @@
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2014
 # victoJ <vfriedrichj@gmail.com>, 2020
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018
+# William Sandres, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 10:18+0000\n"
-"Last-Translator: Ernan\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
+"PO-Revision-Date: 2021-05-26 00:28+0000\n"
+"Last-Translator: William Sandres\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,7 +105,7 @@ msgstr "Ativo: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
 " mods!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Você tentou iniciar o jogo com mods incompatíveis ou ausentes!"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -112,13 +113,13 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
 msgid "Solve the compatibility and start game again."
-msgstr ""
+msgstr "Resolva a compatibilidade e comece o jogo novamente."
 
 #: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
 "You might want to save configuration before starting, when you see this page"
 " again."
-msgstr ""
+msgstr "Você pode querer salvar a configuração antes de começar, quando vir esta página novamente."
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Welcome!"
@@ -309,45 +310,50 @@ msgstr "Mods mod.io"
 msgid "Available Mods"
 msgstr "Mods Disponíveis."
 
-#: gui/modio/modio.xml:(caption):81
+#: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
 msgstr "Filtrar mods validos"
 
-#: gui/modio/modio.xml:(caption):87
+#: gui/modio/modio.xml:(caption):88
 msgid "Back"
 msgstr "Voltar"
 
-#: gui/modio/modio.xml:(caption):92
+#: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
 msgstr "Atualizar Lista"
 
-#: gui/modio/modio.xml:(caption):97
+#: gui/modio/modio.xml:(caption):98
 msgid "Download"
 msgstr "Baixar"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Nome"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Versão"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Rótulo do Mod"
 
-#: gui/modio/modio.xml:(heading):62
+#: gui/modio/modio.xml:(heading):63
 msgid "File Size"
 msgstr "Tamanho do Arquivo"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Dependências"
+
+#: gui/modio/modio.xml:(placeholder_text):35
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "Filtro"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -398,37 +404,37 @@ msgstr "Visitar mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Este mod não existe"
 
-#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Habilitar"
 
-#: gui/modmod/modmod.js:165
+#: gui/modmod/modmod.js:166
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Dependências não atendidas"
 
-#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Filtro"
 
-#: gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Desativar"
 
-#: gui/modmod/modmod.js:456
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Nenhum mod foi selecionado."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:462
 msgid "Enable at least 0ad mod and save configuration"
-msgstr ""
+msgstr "Habilite pelo menos 0ad mod e salve a configuração"
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:464
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Habilite pelo menos 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -440,7 +446,7 @@ msgstr "Negar"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "Filtro compatível"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -476,7 +482,7 @@ msgstr "Iniciar Mods"
 
 #: gui/modmod/modmod.xml:(caption):221
 msgid "Start"
-msgstr ""
+msgstr "Começar"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
