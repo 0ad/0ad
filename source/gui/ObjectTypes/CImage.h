@@ -43,7 +43,7 @@ protected:
 	/**
 	 * Draws the Image
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
 };

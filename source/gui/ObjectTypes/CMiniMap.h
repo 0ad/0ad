@@ -39,7 +39,7 @@ public:
 	static float GetShallowPassageHeight();
 
 protected:
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
 	 * @see IGUIObject#HandleMessage()

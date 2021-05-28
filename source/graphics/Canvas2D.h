@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,35 +15,21 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * This is the top class of the whole GUI, all objects
- * and settings are stored within this class.
- */
+#ifndef INCLUDED_CANVAS2D
+#define INCLUDED_CANVAS2D
 
-#ifndef INCLUDED_CGUIDUMMYOBJECT
-#define INCLUDED_CGUIDUMMYOBJECT
+#include "maths/Vector2D.h"
 
-#include "gui/ObjectBases/IGUIObject.h"
+#include <vector>
 
-/**
- * Dummy object are used for the base object and objects of type "empty".
- */
-class CGUIDummyObject : public IGUIObject
+struct CColor;
+
+// Encapsulates 2D drawing functionality to hide and optimize
+// low level API calls.
+class CCanvas2D
 {
-	GUI_OBJECT(CGUIDummyObject)
-
 public:
-	CGUIDummyObject(CGUI& pGUI) : IGUIObject(pGUI) {}
-
-	virtual void Draw(CCanvas2D& UNUSED(canvas)) {}
-
-	/**
-	 * Empty can never be hovered. It is only a category.
-	 */
-	virtual bool IsMouseOver() const
-	{
-		return false;
-	}
+	void DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color);
 };
 
-#endif // INCLUDED_CGUIDUMMYOBJECT
+#endif // INCLUDED_CANVAS2D

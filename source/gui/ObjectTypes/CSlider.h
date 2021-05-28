@@ -44,7 +44,7 @@ protected:
 	 */
 	virtual void HandleMessage(SGUIMessage& Message);
 
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
 	 * Change settings and send the script event

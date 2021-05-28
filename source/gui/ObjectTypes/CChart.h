@@ -65,7 +65,7 @@ protected:
 	/**
 	 * Draws the Chart
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	virtual CRect GetChartRect() const;
 

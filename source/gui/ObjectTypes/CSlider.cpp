@@ -102,7 +102,7 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CSlider::Draw()
+void CSlider::Draw(CCanvas2D& UNUSED(canvas))
 {
 	CRect slider_line(m_CachedActualSize);
 	slider_line.left += m_ButtonSide / 2.0f;

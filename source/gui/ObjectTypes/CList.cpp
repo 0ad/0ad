@@ -299,7 +299,7 @@ InReaction CList::ManuallyHandleKeys(const SDL_Event_* ev)
 	return result;
 }
 
-void CList::Draw()
+void CList::Draw(CCanvas2D& UNUSED(canvas))
 {
 	DrawList(m_Selected, m_Sprite, m_SpriteOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
 }

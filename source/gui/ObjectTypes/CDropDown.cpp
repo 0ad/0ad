@@ -420,7 +420,7 @@ bool CDropDown::IsMouseOver() const
 		return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
 }
 
-void CDropDown::Draw()
+void CDropDown::Draw(CCanvas2D& UNUSED(canvas))
 {
 	const CGUISpriteInstance& sprite = m_Enabled ? m_Sprite : m_SpriteDisabled;
 	const CGUISpriteInstance& spriteOverlay = m_Enabled ? m_SpriteOverlay : m_SpriteOverlayDisabled;

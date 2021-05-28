@@ -37,6 +37,7 @@
 #include <map>
 #include <vector>
 
+class CCanvas2D;
 class CGUI;
 class CGUISize;
 class IGUIObject;
@@ -264,7 +265,7 @@ protected:
 	/**
 	 * Draws the object.
 	 */
-	virtual void Draw() = 0;
+	virtual void Draw(CCanvas2D& canvas) = 0;
 
 	/**
 	 * Some objects need to be able to pre-emptively process SDL_Event_.

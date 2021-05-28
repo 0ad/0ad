@@ -1187,7 +1187,7 @@ void CInput::UpdateCachedSize()
 	m_GeneratedPlaceholderTextValid = false;
 }
 
-void CInput::Draw()
+void CInput::Draw(CCanvas2D& UNUSED(canvas))
 {
 	if (m_CursorBlinkRate > 0.0)
 	{

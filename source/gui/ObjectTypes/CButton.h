@@ -56,7 +56,7 @@ public:
 	/**
 	 * Draws the Button
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
 	 * @see IGUIObject#IsMouseOver()

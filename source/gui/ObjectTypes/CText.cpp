@@ -183,7 +183,7 @@ void CText::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CText::Draw()
+void CText::Draw(CCanvas2D& UNUSED(canvas))
 {
 	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
 

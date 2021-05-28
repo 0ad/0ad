@@ -84,7 +84,7 @@ protected:
 	/**
 	 * Draws the List box
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	virtual void CreateJSObject();
 

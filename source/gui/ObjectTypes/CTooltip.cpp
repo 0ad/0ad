@@ -131,7 +131,7 @@ void CTooltip::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CTooltip::Draw()
+void CTooltip::Draw(CCanvas2D& UNUSED(canvas))
 {
 	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
 	// we need to call it now *before* we do the rest of the drawing

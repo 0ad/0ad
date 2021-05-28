@@ -36,7 +36,7 @@ protected:
 	/**
 	 * Draws the progress bar
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
 	 * @see IGUIObject#HandleMessage()

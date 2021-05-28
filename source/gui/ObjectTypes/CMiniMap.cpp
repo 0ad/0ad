@@ -422,7 +422,7 @@ void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle
 //	most of the time, updating the framebuffer twice a frame.
 // Here it updates as ping-pong either texture or vertex array each sec to lower gpu stalling
 // (those operations cause a gpu sync, which slows down the way gpu works)
-void CMiniMap::Draw()
+void CMiniMap::Draw(CCanvas2D& UNUSED(canvas))
 {
 	PROFILE3("render minimap");
 

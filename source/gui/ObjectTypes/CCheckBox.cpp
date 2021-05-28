@@ -64,7 +64,7 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CCheckBox::Draw()
+void CCheckBox::Draw(CCanvas2D& UNUSED(canvas))
 {
 	m_pGUI.DrawSprite(
 		m_Checked ?

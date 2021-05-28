@@ -53,7 +53,7 @@ void CProgressBar::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CProgressBar::Draw()
+void CProgressBar::Draw(CCanvas2D& UNUSED(canvas))
 {
 	m_pGUI.DrawSprite(m_SpriteBackground, m_CachedActualSize);
 

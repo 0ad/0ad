@@ -95,7 +95,7 @@ protected:
 	/**
 	 * Draws the Text
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
 	 * Calculate m_CharacterPosition

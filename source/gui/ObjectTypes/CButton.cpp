@@ -80,7 +80,7 @@ void CButton::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CButton::Draw()
+void CButton::Draw(CCanvas2D& UNUSED(canvas))
 {
 	m_pGUI.DrawSprite(
 		GetButtonSprite(m_Sprite, m_SpriteOver, m_SpritePressed, m_SpriteDisabled),
