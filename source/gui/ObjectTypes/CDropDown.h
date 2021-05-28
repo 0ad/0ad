@@ -132,7 +132,9 @@ protected:
 	CGUISimpleSetting<CStrW> m_SoundLeave;
 	CGUISimpleSetting<CStrW> m_SoundOpened;
 	CGUISimpleSetting<CGUISpriteInstance> m_SpriteDisabled;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteOverlayDisabled;
 	CGUISimpleSetting<CGUISpriteInstance> m_SpriteList;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteListOverlay;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Over;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Pressed;

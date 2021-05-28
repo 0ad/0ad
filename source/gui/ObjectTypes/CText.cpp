@@ -36,6 +36,7 @@ CText::CText(CGUI& pGUI)
 	  m_ScrollBottom(this, "scroll_bottom"),
 	  m_ScrollTop(this, "scroll_top"),
 	  m_Sprite(this, "sprite"),
+	  m_SpriteOverlay(this, "sprite_overlay"),
 	  m_TextColor(this, "textcolor"),
 	  m_TextColorDisabled(this, "textcolor_disabled")
 {
@@ -184,9 +185,6 @@ void CText::HandleMessage(SGUIMessage& Message)
 
 void CText::Draw()
 {
-	if (m_ScrollBar)
-		IGUIScrollBarOwner::Draw();
-
 	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
 
 	float scroll = 0.f;
@@ -218,4 +216,11 @@ void CText::Draw()
 		DrawText(0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), cliparea);
 	else
 		DrawText(0, color, m_TextPos, cliparea);
+
+	// Draw scrollbars on top of the content
+	if (m_ScrollBar)
+		IGUIScrollBarOwner::Draw();
+
+	// Draw the overlays last
+	m_pGUI.DrawSprite(m_SpriteOverlay, m_CachedActualSize);
 }

@@ -149,6 +149,18 @@
 	- Box -
 	==========================================
 	-->
+	<sprite name = "ModernDarkBox">
+		<image backcolor = "12 12 12 100"
+			size = "0 0 100% 100%-1"
+		/>
+	</sprite>
+	<sprite name="ModernDarkBoxDisabled">
+		<effect grayscale=""/>
+		<!-- background -->
+		<image backcolor = "12 12 12 100"
+			size = "0 1 100% 100%-1"
+		/>
+	</sprite>
 	<sprite name="ModernDarkBoxGold">
 		<!-- borders -->
 		<image texture = "global/modern/gold-separator.png"
@@ -162,6 +174,17 @@
 		<!-- background -->
 		<image backcolor = "12 12 12 100"
 			size = "0 1 100% 100%-1"
+		/>
+	</sprite>
+	<sprite name="ModernDarkBoxGoldBorder">
+		<!-- borders -->
+		<image texture = "global/modern/gold-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 0 100% 1"
+		/>
+		<image texture = "global/modern/gold-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 100%-1 100% 100%"
 		/>
 	</sprite>
 	<sprite name="ModernDarkBoxGoldDisabled">
@@ -180,6 +203,18 @@
 			size = "0 1 100% 100%-1"
 		/>
 	</sprite>
+	<sprite name="ModernDarkBoxGoldBorderDisabled">
+		<effect grayscale=""/>
+		<!-- borders -->
+		<image texture = "global/modern/gold-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 0 100% 1"
+		/>
+		<image texture = "global/modern/gold-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 100%-1 100% 100%"
+		/>
+	</sprite>
 	<sprite name="ModernDarkBoxWhite">
 		<!-- borders -->
 		<image texture = "global/modern/white-separator.png"
@@ -193,6 +228,17 @@
 		<!-- background -->
 		<image backcolor = "12 12 12 100"
 			size = "0 1 100% 100%-1"
+		/>
+	</sprite>
+	<sprite name="ModernDarkBoxWhiteBorder">
+		<!-- borders -->
+		<image texture = "global/modern/white-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 0 100% 1"
+		/>
+		<image texture = "global/modern/white-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 100%-1 100% 100%"
 		/>
 	</sprite>
 	<sprite name="ModernDarkBoxWhiteInvalid">
@@ -219,13 +265,10 @@
 			size = "0 1 100% 100%"
 		/>
 	</sprite>
-	<sprite name = "ModernDarkBoxGoldNoTop">
+	<sprite name="ModernDarkBoxBottomGold">
 		<image texture = "global/modern/gold-separator.png"
 			real_texture_placement = "0 0 806 1"
 			size = "0 100%-1 100% 100%"
-		/>
-		<image backcolor = "12 12 12 100"
-			size = "0 0 100% 100%-1"
 		/>
 	</sprite>
 	<!--
@@ -516,6 +559,17 @@
 		<image backcolor="darkgray"
 			size="0 0 100% 100%"
 		/>
+		<image backcolor="0 0 0" size="0 0 100% 1"/>
+		<image backcolor="0 0 0" size="0 100%-1 100% 100%"/>
+		<image backcolor="0 0 0" size="0 0 1 100%"/>
+		<image backcolor="0 0 0" size="100%-1 0 100% 100%"/>
+	</sprite>
+	<sprite name="GrayBackground">
+		<image backcolor="darkgray"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+	<sprite name="BlackBorder">
 		<image backcolor="0 0 0" size="0 0 100% 1"/>
 		<image backcolor="0 0 0" size="0 100%-1 100% 100%"/>
 		<image backcolor="0 0 0" size="0 0 1 100%"/>

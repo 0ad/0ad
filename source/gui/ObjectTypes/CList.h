@@ -106,7 +106,8 @@ protected:
 
 	// Extended drawing interface, this is so that classes built on the this one
 	//  can use other sprite names.
-	virtual void DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor);
+	virtual void DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
+	                      const CGUISpriteInstance& spriteSelectArea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor);
 
 	// Get the area of the list. This is so that it can easily be changed, like in CDropDown
 	//  where the area is not equal to m_CachedActualSize.
@@ -134,7 +135,9 @@ protected:
 	CGUISimpleSetting<CStrW> m_SoundDisabled;
 	CGUISimpleSetting<CStrW> m_SoundSelected;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteOverlay;
 	CGUISimpleSetting<CGUISpriteInstance> m_SpriteSelectArea;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteSelectAreaOverlay;
 	CGUISimpleSetting<CGUIColor> m_TextColor;
 	CGUISimpleSetting<CGUIColor> m_TextColorSelected;
 	CGUISimpleSetting<i32> m_Selected;

@@ -378,6 +378,9 @@
         <attribute name="sprite_list"/>
       </optional>
       <optional>
+        <attribute name="sprite_list_overlay"/>
+      </optional>
+      <optional>
         <attribute name="sprite2_disabled"/>
       </optional>
       <optional>
@@ -385,6 +388,12 @@
       </optional>
       <optional>
         <attribute name="sprite_over"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_overlay"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_overlay_disabled"/>
       </optional>
       <optional>
         <attribute name="sprite2_over"/>
@@ -397,6 +406,9 @@
       </optional>
       <optional>
         <attribute name="sprite_selectarea"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_selectarea_overlay"/>
       </optional>
       <optional>
         <attribute name="square_side">

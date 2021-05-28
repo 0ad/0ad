@@ -46,8 +46,10 @@ CList::CList(CGUI& pGUI)
 	  m_SoundDisabled(this, "sound_disabled"),
 	  m_SoundSelected(this, "sound_selected"),
 	  m_Sprite(this, "sprite"),
+	  m_SpriteOverlay(this, "sprite_overlay"),
 	  // Add sprite_disabled! TODO
 	  m_SpriteSelectArea(this, "sprite_selectarea"),
+	  m_SpriteSelectAreaOverlay(this, "sprite_selectarea_overlay"),
 	  m_TextColor(this, "textcolor"),
 	  m_TextColorSelected(this, "textcolor_selected"),
 	  m_Selected(this, "selected", -1), // Index selected. -1 is none.
@@ -299,10 +301,11 @@ InReaction CList::ManuallyHandleKeys(const SDL_Event_* ev)
 
 void CList::Draw()
 {
-	DrawList(m_Selected, m_Sprite, m_SpriteSelectArea, m_TextColor);
+	DrawList(m_Selected, m_Sprite, m_SpriteOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
 }
 
-void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selectarea, const CGUIColor& textcolor)
+void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
+                     const CGUISpriteInstance& spriteSelectArea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor)
 {
 	CRect rect = GetListRect();
 
@@ -312,34 +315,36 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 	if (m_ScrollBar)
 		scroll = GetScrollBar(0).GetPos();
 
+	bool drawSelected = false;
+	CRect rectSel;
 	if (selected >= 0 && selected+1 < (int)m_ItemsYPositions.size())
 	{
 		// Get rectangle of selection:
-		CRect rect_sel(
+		rectSel = CRect(
 			rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
 			rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
 
-		if (rect_sel.top <= rect.bottom &&
-			rect_sel.bottom >= rect.top)
+		if (rectSel.top <= rect.bottom &&
+			rectSel.bottom >= rect.top)
 		{
-			if (rect_sel.bottom > rect.bottom)
-				rect_sel.bottom = rect.bottom;
-			if (rect_sel.top < rect.top)
-				rect_sel.top = rect.top;
-
+			if (rectSel.bottom > rect.bottom)
+				rectSel.bottom = rect.bottom;
+			if (rectSel.top < rect.top)
+				rectSel.top = rect.top;
 			if (m_ScrollBar)
 			{
 				// Remove any overlapping area of the scrollbar.
-				if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
-					rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
-					rect_sel.right = GetScrollBar(0).GetOuterRect().left;
+				if (rectSel.right > GetScrollBar(0).GetOuterRect().left &&
+					rectSel.right <= GetScrollBar(0).GetOuterRect().right)
+					rectSel.right = GetScrollBar(0).GetOuterRect().left;
 
-				if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
-					rect_sel.left < GetScrollBar(0).GetOuterRect().right)
-					rect_sel.left = GetScrollBar(0).GetOuterRect().right;
+				if (rectSel.left >= GetScrollBar(0).GetOuterRect().left &&
+					rectSel.left < GetScrollBar(0).GetOuterRect().right)
+					rectSel.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			m_pGUI.DrawSprite(sprite_selectarea, rect_sel);
+			m_pGUI.DrawSprite(spriteSelectArea, rectSel);
+			drawSelected = true;
 		}
 	}
 
@@ -363,11 +368,17 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 				cliparea.left = GetScrollBar(0).GetOuterRect().right;
 		}
 
-		DrawText(i, textcolor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
+		DrawText(i, textColor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
 	}
 
+	// Draw scrollbars on top of the content
 	if (m_ScrollBar)
 		IGUIScrollBarOwner::Draw();
+
+	// Draw the overlays last
+	m_pGUI.DrawSprite(spriteOverlay, rect);
+	if (drawSelected)
+		m_pGUI.DrawSprite(spriteSelectAreaOverlay, rectSel);
 }
 
 void CList::AddItem(const CGUIString& str, const CGUIString& data)

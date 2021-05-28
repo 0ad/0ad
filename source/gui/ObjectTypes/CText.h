@@ -83,6 +83,7 @@ protected:
 	CGUISimpleSetting<bool> m_ScrollBottom;
 	CGUISimpleSetting<bool> m_ScrollTop;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteOverlay;
 	CGUISimpleSetting<CGUIColor> m_TextColor;
 	CGUISimpleSetting<CGUIColor> m_TextColorDisabled;
 };

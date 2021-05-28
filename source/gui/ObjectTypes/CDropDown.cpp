@@ -42,7 +42,9 @@ CDropDown::CDropDown(CGUI& pGUI)
 	  m_SoundOpened(this, "sound_opened"),
 	  // Setting "sprite" is registered by CList and used as the background
 	  m_SpriteDisabled(this, "sprite_disabled"),
+	  m_SpriteOverlayDisabled(this, "sprite_overlay_disabled"),
 	  m_SpriteList(this, "sprite_list"), // Background of the drop down list
+	  m_SpriteListOverlay(this, "sprite_list_overlay"), // Overlay above the drop down list
 	  m_Sprite2(this, "sprite2"), // Button that sits to the right
 	  m_Sprite2Over(this, "sprite2_over"),
 	  m_Sprite2Pressed(this, "sprite2_pressed"),
@@ -421,6 +423,7 @@ bool CDropDown::IsMouseOver() const
 void CDropDown::Draw()
 {
 	const CGUISpriteInstance& sprite = m_Enabled ? m_Sprite : m_SpriteDisabled;
+	const CGUISpriteInstance& spriteOverlay = m_Enabled ? m_SpriteOverlay : m_SpriteOverlayDisabled;
 
 	m_pGUI.DrawSprite(sprite, m_CachedActualSize);
 
@@ -463,11 +466,12 @@ void CDropDown::Draw()
 		if (m_HideScrollBar)
 			m_ScrollBar.Set(false, false);
 
-		DrawList(m_ElementHighlight, m_SpriteList, m_SpriteSelectArea, m_TextColor);
+		DrawList(m_ElementHighlight, m_SpriteList, m_SpriteListOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
 
 		if (m_HideScrollBar)
 			m_ScrollBar.Set(old, false);
 	}
+	m_pGUI.DrawSprite(spriteOverlay, m_CachedActualSize);
 }
 
 // When a dropdown list is opened, it needs to be visible above all the other
