@@ -122,7 +122,7 @@ PETRA.BuildManager.prototype.findStructuresByFilter = function(gameState, filter
  */
 PETRA.BuildManager.prototype.findStructureWithClass = function(gameState, classes)
 {
-	return this.findStructuresByFilter(gameState, API3.Filters.byClassesOr(classes))[0];
+	return this.findStructuresByFilter(gameState, API3.Filters.byClasses(classes))[0];
 };
 
 PETRA.BuildManager.prototype.hasBuilder = function(template)

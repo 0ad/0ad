@@ -66,7 +66,7 @@ PETRA.HQ.prototype.assignStartingEntities = function(gameState)
 	for (let ent of gameState.getOwnEntities().values())
 	{
 		// do not affect merchant ship immediately to trade as they may-be useful for transport
-		if (ent.hasClass("Trader") && !ent.hasClass("Ship"))
+		if (ent.hasClasses(["Trader+!Ship"]))
 			this.tradeManager.assignTrader(ent);
 
 		let pos = ent.position();
@@ -368,7 +368,7 @@ PETRA.HQ.prototype.dispatchUnits = function(gameState)
 		let num1 = Math.floor(num / 2);
 		let num2 = num1;
 		// first pass to affect ranged infantry
-		units.filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).forEach(ent => {
+		units.filter(API3.Filters.byClasses(["Infantry+Ranged"])).forEach(ent => {
 			if (!num || !num1)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))
@@ -387,7 +387,7 @@ PETRA.HQ.prototype.dispatchUnits = function(gameState)
 			}
 		});
 		// second pass to affect melee infantry
-		units.filter(API3.Filters.byClassesAnd(["Infantry", "Melee"])).forEach(ent => {
+		units.filter(API3.Filters.byClasses(["Infantry+Melee"])).forEach(ent => {
 			if (!num || !num2)
 				return;
 			if (ent.getMetadata(PlayerID, "allied"))

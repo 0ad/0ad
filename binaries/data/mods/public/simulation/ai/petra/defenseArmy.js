@@ -493,7 +493,7 @@ PETRA.DefenseArmy.prototype.evaluateStrength = function(ent, isOwn, remove)
 
 	// TODO adapt the getMaxStrength function for animals.
 	// For the time being, just increase it for elephants as the returned value is too small.
-	if (ent.hasClass("Animal") && ent.hasClass("Elephant"))
+	if (ent.hasClasses(["Animal+Elephant"]))
 		entStrength *= 3;
 
 	if (remove)

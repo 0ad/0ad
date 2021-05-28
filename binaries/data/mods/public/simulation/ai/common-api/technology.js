@@ -130,24 +130,7 @@ m.Technology.prototype.affects = function()
 
 m.Technology.prototype.isAffected = function(classes)
 {
-	if (!this._template.affects)
-		return false;
-
-	for (let affect of this._template.affects)
-	{
-		let reqClasses = affect.split(" ");
-		let fitting = true;
-		for (let reqClass of reqClasses)
-		{
-			if (classes.indexOf(reqClass) !== -1)
-				continue;
-			fitting = false;
-			break;
-		}
-		if (fitting === true)
-			return true;
-	}
-	return false;
+	return this._template.affects && this._template.affects.some(affect => MatchesClassList(classes, affect));
 };
 
 return m;

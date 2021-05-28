@@ -151,7 +151,7 @@ PETRA.AttackManager.prototype.assignBombers = function(gameState)
 		}
 	}
 
-	let bombers = gameState.updatingCollection("bombers", API3.Filters.byClassesOr(["BoltShooter", "StoneThrower"]), gameState.getOwnUnits());
+	const bombers = gameState.updatingCollection("bombers", API3.Filters.byClasses(["BoltShooter", "StoneThrower"]), gameState.getOwnUnits());
 	for (let ent of bombers.values())
 	{
 		if (!ent.position() || !ent.isIdle() || !ent.attackRange("Ranged"))
@@ -475,7 +475,7 @@ PETRA.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 				continue;
 			let enemyDefense = 0;
 			for (let ent of gameState.getEnemyStructures(i).values())
-				if (ent.hasClass("Tower") || ent.hasClass("WallTower") || ent.hasClass("Fortress"))
+				if (ent.hasClasses(["Tower", "WallTower", "Fortress"]))
 					enemyDefense++;
 			if (enemyDefense > 6)
 				veto[i] = true;

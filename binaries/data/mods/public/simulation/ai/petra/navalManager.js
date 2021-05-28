@@ -35,7 +35,7 @@ PETRA.NavalManager = function(Config)
 PETRA.NavalManager.prototype.init = function(gameState, deserializing)
 {
 	// docks
-	this.docks = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Dock", "Shipyard"]));
+	this.docks = gameState.getOwnStructures().filter(API3.Filters.byClasses(["Dock", "Shipyard"]));
 	this.docks.registerUpdates();
 
 	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", "trader"))));
@@ -255,7 +255,7 @@ PETRA.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		if (!evt.entity)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
-		if (ent && ent.isOwn(PlayerID) && ent.foundationProgress() !== undefined && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
+		if (ent && ent.isOwn(PlayerID) && ent.foundationProgress() !== undefined && ent.hasClasses(["Dock", "Shipyard"]))
 			PETRA.setSeaAccess(gameState, ent);
 	}
 
@@ -322,7 +322,7 @@ PETRA.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		if (evt.to !== PlayerID)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
-		if (ent && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
+		if (ent && ent.hasClasses(["Dock", "Shipyard"]))
 			PETRA.setSeaAccess(gameState, ent);
 	}
 };
