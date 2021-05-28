@@ -276,7 +276,7 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 		return;
 
 	// render the solid black sides of the map first
-	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	techSolid->BeginPass();
 	CShaderProgramPtr shaderSolid = techSolid->GetShader();
 	shaderSolid->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());

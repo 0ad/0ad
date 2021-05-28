@@ -226,7 +226,7 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 
 void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
@@ -272,7 +272,7 @@ void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingB
 
 void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
@@ -315,7 +315,7 @@ void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingB
 
 void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
@@ -362,7 +362,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 
 void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CColor& color)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
 
 	CShaderProgramPtr shader = shaderTech->GetShader();

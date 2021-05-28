@@ -88,7 +88,7 @@
 		]
 	},
 	{
-		"label": "Graphics",
+		"label": "Graphics (general)",
 		"tooltip": "Set the balance between performance and visual appearance.",
 		"options":
 		[
@@ -98,6 +98,65 @@
 				"tooltip": "Start 0 A.D. in a window.",
 				"config": "windowed"
 			},
+			{
+				"type": "boolean",
+				"label": "Fog",
+				"tooltip": "Enable fog.",
+				"config": "fog"
+			},
+			{
+				"type": "boolean",
+				"label": "Post-processing",
+				"tooltip": "Use screen-space post-processing filters (HDR, Bloom, DOF, etc).",
+				"config": "postproc"
+			},
+			{
+				"type": "boolean",
+				"label": "Shadows",
+				"tooltip": "Enable shadows.",
+				"config": "shadows"
+			},
+			{
+				"type": "boolean",
+				"label": "Unit silhouettes",
+				"tooltip": "Show outlines of units behind structures.",
+				"config": "silhouettes"
+			},
+			{
+				"type": "boolean",
+				"label": "Particles",
+				"tooltip": "Enable particles.",
+				"config": "particles"
+			},
+			{
+				"type": "boolean",
+				"label": "VSync",
+				"tooltip": "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART",
+				"config": "vsync"
+			},
+			{
+				"type": "slider",
+				"label": "FPS throttling in menus",
+				"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
+				"config": "adaptivefps.menu",
+				"min": 20,
+				"max": 100
+			},
+			{
+				"type": "slider",
+				"label": "FPS throttling in games",
+				"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
+				"config": "adaptivefps.session",
+				"min": 20,
+				"max": 100
+			}
+		]
+	},
+	{
+		"label": "Graphics (advanced)",
+		"tooltip": "More specific rendering settings.",
+		"options":
+		[
 			{
 				"type": "boolean",
 				"label": "Prefer GLSL",
@@ -200,18 +259,6 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Unit silhouettes",
-				"tooltip": "Show outlines of units behind structures.",
-				"config": "silhouettes"
-			},
-			{
-				"type": "boolean",
-				"label": "Particles",
-				"tooltip": "Enable particles.",
-				"config": "particles"
-			},
-			{
-				"type": "boolean",
 				"label": "Water effects",
 				"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
 				"config": "watereffects"
@@ -243,34 +290,6 @@
 				"tooltip": "Use actual water depth in rendering calculations.",
 				"dependencies": ["watereffects", "waterrefraction"],
 				"config": "waterrealdepth"
-			},
-			{
-				"type": "boolean",
-				"label": "Smooth vision",
-				"tooltip": "Lift darkness and fog of war smoothly.",
-				"config": "smoothlos"
-			},
-			{
-				"type": "boolean",
-				"label": "VSync",
-				"tooltip": "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART",
-				"config": "vsync"
-			},
-			{
-				"type": "slider",
-				"label": "FPS throttling in menus",
-				"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
-				"config": "adaptivefps.menu",
-				"min": 20,
-				"max": 100
-			},
-			{
-				"type": "slider",
-				"label": "FPS throttling in games",
-				"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
-				"config": "adaptivefps.session",
-				"min": 20,
-				"max": 100
 			}
 		]
 	},
