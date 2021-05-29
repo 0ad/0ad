@@ -43,7 +43,11 @@ class SingleColorTexture
 {
 public:
 	SingleColorTexture(const CColor& color, PIVFS vfs, const VfsPath& pathPlaceholder, const bool disableGL, CTextureManagerImpl* textureManager)
+		: m_Handle(0)
 	{
+		if (disableGL)
+			return;
+
 		const SColor4ub color32 = color.AsSColor4ub();
 		// Construct 1x1 32-bit texture
 		std::shared_ptr<u8> data(new u8[4], ArrayDeleter());
