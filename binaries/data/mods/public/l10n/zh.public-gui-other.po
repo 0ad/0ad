@@ -89,7 +89,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
 "PO-Revision-Date: 2021-05-22 03:35+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -289,171 +289,176 @@ msgstr "显示英雄位置"
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "英雄不能驻守，很容易对手攻击。"
 
-#: gui/common/gamedescription.js:252
-msgid "Rated game"
-msgstr "排位赛"
-
-#: gui/common/gamedescription.js:253
-msgid ""
-"When the winner of this match is determined, the lobby score will be "
-"adapted."
-msgstr "当这场比赛的获胜者确定后，大厅的分数将被调整。"
-
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:251
 msgid "Locked Teams"
 msgstr "锁定组队"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
 msgstr "玩家不能更改初始团队。"
 
-#: gui/common/gamedescription.js:263
+#: gui/common/gamedescription.js:256
 msgid "Diplomacy"
 msgstr "外交"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
 msgstr "玩家可结盟，也可对盟友宣战。"
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
 msgstr "笑到最后"
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:263
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "胜者只有一人。如果有同盟存活，游戏继续，直到只剩一家时结束。"
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:267
 msgid "Allied Victory"
 msgstr "同盟胜利"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:268
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "某人获胜时，盟友一起获胜。"
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:273
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "关闭"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:277
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "前 %(min)s 分钟里, 其他玩家保持中立。"
 
-#: gui/common/gamedescription.js:293
+#: gui/common/gamedescription.js:286
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "随机地图"
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:287
 msgid "Randomly select a map from the list."
 msgstr "从列表里随机选取地图"
 
-#: gui/common/gamedescription.js:299
+#: gui/common/gamedescription.js:292
 msgid "Map Name"
 msgstr "地图名称"
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:298
 msgid "Map Description"
 msgstr "地图描述"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:304
 msgid "Map Type"
 msgstr "地图类型"
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:313
 msgid "Map Size"
 msgstr "地图尺寸"
 
-#: gui/common/gamedescription.js:329
+#: gui/common/gamedescription.js:322
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "随机生物群"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:323
 msgid "Randomly select a biome from the list."
 msgstr "从列表里随机挑选生物群"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:338
 msgid "Nomad Mode"
 msgstr "游牧模式"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:338
 msgid "Civic Centers"
 msgstr "市政中心"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:341
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "玩家从少数单位开局并需要找到一个合适的地方来建造他们的城镇。"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:342
 msgid "Players start with a Civic Center."
 msgstr "玩家以一座市政中心开局。"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:347
 msgid "Starting Resources"
 msgstr "初始物资"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:351
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "每一玩家"
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:352
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:370
+#: gui/common/gamedescription.js:363
 msgid "Population Limit"
 msgstr "人口上限"
 
-#: gui/common/gamedescription.js:374
+#: gui/common/gamedescription.js:367
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "每一玩家"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:375
 msgid "World Population Cap"
 msgstr "世界人口上限"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:383
 msgid "Treasures"
 msgstr "宝藏"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:385
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "禁用"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:386
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "由地图定义。"
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:390
 msgid "Explored Map"
 msgstr "探索地图"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:395
 msgid "Revealed Map"
 msgstr "显示地图"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:400
 msgid "Cheats"
 msgstr "作弊"
 
-#: gui/common/gamedescription.js:411 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:403
+msgid ""
+"When the winner of this match is determined, the lobby score will be "
+"adapted."
+msgstr "当这场比赛的获胜者确定后，大厅的分数将被调整。"
+
+#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+msgid "Rated game"
+msgstr "排位赛"
+
+#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+msgctxt "game setup option"
+msgid "disabled"
+msgstr "取消"
+
+#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -465,25 +470,20 @@ msgstr "作弊"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:414
+#: gui/common/gamedescription.js:420
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "加载"
 
-#: gui/common/gamedescription.js:415
-msgctxt "game setup option"
-msgid "disabled"
-msgstr "取消"
-
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:433
 msgid "Victorious"
 msgstr "胜利"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:438
 msgid "Defeated"
 msgstr "失败"
 
-#: gui/common/gamedescription.js:441
+#: gui/common/gamedescription.js:447
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"

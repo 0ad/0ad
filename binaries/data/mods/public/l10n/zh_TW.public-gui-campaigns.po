@@ -71,7 +71,7 @@ msgstr "可用"
 #: gui/campaigns/default_menu/CampaignMenu.js:183
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "戰役載入錯誤 %s：%s。"
+msgstr "戰役進度載入錯誤 %s：%s。"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
@@ -114,7 +114,7 @@ msgstr "無法載入檔案"
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr "確定要刪除存檔「%s」嗎？此操作無法復原。"
+msgstr "確定要刪除進度「%s」嗎？此操作無法復原。"
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -139,7 +139,7 @@ msgstr "沒有進行中的戰役"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr "存檔名稱："
+msgstr "進度名稱："
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -156,7 +156,7 @@ msgstr "開始戰役"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "請輸入您的新戰役進度名稱："
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55

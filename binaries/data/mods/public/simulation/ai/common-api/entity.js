@@ -70,13 +70,7 @@ m.Template = m.Class({
 	"hasClasses": function(array) {
 		if (!this._classes)
 			this._classes = this.classes();
-		if (!this._classes)
-			return false;
-
-		for (let cls of array)
-			if (this._classes.indexOf(cls) == -1)
-				return false;
-		return true;
+		return this._classes && MatchesClassList(this._classes, array);
 	},
 
 	"requiredTech": function() { return this.get("Identity/RequiredTechnology"); },
@@ -295,9 +289,9 @@ m.Template = m.Class({
 		return Classes;
 	},
 
-	// returns true if the entity counters those classes.
+	// returns true if the entity counters the target entity.
 	// TODO: refine using the multiplier
-	"countersClasses": function(classes) {
+	"counters": function(target) {
 		let attack = this.get("Attack");
 		if (!attack)
 			return false;
@@ -314,10 +308,7 @@ m.Template = m.Class({
 					mcounter.concat(bonusClasses.split(" "));
 			}
 		}
-		for (let i in classes)
-			if (mcounter.indexOf(classes[i]) != -1)
-				return true;
-		return false;
+		return target.hasClasses(mcounter);
 	},
 
 	// returns, if it exists, the multiplier from each attack against a given class
@@ -563,7 +554,7 @@ m.Template = m.Class({
 		if (!target.get("Capturable"))
 			return false;
 		let restrictedClasses = this.get("Attack/Capture/RestrictedClasses/_string");
-		return !restrictedClasses || !MatchesClassList(target.classes(), restrictedClasses);
+		return !restrictedClasses || !target.hasClasses(restrictedClasses);
 	},
 
 	"isCapturable": function() { return this.get("Capturable") !== undefined; },
@@ -800,7 +791,7 @@ m.Entity = m.Class({
 				continue;
 
 			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
-			if (!restrictedClasses || !MatchesClassList(target.classes(), restrictedClasses))
+			if (!restrictedClasses || !target.hasClasses(restrictedClasses))
 				return true;
 		}
 

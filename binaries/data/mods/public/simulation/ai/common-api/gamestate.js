@@ -726,9 +726,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		let limit = template.matchLimit();
 		if (matchCounts && limit && matchCounts[trainable] >= limit)
 			continue;
-		if (classes.some(c => !template.hasClass(c)))
-			continue;
-		if (anticlasses.some(c => template.hasClass(c)))
+		if (!template.hasClasses(classes) || template.hasClasses(anticlasses))
 			continue;
 		let category = template.trainingCategory();
 		if (category && limits[category] && current[category] >= limits[category])

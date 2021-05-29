@@ -69,6 +69,7 @@ CInput::CInput(CGUI& pGUI)
 	m_ScrollBar(this, "scrollbar"),
 	m_ScrollBarStyle(this, "scrollbar_style"),
 	m_Sprite(this, "sprite"),
+	m_SpriteOverlay(this, "sprite_overlay"),
 	m_SpriteSelectArea(this, "sprite_selectarea"),
 	m_TextColor(this, "textcolor"),
 	m_TextColorSelected(this, "textcolor_selected"),
@@ -1186,7 +1187,7 @@ void CInput::UpdateCachedSize()
 	m_GeneratedPlaceholderTextValid = false;
 }
 
-void CInput::Draw()
+void CInput::Draw(CCanvas2D& UNUSED(canvas))
 {
 	if (m_CursorBlinkRate > 0.0)
 	{
@@ -1201,10 +1202,6 @@ void CInput::Draw()
 	else
 		// should always be visible
 		m_CursorVisState = true;
-
-	// First call draw on ScrollBarOwner
-	if (m_ScrollBar && m_MultiLine)
-		IGUIScrollBarOwner::Draw();
 
 	CStrIntern font_name(m_Font->ToUTF8());
 
@@ -1529,6 +1526,13 @@ void CInput::Draw()
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
 		DrawPlaceholderText(cliparea);
+
+	// Draw scrollbars on top of the content
+	if (m_ScrollBar && m_MultiLine)
+		IGUIScrollBarOwner::Draw();
+
+	// Draw the overlays last
+	m_pGUI.DrawSprite(m_SpriteOverlay, m_CachedActualSize);
 }
 
 void CInput::DrawPlaceholderText(const CRect& clipping)

@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-21 12:30+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
+"PO-Revision-Date: 2021-05-24 10:17+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -305,45 +305,50 @@ msgstr "Mods του mod.io"
 msgid "Available Mods"
 msgstr "Διαθέσιμες τροποποιήσεις."
 
-#: gui/modio/modio.xml:(caption):81
+#: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
 msgstr "Φιλτράρετε έγκυρες τροποποιήσεις "
 
-#: gui/modio/modio.xml:(caption):87
+#: gui/modio/modio.xml:(caption):88
 msgid "Back"
 msgstr "Πίσω"
 
-#: gui/modio/modio.xml:(caption):92
+#: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
 msgstr "Ανανέωση Λίστας"
 
-#: gui/modio/modio.xml:(caption):97
+#: gui/modio/modio.xml:(caption):98
 msgid "Download"
 msgstr "Λήψη"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Όνομα"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Έκδοση"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Ετικέτα Mod"
 
-#: gui/modio/modio.xml:(heading):62
+#: gui/modio/modio.xml:(heading):63
 msgid "File Size"
 msgstr "Μέγεθος Αρχείου"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Εξαρτήσεις"
+
+#: gui/modio/modio.xml:(placeholder_text):35
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "Φίλτρο"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -396,33 +401,33 @@ msgstr "Επίσκεψη mod.io"
 msgid "This mod does not exist"
 msgstr "Αυτή η λειτουργία δέν υπάρχει."
 
-#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Ενεργοποίηση"
 
-#: gui/modmod/modmod.js:165
+#: gui/modmod/modmod.js:166
 msgid "Dependencies not met"
 msgstr "Οι εξαρτήσεις δέν απαντήθηκαν."
 
-#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Φίλτρο"
 
-#: gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: gui/modmod/modmod.js:456
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Δεν έχει επιλεχθεί κάποιο mod."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:462
 msgid "Enable at least 0ad mod and save configuration"
 msgstr "Ενεργοποιείστε τουλάχιστον μία λειτουργία για το 0ad και αποθηκεύστε τη ρύθμιση."
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:464
 msgid "Enable at least 0ad mod"
 msgstr "Ενεργοποιείστε τουλάχιστον μία λειτουργία στο 0ad."
 

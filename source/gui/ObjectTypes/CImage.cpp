@@ -31,7 +31,7 @@ CImage::~CImage()
 {
 }
 
-void CImage::Draw()
+void CImage::Draw(CCanvas2D& UNUSED(canvas))
 {
 	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
 }

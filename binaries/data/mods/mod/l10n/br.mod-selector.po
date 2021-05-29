@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 10:18+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
+"PO-Revision-Date: 2021-05-24 10:17+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -305,45 +305,50 @@ msgstr "mod.io Modoù"
 msgid "Available Mods"
 msgstr "Modoù hegerzus"
 
-#: gui/modio/modio.xml:(caption):81
+#: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
 msgstr ""
 
-#: gui/modio/modio.xml:(caption):87
+#: gui/modio/modio.xml:(caption):88
 msgid "Back"
 msgstr "Distreiñ"
 
-#: gui/modio/modio.xml:(caption):92
+#: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
 msgstr "Freskaat al Listenn"
 
-#: gui/modio/modio.xml:(caption):97
+#: gui/modio/modio.xml:(caption):98
 msgid "Download"
 msgstr "Pellgargañ"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Anv"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Stumm"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Liketenn ar Mod"
 
-#: gui/modio/modio.xml:(heading):62
+#: gui/modio/modio.xml:(heading):63
 msgid "File Size"
 msgstr "Ment ar Restr"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Dalc'hiadigezh"
+
+#: gui/modio/modio.xml:(placeholder_text):35
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "Sil"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -396,33 +401,33 @@ msgstr "Mont da welout mod.io"
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Gweredekaat"
 
-#: gui/modmod/modmod.js:165
+#: gui/modmod/modmod.js:166
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Sil"
 
-#: gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Diweredekaat"
 
-#: gui/modmod/modmod.js:456
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "N'eus bet diuzet mod ebet."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:462
 msgid "Enable at least 0ad mod and save configuration"
 msgstr ""
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:464
 msgid "Enable at least 0ad mod"
 msgstr ""
 

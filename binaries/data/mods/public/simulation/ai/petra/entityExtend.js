@@ -1,7 +1,7 @@
 /** returns true if this unit should be considered as a siege unit */
 PETRA.isSiegeUnit = function(ent)
 {
-	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Melee");
+	return ent.hasClasses(["Siege", "Elephant+Melee"]);
 };
 
 /** returns true if this unit should be considered as "fast". */
@@ -208,9 +208,8 @@ PETRA.getAttackBonus = function(ent, target, type)
 		let bonus = bonuses[key];
 		if (bonus.Civ && bonus.Civ !== target.civ())
 			continue;
-		if (bonus.Classes && bonus.Classes.split(/\s+/).some(cls => !target.hasClass(cls)))
-			continue;
-		attackBonus *= bonus.Multiplier;
+		if (!bonus.Classes || target.hasClasses(bonus.Classes))
+			attackBonus *= bonus.Multiplier;
 	}
 	return attackBonus;
 };

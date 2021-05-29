@@ -166,9 +166,8 @@ PETRA.BaseManager.prototype.assignResourceToDropsite = function(gameState, drops
 		{
 			if (!supply.position())
 				return;
-			if (supply.hasClass("Animal"))    // moving resources are treated differently
-				return;
-			if (supply.hasClass("Field"))     // fields are treated separately
+			// Moving resources and fields are treated differently.
+			if (supply.hasClasses(["Animal", "Field"]))
 				return;
 			// quick accessibility check
 			if (PETRA.getLandAccess(gameState, supply) != accessIndex)
@@ -273,7 +272,7 @@ PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resou
 	const template = gameState.getTemplate(gameState.applyCiv(templateName));
 
 	// CCs and Docks are handled elsewhere.
-	if (template.hasClass("CivCentre") || template.hasClass("Dock"))
+	if (template.hasClasses(["CivCentre", "Dock"]))
 		return { "quality": 0, "pos": [0, 0] };
 
 	let halfSize = 0;
@@ -523,7 +522,7 @@ PETRA.BaseManager.prototype.assignRolelessUnits = function(gameState, roleless)
 
 	for (let ent of roleless)
 	{
-		if (ent.hasClass("Worker") || ent.hasClass("CitizenSoldier") || ent.hasClass("FishingBoat"))
+		if (ent.hasClasses(["Worker", "CitizenSoldier", "FishingBoat"]))
 			ent.setMetadata(PlayerID, "role", "worker");
 	}
 };
@@ -786,7 +785,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			continue; // we do not build fields
 
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
-			if (!target.hasClass("CivCentre") && !target.hasClass("Wall") &&
+			if (!target.hasClasses(["CivCentre", "Wall"]) &&
 			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
 
@@ -802,13 +801,12 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		    gameState.getPopulationLimit() < gameState.getPopulationMax())
 			maxTotalBuilders += 2;
 		let targetNB = 2;
-		if (target.hasClass("Fortress") || target.hasClass("Wonder") ||
+		if (target.hasClasses(["Fortress", "Wonder"]) ||
 		    target.getMetadata(PlayerID, "phaseUp") == true)
 			targetNB = 7;
-		else if (target.hasClass("Barracks") || target.hasClass("Range") || target.hasClass("Stable") ||
-			target.hasClass("Tower") || target.hasClass("Market"))
+		else if (target.hasClasses(["Barracks", "Range", "Stable", "Tower", "Market"]))
 			targetNB = 4;
-		else if (target.hasClass("House") || target.hasClass("DropsiteWood"))
+		else if (target.hasClasses(["House", "DropsiteWood"]))
 			targetNB = 3;
 
 		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
@@ -880,7 +878,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 		{
 			if (target.healthLevel() > 0.5 ||
-			    !target.hasClass("CivCentre") && !target.hasClass("Wall") &&
+			    !target.hasClasses(["CivCentre", "Wall"]) &&
 			    (!target.hasClass("Wonder") || !gameState.getVictoryConditions().has("wonder")))
 				continue;
 		}
@@ -893,7 +891,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		let maxTotalBuilders = Math.ceil(workers.length * builderRatio);
 		let targetNB = 1;
-		if (target.hasClass("Fortress") || target.hasClass("Wonder"))
+		if (target.hasClasses(["Fortress", "Wonder"]))
 			targetNB = 3;
 		if (target.getMetadata(PlayerID, "baseAnchor") == true ||
 		    target.hasClass("Wonder") && gameState.getVictoryConditions().has("wonder"))

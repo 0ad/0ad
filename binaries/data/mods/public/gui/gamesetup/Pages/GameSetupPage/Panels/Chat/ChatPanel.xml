@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object name="chatPanel" type="image" sprite="ModernDarkBoxGold">
+<object name="chatPanel" type="image" sprite="ModernDarkBox">
 
 	<object name="chatText" type="list" size="2 2 100%-2 100%-28" style="ChatPanelList"/>
 
@@ -9,4 +9,6 @@
 		<translatableAttribute id="caption">Send</translatableAttribute>
 	</object>
 
+	<!-- Draw the border last so that it will be above all text -->
+	<object type="image" sprite="ModernDarkBoxGoldBorder" ghost="true"/>
 </object>

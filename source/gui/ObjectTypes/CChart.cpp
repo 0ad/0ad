@@ -19,6 +19,7 @@
 
 #include "CChart.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/ShaderManager.h"
 #include "gui/GUIMatrix.h"
 #include "gui/SettingTypes/CGUIList.h"
@@ -65,24 +66,6 @@ void CChart::HandleMessage(SGUIMessage& Message)
 		UpdateSeries();
 }
 
-void CChart::DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
-{
-	shader->Uniform(str_color, color);
-	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
-	shader->AssertPointersBound();
-
-#if !CONFIG2_GLES
-	glEnable(GL_LINE_SMOOTH);
-#endif
-	glLineWidth(1.1f);
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 3);
-	glLineWidth(1.0f);
-#if !CONFIG2_GLES
-	glDisable(GL_LINE_SMOOTH);
-#endif
-}
-
 void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
 {
 	shader->Uniform(str_color, color);
@@ -109,7 +92,7 @@ void CChart::DrawAxes(const CShaderProgramPtr& shader) const
 	DrawTriangleStrip(shader, m_AxisColor, vertices);
 }
 
-void CChart::Draw()
+void CChart::Draw(CCanvas2D& canvas)
 {
 	PROFILE3("render chart");
 
@@ -120,6 +103,32 @@ void CChart::Draw()
 	const float width = rect.GetWidth();
 	const float height = rect.GetHeight();
 
+	CVector2D scale(width / (m_RightTop.X - m_LeftBottom.X), height / (m_RightTop.Y - m_LeftBottom.Y));
+	std::vector<CVector2D> linePoints;
+	for (const CChartData& data : m_Series)
+	{
+		if (data.m_Points.empty())
+			continue;
+		
+		linePoints.clear();
+		for (const CVector2D& point : data.m_Points)
+		{
+			if (fabs(point.X) != std::numeric_limits<float>::infinity() && fabs(point.Y) != std::numeric_limits<float>::infinity())
+			{
+				linePoints.emplace_back(
+					rect.left + (point.X - m_LeftBottom.X) * scale.X,
+					rect.bottom - (point.Y - m_LeftBottom.Y) * scale.Y);
+			}
+			else
+			{
+				canvas.DrawLine(linePoints, 1.1f, data.m_Color);
+				linePoints.clear();
+			}
+		}
+		if (!linePoints.empty())
+			canvas.DrawLine(linePoints, 1.1f, data.m_Color);
+	}
+
 	// Setup the render state
 	CMatrix3D transform = GetDefaultGuiMatrix();
 	CShaderDefines lineDefines;
@@ -127,31 +136,6 @@ void CChart::Draw()
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 	shader->Uniform(str_transform, transform);
-
-	CVector2D scale(width / (m_RightTop.X - m_LeftBottom.X), height / (m_RightTop.Y - m_LeftBottom.Y));
-	for (const CChartData& data : m_Series)
-	{
-		if (data.m_Points.empty())
-			continue;
-
-		std::vector<float> vertices;
-		for (const CVector2D& point : data.m_Points)
-		{
-			if (fabs(point.X) != std::numeric_limits<float>::infinity() && fabs(point.Y) != std::numeric_limits<float>::infinity())
-			{
-				vertices.push_back(rect.left + (point.X - m_LeftBottom.X) * scale.X);
-				vertices.push_back(rect.bottom - (point.Y - m_LeftBottom.Y) * scale.Y);
-				vertices.push_back(0.0f);
-			}
-			else
-			{
-				DrawLine(shader, data.m_Color, vertices);
-				vertices.clear();
-			}
-		}
-		if (!vertices.empty())
-			DrawLine(shader, data.m_Color, vertices);
-	}
 
 	if (m_AxisWidth > 0)
 		DrawAxes(shader);

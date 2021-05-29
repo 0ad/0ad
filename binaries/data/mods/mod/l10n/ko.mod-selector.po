@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-12 15:08+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
+"PO-Revision-Date: 2021-05-26 15:20+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,7 @@ msgstr "파일 다운로드를 실패했습니다.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "다운로드 실패"
+msgstr "다운로드 오류"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -312,45 +312,50 @@ msgstr "mod.io 모드"
 msgid "Available Mods"
 msgstr "사용 가능한 모드"
 
-#: gui/modio/modio.xml:(caption):81
+#: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
 msgstr "유효한 모드 필터"
 
-#: gui/modio/modio.xml:(caption):87
+#: gui/modio/modio.xml:(caption):88
 msgid "Back"
 msgstr "뒤로"
 
-#: gui/modio/modio.xml:(caption):92
+#: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
 msgstr "목록 새로 고침"
 
-#: gui/modio/modio.xml:(caption):97
+#: gui/modio/modio.xml:(caption):98
 msgid "Download"
 msgstr "다운로드"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "이름"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "버전"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "모드 이름"
 
-#: gui/modio/modio.xml:(heading):62
+#: gui/modio/modio.xml:(heading):63
 msgid "File Size"
 msgstr "파일 크기"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "의존성"
+
+#: gui/modio/modio.xml:(placeholder_text):35
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "필터"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -403,33 +408,33 @@ msgstr "mod.io 방문"
 msgid "This mod does not exist"
 msgstr "이 모드는 존재하지 않습니다"
 
-#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "활성화"
 
-#: gui/modmod/modmod.js:165
+#: gui/modmod/modmod.js:166
 msgid "Dependencies not met"
 msgstr "의존성이 충족되지 않음"
 
-#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "필터"
 
-#: gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "비활성화"
 
-#: gui/modmod/modmod.js:456
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "선택된 모드가 없습니다."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:462
 msgid "Enable at least 0ad mod and save configuration"
 msgstr "0ad 모드만 활성화 및 환경설정 저장"
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:464
 msgid "Enable at least 0ad mod"
 msgstr "0ad 모드만 활성화"
 

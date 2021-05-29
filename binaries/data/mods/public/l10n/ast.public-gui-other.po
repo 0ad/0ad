@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
 "PO-Revision-Date: 2021-05-21 20:14+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -213,172 +213,177 @@ msgstr "Héroes espuestos"
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "Los héroes han quedar albentestate y son más dañatibles."
 
-#: gui/common/gamedescription.js:252
-msgid "Rated game"
-msgstr "Partida clasificada"
-
-#: gui/common/gamedescription.js:253
-msgid ""
-"When the winner of this match is determined, the lobby score will be "
-"adapted."
-msgstr "Al ganar daquién l'alcuentru, anuévase'l marcador n'antepar."
-
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:251
 msgid "Locked Teams"
 msgstr "Equipos fixos"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
 msgstr "Los xugadores nun puen cambiar d'equipu."
 
-#: gui/common/gamedescription.js:263
+#: gui/common/gamedescription.js:256
 msgid "Diplomacy"
 msgstr "Diplomacia"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
 msgstr "Los xugadores puen aliase y declarar la guerra a aliaos."
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
 msgstr "El caberu de pie"
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:263
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Namái pue ganar un xugador. Si los que queden tán aliaos, l'alcuentru sigue hasta que quede solo ún."
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:267
 msgid "Allied Victory"
 msgstr "Victoria aliada"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:268
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Al ganar un xugador, tola alianza tamién gana. Al quedar una alianza, gana."
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:273
 msgid "Ceasefire"
 msgstr "Altu'l fueu"
 
-#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "desactivóse"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:277
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Demientres el primer minutu, tolos xugadores van tar neutrales."
 msgstr[1] "Demientres los primeros %(min)s minutos, tolos xugadores van tar neutrales."
 
-#: gui/common/gamedescription.js:293
+#: gui/common/gamedescription.js:286
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Mapa al debalu"
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:287
 msgid "Randomly select a map from the list."
 msgstr "Esbilla un mapa de la llista al debalu."
 
-#: gui/common/gamedescription.js:299
+#: gui/common/gamedescription.js:292
 msgid "Map Name"
 msgstr "Nome del mapa"
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:298
 msgid "Map Description"
 msgstr "Descripción del mapa"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:304
 msgid "Map Type"
 msgstr "Tipu de mapa"
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:313
 msgid "Map Size"
 msgstr "Tamañu del mapa"
 
-#: gui/common/gamedescription.js:329
+#: gui/common/gamedescription.js:322
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Bioma al debalu"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:323
 msgid "Randomly select a biome from the list."
 msgstr "Esbilla un bioma de la llista al debalu."
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:338
 msgid "Nomad Mode"
 msgstr "Mou nómada"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:338
 msgid "Civic Centers"
 msgstr "Places"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:341
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Los xugadores entamen con un puñáu d'unidaes ya escueyen onde fincar."
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:342
 msgid "Players start with a Civic Center."
 msgstr "Los xugadores entamen con plaza."
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:347
 msgid "Starting Resources"
 msgstr "Recursos iniciales"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:351
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Por xugador"
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:352
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:370
+#: gui/common/gamedescription.js:363
 msgid "Population Limit"
 msgstr "Población máxima"
 
-#: gui/common/gamedescription.js:374
+#: gui/common/gamedescription.js:367
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Por xugador"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:375
 msgid "World Population Cap"
 msgstr "Población global máxima"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:383
 msgid "Treasures"
 msgstr "Ayalgues"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:385
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desactiváronse"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:386
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Según les definiciones del mapa"
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:390
 msgid "Explored Map"
 msgstr "Mapa esploráu"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:395
 msgid "Revealed Map"
 msgstr "Mapa reveláu"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:400
 msgid "Cheats"
 msgstr "Trampes"
 
-#: gui/common/gamedescription.js:411 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:403
+msgid ""
+"When the winner of this match is determined, the lobby score will be "
+"adapted."
+msgstr "Al ganar daquién l'alcuentru, anuévase'l marcador n'antepar."
+
+#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+msgid "Rated game"
+msgstr "Partida clasificada"
+
+#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+msgctxt "game setup option"
+msgid "disabled"
+msgstr "desactiváronse"
+
+#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -390,25 +395,20 @@ msgstr "Trampes"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:414
+#: gui/common/gamedescription.js:420
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "activáronse"
 
-#: gui/common/gamedescription.js:415
-msgctxt "game setup option"
-msgid "disabled"
-msgstr "desactiváronse"
-
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:433
 msgid "Victorious"
 msgstr "Trunfante"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:438
 msgid "Defeated"
 msgstr "Vencíu/-ida"
 
-#: gui/common/gamedescription.js:441
+#: gui/common/gamedescription.js:447
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"

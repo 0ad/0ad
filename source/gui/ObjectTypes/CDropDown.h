@@ -65,7 +65,7 @@ public:
 	/**
 	 * Draws the Button
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	// This is one of the few classes we actually need to redefine this function
 	//  this is because the size of the control changes whether it is open
@@ -132,7 +132,9 @@ protected:
 	CGUISimpleSetting<CStrW> m_SoundLeave;
 	CGUISimpleSetting<CStrW> m_SoundOpened;
 	CGUISimpleSetting<CGUISpriteInstance> m_SpriteDisabled;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteOverlayDisabled;
 	CGUISimpleSetting<CGUISpriteInstance> m_SpriteList;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteListOverlay;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Over;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite2Pressed;

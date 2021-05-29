@@ -95,7 +95,7 @@ protected:
 	/**
 	 * Draws the Text
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
 	 * Calculate m_CharacterPosition
@@ -229,6 +229,7 @@ protected:
 	CGUISimpleSetting<bool> m_ScrollBar;
 	CGUISimpleSetting<CStr> m_ScrollBarStyle;
 	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteOverlay;
 	CGUISimpleSetting<CGUISpriteInstance> m_SpriteSelectArea;
 	CGUISimpleSetting<CGUIColor> m_TextColor;
 	CGUISimpleSetting<CGUIColor> m_TextColorSelected;

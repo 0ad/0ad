@@ -280,11 +280,9 @@ void COList::AdditionalChildrenHandled()
 	SetupText();
 }
 
-void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& sprite_selected, const CGUIColor& textcolor)
+void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
+                      const CGUISpriteInstance& spriteSelectArea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor)
 {
-	if (m_ScrollBar)
-		IGUIScrollBarOwner::Draw();
-
 	CRect rect = GetListRect();
 
 	m_pGUI.DrawSprite(sprite, rect);
@@ -293,37 +291,41 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 	if (m_ScrollBar)
 		scroll = GetScrollBar(0).GetPos();
 
+	bool drawSelected = false;
+	CRect rectSel;
 	// Draw item selection
 	if (selected != -1)
 	{
 		ENSURE(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
 
 		// Get rectangle of selection:
-		CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
-		               rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
+		rectSel = CRect(
+			rect.left, rect.top + m_ItemsYPositions[selected] - scroll,
+			rect.right, rect.top + m_ItemsYPositions[selected+1] - scroll);
 
-		if (rect_sel.top <= rect.bottom &&
-			rect_sel.bottom >= rect.top)
+		if (rectSel.top <= rect.bottom &&
+			rectSel.bottom >= rect.top)
 		{
-			if (rect_sel.bottom > rect.bottom)
-				rect_sel.bottom = rect.bottom;
-			if (rect_sel.top < rect.top)
-				rect_sel.top = rect.top;
+			if (rectSel.bottom > rect.bottom)
+				rectSel.bottom = rect.bottom;
+			if (rectSel.top < rect.top)
+				rectSel.top = rect.top;
 
 			if (m_ScrollBar)
 			{
 				// Remove any overlapping area of the scrollbar.
-				if (rect_sel.right > GetScrollBar(0).GetOuterRect().left &&
-					rect_sel.right <= GetScrollBar(0).GetOuterRect().right)
-					rect_sel.right = GetScrollBar(0).GetOuterRect().left;
+				if (rectSel.right > GetScrollBar(0).GetOuterRect().left &&
+					rectSel.right <= GetScrollBar(0).GetOuterRect().right)
+					rectSel.right = GetScrollBar(0).GetOuterRect().left;
 
-				if (rect_sel.left >= GetScrollBar(0).GetOuterRect().left &&
-					rect_sel.left < GetScrollBar(0).GetOuterRect().right)
-					rect_sel.left = GetScrollBar(0).GetOuterRect().right;
+				if (rectSel.left >= GetScrollBar(0).GetOuterRect().left &&
+					rectSel.left < GetScrollBar(0).GetOuterRect().right)
+					rectSel.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
 			// Draw item selection
-			m_pGUI.DrawSprite(sprite_selected, rect_sel);
+			m_pGUI.DrawSprite(spriteSelectArea, rectSel);
+			drawSelected = true;
 		}
 	}
 
@@ -371,7 +373,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 		}
 
 		// Draw column header text
-		DrawText(col, textcolor, leftTopCorner + COLUMN_SHIFT, rect_head);
+		DrawText(col, textColor, leftTopCorner + COLUMN_SHIFT, rect_head);
 		xpos += width;
 		++col;
 	}
@@ -426,4 +428,13 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			xpos += width;
 		}
 	}
+
+	// Draw scrollbars on top of the content
+	if (m_ScrollBar)
+		IGUIScrollBarOwner::Draw();
+
+	// Draw the overlays last
+	m_pGUI.DrawSprite(spriteOverlay, rect);
+	if (drawSelected)
+		m_pGUI.DrawSprite(spriteSelectAreaOverlay, rectSel);
 }

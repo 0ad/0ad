@@ -19,6 +19,7 @@
 
 #include "CGUI.h"
 
+#include "graphics/Canvas2D.h"
 #include "gui/IGUIScrollBar.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectTypes/CGUIDummyObject.h"
@@ -343,8 +344,10 @@ void CGUI::Draw()
 			return visibleObject1.bufferedZ < visibleObject2.bufferedZ;
 		return visibleObject1.index < visibleObject2.index;
 	});
+
+	CCanvas2D canvas;
 	for (const VisibleObject& visibleObject : visibleObjects)
-		visibleObject.object->Draw();
+		visibleObject.object->Draw(canvas);
 }
 
 void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const CRect& Rect, const CRect& UNUSED(Clipping))

@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
-# chianyu chen <cagd.lulofun@gmail.com>, 2019
+# CAGD_lulofun滷肉飯 <cagd.lulofun@gmail.com>, 2019
 # Cirro Yuan, 2013
 # helen, 2017
 # Karinsu Hsu <m80126colin@gmail.com>, 2018
@@ -17,16 +17,16 @@
 # samrmrf, 2013
 # shiung hanching <shiunghanching@gmail.com>, 2017
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
-# StarAtt <tea55688@gmail.com>, 2019
-# Yuan <daan0014119@gmail.com>, 2020
+# StarAtt <tea55688@gmail.com>, 2019,2021
+# Yuan <daan0014119@gmail.com>, 2020-2021
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # 黃柏諺 <s8321414@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-31 07:53+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
+"PO-Revision-Date: 2021-05-28 07:13+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +102,7 @@ msgstr "每進入一個新階段，工人的金屬採集速率 +10%。"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "阿提卡的勞里厄姆的銀礦為最有名且昂貴的硬幣「雅典貓頭鷹」，提供了充足的原料。"
+msgstr "阿提卡地區勞里厄姆的礦場提供了雅典豐裕的銀，鑄造出知名而昂貴的錢幣——雅典娜之鴞。"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -114,7 +114,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "作為西方文明的發源地，以及民主政治的誕生地，雅典是藝術、教育及哲學中心。雅典的戰士也非常強大，特別是在海上。巔峰時期，雅典統治了希臘大多數的領土數十年。"
+msgstr "作為西方文明的搖籃及民主政治的誕生地，雅典以藝術、知識和哲學中心聞名。雅典人也是強大的戰士，尤其擅長海戰。在巔峰時期，雅典曾支配大半古希臘世界長達數十年。"
 
 #: simulation/data/civs/athen.jsonName
 msgid "Athenians"
@@ -170,7 +170,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "不列顛人是居住在不列顛群島的塞爾特人。擁有雙輪馬車、長劍兵及強而有力的近戰士兵，他們一直與羅馬進行戰爭以保護他們的習俗及利益。同時，他們也建造了數以千計的獨特建築物，像是丘陵堡壘及圓形石塔。"
+msgstr "不列顛人是居住在不列顛群島的凱爾特人。運用馬戰車、長劍兵和強大的近戰士兵，他們向羅馬掀起駭人的抗爭以維護他們的習俗與利益。他們也建造了數以千計的獨特建築物，像是丘陵堡壘、人工島屋及圓形石塔。"
 
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
@@ -230,7 +230,7 @@ msgstr "馬戈．巴卡"
 
 #: simulation/data/civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr "公正者 哈斯德魯巴"
+msgstr "公正者哈斯德魯巴"
 
 #: simulation/data/civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
@@ -246,7 +246,7 @@ msgstr "貿易商船 +25% 獲利。"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr "精明商業"
+msgstr "商業頭腦"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
@@ -254,7 +254,7 @@ msgstr "碼頭與市集 +10% 國際貿易加成。"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr "理想產品"
+msgstr "合需產品"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -264,7 +264,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "迦太基是個城邦，約位在今日的突尼西亞，曾是地中海西部強大的力量，在西元前三世紀征服現今的北非及西班牙。迦太基的水手在公海是強大的爭奪者，同時也精通海上貿易。他們在戰場上部署戰象以造成敵方的震懾，並像防禦城牆那麼強，他們從不毀約。"
+msgstr "迦太基是個城邦，位於今日的突尼西亞，曾是地中海西部的強大勢力，在西元前三世紀最終掌控北非及現今西班牙的大部分。迦太基水手在公海是一支最強勁的競爭者，同時也精通海上貿易。他們在戰場上部署塔戰象震懾敵人，還擁有固若金湯的城牆。"
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -317,7 +317,7 @@ msgid ""
 "metalworking, agriculture, trade and even road engineering. With heavy "
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
-msgstr "高盧人是歐洲大陸的塞爾特部落。由德魯伊中類似於祭司的階級所主導，他們有著先進的金屬加工技術、農業、貿易、甚至是道路工程，是一個相當先進的文明。有著重裝步兵及騎兵，高盧的戰士英勇的抵抗凱撒大帝的征服及羅馬的專制統治。"
+msgstr "高盧人是歐洲大陸的凱爾特部落。在德魯伊中類似於祭司的階級主導下，他們發展出包括先進的金屬加工技術、農業、貿易、甚至道路工程的精緻文化。擁有重裝步兵及騎兵的高盧戰士曾經英勇地抵禦凱撒的征服計畫及羅馬的專制統治。"
 
 #: simulation/data/civs/gaul.jsonName
 msgid "Gauls"
@@ -354,14 +354,14 @@ msgstr "Tautalus"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr "伊比利亞人在大多數的地圖上都以圍繞基地的城牆開局。"
+msgstr "伊比利人在大多數地圖開場時就有環繞基地的城牆。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
-msgstr "與一般的沖積平原及河谷不同的是，在伊比利半島有豐富的石頭來建造各式各樣的建築物。"
+msgstr "不同於一般的沖積平原及河谷，伊比利半島有著豐裕的石頭且被大量用於建造各種建築。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
@@ -371,11 +371,11 @@ msgstr "初始之牆"
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "石塔 -50% 木頭消耗、+150% 石頭消耗、+33% 建造時間、+60% 生命值、+3 駐紮容量、+1 預設射箭數。"
+msgstr "石塔 -50% 木頭成本、+150% 石頭成本、+33% 建造時間、+60% 生命值、+3 駐紮上限並 +1 原始箭數。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr "大型塔"
+msgstr "大型箭塔"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -385,7 +385,7 @@ msgid ""
 "proved tenacious when Rome sought to take their land and freedom from them, "
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
-msgstr "伊比利人有著神祕的起源及語言，他們也有很強的馬術及鐵匠傳統。作為一個相對來說愛好和平的民族，他們通常只以傭兵的身份參加戰爭。但是，在羅馬人侵略他們的土地時，並在反擊時使用了突熄戰術和火箭。"
+msgstr "伊比利人有著神祕的起源和語言，他們也有強大的馬術及金屬加工傳統。在相對和平的文化下，他們通常只以傭兵的身份參與外族戰爭；然而他們也在羅馬試圖侵奪他們的土地與自由時證明了自己的頑強，並在反擊時使用了開創性的游擊戰術和火標槍。"
 
 #: simulation/data/civs/iber.jsonName
 msgid "Iberians"
@@ -450,12 +450,12 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr "攻城槌 +20% 攻擊傷害並 +2 駐紮容量。"
+msgstr "衝撞車 +20% 攻擊傷害並 +2 駐紮容量。"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr "大型攻城槌"
+msgstr "大型衝撞車"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -473,7 +473,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "庫施（Kush）王國是一個古老的非洲王國，位於青尼羅河、白尼羅河及阿特巴拉河匯合處，現今為蘇丹共和國。該地區的庫施民族統治時代是在埃及新王國青銅時代崩潰之後開始發展，早期的發展以那帕塔（Napata）為中心。他們於西元前 8 世紀侵入埃及成功，庫施族的統治者因而成為埃及第二十五王朝的法老，統治全埃及一整個世紀，直到他們被亞述人驅逐出境。庫施民族的文化受到埃及人很大的影響，例如在建築上，庫施金字塔和巨大神廟等建築就可以看得出來；庫施人甚至崇拜了許多埃及神，包括阿蒙神。到希臘古典時期時，庫施帝國改定都美羅埃（Meroe）。在早期的希臘人地理概念上，這一個在美羅埃的王國被稱為 Aethiopia 。庫施王國一直持續到西元四世紀，由於內部的叛亂被削弱而瓦解，最終被日漸東昇的阿克蘇姆帝國所滅。"
+msgstr "庫施王國是一個古老的非洲王國，位於現今蘇丹藍尼羅河、白尼羅河及阿特巴拉河匯流處。此地區的庫施統治時期始於埃及新王國的青銅時代崩潰之後，早期發展以那帕塔為中心。他們於西元前 8 世紀入侵埃及，而後庫施統治者成為埃及第二十五王朝的法老統治埃及一個世紀，直到他們被亞述人驅逐為止。從現存的庫施金字塔和巨大神廟的建築風格來看，庫施人的文化受到埃及人很大的影響；庫施人甚至崇拜了許多埃及神，包括阿蒙神在內。希臘古典時期時，庫施定都於麥羅埃；在古希臘地理概念上，這個麥羅埃王國被稱為衣索比亞。庫施王國一直持續到西元 4 世紀，由於內亂弱化而瓦解，最終被日益強大的阿克蘇姆王國所滅。"
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -539,7 +539,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "馬其頓是一個古希臘王國，集中在希臘半島的東北部。在亞歷山大大帝的領導下，馬其頓軍隊及其盟友擊敗了埃及、波斯以及部份的印度次大陸，促進了希臘文化和東方文化的交流。"
+msgstr "馬其頓是一個古希臘王國，其中心位在希臘半島的東北部。在亞歷山大大帝的領導下，馬其頓軍及其盟友占領了大半他們的已知世界，包括埃及、波斯及部分的印度次大陸，促進日後希臘文化與東方文化的傳播。"
 
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
@@ -591,7 +591,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "由旃陀羅笈多於西元前322年所建立，孔雀王朝是第一個統治大部份的印度次大陸的王朝，並且是古代規模最大且人數最多的帝國之一。其軍隊主要由持竹製長弓的弓箭手、勇猛的女性戰士、雙輪戰車、以及數以千計的武裝戰象所組成。它的哲學家，特別是有名的考底利耶\n，在許多方面，例如經濟、宗教、外交、軍事、以及良好的治理都有貢獻。在阿育王的統治之下，這個帝國有了40年的和平、和諧、與繁榮。"
+msgstr "孔雀王朝由旃陀羅笈多於西元前 322 年建立，是第一個統治大部份印度次大陸的帝國，也是古代規模最大且人數最多的帝國之一。其軍隊主要由持竹製長弓的弓兵、勇猛的女性戰士、馬戰車及數以千計的裝甲戰象所組成。它的哲學家們，特別是有名的考底利耶，在如經濟、宗教、外交、軍事及善治等方面都有貢獻。在阿育王的統治之下，這個帝國享受了 40 年的和平、和諧與繁榮。"
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
@@ -647,7 +647,7 @@ msgstr "阿爾塔薛西斯三世"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr "陸上貿易 +25% 獲利。"
+msgstr "陸上商人 +25% 獲利。"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
@@ -662,7 +662,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "由當時的阿契美尼德王朝統治的波斯帝國，曾是古代最偉大的帝國之一，其疆界最遠曾東達印度河流域，西至希臘。波斯人是古代世界的帝國建設的先驅，成功的將不同風俗、法律、宗教和語言的各個民族集中在中央集權的統治之下，並建立一支來自於這些不同國家的國際化軍隊。"
+msgstr "阿契美尼德王朝統治下的波斯帝國曾是古代最偉大的帝國之一，其鼎盛時期疆域從東方的印度河流域一直延展至西方的希臘。波斯人是古代世界建立帝國的先驅，成功地對不同風俗、法律、宗教和語言的各個民族實行中央集權統治，並打造一支由各國派遣軍組成的世界性軍隊。"
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
@@ -670,35 +670,35 @@ msgstr "波斯人"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr "托勒密一世·索塔爾一世"
+msgstr "托勒密．索塔爾"
 
 #: simulation/data/civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
-msgstr "托勒密七世·奈俄斯·菲洛帕托爾"
+msgstr "托勒密．奈俄斯．菲洛帕托爾"
 
 #: simulation/data/civs/ptol.jsonAINames[11]
 msgid "Berenice Philopater"
-msgstr "貝勒尼基三世·菲洛帕托爾"
+msgstr "貝勒尼基．菲洛帕托爾"
 
 #: simulation/data/civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
-msgstr "克婁巴特拉六世·特麗菲娜"
+msgstr "克婁巴特拉．特麗菲娜"
 
 #: simulation/data/civs/ptol.jsonAINames[13]
 msgid "Berenice Epiphaneia"
-msgstr "貝勒尼基四世·埃庇法內婭"
+msgstr "貝勒尼基．埃庇法內婭"
 
 #: simulation/data/civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
-msgstr "克婁巴特拉七世·菲洛帕托爾"
+msgstr "克婁巴特拉．菲洛帕托爾"
 
 #: simulation/data/civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
-msgstr "克婁巴特拉一世·敘拉"
+msgstr "克婁巴特拉．敘拉"
 
 #: simulation/data/civs/ptol.jsonAINames[16]
 msgid "Cleopatra II Philometora Soteira"
-msgstr "克婁巴特拉二世·菲洛墨托爾·索泰拉"
+msgstr "克婁巴特拉．菲洛墨托爾．索泰拉"
 
 #: simulation/data/civs/ptol.jsonAINames[17]
 msgid "Arsinoe IV"
@@ -710,39 +710,39 @@ msgstr "阿爾西諾伊二世"
 
 #: simulation/data/civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
-msgstr "托勒密二世·費拉德爾甫斯"
+msgstr "托勒密．費拉德爾甫斯"
 
 #: simulation/data/civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
-msgstr "托勒密追隨者"
+msgstr "追隨者托勒密"
 
 #: simulation/data/civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
-msgstr "托勒密三世·歐厄爾葛忒斯一世"
+msgstr "托勒密．歐厄爾葛忒斯"
 
 #: simulation/data/civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
-msgstr "托勒密四世·菲洛帕托爾"
+msgstr "托勒密．菲洛帕托爾"
 
 #: simulation/data/civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
-msgstr "托勒密五世·埃庇法涅斯"
+msgstr "托勒密．埃庇法涅斯"
 
 #: simulation/data/civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr "托勒密六世·菲洛墨托爾"
+msgstr "托勒密．菲洛墨托爾"
 
 #: simulation/data/civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
-msgstr "托勒密·歐帕托爾"
+msgstr "托勒密．歐帕托爾"
 
 #: simulation/data/civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
-msgstr "托勒密十世·亞歷山大一世"
+msgstr "托勒密．亞歷山大"
 
 #: simulation/data/civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
-msgstr "托勒密十二世·吹笛者"
+msgstr "托勒密．尼奧斯．戴奧尼索斯"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
@@ -766,7 +766,7 @@ msgstr "托勒密"
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
-msgstr "盧基烏斯·尤尼烏斯·布魯圖斯"
+msgstr "盧基烏斯．尤尼烏斯．布魯圖斯"
 
 #: simulation/data/civs/rome.jsonAINames[10]
 msgid "Publius Sempronius Tuditanus"
@@ -782,11 +782,11 @@ msgstr "Quintus Caecilius Metellus Pius"
 
 #: simulation/data/civs/rome.jsonAINames[13]
 msgid "Marcus Licinius Crassus"
-msgstr "馬庫斯·李錫尼·克拉蘇"
+msgstr "馬庫斯．李錫尼．克拉蘇"
 
 #: simulation/data/civs/rome.jsonAINames[1]
 msgid "Lucius Tarquinius Collatinus"
-msgstr "盧基烏斯·塔克尼烏斯·柯拉汀斯"
+msgstr "盧基烏斯．塔克尼烏斯．柯拉汀斯"
 
 #: simulation/data/civs/rome.jsonAINames[2]
 msgid "Gaius Julius Caesar Octavianus"
@@ -794,7 +794,7 @@ msgstr "蓋烏斯•尤里烏斯•凱撒•奧古斯都"
 
 #: simulation/data/civs/rome.jsonAINames[3]
 msgid "Marcus Vipsanius Agrippa"
-msgstr "瑪爾庫斯·維普撒尼烏斯·阿格里帕"
+msgstr "瑪爾庫斯．維普撒尼烏斯．阿格里帕"
 
 #: simulation/data/civs/rome.jsonAINames[4]
 msgid "Gaius Iulius Iullus"
@@ -810,7 +810,7 @@ msgstr "Publius Cornelius Rufinus"
 
 #: simulation/data/civs/rome.jsonAINames[7]
 msgid "Lucius Papirius Cursor"
-msgstr "盧基烏斯·帕皮爾斯·柯瑟"
+msgstr "盧基烏斯．帕皮爾斯．柯瑟"
 
 #: simulation/data/civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
@@ -818,7 +818,7 @@ msgstr "Aulus Manlius Capitolinus"
 
 #: simulation/data/civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
-msgstr "征服非洲的 普布利烏斯·科爾內利烏斯·西庇阿"
+msgstr "征服非洲的普布利烏斯．科爾內利烏斯．西庇阿"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
@@ -877,7 +877,7 @@ msgstr "神顯者 安條克六世"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
-msgstr "統領 狄奧多特·特里豐"
+msgstr "統領 狄奧多特．特里豐"
 
 #: simulation/data/civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
@@ -889,7 +889,7 @@ msgstr "沽名者 亞歷山大二世"
 
 #: simulation/data/civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
-msgstr "克麗奧佩脫拉·特亞"
+msgstr "克麗奧佩脫拉．特亞"
 
 #: simulation/data/civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
@@ -909,11 +909,11 @@ msgstr "敬神者 安條克九世"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
-msgstr "神選者·勝利者 塞琉古六世"
+msgstr "神選者．勝利者 塞琉古六世"
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr "敬神者·篤愛父親者 安條克十世"
+msgstr "敬神者．篤愛父親者 安條克十世"
 
 #: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
@@ -921,7 +921,7 @@ msgstr "德米特里三世"
 
 #: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr "神選者·篤愛父親者 安條克十一世"
+msgstr "神選者．篤愛父親者 安條克十一世"
 
 #: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"

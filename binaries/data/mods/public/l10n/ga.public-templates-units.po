@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-30 07:08+0000\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
 "PO-Revision-Date: 2021-04-30 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -105,7 +105,7 @@ msgstr "Marcach Troda"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee.xml:8
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_siege_ram.xml:35
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
 msgstr "Trodach"
 
@@ -756,16 +756,16 @@ msgid "Ram"
 msgstr "Reithe"
 
 #: simulation/templates/template_unit_siege_ram.xml:35
-msgid "Ram"
-msgstr "Reithe"
-
-#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Battering Ram"
 msgstr "Reithe Cogaidh"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
 msgstr ""
+
+#: simulation/templates/template_unit_siege_ram.xml:37
+msgid "Ram"
+msgstr "Reithe"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"

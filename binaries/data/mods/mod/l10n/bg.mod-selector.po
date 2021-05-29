@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 10:18+0000\n"
-"Last-Translator: Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
+"PO-Revision-Date: 2021-05-24 10:17+0000\n"
+"Last-Translator: Ivailo Monev <xakepa10@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,45 +307,50 @@ msgstr "Модификации от „mod.io“"
 msgid "Available Mods"
 msgstr "Налични модификации"
 
-#: gui/modio/modio.xml:(caption):81
+#: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
 msgstr ""
 
-#: gui/modio/modio.xml:(caption):87
+#: gui/modio/modio.xml:(caption):88
 msgid "Back"
 msgstr "Назад"
 
-#: gui/modio/modio.xml:(caption):92
+#: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
 msgstr "Опресняване на списъка"
 
-#: gui/modio/modio.xml:(caption):97
+#: gui/modio/modio.xml:(caption):98
 msgid "Download"
 msgstr "Сваляне"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Име"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Версия"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Етикет"
 
-#: gui/modio/modio.xml:(heading):62
+#: gui/modio/modio.xml:(heading):63
 msgid "File Size"
 msgstr "Размер на файла"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Зависимости"
+
+#: gui/modio/modio.xml:(placeholder_text):35
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "Филтър"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -398,33 +403,33 @@ msgstr "Към mod.io"
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Включване"
 
-#: gui/modmod/modmod.js:165
+#: gui/modmod/modmod.js:166
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Филтър"
 
-#: gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Изключване"
 
-#: gui/modmod/modmod.js:456
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Не е избрана модификация."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:462
 msgid "Enable at least 0ad mod and save configuration"
 msgstr ""
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:464
 msgid "Enable at least 0ad mod"
 msgstr ""
 

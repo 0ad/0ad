@@ -43,7 +43,7 @@ public:
 	/**
 	 * Draws the control
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 protected:
 	// Settings

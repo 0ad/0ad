@@ -12,13 +12,8 @@ m.Filters = {
 		"dynamicProperties": []
 	}),
 
-	"byClassesAnd": clsList => ({
-		"func": ent => clsList.every(cls => ent.hasClass(cls)),
-		"dynamicProperties": []
-	}),
-
-	"byClassesOr": clsList => ({
-		"func": ent => clsList.some(cls => ent.hasClass(cls)),
+	"byClasses": clsList => ({
+		"func": ent => ent.hasClasses(clsList),
 		"dynamicProperties": []
 	}),
 

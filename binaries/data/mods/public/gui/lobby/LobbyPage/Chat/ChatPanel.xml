@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object name="chatPanel" type="image" sprite="ModernDarkBoxGold">
+<object name="chatPanel" type="image" sprite="ModernDarkBox">
 
 	<script directory="gui/lobby/LobbyPage/Chat/"/>
 	<script directory="gui/lobby/LobbyPage/Chat/ChatMessages/"/>
@@ -11,4 +11,7 @@
 	<object name="chatSubmit" size="100%-72 100%-26 100%-4 100%-4" type="button" style="StoneButton">
 		<translatableAttribute id="caption">Send</translatableAttribute>
 	</object>
+
+	<!-- Draw the border last so that it will be above all text -->
+	<object type="image" sprite="ModernDarkBoxGoldBorder" ghost="true"/>
 </object>

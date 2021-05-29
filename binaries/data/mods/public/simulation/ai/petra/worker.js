@@ -219,7 +219,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 			{
 				let supplyId = ent.unitAIOrderData()[0].target;
 				let supply = gameState.getEntityById(supplyId);
-				if (supply && !supply.hasClass("Field") && !supply.hasClass("Animal") &&
+				if (supply && !supply.hasClasses(["Field", "Animal"]) &&
 					supplyId != ent.getMetadata(PlayerID, "supply"))
 				{
 					let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);

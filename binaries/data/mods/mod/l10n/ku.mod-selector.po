@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 10:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-24 07:17+0000\n"
+"PO-Revision-Date: 2021-05-24 10:17+0000\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -301,45 +301,50 @@ msgstr "Modên mod.io"
 msgid "Available Mods"
 msgstr "Modên Heye"
 
-#: gui/modio/modio.xml:(caption):81
+#: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
 msgstr "Modên derbasdar parzûn bike"
 
-#: gui/modio/modio.xml:(caption):87
+#: gui/modio/modio.xml:(caption):88
 msgid "Back"
 msgstr "Paş"
 
-#: gui/modio/modio.xml:(caption):92
+#: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
 msgstr "Lîsteyê Nû Bike"
 
-#: gui/modio/modio.xml:(caption):97
+#: gui/modio/modio.xml:(caption):98
 msgid "Download"
 msgstr "Daxîne"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Nav"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Versiyon"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Etîketa Modê"
 
-#: gui/modio/modio.xml:(heading):62
+#: gui/modio/modio.xml:(heading):63
 msgid "File Size"
 msgstr "Mezinahiya Pelê"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Bawerî"
+
+#: gui/modio/modio.xml:(placeholder_text):35
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "Parzûn"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -392,33 +397,33 @@ msgstr "Serdana mod.io"
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:151 gui/modmod/modmod.js:447
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Çalak"
 
-#: gui/modmod/modmod.js:165
+#: gui/modmod/modmod.js:166
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:311 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Parzûn"
 
-#: gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Neçalak Bike"
 
-#: gui/modmod/modmod.js:456
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Ti mod nehatiye hilbijartin."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:462
 msgid "Enable at least 0ad mod and save configuration"
 msgstr ""
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:464
 msgid "Enable at least 0ad mod"
 msgstr ""
 

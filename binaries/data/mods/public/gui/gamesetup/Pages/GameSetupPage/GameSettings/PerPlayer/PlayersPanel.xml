@@ -36,7 +36,7 @@
 
 			<object name="playerName[n]" type="text" style="ModernLabelText" size="0 2 22% 30"/>
 
-			<object name="playerColor[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 22%+33 30" sprite="" scrollbar="false" button_width="22" font="sans-stroke-14" tooltip_style="onscreenToolTip"/>
+			<object name="playerColor[n]" type="dropdown" style="ModernDropDown" size="22%+5 2 22%+33 30" sprite="" sprite_overlay="" scrollbar="false" button_width="22" font="sans-stroke-14" tooltip_style="onscreenToolTip"/>
 
 			<object name="playerAssignment[n]" type="dropdown" style="ModernDropDown" size="22%+37 2 50%+35 30" tooltip_style="onscreenToolTip"/>
 			<object name="playerAssignmentText[n]" type="text" style="ModernLabelText" size="22%+37 0 50%+35 30"/>

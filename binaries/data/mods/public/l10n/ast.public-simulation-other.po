@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-24 01:36+0000\n"
+"PO-Revision-Date: 2021-05-26 01:48+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -511,12 +511,12 @@ msgstr "¡Agora puedes atacar!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(lastPlayer)s gana (por siguir vivu)."
-msgstr[1] "%(players)s y %(lastPlayer)s ganen (por siguir vivos)."
+msgstr[0] "%(lastPlayer)s gana (sobrevivió)."
+msgstr[1] "%(players)s y %(lastPlayer)s ganen (sobrevivieron)."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
-msgstr "El xugador caberu gana."
+msgstr "El caberu con vida gana."
 
 #: simulation/components/EntityLimits.js:192
 #, javascript-format

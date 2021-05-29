@@ -152,7 +152,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			}
 			return false;
 		}
-		else if (template.hasClass("Tower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
+		else if (template.hasClasses(["Tower", "Fortress", "ArmyCamp"]))
 		{
 			let pos = HQ.findDefensiveLocation(gameState, template);
 			if (pos)
@@ -217,7 +217,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				let struct = PETRA.getBuiltEntity(gameState, ent);
 				if (struct.resourceDropsiteTypes() && struct.resourceDropsiteTypes().indexOf("food") != -1)
 				{
-					if (template.hasClass("Field") || template.hasClass("Corral"))
+					if (template.hasClasses(["Field", "Corral"]))
 						placement.addInfluence(x, z, 80 / cellSize, 50);
 					else // If this is not a field add a negative influence because we want to leave this area for fields
 						placement.addInfluence(x, z, 80 / cellSize, -20);
@@ -229,11 +229,11 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 						placement.addInfluence(x, z, 60 / cellSize, 40);    // houses are close to other houses
 						alreadyHasHouses = true;
 					}
-					else if (!ent.hasClass("Wall") || ent.hasClass("Gate"))
+					else if (ent.hasClasses(["Gate", "!Wall"]))
 						placement.addInfluence(x, z, 60 / cellSize, -40);   // and further away from other stuffs
 				}
-				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && !ent.hasClass("Corral") &&
-					(!ent.hasClass("Wall") || ent.hasClass("Gate"))))
+				else if (template.hasClass("Farmstead") && !ent.hasClasses(["Field", "Corral"]) &&
+					ent.hasClasses(["Gate", "!Wall"]))
 					placement.addInfluence(x, z, 100 / cellSize, -25);       // move farmsteads away to make room (Wall test needed for iber)
 				else if (template.hasClass("GarrisonFortress") && ent.hasClass("House"))
 					placement.addInfluence(x, z, 120 / cellSize, -50);
@@ -315,11 +315,10 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let radius = 0;
-	if (template.hasClass("Fortress") || template.hasClass("Arsenal") ||
+	if (template.hasClasses(["Fortress", "Arsenal"]) ||
 		this.type == gameState.applyCiv("structures/{civ}/elephant_stable"))
 		radius = Math.floor((template.obstructionRadius().max + 8) / obstructions.cellSize);
-	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") &&
-		!template.hasClass("Field") && !template.hasClass("Market"))
+	else if (template.resourceDropsiteTypes() === undefined && !template.hasClasses(["House", "Field", "Market"]))
 		radius = Math.ceil((template.obstructionRadius().max + 4) / obstructions.cellSize);
 	else
 		radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);

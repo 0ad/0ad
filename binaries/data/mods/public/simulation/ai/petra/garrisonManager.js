@@ -294,7 +294,7 @@ PETRA.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 		let capture = ent.capturePoints();
 		if (capture && capture[PlayerID] / capture.reduce((a, b) => a + b) < 0.8)
 			return true;
-		if (MatchesClassList(ent.classes(), holder.getGarrisonArrowClasses()))
+		if (ent.hasClasses(holder.getGarrisonArrowClasses()))
 		{
 			if (around.unit || around.defenseStructure)
 				return true;
