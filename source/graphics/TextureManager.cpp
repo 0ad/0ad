@@ -46,7 +46,7 @@ public:
 	{
 		const SColor4ub color32 = color.AsSColor4ub();
 		// Construct 1x1 32-bit texture
-		std::shared_ptr<u8> data(new u8[3], ArrayDeleter());
+		std::shared_ptr<u8> data(new u8[4], ArrayDeleter());
 		data.get()[0] = color32.R;
 		data.get()[1] = color32.G;
 		data.get()[2] = color32.B;
