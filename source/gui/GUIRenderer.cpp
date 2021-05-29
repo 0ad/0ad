@@ -338,7 +338,7 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 
 	CMatrix3D matrix = GetDefaultGuiMatrix();
 
-	glDisable(GL_BLEND);
+	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
@@ -352,11 +352,6 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 
 			shader->Uniform(str_color, cit->m_ShaderColorParameter);
 			shader->BindTexture(str_tex, cit->m_Texture);
-
-			// Shouldn't call HasAlpha before BindTexture.
-			const bool needsBlend = cit->m_EnableBlending || cit->m_Texture->HasAlpha();
-			if (needsBlend)
-				glEnable(GL_BLEND);
 
 			CRect TexCoords = cit->ComputeTexCoords();
 
@@ -388,16 +383,10 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 			shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 
-			if (needsBlend)
-				glDisable(GL_BLEND);
-
 			cit->m_Shader->EndPass();
 		}
 		else
 		{
-			if (cit->m_EnableBlending)
-				glEnable(GL_BLEND);
-
 			// Ensure the quad has the correct winding order
 			CRect rect = cit->m_Vertices;
 			if (rect.right < rect.left)
@@ -407,9 +396,8 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 			canvas.DrawTexture(cit->m_Texture,
 				rect, CRect(0, 0, cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight()),
 				cit->m_ColorMultiply, cit->m_ColorAdd);
-
-			if (cit->m_EnableBlending)
-				glDisable(GL_BLEND);
 		}
 	}
+
+	glDisable(GL_BLEND);
 }
