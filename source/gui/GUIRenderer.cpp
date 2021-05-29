@@ -19,6 +19,7 @@
 
 #include "GUIRenderer.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "gui/CGUI.h"
@@ -110,7 +111,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 
 			Sprite->AddImage(Image);
-
 			Sprites[SpriteName] = Sprite;
 		}
 		else if (SpriteName.Find("cropped:") != -1)
@@ -136,7 +136,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 
 			Sprite->AddImage(Image);
-
 			Sprites[SpriteName] = Sprite;
 		}
 		if (SpriteName.Find("color:") != -1)
@@ -166,7 +165,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 
 			Sprite->AddImage(Image);
-
 			Sprites[SpriteName] = Sprite;
 		}
 		it = Sprites.find(SpriteName);
@@ -232,12 +230,14 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		if (!Call.m_HasTexture)
 		{
 			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
+			Call.m_Material = str_gui_solid;
 		}
 		else if ((*cit)->m_Effects)
 		{
 			if ((*cit)->m_Effects->m_AddColor != CGUIColor())
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_add);
+				Call.m_Material = str_gui_add;
 				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_AddColor;
 				// Always enable blending if something's being subtracted from
 				// the alpha channel
@@ -247,21 +247,25 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			else if ((*cit)->m_Effects->m_Greyscale)
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_grayscale);
+				Call.m_Material = str_gui_grayscale;
 			}
 			else if ((*cit)->m_Effects->m_SolidColor != CGUIColor())
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid_mask);
+				Call.m_Material = str_gui_solid_mask;
 				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_SolidColor;
 				Call.m_EnableBlending = !(fabs((*cit)->m_Effects->m_SolidColor.a - 1.0f) < 0.0000001f);
 			}
 			else /* Slight confusion - why no effects? */
 			{
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
+				Call.m_Material = str_gui_basic;
 			}
 		}
 		else
 		{
 			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
+			Call.m_Material = str_gui_basic;
 		}
 
 		Calls.push_back(Call);
@@ -291,9 +295,7 @@ CRect SDrawCall::ComputeTexCoords() const
 
 	// "real_texture_placement" overrides everything
 	if (m_Image->m_TexturePlacementInFile != CRect())
-	{
 		BlockTex = m_Image->m_TexturePlacementInFile;
-	}
 	// Use the whole texture
 	else
 		BlockTex = CRect(0, 0, TexWidth, TexHeight);
@@ -327,7 +329,7 @@ CRect SDrawCall::ComputeTexCoords() const
 	return TexCoords;
 }
 
-void GUIRenderer::Draw(DrawCalls& Calls)
+void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 {
 	if (Calls.empty())
 		return;
@@ -344,12 +346,12 @@ void GUIRenderer::Draw(DrawCalls& Calls)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		cit->m_Shader->BeginPass();
-		CShaderProgramPtr shader = cit->m_Shader->GetShader();
-		shader->Uniform(str_transform, matrix);
-
 		if (cit->m_HasTexture)
 		{
+			cit->m_Shader->BeginPass();
+			CShaderProgramPtr shader = cit->m_Shader->GetShader();
+			shader->Uniform(str_transform, matrix);
+
 			shader->Uniform(str_color, cit->m_ShaderColorParameter);
 			shader->BindTexture(str_tex, cit->m_Texture);
 
@@ -390,39 +392,24 @@ void GUIRenderer::Draw(DrawCalls& Calls)
 
 			if (needsBlend)
 				glDisable(GL_BLEND);
+
+			cit->m_Shader->EndPass();
 		}
 		else
 		{
-			shader->Uniform(str_color, *cit->m_BackColor);
-
 			if (cit->m_EnableBlending)
 				glEnable(GL_BLEND);
 
 			// Ensure the quad has the correct winding order
-			CRect Verts = cit->m_Vertices;
-			if (Verts.right < Verts.left)
-				std::swap(Verts.right, Verts.left);
-			if (Verts.bottom < Verts.top)
-				std::swap(Verts.bottom, Verts.top);
-
-			std::vector<float> data;
-#define ADD(x, y, z) STMT(data.push_back(x); data.push_back(y); data.push_back(z))
-			ADD(Verts.left, Verts.bottom, 0.0f);
-			ADD(Verts.right, Verts.bottom, 0.0f);
-			ADD(Verts.right, Verts.top, 0.0f);
-
-			ADD(Verts.right, Verts.top, 0.0f);
-			ADD(Verts.left, Verts.top, 0.0f);
-			ADD(Verts.left, Verts.bottom, 0.0f);
-
-			shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
-			glDrawArrays(GL_TRIANGLES, 0, 6);
+			CRect rect = cit->m_Vertices;
+			if (rect.right < rect.left)
+				std::swap(rect.right, rect.left);
+			if (rect.bottom < rect.top)
+				std::swap(rect.bottom, rect.top);
+			canvas.DrawRect(rect, *(cit->m_BackColor));
 
 			if (cit->m_EnableBlending)
 				glDisable(GL_BLEND);
-#undef ADD
 		}
-
-		cit->m_Shader->EndPass();
 	}
 }

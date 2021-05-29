@@ -34,6 +34,8 @@
 #include <memory>
 #include <vector>
 
+class CCanvas2D;
+
 struct SGUIImageEffects
 {
 	SGUIImageEffects() : m_Greyscale(false) {}
@@ -137,7 +139,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(CGUI& pGUI, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const;
+	void Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const;
 
 	/**
 	 * Whether this Sprite has no texture name set.

@@ -85,7 +85,7 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 
-	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetWhiteTexture());
+	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetTransparentTexture());
 	shader->Uniform(str_transform, GetDefaultGuiMatrix());
 	shader->Uniform(str_colorAdd, color);
 	shader->Uniform(str_colorMul, CColor(0.0f, 0.0f, 0.0f, 0.0f));

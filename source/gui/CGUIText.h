@@ -30,6 +30,7 @@
 #include <list>
 #include <vector>
 
+class CCanvas2D;
 class CGUI;
 class CGUIString;
 class IGUIObject;
@@ -168,7 +169,7 @@ public:
 	/**
 	 * Draw this CGUIText object
 	 */
-	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const;
+	void Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const;
 
 	const CSize2D& GetSize() const { return m_Size; }
 

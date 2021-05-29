@@ -143,7 +143,7 @@ void CChart::Draw(CCanvas2D& canvas)
 	tech->EndPass();
 
 	for (size_t i = 0; i < m_TextPositions.size(); ++i)
-		DrawText(i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i]);
+		DrawText(canvas, i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i]);
 }
 
 CRect CChart::GetChartRect() const

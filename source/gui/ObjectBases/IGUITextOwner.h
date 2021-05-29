@@ -36,6 +36,7 @@ GUI Object Base - Text Owner
 
 #include <vector>
 
+class CCanvas2D;
 struct CGUIColor;
 struct SGUIMessage;
 class CGUIText;
@@ -79,13 +80,14 @@ public:
 	/**
 	 * Draws the Text.
 	 *
+	 * @param canvas Canvas to draw on.
 	 * @param index Index value of text. Mostly this will be 0
 	 * @param color
 	 * @param pos Position
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
-	virtual void DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, const CRect& clipping = CRect());
+	virtual void DrawText(CCanvas2D& canvas, size_t index, const CGUIColor& color, const CVector2D& pos, const CRect& clipping = CRect());
 
 protected:
 	/**

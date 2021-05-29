@@ -47,7 +47,7 @@ void CGUIScrollBarVertical::SetPosFromMousePos(const CVector2D& mouse)
 	m_Pos = m_PosWhenPressed + GetMaxPos() * (mouse.Y - m_BarPressedAtPos.Y) / emptyBackground;
 }
 
-void CGUIScrollBarVertical::Draw()
+void CGUIScrollBarVertical::Draw(CCanvas2D& canvas)
 {
 	if (!GetStyle())
 	{
@@ -61,6 +61,7 @@ void CGUIScrollBarVertical::Draw()
 
 		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBackVertical,
+			canvas,
 			CRect(
 				outline.left,
 				outline.top + (GetStyle()->m_UseEdgeButtons ? GetStyle()->m_Width : 0),
@@ -96,6 +97,7 @@ void CGUIScrollBarVertical::Draw()
 
 			m_pGUI.DrawSprite(
 				*button_top,
+				canvas,
 				CRect(
 					outline.left,
 					outline.top,
@@ -106,6 +108,7 @@ void CGUIScrollBarVertical::Draw()
 
 			m_pGUI.DrawSprite(
 				*button_bottom,
+				canvas,
 				CRect(
 					outline.left,
 					outline.bottom-GetStyle()->m_Width,
@@ -117,6 +120,7 @@ void CGUIScrollBarVertical::Draw()
 
 		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBarVertical,
+			canvas,
 			GetBarRect()
 		);
 	}

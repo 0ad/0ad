@@ -350,7 +350,7 @@ void CGUI::Draw()
 		visibleObject.object->Draw(canvas);
 }
 
-void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const CRect& Rect, const CRect& UNUSED(Clipping))
+void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, CCanvas2D& canvas, const CRect& Rect, const CRect& UNUSED(Clipping))
 {
 	// If the sprite doesn't exist (name == ""), don't bother drawing anything
 	if (!Sprite)
@@ -358,7 +358,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const CRect& Rect, const
 
 	// TODO: Clipping?
 
-	Sprite.Draw(*this, Rect, m_Sprites);
+	Sprite.Draw(*this, canvas, Rect, m_Sprites);
 }
 
 void CGUI::UpdateResolution()

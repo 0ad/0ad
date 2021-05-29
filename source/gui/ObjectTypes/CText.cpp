@@ -183,9 +183,9 @@ void CText::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CText::Draw(CCanvas2D& UNUSED(canvas))
+void CText::Draw(CCanvas2D& canvas)
 {
-	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, canvas, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)
@@ -213,14 +213,14 @@ void CText::Draw(CCanvas2D& UNUSED(canvas))
 	const CGUIColor& color = m_Enabled ? m_TextColor : m_TextColorDisabled;
 
 	if (m_ScrollBar)
-		DrawText(0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), cliparea);
+		DrawText(canvas, 0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), cliparea);
 	else
-		DrawText(0, color, m_TextPos, cliparea);
+		DrawText(canvas, 0, color, m_TextPos, cliparea);
 
 	// Draw scrollbars on top of the content
 	if (m_ScrollBar)
-		IGUIScrollBarOwner::Draw();
+		IGUIScrollBarOwner::Draw(canvas);
 
 	// Draw the overlays last
-	m_pGUI.DrawSprite(m_SpriteOverlay, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_SpriteOverlay, canvas, m_CachedActualSize);
 }

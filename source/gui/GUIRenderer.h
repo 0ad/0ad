@@ -23,10 +23,12 @@
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
 #include "maths/Rect.h"
+#include "ps/CStrIntern.h"
 
 #include <map>
 #include <vector>
 
+class CCanvas2D;
 class CGUI;
 class CGUISprite;
 class CStr8;
@@ -55,6 +57,9 @@ namespace GUIRenderer
 		CRect m_Vertices;
 
 		CGUIColor* m_BackColor;
+
+		// Temporary type to make a soft transition to canvas rendering.
+		CStrIntern m_Material;
 	};
 
 	class DrawCalls : public std::vector<SDrawCall>
@@ -68,7 +73,7 @@ namespace GUIRenderer
 
 	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, std::map<CStr8, const CGUISprite*>& Sprites);
 
-	void Draw(DrawCalls& Calls);
+	void Draw(DrawCalls& Calls, CCanvas2D& canvas);
 }
 
 #endif // INCLUDED_GUIRENDERER

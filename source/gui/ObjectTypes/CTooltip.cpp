@@ -131,7 +131,7 @@ void CTooltip::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CTooltip::Draw(CCanvas2D& UNUSED(canvas))
+void CTooltip::Draw(CCanvas2D& canvas)
 {
 	// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
 	// we need to call it now *before* we do the rest of the drawing
@@ -141,8 +141,8 @@ void CTooltip::Draw(CCanvas2D& UNUSED(canvas))
 		m_GeneratedTextsValid = true;
 	}
 
-	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
-	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft());
+	m_pGUI.DrawSprite(m_Sprite, canvas, m_CachedActualSize);
+	DrawText(canvas, 0, m_TextColor, m_CachedActualSize.TopLeft());
 }
 
 float CTooltip::GetBufferedZ() const

@@ -80,13 +80,14 @@ void CButton::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-void CButton::Draw(CCanvas2D& UNUSED(canvas))
+void CButton::Draw(CCanvas2D& canvas)
 {
 	m_pGUI.DrawSprite(
 		GetButtonSprite(m_Sprite, m_SpriteOver, m_SpritePressed, m_SpriteDisabled),
+		canvas,
 		m_CachedActualSize);
 
-	DrawText(0, ChooseColor(), m_TextPos);
+	DrawText(canvas, 0, ChooseColor(), m_TextPos);
 }
 
 bool CButton::IsMouseOver() const

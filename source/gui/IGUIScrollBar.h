@@ -28,6 +28,7 @@
 #include "maths/Vector2D.h"
 #include "ps/CStr.h"
 
+class CCanvas2D;
 class CGUI;
 class IGUIScrollBarOwner;
 struct SGUIMessage;
@@ -162,7 +163,7 @@ public:
 	/**
 	 * Draw the scroll-bar
 	 */
-	virtual void Draw() = 0;
+	virtual void Draw(CCanvas2D& canvas) = 0;
 
 	/**
      * If an object that contains a scrollbar has got messages, send

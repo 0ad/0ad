@@ -102,13 +102,13 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CSlider::Draw(CCanvas2D& UNUSED(canvas))
+void CSlider::Draw(CCanvas2D& canvas)
 {
 	CRect slider_line(m_CachedActualSize);
 	slider_line.left += m_ButtonSide / 2.0f;
 	slider_line.right -= m_ButtonSide / 2.0f;
-	m_pGUI.DrawSprite(m_SpriteBar, slider_line);
-	m_pGUI.DrawSprite(m_Sprite, GetButtonRect());
+	m_pGUI.DrawSprite(m_SpriteBar, canvas, slider_line);
+	m_pGUI.DrawSprite(m_Sprite, canvas, GetButtonRect());
 }
 
 void CSlider::UpdateValue()

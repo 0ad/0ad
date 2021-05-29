@@ -1187,7 +1187,7 @@ void CInput::UpdateCachedSize()
 	m_GeneratedPlaceholderTextValid = false;
 }
 
-void CInput::Draw(CCanvas2D& UNUSED(canvas))
+void CInput::Draw(CCanvas2D& canvas)
 {
 	if (m_CursorBlinkRate > 0.0)
 	{
@@ -1209,7 +1209,7 @@ void CInput::Draw(CCanvas2D& UNUSED(canvas))
 	if (m_Mask && m_MaskChar->length() > 0)
 		mask_char = (*m_MaskChar)[0];
 
-	m_pGUI.DrawSprite(m_Sprite, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, canvas, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (m_ScrollBar && m_MultiLine)
@@ -1398,7 +1398,7 @@ void CInput::Draw(CCanvas2D& UNUSED(canvas))
 							rect.right = m_CachedActualSize.right;
 					}
 
-					m_pGUI.DrawSprite(m_SpriteSelectArea, rect);
+					m_pGUI.DrawSprite(m_SpriteSelectArea, canvas, rect);
 				}
 
 				if (i < (int)it->m_ListOfX.size())
@@ -1525,22 +1525,22 @@ void CInput::Draw(CCanvas2D& UNUSED(canvas))
 	tech->EndPass();
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
-		DrawPlaceholderText(cliparea);
+		DrawPlaceholderText(canvas, cliparea);
 
 	// Draw scrollbars on top of the content
 	if (m_ScrollBar && m_MultiLine)
-		IGUIScrollBarOwner::Draw();
+		IGUIScrollBarOwner::Draw(canvas);
 
 	// Draw the overlays last
-	m_pGUI.DrawSprite(m_SpriteOverlay, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_SpriteOverlay, canvas, m_CachedActualSize);
 }
 
-void CInput::DrawPlaceholderText(const CRect& clipping)
+void CInput::DrawPlaceholderText(CCanvas2D& canvas, const CRect& clipping)
 {
 	if (!m_GeneratedPlaceholderTextValid)
 		SetupGeneratedPlaceholderText();
 
-	m_GeneratedPlaceholderText.Draw(m_pGUI, m_PlaceholderColor, m_CachedActualSize.TopLeft(), clipping);
+	m_GeneratedPlaceholderText.Draw(m_pGUI, canvas, m_PlaceholderColor, m_CachedActualSize.TopLeft(), clipping);
 }
 
 void CInput::UpdateText(int from, int to_before, int to_after)

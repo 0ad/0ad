@@ -41,6 +41,7 @@
 
 extern const double SELECT_DBLCLICK_RATE;
 
+class CCanvas2D;
 class CGUISpriteInstance;
 class CGUISprite;
 class IGUIObject;
@@ -102,10 +103,11 @@ public:
 	 *
 	 * @param Sprite Object referring to the sprite (which also caches
 	 *        calculations for faster rendering)
+	 * @param Canvas Canvas to draw on
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(const CGUISpriteInstance& Sprite, const CRect& Rect, const CRect& Clipping = CRect());
+	void DrawSprite(const CGUISpriteInstance& Sprite, CCanvas2D& canvas, const CRect& Rect, const CRect& Clipping = CRect());
 
 	/**
 	 * The replacement of Process(), handles an SDL_Event_

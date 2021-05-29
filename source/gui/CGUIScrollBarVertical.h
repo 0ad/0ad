@@ -41,7 +41,7 @@ public:
 	/**
 	 * Draw the scroll-bar
 	 */
-	virtual void Draw();
+	virtual void Draw(CCanvas2D& canvas);
 
 	/**
      * If an object that contains a scrollbar has got messages, send
