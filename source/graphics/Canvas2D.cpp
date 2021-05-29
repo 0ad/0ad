@@ -145,7 +145,5 @@ void CCanvas2D::DrawTexture(
 		destination.left, destination.top
 	};
 
-	DrawTextureImpl(
-		g_Renderer.GetTextureManager().GetTransparentTexture(),
-		vertices, uvs, multiply, add);
+	DrawTextureImpl(texture, vertices, uvs, multiply, add);
 }

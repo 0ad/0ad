@@ -213,13 +213,11 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			texture->Prefetch();
 			Call.m_HasTexture = true;
 			Call.m_Texture = texture;
-			Call.m_EnableBlending = false; // will be overridden if the texture has an alpha channel
 			Call.m_ObjectSize = ObjectSize;
 		}
 		else
 		{
 			Call.m_HasTexture = false;
-			Call.m_EnableBlending = true;
 		}
 
 		Call.m_BackColor = &(*cit)->m_BackColor;
@@ -237,10 +235,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_add);
 				Call.m_Material = str_gui_add;
 				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_AddColor;
-				// Always enable blending if something's being subtracted from
-				// the alpha channel
-				if ((*cit)->m_Effects->m_AddColor.a < 0.f)
-					Call.m_EnableBlending = true;
 			}
 			else if ((*cit)->m_Effects->m_Greyscale)
 			{
@@ -252,18 +246,19 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid_mask);
 				Call.m_Material = str_gui_solid_mask;
 				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_SolidColor;
-				Call.m_EnableBlending = !(fabs((*cit)->m_Effects->m_SolidColor.a - 1.0f) < 0.0000001f);
 			}
 			else /* Slight confusion - why no effects? */
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
 				Call.m_Material = str_gui_basic;
+				Call.m_ColorAdd = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+				Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 		}
 		else
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
 			Call.m_Material = str_gui_basic;
+			Call.m_ColorAdd = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+			Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 		}
 
 		Calls.push_back(Call);
@@ -344,12 +339,32 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		if (cit->m_HasTexture)
+		if (cit->m_HasTexture && cit->m_Material == str_gui_basic)
+		{
+			CRect texCoords = cit->ComputeTexCoords();
+			texCoords.Scale(cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());
+
+			// Ensure the quad has the correct winding order
+			CRect rect = cit->m_Vertices;
+			if (rect.right < rect.left)
+			{
+				std::swap(rect.right, rect.left);
+				std::swap(texCoords.right, texCoords.left);
+			}
+			if (rect.bottom < rect.top)
+			{
+				std::swap(rect.bottom, rect.top);
+				std::swap(texCoords.bottom, texCoords.top);
+			}
+
+			canvas.DrawTexture(cit->m_Texture,
+				rect, texCoords, cit->m_ColorMultiply, cit->m_ColorAdd);
+		}
+		else if (cit->m_HasTexture)
 		{
 			cit->m_Shader->BeginPass();
 			CShaderProgramPtr shader = cit->m_Shader->GetShader();
 			shader->Uniform(str_transform, matrix);
-
 			shader->Uniform(str_color, cit->m_ShaderColorParameter);
 			shader->BindTexture(str_tex, cit->m_Texture);
 

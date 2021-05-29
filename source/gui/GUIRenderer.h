@@ -49,8 +49,6 @@ namespace GUIRenderer
 
 		CRect m_ObjectSize;
 
-		bool m_EnableBlending;
-
 		CShaderTechniquePtr m_Shader;
 		CColor m_ShaderColorParameter;
 
