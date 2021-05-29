@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,6 +93,16 @@ public:
 	 * (e.g. missing terrain textures).
 	 */
 	CTexturePtr GetErrorTexture();
+
+	/**
+	 * Returns a single color RGBA texture with CColor(1.0f, 1.0f, 1.0f, 1.0f).
+	 */
+	CTexturePtr GetWhiteTexture();
+
+	/**
+	 * Returns a single color RGBA texture with CColor(0.0f, 0.0f, 0.0f, 0.0f).
+	 */
+	CTexturePtr GetTransparentTexture();
 
 	/**
 	 * Work on asynchronous texture loading operations, if any.
@@ -209,6 +219,7 @@ private:
 class CTexture
 {
 	friend class CTextureManagerImpl;
+	friend class SingleColorTexture;
 	friend struct TextureCacheCmp;
 	friend struct TPequal_to;
 	friend struct TPhash;

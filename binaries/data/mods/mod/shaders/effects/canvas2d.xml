@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="arb/canvas2d"/>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/canvas2d"/>
+    </technique>
+
+</effect>

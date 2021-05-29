@@ -21,10 +21,14 @@
 
 #include "graphics/Color.h"
 #include "graphics/ShaderManager.h"
+#include "graphics/TextureManager.h"
 #include "gui/GUIMatrix.h"
+#include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
+
+#include <array>
 
 void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color)
 {
@@ -45,8 +49,8 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 	CShaderProgramPtr shader = tech->GetShader();
 
 	shader->Uniform(str_transform, transform);
-	shader->Uniform(str_color, color );
-	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
+	shader->Uniform(str_color, color);
+	shader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	shader->AssertPointersBound();
 
 #if !CONFIG2_GLES
@@ -59,6 +63,38 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 #if !CONFIG2_GLES
 	glDisable(GL_LINE_SMOOTH);
 #endif
+
+	tech->EndPass();
+}
+
+void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
+{
+	const std::array<float, 8> uvs = {
+		0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
+	};
+	const std::array<float, 8> vertices = {
+		rect.left, rect.bottom,
+		rect.right, rect.bottom,
+		rect.right, rect.top,
+		rect.left, rect.top
+	};
+
+	CShaderDefines defines;
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
+		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
+	tech->BeginPass();
+	CShaderProgramPtr shader = tech->GetShader();
+
+	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetWhiteTexture());
+	shader->Uniform(str_transform, GetDefaultGuiMatrix());
+	shader->Uniform(str_colorAdd, color);
+	shader->Uniform(str_colorMul, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
+	shader->AssertPointersBound();
+
+	if (!g_Renderer.DoSkipSubmit())
+		glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
 
 	tech->EndPass();
 }

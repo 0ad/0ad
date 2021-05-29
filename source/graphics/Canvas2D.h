@@ -22,6 +22,8 @@
 
 #include <vector>
 
+class CRect;
+
 struct CColor;
 
 // Encapsulates 2D drawing functionality to hide and optimize
@@ -30,6 +32,8 @@ class CCanvas2D
 {
 public:
 	void DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color);
+
+	void DrawRect(const CRect& rect, const CColor& color);
 };
 
 #endif // INCLUDED_CANVAS2D

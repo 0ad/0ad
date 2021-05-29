@@ -24,6 +24,7 @@
 
 #include "CConsole.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
@@ -48,6 +49,8 @@
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
+
+#include <vector>
 
 namespace
 {
@@ -177,7 +180,6 @@ void CConsole::Update(const float deltaRealTime)
 	}
 }
 
-//Render Manager.
 void CConsole::Render()
 {
 	if (! (m_bVisible || m_bToggle) ) return;
@@ -187,25 +189,16 @@ void CConsole::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
-	solidTech->BeginPass();
-	CShaderProgramPtr solidShader = solidTech->GetShader();
-
-	CMatrix3D transform = GetDefaultGuiMatrix();
-
-	// animation: slide in from top of screen
-	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
-	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
-	solidShader->Uniform(str_transform, transform);
-
-	DrawWindow(solidShader);
-
-	solidTech->EndPass();
+	DrawWindow();
 
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 	CTextRenderer textRenderer(textTech->GetShader());
 	textRenderer.Font(CStrIntern(CONSOLE_FONT));
+	// animation: slide in from top of screen
+	CMatrix3D transform = GetDefaultGuiMatrix();
+	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
+	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
 	textRenderer.SetTransform(transform);
 
 	DrawHistory(textRenderer);
@@ -218,42 +211,31 @@ void CConsole::Render()
 	glDisable(GL_BLEND);
 }
 
-
-void CConsole::DrawWindow(CShaderProgramPtr& shader)
+void CConsole::DrawWindow()
 {
-	float boxVerts[] = {
-		m_fWidth, 0.0f,
-		1.0f, 0.0f,
-		1.0f, m_fHeight-1.0f,
-		m_fWidth, m_fHeight-1.0f
+	std::vector<CVector2D> points = {
+		CVector2D{m_fWidth, 0.0f},
+		CVector2D{1.0f, 0.0f},
+		CVector2D{1.0f, m_fHeight - 1.0f},
+		CVector2D{m_fWidth, m_fHeight - 1.0f},
+		CVector2D{m_fWidth, 0.0f}
 	};
+	for (CVector2D& point : points)
+		point += CVector2D{m_fX, m_fY - (1.0f - m_fVisibleFrac) * m_fHeight};
 
-	shader->VertexPointer(2, GL_FLOAT, 0, boxVerts);
-
-	// Draw Background
-	// Set the color to a translucent blue
-	shader->Uniform(str_color, 0.0f, 0.0f, 0.5f, 0.6f);
-	shader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
-	// Draw Border
-	// Set the color to a translucent yellow
-	shader->Uniform(str_color, 0.5f, 0.5f, 0.0f, 0.6f);
-	shader->AssertPointersBound();
-	glDrawArrays(GL_LINE_LOOP, 0, 4);
+	CCanvas2D canvas;
+	canvas.DrawRect(CRect(points[1], points[3]), CColor(0.0f, 0.0f, 0.5f, 0.6f));
+	canvas.DrawLine(points, 1.0f, CColor(0.5f, 0.5f, 0.0f, 0.6f));
 
 	if (m_fHeight > m_iFontHeight + 4)
 	{
-		float lineVerts[] = {
-			0.0f, m_fHeight - (float)m_iFontHeight - 4.0f,
-			m_fWidth, m_fHeight - (float)m_iFontHeight - 4.0f
+		points = {
+			CVector2D{0.0f, m_fHeight - static_cast<float>(m_iFontHeight) - 4.0f},
+			CVector2D{m_fWidth, m_fHeight - static_cast<float>(m_iFontHeight) - 4.0f}
 		};
-		shader->VertexPointer(2, GL_FLOAT, 0, lineVerts);
-		shader->AssertPointersBound();
-		glDrawArrays(GL_LINES, 0, 2);
+		canvas.DrawLine(points, 1.0f, CColor(0.5f, 0.5f, 0.0f, 0.6f));
 	}
 }
-
 
 void CConsole::DrawHistory(CTextRenderer& textRenderer)
 {

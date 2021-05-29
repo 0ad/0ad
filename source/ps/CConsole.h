@@ -111,7 +111,7 @@ private:
 	bool m_bCursorVisState;	// if the cursor should be drawn or not
 	double m_cursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
 
-	void DrawWindow(CShaderProgramPtr& shader);
+	void DrawWindow();
 	void DrawHistory(CTextRenderer& textRenderer);
 	void DrawBuffer(CTextRenderer& textRenderer);
 	void DrawCursor(CTextRenderer& textRenderer);

@@ -19,6 +19,7 @@
 
 #include "TextureManager.h"
 
+#include "graphics/Color.h"
 #include "graphics/TextureConverter.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/vfs/vfs_tree.h"
@@ -37,6 +38,53 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+
+class SingleColorTexture
+{
+public:
+	SingleColorTexture(const CColor& color, PIVFS vfs, const VfsPath& pathPlaceholder, const bool disableGL, CTextureManagerImpl* textureManager)
+	{
+		const SColor4ub color32 = color.AsSColor4ub();
+		// Construct 1x1 32-bit texture
+		std::shared_ptr<u8> data(new u8[3], ArrayDeleter());
+		data.get()[0] = color32.R;
+		data.get()[1] = color32.G;
+		data.get()[2] = color32.B;
+		data.get()[3] = color32.A;
+
+		Tex t;
+		ignore_result(t.wrap(1, 1, 32, TEX_ALPHA, data, 0));
+
+		m_Handle = ogl_tex_wrap(&t, vfs, pathPlaceholder);
+		ignore_result(ogl_tex_set_filter(m_Handle, GL_LINEAR));
+		if (!disableGL)
+			ignore_result(ogl_tex_upload(m_Handle));
+
+		CTextureProperties props(pathPlaceholder);
+		m_Texture = CTexturePtr(new CTexture(m_Handle, props, textureManager));
+		m_Texture->m_State = CTexture::LOADED;
+		m_Texture->m_Self = m_Texture;
+	}
+
+	~SingleColorTexture()
+	{
+		ignore_result(ogl_tex_free(m_Handle));
+	}
+
+	CTexturePtr GetTexture()
+	{
+		return m_Texture;
+	}
+
+	Handle GetHandle()
+	{
+		return m_Handle;
+	}
+
+private:
+	Handle m_Handle;
+	CTexturePtr m_Texture;
+};
 
 struct TPhash
 {
@@ -80,8 +128,11 @@ class CTextureManagerImpl
 	friend class CTexture;
 public:
 	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL) :
-		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL), m_TextureConverter(vfs, highQuality),
-		m_DefaultHandle(0), m_ErrorHandle(0)
+		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL),
+		m_TextureConverter(vfs, highQuality), m_DefaultHandle(0),
+		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), vfs, L"(error texture)", disableGL, this),
+		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), vfs, L"(white texture)", disableGL, this),
+		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), vfs, L"(transparent texture)", disableGL, this)
 	{
 		// Initialise some textures that will always be available,
 		// without needing to load any files
@@ -103,29 +154,6 @@ public:
 				ignore_result(ogl_tex_upload(m_DefaultHandle));
 		}
 
-		// Error texture (magenta)
-		if (!m_DisableGL)
-		{
-			// Construct 1x1 24-bit texture
-			std::shared_ptr<u8> data(new u8[3], ArrayDeleter());
-			data.get()[0] = 255;
-			data.get()[1] = 0;
-			data.get()[2] = 255;
-			Tex t;
-			ignore_result(t.wrap(1, 1, 24, 0, data, 0));
-
-			m_ErrorHandle = ogl_tex_wrap(&t, m_VFS, L"(error texture)");
-			ignore_result(ogl_tex_set_filter(m_ErrorHandle, GL_LINEAR));
-			if (!m_DisableGL)
-				ignore_result(ogl_tex_upload(m_ErrorHandle));
-
-			// Construct a CTexture to return to callers who want an error texture
-			CTextureProperties props(L"(error texture)");
-			m_ErrorTexture = CTexturePtr(new CTexture(m_ErrorHandle, props, this));
-			m_ErrorTexture->m_State = CTexture::LOADED;
-			m_ErrorTexture->m_Self = m_ErrorTexture;
-		}
-
 		// Allow hotloading of textures
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
@@ -135,12 +163,21 @@ public:
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 
 		ignore_result(ogl_tex_free(m_DefaultHandle));
-		ignore_result(ogl_tex_free(m_ErrorHandle));
 	}
 
 	CTexturePtr GetErrorTexture()
 	{
-		return m_ErrorTexture;
+		return m_ErrorTexture.GetTexture();
+	}
+
+	CTexturePtr GetWhiteTexture()
+	{
+		return m_WhiteTexture.GetTexture();
+	}
+
+	CTexturePtr GetTransparentTexture()
+	{
+		return m_TransparentTexture.GetTexture();
 	}
 
 	/**
@@ -182,7 +219,7 @@ public:
 			LOGERROR("Texture failed to load; \"%s\"", texture->m_Properties.m_Path.string8());
 
 			// Replace with error texture to make it obvious
-			texture->SetHandle(m_ErrorHandle);
+			texture->SetHandle(m_ErrorTexture.GetHandle());
 			return;
 		}
 
@@ -224,7 +261,7 @@ public:
 			ogl_tex_free(h);
 
 			// Replace with error texture to make it obvious
-			texture->SetHandle(m_ErrorHandle);
+			texture->SetHandle(m_ErrorTexture.GetHandle());
 			return;
 		}
 
@@ -279,7 +316,7 @@ public:
 			// No source file or archive cache was found, so we can't load the
 			// real texture at all - return the error texture instead
 			LOGERROR("CCacheLoader failed to find archived or source file for: \"%s\"", texture->m_Properties.m_Path.string8());
-			texture->SetHandle(m_ErrorHandle);
+			texture->SetHandle(m_ErrorTexture.GetHandle());
 			return true;
 		}
 	}
@@ -352,7 +389,7 @@ public:
 				else
 				{
 					LOGERROR("Texture failed to convert: \"%s\"", texture->m_Properties.m_Path.string8());
-					texture->SetHandle(m_ErrorHandle);
+					texture->SetHandle(m_ErrorTexture.GetHandle());
 				}
 				texture->m_State = CTexture::LOADED;
 				return true;
@@ -503,8 +540,9 @@ private:
 	CTextureConverter m_TextureConverter;
 
 	Handle m_DefaultHandle;
-	Handle m_ErrorHandle;
-	CTexturePtr m_ErrorTexture;
+	SingleColorTexture m_ErrorTexture;
+	SingleColorTexture m_WhiteTexture;
+	SingleColorTexture m_TransparentTexture;
 
 	// Cache of all loaded textures
 	using TextureCache =
@@ -660,6 +698,16 @@ bool CTextureManager::TextureExists(const VfsPath& path) const
 CTexturePtr CTextureManager::GetErrorTexture()
 {
 	return m->GetErrorTexture();
+}
+
+CTexturePtr CTextureManager::GetWhiteTexture()
+{
+	return m->GetWhiteTexture();
+}
+
+CTexturePtr CTextureManager::GetTransparentTexture()
+{
+	return m->GetTransparentTexture();
 }
 
 bool CTextureManager::MakeProgress()
