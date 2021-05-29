@@ -233,6 +233,8 @@ void CConsole::DrawWindow()
 			CVector2D{0.0f, m_fHeight - static_cast<float>(m_iFontHeight) - 4.0f},
 			CVector2D{m_fWidth, m_fHeight - static_cast<float>(m_iFontHeight) - 4.0f}
 		};
+		for (CVector2D& point : points)
+			point += CVector2D{m_fX, m_fY - (1.0f - m_fVisibleFrac) * m_fHeight};
 		canvas.DrawLine(points, 1.0f, CColor(0.5f, 0.5f, 0.0f, 0.6f));
 	}
 }

@@ -60,6 +60,9 @@ namespace GUIRenderer
 
 		// Temporary type to make a soft transition to canvas rendering.
 		CStrIntern m_Material;
+
+		CColor m_ColorAdd;
+		CColor m_ColorMultiply;
 	};
 
 	class DrawCalls : public std::vector<SDrawCall>

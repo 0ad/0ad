@@ -213,24 +213,22 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			texture->Prefetch();
 			Call.m_HasTexture = true;
 			Call.m_Texture = texture;
-
 			Call.m_EnableBlending = false; // will be overridden if the texture has an alpha channel
-
 			Call.m_ObjectSize = ObjectSize;
 		}
 		else
 		{
 			Call.m_HasTexture = false;
-			// Enable blending if it's transparent (allowing a little error in the calculations)
-			Call.m_EnableBlending = !(fabs((*cit)->m_BackColor.a - 1.0f) < 0.0000001f);
+			Call.m_EnableBlending = true;
 		}
 
 		Call.m_BackColor = &(*cit)->m_BackColor;
-
 		if (!Call.m_HasTexture)
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
 			Call.m_Material = str_gui_solid;
+			Call.m_ColorAdd = *Call.m_BackColor;
+			Call.m_ColorMultiply = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+			Call.m_Texture = g_Renderer.GetTextureManager().GetTransparentTexture();
 		}
 		else if ((*cit)->m_Effects)
 		{
@@ -406,7 +404,9 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 				std::swap(rect.right, rect.left);
 			if (rect.bottom < rect.top)
 				std::swap(rect.bottom, rect.top);
-			canvas.DrawRect(rect, *(cit->m_BackColor));
+			canvas.DrawTexture(cit->m_Texture,
+				rect, CRect(0, 0, cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight()),
+				cit->m_ColorMultiply, cit->m_ColorAdd);
 
 			if (cit->m_EnableBlending)
 				glDisable(GL_BLEND);

@@ -30,6 +30,38 @@
 
 #include <array>
 
+namespace
+{
+
+// Array of 2D elements unrolled into 1D array.
+using PlaneArray2D = std::array<float, 8>;
+
+void DrawTextureImpl(CTexturePtr texture,
+	const PlaneArray2D& vertices, const PlaneArray2D& uvs,
+	const CColor& multiply, const CColor& add)
+{
+	CShaderDefines defines;
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
+		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
+	tech->BeginPass();
+	CShaderProgramPtr shader = tech->GetShader();
+
+	shader->BindTexture(str_tex, texture);
+	shader->Uniform(str_transform, GetDefaultGuiMatrix());
+	shader->Uniform(str_colorAdd, add);
+	shader->Uniform(str_colorMul, multiply);
+	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
+	shader->AssertPointersBound();
+
+	if (!g_Renderer.DoSkipSubmit())
+		glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
+
+	tech->EndPass();
+}
+
+} // anonymous namespace
+
 void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color)
 {
 	std::vector<float> vertices;
@@ -69,32 +101,51 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 
 void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 {
-	const std::array<float, 8> uvs = {
+	const PlaneArray2D uvs = {
 		0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
 	};
-	const std::array<float, 8> vertices = {
+	const PlaneArray2D vertices = {
 		rect.left, rect.bottom,
 		rect.right, rect.bottom,
 		rect.right, rect.top,
 		rect.left, rect.top
 	};
 
-	CShaderDefines defines;
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
-		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
-	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
+	DrawTextureImpl(
+		g_Renderer.GetTextureManager().GetTransparentTexture(),
+		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color);
+}
 
-	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetTransparentTexture());
-	shader->Uniform(str_transform, GetDefaultGuiMatrix());
-	shader->Uniform(str_colorAdd, color);
-	shader->Uniform(str_colorMul, CColor(0.0f, 0.0f, 0.0f, 0.0f));
-	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
-	shader->AssertPointersBound();
+void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
+{
+	DrawTexture(texture,
+		destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()),
+		CColor(1.0f, 1.0f, 1.0f, 1.0f), CColor(0.0f, 0.0f, 0.0f, 0.0f));
+}
 
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
+void CCanvas2D::DrawTexture(
+	CTexturePtr texture, const CRect& destination, const CRect& source,
+	const CColor& multiply, const CColor& add)
+{
+	PlaneArray2D uvs = {
+		source.left, source.bottom,
+		source.right, source.bottom,
+		source.right, source.top,
+		source.left, source.top
+	};
+	for (size_t idx = 0; idx < uvs.size() / 2; idx += 2)
+	{
+		uvs[idx + 0] /= texture->GetWidth();
+		uvs[idx + 1] /= texture->GetHeight();
+	}
+	const PlaneArray2D vertices = {
+		destination.left, destination.bottom,
+		destination.right, destination.bottom,
+		destination.right, destination.top,
+		destination.left, destination.top
+	};
 
-	tech->EndPass();
+	DrawTextureImpl(
+		g_Renderer.GetTextureManager().GetTransparentTexture(),
+		vertices, uvs, multiply, add);
 }

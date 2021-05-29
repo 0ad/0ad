@@ -18,6 +18,7 @@
 #ifndef INCLUDED_CANVAS2D
 #define INCLUDED_CANVAS2D
 
+#include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 
 #include <vector>
@@ -31,9 +32,32 @@ struct CColor;
 class CCanvas2D
 {
 public:
-	void DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color);
+	/**
+	 * Draws a line by the given points with the width and color.
+	 */
+	void DrawLine(
+		const std::vector<CVector2D>& points,
+		const float width, const CColor& color);
 
+	/**
+	 * Draws the rect filled with the color.
+	 */
 	void DrawRect(const CRect& rect, const CColor& color);
+
+	/**
+	 * Draws a piece of the texture from the source rect into the
+	 * destination rect. The result color is set by the following formula:
+	 *   TEXTURE_COLOR * COLOR_MULTIPLY + COLOR_ADD
+	 */
+	void DrawTexture(CTexturePtr texture,
+		const CRect& destination, const CRect& source,
+		const CColor& multiply, const CColor& add);
+
+	/**
+	 * A simpler version of the previous one, draws the texture into the
+	 * destination rect without color modifications.
+	 */
+	void DrawTexture(CTexturePtr texture, const CRect& destination);
 };
 
 #endif // INCLUDED_CANVAS2D
