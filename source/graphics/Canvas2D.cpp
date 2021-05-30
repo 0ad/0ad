@@ -40,6 +40,9 @@ inline void DrawTextureImpl(CTexturePtr texture,
 	const PlaneArray2D& vertices, PlaneArray2D uvs,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	CShaderDefines defines;
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
 		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
@@ -67,6 +70,8 @@ inline void DrawTextureImpl(CTexturePtr texture,
 		glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
 
 	tech->EndPass();
+
+	glDisable(GL_BLEND);
 }
 
 } // anonymous namespace
@@ -81,6 +86,9 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 		vertices.emplace_back(point.Y);
 		vertices.emplace_back(0.0f);
 	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Setup the render state
 	CMatrix3D transform = GetDefaultGuiMatrix();
@@ -106,6 +114,8 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 #endif
 
 	tech->EndPass();
+
+	glDisable(GL_BLEND);
 }
 
 void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)

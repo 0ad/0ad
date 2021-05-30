@@ -20,7 +20,6 @@
 #include "CChart.h"
 
 #include "graphics/Canvas2D.h"
-#include "graphics/ShaderManager.h"
 #include "gui/GUIMatrix.h"
 #include "gui/SettingTypes/CGUIList.h"
 #include "gui/SettingTypes/CGUISeries.h"
@@ -28,7 +27,6 @@
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
-#include "renderer/Renderer.h"
 
 #include <cmath>
 
@@ -66,30 +64,14 @@ void CChart::HandleMessage(SGUIMessage& Message)
 		UpdateSeries();
 }
 
-void CChart::DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const
+void CChart::DrawAxes(CCanvas2D& canvas) const
 {
-	shader->Uniform(str_color, color);
-	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
-	shader->AssertPointersBound();
-
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, vertices.size() / 3);
-}
-
-void CChart::DrawAxes(const CShaderProgramPtr& shader) const
-{
-	CRect rect = GetChartRect();
-	std::vector<float> vertices;
-	vertices.reserve(30);
-#define ADD(x, y) vertices.push_back(x); vertices.push_back(y); vertices.push_back(0.0f);
-	ADD(m_CachedActualSize.right, m_CachedActualSize.bottom);
-	ADD(rect.right + m_AxisWidth, rect.bottom);
-	ADD(m_CachedActualSize.left, m_CachedActualSize.bottom);
-	ADD(rect.left, rect.bottom);
-	ADD(m_CachedActualSize.left, m_CachedActualSize.top);
-	ADD(rect.left, rect.top - m_AxisWidth);
-#undef ADD
-	DrawTriangleStrip(shader, m_AxisColor, vertices);
+	canvas.DrawRect(CRect(
+		m_CachedActualSize.TopLeft(),
+		m_CachedActualSize.BottomLeft() + CVector2D(m_AxisWidth, 0.0f)), m_AxisColor);
+	canvas.DrawRect(CRect(
+		m_CachedActualSize.BottomLeft() - CVector2D(0.0f, m_AxisWidth),
+		m_CachedActualSize.BottomRight()), m_AxisColor);
 }
 
 void CChart::Draw(CCanvas2D& canvas)
@@ -129,18 +111,8 @@ void CChart::Draw(CCanvas2D& canvas)
 			canvas.DrawLine(linePoints, 1.1f, data.m_Color);
 	}
 
-	// Setup the render state
-	CMatrix3D transform = GetDefaultGuiMatrix();
-	CShaderDefines lineDefines;
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid, g_Renderer.GetSystemShaderDefines(), lineDefines);
-	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
-	shader->Uniform(str_transform, transform);
-
 	if (m_AxisWidth > 0)
-		DrawAxes(shader);
-
-	tech->EndPass();
+		DrawAxes(canvas);
 
 	for (size_t i = 0; i < m_TextPositions.size(); ++i)
 		DrawText(canvas, i, CGUIColor(1.f, 1.f, 1.f, 1.f), m_TextPositions[i]);

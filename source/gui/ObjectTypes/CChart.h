@@ -92,17 +92,7 @@ protected:
 	CGUISimpleSetting<CGUISeries> m_SeriesSetting;
 
 private:
-	/**
-	 * Helper functions
-	 */
-	void DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const;
-
-	// Draws the triangle sequence so that the each next triangle has a common edge with the previous one.
-	// If we need to draw n triangles, we need only n + 2 points.
-	void DrawTriangleStrip(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const;
-
-	// Represents axes as triangles and draws them with DrawTriangleStrip.
-	void DrawAxes(const CShaderProgramPtr& shader) const;
+	void DrawAxes(CCanvas2D& canvas) const;
 
 	CSize2D AddFormattedValue(const CStrW& format, const float value, const CStrW& font, const float buffer_zone);
 

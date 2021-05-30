@@ -325,11 +325,6 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 
 	// Called every frame, to draw the object (based on cached calculations)
 
-	// TODO: batching by shader/texture/etc would be nice
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
@@ -356,6 +351,4 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 		canvas.DrawTexture(cit->m_Texture,
 			rect, texCoords, cit->m_ColorMultiply, cit->m_ColorAdd, cit->m_GrayscaleFactor);
 	}
-
-	glDisable(GL_BLEND);
 }

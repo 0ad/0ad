@@ -216,7 +216,7 @@ function updateChartColorAndLegend()
 		playerColors.push(
 			Math.floor(playerState.color.r * 255) + " " +
 			Math.floor(playerState.color.g * 255) + " " +
-			Math.floor(playerState.color.b * 255)
+			Math.floor(playerState.color.b * 255) + " 255"
 		);
 	}
 
