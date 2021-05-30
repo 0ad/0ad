@@ -243,9 +243,10 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 			else if ((*cit)->m_Effects->m_SolidColor != CGUIColor())
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid_mask);
 				Call.m_Material = str_gui_solid_mask;
-				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_SolidColor;
+				const CColor color = (*cit)->m_Effects->m_SolidColor;
+				Call.m_ColorAdd = CColor(color.r, color.g, color.b, 0.0f);
+				Call.m_ColorMultiply = CColor(0.0f, 0.0f, 0.0f, color.a);
 			}
 			else /* Slight confusion - why no effects? */
 			{
@@ -339,10 +340,10 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		if (cit->m_HasTexture && cit->m_Material == str_gui_basic)
+		if (cit->m_HasTexture && (cit->m_Material == str_gui_basic || cit->m_Material == str_gui_solid_mask))
 		{
-			CRect texCoords = cit->ComputeTexCoords();
-			texCoords.Scale(cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());
+			CRect texCoords = cit->ComputeTexCoords().Scale(
+				cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());
 
 			// Ensure the quad has the correct winding order
 			CRect rect = cit->m_Vertices;

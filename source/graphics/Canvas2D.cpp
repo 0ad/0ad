@@ -36,8 +36,8 @@ namespace
 // Array of 2D elements unrolled into 1D array.
 using PlaneArray2D = std::array<float, 8>;
 
-void DrawTextureImpl(CTexturePtr texture,
-	const PlaneArray2D& vertices, const PlaneArray2D& uvs,
+inline void DrawTextureImpl(CTexturePtr texture,
+	const PlaneArray2D& vertices, PlaneArray2D uvs,
 	const CColor& multiply, const CColor& add)
 {
 	CShaderDefines defines;
@@ -47,6 +47,14 @@ void DrawTextureImpl(CTexturePtr texture,
 	CShaderProgramPtr shader = tech->GetShader();
 
 	shader->BindTexture(str_tex, texture);
+	for (size_t idx = 0; idx < uvs.size(); idx += 2)
+	{
+		if (texture->GetWidth() > 0.0f)
+			uvs[idx + 0] /= texture->GetWidth();
+		if (texture->GetHeight() > 0.0f)
+			uvs[idx + 1] /= texture->GetHeight();
+	}
+
 	shader->Uniform(str_transform, GetDefaultGuiMatrix());
 	shader->Uniform(str_colorAdd, add);
 	shader->Uniform(str_colorMul, multiply);
@@ -127,17 +135,12 @@ void CCanvas2D::DrawTexture(
 	CTexturePtr texture, const CRect& destination, const CRect& source,
 	const CColor& multiply, const CColor& add)
 {
-	PlaneArray2D uvs = {
+	const PlaneArray2D uvs = {
 		source.left, source.bottom,
 		source.right, source.bottom,
 		source.right, source.top,
 		source.left, source.top
 	};
-	for (size_t idx = 0; idx < uvs.size() / 2; idx += 2)
-	{
-		uvs[idx + 0] /= texture->GetWidth();
-		uvs[idx + 1] /= texture->GetHeight();
-	}
 	const PlaneArray2D vertices = {
 		destination.left, destination.bottom,
 		destination.right, destination.bottom,
