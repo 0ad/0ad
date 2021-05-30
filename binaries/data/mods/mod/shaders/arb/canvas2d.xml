@@ -11,6 +11,7 @@
         <uniform name="tex" loc="0" type="sampler2D"/>
         <uniform name="colorAdd" loc="1" type="vec4"/>
         <uniform name="colorMul" loc="2" type="vec4"/>
+        <uniform name="grayscaleFactor" loc="3" type="float"/>
     </fragment>
 
 </program>

@@ -38,7 +38,7 @@ using PlaneArray2D = std::array<float, 8>;
 
 inline void DrawTextureImpl(CTexturePtr texture,
 	const PlaneArray2D& vertices, PlaneArray2D uvs,
-	const CColor& multiply, const CColor& add)
+	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
 	CShaderDefines defines;
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
@@ -58,6 +58,7 @@ inline void DrawTextureImpl(CTexturePtr texture,
 	shader->Uniform(str_transform, GetDefaultGuiMatrix());
 	shader->Uniform(str_colorAdd, add);
 	shader->Uniform(str_colorMul, multiply);
+	shader->Uniform(str_grayscaleFactor, grayscaleFactor);
 	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
 	shader->AssertPointersBound();
@@ -121,19 +122,19 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 
 	DrawTextureImpl(
 		g_Renderer.GetTextureManager().GetTransparentTexture(),
-		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color);
+		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color, 0.0f);
 }
 
 void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
 {
 	DrawTexture(texture,
 		destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()),
-		CColor(1.0f, 1.0f, 1.0f, 1.0f), CColor(0.0f, 0.0f, 0.0f, 0.0f));
+		CColor(1.0f, 1.0f, 1.0f, 1.0f), CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
 }
 
 void CCanvas2D::DrawTexture(
 	CTexturePtr texture, const CRect& destination, const CRect& source,
-	const CColor& multiply, const CColor& add)
+	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
 	const PlaneArray2D uvs = {
 		source.left, source.bottom,
@@ -148,5 +149,5 @@ void CCanvas2D::DrawTexture(
 		destination.left, destination.top
 	};
 
-	DrawTextureImpl(texture, vertices, uvs, multiply, add);
+	DrawTextureImpl(texture, vertices, uvs, multiply, add, grayscaleFactor);
 }

@@ -20,7 +20,6 @@
 #include "GUIRenderer.h"
 
 #include "graphics/Canvas2D.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "gui/CGUI.h"
 #include "gui/CGUISprite.h"
@@ -206,25 +205,22 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			Call.m_Vertices.bottom = (int)(Call.m_Vertices.bottom + 0.5f);
 		}
 
+		bool hasTexture = false;
 		if (!(*cit)->m_TextureName.empty())
 		{
 			CTextureProperties textureProps(g_L10n.LocalizePath((*cit)->m_TextureName));
 			textureProps.SetWrap((*cit)->m_WrapMode);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			texture->Prefetch();
-			Call.m_HasTexture = true;
+			hasTexture = true;
 			Call.m_Texture = texture;
 			Call.m_ObjectSize = ObjectSize;
 		}
-		else
-		{
-			Call.m_HasTexture = false;
-		}
 
 		Call.m_BackColor = &(*cit)->m_BackColor;
-		if (!Call.m_HasTexture)
+		Call.m_GrayscaleFactor = 0.0f;
+		if (!hasTexture)
 		{
-			Call.m_Material = str_gui_solid;
 			Call.m_ColorAdd = *Call.m_BackColor;
 			Call.m_ColorMultiply = CColor(0.0f, 0.0f, 0.0f, 0.0f);
 			Call.m_Texture = g_Renderer.GetTextureManager().GetTransparentTexture();
@@ -233,33 +229,30 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		{
 			if ((*cit)->m_Effects->m_AddColor != CGUIColor())
 			{
-				Call.m_Material = str_gui_add;
 				const CColor color = (*cit)->m_Effects->m_AddColor;
 				Call.m_ColorAdd = CColor(color.r, color.g, color.b, 0.0f);
 				Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 			else if ((*cit)->m_Effects->m_Greyscale)
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_grayscale);
-				Call.m_Material = str_gui_grayscale;
+				Call.m_ColorAdd = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+				Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+				Call.m_GrayscaleFactor = 1.0f;
 			}
 			else if ((*cit)->m_Effects->m_SolidColor != CGUIColor())
 			{
-				Call.m_Material = str_gui_solid_mask;
 				const CColor color = (*cit)->m_Effects->m_SolidColor;
 				Call.m_ColorAdd = CColor(color.r, color.g, color.b, 0.0f);
 				Call.m_ColorMultiply = CColor(0.0f, 0.0f, 0.0f, color.a);
 			}
 			else /* Slight confusion - why no effects? */
 			{
-				Call.m_Material = str_gui_basic;
 				Call.m_ColorAdd = CColor(0.0f, 0.0f, 0.0f, 0.0f);
 				Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 		}
 		else
 		{
-			Call.m_Material = str_gui_basic;
 			Call.m_ColorAdd = CColor(0.0f, 0.0f, 0.0f, 0.0f);
 			Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 		}
@@ -334,91 +327,34 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 
 	// TODO: batching by shader/texture/etc would be nice
 
-	CMatrix3D matrix = GetDefaultGuiMatrix();
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		if (cit->m_HasTexture && (cit->m_Material == str_gui_basic || cit->m_Material == str_gui_solid_mask || cit->m_Material == str_gui_add))
+		// A hack to preload the handle to get a correct texture size.
+		GLuint h;
+		ogl_tex_get_texture_id(cit->m_Texture->GetHandle(), &h);
+
+		CRect texCoords = cit->ComputeTexCoords().Scale(
+			cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());
+
+		// Ensure the quad has the correct winding order
+		CRect rect = cit->m_Vertices;
+		if (rect.right < rect.left)
 		{
-			// A hack to preload the handle to get a correct texture size.
-			GLuint h;
-			ogl_tex_get_texture_id(cit->m_Texture->GetHandle(), &h);
-
-			CRect texCoords = cit->ComputeTexCoords().Scale(
-				cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());
-
-			// Ensure the quad has the correct winding order
-			CRect rect = cit->m_Vertices;
-			if (rect.right < rect.left)
-			{
-				std::swap(rect.right, rect.left);
-				std::swap(texCoords.right, texCoords.left);
-			}
-			if (rect.bottom < rect.top)
-			{
-				std::swap(rect.bottom, rect.top);
-				std::swap(texCoords.bottom, texCoords.top);
-			}
-
-			canvas.DrawTexture(cit->m_Texture,
-				rect, texCoords, cit->m_ColorMultiply, cit->m_ColorAdd);
+			std::swap(rect.right, rect.left);
+			std::swap(texCoords.right, texCoords.left);
 		}
-		else if (cit->m_HasTexture)
+		if (rect.bottom < rect.top)
 		{
-			cit->m_Shader->BeginPass();
-			CShaderProgramPtr shader = cit->m_Shader->GetShader();
-			shader->Uniform(str_transform, matrix);
-			shader->Uniform(str_color, cit->m_ShaderColorParameter);
-			shader->BindTexture(str_tex, cit->m_Texture);
-
-			CRect TexCoords = cit->ComputeTexCoords();
-
-			// Ensure the quad has the correct winding order, and update texcoords to match
-			CRect Verts = cit->m_Vertices;
-			if (Verts.right < Verts.left)
-			{
-				std::swap(Verts.right, Verts.left);
-				std::swap(TexCoords.right, TexCoords.left);
-			}
-			if (Verts.bottom < Verts.top)
-			{
-				std::swap(Verts.bottom, Verts.top);
-				std::swap(TexCoords.bottom, TexCoords.top);
-			}
-
-			std::vector<float> data;
-#define ADD(u, v, x, y, z) STMT(data.push_back(u); data.push_back(v); data.push_back(x); data.push_back(y); data.push_back(z))
-			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, 0.0f);
-			ADD(TexCoords.right, TexCoords.bottom, Verts.right, Verts.bottom, 0.0f);
-			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, 0.0f);
-
-			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, 0.0f);
-			ADD(TexCoords.left, TexCoords.top, Verts.left, Verts.top, 0.0f);
-			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, 0.0f);
-#undef ADD
-
-			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-			shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-			glDrawArrays(GL_TRIANGLES, 0, 6);
-
-			cit->m_Shader->EndPass();
+			std::swap(rect.bottom, rect.top);
+			std::swap(texCoords.bottom, texCoords.top);
 		}
-		else
-		{
-			// Ensure the quad has the correct winding order
-			CRect rect = cit->m_Vertices;
-			if (rect.right < rect.left)
-				std::swap(rect.right, rect.left);
-			if (rect.bottom < rect.top)
-				std::swap(rect.bottom, rect.top);
-			canvas.DrawTexture(cit->m_Texture,
-				rect, CRect(0, 0, cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight()),
-				cit->m_ColorMultiply, cit->m_ColorAdd);
-		}
+
+		canvas.DrawTexture(cit->m_Texture,
+			rect, texCoords, cit->m_ColorMultiply, cit->m_ColorAdd, cit->m_GrayscaleFactor);
 	}
 
 	glDisable(GL_BLEND);
