@@ -112,11 +112,11 @@ protected:
 	/**
 	 * Draws the text generated for placeholder.
 	 *
-	 * @param z Z value
+	 * @param canvas Canvas to draw on.
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *        to get no clipping.
 	 */
-	virtual void DrawPlaceholderText(const CRect& clipping = CRect());
+	virtual void DrawPlaceholderText(CCanvas2D& canvas, const CRect& clipping = CRect());
 
 	/**
 	 * Delete the current selection. Also places the pointer at the

@@ -91,13 +91,13 @@ void IGUITextOwner::UpdateText()
 	}
 }
 
-void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, const CRect& clipping)
+void IGUITextOwner::DrawText(CCanvas2D& canvas, size_t index, const CGUIColor& color, const CVector2D& pos, const CRect& clipping)
 {
 	UpdateText();
 
 	ENSURE(index < m_GeneratedTexts.size() && "Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
 
-	m_GeneratedTexts.at(index).Draw(m_pObject.GetGUI(), color, pos, clipping);
+	m_GeneratedTexts.at(index).Draw(m_pObject.GetGUI(), canvas, color, pos, clipping);
 }
 
 void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CVector2D& TextPos, CGUIText& Text)

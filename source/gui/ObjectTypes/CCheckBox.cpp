@@ -64,11 +64,12 @@ void CCheckBox::HandleMessage(SGUIMessage& Message)
 	}
 }
 
-void CCheckBox::Draw(CCanvas2D& UNUSED(canvas))
+void CCheckBox::Draw(CCanvas2D& canvas)
 {
 	m_pGUI.DrawSprite(
 		m_Checked ?
 			GetButtonSprite(m_SpriteChecked, m_SpriteCheckedOver, m_SpriteCheckedPressed, m_SpriteCheckedDisabled) :
 			GetButtonSprite(m_SpriteUnchecked, m_SpriteUncheckedOver, m_SpriteUncheckedPressed, m_SpriteUncheckedDisabled),
+		canvas,
 		m_CachedActualSize);
 }

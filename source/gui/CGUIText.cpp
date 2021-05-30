@@ -428,7 +428,7 @@ bool CGUIText::AssembleCalls(
 	return done;
 }
 
-void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
+void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -469,7 +469,7 @@ void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& 
 	textRenderer.Render();
 
 	for (const SSpriteCall& sc : m_SpriteCalls)
-		pGUI.DrawSprite(sc.m_Sprite, sc.m_Area + pos);
+		pGUI.DrawSprite(sc.m_Sprite, canvas, sc.m_Area + pos);
 
 	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);

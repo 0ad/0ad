@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,10 +57,10 @@ void IGUIScrollBarOwner::HandleMessage(SGUIMessage& msg)
 		sb->HandleMessage(msg);
 }
 
-void IGUIScrollBarOwner::Draw()
+void IGUIScrollBarOwner::Draw(CCanvas2D& canvas)
 {
 	for (IGUIScrollBar* const& sb : m_ScrollBars)
-		sb->Draw();
+		sb->Draw(canvas);
 }
 
 float IGUIScrollBarOwner::GetScrollBarPos(const int index) const

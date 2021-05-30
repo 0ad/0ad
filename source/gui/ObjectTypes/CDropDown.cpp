@@ -420,12 +420,12 @@ bool CDropDown::IsMouseOver() const
 		return m_CachedActualSize.PointInside(m_pGUI.GetMousePos());
 }
 
-void CDropDown::Draw(CCanvas2D& UNUSED(canvas))
+void CDropDown::Draw(CCanvas2D& canvas)
 {
 	const CGUISpriteInstance& sprite = m_Enabled ? m_Sprite : m_SpriteDisabled;
 	const CGUISpriteInstance& spriteOverlay = m_Enabled ? m_SpriteOverlay : m_SpriteOverlayDisabled;
 
-	m_pGUI.DrawSprite(sprite, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, canvas, m_CachedActualSize);
 
 	if (m_ButtonWidth > 0.f)
 	{
@@ -434,18 +434,18 @@ void CDropDown::Draw(CCanvas2D& UNUSED(canvas))
 
 		if (!m_Enabled)
 		{
-			m_pGUI.DrawSprite(*m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Disabled ? m_Sprite2Disabled : m_Sprite2, canvas, rect);
 		}
 		else if (m_Open)
 		{
-			m_pGUI.DrawSprite(*m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Pressed ? m_Sprite2Pressed : m_Sprite2, canvas, rect);
 		}
 		else if (m_MouseHovering)
 		{
-			m_pGUI.DrawSprite(*m_Sprite2Over ? m_Sprite2Over : m_Sprite2, rect);
+			m_pGUI.DrawSprite(*m_Sprite2Over ? m_Sprite2Over : m_Sprite2, canvas, rect);
 		}
 		else
-			m_pGUI.DrawSprite(m_Sprite2, rect);
+			m_pGUI.DrawSprite(m_Sprite2, canvas, rect);
 	}
 
 	if (m_Selected != -1) // TODO: Maybe check validity completely?
@@ -454,7 +454,7 @@ void CDropDown::Draw(CCanvas2D& UNUSED(canvas))
 					   m_CachedActualSize.right - m_ButtonWidth, m_CachedActualSize.bottom);
 
 		CVector2D pos(m_CachedActualSize.left, m_CachedActualSize.top);
-		DrawText(m_Selected, m_Enabled ? m_TextColorSelected : m_TextColorDisabled, pos, cliparea);
+		DrawText(canvas, m_Selected, m_Enabled ? m_TextColorSelected : m_TextColorDisabled, pos, cliparea);
 	}
 
 	if (m_Open)
@@ -466,12 +466,12 @@ void CDropDown::Draw(CCanvas2D& UNUSED(canvas))
 		if (m_HideScrollBar)
 			m_ScrollBar.Set(false, false);
 
-		DrawList(m_ElementHighlight, m_SpriteList, m_SpriteListOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
+		DrawList(canvas, m_ElementHighlight, m_SpriteList, m_SpriteListOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
 
 		if (m_HideScrollBar)
 			m_ScrollBar.Set(old, false);
 	}
-	m_pGUI.DrawSprite(spriteOverlay, m_CachedActualSize);
+	m_pGUI.DrawSprite(spriteOverlay, canvas, m_CachedActualSize);
 }
 
 // When a dropdown list is opened, it needs to be visible above all the other

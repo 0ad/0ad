@@ -299,17 +299,17 @@ InReaction CList::ManuallyHandleKeys(const SDL_Event_* ev)
 	return result;
 }
 
-void CList::Draw(CCanvas2D& UNUSED(canvas))
+void CList::Draw(CCanvas2D& canvas)
 {
-	DrawList(m_Selected, m_Sprite, m_SpriteOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
+	DrawList(canvas, m_Selected, m_Sprite, m_SpriteOverlay, m_SpriteSelectArea, m_SpriteSelectAreaOverlay, m_TextColor);
 }
 
-void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
+void CList::DrawList(CCanvas2D& canvas, const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
                      const CGUISpriteInstance& spriteSelectArea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor)
 {
 	CRect rect = GetListRect();
 
-	m_pGUI.DrawSprite(sprite, rect);
+	m_pGUI.DrawSprite(sprite, canvas, rect);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)
@@ -343,7 +343,7 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 					rectSel.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			m_pGUI.DrawSprite(spriteSelectArea, rectSel);
+			m_pGUI.DrawSprite(spriteSelectArea, canvas, rectSel);
 			drawSelected = true;
 		}
 	}
@@ -368,17 +368,17 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 				cliparea.left = GetScrollBar(0).GetOuterRect().right;
 		}
 
-		DrawText(i, textColor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
+		DrawText(canvas, i, textColor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
 	}
 
 	// Draw scrollbars on top of the content
 	if (m_ScrollBar)
-		IGUIScrollBarOwner::Draw();
+		IGUIScrollBarOwner::Draw(canvas);
 
 	// Draw the overlays last
-	m_pGUI.DrawSprite(spriteOverlay, rect);
+	m_pGUI.DrawSprite(spriteOverlay, canvas, rect);
 	if (drawSelected)
-		m_pGUI.DrawSprite(spriteSelectAreaOverlay, rectSel);
+		m_pGUI.DrawSprite(spriteSelectAreaOverlay, canvas, rectSel);
 }
 
 void CList::AddItem(const CGUIString& str, const CGUIString& data)

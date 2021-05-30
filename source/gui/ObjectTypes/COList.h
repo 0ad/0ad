@@ -67,8 +67,9 @@ protected:
 	virtual bool HandleAdditionalChildren(const XMBData& xmb, const XMBElement& child);
 	virtual void AdditionalChildrenHandled();
 
-	void DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
-	              const CGUISpriteInstance& spriteSelectarea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor);
+	virtual void DrawList(
+		CCanvas2D& canvas, const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
+		const CGUISpriteInstance& spriteSelectarea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor);
 
 	virtual CRect GetListRect() const;
 

@@ -280,12 +280,12 @@ void COList::AdditionalChildrenHandled()
 	SetupText();
 }
 
-void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
+void COList::DrawList(CCanvas2D& canvas, const int& selected, const CGUISpriteInstance& sprite, const CGUISpriteInstance& spriteOverlay,
                       const CGUISpriteInstance& spriteSelectArea, const CGUISpriteInstance& spriteSelectAreaOverlay, const CGUIColor& textColor)
 {
 	CRect rect = GetListRect();
 
-	m_pGUI.DrawSprite(sprite, rect);
+	m_pGUI.DrawSprite(sprite, canvas, rect);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)
@@ -324,7 +324,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			}
 
 			// Draw item selection
-			m_pGUI.DrawSprite(spriteSelectArea, rectSel);
+			m_pGUI.DrawSprite(spriteSelectArea, canvas, rectSel);
 			drawSelected = true;
 		}
 	}
@@ -332,7 +332,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 	// Draw line above column header
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
 									m_CachedActualSize.top + m_HeadingHeight);
-	m_pGUI.DrawSprite(m_SpriteHeading, rect_head);
+	m_pGUI.DrawSprite(m_SpriteHeading, canvas, rect_head);
 
 	// Draw column headers
 	float xpos = 0;
@@ -369,11 +369,11 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			else
 				pSprite = &*m_SpriteNotSorted;
 
-			m_pGUI.DrawSprite(*pSprite, CRect(leftTopCorner + CVector2D(width - SORT_SPRITE_DIM, 0), leftTopCorner + CVector2D(width, SORT_SPRITE_DIM)));
+			m_pGUI.DrawSprite(*pSprite, canvas, CRect(leftTopCorner + CVector2D(width - SORT_SPRITE_DIM, 0), leftTopCorner + CVector2D(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text
-		DrawText(col, textColor, leftTopCorner + COLUMN_SHIFT, rect_head);
+		DrawText(canvas, col, textColor, leftTopCorner + COLUMN_SHIFT, rect_head);
 		xpos += width;
 		++col;
 	}
@@ -424,17 +424,17 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			cliparea2.bottom = std::min(cliparea2.bottom, textPos.Y + rowHeight);
 
 			// Draw list item
-			DrawText(objectsCount * (i +/*Heading*/1) + colIdx, column.m_TextColor, textPos, cliparea2);
+			DrawText(canvas, objectsCount * (i +/*Heading*/1) + colIdx, column.m_TextColor, textPos, cliparea2);
 			xpos += width;
 		}
 	}
 
 	// Draw scrollbars on top of the content
 	if (m_ScrollBar)
-		IGUIScrollBarOwner::Draw();
+		IGUIScrollBarOwner::Draw(canvas);
 
 	// Draw the overlays last
-	m_pGUI.DrawSprite(spriteOverlay, rect);
+	m_pGUI.DrawSprite(spriteOverlay, canvas, rect);
 	if (drawSelected)
-		m_pGUI.DrawSprite(spriteSelectAreaOverlay, rectSel);
+		m_pGUI.DrawSprite(spriteSelectAreaOverlay, canvas, rectSel);
 }
