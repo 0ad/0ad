@@ -28,6 +28,7 @@
 #include "gui/SettingTypes/CGUIColor.h"
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "lib/utf8.h"
@@ -232,9 +233,10 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		{
 			if ((*cit)->m_Effects->m_AddColor != CGUIColor())
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect(str_gui_add);
 				Call.m_Material = str_gui_add;
-				Call.m_ShaderColorParameter = (*cit)->m_Effects->m_AddColor;
+				const CColor color = (*cit)->m_Effects->m_AddColor;
+				Call.m_ColorAdd = CColor(color.r, color.g, color.b, 0.0f);
+				Call.m_ColorMultiply = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 			else if ((*cit)->m_Effects->m_Greyscale)
 			{
@@ -340,8 +342,12 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		if (cit->m_HasTexture && (cit->m_Material == str_gui_basic || cit->m_Material == str_gui_solid_mask))
+		if (cit->m_HasTexture && (cit->m_Material == str_gui_basic || cit->m_Material == str_gui_solid_mask || cit->m_Material == str_gui_add))
 		{
+			// A hack to preload the handle to get a correct texture size.
+			GLuint h;
+			ogl_tex_get_texture_id(cit->m_Texture->GetHandle(), &h);
+
 			CRect texCoords = cit->ComputeTexCoords().Scale(
 				cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());
 
