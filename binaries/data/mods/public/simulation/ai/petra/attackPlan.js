@@ -173,25 +173,38 @@ PETRA.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	// and lower priority and smaller sizes for easier difficulty levels
 	if (this.Config.difficulty < 2)
 	{
-		priority *= 0.6;
-		variation *= 0.5;
+		priority *= 0.4;
+		variation *= 0.2;
 	}
 	else if (this.Config.difficulty < 3)
 	{
 		priority *= 0.8;
-		variation *= 0.8;
+		variation *= 0.6;
 	}
-	for (let cat in this.unitStat)
+
+	if (this.Config.difficulty < 2)
 	{
-		this.unitStat[cat].targetSize = Math.round(variation * this.unitStat[cat].targetSize);
-		this.unitStat[cat].minSize = Math.min(this.unitStat[cat].minSize, this.unitStat[cat].targetSize);
+		for (const cat in this.unitStat)
+		{
+			this.unitStat[cat].targetSize = Math.ceil(variation * this.unitStat[cat].targetSize);
+			this.unitStat[cat].minSize = Math.min(this.unitStat[cat].targetSize, Math.min(this.unitStat[cat].minSize, 2));
+			this.unitStat[cat].batchSize = this.unitStat[cat].minSize;
+		}
+	}
+	else
+	{
+		for (const cat in this.unitStat)
+		{
+			this.unitStat[cat].targetSize = Math.ceil(variation * this.unitStat[cat].targetSize);
+			this.unitStat[cat].minSize = Math.min(this.unitStat[cat].minSize, this.unitStat[cat].targetSize);
+		}
 	}
 
 	// change the sizes according to max population
 	this.neededShips = Math.ceil(this.Config.popScaling * this.neededShips);
 	for (let cat in this.unitStat)
 	{
-		this.unitStat[cat].targetSize = Math.round(this.Config.popScaling * this.unitStat[cat].targetSize);
+		this.unitStat[cat].targetSize = Math.ceil(this.Config.popScaling * this.unitStat[cat].targetSize);
 		this.unitStat[cat].minSize = Math.ceil(this.Config.popScaling * this.unitStat[cat].minSize);
 	}
 
@@ -706,19 +719,22 @@ PETRA.AttackPlan.prototype.assignUnits = function(gameState)
 		added = true;
 	}
 
-	// Finally add also some workers,
+	// Finally add also some workers for the higher difficulties,
 	// If Rush, assign all kind of workers, keeping only a minimum number of defenders
 	// Otherwise, assign only some idle workers if too much of them
+	if (this.Config.difficulty <= 2)
+		return added;
+
 	let num = 0;
-	let numbase = {};
+	const numbase = {};
 	let keep = this.type != "Rush" ?
 		6 + 4 * gameState.getNumPlayerEnemies() + 8 * this.Config.personality.defensive : 8;
 	keep = Math.round(this.Config.popScaling * keep);
-	for (let ent of gameState.getOwnEntitiesByRole("worker", true).values())
+	for (const ent of gameState.getOwnEntitiesByRole("worker", true).values())
 	{
 		if (!ent.hasClass("CitizenSoldier") || !this.isAvailableUnit(gameState, ent))
 			continue;
-		let baseID = ent.getMetadata(PlayerID, "base");
+		const baseID = ent.getMetadata(PlayerID, "base");
 		if (baseID)
 			numbase[baseID] = numbase[baseID] ? ++numbase[baseID] : 1;
 		else
