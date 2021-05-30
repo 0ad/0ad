@@ -30,8 +30,7 @@
 
 #include <errno.h>
 
-CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
-	m_Shader(shader)
+CTextRenderer::CTextRenderer()
 {
 	ResetTransform();
 	Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
@@ -223,7 +222,7 @@ struct SBatchCompare
 	}
 };
 
-void CTextRenderer::Render()
+void CTextRenderer::Render(const CShaderProgramPtr& shader)
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
@@ -255,19 +254,19 @@ void CTextRenderer::Render()
 		if (lastTexture != batch.font->GetTexture().get())
 		{
 			lastTexture = batch.font->GetTexture().get();
-			m_Shader->BindTexture(str_tex, batch.font->GetTexture());
+			shader->BindTexture(str_tex, batch.font->GetTexture());
 		}
 
-		m_Shader->Uniform(str_transform, batch.transform);
+		shader->Uniform(str_transform, batch.transform);
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
 		// replace it with white (but not affect RGBA textures)
 		if (batch.font->HasRGB())
-			m_Shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+			shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 		else
-			m_Shader->Uniform(str_colorAdd, CColor(1.0f, 1.0f, 1.0f, 0.0f));
+			shader->Uniform(str_colorAdd, CColor(1.0f, 1.0f, 1.0f, 0.0f));
 
-		m_Shader->Uniform(str_colorMul, batch.color);
+		shader->Uniform(str_colorMul, batch.color);
 
 		vertexes.resize(batch.chars*4);
 		indexes.resize(batch.chars*6);
@@ -321,8 +320,8 @@ void CTextRenderer::Render()
 			}
 		}
 
-		m_Shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
-		m_Shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(t2f_v2i), &vertexes[0].u);
+		shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(t2f_v2i), &vertexes[0].u);
 
 		glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &indexes[0]);
 	}

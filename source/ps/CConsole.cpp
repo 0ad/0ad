@@ -193,7 +193,7 @@ void CConsole::Render()
 
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
-	CTextRenderer textRenderer(textTech->GetShader());
+	CTextRenderer textRenderer;
 	textRenderer.Font(CStrIntern(CONSOLE_FONT));
 	// animation: slide in from top of screen
 	CMatrix3D transform = GetDefaultGuiMatrix();
@@ -204,7 +204,7 @@ void CConsole::Render()
 	DrawHistory(textRenderer);
 	DrawBuffer(textRenderer);
 
-	textRenderer.Render();
+	textRenderer.Render(textTech->GetShader());
 
 	textTech->EndPass();
 

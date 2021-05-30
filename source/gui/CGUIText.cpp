@@ -451,7 +451,7 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 			std::floor(clipping.GetHeight() * g_GuiScale));
 	}
 
-	CTextRenderer textRenderer(tech->GetShader());
+	CTextRenderer textRenderer;
 	textRenderer.SetClippingRect(clipping);
 	textRenderer.Translate(0.0f, 0.0f, 0.0f);
 
@@ -466,7 +466,7 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		textRenderer.Put(floorf(pos.X + tc.m_Pos.X), floorf(pos.Y + tc.m_Pos.Y), &tc.m_String);
 	}
 
-	textRenderer.Render();
+	textRenderer.Render(tech->GetShader());
 
 	for (const SSpriteCall& sc : m_SpriteCalls)
 		pGUI.DrawSprite(sc.m_Sprite, canvas, sc.m_Area + pos);

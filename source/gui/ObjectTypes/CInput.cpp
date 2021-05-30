@@ -1266,7 +1266,7 @@ void CInput::Draw(CCanvas2D& canvas)
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
-	CTextRenderer textRenderer(tech->GetShader());
+	CTextRenderer textRenderer;
 	textRenderer.Font(font_name);
 
 	// Set the Z to somewhat more, so we can draw a selected area between the
@@ -1517,7 +1517,7 @@ void CInput::Draw(CCanvas2D& canvas)
 		textRenderer.Translate(0.f, ls, 0.f);
 	}
 
-	textRenderer.Render();
+	textRenderer.Render(tech->GetShader());
 
 	if (cliparea != CRect())
 		glDisable(GL_SCISSOR_TEST);

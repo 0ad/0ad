@@ -616,7 +616,7 @@ void TerrainRenderer::RenderPriorities(int cullGroup)
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	tech->BeginPass();
-	CTextRenderer textRenderer(tech->GetShader());
+	CTextRenderer textRenderer;
 
 	textRenderer.Font(CStrIntern("mono-stroke-10"));
 	textRenderer.Color(1.0f, 1.0f, 0.0f);
@@ -625,6 +625,6 @@ void TerrainRenderer::RenderPriorities(int cullGroup)
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 		visiblePatches[i]->RenderPriorities(textRenderer);
 
-	textRenderer.Render();
+	textRenderer.Render(tech->GetShader());
 	tech->EndPass();
 }

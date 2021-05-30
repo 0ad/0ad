@@ -201,12 +201,10 @@ void CProfileViewer::RenderProfile()
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 
-	CTextRenderer textRenderer(textTech->GetShader());
+	CTextRenderer textRenderer;
 	textRenderer.Font(font_name);
 	textRenderer.Color(1.0f, 1.0f, 1.0f);
-
 	textRenderer.PrintfAt(2.0f, lineSpacing, L"%hs", table->GetTitle().c_str());
-
 	textRenderer.Translate(22.0f, lineSpacing*2.0f, 0.0f);
 
 	float colX = 0.0f;
@@ -269,7 +267,7 @@ void CProfileViewer::RenderProfile()
 		textRenderer.Put(0.0f, 0.0f, L"back to parent");
 	}
 
-	textRenderer.Render();
+	textRenderer.Render(textTech->GetShader());
 	textTech->EndPass();
 
 	glDisable(GL_BLEND);

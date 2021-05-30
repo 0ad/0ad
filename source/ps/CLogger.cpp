@@ -215,7 +215,7 @@ void CLogger::Render()
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 
-	CTextRenderer textRenderer(textTech->GetShader());
+	CTextRenderer textRenderer;
 	textRenderer.Font(font_name);
 	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
@@ -257,7 +257,7 @@ void CLogger::Render()
 		textRenderer.Translate(0.0f, (float)lineSpacing, 0.0f);
 	}
 
-	textRenderer.Render();
+	textRenderer.Render(textTech->GetShader());
 
 	textTech->EndPass();
 }
