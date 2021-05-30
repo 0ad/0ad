@@ -25,6 +25,7 @@
 #include "renderer/TerrainRenderer.h"
 
 #include "graphics/Camera.h"
+#include "graphics/Canvas2D.h"
 #include "graphics/Decal.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
@@ -614,10 +615,8 @@ void TerrainRenderer::RenderPriorities(int cullGroup)
 
 	ENSURE(m->phase == Phase_Render);
 
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-	tech->BeginPass();
+	CCanvas2D canvas;
 	CTextRenderer textRenderer;
-
 	textRenderer.Font(CStrIntern("mono-stroke-10"));
 	textRenderer.Color(1.0f, 1.0f, 0.0f);
 
@@ -625,6 +624,5 @@ void TerrainRenderer::RenderPriorities(int cullGroup)
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 		visiblePatches[i]->RenderPriorities(textRenderer);
 
-	textRenderer.Render(tech->GetShader());
-	tech->EndPass();
+	canvas.DrawText(textRenderer);
 }

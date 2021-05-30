@@ -19,8 +19,8 @@
 
 #include "CInput.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
@@ -1264,8 +1264,6 @@ void CInput::Draw(CCanvas2D& canvas)
 	float h = (float)font.GetHeight();
 	float ls = (float)font.GetLineSpacing();
 
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-
 	CTextRenderer textRenderer;
 	textRenderer.Font(font_name);
 
@@ -1427,8 +1425,6 @@ void CInput::Draw(CCanvas2D& canvas)
 	// Setup initial color (then it might change and change back, when drawing selected area)
 	textRenderer.Color(m_TextColor);
 
-	tech->BeginPass();
-
 	bool using_selected_color = false;
 
 	for (std::list<SRow>::const_iterator it = m_CharacterPositions.begin();
@@ -1517,12 +1513,10 @@ void CInput::Draw(CCanvas2D& canvas)
 		textRenderer.Translate(0.f, ls, 0.f);
 	}
 
-	textRenderer.Render(tech->GetShader());
+	canvas.DrawText(textRenderer);
 
 	if (cliparea != CRect())
 		glDisable(GL_SCISSOR_TEST);
-
-	tech->EndPass();
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
 		DrawPlaceholderText(canvas, cliparea);

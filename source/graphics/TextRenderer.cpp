@@ -264,7 +264,7 @@ void CTextRenderer::Render(const CShaderProgramPtr& shader)
 		if (batch.font->HasRGB())
 			shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 		else
-			shader->Uniform(str_colorAdd, CColor(1.0f, 1.0f, 1.0f, 0.0f));
+			shader->Uniform(str_colorAdd, CColor(batch.color.r, batch.color.g, batch.color.b, 0.0f));
 
 		shader->Uniform(str_colorMul, batch.color);
 

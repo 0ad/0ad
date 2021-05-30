@@ -19,17 +19,17 @@
 
 #include "CLogger.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/os_path.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CConsole.h"
+#include "ps/CStr.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
-#include "renderer/Renderer.h"
 
 #include <ctime>
 #include <fstream>
@@ -212,9 +212,6 @@ void CLogger::Render()
 	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 
-	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-	textTech->BeginPass();
-
 	CTextRenderer textRenderer;
 	textRenderer.Font(font_name);
 	textRenderer.Color(1.0f, 1.0f, 1.0f);
@@ -257,9 +254,8 @@ void CLogger::Render()
 		textRenderer.Translate(0.0f, (float)lineSpacing, 0.0f);
 	}
 
-	textRenderer.Render(textTech->GetShader());
-
-	textTech->EndPass();
+	CCanvas2D canvas;
+	canvas.DrawText(textRenderer);
 }
 
 void CLogger::PushRenderMessage(ELogMethod method, const char* message)

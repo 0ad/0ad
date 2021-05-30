@@ -24,6 +24,7 @@
 #include <vector>
 
 class CRect;
+class CTextRenderer;
 
 struct CColor;
 
@@ -60,6 +61,11 @@ public:
 	 * destination rect without color modifications.
 	 */
 	void DrawTexture(CTexturePtr texture, const CRect& destination);
+
+	/**
+	 * Draws a text using canvas materials.
+	 */
+	void DrawText(CTextRenderer& textRenderer);
 };
 
 #endif // INCLUDED_CANVAS2D

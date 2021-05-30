@@ -26,7 +26,6 @@
 
 #include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
@@ -46,7 +45,6 @@
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
-#include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
 
@@ -186,13 +184,10 @@ void CConsole::Render()
 
 	PROFILE3_GPU("console");
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	CCanvas2D canvas;
 
-	DrawWindow();
+	DrawWindow(canvas);
 
-	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-	textTech->BeginPass();
 	CTextRenderer textRenderer;
 	textRenderer.Font(CStrIntern(CONSOLE_FONT));
 	// animation: slide in from top of screen
@@ -204,14 +199,10 @@ void CConsole::Render()
 	DrawHistory(textRenderer);
 	DrawBuffer(textRenderer);
 
-	textRenderer.Render(textTech->GetShader());
-
-	textTech->EndPass();
-
-	glDisable(GL_BLEND);
+	canvas.DrawText(textRenderer);
 }
 
-void CConsole::DrawWindow()
+void CConsole::DrawWindow(CCanvas2D& canvas)
 {
 	std::vector<CVector2D> points = {
 		CVector2D{m_fWidth, 0.0f},
@@ -223,7 +214,6 @@ void CConsole::DrawWindow()
 	for (CVector2D& point : points)
 		point += CVector2D{m_fX, m_fY - (1.0f - m_fVisibleFrac) * m_fHeight};
 
-	CCanvas2D canvas;
 	canvas.DrawRect(CRect(points[1], points[3]), CColor(0.0f, 0.0f, 0.5f, 0.6f));
 	canvas.DrawLine(points, 1.0f, CColor(0.5f, 0.5f, 0.0f, 0.6f));
 

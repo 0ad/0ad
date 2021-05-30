@@ -31,6 +31,7 @@
 #include <stdarg.h>
 #include <string>
 
+class CCanvas2D;
 class CTextRenderer;
 
 /**
@@ -111,7 +112,7 @@ private:
 	bool m_bCursorVisState;	// if the cursor should be drawn or not
 	double m_cursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
 
-	void DrawWindow();
+	void DrawWindow(CCanvas2D& canvas);
 	void DrawHistory(CTextRenderer& textRenderer);
 	void DrawBuffer(CTextRenderer& textRenderer);
 	void DrawCursor(CTextRenderer& textRenderer);

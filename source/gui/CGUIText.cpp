@@ -19,8 +19,8 @@
 
 #include "CGUIText.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
 #include "gui/ObjectBases/IGUIObject.h"
@@ -430,10 +430,6 @@ bool CGUIText::AssembleCalls(
 
 void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
 {
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-
-	tech->BeginPass();
-
 	bool isClipped = clipping != CRect();
 	if (isClipped)
 	{
@@ -466,13 +462,11 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		textRenderer.Put(floorf(pos.X + tc.m_Pos.X), floorf(pos.Y + tc.m_Pos.Y), &tc.m_String);
 	}
 
-	textRenderer.Render(tech->GetShader());
+	canvas.DrawText(textRenderer);
 
 	for (const SSpriteCall& sc : m_SpriteCalls)
 		pGUI.DrawSprite(sc.m_Sprite, canvas, sc.m_Area + pos);
 
 	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);
-
-	tech->EndPass();
 }

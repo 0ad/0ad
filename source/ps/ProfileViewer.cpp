@@ -26,7 +26,6 @@
 
 #include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/GUIMatrix.h"
 #include "lib/external_libraries/libsdl.h"
@@ -38,7 +37,6 @@
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
-#include "renderer/Renderer.h"
 #include "scriptinterface/Object.h"
 
 #include <algorithm>
@@ -164,9 +162,6 @@ void CProfileViewer::RenderProfile()
 
 	PROFILE3_GPU("profile viewer");
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	AbstractProfileTable* table = m->path[m->path.size() - 1];
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
@@ -198,9 +193,6 @@ void CProfileViewer::RenderProfile()
 	}
 
 	// Print table and column titles.
-	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-	textTech->BeginPass();
-
 	CTextRenderer textRenderer;
 	textRenderer.Font(font_name);
 	textRenderer.Color(1.0f, 1.0f, 1.0f);
@@ -267,10 +259,7 @@ void CProfileViewer::RenderProfile()
 		textRenderer.Put(0.0f, 0.0f, L"back to parent");
 	}
 
-	textRenderer.Render(textTech->GetShader());
-	textTech->EndPass();
-
-	glDisable(GL_BLEND);
+	canvas.DrawText(textRenderer);
 }
 
 

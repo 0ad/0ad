@@ -21,6 +21,7 @@
 
 #include "graphics/Color.h"
 #include "graphics/ShaderManager.h"
+#include "graphics/TextRenderer.h"
 #include "graphics/TextureManager.h"
 #include "gui/GUIMatrix.h"
 #include "maths/Rect.h"
@@ -160,4 +161,24 @@ void CCanvas2D::DrawTexture(
 	};
 
 	DrawTextureImpl(texture, vertices, uvs, multiply, add, grayscaleFactor);
+}
+
+void CCanvas2D::DrawText(CTextRenderer& textRenderer)
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	CShaderDefines defines;
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
+		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
+	tech->BeginPass();
+	CShaderProgramPtr shader = tech->GetShader();
+
+	shader->Uniform(str_grayscaleFactor, 0.0f);
+
+	textRenderer.Render(shader);
+
+	tech->EndPass();
+
+	glDisable(GL_BLEND);
 }
