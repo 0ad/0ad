@@ -24,11 +24,14 @@
 
 #include "ProfileViewer.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "gui/GUIMatrix.h"
 #include "lib/external_libraries/libsdl.h"
+#include "maths/Size2D.h"
+#include "maths/Vector2D.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
@@ -153,7 +156,7 @@ void CProfileViewer::RenderProfile()
 	if (!m->profileVisible)
 		return;
 
-	if (!m->path.size())
+	if (m->path.empty())
 	{
 		m->profileVisible = false;
 		return;
@@ -172,72 +175,29 @@ void CProfileViewer::RenderProfile()
 	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
 
-	// Render background
-	GLint estimate_height;
-	GLint estimate_width;
+	CCanvas2D canvas;
 
-	estimate_width = 50;
-	for(size_t i = 0; i < columns.size(); ++i)
-		estimate_width += (GLint)columns[i].width;
+	// Render background.
+	float estimateWidth = 50.0f;
+	for (const ProfileColumn& column : columns)
+		estimateWidth += static_cast<float>(column.width);
 
-	estimate_height = 3 + (GLint)numrows;
+	float estimateHeight = 3 + static_cast<float>(numrows);
 	if (m->path.size() > 1)
-		estimate_height += 2;
-	estimate_height = lineSpacing*estimate_height;
+		estimateHeight += 2;
+	estimateHeight *= lineSpacing;
 
-	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid);
-	solidTech->BeginPass();
-	CShaderProgramPtr solidShader = solidTech->GetShader();
+	canvas.DrawRect(CRect(CSize2D(estimateWidth, estimateHeight)), CColor(0.0f, 0.0f, 0.0f, 0.5f));
 
-	solidShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.5f);
-
-	CMatrix3D transform = GetDefaultGuiMatrix();
-	solidShader->Uniform(str_transform, transform);
-
-	float backgroundVerts[] = {
-		(float)estimate_width, 0.0f,
-		0.0f, 0.0f,
-		0.0f, (float)estimate_height,
-		0.0f, (float)estimate_height,
-		(float)estimate_width, (float)estimate_height,
-		(float)estimate_width, 0.0f
-	};
-	solidShader->VertexPointer(2, GL_FLOAT, 0, backgroundVerts);
-	solidShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-	transform.PostTranslate(22.0f, lineSpacing*3.0f, 0.0f);
-	solidShader->Uniform(str_transform, transform);
-
-	// Draw row backgrounds
+	// Draw row backgrounds.
 	for (size_t row = 0; row < numrows; ++row)
 	{
-		if (row % 2)
-			solidShader->Uniform(str_color, 1.0f, 1.0f, 1.0f, 0.1f);
-		else
-			solidShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.1f);
-
-		float rowVerts[] = {
-			-22.f, 2.f,
-			estimate_width-22.f, 2.f,
-			estimate_width-22.f, 2.f-lineSpacing,
-
-			estimate_width-22.f, 2.f-lineSpacing,
-			-22.f, 2.f-lineSpacing,
-			-22.f, 2.f
-		};
-		solidShader->VertexPointer(2, GL_FLOAT, 0, rowVerts);
-		solidShader->AssertPointersBound();
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-
-		transform.PostTranslate(0.0f, lineSpacing, 0.0f);
-		solidShader->Uniform(str_transform, transform);
+		canvas.DrawRect(
+			CRect(CVector2D(0.0f, lineSpacing * (2.0f + row) + 2.0f), CSize2D(estimateWidth, lineSpacing)),
+			row % 2 ? CColor(1.0f, 1.0f, 1.0f, 0.1f): CColor(0.0f, 0.0f, 0.0f, 0.1f));
 	}
 
-	solidTech->EndPass();
-
-	// Print table and column titles
-
+	// Print table and column titles.
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 
@@ -313,8 +273,6 @@ void CProfileViewer::RenderProfile()
 	textTech->EndPass();
 
 	glDisable(GL_BLEND);
-
-	glEnable(GL_DEPTH_TEST);
 }
 
 
