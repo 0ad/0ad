@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<actor version="1">
-	<castshadow/>
-	<group>
-		<variant frequency="100" name="Barrel 2">
-			<mesh>props/celt_tavern_barrel2.dae</mesh>
-			<textures>
-				<texture file="structural/celt_struct.dds" name="baseTex"/>
-				<texture file="structural/celt_struct_norm.png" name="normTex"/>
-				<texture file="structural/celt_struct_spec.png" name="specTex"/>
-				<texture file="structural/ao/gaul_tavern_ao.png" name="aoTex"/>
-			</textures>
-		</variant>
-	</group>
- 	<material>player_trans_ao_parallax_spec.xml</material>
-</actor>
+<qualitylevels version="1">
+  <actor quality="low" inline=""/>
+  <actor quality="medium" inline=""/>
+  <actor inline=""/>
+  <inline version="1">
+    <castshadow minquality="medium"/>
+    <group>
+      <variant frequency="100" name="Base">
+        <textures>
+          <texture file="props/celt_prop_1.png" name="baseTex"/>
+          <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+          <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+        </textures>
+      </variant>
+    </group>
+    <group>
+      <variant minquality="high" frequency="100" name="Base">
+        <mesh>props/wrld_barrel_a.dae</mesh>
+      </variant>
+      <variant maxquality="high" frequency="100" name="Base">
+        <mesh>props/wrld_barrel_a_low.dae</mesh>
+      </variant>
+    </group>
+    <material>no_trans_parallax_spec.xml</material>
+  </inline>
+</qualitylevels>

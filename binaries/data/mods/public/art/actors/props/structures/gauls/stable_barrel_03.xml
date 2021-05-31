@@ -2,15 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
-      <mesh>props/gaul_stable_barrel_03.dae</mesh>
+    <variant frequency="1" name="barrels">
+      <mesh>props/celt_blacksmith_barrels.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="barrel_empty_01" maxheight="20" minheight="-20"/>
+      </props>
       <textures>
-        <texture file="structural/celt_struct.dds" name="baseTex"/>
-        <texture file="structural/celt_struct_norm.png" name="normTex"/>
-        <texture file="structural/celt_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/gaul_stable.png" name="aoTex"/>
+        <texture file="null_white.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>default.xml</material>
 </actor>
