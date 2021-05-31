@@ -197,4 +197,29 @@ public:
 
 		UnloadHotkeys();
 	}
+
+	void test_PageRegainedFocusEvent()
+	{
+		// Load up a test page.
+		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
+		ScriptRequest rq(scriptInterface);
+		JS::RootedValue val(rq.cx);
+		Script::CreateObject(rq, &val);
+
+		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
+		g_GUI->PushPage(L"regainFocus/page_emptyPage.xml", data, JS::UndefinedHandleValue);
+
+		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
+		ScriptRequest prq(pageScriptInterface);
+		JS::RootedValue global(prq.cx, prq.globalValue());
+
+		g_GUI->PushPage(L"regainFocus/page_emptyPage.xml", data, JS::UndefinedHandleValue);
+		g_GUI->PopPage(data);
+
+		// This page instantly pushes an empty page with a callback that pops another page again.
+		g_GUI->PushPage(L"regainFocus/page_pushWithPopOnInit.xml", data, JS::UndefinedHandleValue);
+
+		// Pop the empty page and trigger the callback (effectively pops twice).
+		g_GUI->PopPage(data);
+	}
 };
