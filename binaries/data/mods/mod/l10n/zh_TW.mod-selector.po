@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-24 10:17+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 11:39+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "正在使用預設的網頁瀏覽器開啟 %(url)s，請稍候……"
+msgstr "請稍候，正在使用預設的網頁瀏覽器開啟\n%(url)s ……"
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
@@ -155,7 +155,7 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games 會注意連線的安全性並審核模組有無安全漏洞，但不保證沒有任何風險。"
+msgstr "Wildfire Games 會注意連線的安全性並審視模組有無安全漏洞，但不保證這沒有任何風險。"
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
@@ -231,11 +231,11 @@ msgstr "驗證錯誤"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "初始化 mod.io 介面。"
+msgstr "正在初始化 mod.io 介面。"
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "正在初始化"
+msgstr "初始化"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
 msgid "Cancel"
@@ -244,7 +244,7 @@ msgstr "取消"
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr "無效的 Mod：%(error)s"
+msgstr "無效的模組：%(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -302,7 +302,7 @@ msgstr "%(number)s%(unit)s/秒"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io 的模組"
+msgstr "mod.io 模組"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
@@ -357,7 +357,7 @@ msgstr "過濾器"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. 設計得能輕易模組化。模組的發行形式為 .pyromod 檔，能像 .zip 檔一樣被開啟。"
+msgstr "0 A.D. 設計得容易模組化。模組的發行形式為 .pyromod 檔，能像 .zip 檔一樣被開啟。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -382,11 +382,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "mod.io 服務也與 IndieDB、ModDB 一樣，是由 DBolical 這間公司所發展出來的網站。這些網站長期以來向大家推廣了0 A.D. 以及其他許多獨立專案！直至今日 mod.io 提供我們列出並下載所有經過團隊驗證過後的模組。點擊「下載模組」來嘗試並安裝一些模組！"
+msgstr "mod.io 服務由 IndieDB 和 ModDB 背後的 DBolical 開發。這些網站長期以來宣傳了許多關於 0 A.D. 和其他獨立專案的消息。現在 mod.io 讓我們能夠表列並下載所有經過團隊驗證的模組。點擊「下載模組」試著下載看看！"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "熱門 Mod 安裝"
+msgstr "Pyrogenesis 模組選擇器"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -398,53 +398,49 @@ msgstr "模組指南"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr "拜訪 mod.io"
+msgstr "造訪 mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
 msgstr "此模組不存在"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "啟用"
 
-#: gui/modmod/modmod.js:166
+#: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
 msgstr "未滿足相依性"
 
-#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "過濾器"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:455
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "停用"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:463
 msgid "No mod has been selected."
-msgstr "沒有已被選取的 mod。"
+msgstr "尚未選擇模組。"
 
-#: gui/modmod/modmod.js:462
-msgid "Enable at least 0ad mod and save configuration"
-msgstr "至少啟用 0ad 模組並儲存設定"
-
-#: gui/modmod/modmod.js:464
+#: gui/modmod/modmod.js:466
 msgid "Enable at least 0ad mod"
-msgstr "至少啟用 0ad 模組"
+msgstr "至少得啟用 0ad 模組"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "修改"
+msgstr "模組"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
-msgstr "取消"
+msgstr "排除"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr "過濾兼容性"
+msgstr "過濾相容性"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -456,7 +452,7 @@ msgstr "已啟用的模組"
 
 #: gui/modmod/modmod.xml:(caption):182
 msgid "Visit Website"
-msgstr "拜訪網站"
+msgstr "造訪網站"
 
 #: gui/modmod/modmod.xml:(caption):191
 msgid "Quit"
@@ -475,16 +471,12 @@ msgid "Save Configuration"
 msgstr "儲存設定"
 
 #: gui/modmod/modmod.xml:(caption):216
-msgid "Start Mods"
-msgstr "啟動模組"
-
-#: gui/modmod/modmod.xml:(caption):221
-msgid "Start"
-msgstr "開始"
+msgid "Save and Restart"
+msgstr "儲存並重新啟動"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
-msgstr "(資料夾)"
+msgstr "資料夾"
 
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
@@ -494,11 +486,11 @@ msgstr "網站"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "改變模組開啟的順序，符合模組彼此之間的相依性。"
+msgstr "改變模組啟動的順序以符合相依性。"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr "放棄"
+msgstr "免責聲明"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"

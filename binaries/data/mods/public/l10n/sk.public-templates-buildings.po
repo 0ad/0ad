@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 10:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 10:29+0000\n"
+"Last-Translator: Martin Plávala <martinplavala@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,6 +207,7 @@ msgstr "Apothēkē"
 #: simulation/templates/structures/athen/temple.xml:9
 #: simulation/templates/structures/mace/temple.xml:9
 #: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/ptol/temple_2.xml:11
 #: simulation/templates/structures/sele/temple.xml:9
 #: simulation/templates/structures/spart/temple.xml:9
 msgid "Naos"
@@ -601,15 +602,6 @@ msgstr "Dórsky stĺp"
 msgid "Fallen Doric Column"
 msgstr "Spadnutý dórsky stĺp"
 
-#: simulation/templates/structures/desert_trading_post.xml:14
-msgid "Desert Trading Post"
-msgstr "Púštne obchodné miesto"
-
-#: simulation/templates/structures/desert_trading_post.xml:15
-#: simulation/templates/structures/pers/market.xml:12
-msgid "Ardatašta"
-msgstr "Ardatašta"
-
 #: simulation/templates/structures/fence_long.xml:12
 #: simulation/templates/structures/fence_short.xml:12
 msgid "Fence"
@@ -885,10 +877,6 @@ msgstr "Pr-Pdt"
 #: simulation/templates/structures/kush/sentry_tower.xml:5
 msgid "tsmt"
 msgstr "tsmt"
-
-#: simulation/templates/structures/kush/shrine.xml:12
-msgid "Shrine"
-msgstr "Svätyňa"
 
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
@@ -1231,6 +1219,10 @@ msgstr "Huvādā"
 msgid "Inn"
 msgstr "Hostinec"
 
+#: simulation/templates/structures/pers/market.xml:12
+msgid "Ardatašta"
+msgstr "Ardatašta"
+
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
 msgstr "Didebani"
@@ -1481,10 +1473,6 @@ msgstr "Aedēs Vestālis"
 msgid "TempleOfVesta"
 msgstr "ChrámVesty"
 
-#: simulation/templates/structures/rome/tent.xml:24
-msgid "Tent"
-msgstr "Stan"
-
 #: simulation/templates/structures/rome/tent.xml:25
 msgid "Tabernāculum"
 msgstr "Tabernāculum"
@@ -1527,6 +1515,23 @@ msgstr "Kolonáda"
 #: simulation/templates/structures/sele_colonnade.xml:12
 msgid "Corinthian Colonnade"
 msgstr "Korintská kolonáda"
+
+#: simulation/templates/structures/shrine_egyptian.xml:5
+msgid "Sanctuary Kiosk"
+msgstr ""
+
+#: simulation/templates/structures/shrine_italian.xml:9
+msgid "Temple of Healing"
+msgstr ""
+
+#: simulation/templates/structures/shrine_italian.xml:10
+msgid "Aedēs Sanitatem"
+msgstr ""
+
+#: simulation/templates/structures/kush/shrine.xml:12
+#: simulation/templates/structures/shrine_kushite.xml:5
+msgid "Shrine"
+msgstr "Svätyňa"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"
@@ -1586,6 +1591,42 @@ msgstr "Obdĺžnikový stôl"
 msgid "Square Table"
 msgstr "Štvorcový stôl"
 
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr ""
+
+#: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_desert.xml:36
+#: simulation/templates/structures/tent_desert.xml:38
+#: simulation/templates/structures/tent_mace.xml:36
+#: simulation/templates/structures/tent_mace.xml:38
+#: simulation/templates/structures/tent_rome.xml:36
+#: simulation/templates/structures/tent_rome.xml:38
+msgid "Tent"
+msgstr "Stan"
+
+#: simulation/templates/structures/tent_desert.xml:39
+#: simulation/templates/structures/tent_mace.xml:39
+#: simulation/templates/structures/tent_rome.xml:39
+msgid "A temporary shelter for soldiers. +5 population bonus."
+msgstr "Dočasné prístrešie pre vojakov. Pridá +5 k populačnému bonusu."
+
+#: simulation/templates/structures/tent_mace.xml:35
+msgid "Macedonian Army Tent"
+msgstr ""
+
+#: simulation/templates/structures/tent_rome.xml:35
+msgid "Roman Army Tent"
+msgstr ""
+
+#: simulation/templates/structures/trading_post_celtic.xml:9
+msgid "Celtic Tavern"
+msgstr ""
+
+#: simulation/templates/structures/trading_post_desert.xml:9
+msgid "Desert Bazaar"
+msgstr ""
+
 #: simulation/templates/structures/uffington_horse.xml:10
 msgid "Uffington White Horse"
 msgstr "Uffingtonský Biely kôň"
@@ -1638,14 +1679,14 @@ msgid "Colony"
 msgstr "Kolónia"
 
 #: simulation/templates/structures/pers/house_a.xml:12
-#: simulation/templates/template_structure_civic_house.xml:30
-#: simulation/templates/template_structure_civic_house.xml:32
+#: simulation/templates/template_structure_civic_house.xml:26
+#: simulation/templates/template_structure_civic_house.xml:28
 msgid "House"
 msgstr "Dom"
 
-#: simulation/templates/template_structure_civic_house.xml:32
+#: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
-#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:28
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
@@ -1702,13 +1743,13 @@ msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-#: simulation/templates/template_structure_defensive_palisade.xml:20
+#: simulation/templates/template_structure_defensive_palisade.xml:13
+#: simulation/templates/template_structure_defensive_palisade.xml:16
 msgid "Palisade"
 msgstr "Palisáda"
 
 #: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:19
+#: simulation/templates/template_structure_defensive_palisade.xml:15
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "Hradby mimo územia. Postavte na svojom alebo na neutrálnom území."
 
@@ -1771,12 +1812,12 @@ msgstr "Kamenná veža"
 msgid "StoneTower"
 msgstr "Kamenná veža"
 
+#: simulation/templates/template_structure_defensive_wall.xml:12
 #: simulation/templates/template_structure_defensive_wall.xml:15
-#: simulation/templates/template_structure_defensive_wall.xml:18
 msgid "Wall"
 msgstr "Múr"
 
-#: simulation/templates/template_structure_defensive_wall.xml:17
+#: simulation/templates/template_structure_defensive_wall.xml:14
 msgid "Wall off your town for a stout defense."
 msgstr "Opevni svoje mesto hradbami pre pevnejšiu obranu."
 
@@ -1834,12 +1875,12 @@ msgstr "Poskytuje prístup k výmennému obchodu. Zavádza obchodné cesty. Umo�
 msgid "Trade"
 msgstr "Obchodovať"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:24
+#: simulation/templates/template_structure_economic_storehouse.xml:28
 msgid "Storehouse"
 msgstr "Skladisko"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_storehouse.xml:26
 msgid "Research gathering technologies."
 msgstr "Skúma technológie zberu surovín. "
 
@@ -1870,7 +1911,7 @@ msgstr "Trénuje šampiónskeho kušostrelca. Stavia obliehacie stroje a skúma 
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 #: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:42
+#: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
 msgstr "Metropola"
 
@@ -2000,11 +2041,11 @@ msgstr "Amfiteáter"
 msgid "Library"
 msgstr "Knižnica"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:22
+#: simulation/templates/template_structure_special_rotarymill.xml:19
 msgid "Rotary Mill"
 msgstr "Otočný mlyn"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:24
+#: simulation/templates/template_structure_special_rotarymill.xml:21
 msgid "RotaryMill"
 msgstr "Otočný mlyn"
 
@@ -2013,12 +2054,12 @@ msgstr "Otočný mlyn"
 msgid "Theater"
 msgstr "Divadlo"
 
-#: simulation/templates/template_structure_wonder.xml:38
-#: simulation/templates/template_structure_wonder.xml:42
+#: simulation/templates/template_structure_wonder.xml:37
+#: simulation/templates/template_structure_wonder.xml:41
 msgid "Wonder"
 msgstr "Div sveta"
 
-#: simulation/templates/template_structure_wonder.xml:40
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."

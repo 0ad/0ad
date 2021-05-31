@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 10:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 10:29+0000\n"
+"Last-Translator: Felipe Rivas Caamaño <f.rivascaam@gmail.com>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,6 +191,7 @@ msgstr ""
 #: simulation/templates/structures/athen/temple.xml:9
 #: simulation/templates/structures/mace/temple.xml:9
 #: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/ptol/temple_2.xml:11
 #: simulation/templates/structures/sele/temple.xml:9
 #: simulation/templates/structures/spart/temple.xml:9
 msgid "Naos"
@@ -585,15 +586,6 @@ msgstr "Columna Dórica"
 msgid "Fallen Doric Column"
 msgstr "Columna Dórica caída"
 
-#: simulation/templates/structures/desert_trading_post.xml:14
-msgid "Desert Trading Post"
-msgstr ""
-
-#: simulation/templates/structures/desert_trading_post.xml:15
-#: simulation/templates/structures/pers/market.xml:12
-msgid "Ardatašta"
-msgstr ""
-
 #: simulation/templates/structures/fence_long.xml:12
 #: simulation/templates/structures/fence_short.xml:12
 msgid "Fence"
@@ -868,10 +860,6 @@ msgstr ""
 
 #: simulation/templates/structures/kush/sentry_tower.xml:5
 msgid "tsmt"
-msgstr ""
-
-#: simulation/templates/structures/kush/shrine.xml:12
-msgid "Shrine"
 msgstr ""
 
 #: simulation/templates/structures/kush/shrine.xml:13
@@ -1215,6 +1203,10 @@ msgstr ""
 msgid "Inn"
 msgstr ""
 
+#: simulation/templates/structures/pers/market.xml:12
+msgid "Ardatašta"
+msgstr ""
+
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
 msgstr ""
@@ -1465,10 +1457,6 @@ msgstr ""
 msgid "TempleOfVesta"
 msgstr ""
 
-#: simulation/templates/structures/rome/tent.xml:24
-msgid "Tent"
-msgstr ""
-
 #: simulation/templates/structures/rome/tent.xml:25
 msgid "Tabernāculum"
 msgstr ""
@@ -1510,6 +1498,23 @@ msgstr ""
 
 #: simulation/templates/structures/sele_colonnade.xml:12
 msgid "Corinthian Colonnade"
+msgstr ""
+
+#: simulation/templates/structures/shrine_egyptian.xml:5
+msgid "Sanctuary Kiosk"
+msgstr ""
+
+#: simulation/templates/structures/shrine_italian.xml:9
+msgid "Temple of Healing"
+msgstr ""
+
+#: simulation/templates/structures/shrine_italian.xml:10
+msgid "Aedēs Sanitatem"
+msgstr ""
+
+#: simulation/templates/structures/kush/shrine.xml:12
+#: simulation/templates/structures/shrine_kushite.xml:5
+msgid "Shrine"
 msgstr ""
 
 #: simulation/templates/structures/spart/gerousia.xml:22
@@ -1570,6 +1575,42 @@ msgstr "Mesa rectangular"
 msgid "Square Table"
 msgstr "Mesa cuadrada"
 
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr ""
+
+#: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_desert.xml:36
+#: simulation/templates/structures/tent_desert.xml:38
+#: simulation/templates/structures/tent_mace.xml:36
+#: simulation/templates/structures/tent_mace.xml:38
+#: simulation/templates/structures/tent_rome.xml:36
+#: simulation/templates/structures/tent_rome.xml:38
+msgid "Tent"
+msgstr ""
+
+#: simulation/templates/structures/tent_desert.xml:39
+#: simulation/templates/structures/tent_mace.xml:39
+#: simulation/templates/structures/tent_rome.xml:39
+msgid "A temporary shelter for soldiers. +5 population bonus."
+msgstr "Un refugio temporal para soldados. +5 bono de población."
+
+#: simulation/templates/structures/tent_mace.xml:35
+msgid "Macedonian Army Tent"
+msgstr ""
+
+#: simulation/templates/structures/tent_rome.xml:35
+msgid "Roman Army Tent"
+msgstr ""
+
+#: simulation/templates/structures/trading_post_celtic.xml:9
+msgid "Celtic Tavern"
+msgstr ""
+
+#: simulation/templates/structures/trading_post_desert.xml:9
+msgid "Desert Bazaar"
+msgstr ""
+
 #: simulation/templates/structures/uffington_horse.xml:10
 msgid "Uffington White Horse"
 msgstr ""
@@ -1622,14 +1663,14 @@ msgid "Colony"
 msgstr "Colonia"
 
 #: simulation/templates/structures/pers/house_a.xml:12
-#: simulation/templates/template_structure_civic_house.xml:30
-#: simulation/templates/template_structure_civic_house.xml:32
+#: simulation/templates/template_structure_civic_house.xml:26
+#: simulation/templates/template_structure_civic_house.xml:28
 msgid "House"
 msgstr "Casa"
 
-#: simulation/templates/template_structure_civic_house.xml:32
+#: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
-#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:28
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
@@ -1686,13 +1727,13 @@ msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-#: simulation/templates/template_structure_defensive_palisade.xml:20
+#: simulation/templates/template_structure_defensive_palisade.xml:13
+#: simulation/templates/template_structure_defensive_palisade.xml:16
 msgid "Palisade"
 msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:19
+#: simulation/templates/template_structure_defensive_palisade.xml:15
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr ""
 
@@ -1755,12 +1796,12 @@ msgstr ""
 msgid "StoneTower"
 msgstr ""
 
+#: simulation/templates/template_structure_defensive_wall.xml:12
 #: simulation/templates/template_structure_defensive_wall.xml:15
-#: simulation/templates/template_structure_defensive_wall.xml:18
 msgid "Wall"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall.xml:17
+#: simulation/templates/template_structure_defensive_wall.xml:14
 msgid "Wall off your town for a stout defense."
 msgstr "Amuralla tu ciudad para una sólida defensa"
 
@@ -1818,12 +1859,12 @@ msgstr ""
 msgid "Trade"
 msgstr "Comercio"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:24
+#: simulation/templates/template_structure_economic_storehouse.xml:28
 msgid "Storehouse"
 msgstr "Almacén"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_storehouse.xml:26
 msgid "Research gathering technologies."
 msgstr ""
 
@@ -1854,7 +1895,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 #: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:42
+#: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
 msgstr "Ciudad"
 
@@ -1984,11 +2025,11 @@ msgstr ""
 msgid "Library"
 msgstr "Biblioteca"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:22
+#: simulation/templates/template_structure_special_rotarymill.xml:19
 msgid "Rotary Mill"
 msgstr ""
 
-#: simulation/templates/template_structure_special_rotarymill.xml:24
+#: simulation/templates/template_structure_special_rotarymill.xml:21
 msgid "RotaryMill"
 msgstr ""
 
@@ -1997,12 +2038,12 @@ msgstr ""
 msgid "Theater"
 msgstr ""
 
-#: simulation/templates/template_structure_wonder.xml:38
-#: simulation/templates/template_structure_wonder.xml:42
+#: simulation/templates/template_structure_wonder.xml:37
+#: simulation/templates/template_structure_wonder.xml:41
 msgid "Wonder"
 msgstr "Maravilla"
 
-#: simulation/templates/template_structure_wonder.xml:40
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."

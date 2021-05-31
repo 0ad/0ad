@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-24 10:17+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 14:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -398,33 +398,29 @@ msgstr "Visitar mod.io"
 msgid "This mod does not exist"
 msgstr "Esti camudu nun esiste"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activar"
 
-#: gui/modmod/modmod.js:166
+#: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
 msgstr "Nun se cumplen les dependencies"
 
-#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Peñera"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:455
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Desactivar"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:463
 msgid "No mod has been selected."
 msgstr "Nun s'esbilló camudu dalu."
 
-#: gui/modmod/modmod.js:462
-msgid "Enable at least 0ad mod and save configuration"
-msgstr "Activar pelo menos 0ad mod y guardar la configuración"
-
-#: gui/modmod/modmod.js:464
+#: gui/modmod/modmod.js:466
 msgid "Enable at least 0ad mod"
 msgstr "Activar pelo menos 0ad mod"
 
@@ -469,12 +465,8 @@ msgid "Save Configuration"
 msgstr "Guardar configuración"
 
 #: gui/modmod/modmod.xml:(caption):216
-msgid "Start Mods"
-msgstr "Emprimar camudos"
-
-#: gui/modmod/modmod.xml:(caption):221
-msgid "Start"
-msgstr "Aniciar"
+msgid "Save and Restart"
+msgstr "Guardar y volver a entamar"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

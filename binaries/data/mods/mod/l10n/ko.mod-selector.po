@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-26 15:20+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-31 06:00+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -408,33 +408,29 @@ msgstr "mod.io 방문"
 msgid "This mod does not exist"
 msgstr "이 모드는 존재하지 않습니다"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "활성화"
 
-#: gui/modmod/modmod.js:166
+#: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
 msgstr "의존성이 충족되지 않음"
 
-#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "필터"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:455
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "비활성화"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:463
 msgid "No mod has been selected."
 msgstr "선택된 모드가 없습니다."
 
-#: gui/modmod/modmod.js:462
-msgid "Enable at least 0ad mod and save configuration"
-msgstr "0ad 모드만 활성화 및 환경설정 저장"
-
-#: gui/modmod/modmod.js:464
+#: gui/modmod/modmod.js:466
 msgid "Enable at least 0ad mod"
 msgstr "0ad 모드만 활성화"
 
@@ -479,12 +475,8 @@ msgid "Save Configuration"
 msgstr "환경설정 저장"
 
 #: gui/modmod/modmod.xml:(caption):216
-msgid "Start Mods"
-msgstr "모드 시작"
-
-#: gui/modmod/modmod.xml:(caption):221
-msgid "Start"
-msgstr "시작"
+msgid "Save and Restart"
+msgstr "저장 후 다시 시작"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

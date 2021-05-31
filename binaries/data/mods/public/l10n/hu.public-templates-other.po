@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 10:21+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 10:21+0000\n"
+"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -647,6 +647,10 @@ msgstr "Olajbogyó"
 msgid "Ancient Ruins"
 msgstr "Ősi romok"
 
+#: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
+msgid "Isis Cult Image"
+msgstr ""
+
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
 msgstr "Nagy piramis"
@@ -667,6 +671,24 @@ msgstr "Ptolemaioszi egyiptomi szobrok"
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
 msgstr "Kusita szobor"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
+msgid "Stone Resource"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
+msgid "Kushite Bird Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
+msgid "Apademak Lion Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
+msgid "Ammon-Ra Ram Statue"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -711,6 +733,10 @@ msgstr "Perzsa áruk"
 msgid "Persian Rugs"
 msgstr "Perzsa szőnyegek"
 
+#: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
+msgid "Iron Weapons"
+msgstr "Vasfegyverek"
+
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
 msgstr "Pegazus"
@@ -730,9 +756,26 @@ msgstr "Hajóroncs rakomány"
 msgid "Stone Treasure"
 msgstr "Kőkincs"
 
+#: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
+msgid "Cut Granite"
+msgstr ""
+
+#: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
+msgid "Cut Stone"
+msgstr ""
+
+#: simulation/templates/gaia/treasure/stone_pile_red.xml:8
+#: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
+msgid "Cut Sandstone"
+msgstr ""
+
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
 msgstr "Fakincs"
+
+#: simulation/templates/gaia/treasure/wood_lumber.xml:4
+msgid "Milled Lumber"
+msgstr ""
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -773,6 +816,9 @@ msgstr "Fiatal majomkenyérfa"
 msgid "Hardy Bush"
 msgstr "Klímatűrő bokor"
 
+#: simulation/templates/gaia/tree/bush_steppe_01.xml:8
+#: simulation/templates/gaia/tree/bush_steppe_02.xml:8
+#: simulation/templates/gaia/tree/bush_steppe_03.xml:8
 #: simulation/templates/gaia/tree/bush_temperate.xml:4
 #: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
 #: simulation/templates/gaia/tree/bush_tropic.xml:4
@@ -950,6 +996,14 @@ msgstr ""
 msgid "Mercenary"
 msgstr "Zsoldos"
 
+#: simulation/templates/mixins/shrine.xml:12
+msgid "Shrine"
+msgstr "Szentély"
+
+#: simulation/templates/mixins/trading_post.xml:8
+msgid "Trading Post"
+msgstr ""
+
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
@@ -1051,7 +1105,7 @@ msgstr "Csak lovasság, legalább 6 szükséges."
 msgid "Wedge"
 msgstr "Ék"
 
-#: simulation/templates/special/player/player.xml:57
+#: simulation/templates/special/player/player.xml:58
 msgid "Player"
 msgstr "Játékos"
 
@@ -1092,6 +1146,11 @@ msgstr "Fémbánya"
 msgid "Mine ore for metal."
 msgstr "Érc bányászása fémért."
 
+#: simulation/templates/gaia/rock/aegean_cut.xml:8
+#: simulation/templates/gaia/rock/india_cut.xml:8
+#: simulation/templates/gaia/rock/nubia_cut.xml:8
+#: simulation/templates/gaia/rock/sahara_cut.xml:8
+#: simulation/templates/gaia/rock/temperate_cut.xml:8
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
 msgstr "Kőbánya"

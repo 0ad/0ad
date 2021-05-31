@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-24 05:55+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-29 13:13+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -857,7 +857,21 @@ msgctxt "biome definition"
 msgid "Rainy Season"
 msgstr "雨季"
 
+#: maps/random/rmbiome/generic/aegean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "开局位于地中海气候的土地上，温暖怡人。 柏树与扇形棕榈树争奇斗艳，树荫下鹿在悠悠吃草，无忧无虑。"
+
+#: maps/random/rmbiome/generic/aegean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Aegean-Anatolian"
+msgstr "爱琴海-安纳托利亚"
+
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
@@ -869,6 +883,11 @@ msgstr "高山雪域。 刺骨的寒风吹过丰富的针叶林，野鹿和山�
 msgctxt "biome definition"
 msgid "Alpine"
 msgstr "阿尔卑斯山"
+
+#: maps/random/rmbiome/generic/arctic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Arctic"
+msgstr "北极"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -884,31 +903,45 @@ msgctxt "biome definition"
 msgid "Autumn"
 msgstr "秋季"
 
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+#: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "神秘的热带地区。 一个绿化、潮湿的环境等待着你去探索。 香椿树高高在上，凶猛的老虎决心不惜一切代价捍卫自己的领土。"
+
+#: maps/random/rmbiome/generic/india.jsonDescription.Title
+msgctxt "biome definition"
+msgid "India"
+msgstr "印度"
+
+#: maps/random/rmbiome/generic/nubia.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
+"gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes"
+" or elephants roam the wild in search of food."
+msgstr "努比亚，气候干燥，唯有耐寒的猴面包树方可茁壮成长。 孤零零的瞪羚啃着稀疏的草，而成群的斑马、牛羚、长颈鹿和大象在野外寻找食物。"
+
+#: maps/random/rmbiome/generic/nubia.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Nubia"
+msgstr "努比亚"
+
+#: maps/random/rmbiome/generic/sahara.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and acacia "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
-msgstr "一处半沙漠区，拥有许多枣椰树和柳树丛。 成群的骆驼在野外漫游，偶尔可见瞪羚惊恐地跳起来。"
+msgstr "半沙漠区，枣椰树和柳树丛众多。 成群的骆驼在野外漫游，偶尔可见瞪羚惊恐逃散。"
 
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+#: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Desert"
-msgstr "沙漠"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "开局位于地中海气候的土地上，温暖怡人。 柏树与扇形棕榈树争奇斗艳，树荫下鹿在悠悠吃草，无忧无虑。"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "地中海"
+msgid "Sahara"
+msgstr "撒哈拉沙漠"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
@@ -923,18 +956,15 @@ msgctxt "biome definition"
 msgid "Savanna"
 msgstr "疏林草原"
 
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+#: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the Arctic, the native habitat of the muskox. "
-"Here you can pine away to your content and also hunt the occasional walrus "
-"or two."
-msgstr "定居在北方的寒冷地区，这里也是麝香的原生栖息地。 你可以轻松应对，偶尔可以捕捉一两头海象。"
+msgid "Wide grasslands without trees"
+msgstr "没有树木的广阔草原"
 
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+#: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Snowy"
-msgstr "雪地"
+msgid "Eurasian Steppe"
+msgstr "亚欧草原"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -949,20 +979,6 @@ msgstr "郁郁葱葱的草原为这片土地铺设了地毯，上面是宏伟多
 msgctxt "biome definition"
 msgid "Temperate"
 msgstr "适宜"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "神秘的热带地区。 一个绿化、潮湿的环境等待着你去探索。 香椿树高高在上，凶猛的老虎决心不惜一切代价捍卫自己的领土。"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "热带"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
@@ -1274,6 +1290,7 @@ msgstr "野外湖泊"
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
+#: maps/skirmishes/magadha_2p.xml:Description:39
 msgid "Give an interesting description of your map."
 msgstr "给地图一个有趣的说明。"
 
@@ -1967,7 +1984,7 @@ msgid "Achaemenids"
 msgstr "阿契美尼德"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:38
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "一个布满岛屿的地图，适合激烈海战。"
 
@@ -2482,14 +2499,14 @@ msgstr "一张充满无法越过的高山与大量天然资源的地图。"
 msgid "Alpine Mountains (3)"
 msgstr "阿尔卑斯山 (3)"
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Description:38
+#: maps/skirmishes/alpine_valleys_2p.xml:Description:39
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
 msgstr "阿尔卑斯山的高耸山峰及山谷。\n\n每个玩家都在一个安全的绿色山谷开始游戏。其间是变幻莫测的阿尔卑斯山脉。"
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Name:38
+#: maps/skirmishes/alpine_valleys_2p.xml:Name:39
 msgid "Alpine Valleys (2)"
 msgstr "阿尔卑斯山谷 (2)"
 
@@ -2504,15 +2521,17 @@ msgstr "阿特拉斯山脉，白雪皑皑的山脉笼罩着沙漠的绿洲。 �
 msgid "Atlas Valleys (8)"
 msgstr "阿特拉斯山谷（8人）"
 
-#: maps/skirmishes/bactria_2p.xml:Description:38
+#: maps/skirmishes/bactria_2p.xml:Description:39
 msgid ""
-"The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
+"In the Eastern land of Bactria lies the rich valley carved by the Oxus River.\n"
 "\n"
-"The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr "在兴都库什山脉下的巴克特里亚(现今的阿富汗)是一处干旱但矿藏丰富的地区。\n\n地图的中心是一座干涸的山。两旁也都是连绵不绝的山脉，且山脚被险恶的小径及老旧的贸易路线所穿过。"
+"South of the river are rich arable lands and plentiful wood and forage. North of the river lie a mountain range pierced by wide mountain passes and guarded by natural defensive positions.\n"
+"\n"
+"Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
+msgstr "奥克苏斯河侵蚀而成的富饶山谷，位于巴克特里亚东部。\n\n河流以南有肥沃的耕地，木材和饲料丰富。 以北是山脉，被宽阔的山口贯穿，有天然防御阵地把守。\n\n山中财富与危险并存。利用好山区地势的玩家，会获得显著的优势。"
 
-#: maps/skirmishes/bactria_2p.xml:Name:38
-msgid "Bactria (2)"
+#: maps/skirmishes/bactria_2p.xml:Name:39
+msgid "Bactriana (2)"
 msgstr "巴克特里亚 (2)"
 
 #: maps/skirmishes/barcania_3p.xml:Description:26
@@ -2527,14 +2546,14 @@ msgstr "充满黄金、树木和动植物的神秘岛屿。 山脉，海洋和�
 msgid "Barcania (3)"
 msgstr "巴坎尼亚 (3)"
 
-#: maps/skirmishes/belgian_bog_2p.xml:Description:38
+#: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "两名玩家在莱茵河低地的沼泽隔岸对峙。\n木材很丰富，但缺少金属和石料。"
 
-#: maps/skirmishes/belgian_bog_2p.xml:Name:38
+#: maps/skirmishes/belgian_bog_2p.xml:Name:39
 msgid "Belgian Bog (2)"
 msgstr "比利时沼泽  (2)"
 
@@ -2545,8 +2564,8 @@ msgid ""
 msgstr "位于撒哈拉南部、尼罗河以东，如今称作布塔那草原的半干旱地区。"
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
-msgid "Butana Steppe (2)"
-msgstr "布塔那草原(2)"
+msgid "Island of Meroë (2)"
+msgstr "麦罗埃岛（2）"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
@@ -2567,6 +2586,17 @@ msgstr "两支队伍在一个既长且大的咸水湖的两边进行对抗。\n\
 msgid "Caspian Sea (2v2)"
 msgstr "里海 (2v2)"
 
+#: maps/skirmishes/cisalpine_winter_2p.xml:Description:39
+msgid ""
+"Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
+"\n"
+"CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
+msgstr "靠近阿尔卑斯山的意大利北部，罗马称之为 Cisalpine Gaul。 这一带土地肥沃，是高卢、伊特鲁里亚和罗马三方争夺之地。\n\n注意：地图上积雪很多，可能会影响低端电脑。"
+
+#: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
+msgid "Cisalpine Winter (2)"
+msgstr "阿尔卑斯的冬天（2）"
+
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
 msgid "Corinthian Isthmus (2)"
 msgstr "科林斯地峡 (2)"
@@ -2585,6 +2615,17 @@ msgstr "玩家在两块相对的岛屿开始游戏，两块皆为有著茂密的
 #: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
 msgid "Corsica and Sardinia (4)"
 msgstr "科西嘉岛和撒丁岛 (4)"
+
+#: maps/skirmishes/crocodilopolis_4p.xml:Description:39
+msgid ""
+"The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
+"\n"
+"The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
+msgstr "尼罗河附近的梅里斯湖，在利比亚沙漠中，史前时代就有埃及人在此定居。\n\n这一带布满了古迹和庙宇，而湖里则有罗非鱼，可供打渔。"
+
+#: maps/skirmishes/crocodilopolis_4p.xml:Name:39
+msgid "Crocodilopolis (4)"
+msgstr "鳄城（4）"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -2724,6 +2765,14 @@ msgstr "保护你的高卢望楼不被险恶的邻居攻击！\n\n每个玩家�
 msgid "Gallic Fields (3)"
 msgstr "高卢原野 (3)"
 
+#: maps/skirmishes/gallic_highlands_2p.xml:Description:39
+msgid "The Highlands of central Gaul."
+msgstr "中部高卢高地。"
+
+#: maps/skirmishes/gallic_highlands_2p.xml:Name:39
+msgid "Gallic Highlands (2)"
+msgstr "高卢高地（2）"
+
 #: maps/skirmishes/gambia_river_3p.xml:Description:38
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
@@ -2783,6 +2832,38 @@ msgstr "雅典卫城 (4)"
 msgid "Greek Acropolis Night (2)"
 msgstr "雅典卫城之夜 (2)"
 
+#: maps/skirmishes/hindu_kush_2p.xml:Description:39
+msgid ""
+"The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
+"\n"
+"The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
+msgstr "兴都库什山脉将印度与巴克特里亚（今阿富汗）分隔开来，形成了塞琉古王国和孔雀王朝的边界。 该地区后来被希腊化的希腊-巴克特里亚及印度-希腊诸国控制。\n\n该地区木材较少，但石头和金属资源丰富。 一条贸易路线贯穿地图的中心，可占领贸易仓库，通过贸易收集资源。"
+
+#: maps/skirmishes/hindu_kush_2p.xml:Name:39
+msgid "Hindu Kush (2)"
+msgstr "兴都库什山脉（2）"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:Description:39
+msgid ""
+"The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
+" the great battle between the Macedonian forces under Alexander the Great "
+"and the Indian forces of the king Porus of Paurava."
+msgstr "海达佩斯河，又名杰赫勒姆河，位于印度旁遮普邦。 是马其顿亚历山大大帝与印度保拉瓦国王波鲁斯会战之地。"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:Name:39
+msgid "Hydaspes River (4)"
+msgstr "海达斯佩斯河（4）"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
+msgid "Macedonian Position"
+msgstr "马其顿方位"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
+msgid "Pauravan Position"
+msgstr "保拉瓦方位"
+
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2820,6 +2901,10 @@ msgstr "一条东西流向的河流，将地图分割成南北两部分。\n\n�
 msgid "Lorraine Plain (2)"
 msgstr "洛林平原 (2)"
 
+#: maps/skirmishes/magadha_2p.xml:Name:39
+msgid "Magadha (2)"
+msgstr "摩揭陀国（2）"
+
 #: maps/skirmishes/median_oasis_2p.xml:Description:38
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
@@ -2844,6 +2929,17 @@ msgstr "地中海沿岸的一处天然避风港，快去争夺资源吧。"
 #: maps/skirmishes/mediterranean_cove_2p.xml:Name:38
 msgid "Mediterranean Coves (2)"
 msgstr "地中海海岸 (2)"
+
+#: maps/skirmishes/miletus_peninsula_2p.xml:Description:39
+msgid ""
+"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"\n"
+"To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
+msgstr "玩家开局都在平坦的大高原上，可称之为卫城。\n\n东边有个大海湾，可以打渔。 西边是一座无人占领的卫城，俯瞰爱琴海。"
+
+#: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
+msgid "Miletus Peninsula (2)"
+msgstr "米利都半岛（2）"
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Description:38
 #: maps/skirmishes/neareastern_badlands_4p.xml:Description:38
@@ -2884,6 +2980,14 @@ msgstr "两名玩家被困在寒冷的北方岛屿。一名玩家开局位于西
 #: maps/skirmishes/northern_island_2p.xml:Name:39
 msgid "Northern Island (2)"
 msgstr "北方之岛 (2)"
+
+#: maps/skirmishes/nubian_frontier_2p.xml:Description:39
+msgid "The arid and treacherous frontier between Nubia and Egypt."
+msgstr "努比亚和埃及的边境，干旱又危险。"
+
+#: maps/skirmishes/nubian_frontier_2p.xml:Name:39
+msgid "Nubian Frontier (2)"
+msgstr "努比亚边境（2）"
 
 #: maps/skirmishes/obedska_bog_4p.xml:Description:39
 #: maps/skirmishes/obedska_bog_night_4p.xml:Description:39
@@ -2930,14 +3034,19 @@ msgstr "地处印度西北部。 附近的河流因季风降雨而泛滥，仅�
 msgid "Punjab (2)"
 msgstr "旁遮普 (2)"
 
-#: maps/skirmishes/saharan_oases_4p.xml:Description:38
+#: maps/skirmishes/saharan_oases_2p.xml:Description:39
+#: maps/skirmishes/saharan_oases_4p.xml:Description:39
 msgid ""
-"A desert biome map where each player has founded their colony at their own lush oasis.\n"
+"In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
-"The rest of the map is generally wide-open and barren."
-msgstr "沙漠生态群地图。玩家可在繁茂的绿洲里定居。\n\n其余部分广阔又贫瘠。"
+"Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
+msgstr "位于北非撒哈拉沙漠深处，有一片裸露的岩石和小绿洲。\n\n在悬崖上可以发现大型采石场，绿洲附近点缀着木材和动物。枣椰树可供初期食物采集。"
 
-#: maps/skirmishes/saharan_oases_4p.xml:Name:38
+#: maps/skirmishes/saharan_oases_2p.xml:Name:39
+msgid "Saharan Oases (2)"
+msgstr "撒哈拉绿洲（2）"
+
+#: maps/skirmishes/saharan_oases_4p.xml:Name:39
 msgid "Saharan Oases (4)"
 msgstr "撒哈拉中的绿洲 (4)"
 
@@ -2973,6 +3082,17 @@ msgstr "萨瓦纳河 ，被一条窄窄的溪流一分为二。"
 msgid "Savanna River (2)"
 msgstr "萨瓦纳河 (2)"
 
+#: maps/skirmishes/scythia_4p.xml:Description:39
+msgid ""
+"The steppes of central Asia. A wide open grassland with few trees (about 90%"
+" fewer trees than on a temperate or Aegean map). Animal life is plentiful "
+"though, so take advantage of the hunting available. "
+msgstr "中亚大草原。一片开阔的草原，树木稀少（比温带或爱琴海地图上的树木少了约 90%）。 不过，动物很丰富，可尽情狩猎。"
+
+#: maps/skirmishes/scythia_4p.xml:Name:39
+msgid "Scythian Steppes (4)"
+msgstr "斯基泰草原（4）"
+
 #: maps/skirmishes/sicilia_2p.xml:Description:38
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "西西里岛，位于地中海，易被征服。"
@@ -2999,20 +3119,20 @@ msgstr "冲突演示地图"
 msgid "Skirmish Demo (2)"
 msgstr "遭遇战演示（2）"
 
-#: maps/skirmishes/sporades_islands_2p.xml:Name:38
+#: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2)"
 msgstr "沿岸群岛 (2)"
 
-#: maps/skirmishes/syria_2p.xml:Description:38
+#: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
 msgstr "一片不毛之地，几乎没有动植物。 宝藏星罗棋布，对前期发育至关重要。\n\n越早建立商队的玩家，优势越大。\n"
 
-#: maps/skirmishes/syria_2p.xml:Name:38
-msgid "Syria (2)"
-msgstr "叙利亚 (2)"
+#: maps/skirmishes/syria_2p.xml:Name:39
+msgid "Coele-Syria (2)"
+msgstr "贝卡谷地（2）"
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3095,6 +3215,41 @@ msgstr "非洲大草原上有大量动物可供狩猎，而附近的矿产资源
 #: maps/skirmishes/watering_holes_4p.xml:Name:38
 msgid "Watering Holes (4)"
 msgstr "水坑 (4)"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
+msgid ""
+"Foreigners are invading Britannia. The native Britons must fight against a massive enemy invasion force to secure their homeland for the next generation!\n"
+"\n"
+"Player 1 is the Britons. Players 2-5 are the invasion force, garrisoned aboard their stout ships in the channel off the White Cliffs of Dover. \n"
+"\n"
+"Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
+"\n"
+"Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
+msgstr "外敌正入侵不列颠。 布立吞必须奋起抗战，为了下一代保卫家园！\n\n玩家 1 是布立吞。 玩家 2-5 是入侵者，他们驻守在多佛白崖附近海峡中的坚固船只上。\n\n团队由地图脚本设置，如果玩家希望转换角色，可在设置里更改。这样一来，游戏主机应该设置停火，以便船上的玩家可以和平着陆，并找到合适地点来建造定居点。\n\n分配的文明只是建议，主机应将起始资源设置为 1000 单位，以便在开局时建造市政中心。"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
+msgid "White Cliffs of Dover (5)"
+msgstr "多佛白崖（5）"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
+msgid "Britons"
+msgstr "布立吞"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
+msgid "Invader 1"
+msgstr "入侵者 1"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
+msgid "Invader 2"
+msgstr "入侵者 2"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
+msgid "Invader 3"
+msgstr "入侵者 3"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
+msgid "Invader 4"
+msgstr "入侵者 4"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

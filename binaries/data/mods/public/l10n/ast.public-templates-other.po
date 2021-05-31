@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-04-16 14:35+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-29 01:54+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -638,6 +638,10 @@ msgstr "Olivar"
 msgid "Ancient Ruins"
 msgstr "Ruines antigües"
 
+#: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
+msgid "Isis Cult Image"
+msgstr "Imaxe del cultu d'Isis"
+
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
 msgstr "Gran Pirámide"
@@ -658,6 +662,24 @@ msgstr "Estatues exipcies ptolemaiques"
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
 msgstr "Estatua cuxina"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
+msgid "Stone Resource"
+msgstr "Recursu de piedra"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
+msgid "Kushite Bird Statue"
+msgstr "Aviaria cuxina"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
+msgid "Apademak Lion Statue"
+msgstr "Lleonín d'Apademak"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
+msgid "Ammon-Ra Ram Statue"
+msgstr "Garabeñu d'Amón-Ra"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -702,6 +724,10 @@ msgstr "Mercancía persa"
 msgid "Persian Rugs"
 msgstr "Alfombres perses"
 
+#: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
+msgid "Iron Weapons"
+msgstr "Armes de fierro"
+
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
 msgstr "Pegasu"
@@ -721,9 +747,26 @@ msgstr "Carga de naufraxu"
 msgid "Stone Treasure"
 msgstr "Ayalga de piedra"
 
+#: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
+msgid "Cut Granite"
+msgstr "Piedra de granu cortao"
+
+#: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
+msgid "Cut Stone"
+msgstr "Piedra cortao"
+
+#: simulation/templates/gaia/treasure/stone_pile_red.xml:8
+#: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
+msgid "Cut Sandstone"
+msgstr "Piedra pardo cortao"
+
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
 msgstr "Ayalga de madera"
+
+#: simulation/templates/gaia/treasure/wood_lumber.xml:4
+msgid "Milled Lumber"
+msgstr "Madera refendío"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -764,6 +807,9 @@ msgstr "Baobabucu"
 msgid "Hardy Bush"
 msgstr "Arbustu resistente"
 
+#: simulation/templates/gaia/tree/bush_steppe_01.xml:8
+#: simulation/templates/gaia/tree/bush_steppe_02.xml:8
+#: simulation/templates/gaia/tree/bush_steppe_03.xml:8
 #: simulation/templates/gaia/tree/bush_temperate.xml:4
 #: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
 #: simulation/templates/gaia/tree/bush_tropic.xml:4
@@ -941,6 +987,14 @@ msgstr "Constructor/ora"
 msgid "Mercenary"
 msgstr "Mercenariu"
 
+#: simulation/templates/mixins/shrine.xml:12
+msgid "Shrine"
+msgstr "Fanu"
+
+#: simulation/templates/mixins/trading_post.xml:8
+msgid "Trading Post"
+msgstr "Factoría"
+
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
@@ -1042,7 +1096,7 @@ msgstr "Namái Soldaos d'a caballu, rique a lo menos 6."
 msgid "Wedge"
 msgstr "Pina"
 
-#: simulation/templates/special/player/player.xml:57
+#: simulation/templates/special/player/player.xml:58
 msgid "Player"
 msgstr "Xugador"
 
@@ -1083,6 +1137,11 @@ msgstr "Mina"
 msgid "Mine ore for metal."
 msgstr "Estrayi minerales pa metal."
 
+#: simulation/templates/gaia/rock/aegean_cut.xml:8
+#: simulation/templates/gaia/rock/india_cut.xml:8
+#: simulation/templates/gaia/rock/nubia_cut.xml:8
+#: simulation/templates/gaia/rock/sahara_cut.xml:8
+#: simulation/templates/gaia/rock/temperate_cut.xml:8
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
 msgstr "Cantera"

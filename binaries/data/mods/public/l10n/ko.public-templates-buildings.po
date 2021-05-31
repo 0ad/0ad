@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-26 15:13+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-31 07:04+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -205,6 +205,7 @@ msgstr "아포아테케"
 #: simulation/templates/structures/athen/temple.xml:9
 #: simulation/templates/structures/mace/temple.xml:9
 #: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/ptol/temple_2.xml:11
 #: simulation/templates/structures/sele/temple.xml:9
 #: simulation/templates/structures/spart/temple.xml:9
 msgid "Naos"
@@ -599,15 +600,6 @@ msgstr "도리아식 기념비"
 msgid "Fallen Doric Column"
 msgstr "쓰러진 도리아식 기념비"
 
-#: simulation/templates/structures/desert_trading_post.xml:14
-msgid "Desert Trading Post"
-msgstr "사막 교역소"
-
-#: simulation/templates/structures/desert_trading_post.xml:15
-#: simulation/templates/structures/pers/market.xml:12
-msgid "Ardatašta"
-msgstr "아르다타스타"
-
 #: simulation/templates/structures/fence_long.xml:12
 #: simulation/templates/structures/fence_short.xml:12
 msgid "Fence"
@@ -883,10 +875,6 @@ msgstr "Pr-Pdt"
 #: simulation/templates/structures/kush/sentry_tower.xml:5
 msgid "tsmt"
 msgstr "tsmt"
-
-#: simulation/templates/structures/kush/shrine.xml:12
-msgid "Shrine"
-msgstr "사당"
 
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
@@ -1229,6 +1217,10 @@ msgstr "휴바다"
 msgid "Inn"
 msgstr "여관"
 
+#: simulation/templates/structures/pers/market.xml:12
+msgid "Ardatašta"
+msgstr "아르다타스타"
+
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
 msgstr "디데바니"
@@ -1479,10 +1471,6 @@ msgstr "아에데스 베스타리스"
 msgid "TempleOfVesta"
 msgstr "베스타 사원"
 
-#: simulation/templates/structures/rome/tent.xml:24
-msgid "Tent"
-msgstr "천막"
-
 #: simulation/templates/structures/rome/tent.xml:25
 msgid "Tabernāculum"
 msgstr "타베르나쿠룸"
@@ -1525,6 +1513,23 @@ msgstr "콜로네이드"
 #: simulation/templates/structures/sele_colonnade.xml:12
 msgid "Corinthian Colonnade"
 msgstr "코린트식 콜로네이드"
+
+#: simulation/templates/structures/shrine_egyptian.xml:5
+msgid "Sanctuary Kiosk"
+msgstr "성역 키오스크"
+
+#: simulation/templates/structures/shrine_italian.xml:9
+msgid "Temple of Healing"
+msgstr "치유의 사원"
+
+#: simulation/templates/structures/shrine_italian.xml:10
+msgid "Aedēs Sanitatem"
+msgstr "아에데스 사니테름"
+
+#: simulation/templates/structures/kush/shrine.xml:12
+#: simulation/templates/structures/shrine_kushite.xml:5
+msgid "Shrine"
+msgstr "사당"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"
@@ -1584,6 +1589,42 @@ msgstr "직사각형 탁자"
 msgid "Square Table"
 msgstr "정사각형 탁자"
 
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr "사막 군대 텐트"
+
+#: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_desert.xml:36
+#: simulation/templates/structures/tent_desert.xml:38
+#: simulation/templates/structures/tent_mace.xml:36
+#: simulation/templates/structures/tent_mace.xml:38
+#: simulation/templates/structures/tent_rome.xml:36
+#: simulation/templates/structures/tent_rome.xml:38
+msgid "Tent"
+msgstr "천막"
+
+#: simulation/templates/structures/tent_desert.xml:39
+#: simulation/templates/structures/tent_mace.xml:39
+#: simulation/templates/structures/tent_rome.xml:39
+msgid "A temporary shelter for soldiers. +5 population bonus."
+msgstr "군인을위한 임시 쉼터 . +5 인구 보너스 ."
+
+#: simulation/templates/structures/tent_mace.xml:35
+msgid "Macedonian Army Tent"
+msgstr "마케도니아 군대 천막"
+
+#: simulation/templates/structures/tent_rome.xml:35
+msgid "Roman Army Tent"
+msgstr "로마 군대 텐트"
+
+#: simulation/templates/structures/trading_post_celtic.xml:9
+msgid "Celtic Tavern"
+msgstr "켈트 선술집"
+
+#: simulation/templates/structures/trading_post_desert.xml:9
+msgid "Desert Bazaar"
+msgstr "사막 상점가"
+
 #: simulation/templates/structures/uffington_horse.xml:10
 msgid "Uffington White Horse"
 msgstr "우핑톤의 백마"
@@ -1636,14 +1677,14 @@ msgid "Colony"
 msgstr "거류지"
 
 #: simulation/templates/structures/pers/house_a.xml:12
-#: simulation/templates/template_structure_civic_house.xml:30
-#: simulation/templates/template_structure_civic_house.xml:32
+#: simulation/templates/template_structure_civic_house.xml:26
+#: simulation/templates/template_structure_civic_house.xml:28
 msgid "House"
 msgstr "집"
 
-#: simulation/templates/template_structure_civic_house.xml:32
+#: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
-#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:28
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
@@ -1700,13 +1741,13 @@ msgstr "자신의 영역 또는 중립 영역에서 건설하십시오."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-#: simulation/templates/template_structure_defensive_palisade.xml:20
+#: simulation/templates/template_structure_defensive_palisade.xml:13
+#: simulation/templates/template_structure_defensive_palisade.xml:16
 msgid "Palisade"
 msgstr "방어벽"
 
 #: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:19
+#: simulation/templates/template_structure_defensive_palisade.xml:15
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "지역을 차단하십시오. 자신 또는 중립 영역에서 건설하십시오."
 
@@ -1769,12 +1810,12 @@ msgstr "돌 탑"
 msgid "StoneTower"
 msgstr "돌탑"
 
+#: simulation/templates/template_structure_defensive_wall.xml:12
 #: simulation/templates/template_structure_defensive_wall.xml:15
-#: simulation/templates/template_structure_defensive_wall.xml:18
 msgid "Wall"
 msgstr "벽"
 
-#: simulation/templates/template_structure_defensive_wall.xml:17
+#: simulation/templates/template_structure_defensive_wall.xml:14
 msgid "Wall off your town for a stout defense."
 msgstr "마을을 방어하기 위해 방어벽을 쌓으십시오."
 
@@ -1832,12 +1873,12 @@ msgstr "자원을 물물교환합니다. 교역로를 건설하십시오. 상인
 msgid "Trade"
 msgstr "교역"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:27
-#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:24
+#: simulation/templates/template_structure_economic_storehouse.xml:28
 msgid "Storehouse"
 msgstr "창고"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:29
+#: simulation/templates/template_structure_economic_storehouse.xml:26
 msgid "Research gathering technologies."
 msgstr "채집 기술을 연구합니다."
 
@@ -1868,7 +1909,7 @@ msgstr "대표전사 보병 석궁병을 훈련하고, 공성 전차를 만들�
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 #: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:42
+#: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
 msgstr "도시"
 
@@ -1998,11 +2039,11 @@ msgstr "암피트히터"
 msgid "Library"
 msgstr "도서관"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:22
+#: simulation/templates/template_structure_special_rotarymill.xml:19
 msgid "Rotary Mill"
 msgstr "물레 방앗간"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:24
+#: simulation/templates/template_structure_special_rotarymill.xml:21
 msgid "RotaryMill"
 msgstr "물레 방앗간"
 
@@ -2011,12 +2052,12 @@ msgstr "물레 방앗간"
 msgid "Theater"
 msgstr "극장"
 
-#: simulation/templates/template_structure_wonder.xml:38
-#: simulation/templates/template_structure_wonder.xml:42
+#: simulation/templates/template_structure_wonder.xml:37
+#: simulation/templates/template_structure_wonder.xml:41
 msgid "Wonder"
 msgstr "불가사의"
 
-#: simulation/templates/template_structure_wonder.xml:40
+#: simulation/templates/template_structure_wonder.xml:39
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."

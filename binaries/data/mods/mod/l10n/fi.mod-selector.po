@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-24 10:17+0000\n"
-"Last-Translator: Petri\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 10:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -402,33 +402,29 @@ msgstr "Vieraile mod.io"
 msgid "This mod does not exist"
 msgstr "Tämä modi ei ole olemassa"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Aktivoi"
 
-#: gui/modmod/modmod.js:166
+#: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
 msgstr "Riippuvuudet eivät täyty"
 
-#: gui/modmod/modmod.js:312 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Suodatin"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:455
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Poista käytöstä"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:463
 msgid "No mod has been selected."
 msgstr "Modia ei ole valittu."
 
-#: gui/modmod/modmod.js:462
-msgid "Enable at least 0ad mod and save configuration"
-msgstr "Ota käyttään ainakin 0ad-modi ja tallenna konfiguraatio"
-
-#: gui/modmod/modmod.js:464
+#: gui/modmod/modmod.js:466
 msgid "Enable at least 0ad mod"
 msgstr "Ota käyttöön ainakin 0ad-modi"
 
@@ -473,12 +469,8 @@ msgid "Save Configuration"
 msgstr "Tallenna konfiguraatio"
 
 #: gui/modmod/modmod.xml:(caption):216
-msgid "Start Mods"
-msgstr "Käynnistä modit"
-
-#: gui/modmod/modmod.xml:(caption):221
-msgid "Start"
-msgstr "Aloita"
+msgid "Save and Restart"
+msgstr ""
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
