@@ -43,7 +43,6 @@
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"
-#include "renderer/Renderer.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 

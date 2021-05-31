@@ -44,23 +44,16 @@ namespace GUIRenderer
 
 		const SGUIImage* m_Image;
 
-		bool m_HasTexture;
 		CTexturePtr m_Texture;
 
 		CRect m_ObjectSize;
-
-		CShaderTechniquePtr m_Shader;
-		CColor m_ShaderColorParameter;
-
 		CRect m_Vertices;
 
 		CGUIColor* m_BackColor;
 
-		// Temporary type to make a soft transition to canvas rendering.
-		CStrIntern m_Material;
-
 		CColor m_ColorAdd;
 		CColor m_ColorMultiply;
+		float m_GrayscaleFactor;
 	};
 
 	class DrawCalls : public std::vector<SDrawCall>

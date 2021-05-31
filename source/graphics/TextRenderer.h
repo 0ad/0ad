@@ -31,7 +31,7 @@ class CFont;
 class CTextRenderer
 {
 public:
-	CTextRenderer(const CShaderProgramPtr& shader);
+	CTextRenderer();
 
 	/**
 	 * Reset the text transform to the default, with (0,0) in the top-left of the screen.
@@ -109,7 +109,7 @@ public:
 	/**
 	 * Render all of the previously printed text calls.
 	 */
-	void Render();
+	void Render(const CShaderProgramPtr& shader);
 
 private:
 	friend struct SBatchCompare;

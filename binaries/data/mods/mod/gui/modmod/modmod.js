@@ -312,12 +312,6 @@ function closePage()
 	Engine.SwitchGuiPage("page_pregame.xml", {});
 }
 
-function areFilters()
-{
-	let searchText = Engine.GetGUIObjectByName("modGenericFilter").caption;
-	return searchText && searchText != translate("Filter");
-}
-
 /**
  * Moves an item in the list up or down.
  */
@@ -326,7 +320,7 @@ function moveCurrItem(objectName, up)
 	// Prevent moving while filters are applied
 	// because we would need to map filtered positions
 	// to not filtered positions so changes will persist.
-	if (areFilters())
+	if (Engine.GetGUIObjectByName("modGenericFilter").caption)
 		return;
 
 	let obj = Engine.GetGUIObjectByName(objectName);

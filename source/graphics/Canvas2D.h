@@ -24,6 +24,7 @@
 #include <vector>
 
 class CRect;
+class CTextRenderer;
 
 struct CColor;
 
@@ -48,16 +49,23 @@ public:
 	 * Draws a piece of the texture from the source rect into the
 	 * destination rect. The result color is set by the following formula:
 	 *   TEXTURE_COLOR * COLOR_MULTIPLY + COLOR_ADD
+	 * The texture color is blended with its own grayscale version according to
+	 * the grayscale factor.
 	 */
 	void DrawTexture(CTexturePtr texture,
 		const CRect& destination, const CRect& source,
-		const CColor& multiply, const CColor& add);
+		const CColor& multiply, const CColor& add, const float grayscaleFactor);
 
 	/**
 	 * A simpler version of the previous one, draws the texture into the
 	 * destination rect without color modifications.
 	 */
 	void DrawTexture(CTexturePtr texture, const CRect& destination);
+
+	/**
+	 * Draws a text using canvas materials.
+	 */
+	void DrawText(CTextRenderer& textRenderer);
 };
 
 #endif // INCLUDED_CANVAS2D
