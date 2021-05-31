@@ -52,6 +52,7 @@ CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
 	m_QualityHook = std::make_unique<CConfigDBHook>(g_ConfigDB.RegisterHookAndCall("max_actor_quality", [this]() { ActorQualityChanged(); }));
+	m_VariantDiversityHook = std::make_unique<CConfigDBHook>(g_ConfigDB.RegisterHookAndCall("variant_diversity", [this]() { VariantDiversityChanged(); }));
 
 	if (!CXeromyces::AddValidator(g_VFS, "actor", "art/actors/actor.rng"))
 		LOGERROR("CObjectManager: failed to load actor grammar file 'art/actors/actor.rng'");
@@ -143,6 +144,11 @@ CTerrain* CObjectManager::GetTerrain()
 	return cmpTerrain->GetCTerrain();
 }
 
+CObjectManager::VariantDiversity CObjectManager::GetVariantDiversity() const
+{
+	return m_VariantDiversity;
+}
+
 void CObjectManager::UnloadObjects()
 {
 	m_Objects.clear();
@@ -184,6 +190,39 @@ void CObjectManager::ActorQualityChanged()
 	m_QualityLevel = quality > 255 ? 255 : quality < 0 ? 0 : quality;
 
 	// No need to reload entries or actors, but we do need to reload all units.
+	const CSimulation2::InterfaceListUnordered& cmps = m_Simulation.GetEntitiesWithInterfaceUnordered(IID_Visual);
+	for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
+		static_cast<ICmpVisual*>(eit->second)->Hotload();
+
+	// Trigger an interpolate call - needed because the game is generally paused & models disappear otherwise.
+	m_Simulation.Interpolate(0.f, 0.f, 0.f);
+}
+
+void CObjectManager::VariantDiversityChanged()
+{
+	CStr value;
+	CFG_GET_VAL("variant_diversity", value);
+	VariantDiversity variantDiversity = VariantDiversity::FULL;
+	if (value == "none")
+		variantDiversity = VariantDiversity::NONE;
+	else if (value == "limited")
+		variantDiversity = VariantDiversity::LIMITED;
+	// Otherwise assume full.
+
+	if (variantDiversity == m_VariantDiversity)
+		return;
+
+	m_VariantDiversity = variantDiversity;
+
+	// Mark old entries as outdated so we don't reload them from the cache.
+	for (std::pair<const ObjectKey, Hotloadable<CObjectEntry>>& object : m_Objects)
+		object.second.outdated = true;
+
+	// Reload actors.
+	for (std::pair<const CStrW, Hotloadable<CActorDef>>& actor : m_ActorDefs)
+		actor.second.outdated = true;
+
+	// Reload visual actor components.
 	const CSimulation2::InterfaceListUnordered& cmps = m_Simulation.GetEntitiesWithInterfaceUnordered(IID_Visual);
 	for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
 		static_cast<ICmpVisual*>(eit->second)->Hotload();

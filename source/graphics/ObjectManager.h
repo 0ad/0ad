@@ -23,6 +23,7 @@
 
 #include <set>
 #include <map>
+#include <memory>
 #include <unordered_map>
 #include <vector>
 
@@ -52,6 +53,16 @@ public:
 	private:
 		CStr ObjectBaseIdentifier;
 		std::vector<u8> ActorVariation;
+	};
+
+	/**
+	 * Governs how random variants are selected by ObjectBase
+	 */
+	enum class VariantDiversity
+	{
+		NONE,
+		LIMITED,
+		FULL
 	};
 
 public:
@@ -96,6 +107,8 @@ public:
 	 */
 	CTerrain* GetTerrain();
 
+	VariantDiversity GetVariantDiversity() const;
+
 	/**
 	 * Reload any scripts that were loaded from the given filename.
 	 * (This is used to implement hotloading.)
@@ -107,12 +120,20 @@ public:
 	 */
 	void ActorQualityChanged();
 
+	/**
+	 * Reload actors. Used when changing the variant diversity.
+	 */
+	void VariantDiversityChanged();
+
 	CMeshManager& m_MeshManager;
 	CSkeletonAnimManager& m_SkeletonAnimManager;
 	CSimulation2& m_Simulation;
 
 	u8 m_QualityLevel = 100;
 	std::unique_ptr<CConfigDBHook> m_QualityHook;
+
+	VariantDiversity m_VariantDiversity = VariantDiversity::FULL;
+	std::unique_ptr<CConfigDBHook> m_VariantDiversityHook;
 
 	template<typename T>
 	struct Hotloadable

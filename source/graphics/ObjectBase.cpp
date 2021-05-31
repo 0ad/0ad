@@ -534,6 +534,8 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 	// When choosing randomly, make use of each variant's frequency. If all
 	// variants have frequency 0, treat them as if they were 1.
 
+	CObjectManager::VariantDiversity diversity = m_ObjectManager.GetVariantDiversity();
+
 	for (std::vector<std::vector<Variant> >::const_iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
 		++grp)
@@ -583,18 +585,17 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 				// Someone might be silly and set all variants to have freq==0, in
 				// which case we just pretend they're all 1
 				bool allZero = (totalFreq == 0);
-				if (allZero) totalFreq = (int)grp->size();
+				if (allZero)
+					totalFreq = (int)grp->size();
 
-				// Choose a random number in the interval [0..totalFreq)
-				int randNum = boost::random::uniform_int_distribution<int>(0, totalFreq-1)(rng);
-
-				// and use that to choose one of the variants
+				// Choose a random number in the interval [0..totalFreq) to choose one of the variants.
+				// If the diversity is "none", force 0 to return the first valid variant.
+				int randNum = diversity == CObjectManager::VariantDiversity::NONE ? 0 : boost::random::uniform_int_distribution<int>(0, totalFreq-1)(rng);
 				for (size_t i = 0; i < grp->size(); ++i)
 				{
 					randNum -= (allZero ? 1 : (*grp)[i].m_Frequency);
 					if (randNum < 0)
 					{
-						remainingSelections.insert((*grp)[i].m_VariantName);
 						// (If this change to 'remainingSelections' interferes with earlier choices, then
 						// we'll get some non-fatal inconsistencies that just break the randomness. But that
 						// shouldn't happen, much.)
@@ -603,12 +604,23 @@ std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const
 						// and "a" for the second, then the selection of "a" from the second group will
 						// cause "a" to be used in the first instead of the "b").
 						match = (int)i;
+
+						// In limited diversity, somewhat-randomly continue. This cuts variants to about a third,
+						// though not quite because we must pick a variant so the actual probability is more complex.
+						// (It's also dependent on actor files not containing too many 0-frequency variants)
+						if (diversity == CObjectManager::VariantDiversity::LIMITED && (i % 3 != 0))
+						{
+							// Reset to 0 or we'll just pick every subsequent variant.
+							randNum = 0;
+							continue;
+						}
 						break;
 					}
 				}
-				ENSURE(randNum < 0);
+				ENSURE(match != -1);
 				// This should always succeed; otherwise it
 				// wouldn't have chosen any of the variants.
+				remainingSelections.insert((*grp)[match].m_VariantName);
 			}
 		}
 
