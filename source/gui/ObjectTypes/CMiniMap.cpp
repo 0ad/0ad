@@ -19,6 +19,7 @@
 
 #include "CMiniMap.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/GameView.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/MiniPatch.h"
@@ -422,7 +423,7 @@ void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle
 //	most of the time, updating the framebuffer twice a frame.
 // Here it updates as ping-pong either texture or vertex array each sec to lower gpu stalling
 // (those operations cause a gpu sync, which slows down the way gpu works)
-void CMiniMap::Draw(CCanvas2D& UNUSED(canvas))
+void CMiniMap::Draw(CCanvas2D& canvas)
 {
 	PROFILE3("render minimap");
 
@@ -430,6 +431,8 @@ void CMiniMap::Draw(CCanvas2D& UNUSED(canvas))
 	// happens when the game is started, so abort until then.
 	if (!g_Game || !g_Game->IsGameStarted())
 		return;
+
+	canvas.Flush();
 
 	CSimulation2* sim = g_Game->GetSimulation2();
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
