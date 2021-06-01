@@ -89,8 +89,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-22 03:35+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-29 13:15+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -1425,7 +1425,7 @@ msgid "Music"
 msgstr "音乐"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[2].label
+#: gui/options/options.json[3].label
 msgid "Sound"
 msgstr "音效"
 
@@ -3948,8 +3948,8 @@ msgid "How to show entity names."
 msgstr "如何显示实体名称."
 
 #: gui/options/options.json[1].label
-msgid "Graphics"
-msgstr "图像"
+msgid "Graphics (general)"
+msgstr "图形（通用）"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -3959,827 +3959,833 @@ msgstr "窗口模式"
 msgid "Start 0 A.D. in a window."
 msgstr "开启窗口游戏"
 
-#: gui/options/options.json[1].options[10].label
-msgid "Shadow quality"
-msgstr "阴影质量"
+#: gui/options/options.json[1].options[1].label
+#: gui/options/options.json[2].options[1].label
+msgid "Fog"
+msgstr "迷雾"
 
-#: gui/options/options.json[1].options[10].list[0].label
-msgid "Very Low"
-msgstr "极低"
+#: gui/options/options.json[1].options[1].tooltip
+#: gui/options/options.json[2].options[1].tooltip
+msgid "Enable fog."
+msgstr "开启战争迷雾。"
 
-#: gui/options/options.json[1].options[10].list[4].label
-msgid "Very High"
-msgstr "极高"
+#: gui/options/options.json[1].options[2].label
+#: gui/options/options.json[2].options[2].label
+msgid "Post-processing"
+msgstr "后处理"
 
-#: gui/options/options.json[1].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "阴影贴图分辨率。 显存不足时，高数值会导致游戏崩溃！"
+#: gui/options/options.json[1].options[2].tooltip
+#: gui/options/options.json[2].options[2].tooltip
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr "使用屏幕空间后处理过滤器（HDR，Bloom，DOF等）。"
 
-#: gui/options/options.json[1].options[11].label
-msgid "Shadow filtering"
-msgstr "阴影过滤"
+#: gui/options/options.json[1].options[3].label
+#: gui/options/options.json[2].options[8].label
+msgid "Shadows"
+msgstr "阴影效果"
 
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "阴影平滑化"
+#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[2].options[8].tooltip
+msgid "Enable shadows."
+msgstr "开启阴影"
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
 msgstr "单位轮廓"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "显示被建筑物隐藏的单位。"
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[5].label
 msgid "Particles"
 msgstr "粒子效果"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Enable particles."
 msgstr "开启粒子效果"
 
-#: gui/options/options.json[1].options[14].label
-msgid "Water effects"
-msgstr "水面特效"
-
-#: gui/options/options.json[1].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "处于关闭状态时，尽可能使用最低设置来渲染水面。这与其他设置无关。"
-
-#: gui/options/options.json[1].options[15].label
-msgid "High-quality water effects"
-msgstr "高质量水面特效"
-
-#: gui/options/options.json[1].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "使用较高品质的水面效果，算绘靠近岸边的波浪，海岸波浪，以及船迹。"
-
-#: gui/options/options.json[1].options[16].label
-msgid "Water reflections"
-msgstr "水面反射特效"
-
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "允许水面反射镜像。"
-
-#: gui/options/options.json[1].options[17].label
-msgid "Water refraction"
-msgstr "水面折射特效"
-
-#: gui/options/options.json[1].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "使用真实的水域折射图而非透明度。"
-
-#: gui/options/options.json[1].options[18].label
-msgid "Real water depth"
-msgstr "真实水深"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "在渲染计算中使用实际水深。"
-
-#: gui/options/options.json[1].options[19].label
-msgid "Smooth vision"
-msgstr "平滑视角"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog of war smoothly."
-msgstr "平稳地消除黑暗和战争迷雾。"
-
-#: gui/options/options.json[1].options[1].label
-msgid "Prefer GLSL"
-msgstr "偏好高级渲染"
-
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "使用OpenGL 2.0 着色器（推荐）"
-
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[6].label
 msgid "VSync"
 msgstr "垂直同步"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "使用垂直同步以修复屏幕撕裂。需要重启游戏"
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
 msgstr "菜单界面FPS上限"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "限制所有菜单的渲染频率来降低CPU使用率。设置为最大值时不作限制。"
 
-#: gui/options/options.json[1].options[22].label
+#: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
 msgstr "游戏界面FPS上限"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "限制进行中游戏的渲染频率来降低CPU使用率。设置为最大值则不作限制。"
 
-#: gui/options/options.json[1].options[2].label
-msgid "Fog"
-msgstr "迷雾"
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "在性能和视觉外观之间设置平衡。"
 
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Enable fog."
-msgstr "开启战争迷雾。"
+#: gui/options/options.json[2].label
+msgid "Graphics (advanced)"
+msgstr "图形（高级）"
 
-#: gui/options/options.json[1].options[3].label
-msgid "Post-processing"
-msgstr "后处理"
+#: gui/options/options.json[2].options[0].label
+msgid "Prefer GLSL"
+msgstr "偏好高级渲染"
 
-#: gui/options/options.json[1].options[3].tooltip
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "使用屏幕空间后处理过滤器（HDR，Bloom，DOF等）。"
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "使用OpenGL 2.0 着色器（推荐）"
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[2].options[10].label
+msgid "Shadow filtering"
+msgstr "阴影过滤"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid "Smooth shadows."
+msgstr "阴影平滑化"
+
+#: gui/options/options.json[2].options[11].label
+msgid "Water effects"
+msgstr "水面特效"
+
+#: gui/options/options.json[2].options[11].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "处于关闭状态时，尽可能使用最低设置来渲染水面。这与其他设置无关。"
+
+#: gui/options/options.json[2].options[12].label
+msgid "High-quality water effects"
+msgstr "高质量水面特效"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "使用较高品质的水面效果，算绘靠近岸边的波浪，海岸波浪，以及船迹。"
+
+#: gui/options/options.json[2].options[13].label
+msgid "Water reflections"
+msgstr "水面反射特效"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "允许水面反射镜像。"
+
+#: gui/options/options.json[2].options[14].label
+msgid "Water refraction"
+msgstr "水面折射特效"
+
+#: gui/options/options.json[2].options[14].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "使用真实的水域折射图而非透明度。"
+
+#: gui/options/options.json[2].options[15].label
+msgid "Real water depth"
+msgstr "真实水深"
+
+#: gui/options/options.json[2].options[15].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "在渲染计算中使用实际水深。"
+
+#: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "抗锯齿"
 
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[3].list[0].label
+#: gui/options/options.json[2].options[4].list[0].label
+#: gui/options/options.json[4].options[5].list[2].label
+#: gui/options/options.json[5].options[4].list[2].label
 msgid "Disabled"
 msgstr "禁用"
 
-#: gui/options/options.json[1].options[4].list[0].tooltip
+#: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
 msgstr "不启用抗锯齿"
 
-#: gui/options/options.json[1].options[4].list[1].label
+#: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
 
-#: gui/options/options.json[1].options[4].list[1].tooltip
+#: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
 msgstr "快速简易的抗锯齿效果。"
 
-#: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
 msgstr "MSAA (2×)"
 
-#: gui/options/options.json[1].options[4].list[2].tooltip
+#: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
 msgstr "缓慢、高质量的抗锯齿效果，每个像素使用两个样本。 支持GL3.3+。"
 
-#: gui/options/options.json[1].options[4].list[3].label
+#: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
 msgstr "MSAA (4×)"
 
-#: gui/options/options.json[1].options[4].list[3].tooltip
+#: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
 msgstr "缓慢、高质量的抗锯齿效果，每个像素使用四个样本。 支持GL3.3+。"
 
-#: gui/options/options.json[1].options[4].list[4].label
+#: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
 msgstr "MSAA (8×)"
 
-#: gui/options/options.json[1].options[4].list[4].tooltip
+#: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
 msgstr "缓慢、高质量的抗锯齿效果，每个像素使用八个样本。 支持GL3.3+。"
 
-#: gui/options/options.json[1].options[4].list[5].label
+#: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
 msgstr "MSAA (16×)"
 
-#: gui/options/options.json[1].options[4].list[5].tooltip
+#: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
 msgstr "缓慢、高质量的抗锯齿效果，每个像素使用十六个样本。 支持GL3.3+。"
 
-#: gui/options/options.json[1].options[4].tooltip
+#: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
 msgstr "在边缘减少反锯齿效果"
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
 msgstr "锐化"
 
-#: gui/options/options.json[1].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[4].list[0].tooltip
 msgid "Do not use sharpening."
 msgstr "请不要使用锐化效果。"
 
-#: gui/options/options.json[1].options[5].list[1].label
+#: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
 msgstr "FidelityFX CAS 支持"
 
-#: gui/options/options.json[1].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
 msgstr "对比度自适应锐化，一种基于对比度的快速锐化通道。"
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[2].options[4].tooltip
 msgid "Reduce blurry effects."
 msgstr "减少模糊效果"
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[2].options[5].label
 msgid "Sharpness factor"
 msgstr "锐化因子"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
 msgstr "选择的传递的清晰度。"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[2].options[6].label
 msgid "Model quality"
 msgstr "模型质量"
 
-#: gui/options/options.json[1].options[10].list[1].label
-#: gui/options/options.json[1].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "低效"
 
-#: gui/options/options.json[1].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].tooltip
 msgid "Simpler models for better performance."
 msgstr "简易的模型可获得更好的游戏体验。"
 
-#: gui/options/options.json[1].options[10].list[2].label
-#: gui/options/options.json[1].options[7].list[1].label
-#: gui/options/options.json[3].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[1].label
+#: gui/options/options.json[2].options[9].list[2].label
+#: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "中等"
 
-#: gui/options/options.json[1].options[7].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
 msgstr "平均质量和平均性能。"
 
-#: gui/options/options.json[1].options[10].list[3].label
-#: gui/options/options.json[1].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "高效"
 
-#: gui/options/options.json[1].options[7].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
 msgstr "高质量模型。"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
 msgstr "模型质量设置。"
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[2].options[7].label
 msgid "Shader effects"
 msgstr "着色特效"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[2].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "着色器效果的数量。 需要重启游戏。"
 
-#: gui/options/options.json[1].options[9].label
-msgid "Shadows"
-msgstr "阴影效果"
+#: gui/options/options.json[2].options[9].label
+msgid "Shadow quality"
+msgstr "阴影质量"
 
-#: gui/options/options.json[1].options[9].tooltip
-msgid "Enable shadows."
-msgstr "开启阴影"
+#: gui/options/options.json[2].options[9].list[0].label
+msgid "Very Low"
+msgstr "极低"
 
-#: gui/options/options.json[1].tooltip
-msgid "Set the balance between performance and visual appearance."
-msgstr "在性能和视觉外观之间设置平衡。"
+#: gui/options/options.json[2].options[9].list[4].label
+msgid "Very High"
+msgstr "极高"
 
-#: gui/options/options.json[2].options[0].label
+#: gui/options/options.json[2].options[9].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "阴影贴图分辨率。 显存不足时，高数值会导致游戏崩溃！"
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr "更具体的渲染设置。"
+
+#: gui/options/options.json[3].options[0].label
 msgid "Master volume"
 msgstr "主音量"
 
-#: gui/options/options.json[2].options[0].tooltip
+#: gui/options/options.json[3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "音频增益。"
 
-#: gui/options/options.json[2].options[1].label
+#: gui/options/options.json[3].options[1].label
 msgid "Music volume"
 msgstr "音乐音量"
 
-#: gui/options/options.json[2].options[1].tooltip
+#: gui/options/options.json[3].options[1].tooltip
 msgid "In game music gain."
 msgstr "获取内置音效"
 
-#: gui/options/options.json[2].options[2].label
+#: gui/options/options.json[3].options[2].label
 msgid "Ambient volume"
 msgstr "环境音量"
 
-#: gui/options/options.json[2].options[2].tooltip
+#: gui/options/options.json[3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "游戏环境下声音增益。"
 
-#: gui/options/options.json[2].options[3].label
+#: gui/options/options.json[3].options[3].label
 msgid "Action volume"
 msgstr "动作音量"
 
-#: gui/options/options.json[2].options[3].tooltip
+#: gui/options/options.json[3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "游戏单元动作声音增益。"
 
-#: gui/options/options.json[2].options[4].label
+#: gui/options/options.json[3].options[4].label
 msgid "UI volume"
 msgstr "界面音量"
 
-#: gui/options/options.json[2].options[4].tooltip
+#: gui/options/options.json[3].options[4].tooltip
 msgid "UI sound gain."
 msgstr "UI声音增益"
 
-#: gui/options/options.json[2].options[5].label
+#: gui/options/options.json[3].options[5].label
 msgid "Nick notification"
 msgstr "昵称通知"
 
-#: gui/options/options.json[2].options[5].tooltip
+#: gui/options/options.json[3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "当有人输入你的昵称时,语音提示。"
 
-#: gui/options/options.json[2].options[6].label
+#: gui/options/options.json[3].options[6].label
 msgid "New player notification in game setup"
 msgstr "游戏设置新玩家通知"
 
-#: gui/options/options.json[2].options[6].tooltip
+#: gui/options/options.json[3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "当有人加入时，语音提示。"
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Game Setup"
 msgstr "游戏"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Enable game setting tips"
 msgstr "执行设置提示"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "设定游戏时显示提示。"
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "启用设置面板幻灯片"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "打开，关闭或调整大小时滑动设置面板。"
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[4].options[2].label
 msgid "Persist match settings"
 msgstr "保持遭遇战设定"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "保存和恢复匹配设置，以便在托管其他游戏时快速重用。"
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
 msgstr "默认人工智能难度"
 
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
 msgstr "测试"
 
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[4].options[3].list[1].label
 msgid "Very Easy"
 msgstr "极简单"
 
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[4].options[3].list[2].label
 msgid "Easy"
 msgstr "简单"
 
-#: gui/options/options.json[3].options[3].list[4].label
+#: gui/options/options.json[4].options[3].list[4].label
 msgid "Hard"
 msgstr "困难"
 
-#: gui/options/options.json[3].options[3].list[5].label
+#: gui/options/options.json[4].options[3].list[5].label
 msgid "Very Hard"
 msgstr "极困难"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
 msgstr "默认人工智能难度。"
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
 msgstr "人工智能默认行为"
 
-#: gui/options/options.json[3].options[4].list[0].label
+#: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
 msgstr "随机"
 
-#: gui/options/options.json[3].options[4].list[1].label
+#: gui/options/options.json[4].options[4].list[1].label
 msgid "Balanced"
 msgstr "均衡"
 
-#: gui/options/options.json[3].options[4].list[2].label
+#: gui/options/options.json[4].options[4].list[2].label
 msgid "Aggressive"
 msgstr "攻击"
 
-#: gui/options/options.json[3].options[4].list[3].label
+#: gui/options/options.json[4].options[4].list[3].label
 msgid "Defensive"
 msgstr "防守"
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
 msgstr "人工智能默认行为。"
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[4].options[5].label
 msgid "Assign players"
 msgstr "分配玩家"
 
-#: gui/options/options.json[3].options[5].list[0].label
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[4].options[5].list[0].label
+#: gui/options/options.json[5].options[4].list[0].label
 msgid "Everyone"
 msgstr "全体"
 
-#: gui/options/options.json[3].options[5].list[0].tooltip
+#: gui/options/options.json[4].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "如有空位，新成员可加入游戏。"
 
-#: gui/options/options.json[3].options[5].list[1].label
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[4].options[5].list[1].label
+#: gui/options/options.json[5].options[4].list[1].label
 msgid "Buddies"
 msgstr "伙伴"
 
-#: gui/options/options.json[3].options[5].list[1].tooltip
+#: gui/options/options.json[4].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "当有空位时，只有主机好友才能加入游戏。"
 
-#: gui/options/options.json[3].options[5].list[2].tooltip
+#: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "只有在主机明确分配位置后，才能加入游戏。"
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[4].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "在匹配设置期间，加入的用户自动分配。"
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Networking / Lobby"
 msgstr "网络/大厅"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
 msgstr "TLS 加密保护。"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "游戏服务器交换的登录和数据使用 TLS 加密保护。"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Chat backlog"
 msgstr "聊天记录"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "加入大厅时，加载未读消息。"
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Game rating column"
 msgstr "得分栏"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "在游戏列表中显示玩家的平均得分。"
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Network warnings"
 msgstr "网络警告"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "显示多人游戏连接不稳定的玩家。"
 
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
 msgstr "最近加入的观察者"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "允许他人在游戏开始后，作为观察者加入游戏。"
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[5].options[5].label
 msgid "Observer limit"
 msgstr "观察人数上限"
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "如果达到限制，禁止观察者再加入。"
 
-#: gui/options/options.json[4].options[6].label
+#: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
 msgstr "观察者最高滞后"
 
-#: gui/options/options.json[4].options[6].tooltip
+#: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr "联机时, 若观察者滞后超过此值过多, 暂停游戏. 若设为-1, 则观察者会被忽略."
 
-#: gui/options/options.json[4].options[7].label
+#: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr "(观察者) 滞后时提高速度."
 
-#: gui/options/options.json[4].options[7].tooltip
+#: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr "当你观看比赛滞后时, 播放速度将自动提高, 以确保跟上比赛直播."
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "这些设置只影响多人游戏。"
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[6].label
 msgid "Game Session"
 msgstr "界面"
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[6].options[0].label
 msgid "Wounded unit health"
 msgstr "伤员健康状况"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "受伤单位快捷键，如果所选单位健康百分比低于这个数值，判定其受伤。"
 
-#: gui/options/options.json[5].options[10].label
+#: gui/options/options.json[6].options[10].label
 msgid "Rank icon above status bar"
 msgstr "状态栏上方的排名图标"
 
-#: gui/options/options.json[5].options[10].tooltip
+#: gui/options/options.json[6].options[10].tooltip
 msgid "Show rank icons above status bars."
 msgstr "在状态栏上方显示排名"
 
-#: gui/options/options.json[5].options[11].label
+#: gui/options/options.json[6].options[11].label
 msgid "Experience status bar"
 msgstr "经验状态栏"
 
-#: gui/options/options.json[5].options[11].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "在每个选定的单位上方显示经验状态栏。"
 
-#: gui/options/options.json[5].options[12].label
+#: gui/options/options.json[6].options[12].label
 msgid "Detailed tooltips"
 msgstr "详细工具提示"
 
-#: gui/options/options.json[5].options[12].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
-#: gui/options/options.json[5].options[13].label
+#: gui/options/options.json[6].options[13].label
 msgid "Sort resources and population tooltip"
 msgstr "物资和人口提示"
 
-#: gui/options/options.json[5].options[13].list[0].label
+#: gui/options/options.json[6].options[13].list[0].label
 msgid "Unordered"
 msgstr "未排序"
 
-#: gui/options/options.json[5].options[13].list[1].label
+#: gui/options/options.json[6].options[13].list[1].label
 msgid "Ascending"
 msgstr "升序"
 
-#: gui/options/options.json[5].options[13].list[2].label
+#: gui/options/options.json[6].options[13].list[2].label
 msgid "Descending"
 msgstr "降序"
 
-#: gui/options/options.json[5].options[13].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "物资和人口按数值大小动态排序。"
 
-#: gui/options/options.json[5].options[14].label
+#: gui/options/options.json[6].options[14].label
 msgid "Diplomacy colors: self"
 msgstr "外交颜色：自身"
 
-#: gui/options/options.json[5].options[14].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "当启动政策色后，显示你的颜色。"
 
-#: gui/options/options.json[5].options[15].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: ally"
 msgstr "外交颜色：同盟"
 
-#: gui/options/options.json[5].options[15].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "启动外交颜色时，显示同盟颜色。"
 
-#: gui/options/options.json[5].options[16].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: neutral"
 msgstr "外交颜色：中立"
 
-#: gui/options/options.json[5].options[16].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "启用外交颜色时为中立玩家颜色"
 
-#: gui/options/options.json[5].options[17].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: enemy"
 msgstr "外交颜色：敌人"
 
-#: gui/options/options.json[5].options[17].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "启用外交颜色时，为敌方颜色"
 
-#: gui/options/options.json[5].options[18].label
+#: gui/options/options.json[6].options[18].label
 msgid "Snap to edges"
 msgstr "自动对齐建筑"
 
-#: gui/options/options.json[5].options[18].list[0].label
+#: gui/options/options.json[6].options[18].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "禁用自动对齐"
 
-#: gui/options/options.json[5].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "须按下快捷键，新建筑方与附近的建筑对齐。"
 
-#: gui/options/options.json[5].options[18].list[1].label
+#: gui/options/options.json[6].options[18].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "启用自动对齐"
 
-#: gui/options/options.json[5].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "除非按下快捷键，否则新建筑自动与附近的建筑对齐。"
 
-#: gui/options/options.json[5].options[18].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "此选项决定是否将新建筑与附近的建筑自动对齐。”"
 
-#: gui/options/options.json[5].options[19].label
+#: gui/options/options.json[6].options[19].label
 msgid "Control group membership"
 msgstr "单位隶属编队"
 
-#: gui/options/options.json[5].options[19].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Single"
 msgstr "单个编队"
 
-#: gui/options/options.json[5].options[19].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "将单位或建筑物添加到编队时，会将它们从其他编队中删除。 如果希望各只编队的成员互不交叉，请使用此选项。"
 
-#: gui/options/options.json[5].options[19].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Multiple"
 msgstr "多个编队"
 
-#: gui/options/options.json[5].options[19].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "单位与建筑物可以同时隶属于多个编队。这在需要既能分别控制不同的部队，又能同时控制所有的部队的情况下非常有用。"
 
-#: gui/options/options.json[5].options[19].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "此选项决定同一单位是否可以隶属于多个编队"
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
 msgstr "批量训练数"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "默认批次训练的单位数量。"
 
-#: gui/options/options.json[5].options[20].label
+#: gui/options/options.json[6].options[20].label
 msgid "Formation control"
 msgstr "编队控制"
 
-#: gui/options/options.json[5].options[20].list[0].label
+#: gui/options/options.json[6].options[20].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "仅步行/巡逻"
 
-#: gui/options/options.json[5].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "其他命令将解散现有编队。"
 
-#: gui/options/options.json[5].options[20].list[1].label
+#: gui/options/options.json[6].options[20].list[1].label
 msgid "No Override"
 msgstr "不可解散"
 
-#: gui/options/options.json[5].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "编队中的单位留在编队中。"
 
-#: gui/options/options.json[5].options[20].tooltip
+#: gui/options/options.json[6].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "此选项决定是否对所有命令启用编队，还是仅对“步行”和巡逻启用"
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "滚动批量增量比率"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "滚动鼠标滚轮，改变增减的次数。"
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[6].options[3].label
 msgid "Chat notification attack"
 msgstr "攻击通知"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[6].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "受到攻击时，弹出提示。"
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification tribute"
 msgstr "进贡通知"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "如果一个盟友在团队被锁定的情况下，向另一个团队成员提供物资，则所有玩家会收到通知。"
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification barter"
 msgstr "市场买卖提示"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "玩家交换物资时，向观察者显示通知。"
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification phase"
 msgstr "聊天通知状态"
 
-#: gui/options/options.json[5].options[6].list[0].label
+#: gui/options/options.json[6].options[6].list[0].label
 msgid "Disable"
 msgstr "禁用"
 
-#: gui/options/options.json[5].options[6].list[1].label
+#: gui/options/options.json[6].options[6].list[1].label
 msgid "Completed"
 msgstr "完成"
 
-#: gui/options/options.json[5].options[6].list[2].label
+#: gui/options/options.json[6].options[6].list[2].label
 msgid "All displayed"
 msgstr "显示所有"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "如果你或某个盟友已开始、中止或完成新阶段，并且所有玩家都处于观察员模式阶段，则显示聊天通知。"
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[6].options[7].label
 msgid "Attack range visualization"
 msgstr "显示攻击范围"
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "显示所选防御建筑的攻击范围。（可在游戏中使用热键切换）。"
 
-#: gui/options/options.json[5].options[8].label
+#: gui/options/options.json[6].options[8].label
 msgid "Aura range visualization"
 msgstr "显示光环范围"
 
-#: gui/options/options.json[5].options[8].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "显示所选单位和建筑的光环范围（可使用热键切换）。"
 
-#: gui/options/options.json[5].options[9].label
+#: gui/options/options.json[6].options[9].label
 msgid "Heal range visualization"
 msgstr "显示治疗范围"
 
-#: gui/options/options.json[5].options[9].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "显示所选单位的治疗范围。(可在游戏中通过热键切换)"
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "根据习惯设定操作界面。"
 
@@ -6731,6 +6737,25 @@ msgctxt "withinSentence"
 msgid "Ore"
 msgstr "矿石"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ruins
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "废墟"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ruins
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "废墟"
+
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "从岩石、石块或遗迹处获取石料。"
@@ -6764,23 +6789,6 @@ msgstr "岩石"
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "岩石"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "废墟"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase
-#. for your language).
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "废墟"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."

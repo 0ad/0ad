@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-21 08:29+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -1378,7 +1378,7 @@ msgid "Music"
 msgstr "Müzik"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[2].label
+#: gui/options/options.json[3].label
 msgid "Sound"
 msgstr "Ses"
 
@@ -3901,8 +3901,8 @@ msgid "How to show entity names."
 msgstr ""
 
 #: gui/options/options.json[1].label
-msgid "Graphics"
-msgstr "Grafikler"
+msgid "Graphics (general)"
+msgstr ""
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -3912,827 +3912,833 @@ msgstr "Pencere modu"
 msgid "Start 0 A.D. in a window."
 msgstr "0 A.D.'yi pencere modunda başlat."
 
-#: gui/options/options.json[1].options[10].label
-msgid "Shadow quality"
-msgstr "Gölge kalitesi"
+#: gui/options/options.json[1].options[1].label
+#: gui/options/options.json[2].options[1].label
+msgid "Fog"
+msgstr "Sis"
 
-#: gui/options/options.json[1].options[10].list[0].label
-msgid "Very Low"
-msgstr "Çok Düşük"
+#: gui/options/options.json[1].options[1].tooltip
+#: gui/options/options.json[2].options[1].tooltip
+msgid "Enable fog."
+msgstr "Sisi etkinleştir"
 
-#: gui/options/options.json[1].options[10].list[4].label
-msgid "Very High"
-msgstr "Çok Yüksek"
+#: gui/options/options.json[1].options[2].label
+#: gui/options/options.json[2].options[2].label
+msgid "Post-processing"
+msgstr "İşlem rötuşu"
 
-#: gui/options/options.json[1].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Gölge harita çözünürlüğü. Düşük değerli bir grafik kartı kullanırken yüksek değerler oyunu düşürebilir!"
+#: gui/options/options.json[1].options[2].tooltip
+#: gui/options/options.json[2].options[2].tooltip
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr "Ekran alanı işlem sonrası filtreleri (HDR, Bloom, DOF, vb.) Kullanın."
 
-#: gui/options/options.json[1].options[11].label
-msgid "Shadow filtering"
-msgstr "Gölge filtrelemesi"
+#: gui/options/options.json[1].options[3].label
+#: gui/options/options.json[2].options[8].label
+msgid "Shadows"
+msgstr "Gölgeler"
 
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "Yumuşak gölgeler"
+#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[2].options[8].tooltip
+msgid "Enable shadows."
+msgstr "Gölgeler aktif"
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
 msgstr "Birim silüetleri"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Yapıların arkasındaki birimlerin ana hatlarını göster."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[5].label
 msgid "Particles"
 msgstr "Parçalar"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Enable particles."
 msgstr "Parçalar etkin"
 
-#: gui/options/options.json[1].options[14].label
-msgid "Water effects"
-msgstr "Su efektleri"
-
-#: gui/options/options.json[1].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Kapatıldığında, Su kaplama işlemede mümkün olan düşük ayarları kullan. Bunu yapmak diğer ayarları geçersiz kılar."
-
-#: gui/options/options.json[1].options[15].label
-msgid "High-quality water effects"
-msgstr "Yüksek kalitesi su efektleri"
-
-#: gui/options/options.json[1].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Kıyı dalgalarında, kıyıdaki köpüklerde ve gemi yollarındaki suyun işlenmesi için, yüksek kalite efektleri kullan, "
-
-#: gui/options/options.json[1].options[16].label
-msgid "Water reflections"
-msgstr "Su yansımaları"
-
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Suyun ayna görüntüsü yansıtmasına izin verin."
-
-#: gui/options/options.json[1].options[17].label
-msgid "Water refraction"
-msgstr "Su kırılması"
-
-#: gui/options/options.json[1].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Şeffaflık değil gerçek bir su kırılma haritası kullanın."
-
-#: gui/options/options.json[1].options[18].label
-msgid "Real water depth"
-msgstr "Gerçek su derinliği"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Hesaplamalarda gerçek su derinliğini kullanın."
-
-#: gui/options/options.json[1].options[19].label
-msgid "Smooth vision"
-msgstr "Düz görüş"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog of war smoothly."
-msgstr "Karanlığı ve savaş sisini sorunsuz bir şekilde kaldırın."
-
-#: gui/options/options.json[1].options[1].label
-msgid "Prefer GLSL"
-msgstr "GLSL tercihi"
-
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "OpenGL 2.0 gölgelendirme kullanın (önerilir)"
-
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[6].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ekran yırtılmasını önlemek için Vsync'i aktif hale getir. OYUNU YENİDEN BAŞLATMAYI GEREKTİRİR."
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
 msgstr "Menülerde SBK (FPS) azaltma"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU'nun iş yükünü azaltmak için, tüm menülerdeki oluşturma frekansını azaltın. Kısıtlamayı devre dışı bırakmak için maksimum değer olarak ayarlayın."
 
-#: gui/options/options.json[1].options[22].label
+#: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
 msgstr "Oyunlarda SBK (FPS) azaltma"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "CPU'nun iş yükünü azaltmak için, çalışan oyunları oynatma sıklığını azaltın. Kısıtlamayı devre dışı bırakmak için maksimum değer olarak ayarlayın."
 
-#: gui/options/options.json[1].options[2].label
-msgid "Fog"
-msgstr "Sis"
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "Performansı ve görsel görünümü arasındaki dengeyi ayarlayın."
 
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Enable fog."
-msgstr "Sisi etkinleştir"
+#: gui/options/options.json[2].label
+msgid "Graphics (advanced)"
+msgstr ""
 
-#: gui/options/options.json[1].options[3].label
-msgid "Post-processing"
-msgstr "İşlem rötuşu"
+#: gui/options/options.json[2].options[0].label
+msgid "Prefer GLSL"
+msgstr "GLSL tercihi"
 
-#: gui/options/options.json[1].options[3].tooltip
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "Ekran alanı işlem sonrası filtreleri (HDR, Bloom, DOF, vb.) Kullanın."
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "OpenGL 2.0 gölgelendirme kullanın (önerilir)"
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[2].options[10].label
+msgid "Shadow filtering"
+msgstr "Gölge filtrelemesi"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid "Smooth shadows."
+msgstr "Yumuşak gölgeler"
+
+#: gui/options/options.json[2].options[11].label
+msgid "Water effects"
+msgstr "Su efektleri"
+
+#: gui/options/options.json[2].options[11].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Kapatıldığında, Su kaplama işlemede mümkün olan düşük ayarları kullan. Bunu yapmak diğer ayarları geçersiz kılar."
+
+#: gui/options/options.json[2].options[12].label
+msgid "High-quality water effects"
+msgstr "Yüksek kalitesi su efektleri"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Kıyı dalgalarında, kıyıdaki köpüklerde ve gemi yollarındaki suyun işlenmesi için, yüksek kalite efektleri kullan, "
+
+#: gui/options/options.json[2].options[13].label
+msgid "Water reflections"
+msgstr "Su yansımaları"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Suyun ayna görüntüsü yansıtmasına izin verin."
+
+#: gui/options/options.json[2].options[14].label
+msgid "Water refraction"
+msgstr "Su kırılması"
+
+#: gui/options/options.json[2].options[14].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Şeffaflık değil gerçek bir su kırılma haritası kullanın."
+
+#: gui/options/options.json[2].options[15].label
+msgid "Real water depth"
+msgstr "Gerçek su derinliği"
+
+#: gui/options/options.json[2].options[15].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Hesaplamalarda gerçek su derinliğini kullanın."
+
+#: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Kenar Yumuşatma"
 
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[3].list[0].label
+#: gui/options/options.json[2].options[4].list[0].label
+#: gui/options/options.json[4].options[5].list[2].label
+#: gui/options/options.json[5].options[4].list[2].label
 msgid "Disabled"
 msgstr "Devre dışı"
 
-#: gui/options/options.json[1].options[4].list[0].tooltip
+#: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
 msgstr "Kenar yumuşatma kullanma."
 
-#: gui/options/options.json[1].options[4].list[1].label
+#: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
 
-#: gui/options/options.json[1].options[4].list[1].tooltip
+#: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
 msgstr "Hızlı, ancak basit kenar yumuşatma."
 
-#: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
 msgstr "MSAA (2×)"
 
-#: gui/options/options.json[1].options[4].list[2].tooltip
+#: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
 msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına iki örnek kullanır. GL3.3+ için desteklenir."
 
-#: gui/options/options.json[1].options[4].list[3].label
+#: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
 msgstr "MSAA (4×)"
 
-#: gui/options/options.json[1].options[4].list[3].tooltip
+#: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
 msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına dört örnek kullanır. GL3.3+ için desteklenir."
 
-#: gui/options/options.json[1].options[4].list[4].label
+#: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
 msgstr "MSAA (8×)"
 
-#: gui/options/options.json[1].options[4].list[4].tooltip
+#: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
 msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına sekiz örnek kullanır. GL3.3+ için desteklenir."
 
-#: gui/options/options.json[1].options[4].list[5].label
+#: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
 msgstr "MSAA (16×)"
 
-#: gui/options/options.json[1].options[4].list[5].tooltip
+#: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
 msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına on altı örnek kullanır. GL3.3+ için desteklenir."
 
-#: gui/options/options.json[1].options[4].tooltip
+#: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
 msgstr "Kenarlardaki kenar yumuşatma efektini azaltın."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
 msgstr "Keskinleştirme"
 
-#: gui/options/options.json[1].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[4].list[0].tooltip
 msgid "Do not use sharpening."
 msgstr "Keskinleştirme kullanma."
 
-#: gui/options/options.json[1].options[5].list[1].label
+#: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
 msgstr "FidelityFX CAS"
 
-#: gui/options/options.json[1].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
 msgstr "Kontrast uyumlu keskinleştirme, hızlı, kontrast temelli bir keskinleştirme geçişi."
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[2].options[4].tooltip
 msgid "Reduce blurry effects."
 msgstr "Bulanıklık etkilerinin azalt."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[2].options[5].label
 msgid "Sharpness factor"
 msgstr "Keskinlik Etkeni"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
 msgstr "Seçilen kanalın keskinliği."
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[2].options[6].label
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[1].options[10].list[1].label
-#: gui/options/options.json[1].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Düşük"
 
-#: gui/options/options.json[1].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].tooltip
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[1].options[10].list[2].label
-#: gui/options/options.json[1].options[7].list[1].label
-#: gui/options/options.json[3].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[1].label
+#: gui/options/options.json[2].options[9].list[2].label
+#: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Orta"
 
-#: gui/options/options.json[1].options[7].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[1].options[10].list[3].label
-#: gui/options/options.json[1].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Yüksek"
 
-#: gui/options/options.json[1].options[7].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
 msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
 msgstr ""
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[2].options[7].label
 msgid "Shader effects"
 msgstr "Gölgelendirici efektleri"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[2].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Gölgelendirici efektlerinin sayısı. OYUN YENİDEN BAŞLATILMASI GEREKİYOR"
 
-#: gui/options/options.json[1].options[9].label
-msgid "Shadows"
-msgstr "Gölgeler"
+#: gui/options/options.json[2].options[9].label
+msgid "Shadow quality"
+msgstr "Gölge kalitesi"
 
-#: gui/options/options.json[1].options[9].tooltip
-msgid "Enable shadows."
-msgstr "Gölgeler aktif"
+#: gui/options/options.json[2].options[9].list[0].label
+msgid "Very Low"
+msgstr "Çok Düşük"
 
-#: gui/options/options.json[1].tooltip
-msgid "Set the balance between performance and visual appearance."
-msgstr "Performansı ve görsel görünümü arasındaki dengeyi ayarlayın."
+#: gui/options/options.json[2].options[9].list[4].label
+msgid "Very High"
+msgstr "Çok Yüksek"
 
-#: gui/options/options.json[2].options[0].label
+#: gui/options/options.json[2].options[9].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Gölge harita çözünürlüğü. Düşük değerli bir grafik kartı kullanırken yüksek değerler oyunu düşürebilir!"
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr ""
+
+#: gui/options/options.json[3].options[0].label
 msgid "Master volume"
 msgstr "Ana ses seviyesi"
 
-#: gui/options/options.json[2].options[0].tooltip
+#: gui/options/options.json[3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "Ana ses kazancı."
 
-#: gui/options/options.json[2].options[1].label
+#: gui/options/options.json[3].options[1].label
 msgid "Music volume"
 msgstr "Müzik sesi seviyesi"
 
-#: gui/options/options.json[2].options[1].tooltip
+#: gui/options/options.json[3].options[1].tooltip
 msgid "In game music gain."
 msgstr "Oyunda müziği arttır."
 
-#: gui/options/options.json[2].options[2].label
+#: gui/options/options.json[3].options[2].label
 msgid "Ambient volume"
 msgstr "Ortam sesi seviyesi"
 
-#: gui/options/options.json[2].options[2].tooltip
+#: gui/options/options.json[3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "Oyunda çevre sesini arttır."
 
-#: gui/options/options.json[2].options[3].label
+#: gui/options/options.json[3].options[3].label
 msgid "Action volume"
 msgstr "Aksiyon sesi seviyesi"
 
-#: gui/options/options.json[2].options[3].tooltip
+#: gui/options/options.json[3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "Oyunda birimlerin hareket seslerini arttır."
 
-#: gui/options/options.json[2].options[4].label
+#: gui/options/options.json[3].options[4].label
 msgid "UI volume"
 msgstr "Kullanıcı arayüzü sesi seviyesi"
 
-#: gui/options/options.json[2].options[4].tooltip
+#: gui/options/options.json[3].options[4].tooltip
 msgid "UI sound gain."
 msgstr "Kullanıcı Arayüzü (UI) sesini arttır."
 
-#: gui/options/options.json[2].options[5].label
+#: gui/options/options.json[3].options[5].label
 msgid "Nick notification"
 msgstr "Nik bildirimi"
 
-#: gui/options/options.json[2].options[5].tooltip
+#: gui/options/options.json[3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "Birisi isminizi yazında sesli uyarı ver."
 
-#: gui/options/options.json[2].options[6].label
+#: gui/options/options.json[3].options[6].label
 msgid "New player notification in game setup"
 msgstr ""
 
-#: gui/options/options.json[2].options[6].tooltip
+#: gui/options/options.json[3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "Yeni bir oyuncu oyun kurulumuna katıldığında sesli bildirim alın."
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Game Setup"
 msgstr "Oyun Kurulumu"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Enable game setting tips"
 msgstr "Oyun ayarı ipuçlarını etkinleştir"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Bir oyun kurarken ipuçlarını göster."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "Ayarlar paneli kaydırmasını etkinleştir"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "Açarken, kapatırken veya yeniden boyutlandırırken ayarlar panelini kaydırın."
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[4].options[2].label
 msgid "Persist match settings"
 msgstr "Maç ayarlarını devam ettir"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "Başka bir oyuna ev sahipliği yaparken hızlı yeniden kullanım için oyun ayarlarını kaydedin ve geri yükleyin."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
 msgstr "Öntanımlı yapay zeka zorluğu"
 
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
 msgstr "Kum Havuzu"
 
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[4].options[3].list[1].label
 msgid "Very Easy"
 msgstr "Çok Kolay"
 
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[4].options[3].list[2].label
 msgid "Easy"
 msgstr "Kolay"
 
-#: gui/options/options.json[3].options[3].list[4].label
+#: gui/options/options.json[4].options[3].list[4].label
 msgid "Hard"
 msgstr "Zor"
 
-#: gui/options/options.json[3].options[3].list[5].label
+#: gui/options/options.json[4].options[3].list[5].label
 msgid "Very Hard"
 msgstr "Çok Zor"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
 msgstr "Yapay zekanın varsayılan zorluk derecesi."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
 msgstr "Öntanımlı yapay zeka davranışı"
 
-#: gui/options/options.json[3].options[4].list[0].label
+#: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/options/options.json[3].options[4].list[1].label
+#: gui/options/options.json[4].options[4].list[1].label
 msgid "Balanced"
 msgstr "Dengelenmiş"
 
-#: gui/options/options.json[3].options[4].list[2].label
+#: gui/options/options.json[4].options[4].list[2].label
 msgid "Aggressive"
 msgstr "Saldırgan"
 
-#: gui/options/options.json[3].options[4].list[3].label
+#: gui/options/options.json[4].options[4].list[3].label
 msgid "Defensive"
 msgstr "Savunmacı"
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
 msgstr "Yapay zekanın varsayılan davranışı."
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[4].options[5].label
 msgid "Assign players"
 msgstr "Oyuncuları ata"
 
-#: gui/options/options.json[3].options[5].list[0].label
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[4].options[5].list[0].label
+#: gui/options/options.json[5].options[4].list[0].label
 msgid "Everyone"
 msgstr "Herkes"
 
-#: gui/options/options.json[3].options[5].list[0].tooltip
+#: gui/options/options.json[4].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "Boş bir yer varsa maça katılan oyuncular atanacaktır."
 
-#: gui/options/options.json[3].options[5].list[1].label
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[4].options[5].list[1].label
+#: gui/options/options.json[5].options[4].list[1].label
 msgid "Buddies"
 msgstr "Arkadaşlar"
 
-#: gui/options/options.json[3].options[5].list[1].tooltip
+#: gui/options/options.json[4].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "Maça katılan oyuncular sadece ev sahibinin arkadaşıysa ve boş bir slot varsa atanacaktır."
 
-#: gui/options/options.json[3].options[5].list[2].tooltip
+#: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "Oyuncular yalnızca ev sahibi bunları açıkça atadığında yer alır."
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[4].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Eşleşme kurulumu sırasında müşterilere ücretsiz oyuncu yuvalarına otomatik olarak atayın."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Networking / Lobby"
 msgstr ""
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
 msgstr "TKG şifrelemesi (TLS)"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "Giriş ve Taşıma Katmanı Güvenliği şifrelemesini kullanarak lobi sunucusuyla değiştirilen verileri koruyun."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Chat backlog"
 msgstr "Sohbet biriktirme listesi"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "Lobiye katılırken yeniden yüklenecek mesaj sayısı."
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Game rating column"
 msgstr "Oyun dereceleri sütunu"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Katılımcı oyuncuların ortalama oylarını oyun listesinin bir sütununa gösterin."
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Network warnings"
 msgstr "Ağ uyarıları"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Çoklu oyunlar içinde hangi oyuncunun kötü bağlantılı  olduğunu göster."
 
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
 msgstr "Geç izleyici katılır"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "Herkesin veya arkadaşlarının oyuna başladıktan sonra gözlemci olarak katılmalarına izin verin."
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[5].options[5].label
 msgid "Observer limit"
 msgstr "İzleyici sınırı"
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "Limiti aşınca gözlemci katılımına izin verme. "
 
-#: gui/options/options.json[4].options[6].label
+#: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
 msgstr ""
 
-#: gui/options/options.json[4].options[6].tooltip
+#: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr ""
 
-#: gui/options/options.json[4].options[7].label
+#: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr ""
 
-#: gui/options/options.json[4].options[7].tooltip
+#: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr ""
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Bu ayarlar yalnızca çoklu oyuncuyu etkiler."
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[6].label
 msgid "Game Session"
 msgstr "Oyun Oturumu"
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[6].options[0].label
 msgid "Wounded unit health"
 msgstr "Yaralı birim sağlığı"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "Yaralı birim kısayol tuşu, sağlık yüzdeleri bu sayının altına düşerse, seçilen birimleri yaralı olarak kabul eder."
 
-#: gui/options/options.json[5].options[10].label
+#: gui/options/options.json[6].options[10].label
 msgid "Rank icon above status bar"
 msgstr "Durum çubuğu üzerinde puan işareti"
 
-#: gui/options/options.json[5].options[10].tooltip
+#: gui/options/options.json[6].options[10].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Durum çubuğu üzerinde puan işaretini göster."
 
-#: gui/options/options.json[5].options[11].label
+#: gui/options/options.json[6].options[11].label
 msgid "Experience status bar"
 msgstr "Deneyim durumu barı"
 
-#: gui/options/options.json[5].options[11].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Seçilen her birimin üzerinde deneyim durumu barı göster."
 
-#: gui/options/options.json[5].options[12].label
+#: gui/options/options.json[6].options[12].label
 msgid "Detailed tooltips"
 msgstr "Ayrıntılı araç ipuçları"
 
-#: gui/options/options.json[5].options[12].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Birim üreten yapılarda eğitilebilir birimler için ayrıntılı ipuçları göster."
 
-#: gui/options/options.json[5].options[13].label
+#: gui/options/options.json[6].options[13].label
 msgid "Sort resources and population tooltip"
 msgstr "Kaynakları ve nüfus göstergesini sınıflandır"
 
-#: gui/options/options.json[5].options[13].list[0].label
+#: gui/options/options.json[6].options[13].list[0].label
 msgid "Unordered"
 msgstr "Sıralanmamış\n"
 
-#: gui/options/options.json[5].options[13].list[1].label
+#: gui/options/options.json[6].options[13].list[1].label
 msgid "Ascending"
 msgstr "Artan"
 
-#: gui/options/options.json[5].options[13].list[2].label
+#: gui/options/options.json[6].options[13].list[2].label
 msgid "Descending"
 msgstr "Azalan"
 
-#: gui/options/options.json[5].options[13].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Oyuncuların kaynaklarını ve nüfus göstergelerini değerine göre dinamik olarak sınıflandır."
 
-#: gui/options/options.json[5].options[14].label
+#: gui/options/options.json[6].options[14].label
 msgid "Diplomacy colors: self"
 msgstr "Diplomacy rengi: kendinin"
 
-#: gui/options/options.json[5].options[14].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Diplomatik renkler aktif hale getirildiğinde kendi rengin."
 
-#: gui/options/options.json[5].options[15].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: ally"
 msgstr "Diplomasi rengi: müttefik"
 
-#: gui/options/options.json[5].options[15].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Diplomatik renkler aktif hale getirildiğinde müttefiklerin rengi."
 
-#: gui/options/options.json[5].options[16].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: neutral"
 msgstr "Diplomasi rengi: tarafsız"
 
-#: gui/options/options.json[5].options[16].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Diplomatik renkler aktif hale getirildiğinde tarafsızların rengi."
 
-#: gui/options/options.json[5].options[17].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: enemy"
 msgstr "Diplomasi rengi: düşman"
 
-#: gui/options/options.json[5].options[17].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Diplomatik renkler aktif hale getirildiğinde düşmanların rengi."
 
-#: gui/options/options.json[5].options[18].label
+#: gui/options/options.json[6].options[18].label
 msgid "Snap to edges"
 msgstr "Kenarlara yaslan"
 
-#: gui/options/options.json[5].options[18].list[0].label
+#: gui/options/options.json[6].options[18].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Yapışmayı etkinleştirmek için kısayol tuşu"
 
-#: gui/options/options.json[5].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Kısayol tuşuna basarken yeni yapılar yakındaki yapılarla hizalanır."
 
-#: gui/options/options.json[5].options[18].list[1].label
+#: gui/options/options.json[6].options[18].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Yapışmayı devre dışı bırakmak için kısayol tuşu"
 
-#: gui/options/options.json[5].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Kısayol tuşuna basılmadıkça yeni yapılar yakındaki yapılarla hizalanır."
 
-#: gui/options/options.json[5].options[18].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Bu seçenek yeni yapıları yakındaki yapılarla hizalamaya izin verir."
 
-#: gui/options/options.json[5].options[19].label
+#: gui/options/options.json[6].options[19].label
 msgid "Control group membership"
 msgstr "Kontrol grubu üyeliği"
 
-#: gui/options/options.json[5].options[19].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Single"
 msgstr "Tek"
 
-#: gui/options/options.json[5].options[19].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Bir kontrol grubuna Birim veya Yapı eklerken, bunlar diğer kontrol gruplarından kaldırılır. Kontrol gruplarının farklı ordulara katılmasını istiyorsanız bu seçeneği kullanın"
 
-#: gui/options/options.json[5].options[19].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Multiple"
 msgstr "Çok"
 
-#: gui/options/options.json[5].options[19].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "Birimler ve Yapılar çoklu kontrol gruplarının bir parçası olabilir. Bu, farklı ordular için kontrol gruplarının ve aynı anda tüm ordu için bir kontrol grubunun tutulması için faydalıdır."
 
-#: gui/options/options.json[5].options[19].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Birimlerin birden fazla kontrol grubunun parçası olup olmayacağına karar verin."
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
 msgstr "Toplu eğitim büyüklüğü"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "Seri eğitilebilen birimlerin varsayılan miktarı"
 
-#: gui/options/options.json[5].options[20].label
+#: gui/options/options.json[6].options[20].label
 msgid "Formation control"
 msgstr ""
 
-#: gui/options/options.json[5].options[20].list[0].label
+#: gui/options/options.json[6].options[20].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Sadece Yürüme/Devriye"
 
-#: gui/options/options.json[5].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Diğer siparişler mevcut oluşumları dağıtacak."
 
-#: gui/options/options.json[5].options[20].list[1].label
+#: gui/options/options.json[6].options[20].list[1].label
 msgid "No Override"
 msgstr "Geçersiz Kılınamaz"
 
-#: gui/options/options.json[5].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr ""
 
-#: gui/options/options.json[5].options[20].tooltip
+#: gui/options/options.json[6].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr ""
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "Kaydırmayla toplu eğitimde artış oranı"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "Grup büyüklüğünü artırmak/azaltmak için gereken kaydırma sayısı"
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[6].options[3].label
 msgid "Chat notification attack"
 msgstr "Saldırı bildirimi"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[6].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Başka bir oyuncu tarafından saldırıya uğradıysanız bir bildirim görün."
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification tribute"
 msgstr "Bağış bildirimi"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "İzleyici modundayken; takımlar sabitlenmişse bir müttefik bir diğerine kaynak gönderdiğinde bildirim göster."
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification barter"
 msgstr "Takas bildirimi"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Bir oyuncu ticaretteki takas kaynaklarını değiştirdiğinde gözlemcilere bildirim göster."
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification phase"
 msgstr "Aşama bildirimi"
 
-#: gui/options/options.json[5].options[6].list[0].label
+#: gui/options/options.json[6].options[6].list[0].label
 msgid "Disable"
 msgstr "Devre dışı"
 
-#: gui/options/options.json[5].options[6].list[1].label
+#: gui/options/options.json[6].options[6].list[1].label
 msgid "Completed"
 msgstr "Tamamlandı"
 
-#: gui/options/options.json[5].options[6].list[2].label
+#: gui/options/options.json[6].options[6].list[2].label
 msgid "All displayed"
 msgstr "Tümü gösterildi"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Gözlemci modundayken siz veya bir müttefikiniz yeni bir aşamayı başlattıysanız, iptal ettiyseniz veya tamamladıysanız ve tüm oyuncuların aşamaları hakkında bir bildirim gösterin.\n"
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[6].options[7].label
 msgid "Attack range visualization"
 msgstr "Saldırı menzili görselleştirmesi"
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr ""
 
-#: gui/options/options.json[5].options[8].label
+#: gui/options/options.json[6].options[8].label
 msgid "Aura range visualization"
 msgstr "Aura alanı görselleştirmesi"
 
-#: gui/options/options.json[5].options[8].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr ""
 
-#: gui/options/options.json[5].options[9].label
+#: gui/options/options.json[6].options[9].label
 msgid "Heal range visualization"
 msgstr "Şifa alanı görselleştirmesi"
 
-#: gui/options/options.json[5].options[9].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr ""
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "Oyun içi ayarlarla ilgili seçenekleri değiştirin."
 
@@ -6691,6 +6697,25 @@ msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Maden"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ruins
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Harabeler"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ruins
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Harabeler"
+
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Taş ocaklarından veya harabelerden taş madeni elde edin."
@@ -6724,23 +6749,6 @@ msgstr "Kaya"
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Kaya"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Harabeler"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase
-#. for your language).
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "Harabeler"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."

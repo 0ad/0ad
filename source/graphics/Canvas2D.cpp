@@ -37,19 +37,10 @@ namespace
 // Array of 2D elements unrolled into 1D array.
 using PlaneArray2D = std::array<float, 8>;
 
-inline void DrawTextureImpl(CTexturePtr texture,
+inline void DrawTextureImpl(const CShaderProgramPtr& shader, CTexturePtr texture,
 	const PlaneArray2D& vertices, PlaneArray2D uvs,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	CShaderDefines defines;
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
-		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
-	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
-
 	shader->BindTexture(str_tex, texture);
 	for (size_t idx = 0; idx < uvs.size(); idx += 2)
 	{
@@ -69,16 +60,56 @@ inline void DrawTextureImpl(CTexturePtr texture,
 
 	if (!g_Renderer.DoSkipSubmit())
 		glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
-
-	tech->EndPass();
-
-	glDisable(GL_BLEND);
 }
 
 } // anonymous namespace
 
+class CCanvas2D::Impl
+{
+public:
+	void BindTechIfNeeded()
+	{
+		if (Tech)
+			return;
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		CShaderDefines defines;
+		Tech = g_Renderer.GetShaderManager().LoadEffect(
+			str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
+		ENSURE(Tech);
+		Tech->BeginPass();
+	}
+
+	void UnbindTech()
+	{
+		if (!Tech)
+			return;
+
+		Tech->EndPass();
+		Tech.reset();
+
+		glDisable(GL_BLEND);
+	}
+
+	CShaderTechniquePtr Tech;
+};
+
+CCanvas2D::CCanvas2D() : m(std::make_unique<Impl>())
+{
+
+}
+
+CCanvas2D::~CCanvas2D()
+{
+	Flush();
+}
+
 void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color)
 {
+	Flush();
+
 	std::vector<float> vertices;
 	vertices.reserve(points.size() * 3);
 	for (const CVector2D& point : points)
@@ -131,8 +162,9 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 		rect.left, rect.top
 	};
 
+	m->BindTechIfNeeded();
 	DrawTextureImpl(
-		g_Renderer.GetTextureManager().GetTransparentTexture(),
+		m->Tech->GetShader(), g_Renderer.GetTextureManager().GetTransparentTexture(),
 		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color, 0.0f);
 }
 
@@ -160,25 +192,21 @@ void CCanvas2D::DrawTexture(
 		destination.left, destination.top
 	};
 
-	DrawTextureImpl(texture, vertices, uvs, multiply, add, grayscaleFactor);
+	m->BindTechIfNeeded();
+	DrawTextureImpl(m->Tech->GetShader(), texture, vertices, uvs, multiply, add, grayscaleFactor);
 }
 
 void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	m->BindTechIfNeeded();
 
-	CShaderDefines defines;
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(
-		str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
-	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
-
+	CShaderProgramPtr shader = m->Tech->GetShader();
 	shader->Uniform(str_grayscaleFactor, 0.0f);
 
 	textRenderer.Render(shader);
+}
 
-	tech->EndPass();
-
-	glDisable(GL_BLEND);
+void CCanvas2D::Flush()
+{
+	m->UnbindTech();
 }

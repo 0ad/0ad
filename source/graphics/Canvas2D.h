@@ -33,6 +33,14 @@ struct CColor;
 class CCanvas2D
 {
 public:
+	CCanvas2D();
+	~CCanvas2D();
+
+	CCanvas2D(const CCanvas2D&) = delete;
+	CCanvas2D& operator=(const CCanvas2D&) = delete;
+	CCanvas2D(CCanvas2D&&) = delete;
+	CCanvas2D& operator=(CCanvas2D&&) = delete;
+
 	/**
 	 * Draws a line by the given points with the width and color.
 	 */
@@ -66,6 +74,16 @@ public:
 	 * Draws a text using canvas materials.
 	 */
 	void DrawText(CTextRenderer& textRenderer);
+
+	/**
+	 * Unbinds all binded resources and clears caches. Frequent calls might
+	 * affect performance. Useful to call a custom rendering code.
+	 */
+	void Flush();
+
+private:
+	class Impl;
+	std::unique_ptr<Impl> m;
 };
 
 #endif // INCLUDED_CANVAS2D

@@ -4,7 +4,7 @@ GameSettings.prototype.Attributes.Biome = class Biome extends GameSetting
 	{
 		this.biomes = loadBiomes();
 		this.biomeData = {};
-		for (let biome of this.biomes)
+		for (const biome of this.biomes)
 			this.biomeData[biome.Id] = biome;
 		this.cachedMapData = undefined;
 
@@ -32,7 +32,7 @@ GameSettings.prototype.Attributes.Biome = class Biome extends GameSetting
 
 	onMapChange()
 	{
-		let mapData = this.settings.map.data;
+		const mapData = this.settings.map.data;
 		if (mapData && mapData.settings && mapData.settings.SupportedBiomes !== undefined)
 		{
 			if (mapData.settings.SupportedBiomes === this.cachedMapData)
@@ -79,7 +79,7 @@ GameSettings.prototype.Attributes.Biome = class Biome extends GameSetting
 
 		if (this.biome !== "random")
 			return false;
-		this.biome = pickRandom(this.available);
+		this.biome = pickRandom(Array.from(this.available));
 		return true;
 	}
 };

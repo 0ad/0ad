@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-21 08:29+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-28 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1391,7 +1391,7 @@ msgid "Music"
 msgstr "Ceòl"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[2].label
+#: gui/options/options.json[3].label
 msgid "Sound"
 msgstr "Èifeachdan fuaime"
 
@@ -3914,8 +3914,8 @@ msgid "How to show entity names."
 msgstr ""
 
 #: gui/options/options.json[1].label
-msgid "Graphics"
-msgstr "Grafaigeachd"
+msgid "Graphics (general)"
+msgstr ""
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -3925,827 +3925,833 @@ msgstr "Am modh uinneagach"
 msgid "Start 0 A.D. in a window."
 msgstr "Tòisich 0 A.D. ann an uinneag."
 
-#: gui/options/options.json[1].options[10].label
-msgid "Shadow quality"
-msgstr "Càileachd nan sgàilean"
+#: gui/options/options.json[1].options[1].label
+#: gui/options/options.json[2].options[1].label
+msgid "Fog"
+msgstr "Ceò"
 
-#: gui/options/options.json[1].options[10].list[0].label
-msgid "Very Low"
-msgstr "Glè ìosal"
+#: gui/options/options.json[1].options[1].tooltip
+#: gui/options/options.json[2].options[1].tooltip
+msgid "Enable fog."
+msgstr "Cuir an ceò an comas."
 
-#: gui/options/options.json[1].options[10].list[4].label
-msgid "Very High"
-msgstr "Glè àrd"
+#: gui/options/options.json[1].options[2].label
+#: gui/options/options.json[2].options[2].label
+msgid "Post-processing"
+msgstr "Pròiseasadh an dèidh làimh"
 
-#: gui/options/options.json[1].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd!"
+#: gui/options/options.json[1].options[2].tooltip
+#: gui/options/options.json[2].options[2].tooltip
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr "Cleachd criathragan pròiseasadh-sgrìn an dèidh làimh (HDR, Bloom, DOF is msaa)."
 
-#: gui/options/options.json[1].options[11].label
-msgid "Shadow filtering"
-msgstr "Criathradh sgàile"
+#: gui/options/options.json[1].options[3].label
+#: gui/options/options.json[2].options[8].label
+msgid "Shadows"
+msgstr "Sgàilean"
 
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "Sgàilean rèidhe."
+#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[2].options[8].tooltip
+msgid "Enable shadows."
+msgstr "Cuir sgàilean an comas."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
 msgstr "Sgàil-riochdan nan aonadan"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Seall sgàil-riochdan de dh’aonadan a tha air cùlaibh thogalaichean."
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[5].label
 msgid "Particles"
 msgstr "Mìrean"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Enable particles."
 msgstr "Cuir mìrean an comas."
 
-#: gui/options/options.json[1].options[14].label
-msgid "Water effects"
-msgstr "Èifeachdan uisge"
-
-#: gui/options/options.json[1].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandaradh. Cha bhi ciall sna roghainnean eile an uairsin."
-
-#: gui/options/options.json[1].options[15].label
-msgid "High-quality water effects"
-msgstr "Èifeachdan uisge le càileachd àrd"
-
-#: gui/options/options.json[1].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Cleachd an càileachd as fheàrr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
-
-#: gui/options/options.json[1].options[16].label
-msgid "Water reflections"
-msgstr "Faileas uisge"
-
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Leig le uisge dealbh faileis a thilgeil air ais."
-
-#: gui/options/options.json[1].options[17].label
-msgid "Water refraction"
-msgstr "Solas-bhriseadh uisge"
-
-#: gui/options/options.json[1].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd."
-
-#: gui/options/options.json[1].options[18].label
-msgid "Real water depth"
-msgstr "Fìor-dhoimhne uisge"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh."
-
-#: gui/options/options.json[1].options[19].label
-msgid "Smooth vision"
-msgstr "Lèirsinn rèidh"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog of war smoothly."
-msgstr "Tog an sgleò agus ceò cogaidh gu rèidh."
-
-#: gui/options/options.json[1].options[1].label
-msgid "Prefer GLSL"
-msgstr "Feuch GLSL"
-
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)."
-
-#: gui/options/options.json[1].options[20].label
+#: gui/options/options.json[1].options[6].label
 msgid "VSync"
 msgstr "Sioncronachadh-V"
 
-#: gui/options/options.json[1].options[20].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
-#: gui/options/options.json[1].options[21].label
+#: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
 msgstr "Tachdadh an FPS sna clàra-taice"
 
-#: gui/options/options.json[1].options[21].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid na clàran-taice a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.json[1].options[22].label
+#: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
 msgstr "Tachdadh an FPS sna geamannan"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid nithean a’ gheama a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.json[1].options[2].label
-msgid "Fog"
-msgstr "Ceò"
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "Suidhich a’ mheidh eadar dèanadas is coltas lèirsinneach."
 
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Enable fog."
-msgstr "Cuir an ceò an comas."
+#: gui/options/options.json[2].label
+msgid "Graphics (advanced)"
+msgstr ""
 
-#: gui/options/options.json[1].options[3].label
-msgid "Post-processing"
-msgstr "Pròiseasadh an dèidh làimh"
+#: gui/options/options.json[2].options[0].label
+msgid "Prefer GLSL"
+msgstr "Feuch GLSL"
 
-#: gui/options/options.json[1].options[3].tooltip
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "Cleachd criathragan pròiseasadh-sgrìn an dèidh làimh (HDR, Bloom, DOF is msaa)."
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)."
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[2].options[10].label
+msgid "Shadow filtering"
+msgstr "Criathradh sgàile"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid "Smooth shadows."
+msgstr "Sgàilean rèidhe."
+
+#: gui/options/options.json[2].options[11].label
+msgid "Water effects"
+msgstr "Èifeachdan uisge"
+
+#: gui/options/options.json[2].options[11].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandaradh. Cha bhi ciall sna roghainnean eile an uairsin."
+
+#: gui/options/options.json[2].options[12].label
+msgid "High-quality water effects"
+msgstr "Èifeachdan uisge le càileachd àrd"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Cleachd an càileachd as fheàrr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
+
+#: gui/options/options.json[2].options[13].label
+msgid "Water reflections"
+msgstr "Faileas uisge"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Leig le uisge dealbh faileis a thilgeil air ais."
+
+#: gui/options/options.json[2].options[14].label
+msgid "Water refraction"
+msgstr "Solas-bhriseadh uisge"
+
+#: gui/options/options.json[2].options[14].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd."
+
+#: gui/options/options.json[2].options[15].label
+msgid "Real water depth"
+msgstr "Fìor-dhoimhne uisge"
+
+#: gui/options/options.json[2].options[15].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh."
+
+#: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Antialiasing"
 
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[3].list[0].label
+#: gui/options/options.json[2].options[4].list[0].label
+#: gui/options/options.json[4].options[5].list[2].label
+#: gui/options/options.json[5].options[4].list[2].label
 msgid "Disabled"
 msgstr "À comas"
 
-#: gui/options/options.json[1].options[4].list[0].tooltip
+#: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
 msgstr "Na cleachd antialiasing."
 
-#: gui/options/options.json[1].options[4].list[1].label
+#: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
 
-#: gui/options/options.json[1].options[4].list[1].tooltip
+#: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
 msgstr "Antialiasing sìmplidh ach luath."
 
-#: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
 msgstr "MSAA (2×)"
 
-#: gui/options/options.json[1].options[4].list[2].tooltip
+#: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
 msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e dà shampall air gach piogsail. Tha taic ris le GL3.3+."
 
-#: gui/options/options.json[1].options[4].list[3].label
+#: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
 msgstr "MSAA (4×)"
 
-#: gui/options/options.json[1].options[4].list[3].tooltip
+#: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
 msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e ceithir sampallan air gach piogsail. Tha taic ris le GL3.3+."
 
-#: gui/options/options.json[1].options[4].list[4].label
+#: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
 msgstr "MSAA (8×)"
 
-#: gui/options/options.json[1].options[4].list[4].tooltip
+#: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
 msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e ochd sampallan air gach piogsail. Tha taic ris le GL3.3+."
 
-#: gui/options/options.json[1].options[4].list[5].label
+#: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
 msgstr "MSAA (16×)"
 
-#: gui/options/options.json[1].options[4].list[5].tooltip
+#: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
 msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e sia sampallan deug air gach piogsail. Tha taic ris le GL3.3+."
 
-#: gui/options/options.json[1].options[4].tooltip
+#: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
 msgstr "Lùghdaich buaidh an aliasing air na h-oirean."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
 msgstr "Geurachadh"
 
-#: gui/options/options.json[1].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[4].list[0].tooltip
 msgid "Do not use sharpening."
 msgstr "Na cleachd geurachadh."
 
-#: gui/options/options.json[1].options[5].list[1].label
+#: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
 msgstr "FidelityFX CAS"
 
-#: gui/options/options.json[1].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
 msgstr "Geurachadh a cho-fhreagras ris an iomsgaradh. Seo ceum geurachaidh luath stèidhichte air an iomsgaradh."
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[2].options[4].tooltip
 msgid "Reduce blurry effects."
 msgstr "Lùghdaich èifeachdan sgleòthte."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[2].options[5].label
 msgid "Sharpness factor"
 msgstr "Factar a’ gheurachaidh"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
 msgstr "Dè cho geur ’s a bhios an ceum a thagh thu."
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[2].options[6].label
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[1].options[10].list[1].label
-#: gui/options/options.json[1].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Ìosal"
 
-#: gui/options/options.json[1].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].tooltip
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[1].options[10].list[2].label
-#: gui/options/options.json[1].options[7].list[1].label
-#: gui/options/options.json[3].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[1].label
+#: gui/options/options.json[2].options[9].list[2].label
+#: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Meadhanach"
 
-#: gui/options/options.json[1].options[7].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[1].options[10].list[3].label
-#: gui/options/options.json[1].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Àrd"
 
-#: gui/options/options.json[1].options[7].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
 msgstr ""
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
 msgstr ""
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[2].options[7].label
 msgid "Shader effects"
 msgstr "Èifeachdan sgàileadair"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[2].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
-#: gui/options/options.json[1].options[9].label
-msgid "Shadows"
-msgstr "Sgàilean"
+#: gui/options/options.json[2].options[9].label
+msgid "Shadow quality"
+msgstr "Càileachd nan sgàilean"
 
-#: gui/options/options.json[1].options[9].tooltip
-msgid "Enable shadows."
-msgstr "Cuir sgàilean an comas."
+#: gui/options/options.json[2].options[9].list[0].label
+msgid "Very Low"
+msgstr "Glè ìosal"
 
-#: gui/options/options.json[1].tooltip
-msgid "Set the balance between performance and visual appearance."
-msgstr "Suidhich a’ mheidh eadar dèanadas is coltas lèirsinneach."
+#: gui/options/options.json[2].options[9].list[4].label
+msgid "Very High"
+msgstr "Glè àrd"
 
-#: gui/options/options.json[2].options[0].label
+#: gui/options/options.json[2].options[9].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd!"
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr ""
+
+#: gui/options/options.json[3].options[0].label
 msgid "Master volume"
 msgstr "Maighstir àirde na fuaime"
 
-#: gui/options/options.json[2].options[0].tooltip
+#: gui/options/options.json[3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "Prìomh àirde na fuaime."
 
-#: gui/options/options.json[2].options[1].label
+#: gui/options/options.json[3].options[1].label
 msgid "Music volume"
 msgstr "Àirde a’ chiùil"
 
-#: gui/options/options.json[2].options[1].tooltip
+#: gui/options/options.json[3].options[1].tooltip
 msgid "In game music gain."
 msgstr "Àirde a’ chiùil sa gheama."
 
-#: gui/options/options.json[2].options[2].label
+#: gui/options/options.json[3].options[2].label
 msgid "Ambient volume"
 msgstr "Àirde na h-àrainneachd"
 
-#: gui/options/options.json[2].options[2].tooltip
+#: gui/options/options.json[3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "Àirde aig fuaimean na h-àrainneachd sa gheama."
 
-#: gui/options/options.json[2].options[3].label
+#: gui/options/options.json[3].options[3].label
 msgid "Action volume"
 msgstr "Àirde nan gnìomhan"
 
-#: gui/options/options.json[2].options[3].tooltip
+#: gui/options/options.json[3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "Àirde aig fuaimean gnìomhachd nan aonadan sa gheama."
 
-#: gui/options/options.json[2].options[4].label
+#: gui/options/options.json[3].options[4].label
 msgid "UI volume"
 msgstr "Àirde na h-eadar-aghaidh"
 
-#: gui/options/options.json[2].options[4].tooltip
+#: gui/options/options.json[3].options[4].tooltip
 msgid "UI sound gain."
 msgstr "Àirde aig fuaimean na h-eadar-aghaidh."
 
-#: gui/options/options.json[2].options[5].label
+#: gui/options/options.json[3].options[5].label
 msgid "Nick notification"
 msgstr "Brath far-ainm"
 
-#: gui/options/options.json[2].options[5].tooltip
+#: gui/options/options.json[3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "Faigh brath fuaime nuair a sgrìobas cuideigin d’ fhar-ainm."
 
-#: gui/options/options.json[2].options[6].label
+#: gui/options/options.json[3].options[6].label
 msgid "New player notification in game setup"
 msgstr "Brathan mu chluicheadairean ùra rè rèiteachadh a’ gheama"
 
-#: gui/options/options.json[2].options[6].tooltip
+#: gui/options/options.json[3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "Faigh brath fuaime nuair a thig cliant ùr a-steach gu rèiteachadh a’ gheama."
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Game Setup"
 msgstr "Suidheachadh a’ gheama"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Enable game setting tips"
 msgstr "Cuir an comas gliocasan mu shuidheachadh geama"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Seall gliocasan fhad ’s a tha geama ’ga shuidheachadh."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "Cuir an comas slaighdeadh air panail nan roghainnean"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "Slaighd leòsan nan roghainnean nuair a thèid fhosgladh, a dhùnadh no ath-mheudachadh."
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[4].options[2].label
 msgid "Persist match settings"
 msgstr "Sàbhail roghainnean a’ mhaids"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "Sàbhail roghainnean a’ mhaids ach an gabh iad aiseag gu luath nuair a nì mi òstadh air geama eile."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
 msgstr "Duilgheas tùsail na h-IF"
 
-#: gui/options/options.json[3].options[3].list[0].label
+#: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
 msgstr "Bogsa-gainmhich"
 
-#: gui/options/options.json[3].options[3].list[1].label
+#: gui/options/options.json[4].options[3].list[1].label
 msgid "Very Easy"
 msgstr "Glè fhurasta"
 
-#: gui/options/options.json[3].options[3].list[2].label
+#: gui/options/options.json[4].options[3].list[2].label
 msgid "Easy"
 msgstr "Furasta"
 
-#: gui/options/options.json[3].options[3].list[4].label
+#: gui/options/options.json[4].options[3].list[4].label
 msgid "Hard"
 msgstr "Doirbh"
 
-#: gui/options/options.json[3].options[3].list[5].label
+#: gui/options/options.json[4].options[3].list[5].label
 msgid "Very Hard"
 msgstr "Dùbhlanach"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
 msgstr "Duilgheas tùsail na h-IF."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
 msgstr "Giùlan tùsail na h-IF"
 
-#: gui/options/options.json[3].options[4].list[0].label
+#: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
 msgstr "Tuaireamach"
 
-#: gui/options/options.json[3].options[4].list[1].label
+#: gui/options/options.json[4].options[4].list[1].label
 msgid "Balanced"
 msgstr "Cothromach"
 
-#: gui/options/options.json[3].options[4].list[2].label
+#: gui/options/options.json[4].options[4].list[2].label
 msgid "Aggressive"
 msgstr "Ionnsaigheach"
 
-#: gui/options/options.json[3].options[4].list[3].label
+#: gui/options/options.json[4].options[4].list[3].label
 msgid "Defensive"
 msgstr "Dìonadach"
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
 msgstr "Giùlan tùsail na h-IF."
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[4].options[5].label
 msgid "Assign players"
 msgstr "Iomruin cluicheadairean"
 
-#: gui/options/options.json[3].options[5].list[0].label
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[4].options[5].list[0].label
+#: gui/options/options.json[5].options[4].list[0].label
 msgid "Everyone"
 msgstr "A h-uile duine"
 
-#: gui/options/options.json[3].options[5].list[0].tooltip
+#: gui/options/options.json[4].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "Thèid slot falamh iomruineadh do chluicheadairean a thig a-steach dhan geama ma tha gin ann."
 
-#: gui/options/options.json[3].options[5].list[1].label
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[4].options[5].list[1].label
+#: gui/options/options.json[5].options[4].list[1].label
 msgid "Buddies"
 msgstr "Caraidean"
 
-#: gui/options/options.json[3].options[5].list[1].tooltip
+#: gui/options/options.json[4].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "Cha dèid slot iomruineadh do chluicheadairean a thig a-steach dhan geama ach ma bhios iad ’nan caraidean dhan òstair ’s ma bhios slot falamh ann."
 
-#: gui/options/options.json[3].options[5].list[2].tooltip
+#: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "Chan fhaigh cluicheadairean slot ach ma dh’iomruineas an t-òstair fhèin fear dhaibh."
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[4].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Iomruin ionadan saora dha chluicheadairean a thig a-steach rè suidheachadh a’ gheama."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Networking / Lobby"
 msgstr ""
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
 msgstr "Crioptachadh TLS"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "Dìon an clàradh a-steach is an dàta a thèid a thar-aiseag le frithealaiche an lobaidh le crioptachadh TLS."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Chat backlog"
 msgstr "Ro-loga na cabadaich"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "An àireamh de theachdaireachdan roimhe a thèid a luchdadh on loga nuair thig thu a-steach dhan lobaidh."
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Game rating column"
 msgstr "Colbh rangachadh nan geama"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Seall rangachadh cuibheasach nan cluicheadairean a ghabhas pàirt ann air colbh aig liosta nan geamannan."
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Network warnings"
 msgstr "Rabhaidhean lìonraidh"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Seall cò an cluicheadair aig a bheil droch-cheangal ann an geamannan ioma-chluicheadair."
 
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
 msgstr "Tighinn a-steach anmoch nan amharc"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "Thoir cead dha na h-uile duine no dha charaidean a-mhàin gun dig iad a-steach nuair a bhios an geama air a thòiseachadh mar-thà."
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[5].options[5].label
 msgid "Observer limit"
 msgstr "Crìoch nan amharc"
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "Na leig le amhairc eile tighinn a-steach nuair a chaidh a’ chrìoch a ruigsinn."
 
-#: gui/options/options.json[4].options[6].label
+#: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
 msgstr ""
 
-#: gui/options/options.json[4].options[6].tooltip
+#: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr ""
 
-#: gui/options/options.json[4].options[7].label
+#: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr ""
 
-#: gui/options/options.json[4].options[7].tooltip
+#: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr ""
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Cha bidh buaidh aig na roghainnean seo ach air geamannan ioma-chluicheadair."
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[6].label
 msgid "Game Session"
 msgstr "Seisean a’ gheama"
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[6].options[0].label
 msgid "Wounded unit health"
 msgstr "Slàinte nan aonadan leònta"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "Taghaidh grad-iuchair nan aonadan leònta na h-aonadan aig a bheil ceudad nas lugha de shlàine aca na an àireamh seo."
 
-#: gui/options/options.json[5].options[10].label
+#: gui/options/options.json[6].options[10].label
 msgid "Rank icon above status bar"
 msgstr "Ìomhaigheag rang os cionn a’ bhàir-staide"
 
-#: gui/options/options.json[5].options[10].tooltip
+#: gui/options/options.json[6].options[10].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Seall ìomhaigheagan rang os cionn nam bàraichean-staide."
 
-#: gui/options/options.json[5].options[11].label
+#: gui/options/options.json[6].options[11].label
 msgid "Experience status bar"
 msgstr "Bàr-staide an eòlais"
 
-#: gui/options/options.json[5].options[11].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Seall bàr-staide an eòlais os cionn gach aonad air a thaghadh."
 
-#: gui/options/options.json[5].options[12].label
+#: gui/options/options.json[6].options[12].label
 msgid "Detailed tooltips"
 msgstr "Gliocasan-sgrìn mionaideach"
 
-#: gui/options/options.json[5].options[12].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas oideachadh ann an togalaichean a nì aonadan."
 
-#: gui/options/options.json[5].options[13].label
+#: gui/options/options.json[6].options[13].label
 msgid "Sort resources and population tooltip"
 msgstr "Seòrsaich gliocasan-sgrìn nan stòrasan is an t-sluaigh"
 
-#: gui/options/options.json[5].options[13].list[0].label
+#: gui/options/options.json[6].options[13].list[0].label
 msgid "Unordered"
 msgstr "Gun òrdugh"
 
-#: gui/options/options.json[5].options[13].list[1].label
+#: gui/options/options.json[6].options[13].list[1].label
 msgid "Ascending"
 msgstr "A’ dìreadh"
 
-#: gui/options/options.json[5].options[13].list[2].label
+#: gui/options/options.json[6].options[13].list[2].label
 msgid "Descending"
 msgstr "A’ teàrnadh"
 
-#: gui/options/options.json[5].options[13].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Seòrsaich na cluicheadairean a-rèir an luachan gu h-innsginneach ann an gliocasan-sgrìn nan stòrasan is an t-sluaigh."
 
-#: gui/options/options.json[5].options[14].label
+#: gui/options/options.json[6].options[14].label
 msgid "Diplomacy colors: self"
 msgstr "Dathan dioplòmasachd: thusa"
 
-#: gui/options/options.json[5].options[14].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Dath nan aonadan agad nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[5].options[15].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: ally"
 msgstr "Dathan dioplòmasachd: caidreabhach"
 
-#: gui/options/options.json[5].options[15].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Dath nan aonadan caidreabhach nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[5].options[16].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: neutral"
 msgstr "Dathan dioplòmasachd: neo-phàirteach"
 
-#: gui/options/options.json[5].options[16].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Dath nan aonadan neo-phàirteach nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[5].options[17].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: enemy"
 msgstr "Dathan dioplòmasachd: nàmhaid"
 
-#: gui/options/options.json[5].options[17].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Dath nan aonadan nàimhdeil nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[5].options[18].label
+#: gui/options/options.json[6].options[18].label
 msgid "Snap to edges"
 msgstr "Greimich ris na h-oirean"
 
-#: gui/options/options.json[5].options[18].list[0].label
+#: gui/options/options.json[6].options[18].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "A’ ghrad-iuchair a chuireas an greimeachadh an comas"
 
-#: gui/options/options.json[5].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Thèid togalaichean ùra a cho-thaobhadh le togalaichean am fagas fhad ’s a bhios tu a’ brùthadh air a’ ghad-iuchair."
 
-#: gui/options/options.json[5].options[18].list[1].label
+#: gui/options/options.json[6].options[18].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "A’ ghrad-iuchair a chuireas an greimeachadh à comas"
 
-#: gui/options/options.json[5].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Thèid togalaichean ùra a cho-thaobhadh le togalaichean faisg orra ach ma bhios tu a’ brùthadh air a’ ghad-iuchair."
 
-#: gui/options/options.json[5].options[18].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Leigidh an roghainn seo leat togalaichean ùra a cho-thaobhachadh le togalaichean am fagas."
 
-#: gui/options/options.json[5].options[19].label
+#: gui/options/options.json[6].options[19].label
 msgid "Control group membership"
 msgstr "Ballrachd nam buidhnean-smachd"
 
-#: gui/options/options.json[5].options[19].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Single"
 msgstr "Fa leth"
 
-#: gui/options/options.json[5].options[19].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Nuair a chuireas tu aonad no togalach ri buidheann-smachd, thèid a thoirt air falbh o bhuidheann-smachd sam bith eile. Cleachd an roghainn seo ma tha thu airson feachdan fa leth a stiùireadh leis na biuidhnean-smachd."
 
-#: gui/options/options.json[5].options[19].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Multiple"
 msgstr "Iomadach"
 
-#: gui/options/options.json[5].options[19].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "’S urrainn dhut aonad no togalach a chur ann an iomadh buidheann-smachd. Tha seo feumail airson buidhnean-smachd do dh’fheachdan fa leth agus buidheann-smachd air am feachd gu lèir a chumail aig an aon àm."
 
-#: gui/options/options.json[5].options[19].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Cuir romhad am faod aonadan a bhith nam ball de dh’iomadh buidheann-smachd gus nach fhaod."
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
 msgstr "Meud ghrunnan oideachaidh"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "An uiread dhe dh’aonadan a thèid oideachadh ann an grunn a ghnàth."
 
-#: gui/options/options.json[5].options[20].label
+#: gui/options/options.json[6].options[20].label
 msgid "Formation control"
 msgstr "Stiùireadh nan cumaidhean"
 
-#: gui/options/options.json[5].options[20].list[0].label
+#: gui/options/options.json[6].options[20].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Coiseachd/Cuairteachan a-mhàin"
 
-#: gui/options/options.json[5].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Sgaoilidh òrduighean eile cumaidhean a tha ann."
 
-#: gui/options/options.json[5].options[20].list[1].label
+#: gui/options/options.json[6].options[20].list[1].label
 msgid "No Override"
 msgstr "Gun tar-àithneadh"
 
-#: gui/options/options.json[5].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Fuirichidh na h-aonadan sna cumaidhean aca."
 
-#: gui/options/options.json[5].options[20].tooltip
+#: gui/options/options.json[6].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Co-dhùin an dèid na cumaidhean a chur an comas dhan a h-uile òrdugh no dha “Coiseachd” is “Cuairteachan” a-mhàin."
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "Astar meudachaidh ghrunnan le sgroladh"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "Co meud turas a nì thu sgroladh gus an dèid meud nan grunnan a mheudachadh no lùghdachadh le 1."
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[6].options[3].label
 msgid "Chat notification attack"
 msgstr "Brathan cabadaich air ionnsaighean"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[6].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Seall brath na cabadaich nuair a bheir cluicheadair eile ionnsaigh ort."
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification tribute"
 msgstr "Brathan cabadaich air cìsean"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Seall brath na cabadaich ma bheir caidreabhach cìs a stòrasan gu ball eile an sgioba nuair a bhios na sgiobaidhean glaiste agus airson gach cìs sa mhodh amhairc."
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification barter"
 msgstr "Brathan cabadaich air iomlaideadh"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Seall brath na cabadaich dha na h-amhairc nuair a dh’iomlaidich cluicheadair stòrasan."
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification phase"
 msgstr "Brathan cabadaich air linntean"
 
-#: gui/options/options.json[5].options[6].list[0].label
+#: gui/options/options.json[6].options[6].list[0].label
 msgid "Disable"
 msgstr "Cuir à comas"
 
-#: gui/options/options.json[5].options[6].list[1].label
+#: gui/options/options.json[6].options[6].list[1].label
 msgid "Completed"
 msgstr "Coileanta"
 
-#: gui/options/options.json[5].options[6].list[2].label
+#: gui/options/options.json[6].options[6].list[2].label
 msgid "All displayed"
 msgstr "Na h-uile"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Seall brath na cabadaich nuair a bhios tu fhèin no caidreabhach (no na cluicheadairean uile sa mhodh amhairc) air linn ùr a thòiseachadh no choileanadh no air a sgur dheth."
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[6].options[7].label
 msgid "Attack range visualization"
 msgstr "Samhlaidhean astar na h-ionnsaighe"
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Seall astar ionnsaighe nan togalaichean dìona a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
-#: gui/options/options.json[5].options[8].label
+#: gui/options/options.json[6].options[8].label
 msgid "Aura range visualization"
 msgstr "Samhlaidhean astar nan aura"
 
-#: gui/options/options.json[5].options[8].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Seall astar aura nan aonadan is togalaichean a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
-#: gui/options/options.json[5].options[9].label
+#: gui/options/options.json[6].options[9].label
 msgid "Heal range visualization"
 msgstr "Samhlaidhean astar an t-slànachaidh"
 
-#: gui/options/options.json[5].options[9].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "Seall astar leigheas nan aonadan a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "Atharraich roghainnean a bhios an sàs am broinn nan geama."
 
@@ -6718,6 +6724,25 @@ msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Clach-mheatailt"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ruins
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Làrach"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ruins
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Làrach"
+
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Tochail carraigean, mèinnean cloiche no làraichean."
@@ -6751,23 +6776,6 @@ msgstr "Clach"
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Clach"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Làrach"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase
-#. for your language).
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "Làrach"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."

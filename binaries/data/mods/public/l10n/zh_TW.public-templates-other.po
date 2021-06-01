@@ -10,14 +10,15 @@
 # JerryShen <jerry82422@gmail.com>, 2019
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2019,2021
+# Yuan <daan0014119@gmail.com>, 2021
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # 可邦 陳 <bensoncat99@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-16 07:13+0000\n"
-"PO-Revision-Date: 2021-05-23 16:46+0000\n"
-"Last-Translator: StarAtt <tea55688@gmail.com>\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-29 04:00+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -645,6 +646,10 @@ msgstr "橄欖"
 msgid "Ancient Ruins"
 msgstr "古代遺蹟"
 
+#: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
+msgid "Isis Cult Image"
+msgstr "伊希斯邪教圖像"
+
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
 msgstr "大金字塔"
@@ -665,6 +670,24 @@ msgstr "埃及托勒密雕像"
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
 msgstr "庫施雕像"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
+#: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
+msgid "Stone Resource"
+msgstr "石頭資源"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
+msgid "Kushite Bird Statue"
+msgstr "庫施鳥雕像"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
+msgid "Apademak Lion Statue"
+msgstr "阿帕德馬克獅子雕像"
+
+#: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
+msgid "Ammon-Ra Ram Statue"
+msgstr "阿蒙．拉公羊雕像"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -709,6 +732,10 @@ msgstr "波斯器具"
 msgid "Persian Rugs"
 msgstr "波斯地毯"
 
+#: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
+msgid "Iron Weapons"
+msgstr "鐵製武器"
+
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
 msgstr "飛馬"
@@ -728,9 +755,26 @@ msgstr "沉船貨物"
 msgid "Stone Treasure"
 msgstr "石頭寶藏"
 
+#: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
+msgid "Cut Granite"
+msgstr "鑿製花崗岩"
+
+#: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
+msgid "Cut Stone"
+msgstr "鑿製岩石"
+
+#: simulation/templates/gaia/treasure/stone_pile_red.xml:8
+#: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
+msgid "Cut Sandstone"
+msgstr "鑿製砂岩"
+
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
 msgstr "木頭寶藏"
+
+#: simulation/templates/gaia/treasure/wood_lumber.xml:4
+msgid "Milled Lumber"
+msgstr "銑製木材"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -771,6 +815,9 @@ msgstr "年輕猴麵包樹"
 msgid "Hardy Bush"
 msgstr "耐寒灌木"
 
+#: simulation/templates/gaia/tree/bush_steppe_01.xml:8
+#: simulation/templates/gaia/tree/bush_steppe_02.xml:8
+#: simulation/templates/gaia/tree/bush_steppe_03.xml:8
 #: simulation/templates/gaia/tree/bush_temperate.xml:4
 #: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
 #: simulation/templates/gaia/tree/bush_tropic.xml:4
@@ -948,6 +995,14 @@ msgstr "建築工"
 msgid "Mercenary"
 msgstr "傭兵"
 
+#: simulation/templates/mixins/shrine.xml:12
+msgid "Shrine"
+msgstr "神壇"
+
+#: simulation/templates/mixins/trading_post.xml:8
+msgid "Trading Post"
+msgstr "貿易站"
+
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
@@ -1049,7 +1104,7 @@ msgstr "僅限騎兵，需要至少 6 名。"
 msgid "Wedge"
 msgstr "錐形陣"
 
-#: simulation/templates/special/player/player.xml:57
+#: simulation/templates/special/player/player.xml:58
 msgid "Player"
 msgstr "玩家"
 
@@ -1090,6 +1145,11 @@ msgstr "金屬礦"
 msgid "Mine ore for metal."
 msgstr "採集礦石以取得金屬。"
 
+#: simulation/templates/gaia/rock/aegean_cut.xml:8
+#: simulation/templates/gaia/rock/india_cut.xml:8
+#: simulation/templates/gaia/rock/nubia_cut.xml:8
+#: simulation/templates/gaia/rock/sahara_cut.xml:8
+#: simulation/templates/gaia/rock/temperate_cut.xml:8
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
 msgstr "採石場"

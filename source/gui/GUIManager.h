@@ -24,6 +24,7 @@
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/StructuredClone.h"
 
+#include <deque>
 #include <string>
 #include <unordered_set>
 
@@ -167,7 +168,12 @@ private:
 	std::shared_ptr<ScriptContext> m_ScriptContext;
 	std::shared_ptr<ScriptInterface> m_ScriptInterface;
 
-	using PageStackType = std::vector<SGUIPage>;
+	/**
+	 * The page stack must not move pointers on push/pop, or pushing a page in a page's init method
+	 * may crash (as the pusher page will suddenly have moved, and the stack will be confused).
+	 * Therefore use std::deque over std::vector.
+	 */
+	using PageStackType = std::deque<SGUIPage>;
 	PageStackType m_PageStack;
 
 	CTemplateLoader m_TemplateLoader;

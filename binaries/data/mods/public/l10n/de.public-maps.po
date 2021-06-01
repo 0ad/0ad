@@ -34,8 +34,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-15 17:54+0000\n"
+"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"PO-Revision-Date: 2021-05-30 11:46+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -861,7 +861,21 @@ msgctxt "biome definition"
 msgid "Rainy Season"
 msgstr "Regenzeit"
 
+#: maps/random/rmbiome/generic/aegean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Starte in einer Region, die mit mediterranem Klima gesegnet ist, ein warmes und einladendes Land. Die Zypressen sind in einem ewigen Kampf mit den dominanten Zwergpalmen, während Wild in ihren Schatten grast, in seliger Unwissenheit."
+
+#: maps/random/rmbiome/generic/aegean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Aegean-Anatolian"
+msgstr "Ägäisch-Anatolisch"
+
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
@@ -873,6 +887,11 @@ msgstr "Eine Region in den hohen, verschneiten Bergen. Beißende Winde rauschen 
 msgctxt "biome definition"
 msgid "Alpine"
 msgstr "Alpin"
+
+#: maps/random/rmbiome/generic/arctic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Arctic"
+msgstr "Arktisch"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -888,31 +907,45 @@ msgctxt "biome definition"
 msgid "Autumn"
 msgstr "Herbst"
 
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+#: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Erforsche die geheimnisvollen Tropen. Eine extrem grüne, aber auch extrem feuchte Umgebung erwartet einen. Die hohen Surenbäume blicken diesem Angriff auf ihre Privatsphäre missbilligend entgegen und wilde Tiger sind entschlossen, ihr Revier um jeden Preis zu verteidigen."
+
+#: maps/random/rmbiome/generic/india.jsonDescription.Title
+msgctxt "biome definition"
+msgid "India"
+msgstr "Indien"
+
+#: maps/random/rmbiome/generic/nubia.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
+"gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes"
+" or elephants roam the wild in search of food."
+msgstr "Nubien, ein trockenes Klima, in dem nur die zähen Affenbrotbäume gedeihen. Einsame Gazellen grasen das spärliche Gras, während Zebraherden, Gnus, Giraffen oder Elefanten die Wildnis auf der Suche nach Nahrung durchstreifen."
+
+#: maps/random/rmbiome/generic/nubia.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Nubia"
+msgstr "Nubien"
+
+#: maps/random/rmbiome/generic/sahara.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and acacia "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
 msgstr "Eine Halbwüste, die zahlreiche Gruppen von Palmen und Tamarisken vorzuweisen hat. Kamelherden streifen durch die Wildnis und die vereinzelte Gazelle springt vor Schreck auf, wenn sie gestört wird."
 
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+#: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Desert"
-msgstr "Wüste"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Starte in einer Region, die mit mediterranem Klima gesegnet ist, ein warmes und einladendes Land. Die Zypressen sind in einem ewigen Kampf mit den dominanten Zwergpalmen, während Wild in ihren Schatten grast, in seliger Unwissenheit."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterran"
+msgid "Sahara"
+msgstr "Sahara"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
@@ -927,18 +960,15 @@ msgctxt "biome definition"
 msgid "Savanna"
 msgstr "Savanne"
 
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+#: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the Arctic, the native habitat of the muskox. "
-"Here you can pine away to your content and also hunt the occasional walrus "
-"or two."
-msgstr "Siedle in den kalten Regionen der Arktis, der natürlichen Umgebung des Moschusochsen. Hier kann man nach Herzenslust dahinsiechen und auch ein vereinzeltes Walross jagen, oder zwei."
+msgid "Wide grasslands without trees"
+msgstr "Weites Grasland ohne Bäume"
 
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+#: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Verschneit"
+msgid "Eurasian Steppe"
+msgstr "Eurasische Steppe"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -953,20 +983,6 @@ msgstr "Üppige Grasländer bedecken das Land, die ab und zu prachtvollen und vi
 msgctxt "biome definition"
 msgid "Temperate"
 msgstr "Gemäßigt"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Erforsche die geheimnisvollen Tropen. Eine extrem grüne, aber auch extrem feuchte Umgebung erwartet einen. Die hohen Surenbäume blicken diesem Angriff auf ihre Privatsphäre missbilligend entgegen und wilde Tiger sind entschlossen, ihr Revier um jeden Preis zu verteidigen."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropisch"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
@@ -1278,6 +1294,7 @@ msgstr "Verwilderter See"
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
+#: maps/skirmishes/magadha_2p.xml:Description:39
 msgid "Give an interesting description of your map."
 msgstr "Gib deiner Karte eine interessante Beschreibung."
 
@@ -1948,7 +1965,7 @@ msgstr "Modellkarte mit den Maurya-Indern."
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:38
 msgid "Sandbox - The Mauryas"
-msgstr "Sandkasten – Die Maurya-Inder"
+msgstr "Sandkasten – Die Mauryas"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
 msgid "Mauryan Indians"
@@ -1971,7 +1988,7 @@ msgid "Achaemenids"
 msgstr "Achämeniden"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:38
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Eine Inselkarte, die gut für intensive Seeschlachten geeignet ist."
 
@@ -2492,14 +2509,14 @@ msgstr "Eine Karte mit unwegsamen Bergen und eine große Anzahl von natürlichen
 msgid "Alpine Mountains (3)"
 msgstr "Alpine Berge (3)"
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Description:38
+#: maps/skirmishes/alpine_valleys_2p.xml:Description:39
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
 msgstr "Die hohen Gipfel und Täler der Alpen.\n\nJeder Spieler beginnt das Spiel in einem sicheren grünen Tal. Dazwischen liegt die tückische Gebirgskette der Alpen."
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Name:38
+#: maps/skirmishes/alpine_valleys_2p.xml:Name:39
 msgid "Alpine Valleys (2)"
 msgstr "Alpentäler (2)"
 
@@ -2514,15 +2531,17 @@ msgstr "Geplänkel im hohen Atlasgebirge, wo schneebedeckte Berge über Wüsteno
 msgid "Atlas Valleys (8)"
 msgstr "Atlas-Täler (8)"
 
-#: maps/skirmishes/bactria_2p.xml:Description:38
+#: maps/skirmishes/bactria_2p.xml:Description:39
 msgid ""
-"The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
+"In the Eastern land of Bactria lies the rich valley carved by the Oxus River.\n"
 "\n"
-"The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr "Die trockenen und mineralienreichen Länder von Baktrien (im heutigen Afghanistan) am Fuß des Hindukusch-Gebirges.\n\nIn der Mitte der Karte befindet sich ein ausgetrockneter Berg. Auf jeder Seite gibt es Berge und Vorland, die von tückischen Pässen und alten Handelsrouten durchdrungen sind."
+"South of the river are rich arable lands and plentiful wood and forage. North of the river lie a mountain range pierced by wide mountain passes and guarded by natural defensive positions.\n"
+"\n"
+"Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
+msgstr "Im östlichen Land Baktrien liegt das reiche Tal, das der Oxus geformt hat.\n\nSüdlich des Flusses liegen reiche, fruchtbare Länder und Holz und Futter im Überfluss. Nördlich des Flusses liegt eine Bergkette, die von weiten Bergpässen durchstoßen und von natürlichen Verteidigungspositionen bewacht wird. \n\nIn den Bergen lauern Reichtümer aber auch Gefahr. Der Spieler, der das bergige Areal am besten ausbeuten kann, hat einen deutlichen Vorteil gegenüber seinem Gegner."
 
-#: maps/skirmishes/bactria_2p.xml:Name:38
-msgid "Bactria (2)"
+#: maps/skirmishes/bactria_2p.xml:Name:39
+msgid "Bactriana (2)"
 msgstr "Baktrien (2)"
 
 #: maps/skirmishes/barcania_3p.xml:Description:26
@@ -2537,14 +2556,14 @@ msgstr "Eine wilde, bewaldete Insel, voll mit Wäldern, Gold und Geheimnissen. B
 msgid "Barcania (3)"
 msgstr "Kyrenaika (3)"
 
-#: maps/skirmishes/belgian_bog_2p.xml:Description:38
+#: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "Zwei Spieler stehen sich in einem großen Sumpf irgendwo in der Rheinebene gegenüber.\n\nHolz ist reichlich vorhanden, aber Metall und Stein sind schwer zu finden und abzubauen. Wild und Nahrung sind reichlich vorhanden."
 
-#: maps/skirmishes/belgian_bog_2p.xml:Name:38
+#: maps/skirmishes/belgian_bog_2p.xml:Name:39
 msgid "Belgian Bog (2)"
 msgstr "Belgisches Moor (2)"
 
@@ -2555,8 +2574,8 @@ msgid ""
 msgstr "Südlich der Sahara, östlich des Nils liegt eine semiaride Region, die heute als die Butana-Steppe bekannt ist."
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
-msgid "Butana Steppe (2)"
-msgstr "Butana-Steppe (2)"
+msgid "Island of Meroë (2)"
+msgstr "Insel von Meroe (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
@@ -2577,6 +2596,17 @@ msgstr "Zwei Teams stehen sich an einen langen, sehr großen Salzsee gegenüber.
 msgid "Caspian Sea (2v2)"
 msgstr "Kaspisches Meer (2vs2)"
 
+#: maps/skirmishes/cisalpine_winter_2p.xml:Description:39
+msgid ""
+"Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
+"\n"
+"CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
+msgstr "Das nördliche Italien nahe der Alpen wird von den Römern Gallia Cisalpina genannt. Es ist eine fruchtbare Gegend, die von den Galliern, Etruskern und Römern gleichermaßen umkämpft wird. \n\nACHTUNG: Die Karte hat sehr viele Schneepartikel, die die Grafikperformance auf schwacher Hardware beeinträchtigen könnten."
+
+#: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
+msgid "Cisalpine Winter (2)"
+msgstr "Cisalpiner Winter (2)"
+
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
 msgid "Corinthian Isthmus (2)"
 msgstr "Isthmus von Korinth (2)"
@@ -2595,6 +2625,17 @@ msgstr "Die Spieler starten auf zwei gegenüberliegenden Inseln jeweils mit eine
 #: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
 msgid "Corsica and Sardinia (4)"
 msgstr "Korsika und Sardinien (4)"
+
+#: maps/skirmishes/crocodilopolis_4p.xml:Description:39
+msgid ""
+"The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
+"\n"
+"The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
+msgstr "Der antike See Moeris in der Nähe des Nils in der libyschen Wüste wurde von den Ägyptern schon seit prähistorischer Zeit besiedelt und genutzt.\n\nDie umgebenden Länder sind mit antiken und neuen Monumenten sowie Tempeln gespickt, während der See selbst voll von Tilapias zum Fischen ist."
+
+#: maps/skirmishes/crocodilopolis_4p.xml:Name:39
+msgid "Crocodilopolis (4)"
+msgstr "Krokodilopolis (4)"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -2734,6 +2775,14 @@ msgstr "Verteidige deinen gallischen Außenposten gegen Angriffe deiner tückisc
 msgid "Gallic Fields (3)"
 msgstr "Gallische Felder (3)"
 
+#: maps/skirmishes/gallic_highlands_2p.xml:Description:39
+msgid "The Highlands of central Gaul."
+msgstr "Das Hochland im zentralen Gallien."
+
+#: maps/skirmishes/gallic_highlands_2p.xml:Name:39
+msgid "Gallic Highlands (2)"
+msgstr "Gallisches Hochland (2)"
+
 #: maps/skirmishes/gambia_river_3p.xml:Description:38
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
@@ -2793,6 +2842,38 @@ msgstr "Griechische Akropolis (4)"
 msgid "Greek Acropolis Night (2)"
 msgstr "Griechische Akropolis bei Nacht (2)"
 
+#: maps/skirmishes/hindu_kush_2p.xml:Description:39
+msgid ""
+"The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
+"\n"
+"The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
+msgstr "Der Hindukusch trennt Indien von Baktrien (das heutige Afghanistan) und bildet eine Grenze zwischen dem seleukidischen und Maurya-Reich. Diese Gegend war später unter der Kontrolle der griechisch-baktrischen und indisch-griechischen Köngireiche der späteren hellenistischen Periode.\n\nDie Gegend ist arm an Holz, aber reich an Stein und Metall. Eine Handelsroute mit Handelsdepots läuft durch die Mitte der Karte, die eingenommen und zum Sammeln von Ressourcen durch Handel genutzt werden kann."
+
+#: maps/skirmishes/hindu_kush_2p.xml:Name:39
+msgid "Hindu Kush (2)"
+msgstr "Hindukusch (2)"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:Description:39
+msgid ""
+"The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
+" the great battle between the Macedonian forces under Alexander the Great "
+"and the Indian forces of the king Porus of Paurava."
+msgstr "Der Hydaspes, auch Jhelam genannt, im Punjab in Indien. Dies war der Schauplatz der großen Schlacht zwischen den makedonischen Streitkräften unter Alexander dem Großen und den Indischen Streitkräften des Königs Poros von Paurava."
+
+#: maps/skirmishes/hydaspes_river_4p.xml:Name:39
+msgid "Hydaspes River (4)"
+msgstr "Hydaspes (4)"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
+msgid "Macedonian Position"
+msgstr "Makedonische Position"
+
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
+msgid "Pauravan Position"
+msgstr "Pauravanische Position"
+
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2830,6 +2911,10 @@ msgstr "Die Karte wird in der Mitte von einem Fluss mit einigen seichten Stellen
 msgid "Lorraine Plain (2)"
 msgstr "Lothringische Ebene (2)"
 
+#: maps/skirmishes/magadha_2p.xml:Name:39
+msgid "Magadha (2)"
+msgstr "Magadha (2)"
+
 #: maps/skirmishes/median_oasis_2p.xml:Description:38
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
@@ -2854,6 +2939,17 @@ msgstr "Ein geschützter natürlicher Hafen an der Mittelmeerküste bietet die G
 #: maps/skirmishes/mediterranean_cove_2p.xml:Name:38
 msgid "Mediterranean Coves (2)"
 msgstr "Mediterrane Buchten (2)"
+
+#: maps/skirmishes/miletus_peninsula_2p.xml:Description:39
+msgid ""
+"Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
+"\n"
+"To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
+msgstr "Jeder Spieler beginnt das Spiel auf einem großen flachen Plateau, auch als Akropolis bekannt.\n\nIm Osten liegt eine große Bucht mit Möglichkeiten zum Fischen. Im Westen liegt eine herrenlose Akropolis, die die Ägäis überlickt."
+
+#: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
+msgid "Miletus Peninsula (2)"
+msgstr "Milet-Halbinsel (2)"
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Description:38
 #: maps/skirmishes/neareastern_badlands_4p.xml:Description:38
@@ -2894,6 +2990,14 @@ msgstr "Im kalten Norden gestrandet kämpfen 2 Spieler um die Vorherrschaft übe
 #: maps/skirmishes/northern_island_2p.xml:Name:39
 msgid "Northern Island (2)"
 msgstr "Nordinsel (2)"
+
+#: maps/skirmishes/nubian_frontier_2p.xml:Description:39
+msgid "The arid and treacherous frontier between Nubia and Egypt."
+msgstr "Die trockene und tückische Grenzregion zwischen Nubien und Ägypten."
+
+#: maps/skirmishes/nubian_frontier_2p.xml:Name:39
+msgid "Nubian Frontier (2)"
+msgstr "Nubische Grenze (2)"
 
 #: maps/skirmishes/obedska_bog_4p.xml:Description:39
 #: maps/skirmishes/obedska_bog_night_4p.xml:Description:39
@@ -2940,14 +3044,19 @@ msgstr "Nordwest-Indien. Nahegelegene Flüsse schwellen durch den Monsun an, sod
 msgid "Punjab (2)"
 msgstr "Punjab (2)"
 
-#: maps/skirmishes/saharan_oases_4p.xml:Description:38
+#: maps/skirmishes/saharan_oases_2p.xml:Description:39
+#: maps/skirmishes/saharan_oases_4p.xml:Description:39
 msgid ""
-"A desert biome map where each player has founded their colony at their own lush oasis.\n"
+"In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
-"The rest of the map is generally wide-open and barren."
-msgstr "Eine Wüstenkarte, in der jeder Spieler mit einer Kolonie an seiner eigenen üppigen Oase beginnt.\n\nDer Rest der Karte ist hauptsächlich weit, offen und unfruchtbar."
+"Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
+msgstr "Tief in der Wüste Sahara in Afrika liegt eine Gegend mit Felsvorsprüngen und kleinen Oasen.\n\nGroße Steinbrüche können in den Klippen gefunden werden, während Holz und tierische Ressourcen in der Nähe der Oasen, die über die Landschaft verstreut sind, liegen. Üppige Dattelpalmen in der Nähe liefern einen willkommenen Nahrungsbonus am Anfang."
 
-#: maps/skirmishes/saharan_oases_4p.xml:Name:38
+#: maps/skirmishes/saharan_oases_2p.xml:Name:39
+msgid "Saharan Oases (2)"
+msgstr "Saharische Oasen (2)"
+
+#: maps/skirmishes/saharan_oases_4p.xml:Name:39
 msgid "Saharan Oases (4)"
 msgstr "Saharische Oasen (4)"
 
@@ -2983,6 +3092,17 @@ msgstr "Eine große Savanne wird durch einen schmalen Dschungelfluss zweigeteilt
 msgid "Savanna River (2)"
 msgstr "Savannenfluss (2)"
 
+#: maps/skirmishes/scythia_4p.xml:Description:39
+msgid ""
+"The steppes of central Asia. A wide open grassland with few trees (about 90%"
+" fewer trees than on a temperate or Aegean map). Animal life is plentiful "
+"though, so take advantage of the hunting available. "
+msgstr "Die Steppe Zentralasiens. Eine weites, offenes Grasland mit wenigen Bäumen (ca. 90% weniger Bäume als auf einer gemäßigten oder ägäischen Karte). Tiere gibt es allerdings reichlich, nütze also die verfügbaren jagdbaren Tiere zu deinem Vorteil."
+
+#: maps/skirmishes/scythia_4p.xml:Name:39
+msgid "Scythian Steppes (4)"
+msgstr "Skythische Steppe (4)"
+
 #: maps/skirmishes/sicilia_2p.xml:Description:38
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "Die große Mittelmeerinsel Sizilien wartet auf ihre Eroberung."
@@ -3009,20 +3129,20 @@ msgstr "Eine Gefechtsdemonstrationskarte."
 msgid "Skirmish Demo (2)"
 msgstr "Gefechtsdemo (2)"
 
-#: maps/skirmishes/sporades_islands_2p.xml:Name:38
+#: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2)"
 msgstr "Sporaden (2)"
 
-#: maps/skirmishes/syria_2p.xml:Description:38
+#: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
 msgstr "Ein unfruchtbares Ödland mit wenig Holz und wenigen Tieren. Schätze verteilen sich auf die Landschaft und sind unerlässlich für frühes Wachstum.\n\nDer Spieler, der sich am frühesten profitable Handelswege eröffnet, verschafft sich einen entscheidenden Vorteil."
 
-#: maps/skirmishes/syria_2p.xml:Name:38
-msgid "Syria (2)"
-msgstr "Syrien (2)"
+#: maps/skirmishes/syria_2p.xml:Name:39
+msgid "Coele-Syria (2)"
+msgstr "Koilesyrien (2)"
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3105,6 +3225,41 @@ msgstr "Die Afrikanische Savanne ist vollgestopft mit Tieren zum Jagen, während
 #: maps/skirmishes/watering_holes_4p.xml:Name:38
 msgid "Watering Holes (4)"
 msgstr "Wasserlöcher (4)"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
+msgid ""
+"Foreigners are invading Britannia. The native Britons must fight against a massive enemy invasion force to secure their homeland for the next generation!\n"
+"\n"
+"Player 1 is the Britons. Players 2-5 are the invasion force, garrisoned aboard their stout ships in the channel off the White Cliffs of Dover. \n"
+"\n"
+"Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
+"\n"
+"Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
+msgstr "Fremde fallen in Britannien ein. Die einheimischen Britonen müssen gegen ein gewaltiges gegnerisches Invasionsheer kämpfen, um ihr Heimatland für die nächste Generation zu sichern!\n\nSpieler 1 spielt die Britonen. Spieler 2-5 sind das Invasionsheer, das an Bord ihrer robusten Schiffe im Kanal vor den weißen Klippen von Dover liegt.\n\nTeams werden vom Kartenscript festgelegt, können aber von den Spielern bei der Spielerstellung geändert werden, wenn sie die Karte entgegen dem vom Kartenersteller gewollten Szenario spielen wollen. In diesem Fall sollte der Host einen Waffenspielstand setzen, damit die Spieler in den Booten friedlich landen und einen geeigneten Platz für ihre ersten Siedlungen suchen können.\n\nDie zugewiesenen Zivilisationen sind bloß Vorschläge und der Host sollte die Startressourcen auf 1000 setzen, damit man am Anfang Verwaltungssitze bauen kann."
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
+msgid "White Cliffs of Dover (5)"
+msgstr "Weiße Klippen von Dover (5)"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
+msgid "Britons"
+msgstr "Britonen"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
+msgid "Invader 1"
+msgstr "Invasor 1"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
+msgid "Invader 2"
+msgstr "Invasor 2"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
+msgid "Invader 3"
+msgstr "Invasor 3"
+
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
+msgid "Invader 4"
+msgstr "Invasor 4"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

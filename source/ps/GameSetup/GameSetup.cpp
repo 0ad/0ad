@@ -946,8 +946,14 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 
 	RunHardwareDetection();
 
-	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
-	SetTextureQuality(quality);
+	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
+		SetTextureQuality(SANE_TEX_QUALITY_DEFAULT);
+	else
+	{
+		int textureQuality = SANE_TEX_QUALITY_DEFAULT;
+		CFG_GET_VAL("texturequality", textureQuality);
+		SetTextureQuality(textureQuality);
+	}
 
 	ogl_WarnIfError();
 

@@ -7,7 +7,7 @@ class GameSettingsController
 	{
 		this.setupWindow = setupWindow;
 		this.mapCache = mapCache;
-		this.persistentMatchSettings = new PersistentMatchSettings(this);
+		this.persistentMatchSettings = new PersistentMatchSettings(g_IsNetworked);
 
 		this.guiData = new GameSettingsGuiData();
 

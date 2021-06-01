@@ -223,6 +223,17 @@
 				]
 			},
 			{
+				"type": "dropdown",
+				"label": "Model appearance randomization",
+				"tooltip": "Randomize the appearance of entities. Disabling gives a small performance improvement.",
+				"config": "variant_diversity",
+				"list": [
+					{ "value": "none", "label": "None", "tooltip": "Entities will all look the same." },
+					{ "value": "limited", "label": "Limited", "tooltip": "Entities will be less diverse." },
+					{ "value": "full", "label": "Normal", "tooltip": "Entities appearance is randomized normally." }
+				]
+			},
+			{
 				"type": "slider",
 				"label": "Shader effects",
 				"tooltip": "Number of shader effects. REQUIRES GAME RESTART",

@@ -111,6 +111,12 @@ MapFilters.prototype.Filters = [
 		"Match": ["new"]
 	},
 	{
+		"Name": "multiplayer",
+		"Title": translate("Best for MP"),
+		"Description": translate("Maps that are recommended for Multiplayer play."),
+		"Match": ["multiplayer"]
+	},
+	{
 		"Name": "trigger",
 		"Title": translate("Trigger Maps"),
 		"Description": translate("Maps that come with scripted events and potentially spawn enemy units."),
