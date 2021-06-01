@@ -170,19 +170,19 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 		{
 			if (!CMiniMap::FireWorldClickEvent(SDL_BUTTON_LEFT, 1))
 			{
-				SetCameraPos();
+				SetCameraPositionFromMousePosition();
 				m_Clicking = true;
 			}
 		}
 		break;
 	case GUIM_MOUSE_RELEASE_LEFT:
 		if (m_MouseHovering && m_Clicking)
-			SetCameraPos();
+			SetCameraPositionFromMousePosition();
 		m_Clicking = false;
 		break;
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 		if (m_MouseHovering && m_Clicking)
-			SetCameraPos();
+			SetCameraPositionFromMousePosition();
 		m_Clicking = false;
 		break;
 	case GUIM_MOUSE_ENTER:
@@ -200,7 +200,7 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 		break;
 	case GUIM_MOUSE_MOTION:
 		if (m_MouseHovering && m_Clicking)
-			SetCameraPos();
+			SetCameraPositionFromMousePosition();
 		break;
 	case GUIM_MOUSE_WHEEL_DOWN:
 	case GUIM_MOUSE_WHEEL_UP:
@@ -229,8 +229,7 @@ bool CMiniMap::IsMouseOver() const
 
 void CMiniMap::GetMouseWorldCoordinates(float& x, float& z) const
 {
-	// Determine X and Z according to proportion of mouse position and minimap
-
+	// Determine X and Z according to proportion of mouse position and minimap.
 	const CVector2D& mousePos = m_pGUI.GetMousePos();
 
 	float px = (mousePos.X - m_CachedActualSize.left) / m_CachedActualSize.GetWidth();
@@ -243,7 +242,7 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z) const
 	z = TERRAIN_TILE_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(py-0.5) + sin(angle)*(px-0.5)) + 0.5);
 }
 
-void CMiniMap::SetCameraPos()
+void CMiniMap::SetCameraPositionFromMousePosition()
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 

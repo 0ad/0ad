@@ -47,7 +47,7 @@ protected:
 	virtual bool IsMouseOver() const;
 
 private:
-	void SetCameraPos();
+	void SetCameraPositionFromMousePosition();
 
 	bool FireWorldClickEvent(int button, int clicks);
 

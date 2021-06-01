@@ -18,7 +18,6 @@
 #ifndef INCLUDED_MINIMAPTEXTURE
 #define INCLUDED_MINIMAPTEXTURE
 
-#include "graphics/ShaderTechniquePtr.h"
 #include "lib/ogl.h"
 
 class CSimulation2;

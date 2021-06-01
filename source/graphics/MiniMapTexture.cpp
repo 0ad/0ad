@@ -20,7 +20,6 @@
 #include "MiniMapTexture.h"
 
 #include "graphics/MiniPatch.h"
-#include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
@@ -86,7 +85,7 @@ void CMiniMapTexture::Render()
 	ENSURE(cmpRangeManager);
 
 	m_MapSize = terrain->GetVerticesPerSide();
-	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
+	m_TextureSize = static_cast<GLsizei>(round_up_to_pow2(static_cast<size_t>(m_MapSize)));
 
 	if (!m_TerrainTexture)
 		CreateTextures();
@@ -130,20 +129,20 @@ void CMiniMapTexture::DestroyTextures()
 
 void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 {
-	u32 x = 0;
-	u32 y = 0;
-	u32 w = m_MapSize - 1;
-	u32 h = m_MapSize - 1;
-	m_WaterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+	const u32 x = 0;
+	const u32 y = 0;
+	const u32 width = m_MapSize - 1;
+	const u32 height = m_MapSize - 1;
 
+	m_WaterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
 	m_Dirty = false;
 
-	for (u32 j = 0; j < h; ++j)
+	for (u32 j = 0; j < height; ++j)
 	{
-		u32* dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
-		for (u32 i = 0; i < w; ++i)
+		u32* dataPtr = m_TerrainData + ((y + j) * width) + x;
+		for (u32 i = 0; i < width; ++i)
 		{
-			float avgHeight = ( terrain->GetVertexGroundLevel((int)i, (int)j)
+			const float avgHeight = ( terrain->GetVertexGroundLevel((int)i, (int)j)
 					+ terrain->GetVertexGroundLevel((int)i+1, (int)j)
 					+ terrain->GetVertexGroundLevel((int)i, (int)j+1)
 					+ terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
@@ -188,7 +187,7 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_TerrainTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
 	g_Renderer.BindTexture(0, 0);
 }
 
