@@ -89,7 +89,7 @@ void CMiniMapTexture::Render()
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
 
 	if (!m_TerrainTexture)
-		CreateTextures(terrain);
+		CreateTextures();
 
 	RebuildTerrainTexture(terrain);
 }
