@@ -25,6 +25,7 @@
 #include "graphics/MiniMapTexture.h"
 #include "graphics/MiniPatch.h"
 #include "graphics/ShaderManager.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
@@ -95,6 +96,41 @@ void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D&
 		lines->emplace_back(
 			direction.Dot(nextPoint) < direction.Dot(intersectionB) ? nextPoint : intersectionB);
 	}
+}
+
+void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float mapScale)
+{
+	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
+	// Scale square maps to fit in circular minimap area
+	const float s = sin(angle) * mapScale;
+	const float c = cos(angle) * mapScale;
+	const float m = coordMax / 2.f;
+
+	float quadTex[] = {
+		m*(-c + s + 1.f), m*(-c + -s + 1.f),
+		m*(c + s + 1.f), m*(-c + s + 1.f),
+		m*(c + -s + 1.f), m*(c + s + 1.f),
+
+		m*(c + -s + 1.f), m*(c + s + 1.f),
+		m*(-c + -s + 1.f), m*(c + -s + 1.f),
+		m*(-c + s + 1.f), m*(-c + -s + 1.f)
+	};
+	float quadVerts[] = {
+		x, y, 0.0f,
+		x2, y, 0.0f,
+		x2, y2, 0.0f,
+
+		x2, y2, 0.0f,
+		x, y2, 0.0f,
+		x, y, 0.0f
+	};
+
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
+	shader->VertexPointer(3, GL_FLOAT, 0, quadVerts);
+	shader->AssertPointersBound();
+
+	if (!g_Renderer.DoSkipSubmit())
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 } // anonymous namespace
@@ -312,13 +348,6 @@ void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 		vertices.emplace_back(-(height * point.Z * invTileMapSize));
 	}
 
-	// Enable Scissoring to restrict the rectangle to only the minimap.
-	glScissor(
-		m_CachedActualSize.left * g_GuiScale,
-		g_Renderer.GetHeight() - m_CachedActualSize.bottom * g_GuiScale,
-		width * g_GuiScale,
-		height * g_GuiScale);
-	glEnable(GL_SCISSOR_TEST);
 	glLineWidth(2.0f);
 
 	CShaderDefines lineDefines;
@@ -338,7 +367,6 @@ void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 	tech->EndPass();
 
 	glLineWidth(1.0f);
-	glDisable(GL_SCISSOR_TEST);
 }
 
 struct MinimapUnitVertex
@@ -363,42 +391,6 @@ static void inline addVertex(const MinimapUnitVertex& v,
 	(*attrPos)[1] = v.y;
 
 	++attrPos;
-}
-
-
-void CMiniMap::DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2) const
-{
-	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
-	// Scale square maps to fit in circular minimap area
-	const float s = sin(angle) * m_MapScale;
-	const float c = cos(angle) * m_MapScale;
-	const float m = coordMax / 2.f;
-
-	float quadTex[] = {
-		m*(-c + s + 1.f), m*(-c + -s + 1.f),
-		m*(c + s + 1.f), m*(-c + s + 1.f),
-		m*(c + -s + 1.f), m*(c + s + 1.f),
-
-		m*(c + -s + 1.f), m*(c + s + 1.f),
-		m*(-c + -s + 1.f), m*(c + -s + 1.f),
-		m*(-c + s + 1.f), m*(-c + -s + 1.f)
-	};
-	float quadVerts[] = {
-		x, y, 0.0f,
-		x2, y, 0.0f,
-		x2, y2, 0.0f,
-
-		x2, y2, 0.0f,
-		x, y2, 0.0f,
-		x, y, 0.0f
-	};
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
-	shader->VertexPointer(3, GL_FLOAT, 0, quadVerts);
-	shader->AssertPointersBound();
-
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 // TODO: render the minimap in a framebuffer and just draw the frambuffer texture
@@ -426,10 +418,10 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	// Set our globals in case they hadn't been set before
 	m_Camera = g_Game->GetView()->GetCamera();
 	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
-	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
+	ssize_t width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
+	ssize_t height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = terrain->GetVerticesPerSide();
-	m_TextureSize = miniMapTexture.GetTerrainTextureSize();
+	GLsizei textureSize = miniMapTexture.GetTerrainTextureSize();
 	m_MapScale = (cmpRangeManager->GetLosCircular() ? 1.f : 1.414f);
 
 	// only update 2x / second
@@ -444,7 +436,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
-	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
+	const float texCoordMax = (float)(m_MapSize - 1) / (float)textureSize;
 	const float angle = GetAngle();
 	const float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
 
@@ -485,7 +477,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	}
 
 	if (miniMapTexture.GetTerrainTexture())
-		DrawTexture(shader, texCoordMax, angle, x, y, x2, y2);
+		DrawTexture(shader, texCoordMax, angle, x, y, x2, y2, m_MapScale);
 
 	if (!m_Mask)
 	{
@@ -506,7 +498,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, *territoryTransform);
 
-	DrawTexture(shader, 1.0f, angle, x, y, x2, y2);
+	DrawTexture(shader, 1.0f, angle, x, y, x2, y2, m_MapScale);
 	tech->EndPass();
 
 	// Draw the LOS quad in black, using alpha values from the LOS texture
@@ -523,7 +515,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		shader->Uniform(str_transform, baseTransform);
 		shader->Uniform(str_textureTransform, *losTransform);
 
-		DrawTexture(shader, 1.0f, angle, x, y, x2, y2);
+		DrawTexture(shader, 1.0f, angle, x, y, x2, y2, m_MapScale);
 		tech->EndPass();
 	}
 
@@ -556,8 +548,8 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	// Load the transform into the shader.
 	shader->Uniform(str_transform, unitMatrix);
 
-	const float sx = (float)m_Width / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
-	const float sy = (float)m_Height / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
+	const float sx = (float)width / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
+	const float sy = (float)height / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
 
 	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
 

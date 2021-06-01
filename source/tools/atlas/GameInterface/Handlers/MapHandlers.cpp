@@ -26,7 +26,7 @@
 #include "graphics/LOSTexture.h"
 #include "graphics/MapIO.h"
 #include "graphics/MapWriter.h"
-#include "graphics/MinimapTexture.h"
+#include "graphics/MiniMapTexture.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"

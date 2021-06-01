@@ -18,7 +18,6 @@
 #ifndef INCLUDED_MINIMAP
 #define INCLUDED_MINIMAP
 
-#include "graphics/ShaderProgramPtr.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "renderer/VertexArray.h"
 
@@ -55,24 +54,17 @@ private:
 
 	const CCamera* m_Camera;
 
-	//Whether or not the mouse is currently down
+	// Whether or not the mouse is currently down
 	bool m_Clicking;
 
 	// Whether to draw a black square around and under the minimap.
 	CGUISimpleSetting<bool> m_Mask;
 
-	ssize_t m_Width, m_Height;
-
 	// map size
 	ssize_t m_MapSize;
 
-	// texture size
-	GLsizei m_TextureSize;
-
 	// 1.f if map is circular or 1.414f if square (to shrink it inside the circle)
 	float m_MapScale;
-
-	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2) const;
 
 	void DrawViewRect(const CMatrix3D& transform) const;
 
