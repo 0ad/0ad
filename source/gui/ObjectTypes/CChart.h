@@ -18,7 +18,6 @@
 #ifndef INCLUDED_CCHART
 #define INCLUDED_CCHART
 
-#include "graphics/ShaderProgramPtr.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUITextOwner.h"
 #include "gui/SettingTypes/CGUIColor.h"

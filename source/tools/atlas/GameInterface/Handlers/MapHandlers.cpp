@@ -26,11 +26,11 @@
 #include "graphics/LOSTexture.h"
 #include "graphics/MapIO.h"
 #include "graphics/MapWriter.h"
+#include "graphics/MinimapTexture.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
-#include "gui/ObjectTypes/CMiniMap.h"
 #include "lib/bits.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/status.h"
@@ -293,7 +293,7 @@ QUERYHANDLER(RasterizeMinimap)
 
 	std::vector<u8> imageBytes(imageDataSize);
 
-	float shallowPassageHeight = CMiniMap::GetShallowPassageHeight();
+	float shallowPassageHeight = CMiniMapTexture::GetShallowPassageHeight();
 
 	ssize_t w = dimension;
 	ssize_t h = dimension;

@@ -23,7 +23,7 @@
 
 #include "graphics/ColladaManager.h"
 #include "graphics/LOSTexture.h"
-#include "graphics/Unit.h"
+#include "graphics/MiniMapTexture.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 #include "graphics/ObjectManager.h"
@@ -34,6 +34,7 @@
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
+#include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "graphics/Overlay.h"
 #include "maths/MathUtil.h"
@@ -72,7 +73,8 @@ public:
 		Simulation2(&UnitManager, g_ScriptContext, &Terrain),
 		ObjectManager(MeshManager, SkeletonAnimManager, Simulation2),
 		LOSTexture(Simulation2),
-		TerritoryTexture(Simulation2)
+		TerritoryTexture(Simulation2),
+		MiniMapTexture(Simulation2)
 	{
 		UnitManager.SetObjectManager(ObjectManager);
 	}
@@ -107,6 +109,7 @@ public:
 	CObjectManager ObjectManager; // Keep this after Simulation2 - it needs it for initialisation.
 	CLOSTexture LOSTexture;
 	CTerritoryTexture TerritoryTexture;
+	CMiniMapTexture MiniMapTexture;
 
 	SOverlayLine SelectionBoxOverlay;
 	SOverlayLine AxesMarkerOverlays[3];
@@ -206,6 +209,11 @@ public:
 	virtual CTerritoryTexture& GetTerritoryTexture()
 	{
 		return TerritoryTexture;
+	}
+
+	virtual CMiniMapTexture& GetMiniMapTexture()
+	{
+		return MiniMapTexture;
 	}
 
 	/**

@@ -22,6 +22,7 @@
 #include "graphics/Canvas2D.h"
 #include "graphics/GameView.h"
 #include "graphics/LOSTexture.h"
+#include "graphics/MiniMapTexture.h"
 #include "graphics/MiniPatch.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
@@ -42,7 +43,6 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
-#include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/WaterManager.h"
@@ -65,14 +65,6 @@ namespace
 // Set max drawn entities to UINT16_MAX for now, which is more than enough
 // TODO: we should be cleverer about drawing them to reduce clutter
 const u16 MAX_ENTITIES_DRAWN = 65535;
-
-unsigned int ScaleColor(unsigned int color, float x)
-{
-	unsigned int r = unsigned(float(color & 0xff) * x);
-	unsigned int g = unsigned(float((color>>8) & 0xff) * x);
-	unsigned int b = unsigned(float((color>>16) & 0xff) * x);
-	return (0xff000000 | b | g<<8 | r<<16);
-}
 
 // Adds segments pieces lying inside the circle to lines.
 void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D& center, const float radius, std::vector<CVector3D>* lines)
@@ -111,17 +103,12 @@ const CStr CMiniMap::EventNameWorldClick = "WorldClick";
 
 CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
-	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
+	m_MapSize(0), m_MapScale(1.f),
 	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(this, "mask", false),
-	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false), m_WaterHeight(0.0)
+	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false)
 {
 	m_Clicking = false;
 	m_MouseHovering = false;
-
-	// Register Relax NG validator
-	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
-
-	m_ShallowPassageHeight = GetShallowPassageHeight();
 
 	m_AttributePos.type = GL_FLOAT;
 	m_AttributePos.elems = 2;
@@ -141,7 +128,6 @@ CMiniMap::CMiniMap(CGUI& pGUI) :
 		*index++ = i;
 	m_IndexArray.Upload();
 	m_IndexArray.FreeBackingStore();
-
 
 	VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
 	VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
@@ -172,10 +158,7 @@ CMiniMap::CMiniMap(CGUI& pGUI) :
 	m_HalfBlinkDuration = blinkDuration/2;
 }
 
-CMiniMap::~CMiniMap()
-{
-	Destroy();
-}
+CMiniMap::~CMiniMap() = default;
 
 void CMiniMap::HandleMessage(SGUIMessage& Message)
 {
@@ -438,18 +421,17 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
 
+	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
+
 	// Set our globals in case they hadn't been set before
 	m_Camera = g_Game->GetView()->GetCamera();
-	m_Terrain = g_Game->GetWorld()->GetTerrain();
+	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
-	m_MapSize = m_Terrain->GetVerticesPerSide();
-	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
+	m_MapSize = terrain->GetVerticesPerSide();
+	m_TextureSize = miniMapTexture.GetTerrainTextureSize();
 	m_MapScale = (cmpRangeManager->GetLosCircular() ? 1.f : 1.414f);
-
-	if (!m_TerrainTexture || g_GameRestarted)
-		CreateTextures();
-
 
 	// only update 2x / second
 	// (note: since units only move a few pixels per second on the minimap,
@@ -459,19 +441,13 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	const double cur_time = timer_Time();
 	const bool doUpdate = cur_time - last_time > 0.5;
 	if (doUpdate)
-	{
 		last_time = cur_time;
-		if (m_TerrainDirty || m_WaterHeight != g_Renderer.GetWaterManager()->m_WaterHeight)
-			RebuildTerrainTexture();
-	}
 
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
 	const float angle = GetAngle();
 	const float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
-
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
@@ -486,7 +462,8 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	shader = tech->GetShader();
 
 	// Draw the main textured quad
-	shader->BindTexture(str_baseTex, m_TerrainTexture);
+	if (miniMapTexture.GetTerrainTexture())
+		shader->BindTexture(str_baseTex, miniMapTexture.GetTerrainTexture());
 	if (m_Mask)
 	{
 		shader->BindTexture(str_maskTex, losTexture.GetTexture());
@@ -508,7 +485,8 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	DrawTexture(shader, texCoordMax, angle, x, y, x2, y2);
+	if (miniMapTexture.GetTerrainTexture())
+		DrawTexture(shader, texCoordMax, angle, x, y, x2, y2);
 
 	if (!m_Mask)
 	{
@@ -673,117 +651,4 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	DrawViewRect(unitMatrix);
 
 	PROFILE_END("minimap units");
-}
-
-void CMiniMap::CreateTextures()
-{
-	Destroy();
-
-	// Create terrain texture
-	glGenTextures(1, &m_TerrainTexture);
-	g_Renderer.BindTexture(0, m_TerrainTexture);
-
-	// Initialise texture with solid black, for the areas we don't
-	// overwrite with glTexSubImage2D later
-	u32* texData = new u32[m_TextureSize * m_TextureSize];
-	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
-		texData[i] = 0xFF000000;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
-	delete[] texData;
-
-	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	// Rebuild and upload both of them
-	RebuildTerrainTexture();
-}
-
-
-void CMiniMap::RebuildTerrainTexture()
-{
-	u32 x = 0;
-	u32 y = 0;
-	u32 w = m_MapSize - 1;
-	u32 h = m_MapSize - 1;
-	m_WaterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
-
-	m_TerrainDirty = false;
-
-	for (u32 j = 0; j < h; ++j)
-	{
-		u32* dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
-		for (u32 i = 0; i < w; ++i)
-		{
-			float avgHeight = ( m_Terrain->GetVertexGroundLevel((int)i, (int)j)
-					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j)
-					+ m_Terrain->GetVertexGroundLevel((int)i, (int)j+1)
-					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
-				) / 4.0f;
-
-			if (avgHeight < m_WaterHeight && avgHeight > m_WaterHeight - m_ShallowPassageHeight)
-			{
-				// shallow water
-				*dataPtr++ = 0xffc09870;
-			}
-			else if (avgHeight < m_WaterHeight)
-			{
-				// Set water as constant color for consistency on different maps
-				*dataPtr++ = 0xffa07850;
-			}
-			else
-			{
-				int hmap = ((int)m_Terrain->GetHeightMap()[(y + j) * m_MapSize + x + i]) >> 8;
-				int val = (hmap / 3) + 170;
-
-				u32 color = 0xFFFFFFFF;
-
-				CMiniPatch* mp = m_Terrain->GetTile(x + i, y + j);
-				if (mp)
-				{
-					CTerrainTextureEntry* tex = mp->GetTextureEntry();
-					if (tex)
-					{
-						// If the texture can't be loaded yet, set the dirty flags
-						// so we'll try regenerating the terrain texture again soon
-						if(!tex->GetTexture()->TryLoad())
-							m_TerrainDirty = true;
-
-						color = tex->GetBaseColor();
-					}
-				}
-
-				*dataPtr++ = ScaleColor(color, float(val) / 255.0f);
-			}
-		}
-	}
-
-	// Upload the texture
-	g_Renderer.BindTexture(0, m_TerrainTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
-}
-
-void CMiniMap::Destroy()
-{
-	if (m_TerrainTexture)
-	{
-		glDeleteTextures(1, &m_TerrainTexture);
-		m_TerrainTexture = 0;
-	}
-
-	SAFE_ARRAY_DELETE(m_TerrainData);
-}
-
-// static
-float CMiniMap::GetShallowPassageHeight()
-{
-	float shallowPassageHeight = 0.0f;
-	CParamNode externalParamNode;
-	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
-	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses");
-	if (pathingSettings.GetChild("default").IsOk() && pathingSettings.GetChild("default").GetChild("MaxWaterDepth").IsOk())
-		shallowPassageHeight = pathingSettings.GetChild("default").GetChild("MaxWaterDepth").ToFloat();
-	return shallowPassageHeight;
 }

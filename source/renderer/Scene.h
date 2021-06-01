@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ class CModelDecal;
 class CParticleEmitter;
 class CPatch;
 class CLOSTexture;
+class CMiniMapTexture;
 class CTerritoryTexture;
 struct SOverlayLine;
 struct SOverlayTexturedLine;
@@ -72,6 +73,11 @@ public:
 	 * Return the territory texture to be used for rendering this scene.
 	 */
 	virtual CTerritoryTexture& GetTerritoryTexture() = 0;
+
+	/**
+	 * Return the minimap texture to be used for rendering this scene.
+	 */
+	virtual CMiniMapTexture& GetMiniMapTexture() = 0;
 };
 
 
