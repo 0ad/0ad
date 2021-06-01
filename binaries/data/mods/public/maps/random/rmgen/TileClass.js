@@ -1,159 +1,99 @@
-//////////////////////////////////////////////////////////////////////
-//	RangeOp
-//
-//	Class for efficiently finding number of points within a range
-//
-//////////////////////////////////////////////////////////////////////
-
-function RangeOp(size)
-{
-	// Get smallest power of 2 which is greater than or equal to size
-	this.nn = 1;
-	while (this.nn < size) {
-		this.nn *= 2;
-	}
-
-	this.vals = new Int16Array(2*this.nn);	// int16
-}
-
-RangeOp.prototype.set = function(pos, amt)
-{
-	this.add(pos, amt - this.vals[this.nn + pos]);
-};
-
-RangeOp.prototype.add = function(pos, amt)
-{
-	for(var s = this.nn; s >= 1; s /= 2)
-	{
-		this.vals[s + pos] += amt;
-		pos = Math.floor(pos/2);
-	}
-};
-
-RangeOp.prototype.get = function(start, end)
-{
-	var ret = 0;
-	var i = 1;
-	var nn = this.nn;
-
-	// Count from start to end by powers of 2
-	for (; start+i <= end; i *= 2)
-	{
-		if (start & i)
-		{	// For each bit in start
-			ret += this.vals[nn/i + Math.floor(start/i)];
-			start += i;
-		}
-	}
-
-	//
-	while(i >= 1)
-	{
-		if(start+i <= end)
-		{
-			ret += this.vals[nn/i + Math.floor(start/i)];
-			start += i;
-		}
-		i /= 2;
-	}
-
-	return ret;
-};
-
 /**
  * Class that can be tagged to any tile. Can be used to constrain placers and entity placement to given areas.
  */
-function TileClass(size)
-{
-	this.size = size;
-	this.inclusionCount = [];
-	this.rangeCount = [];
+class TileClass {
 
-	for (let i=0; i < size; ++i)
+	constructor(size)
 	{
-		this.inclusionCount[i] = new Int16Array(size); //int16
-		this.rangeCount[i] = new RangeOp(size);
+		this.size = size;
+		this.width = Math.ceil(size / 16); // Need one entry per 16 tiles as each tile takes a single bit
+		this.inclusionGrid = new Uint16Array(this.size * this.width);
+	}
+
+	/**
+	 * Returns true if the given position is part of the tileclass.
+	 */
+	has(position)
+	{
+		if (position.x < 0 || position.x >= this.size || position.y < 0 || position.y >= this.size)
+			return 0;
+		// x >> 4 == Math.floor(x / 16); used to find the integer this x is included in
+		// x & 0xF == x % 16; used to find the bit position of the given x
+		return this.inclusionGrid[position.y * this.width + (position.x >> 4)] & (1 << (position.x & 0xF));
+	}
+
+	/**
+	 * Adds the given position to the tileclass.
+	 */
+	add(position)
+	{
+		if (position.x < 0 || position.x >= this.size || position.y < 0 || position.y >= this.size)
+			return;
+		this.inclusionGrid[position.y * this.width + (position.x >> 4)] |= 1 << (position.x & 0xF);
+	}
+
+	/**
+	 * Removes the given position to the tileclass.
+	 */
+	remove(position)
+	{
+		if (position.x < 0 || position.x >= this.size || position.y < 0 || position.y >= this.size)
+			return;
+		this.inclusionGrid[position.y * this.width + (position.x >> 4)] &= ~(1 << (position.x & 0xF));
+	}
+
+	/**
+	 * Count the number of tiles in the tileclass within the given radius of the given position.
+	 * Can return either the total number of members or nonmembers.
+	 */
+	countInRadius(position, radius, returnMembers)
+	{
+		let members = 0;
+		let total = 0;
+		const radius2 = radius * radius;
+		const [x, y] = [position.x, position.y];
+
+		const yMin = Math.max(Math.ceil(y - radius), 0);
+		const yMax = Math.min(Math.floor(y + radius), this.size - 1);
+		for (let iy = yMin; iy <= yMax; ++iy)
+		{
+			const dy = iy - y;
+			const dy2 = dy * dy;
+			const delta = Math.sqrt(radius2 - dy2);
+			const xMin = Math.max(Math.ceil(x - delta), 0);
+			const xMax = Math.min(Math.floor(x + delta), this.size - 1);
+
+			const indexXMin = xMin >> 4;
+			const indexXMax = xMax >> 4;
+			const indexY = iy * this.width;
+			for (let indexX = indexXMin; indexX <= indexXMax; ++indexX)
+			{
+				const imin = indexX == indexXMin ? xMin & 0xF : 0;
+				const imax = indexX == indexXMax ? xMax & 0xF : 15;
+				total += imax - imin + 1;
+				if (this.inclusionGrid[indexY + indexX])
+					for (let i = imin; i <= imax; ++i)
+						if (this.inclusionGrid[indexY + indexX] & (1 << i))
+							++members;
+			}
+		}
+
+		return returnMembers ? members : total - members;
+	}
+
+	/**
+	 * Counts the number of tiles marked in the tileclass within the given radius of the given position.
+	 */
+	countMembersInRadius(position, radius)
+	{
+		return this.countInRadius(position, radius, true);
+	}
+
+	/**
+	 * Counts the number of tiles not marked in the tileclass within the given radius of the given position.
+	 */
+	countNonMembersInRadius(position, radius)
+	{
+		return this.countInRadius(position, radius, false);
 	}
 }
-
-TileClass.prototype.has = function(position)
-{
-	return !!this.inclusionCount[position.x] && !!this.inclusionCount[position.x][position.y];
-};
-
-TileClass.prototype.add = function(position)
-{
-	if (!this.inclusionCount[position.x][position.y] && g_Map.validTile(position))
-		this.rangeCount[position.y].add(position.x, 1);
-
-	++this.inclusionCount[position.x][position.y];
-};
-
-TileClass.prototype.remove = function(position)
-{
-	--this.inclusionCount[position.x][position.y];
-
-	if (!this.inclusionCount[position.x][position.y])
-		this.rangeCount[position.y].add(position.x, -1);
-};
-
-TileClass.prototype.countInRadius = function(position, radius, returnMembers)
-{
-	let members = 0;
-	let nonMembers = 0;
-	let radius2 = Math.square(radius);
-
-	for (let y = position.y - radius; y <= position.y + radius; ++y)
-	{
-		let iy = Math.floor(y);
-		if (radius >= 27) // Switchover point before RangeOp actually performs better than a straight algorithm
-		{
-			if (iy >= 0 && iy < this.size)
-			{
-				let dx = Math.sqrt(Math.square(radius) - Math.square(y - position.y));
-
-				let minX = Math.max(Math.floor(position.x - dx), 0);
-				let maxX = Math.min(Math.floor(position.x + dx), this.size - 1) + 1;
-
-				let newMembers = this.rangeCount[iy].get(minX, maxX);
-
-				members += newMembers;
-				nonMembers += maxX - minX - newMembers;
-			}
-		}
-		else // Simply check the tiles one by one to find the number
-		{
-			let dy = iy - position.y;
-
-			let xMin = Math.max(Math.floor(position.x - radius), 0);
-			let xMax = Math.min(Math.ceil(position.x + radius), this.size - 1);
-
-			for (let ix = xMin; ix <= xMax; ++ix)
-			{
-				let dx = ix - position.x;
-				if (Math.square(dx) + Math.square(dy) <= radius2)
-				{
-					if (this.inclusionCount[ix] && this.inclusionCount[ix][iy] && this.inclusionCount[ix][iy] > 0)
-						++members;
-					else
-						++nonMembers;
-				}
-			}
-		}
-	}
-
-	if (returnMembers)
-		return members;
-	else
-		return nonMembers;
-};
-
-TileClass.prototype.countMembersInRadius = function(position, radius)
-{
-	return this.countInRadius(position, radius, true);
-};
-
-TileClass.prototype.countNonMembersInRadius = function(position, radius)
-{
-	return this.countInRadius(position, radius, false);
-};
