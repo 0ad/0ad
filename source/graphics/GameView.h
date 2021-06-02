@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,10 +23,10 @@
 
 #include "lib/input.h" // InReaction - can't forward-declare enum
 
-class CGame;
-class CObjectManager;
 class CCamera;
 class CCinemaManager;
+class CGame;
+class CObjectManager;
 class CVector3D;
 struct SViewPort;
 
@@ -86,6 +86,7 @@ public:
 	void EnumerateObjects(const CFrustum& frustum, SceneCollector* c) override;
 	CLOSTexture& GetLOSTexture() override;
 	CTerritoryTexture& GetTerritoryTexture() override;
+	CMiniMapTexture& GetMiniMapTexture() override;
 
 private:
 	// Unloads all graphics resources loaded by RegisterInit.

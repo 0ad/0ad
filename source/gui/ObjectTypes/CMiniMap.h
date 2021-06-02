@@ -18,7 +18,6 @@
 #ifndef INCLUDED_MINIMAP
 #define INCLUDED_MINIMAP
 
-#include "graphics/ShaderProgramPtr.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "renderer/VertexArray.h"
 
@@ -33,11 +32,6 @@ public:
 	CMiniMap(CGUI& pGUI);
 	virtual ~CMiniMap();
 
-	/**
-	 * @return The maximum height for unit passage in water.
-	 */
-	static float GetShallowPassageHeight();
-
 protected:
 	virtual void Draw(CCanvas2D& canvas);
 
@@ -51,58 +45,26 @@ protected:
 	 */
 	virtual bool IsMouseOver() const;
 
-	// create the minimap textures
-	void CreateTextures();
-
-	// rebuild the terrain texture map
-	void RebuildTerrainTexture();
-
-	// destroy and free any memory and textures
-	void Destroy();
-
-	void SetCameraPos();
+private:
+	void SetCameraPositionFromMousePosition();
 
 	bool FireWorldClickEvent(int button, int clicks);
 
 	static const CStr EventNameWorldClick;
 
-	// the terrain we are mini-mapping
-	const CTerrain* m_Terrain;
-
 	const CCamera* m_Camera;
 
-	//Whether or not the mouse is currently down
+	// Whether or not the mouse is currently down
 	bool m_Clicking;
-
-	// minimap texture handles
-	GLuint m_TerrainTexture;
-
-	// texture data
-	u32* m_TerrainData;
-
-	// whether we need to regenerate the terrain texture
-	bool m_TerrainDirty;
 
 	// Whether to draw a black square around and under the minimap.
 	CGUISimpleSetting<bool> m_Mask;
 
-	ssize_t m_Width, m_Height;
-
 	// map size
 	ssize_t m_MapSize;
 
-	// texture size
-	GLsizei m_TextureSize;
-
 	// 1.f if map is circular or 1.414f if square (to shrink it inside the circle)
 	float m_MapScale;
-
-	// maximal water height to allow the passage of a unit (for underwater shallows).
-	float m_ShallowPassageHeight;
-
-	float m_WaterHeight;
-
-	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2) const;
 
 	void DrawViewRect(const CMatrix3D& transform) const;
 

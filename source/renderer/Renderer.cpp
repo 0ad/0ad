@@ -45,6 +45,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/MaterialManager.h"
+#include "graphics/MiniMapTexture.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 #include "graphics/ParticleManager.h"
@@ -1240,6 +1241,8 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	PROFILE3("render submissions");
 
 	GetScene().GetLOSTexture().InterpolateLOS();
+
+	GetScene().GetMiniMapTexture().Render();
 
 	CShaderDefines context = m->globalContext;
 

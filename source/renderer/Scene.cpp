@@ -15,21 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * File        : Scene.cpp
- * Project     : graphics
- * Description : This file contains default implementations and utilities
- *             : to be used together with the Scene interface and related
- *             : classes.
- *
- * @note This file would fit just as well into the graphics/ subdirectory.
- */
-
 #include "precompiled.h"
+
+#include "renderer/Scene.h"
 
 #include "graphics/Model.h"
 #include "graphics/ParticleEmitter.h"
-#include "renderer/Scene.h"
 
 ///////////////////////////////////////////////////////////
 // Default implementation traverses the model recursively and uses

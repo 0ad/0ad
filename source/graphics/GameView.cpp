@@ -25,6 +25,7 @@
 #include "graphics/HFTracer.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/LightEnv.h"
+#include "graphics/MiniMapTexture.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
@@ -71,6 +72,7 @@ public:
 		ObjectManager(MeshManager, SkeletonAnimManager, *game->GetSimulation2()),
 		LOSTexture(*game->GetSimulation2()),
 		TerritoryTexture(*game->GetSimulation2()),
+		MiniMapTexture(*game->GetSimulation2()),
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),
@@ -86,6 +88,7 @@ public:
 	CObjectManager ObjectManager;
 	CLOSTexture LOSTexture;
 	CTerritoryTexture TerritoryTexture;
+	CMiniMapTexture MiniMapTexture;
 
 	/**
 	 * this camera controls the eye position when rendering
@@ -192,7 +195,7 @@ CCamera* CGameView::GetCamera()
 CCinemaManager* CGameView::GetCinema()
 {
 	return &m->CinemaManager;
-};
+}
 
 CLOSTexture& CGameView::GetLOSTexture()
 {
@@ -202,6 +205,11 @@ CLOSTexture& CGameView::GetLOSTexture()
 CTerritoryTexture& CGameView::GetTerritoryTexture()
 {
 	return m->TerritoryTexture;
+}
+
+CMiniMapTexture& CGameView::GetMiniMapTexture()
+{
+	return m->MiniMapTexture;
 }
 
 int CGameView::Initialize()
@@ -301,6 +309,8 @@ void CGameView::UnloadResources()
 
 void CGameView::Update(const float deltaRealTime)
 {
+	m->MiniMapTexture.Update(deltaRealTime);
+
 	// If camera movement is being handled by the touch-input system,
 	// then we should stop to avoid conflicting with it
 	if (g_TouchInput.IsEnabled())
