@@ -23,6 +23,7 @@ class GameSettingsController
 		this.updateLayoutHandlers = new Set();
 		this.settingsChangeHandlers = new Set();
 		this.loadingChangeHandlers = new Set();
+		this.settingsLoadedHandlers = new Set();
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
@@ -66,23 +67,35 @@ class GameSettingsController
 		this.loadingChangeHandlers.add(handler);
 	}
 
+	/**
+	 * @param handler will be called when the initial settings have been loaded.
+	 */
+	registerSettingsLoadedHandler(handler)
+	{
+		this.settingsLoadedHandlers.add(handler);
+	}
+
 	onLoad(initData, hotloadData)
 	{
 		if (hotloadData)
 			this.parseSettings(hotloadData.initAttributes);
-		else if (g_IsController && this.persistentMatchSettings.enabled)
+		else if (g_IsController && (initData?.gameSettings || this.persistentMatchSettings.enabled))
 		{
-			let settings = this.persistentMatchSettings.loadFile();
+			// Allow opting-in to persistence when sending initial data (though default off)
+			if (initData?.gameSettings)
+				this.persistentMatchSettings.enabled = !!initData.gameSettings?.usePersistence;
+			const settings = initData?.gameSettings || this.persistentMatchSettings.loadFile();
 			if (settings)
-			{
 				this.parseSettings(settings);
-				// If the new settings led to AI & players conflict, remove the AI.
-				for (let guid in g_PlayerAssignments)
-					if (g_PlayerAssignments[guid].player !== -1 &&
-						g_GameSettings.playerAI.get(g_PlayerAssignments[guid].player - 1))
-						g_GameSettings.playerAI.set(g_PlayerAssignments[guid].player - 1, undefined);
-			}
 		}
+		// If the new settings led to AI & players conflict, remove the AI.
+		for (const guid in g_PlayerAssignments)
+			if (g_PlayerAssignments[guid].player !== -1 &&
+				g_GameSettings.playerAI.get(g_PlayerAssignments[guid].player - 1))
+				g_GameSettings.playerAI.set(g_PlayerAssignments[guid].player - 1, undefined);
+
+		for (const handler of this.settingsLoadedHandlers)
+			handler();
 
 		this.updateLayout();
 		this.setNetworkInitAttributes();

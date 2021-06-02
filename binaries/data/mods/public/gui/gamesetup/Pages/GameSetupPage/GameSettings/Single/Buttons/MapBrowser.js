@@ -8,6 +8,16 @@ GameSettingControls.MapBrowser = class MapBrowser extends GameSettingControlButt
 		Engine.SetGlobalHotkey(this.HotkeyConfig, "Press", this.onPress.bind(this));
 	}
 
+	onSettingsLoaded()
+	{
+		if (this.gameSettingsController.guiData.lockSettings?.map)
+		{
+			this.setEnabled(false);
+			this.setHidden(true);
+			return;
+		}
+	}
+
 	setControlHidden()
 	{
 		this.button.hidden = false;

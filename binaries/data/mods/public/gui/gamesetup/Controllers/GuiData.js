@@ -8,6 +8,10 @@ class GameSettingsGuiData
 	{
 		this.mapFilter = new Observable();
 		this.mapFilter.filter = "default";
+
+		// Mark some settings as unmodifiable even if they normally would be.
+		// TODO: increase support for this feature.
+		this.lockSettings = {};
 	}
 
 	/**
@@ -15,14 +19,17 @@ class GameSettingsGuiData
 	 */
 	Serialize()
 	{
-		let ret = {
-			"mapFilter": this.mapFilter.filter,
+		const ret = {
+			"mapFilter": this.mapFilter.filter
 		};
+		if (Object.keys(this.lockSettings).length)
+			ret.lockSettings = this.lockSettings;
 		return ret;
 	}
 
 	Deserialize(data)
 	{
 		this.mapFilter.filter = data.mapFilter;
+		this.lockSettings = data?.lockSettings || {};
 	}
 }

@@ -50,6 +50,9 @@ class GameSettingControl /* extends Profilable /* Uncomment to profile controls 
 		if (this.onLoad)
 			this.setupWindow.registerLoadHandler(this.onLoad.bind(this));
 
+		if (this.onSettingsLoaded)
+			this.gameSettingsController.registerSettingsLoadedHandler(this.onSettingsLoaded.bind(this));
+
 		if (this.onPlayerAssignmentsChange)
 			this.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
 	}

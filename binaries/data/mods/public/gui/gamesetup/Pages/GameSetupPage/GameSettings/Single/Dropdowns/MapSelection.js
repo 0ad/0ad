@@ -6,16 +6,40 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 
 		this.values = undefined;
 
-		g_GameSettings.map.watch(() => this.render(), ["map"]);
-		g_GameSettings.map.watch(() => this.updateMapList(), ["type"]);
-
-		this.gameSettingsController.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
-
 		this.randomItem = {
 			"file": this.RandomMapId,
 			"name": setStringTags(this.RandomMapCaption, this.RandomItemTags),
 			"description": this.RandomMapDescription
 		};
+	}
+
+	onSettingsLoaded()
+	{
+		if (this.gameSettingsController.guiData.lockSettings?.map)
+		{
+			if (!g_GameSettings.map)
+			{
+				error("Map setting locked but no map is selected");
+				throw new Error();
+			}
+
+			this.setTitle(translate("Map"));
+			this.setEnabled(false);
+
+			// Watch only for map change.
+			g_GameSettings.map.watch(() => this.render(), ["map"]);
+		}
+		else
+		{
+			g_GameSettings.map.watch(() => this.render(), ["map"]);
+			g_GameSettings.map.watch(() => this.updateMapList(), ["type"]);
+
+			this.gameSettingsController.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
+
+			this.updateMapList();
+		}
+
+		this.render();
 	}
 
 	onHoverChange()
@@ -25,12 +49,23 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 
 	render()
 	{
-		// Can happen with bad matchsettings
+		if (!this.enabled)
+		{
+			const mapData = this.mapCache.getMapData(g_GameSettings.map.mapType, g_GameSettings.map.map);
+			this.label.caption = g_GameSettings.mapName.value || mapData.settings.Name;
+			return;
+		}
+
+		if (!this.values)
+			return;
+
+		// We can end up with incorrect map selection when dependent settings change.
 		if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
 		{
 			g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
 			return;
 		}
+
 		this.setSelectedValue(g_GameSettings.map.map);
 	}
 
