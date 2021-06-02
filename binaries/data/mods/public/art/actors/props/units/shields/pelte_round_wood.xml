@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/pelte_02_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/pelte_back_wooden.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="props/shield/pelte_round_wood.png" name="baseTex"/>
+        <texture file="props/shield/pelte_round_wood_norm.png" name="normTex"/>
+        <texture file="props/shield/pelte_round_wood_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>
