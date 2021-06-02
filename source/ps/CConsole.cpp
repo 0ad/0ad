@@ -189,7 +189,7 @@ void CConsole::Render()
 	DrawWindow(canvas);
 
 	CTextRenderer textRenderer;
-	textRenderer.Font(CStrIntern(CONSOLE_FONT));
+	textRenderer.SetCurrentFont(CStrIntern(CONSOLE_FONT));
 	// animation: slide in from top of screen
 	CMatrix3D transform = GetDefaultGuiMatrix();
 	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
@@ -237,7 +237,7 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 
 	std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	for (Iter = m_deqMsgHistory.begin();
 			Iter != m_deqMsgHistory.end()
@@ -259,12 +259,12 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 
 	CMatrix3D savedTransform = textRenderer.GetTransform();
 
-	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f, 0.0f);
+	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f);
 
-	textRenderer.Color(1.0f, 1.0f, 0.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 1.0f));
 	textRenderer.PutAdvance(L"]");
 
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	if (m_iBufferPos == 0)
 		DrawCursor(textRenderer);
@@ -300,13 +300,13 @@ void CConsole::DrawCursor(CTextRenderer& textRenderer)
 	if(m_bCursorVisState)
 	{
 		// Slightly translucent yellow
-		textRenderer.Color(1.0f, 1.0f, 0.0f, 0.8f);
+		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 0.8f));
 
 		// Cursor character is chosen to be an underscore
 		textRenderer.Put(0.0f, 0.0f, L"_");
 
 		// Revert to the standard text color
-		textRenderer.Color(1.0f, 1.0f, 1.0f);
+		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 }
 

@@ -42,7 +42,7 @@ public:
 
 	void SetTransform(const CMatrix3D& transform);
 
-	void Translate(float x, float y, float z);
+	void Translate(float x, float y);
 
 	/**
 	 * Set clipping rectangle, in pre-transform coordinates (i.e. text is clipped against
@@ -55,17 +55,12 @@ public:
 	/**
 	 * Set the color for subsequent print calls.
 	 */
-	void Color(const CColor& color);
-
-	/**
-	 * Set the color for subsequent print calls.
-	 */
-	void Color(float r, float g, float b, float a = 1.0);
+	void SetCurrentColor(const CColor& color);
 
 	/**
 	 * Set the font for subsequent print calls.
 	 */
-	void Font(CStrIntern font);
+	void SetCurrentFont(CStrIntern font);
 
 	/**
 	 * Print formatted text at (0,0) under the current transform,
@@ -173,7 +168,7 @@ private:
 	CStrIntern m_FontName;
 	std::shared_ptr<CFont> m_Font;
 
-	bool m_Dirty;
+	bool m_Dirty = true;
 
 	std::list<SBatch> m_Batches;
 };

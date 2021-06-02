@@ -33,8 +33,8 @@
 CTextRenderer::CTextRenderer()
 {
 	ResetTransform();
-	Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
-	Font(str_sans_10);
+	SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
+	SetCurrentFont(str_sans_10);
 }
 
 void CTextRenderer::ResetTransform()
@@ -63,10 +63,10 @@ void CTextRenderer::SetTransform(const CMatrix3D& transform)
 	m_Dirty = true;
 }
 
-void CTextRenderer::Translate(float x, float y, float z)
+void CTextRenderer::Translate(float x, float y)
 {
 	CMatrix3D m;
-	m.SetTranslation(x, y, z);
+	m.SetTranslation(x, y, 0.0f);
 	m_Transform = m_Transform * m;
 	m_Dirty = true;
 }
@@ -76,7 +76,7 @@ void CTextRenderer::SetClippingRect(const CRect& rect)
 	m_Clipping = rect;
 }
 
-void CTextRenderer::Color(const CColor& color)
+void CTextRenderer::SetCurrentColor(const CColor& color)
 {
 	if (m_Color != color)
 	{
@@ -85,12 +85,7 @@ void CTextRenderer::Color(const CColor& color)
 	}
 }
 
-void CTextRenderer::Color(float r, float g, float b, float a)
-{
-	Color(CColor(r, g, b, a));
-}
-
-void CTextRenderer::Font(CStrIntern font)
+void CTextRenderer::SetCurrentFont(CStrIntern font)
 {
 	if (font != m_FontName)
 	{
@@ -137,7 +132,7 @@ void CTextRenderer::PutAdvance(const wchar_t* buf)
 
 	int w, h;
 	m_Font->CalculateStringSize(buf, w, h);
-	Translate((float)w, 0.0f, 0.0f);
+	Translate((float)w, 0.0f);
 }
 
 void CTextRenderer::Put(float x, float y, const wchar_t* buf)

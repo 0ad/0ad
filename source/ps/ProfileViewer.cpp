@@ -194,10 +194,10 @@ void CProfileViewer::RenderProfile()
 
 	// Print table and column titles.
 	CTextRenderer textRenderer;
-	textRenderer.Font(font_name);
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentFont(font_name);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 	textRenderer.PrintfAt(2.0f, lineSpacing, L"%hs", table->GetTitle().c_str());
-	textRenderer.Translate(22.0f, lineSpacing*2.0f, 0.0f);
+	textRenderer.Translate(22.0f, lineSpacing*2.0f);
 
 	float colX = 0.0f;
 	for (size_t col = 0; col < columns.size(); ++col)
@@ -214,7 +214,7 @@ void CProfileViewer::RenderProfile()
 		colX += columns[col].width;
 	}
 
-	textRenderer.Translate(0.0f, lineSpacing, 0.0f);
+	textRenderer.Translate(0.0f, lineSpacing);
 
 	// Print rows
 	int currentExpandId = 1;
@@ -222,9 +222,9 @@ void CProfileViewer::RenderProfile()
 	for (size_t row = 0; row < numrows; ++row)
 	{
 		if (table->IsHighlightRow(row))
-			textRenderer.Color(1.0f, 0.5f, 0.5f);
+			textRenderer.SetCurrentColor(CColor(1.0f, 0.5f, 0.5f, 1.0f));
 		else
-			textRenderer.Color(1.0f, 1.0f, 1.0f);
+			textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 		if (table->GetChild(row))
 		{
@@ -247,14 +247,14 @@ void CProfileViewer::RenderProfile()
 			rowColX += columns[col].width;
 		}
 
-		textRenderer.Translate(0.0f, lineSpacing, 0.0f);
+		textRenderer.Translate(0.0f, lineSpacing);
 	}
 
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	if (m->path.size() > 1)
 	{
-		textRenderer.Translate(0.0f, lineSpacing, 0.0f);
+		textRenderer.Translate(0.0f, lineSpacing);
 		textRenderer.Put(-15.0f, 0.0f, L"0");
 		textRenderer.Put(0.0f, 0.0f, L"back to parent");
 	}

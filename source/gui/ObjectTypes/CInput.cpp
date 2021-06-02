@@ -1265,14 +1265,11 @@ void CInput::Draw(CCanvas2D& canvas)
 	float ls = (float)font.GetLineSpacing();
 
 	CTextRenderer textRenderer;
-	textRenderer.Font(font_name);
+	textRenderer.SetCurrentFont(font_name);
 
-	// Set the Z to somewhat more, so we can draw a selected area between the
-	//  the control and the text.
 	textRenderer.Translate(
 		(float)(int)(m_CachedActualSize.left) + m_BufferZone,
-		(float)(int)(m_CachedActualSize.top+h) + m_BufferZone,
-		0.0f);
+		(float)(int)(m_CachedActualSize.top+h) + m_BufferZone);
 
 	// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
 	// (sort of like a | which is aligned to the left of most characters)
@@ -1423,7 +1420,7 @@ void CInput::Draw(CCanvas2D& canvas)
 	buffered_y = -scroll;
 
 	// Setup initial color (then it might change and change back, when drawing selected area)
-	textRenderer.Color(m_TextColor);
+	textRenderer.SetCurrentColor(m_TextColor);
 
 	bool using_selected_color = false;
 
@@ -1440,9 +1437,9 @@ void CInput::Draw(CCanvas2D& canvas)
 
 			// Text must always be drawn in integer values. So we have to convert scroll
 			if (m_MultiLine)
-				textRenderer.Translate(0.f, -(float)(int)scroll, 0.f);
+				textRenderer.Translate(0.f, -(float)(int)scroll);
 			else
-				textRenderer.Translate(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
+				textRenderer.Translate(-(float)(int)m_HorizontalScroll, 0.f);
 
 			// We might as well use 'i' here, because we need it
 			// (often compared against ints, so don't make it size_t)
@@ -1454,9 +1451,9 @@ void CInput::Draw(CCanvas2D& canvas)
 					{
 						// We still need to translate the OpenGL matrix
 						if (i == 0)
-							textRenderer.Translate(it->m_ListOfX[i], 0.f, 0.f);
+							textRenderer.Translate(it->m_ListOfX[i], 0.f);
 						else
-							textRenderer.Translate(it->m_ListOfX[i] - it->m_ListOfX[i-1], 0.f, 0.f);
+							textRenderer.Translate(it->m_ListOfX[i] - it->m_ListOfX[i-1], 0.f);
 
 						continue;
 					}
@@ -1466,7 +1463,7 @@ void CInput::Draw(CCanvas2D& canvas)
 				if (SelectingText() && it->m_ListStart + i == VirtualTo)
 				{
 					using_selected_color = false;
-					textRenderer.Color(m_TextColor);
+					textRenderer.SetCurrentColor(m_TextColor);
 				}
 
 				// selecting only one, then we need only to draw a cursor.
@@ -1480,7 +1477,7 @@ void CInput::Draw(CCanvas2D& canvas)
 				    !using_selected_color)
 				{
 					using_selected_color = true;
-					textRenderer.Color(m_TextColorSelected);
+					textRenderer.SetCurrentColor(m_TextColorSelected);
 				}
 
 				if (i != (int)it->m_ListOfX.size())
@@ -1499,18 +1496,18 @@ void CInput::Draw(CCanvas2D& canvas)
 
 			if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 			{
-				textRenderer.Color(m_TextColor);
+				textRenderer.SetCurrentColor(m_TextColor);
 				if (m_CursorVisState)
 					textRenderer.PutAdvance(L"_");
 
 				if (using_selected_color)
-					textRenderer.Color(m_TextColorSelected);
+					textRenderer.SetCurrentColor(m_TextColorSelected);
 			}
 
 			textRenderer.SetTransform(savedTransform);
 		}
 
-		textRenderer.Translate(0.f, ls, 0.f);
+		textRenderer.Translate(0.f, ls);
 	}
 
 	canvas.DrawText(textRenderer);

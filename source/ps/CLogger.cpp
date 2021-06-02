@@ -213,11 +213,11 @@ void CLogger::Render()
 	int lineSpacing = font.GetLineSpacing();
 
 	CTextRenderer textRenderer;
-	textRenderer.Font(font_name);
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentFont(font_name);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	// Offset by an extra 35px vertically to avoid the top bar.
-	textRenderer.Translate(4.0f, 35.0f + lineSpacing, 0.0f);
+	textRenderer.Translate(4.0f, 35.0f + lineSpacing);
 
 	// (Lock must come after loading the CFont, since that might log error messages
 	// and attempt to lock the mutex recursively which is forbidden)
@@ -229,29 +229,29 @@ void CLogger::Render()
 		if (msg.method == Normal)
 		{
 			type = "info";
-			textRenderer.Color(0.0f, 0.8f, 0.0f);
+			textRenderer.SetCurrentColor(CColor(0.0f, 0.8f, 0.0f, 1.0f));
 		}
 		else if (msg.method == Warning)
 		{
 			type = "warning";
-			textRenderer.Color(1.0f, 1.0f, 0.0f);
+			textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 1.0f));
 		}
 		else
 		{
 			type = "error";
-			textRenderer.Color(1.0f, 0.0f, 0.0f);
+			textRenderer.SetCurrentColor(CColor(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 
 		CMatrix3D savedTransform = textRenderer.GetTransform();
 
 		textRenderer.PrintfAdvance(L"[%8.3f] %hs: ", msg.time, type);
 		// Display the actual message in white so it's more readable
-		textRenderer.Color(1.0f, 1.0f, 1.0f);
+		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 		textRenderer.Put(0.0f, 0.0f, msg.message.c_str());
 
 		textRenderer.SetTransform(savedTransform);
 
-		textRenderer.Translate(0.0f, (float)lineSpacing, 0.0f);
+		textRenderer.Translate(0.0f, (float)lineSpacing);
 	}
 
 	CCanvas2D canvas;

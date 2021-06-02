@@ -617,8 +617,8 @@ void TerrainRenderer::RenderPriorities(int cullGroup)
 
 	CCanvas2D canvas;
 	CTextRenderer textRenderer;
-	textRenderer.Font(CStrIntern("mono-stroke-10"));
-	textRenderer.Color(1.0f, 1.0f, 0.0f);
+	textRenderer.SetCurrentFont(CStrIntern("mono-stroke-10"));
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 1.0f));
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
