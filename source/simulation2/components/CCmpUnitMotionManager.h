@@ -81,12 +81,18 @@ public:
 		bool isMoving = false;
 	};
 
+	// Multiplier for the pushing radius. Pre-multiplied by the circle-square correction factor.
+	// "Template" state, not serialized (cannot be changed mid-game).
+	entity_pos_t m_PushingRadius;
+
+	// These vectors are reconstructed on deserialization.
+
 	EntityMap<MotionState> m_Units;
 	EntityMap<MotionState> m_FormationControllers;
 
-	// The vectors are cleared each frame.
-	Grid<std::vector<EntityMap<MotionState>::iterator>> m_MovingUnits;
+	// Turn-local state below, not serialised.
 
+	Grid<std::vector<EntityMap<MotionState>::iterator>> m_MovingUnits;
 	bool m_ComputingMotion;
 
 	static std::string GetSchema()
@@ -94,9 +100,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
-	{
-	}
+	virtual void Init(const CParamNode& UNUSED(paramNode));
 
 	virtual void Deinit()
 	{
@@ -153,6 +157,11 @@ public:
 	virtual bool ComputingMotion() const
 	{
 		return m_ComputingMotion;
+	}
+
+	virtual bool IsPushingActivated() const
+	{
+		return m_PushingRadius != entity_pos_t::Zero();
 	}
 
 private:

@@ -131,7 +131,7 @@ experiments.collecting_tree = {
 		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
 		// Make that tree essentially infinite.
 		cmpModifiersManager.AddModifiers("inf_tree", {
-			"ResourceSupply/Max": [{ "affects": ["Tree"], "replace": 50000 }],
+			"ResourceSupply/Max": [{ "replace": 50000 }],
 		}, target);
 		let cmpSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 		cmpSupply.SetAmount(50000);

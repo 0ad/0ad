@@ -4,6 +4,9 @@
     <element name="MaxSameTurnMoves">
       <data type="nonNegativeInteger"/>
     </element>
+    <element name="PushingRadius">
+      <data type="decimal"/>
+    </element>
     <element name="PassabilityClasses">
       <oneOrMore>
         <element>

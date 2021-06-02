@@ -4,6 +4,12 @@
   <!-- Setting the value to 0 disable this functionality -->
   <MaxSameTurnMoves>64</MaxSameTurnMoves>
 
+  <!-- Multiplier for the distance at which units push each other. -->
+  <!-- Setting the value to 0 disables unit pushing entirely. -->
+  <!-- Note that values above 2-3 are likely to start behaving weirdly -->
+  <!-- (in particular, formations offsets may need adjusting). -->
+  <PushingRadius>1.6</PushingRadius>
+
   <PassabilityClasses>
 
     <!-- Unit pathfinding classes: -->
