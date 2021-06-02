@@ -17,7 +17,7 @@ class GameDetails
 
 		this.sgMapName = Engine.GetGUIObjectByName("sgMapName");
 		this.sgGame = Engine.GetGUIObjectByName("sgGame");
-		this.sgPlayersNames = Engine.GetGUIObjectByName("sgPlayersNames");
+		this.sgPlayersAndMods = Engine.GetGUIObjectByName("sgPlayersAndMods");
 		this.sgMapSize = Engine.GetGUIObjectByName("sgMapSize");
 		this.sgMapPreview = Engine.GetGUIObjectByName("sgMapPreview");
 		this.sgMapDescription = Engine.GetGUIObjectByName("sgMapDescription");
@@ -59,17 +59,10 @@ class GameDetails
 		}
 
 		{
-			let txt;
-			if (game.isCompatible)
-				txt =
-					setStringTags(this.VictoryConditionsFormat, this.CaptionTags) + " " +
-					(stanza.victoryConditions ?
-						stanza.victoryConditions.split(",").map(translateVictoryCondition).join(this.Comma) :
-						translateWithContext("victory condition", "Endless Game"));
-			else
-				txt =
-					setStringTags(this.ModsFormat, this.CaptionTags) + " " +
-					escapeText(modsToString(game.mods, Engine.GetEngineInfo().mods));
+			let txt = setStringTags(this.VictoryConditionsFormat, this.CaptionTags) + " " +
+				(stanza.victoryConditions ?
+					stanza.victoryConditions.split(",").map(translateVictoryCondition).join(this.Comma) :
+					translateWithContext("victory condition", "Endless Game"));
 
 			txt +=
 				"\n" + setStringTags(this.MapTypeFormat, this.CaptionTags) + " " + displayData.mapType +
@@ -85,10 +78,6 @@ class GameDetails
 			this.playernameArgs.playername = escapeText(stanza.hostUsername);
 			txt += "\n" + sprintf(this.HostFormat, this.playernameArgs);
 
-			this.playerCountArgs.current = escapeText(stanza.nbp);
-			this.playerCountArgs.total = escapeText(stanza.maxnbp);
-			txt += "\n" + sprintf(this.PlayerCountFormat, this.playerCountArgs);
-
 			if (stanza.startTime)
 			{
 				this.gameStartArgs.time = Engine.FormatMillisecondsIntoDateStringLocal(+stanza.startTime * 1000, this.TimeFormat);
@@ -96,21 +85,52 @@ class GameDetails
 			}
 
 			this.sgGame.caption = txt;
+
+			const textHeight = this.sgGame.getTextSize().height;
+
+			const sgGameSize = this.sgGame.size;
+			sgGameSize.bottom = textHeight;
+			this.sgGame.size = sgGameSize;
 		}
 
 		{
-			let textHeight = this.sgGame.getTextSize().height;
+			// Player information
+			this.playerCountArgs.current = escapeText(stanza.nbp);
+			this.playerCountArgs.total = escapeText(stanza.maxnbp);
+			let txt = sprintf(this.PlayerCountFormat, this.playerCountArgs);
+			txt = setStringTags(txt, this.CaptionTags);
 
-			let sgGameSize = this.sgGame.size;
-			sgGameSize.bottom = textHeight;
-			this.sgGame.size = sgGameSize;
+			txt += "\n" + formatPlayerInfo(game.players);
 
-			let sgPlayersNamesSize = this.sgPlayersNames.size;
-			sgPlayersNamesSize.top = textHeight + 5;
-			this.sgPlayersNames.size = sgPlayersNamesSize;
+			// Mod information
+			txt += "\n\n" + setStringTags(this.ModsFormat, this.CaptionTags);
+			if (!game.isCompatible)
+				txt = setStringTags(coloredText(txt, "red"), {
+					"tooltip": sprintf(translate("You have some incompatible mods:\n%(details)s"), {
+						"details": comparedModsString(game.mods, Engine.GetEngineInfo().mods),
+					}),
+				});
+
+			const sortedMods = game.mods;
+			sortedMods.sort((a, b) => a.ignoreInCompatibilityChecks - b.ignoreInCompatibilityChecks);
+			for (const mod of sortedMods)
+			{
+				let modStr = escapeText(modToString(mod));
+				if (mod.ignoreInCompatibilityChecks)
+					modStr = setStringTags(coloredText(modStr, "180 180 180"), {
+						"tooltip": translate("This mod does not affect MP compatibility"),
+					});
+				txt += "\n" + modStr;
+			}
+
+			this.sgPlayersAndMods.caption = txt;
+
+			// Resize the box
+			const textHeight = this.sgPlayersAndMods.getTextSize().height;
+			const size = this.sgPlayersAndMods.size;
+			size.top = this.sgGame.size.bottom + 5;
+			this.sgPlayersAndMods.size = size;
 		}
-
-		this.sgPlayersNames.caption = formatPlayerInfo(game.players);
 
 		this.lastGame = game;
 		Engine.ProfileStop();

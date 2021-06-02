@@ -92,10 +92,10 @@ public:
 		JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
 
 		m_Mods.m_AvailableMods = {
-			Mod::ModData{ "public", "0ad", "0.0.25", {}, "" },
-			Mod::ModData{ "wrong", "wrong", "0.0.1", { "0ad=0.0.24" }, "" },
-			Mod::ModData{ "good", "good", "0.0.2", { "0ad=0.0.25" }, "" },
-			Mod::ModData{ "good2", "good2", "0.0.4", { "0ad>=0.0.24" }, "" },
+			Mod::ModData{ "public", "0ad", "0.0.25", {}, false, "" },
+			Mod::ModData{ "wrong", "wrong", "0.0.1", { "0ad=0.0.24" }, false, "" },
+			Mod::ModData{ "good", "good", "0.0.2", { "0ad=0.0.25" }, false, "" },
+			Mod::ModData{ "good2", "good2", "0.0.4", { "0ad>=0.0.24" }, false, "" },
 		};
 
 		std::vector<CStr> mods;
@@ -128,6 +128,45 @@ public:
 		mods.push_back("public");
 		mods.push_back("does_not_exist");
 		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(mods).empty());
+	}
 
+	void test_play_compatible()
+	{
+		Mod::ModData a1 = { "a", "a", "0.0.1", {}, false, "" };
+		Mod::ModData a2 = { "a", "a", "0.0.2", {}, false, "" };
+		Mod::ModData b = { "b", "b", "0.0.1", {}, false, "" };
+		Mod::ModData c = { "c", "c", "0.0.1", {}, true, "" };
+
+		using ModList = std::vector<const Mod::ModData*>;
+		{
+			ModList l1 = { &a1 };
+			ModList l2 = { &a2 };
+			TS_ASSERT(!Mod::AreModsPlayCompatible(l1, l2));
+		}
+		{
+			ModList l1 = { &a1, &b };
+			ModList l2 = { &a1, &b, &c };
+			TS_ASSERT(Mod::AreModsPlayCompatible(l1, l2));
+		}
+		{
+			ModList l1 = { &c, &b, &a1 };
+			ModList l2 = { &b, &c, &a1 };
+			TS_ASSERT(Mod::AreModsPlayCompatible(l1, l2));
+		}
+		{
+			ModList l1 = { &b, &c, &a1 };
+			ModList l2 = { &b, &c, &a2 };
+			TS_ASSERT(!Mod::AreModsPlayCompatible(l1, l2));
+		}
+		{
+			ModList l1 = { &c };
+			ModList l2 = {};
+			TS_ASSERT(Mod::AreModsPlayCompatible(l1, l2));
+		}
+		{
+			ModList l1 = {};
+			ModList l2 = { &b };
+			TS_ASSERT(!Mod::AreModsPlayCompatible(l1, l2));
+		}
 	}
 };

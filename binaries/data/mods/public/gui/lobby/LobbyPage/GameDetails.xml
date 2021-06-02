@@ -17,8 +17,8 @@
 		<!-- Number of players, hostname, gamestart time -->
 		<object name="sgGame" size="5 5 100%-5 5" type="text" style="ModernLabelText"/>
 
-		<!-- Player Names -->
-		<object name="sgPlayersNames" type="text" style="MapPlayerList"/>
+		<!-- Player names & mod details -->
+		<object name="sgPlayersAndMods" type="text" style="MapPlayerList"/>
 
 	</object>
 

@@ -81,7 +81,8 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 		WARN_RETURN(ERR::FAIL);
 
 	JS::RootedValue initAttributes(rq.cx, simulation.GetInitAttributes());
-	JS::RootedValue mods(rq.cx, g_Mods.GetLoadedModsWithVersions(simulation.GetScriptInterface()));
+	JS::RootedValue mods(rq.cx);
+	Script::ToJSVal(rq, &mods, g_Mods.GetEnabledModsData());
 
 	JS::RootedValue metadata(rq.cx);
 

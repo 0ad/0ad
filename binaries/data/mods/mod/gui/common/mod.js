@@ -1,12 +1,26 @@
 /**
- * Check the mod compatibility between the saved game to be loaded and the engine
+ * Check the mod compatibility between the saved game to be loaded and the engine.
+ * This is a wrapper around an engine function to allow mods to to fancier or specific things.
  */
 function hasSameMods(modsA, modsB)
 {
-	if (!modsA || !modsB || modsA.length != modsB.length)
+	if (!modsA || !modsB)
 		return false;
-	// Mods must be loaded in the same order. 0: modname, 1: modversion
-	return modsA.every((mod, index) => [0, 1].every(i => mod[i] == modsB[index][i]));
+	return Engine.AreModsPlayCompatible(modsA, modsB);
+}
+
+/**
+ * Print the shorthand identifier of a mod.
+ */
+function modToString(mod)
+{
+	// Skip version for play-compatible mods.
+	if (mod.ignoreInCompatibilityChecks)
+		return mod.name;
+	return sprintf(translateWithContext("Mod comparison", "%(mod)s (%(version)s)"), {
+		"mod": mod.name,
+		"version": mod.version
+	});
 }
 
 /**
@@ -14,10 +28,7 @@ function hasSameMods(modsA, modsB)
  */
 function modsToString(mods)
 {
-	return mods.map(mod => sprintf(translateWithContext("Mod comparison", "%(mod)s (%(version)s)"), {
-			"mod": mod[0],
-			"version": mod[1]
-		})).join(translate(", "));
+	return mods.map(mod => modToString(mod)).join(translate(", "));
 }
 
 /**
@@ -26,7 +37,7 @@ function modsToString(mods)
 function comparedModsString(required, active)
 {
 	return sprintf(translateWithContext("Mod comparison", "Required: %(mods)s"),
-			{ "mods": modsToString(required) }) + "\n" +
-		sprintf(translateWithContext("Mod comparison", "Active: %(mods)s"),
-			{ "mods": modsToString(active) });
+		{ "mods": modsToString(required) }
+	) + "\n" + sprintf(translateWithContext("Mod comparison", "Active: %(mods)s"),
+		{ "mods": modsToString(active) });
 }

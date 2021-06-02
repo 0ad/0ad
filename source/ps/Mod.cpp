@@ -27,7 +27,6 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Profiler2.h"
-#include "ps/Pyrogenesis.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptExceptions.h"
@@ -105,13 +104,11 @@ bool ParseModJSON(const ScriptRequest& rq, const PIVFS& vfs, OsPath modsPath, Os
 	if (!Script::ParseJSON(rq, text, &json))
 		return false;
 
+	Script::FromJSVal(rq, json, data);
+
+	// Complete - FromJSVal won't convert everything.
 	data.m_Pathname = utf8_from_wstring(mod.string());
 	data.m_Text = text;
-
-	if (!Script::GetProperty(rq, json, "version", data.m_Version))
-		return false;
-	if (!Script::GetProperty(rq, json, "name", data.m_Name))
-		return false;
 	if (!Script::GetProperty(rq, json, "dependencies", data.m_Dependencies))
 		return false;
 	return true;
@@ -122,6 +119,114 @@ bool ParseModJSON(const ScriptRequest& rq, const PIVFS& vfs, OsPath modsPath, Os
 Mod& Mod::Instance()
 {
 	return g_ModInstance;
+}
+
+const std::vector<CStr>& Mod::GetEnabledMods() const
+{
+	return m_EnabledMods;
+}
+
+const std::vector<CStr>& Mod::GetIncompatibleMods() const
+{
+	return m_IncompatibleMods;
+}
+
+const std::vector<Mod::ModData>& Mod::GetAvailableMods() const
+{
+	return m_AvailableMods;
+}
+
+bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic)
+{
+	m_IncompatibleMods.clear();
+	m_EnabledMods.clear();
+
+	std::unordered_map<CStr, int> counts;
+	for (const CStr& mod : mods)
+	{
+		// Ignore duplicates.
+		if (counts.try_emplace(mod, 0).first->second++ > 0)
+			continue;
+		m_EnabledMods.emplace_back(mod);
+	}
+
+	if (addPublic && counts["public"] == 0)
+		m_EnabledMods.insert(m_EnabledMods.begin(), "public");
+
+	if (counts["mod"] == 0)
+		m_EnabledMods.insert(m_EnabledMods.begin(), "mod");
+
+	UpdateAvailableMods(scriptInterface);
+
+	m_IncompatibleMods = CheckForIncompatibleMods(m_EnabledMods);
+
+	for (const CStr& mod : m_IncompatibleMods)
+		m_EnabledMods.erase(std::find(m_EnabledMods.begin(), m_EnabledMods.end(), mod));
+
+	return m_IncompatibleMods.empty();
+}
+
+const Mod::ModData* Mod::GetModData(const CStr& mod) const
+{
+	std::vector<ModData>::const_iterator it = std::find_if(m_AvailableMods.begin(), m_AvailableMods.end(),
+		[&mod](const ModData& modData) { return modData.m_Pathname == mod; });
+	if (it == m_AvailableMods.end())
+		return nullptr;
+	return std::addressof(*it);
+}
+
+const std::vector<const Mod::ModData*> Mod::GetEnabledModsData() const
+{
+	std::vector<const ModData*> loadedMods;
+	for (const CStr& mod : m_EnabledMods)
+	{
+		if (mod == "mod" || mod == "user")
+			continue;
+
+		const ModData* data = GetModData(mod);
+
+		// This ought be impossible, but let's handle it anyways since it's not a reason to crash.
+		if (!data)
+		{
+			LOGERROR("Unavailable mod '%s' was enabled.", mod);
+			continue;
+		}
+
+		loadedMods.emplace_back(data);
+	}
+	return loadedMods;
+}
+
+bool Mod::AreModsPlayCompatible(const std::vector<const Mod::ModData*>& modsA, const std::vector<const Mod::ModData*>& modsB)
+{
+	// Mods must be loaded in the same order.
+	std::vector<const Mod::ModData*>::const_iterator a = modsA.begin();
+	std::vector<const Mod::ModData*>::const_iterator b = modsB.begin();
+
+	while (a != modsA.end() || b != modsB.end())
+	{
+		if (a != modsA.end() && (*a)->m_IgnoreInCompatibilityChecks)
+		{
+			++a;
+			continue;
+		}
+		if (b != modsB.end() && (*b)->m_IgnoreInCompatibilityChecks)
+		{
+			++b;
+			continue;
+		}
+		// If at this point one of the two lists still contains items, the sizes are different -> fail.
+		if (a == modsA.end() || b == modsB.end())
+			return false;
+
+		if ((*a)->m_Pathname != (*b)->m_Pathname)
+			return false;
+		if ((*a)->m_Version != (*b)->m_Version)
+			return false;
+		++a;
+		++b;
+	}
+	return true;
 }
 
 void Mod::UpdateAvailableMods(const ScriptInterface& scriptInterface)
@@ -167,46 +272,6 @@ void Mod::UpdateAvailableMods(const ScriptInterface& scriptInterface)
 		// Valid mod data, add it to our structure
 		m_AvailableMods.emplace_back(std::move(data));
 	}
-}
-
-const std::vector<CStr>& Mod::GetEnabledMods() const
-{
-	return m_EnabledMods;
-}
-
-const std::vector<CStr>& Mod::GetIncompatibleMods() const
-{
-	return m_IncompatibleMods;
-}
-
-bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic)
-{
-	m_IncompatibleMods.clear();
-	m_EnabledMods.clear();
-
-	std::unordered_map<CStr, int> counts;
-	for (const CStr& mod : mods)
-	{
-		// Ignore duplicates.
-		if (counts.try_emplace(mod, 0).first->second++ > 0)
-			continue;
-		m_EnabledMods.emplace_back(mod);
-	}
-
-	if (addPublic && counts["public"] == 0)
-		m_EnabledMods.insert(m_EnabledMods.begin(), "public");
-
-	if (counts["mod"] == 0)
-		m_EnabledMods.insert(m_EnabledMods.begin(), "mod");
-
-	UpdateAvailableMods(scriptInterface);
-
-	m_IncompatibleMods = CheckForIncompatibleMods(m_EnabledMods);
-
-	for (const CStr& mod : m_IncompatibleMods)
-		m_EnabledMods.erase(std::find(m_EnabledMods.begin(), m_EnabledMods.end(), mod));
-
-	return m_IncompatibleMods.empty();
 }
 
 std::vector<CStr> Mod::CheckForIncompatibleMods(const std::vector<CStr>& mods) const
@@ -311,64 +376,4 @@ bool Mod::CompareVersionStrings(const CStr& version, const CStr& op, const CStr&
 	if (versionSize == requiredSize)
 		return eq;
 	return versionSize < requiredSize ? lt : gt;
-}
-
-JS::Value Mod::GetLoadedModsWithVersions(const ScriptInterface& scriptInterface) const
-{
-	std::vector<std::vector<CStr>> loadedMods;
-	for (const CStr& mod : m_EnabledMods)
-	{
-		if (mod == "mod" || mod == "user")
-			continue;
-
-		std::vector<ModData>::const_iterator it = std::find_if(m_AvailableMods.begin(), m_AvailableMods.end(),
-			[&mod](const ModData& modData) { return modData.m_Pathname == mod; });
-
-		// This ought be impossible, but let's handle it anyways since it's not a reason to crash.
-		if (it == m_AvailableMods.end())
-		{
-			LOGERROR("Unavailable mod '%s' was enabled.", mod);
-			continue;
-		}
-
-		loadedMods.emplace_back(std::vector<CStr>{ it->m_Pathname, it->m_Version });
-	}
-	ScriptRequest rq(scriptInterface);
-	JS::RootedValue returnValue(rq.cx);
-	Script::ToJSVal(rq, &returnValue, loadedMods);
-	return returnValue;
-}
-
-JS::Value Mod::GetEngineInfo(const ScriptInterface& scriptInterface) const
-{
-	ScriptRequest rq(scriptInterface);
-
-	JS::RootedValue mods(rq.cx, GetLoadedModsWithVersions(scriptInterface));
-	JS::RootedValue metainfo(rq.cx);
-
-	Script::CreateObject(
-		rq,
-		&metainfo,
-		"engine_version", engine_version,
-		"mods", mods);
-
-	Script::FreezeObject(rq, metainfo, true);
-
-	return metainfo;
-}
-
-JS::Value Mod::GetAvailableMods(const ScriptRequest& rq) const
-{
-	JS::RootedValue ret(rq.cx, Script::CreateObject(rq));
-	for (const ModData& data : m_AvailableMods)
-	{
-		JS::RootedValue json(rq.cx);
-		if (!Script::ParseJSON(rq, data.m_Text, &json))
-		{
-			ScriptException::Raise(rq, "Error parsing mod.json of '%s'", data.m_Pathname.c_str());
-			continue;
-		}
-		Script::SetProperty(rq, ret, data.m_Pathname.c_str(), json);
-	}
-	return ret.get();
 }

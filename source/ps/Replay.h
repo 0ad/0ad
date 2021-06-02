@@ -113,8 +113,6 @@ public:
 
 private:
 	std::istream* m_Stream;
-	CStr ModListToString(const std::vector<std::vector<CStr>>& list) const;
-	void CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const;
 	void TestHash(const std::string& hashType, const std::string& replayHash, const bool testHashFull, const bool testHashQuick);
 };
 
