@@ -5,15 +5,12 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/weapons/bow_short.xml" attachpoint="weapon_bow"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/quiver_greek_back.xml" attachpoint="back"/>
-        <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/pelte_cretan_bronze_02.xml" attachpoint="shield_arm"/>
       </props>
-      <textures>
-        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
@@ -69,50 +66,49 @@
     </variant>
   </group>
   <group>
-    <variant name="psiloi-original">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+    <variant frequency="1" name="armor thorax 2">
       <textures>
-        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
+        <texture file="skeletal/mace_thorakites_2.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-1">
+    <variant frequency="1" name="armor short">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-2">
+    <variant frequency="1" name="mace-linothorax-1a">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-3">
+    <variant frequency="1" name="mace-linothorax-1b">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_c.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-4">
+    <variant frequency="1" name="mace-linothorax-1c">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_d.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_c.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-5">
+    <variant frequency="1" name="mace-linothorax-1d">
       <textures>
-        <texture file="skeletal/hele_epilektoi_7.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_d.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-6">
+    <variant frequency="1" name="mace-linothorax-1e">
       <textures>
-        <texture file="skeletal/hele_epilektoi_4.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-7">
+    <variant frequency="1" name="mace-linothorax-1f">
       <textures>
-        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_f.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-8">
+    <variant frequency="1" name="mace-linothorax-1g">
       <textures>
-        <texture file="skeletal/hele_epilektoi_10.png" name="baseTex"/>
+        <texture file="skeletal/mace_linothorax_1_g.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
