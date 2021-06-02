@@ -190,11 +190,9 @@ void CConsole::Render()
 
 	CTextRenderer textRenderer;
 	textRenderer.SetCurrentFont(CStrIntern(CONSOLE_FONT));
-	// animation: slide in from top of screen
-	CMatrix3D transform = GetDefaultGuiMatrix();
+	// Animation: slide in from top of screen.
 	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
-	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
-	textRenderer.SetTransform(transform);
+	textRenderer.Translate(m_fX, m_fY - DeltaY);
 
 	DrawHistory(textRenderer);
 	DrawBuffer(textRenderer);
@@ -257,7 +255,7 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 	if (m_fHeight < m_iFontHeight)
 		return;
 
-	CMatrix3D savedTransform = textRenderer.GetTransform();
+	const CVector2D savedTranslate = textRenderer.GetTranslate();
 
 	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f);
 
@@ -276,7 +274,7 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 			DrawCursor(textRenderer);
 	}
 
-	textRenderer.SetTransform(savedTransform);
+	textRenderer.ResetTranslate(savedTranslate);
 }
 
 void CConsole::DrawCursor(CTextRenderer& textRenderer)

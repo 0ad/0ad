@@ -23,51 +23,29 @@
 #include "graphics/FontManager.h"
 #include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
+#include "maths/Matrix3D.h"
 #include "ps/CStrIntern.h"
 #include "ps/CStrInternStatic.h"
-#include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
 
 #include <errno.h>
 
 CTextRenderer::CTextRenderer()
 {
-	ResetTransform();
+	ResetTranslate();
 	SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 	SetCurrentFont(str_sans_10);
 }
 
-void CTextRenderer::ResetTransform()
+void CTextRenderer::ResetTranslate(const CVector2D& translate)
 {
-	float xres = g_xres / g_GuiScale;
-	float yres = g_yres / g_GuiScale;
-
-	m_Transform.SetIdentity();
-	m_Transform.Scale(1.0f, -1.f, 1.0f);
-	m_Transform.Translate(0.0f, yres, -1000.0f);
-
-	CMatrix3D proj;
-	proj.SetOrtho(0.f, xres, 0.f, yres, -1.f, 1000.f);
-	m_Transform = proj * m_Transform;
-	m_Dirty = true;
-}
-
-CMatrix3D CTextRenderer::GetTransform()
-{
-	return m_Transform;
-}
-
-void CTextRenderer::SetTransform(const CMatrix3D& transform)
-{
-	m_Transform = transform;
+	m_Translate = translate;
 	m_Dirty = true;
 }
 
 void CTextRenderer::Translate(float x, float y)
 {
-	CMatrix3D m;
-	m.SetTranslation(x, y, 0.0f);
-	m_Transform = m_Transform * m;
+	m_Translate += CVector2D{x, y};
 	m_Dirty = true;
 }
 
@@ -179,7 +157,7 @@ void CTextRenderer::PutString(float x, float y, const std::wstring* buf, bool ow
 	{
 		SBatch batch;
 		batch.chars = 0;
-		batch.transform = m_Transform;
+		batch.translate = m_Translate;
 		batch.color = m_Color;
 		batch.font = m_Font;
 		m_Batches.push_back(batch);
@@ -212,24 +190,24 @@ struct SBatchCompare
 			return true;
 		if (b.font < a.font)
 			return false;
-		// TODO: is it worth sorting by color/transform too?
+		// TODO: is it worth sorting by color/translate too?
 		return false;
 	}
 };
 
-void CTextRenderer::Render(const CShaderProgramPtr& shader)
+void CTextRenderer::Render(const CShaderProgramPtr& shader, const CMatrix3D& transform)
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
 
-	// Try to merge non-consecutive batches that share the same font/color/transform:
+	// Try to merge non-consecutive batches that share the same font/color/translate:
 	// sort the batch list by font, then merge the runs of adjacent compatible batches
 	m_Batches.sort(SBatchCompare());
 	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); )
 	{
 		std::list<SBatch>::iterator next = it;
 		++next;
-		if (next != m_Batches.end() && it->font == next->font && it->color == next->color && it->transform == next->transform)
+		if (next != m_Batches.end() && it->font == next->font && it->color == next->color && it->translate == next->translate)
 		{
 			it->chars += next->chars;
 			it->runs.splice(it->runs.end(), next->runs);
@@ -252,7 +230,9 @@ void CTextRenderer::Render(const CShaderProgramPtr& shader)
 			shader->BindTexture(str_tex, batch.font->GetTexture());
 		}
 
-		shader->Uniform(str_transform, batch.transform);
+		CMatrix3D translation;
+		translation.SetTranslation(batch.translate.X, batch.translate.Y, 0.0f);
+		shader->Uniform(str_transform, transform * translation);
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
 		// replace it with white (but not affect RGBA textures)

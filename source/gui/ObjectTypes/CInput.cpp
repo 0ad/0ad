@@ -1433,7 +1433,7 @@ void CInput::Draw(CCanvas2D& canvas)
 			if (m_MultiLine && buffered_y + m_BufferZone > m_CachedActualSize.GetHeight())
 				break;
 
-			CMatrix3D savedTransform = textRenderer.GetTransform();
+			const CVector2D savedTranslate = textRenderer.GetTranslate();
 
 			// Text must always be drawn in integer values. So we have to convert scroll
 			if (m_MultiLine)
@@ -1504,7 +1504,7 @@ void CInput::Draw(CCanvas2D& canvas)
 					textRenderer.SetCurrentColor(m_TextColorSelected);
 			}
 
-			textRenderer.SetTransform(savedTransform);
+			textRenderer.ResetTranslate(savedTranslate);
 		}
 
 		textRenderer.Translate(0.f, ls);

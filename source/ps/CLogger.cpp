@@ -242,14 +242,14 @@ void CLogger::Render()
 			textRenderer.SetCurrentColor(CColor(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 
-		CMatrix3D savedTransform = textRenderer.GetTransform();
+		const CVector2D savedTranslate = textRenderer.GetTranslate();
 
 		textRenderer.PrintfAdvance(L"[%8.3f] %hs: ", msg.time, type);
 		// Display the actual message in white so it's more readable
 		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 		textRenderer.Put(0.0f, 0.0f, msg.message.c_str());
 
-		textRenderer.SetTransform(savedTransform);
+		textRenderer.ResetTranslate(savedTranslate);
 
 		textRenderer.Translate(0.0f, (float)lineSpacing);
 	}
