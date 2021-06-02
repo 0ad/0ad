@@ -30,6 +30,14 @@ GameSettings.prototype.Attributes.Biome = class Biome extends GameSetting
 			this.setBiome(this.getLegacySetting(attribs, "Biome"));
 	}
 
+	filterBiome(available)
+	{
+		if (typeof available === "string")
+			return biome => biome.Id.startsWith(available);
+
+		return biome => available.indexOf(biome.Id) !== -1;
+	}
+
 	onMapChange()
 	{
 		const mapData = this.settings.map.data;
@@ -38,7 +46,7 @@ GameSettings.prototype.Attributes.Biome = class Biome extends GameSetting
 			if (mapData.settings.SupportedBiomes === this.cachedMapData)
 				return;
 			this.cachedMapData = mapData.settings.SupportedBiomes;
-			this.available = new Set(this.biomes.filter(biome => biome.Id.indexOf(mapData.settings.SupportedBiomes) !== -1)
+			this.available = new Set(this.biomes.filter(this.filterBiome(mapData.settings.SupportedBiomes))
 				.map(biome => biome.Id));
 			this.biome = "random";
 		}
