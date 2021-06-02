@@ -443,13 +443,14 @@ function selectedMod(listObjectName)
 		toggleModButton.onPress = isPickedDisabledList ? enableMod : disableMod;
 	}
 
+	const isFiltering = Engine.GetGUIObjectByName("modGenericFilter").caption;
 	Engine.GetGUIObjectByName("visitWebButton").enabled = isModSelected && !!getSelectedModUrl();
 	toggleModButton.caption = isPickedDisabledList ?
 		translateWithContext("mod activation", "Enable") :
 		translateWithContext("mod activation", "Disable");
 	toggleModButton.enabled = isPickedDisabledList ? isModSelected && g_ModsCompatibility[listObject.list[listObject.selected]] || false : isModSelected;
-	Engine.GetGUIObjectByName("enabledModUp").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
-	Engine.GetGUIObjectByName("enabledModDown").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
+	Engine.GetGUIObjectByName("enabledModUp").enabled = isModSelected && listObjectName == "modsEnabledList" && !isFiltering;
+	Engine.GetGUIObjectByName("enabledModDown").enabled = isModSelected && listObjectName == "modsEnabledList" && !isFiltering;
 
 	Engine.GetGUIObjectByName("globalModDescription").caption =
 		listObject.list[listObject.selected] ?
