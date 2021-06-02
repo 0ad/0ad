@@ -192,12 +192,12 @@ function displayModList(listObjectName, folders, enabled)
 
 	let selected = listObject.selected !== -1 ? listObject.list_name[listObject.selected] : null;
 
-	listObject.list_name = folders.map(folder => colorMod(folder, getMod(folder).name, enabled));
+	listObject.list_name = folders.map(folder => colorMod(folder, getMod(folder).name || "", enabled));
 	listObject.list_folder = folders.map(folder => colorMod(folder, folder, enabled));
-	listObject.list_label = folders.map(folder => colorMod(folder, getMod(folder).label, enabled));
+	listObject.list_label = folders.map(folder => colorMod(folder, getMod(folder).label || "", enabled));
 	listObject.list_url = folders.map(folder => colorMod(folder, getMod(folder).url || "", enabled));
-	listObject.list_version = folders.map(folder => colorMod(folder, getMod(folder).version, enabled));
-	listObject.list_dependencies = folders.map(folder => colorMod(folder, getMod(folder).dependencies.join(" "), enabled));
+	listObject.list_version = folders.map(folder => colorMod(folder, getMod(folder).version || "", enabled));
+	listObject.list_dependencies = folders.map(folder => colorMod(folder, getMod(folder)?.dependencies.join(" ") || "", enabled));
 	listObject.list = folders;
 
 	listObject.selected = selected ? listObject.list_name.indexOf(selected) : -1;
@@ -296,12 +296,12 @@ function filterMod(folder)
 
 	if (searchText &&
 	    folder.indexOf(searchText) == -1 &&
-	    mod.name.indexOf(searchText) == -1 &&
-	    mod.label.indexOf(searchText) == -1 &&
+	    (mod.name || "").indexOf(searchText) == -1 &&
+	    (mod.label || "").indexOf(searchText) == -1 &&
 	    (mod.url || "").indexOf(searchText) == -1 &&
-	    mod.version.indexOf(searchText) == -1 &&
-	    mod.description.indexOf(searchText) == -1 &&
-	    mod.dependencies.indexOf(searchText) == -1)
+	    (mod.version || "").indexOf(searchText) == -1 &&
+	    (mod.description || "").indexOf(searchText) == -1 &&
+	    (mod.dependencies || "").indexOf(searchText) == -1)
 		return negateFilter;
 
 	return !negateFilter;
