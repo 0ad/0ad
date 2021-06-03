@@ -203,7 +203,7 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 	CShaderProgramPtr shader = m->Tech->GetShader();
 	shader->Uniform(str_grayscaleFactor, 0.0f);
 
-	textRenderer.Render(shader);
+	textRenderer.Render(shader, GetDefaultGuiMatrix());
 }
 
 void CCanvas2D::Flush()

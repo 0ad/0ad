@@ -449,7 +449,7 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 
 	CTextRenderer textRenderer;
 	textRenderer.SetClippingRect(clipping);
-	textRenderer.Translate(0.0f, 0.0f, 0.0f);
+	textRenderer.Translate(0.0f, 0.0f);
 
 	for (const STextCall& tc : m_TextCalls)
 	{
@@ -457,8 +457,8 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		if (tc.m_pSpriteCall)
 			continue;
 
-		textRenderer.Color(tc.m_UseCustomColor ? tc.m_Color : DefaultColor);
-		textRenderer.Font(tc.m_Font);
+		textRenderer.SetCurrentColor(tc.m_UseCustomColor ? tc.m_Color : DefaultColor);
+		textRenderer.SetCurrentFont(tc.m_Font);
 		textRenderer.Put(floorf(pos.X + tc.m_Pos.X), floorf(pos.Y + tc.m_Pos.Y), &tc.m_String);
 	}
 

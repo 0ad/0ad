@@ -159,7 +159,11 @@ public:
 	bool m_FacePointAfterMove;
 
 	// Whether the unit participates in pushing.
-	bool m_Pushing = true;
+	bool m_Pushing = false;
+
+	// Whether the unit blocks movement (& is blocked by movement blockers)
+	// Cached from ICmpObstruction.
+	bool m_BlockMovement = false;
 
 	// Internal counter used when recovering from obstructed movement.
 	// Most notably, increases the search range of the vertex pathfinder.
@@ -239,7 +243,12 @@ public:
 			"</optional>"
 			"<element name='PassabilityClass' a:help='Identifies the terrain passability class (values are defined in special/pathfinder.xml)'>"
 				"<text/>"
-			"</element>";
+			"</element>"
+			"<optional>"
+				"<element name='DisablePushing'>"
+					"<data type='boolean'/>"
+				"</element>"
+			"</optional>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -267,10 +276,11 @@ public:
 			if (cmpObstruction)
 			{
 				cmpObstruction->SetUnitClearance(m_Clearance);
-				if (!cmpObstruction->GetBlockMovementFlag(true))
-					m_Pushing = false;
+				m_BlockMovement = cmpObstruction->GetBlockMovementFlag(true);
 			}
 		}
+
+		SetParticipateInPushing(!paramNode.GetChild("DisablePushing").IsOk() || !paramNode.GetChild("DisablePushing").ToBool());
 
 		m_DebugOverlayEnabled = false;
 	}
@@ -322,6 +332,10 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
+
+		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		if (cmpObstruction)
+			m_BlockMovement = cmpObstruction->GetBlockMovementFlag(false);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -357,7 +371,7 @@ public:
 		{
 			CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 			if (cmpObstruction)
-				m_Pushing = cmpObstruction->GetBlockMovementFlag(false);
+				m_BlockMovement = cmpObstruction->GetBlockMovementFlag(false);
 			break;
 		}
 		case MT_ValueModification:
@@ -541,6 +555,12 @@ private:
 	entity_id_t GetGroup() const
 	{
 		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
+	}
+
+	void SetParticipateInPushing(bool pushing)
+	{
+		CmpPtr<ICmpUnitMotionManager> cmpUnitMotionManager(GetSystemEntity());
+		m_Pushing = pushing && cmpUnitMotionManager->IsPushingActivated();
 	}
 
 	/**
@@ -731,18 +751,30 @@ private:
 	void FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_pos_t x, entity_pos_t z);
 
 	/**
+	 * Units in 'pushing' mode are marked as 'moving' in the obstruction manager.
+	 * Units in 'pushing' mode should skip them in checkMovement (to enable pushing).
+	 * However, units for which pushing is deactivated should collide against everyone.
+	 * Units that don't block movement never participate in pushing, but they also
+	 * shouldn't collide with pushing units.
+	 */
+	bool ShouldCollideWithMovingUnits() const
+	{
+		return !m_Pushing && m_BlockMovement;
+	}
+
+	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
 	 */
 	ControlGroupMovementObstructionFilter GetObstructionFilter() const
 	{
-		return ControlGroupMovementObstructionFilter(false, GetGroup());
+		return ControlGroupMovementObstructionFilter(ShouldCollideWithMovingUnits(), GetGroup());
 	}
 	/**
 	 * Filter a specific tag on top of the existing control groups.
 	 */
 	SkipTagAndControlGroupObstructionFilter GetObstructionFilter(const ICmpObstructionManager::tag_t& tag) const
 	{
-		return SkipTagAndControlGroupObstructionFilter(tag, false, GetGroup());
+		return SkipTagAndControlGroupObstructionFilter(tag, ShouldCollideWithMovingUnits(), GetGroup());
 	}
 
 	/**
@@ -931,20 +963,20 @@ void CCmpUnitMotion::OnTurnStart()
 
 void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 {
-	state.ignore = !m_Pushing;
+	state.ignore = !m_Pushing || !m_BlockMovement;
 
 	// If we were idle and will still be, no need for an update.
 	state.needUpdate = state.cmpPosition->IsInWorld() &&
 		(m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
 
-	if (state.ignore)
+	if (!m_BlockMovement)
 		return;
 
 	state.controlGroup = IsFormationMember() ? m_MoveRequest.m_Entity : INVALID_ENTITY;
 
 	// Update moving flag, this is an internal construct used for pushing,
 	// so it does not really reflect whether the unit is actually moving or not.
-	state.isMoving = m_MoveRequest.m_Type != MoveRequest::NONE;
+	state.isMoving = m_Pushing && m_MoveRequest.m_Type != MoveRequest::NONE;
 	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 	if (cmpObstruction)
 		cmpObstruction->SetMovingFlag(state.isMoving);

@@ -14,6 +14,18 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="shield leather">
+      <props>
+        <prop actor="props/units/shields/pelte_round_leather.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="shield wood">
+      <props>
+        <prop actor="props/units/shields/pelte_round_wood.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="Tunic-Sleeves">
       <textures>
         <texture file="skeletal/hele_isp_b.dds" name="baseTex"/>

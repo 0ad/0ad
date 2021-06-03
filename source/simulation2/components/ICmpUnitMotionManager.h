@@ -46,6 +46,11 @@ private:
 	 */
 	virtual bool ComputingMotion() const = 0;
 
+	/**
+	 * @return whether pushing is currently enabled or not.
+	 */
+	virtual bool IsPushingActivated() const = 0;
+
 };
 
 #endif // INCLUDED_ICMPUNITMOTIONMANAGER

@@ -32,51 +32,9 @@ public:
 	// Singleton-like interface.
 	static Mod& Instance();
 
-	const std::vector<CStr>& GetEnabledMods() const;
-	const std::vector<CStr>& GetIncompatibleMods() const;
-
-	/**
-	 * Enables specified mods (& mods required by the engine).
-	 * @param addPublic - if true, enable the public mod.
-	 * @return whether the mods were enabled successfully. This can fail if e.g. mods are incompatible.
-	 * If true, GetEnabledMods() should be non-empty, GetIncompatibleMods() empty. Otherwise, GetIncompatibleMods() is non-empty.
-	 */
-	bool EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic);
-
-	/**
-	 * Get the loaded mods and their version.
-	 * "user" mod and "mod" mod are ignored as they are irrelevant for compatibility checks.
-	 *
-	 * @param scriptInterface the ScriptInterface in which to create the return data.
-	 * @return list of loaded mods with the format [[modA, versionA], [modB, versionB], ...]
-	 */
-	JS::Value GetLoadedModsWithVersions(const ScriptInterface& scriptInterface) const;
-
-	/**
-	 * Gets info (version and mods loaded) on the running engine
-	 *
-	 * @param scriptInterface the ScriptInterface in which to create the return data.
-	 * @return list of objects containing data
-	 */
-	JS::Value GetEngineInfo(const ScriptInterface& scriptInterface) const;
-
-	/**
-	 * Gets a dictionary of available mods and their complete, parsed mod.json data.
-	 */
-	JS::Value GetAvailableMods(const ScriptRequest& rq) const;
-
-	/**
-	 * Fetches available mods and stores some metadata about them.
-	 * This may open the zipped mod archives, depending on the situation,
-	 * and/or try to write files to the user mod folder,
-	 * which can be quite slow, so should be run rarely.
-	 * TODO: if this did not need the scriptInterface to parse JSON,
-	 * we could run it in different contexts and possibly cleaner.
-	 */
-	void UpdateAvailableMods(const ScriptInterface& scriptInterface);
-
 	/**
 	 * Parsed mod.json data for C++ usage.
+	 * Note that converting to/from JS is lossy.
 	 */
 	struct ModData
 	{
@@ -87,12 +45,53 @@ public:
 
 		CStr m_Version;
 		std::vector<CStr> m_Dependencies;
+		// If true, the mod is assumed to be 'GUI-only', i.e. ignored for MP or replay compatibility checks.
+		bool m_IgnoreInCompatibilityChecks;
 
 		// For convenience when exporting to JS, keep a record of the full file.
 		CStr m_Text;
 	};
 
+	const std::vector<CStr>& GetEnabledMods() const;
+	const std::vector<CStr>& GetIncompatibleMods() const;
+	const std::vector<ModData>& GetAvailableMods() const;
+
+	/**
+	 * Enables specified mods (& mods required by the engine).
+	 * @param addPublic - if true, enable the public mod.
+	 * @return whether the mods were enabled successfully. This can fail if e.g. mods are incompatible.
+	 * If true, GetEnabledMods() should be non-empty, GetIncompatibleMods() empty. Otherwise, GetIncompatibleMods() is non-empty.
+	 */
+	bool EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic);
+
+	/**
+	 * Get data for the given mod.
+	 * @param the mod path name (e.g. 'public')
+	 * @return the mod data or nullptr if unavailable.
+	 * TODO: switch to std::optional or something related.
+	 */
+	const ModData* GetModData(const CStr& mod) const;
+
+	/**
+	 * Get a list of the enabled mod's data (intended for compatibility checks).
+	 * "user" mod and "mod" mod are ignored as they are irrelevant for compatibility checks.
+	 */
+	const std::vector<const Mod::ModData*> GetEnabledModsData() const;
+
+	/**
+	 * @return whether the two lists are compatible for replaying / MP play.
+	 */
+	static bool AreModsPlayCompatible(const std::vector<const Mod::ModData*>& modsA, const std::vector<const Mod::ModData*>& modsB);
 private:
+	/**
+	 * Fetches available mods and stores some metadata about them.
+	 * This may open the zipped mod archives, depending on the situation,
+	 * and/or try to write files to the user mod folder,
+	 * which can be quite slow, so should be run rarely.
+	 * TODO: if this did not need the scriptInterface to parse JSON,
+	 * we could run it in different contexts and possibly cleaner.
+	 */
+	void UpdateAvailableMods(const ScriptInterface& scriptInterface);
 
 	/**
 	 * Checks a list of @a mods and returns the incompatible mods, if any.

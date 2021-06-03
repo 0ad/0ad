@@ -189,12 +189,10 @@ void CConsole::Render()
 	DrawWindow(canvas);
 
 	CTextRenderer textRenderer;
-	textRenderer.Font(CStrIntern(CONSOLE_FONT));
-	// animation: slide in from top of screen
-	CMatrix3D transform = GetDefaultGuiMatrix();
+	textRenderer.SetCurrentFont(CStrIntern(CONSOLE_FONT));
+	// Animation: slide in from top of screen.
 	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
-	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
-	textRenderer.SetTransform(transform);
+	textRenderer.Translate(m_fX, m_fY - DeltaY);
 
 	DrawHistory(textRenderer);
 	DrawBuffer(textRenderer);
@@ -237,7 +235,7 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 
 	std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	for (Iter = m_deqMsgHistory.begin();
 			Iter != m_deqMsgHistory.end()
@@ -257,14 +255,14 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 	if (m_fHeight < m_iFontHeight)
 		return;
 
-	CMatrix3D savedTransform = textRenderer.GetTransform();
+	const CVector2D savedTranslate = textRenderer.GetTranslate();
 
-	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f, 0.0f);
+	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f);
 
-	textRenderer.Color(1.0f, 1.0f, 0.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 1.0f));
 	textRenderer.PutAdvance(L"]");
 
-	textRenderer.Color(1.0f, 1.0f, 1.0f);
+	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	if (m_iBufferPos == 0)
 		DrawCursor(textRenderer);
@@ -276,7 +274,7 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 			DrawCursor(textRenderer);
 	}
 
-	textRenderer.SetTransform(savedTransform);
+	textRenderer.ResetTranslate(savedTranslate);
 }
 
 void CConsole::DrawCursor(CTextRenderer& textRenderer)
@@ -300,13 +298,13 @@ void CConsole::DrawCursor(CTextRenderer& textRenderer)
 	if(m_bCursorVisState)
 	{
 		// Slightly translucent yellow
-		textRenderer.Color(1.0f, 1.0f, 0.0f, 0.8f);
+		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 0.8f));
 
 		// Cursor character is chosen to be an underscore
 		textRenderer.Put(0.0f, 0.0f, L"_");
 
 		// Revert to the standard text color
-		textRenderer.Color(1.0f, 1.0f, 1.0f);
+		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 }
 

@@ -37,6 +37,7 @@
 #include "ps/Mod.h"
 #include "ps/Util.h"
 #include "ps/VisualReplay.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -77,7 +78,8 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
 	Script::SetProperty(rq, attribs, "engine_version", engine_version);
-	JS::RootedValue mods(rq.cx, g_Mods.GetLoadedModsWithVersions(m_ScriptInterface));
+	JS::RootedValue mods(rq.cx);
+	Script::ToJSVal(rq, &mods, g_Mods.GetEnabledModsData());
 	Script::SetProperty(rq, attribs, "mods", mods);
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryPath());
@@ -158,46 +160,27 @@ void CReplayPlayer::Load(const OsPath& path)
 	ENSURE(m_Stream->good());
 }
 
-CStr CReplayPlayer::ModListToString(const std::vector<std::vector<CStr>>& list) const
+namespace
+{
+CStr ModListToString(const std::vector<const Mod::ModData*>& list)
 {
 	CStr text;
-	for (const std::vector<CStr>& mod : list)
-		text += mod[0] + " (" + mod[1] + ")\n";
+	for (const Mod::ModData* data : list)
+		text += data->m_Pathname + " (" + data->m_Version + ")\n";
 	return text;
 }
 
-void CReplayPlayer::CheckReplayMods(const ScriptInterface& scriptInterface, JS::HandleValue attribs) const
+void CheckReplayMods(const std::vector<Mod::ModData>& replayMods)
 {
-	ScriptRequest rq(scriptInterface);
-
-	std::vector<std::vector<CStr>> replayMods;
-	Script::GetProperty(rq, attribs, "mods", replayMods);
-
-	std::vector<std::vector<CStr>> enabledMods;
-	JS::RootedValue enabledModsJS(rq.cx, g_Mods.GetLoadedModsWithVersions(scriptInterface));
-	Script::FromJSVal(rq, enabledModsJS, enabledMods);
-
-	CStr warn;
-	if (replayMods.size() != enabledMods.size())
-		warn = "The number of enabled mods does not match the mods of the replay.";
-	else
-		for (size_t i = 0; i < replayMods.size(); ++i)
-		{
-			if (replayMods[i][0] != enabledMods[i][0])
-			{
-				warn = "The enabled mods don't match the mods of the replay.";
-				break;
-			}
-			else if (replayMods[i][1] != enabledMods[i][1])
-			{
-				warn = "The mod '" + replayMods[i][0] + "' with version '" + replayMods[i][1] + "' is required by the replay file, but version '" + enabledMods[i][1] + "' is present!";
-				break;
-			}
-		}
-
-	if (!warn.empty())
-		LOGWARNING("%s\nThe mods of the replay are:\n%s\nThese mods are enabled:\n%s", warn, ModListToString(replayMods), ModListToString(enabledMods));
+	std::vector<const Mod::ModData*> replayData;
+	replayData.reserve(replayMods.size());
+	for (const Mod::ModData& data : replayMods)
+		replayData.push_back(&data);
+	if (!Mod::AreModsPlayCompatible(g_Mods.GetEnabledModsData(), replayData))
+		LOGWARNING("Incompatible replay mods detected.\nThe mods of the replay are:\n%s\nThese mods are enabled:\n%s",
+			ModListToString(replayData), ModListToString(g_Mods.GetEnabledModsData()));
 }
+} // anonymous namespace
 
 void CReplayPlayer::Replay(const bool serializationtest, const int rejointestturn, const bool ooslog, const bool testHashFull, const bool testHashQuick)
 {
@@ -225,7 +208,6 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 		{
 			std::string attribsStr;
 			{
-				// TODO: it'd be nice to not create a scriptInterface to load JSON.
 				ScriptInterface scriptInterface("Engine", "Replay", g_ScriptContext);
 				ScriptRequest rq(scriptInterface);
 				std::getline(*m_Stream, attribsStr);
@@ -238,18 +220,23 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 				}
 
 				// Load the mods specified in the replay.
-				std::vector<std::vector<CStr>> replayMods;
-				Script::GetProperty(rq, attribs, "mods", replayMods);
+				std::vector<Mod::ModData> replayMods;
+				if (!Script::GetProperty(rq, attribs, "mods", replayMods))
+				{
+					LOGERROR("Could not get replay mod information.");
+					// TODO: do something cleverer than crashing.
+					ENSURE(false);
+				}
+
 				std::vector<CStr> mods;
-				for (const std::vector<CStr>& ModAndVersion : replayMods)
-					if (!ModAndVersion.empty())
-						mods.emplace_back(ModAndVersion[0]);
+				for (const Mod::ModData& data : replayMods)
+					mods.emplace_back(data.m_Pathname);
 
 				// Ignore the return value, we check below.
 				g_Mods.EnableMods(scriptInterface, mods, false);
-				MountMods(Paths(g_CmdLineArgs), g_Mods.GetEnabledMods());
+				CheckReplayMods(replayMods);
 
-				CheckReplayMods(scriptInterface, attribs);
+				MountMods(Paths(g_CmdLineArgs), g_Mods.GetEnabledMods());
 			}
 
 			g_Game = new CGame(false);

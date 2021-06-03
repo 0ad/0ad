@@ -6,8 +6,19 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 
 		this.values = undefined;
 
-		this.gameSettingsController.guiData.mapFilter.watch(() => this.render(), ["filter"]);
-		g_GameSettings.map.watch(() => this.checkMapTypeChange(), ["type"]);
+	}
+
+	onSettingsLoaded()
+	{
+		if (this.gameSettingsController.guiData.lockSettings?.map)
+			this.setEnabled(false);
+		else
+		{
+			this.gameSettingsController.guiData.mapFilter.watch(() => this.render(), ["filter"]);
+			g_GameSettings.map.watch(() => this.checkMapTypeChange(), ["type"]);
+			this.checkMapTypeChange();
+		}
+		this.render();
 	}
 
 	onHoverChange()
@@ -43,6 +54,13 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 
 	render()
 	{
+		if (!this.enabled)
+		{
+			if (!this.hidden)
+				this.setHidden(true);
+			return;
+		}
+
 		// Index may have changed, reset.
 		this.setSelectedValue(this.gameSettingsController.guiData.mapFilter.filter);
 		this.setHidden(!this.values);

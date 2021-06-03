@@ -36,11 +36,11 @@ class CampaignMenu extends AutoWatcher
 
 	startScenario()
 	{
-		let level = this.getSelectedLevelData();
+		const level = this.getSelectedLevelData();
 		if (!meetsRequirements(this.run, level))
 			return;
 
-		let settings = {
+		const settings = {
 			"mapType": level.MapType,
 			"map": "maps/" + level.Map,
 			"settings": {
@@ -52,19 +52,43 @@ class CampaignMenu extends AutoWatcher
 				"data": this.run.data
 			}
 		};
-		let assignments = {
+		const assignments = {
 			"local": {
 				"player": 1,
 				"name": Engine.ConfigDB_GetValue("user", "playername.singleplayer") || Engine.GetSystemUsername()
 			}
 		};
 
-		let gameSettings = new GameSettings().init();
+		const gameSettings = new GameSettings().init();
 		gameSettings.fromInitAttributes(settings);
+
 		if (level.Preview)
 			gameSettings.mapPreview.setCustom("cropped:" + 400/512 + "," + 300/512 + ":" + level.Preview);
 		gameSettings.mapName.set(this.getLevelName(level));
 		// TODO: level description should also be passed, ideally.
+
+		if (level.useGameSetup)
+		{
+			// Setup some default AI on the non-human players.
+			for (let i = 1; i < gameSettings.playerCount.nbPlayers; ++i)
+				gameSettings.playerAI.set(i, {
+					"bot": g_Settings.PlayerDefaults[i + 1].AI,
+					"difficulty": +Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty"),
+					"behavior": Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior"),
+				});
+
+			const attributes = gameSettings.toInitAttributes();
+			attributes.guiData = {
+				"lockSettings": {
+					"map": true,
+				},
+			};
+
+			Engine.SwitchGuiPage("page_gamesetup.xml", {
+				"gameSettings": attributes,
+			});
+			return;
+		}
 
 		gameSettings.launchGame(assignments);
 		Engine.SwitchGuiPage("page_loading.xml", {

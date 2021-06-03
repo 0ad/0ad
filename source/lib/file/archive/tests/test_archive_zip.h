@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,16 +34,27 @@ namespace
 {
 	// Implementation of the static buffer used to communicate with ArchiveEntryCallback
 	std::string g_ResultBuffer;
+
+	static OsPath MOD_PATH(DataDir() / "mods" / "_test.lib" / "");
 }
 
 class TestArchiveZip : public CxxTest::TestSuite
 {
 public:
+	void setUp()
+	{
+		if(DirectoryExists(MOD_PATH))
+			DeleteDirectory(MOD_PATH);
+	}
+
+	void tearDown()
+	{
+		DeleteDirectory(MOD_PATH);
+	}
+
 	void test_scan_suspiciousZipFile()
 	{
-		OsPath testDir =
-			DataDir() / "mods" / "_test.lib" /
-				"file" / "archive";
+		OsPath testDir = MOD_PATH / "file" / "archive";
 		OsPath testPath = testDir / "test.zip";
 
 		// Hexdump of a zip archive with a comment at the end

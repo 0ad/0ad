@@ -13,16 +13,23 @@ GameSettingControls.MapType = class MapType extends GameSettingControlDropdown
 		this.dropdown.list = g_MapTypes.Title;
 		this.dropdown.list_data = g_MapTypes.Name;
 
-		g_GameSettings.map.watch(() => this.render(), ["type"]);
-		this.render();
 	}
 
-	onLoad()
+	onSettingsLoaded()
 	{
-		// Select a default map type if none are currently chosen.
-		// This in cascade will select a default filter and a default map.
-		if (!g_GameSettings.map.type)
-			g_GameSettings.map.setType(g_MapTypes.Name[g_MapTypes.Default]);
+		if (this.gameSettingsController.guiData.lockSettings?.map)
+			this.setEnabled(false);
+		else
+		{
+			g_GameSettings.map.watch(() => this.render(), ["type"]);
+
+			// Select a default map type if none are currently chosen.
+			// This in cascade will select a default filter and a default map.
+			if (!g_GameSettings.map.type)
+				g_GameSettings.map.setType(g_MapTypes.Name[g_MapTypes.Default]);
+		}
+
+		this.render();
 	}
 
 	onHoverChange()
@@ -32,6 +39,13 @@ GameSettingControls.MapType = class MapType extends GameSettingControlDropdown
 
 	render()
 	{
+		if (!this.enabled)
+		{
+			if (!this.hidden)
+				this.setHidden(true);
+			return;
+		}
+
 		this.setSelectedValue(g_GameSettings.map.type);
 	}
 

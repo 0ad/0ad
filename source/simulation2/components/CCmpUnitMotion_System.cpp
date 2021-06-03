@@ -51,12 +51,6 @@ namespace {
 	static const entity_pos_t PUSHING_CORRECTION = entity_pos_t::FromInt(5) / 7;
 
 	/**
-	 * The maximum distance at which units exert a pushing influence on each other, as a multiple of clearance.
-	 * (This is multiplied by PUSHING_CORRECTION for convenience).
-	 */
-	static const entity_pos_t PUSHING_RADIUS = (entity_pos_t::FromInt(8) / 5).Multiply(PUSHING_CORRECTION);
-
-	/**
 	 * When moving, units exert a pushing influence at a greater distance.
 	 */
 	static const entity_pos_t PUSHING_MOVING_INFLUENCE_EXTENSION = entity_pos_t::FromInt(1);
@@ -70,6 +64,29 @@ namespace {
 CCmpUnitMotionManager::MotionState::MotionState(CmpPtr<ICmpPosition> cmpPos, CCmpUnitMotion* cmpMotion)
 	: cmpPosition(cmpPos), cmpUnitMotion(cmpMotion)
 {
+}
+
+void CCmpUnitMotionManager::Init(const CParamNode&)
+{
+	// Load some data - see CCmpPathfinder.xml.
+	// This assumes the pathfinder component is initialised first and registers the validator.
+	// TODO: there seems to be no real reason why we could not register a 'system' entity somewhere instead.
+	CParamNode externalParamNode;
+	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
+	const CParamNode radius = externalParamNode.GetChild("Pathfinder").GetChild("PushingRadius");
+	if (radius.IsOk())
+	{
+		m_PushingRadius = radius.ToFixed();
+		if (m_PushingRadius < entity_pos_t::Zero())
+		{
+			LOGWARNING("Pushing radius cannot be below 0. De-activating pushing but 'pathfinder.xml' should be updated.");
+			m_PushingRadius = entity_pos_t::Zero();
+		}
+		// No upper value, but things won't behave sanely if values are too high.
+	}
+	else
+		m_PushingRadius = entity_pos_t::FromInt(8) / 5;
+	m_PushingRadius = m_PushingRadius.Multiply(PUSHING_CORRECTION);
 }
 
 void CCmpUnitMotionManager::Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController)
@@ -145,7 +162,8 @@ void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
 			if (it->second.needUpdate)
 				it->second.cmpUnitMotion->Move(it->second, dt);
 
-	if (&ents == &m_Units)
+	// Skip pushing entirely if the radius is 0
+	if (&ents == &m_Units && m_PushingRadius != entity_pos_t::Zero())
 	{
 		PROFILE2("MotionMgr_Pushing");
 		for (std::vector<EntityMap<MotionState>::iterator>* vec : assigned)
@@ -166,6 +184,7 @@ void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
 		}
 	}
 
+	if (m_PushingRadius != entity_pos_t::Zero())
 	{
 		PROFILE2("MotionMgr_PushAdjust");
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
@@ -242,7 +261,7 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 	if (movingPush == 1)
 		return;
 
-	entity_pos_t combinedClearance = (a.second.cmpUnitMotion->m_Clearance + b.second.cmpUnitMotion->m_Clearance).Multiply(PUSHING_RADIUS);
+	entity_pos_t combinedClearance = (a.second.cmpUnitMotion->m_Clearance + b.second.cmpUnitMotion->m_Clearance).Multiply(m_PushingRadius);
 	entity_pos_t maxDist = combinedClearance;
 	if (movingPush)
 		maxDist += PUSHING_MOVING_INFLUENCE_EXTENSION;

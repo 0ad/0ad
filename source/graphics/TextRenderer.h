@@ -20,13 +20,14 @@
 
 #include "graphics/Color.h"
 #include "graphics/ShaderProgramPtr.h"
-#include "maths/Matrix3D.h"
 #include "maths/Rect.h"
+#include "maths/Vector2D.h"
 #include "ps/CStrIntern.h"
 
 #include <list>
 
 class CFont;
+class CMatrix3D;
 
 class CTextRenderer
 {
@@ -34,15 +35,12 @@ public:
 	CTextRenderer();
 
 	/**
-	 * Reset the text transform to the default, with (0,0) in the top-left of the screen.
+	 * Reset the text transform to the default, with (0,0) in the top-left corner.
 	 */
-	void ResetTransform();
+	void ResetTranslate(const CVector2D& translate = CVector2D{});
 
-	CMatrix3D GetTransform();
-
-	void SetTransform(const CMatrix3D& transform);
-
-	void Translate(float x, float y, float z);
+	const CVector2D& GetTranslate() const { return m_Translate; }
+	void Translate(float x, float y);
 
 	/**
 	 * Set clipping rectangle, in pre-transform coordinates (i.e. text is clipped against
@@ -55,17 +53,12 @@ public:
 	/**
 	 * Set the color for subsequent print calls.
 	 */
-	void Color(const CColor& color);
-
-	/**
-	 * Set the color for subsequent print calls.
-	 */
-	void Color(float r, float g, float b, float a = 1.0);
+	void SetCurrentColor(const CColor& color);
 
 	/**
 	 * Set the font for subsequent print calls.
 	 */
-	void Font(CStrIntern font);
+	void SetCurrentFont(CStrIntern font);
 
 	/**
 	 * Print formatted text at (0,0) under the current transform,
@@ -109,7 +102,7 @@ public:
 	/**
 	 * Render all of the previously printed text calls.
 	 */
-	void Render(const CShaderProgramPtr& shader);
+	void Render(const CShaderProgramPtr& shader, const CMatrix3D& transform);
 
 private:
 	friend struct SBatchCompare;
@@ -156,7 +149,7 @@ private:
 	struct SBatch
 	{
 		size_t chars; // sum of runs[i].text->size()
-		CMatrix3D transform;
+		CVector2D translate;
 		CColor color;
 		std::shared_ptr<CFont> font;
 		std::list<SBatchRun> runs;
@@ -164,16 +157,14 @@ private:
 
 	void PutString(float x, float y, const std::wstring* buf, bool owned);
 
-	CShaderProgramPtr m_Shader;
-
-	CMatrix3D m_Transform;
+	CVector2D m_Translate;
 	CRect m_Clipping;
 
 	CColor m_Color;
 	CStrIntern m_FontName;
 	std::shared_ptr<CFont> m_Font;
 
-	bool m_Dirty;
+	bool m_Dirty = true;
 
 	std::list<SBatch> m_Batches;
 };
