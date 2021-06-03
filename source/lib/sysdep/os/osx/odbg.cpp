@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,6 +28,8 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
+#include <pthread.h>
+
 void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	return NULL;
@@ -43,7 +45,7 @@ Status debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_na
 	return ERR::NOT_SUPPORTED;
 }
 
-void debug_SetThreadName(char const* UNUSED(name))
+void debug_SetThreadName(char const* name)
 {
-	// Currently unimplemented
+	pthread_setname_np(name);
 }

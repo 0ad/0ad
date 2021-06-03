@@ -30,7 +30,7 @@
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
 #include "ps/Profile.h"
-#include "ps/Threading.h"
+#include "ps/TaskManager.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
@@ -69,9 +69,8 @@ CMapGeneratorWorker::CMapGeneratorWorker(ScriptInterface* scriptInterface) :
 
 CMapGeneratorWorker::~CMapGeneratorWorker()
 {
-	// Wait for thread to end
-	if (m_WorkerThread.joinable())
-		m_WorkerThread.join();
+	// Cancel or wait for the task to end.
+	m_WorkerThread.CancelOrWait();
 }
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
@@ -83,35 +82,31 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 	m_ScriptPath = scriptFile;
 	m_Settings = settings;
 
-	// Launch the worker thread
-	m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
-}
+	// Start generating the map asynchronously.
+	m_WorkerThread = Threading::TaskManager::Instance().PushTask([this]() {
+		PROFILE2("Map Generation");
 
-void CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
-{
-	debug_SetThreadName("MapGenerator");
-	g_Profiler2.RegisterCurrentThread("MapGenerator");
+		std::shared_ptr<ScriptContext> mapgenContext = ScriptContext::CreateContext(RMS_CONTEXT_SIZE);
 
-	std::shared_ptr<ScriptContext> mapgenContext = ScriptContext::CreateContext(RMS_CONTEXT_SIZE);
+		// Enable the script to be aborted
+		JS_AddInterruptCallback(mapgenContext->GetGeneralJSContext(), MapGeneratorInterruptCallback);
 
-	// Enable the script to be aborted
-	JS_AddInterruptCallback(mapgenContext->GetGeneralJSContext(), MapGeneratorInterruptCallback);
+		m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenContext);
 
-	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenContext);
+		// Run map generation scripts
+		if (!Run() || m_Progress > 0)
+		{
+			// Don't leave progress in an unknown state, if generator failed, set it to -1
+			std::lock_guard<std::mutex> lock(m_WorkerMutex);
+			m_Progress = -1;
+		}
 
-	// Run map generation scripts
-	if (!self->Run() || self->m_Progress > 0)
-	{
-		// Don't leave progress in an unknown state, if generator failed, set it to -1
-		std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
-		self->m_Progress = -1;
-	}
+		SAFE_DELETE(m_ScriptInterface);
 
-	SAFE_DELETE(self->m_ScriptInterface);
-
-	// At this point the random map scripts are done running, so the thread has no further purpose
-	//	and can die. The data will be stored in m_MapData already if successful, or m_Progress
-	//	will contain an error value on failure.
+		// At this point the random map scripts are done running, so the thread has no further purpose
+		//	and can die. The data will be stored in m_MapData already if successful, or m_Progress
+		//	will contain an error value on failure.
+	});
 }
 
 bool CMapGeneratorWorker::Run()
