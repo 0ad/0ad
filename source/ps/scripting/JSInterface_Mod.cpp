@@ -64,6 +64,21 @@ void Script::ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret, const 
 template<>
 bool Script::FromJSVal(const ScriptRequest& rq, const JS::HandleValue val, Mod::ModData& data)
 {
+	// To avoid errors & for convenience, some retro-compatibility when reading
+	// TODO: remove this once we hit A26.
+	JS::RootedObject obj(rq.cx, val.toObjectOrNull());
+	bool isArray = false;
+	if (JS::IsArray(rq.cx, obj, &isArray) && isArray)
+	{
+		if (!Script::GetPropertyInt(rq, val, 0, data.m_Pathname))
+			return false;
+		if (!Script::GetPropertyInt(rq, val, 1, data.m_Version))
+			return false;
+		// Set a sane default for this.
+		data.m_Name = data.m_Pathname;
+		return true;
+	}
+
 	// This property is not set in mod.json files, so don't fail if it's not there.
 	if (Script::HasProperty(rq, val, "mod") && !Script::GetProperty(rq, val, "mod", data.m_Pathname))
 		return false;
