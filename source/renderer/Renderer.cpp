@@ -443,7 +443,6 @@ CRenderer::~CRenderer()
 void CRenderer::EnumCaps()
 {
 	// assume support for nothing
-	m_Caps.m_VBO = false;
 	m_Caps.m_ARBProgram = false;
 	m_Caps.m_ARBProgramShadow = false;
 	m_Caps.m_VertexShader = false;
@@ -452,9 +451,6 @@ void CRenderer::EnumCaps()
 	m_Caps.m_PrettyWater = false;
 
 	// now start querying extensions
-	if (!g_RenderingOptions.GetNoVBO() && ogl_HaveExtension("GL_ARB_vertex_buffer_object"))
-		m_Caps.m_VBO = true;
-
 	if (0 == ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL))
 	{
 		m_Caps.m_ARBProgram = true;
