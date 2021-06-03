@@ -35,6 +35,7 @@
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/TaskManager.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/helpers/Grid.h"
@@ -94,9 +95,12 @@ public:
 	GridUpdateInformation m_AIPathfinderDirtinessInformation;
 	bool m_TerrainDirty;
 
-	std::unique_ptr<VertexPathfinder> m_VertexPathfinder;
+	std::vector<VertexPathfinder> m_VertexPathfinders;
 	std::unique_ptr<HierarchicalPathfinder> m_PathfinderHier;
 	std::unique_ptr<LongPathfinder> m_LongPathfinder;
+
+	// One per live asynchronous path computing task.
+	std::vector<Future<void>> m_Futures;
 
 	template<typename T>
 	class PathRequests {
@@ -104,9 +108,9 @@ public:
 		std::vector<T> m_Requests;
 		std::vector<PathResult> m_Results;
 		// This is the array index of the next path to compute.
-		size_t m_NextPathToCompute = 0;
+		std::atomic<size_t> m_NextPathToCompute = 0;
 		// This is false until all scheduled paths have been computed.
-		bool m_ComputeDone = true;
+		std::atomic<bool> m_ComputeDone = true;
 
 		void ClearComputed()
 		{
