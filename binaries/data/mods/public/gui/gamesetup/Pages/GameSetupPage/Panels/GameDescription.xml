@@ -1,4 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object name="gameDescriptionFrame" type="image" sprite="ModernDarkBoxGold" z="21">
-	<object name="gameDescription" type="text" style="ModernText"/>
-</object>
+<object name="gameDescription" type="text" style="ModernText" sprite="ModernDarkBox" sprite_overlay="ModernDarkBoxGoldBorder"/>
