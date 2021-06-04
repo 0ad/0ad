@@ -8,7 +8,7 @@ if (g_MapSettings.Biome)
 	setSelectedBiome();
 else
 	// TODO: Replace ugly default for atlas by a dropdown
-	setBiome("gulf_of_bothnia/late_spring");
+	setBiome("gulf_of_bothnia/winter");
 
 const tPrimary = g_Terrains.mainTerrain;
 const tForestFloor = g_Terrains.forestFloor1;
@@ -124,6 +124,19 @@ for (let gulfLake of gulfLakePositions)
 		avoidClasses(clPlayer,scaleByMapSize(20, 28)));
 }
 
+if (currentBiome() === "gulf_of_bothnia/frozen_lake")
+{
+	createAreas(
+		new ChainPlacer(
+			1,
+			4,
+			scaleByMapSize(16, 40),
+			0.3),
+		new ElevationPainter(-2),
+		stayClasses(clWater, 2),
+		scaleByMapSize(10, 40));
+}
+
 paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShore);
 paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_IncludeMax, tWater);
 
@@ -135,11 +148,11 @@ else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
-createForests(
- [tPrimary, tForestFloor, tForestFloor, pForest, pForest],
- avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clWater, 2),
- clForest,
- forestTrees);
+createDefaultForests(
+	[tPrimary, tForestFloor, tForestFloor, pForest, pForest],
+	avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clWater, 2),
+	clForest,
+	forestTrees);
 
 Engine.SetProgress(60);
 

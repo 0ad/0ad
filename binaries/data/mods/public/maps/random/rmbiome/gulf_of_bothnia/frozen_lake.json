@@ -5,6 +5,10 @@
 	},
 	"Environment": {
 		"SkySet": "stormy",
+		"SunColor": { "r": 0.85, "g": 0.87, "b": 0.90 },
+		"SunElevation": 0.502494,
+		"SunRotation": -0.626047,
+		"AmbientColor": { "r": 0.194118, "g": 0.292157, "b": 0.394118 },
 		"Water": {
 			"WaterBody": {
 				"Type": "lake",
@@ -61,8 +65,8 @@
 		"bush": { "min": 0, "max": 0 }
 	},
 	"Heights": {
-		"seaGround": 0,
-		"shore": 2,
-		"land": 3
+		"seaGround": 1,
+		"shore": 4,
+		"land": 7
 	}
 }
