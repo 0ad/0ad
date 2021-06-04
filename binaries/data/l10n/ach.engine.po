@@ -1,0 +1,261 @@
+# Translation template for Pyrogenesis.
+# Copyright (C) 2021 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis project.
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"PO-Revision-Date: 2013-06-22 12:54+0000\n"
+"Language-Team: Acoli (http://www.transifex.com/wildfire-games/0ad/language/ach/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ach\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: graphics/CameraController.cpp:656
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:662
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:669
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:676
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:682
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:688
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
+msgid "Long strings"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1026
+msgid "unknown subtype (see logs)"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1357
+msgid "The certificate is not trusted."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1358
+msgid "The certificate hasn't got a known issuer."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1359
+msgid "The certificate has been revoked."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1360
+msgid "The certificate has expired."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1361
+msgid "The certificate is not yet active."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1362
+msgid "The certificate has not been issued for the peer connected to."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1363
+msgid "The certificate signer is not a certificate authority."
+msgstr ""
+
+#: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
+#: lobby/XmppClient.cpp:1468
+msgid "Error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
+msgid "No error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1390
+msgid "Player already logged in"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1392
+msgid "Forbidden"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1394
+msgid "Internal server error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1398
+msgid "Not allowed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1399
+msgid "Not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1402
+msgid "Recipient temporarily unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1404
+msgid "Registration required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1408
+msgid "Service unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
+msgid "Unknown error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1433
+msgid "Stream error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1434
+msgid "The incoming stream version is unsupported"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1435
+msgid "The stream has been closed by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1439
+msgid "An I/O error occurred"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1441
+msgid "The connection was refused by the server"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1442
+msgid "Resolving the server's hostname failed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1443
+msgid "This system is out of memory"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1445
+msgid ""
+"The server's certificate could not be verified or the TLS handshake did not "
+"complete successfully"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1446
+msgid "The server did not offer required TLS encryption"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1448
+msgid "Authentication failed. Incorrect password or account does not exist"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1449
+msgid "The user or system requested a disconnect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1450
+msgid "There is no active connection"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1471
+msgid "Your account has been successfully registered"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1472
+msgid "Not all necessary information provided"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1473
+msgid "Username already exists"
+msgstr ""
+
+#: ps/Mod.cpp:84
+#, c-format
+msgid ""
+"Could not write external mod.json for zipped mod '%s'. The mod should be "
+"reinstalled."
+msgstr ""
+
+#: ps/ModIo.cpp:263
+#, c-format
+msgid "Failure while starting querying for game id. Error: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:293
+#, c-format
+msgid "Failure while starting querying for mods. Error: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:319
+#, c-format
+msgid "Could not create mod directory: %s."
+msgstr ""
+
+#: ps/ModIo.cpp:344
+#, c-format
+msgid "Could not open temporary file for mod download: %s."
+msgstr ""
+
+#: ps/ModIo.cpp:354
+#, c-format
+msgid "Failed to start the download. Error: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:399
+#, c-format
+msgid "Asynchronous download failure: %s, %s."
+msgstr ""
+
+#: ps/ModIo.cpp:427
+#, c-format
+msgid "Download failure. Server response: %s; %s."
+msgstr ""
+
+#: ps/ModIo.cpp:530
+msgid "Mismatched filesize."
+msgstr ""
+
+#: ps/ModIo.cpp:548
+#, c-format
+msgid "Invalid file. Expected md5 %s, got %s."
+msgstr ""
+
+#: ps/ModIo.cpp:563
+msgid "Failed to compute final hash."
+msgstr ""
+
+#: ps/ModIo.cpp:569
+msgid "Failed to verify signature."
+msgstr ""
+
+#: ps/SavedGame.cpp:141
+#, c-format
+msgid "Saved game to '%s'"
+msgstr ""
+
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
+#, c-format
+msgid "Screenshot written to '%s'"
+msgstr ""
+
+#: ps/scripting/JSInterface_Debug.cpp:87
+msgid "custom build"
+msgstr ""

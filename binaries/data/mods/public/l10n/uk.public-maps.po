@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:30+0000\n"
-"Last-Translator: 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>\n"
+"PO-Revision-Date: 2021-05-31 17:52+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -876,7 +876,7 @@ msgstr "Високогір'я"
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Arctic"
-msgstr ""
+msgstr "Арктика"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -912,12 +912,12 @@ msgid ""
 "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
 "gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes"
 " or elephants roam the wild in search of food."
-msgstr ""
+msgstr "Нубія, в посушливому кліматі якої можуть рости лише могутні баобаби. Самотні газелі щипають рідкісну траву, а стада зебр, антилоп гну, жирафів і слонів бродять у пошуках їжі."
 
 #: maps/random/rmbiome/generic/nubia.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Nubia"
-msgstr ""
+msgstr "Нубія"
 
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Description
 msgctxt "biome definition"
@@ -925,12 +925,12 @@ msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and acacia "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
-msgstr ""
+msgstr "Територія напівпустель може похвалитися численними скупченнями фінікових пальм і дерев акації. Стада верблюдів бродять по дикій місцевості, і схоплюється з переляку випадково потривожена газель."
 
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Sahara"
-msgstr ""
+msgstr "Сахара"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
@@ -948,12 +948,12 @@ msgstr "Савана"
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
 msgid "Wide grasslands without trees"
-msgstr ""
+msgstr "Широкі луки без дерев"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Eurasian Steppe"
-msgstr ""
+msgstr "Євразійський Степ"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -2405,14 +2405,14 @@ msgstr "%(player)s зазнав поразки (втратив усіх крит
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all civic centres)."
-msgstr ""
+msgstr "%(player)s зазнав поразки (втрачено усі громадські центри)."
 
 #: maps/scripts/ConquestCivicCentres.js:9
 #, javascript-format
 msgid ""
 "%(player)s has been defeated (lost all civic centres and critical units and "
 "structures)."
-msgstr ""
+msgstr "%(player)s зазнав поразки (втратив усі громадські центри і усіх критичних юнітів та споруди)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
@@ -2480,10 +2480,10 @@ msgstr[3] "%(players)s і %(lastPlayer)s перемогли (Чудо побуд
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s зазнав поразки (Чудо побудовано противником)."
+msgstr[1] "%(players)s і %(lastPlayer)s зазнали поразки (Чудо побудовано противником)."
+msgstr[2] "%(players)s і %(lastPlayer)s зазнали поразки (Чудо побудовано противником)."
+msgstr[3] "%(players)s і %(lastPlayer)s зазнали поразки (Чудо побудовано противником)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""
@@ -2572,7 +2572,7 @@ msgstr "На південь від Сахари і схід від Нілу ле
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Island of Meroë (2)"
-msgstr ""
+msgstr "Острів Мерое (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
@@ -3098,7 +3098,7 @@ msgstr ""
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
-msgstr ""
+msgstr "Скіфські Степи (4)"
 
 #: maps/skirmishes/sicilia_2p.xml:Description:38
 msgid "The large Mediterranean island of Sicily is open for conquest."
@@ -3210,7 +3210,7 @@ msgstr "Всі дороги ведуть до Риму. Августова до�
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
-msgstr ""
+msgstr "Августова Дорога (4)"
 
 #: maps/skirmishes/watering_holes_4p.xml:Description:38
 msgid ""
@@ -3244,19 +3244,19 @@ msgstr "Брити"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
-msgstr ""
+msgstr "Загарбник 1"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
 msgid "Invader 2"
-msgstr ""
+msgstr "Загарбник 2"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
 msgid "Invader 3"
-msgstr ""
+msgstr "Загарбник 3"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
-msgstr ""
+msgstr "Загарбник 4"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

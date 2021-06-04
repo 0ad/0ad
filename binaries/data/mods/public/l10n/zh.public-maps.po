@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-29 13:13+0000\n"
+"PO-Revision-Date: 2021-06-04 06:49+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -2236,14 +2236,14 @@ msgstr "打跨敌人，争得荣誉！"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(players)s 和 %(lastPlayer)s 获胜了 (收集财宝)。"
+msgstr[0] "%(players)s 和 %(lastPlayer)s 获胜了 (财宝收集)。"
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "%(players)s 和 %(lastPlayer)s 被打败(收集财宝)。"
+msgstr[0] "%(players)s 和 %(lastPlayer)s 失败了(财宝收集)。"
 
 #: maps/scenarios/treasure_islands.xml:Description:38
 msgid ""

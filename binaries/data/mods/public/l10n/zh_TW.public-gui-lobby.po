@@ -10,6 +10,7 @@
 # 黃柏諺 <s8321414@gmail.com>, 2014-2018
 # JerryShen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# StarAtt <tea55688@gmail.com>, 2021
 # Yuan <daan0014119@gmail.com>, 2020-2021
 # 張峻瑜 <a728728728@gmail.com>, 2018
 # 黃柏諺 <s8321414@gmail.com>, 2021
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-05-27 14:10+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"PO-Revision-Date: 2021-06-04 05:12+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "更新"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
 msgid "Rank"
-msgstr "等級"
+msgstr "排名"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):12
@@ -49,7 +50,7 @@ msgstr "名稱"
 #: gui/lobby/LobbyPage/GameList.xml:(heading):27
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
-msgstr "排行"
+msgstr "積分"
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
@@ -57,23 +58,23 @@ msgstr "注意"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr "標記成好友"
+msgstr "標記為好友"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr "取消標記成好友"
+msgstr "取消標記好友"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
-msgstr "主創遊戲"
+msgstr "主持遊戲"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "你已開啟的模組不符合這場遊戲的模組。"
+msgstr "您啟用的模組與這場遊戲不相符。"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "你想要切換回模組選擇頁嗎？"
+msgstr "要切換到模組選擇頁嗎？"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
@@ -81,7 +82,7 @@ msgstr "不相容的模組"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "遊戲已啟動，您想要以觀察者身份加入嗎？"
+msgstr "遊戲已開始。您想要以觀戰者身分加入嗎？"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
@@ -96,7 +97,7 @@ msgstr "排行榜"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr "玩家情報檢視"
+msgstr "玩家檔案檢視"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -116,16 +117,16 @@ msgstr "不支援「%(cmd)s」指令。"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "「%(cmd)s」僅供主持人使用。"
+msgstr "「%(cmd)s」僅供維護員使用。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr "指令 \"%(cmd)s\" 需要至少一個參數。"
+msgstr "指令「%(cmd)s」需要至少一個參數。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
-msgstr "設定您的狀態為「離開」。"
+msgstr "設定您的狀態為「暫離」。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
 msgid "Set your state to 'Online'."
@@ -133,11 +134,11 @@ msgstr "設定您的狀態為「上線」。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "將特定的使用者從大廳踢出。用法：/kick 暱稱 理由"
+msgstr "將特定使用者踢出大廳。用法：/kick 暱稱 理由"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "將特定的使用者從大廳封鎖。用法：/ban 暱稱 理由"
+msgstr "禁止特定使用者進入大廳。用法：/ban 暱稱 理由"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
 msgid "Show this help."
@@ -200,7 +201,7 @@ msgstr "私人"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr "(%(private)s) %(message)s"
+msgstr "（%(private)s）%(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
@@ -232,12 +233,12 @@ msgstr "%(nick)s 已被靜音。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr "您現在是主持人。"
+msgstr "您現在是維護員。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s 現在是主持人。"
+msgstr "%(nick)s 現在是維護員。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
@@ -250,22 +251,22 @@ msgstr "%(nick)s 已被解除靜音。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
-msgstr "您已不再是主持人了。"
+msgstr "您不再是維護員了。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s 已不再是主持人了。"
+msgstr "%(nick)s 不再是維護員了。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr "%(nick)s 將大廳更改為："
+msgstr "%(nick)s 將大廳主題更改為："
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr "%(nick)s 刪除大廳。"
+msgstr "%(nick)s 刪除了大廳主題。"
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -275,11 +276,11 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr "已連接。"
+msgstr "已連線。"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
-msgstr "已中斷連線。"
+msgstr "連線中斷。"
 
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
@@ -315,7 +316,7 @@ msgstr "踢出"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "您與大廳的連線已中斷，你想要重新連線嗎？"
+msgstr "您與大廳的連線已經中斷，要重新連線嗎？"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
@@ -352,12 +353,12 @@ msgstr "%(current)s/%(max)s"
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "無盡的遊戲"
+msgstr "無盡遊戲"
 
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr "主持：%(playername)s"
+msgstr "主持人：%(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
@@ -461,12 +462,12 @@ msgstr "您已被大廳封禁！"
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s 已將您從大廳中踢出。"
+msgstr "%(nick)s 已被踢出大廳。"
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s 已將您從大廳中封禁。"
+msgstr "%(nick)s 已被大廳封禁。"
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
@@ -482,7 +483,7 @@ msgstr "多人遊戲大廳"
 #: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr "%(nick)s (%(rating)s)"
+msgstr "%(nick)s（%(rating)s）"
 
 #: gui/lobby/LobbyPage/PlayerList.js:178
 msgid "Online"
@@ -490,7 +491,7 @@ msgstr "上線"
 
 #: gui/lobby/LobbyPage/PlayerList.js:184
 msgid "Away"
-msgstr "離開"
+msgstr "暫離"
 
 #: gui/lobby/LobbyPage/PlayerList.js:190
 msgid "Busy"
@@ -515,7 +516,7 @@ msgstr "N/A"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:112
 msgid "Moderator"
-msgstr "主持人"
+msgstr "維護員"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
@@ -523,7 +524,7 @@ msgstr "玩家"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
-msgstr "玩家靜音"
+msgstr "靜音的玩家"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
@@ -538,12 +539,12 @@ msgstr "%(percentage)s%%"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
 msgid "Current Rank:"
-msgstr "目前等級："
+msgstr "目前排名："
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
 msgid "Highest Rating:"
-msgstr "最高排行："
+msgstr "最高積分："
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):38
@@ -553,17 +554,17 @@ msgstr "遊戲總數："
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):42
 msgid "Wins:"
-msgstr "勝利："
+msgstr "勝場數："
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):46
 msgid "Losses:"
-msgstr "失敗："
+msgstr "敗場數："
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):50
 msgid "Win Rate:"
-msgstr "勝利排行："
+msgstr "勝率："
 
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
@@ -618,7 +619,7 @@ msgstr "密碼不相符"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "你確定想在連上線以後刪除這個密碼？"
+msgstr "確定要在連線後刪除密碼嗎？"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
@@ -636,7 +637,7 @@ msgstr "記住密碼"
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr "未知錯誤。這通常是因為同一個 IP 不允許在一個小時內註冊多於一個帳號所造成的。"
+msgstr "未知的錯誤。這通常是因同一個 IP 不允許在一個小時內註冊多於一個帳號所造成。"
 
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
@@ -647,7 +648,7 @@ msgstr "取消"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant 多人大廳隱私權政策[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant 多人遊戲大廳隱私政策[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
@@ -657,7 +658,7 @@ msgstr "[font=\"sans-bold-14\"]文件日期：[/font]2020-12-24"
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr "[font=\"sans-bold-16\"]Wildfire Games 處理的個人資料與處理目的：[/font]"
+msgstr "[font=\"sans-bold-16\"]Wildfire Games 處理的個人資料及處理目的：[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
@@ -667,7 +668,7 @@ msgstr "[font=\"sans-bold-14\"]1. 玩家名稱[/font]"
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr "玩家透過其在註冊時所選擇的名稱來識別。"
+msgstr "玩家由其在註冊時所選擇的名稱識別。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -675,7 +676,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr "擁有獨特的玩家名稱是取得評價的要求，讓玩家、管理員與開發者可以識別他們以前遇到過的玩家、在遊戲中溝痛、協調對戰並讓管理員能夠執行使用條款。"
+msgstr "擁有唯一玩家名稱是取得積分的必要條件，讓玩家、維護員與開發者們得以識別他們遇過的玩家，互相交流、協調對戰對並讓維護員能夠執行使用條款。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -684,7 +685,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "玩家名稱是假名。玩家的身份（自然人）並不會讓 Wildfire Games 知道，除非有人在大廳的聊天室、其他 Wildfire Games 的服務或是其他公開場合中揭露個人資訊（如真實姓名），或是 IP 位置被用於刑事起訴時。"
+msgstr "玩家名稱是假名，玩家身分（自然人）不會使 Wildfire Games 得知，除非有人在大廳聊天、其他 Wildfire Games 服務或別處公開場合透露個人識別資訊（如真實姓名），抑或 IP 位置被用於刑事訴訟時。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -694,32 +695,32 @@ msgstr "[font=\"sans-bold-14\"]2. 密碼[/font]"
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr "玩家必需使用在註冊時所填入的密碼來進行身份驗證。"
+msgstr "玩家以註冊時選擇的密碼驗證身分。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr "Wildfire Games 僅會收到加密版本的密碼，因此，即便發生違法情事，密碼也不會被 Wildfire Games 或其他人所揭露。"
+msgstr "Wildfire Games 僅會收到加密版本的密碼，使用者的密碼不會對 Wildfire Games 或其他人顯示以免侵害。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr "[font=\"sans-bold-14\"]3. IP 位置[/font]"
+msgstr "[font=\"sans-bold-14\"]3. IP 位址[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "當玩家主持一場在多人大廳的對戰時，玩家的 IP 位置將會傳送給每個在線上的玩家，這樣其他玩家才能加入遊戲。"
+msgstr "在多人遊戲大廳主持對戰時，該玩家的 IP 位址會傳送給每個上線的玩家，如此其他玩家才能加入遊戲。"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr "Wildfire Games 會儲存玩家的 IP 位置並推斷公開可用的地理定位與網路服務提供者資料（例子：\"geolite2\"），以便："
+msgstr "Wildfire Games 儲存玩家的 IP 位址且可能會由其推斷公開可用的地理位置定位與網路服務提供者資料（如：\"geolite2\"）以便："
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
