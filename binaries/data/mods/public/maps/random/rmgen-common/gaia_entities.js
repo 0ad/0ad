@@ -12,6 +12,7 @@ function getTreeCounts(minTrees, maxTrees, forestRatio)
 
 /**
  * Places uniformly sized forests at random locations.
+ * Unless you want a custom number of forest, prefer createDefaultForests.
  * Generates two variants of forests from the given terrain textures and tree templates.
  * The forest border has less trees than the inside.
  * @param terrainsSet - a list of 5 terrains to use. The first 3 are border terrains, the later 2 interior.
@@ -68,6 +69,25 @@ function createForests(terrainSet, constraint, tileClass, treeCount, retryFactor
 			numberOfForests,
 			retryFactor);
 }
+
+var g_DefaultNumberOfForests = scaleByMapSize(8, 36);
+
+/**
+ * Passes some sane defaults to createForests.
+ */
+function createDefaultForests(terrainSet, constraints, tileClass, totalNumberOfTrees)
+{
+	return createForests(
+		terrainSet,
+		constraints,
+		tileClass,
+		{
+			"nbForests": g_DefaultNumberOfForests,
+			"treesPerForest": totalNumberOfTrees / g_DefaultNumberOfForests,
+		}
+	);
+}
+
 
 /**
  * Places the given amount of Entities at random places meeting the given Constraint, chosing a different template for each.
