@@ -2,13 +2,13 @@
 	"genericName": "Horse Racing",
 	"description": "Train your horses to move faster.",
 	"cost": {
-		"food": 400,
-		"metal": 200
+		"food": 100,
+		"metal": 50
 	},
 	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "nisean_war_horses.png",
-	"researchTime": 40,
+	"researchTime": 30,
 	"tooltip": "Cavalry +10% walk speed.",
 	"modifications": [
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.1 }
