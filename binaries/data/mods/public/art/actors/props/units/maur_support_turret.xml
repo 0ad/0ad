@@ -2,9 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="camel prop1">
+    <variant frequency="1" name="Mauryan Support Elephant Turret">
       <mesh>props/maur_support_turret.dae</mesh>
-      <textures><texture file="structural/maur_struct_b.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/maur_struct_b.png" name="baseTex"/>
+        <texture file="structural/maur_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/maur_struct_b_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
