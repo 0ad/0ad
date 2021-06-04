@@ -1,44 +1,47 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
+Engine.LoadLibrary("rmbiome");
 
-const tPrimary = "temp_grass_long";
-const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
-const tGrassPForest = "temp_plants_bog";
-const tGrassDForest = "temp_plants_bog";
-const tGrassA = "temp_grass_plants";
-const tGrassB = "temp_plants_bog";
-const tGrassC = "temp_mud_a";
-const tHill = ["temp_highlands", "temp_grass_long_b"];
-const tCliff = ["temp_cliff_a", "temp_cliff_b"];
-const tRoad = "temp_road";
-const tRoadWild = "temp_road_overgrown";
-const tGrassPatchBlend = "temp_grass_long_b";
-const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
-const tShoreBlend = "temp_grass_plants";
-const tShore = "temp_plants_bog";
-const tWater = "temp_mud_a";
+setSelectedBiome();
 
-const oOak = "gaia/tree/oak";
-const oOakLarge = "gaia/tree/oak_large";
-const oApple = "gaia/fruit/apple";
-const oPine = "gaia/tree/pine";
-const oAleppoPine = "gaia/tree/aleppo_pine";
-const oBerryBush = "gaia/fruit/berry_01";
-const oDeer = "gaia/fauna_deer";
-const oFish = "gaia/fish/generic";
-const oSheep = "gaia/fauna_sheep";
-const oStoneLarge = "gaia/rock/temperate_large";
-const oStoneSmall = "gaia/rock/temperate_small";
-const oMetalLarge = "gaia/ore/temperate_large";
+const tPrimary = g_Terrains.mainTerrain;
+const tGrass = [g_Terrains.tier1Terrain, g_Terrains.tier2Terrain];
+const tGrassPForest = g_Terrains.forestFloor1;
+const tGrassDForest = g_Terrains.forestFloor2;
+const tGrassA = g_Terrains.tier2Terrain;
+const tGrassB = g_Terrains.tier3Terrain;
+const tGrassC = g_Terrains.tier4Terrain;
+const tHill = g_Terrains.hill;
+const tCliff = g_Terrains.cliff;
+const tRoad = g_Terrains.road;
+const tRoadWild = g_Terrains.roadWild;
+const tGrassPatchBlend = g_Terrains.tier2Terrain;
+const tGrassPatch = g_Terrains.tier1Terrain;
+const tShoreBlend = g_Terrains.shoreBlend;
+const tShore = g_Terrains.shore;
+const tWater = g_Terrains.water;
 
-const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
-const aGrassShort = "actor|props/flora/grass_soft_large.xml";
-const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-const aLillies = "actor|props/flora/pond_lillies_large.xml";
-const aRockLarge = "actor|geology/stone_granite_large.xml";
-const aRockMedium = "actor|geology/stone_granite_med.xml";
-const aBushMedium = "actor|props/flora/bush_medit_me.xml";
-const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
+const oOak = g_Gaia.tree1;
+const oOakLarge = g_Gaia.tree2;
+const oApple = g_Gaia.tree3;
+const oPine = g_Gaia.tree4;
+const oAleppoPine = g_Gaia.tree5;
+const oBerryBush = g_Gaia.fruitBush;
+const oDeer = g_Gaia.mainHuntableAnimal;
+const oFish = g_Gaia.fish;
+const oSheep = g_Gaia.secondaryHuntableAnimal;
+const oStoneLarge = g_Gaia.stoneLarge;
+const oStoneSmall = g_Gaia.stoneSmall;
+const oMetalLarge = g_Gaia.metalLarge;
+
+const aGrass = g_Decoratives.grass;
+const aGrassShort = g_Decoratives.grassShort;
+const aReeds = g_Decoratives.reeds;
+const aLillies = g_Decoratives.lillies;
+const aRockLarge = g_Decoratives.rockLarge;
+const aRockMedium = g_Decoratives.rockMedium;
+const aBushMedium = g_Decoratives.bushMedium;
+const aBushSmall = g_Decoratives.bushSmall;
 
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
@@ -165,12 +168,12 @@ Engine.SetProgress(30);
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 Engine.SetProgress(35);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
-createForests(
- [tGrass, tGrassDForest, tGrassPForest, pForestP, pForestD],
- avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),
- clForest,
- forestTrees);
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+createDefaultForests(
+	[tGrass, tGrassDForest, tGrassPForest, pForestP, pForestD],
+	avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),
+	clForest,
+	forestTrees);
 Engine.SetProgress(40);
 
 g_Map.log("Creating dirt patches");
