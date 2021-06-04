@@ -494,13 +494,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		// If the unit is full go to the nearest dropsite instead of trying to gather.
-		if (!cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
-		{
-			this.SetNextState("INDIVIDUAL.GATHER.RETURNINGRESOURCE");
-			return ACCEPT_ORDER;
-		}
-
 		if (this.MustKillGatherTarget(msg.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
@@ -531,6 +524,13 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 
 			this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
+			return ACCEPT_ORDER;
+		}
+
+		// If the unit is full go to the nearest dropsite instead of trying to gather.
+		if (!cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
+		{
+			this.SetNextState("INDIVIDUAL.GATHER.RETURNINGRESOURCE");
 			return ACCEPT_ORDER;
 		}
 
