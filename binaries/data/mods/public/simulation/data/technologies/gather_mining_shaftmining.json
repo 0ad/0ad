@@ -2,8 +2,8 @@
 	"genericName": "Shaft Mining",
 	"description": "Develop shaft mining. Increases metal gathering rates.",
 	"cost": {
-		"wood": 400,
-		"metal": 200
+		"food": 400,
+		"stone": 200
 	},
 	"supersedes": "gather_mining_wedgemallet",
 	"requirements": { "tech": "phase_town" },

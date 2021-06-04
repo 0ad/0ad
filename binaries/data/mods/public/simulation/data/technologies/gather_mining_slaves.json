@@ -10,8 +10,8 @@
 	},
 	"description": "Buy slaves to help your workers quarry stone. Increases stone gathering rates.",
 	"cost": {
-		"wood": 600,
-		"metal": 300
+		"food": 600,
+		"stone": 300
 	},
 	"supersedes": "gather_mining_serfs",
 	"requirements": { "tech": "phase_city" },
