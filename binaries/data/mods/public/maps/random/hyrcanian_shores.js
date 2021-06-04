@@ -1,40 +1,43 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
+Engine.LoadLibrary("rmbiome");
 
-const tPrimary = "temp_grass_long";
-const tGrass = ["temp_grass_clovers"];
-const tGrassPForest = "temp_plants_bog";
-const tGrassDForest = "alpine_dirt_grass_50";
-const tCliff = ["temp_cliff_a", "temp_cliff_b"];
-const tGrassA = "temp_grass_d";
-const tGrassB = "temp_grass_c";
-const tGrassC = "temp_grass_clovers_2";
-const tHill = ["temp_highlands", "temp_grass_long_b"];
-const tRoad = "temp_road";
-const tRoadWild = "temp_road_overgrown";
-const tGrassPatch = "temp_grass_plants";
-const tShore = "medit_sand_wet";
-const tWater = "medit_sand_wet";
+setSelectedBiome();
 
-const oPoplar = "gaia/tree/poplar";
-const oPalm = "gaia/tree/cretan_date_palm_short";
-const oApple = "gaia/fruit/apple";
-const oOak = "gaia/tree/oak";
-const oBerryBush = "gaia/fruit/berry_01";
-const oDeer = "gaia/fauna_deer";
-const oFish = "gaia/fish/generic";
+const tPrimary = g_Terrains.mainTerrain;
+const tGrass = g_Terrains.tier1Terrain;
+const tGrassPForest = g_Terrains.forestFloor1;
+const tGrassDForest = g_Terrains.forestFloor2;
+const tCliff = g_Terrains.cliff;
+const tGrassA = g_Terrains.tier2Terrain;
+const tGrassB = g_Terrains.tier3Terrain;
+const tGrassC = g_Terrains.tier4Terrain;
+const tHill = g_Terrains.hill;
+const tRoad = g_Terrains.road;
+const tRoadWild = g_Terrains.roadWild;
+const tGrassPatch = g_Terrains.dirt;
+const tShore = g_Terrains.shoreBlend;
+const tWater = g_Terrains.shore;
+
+const oPoplar = g_Gaia.tree1;
+const oPalm = g_Gaia.tree2;
+const oApple = g_Gaia.tree3;
+const oOak = g_Gaia.tree4;
+const oBerryBush = g_Gaia.fruitBush;
+const oDeer = g_Gaia.mainHuntableAnimal;
+const oFish = g_Gaia.fish;
 const oGoat = "gaia/fauna_goat";
 const oBoar = "gaia/fauna_boar";
-const oStoneLarge = "gaia/rock/temperate_large";
-const oStoneSmall = "gaia/rock/temperate_small";
-const oMetalLarge = "gaia/ore/temperate_large";
+const oStoneLarge = g_Gaia.stoneLarge;
+const oStoneSmall = g_Gaia.stoneSmall;
+const oMetalLarge = g_Gaia.metalLarge;
 
-const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
-const aGrassShort = "actor|props/flora/grass_soft_large.xml";
-const aRockLarge = "actor|geology/stone_granite_large.xml";
-const aRockMedium = "actor|geology/stone_granite_med.xml";
-const aBushMedium = "actor|props/flora/bush_medit_me_lush.xml";
-const aBushSmall = "actor|props/flora/bush_medit_sm_lush.xml";
+const aGrass = g_Decoratives.grass;
+const aGrassShort = g_Decoratives.grassShort;
+const aRockLarge = g_Decoratives.rockLarge;
+const aRockMedium = g_Decoratives.rockMedium;
+const aBushMedium = g_Decoratives.bushMedium;
+const aBushSmall = g_Decoratives.bushSmall;
 
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oPoplar, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
@@ -163,38 +166,46 @@ createAreas(
 Engine.SetProgress(35);
 
 g_Map.log("Creating mainland forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
-var types = [
-	[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]]
-];
-var size = forestTrees * 1.3 / (scaleByMapSize(2,8) * numPlayers);
-var num = Math.floor(0.7 * size / types.length);
-for (let type of types)
-	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
-		[
-			new LayeredPainter(type, [2]),
-			new TileClassPainter(clForest)
-		],
-		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clBaseResource, 3),
-		num);
-Engine.SetProgress(45);
+const [forestTrees, stragglerTrees] = getTreeCounts(1000, 3500, 0.85);
+const highlandShare = 0.4;
+{
+	var types = [
+		[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]]
+	];
+	const numberOfForests = scaleByMapSize(20, 100) / types[0].length;
+	for (const type of types)
+		createAreas(
+			new ClumpPlacer(forestTrees * (1.0 - highlandShare) / numberOfForests, 0.1, 0.1, Infinity),
+			[
+				new LayeredPainter(type, [2]),
+				new TileClassPainter(clForest)
+			],
+			avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clBaseResource, 3, clHighlands, 2),
+			numberOfForests);
+	Engine.SetProgress(45);
+}
 
 g_Map.log("Creating highland forests");
-var types = [
-	[[tGrassDForest, tGrass, pForestP], [tGrassDForest, pForestP]]
-];
-var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
-	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
-		[
-			new LayeredPainter(type, [2]),
-			new TileClassPainter(clForest)
-		],
-		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0),
-		num);
+{
+	var types = [
+		[[tGrassDForest, tGrass, pForestP], [tGrassDForest, pForestP]]
+	];
+	const numberOfForests = scaleByMapSize(8, 50) / types[0].length;
+	for (const type of types)
+		createAreas(
+			new ClumpPlacer(forestTrees * (highlandShare) / numberOfForests, 0.1, 0.1, Infinity),
+			[
+				new LayeredPainter(type, [2]),
+				new TileClassPainter(clForest)
+			],
+			[
+				avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clBaseResource, 3),
+				stayClasses(clHighlands, 2)
+			],
+			numberOfForests,
+			30);
+}
+
 Engine.SetProgress(70);
 
 g_Map.log("Creating dirt patches");
@@ -237,7 +248,7 @@ g_Map.log("Creating metal mines");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)],
-	scaleByMapSize(4,16), 100
+	scaleByMapSize(5, 20), 100
 );
 
 Engine.SetProgress(85);
@@ -341,11 +352,7 @@ createObjectGroupsDeprecated(group, 0,
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-setSkySet("cirrus");
-setWaterColor(0.114, 0.192, 0.463);
-setWaterTint(0.255, 0.361, 0.651);
 setWaterWaviness(2.0);
 setWaterType("ocean");
-setWaterMurkiness(0.83);
 
 g_Map.ExportMap();
