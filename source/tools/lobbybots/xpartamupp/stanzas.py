@@ -61,6 +61,9 @@ class GameListXmppPlugin(ElementBase):
         Arguments:
             data (dict): game data to add
         """
+        try: del data['ip']	# Don't send the IP address with the gamelist.
+        except: pass
+
         self.xml.append(ET.Element('game', data))
 
     def get_game(self):

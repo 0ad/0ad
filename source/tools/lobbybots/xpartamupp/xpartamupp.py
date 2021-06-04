@@ -243,6 +243,8 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         if iq['from'].resource != '0ad':
             return
 
+        success = False
+
         command = iq['gamelist']['command']
         if command == 'register':
             success = self.games.add_game(iq['from'], iq['gamelist']['game'])
@@ -252,7 +254,10 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             success = self.games.change_game_state(iq['from'], iq['gamelist']['game'])
         else:
             logging.info('Received unknown game command: "%s"', command)
-            return
+
+        iq.reply(clear=not success)
+        if not success: iq['error']['condition'] = "undefined-condition"
+        iq.send()
 
         if success:
             try:
