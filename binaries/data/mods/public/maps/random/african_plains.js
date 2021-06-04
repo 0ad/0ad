@@ -2,7 +2,11 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
-setSelectedBiome();
+if (g_MapSettings.Biome)
+	setSelectedBiome();
+else
+	setBiome("generic/savanna");
+
 
 // Pick some biome defaults and overload a few settings.
 var tPrimary = g_Terrains.mainTerrain;

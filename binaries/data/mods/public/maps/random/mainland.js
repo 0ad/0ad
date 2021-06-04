@@ -90,11 +90,11 @@ else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
 
 var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
-createForests(
- [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- avoidClasses(clPlayer, 20, clForest, 18, clHill, 0),
- clForest,
- forestTrees);
+createDefaultForests(
+	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
+	avoidClasses(clPlayer, 20, clForest, 18, clHill, 0),
+	clForest,
+	forestTrees);
 
 Engine.SetProgress(50);
 

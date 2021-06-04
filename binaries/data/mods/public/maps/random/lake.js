@@ -134,12 +134,12 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(1, 4) * numPlayers);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
-createForests(
- [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
- clForest,
- forestTrees);
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+createDefaultForests(
+	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
+	avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
+	clForest,
+	forestTrees);
 
 Engine.SetProgress(50);
 
