@@ -31,6 +31,25 @@ AndConstraint.prototype.allows = function(position)
 };
 
 /**
+ * The OrConstraint is met if any given Constraint is satisfied by the tile.
+ */
+function OrConstraint(constraints)
+{
+	if (constraints instanceof Array)
+		this.constraints = constraints;
+	else if (!constraints)
+		this.constraints = [];
+	else
+		this.constraints = [constraints];
+}
+
+OrConstraint.prototype.allows = function(position)
+{
+	return this.constraints.some(constraint => constraint.allows(position));
+};
+
+
+/**
  * The StayAreasConstraint is met if some of the given Areas contains the point.
   */
 function StayAreasConstraint(areas)
