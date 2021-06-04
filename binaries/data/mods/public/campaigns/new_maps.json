@@ -1,0 +1,112 @@
+{
+	"Name": "Demo campaign - new maps",
+	"Description": "Discover the new maps in Alpha 25 with a demo campaign, taking you through all of them.",
+	"Image": "session/icons/mappreview/Introductory_Tutorial.png",
+	"Levels": {
+		"alpine_valleys_2p": {
+			"Map": "skirmishes/alpine_valleys_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"bactria_2p": {
+			"Map": "skirmishes/bactria_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"belgian_bog_2p": {
+			"Map": "skirmishes/belgian_bog_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"butana_steppe_2p": {
+			"Map": "skirmishes/butana_steppe_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"cisalpine_winter_2p": {
+			"Map": "skirmishes/cisalpine_winter_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"crocodilopolis_4p": {
+			"Map": "skirmishes/crocodilopolis_4p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"gallic_highlands_2p": {
+			"Map": "skirmishes/gallic_highlands_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"hindu_kush_2p": {
+			"Map": "skirmishes/hindu_kush_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"hydaspes_river_4p": {
+			"Map": "skirmishes/hydaspes_river_4p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"magadha_2p": {
+			"Map": "skirmishes/magadha_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"miletus_peninsula_2p": {
+			"Map": "skirmishes/miletus_peninsula_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"nubian_frontier_2p": {
+			"Map": "skirmishes/nubian_frontier_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"saharan_oases_2p": {
+			"Map": "skirmishes/saharan_oases_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"scythia_4p": {
+			"Map": "skirmishes/scythia_4p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"sporades_islands_2p": {
+			"Map": "skirmishes/sporades_islands_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"syria_2p": {
+			"Map": "skirmishes/syria_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"white_cliffs_of_dover_5p": {
+			"Map": "skirmishes/white_cliffs_of_dover_5p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		}
+	},
+	"Order": [
+		"alpine_valleys_2p",
+		"bactria_2p",
+		"belgian_bog_2p",
+		"butana_steppe_2p",
+		"cisalpine_winter_2p",
+		"crocodilopolis_4p",
+		"gallic_highlands_2p",
+		"hindu_kush_2p",
+		"hydaspes_river_4p",
+		"magadha_2p",
+		"miletus_peninsula_2p",
+		"nubian_frontier_2p",
+		"saharan_oases_2p",
+		"scythia_4p",
+		"sporades_islands_2p",
+		"syria_2p",
+		"white_cliffs_of_dover_5p"
+	],
+	"ShowUnavailable": true
+}
