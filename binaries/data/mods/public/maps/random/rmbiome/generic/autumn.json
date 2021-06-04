@@ -1,87 +1,96 @@
 {
 	"Description": {
-		"Title": "Autumn",
-		"Description": "Autumn at its peak. The landscape is a dazzling dash of colors irrevocably intertwined. The native beech and oak trees of this temperate zone display a multi-colored foliage while the evergreen pines look on with indifference at the approaching winter."
+		"Title": "Rhine Valley (Fall)",
+		"Description": "The first leaves have fallen. The landscape is a dazzling dash of colors irrevocably intertwined. The native beech and oak trees of this temperate zone display a multi-colored foliage while animals try to prepare for the approaching winter."
 	},
 	"Environment": {
+		"SunColor": { "r": 1.032, "g": 0.99, "b": 0.866 },
+		"SunElevation": 0.446,
+		"SunRotation": -0.488,
+		"AmbientColor": { "r": 0.364706, "g": 0.376471, "b": 0.419608 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.157, "g": 0.149, "b": 0.443 },
-				"Tint": { "r": 0.443, "g": 0.42, "b": 0.824 },
-				"Murkiness": 0.83,
-				"Waviness": 2.5
+				"Color": { "r": 0.419608, "g": 0.364706, "b": 0.313726 },
+				"Tint": { "r": 0.501961, "g": 0.501961, "b": 0.247059 },
+				"Murkiness": 0.97,
+				"Waviness": 5
 			}
-		},
-		"Fog": {
-			"FogThickness": 0.22,
-			"FogFactor": 0.0035,
-			"FogColor":  { "r": 0.82, "g": 0.82, "b": 0.73 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 1.12,
-			"Contrast": 1.06,
-			"Bloom": 0.124
+			"Saturation": 0.9,
+			"Contrast": 1.1,
+			"Bloom": 0.16
 		}
 	},
 	"Terrains": {
 		"mainTerrain": [
-			"temp_grass_aut",
-			"temp_grass_aut",
-			"temp_grass_d_aut"
+			"temperate_grass_04",
+			"temperate_grass_05"
 		],
-		"forestFloor1": "temp_plants_bog_aut",
-		"forestFloor2": "temp_forestfloor_aut",
+		"forestFloor1": "temperate_forestfloor_02_autumn",
+		"forestFloor2": "temperate_forestfloor_02_autumn",
 		"cliff": [
-			"temp_cliff_a",
-			"temp_cliff_b"
+			"temperate_cliff_01",
+			"temperate_cliff_02"
 		],
-		"tier1Terrain": "temp_grass_plants_aut",
+		"tier1Terrain": [
+			"temperate_grass_05"
+		],
 		"tier2Terrain": [
-			"temp_grass_b_aut",
-			"temp_grass_c_aut"
+			"temperate_grass_dirt_02"
 		],
 		"tier3Terrain": [
-			"temp_grass_b_aut",
-			"temp_grass_long_b_aut"
+			"alpine_grass_01"
 		],
-		"tier4Terrain": "temp_grass_plants_aut",
-		"hill": "temp_highlands_aut",
+		"tier4Terrain": [
+			"temperate_grass_02"
+		],
+		"hill": [
+			"temperate_rocks_dirt_01"
+		],
 		"dirt": [
-			"temp_cliff_a",
-			"temp_cliff_b"
+			"temperate_grass_dirt_01",
+			"temperate_grass_dirt_02"
 		],
-		"road": "temp_road_aut",
-		"roadWild": "temp_road_overgrown_aut",
-		"shoreBlend": "temp_grass_plants_aut",
-		"shore": "temp_forestfloor_pine",
-		"water": "medit_sand_wet"
+		"road": "temperate_paving_01",
+		"roadWild": "temperate_paving_01",
+		"shoreBlend": "temperate_grass_dirt_01",
+		"shore": "temperate_grass_dirt_01",
+		"water": "temperate_mud_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/euro_beech_aut",
-		"tree2": "gaia/tree/euro_beech_aut",
-		"tree3": "gaia/tree/pine",
-		"tree4": "gaia/tree/oak_aut",
-		"tree5": "gaia/tree/oak_aut",
+		"tree1": "gaia/tree/oak_aut",
+        "tree2": "gaia/tree/euro_beech_aut",
+        "tree3": "gaia/tree/oak_hungarian_autumn",
+        "tree4": "gaia/tree/poplar_lombardy_autumn",
+        "tree5": "gaia/tree/temperate_autumn",
 		"fruitBush": "gaia/fruit/berry_01",
 		"chicken": "gaia/fauna_chicken",
-		"mainHuntableAnimal": "gaia/fauna_deer",
 		"fish": "gaia/fish/generic",
-		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
-		"stoneLarge": "gaia/rock/temperate_large",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_sheep",
+		"stoneLarge": "gaia/rock/temperate_large_02",
 		"stoneSmall": "gaia/rock/temperate_small",
-		"metalLarge": "gaia/ore/temperate_large",
+		"metalLarge": "gaia/ore/temperate_01",
 		"metalSmall": "gaia/ore/temperate_small"
 	},
 	"Decoratives": {
-		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
-		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
-		"reeds": "actor|props/flora/reeds_pond_dry.xml",
-		"lillies": "actor|geology/stone_granite_large.xml",
-		"rockLarge": "actor|geology/stone_granite_large.xml",
-		"rockMedium": "actor|geology/stone_granite_med.xml",
-		"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
-		"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
-		"tree": "actor|flora/trees/european_beech_aut.xml"
+		"grass": "actor|props/flora/grass_soft_large_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_large.xml",
+		"reeds": "actor|props/flora/cattails.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_small.xml",
+		"bushMedium": "gaia/tree/bush_temperate",
+		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+		"tree": "actor|flora/trees/elm_dead.xml"
+	},
+	"ResourceCounts": {
+		"trees": {
+			"min": 1000,
+			"max": 6000,
+			"forestProbability": 0.7
+		}
 	}
 }
