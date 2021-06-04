@@ -95,9 +95,6 @@ public:
 	/// to glVertexPointer ( + etc) calls
 	u8* Bind();
 
-	/// Get the address that Bind() will return, without actually binding
-	u8* GetBindAddress();
-
 	/// Unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
 	static void Unbind();
 
@@ -152,8 +149,6 @@ private:
 	size_t m_FreeVertices;
 	/// Handle to the actual GL vertex buffer object
 	GLuint m_Handle;
-	/// Raw system memory for systems not supporting VBOs
-	u8* m_SysMem;
 	/// Usage type of the buffer (GL_STATIC_DRAW etc)
 	GLenum m_Usage;
 	/// Buffer target (GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER)

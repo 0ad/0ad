@@ -14,6 +14,11 @@ function getTreeCounts(minTrees, maxTrees, forestRatio)
  * Places uniformly sized forests at random locations.
  * Generates two variants of forests from the given terrain textures and tree templates.
  * The forest border has less trees than the inside.
+ * @param terrainsSet - a list of 5 terrains to use. The first 3 are border terrains, the later 2 interior.
+ * @param constraint - constraints to respect
+ * @param tileClass - the tileclass to print
+ * @param treeCount - Either { "nbForests": X, "treesPerForest": X } or (legacy) a number of trees.
+ * @param retryFactor - @see createAreas
  */
 function createForests(terrainSet, constraint, tileClass, treeCount, retryFactor)
 {
@@ -21,10 +26,10 @@ function createForests(terrainSet, constraint, tileClass, treeCount, retryFactor
 		return;
 
 	// Construct different forest types from the terrain textures and template names.
-	let [mainTerrain, terrainForestFloor1, terrainForestFloor2, terrainForestTree1, terrainForestTree2] = terrainSet;
+	const [mainTerrain, terrainForestFloor1, terrainForestFloor2, terrainForestTree1, terrainForestTree2] = terrainSet;
 
 	// The painter will pick a random Terrain for each part of the forest.
-	let forestVariants = [
+	const forestVariants = [
 		{
 			"borderTerrains": [terrainForestFloor2, mainTerrain, terrainForestTree1],
 			"interiorTerrains": [terrainForestFloor2, terrainForestTree1]
@@ -35,11 +40,26 @@ function createForests(terrainSet, constraint, tileClass, treeCount, retryFactor
 		}
 	];
 
+	let numberOfTrees;
+	let numberOfForests;
+	if (typeof treeCount === "number")
+	{
+		numberOfTrees = treeCount;
+		numberOfForests = Math.floor(numberOfTrees / (scaleByMapSize(3, 6) * getNumPlayers() * forestVariants.length));
+	}
+	else
+	{
+		numberOfForests = treeCount.nbForests;
+		numberOfTrees = numberOfForests * treeCount.treesPerForest;
+	}
+
+	if (!numberOfForests)
+		return;
+
 	g_Map.log("Creating forests");
-	let numberOfForests = Math.floor(treeCount / (scaleByMapSize(3, 6) * getNumPlayers() * forestVariants.length));
-	for (let forestVariant of forestVariants)
+	for (const forestVariant of forestVariants)
 		createAreas(
-			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), treeCount / numberOfForests, 0.5),
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numberOfTrees / numberOfForests, 0.5),
 			[
 				new LayeredPainter([forestVariant.borderTerrains, forestVariant.interiorTerrains], [2]),
 				new TileClassPainter(tileClass)

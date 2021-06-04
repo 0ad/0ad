@@ -76,7 +76,6 @@ CStr8 RenderPathEnum::ToString(RenderPath path)
 
 CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 {
-	m_NoVBO = false;
 	m_RenderPath = RenderPath::DEFAULT;
 	m_Shadows = false;
 	m_WaterEffects = false;
@@ -167,8 +166,6 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 		SetFog(enabled);
 	});
 	m_ConfigHooks->Setup("silhouettes", m_Silhouettes);
-
-	m_ConfigHooks->Setup("novbo", m_NoVBO);
 
 	m_ConfigHooks->Setup("forcealphatest", m_ForceAlphaTest);
 	m_ConfigHooks->Setup("gpuskinning", [this]() {

@@ -40,7 +40,7 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 }
 
 CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, size_t maximumBufferSize)
-	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target), m_HasNeededChunks(false)
+	: m_VertexSize(vertexSize), m_Handle(0), m_Usage(usage), m_Target(target), m_HasNeededChunks(false)
 {
 	size_t size = maximumBufferSize;
 
@@ -56,17 +56,10 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, siz
 	m_MaxVertices = m_FreeVertices = size / vertexSize;
 
 	// allocate raw buffer
-	if (g_Renderer.m_Caps.m_VBO)
-	{
-		pglGenBuffersARB(1, &m_Handle);
-		pglBindBufferARB(m_Target, m_Handle);
-		pglBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, 0, m_Usage);
-		pglBindBufferARB(m_Target, 0);
-	}
-	else
-	{
-		m_SysMem = new u8[m_MaxVertices * m_VertexSize];
-	}
+	pglGenBuffersARB(1, &m_Handle);
+	pglBindBufferARB(m_Target, m_Handle);
+	pglBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, 0, m_Usage);
+	pglBindBufferARB(m_Target, 0);
 
 	// create sole free chunk
 	VBChunk* chunk = new VBChunk;
@@ -83,8 +76,6 @@ CVertexBuffer::~CVertexBuffer()
 
 	if (m_Handle)
 		pglDeleteBuffersARB(1, &m_Handle);
-
-	SAFE_ARRAY_DELETE(m_SysMem);
 
 	for (VBChunk* const& chunk : m_FreeList)
 		delete chunk;
@@ -204,29 +195,21 @@ void CVertexBuffer::Release(VBChunk* chunk)
 // UpdateChunkVertices: update vertex data for given chunk
 void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 {
-	if (g_Renderer.m_Caps.m_VBO)
+	ENSURE(m_Handle);
+	if (UseStreaming(m_Usage))
 	{
-		ENSURE(m_Handle);
-		if (UseStreaming(m_Usage))
-		{
-			// The VBO is now out of sync with the backing store
-			chunk->m_Dirty = true;
+		// The VBO is now out of sync with the backing store
+		chunk->m_Dirty = true;
 
-			// Sanity check: Make sure the caller hasn't tried to reallocate
-			// their backing store
-			ENSURE(data == chunk->m_BackingStore);
-		}
-		else
-		{
-			pglBindBufferARB(m_Target, m_Handle);
-			pglBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
-			pglBindBufferARB(m_Target, 0);
-		}
+		// Sanity check: Make sure the caller hasn't tried to reallocate
+		// their backing store
+		ENSURE(data == chunk->m_BackingStore);
 	}
 	else
 	{
-		ENSURE(m_SysMem);
-		memcpy(m_SysMem + chunk->m_Index * m_VertexSize, data, chunk->m_Count * m_VertexSize);
+		pglBindBufferARB(m_Target, m_Handle);
+		pglBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
+		pglBindBufferARB(m_Target, 0);
 	}
 }
 
@@ -235,9 +218,6 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 // to glVertexPointer ( + etc) calls
 u8* CVertexBuffer::Bind()
 {
-	if (!g_Renderer.m_Caps.m_VBO)
-		return m_SysMem;
-
 	pglBindBufferARB(m_Target, m_Handle);
 
 	if (UseStreaming(m_Usage))
@@ -326,21 +306,10 @@ u8* CVertexBuffer::Bind()
 	return nullptr;
 }
 
-u8* CVertexBuffer::GetBindAddress()
-{
-	if (g_Renderer.m_Caps.m_VBO)
-		return nullptr;
-	else
-		return m_SysMem;
-}
-
 void CVertexBuffer::Unbind()
 {
-	if (g_Renderer.m_Caps.m_VBO)
-	{
-		pglBindBufferARB(GL_ARRAY_BUFFER, 0);
-		pglBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, 0);
-	}
+	pglBindBufferARB(GL_ARRAY_BUFFER, 0);
+	pglBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 size_t CVertexBuffer::GetBytesReserved() const

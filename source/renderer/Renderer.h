@@ -107,7 +107,6 @@ public:
 
 	struct Caps
 	{
-		bool m_VBO;
 		bool m_ARBProgram;
 		bool m_ARBProgramShadow;
 		bool m_VertexShader;

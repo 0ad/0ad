@@ -59,9 +59,15 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
 	m_AtlasOverlay = NULL;
 
-	m_VertexPathfinder = std::make_unique<VertexPathfinder>(m_GridSize, m_TerrainOnlyGrid);
+	size_t workerThreads = Threading::TaskManager::Instance().GetNumberOfWorkers();
+	// Store one vertex pathfinder for each thread (including the main thread).
+	while (m_VertexPathfinders.size() < workerThreads + 1)
+		m_VertexPathfinders.emplace_back(m_GridSize, m_TerrainOnlyGrid);
 	m_LongPathfinder = std::make_unique<LongPathfinder>();
 	m_PathfinderHier = std::make_unique<HierarchicalPathfinder>();
+
+	// Set up one future for each worker thread.
+	m_Futures.resize(workerThreads);
 
 	// Register Relax NG validator
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
@@ -75,13 +81,12 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	// Paths are computed:
 	//  - Before MT_Update
 	//  - Before MT_MotionUnitFormation
-	//  - 'in-between' turns (effectively at the start until threading is implemented).
+	//  -  asynchronously between turn end and turn start.
 	// The latter of these must compute all outstanding requests, but the former two are capped
-	// to avoid spending too much time there (since the latter are designed to be threaded and thus not block the GUI).
+	// to avoid spending too much time there (since the latter are threaded and thus much 'cheaper').
 	// This loads that maximum number (note that it's per computation call, not per turn for now).
 	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder");
 	m_MaxSameTurnMoves = (u16)pathingSettings.GetChild("MaxSameTurnMoves").ToInt();
-
 
 	const CParamNode::ChildrenMap& passClasses = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses").GetChildren();
 	for (CParamNode::ChildrenMap::const_iterator it = passClasses.begin(); it != passClasses.end(); ++it)
@@ -99,6 +104,12 @@ CCmpPathfinder::~CCmpPathfinder() {};
 void CCmpPathfinder::Deinit()
 {
 	SetDebugOverlay(false); // cleans up memory
+
+	// Wait on all pathfinding tasks.
+	for (Future<void>& future : m_Futures)
+		future.Cancel();
+	m_Futures.clear();
+
 	SAFE_DELETE(m_AtlasOverlay);
 
 	SAFE_DELETE(m_Grid);
@@ -749,7 +760,7 @@ void CCmpPathfinder::ComputePathImmediate(entity_pos_t x0, entity_pos_t z0, cons
 
 WaypointPath CCmpPathfinder::ComputeShortPathImmediate(const ShortPathRequest& request) const
 {
-	return m_VertexPathfinder->ComputeShortPath(request, CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
+	return m_VertexPathfinders.front().ComputeShortPath(request, CmpPtr<ICmpObstructionManager>(GetSystemEntity()));
 }
 
 template<typename T>
@@ -785,9 +796,14 @@ void CCmpPathfinder::SendRequestedPaths()
 
 	if (!m_LongPathRequests.m_ComputeDone || !m_ShortPathRequests.m_ComputeDone)
 	{
-		m_ShortPathRequests.Compute(*this, *m_VertexPathfinder);
+		// Also start computing on the main thread to finish faster.
+		m_ShortPathRequests.Compute(*this, m_VertexPathfinders.front());
 		m_LongPathRequests.Compute(*this, *m_LongPathfinder);
 	}
+	// We're done, clear futures.
+	// Use CancelOrWait instead of just Cancel to ensure determinism.
+	for (Future<void>& future : m_Futures)
+		future.CancelOrWait();
 
 	{
 		PROFILE2("PostMessages");
@@ -811,7 +827,21 @@ void CCmpPathfinder::StartProcessingMoves(bool useMax)
 {
 	m_ShortPathRequests.PrepareForComputation(useMax ? m_MaxSameTurnMoves : 0);
 	m_LongPathRequests.PrepareForComputation(useMax ? m_MaxSameTurnMoves : 0);
+
+	Threading::TaskManager& taskManager = Threading::TaskManager::Instance();
+	for (size_t i = 0; i < m_Futures.size(); ++i)
+	{
+		ENSURE(!m_Futures[i].Valid());
+		// Pass the i+1th vertex pathfinder to keep the first for the main thread,
+		// each thread get its own instance to avoid conflicts in cached data.
+		m_Futures[i] = taskManager.PushTask([&pathfinder=*this, &vertexPfr=m_VertexPathfinders[i + 1]]() {
+			PROFILE2("Async pathfinding");
+			pathfinder.m_ShortPathRequests.Compute(pathfinder, vertexPfr);
+			pathfinder.m_LongPathRequests.Compute(pathfinder, *pathfinder.m_LongPathfinder);
+		});
+	}
 }
+
 
 //////////////////////////////////////////////////////////
 

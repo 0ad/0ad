@@ -2,7 +2,7 @@
 <Pathfinder>
   <!-- Sets limit on the number of same turns moves we will process -->
   <!-- Setting the value to 0 disable this functionality -->
-  <MaxSameTurnMoves>64</MaxSameTurnMoves>
+  <MaxSameTurnMoves>20</MaxSameTurnMoves>
 
   <!-- Multiplier for the distance at which units push each other. -->
   <!-- Setting the value to 0 disables unit pushing entirely. -->

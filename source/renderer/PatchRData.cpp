@@ -733,7 +733,7 @@ void CPatchRData::RenderBases(
 
 			batch.first.push_back(splat.m_IndexCount);
 
-			u8* indexBase = patch->m_VBBaseIndices->m_Owner->GetBindAddress();
+			u8* indexBase = nullptr;
 			batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index + splat.m_IndexStart));
 		}
 	}
@@ -898,7 +898,7 @@ void CPatchRData::RenderBlends(
 					BatchElements& batch = PooledPairGet(PooledMapGet(batches.back().m_Batches, vertices->m_Owner, arena), indices->m_Owner, arena);
 					batch.first.push_back(splats.back().m_IndexCount);
 
-		 			u8* indexBase = indices->m_Owner->GetBindAddress();
+		 			u8* indexBase = nullptr;
 		 			batch.second.push_back(indexBase + sizeof(u16)*(indices->m_Index + splats.back().m_IndexStart));
 
 					splats.pop_back();
@@ -1052,7 +1052,7 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 
 		batch.first.push_back(patch->m_VBBaseIndices->m_Count);
 
-		u8* indexBase = patch->m_VBBaseIndices->m_Owner->GetBindAddress();
+		u8* indexBase = nullptr;
  		batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index));
  	}
 

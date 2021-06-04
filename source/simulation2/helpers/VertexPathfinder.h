@@ -113,8 +113,8 @@ private:
 };
 
 /**
- * If there are several vertex pathfinders running asynchronously, their debug output might conflict.
- * To remain thread-safe, this single class will handle the debug data.
+ * There are several vertex pathfinders running asynchronously, so their debug output
+ * might conflict. To remain thread-safe, this single class will handle the debug data.
  * NB: though threadsafe, the way things are setup means you can have a few
  * more graphs and edges than you'd expect showing up in the rendered graph.
  */

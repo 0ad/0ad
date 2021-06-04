@@ -59,6 +59,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
+#include "ps/TaskManager.h"
 #include "ps/World.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
@@ -578,6 +579,9 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	ScriptEngine scriptEngine;
 	CXeromyces::Startup();
 
+	// Initialise the global task manager at this point (JS & Profiler2 are set up).
+	Threading::TaskManager::Initialise();
+
 	if (ATLAS_RunIfOnCmdLine(args, false))
 	{
 		CXeromyces::Terminate();
@@ -704,6 +708,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		ATLAS_RunIfOnCmdLine(args, true);
 #endif
 
+	Threading::TaskManager::Instance().ClearQueue();
 	CXeromyces::Terminate();
 }
 

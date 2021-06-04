@@ -19,6 +19,7 @@
 #define INCLUDED_MAPGENERATOR
 
 #include "ps/FileIo.h"
+#include "ps/Future.h"
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/StructuredClone.h"
 
@@ -26,7 +27,6 @@
 #include <mutex>
 #include <set>
 #include <string>
-#include <thread>
 
 class CMapGeneratorWorker;
 
@@ -177,11 +177,6 @@ private:
 	std::vector<std::string> FindActorTemplates(const std::string& path, bool includeSubdirectories);
 
 	/**
-	 * Perform map generation in an independent thread.
-	 */
-	static void RunThread(CMapGeneratorWorker* self);
-
-	/**
 	 * Perform the map generation.
 	 */
 	bool Run();
@@ -227,9 +222,10 @@ private:
 	CTemplateLoader m_TemplateLoader;
 
 	/**
-	 * Holds the mapgeneration thread identifier.
+	 * Holds the completion result of the asynchronous map generation.
+	 * TODO: this whole class could really be a future on its own.
 	 */
-	std::thread m_WorkerThread;
+	Future<void> m_WorkerThread;
 
 	/**
 	 * Avoids thread synchronization issues.

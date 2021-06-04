@@ -36,6 +36,7 @@
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/Profiler2.h"
+#include "ps/TaskManager.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptEngine.h"
 #include "scriptinterface/ScriptContext.h"
@@ -84,11 +85,14 @@ class MiscSetup : public CxxTest::GlobalFixture
 		m_ScriptEngine = new ScriptEngine;
 		g_ScriptContext = ScriptContext::CreateContext();
 
+		Threading::TaskManager::Initialise();
+
 		return true;
 	}
 
 	virtual bool tearDownWorld()
 	{
+		Threading::TaskManager::Instance().ClearQueue();
 		g_ScriptContext.reset();
 		SAFE_DELETE(m_ScriptEngine);
 		g_Profiler2.Shutdown();

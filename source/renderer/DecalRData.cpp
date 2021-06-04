@@ -203,11 +203,9 @@ void CDecalRData::RenderDecals(
 					batch.indices->m_Owner->Bind();
 				}
 
-				u8* indexBase = batch.indices->m_Owner->GetBindAddress() + sizeof(u16) * (batch.indices->m_Index);
+				u8* indexBase = nullptr;
 				if (!g_Renderer.m_SkipSubmit)
-				{
-					glDrawElements(GL_TRIANGLES, batch.indices->m_Count, GL_UNSIGNED_SHORT, indexBase);
-				}
+					glDrawElements(GL_TRIANGLES, batch.indices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16) * (batch.indices->m_Index));
 
 				// bump stats
 				g_Renderer.m_Stats.m_DrawCalls++;
