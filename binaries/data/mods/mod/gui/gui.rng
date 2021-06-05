@@ -231,6 +231,31 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="flare_texture_count">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="flare_render_size">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="flare_animation_speed">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="flare_interleave">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="flare_lifetime_seconds">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="font"/>
       </optional>
       <optional>

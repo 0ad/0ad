@@ -37,6 +37,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
+#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
@@ -141,7 +142,10 @@ CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
 	m_MapSize(0), m_MapScale(1.f),
 	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(this, "mask", false),
-	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false)
+	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false),
+	m_FlareTextureCount(this, "flare_texture_count", 0), m_FlareRenderSize(this, "flare_render_size", 0),
+	m_FlareAnimationSpeed(this, "flare_animation_speed", 0), m_FlareInterleave(this, "flare_interleave", false),
+	m_FlareLifetimeSeconds(this, "flare_lifetime_seconds", 0)
 {
 	m_Clicking = false;
 	m_MouseHovering = false;
@@ -201,6 +205,13 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 	IGUIObject::HandleMessage(Message);
 	switch (Message.type)
 	{
+	case GUIM_LOAD:
+		RecreateFlareTextures();
+		break;
+	case GUIM_SETTINGS_UPDATED:
+		if (Message.value == "flare_texture_count")
+			RecreateFlareTextures();
+		break;
 	case GUIM_MOUSE_PRESS_LEFT:
 		if (m_MouseHovering)
 		{
@@ -245,6 +256,24 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 
 	default:
 		break;
+	}
+}
+
+void CMiniMap::RecreateFlareTextures()
+{
+	// Catch invalid values.
+	if (m_FlareTextureCount > 99)
+	{
+		LOGERROR("Invalid value for flare texture count. Valid range is 0-99.");
+		return;
+	}
+	const CStr numberingFormat = "%02u";
+	m_FlareTextures.clear();
+	m_FlareTextures.reserve(m_FlareTextureCount);
+	for (u32 i = 0; i < m_FlareTextureCount; ++i)
+	{
+		CTextureProperties textureProps(L"art/textures/animated/minimap-flare/frame" + CStr(fmt::sprintf(numberingFormat, i)).FromUTF8() + L".png");
+		m_FlareTextures.emplace_back(g_Renderer.GetTextureManager().CreateTexture(textureProps));
 	}
 }
 
@@ -367,6 +396,41 @@ void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 	tech->EndPass();
 
 	glLineWidth(1.0f);
+}
+
+void CMiniMap::DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double currentTime) const
+{
+	if (!m_FlareTextures.size())
+		return;
+
+	// Coordinates with 0,0 in the middle of the minimap and +-0.5 as max.
+	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
+	const float relativeX = (flare.pos.X * invTileMapSize - 0.5) / m_MapScale;
+	const float relativeY = (flare.pos.Y * invTileMapSize - 0.5) / m_MapScale;
+
+	// Rotate coordinates.
+	const float angle = GetAngle();
+	const float rotatedX = cos(angle) * relativeX + sin(angle) * relativeY;
+	const float rotatedY = -sin(angle) * relativeX + cos(angle) * relativeY;
+	// Calculate coordinates in gui space.
+	const float cx = m_CachedActualSize.left + (0.5f + rotatedX) * m_CachedActualSize.GetWidth();
+	const float cy = m_CachedActualSize.bottom - (0.5f + rotatedY) * m_CachedActualSize.GetHeight();
+
+	const CRect destination(cx-m_FlareRenderSize, cy-m_FlareRenderSize, cx+m_FlareRenderSize, cy+m_FlareRenderSize);
+
+	const u32 flooredStep = floor((currentTime - flare.time) * m_FlareAnimationSpeed);
+
+	CTexturePtr texture = m_FlareTextures[flooredStep % m_FlareTextures.size()];
+	// TODO: Only draw inside the minimap circle.
+	canvas.DrawTexture(texture, destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()), flare.color, CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
+
+	// Draw a second circle if the first has reached half of the animation
+	if (m_FlareInterleave && flooredStep >= m_FlareTextures.size() / 2)
+	{
+		texture = m_FlareTextures[(flooredStep - m_FlareTextures.size() / 2) % m_FlareTextures.size()];
+		// TODO: Only draw inside the minimap circle.
+		canvas.DrawTexture(texture, destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()), flare.color, CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
+	}
 }
 
 struct MinimapUnitVertex
@@ -521,7 +585,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 
 	glDisable(GL_BLEND);
 
-	PROFILE_START("minimap units");
+	PROFILE_START("minimap units and flares");
 
 	CShaderDefines pointDefines;
 	pointDefines.Add(str_MINIMAP_POINT, str_1);
@@ -641,5 +705,23 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 
 	DrawViewRect(unitMatrix);
 
-	PROFILE_END("minimap units");
+	while (!m_MapFlares.empty() && m_FlareLifetimeSeconds + m_MapFlares.front().time < cur_time)
+		m_MapFlares.pop_front();
+
+	for (const MapFlare& flare : m_MapFlares)
+		DrawFlare(canvas, flare, cur_time);
+
+	PROFILE_END("minimap units and flares");
+}
+
+bool CMiniMap::Flare(const CVector2D& pos, const CStr& colorStr)
+{
+	CColor color;
+	if (!color.ParseString(colorStr))
+	{
+		LOGERROR("CMiniMap::Flare: Couldn't parse color string");
+		return false;
+	}
+	m_MapFlares.push_back({ pos, color, timer_Time() });
+	return true;
 }

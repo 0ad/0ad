@@ -7,7 +7,13 @@ class MiniMapPanel
 	{
 		this.diplomacyColorsButton = new MiniMapDiplomacyColorsButton(diplomacyColors);
 		this.idleWorkerButton = new MiniMapIdleWorkerButton(playerViewControl, idleWorkerClasses);
+		this.flareButton = new MiniMapFlareButton();
 		this.miniMap = new MiniMap();
+	}
+
+	flare(target, playerID)
+	{
+		return this.miniMap.flare(target, playerID);
 	}
 
 	isMouseOverMiniMap()

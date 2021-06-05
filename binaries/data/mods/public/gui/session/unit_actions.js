@@ -3,8 +3,14 @@
  * given a command type.
  */
 var g_TargetMarker = {
-	"move": "special/target_marker"
+	"move": "special/target_marker",
+	"map_flare": "special/flare_target_marker"
 };
+
+/**
+ * Sound we play when displaying a flare.
+ */
+var g_FlareSound = "audio/interface/alarm/alarmally_1.ogg";
 
 /**
  * Which enemy entity types will be attacked on sight when patroling.
@@ -1826,6 +1832,17 @@ function DrawTargetMarker(target)
 		"x": target.x,
 		"z": target.z
 	});
+}
+
+function displayFlare(target, playerID)
+{
+	Engine.GuiInterfaceCall("AddTargetMarker", {
+		"template": g_TargetMarker.map_flare,
+		"x": target.x,
+		"z": target.z,
+		"owner": playerID
+	});
+	g_MiniMapPanel.flare(target, playerID);
 }
 
 function getCommandInfo(command, entStates)

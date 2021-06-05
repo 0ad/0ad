@@ -1116,7 +1116,9 @@ GuiInterface.prototype.AddTargetMarker = function(player, cmd)
 	let ent = Engine.AddLocalEntity(cmd.template);
 	if (!ent)
 		return;
-
+	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	if (cmpOwnership)
+		cmpOwnership.SetOwner(cmd.owner);
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	cmpPosition.JumpTo(cmd.x, cmd.z);
 };
