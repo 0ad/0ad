@@ -965,6 +965,9 @@ void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 {
 	state.ignore = !m_Pushing || !m_BlockMovement;
 
+	state.wasObstructed = false;
+	state.wentStraight = false;
+
 	// If we were idle and will still be, no need for an update.
 	state.needUpdate = state.cmpPosition->IsInWorld() &&
 		(m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
