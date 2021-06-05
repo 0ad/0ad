@@ -220,13 +220,17 @@ class TemplateParser
 
 		let template = this.TemplateLoader.loadPlayerTemplate(civCode);
 		let parsed = {
+			"civbonuses": [],
 			"teambonuses": [],
 		};
 
 		if (template.Auras)
 			for (let auraTemplateName of template.Auras._string.split(/\s+/))
-				if (AuraTemplateExists(auraTemplateName) && this.getAura(auraTemplateName).affectsTeam)
-					parsed.teambonuses.push(auraTemplateName);
+				if (AuraTemplateExists(auraTemplateName))
+					if (this.getAura(auraTemplateName).affectsTeam)
+						parsed.teambonuses.push(auraTemplateName);
+					else
+						parsed.civbonuses.push(auraTemplateName);
 
 		this.players[civCode] = parsed;
 		return parsed;

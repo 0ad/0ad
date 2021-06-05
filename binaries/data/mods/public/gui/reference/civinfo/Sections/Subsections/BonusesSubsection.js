@@ -8,13 +8,18 @@ class BonusesSubsection extends Subsection
 
 	update(civCode, civInfo)
 	{
-		// Not all civ bonuses can be represented by a single auto-researched technology (e.g.
-		// Athenian "Silver Owls", Roman "Testudo Formation"). Thus we also display descriptions
-		// of civ bonuses as written in the {civ}.json files.
+		const player = this.page.TemplateParser.getPlayer(civCode);
+
+		// Civilization bonuses can be represented by a single auto-researched technology...
 		let civBonuses = this.getTechnologyCaptions(
 			this.page.TemplateLoader.autoResearchTechList,
 			civCode
 		);
+		// ...or as a globally applied aura...
+		Array.prototype.push.apply(civBonuses, this.getAuraCaptions(player.civbonuses));
+		// ...however some fit into neither of the two above categories (e.g. Athenian "Silver
+		// Owls", Roman "Testudo Formation"). Thus we also display descriptions of civ bonuses
+		// as written in the {civ}.json files.
 		for (let bonus of civInfo.CivBonuses)
 			civBonuses.push(this.page.formatEntry(
 				bonus.Name,
@@ -29,7 +34,7 @@ class BonusesSubsection extends Subsection
 		);
 
 		let teamBonuses = this.getAuraCaptions(
-			this.page.TemplateParser.getPlayer(civCode).teambonuses,
+			player.teambonuses,
 			civCode
 		);
 		teamBonuses.unshift(
