@@ -201,4 +201,6 @@ extern HMODULE wutil_LibModuleHandle();
  **/
 extern HWND wutil_AppWindow();
 
+extern void wutil_EnableHiDPIOnWindows();
+
 #endif	// #ifndef INCLUDED_WUTIL
