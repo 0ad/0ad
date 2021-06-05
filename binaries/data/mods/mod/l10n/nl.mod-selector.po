@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"POT-Creation-Date: 2021-05-31 07:12+0000\n"
 "PO-Revision-Date: 2021-05-29 14:45+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -408,7 +408,7 @@ msgstr "Bezoek mod.io"
 msgid "This mod does not exist"
 msgstr "Deze mod bestaat niet"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activeer"
@@ -417,20 +417,16 @@ msgstr "Activeer"
 msgid "Dependencies not met"
 msgstr "Afhankelijkheden niet correct"
 
-#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
-msgid "Filter"
-msgstr "Filter"
-
-#: gui/modmod/modmod.js:455
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Er is geen modificatie geselecteerd."
 
-#: gui/modmod/modmod.js:466
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "Tenminste 0ad mod inschakelen"
 
@@ -485,6 +481,10 @@ msgstr "(Map)"
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
 msgstr "Website"
+
+#: gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "Filter"
 
 #: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""

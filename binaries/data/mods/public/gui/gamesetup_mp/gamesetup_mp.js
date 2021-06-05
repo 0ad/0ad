@@ -321,7 +321,7 @@ function switchSetupPage(newPage)
 	if (newPage == "pageJoin" || newPage == "pageHost")
 	{
 		let pageSize = multiplayerPages.size;
-		let halfHeight = newPage == "pageJoin" ? 130 : Engine.HasXmppClient() ? 125 : 110;
+		let halfHeight = newPage == "pageJoin" ? 145 : Engine.HasXmppClient() ? 140 : 125;
 		pageSize.top = -halfHeight;
 		pageSize.bottom = halfHeight;
 		multiplayerPages.size = pageSize;

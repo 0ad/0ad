@@ -4,7 +4,6 @@ class GameDescription
 	{
 		this.mapCache = setupWindow.controls.mapCache;
 
-		this.gameDescriptionFrame = Engine.GetGUIObjectByName("gameDescriptionFrame");
 		this.gameDescription = Engine.GetGUIObjectByName("gameDescription");
 
 		gameSettingTabs.registerTabsResizeHandler(this.onTabsResize.bind(this));
@@ -37,9 +36,9 @@ class GameDescription
 
 	onTabsResize(settingsTabButtonsFrame)
 	{
-		let size = this.gameDescriptionFrame.size;
+		let size = this.gameDescription.size;
 		size.top = settingsTabButtonsFrame.size.bottom + this.Margin;
-		this.gameDescriptionFrame.size = size;
+		this.gameDescription.size = size;
 	}
 
 	updateGameDescription()

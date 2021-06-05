@@ -85,6 +85,12 @@ class CampaignMenu extends AutoWatcher
 			};
 
 			Engine.SwitchGuiPage("page_gamesetup.xml", {
+				"backPage": {
+					"page": this.run.getMenuPath(),
+					"data": {
+						"filename": this.run.filename
+					}
+				},
 				"gameSettings": attributes,
 			});
 			return;

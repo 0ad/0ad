@@ -1,42 +1,50 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
+Engine.LoadLibrary("rmbiome");
 
-const tPrimary = ["desert_sand_smooth", "desert_sand_smooth_b"];
-const tCity = "desert_city_tile";
-const tCityPlaza = "desert_city_tile_plaza";
-const tSand = "desert_dirt_rough";
-const tDunes = "desert_sand_dunes_100";
-const tFineSand = "desert_sand_smooth";
-const tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
+if (g_MapSettings.Biome)
+	setSelectedBiome();
+else
+	setBiome("generic/sahara");
+
+
+const tPrimary = g_Terrains.mainTerrain;
+const tCity = g_Terrains.roadWild;
+const tCityPlaza = g_Terrains.road;
+const tSand = g_Terrains.tier3Terrain;
+const tDunes = g_Terrains.tier4Terrain;
+const tFineSand = g_Terrains.tier2Terrain;
+const tCliff = g_Terrains.cliff;
+const tDirt = g_Terrains.dirt;
 const tForestFloor = "desert_forestfloor_palms";
-const tGrass = "desert_grass_a";
-const tGrassSand25 = "desert_grass_a_stones";
-const tDirt = "desert_dirt_rough";
-const tShore = "desert_shore_stones";
-const tWaterDeep = "desert_shore_stones_wet";
+const tGrass = g_Terrains.forestFloor2;
+const tGrassSand25 = g_Terrains.shoreBlend;
+const tShore = g_Terrains.shore;
+const tWaterDeep = g_Terrains.water;
 
 const oBerryBush = "gaia/fruit/grapes";
 const oCamel = "gaia/fauna_camel";
-const oFish = "gaia/fish/generic";
+const oFish = g_Gaia.fish;
 const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGoat = "gaia/fauna_goat";
 const oWildebeest = "gaia/fauna_wildebeest";
-const oStoneLarge = "gaia/rock/badlands_large";
-const oStoneSmall = "gaia/rock/desert_small";
-const oMetalLarge = "gaia/ore/desert_large";
-const oDatePalm = "gaia/tree/date_palm";
-const oSDatePalm = "gaia/tree/senegal_date_palm";
+const oStoneLarge = g_Gaia.stoneLarge;
+const oStoneSmall = g_Gaia.stoneSmall;
+const oMetalLarge = g_Gaia.metalLarge;
+const oOasisTree = "gaia/tree/senegal_date_palm";
+const oDatePalm = g_Gaia.tree1;
+const oSDatePalm = g_Gaia.tree2;
 
-const aBush1 = "actor|props/flora/bush_desert_a.xml";
+const aBush1 = g_Decoratives.bushMedium;
 const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
-const aBush3 = "actor|props/flora/bush_dry_a.xml";
+const aBush3 = g_Decoratives.bushSmall;
 const aBush4 = "actor|props/flora/plant_desert_a.xml";
 const aBushes = [aBush1, aBush2, aBush3, aBush4];
-const aDecorativeRock = "actor|geology/stone_desert_med.xml";
+const aDecorativeRock = g_Decoratives.rockMedium;
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
-const pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
+const pForestOasis = [tGrass + TERRAIN_SEPARATOR + oOasisTree, tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass];
 
 const heightLand = 10;
 
@@ -268,7 +276,7 @@ Engine.SetProgress(65);
 
 g_Map.log("Creating forests");
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
-var num = scaleByMapSize(10,30);
+var num = g_DefaultNumberOfForests;
 createAreas(
 	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[
@@ -348,11 +356,8 @@ createObjectGroupsDeprecated(group, 0,
 
 placePlayersNomad(clPlayer, avoidClasses(clOasis, 4, clForest, 1, clMetal, 4, clRock, 4, clHill1, 4, clFood, 2));
 
-setWaterColor(0, 0.227, 0.843);
-setWaterTint(0, 0.545, 0.859);
 setWaterWaviness(1.0);
 setWaterType("clap");
-setWaterMurkiness(0.75);
 setWaterHeight(20);
 
 g_Map.ExportMap();

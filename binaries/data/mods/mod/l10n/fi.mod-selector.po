@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"POT-Creation-Date: 2021-05-31 07:12+0000\n"
 "PO-Revision-Date: 2021-05-28 10:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -402,7 +402,7 @@ msgstr "Vieraile mod.io"
 msgid "This mod does not exist"
 msgstr "Tämä modi ei ole olemassa"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Aktivoi"
@@ -411,20 +411,16 @@ msgstr "Aktivoi"
 msgid "Dependencies not met"
 msgstr "Riippuvuudet eivät täyty"
 
-#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
-msgid "Filter"
-msgstr "Suodatin"
-
-#: gui/modmod/modmod.js:455
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Poista käytöstä"
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Modia ei ole valittu."
 
-#: gui/modmod/modmod.js:466
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "Ota käyttöön ainakin 0ad-modi"
 
@@ -479,6 +475,10 @@ msgstr "(Hakemisto)"
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
 msgstr "Kotisivu"
+
+#: gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "Suodatin"
 
 #: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""

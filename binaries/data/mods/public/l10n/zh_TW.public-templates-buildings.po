@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-31 07:24+0000\n"
+"PO-Revision-Date: 2021-05-31 08:18+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1113,7 +1113,7 @@ msgstr "柵門"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr "讓單位穿過木柵。可上鎖以阻止通行。"
+msgstr "讓單位穿過木柵。可上鎖以防止通行。"
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
@@ -1811,11 +1811,11 @@ msgstr "石塔"
 #: simulation/templates/template_structure_defensive_wall.xml:12
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr "牆"
+msgstr "城牆"
 
 #: simulation/templates/template_structure_defensive_wall.xml:14
 msgid "Wall off your town for a stout defense."
-msgstr "以牢靠的防禦保護您的城鎮的一堵牆。"
+msgstr "圍起城鎮的堅實防禦。"
 
 #: simulation/templates/structures/palisades_gate.xml:23
 #: simulation/templates/template_structure_defensive_wall_gate.xml:22
@@ -1826,7 +1826,7 @@ msgstr "城門"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:26
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr "允許單位穿越城牆。可以上鎖來防止通行。"
+msgstr "讓單位穿過城牆。可上鎖以防止通行。"
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:17
 msgid "Can be converted into a Gate."
@@ -1834,7 +1834,7 @@ msgstr "可以被轉變為一道城門。"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:22
 msgid "Wall Turret"
-msgstr "城牆塔樓"
+msgstr "角樓"
 
 #: simulation/templates/template_structure_economic.xml:4
 msgid "Economic Structure"
@@ -1849,7 +1849,7 @@ msgstr "經濟"
 #: simulation/templates/template_structure_economic_farmstead.xml:26
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 msgid "Farmstead"
-msgstr "農場"
+msgstr "農舍"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
@@ -1864,7 +1864,7 @@ msgstr "市集"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr "交換資源。建立貿易路線。訓練商人和研發貿易和交換用的科技。"
+msgstr "交換資源。建立貿易路線。訓練商人及研發貿易與交換科技。"
 
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1886,7 +1886,7 @@ msgstr "軍事建築"
 
 #: simulation/templates/template_structure_military.xml:12
 msgid "Military"
-msgstr "陸軍"
+msgstr "軍事"
 
 #: simulation/templates/template_structure_military_arsenal.xml:25
 #: simulation/templates/template_structure_military_arsenal.xml:28
@@ -1897,7 +1897,7 @@ msgstr "兵工廠"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr "訓練精銳十字弓步兵，建造兵工推進機，以及研發兵工推進機科技"
+msgstr "訓練鬥士弩步兵、建造攻城武器及研發攻城武器科技。"
 
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
@@ -1918,7 +1918,7 @@ msgstr "軍營"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Infantry and research Infantry technologies."
-msgstr "訓練步兵並研究步兵科技。"
+msgstr "訓練步兵及研發步兵科技。"
 
 #: simulation/templates/template_structure_military_dock.xml:24
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1929,13 +1929,13 @@ msgstr "碼頭"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Establish trade"
 " routes. Construct Ships and research Ship technologies."
-msgstr "建於自有、中立，或同盟領土的水岸。建立貿易路線。造船以及研發船隻科技。"
+msgstr "在我方、中立或盟友領土的海岸線上建造。建立貿易路線。建造船艦及研發船艦科技。"
 
 #: simulation/templates/structures/brit/crannog.xml:17
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Naval"
-msgstr "海軍的"
+msgstr "海軍"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:23
 msgid "Elephant Stable"
@@ -1943,11 +1943,11 @@ msgstr "象棚"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:25
 msgid "Train Elephants and research Elephant technologies."
-msgstr "訓練大象及研究大象科技。"
+msgstr "訓練大象及研發大象科技。"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "ElephantStable"
-msgstr "象殿"
+msgstr "象棚"
 
 #: simulation/templates/structures/cart/embassy.xml:18
 #: simulation/templates/template_structure_military_embassy.xml:22
@@ -1962,7 +1962,7 @@ msgstr "冶煉廠"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
-msgstr "研究攻擊傷害以及傷害裝甲科技。"
+msgstr "研發攻擊與裝甲科技。"
 
 #: simulation/templates/template_structure_military_fortress.xml:35
 #: simulation/templates/template_structure_military_fortress.xml:65
@@ -1976,15 +1976,15 @@ msgstr "領土根。進駐士兵以增加箭數。"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
-msgstr "訓練範圍"
+msgstr "靶場"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr "訓練遠距步兵以及研發科技"
+msgstr "訓練遠程步兵及研發科技。"
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
-msgstr "範圍"
+msgstr "靶場"
 
 #: simulation/templates/template_structure_military_stable.xml:23
 #: simulation/templates/template_structure_military_stable.xml:26
@@ -1993,7 +1993,7 @@ msgstr "馬廄"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr "訓練騎兵及研究騎兵科技。"
+msgstr "訓練騎兵及研發騎兵科技。"
 
 #: simulation/templates/template_structure_resource.xml:4
 msgid "Resource Structure"
@@ -2010,7 +2010,7 @@ msgstr "畜欄"
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 msgid "Raise Domestic Animals for food."
-msgstr "飼養做食物用的家畜"
+msgstr "飼養作為食物的家畜。"
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
@@ -2020,7 +2020,7 @@ msgstr "農田"
 #: simulation/templates/template_structure_resource_field.xml:21
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr "播種糧食作物。往後的每一個採集者工作起來都會比較沒效率"
+msgstr "採集穀物為食。隨後的每個採集者工作效率略低。"
 
 #: simulation/templates/template_structure_special.xml:19
 msgid "Special Structure"
@@ -2039,11 +2039,11 @@ msgstr "圖書館"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:19
 msgid "Rotary Mill"
-msgstr "旋轉研磨機"
+msgstr "旋轉式磨坊"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:21
 msgid "RotaryMill"
-msgstr "旋轉研磨機"
+msgstr "旋轉式磨坊"
 
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27
@@ -2059,4 +2059,4 @@ msgstr "奇觀"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "將榮耀歸於您的文明，並在您的帝國裡加入大片的土地。"
+msgstr "榮耀您的文明並為帝國增加大片領土。"

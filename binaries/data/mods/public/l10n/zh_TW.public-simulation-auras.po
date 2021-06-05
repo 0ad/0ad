@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-28 07:13+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"PO-Revision-Date: 2021-06-03 07:16+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,15 +38,15 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "駐守的攻城武器單位+3生命值回復率。"
+msgstr "駐紮的攻城武器 +3 生命值恢復率。"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr "兵工廠修復"
+msgstr "兵工廠維修"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr "單位在駐守軍營時獲得經驗值。"
+msgstr "單位駐紮在軍營時會獲得經驗值。"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -54,15 +54,15 @@ msgstr "嚴格訓練"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "駐守在船隻中的單位+10的生命值恢復率。"
+msgstr "駐紮的船艦 +10 生命值恢復率。"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr "造船廠修復"
+msgstr "造船廠維修"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "士兵+20%近戰及遠程攻擊。"
+msgstr "士兵 +20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -71,7 +71,7 @@ msgstr "宗教狂熱"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "工人+15% 採集速度。"
+msgstr "工人 +15% 採集速率。"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -81,23 +81,23 @@ msgstr "愛國主義"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "士兵 +1 粉碎、劈砍、穿刺裝甲，並 +10% 近戰與遠程攻擊傷害。"
+msgstr "士兵 +1 粉碎、劈砍、穿刺裝甲並 +10% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "勸告存在"
+msgstr "勸誡存在"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "英雄-5%生命值。"
+msgstr "英雄 −5% 生命值。"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
-msgstr "強大祭司"
+msgstr "強勢祭司"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr "建築物 -15% 研發科技資源成本及研發時間。"
+msgstr "建築物 −15% 科技資源成本與研發時間。"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
@@ -105,7 +105,7 @@ msgstr "學術中心"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "建築物+50% 捕獲值與駐軍再生值"
+msgstr "建築物 +50% 占領值駐紮恢復率。"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -113,7 +113,7 @@ msgstr "忠誠"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr "商隊+20%移動速度"
+msgstr "商人 +20% 移動速度。"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -121,23 +121,23 @@ msgstr "阿育王敕令"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr "工人 +25% 作物採集速度。"
+msgstr "工人 +25% 穀物採集速率。"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr "耕種獎勵"
+msgstr "農業加成"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr "人類生命回復+1"
+msgstr "人 +1 生命值恢復率。"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
-msgstr "藥物治療"
+msgstr "醫療"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr "建築物+20%領地範圍"
+msgstr "建築 +20% 領土影響半徑。"
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
@@ -146,7 +146,7 @@ msgstr "希臘化"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr "塔上的士兵 +3 粉碎、劈砍、穿刺裝甲並 +20 視野。"
+msgstr "牆上的士兵 +3 粉碎、劈砍、穿刺裝甲並 +20 視野。"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -156,15 +156,15 @@ msgstr "城牆防護"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr "人口上限 +20%（需要「光榮擴展」科技）。"
+msgstr "最大人口上限 +20%（需要「光榮擴張」科技）。"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
-msgstr "光榮擴展"
+msgstr "光榮擴張"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."
-msgstr "戰船-25%建造時間。"
+msgstr "戰艦 −25% 建造時間。"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -172,7 +172,7 @@ msgstr "提洛同盟"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr "治癒者-20%資源成本。"
+msgstr "治療者 -20% 資源成本。"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -184,31 +184,31 @@ msgstr "+10% 國際貿易加成。"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr "貿易大師"
+msgstr "貿易能手"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr "兵工廠 −15% 科技資源成本和研發時間。"
+msgstr "治煉廠 −15% 科技資源成本與研發時間。"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr "產自高盧"
+msgstr "高盧製造"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr "公民標槍手 -10% 資源成本。"
+msgstr "公民標槍兵 −10% 資源成本。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
-msgstr "Saripeko"
+msgstr "外援"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr "大象-20%資源成本與訓練時間。"
+msgstr "大象 −20% 資源成本與訓練時間。"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr "大象供應商"
+msgstr "大象供給者"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% barter sell prices."
@@ -216,13 +216,13 @@ msgstr "+20% 易貨銷售價格。"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr "標準化的貨幣"
+msgstr "標準化貨幣"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr "神廟 -50% 資源成本與建造時間；神廟科技 -50% 資源成本與研發時間。"
+msgstr "神廟 −50% 資源成本與建造時間；神廟科技 −50% 資源成本與研發時間。"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -230,7 +230,7 @@ msgstr "阿育王的宗教支持"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Land Traders +15% trade gain."
-msgstr "陸上貿易 +15% 貿易加成。"
+msgstr "陸上商人 +15% 貿易獲利。"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -254,7 +254,7 @@ msgstr "徵兵制"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Civil Centers −20% resource costs."
-msgstr "城鎮中心-20%資源成本。"
+msgstr "城鎮中心 −20% 資源成本。"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -262,7 +262,7 @@ msgstr "敘利亞四城"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr "公民矛兵 +10% 生命值。"
+msgstr "公民矛步兵 +10% 生命值。"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -270,7 +270,7 @@ msgstr "伯羅奔尼撒聯盟"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr "敵方士兵 -10% 攻擊傷害，並偷取攻擊強度。"
+msgstr "敵方士兵 −10% 攻擊傷害與占領力。"
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
@@ -280,7 +280,7 @@ msgstr "威嚇之聲"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr "梭倫進行了幾項經濟改革，以鼓勵商業與農業發展。\n工人 +15% 採集速率。"
+msgstr "梭倫制定了數項鼓勵商業與農業的經濟改革。\n工人 +15% 採集速率。"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -290,7 +290,7 @@ msgstr "經濟改革"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr "梭倫帶來了新的度量衡體系，鼓勵父親為兒子尋找交易。\n經濟科技 -10% 資源花費。"
+msgstr "梭倫引進了新的度量衡體系，鼓勵父親為兒子尋找交易。\n經濟科技 −10% 資源成本。"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -311,17 +311,17 @@ msgstr "游擊戰術"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelineers +20% attack range."
-msgstr "Cassivellaunus部署了快速移動的散兵部隊來偷襲羅馬軍隊與輜重。\n標槍兵 +20% 攻擊範圍。"
+msgstr "卡西維拉努斯部署了快速移動的散兵部隊偷襲羅馬軍隊與輜重。\n標槍兵 +20% 攻擊範圍。"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr "輕裝偷襲戰術"
+msgstr "散兵騷擾"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr "Trebia 與 Cannae 魁北克重騎兵的領導者，他的三重衝鋒對敵人產生了毀滅性的傷害。\n近戰騎兵 +1 粉碎、劈砍、穿刺裝甲並 +10% 生命值。"
+msgstr "身為迦太基重騎兵在特雷比亞與坎尼的領導者，他的三重衝鋒對敵人造成了毀滅性的傷害。\n近戰騎兵 +1 粉碎、劈砍、穿刺裝甲並 +10% 生命值。"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -331,17 +331,17 @@ msgstr "重騎兵指揮官"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "與羅馬人交戰時，Ambiorix 意識到開放戰爭的徒勞，其改採伏擊戰術。高廬人很快就知道要在哪裡以及什麼時候執行埋伏。\n士兵 +5% 近戰與遠程攻擊傷害且 -25% 升級經驗值。"
+msgstr "與羅馬人作戰時，安比奧里克斯意識到開放戰的徒勞而採伏擊戰術。高盧人很快就知道該在何時何地偷襲。\n士兵 +5% 近戰與遠程攻擊傷害並 −25% 升階經驗值。"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr "埋伏暗殺"
+msgstr "埋伏屠殺"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr "當羅馬軍隊糧食供應不足時，高廬部落被命令放棄已經不多的收成中的一部份。在 Ambiorix 治下的厄勃隆尼斯人不願意這麼做，所以凱撒派軍隊強行把他們帶走。\n工人 -10% 穀物採集速率。"
+msgstr "當羅馬軍隊糧食供應不足時，高盧部落被命令上繳一部分已經微薄的收成。在安比奧里克斯治下的厄勃隆尼斯人不願意這麼做，於是凱撒派軍以武力奪取。\n工人 −10% 穀物採集速率。"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -361,7 +361,7 @@ msgstr "傭兵指揮官"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr "隨著 Indibil 在戰爭中的隕落，Mandonius 帶領了倖存者到安全的地方。\n士兵 +10% 生命值。"
+msgstr "隨著英迪比爾在戰爭中隕落，曼多尼厄斯帶領倖存者到了安全的地方。\n士兵 +10% 生命值。"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -371,57 +371,57 @@ msgstr "生命救助者"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr "夏娜達伽多女王 (Shanakdakheto) 君臨美羅埃帝國且擔任美羅埃宗教的要角，在她的全能統治下，施展了庫施不能小看的法力。\n敵人的女性公民 -15% 採集速度。"
+msgstr "夏娜達伽多女王君臨麥羅埃帝國並擔任麥羅埃宗教的要角，她的全能統治展現了庫施不容小覷的力量。\n敵人的女性公民 −15% 採集速率。"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
-msgstr "首位努比亞女王"
+msgstr "最早的努比亞女王"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr "與所有文化一樣，宗教在庫施王國中發揮了重要作用。夏娜達伽多女王 (Shanakdakheto) 在公元前160年左右建造了神廟。作為美羅埃先進的象徵。\n神廟附近的駐軍 +1 治療速率。"
+msgstr "和所有文化一樣，宗教在庫施舉足輕重。夏娜達伽多女王在西元前 160 年左右建造了象徵麥羅埃先進的神廟。\n神廟 +1 駐紮治療速率。"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
-msgstr "納卡寺廟"
+msgstr "納卡神廟"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
-msgstr "在第一次馬其頓戰爭期間，腓力國王與他的軍隊掠奪了埃托利亞的宗教與政治中心，Thermum。\n人類、攻城武器、船隻與建築物 +5 食物與木頭戰利品。"
+msgstr "在第一次馬其頓戰爭期間，腓力國王與他的軍隊洗劫了埃托利亞的宗教與政治中心塞勒莫斯。\n人、攻城武器、船隻與建築物 +5 食物與木頭戰利品。"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
-msgstr "城市掠奪者"
+msgstr "城市劫掠者"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "Structures +20% territory influence radius."
-msgstr "旃陀羅笈多．孔雀的兒子，賓頭娑羅鞏固了整個帝國，為他的兒子阿育王建立了一個穩定的國家。\n建築物 +20% 領土影響半徑。"
+msgstr "身為旃陀羅笈多．孔雀之子，賓頭娑羅鞏固了整個帝國，為他的兒子阿育王建立了一個穩定的國家。\n建築 +20% 領土影響半徑。"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
-msgstr "帝國統治者"
+msgstr "帝國鞏固者"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraDescription
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "Soldiers +15% capture attack strength."
-msgstr "據說賓頭娑羅征服了帝國南部的土地。\n士兵 +15% 捕捉攻擊強度。"
+msgstr "據說賓頭娑羅征服了帝國南方的土地。\n士兵 +15% 占領力。"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
-msgstr "Vamba Moriyar"
+msgstr "孔雀王朝征服"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr "在阿爾塔薛西斯統治期間，他大部份的財富都用於建築物上。他在蘇薩重建了大流士一世的宮殿，並重建了埃克巴坦那古城。\n建築物 -10% 花費且 +5% 生命值。"
+msgstr "在阿爾塔薛西斯統治期間，他大部份的財富都用於建築專案上。他在蘇薩重建了大流士一世的宮殿，並重建了埃克巴坦那古城。\n建築物 −10% 資源成本並 +5% 生命值。"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -431,7 +431,7 @@ msgstr "偉大的建築師"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr "繼續著他的前輩在亞歷山大圖書館的工作，他把每一本書帶到了亞歷山卓，為他的人民留下了大量的智慧結晶。\n建築物科技的資源成本 -10%。"
+msgstr "他繼續前人在亞歷山大圖書館的工作，收繳每一本被帶到亞歷山卓城的書，留給他的人民大量的智慧結晶。\n建築科技的資源成本 −10%。"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -441,17 +441,17 @@ msgstr "偉大的圖書管理者"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female Citizens −20% food cost and +10% gather speed."
-msgstr "在被塔奎尼烏斯．蘇培布斯國王的兒子強姦後，她就自殺了，布魯圖斯誓言復仇並推翻君主制。\n女性公民 -20% 食物花費且 +10% 採集速度。"
+msgstr "在盧克麗霞被塔奎尼烏斯．蘇培布斯國王的兒子強姦並自殺後，布魯圖斯誓言為她復仇並推翻王政。\n女性公民 −20% 食物花費並 +10% 採集速率。"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
-msgstr "盧克萊西婭的復仇"
+msgstr "盧克麗霞的復仇者"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr "布魯圖斯是推翻君主制與羅馬共和國成立的關鍵人物之一。後來，作為領事，他率領了一支軍隊對抗試圖奪取王位的伊特魯里亞國王塔克尼烏斯並獲得勝利。\n人類與攻城武器 +1 粉碎、劈砍、穿刺裝甲。"
+msgstr "布魯圖斯是推翻君主制並成立羅馬共和國的關鍵人物之一。後來他以執政官身分率領羅馬軍隊對抗試圖奪回王位的伊特魯里亞國王塔克尼烏斯並獲得勝利。\n人與攻城武器 +1 粉碎、劈砍、穿刺裝甲。"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -461,7 +461,7 @@ msgstr "共和國的奠基者與保衛者"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "Temples −10% resource costs; Temple technologies −10% resource costs."
-msgstr "安條克一世為在波爾西帕的亞茲迪神殿打下了基礎。\n神廟與神廟科技 -10% 資源消耗。"
+msgstr "安條克一世為波爾西帕的亞茲迪神殿打下了基礎。\n神廟與神廟科技 −10% 資源成本。"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -471,7 +471,7 @@ msgstr "亞茲迪神殿的奠基者"
 msgid ""
 "Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
 "+5% maximum population limit."
-msgstr "安條克鼓勵希臘人移民到他的王國，並在亞太地區建立了許多新城市來與高廬平衡。\n人口上限 +5%。"
+msgstr "安條克鼓勵希臘人移民到他的領土，並在小亞細亞建立了許多新城市與高盧人抗衡。\n最大人口上限 +5%。"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -481,17 +481,17 @@ msgstr "移民"
 msgid ""
 "Son of Seleucus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
 "Champion Elephants −10% resource costs."
-msgstr "做為塞琉古一世的兒子，安條克成功地完成了將帝國保持為一的艱難任務，同時建立了神廟，並利用戰象打敗了入侵的高盧人。\n戰象資源成本 -10%。"
+msgstr "身為塞琉古一世的兒子，安條克成功地完成了維持帝國穩定的艱難任務，同時建立了神廟並利用戰象打敗了入侵的高盧人。\n鬥士戰象資源成本 −10%。"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas"
-msgstr "Basileus Megas"
+msgstr "大帝"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "Citizen Infantry Spearmen −10% resource costs."
-msgstr "來古格士推行了許多次軍事改革，從而讓斯巴達公民完全且唯一地效忠政府。\n長矛民兵單位 -10% 資源花費。"
+msgstr "來古格士推行了許多次軍事改革，從而讓斯巴達公民完全且唯一地效忠政府。\n公民矛步兵 −10% 資源成本。"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -500,55 +500,55 @@ msgstr "來古格士軍事改革"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr "鬥士長矛兵 -5% 資源消耗。"
+msgstr "鬥士矛步兵 −5% 資源成本。"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "Workers +15% metal gather rate."
-msgstr "為了進一步支持平等，來古格士禁止使用黃金與白銀，改採稱為 pellanors 的鐵製錢幣。\n工人金屬採集速率 +15%。"
+msgstr "為了進一步支持平等，來古格士禁止使用黃金與白銀，改採稱為 pelanors 的鐵幣。\n工人 +15% 金屬採集速率。"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
-msgstr "鐵貨幣"
+msgstr "鐵幣"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Builders +25% build rate."
-msgstr "建築工 +25% 建造速率。"
+msgstr "建築工人 +25% 建造速率。"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
-msgstr "象工"
+msgstr "工作象"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr "在其編隊中的士兵 +3 粉碎、劈砍、穿刺裝甲，+15% 移動速度。"
+msgstr "在他陣中的士兵 +3 粉碎、劈砍、穿刺裝甲，+15% 移動速度。"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
-msgstr "陣型改革"
+msgstr "陣形改革"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
-msgstr "標槍兵 +15% 移動速度。"
+msgstr "標槍步兵 +15% 移動速度。"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
-msgstr "盾兵改革"
+msgstr "輕盾兵改革"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
-msgstr "建築工 +15% 建造速率。"
+msgstr "建築工人 +15% 建造速率。"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr "伯里克利建築計畫"
+msgstr "伯里克里斯建築計畫"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr "神廟 -25% 石頭花費、+2 駐軍治療速率。"
+msgstr "神廟 −25% 石頭成本、+2 駐紮治療速率。"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
@@ -558,7 +558,7 @@ msgstr "雅典娜勝利女神廟"
 msgid ""
 "When garrisoned, the Ship has −30% batch training time and +50% movement "
 "speed."
-msgstr "有駐軍時，船隻 -30% 訓練時間並 +50% 移動速度。"
+msgstr "駐於船上時，該船 −30% 批量訓練時間並 +50% 移動速度。"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -566,21 +566,21 @@ msgstr "海軍指揮官"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
-msgstr "船隻 -50% 金屬花費、-20% 建造時間。"
+msgstr "船艦 −50% 金屬成本、−20% 建造時間。"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
-msgstr "造船工程師"
+msgstr "海軍工程師"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage, "
 "+10% movement speed."
-msgstr "鬥士 +2 捕捉攻擊強度、+20% 近戰與遠程攻擊傷害、+10% 移動速度。"
+msgstr "鬥士 +2 占領力、+20% 近戰與遠程攻擊傷害、+10% 移動速度。"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
-msgstr "精英部隊"
+msgstr "鬥士部隊"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid ""
@@ -595,7 +595,7 @@ msgstr "游擊隊長"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
-msgstr "人類 +0.8 生命值恢復速率。"
+msgstr "人 +0.8 生命值恢復速率。"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -611,17 +611,17 @@ msgstr "閃電將軍"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
 msgid "Enemy Mercenaries −20% melee and ranged attack damage."
-msgstr "敵軍傭兵 -20% 近戰與遠程攻擊傷害。"
+msgstr "敵軍傭兵 −20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
-msgstr "雇傭兵"
+msgstr "傭兵壓㓡者"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
 "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
 "melee and ranged attack damage."
-msgstr "自己與盟友的士兵與攻城武器 +1 捕捉攻擊強度、-20% 近戰與遠程攻擊傷害。"
+msgstr "我方與盟友的士兵與攻城武器 +1 占領力、+20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -633,29 +633,29 @@ msgstr "近戰騎兵 +30% 近戰攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
-msgstr "騎兵隊長"
+msgstr "騎兵指揮官"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "Humans, Siege Engines, and Ships gain +15 metal loot."
-msgstr "人類、攻城武器與船隻 +15 金屬戰利品。"
+msgstr "人、攻城武器與船艦 +15 金屬戰利品。"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
-msgstr "羅馬掠奪者"
+msgstr "羅馬劫掠者"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "士兵與攻城武器 +1 捕捉攻擊強度、+20% 近戰與遠程攻擊傷害。"
+msgstr "士兵與攻城武器 +1 占領力、+20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr "塞爾特軍閥"
+msgstr "凱爾特軍閥"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
-msgstr "準備戰爭"
+msgstr "戰爭準備"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -665,11 +665,11 @@ msgstr "駐紮的建築 +2 占領值恢復率。"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
-msgstr "機巧防禦"
+msgstr "激勵防禦"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
-msgstr "有駐軍時，建築物與攻城塔 +75% 射箭數。"
+msgstr "駐紮的建築或攻城塔 +75% 箭數。"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -685,7 +685,7 @@ msgstr "戰鬥狂熱"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr "士兵 -15% 資源花費、-20% 訓練時間。"
+msgstr "士兵 −15% 資源成本、−20% 訓練時間。"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -697,7 +697,7 @@ msgstr "士兵 +20% 移動速度。"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
-msgstr "士兵與攻城武器 +100% 資源花費。"
+msgstr "士兵與攻城武器 +100% 資源戰利品。"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
@@ -707,7 +707,7 @@ msgstr "贓物"
 #: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
-msgstr "鬥士 +2 捕捉攻擊強度、+20% 近戰與遠程攻擊傷害。"
+msgstr "鬥士 +2 占領力、+20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
@@ -717,29 +717,29 @@ msgstr "戰士女王"
 msgid ""
 "Temple of Amun +20% resource costs and build time. Amun Temple Guard +20% "
 "resource costs and training time."
-msgstr "阿蒙神廟 +20% 資源花費與建造時間。阿蒙神廟守衛 +20% 資源花費與訓練時間。"
+msgstr "阿蒙神廟 +20% 資源成本與建造時間。阿蒙神廟衛士 +20% 資源成本與訓練時間。"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
 msgid "Defier of Tradition"
-msgstr "傳統挑戰者"
+msgstr "傳統褻瀆者"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid ""
 "Temple of Apedemak −20% resource costs and build time. Apedemak Temple Guard"
 " −20% resource costs and training time."
-msgstr "Apedemak 神廟 -20% 資源花費與建造時間。Apedemak 神廟守衛 -20% 資源花費與訓練時間。"
+msgstr "阿培德馬克神廟 −10% 資源成本與建造時間。阿培德馬克神廟衛士 −20% 資源成本與訓練時間。"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
 msgid "Follower of Apedemak"
-msgstr "獅神 Apedemak 的追隨者"
+msgstr "阿培德馬克的追隨者"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy Healers −50% healing strength."
-msgstr "敵人的治療者 -50% 治療強度。"
+msgstr "敵方治療者 −50% 治療強度。"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
-msgstr "忠誠屠宰者"
+msgstr "信徒屠殺者"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
@@ -751,7 +751,7 @@ msgstr "庫什救世主"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
-msgstr "庫施三列槳戰船 -50 木頭與金屬花費。"
+msgstr "庫施三列槳戰船 −50 木頭與金屬成本。"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
@@ -759,7 +759,7 @@ msgstr "戰艦賜禮"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
-msgstr "建築物 +10% 領土影響半徑。"
+msgstr "建築 +10% 領土影響半徑。"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Imperialism"
@@ -767,7 +767,7 @@ msgstr "帝國主義"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr "敵人的城鎮中心 -50% 占領值駐軍再生速率。"
+msgstr "敵方城鎮中心 −50% 占領值駐紮回復率。"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
@@ -776,11 +776,11 @@ msgstr "征服者"
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
-msgstr "長槍兵 +20% 捕捉攻擊強度，+20% 近戰攻擊傷害。"
+msgstr "長槍步兵 +20% 占領力、+20% 近戰攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
-msgstr "Taxiarchès"
+msgstr "指揮官"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraDescription
 msgid ""
@@ -798,7 +798,7 @@ msgstr "馬其頓的崛起"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
-msgstr "士兵 +20% 近戰與遠程攻擊傷害、-15% 生命值。"
+msgstr "士兵 +20% 近戰與遠程攻擊傷害、−15% 生命值。"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
@@ -808,7 +808,7 @@ msgstr "皮洛士式勝利"
 msgid ""
 "Temples −50% resource costs and build time. Temple technologies −50% "
 "resource costs and research time."
-msgstr "神廟 -50% 資源成本與建造時間。神廟科技 -50% 資源成本與研究時間。"
+msgstr "神廟 −50% 資源成本與建造時間。神廟科技 −50% 資源成本與研發時間。"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
@@ -818,20 +818,20 @@ msgstr "佛教"
 msgid ""
 "When garrisoned, the Structure's technologies have −20% resource cost and "
 "−50% research time."
-msgstr "有駐軍時，建築物的科技 -20% 資源成本與 -50% 研究時間。"
+msgstr "駐紮的建築科技 −20% 資源成本並 −50% 研發時間。"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
-msgstr "老師"
+msgstr "教師"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr "再生"
+msgstr "回復"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr "騎兵 +1 捕捉強度、+20% 進展與遠程攻擊傷害。"
+msgstr "騎兵 +1 占領力、+20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
@@ -848,7 +848,7 @@ msgstr "領導"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
-msgstr "工人 +15% 建造速率與採集速度。"
+msgstr "工人 +15% 建造速率與採集速率。"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraName
 msgid "Administrator"
@@ -856,7 +856,7 @@ msgstr "管理人"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr "士兵與攻城武器 -20% 近戰與遠程攻擊間隔時間。"
+msgstr "士兵與攻城武器 −20% 近戰與遠程攻擊間隔時間。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
@@ -864,7 +864,7 @@ msgstr "愛國者"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
-msgstr "同盟的英雄 +10% 生命值。"
+msgstr "盟友的英雄 +10% 生命值。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraName
@@ -873,23 +873,23 @@ msgstr "同調"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr "敵人英雄 -10% 生命值。"
+msgstr "敵方英雄 −10% 生命值。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
-msgstr "建築工 +10% 建造速率。"
+msgstr "建築工人 +10% 建造速率。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
-msgstr "建築守護神"
+msgstr "建設贊助者"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr "傭兵 -35% 資源成本。"
+msgstr "傭兵 −35% 資源成本。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr "傭兵守護神"
+msgstr "傭兵贊助者"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraDescription
 msgid "Pikemen +40% health."
@@ -897,7 +897,7 @@ msgstr "長槍兵 +40% 生命值。"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraName
 msgid "Raphia"
-msgstr "棕櫚葉"
+msgstr "拉菲亞"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
@@ -910,11 +910,11 @@ msgstr "羅馬之劍"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr "敵軍步兵 -10% 近戰與遠程攻擊傷害。"
+msgstr "敵軍步兵 −10% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr "士兵與攻城武器 +1 粉碎、劈砍、穿刺裝甲。"
+msgstr "人與建築 +1 粉碎、劈砍、穿刺裝甲。"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -924,7 +924,7 @@ msgstr "羅馬之盾"
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "士兵與攻城武器 +2 捕捉攻擊強度、+20% 近戰與遠程攻擊傷害。"
+msgstr "士兵與攻城武器 +2 占領力、+20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -936,11 +936,11 @@ msgstr "騎兵 +2 粉碎、劈砍、穿刺裝甲。"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
-msgstr "Ilarchès"
+msgstr "側翼指揮官"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
-msgstr "敵人的建築物、船隻與攻城武器 -20% 生命值。"
+msgstr "敵方建築物、船艦與攻城武器 −20% 生命值。"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraName
 msgid "Renowned Conqueror"
@@ -952,21 +952,21 @@ msgstr "鬥士戰象 +20% 近戰攻擊傷害、+20% 移動速度。"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraName
 msgid "Zooiarchos"
-msgstr "Zooiarchos"
+msgstr "戰象指揮官"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr "標槍民兵 +1 粉碎、劈砍、穿刺裝甲、+25% 遠程攻擊穿刺傷害。"
+msgstr "標槍公民步兵 +1 粉碎、劈砍、穿刺裝甲、+25% 遠程攻擊穿刺傷害。"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr "希洛人改革"
+msgstr "黑勞士改革"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
-msgstr "矛兵 +1 捕捉攻擊強度、+25% 近戰攻擊傷害。"
+msgstr "矛兵 +1 占領力、+25% 近戰攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

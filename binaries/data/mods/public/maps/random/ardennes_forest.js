@@ -1,13 +1,16 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
+Engine.LoadLibrary("rmbiome");
 
-const tPrimary = ["temp_forestfloor_pine", "temp_forestfloor_pine", "alpine_cliff_c", "alpine_grass_rocky"];
-const tGrass = ["new_alpine_grass_b", "new_alpine_grass_c", "new_alpine_grass_d"];
-const tPineForestFloor = "temp_forestfloor_pine";
-const tForestFloor = [tPineForestFloor, tPineForestFloor, "alpine_dirt_grass_50"];
-const tCliff = ["alpine_cliff_c", "alpine_cliff_c", "alpine_grass_rocky"];
+setBiome("generic/temperate");
+
+const tPrimary = ["steppe_grass_03", "steppe_grass_03", "alpine_cliff_c", "temperate_grass_mud_01"];
+const tGrass = ["steppe_grass_04", "steppe_grass_04", "aegean_grass_dirt_03"];
+const tPineForestFloor = "steppe_grass_03";
+const tForestFloor = [tPineForestFloor, tPineForestFloor, "temperate_grass_mud_01"];
+const tCliff = ["alpine_cliff_c", "alpine_cliff_c", "temperate_cliff_01"];
 const tCity = ["new_alpine_citytile", "new_alpine_grass_dirt_a"];
-const tGrassPatch = ["alpine_grass_a", "alpine_grass_b"];
+const tGrassPatch = ["alpine_grass_d"];
 
 const oBoar = "gaia/fauna_boar";
 const oDeer = "gaia/fauna_deer";
@@ -22,12 +25,12 @@ const oStoneLarge = "gaia/rock/temperate_large";
 const oOak = "gaia/tree/oak";
 const oOakLarge = "gaia/tree/oak_large";
 const oPine = "gaia/tree/pine";
-const oAleppoPine = "gaia/tree/aleppo_pine";
+const oAleppoPine = "gaia/tree/fir";
 
 const aTreeA = "actor|flora/trees/oak.xml";
 const aTreeB = "actor|flora/trees/oak_large.xml";
 const aTreeC = "actor|flora/trees/pine.xml";
-const aTreeD = "actor|flora/trees/aleppo_pine.xml";
+const aTreeD = "actor|flora/trees/fir_tree.xml";
 
 const aTrees = [aTreeA, aTreeB, aTreeC, aTreeD];
 
@@ -72,7 +75,7 @@ var clHillDeco = g_Map.createTileClass();
 
 g_Map.log("Creating the central dip");
 createArea(
-	new ClumpPlacer(diskArea(fractionToTiles(0.42)), 0.94, 0.05, 0.1, mapCenter),
+	new ClumpPlacer(diskArea(fractionToTiles(0.44)), 0.94, 0.05, 0.1, mapCenter),
 	[
 		new LayeredPainter([tCliff, tGrass], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 3)
@@ -296,23 +299,23 @@ for (var ix = 0; ix < mapSize; ix++)
 Engine.SetProgress(60);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(400, 6000, 0.8);
+var [forestTrees, stragglerTrees] = getTreeCounts(1300, 8000, 0.8);
 var [forestTreesJoin, forestTrees] = getTreeCounts(forestTrees, forestTrees, 0.25);
 
-var num = forestTrees / (scaleByMapSize(6, 16) * numPlayers);
+var num = forestTrees / scaleByMapSize(20, 70);
 createAreasInAreas(
 	new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 	[
 		new TerrainPainter(pForest),
 		new TileClassPainter(clForest)
 	],
-	avoidClasses(clPlayer, 5, clBaseResource, 4, clForest, 6, clHill, 4),
+	avoidClasses(clPlayer, 5, clBaseResource, 4, clForest, 5, clHill, 4),
 	num,
 	100,
 	[explorableArea]
 );
 
-var num = forestTreesJoin / (scaleByMapSize(4,6) * numPlayers);
+var num = forestTreesJoin / (scaleByMapSize(4, 6) * numPlayers);
 createAreasInAreas(
 	new ClumpPlacer(forestTreesJoin / num, 0.1, 0.1, Infinity),
 	[
@@ -369,7 +372,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 );
 
 g_Map.log("Creating metal mines");
-group = new SimpleGroup([new SimpleObject(oMetalSmall, 1,2, 0,4), new SimpleObject(oMetalLarge, 0,1, 0,4)], true, clMetal);
+group = new SimpleGroup([new SimpleObject(oMetalSmall, 1,2, 0,4), new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clMetal, 10, clRock, 5)],
 	scaleByMapSize(6,20), 100,
@@ -465,7 +468,5 @@ createObjectGroupsByAreasDeprecated(group, 0,
 );
 
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
-
-setAmbientColor(0.44,0.51,0.56);
 
 g_Map.ExportMap();

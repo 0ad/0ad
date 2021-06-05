@@ -23,14 +23,8 @@
 #include <memory>
 #include <vector>
 
-class TestTaskManager;
-class CConfigDB;
-
 namespace Threading
 {
-class TaskManager;
-class WorkerThread;
-
 enum class TaskPriority
 {
 	NORMAL,

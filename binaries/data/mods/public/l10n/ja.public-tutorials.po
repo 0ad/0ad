@@ -79,7 +79,7 @@ msgstr ""
 msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
-msgstr "%(hotkey)sを押しながら市民センターの散兵アイコンをクリックすると散兵を一括で訓練することが出来ます。"
+msgstr "%(hotkey)sを押しながら町の中心の散兵アイコンをクリックすると散兵を一括で訓練することが出来ます。"
 
 #: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
@@ -190,7 +190,7 @@ msgstr "敵を撃退しました。それでは市場と神殿を建てつつ、
 msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
-msgstr "都市の段階の要件を満たし、市民センターを選択して都市の段階へ移行してください。"
+msgstr "都市の段階の要件を満たし、町の中心を選択して都市の段階へ移行してください。"
 
 #: maps/tutorials/introductory_tutorial.js:329
 msgid ""
@@ -243,7 +243,7 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"このチュートリアルでは経済発展のための基本について説明します。ゲームは市民センターといくつかのユニットからなる「村」の状態からスタートします。この村をより大きな町、より大きな都市へと開拓しながら領土を拡大していくことがあなたの最終的なゴールとなります。\n"
+"このチュートリアルでは経済発展のための基本について説明します。ゲームは町の中心といくつかのユニットからなる「村」の状態からスタートします。この村をより大きな町、より大きな都市へと開拓しながら領土を拡大していくことがあなたの最終的なゴールとなります。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -278,7 +278,8 @@ msgid ""
 "To start off, select your building, the Civic Center, by clicking on it. A "
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
-msgstr "始めに、市民センターをクリックして選択すると選択されたことを表わす円が表示されます。円の色はあなたの文明の色です。"
+msgstr ""
+"始めに、町の中心となる建物がありますのでクリックして選択してください。すると選択されたことを表わす円が表示されます。円の色はあなたの文明の色になります。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:24
 msgid ""
@@ -290,7 +291,7 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
-"市民センターを選択すると、画面の右下に生産パネルが表示されます。生産パネルにはその建物が実行できるアクションが表示されます。アクションが灰色または赤になっている場合はそのアクションがアンロックされていないか、資源が足りないことを示しています。また、アイコン上にマウスカーソルを置くと詳細が表示されます。\n"
+"町の中心を選択すると、画面の右下に生産パネルが表示されます。生産パネルにはその建物が実行できるアクションが表示されます。アクションが灰色または赤になっている場合はそのアクションがアンロックされていないか、資源が足りないことを示しています。また、アイコン上にマウスカーソルを置くと詳細が表示されます。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -300,7 +301,7 @@ msgid ""
 "that advancing to Town Phase requires both more constructed structures as "
 "well as more food and wood resources."
 msgstr ""
-"パネルの上の方にはその建物で訓練することができるユニットのアイコンが並んでいます。下の方には研究可能なテクノロジーのアイコンが並んでいます。「II」のアイコンにカーソルを置いてみてください。町の段階に進むために必要な建築物や、食料や木材などの資源で何が足りないかがわかります。"
+"パネルの上の方にはその建物で訓練することができるユニットのアイコンが並んでいます。下の方には研究可能なテクノロジーのアイコンが並んでいます。IIのアイコンにカーソルを置いてみてください。町の段階に進むために必要な建築物や、食料や木材などの資源で何が足りないかがわかります。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
@@ -312,14 +313,15 @@ msgid ""
 " Soldiers can gather any land resources while Cavalry Citizen Soldiers can "
 "only gather meat from animals.\n"
 msgstr ""
-"最初に使うユニットとしては大きく、女性市民と民兵の２種類に分かれます。女性市民は純粋に経済活動のためのユニットで、体力が少なく基本的に戦うことはできません。民兵は普段は労働者として働きますが、有事の際は武器を持って戦うことができます。民兵の中でも歩兵と騎兵の２種類あり、女性市民と歩兵はあらゆる資源を採取することができますが、騎兵は動物の肉のみ採取することができます。\n"
+"最初に使うユニットとしては大きく、女性市民と民兵の２種類に分かれます。女性市民は純粋に経済活動のためのユニットで、体力が少なく基本的に戦うことはできません。民兵は普段は労働者として働きますが、有事の際は武器を持って戦うことができます。民兵にはさらに歩兵と騎兵の２種類に分けられます。女性市民と歩兵はあらゆる資源を採取することができますが、騎兵は動物の肉のみ採取することができます。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
 "As a general rule of thumb, left-clicking represents selection while right-"
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
-msgstr "大まかなルールとして、選択するにはマウスの左クリック、選択されたものに命令を出すには右クリックします。（採集、建設、攻撃など）\n"
+msgstr ""
+"大枠のマウス操作方法としては、左クリックはオブジェクトを選択、右クリックは選択されたものに命令を出す操作になります（採取、建設、攻撃など）。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -327,7 +329,7 @@ msgid ""
 " your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
-"この段階で経済を発展させるのにもっとも必要な資源は食料と木材で、まずは食料を集めてみましょう。女性市民は他のユニットよりも早く野菜を集めることができます。"
+"経済を発展させるのに今もっとも必要な資源は食料と木材です。まずは食料を集めてみましょう。女性市民は他のユニットよりも早く野菜を採取することができます。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -364,7 +366,7 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the Female Citizens selected."
 msgstr ""
-"選択を解除するにはマップ上の何もない部分をクリックしてください。それぞれの方法を試したら女性市民に対し、町の中心の南方にあるブドウを採取するよう命令してみます。全ての女性市民を選択してから、ブドウを右クリックしてください。"
+"選択を解除するにはマップ上の何もない部分をクリックしてください。それぞれの方法を試したら女性市民に対し、町の中心の南方にある果物を採取するよう命令してみます。全ての女性市民を選択してから、果物を右クリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -428,12 +430,12 @@ msgstr "まとめて複数のユニットを訓練するにはシフトキーを
 
 #: maps/tutorials/starting_economy_walkthrough.js:109
 msgid "Hold Shift and click on the Hoplite icon."
-msgstr "重装歩兵アイコンをShiftキーを押しながらクリックしてください。"
+msgstr "シフトキーを押しながら重装歩兵アイコンをクリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:118
 #: maps/tutorials/starting_economy_walkthrough.js:177
 msgid "Let's wait for the units to be trained.\n"
-msgstr "訓練の完了を待ちましょう。\n"
+msgstr "ユニットの訓練が完了するのを待ちましょう。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
@@ -443,6 +445,7 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"待っている間に画面上部のパネルを見てみましょう。左側に今の資源の供給量が表示されています（食料、木材、金属）。労働者が町の中心（または資源置き場）に資源を持ち帰るたびにパネル上のそれぞれの資源量が増えていきます。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -451,13 +454,13 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
-"資源は採集された後資源回収施設へ持ち帰らなければならず、資源と持ち帰る資源回収施設との距離が最小となるように常に意識しなければなりません。これは非常に重要な項目です。"
+"これは非常に重要なポイントになりますが、資源は採取しても資源置き場へ持ち帰らなければカウントされません。また資源収集の効率を上げるためには資源と資源置き場との距離が常に最小となるようにしなければなりません。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "wood.\n"
-msgstr ""
+msgstr "新しく訓練されたユニットは自動的に森へ行って木材の収集を始めます。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
@@ -469,24 +472,25 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"ところが採取した木材を町の中心まで持ち帰るのに距離があるので収集効率が良いとは言えません。これを解決するためには森の近くに倉庫を建設します。倉庫は木材、石材、金属などの資材置き場になります。倉庫を建設するには、新しく作成された5つの民兵を選択して右下の建築パネルの中から倉庫のアイコンをクリックしてください。そして木材を採取したい森のできるだけ近い場所ををクリックして資材置き場を建設してください。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
-msgstr "建設出来無い(何かに妨げられている)場所では、建物のプレビューオーバーレイが赤色で表示されます。"
+msgstr "建設できない場所（何かに妨げられている場所）では、建物のアイコンが赤く表示されます。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
 "The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
-msgstr ""
+msgstr "選択された市民は指定した場所で建設を開始します。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
 "When construction finishes, the builders default to gathering wood "
 "automatically.\n"
-msgstr ""
+msgstr "建設が完了するとそれらのユニットは自動的に木材を採取します。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
@@ -494,14 +498,15 @@ msgid ""
 "Center, hold Shift and click on the Female Citizen icon to train five Female"
 " Citizens."
 msgstr ""
+"さらに食料を採取するために女性市民を訓練しましょう。町の中心を選択し、シフトキーを押しながら女性市民のアイコンをクリックすると5つの女性市民を訓練することができます。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
-msgstr "Shiftキーを押しながらクリックすることで一括でユニットを訓練出来ることを覚えておきましょう。 "
+msgstr "シフトキーを押しながらクリックすることで一括でユニットを訓練出来ることを覚えておきましょう。 "
 
 #: maps/tutorials/starting_economy_walkthrough.js:168
 msgid "Hold shift and click on the Female Citizen icon."
-msgstr "Shiftキーを押しながら女性の市民アイコンをクリックしてください。"
+msgstr "シフトキーを押しながら女性市民のアイコンをクリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
@@ -510,10 +515,11 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"しばらくは木材を収集するのに十分な労働者がそろっていますので、先ほどセットした町の中心と森を結ぶリレーポイントは削除した方が良いでしょう。削除するには町の中心を選択し、さらに町の中心をもう一度右クリックしてください（するとラリーポイントを表す旗のアイコンが削除されます）。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
-msgstr "ユニットはそろそろ準備完了するでしょう。\n"
+msgstr "ユニットはまもなく準備完了になるはずです。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:193
 msgid ""
@@ -523,7 +529,7 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
-"その間に、上部のパネルから人口を確認してください。それは資源の後の左から5つめの項目で、常に細心をもって注視するべきです。これは現在の人口(訓練中の者を含む)と人口の上限が示されています。人口の上限はあなたの建築物によって決定されます。"
+"その間に、上部のパネルに表示されている人口を確認してください。人口は左から5つ目の項目で資源の次に表示されています。人口は慎重に、いつも目を離さないようにしましょう。ここには現在の人口（訓練中のユニットを含む）とその上限が表示されています。人口の上限は現在の建築物によって決まります。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -531,12 +537,13 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the House.\n"
 msgstr ""
+"現在の人口がほぼ上限に達しているので、追加のユニットを訓練したい場合は何か新しい建築物を建てて上限を上げる必要があります。人口の上限を上げるのにもっともコスト効果が高いのは民家です。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
 "Now that the units are ready, let's see how to build several Houses in a "
 "row."
-msgstr ""
+msgstr "ユニットの準備ができましたのでどのように家を建てるか見ていきましょう。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
@@ -551,12 +558,13 @@ msgid ""
 "Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
+"新しく訓練された女性市民を2人選択して町の中心の東側にいくつか家を建てるよう命令してみましょう。女性市民を選択したら右下のパネルから家のアイコンをクリックし、シフトキーを押しながらひとつ目の家を建てたい場所をクリック、続いてふたつ目の家を建てたい場所をクリックしてください（シフトキーを押しながら命令すると命令はキューに入り、ユニットは今行っている作業を終えてから次の命令の実行に移るようになります）。命令が終わったら、誤ってそれ以上家を作らないようにエスケープキーを押して家のカーソルを元に戻してください。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
-msgstr ""
+msgstr "女性市民を2人だけ選択するには、まず1人目を選択し、シフトキーを押しながら2人目をクリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -564,20 +572,20 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
-"あなたは果実が有限の食料であることに気が付くでしょう。より永続的な食料源が必要です。田畑は無制限に食料を生みますが、量に限りがある果物より採集が遅くなります。\n"
+"果実は食料として採取しているとすぐになくなってしまうと感じるでしょう。より長持ちする食料源が必要です。田畑は無限に食料を生産することができますが、野生の果物を採取するよりは時間がかかります。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a Farmstead."
-msgstr ""
+msgstr "そこで畑とその食料置き場の距離を近くなるように、まずは納屋を作ります。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
 "Select the three remaining (idle) Female Citizens and order them to build a "
 "Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
-msgstr ""
+msgstr "残り3人の（何もしていない）女性市民を選択して町の中心から西側の広く空いているエリアに納屋を作るよう命令してください。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -585,6 +593,7 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"納屋の周りには畑を作るための広い土地が必要になります。さらに西の方に山羊の群れが見えます。今までは動物を狩っていましたが、今後は食料の収集効率を上げるために動物を利用します。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -595,6 +604,7 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"クリック家ドラッグで3人の何もしていない女性市民を選択するときに間違って他のユニットも選択してしまうことがあるかもしれません。これを避けるためには「I」キーを押しながら選択すると何もしていないユニットだけが選択できます。間違って騎兵を選択してしまった場合は、画面下部のに現在選択されているユニットが表示されているパネルがあるので、コントロールキーを押しながらの騎兵をクリックすると選択から除外することができます。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -637,26 +647,27 @@ msgid ""
 "on it. If the Field is not yet finished, new Workers sent by a rally point "
 "will help building it, and when built, they will gather food."
 msgstr ""
+"畑では5人までの労働者が採取することができます。町の中心を選択してから、右クリックで畑までのラリーポイントをセットしてください。もしまだ畑が完成していない場合は新しい労働者はまずその建設を手伝い、畑が完成したら食料の採取に取り掛かります。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the Field."
-msgstr ""
+msgstr "町の中心を選んでから畑を右クリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
 "Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
-msgstr ""
+msgstr "それでは追加の農作業者として、右下のパネルから女性市民を3回クリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr "単一のユニットを訓練するにはシフトキーを押さずにクリックしてください。"
+msgstr "ユニットをひとつだけ訓練したい場合はシフトキーを押さずにクリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
-msgstr "いくつかの建物で利用可能な新しいテクノロジーを研究することによって、労働者の採集速度を向上させることが出来ます。\n"
+msgstr "建物によっては新しいテクノロジーが利用できる場合があり、それらを研究することによって、労働者の採取効率を上げることができます。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
@@ -666,6 +677,7 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"例えば、納屋で研究可能なテクノロジーは農業の効率を上げることができます。納屋を選択すると右下にある生産パネルにいくつか研究可能なテクノロジーが表示されます。カーソルを合わせてどのくらいのコストや効果があるのかを確認し、研究したい方をクリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -673,6 +685,7 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"「町」の段階に進むための準備をしていきましょう。「町」の段階へ進むと沢山の新ユニットや新しい建築物が解放されます。町の中心を選択して「町の段階」にカーソルを合わせて何が足りないのか確認してください。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -708,7 +721,7 @@ msgstr ""
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
-msgstr "まだ資源が不足（赤いオーバーレイが付いたアイコン）している場合は、それらがあなたの労働者によって採集されるのを待ちます。"
+msgstr "まだ資源が不足している（アイコンが赤くなっている）場合は、労働者が採集するのを待ってください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -757,4 +770,4 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr "経済繁栄の手引き"
+msgstr "経済繁栄の書"

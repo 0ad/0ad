@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"POT-Creation-Date: 2021-05-31 07:12+0000\n"
 "PO-Revision-Date: 2021-05-28 11:39+0000\n"
 "Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -404,7 +404,7 @@ msgstr "造訪 mod.io"
 msgid "This mod does not exist"
 msgstr "此模組不存在"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "啟用"
@@ -413,20 +413,16 @@ msgstr "啟用"
 msgid "Dependencies not met"
 msgstr "未滿足相依性"
 
-#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
-msgid "Filter"
-msgstr "過濾器"
-
-#: gui/modmod/modmod.js:455
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "停用"
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "尚未選擇模組。"
 
-#: gui/modmod/modmod.js:466
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "至少得啟用 0ad 模組"
 
@@ -481,6 +477,10 @@ msgstr "資料夾"
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
 msgstr "網站"
+
+#: gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "過濾器"
 
 #: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""

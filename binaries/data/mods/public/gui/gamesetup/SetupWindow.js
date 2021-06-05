@@ -22,8 +22,10 @@ class SetupWindow
 		this.closePageHandlers = new Set();
 		this.getHotloadDataHandlers = new Set();
 
+		if (initData?.backPage)
+			this.backPage = initData.backPage;
 
-		let mapCache = new MapCache();
+		const mapCache = new MapCache();
 		g_GameSettings = new GameSettings().init(mapCache);
 
 		let netMessages = new NetMessages();
@@ -112,7 +114,9 @@ class SetupWindow
 
 		Engine.DisconnectNetworkGame();
 
-		if (Engine.HasXmppClient())
+		if (this.backPage)
+			Engine.SwitchGuiPage(this.backPage.page, this.backPage?.data);
+		else if (Engine.HasXmppClient())
 			Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
 		else
 			Engine.SwitchGuiPage("page_pregame.xml");

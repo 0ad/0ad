@@ -1,87 +1,88 @@
 {
 	"Description": {
-		"Title": "Savanna",
-		"Description": "The savanna, a dry climate in which only the hardy Baobab trees thrive. Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes or elephants roam the wild in search of food."
+		"Title": "Sudanian Savanna",
+		"Description": "The transition between the dry Sahara to the north and the tropical forests to the south. The sunlight floods through the open canopy and lights the grassland between the trees, where herds of zebras, wildebeest, giraffes and elephants roam."
 	},
 	"Environment": {
+		"SkySet": "cloudless",
+		"SunColor": { "r": 1.116471, "g": 0.978824, "b": 0.85902 },
+		"AmbientColor": { "r": 0.231373, "g": 0.282353, "b": 0.356863 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.055, "g": 0.176, "b": 0.431 },
-				"Tint": { "r": 0.227, "g": 0.749, "b": 0.549 },
-				"Murkiness": 0.77,
+				"Color": { "r": 0.059608, "g": 0.184706, "b": 0.193726 },
+				"Tint": { "r": 0.201961, "g": 0.301961, "b": 0.047059 },
+				"Murkiness": 0.92,
 				"Waviness": 1.5
 			}
 		},
 		"Fog": {
-			"FogThickness": 0.15,
-			"FogFactor": 0.0025,
+			"FogThickness": 0.005,
+			"FogFactor": 0.0015,
 			"FogColor": { "r": 0.847059, "g": 0.737255, "b": 0.482353 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Contrast": 1.07031,
+			"Saturation": 1.25,
+			"Brightness": 0.12,
+			"Contrast": 1.09,
 			"Bloom": 0.132
 		}
 	},
 	"Terrains": {
 		"mainTerrain": [
-			"savanna_grass_a",
-			"savanna_grass_b"
+			"savanna_grass_01"
 		],
-		"forestFloor1": "savanna_forestfloor_a",
-		"forestFloor2": "savanna_forestfloor_b",
+		"forestFloor1": "sahara_dirt_cracks_01",
+		"forestFloor2": "sahara_dirt_02",
 		"cliff": [
-			"savanna_cliff_a",
-			"savanna_cliff_b"
+			"sahara_rock_01"
 		],
-		"tier1Terrain": "savanna_shrubs_a",
-		"tier2Terrain": "savanna_dirt_rocks_b",
-		"tier3Terrain": "savanna_dirt_rocks_a",
-		"tier4Terrain": "savanna_grass_a",
+		"tier1Terrain": "aegean_grass_01",
+		"tier2Terrain": "savanna_grass_03",
+		"tier3Terrain": "aegean_grass_01",
+		"tier4Terrain": "aegean_grass_02",
 		"hill": [
-			"savanna_grass_a",
-			"savanna_grass_b"
+			"sahara_rock_01"
 		],
 		"dirt": [
-			"savanna_dirt_rocks_b",
-			"dirt_brown_e"
+			"aegean_grass_02"
 		],
-		"road": "savanna_tile_a",
-		"roadWild": "savanna_tile_a",
-		"shoreBlend": "savanna_riparian_dry",
-		"shore": "savanna_riparian_bank",
-		"water": "savanna_riparian_wet"
+		"road": "sahara_paving_stones_02",
+		"roadWild": "sahara_paving_stones_02",
+		"shoreBlend": "steppe_grass_04",
+		"shore": "steppe_grass_04",
+		"water": "india_sand_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/baobab",
+		"tree1": "gaia/tree/acacia",
 		"tree2": "gaia/tree/baobab",
-		"tree3": "gaia/tree/baobab",
-		"tree4": "gaia/tree/baobab",
+		"tree3": "gaia/tree/bush_temperate",
+		"tree4": "gaia/tree/baobab_3_mature",
 		"tree5": "gaia/tree/baobab",
 		"fruitBush": "gaia/fruit/berry_05",
 		"chicken": "gaia/fauna_chicken",
 		"fish": "gaia/fish/generic",
 		"secondaryHuntableAnimal": "gaia/fauna_gazelle",
 		"stoneLarge": "gaia/rock/desert_large",
-		"stoneSmall": "gaia/rock/savanna_small",
-		"metalLarge": "gaia/ore/savanna_large",
+		"stoneSmall": "gaia/rock/temperate_small",
+		"metalLarge": "gaia/ore/sahara_01",
 		"metalSmall": "gaia/ore/desert_small"
 	},
 	"Decoratives": {
-		"grass": "actor|props/flora/grass_savanna.xml",
-		"grassShort": "actor|props/flora/grass_medit_field.xml",
+		"grass": "actor|props/flora/grass_savanna_field_tall.xml",
+		"grassShort": "actor|props/flora/grass_savanna.xml",
 		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
 		"lillies": "actor|props/flora/reeds_pond_lush_b.xml",
-		"rockLarge": "actor|geology/stone_savanna_med.xml",
-		"rockMedium": "actor|geology/stone_savanna_med.xml",
+		"rockLarge": "actor|geology/stone_desert_med.xml",
+		"rockMedium": "actor|geology/stone_desert_med.xml",
 		"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
-		"bushSmall": "actor|props/flora/bush_dry_a.xml",
-		"tree": "actor|flora/trees/baobab.xml"
+		"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+		"tree": "gaia/tree/bush_temperate"
 	},
 	"ResourceCounts": {
 		"trees": {
-			"min": 200,
-			"max": 1250,
+			"min": 1000,
+			"max": 4500,
 			"forestProbability": 0
 		}
 	}

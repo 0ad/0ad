@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
+"POT-Creation-Date: 2021-05-31 07:12+0000\n"
 "PO-Revision-Date: 2021-05-28 10:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -410,7 +410,7 @@ msgstr "Visitar mod.io"
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:454
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activar"
@@ -419,20 +419,16 @@ msgstr "Activar"
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:318 gui/modmod/modmod.xml:(placeholder_text):24
-msgid "Filter"
-msgstr "Filtro"
-
-#: gui/modmod/modmod.js:455
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Desactivar"
 
-#: gui/modmod/modmod.js:463
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "No se ha elegido ningún mod."
 
-#: gui/modmod/modmod.js:466
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr ""
 
@@ -487,6 +483,10 @@ msgstr "(Carpeta)"
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
 msgstr "Página Web"
+
+#: gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "Filtro"
 
 #: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""

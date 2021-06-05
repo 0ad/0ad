@@ -6,47 +6,39 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_thracian_p3_crested.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/pelte_sele_gold.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Greave-01">
-      <props>
-        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
+    <variant frequency="1" name="sele-cuirass-1a">
+      <textures>
+        <texture file="skeletal/sele/cuirass_01.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="Greave-02">
-      <props>
-        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
+    <variant frequency="1" name="sele-cuirass-1b">
+      <textures>
+        <texture file="skeletal/sele/cuirass_02.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="Greave-03">
-      <props>
-        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
+    <variant frequency="1" name="sele-cuirass-1c">
+      <textures>
+        <texture file="skeletal/sele/cuirass_03.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="Greave-04">
-      <props>
-        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
+    <variant frequency="1" name="sele-cuirass-1d">
+      <textures>
+        <texture file="skeletal/sele/cuirass_04.png" name="baseTex"/>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Helmet-Thracian-01">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_p1.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="3" name="Helmet-Thracian-02">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_p1_crested.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-  </group>
-  <group>
     <variant frequency="3" name="compound-linothorax-1">
       <textures>
         <texture file="skeletal/mace_compound_linothorax_1_a.png" name="baseTex"/>
@@ -88,7 +80,7 @@
     <variant file="biped/formations/syntagma_back.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_cape_long.xml"/>
+    <variant file="biped/death_infantry.xml"/>
     <variant file="biped/gather_tree.xml"/>
     <variant file="biped/gather_grain.xml"/>
     <variant file="biped/gather_fruit.xml"/>

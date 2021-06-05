@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 07:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -84,7 +84,6 @@ msgstr ""
 #: simulation/data/technologies/architecture_kush.json:requirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.json:requirementsTooltip
 #: simulation/data/technologies/cavalry_health.json:requirementsTooltip
-#: simulation/data/technologies/colonization.json:requirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.json:requirementsTooltip
 #: simulation/data/technologies/garrison_heal.json:requirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.json:requirementsTooltip
@@ -107,7 +106,6 @@ msgstr ""
 #: simulation/data/technologies/trade_commercial_treaty.json:requirementsTooltip
 #: simulation/data/technologies/trade_gain_01.json:requirementsTooltip
 #: simulation/data/technologies/trader_health.json:requirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:requirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr ""
 
@@ -399,7 +397,7 @@ msgid "Colonization"
 msgstr ""
 
 #: simulation/data/technologies/colonization.json:tooltip
-msgid "Civic Structures −25% build time."
+msgid "Civic Structures −25% build time and resources cost"
 msgstr ""
 
 #: simulation/data/technologies/equine_transports.json:description
@@ -1575,7 +1573,7 @@ msgid "Expertise In War"
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:tooltip
-msgid "Mercenaries are promoted to Advanced rank."
+msgid "Mercenaries start at Advanced rank."
 msgstr ""
 
 #: simulation/data/technologies/wonder_population_cap.json:description
