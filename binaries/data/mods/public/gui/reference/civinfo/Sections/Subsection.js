@@ -11,8 +11,6 @@ class Subsection
 		for (let auraCode of auraList)
 		{
 			let aura = this.page.TemplateParser.getAura(auraCode);
-			if (!aura.civ || aura.civ != civCode)
-				continue;
 
 			captions.push(this.page.formatEntry(
 				getEntityNames(aura),

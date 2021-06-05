@@ -29,7 +29,7 @@ class BonusesSubsection extends Subsection
 		);
 
 		let teamBonuses = this.getAuraCaptions(
-			this.page.TemplateLoader.teamBonusAuraList,
+			this.page.TemplateParser.getPlayer(civCode).teambonuses,
 			civCode
 		);
 		teamBonuses.unshift(

@@ -2,7 +2,6 @@
 	"type": "player",
 	"affects": ["Player"],
 	"affectedPlayers": ["MutualAlly"],
-	"civ": "ptol",
 	"modifications": [
 		{ "value": "ResourceTrickle/Rates/food", "add": 1 }
 	],
