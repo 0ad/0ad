@@ -141,8 +141,8 @@ protected:
 	// Back reference (keep this first).
 	TaskManager& m_TaskManager;
 
-	std::atomic<bool> m_HasWork;
-	std::atomic<bool> m_HasLowPriorityWork;
+	std::atomic<bool> m_HasWork = false;
+	std::atomic<bool> m_HasLowPriorityWork = false;
 	std::mutex m_GlobalMutex;
 	std::mutex m_GlobalLowPriorityMutex;
 	std::deque<QueueItem> m_GlobalQueue;
