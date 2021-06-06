@@ -105,6 +105,8 @@ var g_PlayerStateMessages = {
 	"defeated": translate("You have been defeated!")
 };
 
+var g_LastAttack;
+
 /**
  * Defines how the GUI reacts to notifications that are sent by the simulation.
  * Don't open new pages (message boxes) here! Otherwise further notifications
@@ -205,6 +207,8 @@ var g_NotificationsTypes =
 			if (notification.target)
 				g_Selection.addList([notification.target]);
 		}
+
+		g_LastAttack = { "target": notification.target, "position": notification.position };
 
 		if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.attack") !== "true")
 			return;
@@ -352,6 +356,21 @@ function handleNotifications()
 
 		for (let player of notification.players)
 			g_NotificationsTypes[notification.type](notification, player);
+	}
+}
+
+function focusAttack(attack)
+{
+	if (!attack)
+		return;
+
+	const entState = attack.target && GetEntityState(attack.target);
+	if (entState && hasClass(entState, "Unit"))
+		setCameraFollow(attack.target);
+	else
+	{
+		const position = attack.position;
+		Engine.SetCameraTarget(position.x, position.y, position.z);
 	}
 }
 

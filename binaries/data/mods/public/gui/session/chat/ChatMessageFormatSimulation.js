@@ -21,12 +21,8 @@ ChatMessageFormatSimulation.attack = class
 				"icon": '[icon="icon_focusattacked"]',
 				"attacker": colorizePlayernameByID(msg.attacker)
 			}),
-			"callback": ((entityId, position) => function() {
-				let entState = entityId && GetEntityState(entityId);
-				if (entState && hasClass(entState, "Unit"))
-					setCameraFollow(entityId);
-				else
-					Engine.SetCameraTarget(position.x, position.y, position.z);
+			"callback": ((target, position) => function() {
+				focusAttack({ "target": target, "position": position });
 			})(msg.target, msg.position),
 			"tooltip": translate("Click to focus on the attacked unit.")
 		};
