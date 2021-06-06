@@ -1,14 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant frequency="1" name="Kush Infantry Pikeman - Basic">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
-        <prop actor="props/units/shields/kush_beja_small_rhino.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="leather">
+      <props>
+        <prop actor="props/units/shields/pelte_round_small_leather_left_shoulder.xml" attachpoint="armpad_L"/>
+      </props>
+    </variant>
+    <variant name="wood">
+      <props>
+        <prop actor="props/units/shields/pelte_round_small_wood_left_shoulder.xml" attachpoint="armpad_L"/>
       </props>
     </variant>
   </group>
@@ -60,7 +71,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_pikeman_relax.xml"/>
+    <variant file="biped/base_pikeman_relax.xml" name="Pikeman-Shield-Relax" frequency="1"/>
     <variant file="biped/formations/syntagma_front.xml"/>
     <variant file="biped/formations/syntagma_01.xml"/>
     <variant file="biped/formations/syntagma_02.xml"/>
