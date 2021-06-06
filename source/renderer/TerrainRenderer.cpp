@@ -435,8 +435,9 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 		glDisable(GL_CULL_FACE);
 		// Overwrite waves that would be behind the ground.
-		CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("glsl/gui_solid", CShaderDefines());
-		dummyShader->Bind();
+		CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
+		dummyTech->BeginPass();
+		CShaderProgramPtr dummyShader = dummyTech->GetShader();
 
 		dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 		dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
@@ -446,7 +447,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 			CPatchRData* data = visiblePatches[i];
 			data->RenderWater(dummyShader, true, true);
 		}
-		dummyShader->Unbind();
+		dummyTech->EndPass();
 
 		glEnable(GL_CULL_FACE);
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
