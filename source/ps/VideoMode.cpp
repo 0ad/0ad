@@ -48,6 +48,10 @@ int DEFAULT_FULLSCREEN_H = 768;
 } // anonymous namespace
 
 #if OS_WIN
+// We can't include wutil directly because GL headers conflict with Windows
+// until we use a proper GL loader.
+extern void wutil_SetAppWindow(SDL_Window* window);
+
 // After a proper HiDPI integration we should switch to manifest until
 // SDL has an implemented HiDPI on Windows.
 extern void wutil_EnableHiDPIOnWindows();
@@ -163,6 +167,11 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		SDL_SetWindowGrab(m_Window, SDL_TRUE);
 	else
 		SDL_SetWindowGrab(m_Window, SDL_FALSE);
+
+#if OS_WIN
+	// We need to set the window for an error dialog.
+	wutil_SetAppWindow(m_Window);
+#endif
 
 	m_IsFullscreen = fullscreen;
 

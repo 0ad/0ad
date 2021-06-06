@@ -37,6 +37,10 @@
 // Initialise some engine code. Must be called before anything else.
 MESSAGE(Init, );
 
+MESSAGE(InitAppWindow,
+		((void*, handle)) // Atlas Window handle.
+		);
+
 // Initialise SDL-related code. Must be called before SetCanvas and InitGraphics.
 MESSAGE(InitSDL, );
 

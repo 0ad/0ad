@@ -589,6 +589,10 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Send setup messages to game engine:
 
+	// We need to set the window HWND for the error dialog instead of iteraing
+	// through all open windows on Windows.
+	POST_MESSAGE(InitAppWindow, (GetHandle()));
+
 	POST_MESSAGE(InitSDL, ());
 
 	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas),
