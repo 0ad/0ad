@@ -1024,9 +1024,11 @@ void CGUI::Xeromyces_ReadSprite(const XMBData& xmb, XMBElement element)
 	// Apply the effects to every image (unless the image overrides it with
 	// different effects)
 	if (effects)
-		for (SGUIImage* const& img : Sprite->m_Images)
-			if (!img->m_Effects)
-				img->m_Effects = effects;
+	{
+		for (const std::unique_ptr<SGUIImage>& image : Sprite->m_Images)
+			if (!image->m_Effects)
+				image->m_Effects = effects;
+	}
 
 	m_Sprites.erase(name);
 	m_Sprites.emplace(name, Sprite);
@@ -1034,7 +1036,7 @@ void CGUI::Xeromyces_ReadSprite(const XMBData& xmb, XMBElement element)
 
 void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprite& parent)
 {
-	SGUIImage* Image = new SGUIImage();
+	auto image = std::make_unique<SGUIImage>();
 
 	// TODO Gee: Setup defaults here (or maybe they are in the SGUIImage ctor)
 
@@ -1045,15 +1047,15 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 
 		if (attr_name == "texture")
 		{
-			Image->m_TextureName = VfsPath("art/textures/ui") / attr_value;
+			image->m_TextureName = VfsPath("art/textures/ui") / attr_value;
 		}
 		else if (attr_name == "size")
 		{
-			Image->m_Size.FromString(attr.Value);
+			image->m_Size.FromString(attr.Value);
 		}
 		else if (attr_name == "texture_size")
 		{
-			Image->m_TextureSize.FromString(attr.Value);
+			image->m_TextureSize.FromString(attr.Value);
 		}
 		else if (attr_name == "real_texture_placement")
 		{
@@ -1061,7 +1063,7 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 			if (!ParseString<CRect>(this, attr_value, rect))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
-				Image->m_TexturePlacementInFile = rect;
+				image->m_TexturePlacementInFile = rect;
 		}
 		else if (attr_name == "fixed_h_aspect_ratio")
 		{
@@ -1069,7 +1071,7 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 			if (!ParseString<float>(this, attr_value, val))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
-				Image->m_FixedHAspectRatio = val;
+				image->m_FixedHAspectRatio = val;
 		}
 		else if (attr_name == "round_coordinates")
 		{
@@ -1077,22 +1079,22 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 			if (!ParseString<bool>(this, attr_value, b))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 			else
-				Image->m_RoundCoordinates = b;
+				image->m_RoundCoordinates = b;
 		}
 		else if (attr_name == "wrap_mode")
 		{
 			if (attr_value == L"repeat")
-				Image->m_WrapMode = GL_REPEAT;
+				image->m_WrapMode = GL_REPEAT;
 			else if (attr_value == L"mirrored_repeat")
-				Image->m_WrapMode = GL_MIRRORED_REPEAT;
+				image->m_WrapMode = GL_MIRRORED_REPEAT;
 			else if (attr_value == L"clamp_to_edge")
-				Image->m_WrapMode = GL_CLAMP_TO_EDGE;
+				image->m_WrapMode = GL_CLAMP_TO_EDGE;
 			else
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}
 		else if (attr_name == "backcolor")
 		{
-			if (!ParseString<CGUIColor>(this, attr_value, Image->m_BackColor))
+			if (!ParseString<CGUIColor>(this, attr_value, image->m_BackColor))
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}
 		else
@@ -1105,19 +1107,19 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 		std::string_view ElementName(xmb.GetElementStringView(child.GetNodeName()));
 		if (ElementName == "effect")
 		{
-			if (Image->m_Effects)
+			if (image->m_Effects)
 				LOGERROR("GUI <image> must not have more than one <effect>");
 			else
 			{
-				Image->m_Effects = std::make_shared<SGUIImageEffects>();
-				Xeromyces_ReadEffects(xmb, child, *Image->m_Effects);
+				image->m_Effects = std::make_shared<SGUIImageEffects>();
+				Xeromyces_ReadEffects(xmb, child, *image->m_Effects);
 			}
 		}
 		else
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
 	}
 
-	parent.AddImage(Image);
+	parent.AddImage(std::move(image));
 }
 
 void CGUI::Xeromyces_ReadEffects(const XMBData& xmb, XMBElement element, SGUIImageEffects& effects)

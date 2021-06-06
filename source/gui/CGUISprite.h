@@ -121,10 +121,10 @@ public:
 	 *
 	 * @param image Adds this image to the sprite collage.
 	 */
-	void AddImage(SGUIImage*);
+	void AddImage(std::unique_ptr<SGUIImage> image);
 
 	/// List of images
-	std::vector<SGUIImage*> m_Images;
+	std::vector<std::unique_ptr<SGUIImage>> m_Images;
 };
 
 // An instance of a sprite, usually stored in IGUIObjects - basically a string

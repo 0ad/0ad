@@ -101,22 +101,22 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		if (SpriteName.Find("stretched:") != -1)
 		{
 			// TODO: Should check (nicely) that this is a valid file?
-			SGUIImage* Image = new SGUIImage();
+			auto image = std::make_unique<SGUIImage>();
 
-			Image->m_TextureName = TextureName;
+			image->m_TextureName = TextureName;
 			if (SpriteName.Find("grayscale:") != -1)
 			{
-				Image->m_Effects = std::make_shared<SGUIImageEffects>();
-				Image->m_Effects->m_Greyscale = true;
+				image->m_Effects = std::make_shared<SGUIImageEffects>();
+				image->m_Effects->m_Greyscale = true;
 			}
 
-			Sprite->AddImage(Image);
+			Sprite->AddImage(std::move(image));
 			Sprites[SpriteName] = Sprite;
 		}
 		else if (SpriteName.Find("cropped:") != -1)
 		{
 			// TODO: Should check (nicely) that this is a valid file?
-			SGUIImage* Image = new SGUIImage();
+			auto image = std::make_unique<SGUIImage>();
 
 			const bool centered = SpriteName.Find("center:") != -1;
 
@@ -126,23 +126,23 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			const CRect percentSize = centered
 				? CRect(50 - 50 / xRatio, 50 - 50 / yRatio, 50 + 50 / xRatio, 50 + 50 / yRatio)
 				: CRect(0, 0, 100 / xRatio, 100 / yRatio);
-			Image->m_TextureSize = CGUISize(CRect(0, 0, 0, 0), percentSize);
-			Image->m_TextureName = TextureName;
+			image->m_TextureSize = CGUISize(CRect(0, 0, 0, 0), percentSize);
+			image->m_TextureName = TextureName;
 
 			if (SpriteName.Find("grayscale:") != -1)
 			{
-				Image->m_Effects = std::make_shared<SGUIImageEffects>();
-				Image->m_Effects->m_Greyscale = true;
+				image->m_Effects = std::make_shared<SGUIImageEffects>();
+				image->m_Effects->m_Greyscale = true;
 			}
 
-			Sprite->AddImage(Image);
+			Sprite->AddImage(std::move(image));
 			Sprites[SpriteName] = Sprite;
 		}
 		if (SpriteName.Find("color:") != -1)
 		{
 			CStrW value = wstring_from_utf8(SpriteName.AfterLast("color:").BeforeFirst(":"));
 
-			SGUIImage* Image = new SGUIImage();
+			auto image = std::make_unique<SGUIImage>();
 			CGUIColor* color;
 
 			// If we are using a mask, this is an effect.
@@ -150,12 +150,12 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			// TODO: we are assuming there is a filename here.
 			if (SpriteName.Find("textureAsMask:") != -1)
 			{
-				Image->m_TextureName = TextureName;
-				Image->m_Effects = std::make_shared<SGUIImageEffects>();
-				color = &Image->m_Effects->m_SolidColor;
+				image->m_TextureName = TextureName;
+				image->m_Effects = std::make_shared<SGUIImageEffects>();
+				color = &image->m_Effects->m_SolidColor;
 			}
 			else
-				color = &Image->m_BackColor;
+				color = &image->m_BackColor;
 
 			// Check color is valid
 			if (!CGUI::ParseString<CGUIColor>(&pGUI, value, *color))
@@ -164,7 +164,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				return;
 			}
 
-			Sprite->AddImage(Image);
+			Sprite->AddImage(std::move(image));
 			Sprites[SpriteName] = Sprite;
 		}
 		it = Sprites.find(SpriteName);
@@ -182,10 +182,10 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 
 	// Iterate through all the sprite's images, loading the texture and
 	// calculating the texture coordinates
-	std::vector<SGUIImage*>::const_iterator cit;
+	std::vector<std::unique_ptr<SGUIImage>>::const_iterator cit;
 	for (cit = it->second->m_Images.begin(); cit != it->second->m_Images.end(); ++cit)
 	{
-		SDrawCall Call(*cit); // pointers are safe since we never modify sprites/images after startup
+		SDrawCall Call(cit->get()); // pointers are safe since we never modify sprites/images after startup
 
 		CRect ObjectSize = (*cit)->m_Size.GetSize(Size);
 
