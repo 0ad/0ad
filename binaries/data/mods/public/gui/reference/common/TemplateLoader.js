@@ -9,6 +9,7 @@ class TemplateLoader
 		 * Raw Data Caches.
 		 */
 		this.auraData = {};
+		this.playerData = {};
 		this.technologyData = {};
 		this.templateData = {};
 
@@ -16,7 +17,6 @@ class TemplateLoader
 		 * Partly-composed data.
 		 */
 		this.autoResearchTechList = this.findAllAutoResearchedTechs();
-		this.teamBonusAuraList = this.findAllTeamBonusAuras();
 	}
 
 	/**
@@ -69,6 +69,30 @@ class TemplateLoader
 		}
 
 		return this.templateData[templateName];
+	}
+
+	/**
+	 * Loads raw player template.
+	 *
+	 * Loads from local cache if data present, else from file system.
+	 *
+	 * If a civ doesn't have their own civ-specific template,
+	 * then we return the generic template.
+	 *
+	 * @param {string} civCode
+	 * @return {Object} Object containing raw template data.
+	 */
+	loadPlayerTemplate(civCode)
+	{
+		if (!(civCode in this.playerData))
+		{
+			let templateName = this.buildPlayerTemplateName(civCode);
+			this.playerData[civCode] = Engine.GetTemplate(templateName);
+
+			// No object keys need to be translated
+		}
+
+		return this.playerData[civCode];
 	}
 
 	/**
@@ -187,6 +211,22 @@ class TemplateLoader
 	}
 
 	/**
+	 * If a civ doesn't have its own civ-specific player template,
+	 * this returns the name of the generic player template.
+	 *
+	 * @see simulation/helpers/Player.js GetPlayerTemplateName()
+	 *      (Which can't be combined with this due to different Engine contexts)
+	 */
+	buildPlayerTemplateName(civCode)
+	{
+		let templateName = this.PlayerPath + this.PlayerTemplatePrefix + civCode;
+		if (Engine.TemplateExists(templateName))
+			return templateName;
+
+		return this.PlayerPath + this.PlayerTemplateFallback;
+	}
+
+	/**
 	 * Crudely iterates through every tech JSON file and identifies those
 	 * that are auto-researched.
 	 *
@@ -202,33 +242,6 @@ class TemplateLoader
 				techList.push(templateName);
 		}
 		return techList;
-	}
-
-	/**
-	 * Iterates through and loads all team bonus auras.
-	 *
-	 * We make an assumption in this method: that all team bonus auras are
-	 * in a single folder.
-	 *
-	 * Team bonuses must have a "civ" attribute to indicate what civ they
-	 * belong to.
-	 *
-	 * @return {array} List of teambonus auras
-	 */
-	findAllTeamBonusAuras()
-	{
-		let auraList = [];
-		let path = this.AuraPath + TemplateLoader.prototype.AuraTeamBonusSubpath;
-		for (let templateName of listFiles(path, ".json", true))
-		{
-			let filename = TemplateLoader.prototype.AuraTeamBonusSubpath + templateName;
-			let data = this.loadAuraTemplate(filename);
-			if (!data || !data.civ)
-				continue;
-
-			auraList.push(filename);
-		}
-		return auraList;
 	}
 
 	/**
@@ -305,10 +318,16 @@ class TemplateLoader
  * It might be nice if we could get these from somewhere, instead of having them hardcoded here.
  */
 TemplateLoader.prototype.AuraPath = "simulation/data/auras/";
-TemplateLoader.prototype.AuraTeamBonusSubpath = "teambonuses/";
+TemplateLoader.prototype.PlayerPath = "special/player/";
 TemplateLoader.prototype.TechnologyPath = "simulation/data/technologies/";
 
 TemplateLoader.prototype.DefaultCiv = "gaia";
+
+/**
+ * Expected prefix for player templates, and the file to use if a civ doesn't have its own.
+ */
+TemplateLoader.prototype.PlayerTemplatePrefix = "player_";
+TemplateLoader.prototype.PlayerTemplateFallback = "player";
 
 /**
  * Keys of template values that are to be translated on load.

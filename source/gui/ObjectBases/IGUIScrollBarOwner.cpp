@@ -28,22 +28,18 @@ IGUIScrollBarOwner::IGUIScrollBarOwner(IGUIObject& pObject)
 {
 }
 
-IGUIScrollBarOwner::~IGUIScrollBarOwner()
-{
-	for (IGUIScrollBar* const& sb : m_ScrollBars)
-		delete sb;
-}
+IGUIScrollBarOwner::~IGUIScrollBarOwner() = default;
 
 void IGUIScrollBarOwner::ResetStates()
 {
-	for (IGUIScrollBar* const& sb : m_ScrollBars)
-		sb->SetBarPressed(false);
+	for (const std::unique_ptr<IGUIScrollBar>& scrollBar : m_ScrollBars)
+		scrollBar->SetBarPressed(false);
 }
 
-void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar* scrollbar)
+void IGUIScrollBarOwner::AddScrollBar(std::unique_ptr<IGUIScrollBar> scrollbar)
 {
 	scrollbar->SetHostObject(this);
-	m_ScrollBars.push_back(scrollbar);
+	m_ScrollBars.emplace_back(std::move(scrollbar));
 }
 
 const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
@@ -53,14 +49,14 @@ const SGUIScrollBarStyle* IGUIScrollBarOwner::GetScrollBarStyle(const CStr& styl
 
 void IGUIScrollBarOwner::HandleMessage(SGUIMessage& msg)
 {
-	for (IGUIScrollBar* const& sb : m_ScrollBars)
-		sb->HandleMessage(msg);
+	for (const std::unique_ptr<IGUIScrollBar>& scrollBar : m_ScrollBars)
+		scrollBar->HandleMessage(msg);
 }
 
 void IGUIScrollBarOwner::Draw(CCanvas2D& canvas)
 {
-	for (IGUIScrollBar* const& sb : m_ScrollBars)
-		sb->Draw(canvas);
+	for (const std::unique_ptr<IGUIScrollBar>& scrollBar : m_ScrollBars)
+		scrollBar->Draw(canvas);
 }
 
 float IGUIScrollBarOwner::GetScrollBarPos(const int index) const

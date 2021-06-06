@@ -878,6 +878,16 @@ var g_Commands = {
 		}
 	},
 
+	"map-flare": function(player, cmd, data)
+	{
+		let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({
+			"type": "map-flare",
+			"players": [player],
+			"target": cmd.target
+		});
+	},
+
 	"autoqueue-on": function(player, cmd, data)
 	{
 		for (let ent of data.entities)

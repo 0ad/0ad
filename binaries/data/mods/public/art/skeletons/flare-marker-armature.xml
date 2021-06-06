@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton title="flare-marker-armature" id="flare-marker-armature">
+    <bone name="base">
+      <bone name="ping-marker-ball" />
+      <bone name="ping-marker-body" />
+    </bone>
+    <bone name="target marker" />
+  </standard_skeleton>
+  <skeleton title="flare-marker-armature" target="flare-marker-armature">
+    <identifier>
+      <root>base</root>
+    </identifier>
+    <bone name="base">
+      <target>base</target>
+      <bone name="ping-marker-ball">
+        <target>ping-marker-ball</target>
+      </bone>
+      <bone name="ping-marker-body">
+        <target>ping-marker-body</target>
+      </bone>
+    </bone>
+    <bone name="target marker">
+      <target>target marker</target>
+    </bone>
+  </skeleton>
+</skeletons>

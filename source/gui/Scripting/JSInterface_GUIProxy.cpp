@@ -22,6 +22,7 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectTypes/CButton.h"
 #include "gui/ObjectTypes/CList.h"
+#include "gui/ObjectTypes/CMiniMap.h"
 #include "gui/ObjectTypes/CText.h"
 
 // Called for every specialization - adds the common interface.
@@ -58,3 +59,10 @@ template<> void JSI_GUIProxy<CList>::CreateFunctions(const ScriptRequest& rq, GU
 	CreateFunction<static_cast<void(CList::*)(const CGUIString&)>(&CList::AddItem)>(rq, cache, "addItem");
 }
 DECLARE_GUIPROXY(CList);
+
+// CMiniMap
+template<> void JSI_GUIProxy<CMiniMap>::CreateFunctions(const ScriptRequest& rq, GUIProxyProps* cache)
+{
+	CreateFunction<&CMiniMap::Flare>(rq, cache, "flare");
+}
+DECLARE_GUIPROXY(CMiniMap);

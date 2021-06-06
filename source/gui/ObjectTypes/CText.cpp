@@ -41,9 +41,9 @@ CText::CText(CGUI& pGUI)
 	  m_TextColorDisabled(this, "textcolor_disabled")
 {
 	// Add scroll-bar
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
+	auto bar = std::make_unique<CGUIScrollBarVertical>(pGUI);
 	bar->SetRightAligned(true);
-	AddScrollBar(bar);
+	AddScrollBar(std::move(bar));
 
 	// Add text
 	AddText();

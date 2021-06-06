@@ -19,7 +19,6 @@
 
 #include "VideoMode.h"
 
-#include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
 #include "lib/config2.h"
@@ -37,11 +36,22 @@
 #include "ps/Pyrogenesis.h"
 #include "renderer/Renderer.h"
 
-static int DEFAULT_WINDOW_W = 1024;
-static int DEFAULT_WINDOW_H = 768;
+namespace
+{
 
-static int DEFAULT_FULLSCREEN_W = 1024;
-static int DEFAULT_FULLSCREEN_H = 768;
+int DEFAULT_WINDOW_W = 1024;
+int DEFAULT_WINDOW_H = 768;
+
+int DEFAULT_FULLSCREEN_W = 1024;
+int DEFAULT_FULLSCREEN_H = 768;
+
+} // anonymous namespace
+
+#if OS_WIN
+// After a proper HiDPI integration we should switch to manifest until
+// SDL has an implemented HiDPI on Windows.
+extern void wutil_EnableHiDPIOnWindows();
+#endif
 
 CVideoMode g_VideoMode;
 
@@ -60,7 +70,7 @@ void CVideoMode::ReadConfig()
 	CFG_GET_VAL("yres", m_ConfigH);
 	CFG_GET_VAL("bpp", m_ConfigBPP);
 	CFG_GET_VAL("display", m_ConfigDisplay);
-
+	CFG_GET_VAL("hidpi", m_ConfigEnableHiDPI);
 	CFG_GET_VAL("vsync", m_ConfigVSync);
 }
 
@@ -72,8 +82,14 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 	if (!m_Window)
 	{
+#if OS_WIN
+		if (m_ConfigEnableHiDPI)
+			wutil_EnableHiDPIOnWindows();
+#endif
 		// Note: these flags only take affect in SDL_CreateWindow
 		flags |= SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
+		if (m_ConfigEnableHiDPI)
+			flags |= SDL_WINDOW_ALLOW_HIGHDPI;
 		m_WindowedX = m_WindowedY = SDL_WINDOWPOS_CENTERED_DISPLAY(m_ConfigDisplay);
 
 		m_Window = SDL_CreateWindow(main_window_name, m_WindowedX, m_WindowedY, w, h, flags);

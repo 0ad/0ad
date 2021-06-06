@@ -121,10 +121,10 @@ public:
 	 *
 	 * @param image Adds this image to the sprite collage.
 	 */
-	void AddImage(SGUIImage*);
+	void AddImage(std::unique_ptr<SGUIImage> image);
 
 	/// List of images
-	std::vector<SGUIImage*> m_Images;
+	std::vector<std::unique_ptr<SGUIImage>> m_Images;
 };
 
 // An instance of a sprite, usually stored in IGUIObjects - basically a string
@@ -139,7 +139,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const;
+	void Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, std::unique_ptr<const CGUISprite>>& Sprites) const;
 
 	/**
 	 * Whether this Sprite has no texture name set.

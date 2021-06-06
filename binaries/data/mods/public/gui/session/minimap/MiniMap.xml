@@ -16,7 +16,7 @@
 	<!-- Idle Worker Button -->
 	<object name="idleWorkerButton"
 		type="button"
-		size="50%-5 50%-5 100%-5 100%-5"
+		size="100%-119 100%-120 100%-4 100%-5"
 		tooltip_style="sessionToolTip"
 		hotkey="selection.idleworker"
 		sprite="stretched:session/minimap-idle.png"
@@ -28,11 +28,33 @@
 	<!-- Diplomacy Colors Button -->
 	<object name="diplomacyColorsButton"
 		type="button"
-		size="5 50%-5 50%+5 100%-5"
+		size="4 100%-120 119 100%-5"
 		tooltip_style="sessionToolTip"
 		hotkey="session.diplomacycolors"
 	/>
 
+	<!-- Flare Button -->
+	<object
+		name="flareButton"
+		type="button"
+		size="3 3 118 118"
+		tooltip_style="sessionToolTip"
+		hotkey="session.flareactivate"
+		sprite="stretched:session/minimap-flare.png"
+		sprite_over="stretched:session/minimap-flare-highlight.png"
+		mouse_event_mask="texture:session/minimap-flare.png"
+	/>
+
 	<!-- MiniMap -->
-	<object name="minimap" size="8 8 100%-8 100%-8" type="minimap" mask="true"/>
+	<object
+		name="minimap"
+		size="8 8 100%-8 100%-8"
+		type="minimap"
+		mask="true"
+		flare_texture_count="16"
+		flare_render_size="32"
+		flare_animation_speed="7"
+		flare_interleave="true"
+		flare_lifetime_seconds="6"
+	/>
 </object>

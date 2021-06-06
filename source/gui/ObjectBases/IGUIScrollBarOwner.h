@@ -18,6 +18,7 @@
 #ifndef INCLUDED_IGUISCROLLBAROWNER
 #define INCLUDED_IGUISCROLLBAROWNER
 
+#include <memory>
 #include <vector>
 
 class CCanvas2D;
@@ -61,7 +62,7 @@ public:
 	/**
 	 * Add a scroll-bar
 	 */
-	virtual void AddScrollBar(IGUIScrollBar* scrollbar);
+	virtual void AddScrollBar(std::unique_ptr<IGUIScrollBar> scrollbar);
 
 	/**
 	 * Get Scroll Bar reference (it should be transparent it's actually
@@ -83,7 +84,7 @@ protected:
 	 * Predominately you will only have one, but you can have
 	 * as many as you like.
 	 */
-	std::vector<IGUIScrollBar*> m_ScrollBars;
+	std::vector<std::unique_ptr<IGUIScrollBar>> m_ScrollBars;
 
 private:
 	/**

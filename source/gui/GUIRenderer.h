@@ -65,7 +65,7 @@ namespace GUIRenderer
 		DrawCalls& operator=(const DrawCalls&);
 	};
 
-	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, std::map<CStr8, const CGUISprite*>& Sprites);
+	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, std::map<CStr8, std::unique_ptr<const CGUISprite>>& Sprites);
 
 	void Draw(DrawCalls& Calls, CCanvas2D& canvas);
 }

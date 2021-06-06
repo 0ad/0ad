@@ -19,18 +19,14 @@
 
 #include "CGUISprite.h"
 
-CGUISprite::~CGUISprite()
+CGUISprite::~CGUISprite() = default;
+
+void CGUISprite::AddImage(std::unique_ptr<SGUIImage> image)
 {
-	for (SGUIImage* const& img : m_Images)
-		delete img;
+	m_Images.emplace_back(std::move(image));
 }
 
-void CGUISprite::AddImage(SGUIImage* image)
-{
-	m_Images.push_back(image);
-}
-
-void CGUISpriteInstance::Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const
+void CGUISpriteInstance::Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, std::unique_ptr<const CGUISprite>>& Sprites) const
 {
 	if (m_CachedSize != Size)
 	{

@@ -9,6 +9,22 @@ var g_TutorialMessages = [];
 var g_TutorialNewMessageTags = { "color": "255 226 149" };
 
 /**
+ * The number of seconds we observe for rate limiting flares.
+ */
+var g_FlareRateLimitScope = 10;
+
+/**
+ * The maximum allowed number of flares within g_FlareRateLimitScope seconds.
+ * This should be a bit larger than the number of flares that can be sent in theory by using the GUI.
+ */
+var g_FlareRateLimitMaximumFlares = 16;
+
+/**
+ * Contains the arrival timestamps the flares of the last g_FlareRateLimitScope seconds.
+ */
+var g_FlareRateLimitLastTimes = [];
+
+/**
  * These handlers are called everytime a client joins or disconnects.
  */
 var g_PlayerAssignmentsChangeHandlers = new Set();
@@ -267,6 +283,27 @@ var g_NotificationsTypes =
 		}
 
 		global.music.setLocked(notification.lock);
+	},
+	"map-flare": function(notification, player)
+	{
+		// Don't display for the player that did the flare because they will see it immediately
+		if (player != Engine.GetPlayerID() && g_Players[player].isMutualAlly[Engine.GetPlayerID()])
+		{
+			let now = Date.now();
+			if (g_FlareRateLimitLastTimes.length)
+			{
+				g_FlareRateLimitLastTimes = g_FlareRateLimitLastTimes.filter(t => now - t < g_FlareRateLimitScope * 1000);
+				if (g_FlareRateLimitLastTimes.length >= g_FlareRateLimitMaximumFlares)
+				{
+					warn("Received too many flares. Dropping a flare request by '" + g_Players[player].name + "'.");
+					return;
+				}
+			}
+			g_FlareRateLimitLastTimes.push(now);
+
+			displayFlare(notification.target, player);
+			Engine.PlayUISound(g_FlareSound, false);
+		}
 	}
 };
 

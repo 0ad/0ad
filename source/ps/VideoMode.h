@@ -114,6 +114,7 @@ private:
 	int m_ConfigH = 0;
 	int m_ConfigBPP = 0;
 	int m_ConfigDisplay = 0;
+	bool m_ConfigEnableHiDPI = false;
 	bool m_ConfigVSync = false;
 
 	// (m_ConfigFullscreen defaults to false, so users don't get stuck if

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Flare Target Marker">
+      <animations>
+        <animation file="other/flare_target_marker_idle.dae" name="Idle" speed="100"/>
+      </animations>
+      <mesh>skeletal/flare_target_marker.dae</mesh>
+      <textures>
+        <texture file="skeletal/flare_target_marker_diffuse.png" name="baseTex"/>
+        <texture file="skeletal/flare_target_marker_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

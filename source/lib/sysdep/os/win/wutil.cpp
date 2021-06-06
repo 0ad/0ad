@@ -39,6 +39,8 @@
 
 #include <shlobj.h>	// SHGetFolderPath
 
+#include <SDL_loadso.h>
+
 
 WINIT_REGISTER_EARLY_INIT(wutil_Init);
 WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
@@ -435,6 +437,30 @@ HWND wutil_AppWindow()
 	return hAppWindow;
 }
 
+void wutil_EnableHiDPIOnWindows()
+{
+	// We build with VS using XP toolkit which doesn't support DPI awareness.
+	// It was introduced in 8.1.
+	// https://docs.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness
+	typedef enum PROCESS_DPI_AWARENESS {
+		PROCESS_DPI_UNAWARE,
+		PROCESS_SYSTEM_DPI_AWARE,
+		PROCESS_PER_MONITOR_DPI_AWARE
+	};
+
+	// https://docs.microsoft.com/en-us/windows/win32/api/shellscalingapi/nf-shellscalingapi-setprocessdpiawareness
+	using SetProcessDpiAwarenessFunc = HRESULT(WINAPI *)(PROCESS_DPI_AWARENESS);
+	void* shcoreDLL = SDL_LoadObject("SHCORE.DLL");
+	if (!shcoreDLL)
+		return;
+
+	SetProcessDpiAwarenessFunc SetProcessDpiAwareness =
+		reinterpret_cast<SetProcessDpiAwarenessFunc>(SDL_LoadFunction(shcoreDLL, "SetProcessDpiAwareness"));
+	if (SetProcessDpiAwareness)
+		SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
+
+	SDL_UnloadObject(shcoreDLL);
+}
 
 //-----------------------------------------------------------------------------
 

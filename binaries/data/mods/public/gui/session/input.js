@@ -32,6 +32,7 @@ const INPUT_BUILDING_WALL_CLICK = 8;
 const INPUT_BUILDING_WALL_PATHING = 9;
 const INPUT_UNIT_POSITION_START = 10;
 const INPUT_UNIT_POSITION = 11;
+const INPUT_FLARE = 12;
 
 var inputState = INPUT_NORMAL;
 
@@ -79,6 +80,16 @@ var g_DragStart;
  */
 var clickedEntity = INVALID_ENTITY;
 
+/**
+ * Store the last time the flare functionality was used to prevent overusage.
+ */
+var g_LastFlareTime;
+
+/**
+ * The duration in ms for which we disable flaring after each flare to prevent overusage.
+ */
+const g_FlareCooldown = 5000;
+
 // Same double-click behaviour for hotkey presses.
 const doublePressTime = 500;
 var doublePressTimer = 0;
@@ -89,7 +100,12 @@ function updateCursorAndTooltip()
 	let cursorSet = false;
 	let tooltipSet = false;
 	let informationTooltip = Engine.GetGUIObjectByName("informationTooltip");
-	if (!mouseIsOverObject && (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION) || g_MiniMapPanel.isMouseOverMiniMap())
+	if (inputState == INPUT_FLARE || inputState == INPUT_NORMAL && Engine.HotkeyIsPressed("session.flare") && !g_IsObserver)
+	{
+		Engine.SetCursor("action-flare");
+		cursorSet = true;
+	}
+	else if (!mouseIsOverObject && (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION) || g_MiniMapPanel.isMouseOverMiniMap())
 	{
 		let action = determineAction(mouseX, mouseY, g_MiniMapPanel.isMouseOverMiniMap());
 		if (action)
@@ -810,6 +826,11 @@ function handleInputAfterGui(ev)
 			return false;
 
 		case "mousebuttondown":
+			if (Engine.HotkeyIsPressed("session.flare") && controlsPlayer(g_ViewedPlayer))
+			{
+				triggerFlareAction(Engine.GetTerrainAtScreenPoint(ev.x, ev.y));
+				return true;
+			}
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
 				g_DragStart = new Vector2D(ev.x, ev.y);
@@ -1111,6 +1132,21 @@ function handleInputAfterGui(ev)
 
 		}
 		break;
+	case INPUT_FLARE:
+		if (ev.type == "mousebuttondown")
+		{
+			if (ev.button == SDL_BUTTON_LEFT && controlsPlayer(g_ViewedPlayer))
+			{
+				triggerFlareAction(Engine.GetTerrainAtScreenPoint(ev.x, ev.y));
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			else if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+		}
 	}
 	return false;
 }
@@ -1222,6 +1258,21 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	});
 
 	return true;
+}
+
+function triggerFlareAction(target)
+{
+		let now = Date.now();
+		if (g_LastFlareTime && now < g_LastFlareTime + g_FlareCooldown)
+			return;
+
+		g_LastFlareTime = now;
+		displayFlare(target, Engine.GetPlayerID());
+		Engine.PlayUISound(g_FlareSound, false);
+		Engine.PostNetworkCommand({
+			"type": "map-flare",
+			"target": target
+		});
 }
 
 function handleUnitAction(target, action)

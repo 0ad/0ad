@@ -60,9 +60,9 @@ CList::CList(CGUI& pGUI)
 	  m_ListData(this, "list_data")
 {
 	// Add scroll-bar
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
+	auto bar = std::make_unique<CGUIScrollBarVertical>(pGUI);
 	bar->SetRightAligned(true);
-	AddScrollBar(bar);
+	AddScrollBar(std::move(bar));
 }
 
 CList::~CList()

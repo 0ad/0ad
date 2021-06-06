@@ -18,8 +18,14 @@
 #ifndef INCLUDED_MINIMAP
 #define INCLUDED_MINIMAP
 
+#include "graphics/Color.h"
+#include "graphics/Texture.h"
 #include "gui/ObjectBases/IGUIObject.h"
+#include "maths/Vector2D.h"
 #include "renderer/VertexArray.h"
+
+#include <deque>
+#include <vector>
 
 class CCamera;
 class CMatrix3D;
@@ -28,12 +34,24 @@ class CTerrain;
 class CMiniMap : public IGUIObject
 {
 	GUI_OBJECT(CMiniMap)
+
 public:
 	CMiniMap(CGUI& pGUI);
 	virtual ~CMiniMap();
 
+	bool Flare(const CVector2D& pos, const CStr& colorStr);
+
 protected:
+	struct MapFlare
+	{
+		CVector2D pos;
+		CColor color;
+		double time;
+	};
+
 	virtual void Draw(CCanvas2D& canvas);
+
+	virtual void CreateJSObject();
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -57,6 +75,16 @@ private:
 	// Whether or not the mouse is currently down
 	bool m_Clicking;
 
+	std::deque<MapFlare> m_MapFlares;
+
+	std::vector<CTexturePtr> m_FlareTextures;
+
+	CGUISimpleSetting<u32> m_FlareTextureCount;
+	CGUISimpleSetting<u32> m_FlareRenderSize;
+	CGUISimpleSetting<u32> m_FlareAnimationSpeed;
+	CGUISimpleSetting<bool> m_FlareInterleave;
+	CGUISimpleSetting<u32> m_FlareLifetimeSeconds;
+
 	// Whether to draw a black square around and under the minimap.
 	CGUISimpleSetting<bool> m_Mask;
 
@@ -66,7 +94,11 @@ private:
 	// 1.f if map is circular or 1.414f if square (to shrink it inside the circle)
 	float m_MapScale;
 
+	void RecreateFlareTextures();
+
 	void DrawViewRect(const CMatrix3D& transform) const;
+
+	void DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double curentTime) const;
 
 	void GetMouseWorldCoordinates(float& x, float& z) const;
 
