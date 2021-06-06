@@ -111,7 +111,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 
 			sprite->AddImage(std::move(image));
-			Sprites[SpriteName] = std::move(sprite);
 		}
 		else if (SpriteName.Find("cropped:") != -1)
 		{
@@ -136,7 +135,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 
 			sprite->AddImage(std::move(image));
-			Sprites[SpriteName] = std::move(sprite);
 		}
 		if (SpriteName.Find("color:") != -1)
 		{
@@ -165,17 +163,14 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			}
 
 			sprite->AddImage(std::move(image));
-			Sprites[SpriteName] = std::move(sprite);
 		}
-		it = Sprites.find(SpriteName);
-
-		// Otherwise, just complain and give up:
-		if (it == Sprites.end())
+		if (sprite->m_Images.empty())
 		{
-			sprite.reset();
 			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 			return;
 		}
+		else
+			it = Sprites.insert_or_assign(SpriteName, std::move(sprite)).first;
 	}
 
 	Calls.reserve(it->second->m_Images.size());
