@@ -116,9 +116,29 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 		bool enabled;
 		CFG_GET_VAL("preferglsl", enabled);
 		SetPreferGLSL(enabled);
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetShadowMap().RecreateTexture();
 	});
 
 	m_ConfigHooks->Setup("shadowquality", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetShadowMap().RecreateTexture();
+	});
+	m_ConfigHooks->Setup("shadowscascadecount", []() {
+		if (CRenderer::IsInitialised())
+		{
+			g_Renderer.GetShadowMap().RecreateTexture();
+			g_Renderer.MakeShadersDirty();
+		}
+	});
+	m_ConfigHooks->Setup("shadowscovermap", []() {
+		if (CRenderer::IsInitialised())
+		{
+			g_Renderer.GetShadowMap().RecreateTexture();
+			g_Renderer.MakeShadersDirty();
+		}
+	});
+	m_ConfigHooks->Setup("shadowscutoffdistance", []() {
 		if (CRenderer::IsInitialised())
 			g_Renderer.GetShadowMap().RecreateTexture();
 	});

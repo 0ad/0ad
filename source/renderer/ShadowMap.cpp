@@ -38,44 +38,68 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 
+#include <array>
+
+namespace
+{
+
+constexpr int MAX_CASCADE_COUNT = 4;
+
+constexpr float DEFAULT_SHADOWS_CUTOFF_DISTANCE = 300.0f;
+constexpr float DEFAULT_CASCADE_DISTANCE_RATIO = 1.7f;
+
+} // anonymous namespace
+
 /**
  * Struct ShadowMapInternals: Internal data for the ShadowMap implementation
  */
 struct ShadowMapInternals
 {
-	// bit depth for the depth texture
-	int DepthTextureBits;
 	// the EXT_framebuffer_object framebuffer
 	GLuint Framebuffer;
 	// handle of shadow map
 	GLuint Texture;
+
+	// bit depth for the depth texture
+	int DepthTextureBits;
 	// width, height of shadow map
 	int Width, Height;
-	// Shadow map quality (-2 - Very Low, -1 - Low, 0 - Medium, 1 - High, 2 - Very High)
+	// Shadow map quality (-1 - Low, 0 - Medium, 1 - High, 2 - Very High)
 	int QualityLevel;
 	// used width, height of shadow map
 	int EffectiveWidth, EffectiveHeight;
-	// transform light space into projected light space
-	// in projected light space, the shadowbound box occupies the [-1..1] cube
-	// calculated on BeginRender, after the final shadow bounds are known
-	CMatrix3D LightProjection;
+
 	// Transform world space into light space; calculated on SetupFrame
 	CMatrix3D LightTransform;
-	// Transform world space into texture space of the shadow map;
-	// calculated on BeginRender, after the final shadow bounds are known
-	CMatrix3D TextureMatrix;
 
 	// transform light space into world space
 	CMatrix3D InvLightTransform;
-	// bounding box of shadowed objects in light space
-	CBoundingBoxAligned ShadowCasterBound;
 	CBoundingBoxAligned ShadowReceiverBound;
 
-	CBoundingBoxAligned ShadowRenderBound;
+	int CascadeCount;
+	float CascadeDistanceRatio;
+	float ShadowsCutoffDistance;
+	bool ShadowsCoverMap;
 
-	CBoundingBoxAligned FixedFrustumBounds;
-	bool FixedShadowsEnabled;
-	float FixedShadowsDistance;
+	struct Cascade
+	{
+		// transform light space into projected light space
+		// in projected light space, the shadowbound box occupies the [-1..1] cube
+		// calculated on BeginRender, after the final shadow bounds are known
+		CMatrix3D LightProjection;
+		float Distance;
+		CBoundingBoxAligned FrustumBBAA;
+		CBoundingBoxAligned ConvexBounds;
+		CBoundingBoxAligned ShadowRenderBound;
+		// Bounding box of shadowed objects in the light space.
+		CBoundingBoxAligned ShadowCasterBound;
+		// Transform world space into texture space of the shadow map;
+		// calculated on BeginRender, after the final shadow bounds are known
+		CMatrix3D TextureMatrix;
+		// View port of the shadow texture where the cascade should be rendered.
+		SViewPort ViewPort;
+	};
+	std::array<Cascade, MAX_CASCADE_COUNT> Cascades;
 
 	// Camera transformed into light space
 	CCamera LightspaceCamera;
@@ -93,15 +117,30 @@ struct ShadowMapInternals
 	// Save the caller's FBO so it can be restored
 	GLint SavedViewFBO;
 
-	// Helper functions
-	void CalcShadowMatrices();
+	void CalculateShadowMatrices(const int cascade);
 	void CreateTexture();
+	void UpdateCascadesParameters();
 };
 
-void CalculateBoundsForFixedShadows(
-	const CCamera& camera, const CMatrix3D& lightTransform,
-	const float nearPlane, const float farPlane, CBoundingBoxAligned* bbaa)
+void ShadowMapInternals::UpdateCascadesParameters()
 {
+	CascadeCount = 1;
+	CFG_GET_VAL("shadowscascadecount", CascadeCount);
+
+	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || !g_RenderingOptions.GetPreferGLSL())
+		CascadeCount = 1;
+
+	ShadowsCoverMap = false;
+	CFG_GET_VAL("shadowscovermap", ShadowsCoverMap);
+}
+
+void CalculateBoundsForCascade(
+	const CCamera& camera, const CMatrix3D& lightTransform,
+	const float nearPlane, const float farPlane, CBoundingBoxAligned* bbaa,
+	CBoundingBoxAligned* frustumBBAA)
+{
+	frustumBBAA->SetEmpty();
+
 	// We need to calculate a circumscribed sphere for the camera to
 	// create a rotation stable bounding box.
 	const CVector3D cameraIn = camera.m_Orientation.GetIn();
@@ -113,10 +152,20 @@ void CalculateBoundsForFixedShadows(
 	// symmetric by 2 planes. Than means we can use only one corner
 	// to find a circumscribed sphere.
 	CCamera::Quad corners;
+
 	camera.GetViewQuad(nearPlane, corners);
-	const CVector3D cornerNear = camera.GetOrientation().Transform(corners[0]);
+	for (CVector3D& corner : corners)
+		corner = camera.GetOrientation().Transform(corner);
+	const CVector3D cornerNear = corners[0];
+	for (const CVector3D& corner : corners)
+		*frustumBBAA += lightTransform.Transform(corner);
+
 	camera.GetViewQuad(farPlane, corners);
-	const CVector3D cornerDist = camera.GetOrientation().Transform(corners[0]);
+	for (CVector3D& corner : corners)
+		corner = camera.GetOrientation().Transform(corner);
+	const CVector3D cornerDist = corners[0];
+	for (const CVector3D& corner : corners)
+		*frustumBBAA += lightTransform.Transform(corner);
 
 	// We solve 2D case for the right trapezoid.
 	const float firstBase = (cornerNear - centerNear).Length();
@@ -125,7 +174,7 @@ void CalculateBoundsForFixedShadows(
 	const float distanceToCenter =
 		(height * height + secondBase * secondBase - firstBase * firstBase) * 0.5f / height;
 
-	CVector3D position = cameraTranslation + cameraIn * (camera.GetNearPlane() + distanceToCenter);
+	CVector3D position = cameraTranslation + cameraIn * (nearPlane + distanceToCenter);
 	const float radius = (cornerNear - position).Length();
 
 	// We need to convert the bounding box to the light space.
@@ -158,10 +207,7 @@ ShadowMap::ShadowMap()
 	// Avoid using uninitialised values in AddShadowedBound if SetupFrame wasn't called first
 	m->LightTransform.SetIdentity();
 
-	m->FixedShadowsEnabled = false;
-	m->FixedShadowsDistance = 300.0f;
-	CFG_GET_VAL("shadowsfixed", m->FixedShadowsEnabled);
-	CFG_GET_VAL("shadowsfixeddistance", m->FixedShadowsDistance);
+	m->UpdateCascadesParameters();
 }
 
 ShadowMap::~ShadowMap()
@@ -191,6 +237,8 @@ void ShadowMap::RecreateTexture()
 	m->DummyTexture = 0;
 	m->Framebuffer = 0;
 
+	m->UpdateCascadesParameters();
+
 	// (Texture will be constructed in next SetupFrame)
 }
 
@@ -200,14 +248,7 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 	if (!m->Texture)
 		m->CreateTexture();
 
-	CVector3D x, eyepos;
-	if (!m->FixedShadowsEnabled)
-	{
-		x = camera.m_Orientation.GetIn();
-		eyepos = camera.m_Orientation.GetTranslation();
-	}
-	else
-		x = CVector3D(0, 1, 0);
+	CVector3D x(0, 1, 0), eyepos;
 
 	CVector3D z = lightdir;
 	z.Normalize();
@@ -248,26 +289,63 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 	m->LightTransform._44 = 1.0;
 
 	m->LightTransform.GetInverse(m->InvLightTransform);
-	m->ShadowCasterBound.SetEmpty();
 	m->ShadowReceiverBound.SetEmpty();
 
-	//
 	m->LightspaceCamera = camera;
 	m->LightspaceCamera.m_Orientation = m->LightTransform * camera.m_Orientation;
 	m->LightspaceCamera.UpdateFrustum();
 
-	if (m->FixedShadowsEnabled)
-		CalculateBoundsForFixedShadows(camera, m->LightTransform, camera.GetNearPlane(), m->FixedShadowsDistance, &m->FixedFrustumBounds);
+	m->ShadowsCutoffDistance = DEFAULT_SHADOWS_CUTOFF_DISTANCE;
+	m->CascadeDistanceRatio = DEFAULT_CASCADE_DISTANCE_RATIO;
+	CFG_GET_VAL("shadowscutoffdistance", m->ShadowsCutoffDistance);
+	CFG_GET_VAL("shadowscascadedistanceratio", m->CascadeDistanceRatio);
+	m->CascadeDistanceRatio = Clamp(m->CascadeDistanceRatio, 1.1f, 16.0f);
+
+	m->Cascades[GetCascadeCount() - 1].Distance = m->ShadowsCutoffDistance;
+	for (int cascade = GetCascadeCount() - 2; cascade >= 0; --cascade)
+		m->Cascades[cascade].Distance = m->Cascades[cascade + 1].Distance / m->CascadeDistanceRatio;
+
+	if (GetCascadeCount() == 1 || m->ShadowsCoverMap)
+	{
+		m->Cascades[0].ViewPort =
+			SViewPort{1, 1, m->EffectiveWidth - 2, m->EffectiveHeight - 2};
+		if (m->ShadowsCoverMap)
+			m->Cascades[0].Distance = camera.GetFarPlane();
+	}
+	else
+	{
+		for (int cascade = 0; cascade < GetCascadeCount(); ++cascade)
+		{
+			const int offsetX = (cascade & 0x1) ? m->EffectiveWidth / 2 : 0;
+			const int offsetY = (cascade & 0x2) ? m->EffectiveHeight / 2 : 0;
+			m->Cascades[cascade].ViewPort =
+				SViewPort{offsetX + 1, offsetY + 1,
+				m->EffectiveWidth / 2 - 2, m->EffectiveHeight / 2 - 2};
+		}
+	}
+
+	for (int cascadeIdx = 0; cascadeIdx < GetCascadeCount(); ++cascadeIdx)
+	{
+		ShadowMapInternals::Cascade& cascade = m->Cascades[cascadeIdx];
+
+		const float nearPlane = cascadeIdx > 0 ?
+			m->Cascades[cascadeIdx - 1].Distance : camera.GetNearPlane();
+		const float farPlane = cascade.Distance;
+
+		CalculateBoundsForCascade(camera, m->LightTransform,
+			nearPlane, farPlane, &cascade.ConvexBounds, &cascade.FrustumBBAA);
+		cascade.ShadowCasterBound.SetEmpty();
+	}
 }
 
 // AddShadowedBound: add a world-space bounding box to the bounds of shadowed
 // objects
-void ShadowMap::AddShadowCasterBound(const CBoundingBoxAligned& bounds)
+void ShadowMap::AddShadowCasterBound(const int cascade, const CBoundingBoxAligned& bounds)
 {
 	CBoundingBoxAligned lightspacebounds;
 
 	bounds.Transform(m->LightTransform, lightspacebounds);
-	m->ShadowCasterBound += lightspacebounds;
+	m->Cascades[cascade].ShadowCasterBound += lightspacebounds;
 }
 
 void ShadowMap::AddShadowReceiverBound(const CBoundingBoxAligned& bounds)
@@ -278,14 +356,14 @@ void ShadowMap::AddShadowReceiverBound(const CBoundingBoxAligned& bounds)
 	m->ShadowReceiverBound += lightspacebounds;
 }
 
-CFrustum ShadowMap::GetShadowCasterCullFrustum()
+CFrustum ShadowMap::GetShadowCasterCullFrustum(const int cascade)
 {
 	// Get the bounds of all objects that can receive shadows
 	CBoundingBoxAligned bound = m->ShadowReceiverBound;
 
 	// Intersect with the camera frustum, so the shadow map doesn't have to get
 	// stretched to cover the off-screen parts of large models
-	bound.IntersectFrustumConservative(m->LightspaceCamera.GetFrustum());
+	bound.IntersectFrustumConservative(m->Cascades[cascade].FrustumBBAA.ToFrustum());
 
 	// ShadowBound might have been empty to begin with, producing an empty result
 	if (bound.IsEmpty())
@@ -306,22 +384,14 @@ CFrustum ShadowMap::GetShadowCasterCullFrustum()
 	return frustum;
 }
 
-// CalcShadowMatrices: calculate required matrices for shadow map generation - the light's
+// CalculateShadowMatrices: calculate required matrices for shadow map generation - the light's
 // projection and transformation matrices
-void ShadowMapInternals::CalcShadowMatrices()
+void ShadowMapInternals::CalculateShadowMatrices(const int cascade)
 {
-	if (FixedShadowsEnabled)
-	{
-		ShadowRenderBound = FixedFrustumBounds;
+	CBoundingBoxAligned& shadowRenderBound = Cascades[cascade].ShadowRenderBound;
+	shadowRenderBound = Cascades[cascade].ConvexBounds;
 
-		// Set the near and far planes to include just the shadow casters,
-		// so we make full use of the depth texture's range. Add a bit of a
-		// delta so we don't accidentally clip objects that are directly on
-		// the planes.
-		ShadowRenderBound[0].Z = ShadowCasterBound[0].Z - 2.f;
-		ShadowRenderBound[1].Z = ShadowCasterBound[1].Z + 2.f;
-	}
-	else
+	if (ShadowsCoverMap)
 	{
 		// Start building the shadow map to cover all objects that will receive shadows
 		CBoundingBoxAligned receiverBound = ShadowReceiverBound;
@@ -333,38 +403,35 @@ void ShadowMapInternals::CalcShadowMatrices()
 		// Intersect with the shadow caster bounds, because there's no point
 		// wasting space around the edges of the shadow map that we're not going
 		// to draw into
-		ShadowRenderBound[0].X = std::max(receiverBound[0].X, ShadowCasterBound[0].X);
-		ShadowRenderBound[0].Y = std::max(receiverBound[0].Y, ShadowCasterBound[0].Y);
-		ShadowRenderBound[1].X = std::min(receiverBound[1].X, ShadowCasterBound[1].X);
-		ShadowRenderBound[1].Y = std::min(receiverBound[1].Y, ShadowCasterBound[1].Y);
-
-		// Set the near and far planes to include just the shadow casters,
-		// so we make full use of the depth texture's range. Add a bit of a
-		// delta so we don't accidentally clip objects that are directly on
-		// the planes.
-		ShadowRenderBound[0].Z = ShadowCasterBound[0].Z - 2.f;
-		ShadowRenderBound[1].Z = ShadowCasterBound[1].Z + 2.f;
-
-		// ShadowBound might have been empty to begin with, producing an empty result
-		if (ShadowRenderBound.IsEmpty())
-		{
-			// no-op
-			LightProjection.SetIdentity();
-			TextureMatrix = LightTransform;
-			return;
-		}
-
-		// round off the shadow boundaries to sane increments to help reduce swim effect
-		float boundInc = 16.0f;
-		ShadowRenderBound[0].X = floor(ShadowRenderBound[0].X / boundInc) * boundInc;
-		ShadowRenderBound[0].Y = floor(ShadowRenderBound[0].Y / boundInc) * boundInc;
-		ShadowRenderBound[1].X = ceil(ShadowRenderBound[1].X / boundInc) * boundInc;
-		ShadowRenderBound[1].Y = ceil(ShadowRenderBound[1].Y / boundInc) * boundInc;
+		shadowRenderBound[0].X = std::max(receiverBound[0].X, Cascades[cascade].ShadowCasterBound[0].X);
+		shadowRenderBound[0].Y = std::max(receiverBound[0].Y, Cascades[cascade].ShadowCasterBound[0].Y);
+		shadowRenderBound[1].X = std::min(receiverBound[1].X, Cascades[cascade].ShadowCasterBound[1].X);
+		shadowRenderBound[1].Y = std::min(receiverBound[1].Y, Cascades[cascade].ShadowCasterBound[1].Y);
+	}
+	else if (CascadeCount > 1)
+	{
+		// We need to offset the cascade to its place on the texture.
+		const CVector3D size = (shadowRenderBound[1] - shadowRenderBound[0]) * 0.5f;
+		if (!(cascade & 0x1))
+			shadowRenderBound[1].X += size.X * 2.0f;
+		else
+			shadowRenderBound[0].X -= size.X * 2.0f;
+		if (!(cascade & 0x2))
+			shadowRenderBound[1].Y += size.Y * 2.0f;
+		else
+			shadowRenderBound[0].Y -= size.Y * 2.0f;
 	}
 
+	// Set the near and far planes to include just the shadow casters,
+	// so we make full use of the depth texture's range. Add a bit of a
+	// delta so we don't accidentally clip objects that are directly on
+	// the planes.
+	shadowRenderBound[0].Z = Cascades[cascade].ShadowCasterBound[0].Z - 2.f;
+	shadowRenderBound[1].Z = Cascades[cascade].ShadowCasterBound[1].Z + 2.f;
+
 	// Setup orthogonal projection (lightspace -> clip space) for shadowmap rendering
-	CVector3D scale = ShadowRenderBound[1] - ShadowRenderBound[0];
-	CVector3D shift = (ShadowRenderBound[1] + ShadowRenderBound[0]) * -0.5;
+	CVector3D scale = shadowRenderBound[1] - shadowRenderBound[0];
+	CVector3D shift = (shadowRenderBound[1] + shadowRenderBound[0]) * -0.5;
 
 	if (scale.X < 1.0)
 		scale.X = 1.0;
@@ -378,17 +445,18 @@ void ShadowMapInternals::CalcShadowMatrices()
 	scale.Z = 2.0 / scale.Z;
 
 	// make sure a given world position falls on a consistent shadowmap texel fractional offset
-	float offsetX = fmod(ShadowRenderBound[0].X - LightTransform._14, 2.0f/(scale.X*EffectiveWidth));
-	float offsetY = fmod(ShadowRenderBound[0].Y - LightTransform._24, 2.0f/(scale.Y*EffectiveHeight));
+	float offsetX = fmod(shadowRenderBound[0].X - LightTransform._14, 2.0f/(scale.X*EffectiveWidth));
+	float offsetY = fmod(shadowRenderBound[0].Y - LightTransform._24, 2.0f/(scale.Y*EffectiveHeight));
 
-	LightProjection.SetZero();
-	LightProjection._11 = scale.X;
-	LightProjection._14 = (shift.X + offsetX) * scale.X;
-	LightProjection._22 = scale.Y;
-	LightProjection._24 = (shift.Y + offsetY) * scale.Y;
-	LightProjection._33 = scale.Z;
-	LightProjection._34 = shift.Z * scale.Z;
-	LightProjection._44 = 1.0;
+	CMatrix3D& lightProjection = Cascades[cascade].LightProjection;
+	lightProjection.SetZero();
+	lightProjection._11 = scale.X;
+	lightProjection._14 = (shift.X + offsetX) * scale.X;
+	lightProjection._22 = scale.Y;
+	lightProjection._24 = (shift.Y + offsetY) * scale.Y;
+	lightProjection._33 = scale.Z;
+	lightProjection._34 = shift.Z * scale.Z;
+	lightProjection._44 = 1.0;
 
 	// Calculate texture matrix by creating the clip space to texture coordinate matrix
 	// and then concatenating all matrices that have been calculated so far
@@ -400,14 +468,14 @@ void ShadowMapInternals::CalcShadowMatrices()
 	CMatrix3D lightToTex;
 	lightToTex.SetZero();
 	lightToTex._11 = texscalex;
-	lightToTex._14 = (offsetX - ShadowRenderBound[0].X) * texscalex;
+	lightToTex._14 = (offsetX - shadowRenderBound[0].X) * texscalex;
 	lightToTex._22 = texscaley;
-	lightToTex._24 = (offsetY - ShadowRenderBound[0].Y) * texscaley;
+	lightToTex._24 = (offsetY - shadowRenderBound[0].Y) * texscaley;
 	lightToTex._33 = texscalez;
-	lightToTex._34 = -ShadowRenderBound[0].Z * texscalez;
+	lightToTex._34 = -shadowRenderBound[0].Z * texscalez;
 	lightToTex._44 = 1.0;
 
-	TextureMatrix = lightToTex * LightTransform;
+	Cascades[cascade].TextureMatrix = lightToTex * LightTransform;
 }
 
 // Create the shadow map
@@ -437,35 +505,32 @@ void ShadowMapInternals::CreateTexture()
 
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
-	// get shadow map size as next power of two up from view width/height
-	int shadow_map_size = (int)round_up_to_pow2((unsigned)std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight()));
+	// Get shadow map size as next power of two up from view width/height.
+	int shadowMapSize;
 	switch (QualityLevel)
 	{
-	// Very Low
-	case -2:
-		shadow_map_size /= 4;
-		break;
 	// Low
 	case -1:
-		shadow_map_size /= 2;
+		shadowMapSize = 512;
 		break;
 	// High
 	case 1:
-		shadow_map_size *= 2;
+		shadowMapSize = 2048;
 		break;
 	// Ultra
 	case 2:
-		shadow_map_size *= 4;
+		shadowMapSize = std::max(round_up_to_pow2(std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight())) * 4, 4096);
 		break;
 	// Medium as is
 	default:
+		shadowMapSize = 1024;
 		break;
 	}
-	Width = Height = shadow_map_size;
 
-	// Clamp to the maximum texture size
-	Width = std::min(Width, (int)ogl_max_tex_size);
-	Height = std::min(Height, (int)ogl_max_tex_size);
+	// Clamp to the maximum texture size.
+	shadowMapSize = std::min(shadowMapSize, static_cast<int>(ogl_max_tex_size));
+
+	Width = Height = shadowMapSize;
 
 	// Since we're using a framebuffer object, the whole texture is available
 	EffectiveWidth = Width;
@@ -477,7 +542,7 @@ void ShadowMapInternals::CreateTexture()
 	format = GL_DEPTH_COMPONENT;
 	formatName = "DEPTH_COMPONENT";
 #else
-	switch ( DepthTextureBits )
+	switch (DepthTextureBits)
 	{
 	case 16: format = GL_DEPTH_COMPONENT16; formatName = "DEPTH_COMPONENT16"; break;
 	case 24: format = GL_DEPTH_COMPONENT24; formatName = "DEPTH_COMPONENT24"; break;
@@ -570,9 +635,6 @@ void ShadowMapInternals::CreateTexture()
 // Set up to render into shadow map texture
 void ShadowMap::BeginRender()
 {
-	// Calc remaining shadow matrices
-	m->CalcShadowMatrices();
-
 	{
 		PROFILE("bind framebuffer");
 		glBindTexture(GL_TEXTURE_2D, 0);
@@ -585,23 +647,36 @@ void ShadowMap::BeginRender()
 		// In case we used m_ShadowAlphaFix, we ought to clear the unused
 		// color buffer too, else Mali 400 drivers get confused.
 		// Might as well clear stencil too for completeness.
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-		glColorMask(0,0,0,0);
+		if (g_RenderingOptions.GetShadowAlphaFix())
+		{
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+			glColorMask(0, 0, 0, 0);
+		}
+		else
+			glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
-
-	// setup viewport
-	const SViewPort vp = { 0, 0, m->EffectiveWidth, m->EffectiveHeight };
-	g_Renderer.SetViewport(vp);
 
 	m->SavedViewCamera = g_Renderer.GetViewCamera();
 
-	CCamera c = m->SavedViewCamera;
-	c.SetProjection(m->LightProjection);
-	c.GetOrientation() = m->InvLightTransform;
-	g_Renderer.SetViewCamera(c);
-
 	glEnable(GL_SCISSOR_TEST);
-	glScissor(1,1, m->EffectiveWidth-2, m->EffectiveHeight-2);
+}
+
+void ShadowMap::PrepareCamera(const int cascade)
+{
+	m->CalculateShadowMatrices(cascade);
+
+	const SViewPort vp = { 0, 0, m->EffectiveWidth, m->EffectiveHeight };
+	g_Renderer.SetViewport(vp);
+
+	CCamera camera = m->SavedViewCamera;
+	camera.SetProjection(m->Cascades[cascade].LightProjection);
+	camera.GetOrientation() = m->InvLightTransform;
+	g_Renderer.SetViewCamera(camera);
+
+	const SViewPort& cascadeViewPort = m->Cascades[cascade].ViewPort;
+	glScissor(
+		cascadeViewPort.m_X, cascadeViewPort.m_Y,
+		cascadeViewPort.m_Width, cascadeViewPort.m_Height);
 }
 
 // Finish rendering into shadow map texture
@@ -619,7 +694,8 @@ void ShadowMap::EndRender()
 	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };
 	g_Renderer.SetViewport(vp);
 
-	glColorMask(1,1,1,1);
+	if (g_RenderingOptions.GetShadowAlphaFix())
+		glColorMask(1, 1, 1, 1);
 }
 
 void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
@@ -628,8 +704,29 @@ void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 		return;
 
 	shader->BindTexture(str_shadowTex, m->Texture);
-	shader->Uniform(str_shadowTransform, m->TextureMatrix);
 	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
+	const CVector3D cameraForward = g_Renderer.GetCullCamera().GetOrientation().GetIn();
+	shader->Uniform(str_cameraForward, cameraForward.X, cameraForward.Y, cameraForward.Z,
+		cameraForward.Dot(g_Renderer.GetCullCamera().GetOrientation().GetTranslation()));
+	if (GetCascadeCount() == 1)
+	{
+		shader->Uniform(str_shadowTransform, m->Cascades[0].TextureMatrix);
+		shader->Uniform(str_shadowDistance, m->Cascades[0].Distance);
+	}
+	else
+	{
+		std::vector<float> shadowDistances;
+		std::vector<CMatrix3D> shadowTransforms;
+		for (const ShadowMapInternals::Cascade& cascade : m->Cascades)
+		{
+			shadowDistances.emplace_back(cascade.Distance);
+			shadowTransforms.emplace_back(cascade.TextureMatrix);
+		}
+		shader->Uniform(str_shadowTransforms_0, GetCascadeCount(), shadowTransforms.data());
+		shader->Uniform(str_shadowTransforms, GetCascadeCount(), shadowTransforms.data());
+		shader->Uniform(str_shadowDistances_0, GetCascadeCount(), shadowDistances.data());
+		shader->Uniform(str_shadowDistances, GetCascadeCount(), shadowDistances.data());
+	}
 }
 
 // Depth texture bits
@@ -661,34 +758,34 @@ void ShadowMap::RenderDebugBounds()
 	// Render various shadow bounds:
 	//  Yellow = bounds of objects in view frustum that receive shadows
 	//  Red = culling frustum used to find potential shadow casters
-	//  Green = bounds of objects in culling frustum that cast shadows
 	//  Blue = frustum used for rendering the shadow map
 
 	const CMatrix3D transform = g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform;
 
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowReceiverBound, CColor(1.0f, 1.0f, 0.0f, 1.0f), transform);
-	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowCasterBound, CColor(0.0f, 1.0f, 0.0f, 1.0f), transform);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	g_Renderer.GetDebugRenderer().DrawBoundingBox(m->ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.25f), transform);
-	glDisable(GL_BLEND);
-	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 1.0f), transform);
 
-	// Render light frustum
+	for (int cascade = 0; cascade < GetCascadeCount(); ++cascade)
+	{
+		glEnable(GL_BLEND);
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.10f), transform);
+		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.5f), transform);
+		glDisable(GL_BLEND);
 
-	CFrustum frustum = GetShadowCasterCullFrustum();
-	// We don't have a function to create a brush directly from a frustum, so use
-	// the ugly approach of creating a large cube and then intersecting with the frustum
-	CBoundingBoxAligned dummy(CVector3D(-1e4, -1e4, -1e4), CVector3D(1e4, 1e4, 1e4));
-	CBrush brush(dummy);
-	CBrush frustumBrush;
-	brush.Intersect(frustum, frustumBrush);
+		const CFrustum frustum = GetShadowCasterCullFrustum(cascade);
+		// We don't have a function to create a brush directly from a frustum, so use
+		// the ugly approach of creating a large cube and then intersecting with the frustum
+		const CBoundingBoxAligned dummy(CVector3D(-1e4, -1e4, -1e4), CVector3D(1e4, 1e4, 1e4));
+		CBrush brush(dummy);
+		CBrush frustumBrush;
+		brush.Intersect(frustum, frustumBrush);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.25f));
-	glDisable(GL_BLEND);
-	g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 1.0f));
+		glEnable(GL_BLEND);
+		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f));
+		g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.5f));
+		glDisable(GL_BLEND);
+	}
 
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
@@ -740,4 +837,13 @@ void ShadowMap::RenderDebugTexture()
 	glDepthMask(1);
 
 	ogl_WarnIfError();
+}
+
+int ShadowMap::GetCascadeCount() const
+{
+#if CONFIG2_GLES
+	return 1;
+#else
+	return m->ShadowsCoverMap ? 1 : m->CascadeCount;
+#endif
 }

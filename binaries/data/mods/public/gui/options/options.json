@@ -249,12 +249,11 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "Shadow quality",
+				"label": "Quality",
 				"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory!",
 				"dependencies": ["shadows"],
 				"config": "shadowquality",
 				"list": [
-					{ "value": -2, "label": "Very Low" },
 					{ "value": -1, "label": "Low" },
 					{ "value": 0, "label": "Medium" },
 					{ "value": 1, "label": "High" },
@@ -263,10 +262,26 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Shadow filtering",
+				"label": "Filtering",
 				"tooltip": "Smooth shadows.",
 				"dependencies": ["shadows"],
 				"config": "shadowpcf"
+			},
+			{
+				"type": "slider",
+				"label": "Cutoff distance",
+				"tooltip": "Hides shadows beyond a certain distance from a camera.",
+				"dependencies": ["shadows"],
+				"config": "shadowscutoffdistance",
+				"min": 100,
+				"max": 1500
+			},
+			{
+				"type": "boolean",
+				"label": "Cover whole map",
+				"tooltip": "When ON shadows cover the whole map and shadows cutoff distance is ignored. Useful for making screenshots of a whole map.",
+				"dependencies": ["shadows"],
+				"config": "shadowscovermap"
 			},
 			{
 				"type": "boolean",

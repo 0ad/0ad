@@ -513,6 +513,10 @@ void CRenderer::ReloadShaders()
 			m->globalContext.Add(str_USE_FP_SHADOW, str_1);
 		if (g_RenderingOptions.GetShadowPCF())
 			m->globalContext.Add(str_USE_SHADOW_PCF, str_1);
+		const int cascadeCount = m->shadow.GetCascadeCount();
+		ENSURE(1 <= cascadeCount && cascadeCount <= 4);
+		const CStrIntern cascadeCountStr[5] = {str_0, str_1, str_2, str_3, str_4};
+		m->globalContext.Add(str_SHADOWS_CASCADE_COUNT, cascadeCountStr[cascadeCount]);
 #if !CONFIG2_GLES
 		m->globalContext.Add(str_USE_SHADOW_SAMPLER, str_1);
 #endif
@@ -685,30 +689,38 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 {
 	PROFILE3_GPU("shadow map");
 
-	m->shadow.BeginRender();
-
-	{
-		PROFILE("render patches");
-		glCullFace(GL_FRONT);
-		glEnable(GL_CULL_FACE);
-		m->terrainRenderer.RenderPatches(CULL_SHADOWS);
-		glCullFace(GL_BACK);
-	}
-
 	CShaderDefines contextCast = context;
 	contextCast.Add(str_MODE_SHADOWCAST, str_1);
 
-	{
-		PROFILE("render models");
-		m->CallModelRenderers(contextCast, CULL_SHADOWS, MODELFLAG_CASTSHADOWS);
-	}
+	m->shadow.BeginRender();
 
+	const int cascadeCount = m->shadow.GetCascadeCount();
+	ENSURE(0 <= cascadeCount && cascadeCount <= 4);
+	for (int cascade = 0; cascade < cascadeCount; ++cascade)
 	{
-		PROFILE("render transparent models");
-		// disable face-culling for two-sided models
-		glDisable(GL_CULL_FACE);
-		m->CallTranspModelRenderers(contextCast, CULL_SHADOWS, MODELFLAG_CASTSHADOWS);
-		glEnable(GL_CULL_FACE);
+		m->shadow.PrepareCamera(cascade);
+
+		const int cullGroup = CULL_SHADOWS_CASCADE_0 + cascade;
+		{
+			PROFILE("render patches");
+			glCullFace(GL_FRONT);
+			glEnable(GL_CULL_FACE);
+			m->terrainRenderer.RenderPatches(cullGroup);
+			glCullFace(GL_BACK);
+		}
+
+		{
+			PROFILE("render models");
+			m->CallModelRenderers(contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
+		}
+
+		{
+			PROFILE("render transparent models");
+			// disable face-culling for two-sided models
+			glDisable(GL_CULL_FACE);
+			m->CallTranspModelRenderers(contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
+			glEnable(GL_CULL_FACE);
+		}
 	}
 
 	m->shadow.EndRender();
@@ -1509,9 +1521,10 @@ void CRenderer::Submit(CPatch* patch)
 		m->silhouetteRenderer.AddOccluder(patch);
 	}
 
-	if (m_CurrentCullGroup == CULL_SHADOWS)
+	if (CULL_SHADOWS_CASCADE_0 <= m_CurrentCullGroup && m_CurrentCullGroup <= CULL_SHADOWS_CASCADE_3)
 	{
-		m->shadow.AddShadowCasterBound(patch->GetWorldBounds());
+		const int cascade = m_CurrentCullGroup - CULL_SHADOWS_CASCADE_0;
+		m->shadow.AddShadowCasterBound(cascade, patch->GetWorldBounds());
 	}
 
 	m->terrainRenderer.Submit(m_CurrentCullGroup, patch);
@@ -1576,12 +1589,13 @@ void CRenderer::SubmitNonRecursive(CModel* model)
 			m->silhouetteRenderer.AddCaster(model);
 	}
 
-	if (m_CurrentCullGroup == CULL_SHADOWS)
+	if (CULL_SHADOWS_CASCADE_0 <= m_CurrentCullGroup && m_CurrentCullGroup <= CULL_SHADOWS_CASCADE_3)
 	{
 		if (!(model->GetFlags() & MODELFLAG_CASTSHADOWS))
 			return;
 
-		m->shadow.AddShadowCasterBound(model->GetWorldBounds());
+		const int cascade = m_CurrentCullGroup - CULL_SHADOWS_CASCADE_0;
+		m->shadow.AddShadowCasterBound(cascade, model->GetWorldBounds());
 	}
 
 	bool requiresSkinning = (model->GetModelDef()->GetNumBones() != 0);
@@ -1633,10 +1647,12 @@ void CRenderer::RenderScene(Scene& scene)
 
 	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows())
 	{
-		m_CurrentCullGroup = CULL_SHADOWS;
-
-		CFrustum shadowFrustum = m->shadow.GetShadowCasterCullFrustum();
-		scene.EnumerateObjects(shadowFrustum, this);
+		for (int cascade = 0; cascade <= m->shadow.GetCascadeCount(); ++cascade)
+		{
+			m_CurrentCullGroup = CULL_SHADOWS_CASCADE_0 + cascade;
+			const CFrustum shadowFrustum = m->shadow.GetShadowCasterCullFrustum(cascade);
+			scene.EnumerateObjects(shadowFrustum, this);
+		}
 	}
 
 	CBoundingBoxAligned waterScissor;
