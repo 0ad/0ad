@@ -1197,6 +1197,8 @@ function initSelectionPanels()
  */
 function showTemplateDetails(templateName, civCode)
 {
+	if (inputState != INPUT_NORMAL)
+		return;
 	g_PauseControl.implicitPause();
 
 	Engine.PushGuiPage(
