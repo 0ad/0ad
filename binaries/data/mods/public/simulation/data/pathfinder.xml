@@ -4,11 +4,30 @@
   <!-- Setting the value to 0 disable this functionality -->
   <MaxSameTurnMoves>20</MaxSameTurnMoves>
 
-  <!-- Multiplier for the distance at which units push each other. -->
-  <!-- Setting the value to 0 disables unit pushing entirely. -->
-  <!-- Note that values above 2-3 are likely to start behaving weirdly -->
-  <!-- (in particular, formations offsets may need adjusting). -->
-  <PushingRadius>1.6</PushingRadius>
+  <Pushing>
+    <!-- Units push each other if they are within 'clearance * radius' meters. -->
+    <!-- Setting the value to 0 disables unit pushing entirely. -->
+    <!-- Note that values above 2-3 are likely to start behaving weirdly. -->
+    <!-- You can also tweaks extensions below. -->
+    <Radius>1.6</Radius>
+
+    <!-- Actual pushing radius for non-moving units is: -->
+    <!-- Clearance * PushingRadius + StaticPushExtension -->
+    <!-- NB: Once idle units start being pushed, they become moving units, -->
+    <!-- so this should be understood as the maximum unit density. -->
+    <StaticExtension>2</StaticExtension>
+
+    <!-- Actual pushing radius for moving units is: -->
+    <!-- Clearance * PushingRadius + MovingPushExtension -->
+    <!-- This is the factor that has the largest influence on actual sparsity. -->
+    <MovingExtension>2.5</MovingExtension>
+
+    <!-- After the combined pushing force of all neighboring units is calculated, -->
+    <!-- if the value is below this number, treat it as effectively zero. -->
+    <!-- This nullifies very small pushes, and makes things look and behave nicer. -->
+    <!-- NB: This impacts the pushing max distance. -->
+    <MinimalForce>0.2</MinimalForce>
+  </Pushing>
 
   <PassabilityClasses>
 

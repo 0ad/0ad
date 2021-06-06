@@ -81,9 +81,15 @@ public:
 		bool isMoving = false;
 	};
 
-	// Multiplier for the pushing radius. Pre-multiplied by the circle-square correction factor.
 	// "Template" state, not serialized (cannot be changed mid-game).
+
+	// Multiplier for the pushing radius. Pre-multiplied by the circle-square correction factor.
 	entity_pos_t m_PushingRadius;
+	// Additive modifiers to the pushing radius for moving units and idle units respectively.
+	entity_pos_t m_MovingPushExtension;
+	entity_pos_t m_StaticPushExtension;
+	// Pushing forces below this value are ignored - this prevents units moving forever by very small increments.
+	entity_pos_t m_MinimalPushing;
 
 	// These vectors are reconstructed on deserialization.
 

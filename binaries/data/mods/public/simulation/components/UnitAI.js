@@ -5107,7 +5107,7 @@ UnitAI.prototype.SetFormationController = function(ent)
 
 	// Set obstruction group, so we can walk through members
 	// of our own formation (or ourself if not in formation)
-	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	const cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (cmpObstruction)
 	{
 		if (ent == INVALID_ENTITY)
@@ -5115,6 +5115,10 @@ UnitAI.prototype.SetFormationController = function(ent)
 		else
 			cmpObstruction.SetControlGroup(ent);
 	}
+
+	const cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpUnitMotion)
+		cmpUnitMotion.SetMemberOfFormation(ent);
 
 	// If we were removed from a formation, let the FSM switch back to INDIVIDUAL
 	if (ent == INVALID_ENTITY)

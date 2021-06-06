@@ -143,7 +143,7 @@ public:
 
 	// Template state:
 
-	bool m_FormationController;
+	bool m_IsFormationController;
 
 	fixed m_TemplateWalkSpeed, m_TemplateRunMultiplier;
 	pass_class_t m_PassClass;
@@ -209,6 +209,9 @@ public:
 		MoveRequest(entity_id_t target, CFixedVector2D offset) : m_Type(OFFSET), m_Entity(target), m_Position(offset) {};
 	} m_MoveRequest;
 
+	// If this is not INVALID_ENTITY, the unit is a formation member.
+	entity_id_t m_FormationController = INVALID_ENTITY;
+
 	// If the entity moves, it will do so at m_WalkSpeed * m_SpeedMultiplier.
 	fixed m_SpeedMultiplier;
 	// This caches the resulting speed from m_WalkSpeed * m_SpeedMultiplier for convenience.
@@ -253,7 +256,7 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		m_FormationController = paramNode.GetChild("FormationController").ToBool();
+		m_IsFormationController = paramNode.GetChild("FormationController").ToBool();
 
 		m_FacePointAfterMove = true;
 
@@ -307,6 +310,8 @@ public:
 		serialize.NumberFixed_Unbounded("target min range", m_MoveRequest.m_MinRange);
 		serialize.NumberFixed_Unbounded("target max range", m_MoveRequest.m_MaxRange);
 
+		serialize.NumberU32_Unbounded("formation controller", m_FormationController);
+
 		serialize.NumberFixed_Unbounded("speed multiplier", m_SpeedMultiplier);
 
 		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
@@ -358,7 +363,7 @@ public:
 		case MT_Create:
 		{
 			if (!ENTITY_IS_LOCAL(GetEntityId()))
-				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_FormationController);
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_IsFormationController);
 			break;
 		}
 		case MT_Destroy:
@@ -390,7 +395,7 @@ public:
 		{
 			OnValueModification();
 			if (!ENTITY_IS_LOCAL(GetEntityId()))
-				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_FormationController);
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_IsFormationController);
 			break;
 		}
 		}
@@ -501,9 +506,16 @@ public:
 		return MoveTo(MoveRequest(target, minRange, maxRange));
 	}
 
-	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)
+	virtual void MoveToFormationOffset(entity_id_t controller, entity_pos_t x, entity_pos_t z)
 	{
-		MoveTo(MoveRequest(target, CFixedVector2D(x, z)));
+		SetMemberOfFormation(controller);
+		// Pass the controller to the move request anyways.
+		MoveTo(MoveRequest(controller, CFixedVector2D(x, z)));
+	}
+
+	virtual void SetMemberOfFormation(entity_id_t controller)
+	{
+		m_FormationController = controller;
 	}
 
 	virtual bool IsTargetRangeReachable(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
@@ -542,19 +554,18 @@ public:
 private:
 	bool IsFormationMember() const
 	{
-		// TODO: this really shouldn't be what we are checking for.
-		return m_MoveRequest.m_Type == MoveRequest::OFFSET;
+		return m_FormationController != INVALID_ENTITY;
 	}
 
 	bool IsFormationControllerMoving() const
 	{
-		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_MoveRequest.m_Entity);
+		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_FormationController);
 		return cmpControllerMotion && cmpControllerMotion->IsMoveRequested();
 	}
 
 	entity_id_t GetGroup() const
 	{
-		return IsFormationMember() ? m_MoveRequest.m_Entity : GetEntityId();
+		return IsFormationMember() ? m_FormationController : GetEntityId();
 	}
 
 	void SetParticipateInPushing(bool pushing)
@@ -975,7 +986,7 @@ void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 	if (!m_BlockMovement)
 		return;
 
-	state.controlGroup = IsFormationMember() ? m_MoveRequest.m_Entity : INVALID_ENTITY;
+	state.controlGroup = IsFormationMember() ? m_FormationController : INVALID_ENTITY;
 
 	// Update moving flag, this is an internal construct used for pushing,
 	// so it does not really reflect whether the unit is actually moving or not.

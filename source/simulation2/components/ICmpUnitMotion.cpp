@@ -26,6 +26,7 @@ BEGIN_INTERFACE_WRAPPER(UnitMotion)
 DEFINE_INTERFACE_METHOD("MoveToPointRange", ICmpUnitMotion, MoveToPointRange)
 DEFINE_INTERFACE_METHOD("MoveToTargetRange", ICmpUnitMotion, MoveToTargetRange)
 DEFINE_INTERFACE_METHOD("MoveToFormationOffset", ICmpUnitMotion, MoveToFormationOffset)
+DEFINE_INTERFACE_METHOD("SetMemberOfFormation", ICmpUnitMotion, SetMemberOfFormation)
 DEFINE_INTERFACE_METHOD("IsTargetRangeReachable", ICmpUnitMotion, IsTargetRangeReachable)
 DEFINE_INTERFACE_METHOD("FaceTowardsPoint", ICmpUnitMotion, FaceTowardsPoint)
 DEFINE_INTERFACE_METHOD("StopMoving", ICmpUnitMotion, StopMoving)
@@ -61,6 +62,11 @@ public:
 	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)
 	{
 		m_Script.CallVoid("MoveToFormationOffset", target, x, z);
+	}
+
+	virtual void SetMemberOfFormation(entity_id_t controller)
+	{
+		m_Script.CallVoid("SetMemberOfFormation", controller);
 	}
 
 	virtual bool IsTargetRangeReachable(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
