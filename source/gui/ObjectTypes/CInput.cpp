@@ -78,9 +78,9 @@ CInput::CInput(CGUI& pGUI)
 {
 	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 
-	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical(pGUI);
+	auto bar = std::make_unique<CGUIScrollBarVertical>(pGUI);
 	bar->SetRightAligned(true);
-	AddScrollBar(bar);
+	AddScrollBar(std::move(bar));
 }
 
 CInput::~CInput()
