@@ -319,7 +319,7 @@ void CMiniMap::SetCameraPositionFromMousePosition()
 
 float CMiniMap::GetAngle() const
 {
-	CVector3D cameraIn = m_Camera->GetOrientation().GetIn();
+	CVector3D cameraIn = g_Game->GetView()->GetCamera()->GetOrientation().GetIn();
 	return -atan2(cameraIn.X, cameraIn.Z);
 }
 
@@ -354,11 +354,12 @@ void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
 	const float height = m_CachedActualSize.GetHeight();
 	const float invTileMapSize = 1.0f / float(TERRAIN_TILE_SIZE * m_MapSize);
 
+	const CCamera* camera = g_Game->GetView()->GetCamera();
 	const std::array<CVector3D, 4> hitPoints = {
-		m_Camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), h),
-		m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), h),
-		m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, h),
-		m_Camera->GetWorldCoordinates(0, 0, h)
+		camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), h),
+		camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), h),
+		camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, h),
+		camera->GetWorldCoordinates(0, 0, h)
 	};
 
 	std::vector<CVector3D> lines;
@@ -480,7 +481,6 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
 
 	// Set our globals in case they hadn't been set before
-	m_Camera = g_Game->GetView()->GetCamera();
 	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	ssize_t width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	ssize_t height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);

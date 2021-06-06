@@ -70,8 +70,6 @@ private:
 
 	static const CStr EventNameWorldClick;
 
-	const CCamera* m_Camera;
-
 	// Whether or not the mouse is currently down
 	bool m_Clicking;
 
