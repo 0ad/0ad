@@ -112,15 +112,6 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	PROFILE2("loading shader");
 	PROFILE2_ATTR("name: %s", name);
 
-	if (strncmp(name, "fixed:", 6) == 0)
-	{
-		program = CShaderProgramPtr(CShaderProgram::ConstructFFP(name+6, baseDefines));
-		if (!program)
-			return false;
-		program->Reload();
-		return true;
-	}
-
 	VfsPath xmlFilename = L"shaders/" + wstring_from_utf8(name) + L".xml";
 
 	CXeromyces XeroFile;
@@ -456,14 +447,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 
 			if (Child.GetNodeName() == el_require)
 			{
-				if (Attrs.GetNamedItem(at_shaders) == "fixed")
-				{
-					// FFP not supported by OpenGL ES
-					#if CONFIG2_GLES
-						isUsable = false;
-					#endif
-				}
-				else if (Attrs.GetNamedItem(at_shaders) == "arb")
+				if (Attrs.GetNamedItem(at_shaders) == "arb")
 				{
 					if (!hasARB)
 						isUsable = false;
