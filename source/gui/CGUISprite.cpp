@@ -26,7 +26,7 @@ void CGUISprite::AddImage(std::unique_ptr<SGUIImage> image)
 	m_Images.emplace_back(std::move(image));
 }
 
-void CGUISpriteInstance::Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const
+void CGUISpriteInstance::Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, std::unique_ptr<const CGUISprite>>& Sprites) const
 {
 	if (m_CachedSize != Size)
 	{

@@ -60,7 +60,7 @@ DrawCalls& DrawCalls::operator=(const DrawCalls&)
 }
 
 
-void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites)
+void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, std::map<CStr, std::unique_ptr<const CGUISprite>>& Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -75,7 +75,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		return;
 
 
-	std::map<CStr, const CGUISprite*>::iterator it(Sprites.find(SpriteName));
+	std::map<CStr, std::unique_ptr<const CGUISprite>>::iterator it(Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
 		/*
@@ -96,7 +96,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 			return;
 		}
-		CGUISprite* Sprite = new CGUISprite;
+		auto sprite = std::make_unique<CGUISprite>();
 		VfsPath TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.AfterLast(":"));
 		if (SpriteName.Find("stretched:") != -1)
 		{
@@ -110,8 +110,8 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				image->m_Effects->m_Greyscale = true;
 			}
 
-			Sprite->AddImage(std::move(image));
-			Sprites[SpriteName] = Sprite;
+			sprite->AddImage(std::move(image));
+			Sprites[SpriteName] = std::move(sprite);
 		}
 		else if (SpriteName.Find("cropped:") != -1)
 		{
@@ -135,8 +135,8 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				image->m_Effects->m_Greyscale = true;
 			}
 
-			Sprite->AddImage(std::move(image));
-			Sprites[SpriteName] = Sprite;
+			sprite->AddImage(std::move(image));
+			Sprites[SpriteName] = std::move(sprite);
 		}
 		if (SpriteName.Find("color:") != -1)
 		{
@@ -164,15 +164,15 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 				return;
 			}
 
-			Sprite->AddImage(std::move(image));
-			Sprites[SpriteName] = Sprite;
+			sprite->AddImage(std::move(image));
+			Sprites[SpriteName] = std::move(sprite);
 		}
 		it = Sprites.find(SpriteName);
 
 		// Otherwise, just complain and give up:
 		if (it == Sprites.end())
 		{
-			SAFE_DELETE(Sprite);
+			sprite.reset();
 			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 			return;
 		}

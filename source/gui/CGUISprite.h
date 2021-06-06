@@ -139,7 +139,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites) const;
+	void Draw(CGUI& pGUI, CCanvas2D& canvas, const CRect& Size, std::map<CStr, std::unique_ptr<const CGUISprite>>& Sprites) const;
 
 	/**
 	 * Whether this Sprite has no texture name set.

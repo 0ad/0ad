@@ -35,6 +35,7 @@
 #include "scriptinterface/ScriptForward.h"
 
 #include <map>
+#include <memory>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -670,7 +671,7 @@ private:
 	std::map<CStr, const CGUIColor> m_PreDefinedColors;
 
 	// Sprites
-	std::map<CStr, const CGUISprite*> m_Sprites;
+	std::map<CStr, std::unique_ptr<const CGUISprite>> m_Sprites;
 
 	// Styles
 	std::map<CStr, const SGUIStyle> m_Styles;

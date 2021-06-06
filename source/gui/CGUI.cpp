@@ -111,9 +111,6 @@ CGUI::~CGUI()
 {
 	for (const std::pair<const CStr, IGUIObject*>& p : m_pAllObjects)
 		delete p.second;
-
-	for (const std::pair<const CStr, const CGUISprite*>& p : m_Sprites)
-		delete p.second;
 }
 
 InReaction CGUI::HandleEvent(const SDL_Event_* ev)
@@ -991,7 +988,7 @@ void CGUI::Xeromyces_ReadScript(const XMBData& xmb, XMBElement element, std::uno
 
 void CGUI::Xeromyces_ReadSprite(const XMBData& xmb, XMBElement element)
 {
-	CGUISprite* Sprite = new CGUISprite;
+	auto sprite = std::make_unique<CGUISprite>();
 
 	// Get name, we know it exists because of DTD requirements
 	CStr name = element.GetAttributes().GetNamedItem(xmb.GetAttributeID("name"));
@@ -1006,7 +1003,7 @@ void CGUI::Xeromyces_ReadSprite(const XMBData& xmb, XMBElement element)
 	{
 		std::string_view ElementName(xmb.GetElementStringView(child.GetNodeName()));
 		if (ElementName == "image")
-			Xeromyces_ReadImage(xmb, child, *Sprite);
+			Xeromyces_ReadImage(xmb, child, *sprite);
 		else if (ElementName == "effect")
 		{
 			if (effects)
@@ -1025,13 +1022,13 @@ void CGUI::Xeromyces_ReadSprite(const XMBData& xmb, XMBElement element)
 	// different effects)
 	if (effects)
 	{
-		for (const std::unique_ptr<SGUIImage>& image : Sprite->m_Images)
+		for (const std::unique_ptr<SGUIImage>& image : sprite->m_Images)
 			if (!image->m_Effects)
 				image->m_Effects = effects;
 	}
 
 	m_Sprites.erase(name);
-	m_Sprites.emplace(name, Sprite);
+	m_Sprites.emplace(name, std::move(sprite));
 }
 
 void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprite& parent)
