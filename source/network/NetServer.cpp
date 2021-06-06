@@ -770,33 +770,35 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 			usedIDs.insert(p.second.m_PlayerID);
 
 	// If the player is rejoining after disconnecting, try to give them
-	// back their old player ID
+	// back their old player ID. Don't do this in pregame however,
+	// as that ID might be invalid for various reasons.
 
 	i32 playerID = -1;
 
-	// Try to match GUID first
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+	if (m_State != SERVER_STATE_UNCONNECTED && m_State != SERVER_STATE_PREGAME)
 	{
-		if (!it->second.m_Enabled && it->first == guid && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
+		// Try to match GUID first
+		for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
 		{
-			playerID = it->second.m_PlayerID;
-			m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
-			goto found;
+			if (!it->second.m_Enabled && it->first == guid && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
+			{
+				playerID = it->second.m_PlayerID;
+				m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
+				goto found;
+			}
+		}
+
+		// Try to match username next
+		for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+		{
+			if (!it->second.m_Enabled && it->second.m_Name == name && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
+			{
+				playerID = it->second.m_PlayerID;
+				m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
+				goto found;
+			}
 		}
 	}
-
-	// Try to match username next
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
-	{
-		if (!it->second.m_Enabled && it->second.m_Name == name && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
-		{
-			playerID = it->second.m_PlayerID;
-			m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
-			goto found;
-		}
-	}
-
-	// Otherwise leave the player ID as -1 (observer) and let gamesetup change it as needed.
 
 found:
 	PlayerAssignment assignment;
