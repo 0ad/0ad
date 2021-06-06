@@ -804,12 +804,15 @@ void ShadowMap::RenderDebugTexture()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 #endif
 
-	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_basic);
+	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d);
 	texTech->BeginPass();
 	CShaderProgramPtr texShader = texTech->GetShader();
 
 	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
 	texShader->BindTexture(str_tex, m->Texture);
+	texShader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 1.0f));
+	texShader->Uniform(str_colorMul, CColor(1.0f, 1.0f, 1.0f, 0.0f));
+	texShader->Uniform(str_grayscaleFactor, 0.0f);
 
 	float s = 256.f;
 	float boxVerts[] = {
