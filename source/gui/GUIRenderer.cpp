@@ -74,7 +74,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 	if (Size.left == Size.right && Size.top == Size.bottom)
 		return;
 
-
 	std::map<CStr, std::unique_ptr<const CGUISprite>>::iterator it(Sprites.find(SpriteName));
 	if (it == Sprites.end())
 	{
@@ -96,6 +95,7 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 			return;
 		}
+
 		auto sprite = std::make_unique<CGUISprite>();
 		VfsPath TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.AfterLast(":"));
 		if (SpriteName.Find("stretched:") != -1)
@@ -164,13 +164,14 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 
 			sprite->AddImage(std::move(image));
 		}
+
 		if (sprite->m_Images.empty())
 		{
 			LOGERROR("Trying to use a sprite that doesn't exist (\"%s\").", SpriteName.c_str());
 			return;
 		}
-		else
-			it = Sprites.insert_or_assign(SpriteName, std::move(sprite)).first;
+		
+		it = Sprites.emplace(SpriteName, std::move(sprite)).first;
 	}
 
 	Calls.reserve(it->second->m_Images.size());
