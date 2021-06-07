@@ -54,12 +54,10 @@ GameSettings.prototype.Attributes.PlayerTeam = class PlayerTeam extends GameSett
 	{
 		this.locked = this.locked.map(x => this.settings.map.type === "scenario");
 		this.trigger("locked");
-		if (this.settings.map.type === "random")
+		if (this.settings.map.type !== "scenario")
 			return;
-		let pData = this.getMapSetting("PlayerData");
-		if (pData && pData.every(x => x.Team === undefined))
-			return;
-		for (let p in pData)
+		const pData = this.getMapSetting("PlayerData");
+		for (const p in pData)
 			this._set(+p, pData[p].Team === undefined ? -1 : pData[p].Team);
 		this.trigger("values");
 	}
