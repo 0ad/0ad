@@ -37,13 +37,6 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 			this.gameSettingsController.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
 
 			this.updateMapList();
-
-			// We can end up with incorrect settings in various situations.
-			if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
-			{
-				g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
-				return;
-			}
 		}
 
 		this.render();
@@ -66,6 +59,13 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 		if (!this.values)
 			return;
 
+		// We can end up with incorrect map selection when dependent settings change.
+		if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
+		{
+			g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
+			return;
+		}
+
 		this.setSelectedValue(g_GameSettings.map.map);
 	}
 
@@ -77,7 +77,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 			return;
 
 		{
-			const values =
+			let values =
 				this.mapFilters.getFilteredMaps(
 					g_GameSettings.map.type,
 					this.gameSettingsController.guiData.mapFilter.filter,
