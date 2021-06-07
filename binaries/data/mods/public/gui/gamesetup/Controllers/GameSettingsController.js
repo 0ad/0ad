@@ -296,8 +296,9 @@ class GameSettingsController
 
 	savePersistentMatchSettings()
 	{
-		// TODO: ought to only save a subset of settings.
-		this.persistentMatchSettings.saveFile(this.getSettings());
+		if (g_IsController)
+			// TODO: ought to only save a subset of settings.
+			this.persistentMatchSettings.saveFile(this.getSettings());
 	}
 }
 
