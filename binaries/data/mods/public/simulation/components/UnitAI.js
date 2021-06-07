@@ -3562,7 +3562,11 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 		}
 		else
 		{
-			let index = this.GetCurrentState().indexOf(".");
+			const state = this.GetCurrentState();
+			// Special "will be destroyed soon" mode - do nothing.
+			if (state === "")
+				return;
+			const index = state.indexOf(".");
 			if (index != -1)
 				this.UnitFsm.SwitchToNextState(this, this.GetCurrentState().slice(0, index));
 			this.Stop(false);
