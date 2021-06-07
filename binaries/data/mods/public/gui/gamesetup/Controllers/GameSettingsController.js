@@ -94,15 +94,16 @@ class GameSettingsController
 				g_GameSettings.playerAI.get(g_PlayerAssignments[guid].player - 1))
 				g_GameSettings.playerAI.set(g_PlayerAssignments[guid].player - 1, undefined);
 
-		for (const handler of this.settingsLoadedHandlers)
-			handler();
-
 		this.updateLayout();
 		this.setNetworkInitAttributes();
 
 		// If we are the controller, we are done loading.
 		if (hotloadData || !g_IsNetworked || g_IsController)
+		{
+			for (const handler of this.settingsLoadedHandlers)
+				handler();
 			this.setLoading(false);
+		}
 	}
 
 	onClientJoin()
@@ -159,15 +160,18 @@ class GameSettingsController
 			// Ignore initial updates if we've already received settings.
 			if (!this.loading)
 				return;
+			this.parseSettings(message.data.initAttribs);
+			for (const handler of this.settingsLoadedHandlers)
+				handler();
 			this.setLoading(false);
 		}
-
-		this.parseSettings(message.data.initAttribs);
+		else
+			this.parseSettings(message.data.initAttribs);
 
 		// This assumes that messages aren't sent spuriously without changes
 		// (which is generally fair), but technically it would be good
 		// to check if the new data is different from the previous data.
-		for (let handler of this.settingsChangeHandlers)
+		for (const handler of this.settingsChangeHandlers)
 			handler();
 	}
 
@@ -186,9 +190,9 @@ class GameSettingsController
 	 */
 	parseSettings(settings)
 	{
+		g_GameSettings.fromInitAttributes(settings);
 		if (settings.guiData)
 			this.guiData.Deserialize(settings.guiData);
-		g_GameSettings.fromInitAttributes(settings);
 	}
 
 	setLoading(loading)

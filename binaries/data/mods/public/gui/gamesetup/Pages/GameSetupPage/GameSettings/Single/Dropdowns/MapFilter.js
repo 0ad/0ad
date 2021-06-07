@@ -74,6 +74,7 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 	onSelectionChange(itemIdx)
 	{
 		this.gameSettingsController.guiData.mapFilter.filter = this.values.Name[itemIdx];
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 
