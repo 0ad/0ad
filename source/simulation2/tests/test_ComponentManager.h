@@ -837,6 +837,7 @@ entities:\n\
 
 		man.AddComponent(hnd1, man.LookupCID("TestScript1_getter"), noParam);
 
+		TestLogger log;
 		std::stringstream stateStream;
 		TS_ASSERT_THROWS_PSERROR(man.SerializeState(stateStream), PSERROR_Serialize_ScriptError, "Cannot serialize property getters");
 		// (The script will die if the getter is executed)

@@ -20,6 +20,8 @@
 #include "ScriptComponent.h"
 
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/JSON.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/Object.h"
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/IDeserializer.h"
@@ -60,7 +62,20 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 {
 	ScriptRequest rq(m_ScriptInterface);
 
-	serialize.ScriptVal("comp", &m_Instance);
+	try
+	{
+		serialize.ScriptVal("comp", &m_Instance);
+	}
+	catch(PSERROR_Serialize& err)
+	{
+		int ent = INVALID_ENTITY;
+		Script::GetProperty(rq, m_Instance, "entity", ent);
+		std::string name = "(error)";
+		Script::GetObjectClassName(rq, m_Instance, name);
+		LOGERROR("Script component %s of entity %i failed to serialize: %s\nSerializing:\n%s", name, ent, err.what(), Script::ToString(rq, &m_Instance));
+		// Rethrow now that we added more details
+		throw;
+	}
 }
 
 void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
