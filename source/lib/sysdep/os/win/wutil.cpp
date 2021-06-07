@@ -421,6 +421,22 @@ void wutil_SetAppWindow(void* hwnd)
 
 HWND wutil_AppWindow()
 {
+	if (hAppWindow)
+	{
+		// In case of an assertion we might not receive a notification about the
+		// closed window. So check it in-place.
+		if (IsWindow(hAppWindow))
+		{
+			// There is a chance that a new window might be opened with the
+			// same handle.
+			DWORD pid;
+			GetWindowThreadProcessId(hAppWindow, &pid);
+			if (pid != GetCurrentProcessId())
+				hAppWindow = 0;
+		}
+		else
+			hAppWindow = 0;
+	}
 	return hAppWindow;
 }
 
