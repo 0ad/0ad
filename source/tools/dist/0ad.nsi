@@ -119,7 +119,7 @@ Section "!Game and data files" GameSection
 
   ; Binaries: exclude debug DLLs and related files
   SetOutPath "$INSTDIR\binaries\data"
-  File /r /x "public" /x "mod" /x "fontbuilder" /x "tests" /x "_test.*" /x "dev.cfg" "${CHECKOUTPATH}\binaries\data\"
+  File /r /x "public" /x "mod" /x "tests" /x "_test.*" /x "dev.cfg" "${CHECKOUTPATH}\binaries\data\"
 
   ; Warning: libraries that end in 'd' need to be added explicitly.
   ; There are currently none.
