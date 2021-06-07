@@ -2,12 +2,12 @@
 	"genericName": "Wooden Shield",
 	"description": "Wooden shields are heavier but much better able to resist projectiles and blows than wicker-frame shields.",
 	"cost": {
-		"wood": 400,
-		"metal": 400
+		"wood": 200,
+		"metal": 100
 	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
-	"icon": "shield_parma.png",
+	"icon": "shields_generic_wood.png",
 	"researchTime": 40,
 	"tooltip": "Soldiers +1 pierce resistance.",
 	"modifications": [

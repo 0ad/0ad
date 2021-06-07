@@ -1,0 +1,19 @@
+{
+	"genericName": "Improved Shield Alloys",
+	"description": "Strengthen shields further with stronger metal alloys.",
+	"cost": {
+		"wood": 500,
+		"metal": 400
+	},
+	"supersedes": "soldier_resistance_pierce_02",
+	"requirements": { "tech": "phase_city" },
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "shields_generic_silver.png",
+	"researchTime": 60,
+	"tooltip": "Soldiers +2 pierce resistance.",
+	"modifications": [
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 2 }
+	],
+	"affects": ["Soldier"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

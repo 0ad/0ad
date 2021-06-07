@@ -6,9 +6,10 @@
 	},
 	"description": "Secret steel working techniques give sword blades distinctive and beautiful markings. Not only that, but the steel's hardness is unparalleled.",
 	"cost": {
-		"wood": 200,
-		"metal": 200
+		"food": 500,
+		"metal": 400
 	},
+	"supersedes": "soldier_attack_melee_02",
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },
@@ -23,12 +24,15 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "metalworker.png",
 	"researchTime": 60,
-	"tooltip": "Swordsmen +20% attack damage.",
+	"tooltip": "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus.",
 	"modifications": [
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
-		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Hack", "affects": "Swordsman", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "affects": "Swordsman", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "affects": "Swordsman", "multiply": 1.2 }
 	],
-	"affects": ["Swordsman"],
+	"affects": ["Soldier !Elephant"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

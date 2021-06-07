@@ -9,14 +9,14 @@
 	},
 	"description": "Body armor made from laminated linen.",
 	"cost": {
-		"food": 600,
-		"metal": 600
+		"food": 350,
+		"metal": 250
 	},
 	"supersedes": "soldier_resistance_hack_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_pteruges.png",
-	"researchTime": 60,
+	"researchTime": 50,
 	"tooltip": "Soldiers +1 hack resistance.",
 	"modifications": [
 		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 }

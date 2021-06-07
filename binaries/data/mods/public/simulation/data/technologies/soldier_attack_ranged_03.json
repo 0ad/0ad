@@ -1,0 +1,21 @@
+{
+	"genericName": "Trilobate Arrowheads",
+	"description": "Arrowheads with three lobes instead of two inflict larger wounds.",
+	"cost": {
+		"wood": 500,
+		"metal": 400
+	},
+	"supersedes": "soldier_attack_ranged_02",
+	"requirements": { "tech": "phase_city" },
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "arrow_03.png",
+	"researchTime": 60,
+	"tooltip": "Soldiers +20% ranged attack damage.",
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
+	],
+	"affects": ["Soldier"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
