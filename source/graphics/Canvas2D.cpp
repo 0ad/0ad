@@ -108,30 +108,25 @@ CCanvas2D::~CCanvas2D()
 
 void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color)
 {
-	Flush();
+	m->BindTechIfNeeded();
 
 	std::vector<float> vertices;
-	vertices.reserve(points.size() * 3);
+	std::vector<float> uvs(points.size() * 2, 0.0f);
+	vertices.reserve(points.size() * 2);
 	for (const CVector2D& point : points)
 	{
 		vertices.emplace_back(point.X);
 		vertices.emplace_back(point.Y);
-		vertices.emplace_back(0.0f);
 	}
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	// Setup the render state
-	CMatrix3D transform = GetDefaultGuiMatrix();
-	CShaderDefines lineDefines;
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_solid, g_Renderer.GetSystemShaderDefines(), lineDefines);
-	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
-
-	shader->Uniform(str_transform, transform);
-	shader->Uniform(str_color, color);
-	shader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	CShaderProgramPtr shader = m->Tech->GetShader();
+	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetTransparentTexture());
+	shader->Uniform(str_transform, GetDefaultGuiMatrix());
+	shader->Uniform(str_colorAdd, color);
+	shader->Uniform(str_colorMul, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+	shader->Uniform(str_grayscaleFactor, 0.0f);
+	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
 	shader->AssertPointersBound();
 
 #if !CONFIG2_GLES
@@ -139,15 +134,11 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 #endif
 	glLineWidth(width);
 	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 3);
+		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 2);
 	glLineWidth(1.0f);
 #if !CONFIG2_GLES
 	glDisable(GL_LINE_SMOOTH);
 #endif
-
-	tech->EndPass();
-
-	glDisable(GL_BLEND);
 }
 
 void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)

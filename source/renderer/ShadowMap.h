@@ -80,7 +80,7 @@ public:
 	 *
 	 * @param bounds world space bounding box
 	 */
-	void AddShadowCasterBound(const CBoundingBoxAligned& bounds);
+	void AddShadowCasterBound(const int cascade, const CBoundingBoxAligned& bounds);
 
 	/**
 	 * Add the bounding box of an object that will receive a shadow.
@@ -98,7 +98,7 @@ public:
 	 * shadow. Those objects should be passed to AddShadowCasterBound and
 	 * then should be rendered into the shadow map.
 	 */
-	CFrustum GetShadowCasterCullFrustum();
+	CFrustum GetShadowCasterCullFrustum(const int cascade);
 
 	/**
 	 * BeginRender: Set OpenGL state for rendering into the shadow map texture.
@@ -113,6 +113,16 @@ public:
 	 * @todo this depends in non-obvious ways on the behaviour of the call-site
 	 */
 	void EndRender();
+
+	/**
+	 * Returns the current number of used cascades.
+	 */
+	int GetCascadeCount() const;
+
+	/**
+	 * Sets the renderer camera for the cascade.
+	 */
+	void PrepareCamera(const int cascade);
 
 	/**
 	 * Binds all needed resources and uniforms to draw shadows using the shader.

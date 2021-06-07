@@ -39,11 +39,6 @@ namespace {
 	static const int PUSHING_GRID_SIZE = 20;
 
 	/**
-	 * Pushing is ignored if the combined push force has lower magnitude than this.
-	 */
-	static const entity_pos_t MINIMAL_PUSHING = entity_pos_t::FromInt(3) / 10;
-
-	/**
 	 * For pushing, treat the clearances as a circle - they're defined as squares,
 	 * so we'll take the circumscribing square (approximately).
 	 * Clerances are also full-width instead of half, so we want to divide by two. sqrt(2)/2 is about 0.71 < 5/7.
@@ -51,14 +46,14 @@ namespace {
 	static const entity_pos_t PUSHING_CORRECTION = entity_pos_t::FromInt(5) / 7;
 
 	/**
-	 * When moving, units exert a pushing influence at a greater distance.
-	 */
-	static const entity_pos_t PUSHING_MOVING_INFLUENCE_EXTENSION = entity_pos_t::FromInt(1);
-
-	/**
 	 * Arbitrary constant used to reduce pushing to levels that won't break physics for our turn length.
 	 */
 	static const int PUSHING_REDUCTION_FACTOR = 2;
+
+	/**
+	 * Maximum distance multiplier.
+	 */
+	static const entity_pos_t MAX_DISTANCE_FACTOR = entity_pos_t::FromInt(2);
 }
 
 CCmpUnitMotionManager::MotionState::MotionState(CmpPtr<ICmpPosition> cmpPos, CCmpUnitMotion* cmpMotion)
@@ -73,7 +68,12 @@ void CCmpUnitMotionManager::Init(const CParamNode&)
 	// TODO: there seems to be no real reason why we could not register a 'system' entity somewhere instead.
 	CParamNode externalParamNode;
 	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml", "pathfinder");
-	const CParamNode radius = externalParamNode.GetChild("Pathfinder").GetChild("PushingRadius");
+	CParamNode pushingNode = externalParamNode.GetChild("Pathfinder").GetChild("Pushing");
+
+	// NB: all values are given sane default, but they are not treated as optional in the schema,
+	// so the XML file is the reference.
+
+	const CParamNode radius = pushingNode.GetChild("Radius");
 	if (radius.IsOk())
 	{
 		m_PushingRadius = radius.ToFixed();
@@ -86,7 +86,25 @@ void CCmpUnitMotionManager::Init(const CParamNode&)
 	}
 	else
 		m_PushingRadius = entity_pos_t::FromInt(8) / 5;
-	m_PushingRadius = m_PushingRadius.Multiply(PUSHING_CORRECTION);
+
+	const CParamNode minForce = pushingNode.GetChild("MinimalForce");
+	if (minForce.IsOk())
+		m_MinimalPushing = minForce.ToFixed();
+	else
+		m_MinimalPushing = entity_pos_t::FromInt(2) / 10;
+
+	const CParamNode movingExt = pushingNode.GetChild("MovingExtension");
+	const CParamNode staticExt = pushingNode.GetChild("StaticExtension");
+	if (movingExt.IsOk() && staticExt.IsOk())
+	{
+		m_MovingPushExtension = movingExt.ToFixed();
+		m_StaticPushExtension = staticExt.ToFixed();
+	}
+	else
+	{
+		m_MovingPushExtension = entity_pos_t::FromInt(5) / 2;
+		m_StaticPushExtension = entity_pos_t::FromInt(2);
+	}
 }
 
 void CCmpUnitMotionManager::Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController)
@@ -212,7 +230,7 @@ void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
 					it->second.push = CFixedVector2D();
 				}
 				// Only apply pushing if the effect is significant enough.
-				if (it->second.push.CompareLength(MINIMAL_PUSHING) > 0)
+				if (it->second.push.CompareLength(m_MinimalPushing) > 0)
 				{
 					// If there was an attempt at movement, and the pushed movement is in a sufficiently different direction
 					// (measured by an extremely arbitrary dot product)
@@ -255,16 +273,17 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 	// Exception: units in the same control group (i.e. the same formation) never push farther than themselves
 	// and are also allowed to push idle units (obstructions are ignored within formations,
 	// so pushing idle units makes one member crossing the formation look better).
-	if (a.second.controlGroup != INVALID_ENTITY && a.second.controlGroup == b.second.controlGroup)
+	bool sameControlGroup = a.second.controlGroup != INVALID_ENTITY && a.second.controlGroup == b.second.controlGroup;
+	if (sameControlGroup)
 		movingPush = 0;
 
 	if (movingPush == 1)
 		return;
 
-	entity_pos_t combinedClearance = (a.second.cmpUnitMotion->m_Clearance + b.second.cmpUnitMotion->m_Clearance).Multiply(m_PushingRadius);
+	entity_pos_t combinedClearance = (a.second.cmpUnitMotion->m_Clearance + b.second.cmpUnitMotion->m_Clearance).Multiply(PUSHING_CORRECTION);
 	entity_pos_t maxDist = combinedClearance;
-	if (movingPush)
-		maxDist += PUSHING_MOVING_INFLUENCE_EXTENSION;
+	if (!sameControlGroup)
+		maxDist = combinedClearance.Multiply(m_PushingRadius) + (movingPush ? m_MovingPushExtension : m_StaticPushExtension);
 
 	CFixedVector2D offset = a.second.pos - b.second.pos;
 	if (offset.CompareLength(maxDist) > 0)
@@ -301,11 +320,12 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 			offsetLength = fixed::Zero();
 		}
 
-
-
 	// The formula expects 'normal' pushing if the two entities edges are touching.
-	entity_pos_t distanceFactor = movingPush ? (maxDist - offsetLength) / (maxDist - combinedClearance) : combinedClearance - offsetLength + entity_pos_t::FromInt(1);
-	distanceFactor = Clamp(distanceFactor, entity_pos_t::Zero(), entity_pos_t::FromInt(2));
+	entity_pos_t distanceFactor = maxDist - combinedClearance;
+	if (distanceFactor <= entity_pos_t::Zero())
+		distanceFactor = MAX_DISTANCE_FACTOR;
+	else
+		distanceFactor = Clamp((maxDist - offsetLength) / distanceFactor, entity_pos_t::Zero(), MAX_DISTANCE_FACTOR);
 
 	// Mark both as needing an update so they actually get moved.
 	a.second.needUpdate = true;
@@ -314,6 +334,6 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 	CFixedVector2D pushingDir = offset.Multiply(distanceFactor);
 
 	// Divide by an arbitrary constant to avoid pushing too much.
-	a.second.push += pushingDir.Multiply(movingPush ? dt : dt / PUSHING_REDUCTION_FACTOR);
-	b.second.push -= pushingDir.Multiply(movingPush ? dt : dt / PUSHING_REDUCTION_FACTOR);
+	a.second.push += pushingDir.Multiply(dt / PUSHING_REDUCTION_FACTOR);
+	b.second.push -= pushingDir.Multiply(dt / PUSHING_REDUCTION_FACTOR);
 }

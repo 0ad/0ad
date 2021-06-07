@@ -1,14 +1,14 @@
 {
 	"Description": {
-		"Title": "Alpine",
-		"Description": "A region in the high snowy mountains. Biting winds sweep through the abundant conifer forests, making even the more resilient deer and mountain goats shiver."
+		"Title": "Subalpine",
+		"Description": "Between the high summits of the Alps, the valleys are filled with fog in the early morning. The ground is full of gravel and rocks, but silver fir and spruce trees grow between them and provide shelter for deer and mountain goats."
 	},
 	"Environment": {
 		"SkySet": "cloudless",
-		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 1.06284 },
+		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 0.96284 },
 		"SunElevation": 0.589049,
-		"SunRotation": -0.742871,
-		"AmbientColor": { "r": 0.219608, "g": 0.294118, "b": 0.403922 },
+		"SunRotation": -1.442871,
+		"AmbientColor": { "r": 0.369608, "g": 0.354118, "b": 0.503922 },
 		"Water": {
 			"WaterBody": {
 				"Type": "clap",
@@ -38,7 +38,6 @@
 		"forestFloor1": "alpine_forestfloor_01",
 		"forestFloor2": "alpine_forestfloor_01",
 		"cliff": [
-			"alpine_rock_01",
 			"alpine_rock_02"
 		],
 		"tier1Terrain": [
@@ -56,14 +55,13 @@
             "alpine_rock_02"
 		],
 		"dirt": [
-			"alpine_snow_01",
-			"alpine_snow_02"
+			"alpine_forestfloor_01"
 		],
 		"road": "alpine_paving_stones_02",
 		"roadWild": "alpine_paving_stones_02",
-		"shoreBlend": "alpine_rocks_dirt_01",
-		"shore": "alpine_rocks_dirt_01",
-		"water": "alpine_rocks_dirt_01"
+		"shoreBlend": "aegean_grass_dirt_03",
+		"shore": "aegean_grass_dirt_03",
+		"water": "steppe_rocks_dirt_01"
 	},
 	"Gaia": {
         "tree1": "gaia/tree/pine",

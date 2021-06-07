@@ -20,10 +20,6 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * various Windows-specific utilities
- */
-
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wutil.h"
 
@@ -40,6 +36,7 @@
 #include <shlobj.h>	// SHGetFolderPath
 
 #include <SDL_loadso.h>
+#include <SDL_syswm.h>
 
 
 WINIT_REGISTER_EARLY_INIT(wutil_Init);
@@ -409,31 +406,21 @@ HMODULE wutil_LibModuleHandle()
 
 static HWND hAppWindow;
 
-static BOOL CALLBACK FindAppWindowByPid(HWND hWnd, LPARAM UNUSED(lParam))
+void wutil_SetAppWindow(SDL_Window* window)
 {
-	DWORD pid;
-	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
-	UNUSED2(tid);
+	SDL_SysWMinfo wmInfo;
+	SDL_VERSION(&wmInfo.version);
+	if (SDL_GetWindowWMInfo(window, &wmInfo) && wmInfo.subsystem == SDL_SYSWM_WINDOWS)
+		hAppWindow = wmInfo.info.win.window;
+}
 
-	if(pid == GetCurrentProcessId())
-	{
-		char windowName[100];
-		GetWindowTextA(hWnd, windowName, 99);
-		if (strcmp(windowName, main_window_name) == 0)
-			hAppWindow = hWnd;
-	}
-
-	return TRUE;	// keep calling
+void wutil_SetAppWindow(void* hwnd)
+{
+	hAppWindow = reinterpret_cast<HWND>(hwnd);
 }
 
 HWND wutil_AppWindow()
 {
-	if(!hAppWindow)
-	{
-		WARN_IF_FALSE(EnumWindows(FindAppWindowByPid, 0));
-		// (hAppWindow may still be 0 if we haven't created a window yet)
-	}
-
 	return hAppWindow;
 }
 

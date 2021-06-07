@@ -4,8 +4,21 @@
     <element name="MaxSameTurnMoves">
       <data type="nonNegativeInteger"/>
     </element>
-    <element name="PushingRadius">
-      <data type="decimal"/>
+    <element name="Pushing">
+      <interleave>
+        <element name="Radius">
+          <data type="decimal"/>
+        </element>
+        <element name="StaticExtension">
+          <data type="decimal"/>
+        </element>
+        <element name="MovingExtension">
+          <data type="decimal"/>
+        </element>
+        <element name="MinimalForce">
+          <data type="decimal"/>
+        </element>
+      </interleave>
     </element>
     <element name="PassabilityClasses">
       <oneOrMore>

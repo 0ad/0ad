@@ -9,6 +9,12 @@
 		<action on="Press">performCommand(g_Selection.toList().map(ent => GetEntityState(ent)), "focus-rally");</action>
 	</object>
 
+	<object hotkey="camera.lastattackfocus">
+		<action on="Press">
+			focusAttack(g_LastAttack);
+		</action>
+	</object>
+
 	<!-- Camera jumping - press a hotkey to mark a position and another hotkey to jump back there -->
 	<object hotkey="camera.jump.1">
 		<action on="Press">jumpCamera(1);</action>

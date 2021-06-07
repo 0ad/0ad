@@ -1,18 +1,18 @@
 {
 	"Description": {
 		"Title": "Eurasian Steppe",
-		"Description": "Wide grasslands without trees"
+		"Description": "Wide grasslands stretching to the horizon, without any trees blocking the view. The Steppe is home to large herds of wild horses, which graze peacefully on the empty land, but flee quickly if you try to catch them."
 	},
 	"Environment": {
 		"SkySet": "sunrise",
-		"SunColor": { "r": 0.81866, "g": 0.80095, "b": 0.68284 },
+		"SunColor": { "r": 0.85866, "g": 0.85095, "b": 0.73284 },
 		"SunElevation": 0.421456,
 		"SunRotation": -0.226047,
-		"AmbientColor": { "r": 0.544118, "g": 0.502157, "b": 0.654118 },
+		"AmbientColor": { "r": 0.504118, "g": 0.462157, "b": 0.604118 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.419608, "g": 0.364706, "b": 0.313726 },
-				"Tint": { "r": 0.501961, "g": 0.501961, "b": 0.247059 },
+				"Color": { "r": 0.419608, "g": 0.364706, "b": 0.343726 },
+				"Tint": { "r": 0.501961, "g": 0.501961, "b": 0.307059 },
 				"Murkiness": 0.97,
 				"Waviness": 4.01367
 			}
@@ -30,13 +30,13 @@
 	},
 	"Terrains": {
 		"mainTerrain": [
-			"steppe_grass_04"
+			"steppe_grass_03"
 		],
 		"forestFloor1": "steppe_grass_dirt_01",
-		"forestFloor2": "sahara_forestfloor_02",
+		"forestFloor2": "aegean_grass_dirt_03",
 		"cliff": [
-			"steppe_grass_02",
-			"steppe_grass_rocks_01"
+			"aegean_cliff_seaside_01",
+			"steppe_rocks_dirt_01"
 		],
 		"tier1Terrain": [
 			"steppe_grass_02"
@@ -47,20 +47,20 @@
 		"tier3Terrain": [
 			"steppe_grass_dirt_03"
 		],
-		"tier4Terrain": "steppe_grass_03",
+		"tier4Terrain": "steppe_grass_dirt_01",
 		"hill": [
-			"steppe_grass_rocks_01",
-			"steppe_grass_rocks_01"
+			"steppe_rocks_dirt_01",
+			"steppe_rocks_dirt_01"
 		],
 		"dirt": [
-			"steppe_grass_rocks_01",
-			"steppe_grass_mud_01"
+			"steppe_grass_dirt_01",
+			"india_grass_dirt_02"
 		],
 		"road": "sahara_paving_stones_01",
 		"roadWild": "sahara_paving_stones_01",
-		"shoreBlend": "steppe_grass_02",
-		"shore": "steppe_grass_rocks_01",
-		"water": "steppe_rocks_dirt_01"
+		"shoreBlend": "steppe_grass_03",
+		"shore": "india_grass_dirt_02",
+		"water": "steppe_grass_mud_01"
 	},
 	"Gaia": {
 		"tree1": "gaia/tree/bush_steppe_01",
@@ -79,14 +79,14 @@
 		"metalSmall": "gaia/ore/desert_small"
 	},
 	"Decoratives": {
-		"grass": "actor|props/flora/grass_steppe_field_tall.xml",
-		"grassShort": "actor|props/flora/grass_steppe_field_tall.xml",
-		"reeds": "actor|props/flora/grass_steppe_field_tall.xml",
-		"lillies": "actor|props/flora/grass_steppe_field_tall.xml",
-		"rockLarge": "actor|props/flora/grass_steppe_field_tall.xml",
-		"rockMedium": "actor|props/flora/grass_steppe_field_tall.xml",
-		"bushMedium": "actor|props/flora/grass_steppe_field_tall.xml",
-		"bushSmall": "actor|props/flora/grass_steppe_field_tall.xml",
+		"grass": "actor|props/flora/grass_temp_field_brown.xml",
+		"grassShort": "actor|props/flora/grass_temp_field_brown.xml",
+		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|props/flora/grass_temp_field_brown.xml",
+		"bushMedium": "actor|geology/stone_granite_med.xml",
+		"bushSmall": "actor|props/flora/grass_temp_field_brown.xml",
 		"tree": "actor|flora/trees/temperate_bush_biome.xml"
 	},
 	"ResourceCounts": {

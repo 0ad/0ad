@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="model">
+      <mesh>props/shield/pelte_wood_round_shoulder_left.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="leather">
+      <textures>
+        <texture file="props/shield/pelte_round_wood.png" name="baseTex"/>
+        <texture file="props/shield/pelte_round_wood_norm.png" name="normTex"/>
+        <texture file="props/shield/pelte_round_wood_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+   <material>no_trans_norm_spec.xml</material>
+</actor>

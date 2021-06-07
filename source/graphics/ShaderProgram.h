@@ -90,16 +90,10 @@ public:
 		int streamflags);
 
 	/**
-	 * Construct an instance of a pre-defined fixed-function pipeline setup.
-	 */
-	static CShaderProgram* ConstructFFP(const std::string& id, const CShaderDefines& defines);
-
-	/**
 	 * Represents a uniform attribute or texture binding.
 	 * For uniforms:
 	 *  - ARB shaders store vertex location in 'first', fragment location in 'second'.
 	 *  - GLSL shaders store uniform location in 'first', data type in 'second'.
-	 *  - FFP shaders store -1 in 'first', index in 'second'.
 	 * For textures, all store texture target (e.g. GL_TEXTURE_2D) in 'first', texture unit in 'second'.
 	 * Non-existent bindings must store -1 in both.
 	 */

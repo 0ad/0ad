@@ -64,7 +64,7 @@
   <Identity>
     <GenericName>Fortress</GenericName>
     <SelectionGroupName>template_structure_military_fortress</SelectionGroupName>
-    <Tooltip>Territory root. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Garrison Soldiers for additional arrows.</Tooltip>
     <Classes datatype="tokens">GarrisonFortress</Classes>
     <VisibleClasses datatype="tokens">Defensive Fortress</VisibleClasses>
     <Icon>structures/fortress.png</Icon>
@@ -95,9 +95,7 @@
     <DecayRate op="mul">2</DecayRate>
   </TerritoryDecay>
   <TerritoryInfluence>
-    <Root>true</Root>
     <Radius>80</Radius>
-    <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>90</Range>

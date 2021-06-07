@@ -56,9 +56,16 @@ public:
 
 	/**
 	 * Join a formation, and move towards a given offset relative to the formation controller entity.
-	 * Continues following the formation until given a different command.
+	 * The unit will remain 'in formation' fromthe perspective of UnitMotion
+	 * until SetMemberOfFormation(INVALID_ENTITY) is passed.
 	 */
-	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z) = 0;
+	virtual void MoveToFormationOffset(entity_id_t controller, entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
+	 * Set/unset the unit as a formation member.
+	 * @param controller - if INVALID_ENTITY, the unit is no longer a formation member. Otherwise it is and this is the controller.
+	 */
+	virtual void SetMemberOfFormation(entity_id_t controller) = 0;
 
 	/**
 	 * Check if the target is reachable.

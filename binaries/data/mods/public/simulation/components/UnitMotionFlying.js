@@ -296,6 +296,11 @@ UnitMotionFlying.prototype.MoveToTargetRange = function(target, minRange, maxRan
 	return true;
 };
 
+UnitMotionFlying.prototype.SetMemberOfFormation = function()
+{
+	// Ignored.
+};
+
 UnitMotionFlying.prototype.GetWalkSpeed = function()
 {
 	return +this.template.MaxSpeed;

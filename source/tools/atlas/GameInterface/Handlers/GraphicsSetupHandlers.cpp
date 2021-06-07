@@ -41,13 +41,19 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
 
-static InputProcessor g_Input;
+#if OS_WIN
+// We don't include wutil header directly to prevent including Windows headers.
+extern void wutil_SetAppWindow(void* hwnd);
+#endif
+
+namespace AtlasMessage
+{
+
+InputProcessor g_Input;
 
 // This keeps track of the last in-game user input.
 // It is used to throttle FPS to save CPU & GPU.
-static double last_user_activity;
-
-namespace AtlasMessage {
+double last_user_activity;
 
 // see comment in GameLoop.cpp about ah_display_error before using INIT_HAVE_DISPLAY_ERROR
 const int g_InitFlags = INIT_HAVE_VMODE|INIT_NO_GUI;
@@ -71,6 +77,15 @@ MESSAGEHANDLER(Init)
 	// (This must be done after Init loads the config DB,
 	// but before the UI constructs its GL canvases.)
 	g_VideoMode.InitNonSDL();
+}
+
+MESSAGEHANDLER(InitAppWindow)
+{
+#if OS_WIN
+	wutil_SetAppWindow(msg->handle);
+#else
+	UNUSED2(msg);
+#endif
 }
 
 MESSAGEHANDLER(InitSDL)
@@ -254,4 +269,4 @@ MESSAGEHANDLER(RenderStyle)
 	g_Renderer.SetOverlayRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
 }
 
-}
+} // namespace AtlasMessage

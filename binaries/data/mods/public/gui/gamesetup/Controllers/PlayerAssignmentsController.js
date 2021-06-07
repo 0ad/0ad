@@ -25,6 +25,10 @@ class PlayerAssignmentsController
 			};
 		}
 
+		// Keep a list of last assigned slot for each player, so we can try to re-assign them
+		// if they disconnect/rejoin.
+		this.lastAssigned = {};
+
 		g_GameSettings.playerCount.watch(() => this.unassignInvalidPlayers(), ["nbPlayers"]);
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
@@ -97,24 +101,41 @@ class PlayerAssignmentsController
 		// Assign the client (or only buddies if prefered) to a free slot
 		if (newGUID != Engine.GetPlayerGUID())
 		{
-			let assignOption = Engine.ConfigDB_GetValue("user", this.ConfigAssignPlayers);
+			const assignOption = Engine.ConfigDB_GetValue("user", this.ConfigAssignPlayers);
 			if (assignOption == "disabled" ||
 				assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(newAssignments[newGUID].name).nick) == -1)
 				return;
 		}
 
 		// Find a player slot that no other player is assigned to.
-		let firstFreeSlot = [...Array(g_MaxPlayers).keys()];
-		firstFreeSlot = firstFreeSlot.find(i => {
-			for (let guid in newAssignments)
-				if (newAssignments[guid].player == i + 1)
-					return false;
-			return true;
-		});
-		if (firstFreeSlot === -1)
+		const possibleSlots = [...Array(g_GameSettings.playerCount.nbPlayers).keys()].map(i => i + 1);
+
+		let slot;
+		const newName = newAssignments[newGUID].name;
+		// First check if we know them and try to give them their old assignment back.
+		if (this.lastAssigned[newName] > 0 && this.lastAssigned[newName] <= g_GameSettings.playerCount.nbPlayers)
+		{
+			let free = true;
+			for (const guid in newAssignments)
+				if (newAssignments[guid].player === this.lastAssigned[newName])
+				{
+					free = false;
+					break;
+				}
+			if (free)
+				slot = this.lastAssigned[newName];
+		}
+		if (!slot)
+			slot = possibleSlots.find(i => {
+				for (const guid in newAssignments)
+					if (newAssignments[guid].player == i)
+						return false;
+				return true;
+			});
+		if (slot === undefined)
 			return;
 
-		this.assignClient(newGUID, firstFreeSlot + 1);
+		this.assignClient(newGUID, slot);
 	}
 
 	/**
@@ -123,7 +144,9 @@ class PlayerAssignmentsController
 	updatePlayerAssignments()
 	{
 		Engine.ProfileStart("updatePlayerAssignments");
-		for (let handler of this.playerAssignmentsChangeHandlers)
+		for (const guid in g_PlayerAssignments)
+			this.lastAssigned[g_PlayerAssignments[guid].name] = g_PlayerAssignments[guid].player;
+		for (const handler of this.playerAssignmentsChangeHandlers)
 			handler();
 		Engine.ProfileStop();
 	}
