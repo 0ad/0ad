@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-31 07:12+0000\n"
-"PO-Revision-Date: 2021-05-28 17:53+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 12:57+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "%(url)s wird geöffnet\nim Standardbrowser. Bitte warten ..."
+msgstr "%(url)s wird geöffnet\nim Standardbrowser. Bitte warten..."
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
@@ -76,23 +76,23 @@ msgctxt "enumeration"
 msgid ", "
 msgstr ", "
 
-#: gui/common/mod.js:17
+#: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
 msgstr "%(mod)s (%(version)s)"
 
-#: gui/common/mod.js:20
+#: gui/common/mod.js:31
 msgid ", "
 msgstr ", "
 
-#: gui/common/mod.js:28
+#: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
 msgstr "Erfordert: %(mods)s"
 
-#: gui/common/mod.js:30
+#: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
@@ -100,27 +100,33 @@ msgstr "Aktiv: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
-"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
-" mods!"
-msgstr "[font=\"sans-bold-20\"] Du hast versucht, das Spiel mit inkompatiblen oder fehlenden Mods zu starten!"
+"[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
+"missing mods![/font]"
+msgstr "[font=\"sans-bold-20\"]Du hast versucht, das Spiel mit inkompatiblen oder fehlenden Mods zu starten![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
 msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
-msgid "Solve the compatibility and start game again."
-msgstr "Kompatibilität auflösen und das Spiel neustarten."
-
-#: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
-"You might want to save configuration before starting, when you see this page"
-" again."
-msgstr "Du möchtest vielleicht die Einstellungen speichern vor du startest, wenn du diese Seite wieder siehst."
+"Solve the compatibility issue by disabling invalid mods or enabling required"
+" dependencies. You can then save & start the game."
+msgstr "Löse das Kompatibilitätsproblem, indem du ungültige Mods deaktivierst oder erforderliche Abhängigkeiten aktivierst. Dann kannst du speichern und das Spiel starten."
+
+#: gui/incompatible_mods/incompatible_mods.txt:5
+msgid ""
+"Incompatible mods will appear in red in the list of enabled mods (bottom "
+"panel). Dependencies can be added by enabling them in the upper panel."
+msgstr "Inkompatible Mods erscheinn in rot in der Liste der aktiven Mods (im unteren Teil). Abhängigkeiten können hinzugefügt werden, indem man sie im oberen Teil aktiviert."
+
+#: gui/incompatible_mods/incompatible_mods.txt:6
+msgid "[/font]"
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
-msgid "Welcome!"
-msgstr "Willkommen!"
+msgid "Incompatible mods"
+msgstr "Inkompatible Mods"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -366,7 +372,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Um eine Mod zu installieren, öffne einfach die Datei mit 0 A.D. (entweder mit Doppelklick auf die Datei und dann auswählen, sie mit dem Spiel zu öffnen; oder „pyrogenesis file.pyromod” im Terminal eingeben). Die Mod wird dann in der Modauswahl verfügbar sein. Du kannst sie nach Belieben aktivieren und deaktivieren. Du kannst die Mod manuell mit deinem Dateiverwaltungsprogramm löschen, wenn das nötig ist (siehe https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Um eine Mod zu installieren, öffne einfach die Datei mit 0 A.D. (entweder mit Doppelklick auf die Datei und dann auswählen, sie mit dem Spiel zu öffnen; oder „pyrogenesis file.pyromod“ im Terminal eingeben). Die Mod wird dann in der Modauswahl verfügbar sein. Du kannst sie nach Belieben aktivieren und deaktivieren. Du kannst die Mod manuell mit deinem Dateiverwaltungsprogramm löschen, wenn das nötig ist (siehe https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
@@ -403,7 +409,7 @@ msgstr "mod.io besuchen"
 msgid "This mod does not exist"
 msgstr "Diese Mod existiert nicht"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Aktivieren"
@@ -412,16 +418,16 @@ msgstr "Aktivieren"
 msgid "Dependencies not met"
 msgstr "Abhängigkeiten nicht erfüllt"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Deaktiviert"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
 msgstr "Kein Mod ausgewählt."
 
-#: gui/modmod/modmod.js:460
+#: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
 msgstr "Aktiviere die 0ad Mod"
 

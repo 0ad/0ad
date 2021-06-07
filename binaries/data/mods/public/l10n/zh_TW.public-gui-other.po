@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 08:56+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-07 04:53+0000\n"
 "Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -2662,7 +2662,7 @@ msgstr "在對話視窗裡顯示多人玩家大廳"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr "切換 MP 大廳"
+msgstr "切換多人遊戲大廳"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
@@ -3627,18 +3627,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "這版本的遊戲所新增的地圖。"
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr "多人遊戲最佳"
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr "建議多人遊戲的地圖。"
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "觸發器地圖"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "帶有指令稿事件的地圖，可能自動產生敵方單位。"
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "所有地圖"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "選定地圖類型的每張地圖。"
 
@@ -3914,12 +3922,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "使用螢幕後處理過濾器（HDR、Bloom、DOF 等等）。"
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "陰影"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "開啟陰影"
 
@@ -3984,54 +3992,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "使用 OpenGL 2.0 著色器（推薦）"
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "陰影品質"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "非常低"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "非常高"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "陰影解析度。太高的值可能會在使用較低記憶體顯示卡的時候讓您的遊戲當機！"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "陰影過濾"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "柔和陰影"
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "水面特效"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "當關閉時，儘可能使用最低階的設定來繪製水面。這將會忽略其他設定。"
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "高品質水面特效"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "使用較高品質的水面效果，算繪靠近岸邊的波浪、海岸波浪、以及船跡。"
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "水面反射"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "使水面反射鏡像"
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "水面反射"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "使用不透明的真實水面折射。"
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "真實水深"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "使用真實水深進行算圖"
 
@@ -4134,8 +4160,8 @@ msgstr "選擇銳利化的方式。"
 msgid "Model quality"
 msgstr "模型品質"
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "低"
 
@@ -4143,8 +4169,8 @@ msgstr "低"
 msgid "Simpler models for better performance."
 msgstr "簡單的模型帶來更好的效能。"
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "中"
@@ -4153,8 +4179,8 @@ msgstr "中"
 msgid "Average quality and average performance."
 msgstr "平均品質的模型和平均的效能。"
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "高"
 
@@ -4167,30 +4193,46 @@ msgid "Model quality setting."
 msgstr "模型品質設定。"
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr "隨機化模型外觀"
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "無"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr "實體會看起來都一樣。"
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr "限制的"
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr "實體會減少多樣性。"
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "一般"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "實體外觀會常態隨機化。"
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr "隨機化實體的外觀。停用來獲得小幅的性能提升。"
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "銳利化特效"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "陰影效果的數量。需要重新啟動遊戲"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "陰影品質"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "非常低"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "非常高"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "陰影解析度。太高的值可能會在使用較低記憶體顯示卡的時候讓您的遊戲當機！"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
@@ -4951,7 +4993,7 @@ msgstr "劇情編輯器"
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "在新視窗中開啟地圖編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的執行編輯器。"
+msgstr "在新視窗中開啟地圖劇情編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的方式執行編輯器。"
 
 #: gui/pregame/MainMenuItems.js:249
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"

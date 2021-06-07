@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-21 12:33+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 09:31+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,7 +117,7 @@ msgstr "Κανένα"
 msgid "AI Player"
 msgstr "Παίκτης AI"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
@@ -216,11 +216,11 @@ msgstr "Πολιτισμός"
 msgid "Team"
 msgstr "Ομάδα"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
 msgstr "Περιήγηση σε Χάρτες"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Πατήστε %(hotkey)s για να δείτε τη λίστα με διαθέσιμους χάρτες."
@@ -392,28 +392,32 @@ msgstr "Τοπίο"
 msgid "Select one of the landscapes of this map."
 msgstr "Έπιλέξτε ένα απο τα τοπία απο αυτό το χάρτη."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:81
 msgid "Map Filter"
 msgstr "Φίλτρο Χάρτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:66
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:84
 msgid "Select a map filter."
 msgstr "Επιλογή φίλτρου χάρτη."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:104
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
+msgid "Map"
+msgstr "Χάρτης"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:139
 msgid "Select Map"
 msgstr "Επιλογή Χάρτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:107
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
 msgid "Select a map to play on."
 msgstr "Επιλογή χάρτη για παιχνίδι."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:113
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:116
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:151
 msgid "Pick any of the given maps at random."
 msgstr "Επιλέξτε τυχαία οποιονδήποτε από τους χάρτες."
 
@@ -425,11 +429,11 @@ msgstr "Μέγεθος Χάρτη"
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Επιλογή μεγέθους χάρτη. (τα μεγαλύτερα μεγέθη ίσως επηρεάσουν αρνητικά τις επιδόσεις)."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:51
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
 msgstr "Τύπος Χάρτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:68
 msgid "Select a map type."
 msgstr "Επιλογή τύπου χάρτη."
 

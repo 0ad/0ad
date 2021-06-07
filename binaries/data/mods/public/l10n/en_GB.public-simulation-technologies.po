@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 08:22+0000\n"
-"Last-Translator: Tanksy <jake_anderson_007@hotmail.com>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-06 11:03+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,17 +93,16 @@ msgstr "Champion Infantry Spearmen +25% health, but +5% training time."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr ""
+msgstr "Encouraging soldiers to practice archery improves their accuracy."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
-msgstr ""
+msgstr "Archery Training"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -126,13 +125,12 @@ msgstr ""
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Unlocked in Town Phase."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr ""
+msgstr "Archers −20% ranged attack spread."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -428,8 +426,8 @@ msgid "Colonization"
 msgstr "Colonisation"
 
 #: simulation/data/technologies/colonization.jsontooltip
-msgid "Civic Structures −25% build time."
-msgstr "Civic Structures −25% build time."
+msgid "Civic Structures −25% build time and resources cost"
+msgstr "Civic Structures −25% build time and resources cost"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -818,15 +816,15 @@ msgstr "Civic Centers +100% health and capture points, double default arrows."
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr ""
+msgstr "Hoplite soldiers constituted most of the armies of Greece."
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
-msgstr ""
+msgstr "Hoplite Tradition"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr ""
+msgstr "Hoplites −25% training time and −50% promotion experience."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -907,7 +905,7 @@ msgstr "Champion Cavalry Spearmen +20% health, but +10% training time."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
-msgstr ""
+msgstr "Increases Lookout vision."
 
 #: simulation/data/technologies/outpost_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -915,7 +913,7 @@ msgstr "Carrier Pigeons"
 
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
-msgstr ""
+msgstr "Lookouts +33% vision range."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1639,8 +1637,8 @@ msgid "Expertise In War"
 msgstr "Expertise In War"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid "Mercenaries are promoted to Advanced rank."
-msgstr "Mercenaries are promoted to Advanced rank."
+msgid "Mercenaries start at Advanced rank."
+msgstr "Mercenaries start at Advanced rank."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

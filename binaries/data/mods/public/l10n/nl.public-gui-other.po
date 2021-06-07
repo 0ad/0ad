@@ -40,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-29 14:45+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 21:08+0000\n"
+"Last-Translator: Jeroen Bourgois <jeroenbourgois@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3659,18 +3659,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "Nieuw toegevoegde kaarten in deze release van het spel."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr ""
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr ""
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "Trigger kaarten"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Kaarten met voorgeprogrammeerde gebeurtenissen waarbij mogelijk vijanden tevoorschijn komen."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "Alle kaarten"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "Alle kaarten van het gekozen type."
 
@@ -3946,12 +3954,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Gebruik postprocesfilters op het scherm (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "Schaduwen"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "Activeer schaduwen."
 
@@ -4016,54 +4024,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Gebruik OpenGL 2.0 shaders (aangeraden)"
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "Schaduwkwaliteit"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "Erg laag"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "Erg hoog"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "Schaduwfiltering"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Zachte schaduwen."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "Watereffecten"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Zet dit UIT om de laagst waterkwaliteit weer te geven. Dit negeert alle andere waterinstellingen."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "Hoge kwaliteit watereffecten"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolfen, schuimkoppen en hekgolven."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "Waterreflectie"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Laat water toe om een spiegelbeeld te reflecteren."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "Waterrefractie"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Gebruik een realistische refractieafbeelding, en geen transparantie voor water."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "Werkelijke waterdiepte"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Gebruik de echte diepte van het water bij de weergaveberekeningen."
 
@@ -4166,8 +4192,8 @@ msgstr "De scherpte van de gekozen bewerking."
 msgid "Model quality"
 msgstr "Modelleerkwaliteit"
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Laag"
 
@@ -4175,8 +4201,8 @@ msgstr "Laag"
 msgid "Simpler models for better performance."
 msgstr "Eenvoudiger modellering voor betere prestaties."
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Normaal"
@@ -4185,8 +4211,8 @@ msgstr "Normaal"
 msgid "Average quality and average performance."
 msgstr "Gemiddelde kwaliteit en gemiddelde prestaties."
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Hoog"
 
@@ -4199,30 +4225,46 @@ msgid "Model quality setting."
 msgstr "Modelleerkwaliteit instellen."
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "Geen"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr "Entiteiten zullen er gelijkaardig uitzien."
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr "Gelimiteerd"
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr "Entiteiten zullen minder divers zijn."
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "Normaal"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "Uiterlijk van de entiteiten is gelijkaardig verdeeld."
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr ""
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "Shader effecten"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Aantal shader effecten. HET SPEL MOET HERSTART WORDEN"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "Schaduwkwaliteit"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "Erg laag"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "Erg hoog"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."

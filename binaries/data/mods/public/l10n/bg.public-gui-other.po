@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 08:31+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3635,18 +3635,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "Карти, които са нови в това издание на играта."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr ""
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr ""
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "Карти със събития"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Карти, които имат програмирани събития и е възможно да създават вражески единици."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "Всички карти"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "Всички карти от избрания вид"
 
@@ -3922,12 +3930,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr ""
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "Сенки"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "Включване на сенките."
 
@@ -3992,54 +4000,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Използване на шейдъри за OpenGL 2.0 (препоръчително)."
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "Много ниско"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "Много високо"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Резолюция на картите за сенките. Високите стойности могат да причинят срив на играта, ако използвате видео карта с малко памет!"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Гладки сенки."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr ""
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Когато е изключено, ще се използват най-ниските възможни настройки за изчертаване на водата. Ако това бъде включено, другите настройки за водата ще бъдат пренебрегнати."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr ""
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Използване на по-качествени ефекти за водата, вълните, морската пяна и следите на корабите."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr ""
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Позволяване на водата да отразява огледално изображение."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr ""
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Използване на истинска карта на пречупване на светлината във водата, а не само прозрачност."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr ""
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
 
@@ -4142,8 +4168,8 @@ msgstr ""
 msgid "Model quality"
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Ниско"
 
@@ -4151,8 +4177,8 @@ msgstr "Ниско"
 msgid "Simpler models for better performance."
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Средно"
@@ -4161,8 +4187,8 @@ msgstr "Средно"
 msgid "Average quality and average performance."
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Високо"
 
@@ -4175,30 +4201,46 @@ msgid "Model quality setting."
 msgstr ""
 
 #: gui/options/options.json[2].options[7].label
-msgid "Shader effects"
+msgid "Model appearance randomization"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "Без"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "Нормална"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
 msgstr ""
 
 #: gui/options/options.json[2].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Брой шейдърни ефекти. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
 msgstr ""
 
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "Много ниско"
+#: gui/options/options.json[2].options[8].label
+msgid "Shader effects"
+msgstr ""
 
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "Много високо"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Резолюция на картите за сенките. Високите стойности могат да причинят срив на играта, ако използвате видео карта с малко памет!"
+#: gui/options/options.json[2].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Брой шейдърни ефекти. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."

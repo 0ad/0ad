@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-31 07:12+0000\n"
-"PO-Revision-Date: 2021-05-28 10:15+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 10:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Urdu (http://www.transifex.com/wildfire-games/0ad/language/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -69,23 +69,23 @@ msgctxt "enumeration"
 msgid ", "
 msgstr ""
 
-#: gui/common/mod.js:17
+#: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
 msgstr ""
 
-#: gui/common/mod.js:20
+#: gui/common/mod.js:31
 msgid ", "
 msgstr ""
 
-#: gui/common/mod.js:28
+#: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
 msgstr ""
 
-#: gui/common/mod.js:30
+#: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
@@ -93,8 +93,8 @@ msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
-"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
-" mods!"
+"[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
+"missing mods![/font]"
 msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
@@ -102,17 +102,23 @@ msgid "[font=\"sans-16\"]"
 msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
-msgid "Solve the compatibility and start game again."
+msgid ""
+"Solve the compatibility issue by disabling invalid mods or enabling required"
+" dependencies. You can then save & start the game."
 msgstr ""
 
-#: gui/incompatible_mods/incompatible_mods.txt:4
+#: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
-"You might want to save configuration before starting, when you see this page"
-" again."
+"Incompatible mods will appear in red in the list of enabled mods (bottom "
+"panel). Dependencies can be added by enabling them in the upper panel."
+msgstr ""
+
+#: gui/incompatible_mods/incompatible_mods.txt:6
+msgid "[/font]"
 msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
-msgid "Welcome!"
+msgid "Incompatible mods"
 msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
@@ -396,7 +402,7 @@ msgstr ""
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
 msgstr ""
@@ -405,16 +411,16 @@ msgstr ""
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
 msgstr ""
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
 msgstr ""
 
-#: gui/modmod/modmod.js:460
+#: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
 msgstr ""
 

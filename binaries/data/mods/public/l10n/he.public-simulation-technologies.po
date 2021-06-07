@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 08:20+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 08:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,6 @@ msgstr ""
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -113,7 +112,6 @@ msgstr ""
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr ""
 
@@ -415,7 +413,7 @@ msgid "Colonization"
 msgstr "קולוניזציה"
 
 #: simulation/data/technologies/colonization.jsontooltip
-msgid "Civic Structures −25% build time."
+msgid "Civic Structures −25% build time and resources cost"
 msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
@@ -1626,7 +1624,7 @@ msgid "Expertise In War"
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid "Mercenaries are promoted to Advanced rank."
+msgid "Mercenaries start at Advanced rank."
 msgstr ""
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription

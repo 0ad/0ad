@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-31 05:51+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 10:47+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -3641,18 +3641,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "Χάρτες που είναι ολοκαίνουργιοι σε αυτή την έκδοση του παιχνιδιού."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr "Καλύτερο για MP"
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr ""
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "Χάρτες Με Εναύσματα"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Χάρτες που έρχονται με σκηνικά γεγονότων και ενδεχομένως δημιουργούν μονάδες εχθρών."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "Όλοι οι χάρτες"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "Κάθε χάρτης του επιλεγμένου τύπου χάρτη."
 
@@ -3928,12 +3936,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Χρήση προεπεξεργασμένων screen-space φίλτρων (HDR, Bloom, DOF, κλπ)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "Σκιές"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "Ενεργοποίηση Σκιών."
 
@@ -3998,54 +4006,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Χρήση του OpenGL 2.0 για τους ανταυγαστήρες (προτείνετε)."
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "Ποιότητα σκιάς"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "Πολύ Χαμηλό"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "Πολύ Υψηλό"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Ανάλυση στις σκιές του χάρτη. Υψηλές τιμές μπορεί να καταρρεύσουν το παιχνίδι αν η κάρτα γραφικών έχει μικρή μνήμη!"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "Φίλτρα Σκιάς"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Εξομάλυνση σκιών."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "Εφέ νερού"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Όταν είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ, χρησιμοποιεί τις χαμηλότερες δυνατές ρυθμίσεις για την απεικόνιση του νερού. Αυτό απενεργοποιεί τις άλλες ρυθμίσεις."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "Υψηλής ποιότητας εφέ νερού"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Χρησιμοποίηση της μέγιστη ποιότητα των εφέ του νερού, εμφανίζει τα κύματα, το άφρισμα των ακτών και τα ίχνη των πλοίων."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "Αντανακλάσεις νερού"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Επιτρέψτε το νερό να αντανακλά ένα είδωλο."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "Διάθλαση νερού"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Χρησιμοποιήστε έναν πραγματικής διάθλασης νερού χάρτη και όχι διαφάνεια."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "Βάθος Αληθινού νερού"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης."
 
@@ -4148,8 +4174,8 @@ msgstr "Το ακόνισμα γραφικών της επιλεγμένης μ�
 msgid "Model quality"
 msgstr "Ποιότητα μοντέλου"
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Χαμηλό"
 
@@ -4157,8 +4183,8 @@ msgstr "Χαμηλό"
 msgid "Simpler models for better performance."
 msgstr "Απλοϊκά μοντέλα για καλύτερη αποδοση."
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Μεσαίο"
@@ -4167,8 +4193,8 @@ msgstr "Μεσαίο"
 msgid "Average quality and average performance."
 msgstr "Μέτρια ποιότητα και μέτρια επίδοση."
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Υψηλό"
 
@@ -4181,30 +4207,46 @@ msgid "Model quality setting."
 msgstr "Ρυθμίσεις ποιότητας μοντέλου."
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "Καμία"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr "Περιορισμένο"
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "Κανονικός"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr ""
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "Εφέ σκίασης"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Αριθμός επίδρασης ανταυγαστήρων. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "Ποιότητα σκιάς"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "Πολύ Χαμηλό"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "Πολύ Υψηλό"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Ανάλυση στις σκιές του χάρτη. Υψηλές τιμές μπορεί να καταρρεύσουν το παιχνίδι αν η κάρτα γραφικών έχει μικρή μνήμη!"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."

@@ -46,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 11:42+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1338,12 +1338,12 @@ msgstr "Kliknij, aby wyświetlić więcej informacji."
 #: gui/common/tooltips.js:1220
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #: gui/credits/credits.js:83
 #, javascript-format
@@ -1699,17 +1699,17 @@ msgstr "Kamera"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Przewiń do tyłu lub obróć w dół."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Przewiń/obróć w dół"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Podążaj za pierwszą jednostką w zaznaczeniu."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
@@ -1799,12 +1799,12 @@ msgstr "Ustawianie skoku kamery 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Przewiń lub obróć w lewo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Przewiń/obróć w lewo"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -1814,7 +1814,7 @@ msgstr "Włącz przewijanie przez przesuwanie myszy."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
 msgid "Pan camera"
-msgstr ""
+msgstr "Pochyl kamerę"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
@@ -3695,18 +3695,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "Nowe mapy z ostatniego wydania gry."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr ""
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr ""
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "Mapa Wyzwalacz"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Mapy zawierające scenariusz i mogące tworzyć wrogie jednostki."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "Wszystkie mapy"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "Wszystkie mapy dla wybranego typu mapy."
 
@@ -3982,12 +3990,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Użyj filtrów post-processingu (HDR, kwitnięcie, głębia ostrości, etc.)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "Cienie"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "Włącz cienie."
 
@@ -4052,54 +4060,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Użyj shaderów OpenGL 2.0 (zalecane)."
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "Jakość cieni"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "Bardzo niskie"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "Bardzo wysokie"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Rozdzielczość cieni na mapie.  Wysokie wartości mogą spowodować awarię gry, gdy używana jest karta graficzna z małą ilością pamięci!"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "Filtrowanie cieni"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Wygładzone cienie."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "Efekty wody"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Kiedy wskaźnik jest na OFF, użyj najniżych możliwych opcji renderowania wody. Włączenie tej opcji zmniejsza istotność pozostałych opcji."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "Efekty wody wysokiej jakości"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Włącz efekty wody wyższej jakości z falami na brzegach, zburzoną wodą oraz śladami płynięcia okrętów."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "Odbicia wody"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Zezwalaj na lustrzane odbicia na powierzchni wody."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "Załamania wody"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Użyj rzeczywistego modelu refrakcji wody zamiast przezroczystości."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "Realistyczna głębia wody"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Użyj rzeczywistej głębokości wody w obliczeniach podczas renderowania."
 
@@ -4202,8 +4228,8 @@ msgstr "Ostrość wybranego przejścia."
 msgid "Model quality"
 msgstr "Jakość modeli"
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Niskie"
 
@@ -4211,8 +4237,8 @@ msgstr "Niskie"
 msgid "Simpler models for better performance."
 msgstr "Prostrze modele dla lepszej wydajności."
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Średni"
@@ -4221,8 +4247,8 @@ msgstr "Średni"
 msgid "Average quality and average performance."
 msgstr "Przeciętna jakość dla przeciętnej rozgrywki."
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Wysokie"
 
@@ -4235,30 +4261,46 @@ msgid "Model quality setting."
 msgstr "Ustawienia jakości modeli."
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "Żaden"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "Normalna"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr ""
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "Efekty shadera"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Liczba efektów shadera. WYMAGA PONOWNEGO URUCHOMIENIA GRY."
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "Jakość cieni"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "Bardzo niskie"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "Bardzo wysokie"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Rozdzielczość cieni na mapie.  Wysokie wartości mogą spowodować awarię gry, gdy używana jest karta graficzna z małą ilością pamięci!"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."

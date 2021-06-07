@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-31 07:12+0000\n"
-"PO-Revision-Date: 2021-05-31 05:51+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 10:47+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -74,23 +74,23 @@ msgctxt "enumeration"
 msgid ", "
 msgstr ", "
 
-#: gui/common/mod.js:17
+#: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
 msgstr "%(mod)s (%(version)s)"
 
-#: gui/common/mod.js:20
+#: gui/common/mod.js:31
 msgid ", "
 msgstr ", "
 
-#: gui/common/mod.js:28
+#: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
 msgstr "Απαιτείται: %(mods)s"
 
-#: gui/common/mod.js:30
+#: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
@@ -98,27 +98,33 @@ msgstr "Ενεργοποίηση: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
-"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
-" mods!"
-msgstr "[font=\"sans-bold-20\"]  Προσπαθήσατε να ξεκινήσετε το παιχνίδι με μή συμβατές ή λάθος τροποποιήσεις."
+"[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
+"missing mods![/font]"
+msgstr "[font=\"sans-bold-20\"]Προσπαθήσατε νε ξεκινήσετε το παιχνίδι με μή συμβατές ή μη υπάρχουσες τροποποιήσεις![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
 msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
-msgid "Solve the compatibility and start game again."
-msgstr "Επίλυση συμβατότητας και ξεκίνημα του παιχνιδιού ξανά."
-
-#: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
-"You might want to save configuration before starting, when you see this page"
-" again."
-msgstr "Ισως θα θέλατε να αποθηκέυσετε τη ρύθμιση πρίν ξεκινήσετε,όταν ξαναδείτε αυτη τη σελίδα."
+"Solve the compatibility issue by disabling invalid mods or enabling required"
+" dependencies. You can then save & start the game."
+msgstr "Επιλύστε το πρόβλημα συμβατότητας απενεργοποιόντας μή έγκυρες τροποποιήσεις ή ενεργοποιόντας  τις απαιτούμενες εξαρτήσεις. Μπορείτε μετά να αποθηκέυσετε και να ξεκινήσετε το παιχνίδι"
+
+#: gui/incompatible_mods/incompatible_mods.txt:5
+msgid ""
+"Incompatible mods will appear in red in the list of enabled mods (bottom "
+"panel). Dependencies can be added by enabling them in the upper panel."
+msgstr "Οι μή συμβατές τροποποιήσεις θα εμφανιστούν με κόκκινο στη λίστα των ενεργών τροποποιήσεων (κάτω πάνελ). Οι εξαρτήσεις μπορούν να προστεθούν ,ενεργοποιόντας αυτές απο το πάνω πάνελ."
+
+#: gui/incompatible_mods/incompatible_mods.txt:6
+msgid "[/font]"
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
-msgid "Welcome!"
-msgstr "Καλώς ήρθατε"
+msgid "Incompatible mods"
+msgstr "Ασύμβατα mods"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -401,7 +407,7 @@ msgstr "Επίσκεψη mod.io"
 msgid "This mod does not exist"
 msgstr "Αυτή η λειτουργία δέν υπάρχει."
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Ενεργοποίηση"
@@ -410,16 +416,16 @@ msgstr "Ενεργοποίηση"
 msgid "Dependencies not met"
 msgstr "Οι εξαρτήσεις δέν απαντήθηκαν."
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
 msgstr "Δεν έχει επιλεχθεί κάποιο mod."
 
-#: gui/modmod/modmod.js:460
+#: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
 msgstr "Ενεργοποιείστε τουλάχιστον μία λειτουργία στο 0ad."
 

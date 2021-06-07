@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-31 07:12+0000\n"
-"PO-Revision-Date: 2021-05-28 10:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-05 15:05+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,23 +75,23 @@ msgctxt "enumeration"
 msgid ", "
 msgstr ","
 
-#: gui/common/mod.js:17
+#: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
 msgstr "%(mod)s (%(version)s)"
 
-#: gui/common/mod.js:20
+#: gui/common/mod.js:31
 msgid ", "
 msgstr ","
 
-#: gui/common/mod.js:28
+#: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
 msgstr "Tarvittavat: %(mods)s"
 
-#: gui/common/mod.js:30
+#: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
@@ -99,27 +99,33 @@ msgstr "Päällä: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
-"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
-" mods!"
-msgstr "[font=\"sans-bold-20\"] Yritit aloittaa pelin yhteensopivattomilla tai puuttuvilla modeilla!"
+"[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
+"missing mods![/font]"
+msgstr "[font=\"sans-bold-20\"] Yritit aloittaa pelin yhteensopivattomilla tai puuttuvilla modeilla![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
 msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
-msgid "Solve the compatibility and start game again."
-msgstr "Ratkaise yhteensopivuusongelmat ja käynnistä peli uudelleen."
-
-#: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
-"You might want to save configuration before starting, when you see this page"
-" again."
-msgstr "Saatat haluta tallentaa konfiguraation ennen aloittamista, kun näet tämän sivun uudelleen."
+"Solve the compatibility issue by disabling invalid mods or enabling required"
+" dependencies. You can then save & start the game."
+msgstr "Ratkaise yhteensopivuusongelma poistamalla virheelliset modit käytöstä tai ottamalla käyttöön tarvittavat riippuvuudet. Voit sitten tallentaa ja käynnistää pelin."
+
+#: gui/incompatible_mods/incompatible_mods.txt:5
+msgid ""
+"Incompatible mods will appear in red in the list of enabled mods (bottom "
+"panel). Dependencies can be added by enabling them in the upper panel."
+msgstr "Yhteensopimattomat modit näkyvät punaisina käytössä olevien modien luettelossa (alapaneelissa). Riippuvuudet voidaan lisätä ottamalla ne käyttöön yläpaneelissa."
+
+#: gui/incompatible_mods/incompatible_mods.txt:6
+msgid "[/font]"
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
-msgid "Welcome!"
-msgstr "Tervetuloa!"
+msgid "Incompatible mods"
+msgstr "Epäyhteensopivat modit"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -402,7 +408,7 @@ msgstr "Vieraile mod.io"
 msgid "This mod does not exist"
 msgstr "Tämä modi ei ole olemassa"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Aktivoi"
@@ -411,16 +417,16 @@ msgstr "Aktivoi"
 msgid "Dependencies not met"
 msgstr "Riippuvuudet eivät täyty"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Poista käytöstä"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
 msgstr "Modia ei ole valittu."
 
-#: gui/modmod/modmod.js:460
+#: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
 msgstr "Ota käyttöön ainakin 0ad-modi"
 
@@ -466,7 +472,7 @@ msgstr "Tallenna konfiguraatio"
 
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Save and Restart"
-msgstr ""
+msgstr "Tallenna ja käynnistä uudelleen"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

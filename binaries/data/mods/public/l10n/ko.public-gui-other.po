@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-31 06:33+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-05 05:39+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -3631,18 +3631,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "놀이의 이번 출시에서는 새로운 종류의 지도가 등장합니다."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr "MP에 가장 적합"
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr "멀티플레이어 플레이에 권장되는 지도입니다."
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "방아쇠 지도"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "스크립트가 적용된 사건이 있고 잠재적으로 적 유닛을 생성하는 지도입니다."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "모든 지도"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "선택한 지도 유형의 모든 지도."
 
@@ -3918,12 +3926,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "화면 공간 후처리 필터(HDR, 꽃핌현상, DOF 등)를 사용합니다."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "그림자"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "그림자 활성화."
 
@@ -3973,7 +3981,7 @@ msgstr "CPU 작업량을 줄이려면 실행중인 게임에서 렌더링 빈도
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr "성능과 시각적 외관 간의 균형을 설정하십시오."
+msgstr "성능과 시각적 외형 간의 균형을 설정합니다."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
@@ -3988,54 +3996,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "OpenGL 2.0 그림자를 사용합니다(권장)."
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "그림자 품질"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "매우 낮음"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "매우 높음"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "그림자 필터링"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "부드러운 그림자입니다."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "물 효과"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "OFF인 경우, 가능한 가장 낮은 설정을 사용하여 물을 렌더링합니다. 이렇게 하면 다른 설정과 관련성이 없어집니다."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "높은 품질의 물 효과"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "물, 해안파도 렌더링, 해안의 파도거품, 선박 노선 등에 고품질 효과를 활용합니다."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "물위 반사"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "물이 반사 이미지를 반영하도록 합니다."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "물위 반사"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "투명도가 아닌 실제 물의 굴절 지도를 사용합니다."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "실제 수심"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
@@ -4138,8 +4164,8 @@ msgstr "선택한 경로의 선명도입니다."
 msgid "Model quality"
 msgstr "모델 품질"
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "낮음"
 
@@ -4147,8 +4173,8 @@ msgstr "낮음"
 msgid "Simpler models for better performance."
 msgstr "더 단순한 모델을 통해 성능을 향상시킬 수 있습니다."
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "중간"
@@ -4157,8 +4183,8 @@ msgstr "중간"
 msgid "Average quality and average performance."
 msgstr "평균 품질 및 평균 성능입니다."
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "높음"
 
@@ -4171,30 +4197,46 @@ msgid "Model quality setting."
 msgstr "모델 품질 설정."
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr "모델 외형 무작위화"
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "없음"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr "개체들은 모두 동일하게 표시됩니다."
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr "제한됨"
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr "개체들이 덜 다양해질 것입니다."
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "표준"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "개채들 외형은 정상적으로 무작위화됩니다."
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr "개체들의 외형을 무작위로 지정합니다. 비활성화하면 성능이 약간 향상됩니다."
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "그림자 효과"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "그림자 효과의 수입니다. 이 기능을 사용하시려면 게임을 다시 시작해야합니다"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "그림자 품질"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "매우 낮음"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "매우 높음"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."

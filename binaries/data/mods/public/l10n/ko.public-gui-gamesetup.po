@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-18 15:24+0000\n"
-"Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 09:31+0000\n"
+"Last-Translator: moolow <copyhyeon@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +115,7 @@ msgstr "없음"
 msgid "AI Player"
 msgstr "인공지능 플레이어"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
@@ -214,11 +214,11 @@ msgstr "문명"
 msgid "Team"
 msgstr "팀"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
 msgstr "지도 찾아보기"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "사용 가능한 지도 목록을 보려면 %(hotkey)s 키를 누르십시오."
@@ -390,28 +390,32 @@ msgstr "풍경"
 msgid "Select one of the landscapes of this map."
 msgstr "이 지도의 풍경 중 하나를 선택합니다."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:81
 msgid "Map Filter"
 msgstr "지도 필터"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:66
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:84
 msgid "Select a map filter."
 msgstr "지도 필터를 선택합니다."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:104
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
+msgid "Map"
+msgstr "지도"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:139
 msgid "Select Map"
 msgstr "지도 선택"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:107
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
 msgid "Select a map to play on."
 msgstr "게임 지도를 선택합니다."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:113
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
 msgctxt "map selection"
 msgid "Random"
 msgstr "무작위"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:116
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:151
 msgid "Pick any of the given maps at random."
 msgstr "무작위로 주어진 지도를 선택합니다."
 
@@ -423,11 +427,11 @@ msgstr "지도 크기"
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "지도 크기를 선택합니다. (크기가 클수록 성능이 저하될 수 있습니다)"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:51
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
 msgstr "지도 유형"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:68
 msgid "Select a map type."
 msgstr "지도 유형을 선택합니다."
 

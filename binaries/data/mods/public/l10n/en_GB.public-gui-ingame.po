@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 10:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-06 10:34+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +103,7 @@ msgstr "Exit"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Delay to live stream: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -1358,15 +1358,15 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "Population: current/limit (maximum)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Gatherers: current"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1664,7 +1664,7 @@ msgstr "Order the selected Units to garrison in a Structure or Unit."
 
 #: gui/session/unit_actions.js:1451
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Order the selected units to occupy a turret point."
 
 #: gui/session/unit_actions.js:1473
 msgid "Unload"
@@ -1726,11 +1726,11 @@ msgstr "You are allowed to use this dropsite"
 
 #: gui/session/unit_actions.js:1726
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Activate auto-queue for selected structures."
 
 #: gui/session/unit_actions.js:1746
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Deactivate auto-queue for selected structures."
 
 #: gui/session/unit_actions.js:1811
 msgid "The entity has to be killed before it can be gathered from"

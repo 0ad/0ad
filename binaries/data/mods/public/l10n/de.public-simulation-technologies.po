@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 19:58+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 19:16+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,6 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -142,7 +141,6 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Freigeschaltet in der Stadtphase."
 
@@ -263,7 +261,7 @@ msgstr "Kasernen −10% Gruppenausbildunsgzeit."
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr "In Zeiten des Krieges Kavallerie einzuberufen, hilft die Ränge der königlichen Armee zu stärken."
+msgstr "In Zeiten des Krieges Kavallerie einzuberufen hilft, die Ränge der königlichen Armee zu stärken."
 
 #: simulation/data/technologies/cavalry_cost_time.jsongenericName
 msgid "Levy Cavalry"
@@ -444,8 +442,8 @@ msgid "Colonization"
 msgstr "Kolonisation"
 
 #: simulation/data/technologies/colonization.jsontooltip
-msgid "Civic Structures −25% build time."
-msgstr "Verwaltungsgebäude −25% Bauzeit."
+msgid "Civic Structures −25% build time and resources cost"
+msgstr "Verwaltungsgebäude −25% Bauzeit und Ressourcenkosten"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -848,7 +846,7 @@ msgstr "Holpiten −25% Ausbildungszeit und −50% Erfahrung für eine Beförder
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "Die Achämeniden unterhielten ein 10.000-Mann starkes Eliteheer, von griechischen Autoren als Athanatoi (\"Unsterbliche\") bezeichnet."
+msgstr "Die Achämeniden unterhielten ein 10.000-Mann starkes Eliteheer, von griechischen Autoren als Athanatoi („Unsterbliche“) bezeichnet."
 
 #: simulation/data/technologies/immortals.jsongenericName
 msgid "Immortals"
@@ -862,7 +860,7 @@ msgstr "Unsterbliche −50% Ausbildungszeit, aber −10% Gesundheit."
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr "In Zeiten des Krieges Infanterie einzuberufen, hilft die Ränge der königlichen Armee zu stärken."
+msgstr "In Zeiten des Krieges Infanterie einzuberufen hilft, die Ränge der königlichen Armee zu stärken."
 
 #: simulation/data/technologies/infantry_cost_time.jsongenericName
 msgid "Levy Infantry"
@@ -1386,7 +1384,7 @@ msgstr "Zinnen"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr "Wach- und Steintürme +40% mehr Pfeile pro einuartiertem Soldaten."
+msgstr "Wach- und Steintürme +40% mehr Pfeile pro einquartiertem Soldaten."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1655,8 +1653,8 @@ msgid "Expertise In War"
 msgstr "Kriegskompetenz"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid "Mercenaries are promoted to Advanced rank."
-msgstr "Söldner werden zum fortgeschrittenen Rang befördert."
+msgid "Mercenaries start at Advanced rank."
+msgstr "Söldner starten mit dem fortgeschrittenen Rang."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1678,4 +1676,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "Aktiviert die \"Glorreiche Expansion\"-Aura: Bevölkerungslimit +20% pro Wunder in deinem Besitz."
+msgstr "Aktiviert die „Glorreiche Expansion“-Aura: Bevölkerungslimit +20% pro Wunder in deinem Besitz."

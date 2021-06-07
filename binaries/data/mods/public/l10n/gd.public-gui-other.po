@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 08:31+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3659,18 +3659,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "Mapaichean ùra a chaidh a chur ris a’ gheama leis an sgaoileadh seo."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr ""
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr ""
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "Mapaichean le trigearan"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Mapaichean le tachartasan sgriobtaichte a dh’fhaodas aonadan nàimhdeil a ghintinn."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "A h‑uile mapa"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "Gach mapa dhen t-seòrsa a thagh thu."
 
@@ -3946,12 +3954,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Cleachd criathragan pròiseasadh-sgrìn an dèidh làimh (HDR, Bloom, DOF is msaa)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "Sgàilean"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "Cuir sgàilean an comas."
 
@@ -4016,54 +4024,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)."
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "Càileachd nan sgàilean"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "Glè ìosal"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "Glè àrd"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd!"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "Criathradh sgàile"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Sgàilean rèidhe."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "Èifeachdan uisge"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandaradh. Cha bhi ciall sna roghainnean eile an uairsin."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "Èifeachdan uisge le càileachd àrd"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Cleachd an càileachd as fheàrr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "Faileas uisge"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Leig le uisge dealbh faileis a thilgeil air ais."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "Solas-bhriseadh uisge"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "Fìor-dhoimhne uisge"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh."
 
@@ -4166,8 +4192,8 @@ msgstr "Dè cho geur ’s a bhios an ceum a thagh thu."
 msgid "Model quality"
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Ìosal"
 
@@ -4175,8 +4201,8 @@ msgstr "Ìosal"
 msgid "Simpler models for better performance."
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Meadhanach"
@@ -4185,8 +4211,8 @@ msgstr "Meadhanach"
 msgid "Average quality and average performance."
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Àrd"
 
@@ -4199,30 +4225,46 @@ msgid "Model quality setting."
 msgstr ""
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "Gun chumha"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "Àbhaisteach"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr ""
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "Èifeachdan sgàileadair"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "Càileachd nan sgàilean"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "Glè ìosal"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "Glè àrd"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuislich luachan àrda an geama mur eil ach beagan cuimhne aig a’ chairt grafaigeachd!"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."

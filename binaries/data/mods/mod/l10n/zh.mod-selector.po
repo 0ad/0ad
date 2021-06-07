@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-31 07:12+0000\n"
-"PO-Revision-Date: 2021-05-29 13:16+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-05 01:40+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -81,23 +81,23 @@ msgctxt "enumeration"
 msgid ", "
 msgstr "，"
 
-#: gui/common/mod.js:17
+#: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
 msgstr "%(mod)s(%(version)s)"
 
-#: gui/common/mod.js:20
+#: gui/common/mod.js:31
 msgid ", "
 msgstr "，"
 
-#: gui/common/mod.js:28
+#: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
 msgstr "需要: %(mods)s"
 
-#: gui/common/mod.js:30
+#: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
@@ -105,27 +105,33 @@ msgstr "已激活: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
-"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
-" mods!"
-msgstr "[font=\"sans-bold-20\"] 模组不兼容，或缺少的模组！"
+"[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
+"missing mods![/font]"
+msgstr "[font=\"sans-bold-20\"] 模组不兼容，或模组缺失！[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
 msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
-msgid "Solve the compatibility and start game again."
-msgstr "先处理兼容问题。"
-
-#: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
-"You might want to save configuration before starting, when you see this page"
-" again."
-msgstr "再次看到此页面时，你可能需要先保存配置。"
+"Solve the compatibility issue by disabling invalid mods or enabling required"
+" dependencies. You can then save & start the game."
+msgstr "禁用无效模组，或启用所需的依赖来解决兼容性问题。 然后保存并开始游戏。"
+
+#: gui/incompatible_mods/incompatible_mods.txt:5
+msgid ""
+"Incompatible mods will appear in red in the list of enabled mods (bottom "
+"panel). Dependencies can be added by enabling them in the upper panel."
+msgstr "不兼容的模组在启用的模组列表（底部面板）中显示为红色。 可以在上部面板中启用，来添加依赖项。"
+
+#: gui/incompatible_mods/incompatible_mods.txt:6
+msgid "[/font]"
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
-msgid "Welcome!"
-msgstr "欢迎！"
+msgid "Incompatible mods"
+msgstr "模组不兼容"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -408,7 +414,7 @@ msgstr "访问模组网站 mod.io"
 msgid "This mod does not exist"
 msgstr "对不起，模组不存在"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "启用"
@@ -417,16 +423,16 @@ msgstr "启用"
 msgid "Dependencies not met"
 msgstr "有依赖问题"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "禁用"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
 msgstr "模组未选取。"
 
-#: gui/modmod/modmod.js:460
+#: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
 msgstr "启用模组"
 

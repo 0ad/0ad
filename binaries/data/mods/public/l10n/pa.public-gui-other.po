@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 08:30+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Panjabi (Punjabi) (http://www.transifex.com/wildfire-games/0ad/language/pa/)\n"
 "MIME-Version: 1.0\n"
@@ -3625,18 +3625,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr ""
 
 #: gui/maps/MapFilters.js:115
-msgid "Trigger Maps"
+msgid "Best for MP"
 msgstr ""
 
 #: gui/maps/MapFilters.js:116
-msgid "Maps that come with scripted events and potentially spawn enemy units."
+msgid "Maps that are recommended for Multiplayer play."
 msgstr ""
 
 #: gui/maps/MapFilters.js:121
-msgid "All Maps"
+msgid "Trigger Maps"
 msgstr ""
 
 #: gui/maps/MapFilters.js:122
+msgid "Maps that come with scripted events and potentially spawn enemy units."
+msgstr ""
+
+#: gui/maps/MapFilters.js:127
+msgid "All Maps"
+msgstr ""
+
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr ""
 
@@ -3912,12 +3920,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr ""
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr ""
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr ""
 
@@ -3982,54 +3990,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr ""
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow filtering"
+msgid "Shadow quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr ""
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
 msgstr ""
 
 #: gui/options/options.json[2].options[10].tooltip
-msgid "Smooth shadows."
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
 msgstr ""
 
 #: gui/options/options.json[2].options[11].label
-msgid "Water effects"
+msgid "Shadow filtering"
 msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
+msgid "Smooth shadows."
+msgstr ""
+
+#: gui/options/options.json[2].options[12].label
+msgid "Water effects"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr ""
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr ""
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr ""
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr ""
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr ""
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr ""
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr ""
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr ""
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr ""
 
@@ -4132,8 +4158,8 @@ msgstr ""
 msgid "Model quality"
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr ""
 
@@ -4141,8 +4167,8 @@ msgstr ""
 msgid "Simpler models for better performance."
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr ""
@@ -4151,8 +4177,8 @@ msgstr ""
 msgid "Average quality and average performance."
 msgstr ""
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr ""
 
@@ -4165,29 +4191,45 @@ msgid "Model quality setting."
 msgstr ""
 
 #: gui/options/options.json[2].options[7].label
-msgid "Shader effects"
+msgid "Model appearance randomization"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr ""
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
 msgstr ""
 
 #: gui/options/options.json[2].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr ""
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr ""
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr ""
-
-#: gui/options/options.json[2].options[9].tooltip
 msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr ""
+
+#: gui/options/options.json[2].options[8].label
+msgid "Shader effects"
+msgstr ""
+
+#: gui/options/options.json[2].options[8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr ""
 
 #: gui/options/options.json[2].tooltip

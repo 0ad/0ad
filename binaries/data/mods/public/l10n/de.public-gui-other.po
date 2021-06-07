@@ -55,8 +55,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-03 13:27+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 19:17+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -791,7 +791,7 @@ msgstr "Einnehmen"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
-msgstr "Statsueffekte:"
+msgstr "Statuseffekte:"
 
 #: gui/common/tooltips.js:267
 #, javascript-format
@@ -1079,15 +1079,15 @@ msgstr "Verbleibende Reparaturzeit:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "Füge noch einen Arbeiter hinzu, um die Reparaturen um %(second)sSekunde zu beschleunigen."
+msgstr[0] "Füge noch einen Arbeiter hinzu, um die Reparaturen um %(second)s Sekunde zu beschleunigen."
 msgstr[1] "Füge noch einen Arbeiter hinzu, um die Reparaturen um %(second)sSekunden zu beschleunigen."
 
 #: gui/common/tooltips.js:658
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] "Füge einen Arbeiter hinzu, um den Bau in %(second)sSekunde zu vollenden."
-msgstr[1] "Füge einen Arbeiter hinzu, um den Bau in %(second)sSekunden zu vollenden."
+msgstr[0] "Füge einen Arbeiter hinzu, um den Bau in %(second)s Sekunde zu vollenden."
+msgstr[1] "Füge einen Arbeiter hinzu, um den Bau in %(second)s Sekunden zu vollenden."
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
@@ -1553,7 +1553,7 @@ msgstr "(halten um zu erfassen)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr "Gib einen neuen Hotkey ein, halten zum erfassen."
+msgstr "Gib einen neuen Hotkey ein, halten zum Erfassen."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
@@ -1647,7 +1647,7 @@ msgstr "Speichert Einstellungen"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr "Nichtgespeicherte Änderungen werden verloren gehen"
+msgstr "Nicht gespeicherte Änderungen werden verloren gehen"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
@@ -1698,7 +1698,7 @@ msgstr "Einheit folgen"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr "Zu Kameraposition 1 springen (siehe \"Kamerasprung 1 setzen\")."
+msgstr "Zu Kameraposition 1 springen (siehe „Kamerasprung 1 setzen“)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
@@ -1708,7 +1708,7 @@ msgstr "Zu Kamera 1 springen"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr "Zu Kameraposition 2 springen (siehe \"Kamerasprung 2 setzen\")."
+msgstr "Zu Kameraposition 2 springen (siehe „Kamerasprung 2 setzen“)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
@@ -1718,7 +1718,7 @@ msgstr "Zu Kamera 2 springen"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr "Zu Kameraposition 3 springen (siehe \"Kamerasprung 3 setzen\")."
+msgstr "Zu Kameraposition 3 springen (siehe „Kamerasprung 3 setzen“)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
@@ -1728,7 +1728,7 @@ msgstr "Zu Kamera 3 springen"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr "Zu Kameraposition 4 springen (siehe \"Kamerasprung 4 setzen\")."
+msgstr "Zu Kameraposition 4 springen (siehe „Kamerasprung 4 setzen“)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
@@ -2422,7 +2422,7 @@ msgstr "Geschützpunkt besetzen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr "Zusatztaste, um nur einer Eintität in der Auswahl einen Befehl zu geben."
+msgstr "Zusatztaste, um nur einer Entität in der Auswahl einen Befehl zu geben."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
@@ -2432,7 +2432,7 @@ msgstr "Einzelne Einheit befehligen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr "Zusatztaste, um zu patroullieren."
+msgstr "Zusatztaste, um zu patrouillieren."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2452,7 +2452,7 @@ msgstr "Befehl einschieben"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr "Zusatztaste, um Befehle nacheinander in eine Wartschlange zu stellen, anstatt sie zu ersetzen"
+msgstr "Zusatztaste, um Befehle nacheinander in eine Warteschlange zu stellen, anstatt sie zu ersetzen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
@@ -2462,7 +2462,7 @@ msgstr "Befehlswarteschlange"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr "Den ersten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den ersten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
@@ -2472,7 +2472,7 @@ msgstr "1. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr "Den zweiten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den zweiten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
@@ -2482,7 +2482,7 @@ msgstr "2. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr "Den dritten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den dritten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
@@ -2492,7 +2492,7 @@ msgstr "3. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr "Den vierten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den vierten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
@@ -2502,7 +2502,7 @@ msgstr "4. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr "Den fünften Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den fünften Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
@@ -2512,7 +2512,7 @@ msgstr "5. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr "Den sechsten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den sechsten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
@@ -2522,7 +2522,7 @@ msgstr "6. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr "Den siebten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den siebten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
@@ -2532,7 +2532,7 @@ msgstr "7. Einheit einreihen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr "Den achten Einheitentyp der Wartschlange hinzufügen."
+msgstr "Den achten Einheitentyp der Warteschlange hinzufügen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
@@ -2614,7 +2614,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr "Zwischen keiner Formation und der letzten Standardformation umschalten (standard \"Kasten\")"
+msgstr "Zwischen keiner Formation und der letzten Standardformation umschalten (standard „Kasten“)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
@@ -2644,7 +2644,7 @@ msgstr "Geschütze ausladen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr "Zusatztaste, um alle Eineiten eines Typs auszuladen."
+msgstr "Zusatztaste, um alle Einheiten eines Typs auszuladen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
@@ -2694,7 +2694,7 @@ msgstr "Civ-Info umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr "\"Bilder pro Sekunde\"-Zähler umschalten"
+msgstr "„Bilder pro Sekunde“-Zähler umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
@@ -2841,7 +2841,7 @@ msgstr "Hervorhebung von bewachten Einheiten umschalten."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr "Hervorgebung bewacht umschalten"
+msgstr "Hervorhebung bewacht umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
@@ -3591,7 +3591,7 @@ msgstr "Keine"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr "ungültige Sprachauswahl"
+msgstr "Ungültige Sprachauswahl"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3619,7 +3619,7 @@ msgstr "Verwendete Übersetzungsverzeichnisse:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr "Autom. erkennen"
+msgstr "Autoerkennung"
 
 #: gui/locale_advanced/locale_advanced.xml:(tooltip):37
 msgid ""
@@ -3674,18 +3674,26 @@ msgid "Maps that are brand new in this release of the game."
 msgstr "Karten, die brandneu in diesem Release des Spiels sind."
 
 #: gui/maps/MapFilters.js:115
+msgid "Best for MP"
+msgstr "Am besten für Mehrspieler"
+
+#: gui/maps/MapFilters.js:116
+msgid "Maps that are recommended for Multiplayer play."
+msgstr "Empfohlene Karten für den Mehrspielermodus."
+
+#: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
 msgstr "Trigger-Karten"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Karten, welche vordefinierte Ereignisse auslösen und möglicherweise feindliche Einheiten auftauchen lassen."
 
-#: gui/maps/MapFilters.js:121
+#: gui/maps/MapFilters.js:127
 msgid "All Maps"
 msgstr "Alle Karten"
 
-#: gui/maps/MapFilters.js:122
+#: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
 msgstr "Alle Karten des gewählten Kartentyps."
 
@@ -3808,7 +3816,7 @@ msgstr "Einige Einstellungen sind ungültig! Bist du sicher, dass du sie speiche
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Du hast ungespeicherte Änderungen, willst du dieses Fenster schließen?"
+msgstr "Du hast nicht gespeicherte Änderungen, willst du dieses Fenster schließen?"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -3836,7 +3844,7 @@ msgstr "Hintergrundpause"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr "Pausiert Einzelspielerspiele wenn das Fenster den Fokus verliert."
+msgstr "Einzelspielerspiele pausieren, wenn das Fenster den Fokus verliert."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -3906,7 +3914,7 @@ msgstr "Generisch zuerst."
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Show generic names as primary and specific names as secondary."
-msgstr "Generische Namen zuerst anziegen und spezifische danach."
+msgstr "Generische Namen zuerst anzeigen und spezifische danach."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only Specific."
@@ -3961,12 +3969,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Screen-Space-Nachbearbeitungsfilter benutzen (HDR, Bloom, DOF, etc.)"
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[8].label
+#: gui/options/options.json[2].options[9].label
 msgid "Shadows"
 msgstr "Schatten"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[8].tooltip
+#: gui/options/options.json[2].options[9].tooltip
 msgid "Enable shadows."
 msgstr "Aktiviert Schatten."
 
@@ -4031,54 +4039,72 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Benutzt OpenGL 2.0 Shader (empfohlen)."
 
 #: gui/options/options.json[2].options[10].label
+msgid "Shadow quality"
+msgstr "Schattenqualität"
+
+#: gui/options/options.json[2].options[10].list[0].label
+msgid "Very Low"
+msgstr "Sehr Niedrig"
+
+#: gui/options/options.json[2].options[10].list[4].label
+msgid "Very High"
+msgstr "Sehr Hoch"
+
+#: gui/options/options.json[2].options[10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Auflösung der Shadow Map. Hohe Werte können bei einer Grafikkarte mit wenig Speicher das Spiel zum Absturz bringen"
+
+#: gui/options/options.json[2].options[11].label
 msgid "Shadow filtering"
 msgstr "Schattenfilter"
 
-#: gui/options/options.json[2].options[10].tooltip
+#: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Weiche Schatten."
 
-#: gui/options/options.json[2].options[11].label
+#: gui/options/options.json[2].options[12].label
 msgid "Water effects"
 msgstr "Wassereffekte"
 
-#: gui/options/options.json[2].options[11].tooltip
+#: gui/options/options.json[2].options[12].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Wenn AUS wird die niedrigst möglichen Einstellungen verwendet, um Wasser zu rendern. Das macht andere Einstellungen irrelevant."
 
-#: gui/options/options.json[2].options[12].label
+#: gui/options/options.json[2].options[13].label
 msgid "High-quality water effects"
 msgstr "Hochwertige Wassereffekte"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Detailliertere Effekte für Wasser, Rendern von Küstenwellen, Gischt und Schiffsspuren benutzen."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[14].label
 msgid "Water reflections"
 msgstr "Wasserspiegelungen"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Erlauben, dass Wasser ein Spiegelbild reflektiert."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[15].label
 msgid "Water refraction"
 msgstr "Lichtbrechung im Wasser"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Eine echte Wasser-Brechungs-Karte und keine Transparenz verwenden."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[16].label
 msgid "Real water depth"
 msgstr "Echte Wassertiefe"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Verwende die Wassertiefe zur Bildberechnung."
 
@@ -4175,14 +4201,14 @@ msgstr "Schärfungsfaktor"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr "Die Schärfe des gewählten Durchgang."
+msgstr "Die Schärfe des gewählten Durchgangs."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
 msgstr "Modellqualität"
 
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[0].label
-#: gui/options/options.json[2].options[9].list[1].label
 msgid "Low"
 msgstr "Niedrig"
 
@@ -4190,8 +4216,8 @@ msgstr "Niedrig"
 msgid "Simpler models for better performance."
 msgstr "Einfachere Modelle für bessere Leistung."
 
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[2].options[9].list[2].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
 msgstr "Mittel"
@@ -4200,8 +4226,8 @@ msgstr "Mittel"
 msgid "Average quality and average performance."
 msgstr "Durchschnittliche Modelle für durchschnittliche Leistung."
 
+#: gui/options/options.json[2].options[10].list[3].label
 #: gui/options/options.json[2].options[6].list[2].label
-#: gui/options/options.json[2].options[9].list[3].label
 msgid "High"
 msgstr "Hoch"
 
@@ -4214,30 +4240,46 @@ msgid "Model quality setting."
 msgstr "Einstellung Modellqualität."
 
 #: gui/options/options.json[2].options[7].label
+msgid "Model appearance randomization"
+msgstr "Zufälliges Erscheinungsbild für Modelle"
+
+#: gui/options/options.json[2].options[7].list[0].label
+msgid "None"
+msgstr "Keine"
+
+#: gui/options/options.json[2].options[7].list[0].tooltip
+msgid "Entities will all look the same."
+msgstr "Entitäten schauen alle gleich aus."
+
+#: gui/options/options.json[2].options[7].list[1].label
+msgid "Limited"
+msgstr "Begrenzt"
+
+#: gui/options/options.json[2].options[7].list[1].tooltip
+msgid "Entities will be less diverse."
+msgstr "Entitäten sind weniger vielfältig."
+
+#: gui/options/options.json[2].options[7].list[2].label
+msgid "Normal"
+msgstr "Normal"
+
+#: gui/options/options.json[2].options[7].list[2].tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "Das Erscheinungsbild von Entitäten ist normal zufällig."
+
+#: gui/options/options.json[2].options[7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr "Das Erscheinungsbild von Entitäten durch Zufall bestimmen. Deaktivierung bietet eine kleine Leistungsverbesserung."
+
+#: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
 msgstr "Shader-Effekte"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Anzahl der Shader-Effekte. BENÖTIGT SPIELNEUSTART"
-
-#: gui/options/options.json[2].options[9].label
-msgid "Shadow quality"
-msgstr "Schattenqualität"
-
-#: gui/options/options.json[2].options[9].list[0].label
-msgid "Very Low"
-msgstr "Sehr Niedrig"
-
-#: gui/options/options.json[2].options[9].list[4].label
-msgid "Very High"
-msgstr "Sehr Hoch"
-
-#: gui/options/options.json[2].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Auflösung der Shadow Map. Hohe Werte können bei einer Grafikkarte mit wenig Speicher das Spiel zum Absturz bringen"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
@@ -4402,11 +4444,11 @@ msgstr "Freunde"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr "Spieler, die einem Spiel beitreten, werden nur zugewiesen wenn sie ein Buddy des Hosts sind und es einen freien Platz gibt."
+msgstr "Spieler, die einem Spiel beitreten, werden nur zugewiesen, wenn sie ein Buddy des Hosts sind und es einen freien Platz gibt."
 
 #: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr "Spieler bekommen nur einen Platz wenn der Host sie dezidiert zuweist."
+msgstr "Spieler bekommen nur einen Platz, wenn der Host sie dezidiert zuweist."
 
 #: gui/options/options.json[4].options[5].tooltip
 msgid ""
@@ -4469,7 +4511,7 @@ msgstr "Zuschauerlimit"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Verhindert das weitere Zuschauer beitreten, wenn das Limit erreicht ist."
+msgstr "Verhindert, dass weitere Zuschauer beitreten, wenn das Limit erreicht ist."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
@@ -4507,7 +4549,7 @@ msgstr "Gesundheit von verletzten Einheiten"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr "Der Verwundete-Einheiten-Hotkey betrachtet die ausgewählten Einheiten als verwundet, wenn ihre Gesundheit unter diesen Prozentsat fällt."
+msgstr "Der Verwundete-Einheiten-Hotkey betrachtet die ausgewählten Einheiten als verwundet, wenn ihre Gesundheit unter diesen Prozentsatz fällt."
 
 #: gui/options/options.json[6].options[10].label
 msgid "Rank icon above status bar"
@@ -4627,7 +4669,7 @@ msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr "Wenn eine Einheit oder ein Gebäude einer Kontrollgruppe hinzugefügt wird, werden sie von anderen Kontrollgruppen entfernt. Nutze diese Option, wenn du möchtest das Kontrollgruppen separate Armeen repräsentieren."
+msgstr "Wenn eine Einheit oder ein Gebäude einer Kontrollgruppe hinzugefügt wird, werden sie von anderen Kontrollgruppen entfernt. Nutze diese Option, wenn du möchtest, dass Kontrollgruppen separate Armeen repräsentieren."
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Multiple"
@@ -4784,7 +4826,7 @@ msgstr "Zurücksetzen auf letzte gespeicherte Einstellungen"
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
-msgstr "Ungespeicherte Änderungen betreffen nur diese Sitzung"
+msgstr "Nicht gespeicherte Änderungen betreffen nur diese Sitzung"
 
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn to Play"
@@ -4878,7 +4920,7 @@ msgstr "Kämpfe"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
-msgstr "Ein neues Einzelspieler Spiel starten."
+msgstr "Ein neues Einzelspielerspiel starten."
 
 #: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
@@ -5066,7 +5108,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Anklicken, um den 0 A.D. IRC-Chat in deinem Browser zu öffnen (#0ad auf webchat.quakenet.org). Er wird von Freiwilligen betrieben, die alle möglichen Aufgaben übernehmen, es kann also eine Weile dauern, bis deine Frage beantwortet wird. Alternativ kannst du das Form benutzen (siehe die Webseite)."
+msgstr "Anklicken, um den 0 A.D. IRC-Chat in deinem Browser zu öffnen (#0ad auf webchat.quakenet.org). Er wird von Freiwilligen betrieben, die alle möglichen Aufgaben übernehmen, es kann also eine Weile dauern, bis deine Frage beantwortet wird. Alternativ kannst du das Forum benutzen (siehe die Webseite)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -6009,7 +6051,7 @@ msgstr "KASERNE"
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "Bilde alle Bürgersoldaten aus. Einige Gruppierungen können zusätzlich die Ausbildung von Championeinheiten freischalten."
+msgstr "Bilde alle Bürgersoldaten aus. Einige Gruppierungen können zusätzlich die Ausbildung von Gardisten freischalten."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -6031,19 +6073,19 @@ msgstr "KARTHAGISCHE HEILIGE SCHAR"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "Speerträger Championeinheit und Berittener Championeinheit für Karthago."
+msgstr "Gardespeerträger und Berittener Gardespeerkämpfer für Karthago."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Beide können im Tempel ausgebildet werden, anstatt in der Festung wie die meisten anderen Championeinheiten."
+msgstr "Beide können im Tempel ausgebildet werden, anstatt in der Festung wie die meisten anderen Gardisten."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "Nutze den Speerträger als schwere Infanterieeinheit gegen berittene Einheiten. Nutze berittene Einheiten als schwere Angriffseinheit gegen Belagerungswaffen und Scharmützler."
+msgstr "Nutze den Speerträger als schwere Infanterieeinheit gegen berittene Einheiten. Nutze berittene Einheiten als schwere Angriffseinheit gegen Belagerungswaffen und Plänkler."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6121,7 +6163,7 @@ msgstr "Bilde Söldner jeder Fraktionen aus."
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr "Die Kosten der Söldner Bürgersoldaten werden von Nahrung zu Metal gewechselt."
+msgstr "Die Kosten der Söldner Bürgersoldaten werden von Nahrung zu Metall gewechselt."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6165,7 +6207,7 @@ msgstr "Die Festung ist normalerweise das stärkste Gebäude jeder Zivilisation.
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "Bilde Championeinheiten, Helden und Belagerungswaffen aus."
+msgstr "Bilde Gardisten, Helden und Belagerungswaffen aus."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
@@ -6173,7 +6215,7 @@ msgstr "Gibt einen Bevölkerungsboost."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Stationiere Truppen im Gebäude um ihm mehr Angriffskraft zu verleihen und somit die Verteidigung zu stärken."
+msgstr "Stationiere Truppen im Gebäude, um ihm mehr Angriffskraft zu verleihen und somit die Verteidigung zu stärken."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6182,7 +6224,7 @@ msgstr "FREIHANDPLATZIERUNG"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr "Durch das taktisch kluge Positionieren der Einheiten, verschaffst du dir einen Vorteil auf dem Schlachtfeld!"
+msgstr "Durch das taktisch kluge Positionieren der Einheiten verschaffst du dir einen Vorteil auf dem Schlachtfeld!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
@@ -6431,7 +6473,7 @@ msgstr "Stärkste Infanterieeinheit im Spiel."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "Champion-Infanterieeinheit für die Spartaner verfügbar."
+msgstr "GardeInfanterie, verfügbar für die Spartaner."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -6473,7 +6515,7 @@ msgstr "Ein günstiges Lager für alle Ressourcen außer Nahrung (Holz, Stein, M
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "Erforsche Technologien um die Sammelfertigkeiten der Bürger zu verbessern."
+msgstr "Erforsche Technologien, um die Sammelfertigkeiten der Bürger zu verbessern."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -6512,7 +6554,7 @@ msgstr "Verfall tritt auf, wenn Gebäude nicht mit einem verbündeten Verwaltung
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "Der Verfallsprozess kann durch das stationieren von einigen Einheiten verlangsamt oder gar umgekehrt werden."
+msgstr "Der Verfallsprozess kann durch das Stationieren von einigen Einheiten verlangsamt oder gar umgekehrt werden."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -6536,7 +6578,7 @@ msgstr "Während er lebt, werden Schiffe schneller gebaut."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr "Das Schiff auf dem er stationiert ist, ist deutlich schneller."
+msgstr "Das Schiff, auf dem er stationiert ist, ist deutlich schneller."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6552,7 +6594,7 @@ msgstr "Gut zum Transportieren oder Kämpfen."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr "Stationiere Einheiten an Bord um die Angriffskraft zu steigern."
+msgstr "Stationiere Einheiten an Bord, um die Angriffskraft zu steigern."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"

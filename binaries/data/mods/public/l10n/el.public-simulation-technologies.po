@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 12:32+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 10:41+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,6 @@ msgstr "Εκπαίδευση Τοξοβόλων"
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -125,7 +124,6 @@ msgstr "Εκπαίδευση Τοξοβόλων"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Ξεκλειδωνεί στην Φάση Κωμόπολη."
 
@@ -427,8 +425,8 @@ msgid "Colonization"
 msgstr "Αποικισμός"
 
 #: simulation/data/technologies/colonization.jsontooltip
-msgid "Civic Structures −25% build time."
-msgstr "Κατασκευές Πόλης -25% χρόνος ανέγερσης."
+msgid "Civic Structures −25% build time and resources cost"
+msgstr "Κατασκευές Πόλης -25% χρόνος ανέγερσης και κόστη πόρων"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1638,8 +1636,8 @@ msgid "Expertise In War"
 msgstr "Τεχνογνωσία Πολέμου"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid "Mercenaries are promoted to Advanced rank."
-msgstr "Οι Μισθοφόροι προάγονται σε Προχωρημένο βαθμό."
+msgid "Mercenaries start at Advanced rank."
+msgstr "Οι  Μισθοφόροι ξεκινάνε σε Προχωρημένο βαθμό"
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
