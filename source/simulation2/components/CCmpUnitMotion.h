@@ -508,7 +508,6 @@ public:
 
 	virtual void MoveToFormationOffset(entity_id_t controller, entity_pos_t x, entity_pos_t z)
 	{
-		SetMemberOfFormation(controller);
 		// Pass the controller to the move request anyways.
 		MoveTo(MoveRequest(controller, CFixedVector2D(x, z)));
 	}
