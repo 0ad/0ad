@@ -33,7 +33,6 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 		{
 			g_GameSettings.map.watch(() => this.render(), ["map"]);
 			g_GameSettings.map.watch(() => this.updateMapList(), ["type"]);
-
 			this.gameSettingsController.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
 
 			this.updateMapList();
@@ -77,11 +76,14 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 			return;
 
 		{
-			let values =
+			const values =
 				this.mapFilters.getFilteredMaps(
 					g_GameSettings.map.type,
 					this.gameSettingsController.guiData.mapFilter.filter,
 					false);
+
+			if (!values.length)
+				return;
 
 			values.sort(sortNameIgnoreCase);
 
