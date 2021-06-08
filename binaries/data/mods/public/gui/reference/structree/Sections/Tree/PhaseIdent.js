@@ -27,6 +27,7 @@ class PhaseIdent
 		identSize.top = TreeSection.getPositionOffset(this.phaseIdx, this.page.TemplateParser);
 		identSize.bottom = TreeSection.getPositionOffset(this.phaseIdx + 1, this.page.TemplateParser);
 		this.Ident.size = identSize;
+		this.Ident.hidden = false;
 
 		// Draw main icon
 		this.drawPhaseIcon(this.Icon, this.phaseIdx, civCode);
