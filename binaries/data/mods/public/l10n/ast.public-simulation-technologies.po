@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 15:04+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 16:01+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,6 @@ msgstr "Exercicios de puntería"
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/colonization.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -113,7 +112,6 @@ msgstr "Exercicios de puntería"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Desblóquiase na fas villana."
 
@@ -153,7 +151,7 @@ msgstr "Arquiteutura monumental"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Construcciones civiles: tiempu de construcción +20% vida +20% fideleza +20%."
+msgstr "Construcciones civiles: periodu d'obra +20% vida +20% fideleza +20%."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -169,7 +167,7 @@ msgstr "Arquiteutura"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Construcciones: vida y fideleza +25% tiempu de construcción +20%."
+msgstr "Construcciones: vida y fideleza +25% periodu d'obra +20%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -281,7 +279,7 @@ msgstr "Muralles triples"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Muralles: tiempu de construcción +100% costu en piedra +100% vida +200%."
+msgstr "Muralles: periodu d'obra +100% costu en piedra +100% vida +200%."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -293,7 +291,7 @@ msgstr "Construcciones de madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Construcciones: tiempu de construcción −20% vida −20% fideleza −20%."
+msgstr "Construcciones: periodu d'obra −20% vida −20% fideleza −20%."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -372,7 +370,7 @@ msgstr "Muralles de madera"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Muralles: tiempu de construcción −20% vida −20%."
+msgstr "Muralles: periodu d'obra −20% vida −20%."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -415,8 +413,8 @@ msgid "Colonization"
 msgstr "Colonización"
 
 #: simulation/data/technologies/colonization.jsontooltip
-msgid "Civic Structures −25% build time."
-msgstr "Construcciones civiles: tiempu de construcción −25%."
+msgid "Civic Structures −25% build time and resources cost"
+msgstr "Construcciones civiles: periodu d'obra y costu −25%"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1626,8 +1624,8 @@ msgid "Expertise In War"
 msgstr "Habilidá de guerra"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid "Mercenaries are promoted to Advanced rank."
-msgstr "Los mercenarios ascienden al rangu avanzáu."
+msgid "Mercenaries start at Advanced rank."
+msgstr "Los mercenarios comiencen col rangu avanzáu."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

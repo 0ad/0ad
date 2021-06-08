@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-31 07:12+0000\n"
-"PO-Revision-Date: 2021-05-31 06:00+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-05 05:42+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -81,23 +81,23 @@ msgctxt "enumeration"
 msgid ", "
 msgstr ", "
 
-#: gui/common/mod.js:17
+#: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
 msgstr "%(mod)s (%(version)s)"
 
-#: gui/common/mod.js:20
+#: gui/common/mod.js:31
 msgid ", "
 msgstr ", "
 
-#: gui/common/mod.js:28
+#: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
 msgstr "필요함: %(mods)s"
 
-#: gui/common/mod.js:30
+#: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
@@ -105,27 +105,33 @@ msgstr "활성화: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
-"[font=\"sans-bold-20\"] You tried to start game with incompatible or missing"
-" mods!"
-msgstr "[font=\"sans-bold-20\"] 호환되지 않거나 누락된 모드로 게임을 시작하려고 했습니다!"
+"[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
+"missing mods![/font]"
+msgstr "[font=\"sans-bold-20\"]호환되지 않거나 누락된 모드로 게임을 시작하려고 했습니다![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
 msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
-msgid "Solve the compatibility and start game again."
-msgstr "호환성을 해결하고 게임을 다시 시작하십시오."
-
-#: gui/incompatible_mods/incompatible_mods.txt:4
 msgid ""
-"You might want to save configuration before starting, when you see this page"
-" again."
-msgstr "이 페이지가 다시 표시되면 시작하기 전에 환경설정을 저장하는 것이 좋습니다."
+"Solve the compatibility issue by disabling invalid mods or enabling required"
+" dependencies. You can then save & start the game."
+msgstr "잘못된 모드를 비활성화하거나 필요한 종속성을 활성화하여 호환성 문제를 해결합니다. 그런 다음 게임을 저장하고 시작할 수 있습니다."
+
+#: gui/incompatible_mods/incompatible_mods.txt:5
+msgid ""
+"Incompatible mods will appear in red in the list of enabled mods (bottom "
+"panel). Dependencies can be added by enabling them in the upper panel."
+msgstr "호환되지 않는 모드는 활성화된 모드 목록(하단 패널)에 빨간색으로 표시됩니다. 종속성은 상단 패널에서 활성화하여 추가할 수 있습니다."
+
+#: gui/incompatible_mods/incompatible_mods.txt:6
+msgid "[/font]"
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
-msgid "Welcome!"
-msgstr "환영합니다!"
+msgid "Incompatible mods"
+msgstr "호환되지 않는 모드"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -350,7 +356,7 @@ msgstr "파일 크기"
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
-msgstr "의존성"
+msgstr "종속성"
 
 #: gui/modio/modio.xml:(placeholder_text):35
 msgctxt "placeholder text for input field to filter mods"
@@ -408,25 +414,25 @@ msgstr "mod.io 방문"
 msgid "This mod does not exist"
 msgstr "이 모드는 존재하지 않습니다"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "활성화"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr "의존성이 충족되지 않음"
+msgstr "종속성이 충족되지 않음"
 
-#: gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "비활성화"
 
-#: gui/modmod/modmod.js:457
+#: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
 msgstr "선택된 모드가 없습니다."
 
-#: gui/modmod/modmod.js:460
+#: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
 msgstr "0ad 모드만 활성화"
 
@@ -490,7 +496,7 @@ msgstr "필터"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "모드가 시작되는 순서를 변경합니다. 이것은 모드의 의존성과 일치해야 합니다."
+msgstr "모드가 시작되는 순서를 변경합니다. 이것은 모드의 종속성과 일치해야 합니다."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"

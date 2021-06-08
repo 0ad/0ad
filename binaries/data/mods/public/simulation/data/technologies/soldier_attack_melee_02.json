@@ -2,14 +2,14 @@
 	"genericName": "Iron Weapons",
 	"description": "Using iron instead of bronze gave weapons additional power.",
 	"cost": {
-		"food": 900,
-		"metal": 600
+		"food": 350,
+		"metal": 250
 	},
 	"supersedes": "soldier_attack_melee_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "sword_cross.png",
-	"researchTime": 60,
+	"icon": "sword_02.png",
+	"researchTime": 50,
 	"tooltip": "Soldiers +15% melee attack damage.",
 	"modifications": [
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.15 },

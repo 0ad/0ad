@@ -166,6 +166,14 @@
 			"session.queueunit.autoqueueoff": {
 				"name": "Deactivate auto-queue",
 				"desc": "Turn off Auto-Queue for selected structures."
+			},
+			"session.flare": {
+				"name": "Flare (hold)",
+				"desc": "Set the cursor to Flare while this hotkey is pressed."
+			},
+			"session.flareactivate": {
+				"name": "Flare (toggle)",
+				"desc": "Set the cursor to Flare. The hotkey can be released."
 			}
 		}
 	}

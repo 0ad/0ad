@@ -1,13 +1,13 @@
 {
-	"genericName": "Iron Arrowheads",
-	"description": "Projectile points made of iron enable missiles to penetrate deeper.",
+	"genericName": "Improved Fletching",
+	"description": "Improving the fletching of arrows increases their stability and speed, and thus their penetration.",
 	"cost": {
-		"wood": 600,
-		"metal": 400
+		"wood": 200,
+		"metal": 100
 	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
-	"icon": "arrow.png",
+	"icon": "arrow_01.png",
 	"researchTime": 40,
 	"tooltip": "Soldiers +15% ranged attack damage.",
 	"modifications": [

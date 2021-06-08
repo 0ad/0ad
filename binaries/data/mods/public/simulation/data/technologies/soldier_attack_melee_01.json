@@ -10,12 +10,12 @@
 	},
 	"description": "Often, a soldier would carry a secondary weapon in addition to his primary weapon of choice, to be drawn when the primary weapon has failed or been broken.",
 	"cost": {
-		"food": 600,
-		"metal": 400
+		"food": 200,
+		"metal": 100
 	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
-	"icon": "sword.png",
+	"icon": "sword_01.png",
 	"researchTime": 40,
 	"tooltip": "Soldiers +15% melee attack damage.",
 	"modifications": [

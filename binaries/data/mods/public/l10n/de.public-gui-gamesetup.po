@@ -71,8 +71,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-21 19:56+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 12:57+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -153,7 +153,7 @@ msgstr "Keine"
 msgid "AI Player"
 msgstr "KI-Spieler"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
@@ -252,11 +252,11 @@ msgstr "Zivilisation"
 msgid "Team"
 msgstr "Team"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
 msgstr "Karten durchsehen"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Drücke %(hotkey)s um die Liste der verfügbaren Karten zu sehen."
@@ -428,28 +428,32 @@ msgstr "Landschaft"
 msgid "Select one of the landscapes of this map."
 msgstr "Wähle eine Landschaft für diese Karte aus."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:81
 msgid "Map Filter"
 msgstr "Kartenfilter"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:66
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:84
 msgid "Select a map filter."
 msgstr "Kartenfilter wählen."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:104
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
+msgid "Map"
+msgstr "Karte"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:139
 msgid "Select Map"
 msgstr "Karte auswählen"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:107
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
 msgid "Select a map to play on."
 msgstr "Karte zum Spielen wählen."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:113
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
 msgctxt "map selection"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:116
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:151
 msgid "Pick any of the given maps at random."
 msgstr "Wähle eine zufällige Karte aus."
 
@@ -461,11 +465,11 @@ msgstr "Kartengröße"
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Kartengröße wählen. (Größere Karten können die Leistung reduzieren.)"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:51
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
 msgstr "Kartentyp"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:68
 msgid "Select a map type."
 msgstr "Kartentyp wählen."
 
@@ -851,7 +855,7 @@ msgstr "Die Server Portnummer muss zwischen %(min)s und %(max)s liegen."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
-msgstr "Zum Server verbinden ..."
+msgstr "Zum Server verbinden..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
@@ -891,11 +895,11 @@ msgstr "Netzwerknachricht: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
-msgstr "Beim Server registrieren ..."
+msgstr "Beim Server registrieren..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
-msgstr "Spiel hat bereits begonnen, wieder verbinden ..."
+msgstr "Spiel hat bereits begonnen, wieder verbinden..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
@@ -1031,7 +1035,7 @@ msgstr "„Denn anzuhaften pfleget aller Tyrannei auch dies Gebrechen, treusten 
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr "„Die Zeit lehrt all Ding.“ \\n– Aischylos („Der gefesselte Prometheus”, 981)"
+msgstr "„Die Zeit lehrt all Ding.“ \\n– Aischylos („Der gefesselte Prometheus“, 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
@@ -1092,7 +1096,7 @@ msgstr "„Lerne besser vom Unglück anderer als von deinem eigenen.“ \\n— �
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr "„Versprechen der Feinde sind gemacht, um sie zu brechen.“ \\n— Äsop („Das Kindermädchen und der Wolf”)"
+msgstr "„Versprechen der Feinde sind gemacht, um sie zu brechen.“ \\n— Äsop („Das Kindermädchen und der Wolf“)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
@@ -1130,7 +1134,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr "„Es ist sehr unterwürfig, im Luxus zu leben, aber sehr königlich, hart zu schuften. \\[…] Wisst ihr nicht, dass Zweck und Ziel der Eroberung es ist, die Laster und Schwächen der Unterworfenen zu vermeiden?” \\n— Alexander der Große (Plutarch, „Parallelbiographien“, „Alexander”, 40. Abschnitt)"
+msgstr "„Es ist sehr unterwürfig, im Luxus zu leben, aber sehr königlich, hart zu schuften. \\[…] Wisst ihr nicht, dass Zweck und Ziel der Eroberung es ist, die Laster und Schwächen der Unterworfenen zu vermeiden?“ \\n— Alexander der Große (Plutarch, „Parallelbiographien“, „AlexanderG“ 40. Abschnitt)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1159,7 +1163,7 @@ msgstr "„Wenn ich nicht Alexander wäre, so wünschte ich mir, Diogenes \\[von
 msgid ""
 "“To the strongest!” \\n— Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, “The Anabasis of Alexander”, 7.26)"
-msgstr "„Dem Stärksten!“ \\n— Alexander der Große auf seinem Todesbett, als er gefragt wurde, wer ihn als König ablösen sollte (Arrian, „Die Anabasis von Alexander”, 7.26)"
+msgstr "„Dem Stärksten!“ \\n— Alexander der Große auf seinem Todesbett, als er gefragt wurde, wer ihn als König ablösen sollte (Arrian, „Die Anabasis von Alexander“, 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -1172,7 +1176,7 @@ msgid ""
 "“Written laws are like spiders' webs; they will catch, it is true, the weak "
 "and poor, but will be torn in pieces by the rich and powerful.” \\n— "
 "Anacharsis (Plutarch, “Parallel Lives”, “Solon”, sec. 5)"
-msgstr "„Das geschriebene Gesetz ist wie ein Spinnennetz; es fängt, das ist wahr, die Schwachen und Armen, aber es wird von den Reichen und Mächtigen zerrissen.“ \\n— Anacharsis (Plutarch, „Parallelbiographien”, „Solon“, 5. Abschnitt)"
+msgstr "„Das geschriebene Gesetz ist wie ein Spinnennetz; es fängt, das ist wahr, die Schwachen und Armen, aber es wird von den Reichen und Mächtigen zerrissen.“ \\n— Anacharsis (Plutarch, „Parallelbiographien“, „Solon“, 5. Abschnitt)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -1180,7 +1184,7 @@ msgid ""
 "covetously.” \\n— Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "“Anacharsis”, sec. 5)"
-msgstr "„Die Agora ist ein bewährter Ort für Männer, sich gegenseitig zu betrügen, und, um sich begehrlich zu verhalten.” \\n— Anacharsis, ein skythischer Philosoph, der nach Griechenland reiste (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen”, „Anarchisis“, 5. Abschnitt)"
+msgstr "„Die Agora ist ein bewährter Ort für Männer, sich gegenseitig zu betrügen, und, um sich begehrlich zu verhalten.“ \\n— Anacharsis, ein skythischer Philosoph, der nach Griechenland reiste (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, „Anarchisis“, 5. Abschnitt)"
 
 #: gui/text/quotes.txt:29
 msgid ""
@@ -1194,7 +1198,7 @@ msgid ""
 "“States are doomed when they are unable to distinguish good men from bad.” "
 "\\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent "
 "Philosophers”, “Antisthenes”, sec. 5)"
-msgstr "„Staaten sind dem Untergang geweiht, wenn sie nicht dazu in der Lage sind, gute Männer von schlechten zu unterscheiden.” \\n— Antisthenes (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, „Antisthenes“, 5. Abschnitt)"
+msgstr "„Staaten sind dem Untergang geweiht, wenn sie nicht dazu in der Lage sind, gute Männer von schlechten zu unterscheiden.“ \\n— Antisthenes (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, „Antisthenes“, 5. Abschnitt)"
 
 #: gui/text/quotes.txt:31
 msgid ""
@@ -1220,19 +1224,19 @@ msgid ""
 "“It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.” \\n— Aristotle (“Nicomachean"
 " Ethics”, I. 1096a.11)"
-msgstr "„Es ist unabdingbar, besonders für einen Philosophen, sogar seine nächsten persönlichen Verbindungen der Verteidigung der Wahrheit zu opfern.” \\n— Aristoteles („Nikomachische Ethik“, I. 1096a.11)"
+msgstr "„Es ist unabdingbar, besonders für einen Philosophen, sogar seine nächsten persönlichen Verbindungen der Verteidigung der Wahrheit zu opfern.“ \\n— Aristoteles („Nikomachische Ethik“, I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "“Happiness depends on leisure; for we are busy to have leisure, and make war"
 " to live in peace.” \\n— Aristotle (“Nicomachean Ethics”, X. 1177b.4)"
-msgstr "„Glück hängt von Freizeit ab; denn wir sind geschäftig, um Freizeit zu haben, und führen Krieg, um in Frieden zu leben.” \\n— Aristoteles („Nikomachische Ethik“, X. 1177b.4)"
+msgstr "„Glück hängt von Freizeit ab; denn wir sind geschäftig, um Freizeit zu haben, und führen Krieg, um in Frieden zu leben.“ \\n— Aristoteles („Nikomachische Ethik“, X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr "„Der Mensch ist von Natur aus ein politisches Tier“ \\n— Aristoteles („Politik”, I. 1253a.2)"
+msgstr "„Der Mensch ist von Natur aus ein politisches Tier“ \\n— Aristoteles („Politik“, I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -1245,14 +1249,14 @@ msgid ""
 "“I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
-msgstr "„Dies habe ich durch Philosophie gewonnen. Dass ich tue, ohne befohlen zu werden, was andere nur aus Furcht vor dem Gesetz tun.” \\n— Aristoteles (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, Aristoteles, 20. Abschnitt)"
+msgstr "„Dies habe ich durch Philosophie gewonnen. Dass ich tue, ohne befohlen zu werden, was andere nur aus Furcht vor dem Gesetz tun.“ \\n— Aristoteles (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, Aristoteles, 20. Abschnitt)"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "“I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.” \\n— Aristotle "
 "(Stobaeus, “Florilegium”, 223)"
-msgstr "„Den, der seine Laster besiegt, nenne ich tapferer als den, der seine Feinde besiegt, denn der schwierigste Sieg ist der über sich selbst.” \\n— Aristoteles (Stobäus, „Florilegium“, 223)"
+msgstr "„Den, der seine Laster besiegt, nenne ich tapferer als den, der seine Feinde besiegt, denn der schwierigste Sieg ist der über sich selbst.“ \\n— Aristoteles (Stobäus, „Florilegium“, 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -1281,7 +1285,7 @@ msgid ""
 "“Let every man remind their descendants that they also are soldiers who must"
 " not desert the ranks of their ancestors, or retreat out of cowardice.” \\n—"
 " Aspasia (Plato, “Menexenus”, 246b)"
-msgstr "„Es möge jeder Mann seine Nachkommen erinnern, dass auch sie Soldaten sind, die die Reihen ihrer Vorfahren nicht verlassen dürfen, oder aus Feigheit zurückfallen.“ \\n— Aspasia (Platon, „Menexenos”, 246b)"
+msgstr "„Es möge jeder Mann seine Nachkommen erinnern, dass auch sie Soldaten sind, die die Reihen ihrer Vorfahren nicht verlassen dürfen, oder aus Feigheit zurückfallen.“ \\n— Aspasia (Platon, „Menexenos“, 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
@@ -1529,7 +1533,7 @@ msgstr "„Feiglinge zählen nicht in der Schlacht; Sie sind dort, aber nicht da
 msgid ""
 "“Chance fights ever on the side of the prudent.” \\n— Euripides "
 "(“Pirithous”)"
-msgstr "„Das Glück kämpft immer auf Seiten der Umsichtigen.“ \\n— Euripides („Peirithoos“)"
+msgstr "„Das Glück kämpft immer aufseiten der Umsichtigen.“ \\n— Euripides („Peirithoos“)"
 
 #: gui/text/quotes.txt:78
 msgid ""
@@ -1700,7 +1704,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.” \\n— Herodotus, later mentioning that the empire "
 "Croesus destroyed was his own (“The Histories”, I. 53)"
-msgstr "„Die Prophezeiung, die Krösus von den beiden Orakeln \\[Delphi und Theben] erhalten hatte war die Gleiche: schicke er eine Armee gegen die Perser, so würde er ein großes Reich zerstören.“\n— Herodot, der später erwähnt, dass das zerstörte Reich Krösus eigenes war („Historien“, I. 53)"
+msgstr "„Die Prophezeiung, die Krösus von den beiden Orakeln \\[Delphi und Theben] erhalten hatte, war die Gleiche: schicke er eine Armee gegen die Perser, so würde er ein großes Reich zerstören.“\n— Herodot, der später erwähnt, dass das zerstörte Reich Krösus eigenes war („Historien“, I. 53)"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1760,13 +1764,13 @@ msgid ""
 " who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.”\\n— Kauṭilya (“Arthashastra”, "
 "I.4.8–10)"
-msgstr "„Derjenige, der harte Strafen auferlegt, wirkt abscheulich auf das Volk, während der, der mild urteilt, verachtet wird. Nur jener, der gerechte Strafen auferlegt, wird respektiert.”\\n— Kauṭilya (“Arthashastra”, I.4.8–10)"
+msgstr "„Derjenige, der harte Strafen auferlegt, wirkt abscheulich auf das Volk, während der, der mild urteilt, verachtet wird. Nur jener, der gerechte Strafen auferlegt, wird respektiert.“\\n— Kauṭilya (“Arthashastra“, I.4.8–10)"
 
 #: gui/text/quotes.txt:111
 msgid ""
 "“If a king is energetic, his subjects will be equally energetic.”\\n— "
 "Kauṭilya (“Arthashastra” I.19.1)"
-msgstr "„Wenn ein König tatkräftig ist, sind seine Untertanen gleichermaßen energisch.“\\n— Kauṭilya (“Arthashastra” I.19.1)"
+msgstr "„Wenn ein König tatkräftig ist, sind seine Untertanen gleichermaßen energisch.“\\n— Kauṭilya (“Arthashastra“ I.19.1)"
 
 #: gui/text/quotes.txt:112
 msgid ""
@@ -1835,7 +1839,7 @@ msgstr "„Die erste Pflicht eines Mannes ist die Suche nach der Wahrheit und de
 msgid ""
 "“No one is so old as to think that he cannot live one more year.” \\n— "
 "Cicero (“On Old Age”, sec. 24)"
-msgstr "„Niemand ist so alt, dass er nicht mehr glaubt noch ein Jahr zu leben.“ \\n— Cicero („Über das Alter“, 24. Abschnitt)"
+msgstr "„Niemand ist so alt, dass er nicht mehr glaubt, noch ein Jahr zu leben.“ \\n— Cicero („Über das Alter“, 24. Abschnitt)"
 
 #: gui/text/quotes.txt:122
 msgid ""
@@ -1989,7 +1993,7 @@ msgstr "„Kein Gast ist so willkommen im Hause eines Freundes, dass er nach dre
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
 "immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
-msgstr "„Man kann nicht mit etwas bezahlen und es danach immer noch besitzen, es sei denn, man glaubt, dass das eigene Geld unsterblich ist.”\\n— Plautus („Trinummus“, 2. Akt, 4. Szene, 13-14)"
+msgstr "„Man kann nicht mit etwas bezahlen und es danach immer noch besitzen, es sei denn, man glaubt, dass das eigene Geld unsterblich ist.“\\n— Plautus („Trinummus“, 2. Akt, 4. Szene, 13-14)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2122,7 +2126,7 @@ msgstr "„Deine Anprache sei besser als Stille, oder sei still.“ \\n— Pytha
 msgid ""
 "“Unity strengthens even small states, while discord undermines the mightiest"
 " empires.” \\n— Sallust (“The Jugurthine War”, 10.6)"
-msgstr "„Denn Harmonie macht kleine Staaten groß, während Zwietracht selbst die mächtigsten Imperien untergräbt.“ \\n— Sallust („Der Jugurthinische Krieg”, 10.6)"
+msgstr "„Denn Harmonie macht kleine Staaten groß, während Zwietracht selbst die mächtigsten Imperien untergräbt.“ \\n— Sallust („Der Jugurthinische Krieg“, 10.6)"
 
 #: gui/text/quotes.txt:160
 msgid ""
@@ -2184,7 +2188,7 @@ msgid ""
 "interest. It was not we who set the example, for it has always been the law "
 "that the weak should be subject to the strong.” \\n— Speech of an Athenian "
 "embassy in Sparta (Thucydides, “History of the Peloponnesian War”, I. 76.2)"
-msgstr "„Wir akzeptierten ein Reich, das uns angeboten wurde, und weigerten uns, es unter dem Druck der drei stärksten Motive aufzugeben: Angst, Ehre und Bedeutung. Es waren nicht wir, die das Beispiel setzten, denn es war schon immer Gesetz, dass die Schwachen den Starken unterworfen sind.“ \\n— Rede einer athenischen Gesandschaft in Sparta (Thukydides, „Der Peloponnesische Krieg“, I. 76.2)"
+msgstr "„Wir akzeptierten ein Reich, das uns angeboten wurde, und weigerten uns, es unter dem Druck der drei stärksten Motive aufzugeben: Angst, Ehre und Bedeutung. Es waren nicht wir, die das Beispiel setzten, denn es war schon immer Gesetz, dass die Schwachen den Starken unterworfen sind.“ \\n— Rede einer athenischen Gesandtschaft in Sparta (Thukydides, „Der Peloponnesische Krieg“, I. 76.2)"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -2271,7 +2275,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.” \\n— "
 "Thucydides, describing Athenians addressing the defeated Melians who are "
 "unwilling to surrender (“History of the Peloponnesian War”, V. 89.1)"
-msgstr "„So wie die Welt funktioniert, ist Gerechtigkeit nur eine Angelegenheit zwischen Gleichen, während die Starken tun, was sie können und die Schwachen erleiden, was sie müssen.” \\n— Thukydides, der die Athener beschreibt, gerichtet an die besiegten Melier, welche sich weigern, zu kapitulieren („Der Peloponnesische Krieg“, V. 89.1)"
+msgstr "„So wie die Welt funktioniert, ist Gerechtigkeit nur eine Angelegenheit zwischen Gleichen, während die Starken tun, was sie können und die Schwachen erleiden, was sie müssen.“ \\n— Thukydides, der die Athener beschreibt, gerichtet an die besiegten Melier, welche sich weigern, zu kapitulieren („Der Peloponnesische Krieg“, V. 89.1)"
 
 #: gui/text/quotes.txt:180
 msgid ""

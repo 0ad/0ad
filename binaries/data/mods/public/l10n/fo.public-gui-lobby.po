@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"POT-Creation-Date: 2021-06-04 07:08+0000\n"
+"PO-Revision-Date: 2021-06-04 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Faroese (http://www.transifex.com/wildfire-games/0ad/language/fo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,13 +31,13 @@ msgid "Rank"
 msgstr ""
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
-#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/GameList.xml:(heading):13
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
 msgstr ""
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
-#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/GameList.xml:(heading):28
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
 msgstr ""
@@ -328,13 +329,13 @@ msgid "Yes"
 msgstr ""
 
 #. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:298
+#: gui/lobby/LobbyPage/Game.js:309
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr ""
 
 #. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:301
+#: gui/lobby/LobbyPage/Game.js:312
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr ""
@@ -344,67 +345,78 @@ msgctxt "victory condition"
 msgid "Endless Game"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:117
+#: gui/lobby/LobbyPage/GameDetails.js:109
+#, javascript-format
+msgid ""
+"You have some incompatible mods:\n"
+"%(details)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "This mod does not affect MP compatibility"
+msgstr ""
+
+#: gui/lobby/LobbyPage/GameDetails.js:140
 #, javascript-format
 msgid "Host: %(playername)s"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:119
+#: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:121
+#: gui/lobby/LobbyPage/GameDetails.js:144
 msgid "Victory Conditions:"
 msgstr ""
 
 #. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:124
+#: gui/lobby/LobbyPage/GameDetails.js:147
 msgid ", "
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:126
+#: gui/lobby/LobbyPage/GameDetails.js:149
 msgid "Mods:"
 msgstr ""
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:129
+#: gui/lobby/LobbyPage/GameDetails.js:152
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr ""
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-#: gui/lobby/LobbyPage/GameDetails.js:131
+#: gui/lobby/LobbyPage/GameDetails.js:154
 msgid "HH:mm"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:133
+#: gui/lobby/LobbyPage/GameDetails.js:156
 msgid "Map Type:"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:135
+#: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "Map Size:"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:137
+#: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Description:"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameList.xml:(heading):15
+#: gui/lobby/LobbyPage/GameList.xml:(heading):16
 msgid "Map Name"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameList.xml:(heading):18
+#: gui/lobby/LobbyPage/GameList.xml:(heading):19
 msgctxt "map"
 msgid "Size"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameList.xml:(heading):21
+#: gui/lobby/LobbyPage/GameList.xml:(heading):22
 msgctxt "map"
 msgid "Type"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameList.xml:(heading):24
+#: gui/lobby/LobbyPage/GameList.xml:(heading):25
 msgid "Players"
 msgstr ""
 

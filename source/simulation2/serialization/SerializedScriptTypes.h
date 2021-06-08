@@ -65,8 +65,7 @@ inline SPrototypeSerialization GetPrototypeInfo(const ScriptRequest& rq, JS::Han
 {
 	SPrototypeSerialization ret;
 
-	JS::RootedValue constructor(rq.cx, JS::ObjectOrNullValue(JS_GetConstructor(rq.cx, prototype)));
-	if (!Script::GetProperty(rq, constructor, "name", ret.name))
+	if (!Script::GetObjectClassName(rq, prototype, ret.name))
 		throw PSERROR_Serialize_ScriptError("Could not get constructor name.");
 
 	// Nothing to do for basic Object objects.

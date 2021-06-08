@@ -131,6 +131,25 @@ inline bool SetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int nam
 	return SetProperty<T, int>(rq, obj, name, value, constant, enumerable);
 }
 
+template<typename T>
+inline bool GetObjectClassName(const ScriptRequest& rq, JS::HandleObject obj, T& name)
+{
+	JS::RootedValue constructor(rq.cx, JS::ObjectOrNullValue(JS_GetConstructor(rq.cx, obj)));
+	return constructor.isObject() && Script::HasProperty(rq, constructor, "name") && Script::GetProperty(rq, constructor, "name", name);
+}
+
+/**
+ * Get the name of the object's class. Note that inheritance may lead to unexpected results.
+ */
+template<typename T>
+inline bool GetObjectClassName(const ScriptRequest& rq, JS::HandleValue val, T& name)
+{
+	JS::RootedObject obj(rq.cx, val.toObjectOrNull());
+	if (!obj)
+		return false;
+	return GetObjectClassName(rq, obj, name);
+}
+
 inline bool FreezeObject(const ScriptRequest& rq, JS::HandleValue objVal, bool deep)
 {
 	if (!objVal.isObject())

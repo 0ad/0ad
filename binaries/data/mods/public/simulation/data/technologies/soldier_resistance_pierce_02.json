@@ -2,14 +2,14 @@
 	"genericName": "Metal Rim",
 	"description": "Strengthen shields with a metal rim or spine.",
 	"cost": {
-		"wood": 600,
-		"metal": 600
+		"wood": 350,
+		"metal": 250
 	},
 	"supersedes": "soldier_resistance_pierce_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "shields_generic_bronze.png",
-	"researchTime": 60,
+	"researchTime": 50,
 	"tooltip": "Soldiers +1 pierce resistance.",
 	"modifications": [
 		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 }

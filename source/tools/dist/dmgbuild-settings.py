@@ -16,7 +16,7 @@ application = defines.get('app')
 format = defines.get('format', 'UDBZ')
 
 # Volume size
-size = defines.get('size', '3G')
+size = defines.get('size', '4G')
 
 # Files to include
 files = [ application ]

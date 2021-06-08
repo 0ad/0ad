@@ -1,15 +1,15 @@
 {
-	"genericName": "Trilobate Arrowheads",
-	"description": "Arrowheads with three lobes instead of two inflict larger wounds.",
+	"genericName": "Iron Arrowheads",
+	"description": "Projectile points made of iron enable missiles to penetrate deeper.",
 	"cost": {
-		"wood": 900,
-		"metal": 600
+		"wood": 350,
+		"metal": 250
 	},
 	"supersedes": "soldier_attack_ranged_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "arrow_accuracy.png",
-	"researchTime": 60,
+	"icon": "arrow_02.png",
+	"researchTime": 50,
 	"tooltip": "Soldiers +15% ranged attack damage.",
 	"modifications": [
 		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.15 },

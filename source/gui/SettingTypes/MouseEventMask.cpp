@@ -24,6 +24,7 @@
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/Filesystem.h"
+#include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptConversions.h"
@@ -85,8 +86,16 @@ public:
 	static std::unique_ptr<CGUIMouseEventMaskTexture> Create(const std::string& spec)
 	{
 		std::shared_ptr<u8> shapeFile;
+		CCacheLoader loader(g_VFS, L".dds");
+		VfsPath sourcePath = VfsPath("art") / L"textures" / L"ui" / spec.substr(specOffset);
+		VfsPath archivePath = loader.ArchiveCachePath(sourcePath);
+		Status status;
 		size_t size;
-		if (g_VFS->LoadFile(VfsPath("art") / L"textures" / L"ui" / spec.substr(specOffset), shapeFile, size) != INFO::OK)
+		if (loader.CanUseArchiveCache(sourcePath, archivePath))
+			status = g_VFS->LoadFile(archivePath, shapeFile, size);
+		else
+			status = g_VFS->LoadFile(sourcePath, shapeFile, size);
+		if (status != INFO::OK)
 		{
 			LOGWARNING("Mouse event mask texture not found ('%s')", spec);
 			return nullptr;

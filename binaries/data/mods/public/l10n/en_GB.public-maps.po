@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:30+0000\n"
-"Last-Translator: Martin H <pilino@posteo.de>\n"
+"PO-Revision-Date: 2021-06-06 11:03+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -860,7 +860,7 @@ msgstr "Start in a region blessed with the Mediterranean climate, a warm and inv
 #: maps/random/rmbiome/generic/aegean.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Aegean-Anatolian"
-msgstr ""
+msgstr "Aegean-Anatolian"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
@@ -879,7 +879,7 @@ msgstr "Alpine"
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Arctic"
-msgstr ""
+msgstr "Arctic"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -915,12 +915,12 @@ msgid ""
 "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
 "gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes"
 " or elephants roam the wild in search of food."
-msgstr ""
+msgstr "Nubia has a dry climate in which only the hardy Baobab trees thrive. Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes or elephants roam the wild in search of food."
 
 #: maps/random/rmbiome/generic/nubia.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Nubia"
-msgstr ""
+msgstr "Nubia"
 
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Description
 msgctxt "biome definition"
@@ -928,12 +928,12 @@ msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and acacia "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
-msgstr ""
+msgstr "A semi-desert area that boasts numerous clumps of date palms and acacia trees. Herds of camels roam the wild and the occasional gazelle jumps up in fright at being disturbed."
 
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Sahara"
-msgstr ""
+msgstr "Sahara"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
@@ -951,12 +951,12 @@ msgstr "Savanna"
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
 msgid "Wide grasslands without trees"
-msgstr ""
+msgstr "Wide grasslands without trees"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Eurasian Steppe"
-msgstr ""
+msgstr "Eurasian Steppe"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -2291,11 +2291,11 @@ msgstr "Tropical Island"
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
-msgstr ""
+msgstr "This map is designed to test a few different cases of units chasing each other."
 
 #: maps/scenarios/unit_chasing_test.xml:Name:40
 msgid "Unit Chasing test"
-msgstr ""
+msgstr "Unit Chasing test"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
@@ -2321,11 +2321,11 @@ msgstr "Unit Motion Integration Test"
 msgid ""
 "This map is designed to test the performance & functionality of unit "
 "pushing."
-msgstr ""
+msgstr "This map is designed to test the performance & functionality of unit pushing."
 
 #: maps/scenarios/unit_pushing_test.xml:Name:40
 msgid "Unit Pushing test"
-msgstr ""
+msgstr "Unit Pushing test"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."
@@ -2400,14 +2400,14 @@ msgstr "%(player)s has been defeated (lost all critical units and structures)."
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all civic centres)."
-msgstr ""
+msgstr "%(player)s has been defeated (lost all civic centres)."
 
 #: maps/scripts/ConquestCivicCentres.js:9
 #, javascript-format
 msgid ""
 "%(player)s has been defeated (lost all civic centres and critical units and "
 "structures)."
-msgstr ""
+msgstr "%(player)s has been defeated (lost all civic centres and critical units and structures)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
@@ -2526,11 +2526,11 @@ msgid ""
 "South of the river are rich arable lands and plentiful wood and forage. North of the river lie a mountain range pierced by wide mountain passes and guarded by natural defensive positions.\n"
 "\n"
 "Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
-msgstr ""
+msgstr "In the Eastern land of Bactria lies the rich valley carved by the Oxus River.\n\nSouth of the river are rich arable lands and plentiful wood and forage. North of the river lie a mountain range pierced by wide mountain passes and guarded by natural defensive positions.\n\nWithin the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
 
 #: maps/skirmishes/bactria_2p.xml:Name:39
 msgid "Bactriana (2)"
-msgstr ""
+msgstr "Bactriana (2)"
 
 #: maps/skirmishes/barcania_3p.xml:Description:26
 msgid ""
@@ -2563,7 +2563,7 @@ msgstr "South of the Sahara, East of the Nile, lies a semi-arid region today kno
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Island of Meroë (2)"
-msgstr ""
+msgstr "Island of Meroë (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
@@ -2589,11 +2589,11 @@ msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
-msgstr ""
+msgstr "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n\nCAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"
-msgstr ""
+msgstr "Cisalpine Winter (2)"
 
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
 msgid "Corinthian Isthmus (2)"
@@ -2619,11 +2619,11 @@ msgid ""
 "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
 "\n"
 "The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
-msgstr ""
+msgstr "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n\nThe surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Nile tilapia, ready for fishing.  "
 
 #: maps/skirmishes/crocodilopolis_4p.xml:Name:39
 msgid "Crocodilopolis (4)"
-msgstr ""
+msgstr "Crocodilopolis (4)"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -2765,11 +2765,11 @@ msgstr "Gallic Fields (3)"
 
 #: maps/skirmishes/gallic_highlands_2p.xml:Description:39
 msgid "The Highlands of central Gaul."
-msgstr ""
+msgstr "The highlands of central Gaul."
 
 #: maps/skirmishes/gallic_highlands_2p.xml:Name:39
 msgid "Gallic Highlands (2)"
-msgstr ""
+msgstr "Gallic Highlands (2)"
 
 #: maps/skirmishes/gambia_river_3p.xml:Description:38
 msgid ""
@@ -2835,32 +2835,32 @@ msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
-msgstr ""
+msgstr "The Hindu Kush mountains separate India from Bactria (modern-day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n\nThe area is low on wood resources, but high on stone and metal. A trade route runs through the centre of the map with Trade Depots that can be captured and used to gather resources via trade. "
 
 #: maps/skirmishes/hindu_kush_2p.xml:Name:39
 msgid "Hindu Kush (2)"
-msgstr ""
+msgstr "Hindu Kush (2)"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Description:39
 msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
-msgstr ""
+msgstr "The Hydaspes, now the Jhelum River in the Punjab, Pakistan. Here was the site of the great battle between the Macedonian forces under Alexander the Great and the Indian forces of the king Porus of Paurava."
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
-msgstr ""
+msgstr "Hydaspes River (4)"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
 msgid "Macedonian Position"
-msgstr ""
+msgstr "Macedonian Position"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
 msgid "Pauravan Position"
-msgstr ""
+msgstr "Pauravan Position"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2901,7 +2901,7 @@ msgstr "Lorraine Plain (2)"
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
-msgstr ""
+msgstr "Magadha (2)"
 
 #: maps/skirmishes/median_oasis_2p.xml:Description:38
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
@@ -2933,11 +2933,11 @@ msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
-msgstr ""
+msgstr "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n\nTo the east lies a large bay with fishing opportunities. To the west is an unclaimed acropolis overlooking the Aegean Sea."
 
 #: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
 msgid "Miletus Peninsula (2)"
-msgstr ""
+msgstr "Miletus Peninsula (2)"
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Description:38
 #: maps/skirmishes/neareastern_badlands_4p.xml:Description:38
@@ -2981,11 +2981,11 @@ msgstr "Northern Island (2)"
 
 #: maps/skirmishes/nubian_frontier_2p.xml:Description:39
 msgid "The arid and treacherous frontier between Nubia and Egypt."
-msgstr ""
+msgstr "The arid and treacherous frontier between Nubia and Egypt."
 
 #: maps/skirmishes/nubian_frontier_2p.xml:Name:39
 msgid "Nubian Frontier (2)"
-msgstr ""
+msgstr "Nubian Frontier (2)"
 
 #: maps/skirmishes/obedska_bog_4p.xml:Description:39
 #: maps/skirmishes/obedska_bog_night_4p.xml:Description:39
@@ -3038,11 +3038,11 @@ msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
-msgstr ""
+msgstr "In the deep Sahara Desert of Africa lies an area of rocky outcrops and small oases. \n\nLarge stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting date palms give an nice initial burst of food."
 
 #: maps/skirmishes/saharan_oases_2p.xml:Name:39
 msgid "Saharan Oases (2)"
-msgstr ""
+msgstr "Saharan Oases (2)"
 
 #: maps/skirmishes/saharan_oases_4p.xml:Name:39
 msgid "Saharan Oases (4)"
@@ -3085,11 +3085,11 @@ msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
-msgstr ""
+msgstr "The steppes of central Asia. A wide open grassland with few trees (about 90% fewer trees than on a temperate or Aegean map). Animal life is plentiful though, so take advantage of the hunting available. "
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
-msgstr ""
+msgstr "Scythian Steppes (4)"
 
 #: maps/skirmishes/sicilia_2p.xml:Description:38
 msgid "The large Mediterranean island of Sicily is open for conquest."
@@ -3115,7 +3115,7 @@ msgstr "A demo Skirmish map."
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Name:38
 msgid "Skirmish Demo (2)"
-msgstr ""
+msgstr "Skirmish Demo (2)"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2)"
@@ -3130,7 +3130,7 @@ msgstr "A barren land with little wood and few animals. Treasures dot the landsc
 
 #: maps/skirmishes/syria_2p.xml:Name:39
 msgid "Coele-Syria (2)"
-msgstr ""
+msgstr "Coele-Syria (2)"
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3201,7 +3201,7 @@ msgstr "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
-msgstr ""
+msgstr "Via Augusta (4)"
 
 #: maps/skirmishes/watering_holes_4p.xml:Description:38
 msgid ""
@@ -3223,11 +3223,11 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr ""
+msgstr "Foreigners are invading Britannia. The native Britons must fight against a massive enemy invasion force to secure their homeland for the next generation!\n\nPlayer 1 is the Britons. Players 2-5 are the invasion force, garrisoned aboard their stout ships in the channel off the White Cliffs of Dover. \n\nTeams are set by the map script, but can be altered by the players in set-up if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n\nAssigned civilisations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centres can be built at the start."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
-msgstr ""
+msgstr "White Cliffs of Dover (5)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
 msgid "Britons"
@@ -3235,19 +3235,19 @@ msgstr "Britons"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
-msgstr ""
+msgstr "Invader 1"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
 msgid "Invader 2"
-msgstr ""
+msgstr "Invader 2"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
 msgid "Invader 3"
-msgstr ""
+msgstr "Invader 3"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
-msgstr ""
+msgstr "Invader 4"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""
