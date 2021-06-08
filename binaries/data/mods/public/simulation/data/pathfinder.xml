@@ -26,6 +26,8 @@
     <!-- if the value is below this number, treat it as effectively zero. -->
     <!-- This nullifies very small pushes, and makes things look and behave nicer. -->
     <!-- NB: This impacts the pushing max distance. -->
+    <!-- NB: If this is 0.25 or above, then pairs of units will overlap -->
+    <!-- See MAX_DISTANCE_FACTOR in CCmpUnitMotion_System.cpp for details.-->
     <MinimalForce>0.2</MinimalForce>
   </Pushing>
 
