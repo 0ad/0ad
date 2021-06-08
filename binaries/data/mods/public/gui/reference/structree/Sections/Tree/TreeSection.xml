@@ -2,7 +2,7 @@
 <object size="0 54+64 100%-16 100%-54" name="treeSection">
 	<object name="phaseIdents">
 		<repeat count="4" var="n">
-			<object name="phase[n]_ident">
+			<object name="phase[n]_ident" hidden="true">
 				<object name="phase[n]_icon" type="image" size="16 32 16+48 32+48"/>
 				<object name="phase[n]_bars">
 					<repeat count="4" var="k">
@@ -17,7 +17,7 @@
 
 	<object type="image" name="structures" style="TreeDisplay" size="48+16+8 0 100% 100%">
 		<repeat count="40" var="s">
-			<object type="image" style="StructBox" name="structure[s]">
+			<object type="image" style="StructBox" name="structure[s]" hidden="true">
 				<object type="text" style="StructNamePrimary" name="structure[s]_name"/>
 				<object type="button" style="StructIcon" name="structure[s]_icon"/>
 				<object name="structure[s]_productionRows">

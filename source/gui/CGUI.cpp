@@ -74,7 +74,7 @@ struct VisibleObject
 {
 	IGUIObject* object;
 	// Index of the object in a depth-first search inside GUI tree.
-	size_t index;
+	u32 index;
 	// Cached value of GetBufferedZ to avoid recursive calls in a deep hierarchy.
 	float bufferedZ;
 };
@@ -86,7 +86,7 @@ void CollectVisibleObjectsRecursively(const std::vector<IGUIObject*>& objects, C
 	{
 		if (!object->IsHidden())
 		{
-			visibleObjects->emplace_back(VisibleObject{object, visibleObjects->size(), 0.0f});
+			visibleObjects->emplace_back(VisibleObject{object, static_cast<u32>(visibleObjects->size()), 0.0f});
 			CollectVisibleObjectsRecursively(object->GetChildren(), visibleObjects);
 		}
 	}
