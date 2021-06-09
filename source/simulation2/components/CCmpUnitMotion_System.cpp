@@ -52,8 +52,11 @@ namespace {
 
 	/**
 	 * Maximum distance multiplier.
+	 * NB: this value interacts with the "minimal pushing" force,
+	 * as two perfectly overlapping units exert MAX_DISTANCE_FACTOR * Turn length in ms / REDUCTION_FACTOR
+	 * of force on each other each turn. If this is below the minimal pushing force, any 2 units can entirely overlap.
 	 */
-	static const entity_pos_t MAX_DISTANCE_FACTOR = entity_pos_t::FromInt(2);
+	static const entity_pos_t MAX_DISTANCE_FACTOR = entity_pos_t::FromInt(5) / 2;
 }
 
 CCmpUnitMotionManager::MotionState::MotionState(CmpPtr<ICmpPosition> cmpPos, CCmpUnitMotion* cmpMotion)
@@ -297,7 +300,7 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 		bool dir = a.first % 2;
 		offset.X = entity_pos_t::FromInt(dir ? 1 : 0);
 		offset.Y = entity_pos_t::FromInt(dir ? 0 : 1);
-		offsetLength = entity_pos_t::FromInt(1);
+		offsetLength = entity_pos_t::Epsilon() * 10;
 	}
 	else
 	{
@@ -320,9 +323,10 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 			offsetLength = fixed::Zero();
 		}
 
-	// The formula expects 'normal' pushing if the two entities edges are touching.
+	// The pushing distance factor is 1 if the edges are touching, >1 up to MAX if the units overlap, < 1 otherwise.
 	entity_pos_t distanceFactor = maxDist - combinedClearance;
-	if (distanceFactor <= entity_pos_t::Zero())
+	// Force units that overlap a lot to have the maximum factor.
+	if (distanceFactor <= entity_pos_t::Zero() || offsetLength < combinedClearance / 2)
 		distanceFactor = MAX_DISTANCE_FACTOR;
 	else
 		distanceFactor = Clamp((maxDist - offsetLength) / distanceFactor, entity_pos_t::Zero(), MAX_DISTANCE_FACTOR);

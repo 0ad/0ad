@@ -30,6 +30,14 @@
 
 #include <errno.h>
 
+namespace
+{
+
+// We can't draw chars more than vertices, currently we use 4 vertices per char.
+constexpr size_t MAX_CHAR_COUNT_PER_BATCH = 65536 / 4;
+
+} // anonymous namespace
+
 CTextRenderer::CTextRenderer()
 {
 	ResetTranslate();
@@ -186,10 +194,8 @@ struct SBatchCompare
 {
 	bool operator()(const CTextRenderer::SBatch& a, const CTextRenderer::SBatch& b)
 	{
-		if (a.font < b.font)
-			return true;
-		if (b.font < a.font)
-			return false;
+		if (a.font != b.font)
+			return a.font < b.font;
 		// TODO: is it worth sorting by color/translate too?
 		return false;
 	}
@@ -205,9 +211,8 @@ void CTextRenderer::Render(const CShaderProgramPtr& shader, const CMatrix3D& tra
 	m_Batches.sort(SBatchCompare());
 	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); )
 	{
-		std::list<SBatch>::iterator next = it;
-		++next;
-		if (next != m_Batches.end() && it->font == next->font && it->color == next->color && it->translate == next->translate)
+		std::list<SBatch>::iterator next = std::next(it);
+		if (next != m_Batches.end() && it->chars + next->chars <= MAX_CHAR_COUNT_PER_BATCH && it->font == next->font && it->color == next->color && it->translate == next->translate)
 		{
 			it->chars += next->chars;
 			it->runs.splice(it->runs.end(), next->runs);
@@ -243,10 +248,20 @@ void CTextRenderer::Render(const CShaderProgramPtr& shader, const CMatrix3D& tra
 
 		shader->Uniform(str_colorMul, batch.color);
 
-		vertexes.resize(batch.chars*4);
-		indexes.resize(batch.chars*6);
+		vertexes.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 4);
+		indexes.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 6);
 
 		size_t idx = 0;
+
+		auto flush = [&idx, &vertexes, &indexes, &shader]() -> void {
+			if (idx == 0)
+				return;
+			shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
+			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(t2f_v2i), &vertexes[0].u);
+
+			glDrawElements(GL_TRIANGLES, idx * 6, GL_UNSIGNED_SHORT, &indexes[0]);
+			idx = 0;
+		};
 
 		for (std::list<SBatchRun>::iterator runit = batch.runs.begin(); runit != batch.runs.end(); ++runit)
 		{
@@ -291,14 +306,13 @@ void CTextRenderer::Render(const CShaderProgramPtr& shader, const CMatrix3D& tra
 
 				x += g->xadvance;
 
-				idx++;
+				++idx;
+				if (idx == MAX_CHAR_COUNT_PER_BATCH)
+					flush();
 			}
 		}
 
-		shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(t2f_v2i), &vertexes[0].u);
-
-		glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &indexes[0]);
+		flush();
 	}
 
 	m_Batches.clear();

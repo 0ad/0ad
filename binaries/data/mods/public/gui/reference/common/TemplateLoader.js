@@ -201,13 +201,16 @@ class TemplateLoader
 		return buildQueue;
 	}
 
-	deriveModifications(civCode)
+	deriveModifications(civCode, auraList)
 	{
-		let techData = [];
-		for (let techName of this.autoResearchTechList)
-			techData.push(GetTechnologyBasicDataHelper(this.loadTechnologyTemplate(techName), civCode));
+		const modificationData = [];
+		for (const techName of this.autoResearchTechList)
+			modificationData.push(GetTechnologyBasicDataHelper(this.loadTechnologyTemplate(techName), civCode));
 
-		return DeriveModificationsFromTechnologies(techData);
+		for (const auraName of auraList)
+			modificationData.push(this.loadAuraTemplate(auraName));
+
+		return DeriveModificationsFromTechnologies(modificationData);
 	}
 
 	/**

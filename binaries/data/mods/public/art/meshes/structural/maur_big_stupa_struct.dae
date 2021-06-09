@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
       <author>Stanislas Daniel Claude Dolcini</author>
@@ -111,6 +111,9 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_garrisoned" name="prop_garrisoned" type="NODE">
+          <matrix sid="transform">1 0 0 -7.01231e-9 0 1 0 -4.28701e-6 0 0 1 26.41115 0 0 0 1</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

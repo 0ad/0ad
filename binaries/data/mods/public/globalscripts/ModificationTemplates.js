@@ -99,7 +99,8 @@ function DeriveModificationsFromTechnologies(techsDataArray)
 	let derivedModifiers = {};
 	for (let technology of techsDataArray)
 	{
-		if (!technology.reqs)
+		// Auras don't have a "reqs" property
+		if ('reqs' in technology && !technology.reqs)
 			continue;
 
 		let modifiers = DeriveModificationsFromTech(technology);
