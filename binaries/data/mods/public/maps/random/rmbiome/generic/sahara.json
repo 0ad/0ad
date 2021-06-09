@@ -5,6 +5,8 @@
 	},
 	"Environment": {
 		"SunColor": { "r": 0.976471, "g": 0.858824, "b": 0.74902 },
+		"SunElevation": 0.7,
+		"SunRotation": -0.3,
 		"AmbientColor": { "r": 0.231373, "g": 0.282353, "b": 0.356863 },
 		"Water": {
 			"WaterBody": {
@@ -21,7 +23,7 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 0.9,
+			"Saturation": 0.95,
 			"Contrast": 1.02,
 			"Bloom": 0.120
 		}

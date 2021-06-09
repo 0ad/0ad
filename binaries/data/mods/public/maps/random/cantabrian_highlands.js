@@ -277,9 +277,4 @@ setWaterType("lake");
 setFogThickness(0.25);
 setFogFactor(0.4);
 
-setPPEffect("hdr");
-setPPSaturation(0.62);
-setPPContrast(0.62);
-setPPBloom(0.3);
-
 g_Map.ExportMap();

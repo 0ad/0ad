@@ -5,7 +5,7 @@
 	},
 	"Environment": {
 		"SkySet": "stormy",
-		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 1.06284 },
+		"SunColor": { "r": 0.98, "g": 1.01, "b": 1.045 },
 		"SunElevation": 0.502494,
 		"SunRotation": -0.626047,
 		"AmbientColor": { "r": 0.294118, "g": 0.392157, "b": 0.494118 },
@@ -24,9 +24,9 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Brightness": -0.015625,
-			"Saturation": 0.96,
-			"Contrast": 0.98,
+			"Brightness": 1,
+			"Saturation": 1,
+			"Contrast": 1,
 			"Bloom": 0.16
 		}
 	},

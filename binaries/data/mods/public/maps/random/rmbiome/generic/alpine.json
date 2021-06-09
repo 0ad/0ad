@@ -5,10 +5,10 @@
 	},
 	"Environment": {
 		"SkySet": "cloudless",
-		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 0.96284 },
+		"SunColor": { "r": 1.01866, "g": 1.0395, "b": 0.97284 },
 		"SunElevation": 0.589049,
 		"SunRotation": -1.442871,
-		"AmbientColor": { "r": 0.369608, "g": 0.354118, "b": 0.503922 },
+		"AmbientColor": { "r": 0.389608, "g": 0.374118, "b": 0.523922 },
 		"Water": {
 			"WaterBody": {
 				"Type": "clap",
@@ -25,8 +25,8 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Brightness": 0.0341797,
-			"Saturation": 0.98,
+			"Brightness": 0,
+			"Saturation": 1,
 			"Contrast": 1,
 			"Bloom": 0.14
 		}

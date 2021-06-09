@@ -4,6 +4,10 @@
 		"Description": "Explore the mysterious tropics. An extremely green, but also extremely humid environment awaits. The tall Toona trees look on disapprovingly at this invasion of their privacy and ferocious tigers are determined to defend their territory at all costs."
 	},
 	"Environment": {
+		"SunColor": { "r": 1.03162, "g": 0.99521, "b": 0.865752, "a": 0 },
+		"SunElevation": 1.85,
+		"SunRotation": 0.0,
+		"AmbientColor": { "r": 0.364706, "g": 0.376471, "b": 0.419608 },
 		"Water": {
 			"WaterBody": {
 				"Color": { "r": 0.584, "g": 0.824, "b": 0.929 },
@@ -19,8 +23,8 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Contrast": 0.98,
-			"Saturation": 0.9,
+			"Contrast": 1,
+			"Saturation": 1,
 			"Bloom": 0.16
 		}
 	},
