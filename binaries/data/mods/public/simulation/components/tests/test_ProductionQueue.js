@@ -501,6 +501,7 @@ function test_token_changes()
 		"GetPlayerID": () => 1,
 		// entitylimits
 		"ChangeCount": () => {},
+		"AllowedToTrain": () => true,
 		// techmanager
 		"CheckTechnologyRequirements": () => true,
 		"IsTechnologyResearched": () => false,

@@ -417,6 +417,9 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 			let cmpPlayerEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
 			if (cmpPlayerEntityLimits)
 			{
+				if (!cmpPlayerEntityLimits.AllowedToTrain(unitCategory, count, templateName, template.TrainingRestrictions.MatchLimit))
+					// Already warned, return.
+					return false;
 				cmpPlayerEntityLimits.ChangeCount(unitCategory, count);
 				if (template.TrainingRestrictions.MatchLimit)
 					cmpPlayerEntityLimits.ChangeMatchCount(templateName, count);
