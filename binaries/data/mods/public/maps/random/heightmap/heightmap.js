@@ -235,23 +235,19 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
  */
 function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined, minDistance = 20, maxTries = 2 * g_Map.size, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
-	let points = [];
-	let placements = clone(avoidPoints);
-	let validVertices = [];
-	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
-	let avoidMap;
-
-	if (avoidClass)
-		avoidMap = avoidClass.inclusionCount;
+	const points = [];
+	const placements = clone(avoidPoints);
+	const validVertices = [];
+	const r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
 
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
 		for (let y = minDistance; y < heightmap[x].length - minDistance; ++y)
 		{
 			if (avoidClass &&
-				(avoidMap[Math.max(x - 1, 0)][y] > 0 ||
-				avoidMap[x][Math.max(y - 1, 0)] > 0 ||
-				avoidMap[Math.min(x + 1, avoidMap.length - 1)][y] > 0 ||
-				avoidMap[x][Math.min(y + 1, avoidMap[0].length - 1)] > 0))
+				(avoidClass.has(Math.max(x - 1, 0), y) ||
+				avoidClass.has(x, Math.max(y - 1, 0)) ||
+				avoidClass.has(Math.min(x + 1, avoidClass.size - 1), y) ||
+				avoidClass.has(x, Math.min(y + 1, avoidClass.size - 1))))
 				continue;
 
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && // Has correct height
@@ -261,7 +257,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
-		let point = pickRandom(validVertices);
+		const point = pickRandom(validVertices);
 		if (placements.every(p => Math.euclidDistance2D(p.x, p.y, point.x, point.y) > Math.max(minDistance, p.dist)))
 		{
 			points.push(point);
