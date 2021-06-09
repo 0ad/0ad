@@ -7,7 +7,7 @@ class MiniMapPanel
 	{
 		this.diplomacyColorsButton = new MiniMapDiplomacyColorsButton(diplomacyColors);
 		this.idleWorkerButton = new MiniMapIdleWorkerButton(playerViewControl, idleWorkerClasses);
-		this.flareButton = new MiniMapFlareButton();
+		this.flareButton = new MiniMapFlareButton(playerViewControl);
 		this.miniMap = new MiniMap();
 	}
 

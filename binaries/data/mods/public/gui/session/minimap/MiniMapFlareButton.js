@@ -3,11 +3,17 @@
  */
 class MiniMapFlareButton
 {
-	constructor()
+	constructor(playerViewControl)
 	{
 		this.flareButton = Engine.GetGUIObjectByName("flareButton");
 		this.flareButton.onPress = this.onPress.bind(this);
 		registerHotkeyChangeHandler(this.onHotkeyChange.bind(this));
+		playerViewControl.registerViewedPlayerChangeHandler(this.rebuild.bind(this));
+	}
+
+	rebuild()
+	{
+		this.flareButton.enabled = !g_IsObserver;
 	}
 
 	onHotkeyChange()
