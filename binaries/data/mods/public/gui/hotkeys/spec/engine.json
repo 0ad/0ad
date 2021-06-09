@@ -7,10 +7,6 @@
 	},
 	"mapped_hotkeys": {
 		"general": {
-			"exit": {
-				"name": "Exit to desktop",
-				"desc": "Exit to desktop."
-			},
 			"cancel": {
 				"name": "Close/Cancel",
 				"desc": "Close or cancel the current dialog box/popup."
@@ -54,6 +50,10 @@
 			"cut": {
 				"name": "Cut to clipboard",
 				"desc": "Cut selected text and copy to the clipboard."
+			},
+			"exit": {
+				"name": "Custom exit to desktop",
+				"desc": "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q / etc.) are always active."
 			},
 			"console.toggle": {
 				"name": "Toggle Console",
