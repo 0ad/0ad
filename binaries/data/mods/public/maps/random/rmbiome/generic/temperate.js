@@ -2,7 +2,7 @@ function setupBiome_temperate()
 {
 	if (randBool())
 	{
-		g_Terrains.mainTerrain = "temperate_grass_02";
+		g_Terrains.mainTerrain = "temperate_grass_04";
 		g_Terrains.forestFloor1 = "temperate_forestfloor_01";
 		g_Terrains.forestFloor2 = "temperate_forestfloor_02";
 		g_Terrains.tier1Terrain = "temperate_grass_dirt_02";
@@ -12,7 +12,7 @@ function setupBiome_temperate()
 	}
 	else
 	{
-		g_Terrains.mainTerrain = "temperate_grass_03";
+		g_Terrains.mainTerrain = "temperate_grass_05";
 		g_Terrains.forestFloor1 = "temperate_forestfloor_02_autumn";
 		g_Terrains.forestFloor2 = "temperate_forestfloor_01_autumn";
 		g_Terrains.tier1Terrain = "temperate_grass_dirt_01";
