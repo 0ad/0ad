@@ -33,6 +33,16 @@ class TipDisplay
 
 		this.tipTitle.caption = tipText.shift();
 
+		// Change the height of the title and the text to fit the full title.
+		const margin = 10;
+		const titleSize = this.tipTitle.size;
+		titleSize.bottom = titleSize.top + this.tipTitle.getTextSize().height + margin;
+		this.tipTitle.size = titleSize;
+
+		const textSize = this.tipText.size;
+		textSize.top = titleSize.bottom;
+		this.tipText.size = textSize;
+
 		this.tipText.caption = tipText.map(text =>
 			text && sprintf(this.BulletFormat, { "tiptext": text })).join("\n\n");
 	}
