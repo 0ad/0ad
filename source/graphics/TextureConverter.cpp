@@ -293,20 +293,21 @@ CTextureConverter::Settings CTextureConverter::ComputeSettings(const std::wstrin
 CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 	m_VFS(vfs), m_HighQuality(highQuality), m_Shutdown(false)
 {
+#if CONFIG2_NVTT
 	// Verify that we are running with at least the version we were compiled with,
 	// to avoid bugs caused by ABI changes
-#if CONFIG2_NVTT
 	ENSURE(nvtt::version() >= NVTT_VERSION);
-#endif
 
 	m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
 
 	// Maybe we should share some centralised pool of worker threads?
 	// For now we'll just stick with a single thread for this specific use.
+#endif // CONFIG2_NVTT
 }
 
 CTextureConverter::~CTextureConverter()
 {
+#if CONFIG2_NVTT
 	// Tell the thread to shut down
 	{
 		std::lock_guard<std::mutex> lock(m_WorkerMutex);
@@ -326,6 +327,7 @@ CTextureConverter::~CTextureConverter()
 
 	// Wait for it to shut down cleanly
 	m_WorkerThread.join();
+#endif // CONFIG2_NVTT
 }
 
 bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath& src, const VfsPath& dest, const Settings& settings)
@@ -476,10 +478,10 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 
 	return true;
 
-#else
+#else // CONFIG2_NVTT
 	LOGERROR("Failed to convert texture \"%s\" (NVTT not available)", src.string8());
 	return false;
-#endif
+#endif // !CONFIG2_NVTT
 }
 
 bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
@@ -528,24 +530,26 @@ bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 	ok = true;
 	return true;
 
-#else // #if CONFIG2_NVTT
+#else // CONFIG2_NVTT
 	return false;
-#endif
+#endif // !CONFIG2_NVTT
 }
 
 bool CTextureConverter::IsBusy()
 {
+#if CONFIG2_NVTT
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return !m_RequestQueue.empty();
+#else // CONFIG2_NVTT
+	return false;
+#endif // !CONFIG2_NVTT
 }
 
 void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 {
+#if CONFIG2_NVTT
 	debug_SetThreadName("TextureConverter");
 	g_Profiler2.RegisterCurrentThread("texconv");
-
-#if CONFIG2_NVTT
-
 	// Wait until the main thread wakes us up
 	while (true)
 	{
@@ -595,5 +599,5 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 
 	std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
 	textureConverter->m_Shutdown = false;
-#endif
+#endif // CONFIG2_NVTT
 }
