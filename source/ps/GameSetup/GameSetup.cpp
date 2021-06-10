@@ -1231,7 +1231,11 @@ bool Autostart(const CmdLineArgs& args)
 		{
 			// JSON loaded ok - copy script name over to game attributes
 			std::wstring scriptFile;
-			Script::GetProperty(rq, settings, "Script", scriptFile);
+			if (!Script::GetProperty(rq, settings, "Script", scriptFile))
+			{
+				LOGERROR("Autostart: random map '%s' data has no 'Script' property.", utf8_from_wstring(scriptPath));
+				throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
+			}
 			Script::SetProperty(rq, attrs, "script", scriptFile);				// RMS filename
 		}
 		else

@@ -689,7 +689,9 @@ function playerPlacementRandom(playerIDs, constraints = undefined)
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
-		let position = pickRandom(area.getPoints());
+		const position = pickRandom(area.getPoints());
+		if (!position)
+			return undefined;
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
 		if (locations.some(loc => loc.distanceToSquared(position) < playerMinDistSquared) ||
