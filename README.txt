@@ -1,15 +1,17 @@
- 0 A.D. Introductory Information
+ 0 A.D. Information d'introduction
 =================================
 
-0 A.D. (pronounced "zero ey-dee") is a free, open-source, cross-platform
-real-time strategy game of ancient warfare.
 
-This is currently an incomplete, under-development version of the game.
-We're always interested in getting more people involved, to help bring the game
-towards completion and to share the interesting experience of developing a
-project of this scope.
+0 A.D. (prononcé "zero ey-dee") est un jeu de stratégie médiéval gratuit,
+open-source, multi-plate-forme.
 
-There are several ways to contact us and find more information:
+Il est pour l'instant une version du jeu incomplete, en cours de développement.
+Nous sommes toujours intéressés par de nouvelles personne motivé a rendre le jeu
+le plus complet possible et a partager la magnifique expérience de développement 
+d'une telle envergure 
+
+
+Voici plusieurs façons d'en savoir plus:
 
   Web site: http://play0ad.com/
 
@@ -21,53 +23,52 @@ There are several ways to contact us and find more information:
 
 
 ---------------------------------------
-Running precompiled binaries on Windows
+lancer une build pre-compilé sur Windows 
 ---------------------------------------
 
-Open the "binaries\system" folder.
+Ovrez le dossier "binaries\system" .
 
-To launch the game: Run pyrogenesis.exe
+Pour lancer le jeu: lancez pyrogenesis.exe
 
-To launch the map editor: Run Atlas.bat or "pyrogenesis.exe -editor"
+Pour lancer l'editeur de map: Lancez Atlas.bat ou "pyrogenesis.exe -editor"
 
 
 -----------------------------------
-Compiling the game from source code
+Compiler depuis le code source
 -----------------------------------
-
-The instructions for compiling the game on Windows, Linux and OS X are at
+Les instructions pour compiler le jeu sur Windows, Linux ou Mac Os X sont sur :
 http://trac.wildfiregames.com/wiki/BuildInstructions
 
 
 ------------------
-Reporting problems
+Signialement de problèmes 
 ------------------
 
-Bugs should be reported on Trac. For information on reporting problems
+Tous problèmes doit etre signalé sur Trac. Pour plus d'informations:
 and finding logs, see http://trac.wildfiregames.com/wiki/ReportingErrors
 
 
 ------------------
- Contributing Code
+Contribuer au code
 ------------------
 
-If you want to help out programming for the game, have a look at
+Si vous voulez aider a programmer le jeu, jettez un œil sur
 https://trac.wildfiregames.com/wiki/GettingStartedProgrammers
-or contact us on #0ad-dev on irc.quakenet.org
+ou contacte nous sur #0ad-dev sur irc.quakenet.org
 
 
 --------------------
-Contributing Artwork
+Contribuer aux Traveaux Artistiques
 --------------------
 
-If you want to make artwork for the game, have a look at
+si vous voulez aider a réaliser des traveaux artistiques pour le jeu , rendez-vous sur
 https://trac.wildfiregames.com/#Forartists:
-or visit the forums http://www.wildfiregames.com/forum
+ou visitez le forums http://www.wildfiregames.com/forum
 
 
 -----------
-Translating
+Traduire
 -----------
 
-You can help translating the game at https://www.transifex.com/projects/p/0ad
-for more information, see https://trac.wildfiregames.com/wiki/Localization
+Vous pouvez aider a traduire le jeu sur https://www.transifex.com/projects/p/0ad
+pour plus d'informations, voir https://trac.wildfiregames.com/wiki/Localization
