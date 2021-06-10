@@ -326,20 +326,8 @@ createObjectGroups(
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-setSkySet("sunny");
-setSunColor(0.917, 0.828, 0.734);
-setWaterColor(0, 0.501961, 1);
-setWaterTint(0.501961, 1, 1);
 setWaterWaviness(2.5);
 setWaterType("ocean");
 setWaterMurkiness(0.49);
-
-setFogFactor(0.3);
-setFogThickness(0.25);
-
-setPPEffect("hdr");
-setPPContrast(0.62);
-setPPSaturation(0.51);
-setPPBloom(0.12);
 
 g_Map.ExportMap();

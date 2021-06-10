@@ -39,7 +39,7 @@
     </Distance>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>1500</CapturePoints>
+    <CapturePoints op="mul">3</CapturePoints>
     <RegenRate>10.0</RegenRate>
     <GarrisonRegenRate>3.0</GarrisonRegenRate>
   </Capturable>
@@ -47,6 +47,8 @@
     <BuildTime>250</BuildTime>
     <Resources>
       <wood>500</wood>
+      <stone>100</stone>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -54,7 +56,7 @@
     <Height>12.0</Height>
   </Footprint>
   <GarrisonHolder>
-    <Max>40</Max>
+    <Max>20</Max>
     <EjectHealth>0.1</EjectHealth>
     <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry Siege</List>
@@ -69,7 +71,7 @@
     <Civ>rome</Civ>
     <GenericName>Army Camp</GenericName>
     <SpecificName>Castra</SpecificName>
-    <Tooltip>Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Build in neutral or enemy territory. Train Advanced Melee Infantry. Construct Rams. Garrison Soldiers for additional arrows.</Tooltip>
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">City ArmyCamp</VisibleClasses>
     <Icon>structures/roman_camp.png</Icon>
@@ -88,6 +90,7 @@
       units/{civ}/infantry_swordsman_a
       units/{civ}/infantry_spearman_a
       units/{civ}/infantry_pikeman_a
+      units/{civ}/siege_ram
     </Entities>
   </ProductionQueue>
   <Resistance>
@@ -108,7 +111,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay>
-    <DecayRate>37.5</DecayRate>
+    <DecayRate op="mul">2</DecayRate>
   </TerritoryDecay>
   <Vision>
     <Range>90</Range>

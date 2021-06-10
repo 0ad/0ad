@@ -7,10 +7,10 @@
 		"SunColor": { "r": 1.023, "g": 0.923, "b": 0.714 },
 		"SunElevation": 0.90,
 		"SunRotation": -0.909,
-		"AmbientColor": { "r": 0.34902, "g": 0.34902, "b": 0.34902 },
+		"AmbientColor": { "r": 0.4, "g": 0.4, "b": 0.4 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.024, "g": 0.212, "b": 0.024 },
+				"Color": { "r": 0.024, "g": 0.212, "b": 0.212 },
 				"Tint": { "r": 0.133, "g": 0.725, "b": 0.855 },
 				"Murkiness": 0.8,
 				"Waviness": 3
@@ -22,9 +22,9 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Brightness": -0.015,
-			"Saturation": 0.85,
-			"Contrast": 0.98,
+			"Brightness": 0,
+			"Saturation": 1,
+			"Contrast": 1,
 			"Bloom": 0.16
 		}
 	},

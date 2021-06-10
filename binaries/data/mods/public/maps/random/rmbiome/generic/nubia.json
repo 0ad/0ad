@@ -4,8 +4,10 @@
 		"Description": "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes or elephants roam the wild in search of food."
 	},
 	"Environment": {
-		"SunColor": { "r": 1.15039, "g": 1.10979, "b": 1.04212 },
-		"AmbientColor": { "r": 0.294118, "g": 0.301961, "b": 0.329412 },
+		"SunColor": { "r": 1.10039, "g": 1.05979, "b": 0.99212 },
+		"SunElevation": 0.7,
+		"SunRotation": -0.3,
+		"AmbientColor": { "r": 0.354118, "g": 0.361961, "b": 0.389412 },
 		"Water": {
 			"WaterBody": {
 				"Color": { "r": 0.337255, "g": 0.247059, "b": 0.0784314 },
@@ -21,8 +23,8 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Contrast": 1.09961,
-			"Saturation": 0.83,
+			"Contrast": 1.04,
+			"Saturation": 0.95,
 			"Bloom": 0.142969
 		}
 	},
@@ -84,7 +86,7 @@
 		"trees": {
 			"min": 500,
 			"max": 1000,
-			"forestProbability": 0.1
+			"forestProbability": 0.25
 		}
 	}
 }

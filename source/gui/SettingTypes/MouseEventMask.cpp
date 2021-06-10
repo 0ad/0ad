@@ -106,6 +106,12 @@ public:
 			LOGERROR("Could not decode mouse event mask texture '%s'", spec);
 			return nullptr;
 		}
+		if (tex.transform(TEX_DXT | TEX_MIPMAPS) != INFO::OK)
+		{
+			LOGERROR("Could not transform texture '%s'", spec);
+			return nullptr;
+		}
+
 		// TODO > would be nice to downscale, maybe.
 		if (tex.m_Width == 0 || tex.m_Height == 0)
 		{
@@ -124,6 +130,7 @@ public:
 			else
 				mask->m_Data.push_back(*ptr > 0);
 		}
+
 		return mask;
 	}
 

@@ -5,11 +5,13 @@
 	},
 	"Environment": {
 		"SkySet": "cloudless",
-		"SunColor": { "r": 1.116471, "g": 0.978824, "b": 0.85902 },
-		"AmbientColor": { "r": 0.231373, "g": 0.282353, "b": 0.356863 },
+		"SunElevation": 0.6,
+		"SunRotation": -0.45,
+		"SunColor": { "r": 1.246471, "g": 1.108824, "b": 0.98902 },
+		"AmbientColor": { "r": 0.351373, "g": 0.402353, "b": 0.476863 },
 		"Water": {
 			"WaterBody": {
-				"Color": { "r": 0.059608, "g": 0.184706, "b": 0.193726 },
+				"Color": { "r": 0.059608, "g": 0.204706, "b": 0.223726 },
 				"Tint": { "r": 0.201961, "g": 0.301961, "b": 0.047059 },
 				"Murkiness": 0.92,
 				"Waviness": 1.5
@@ -22,9 +24,9 @@
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 1.25,
-			"Brightness": 0.12,
-			"Contrast": 1.09,
+			"Saturation": 1.0,
+			"Brightness": 0.0,
+			"Contrast": 1.00,
 			"Bloom": 0.132
 		}
 	},
@@ -83,7 +85,7 @@
 		"trees": {
 			"min": 1000,
 			"max": 4500,
-			"forestProbability": 0
+			"forestProbability": 0.25
 		}
 	}
 }
