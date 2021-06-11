@@ -11,6 +11,17 @@ class MiniMap
 		this.miniMap.onMouseEnter = this.onMouseEnter.bind(this);
 		this.miniMap.onMouseLeave = this.onMouseLeave.bind(this);
 		this.mouseIsOverMiniMap = false;
+		this.updateFlareLifetime();
+		registerConfigChangeHandler(changes => {
+			if (changes.has("gui.session.flarelifetime"))
+				this.updateFlareLifetime();
+		});
+
+	}
+
+	updateFlareLifetime()
+	{
+		this.miniMap.flare_lifetime_seconds = Math.max(0, +Engine.ConfigDB_GetValue("user", "gui.session.flarelifetime"));
 	}
 
 	onWorldClick(target, button)
