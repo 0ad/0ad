@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:32+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:30+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,14 +26,6 @@ msgstr "Gheibh innealan-sèiste a tha ’nan gearastan +3 air an slànachadh."
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr "Càradh arm-lainn"
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
-msgid "Units gain experience while garrisoned in barracks."
-msgstr "Buannaichidh aonadan eòlas fad ’s a bhios iad ’nan gearastan ann an taigh-feachd."
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
-msgid "Rigorous Training"
-msgstr "Dian-oideachadh"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -144,6 +136,14 @@ msgstr "+20 air an tomhas-sluaigh as motha (bidh feum air an teicneolas “Leuda
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Leudachadh glòrmhor"
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraDescription
+msgid "Units gain experience while garrisoned inside the building."
+msgstr ""
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "Dian-oideachadh"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."

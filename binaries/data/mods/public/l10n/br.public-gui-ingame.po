@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 10:28+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -354,71 +354,71 @@ msgstr ""
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:31
+#: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
 msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:50
+#: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:85
+#: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Kevredet emaoc'h diwar-vremañ gant %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:86
+#: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "O vrezeliñ emaoc'h bremañ a-enep %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:87
+#: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Neptu emaoc'h bremañ e-keñver %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:90
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s a zo bremañ kevredet ganeoc'h."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:91
+#: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s a zo o vrezeliñ a-enep deoc'h bremañ."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:92
+#: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s a zo bremañ neptu en ho keñver."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:95
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s a zo kevredet gant  %(player2)s bremañ."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:96
+#: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s a zo o vrezeliñ a-enep %(player2)s bremañ."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:97
+#: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s a zo bremañ neptu e keñver %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:113
+#: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s a zo o vont etrezek %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:115
+#: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "%(phaseName)s %(player)s a zo bet arsavet."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:118
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s en deus tizhet %(phaseName)s."
@@ -426,21 +426,21 @@ msgstr "%(player)s en deus tizhet %(phaseName)s."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:146
+#: gui/session/chat/ChatMessageFormatSimulation.js:142
 msgid ", "
 msgstr ", "
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:163
+#: gui/session/chat/ChatMessageFormatSimulation.js:159
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s en deus kaset deoc'h %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:165
+#: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Kaset ho peus da  %(player2)s %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:170
+#: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s en deus kaset da %(player2)s %(amounts)s."
@@ -628,7 +628,7 @@ msgstr "Amzer harz-tennañ a chom: %(time)s"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
-#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
+#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
 msgstr "Eilpennañ livioù an diplomategezh"
 
@@ -678,7 +678,7 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Reiñ %(resourceAmount)s %(resourceType)s da  %(playerName)s. Lkd-Klik evit reiñ %(greaterAmount)s."
 
-#: gui/session/input.js:174
+#: gui/session/input.js:190
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
@@ -688,7 +688,7 @@ msgstr[2] "Hed-tenn dre ziouer: %(range)s metr"
 msgstr[3] "Hed-tenn dre ziouer: %(range)s metr"
 msgstr[4] "Hed-tenn dre ziouer: %(range)s a vetroù"
 
-#: gui/session/input.js:175
+#: gui/session/input.js:191
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
@@ -698,7 +698,7 @@ msgstr[2] "Keidenn bonuz an hed-tenn: %(range)s metrad"
 msgstr[3] "Keidenn bonuz an hed-tenn: %(range)s metrad"
 msgstr[4] "Keidenn bonuz an hed-tenn: %(range)s metrad"
 
-#: gui/session/input.js:685
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "N'haller ket sevel ur voger amañ!"
 
@@ -848,33 +848,37 @@ msgstr "Ya"
 msgid "Are you sure you want to resign?"
 msgstr "Ha sur oc'h e fell deoc'h da zizerc'hel?"
 
-#: gui/session/messages.js:88
+#: gui/session/messages.js:104
 msgid "You have won!"
 msgstr "Aet eo ar maout ganeoc'h!"
 
-#: gui/session/messages.js:89
+#: gui/session/messages.js:105
 msgid "You have been defeated!"
 msgstr "Trec'het hoc'h bet!"
 
-#: gui/session/messages.js:354
+#: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
 msgstr "Klikit evit kuitaat an tutorial-mañ."
 
-#: gui/session/messages.js:355
+#: gui/session/messages.js:411
 msgid "Quit"
 msgstr "Kuitaat"
 
-#: gui/session/messages.js:359
+#: gui/session/messages.js:415
 msgid "Click when ready."
 msgstr "Klikit ur wech ma 'z oc'h prest."
 
-#: gui/session/messages.js:363
+#: gui/session/messages.js:419
 msgid "Follow the instructions."
 msgstr "Heuilhit ar c'hemennadurioù."
 
-#: gui/session/messages.js:488
+#: gui/session/messages.js:544
 msgid "Unknown Player"
 msgstr "C'hoarier Dianav"
+
+#: gui/session/minimap/MiniMapFlareButton.js:29
+msgid "Send a flare to your allies"
+msgstr ""
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -938,9 +942,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
-#: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1127
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:633
+#: gui/session/unit_actions.js:642 gui/session/unit_actions.js:660
+#: gui/session/unit_actions.js:1133
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Gounid: %(gain)s"
@@ -1637,52 +1641,52 @@ msgstr "N'eus bag kenwerzh ebet."
 msgid "Ready"
 msgstr "Prest"
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:572
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr ""
 
-#: gui/session/unit_actions.js:625
+#: gui/session/unit_actions.js:631
 msgid "Origin trade market."
 msgstr "Marc'had orin."
 
-#: gui/session/unit_actions.js:635
+#: gui/session/unit_actions.js:641
 msgid "Destination trade market."
 msgstr "Marc'had-pal."
 
-#: gui/session/unit_actions.js:642
+#: gui/session/unit_actions.js:648
 msgid "Right-click to set as origin trade market"
 msgstr "Klikit-dehou evit lakaat anezhañ evel marc'had-orin."
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1133
+#: gui/session/unit_actions.js:655 gui/session/unit_actions.js:1139
 msgid "This market is too close to the origin market."
 msgstr ""
 
-#: gui/session/unit_actions.js:653
+#: gui/session/unit_actions.js:659
 msgid "Right-click to set as destination trade market."
 msgstr "Klik-dehou evit lakaat anezhañ evel marc'had-pal."
 
-#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1065
+#: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Gwarnizon er mare-mañ: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1124
+#: gui/session/unit_actions.js:1130
 msgid "Right-click to establish a default route for new traders."
 msgstr "Klikit-dehou evit diazezañ un hent dre-ziouer evit ar genwerzhourien nevez."
 
-#: gui/session/unit_actions.js:1128
+#: gui/session/unit_actions.js:1134
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Gounid gortozet: %(gain)s"
 
-#: gui/session/unit_actions.js:1254
+#: gui/session/unit_actions.js:1260
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] ""
@@ -1691,110 +1695,110 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: gui/session/unit_actions.js:1300
+#: gui/session/unit_actions.js:1306
 msgid "Unload All."
 msgstr "Diskargañ an Holl."
 
-#: gui/session/unit_actions.js:1335
+#: gui/session/unit_actions.js:1341
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1355
+#: gui/session/unit_actions.js:1361
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1357
+#: gui/session/unit_actions.js:1363
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Grit gant %(hotkey)s evit tremen e-biou ar prenestr kadarnadenn."
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1413
 msgid "Abort the current order."
 msgstr "Dilezel ar gargadenn er mare-mañ."
 
-#: gui/session/unit_actions.js:1429
+#: gui/session/unit_actions.js:1435
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1479
 msgid "Unload"
 msgstr "Diskargañ"
 
-#: gui/session/unit_actions.js:1493
+#: gui/session/unit_actions.js:1499
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1514
+#: gui/session/unit_actions.js:1520
 msgid "Focus on Rally Point."
 msgstr "Kreizañ war ar Poent-Bodañ."
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1557
 msgid "Back to Work"
 msgstr "Distreiñ d'al Labour"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1578
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1592
+#: gui/session/unit_actions.js:1598
 msgid "Remove guard"
 msgstr "Na gwardoniañ ken"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1611
+#: gui/session/unit_actions.js:1617
 msgid "Barter & Trade"
 msgstr "Trok & Kenwerzh"
 
-#: gui/session/unit_actions.js:1631
+#: gui/session/unit_actions.js:1637
 msgid "Patrol"
 msgstr "Bagad-ged"
 
-#: gui/session/unit_actions.js:1632
+#: gui/session/unit_actions.js:1638
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1660
+#: gui/session/unit_actions.js:1666
 msgid "Press to allow allies to use this dropsite"
 msgstr "Klikit a-benn reiñ an aotre d'ar re gevredet ganeoc'h da ober gant al lec'h-daspugn-mañ"
 
-#: gui/session/unit_actions.js:1665
+#: gui/session/unit_actions.js:1671
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Klikit a-benn mirout ouzh ar re gevredet ganeoc'h da implijout al lec'h-daspugn-mañ"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1706
 msgid "The use of this dropsite is prohibited"
 msgstr "Difennet eo da ober gant al lec'h-daspugn-mañ"
 
-#: gui/session/unit_actions.js:1706
+#: gui/session/unit_actions.js:1712
 msgid "Allies are allowed to use this dropsite."
 msgstr ""
 
-#: gui/session/unit_actions.js:1707
+#: gui/session/unit_actions.js:1713
 msgid "You are allowed to use this dropsite"
 msgstr "Aotreet emaoc'h da ober gant al lec'h-daspugn-mañ"
 
-#: gui/session/unit_actions.js:1726
+#: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1746
+#: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1811
+#: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Rankout a ra bezañ lazhet ar boud a-raok kregiñ da zaspugn madoù diwarni"
 
-#: gui/session/unit_actions.js:1814
+#: gui/session/unit_actions.js:1820
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "N'hallit ket distruj an hennad-mañ keit ha ma vezec'h perc'henn war nebeutoc'h evit hanter ar poentoù-pakadur"
 
-#: gui/session/unit_actions.js:1817
+#: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"
 msgstr "An hennad-mañ n'hall ket bezañ distrujet"

@@ -55,8 +55,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 19:17+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 18:23+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -4039,14 +4039,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Benutzt OpenGL 2.0 Shader (empfohlen)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Schattenqualität"
+msgid "Quality"
+msgstr "Qualität"
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Sehr Niedrig"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Sehr Hoch"
 
@@ -4057,54 +4053,72 @@ msgid ""
 msgstr "Auflösung der Shadow Map. Hohe Werte können bei einer Grafikkarte mit wenig Speicher das Spiel zum Absturz bringen"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Schattenfilter"
+msgid "Filtering"
+msgstr "Filterung"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Weiche Schatten."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "Deaktiviert Schatten jenseits einer gewissen Entfernung von der Kamera."
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr "Gesamte Karte bedecken"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "Wenn EIN, bedecken Schatten die gesamte Karte und die Entfernung, wo Schatten deaktiviert werden, wird ignoriert. Praktisch für Screenshots von der gesamten Karte."
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Wassereffekte"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Wenn AUS wird die niedrigst möglichen Einstellungen verwendet, um Wasser zu rendern. Das macht andere Einstellungen irrelevant."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Hochwertige Wassereffekte"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Detailliertere Effekte für Wasser, Rendern von Küstenwellen, Gischt und Schiffsspuren benutzen."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Wasserspiegelungen"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Erlauben, dass Wasser ein Spiegelbild reflektiert."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Lichtbrechung im Wasser"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Eine echte Wasser-Brechungs-Karte und keine Transparenz verwenden."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Echte Wassertiefe"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Verwende die Wassertiefe zur Bildberechnung."
 
@@ -4207,7 +4221,7 @@ msgstr "Die Schärfe des gewählten Durchgangs."
 msgid "Model quality"
 msgstr "Modellqualität"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Niedrig"
@@ -4216,7 +4230,7 @@ msgstr "Niedrig"
 msgid "Simpler models for better performance."
 msgstr "Einfachere Modelle für bessere Leistung."
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4226,7 +4240,7 @@ msgstr "Mittel"
 msgid "Average quality and average performance."
 msgstr "Durchschnittliche Modelle für durchschnittliche Leistung."
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Hoch"
@@ -5260,13 +5274,13 @@ msgstr "%(civilization)s Gameplay"
 msgid "History of the %(civilization)s"
 msgstr "Geschichte der %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Zivilisationsbonus"
 msgstr[1] "Zivilisationsboni"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Teambonus"
@@ -5304,7 +5318,7 @@ msgstr "%(hotkey)s: Zum Gebäudebaum wechseln."
 msgid "Civilization:"
 msgstr "Zivilisation:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s - %(health_max)s"

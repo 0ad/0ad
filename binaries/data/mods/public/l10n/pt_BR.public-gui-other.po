@@ -46,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:31+0000\n"
-"Last-Translator: Paulo Castro\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4030,14 +4030,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Use o \"shaders\" do OpenGL 2.0 (recomendado)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Qualidade de sombras"
+msgid "Quality"
+msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Muito Baixo"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Muito Alto"
 
@@ -4048,54 +4044,72 @@ msgid ""
 msgstr "Resolução do mapeamento de sombras. Valores altos podem travar o jogo se sua placa de vídeo tem pouca memória!"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Filtragem de sombra"
+msgid "Filtering"
+msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Sombras suaves."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr ""
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Efeitos de água"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Quando DESLIGADO, usa as configurações mais baixas possíveis para renderizar água. Isso torna outras configurações irrelevantes."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Efeitos de água de alta qualidade"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Use aprimoramento do efeito de água, renderizando ondas nas costas, espuma na orla e rastros de navios."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Reflexos da água"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Permitir a água refletir uma imagem espelhada."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Refração da água"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Use um mapa real da refração da água e não transparência."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Profundidade real da água"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Use a profundidade real da água nos cálculos de renderização."
 
@@ -4198,7 +4212,7 @@ msgstr "A nitidez do passe escolhido."
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Baixo"
@@ -4207,7 +4221,7 @@ msgstr "Baixo"
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4217,7 +4231,7 @@ msgstr "Médio"
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Alto"
@@ -5251,13 +5265,13 @@ msgstr "Características dos %(civilization)s"
 msgid "History of the %(civilization)s"
 msgstr "História dos %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bônus de Civilização"
 msgstr[1] "Bônus de Civilização"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bônus de Time"
@@ -5295,7 +5309,7 @@ msgstr "%(hotkey)s: Mude para a árvore de estruturas."
 msgid "Civilization:"
 msgstr "Civilização:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s para %(health_max)s"

@@ -40,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 21:08+0000\n"
-"Last-Translator: Jeroen Bourgois <jeroenbourgois@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 18:49+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3660,11 +3660,11 @@ msgstr "Nieuw toegevoegde kaarten in deze release van het spel."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Goed voor MP"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Aanbevolen landkaarten voor multiplayer spellen."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -4024,14 +4024,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Gebruik OpenGL 2.0 shaders (aangeraden)"
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Schaduwkwaliteit"
+msgid "Quality"
+msgstr "Kwaliteit"
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Erg laag"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Erg hoog"
 
@@ -4042,54 +4038,72 @@ msgid ""
 msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Schaduwfiltering"
+msgid "Filtering"
+msgstr "Filtering"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Zachte schaduwen."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr "Cutoff afstand"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "Verbergt schaduwen vanaf een bepaalde afstand van de camera."
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr "Bestrijk hele landkaart"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "Wanneer AAN bestrijken schaduwen de hele landkaart en schaduw cutoff wordt genegeerd. Handig bij het maken van een screenshot van een hele landkaart."
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Watereffecten"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Zet dit UIT om de laagst waterkwaliteit weer te geven. Dit negeert alle andere waterinstellingen."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Hoge kwaliteit watereffecten"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolfen, schuimkoppen en hekgolven."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Waterreflectie"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Laat water toe om een spiegelbeeld te reflecteren."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Waterrefractie"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Gebruik een realistische refractieafbeelding, en geen transparantie voor water."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Werkelijke waterdiepte"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Gebruik de echte diepte van het water bij de weergaveberekeningen."
 
@@ -4192,7 +4206,7 @@ msgstr "De scherpte van de gekozen bewerking."
 msgid "Model quality"
 msgstr "Modelleerkwaliteit"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Laag"
@@ -4201,7 +4215,7 @@ msgstr "Laag"
 msgid "Simpler models for better performance."
 msgstr "Eenvoudiger modellering voor betere prestaties."
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4211,7 +4225,7 @@ msgstr "Normaal"
 msgid "Average quality and average performance."
 msgstr "Gemiddelde kwaliteit en gemiddelde prestaties."
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Hoog"
@@ -4226,7 +4240,7 @@ msgstr "Modelleerkwaliteit instellen."
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Willekeurige modellering"
 
 #: gui/options/options.json[2].options[7].list[0].label
 msgid "None"
@@ -4256,7 +4270,7 @@ msgstr "Uiterlijk van de entiteiten is gelijkaardig verdeeld."
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Willekeurig uiterlijk van de entiteiten. Uitschakelen geeft een kleine verbetering van de prestaties."
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
@@ -5245,13 +5259,13 @@ msgstr "Spelverloop voor %(civilization)s"
 msgid "History of the %(civilization)s"
 msgstr "Geschiedenis van de %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Beschavingsbonus"
 msgstr[1] "Beschavingsbonussen"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Teambonus"
@@ -5289,7 +5303,7 @@ msgstr "%(hotkey)s: Ga naar structuurboom."
 msgid "Civilization:"
 msgstr "Beschaving:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)stot%(health_max)s"

@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>, 2021\n"
 "Language-Team: Chinese (https://www.transifex.com/wildfire-games/teams/17418/zh/)\n"
@@ -22,6 +22,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: campaigns/new_maps.jsonDescription
+msgctxt "Campaign Template"
+msgid ""
+"Discover the new maps in Alpha 25 with a demo campaign, taking you through "
+"all of them."
+msgstr "通过演示战役探索“内测版 25”中的新地图。"
+
+#: campaigns/new_maps.jsonName
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "演示战役 - 新地图"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -58,17 +70,17 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "教学任务"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:119
+#: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "完成"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:121
+#: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
 msgstr "可用"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:183
+#: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "加载战役错误%s：%s。"

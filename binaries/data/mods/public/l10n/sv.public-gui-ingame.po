@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 10:28+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -365,71 +365,71 @@ msgstr "%(icon)sDitt boskap har attackerats av %(attacker)s!"
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
 msgstr "%(icon)sDu har attackerats av %(attacker)s!"
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:31
+#: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
 msgstr "Klicka för att fokusera på den attackerade enheten."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:50
+#: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr "%(player)s bytte %(amountGiven)s för %(amountGained)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:85
+#: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Du är nu allierad med %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:86
+#: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Du är nu i krig med %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:87
+#: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Du har nu neutral relation med %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:90
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s är nu allierad med dig."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:91
+#: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s är nu i krig med dig."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:92
+#: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s har nu neutral relation med dig."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:95
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s är nu allierad med %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:96
+#: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s är nu i krig med %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:97
+#: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s har nu neutral relation med %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:113
+#: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s avancerar till %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:115
+#: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "%(phaseName)s av %(player)s har avbrutits."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:118
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s har uppnått %(phaseName)s."
@@ -437,21 +437,21 @@ msgstr "%(player)s har uppnått %(phaseName)s."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:146
+#: gui/session/chat/ChatMessageFormatSimulation.js:142
 msgid ", "
 msgstr ", "
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:163
+#: gui/session/chat/ChatMessageFormatSimulation.js:159
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s har skickat dig %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:165
+#: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Du har skickat %(player2)s %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:170
+#: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s har skickat %(player2)s %(amounts)s."
@@ -639,7 +639,7 @@ msgstr "Tid till vapenvila upphör: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
-#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
+#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
 msgstr "Växla Diplomatifärger"
 
@@ -689,21 +689,21 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Betala %(resourceAmount)s %(resourceType)s i tribut till %(playerName)s. Skift-klicka för att betala %(greaterAmount)s."
 
-#: gui/session/input.js:174
+#: gui/session/input.js:190
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Grundräckvidd: %(range)s"
 msgstr[1] "Grundräckvidd: %(range)s"
 
-#: gui/session/input.js:175
+#: gui/session/input.js:191
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Genomsnittlig bonusräckvidd: %(range)s meter"
 msgstr[1] "Genomsnittlig bonusräckvidd: %(range)s meter"
 
-#: gui/session/input.js:685
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "Du kan inte bygga en mur här!"
 
@@ -853,33 +853,37 @@ msgstr "Ja"
 msgid "Are you sure you want to resign?"
 msgstr "Är du säker på att du vill ge upp?"
 
-#: gui/session/messages.js:88
+#: gui/session/messages.js:104
 msgid "You have won!"
 msgstr "Du har vunnit!"
 
-#: gui/session/messages.js:89
+#: gui/session/messages.js:105
 msgid "You have been defeated!"
 msgstr "Du har blivit besegrad!"
 
-#: gui/session/messages.js:354
+#: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
 msgstr "Klicka för att avsluta denna handledning."
 
-#: gui/session/messages.js:355
+#: gui/session/messages.js:411
 msgid "Quit"
 msgstr "Avsluta"
 
-#: gui/session/messages.js:359
+#: gui/session/messages.js:415
 msgid "Click when ready."
 msgstr "Klicka när du är redo."
 
-#: gui/session/messages.js:363
+#: gui/session/messages.js:419
 msgid "Follow the instructions."
 msgstr "Följ instruktionerna."
 
-#: gui/session/messages.js:488
+#: gui/session/messages.js:544
 msgid "Unknown Player"
 msgstr "Okänd Spelare"
+
+#: gui/session/minimap/MiniMapFlareButton.js:29
+msgid "Send a flare to your allies"
+msgstr ""
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -943,9 +947,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
-#: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1127
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:633
+#: gui/session/unit_actions.js:642 gui/session/unit_actions.js:660
+#: gui/session/unit_actions.js:1133
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Vinst: %(gain)s"
@@ -1591,161 +1595,161 @@ msgstr "Det finns inga handelsskepp."
 msgid "Ready"
 msgstr "Redo"
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:572
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Detta är ursprungsmarknaden.\nHögerklicka för att avbryta handelsvägen."
 
-#: gui/session/unit_actions.js:625
+#: gui/session/unit_actions.js:631
 msgid "Origin trade market."
 msgstr "Ursprungsmarknad."
 
-#: gui/session/unit_actions.js:635
+#: gui/session/unit_actions.js:641
 msgid "Destination trade market."
 msgstr "Målmarknad."
 
-#: gui/session/unit_actions.js:642
+#: gui/session/unit_actions.js:648
 msgid "Right-click to set as origin trade market"
 msgstr "Högerklicka för att ange som ursprungsmarknad"
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1133
+#: gui/session/unit_actions.js:655 gui/session/unit_actions.js:1139
 msgid "This market is too close to the origin market."
 msgstr "Denna marknad ligger för nära ursprungsmarknaden."
 
-#: gui/session/unit_actions.js:653
+#: gui/session/unit_actions.js:659
 msgid "Right-click to set as destination trade market."
 msgstr "Högerklicka för att ange som målmarknad."
 
-#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1065
+#: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nuvarande garnison: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1124
+#: gui/session/unit_actions.js:1130
 msgid "Right-click to establish a default route for new traders."
 msgstr "Högerklicka för att skapa en standardrutt för nya handelsmän."
 
-#: gui/session/unit_actions.js:1128
+#: gui/session/unit_actions.js:1134
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Du förväntas få: %(gain)s"
 
-#: gui/session/unit_actions.js:1254
+#: gui/session/unit_actions.js:1260
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Denna entitet kan inte kontrolleras."
 msgstr[1] "Dessa entiteter kan inte kontrolleras."
 
-#: gui/session/unit_actions.js:1300
+#: gui/session/unit_actions.js:1306
 msgid "Unload All."
 msgstr "Lasta av allt."
 
-#: gui/session/unit_actions.js:1335
+#: gui/session/unit_actions.js:1341
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1355
+#: gui/session/unit_actions.js:1361
 msgid "Destroy the selected units or structures."
 msgstr "Förstör valda enheter eller byggnader."
 
-#: gui/session/unit_actions.js:1357
+#: gui/session/unit_actions.js:1363
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Använd %(hotkey)s för att undvika bekräftelsedialogen."
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1413
 msgid "Abort the current order."
 msgstr "Avbryt den akutella ordern."
 
-#: gui/session/unit_actions.js:1429
+#: gui/session/unit_actions.js:1435
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Skicka valda enheter att garnisonera i en byggnad eller enhet."
 
-#: gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1479
 msgid "Unload"
 msgstr "Lasta av"
 
-#: gui/session/unit_actions.js:1493
+#: gui/session/unit_actions.js:1499
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Skicka valda enheter att reparera en byggnad, ett skepp eller ett belägringsvapen."
 
-#: gui/session/unit_actions.js:1514
+#: gui/session/unit_actions.js:1520
 msgid "Focus on Rally Point."
 msgstr "Fokus på samlingsplats."
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1557
 msgid "Back to Work"
 msgstr "Tillbaka till arbetet"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1578
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Skicka valda enheter att vakta en byggnad eller en enhet."
 
-#: gui/session/unit_actions.js:1592
+#: gui/session/unit_actions.js:1598
 msgid "Remove guard"
 msgstr "Ta bort vakt"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1611
+#: gui/session/unit_actions.js:1617
 msgid "Barter & Trade"
 msgstr "Byte & Handel"
 
-#: gui/session/unit_actions.js:1631
+#: gui/session/unit_actions.js:1637
 msgid "Patrol"
 msgstr "Patrullera"
 
-#: gui/session/unit_actions.js:1632
+#: gui/session/unit_actions.js:1638
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Attackera alla fientliga enheter men undvik byggnader."
 
-#: gui/session/unit_actions.js:1660
+#: gui/session/unit_actions.js:1666
 msgid "Press to allow allies to use this dropsite"
 msgstr "Tryck för att låta allierade använda detta lager"
 
-#: gui/session/unit_actions.js:1665
+#: gui/session/unit_actions.js:1671
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Tryck för att förhindra allierade från att använda detta lager"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1706
 msgid "The use of this dropsite is prohibited"
 msgstr "Det är förbjudet att använda detta lager"
 
-#: gui/session/unit_actions.js:1706
+#: gui/session/unit_actions.js:1712
 msgid "Allies are allowed to use this dropsite."
 msgstr "Allierade får använda det här lagret."
 
-#: gui/session/unit_actions.js:1707
+#: gui/session/unit_actions.js:1713
 msgid "You are allowed to use this dropsite"
 msgstr "Du får använda det här lagret"
 
-#: gui/session/unit_actions.js:1726
+#: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1746
+#: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1811
+#: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Enheten måste dödas innan det kan samlas från den"
 
-#: gui/session/unit_actions.js:1814
+#: gui/session/unit_actions.js:1820
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Du kan inte förstöra denna enhet för att du äger mindre än hälften av enhetens erövringspoäng"
 
-#: gui/session/unit_actions.js:1817
+#: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"
 msgstr "Denna enhet kan inte tas bort"

@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:31+0000\n"
-"Last-Translator: Ildradil <piggmatias@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4001,14 +4001,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Käytä OpenGL 2.0 -varjostimia (suositeltu)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Varjojen laatu"
+msgid "Quality"
+msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Hyvin matala"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Hyvin korkea"
 
@@ -4019,54 +4015,72 @@ msgid ""
 msgstr "Varjokartan resoluutio. Suuret arvot voivat kaataa pelin, jos käytössä on vähämuistinen näytönohjain!"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Varjojen suodatus"
+msgid "Filtering"
+msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Pehmeät varjostukset"
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr ""
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Vesitehosteet"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Kun tämä on pois päältä, veden renderöintiin käytetään mahdollisimman alhaisia asetuksia. Tämä tekee muista asetuksista merkityksettömiä."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Korkealaatuiset vesitehosteet"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Käytä korkealaatuisia tehosteita vedelle, rannikon aaltojen renderöintiin, rannan kuohumiseen ja laivojen vanaan."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Veden heijastukset"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Salli veden heijastaa peilikuva."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Valon taittuminen vedessä"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Käytä valon oikeaa taittumista vedessä läpinäkyvyyden sijaan."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Oikea vedensyvyys"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Käytä veden oikeaa syvyyttä renderöintilaskelmissa."
 
@@ -4169,7 +4183,7 @@ msgstr "Valitun terävöitysmenetelmän terävyystaso."
 msgid "Model quality"
 msgstr "Mallien laatu"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Matala"
@@ -4178,7 +4192,7 @@ msgstr "Matala"
 msgid "Simpler models for better performance."
 msgstr "Yksinkertaisemmat mallit parantavat suorituskykyä."
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4188,7 +4202,7 @@ msgstr "Keskinkertainen"
 msgid "Average quality and average performance."
 msgstr "Keskinkertainen laatu ja keskinkertainen suorituskyky."
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Korkea"
@@ -5222,13 +5236,13 @@ msgstr "%(civilization)s pelattavuus"
 msgid "History of the %(civilization)s"
 msgstr "Sivilisaation %(civilization)s historia"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Siviilisaatiobonus"
 msgstr[1] "Siviilisaatiobonukset"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Joukkuebonus"
@@ -5266,7 +5280,7 @@ msgstr ""
 msgid "Civilization:"
 msgstr "Sivilisaatio:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr ""

@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-05 01:37+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:17+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,6 @@ msgstr "斯巴达教育"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
@@ -74,9 +73,14 @@ msgstr "斯巴达教育"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
@@ -205,28 +209,6 @@ msgstr "动力"
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
 msgstr "士兵、攻城机械和战船的攻击伤害 +25％。"
-
-#: simulation/data/technologies/attack_steel_working.jsondescription
-msgid ""
-"Secret steel working techniques give sword blades distinctive and beautiful "
-"markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "秘密的锻造技术让剑锋有著独特而美丽的纹路。不仅如此，这种钢铁的强度是无可比拟的。"
-
-#: simulation/data/technologies/attack_steel_working.jsongenericName
-msgid "Steel Working"
-msgstr "锻造"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
-msgid "Toledo Steel"
-msgstr "托莱多钢"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
-msgid "Wootz Steel"
-msgstr "乌兹钢"
-
-#: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "Swordsmen +20% attack damage."
-msgstr "剑士攻击伤害 +20％ ."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -1251,13 +1233,52 @@ msgstr "铁制成的兵器能比青铜兵器造成更大的杀伤。"
 msgid "Iron Weapons"
 msgstr "铁兵"
 
+#: simulation/data/technologies/soldier_attack_melee_03.jsondescription
+msgid ""
+"By adding a small amount of carbon during the iron smelting process, a "
+"stronger material, steel, can be forged."
+msgstr "炼铁过程中加入少量碳，可以锻造出更坚固的材料——钢。"
+
+#: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
+msgid "Carburization"
+msgstr "渗碳"
+
+#: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
+msgid "Soldiers +20% melee attack damage."
+msgstr "士兵近战伤害 +20％."
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
+msgid ""
+"Secret steel working techniques give sword blades distinctive and beautiful "
+"markings. Not only that, but the steel's hardness is unparalleled."
+msgstr "秘密的锻造技术让剑锋有著独特而美丽的纹路。不仅如此，这种钢铁的强度是无可比拟的。"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsongenericName
+msgid "Steel Working"
+msgstr "锻造"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.iber
+msgid "Toledo Steel"
+msgstr "托莱多钢"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.maur
+msgid "Wootz Steel"
+msgstr "乌兹钢"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
+msgid ""
+"Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
+msgstr "士兵近战伤害 +20％.剑士额外伤害 +20%."
+
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
-msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr "铁制的箭镞能有比青铜箭镞更深的穿透。"
+msgid ""
+"Improving the fletching of arrows increases their stability and speed, and "
+"thus their penetration."
+msgstr "增加弓箭的稳定和速度，从而提升穿透力。"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
-msgid "Iron Arrowheads"
-msgstr "铁镞"
+msgid "Improved Fletching"
+msgstr "提升箭术"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1265,12 +1286,24 @@ msgid "Soldiers +15% ranged attack damage."
 msgstr "士兵远程伤害 +15%."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr "铁制的箭镞能有比青铜箭镞更深的穿透。"
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+msgid "Iron Arrowheads"
+msgstr "铁镞"
+
+#: simulation/data/technologies/soldier_attack_ranged_03.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
 msgstr "三片镞刃的箭矢比双刃的箭矢更具威力。"
 
-#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+#: simulation/data/technologies/soldier_attack_ranged_03.jsongenericName
 msgid "Trilobate Arrowheads"
 msgstr "三叶镞"
+
+#: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
+msgid "Soldiers +20% ranged attack damage."
+msgstr "士兵远程伤害 +20%."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1313,6 +1346,18 @@ msgstr "叠麻甲"
 msgid "Linothōrax"
 msgstr "叠麻甲"
 
+#: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
+msgid "Body armor made of small metal rings linked together."
+msgstr "穿缀起小金属环，制成护甲。"
+
+#: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
+msgid "Mail Body Armor"
+msgstr "缀护甲"
+
+#: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
+msgid "Soldiers +2 hack resistance."
+msgstr "士兵近战防护 +2."
+
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
@@ -1335,6 +1380,18 @@ msgstr "用铁或青铜包裹盾牌的边缘、脊线和中心"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
 msgstr "金属包边"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
+msgid "Strengthen shields further with stronger metal alloys."
+msgstr "用更坚固的合金强化护盾。"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
+msgid "Improved Shield Alloys"
+msgstr "合金盾牌"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
+msgid "Soldiers +2 pierce resistance."
+msgstr "士兵穿刺防护 +1."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."

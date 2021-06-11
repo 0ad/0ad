@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:31+0000\n"
-"Last-Translator: V S <v32itas@slacknet.eu>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4023,14 +4023,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Naudoti OpenGL 2.0 shader'ius (rekomenduojama)"
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Šešėlių kokybė"
+msgid "Quality"
+msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Labai mažai"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Labai Daug"
 
@@ -4041,54 +4037,72 @@ msgid ""
 msgstr "Šešėlių žymėjimo raiška. Dideles reikšmės gali neleisti žaidimui veikti naudojant mažai atminties turinčias vaizdo plokštes."
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Šešėlių filtravimas"
+msgid "Filtering"
+msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Sklandūs šešėliai."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr ""
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Vandens efektai"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Kai išjungta, naudojami žemiausi įmanomi nustatymai vandens atvaizdavimui, kitus vandens nustatymus padarant nereikšmingais."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Aukštos kokybės vandens efektai"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Naudoti aukštos kokybės efektus vandeniui, krantus skalaujančių bangų, putų ir laivų \"pėdsakų\" piešimui."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Vandens atspindžiai"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Leisti vandeniui atspindėti veidrodinį vaizdą."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Vandens refrakcija"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Naudoti tikrą vandens refrakcijos žymėjimą vietoj skaidrumo."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Realus vandens gylis"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Ištiesų naudoti vandens gylio atvaizdavimo skaičiavimus."
 
@@ -4191,7 +4205,7 @@ msgstr ""
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Mažai"
@@ -4200,7 +4214,7 @@ msgstr "Mažai"
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4210,7 +4224,7 @@ msgstr "Vidutiniškai"
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Daug"
@@ -5244,7 +5258,7 @@ msgstr "%(civilization)s Žaidimo stilius"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s istorija"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilizacijos Priedas"
@@ -5252,7 +5266,7 @@ msgstr[1] "Civilizacijų Priedai"
 msgstr[2] "Civilizacijų Priedai"
 msgstr[3] "Civilizacijų Priedai"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Komandos Priedas"
@@ -5298,7 +5312,7 @@ msgstr "%(hotkey)s: perjungti statinių medį"
 msgid "Civilization:"
 msgstr "Civilizacija:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s iki %(health_max)s"

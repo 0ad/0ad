@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-04 21:11+0000\n"
-"Last-Translator: Jeroen Bourgois <jeroenbourgois@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-08 15:33+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,9 +188,9 @@ msgstr "Caledonische Weiden"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
-"Each player starts on a hill surrounded by steep cliffs. Represents "
+"Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr "Iedere speler start op een heuvel omgeven door steile kliffen. Dit stelt Cantabrië voor, een bergachtige streek in het noorden van het Iberische schiereiland."
+msgstr "Iedere speler start op een heuvel omgeven door steile kliffen. Als inspiratie gold Cantabrië, een bergachtige streek in het noorden van het Iberische schiereiland."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -215,13 +215,11 @@ msgid "Continent"
 msgstr "Continent"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "Twee Mediterraanse landmassa's verbonden met een smalle strook land, ook wel een 'Ishtmus' genoemd."
+"Two land masses connected by a narrow spit of land, called an 'Isthmus', "
+"inspired by the eponymous area in Greece. Most of the stone on the map is in"
+" the isthmus itself, making it vital to fight for its control."
+msgstr "Twee landmassa's verbonden door een smal strookje land, een 'Isthmus' genaamd, geïnspireerd door het gelijknamige Griekse gebied. Het meeste steen is te vinden op de isthmus zelf, waardoor u er om zult moeten vechten om te overleven."
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -468,9 +466,10 @@ msgstr "Hellepas"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
-"Each player starts in a coastal area between forested hills and the Caspian "
-"Sea."
-msgstr "Iedere speler start aan de kust tussen beboste heuvels en de Kaspische Zee."
+"Each player starts in a coastal area between forested hills and the Sea. "
+"Inspired by the southern regions of the Caspian Sea known in Antiquity as "
+"Hyrcania."
+msgstr "Iedere speler start aan de kust tussen beboste heuvels en de zee. De landkaart is geïnspireerd door de Zuidelijke gebieden rond de Kaspische Zee, in de Oudheid bekend als Hyrcaniê."
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -869,6 +868,19 @@ msgid "Aegean-Anatolian"
 msgstr "Aegeïsch-Anatolisch"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Between the high summits of the Alps, the valleys are filled with fog in the"
+" early morning. The ground is full of gravel and rocks, but silver fir and "
+"spruce trees grow between them and provide shelter for deer and mountain "
+"goats."
+msgstr ""
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Subalpine"
+msgstr ""
+
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -876,11 +888,6 @@ msgid ""
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "Een gebied in de hoge, besneeuwde bergen. Een snijdende wind blaast door het overvloedige naaldbomenwoud en doet zelfs de koubestendige herten en berggeiten rillen."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpen"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
@@ -890,16 +897,16 @@ msgstr "Arctisch"
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "De herfst op z'n mooist. Het landschap imponeert met kleurenpracht in een zinnenprikkelend samenspel. De inheemse berken en eiken van dit gematigde klimaat zetten al hun blad in najaarskleuren terwijl de wintergroene dennen onverschillig de naderende winter aanschouwen."
+"The first leaves have fallen. The landscape is a dazzling dash of colors "
+"irrevocably intertwined. The native beech and oak trees of this temperate "
+"zone display a multi-colored foliage while animals try to prepare for the "
+"approaching winter."
+msgstr ""
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Herfst"
+msgid "Rhine Valley (Fall)"
+msgstr ""
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -921,7 +928,7 @@ msgid ""
 "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
 "gazelles graze the sparse grass, while herds of zebras, wildebeest, giraffes"
 " or elephants roam the wild in search of food."
-msgstr ""
+msgstr "Nubië, een droog klimaat waarin alleen de geharde baobab bomen gedijen. Solitaire gazelles grazen in het weinige gras, terwijl zebras, gnoes, giraffes of olifanten kuddes rondzwerven op zoek naar voedsel."
 
 #: maps/random/rmbiome/generic/nubia.jsonDescription.Title
 msgctxt "biome definition"
@@ -944,20 +951,24 @@ msgstr "Sahara"
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "De savanne, een droog klimaat waarin alleen de geharde baobab bomen gedijen. Solitaire gazelles grazen in het weinige gras, terwijl zebras, gnoes, giraffes of olifanten kuddes rondzwerven op zoek naar voedsel."
+"The transition between the dry Sahara to the north and the tropical forests "
+"to the south. The sunlight floods through the open canopy and lights the "
+"grassland between the trees, where herds of zebras, wildebeest, giraffes and"
+" elephants roam."
+msgstr ""
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savanne"
+msgid "Sudanian Savanna"
+msgstr ""
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid "Wide grasslands without trees"
-msgstr "Wijdse graslanden zonder bomen"
+msgid ""
+"Wide grasslands stretching to the horizon, without any trees blocking the "
+"view. The Steppe is home to large herds of wild horses, which graze "
+"peacefully on the empty land, but flee quickly if you try to catch them."
+msgstr "Weidse grasvlaktes strekken zich uit tot de horizon, geen boom blokkeert het zicht. De steppe is het thuisland voor grote kuddes wilde paarden, vredig grazend op het lege land, maar snel te vluchten voor wie ze vangen wil."
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -1160,6 +1171,14 @@ msgstr "Het onbekende."
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
 msgstr "Selecteer een willekeurige landkaart zonder water."
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "Twee Mediterraanse landmassa's verbonden met een smalle strook land, ook wel een 'Ishtmus' genoemd."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -2852,21 +2871,21 @@ msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
-msgstr ""
+msgstr "De Hydaspes, oftewel de Jhelum of Jahalum, is een rivier in de Punjab. Dit was de plek van de grote veldslag tussen de Macedonische troepen van Alexander de Grote en de Indiase strijdkrachten van koning Porus van Paurava."
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
-msgstr ""
+msgstr "De Hydaspes (4)"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
 msgid "Macedonian Position"
-msgstr ""
+msgstr "Macedonische positie"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
 msgid "Pauravan Position"
-msgstr ""
+msgstr "Pauravanische positie"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2907,7 +2926,7 @@ msgstr "Vlakte van Lotharingen (2)"
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
-msgstr ""
+msgstr "Magadha (2)"
 
 #: maps/skirmishes/median_oasis_2p.xml:Description:38
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
@@ -2987,7 +3006,7 @@ msgstr "Noordelijk Eiland (2)"
 
 #: maps/skirmishes/nubian_frontier_2p.xml:Description:39
 msgid "The arid and treacherous frontier between Nubia and Egypt."
-msgstr ""
+msgstr "De dorre en verraderlijke grensstreek tussen Nubië en Egypte."
 
 #: maps/skirmishes/nubian_frontier_2p.xml:Name:39
 msgid "Nubian Frontier (2)"
@@ -3044,7 +3063,7 @@ msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
-msgstr ""
+msgstr "Ver in de Afrikaanse Sahara woestijn bevindt zich een gebied met rotsformaties en kleine oasen. \n\nDe kliffen verbergen grote steengroeven, terwijl hout en dierlijk leven te vinden is bij de over het landschap verspreide oases. Vruchtdragende dadelpalmen voorzien in een aangename startvoorraad voedsel."
 
 #: maps/skirmishes/saharan_oases_2p.xml:Name:39
 msgid "Saharan Oases (2)"

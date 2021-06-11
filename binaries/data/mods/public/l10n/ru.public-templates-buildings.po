@@ -48,9 +48,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:29+0000\n"
-"Last-Translator: Woratiklis\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:31+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +188,7 @@ msgid "Train Heroes and research technologies."
 msgstr "Позволяет обучать героев и исследовать технологии."
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
 msgstr "Совет"
@@ -386,8 +386,8 @@ msgstr "Дунон"
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
-msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Коренное владение. Обучает героев. Размещайте воинов внутри для усиления оборонительной стрельбы."
+msgid "Train Heroes. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -641,15 +641,15 @@ msgstr "Короткий деревянный забор"
 msgid "Stone Fence"
 msgstr "Каменный забор"
 
-#: simulation/templates/structures/gaul/assembly.xml:30
+#: simulation/templates/structures/gaul/assembly.xml:27
 msgid "Assembly of Princes"
 msgstr "Собрание вождей"
 
-#: simulation/templates/structures/gaul/assembly.xml:31
+#: simulation/templates/structures/gaul/assembly.xml:28
 msgid "Remogantion"
 msgstr "Ремогантион"
 
-#: simulation/templates/structures/gaul/assembly.xml:32
+#: simulation/templates/structures/gaul/assembly.xml:29
 msgid "Train Champion Trumpeters and Heroes."
 msgstr "Позволяет обучать гвардейских горнистов и героев."
 
@@ -1026,19 +1026,19 @@ msgstr "Випана"
 msgid "Uparaksana"
 msgstr "Упараксана"
 
-#: simulation/templates/structures/maur/palace.xml:22
-#: simulation/templates/structures/maur/palace.xml:26
+#: simulation/templates/structures/maur/palace.xml:19
+#: simulation/templates/structures/maur/palace.xml:23
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
 msgstr "Дворец"
 
-#: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:20
 msgid "Harmya"
 msgstr "Гармия"
 
-#: simulation/templates/structures/maur/palace.xml:24
+#: simulation/templates/structures/maur/palace.xml:21
 msgid "Territory root. Train Maiden Guards and Heroes."
 msgstr "Коренное владение. Обучает женскую стражу и героев."
 
@@ -1711,7 +1711,7 @@ msgstr "Дом"
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
-#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 #: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Village"
 msgstr "Деревня"
@@ -1924,13 +1924,13 @@ msgid ""
 "Siege Engine technologies."
 msgstr "Позволяет обучать гвардейских пеших арбалетчиков, строить осадные орудия и исследовать осадные технологии."
 
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
@@ -1962,15 +1962,15 @@ msgstr "Может быть возведено на берегу своей, н�
 msgid "Naval"
 msgstr "Морское"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
 msgstr "Слоновье стойло"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:28
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Позволяет обучать слонов и исследовать их технологии."
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 msgid "ElephantStable"
 msgstr "Слоновье стойло"
 
@@ -1996,8 +1996,8 @@ msgid "Fortress"
 msgstr "Крепость"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
-msgid "Territory root. Garrison Soldiers for additional arrows."
-msgstr "Коренное владение. Размещайте воинов внутри для усиления оборонительной стрельбы."
+msgid "Garrison Soldiers for additional arrows."
+msgstr "Размещайте воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -2011,12 +2011,12 @@ msgstr "Позволяет обучать пеших стрелков и исс�
 msgid "Range"
 msgstr "Стрельбище"
 
-#: simulation/templates/template_structure_military_stable.xml:23
 #: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 msgid "Stable"
 msgstr "Конюшня"
 
-#: simulation/templates/template_structure_military_stable.xml:25
+#: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
 msgstr "Позволяет обучать конницу и исследовать конные технологии."
 

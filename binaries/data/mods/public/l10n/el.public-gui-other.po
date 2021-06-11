@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 10:47+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4006,14 +4006,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Χρήση του OpenGL 2.0 για τους ανταυγαστήρες (προτείνετε)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Ποιότητα σκιάς"
+msgid "Quality"
+msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Πολύ Χαμηλό"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Πολύ Υψηλό"
 
@@ -4024,54 +4020,72 @@ msgid ""
 msgstr "Ανάλυση στις σκιές του χάρτη. Υψηλές τιμές μπορεί να καταρρεύσουν το παιχνίδι αν η κάρτα γραφικών έχει μικρή μνήμη!"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Φίλτρα Σκιάς"
+msgid "Filtering"
+msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Εξομάλυνση σκιών."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr ""
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Εφέ νερού"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Όταν είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ, χρησιμοποιεί τις χαμηλότερες δυνατές ρυθμίσεις για την απεικόνιση του νερού. Αυτό απενεργοποιεί τις άλλες ρυθμίσεις."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Υψηλής ποιότητας εφέ νερού"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Χρησιμοποίηση της μέγιστη ποιότητα των εφέ του νερού, εμφανίζει τα κύματα, το άφρισμα των ακτών και τα ίχνη των πλοίων."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Αντανακλάσεις νερού"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Επιτρέψτε το νερό να αντανακλά ένα είδωλο."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Διάθλαση νερού"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Χρησιμοποιήστε έναν πραγματικής διάθλασης νερού χάρτη και όχι διαφάνεια."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Βάθος Αληθινού νερού"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης."
 
@@ -4174,7 +4188,7 @@ msgstr "Το ακόνισμα γραφικών της επιλεγμένης μ�
 msgid "Model quality"
 msgstr "Ποιότητα μοντέλου"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Χαμηλό"
@@ -4183,7 +4197,7 @@ msgstr "Χαμηλό"
 msgid "Simpler models for better performance."
 msgstr "Απλοϊκά μοντέλα για καλύτερη αποδοση."
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4193,7 +4207,7 @@ msgstr "Μεσαίο"
 msgid "Average quality and average performance."
 msgstr "Μέτρια ποιότητα και μέτρια επίδοση."
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Υψηλό"
@@ -5227,13 +5241,13 @@ msgstr "%(civilization)s Παιξίμο Παιχνιδιού"
 msgid "History of the %(civilization)s"
 msgstr "Ιστορία των %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Οφέλη Πολιτισμού"
 msgstr[1] "Οφέλη Πολιτισμού"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Οφέλη Ομάδας"
@@ -5271,7 +5285,7 @@ msgstr "%(hotkey)s: Εναλλάσσει το Δέντρο Κατασκευής.
 msgid "Civilization:"
 msgstr "Πολιτισμός:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s σε %(health_max)s"

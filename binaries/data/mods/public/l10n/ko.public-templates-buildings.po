@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-31 07:04+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-10 18:24+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgid "Train Heroes and research technologies."
 msgstr "영웅을 훈련하고 특수 기술을 연구합니다."
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
 msgstr "의회"
@@ -363,8 +363,8 @@ msgstr "두논"
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
-msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "영토에 정착합니다. 영웅을 훈련 시키십시오. 화살 공격이 추가된 주둔지 병사입니다."
+msgid "Train Heroes. Garrison Soldiers for additional arrows."
+msgstr "영웅을 양성합니다. 화살공격이 추가된 주둔지 병사들입니다."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -618,15 +618,15 @@ msgstr "짧은 나무 울타리"
 msgid "Stone Fence"
 msgstr "돌울타리"
 
-#: simulation/templates/structures/gaul/assembly.xml:30
+#: simulation/templates/structures/gaul/assembly.xml:27
 msgid "Assembly of Princes"
 msgstr "왕세자 의회"
 
-#: simulation/templates/structures/gaul/assembly.xml:31
+#: simulation/templates/structures/gaul/assembly.xml:28
 msgid "Remogantion"
 msgstr "레모간티온"
 
-#: simulation/templates/structures/gaul/assembly.xml:32
+#: simulation/templates/structures/gaul/assembly.xml:29
 msgid "Train Champion Trumpeters and Heroes."
 msgstr "대표전사 나팔수와 영웅을 훈련하십시오."
 
@@ -1003,19 +1003,19 @@ msgstr "비파나"
 msgid "Uparaksana"
 msgstr "우파라크사나"
 
-#: simulation/templates/structures/maur/palace.xml:22
-#: simulation/templates/structures/maur/palace.xml:26
+#: simulation/templates/structures/maur/palace.xml:19
+#: simulation/templates/structures/maur/palace.xml:23
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
 msgstr "궁전"
 
-#: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:20
 msgid "Harmya"
 msgstr "하르"
 
-#: simulation/templates/structures/maur/palace.xml:24
+#: simulation/templates/structures/maur/palace.xml:21
 msgid "Territory root. Train Maiden Guards and Heroes."
 msgstr "영토에 정착합니다. 최초 경비병과 영웅을 훈련합니다."
 
@@ -1688,7 +1688,7 @@ msgstr "집"
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
-#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 #: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Village"
 msgstr "부락"
@@ -1901,13 +1901,13 @@ msgid ""
 "Siege Engine technologies."
 msgstr "대표전사 보병 석궁병을 훈련하고, 공성 전차를 만들며, 공성 전차 기술을 연구합니다."
 
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
@@ -1939,15 +1939,15 @@ msgstr "자신의 영토, 중립 지역 또는 동맹 영토의 해안선에 짓
 msgid "Naval"
 msgstr "해군"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
 msgstr "코끼리 사육장"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:28
 msgid "Train Elephants and research Elephant technologies."
 msgstr "코끼리를 훈련시키고 코끼리 기술을 연구합니다."
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 msgid "ElephantStable"
 msgstr "코끼리 사육장"
 
@@ -1973,8 +1973,8 @@ msgid "Fortress"
 msgstr "요새"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
-msgid "Territory root. Garrison Soldiers for additional arrows."
-msgstr "영토에 정착합니다. 화살 공격이 추가된 주둔지 병사입니다."
+msgid "Garrison Soldiers for additional arrows."
+msgstr "화살공격이 추가된 주둔지 병사들입니다."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -1988,12 +1988,12 @@ msgstr "원거리 보병과 연구 기술을 훈련하십시오."
 msgid "Range"
 msgstr "범위"
 
-#: simulation/templates/template_structure_military_stable.xml:23
 #: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 msgid "Stable"
 msgstr "사육장"
 
-#: simulation/templates/template_structure_military_stable.xml:25
+#: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
 msgstr "기병을 훈련시키고 기병 기술을 연구합니다."
 

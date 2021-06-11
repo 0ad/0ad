@@ -27,6 +27,7 @@
 # Nico Laus <omaoma75@web.de>, 2017
 # Ole Gehrmann <ole.internet22@gmail.com>, 2017
 # Raymond Vetter, 2016-2019
+# RedNicStone <nic@struktur.de>, 2021
 # Robert Dusemund <robert.dusemund@gmx.net>, 2021
 # R W <robin.waldenburg@gmx.de>, 2016
 # Vexatos, 2016
@@ -37,9 +38,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-12 11:01+0000\n"
-"Last-Translator: Alexander Minges <alexander.minges@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-09 22:42+0000\n"
+"Last-Translator: RedNicStone <nic@struktur.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,19 +50,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Einquartiere Belagerungseinheiten +3 \nGenesungssrate."
+msgstr "Einquartiere Belagerungseinheiten +3 Genesungssrate."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr "Reparaturen im Waffenlager"
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
-msgid "Units gain experience while garrisoned in barracks."
-msgstr "Einheiten gewinnen Erfahrung, während sie in Kasernen einquartiert sind."
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
-msgid "Rigorous Training"
-msgstr "Rigoroses Training"
+msgstr "Arsenalreparaturen"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -172,6 +165,14 @@ msgstr "+20% maximales Bevölkerungslimit (erfordert die „Glorreiche Expansion
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Glorreiche Expansion"
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraDescription
+msgid "Units gain experience while garrisoned inside the building."
+msgstr "Einheiten bekommen Erfahrung, wenn sie in einem Gebäude einquartiert sind."
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "Rigoroses Training"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."

@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:31+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4000,14 +4000,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Използване на шейдъри за OpenGL 2.0 (препоръчително)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
+msgid "Quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Много ниско"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Много високо"
 
@@ -4018,7 +4014,7 @@ msgid ""
 msgstr "Резолюция на картите за сенките. Високите стойности могат да причинят срив на играта, ако използвате видео карта с малко памет!"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
+msgid "Filtering"
 msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
@@ -4026,46 +4022,64 @@ msgid "Smooth shadows."
 msgstr "Гладки сенки."
 
 #: gui/options/options.json[2].options[12].label
-msgid "Water effects"
+msgid "Cutoff distance"
 msgstr ""
 
 #: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr ""
+
+#: gui/options/options.json[2].options[14].label
+msgid "Water effects"
+msgstr ""
+
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Когато е изключено, ще се използват най-ниските възможни настройки за изчертаване на водата. Ако това бъде включено, другите настройки за водата ще бъдат пренебрегнати."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr ""
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Използване на по-качествени ефекти за водата, вълните, морската пяна и следите на корабите."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr ""
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Позволяване на водата да отразява огледално изображение."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr ""
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Използване на истинска карта на пречупване на светлината във водата, а не само прозрачност."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr ""
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
 
@@ -4168,7 +4182,7 @@ msgstr ""
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Ниско"
@@ -4177,7 +4191,7 @@ msgstr "Ниско"
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4187,7 +4201,7 @@ msgstr "Средно"
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Високо"
@@ -5221,13 +5235,13 @@ msgstr "%(civilization)s — начин на игра"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s — малко история"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Предимство на цивилизацията"
 msgstr[1] "Предимства на цивилизацията"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Отборно предимство"
@@ -5265,7 +5279,7 @@ msgstr "%(hotkey)s: превключване към структурното д�
 msgid "Civilization:"
 msgstr "Цивилизация:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s до %(health_max)s"

@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-05 05:39+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-10 18:39+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -3691,7 +3691,7 @@ msgstr "지도 검색:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
-msgstr "맵 필터:"
+msgstr "지도 필터:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
@@ -3996,14 +3996,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "OpenGL 2.0 그림자를 사용합니다(권장)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "그림자 품질"
+msgid "Quality"
+msgstr "품질"
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "매우 낮음"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "매우 높음"
 
@@ -4014,54 +4010,72 @@ msgid ""
 msgstr "그림자 지도 해상도. 메모리가 부족한 그래픽 카드를 사용하면 높은 값이 게임이 중단될 수 있습니다!"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "그림자 필터링"
+msgid "Filtering"
+msgstr "필터링"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "부드러운 그림자입니다."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr "컷오프 거리"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "카메라에서 특정 거리 이상의 그림자를 숨깁니다."
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr "전체 지도 가리기"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "그림자로 전체 지도가 가려지고 그림자가 컷오프 거리가 무시됩니다. 전체 지도의 스크린샷을 만드는 데 유용합니다."
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "물 효과"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "OFF인 경우, 가능한 가장 낮은 설정을 사용하여 물을 렌더링합니다. 이렇게 하면 다른 설정과 관련성이 없어집니다."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "높은 품질의 물 효과"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "물, 해안파도 렌더링, 해안의 파도거품, 선박 노선 등에 고품질 효과를 활용합니다."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "물위 반사"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "물이 반사 이미지를 반영하도록 합니다."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "물위 반사"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "투명도가 아닌 실제 물의 굴절 지도를 사용합니다."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "실제 수심"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
@@ -4164,7 +4178,7 @@ msgstr "선택한 경로의 선명도입니다."
 msgid "Model quality"
 msgstr "모델 품질"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "낮음"
@@ -4173,7 +4187,7 @@ msgstr "낮음"
 msgid "Simpler models for better performance."
 msgstr "더 단순한 모델을 통해 성능을 향상시킬 수 있습니다."
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4183,7 +4197,7 @@ msgstr "중간"
 msgid "Average quality and average performance."
 msgstr "평균 품질 및 평균 성능입니다."
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "높음"
@@ -4869,7 +4883,7 @@ msgstr "싱글플레이어"
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
-msgstr "싱글플레이어 게임을 시작, 불러오기 또는 재생합니다."
+msgstr "싱글플레이어 게임을 시작, 불러오기 또는 다시보기합니다."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
@@ -5217,12 +5231,12 @@ msgstr "%(civilization)s 게임플레이"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s의 역사"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "문명 포상"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "팀 보너스"
@@ -5256,7 +5270,7 @@ msgstr "%(hotkey)s: 건축물 도감으로 바꿉니다."
 msgid "Civilization:"
 msgstr "문명:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s 부터 %(health_max)s"
@@ -5361,7 +5375,7 @@ msgstr "사용할 수 있는 요약 자료가 없습니다."
 
 #: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "이 다시보기를 영구적으로 삭제 하시겠습니까?"
+msgstr "이 다시보기를 영구적으로 삭제하시겠습니까?"
 
 #: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
@@ -5454,12 +5468,12 @@ msgstr "등급이 매겨지지 않은 게임들"
 #: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr "하나 이상의 부분 또는 전체 플레이어 이름을 입력하여 재생을 걸러냅니다."
+msgstr "하나 이상의 부분 또는 전체 플레이어 이름을 입력하여 다시보기를 걸러냅니다."
 
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr "%(hotkey)s 을(를) 사용하여 선택한 재생을 삭제하십시오."
+msgstr "%(hotkey)s 키를 사용하여 선택한 다시보기를 삭제합니다."
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
@@ -5480,7 +5494,7 @@ msgstr "게임 다시보기"
 
 #: gui/replaymenu/replay_menu.xml:(caption):111
 msgid "Filter compatible replays"
-msgstr "호환되는 리플레이 필터"
+msgstr "호환되는 다시보기 필터"
 
 #: gui/replaymenu/replay_menu.xml:(caption):215
 msgid "Spoiler"
@@ -5529,7 +5543,7 @@ msgstr "플레이어 검색"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "재생 캐시를 처음부터 다시 구축하십시오. 아마도 느려질겁니다!"
+msgstr "다시보기 캐시를 처음부터 다시 빌드합니다. 속도가 느릴 수 있습니다!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -5952,7 +5966,7 @@ msgstr "팀별로 묶음"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
-msgstr "다시보기 보기"
+msgstr "다시보기 시청"
 
 #: gui/summary/summary.xml:(caption):192
 msgid "Continue"
@@ -6065,7 +6079,7 @@ msgstr "중형 3단 노선급 군함입니다."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr "영국인, 갈리아인, 이베리아인이 이용할 수 있습니다."
+msgstr "브리턴족, 갈리아족, 이베리아족이 사용할 수 있습니다."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."

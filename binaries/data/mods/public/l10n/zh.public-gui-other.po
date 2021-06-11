@@ -89,8 +89,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-05 01:35+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:06+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -4058,14 +4058,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "使用OpenGL 2.0 着色器（推荐）"
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "阴影质量"
+msgid "Quality"
+msgstr "质量"
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "极低"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "极高"
 
@@ -4076,54 +4072,72 @@ msgid ""
 msgstr "阴影贴图分辨率。 显存不足时，高数值会导致游戏崩溃！"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "阴影过滤"
+msgid "Filtering"
+msgstr "筛选"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "阴影平滑化"
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr "截止距离"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "隐藏相机一定距离外的阴影。"
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr "覆盖全图"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "开启全图的阴影覆盖，并忽略阴影截止距离时。 可截屏全图。"
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "水面特效"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "处于关闭状态时，尽可能使用最低设置来渲染水面。这与其他设置无关。"
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "高质量水面特效"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "使用较高品质的水面效果，算绘靠近岸边的波浪，海岸波浪，以及船迹。"
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "水面反射特效"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "允许水面反射镜像。"
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "水面折射特效"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "使用真实的水域折射图而非透明度。"
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "真实水深"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "在渲染计算中使用实际水深。"
 
@@ -4226,7 +4240,7 @@ msgstr "选择的传递的清晰度。"
 msgid "Model quality"
 msgstr "模型质量"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "低效"
@@ -4235,7 +4249,7 @@ msgstr "低效"
 msgid "Simpler models for better performance."
 msgstr "简易的模型可获得更好的游戏体验。"
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4245,7 +4259,7 @@ msgstr "中等"
 msgid "Average quality and average performance."
 msgstr "平均质量和平均性能。"
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "高效"
@@ -5279,12 +5293,12 @@ msgstr "%(civilization)s 特点"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 的历史"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "文明加成"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "团队加成"
@@ -5318,7 +5332,7 @@ msgstr "%(hotkey)s：切换到建筑谱表。"
 msgid "Civilization:"
 msgstr "文明："
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s到%(health_max)s"

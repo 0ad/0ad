@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 19:16+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 18:21+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,6 @@ msgstr "Die Agoge"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
@@ -88,9 +87,14 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
@@ -219,28 +223,6 @@ msgstr "Dynamis"
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
 msgstr "Soldaten, Belagerungsmaschinen und Schiffe +25% Angriffsschaden."
-
-#: simulation/data/technologies/attack_steel_working.jsondescription
-msgid ""
-"Secret steel working techniques give sword blades distinctive and beautiful "
-"markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Geheime Metallverarbeitungstechniken geben Schwertern eine charakteristische und schöne Zeichnung. Aber nicht nur das, der Härtegrad des Stahls ist beispiellos."
-
-#: simulation/data/technologies/attack_steel_working.jsongenericName
-msgid "Steel Working"
-msgstr "Stahlverarbeitung"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
-msgid "Toledo Steel"
-msgstr "Toledostahl"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
-msgid "Wootz Steel"
-msgstr "Wootz"
-
-#: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "Swordsmen +20% attack damage."
-msgstr "Schwertkämpfer +20% Angriffsschaden."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -1265,13 +1247,52 @@ msgstr "Die Verwendung von Eisen anstatt Bronze gab den Waffen mehr Durschschlag
 msgid "Iron Weapons"
 msgstr "Eisenwaffen"
 
+#: simulation/data/technologies/soldier_attack_melee_03.jsondescription
+msgid ""
+"By adding a small amount of carbon during the iron smelting process, a "
+"stronger material, steel, can be forged."
+msgstr "Indem man dem Eisen beim Schmelzen eine kleine Menge Kohlenstoff zugibt, kann ein stärkeres Material, Stahl, geschmiedet werden."
+
+#: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
+msgid "Carburization"
+msgstr "Karbonisation"
+
+#: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
+msgid "Soldiers +20% melee attack damage."
+msgstr "Soldaten +20% Nahkampfschaden."
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
+msgid ""
+"Secret steel working techniques give sword blades distinctive and beautiful "
+"markings. Not only that, but the steel's hardness is unparalleled."
+msgstr "Geheime Metallverarbeitungstechniken geben Schwertern eine charakteristische und schöne Zeichnung. Aber nicht nur das, der Härtegrad des Stahls ist beispiellos."
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsongenericName
+msgid "Steel Working"
+msgstr "Stahlverarbeitung"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.iber
+msgid "Toledo Steel"
+msgstr "Toledostahl"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.maur
+msgid "Wootz Steel"
+msgstr "Wootz"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
+msgid ""
+"Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
+msgstr ""
+
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
-msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr "Eiserne Spitzen lassen Projektile tiefer eindringen."
+msgid ""
+"Improving the fletching of arrows increases their stability and speed, and "
+"thus their penetration."
+msgstr "Durch verbesserte Befiederung von Pfeilen wird ihre Stabilität und Geschwindigkeit erhöht, und dadurch auch ihre Durchschlagskraft."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
-msgid "Iron Arrowheads"
-msgstr "Eiserne Pfeilspitzen"
+msgid "Improved Fletching"
+msgstr "Verbesserte Befiederung"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1279,12 +1300,24 @@ msgid "Soldiers +15% ranged attack damage."
 msgstr "Soldaten +15% Fernkampfschaden."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr "Eiserne Spitzen lassen Projektile tiefer eindringen."
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+msgid "Iron Arrowheads"
+msgstr "Eiserne Pfeilspitzen"
+
+#: simulation/data/technologies/soldier_attack_ranged_03.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
 msgstr "Pfeilspitzen mit drei Seiten statt zwei, um größere Wunden zu verursachen."
 
-#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+#: simulation/data/technologies/soldier_attack_ranged_03.jsongenericName
 msgid "Trilobate Arrowheads"
 msgstr "Dreiseitige Pfeilspitzen"
+
+#: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
+msgid "Soldiers +20% ranged attack damage."
+msgstr "Soldaten +20% Fernkampfschaden."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1327,6 +1360,18 @@ msgstr "Geschichteter Leinen-Körperschutz"
 msgid "Linothōrax"
 msgstr "Linothōrax"
 
+#: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
+msgid "Body armor made of small metal rings linked together."
+msgstr "Körperpanzer aus ineinandergreifenden Metallringen."
+
+#: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
+msgid "Mail Body Armor"
+msgstr "Kettenrüstung"
+
+#: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
+msgid "Soldiers +2 hack resistance."
+msgstr "Soldaten +2 Hiebwiderstand."
+
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
@@ -1349,6 +1394,18 @@ msgstr "Verstärke Schilde mit einem Metallrand oder einem Stachel."
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
 msgstr "Metallkante"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
+msgid "Strengthen shields further with stronger metal alloys."
+msgstr "Verstärke Schilde weiter mit stärkeren Legierungen."
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
+msgid "Improved Shield Alloys"
+msgstr "Verbesserte Schildlegierungen"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
+msgid "Soldiers +2 pierce resistance."
+msgstr "Soldaten +2 Stichwiderstand."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."

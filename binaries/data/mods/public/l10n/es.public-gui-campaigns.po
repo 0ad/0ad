@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/wildfire-games/teams/17418/es/)\n"
@@ -22,6 +22,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: campaigns/new_maps.jsonDescription
+msgctxt "Campaign Template"
+msgid ""
+"Discover the new maps in Alpha 25 with a demo campaign, taking you through "
+"all of them."
+msgstr ""
+
+#: campaigns/new_maps.jsonName
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr ""
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -63,17 +75,17 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:119
+#: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Terminado"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:121
+#: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Disponible"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:183
+#: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Error al cargar campaña %s: %s."
