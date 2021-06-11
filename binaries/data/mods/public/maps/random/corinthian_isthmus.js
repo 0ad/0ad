@@ -30,6 +30,7 @@ const oGoat = "gaia/fauna_goat";
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
+const oMetalSmall = g_Gaia.metalSmall;
 const oDatePalm = g_Gaia.tree1;
 const oSDatePalm = g_Gaia.tree2;
 const oCarob = g_Gaia.tree3;
@@ -229,13 +230,12 @@ createObjectGroups(
 );
 
 g_Map.log("Creating metal mines");
-createMines(
-	[
-		[new SimpleObject(oMetalLarge, 1, 1, 0, 4)]
-	],
-	avoidClasses(clForest, 4, clPassageway, 10, clPlayer, 15, clMetal, 10, clRock, 5, clWater, 4, clHill, 4),
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
 	clMetal,
-	scaleByMapSize(5, 20)
+	avoidClasses(clPassageway, 1, clWater, 0, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clRock, 10),
+	0.9 // less available area -> slightly less metal
 );
 
 Engine.SetProgress(65);

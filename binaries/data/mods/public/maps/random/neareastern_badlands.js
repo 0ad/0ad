@@ -32,6 +32,7 @@ const oWildebeest = "gaia/fauna_wildebeest";
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
+const oMetalSmall = g_Gaia.metalSmall;
 const oOasisTree = "gaia/tree/senegal_date_palm";
 const oDatePalm = g_Gaia.tree1;
 const oSDatePalm = g_Gaia.tree2;
@@ -288,31 +289,25 @@ createAreas(
 	50);
 
 Engine.SetProgress(70);
+g_Map.log("Creating metal mines");
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
+	clMetal,
+	avoidClasses(clOasis, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill1, 1)
+);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clOasis, 1, clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
-	scaleByMapSize(4,16), 100
+createBalancedStoneMines(
+	oStoneSmall,
+	oStoneLarge,
+	clRock,
+	avoidClasses(clOasis, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill1, 1, clMetal, 10)
 );
-
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clOasis, 1, clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
-	scaleByMapSize(4,16), 100
-);
-
-g_Map.log("Creating metal mines");
-group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
-createObjectGroupsDeprecated(group, 0,
-	[avoidClasses(clOasis, 1, clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 1)],
-	scaleByMapSize(4,16), 100
-);
-
 Engine.SetProgress(80);
 
 g_Map.log("Creating gazelles");
-group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
+let group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clOasis, 1, clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50

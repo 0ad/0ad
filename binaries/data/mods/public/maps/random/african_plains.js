@@ -39,8 +39,10 @@ var oElephant = "gaia/fauna_elephant_african_bush";
 var oElephant2 = "gaia/fauna_elephant_african_infant";
 var oCrocodile = "gaia/fauna_crocodile_nile";
 var oFish = g_Gaia.fish;
+var oStoneLarge = g_Gaia.stoneLarge;
 var oStoneSmall = g_Gaia.stoneSmall;
 var oMetalLarge = g_Gaia.metalLarge;
+var oMetalSmall = g_Gaia.metalSmall;
 
 var aBush = g_Decoratives.bushMedium;
 var aRock = g_Decoratives.rockMedium;
@@ -166,23 +168,22 @@ createPatches(
 	clDirt);
 Engine.SetProgress(65);
 
-g_Map.log("Creating stone mines");
-createMines(
-	[
-		[new SimpleObject(oStoneSmall, 0, 2, 0, 4)],
-		[new SimpleObject(oStoneSmall, 2, 5, 1, 3)]
-	],
-	avoidClasses(clWater, 4, clForest, 4, clPlayer, 20, clRock, 10, clHill, 4),
-	clRock);
-
 g_Map.log("Creating metal mines");
-createMines(
-	[
-		[new SimpleObject(oMetalLarge, 1,1, 0,4)]
-	],
-	avoidClasses(clWater, 4, clForest, 4, clPlayer, 20, clMetal, 18, clRock, 5, clHill, 4),
-	clMetal
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
+	clMetal,
+	avoidClasses(clWater, 4, clForest, 1, clPlayer, scaleByMapSize(20, 35), clHill, 1)
 );
+
+g_Map.log("Creating stone mines");
+createBalancedStoneMines(
+	oStoneSmall,
+	oStoneLarge,
+	clRock,
+	avoidClasses(clWater, 4, clForest, 1, clPlayer, scaleByMapSize(20, 35), clHill, 1, clMetal, 10)
+);
+
 Engine.SetProgress(70);
 
 createDecoration(

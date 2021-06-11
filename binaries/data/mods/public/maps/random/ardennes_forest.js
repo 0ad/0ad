@@ -72,6 +72,7 @@ var clMetal = g_Map.createTileClass();
 var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
 var clHillDeco = g_Map.createTileClass();
+var clExplorable = g_Map.createTileClass();
 
 g_Map.log("Creating the central dip");
 createArea(
@@ -279,6 +280,8 @@ var explorableArea = createArea(
 		avoidClasses(clPlayer, 1)
 	]);
 
+new TileClassPainter(clExplorable).paint(explorableArea);
+
 Engine.SetProgress(55);
 
 // Add some general noise - after placing height dependant trees
@@ -349,40 +352,27 @@ for (let size of [scaleByMapSize(20, 120)])
 
 Engine.SetProgress(75);
 
-g_Map.log("Creating stone mines");
-createObjectGroupsByAreasDeprecated(
-	new SimpleGroup(
-		[
-			new SimpleObject(oStoneSmall, 1, 2, 0, 4, 0, 2 * Math.PI, 1),
-			new SimpleObject(oStoneLarge, 0, 1, 0, 4, 0, 2 * Math.PI, 4)
-		],
-		true,
-		clRock),
-	0,
-	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clRock, 10)],
-	scaleByMapSize(6,20), 100,
-	[explorableArea]);
-
-g_Map.log("Creating small stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock);
-createObjectGroupsByAreasDeprecated(group, 0,
-	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clRock, 10)],
-	scaleByMapSize(6,20), 100,
-	[explorableArea]
+g_Map.log("Creating metal mines");
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
+	clMetal,
+	[stayClasses(clExplorable, 1), avoidClasses(clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1)]
 );
 
-g_Map.log("Creating metal mines");
-group = new SimpleGroup([new SimpleObject(oMetalSmall, 1,2, 0,4), new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroupsByAreasDeprecated(group, 0,
-	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clMetal, 10, clRock, 5)],
-	scaleByMapSize(6,20), 100,
-	[explorableArea]
+
+g_Map.log("Creating stone mines");
+createBalancedStoneMines(
+	oStoneSmall,
+	oStoneLarge,
+	clRock,
+	[stayClasses(clExplorable, 1), avoidClasses(clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clMetal, 10)]
 );
 
 Engine.SetProgress(80);
 
 g_Map.log("Creating wildlife");
-group = new SimpleGroup(
+let group = new SimpleGroup(
 	[new SimpleObject(oDeer, 5,7, 0,4)],
 	true, clFood
 );

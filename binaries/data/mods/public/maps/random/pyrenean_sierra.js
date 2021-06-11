@@ -32,6 +32,7 @@ const oRabbit = "gaia/fauna_rabbit";
 const oStoneLarge = "gaia/rock/alpine_large";
 const oStoneSmall = "gaia/rock/alpine_small";
 const oMetalLarge = "gaia/ore/alpine_large";
+const oMetalSmall = "gaia/ore/alpine_small";
 
 const aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
@@ -404,17 +405,21 @@ createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 2, clPlayer, 1, clP
 
 Engine.SetProgress(80);
 
-g_Map.log("Creating stone mines");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
-createObjectGroupsDeprecated(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 8, clPyrenneans, 1),  scaleByMapSize(4,16), 100 );
-
-g_Map.log("Creating small stone quarries");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroupsDeprecated(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 8, clPyrenneans, 1),  scaleByMapSize(4,16), 100 );
-
 g_Map.log("Creating metal mines");
-group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 8, clRock, 5, clPyrenneans, 1), scaleByMapSize(4,16), 100  );
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
+	clMetal,
+	avoidClasses(clWater, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clPyrenneans, 3)
+);
+
+g_Map.log("Creating stone mines");
+createBalancedStoneMines(
+	oStoneSmall,
+	oStoneLarge,
+	clRock,
+	avoidClasses(clWater, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clPyrenneans, 3, clMetal, 10)
+);
 
 Engine.SetProgress(85);
 

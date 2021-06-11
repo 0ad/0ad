@@ -120,6 +120,101 @@ function createMines(objects, constraint, tileClass, count)
 }
 
 /**
+ * Place large/small mines on the map in such a way that it should be relatively fair.
+ * @param oSmall - the small mine object
+ * @param oLarge - the large mine object
+ * @param clMine - the 'mine' class to paint.
+ * @param constraints - Custom constraints. Note that the function automatically avoids clMine as well.
+ * @param counts - optional, either a single number acting as multiplier to the defaults
+ *                 or a dict of numbers{ "largeCount": 0, "smallCount": 1, "randomSmallCount": 2 }
+ * @param randomness - randomize counts by a random multiplier between [1 - randomness, 1 + randomness]
+ */
+function createBalancedMines(oSmall, oLarge, clMine, constraints, counts = 1.0, randomness = 0.1)
+{
+	let largeCount = counts.largeCount;
+	let smallCount = counts.smallCount;
+	let randomSmallCount = counts.randomSmallCount;
+
+	if (randomness > 0 && randomness < 1)
+	{
+		largeCount = Math.round(largeCount * randFloat(1 - randomness, 1 + randomness));
+		smallCount = Math.round(smallCount * randFloat(1 - randomness, 1 + randomness));
+		randomSmallCount = Math.round(randomSmallCount * randFloat(1 - randomness, 1 + randomness));
+	}
+
+	const arrayConstraints = Array.isArray(constraints) ? constraints : [constraints];
+
+	// Plop large mines far away from each other.
+	createObjectGroups(
+		new SimpleGroup([new SimpleObject(oLarge, 1, 1, 0, 1)], true, clMine),
+		0,
+		new AndConstraint([avoidClasses(clMine, scaleByMapSize(25, 50)), ...arrayConstraints]),
+		largeCount,
+		100);
+
+	// Plop smaller clusters of small mines, also somewhat farther away.
+	createObjectGroups(
+		new SimpleGroup([new SimpleObject(oSmall, 2, 3, 0, 2)], true, clMine),
+		0,
+		new AndConstraint([avoidClasses(clMine, scaleByMapSize(18, 35)), ...arrayConstraints]),
+		smallCount,
+		50);
+
+	// Plop a few smaller clusters in a random fashion, occasionally making very good dropsites spots.
+	createObjectGroups(
+		new SimpleGroup([new SimpleObject(oSmall, 1, 2, 0, 2)], true, clMine),
+		0,
+		new AndConstraint([avoidClasses(clMine, 5), ...arrayConstraints]),
+		randomSmallCount,
+		50);
+}
+
+/**
+ * Helper for createBalancedMines with default metal counts.
+ * The current settings are so that a Small 1v1 has about 40K metal,
+ * and a Normal 4v4 has about 140K.
+ * The setup is biaised so that with fewer players, there are more small mines,
+ * and with more players there are proportionally more big mines, to maintain
+ * some randomness to the distribution but keep it somewhat fair in 1v1.
+ */
+function createBalancedMetalMines(oSmall, oLarge, clMine, constraints, counts = 1.0, randomness = 0.05)
+{
+	return createBalancedMines(
+		oSmall,
+		oLarge,
+		clMine,
+		constraints,
+		{
+			"largeCount": (Math.max(scaleByMapSize(1, 9), getNumPlayers() * 1.8 - 0.8)) * counts,
+			"smallCount": (scaleByMapSize(4, 12)) * counts,
+			"randomSmallCount": (scaleByMapSize(1, 8)) * counts,
+		},
+		randomness
+	);
+}
+
+/**
+ * Helper for createBalancedMines with default stone counts.
+ * There is a little less stone than metal overall.
+ */
+function createBalancedStoneMines(oSmall, oLarge, clMine, constraints, counts = 1.0, randomness = 0.05)
+{
+	return createBalancedMines(
+		oSmall,
+		oLarge,
+		clMine,
+		constraints,
+		{
+			"largeCount": (Math.max(scaleByMapSize(1, 9), getNumPlayers() * 1.25)) * counts,
+			"smallCount": (scaleByMapSize(1, 8)) * counts,
+			"randomSmallCount": (scaleByMapSize(1, 8)) * counts,
+		},
+		randomness
+	);
+}
+
+
+/**
  * Places Entities of the given templateName in a circular pattern (leaving out a quarter of the circle).
  */
 function createStoneMineFormation(position, templateName, terrain, radius = 2.5, count = 8, startAngle = undefined, maxOffset = 1)
