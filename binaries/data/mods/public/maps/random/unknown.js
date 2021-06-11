@@ -107,7 +107,8 @@ var g_StartingWalls = true;
 
 function createUnknownMap()
 {
-	global["unknown" + g_MapSettings.Landscape || pickRandom([...unknownMapFunctions.land, ...unknownMapFunctions.naval])]();
+	const landscape = g_MapSettings.Landscape || pickRandom([...unknownMapFunctions.land, ...unknownMapFunctions.naval]);
+	global["unknown" + landscape]();
 
 	paintUnknownMapBasedOnHeight();
 

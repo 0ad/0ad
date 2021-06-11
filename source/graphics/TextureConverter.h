@@ -207,9 +207,11 @@ private:
 	PIVFS m_VFS;
 	bool m_HighQuality;
 
+#if CONFIG2_NVTT
 	std::thread m_WorkerThread;
 	std::mutex m_WorkerMutex;
 	std::condition_variable m_WorkerCV;
+#endif // CONFIG2_NVTT
 
 	struct ConversionRequest;
 	struct ConversionResult;
