@@ -83,7 +83,7 @@ var riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter
 var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);
 
 createArea(
-	new PathPlacer(riverStart, riverEnd, riverWidth, 0.2, 15 * scaleByMapSize(1, 3), 0.04, 0.01),
+	new PathPlacer(riverStart, riverEnd, riverWidth, 0.2, scaleByMapSize(0.3, 1), 0.04, 0.01),
 	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4));
 
 g_Map.log("Creating small puddles at the map border to ensure players being separated");
@@ -111,7 +111,7 @@ createArea(
 		passageEnd,
 		passageWidth * 2,
 		0.2,
-		3 * scaleByMapSize(1, 4),
+		scaleByMapSize(0.2, 0.4),
 		0.1,
 		0.01,
 		100.0),
@@ -131,7 +131,7 @@ createArea(
 		passageEnd,
 		passageWidth,
 		0.5,
-		3 * scaleByMapSize(1, 4),
+		scaleByMapSize(0.2, 0.4),
 		0.1,
 		0.01),
 	new MultiPainter([
