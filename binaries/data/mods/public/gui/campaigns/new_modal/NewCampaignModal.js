@@ -11,7 +11,7 @@ class NewCampaignModal
 
 		Engine.GetGUIObjectByName('cancelButton').onPress = () => Engine.PopGuiPage();
 		Engine.GetGUIObjectByName('startButton').onPress = () => this.createAndStartCampaign();
-		Engine.GetGUIObjectByName('runDescription').caption = translate(this.template.Name);
+		Engine.GetGUIObjectByName('runDescription').caption = translateWithContext("Campaign Template", this.template.Name);
 		Engine.GetGUIObjectByName('runDescription').onTextEdit = () => {
 			Engine.GetGUIObjectByName('startButton').enabled = Engine.GetGUIObjectByName('runDescription').caption.length > 0;
 		};

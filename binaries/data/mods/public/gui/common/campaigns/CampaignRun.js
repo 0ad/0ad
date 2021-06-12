@@ -107,15 +107,16 @@ class CampaignRun
 	}
 
 	/**
-	 * @param forlist - if true, generate a label for listing all runs.
-	 * Otherwise, just return a short human readable name.
-	 * (not currently used for regular runs).
+	 * Return a readable name for this campaign.
+	 * @param full - if true, include both user description and template name. Otherwise, skip one if they're identical.
 	 */
-	getLabel(forList)
+	getLabel(full)
 	{
+		if (!full && this.meta.userDescription === translateWithContext("Campaign Template", this.template.Name))
+			return this.meta.userDescription;
 		return sprintf(translate("%(userDesc)s - %(templateName)s"), {
 			"userDesc": this.meta.userDescription,
-			"templateName": this.template.Name
+			"templateName": translateWithContext("Campaign Template", this.template.Name)
 		});
 	}
 
