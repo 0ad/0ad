@@ -103,13 +103,15 @@ class GameDetails
 			txt += "\n" + formatPlayerInfo(game.players);
 
 			// Mod information
-			txt += "\n\n" + setStringTags(this.ModsFormat, this.CaptionTags);
+			txt += "\n\n";
 			if (!game.isCompatible)
-				txt = setStringTags(coloredText(txt, "red"), {
+				txt += setStringTags(coloredText(setStringTags(this.IncompatibleModsFormat, this.CaptionTags), "red"), {
 					"tooltip": sprintf(translate("You have some incompatible mods:\n%(details)s"), {
 						"details": comparedModsString(game.mods, Engine.GetEngineInfo().mods),
 					}),
 				});
+			else
+				txt += setStringTags(this.ModsFormat, this.CaptionTags);
 
 			const sortedMods = game.mods;
 			sortedMods.sort((a, b) => a.ignoreInCompatibilityChecks - b.ignoreInCompatibilityChecks);
@@ -147,6 +149,8 @@ GameDetails.prototype.VictoryConditionsFormat = translate("Victory Conditions:")
 GameDetails.prototype.Comma = translate(", ");
 
 GameDetails.prototype.ModsFormat = translate("Mods:");
+
+GameDetails.prototype.IncompatibleModsFormat = translate("Mods (incompatible):");
 
 // Translation: %(time)s is the hour and minute here.
 GameDetails.prototype.GameStartFormat = translate("Game started at %(time)s");
