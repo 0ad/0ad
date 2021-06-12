@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
-"PO-Revision-Date: 2021-05-21 20:22+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 17:15+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -346,71 +346,71 @@ msgstr "%(icon)s ¡%(attacker)s atacó'l ganáu!"
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
 msgstr "%(icon)s ¡%(attacker)s atacóte!"
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:31
+#: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
 msgstr "Calca pa centrate na unidá atacada."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:50
+#: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr "%(player)s entrocó %(amountGiven)s empara de %(amountGained)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:85
+#: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Agora tas aliáu con %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:86
+#: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Agora tas en guerra con %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:87
+#: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Tiéneste vuelto neutral con %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:90
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "Agora %(player)s ta aliáu contigo."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:91
+#: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "Agora %(player)s ta en guerra contigo."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:92
+#: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s tiense vuelto neutral contigo."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:95
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "Agora %(player)s ta aliáu con %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:96
+#: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "Agora %(player)s ta en guerra con %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:97
+#: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s tiense vuelto neutral con %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:113
+#: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s ta avanzando a la %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:115
+#: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "Albortóse la %(phaseName)s de %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:118
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s aportó a la %(phaseName)s."
@@ -418,21 +418,21 @@ msgstr "%(player)s aportó a la %(phaseName)s."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:146
+#: gui/session/chat/ChatMessageFormatSimulation.js:142
 msgid ", "
 msgstr ", "
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:163
+#: gui/session/chat/ChatMessageFormatSimulation.js:159
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s unvióte %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:165
+#: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Unviesti %(amounts)s a %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:170
+#: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s unvió %(amounts)s a %(player2)s."
@@ -620,7 +620,7 @@ msgstr "Tiempu que queda del altu'l fueu: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
-#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
+#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
 msgstr "Activar colores diplomátiques"
 
@@ -670,21 +670,21 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Tributar %(resourceAmount)s %(resourceType)s a%(playerName)s. Con Mayús primida, calca p'apurrir %(greaterAmount)s."
 
-#: gui/session/input.js:174
+#: gui/session/input.js:190
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Algame básicu: %(range)s metru"
 msgstr[1] "Algame básicu: %(range)s metros"
 
-#: gui/session/input.js:175
+#: gui/session/input.js:191
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Media del algame de bonificación: %(range)s metru"
 msgstr[1] "Media del algame de bonificación: %(range)s metros"
 
-#: gui/session/input.js:685
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "¡Equí nun pue construyise la muralla!"
 
@@ -834,33 +834,37 @@ msgstr "Sí"
 msgid "Are you sure you want to resign?"
 msgstr "¿De xuru que quies rindite?"
 
-#: gui/session/messages.js:88
+#: gui/session/messages.js:104
 msgid "You have won!"
 msgstr "¡Ganesti!"
 
-#: gui/session/messages.js:89
+#: gui/session/messages.js:105
 msgid "You have been defeated!"
 msgstr "¡Venciéronte!"
 
-#: gui/session/messages.js:354
+#: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
 msgstr "Calca pa colar d'esti tutorial."
 
-#: gui/session/messages.js:355
+#: gui/session/messages.js:411
 msgid "Quit"
 msgstr "Colar"
 
-#: gui/session/messages.js:359
+#: gui/session/messages.js:415
 msgid "Click when ready."
 msgstr "Calca cuando teas preparáu."
 
-#: gui/session/messages.js:363
+#: gui/session/messages.js:419
 msgid "Follow the instructions."
 msgstr "Sigui les instrucciones."
 
-#: gui/session/messages.js:488
+#: gui/session/messages.js:544
 msgid "Unknown Player"
 msgstr "Xugador desconocíu"
+
+#: gui/session/minimap/MiniMapFlareButton.js:29
+msgid "Send a flare to your allies"
+msgstr "Facer una seña a los aliaos"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -924,9 +928,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:627
-#: gui/session/unit_actions.js:636 gui/session/unit_actions.js:654
-#: gui/session/unit_actions.js:1127
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:633
+#: gui/session/unit_actions.js:642 gui/session/unit_actions.js:660
+#: gui/session/unit_actions.js:1133
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Ganancia: %(gain)s"
@@ -1572,161 +1576,161 @@ msgstr "Nun hai mercante dalu."
 msgid "Ready"
 msgstr "Preparáu"
 
-#: gui/session/unit_actions.js:566
+#: gui/session/unit_actions.js:572
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Esti ye'l mercáu d'orixe.\nCalca col botón drechu pa encaboxar la ruta comercial"
 
-#: gui/session/unit_actions.js:625
+#: gui/session/unit_actions.js:631
 msgid "Origin trade market."
 msgstr "Mercáu comercial d'orixe."
 
-#: gui/session/unit_actions.js:635
+#: gui/session/unit_actions.js:641
 msgid "Destination trade market."
 msgstr "Mercáu comercial de destín."
 
-#: gui/session/unit_actions.js:642
+#: gui/session/unit_actions.js:648
 msgid "Right-click to set as origin trade market"
 msgstr "Calca col botón derechu p'afitar como mercáu comercial d'orixe"
 
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:1133
+#: gui/session/unit_actions.js:655 gui/session/unit_actions.js:1139
 msgid "This market is too close to the origin market."
 msgstr "Esti mercáu ta demasiao cerca del mercáu d'orixe."
 
-#: gui/session/unit_actions.js:653
+#: gui/session/unit_actions.js:659
 msgid "Right-click to set as destination trade market."
 msgstr "Calca col botón derechu p'afitar como mercáu comercial de destín."
 
-#: gui/session/unit_actions.js:718 gui/session/unit_actions.js:1065
+#: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr "Torrines: %(occupied)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:784 gui/session/unit_actions.js:1048
+#: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Guarecimientu actual: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1124
+#: gui/session/unit_actions.js:1130
 msgid "Right-click to establish a default route for new traders."
 msgstr "Calca col botón derechu p'afitar una ruta por defeutu pa comerciantes nuevos."
 
-#: gui/session/unit_actions.js:1128
+#: gui/session/unit_actions.js:1134
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Ganancia esperao: %(gain)s"
 
-#: gui/session/unit_actions.js:1254
+#: gui/session/unit_actions.js:1260
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "A eso nun-y pues mandar."
 msgstr[1] "A esos nun-yos pues mandar."
 
-#: gui/session/unit_actions.js:1300
+#: gui/session/unit_actions.js:1306
 msgid "Unload All."
 msgstr "Descargalo too."
 
-#: gui/session/unit_actions.js:1335
+#: gui/session/unit_actions.js:1341
 msgid "Unload Turrets."
 msgstr "Desocupar les torrines."
 
-#: gui/session/unit_actions.js:1355
+#: gui/session/unit_actions.js:1361
 msgid "Destroy the selected units or structures."
 msgstr "Destrúi les unidaes o construcciones esbillaes."
 
-#: gui/session/unit_actions.js:1357
+#: gui/session/unit_actions.js:1363
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Emplega %(hotkey)s pa saltar el diálogu de confirmanza."
 
-#: gui/session/unit_actions.js:1407
+#: gui/session/unit_actions.js:1413
 msgid "Abort the current order."
 msgstr "Albortar la orde actual."
 
-#: gui/session/unit_actions.js:1429
+#: gui/session/unit_actions.js:1435
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Ordenar que les unidaes esbillaes se guarezan nuna construcción o unidá."
 
-#: gui/session/unit_actions.js:1451
+#: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
 msgstr "Ordenar que les unidaes esbillaes ocupen una torrina."
 
-#: gui/session/unit_actions.js:1473
+#: gui/session/unit_actions.js:1479
 msgid "Unload"
 msgstr "Descargar"
 
-#: gui/session/unit_actions.js:1493
+#: gui/session/unit_actions.js:1499
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Ordena que les unidaes esbillaes igüen una construcción, barcu o máquina d'asediu."
 
-#: gui/session/unit_actions.js:1514
+#: gui/session/unit_actions.js:1520
 msgid "Focus on Rally Point."
 msgstr "Centrase nel puntu d'alcuentru."
 
-#: gui/session/unit_actions.js:1551
+#: gui/session/unit_actions.js:1557
 msgid "Back to Work"
 msgstr "Volver al trabayu"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1578
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Ordena que les unidaes esbillaes guarden una construcción o unidá."
 
-#: gui/session/unit_actions.js:1592
+#: gui/session/unit_actions.js:1598
 msgid "Remove guard"
 msgstr "Quitar la guardia"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1611
+#: gui/session/unit_actions.js:1617
 msgid "Barter & Trade"
 msgstr "Comerciu"
 
-#: gui/session/unit_actions.js:1631
+#: gui/session/unit_actions.js:1637
 msgid "Patrol"
 msgstr "Roldar"
 
-#: gui/session/unit_actions.js:1632
+#: gui/session/unit_actions.js:1638
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Ataca toles unidaes enemigues alcontraes evitando construcciones."
 
-#: gui/session/unit_actions.js:1660
+#: gui/session/unit_actions.js:1666
 msgid "Press to allow allies to use this dropsite"
 msgstr "Primi pa dexar que los aliaos aprovechen esti depósitu"
 
-#: gui/session/unit_actions.js:1665
+#: gui/session/unit_actions.js:1671
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Primi pa quitar que los aliaos aprovechen esti depósitu"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1706
 msgid "The use of this dropsite is prohibited"
 msgstr "Nun pues aprovechar esti depósitu"
 
-#: gui/session/unit_actions.js:1706
+#: gui/session/unit_actions.js:1712
 msgid "Allies are allowed to use this dropsite."
 msgstr "Los aliaos puen aprovechar esti depósitu."
 
-#: gui/session/unit_actions.js:1707
+#: gui/session/unit_actions.js:1713
 msgid "You are allowed to use this dropsite"
 msgstr "Pues aprovechar esti depósitu"
 
-#: gui/session/unit_actions.js:1726
+#: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
 msgstr "Activar l'enriestru automáticu nes construcciones esbillaes."
 
-#: gui/session/unit_actions.js:1746
+#: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
 msgstr "Desactivar l'enriestru automáticu nes construcciones esbillaes."
 
-#: gui/session/unit_actions.js:1811
+#: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Eso hai que lo matar p'aprovechalo"
 
-#: gui/session/unit_actions.js:1814
+#: gui/session/unit_actions.js:1820
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Nun puedes desaniciar eso darréu que tienes menos de la metada de la so fideleza"
 
-#: gui/session/unit_actions.js:1817
+#: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"
 msgstr "Esta entidá nun ye desaniciable"

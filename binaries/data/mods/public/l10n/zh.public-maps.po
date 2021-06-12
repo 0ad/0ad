@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-04 06:49+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-11 05:17+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -190,9 +190,9 @@ msgstr "苏格兰草场"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
-"Each player starts on a hill surrounded by steep cliffs. Represents "
+"Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr "玩家开局位于由陡峭的悬崖所包围的小山丘上。模拟了伊比利半岛的北部山区的坎塔布里亚。"
+msgstr "玩家开局位于小山丘上，由陡峭的悬崖所包围。地图模拟了伊比利半岛的北部山区的坎塔布里亚。"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -200,7 +200,7 @@ msgstr "坎塔布里亚高地"
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
-msgstr "玩家会在由很多深遂的峡谷所围绕的地图开始游戏。"
+msgstr "玩家开局围绕深遂的峡谷。"
 
 #: maps/random/canyon.jsonsettings.Name
 msgid "Canyon"
@@ -209,7 +209,7 @@ msgstr "峡谷"
 #: maps/random/continent.jsonsettings.Description
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
 msgid "All players starts on a continent surrounded by water."
-msgstr "所有玩家都在一个被水所环绕的大陆开始游戏。"
+msgstr "玩家位于一处大陆，四周为水环绕。"
 
 #: maps/random/continent.jsonsettings.Name
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
@@ -217,13 +217,11 @@ msgid "Continent"
 msgstr "大陆"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "由狭长的陆地连接的两个地中海陆地，称为“地峡”。"
+"Two land masses connected by a narrow spit of land, called an 'Isthmus', "
+"inspired by the eponymous area in Greece. Most of the stone on the map is in"
+" the isthmus itself, making it vital to fight for its control."
+msgstr "两块陆地被一条狭窄的土地（“地峡”）切开，模拟了希腊同名地区。 地图上大部分石头都位于地峡，为玩家必争之地。"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -275,7 +273,7 @@ msgid ""
 "amongst themselves, but also beat back these ruthless invaders. Ultimately, "
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr "凯尔特的波伊部落扩展到潘诺尼亚后，玩家沿着多瑙河河岸开局。 为了巩固这片土地，凯尔特增援部队已派去铲除其余的外国势力。 玩家不仅要巩固权力，还要击败无情的入侵者。 最后，波伊被崛起的达契亚击败，导致了 Burebista 国王重建了 Geto-Dacian 邦联。"
+msgstr "玩家沿着多瑙河沿岸开局，模拟凯尔特的波伊部落扩张到潘诺尼亚之后的历史。 为了巩固这片土地，增援部队已派去铲除其余的外来文化。玩家间不仅相互争权夺利，还要击退无情的入侵者。最终，博伊为不断崛起的达契亚击败，达契亚王布雷比斯塔建立了格托-达契亚联盟。 "
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -340,7 +338,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr "[color=\"red\"]重要提示：本图 AI 有 bug，不会发展[/color]\n\n这个曾经肥沃的山谷，被该地区中心的长期休眠火山喷发所摧毁。 经过多年空虚，烧焦的死亡，生命的迹象开始重新出现和蔓延。 现在这片土地已经到了昔日时代的茂盛之中。 唉，不是这样的：经过长时间的干旱，北方较高的地区已经开始出现无休止的降雨。 水位在急剧上升，缓慢迫使玩家寻找较小的，已灭绝的火山或现在再次休眠的大圆锥的高地。"
+msgstr "[color=\"red\"]重要提示：本图 AI 有 bug，不会发展[/color]\n\n曾经肥沃的山谷，被位于中心地带的长期休眠火山喷发摧毁了。 多年后，才重新出现生命的迹象，现在这里已恢复了昔日的茂盛。 唉，还远没有达到：长期的干旱后，北方高地不断降雨，水位急剧上升，迫使玩家寻找较小的死火山，或是大型死火山的高地。"
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -470,9 +468,10 @@ msgstr "地狱之路"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
-"Each player starts in a coastal area between forested hills and the Caspian "
-"Sea."
-msgstr "每一个玩家都在多树木的小山丘与里海间的沿岸地区间开始游戏。"
+"Each player starts in a coastal area between forested hills and the Sea. "
+"Inspired by the southern regions of the Caspian Sea known in Antiquity as "
+"Hyrcania."
+msgstr "开局位于沿海地区，在森林丘陵和大海之间，模拟了里海南部地区，古代名为希尔卡尼亚。\n"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -871,6 +870,19 @@ msgid "Aegean-Anatolian"
 msgstr "爱琴海-安纳托利亚"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Between the high summits of the Alps, the valleys are filled with fog in the"
+" early morning. The ground is full of gravel and rocks, but silver fir and "
+"spruce trees grow between them and provide shelter for deer and mountain "
+"goats."
+msgstr "在阿尔卑斯山间，清晨的山谷雾气蒙蒙。 地上到处是碎石和岩石，石间长着银杉和云杉，庇护了野鹿和山羊。"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Subalpine"
+msgstr "阿尔卑斯山麓"
+
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -878,11 +890,6 @@ msgid ""
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "高山雪域。 刺骨的寒风吹过丰富的针叶林，野鹿和山羊瑟瑟发抖。"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "阿尔卑斯山"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
@@ -892,16 +899,16 @@ msgstr "北极"
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "秋意正浓，五色绚烂。原生山毛榉和橡树多姿多彩，常绿的松树孤傲冷漠。"
+"The first leaves have fallen. The landscape is a dazzling dash of colors "
+"irrevocably intertwined. The native beech and oak trees of this temperate "
+"zone display a multi-colored foliage while animals try to prepare for the "
+"approaching winter."
+msgstr "温带地区的秋叶开始凋零，原生山毛榉和橡树五颜六色，四周的色彩交织在一起，令人目不暇接眼花缭乱。动物们则提早准备过冬。"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Autumn"
-msgstr "秋季"
+msgid "Rhine Valley (Fall)"
+msgstr "莱茵河谷（秋季）"
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -946,20 +953,24 @@ msgstr "撒哈拉沙漠"
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "疏林草原，干燥的气候，只有耐寒的猴面包树才能茁壮成长。 孤零零的瞪羚啃着稀疏的草，而成群的斑马、牛羚、长颈鹿和大象在野外寻找食物。"
+"The transition between the dry Sahara to the north and the tropical forests "
+"to the south. The sunlight floods through the open canopy and lights the "
+"grassland between the trees, where herds of zebras, wildebeest, giraffes and"
+" elephants roam."
+msgstr "位于北部干燥的撒哈拉沙漠和南部的热带森林之间。 阳光透过展开的树冠，照亮了林间的草地，斑马、角马、长颈鹿和大象畅游其间。"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Savanna"
-msgstr "疏林草原"
+msgid "Sudanian Savanna"
+msgstr "苏丹大草原"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid "Wide grasslands without trees"
-msgstr "没有树木的广阔草原"
+msgid ""
+"Wide grasslands stretching to the horizon, without any trees blocking the "
+"view. The Steppe is home to large herds of wild horses, which graze "
+"peacefully on the empty land, but flee quickly if you try to catch them."
+msgstr "广阔的草原，一直延伸到地平线，没有任何树木挡住视线。 这里是大群野马的家园，可让它们安静地吃草。不过试图接近野马的话，它们也不会坐以待毙。"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -1162,6 +1173,14 @@ msgstr "未知"
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
 msgstr "随机选取一张陆图"
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "由狭长的陆地连接的两个地中海陆地，称为“地峡”。"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -1617,11 +1636,11 @@ msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
-msgstr "一个小型的沙漠地图。每个玩家都在一个散佈于荒凉沙漠中的绿洲旁，沙漠相当开阔，所以非常容易受到入侵及劫略。\n\n游戏节奏非常紧凑且快速，根本停不下哟！"
+msgstr "小型沙漠地图。玩家散布于荒凉沙漠中的绿洲旁。沙漠相当开阔，易受入侵及劫略。\n\n游戏节奏很快，没有时间闲庭信步。"
 
 #: maps/scenarios/fast_oasis.xml:Name:26
 msgid "Fast Oasis"
-msgstr "快速绿洲"
+msgstr "绿洲快攻"
 
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:26
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:26
@@ -1853,7 +1872,7 @@ msgstr "坦塔罗斯"
 #: maps/scenarios/sandbox_athenians.xml:Description:38
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr "和雅典在没有威胁的测试环境中游戏。"
+msgstr "和平的环境下测试雅典势力。"
 
 #: maps/scenarios/sandbox_athenians.xml:Name:38
 msgid "Sandbox - The Athenians"
@@ -1861,7 +1880,7 @@ msgstr "沙盒-雅典"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:38
 msgid "The Athenians"
-msgstr "斯巴达"
+msgstr "雅典"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:38
@@ -1981,7 +2000,7 @@ msgstr "沙盒——波斯"
 
 #: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
 msgid "Achaemenids"
-msgstr "阿契美尼德"
+msgstr "阿契美尼德王朝"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
@@ -2110,7 +2129,7 @@ msgstr "海战演示"
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr "迦太基、马其顿、波斯及伊比利亚大混战！中心是一处大型的绿洲，山地将各个玩家隔开。"
+msgstr "迦太基、马其顿、波斯及伊比利亚大混战！中心是一处大型的绿洲，玩家被山地隔开。"
 
 #: maps/scenarios/siwa_oasis.xml:Name:26
 msgid "Siwa Oasis"

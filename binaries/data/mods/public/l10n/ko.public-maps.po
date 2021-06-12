@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-31 07:13+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-10 18:39+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -182,9 +182,9 @@ msgstr "칼레도니아의 목초 지대"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
-"Each player starts on a hill surrounded by steep cliffs. Represents "
+"Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr "각 플레이어는 가파른 절벽으로 둘러싸인 언덕에서 시작합니다. 이베리아 반도의 북쪽에 있는 산악 지대인 칸타브리아를 나타냅니다."
+msgstr "각 플레이어는 가파른 절벽으로 둘러싸인 언덕에서 시작합니다. 이베리아 반도 북부의 산악 지대인 칸타브리아에서 영감을 받았습니다."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -209,13 +209,11 @@ msgid "Continent"
 msgstr "대륙"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "지중해에서 두 개의 육지를 연결하는 좁고 잘록한 땅, '지협' 이라고 부릅니다."
+"Two land masses connected by a narrow spit of land, called an 'Isthmus', "
+"inspired by the eponymous area in Greece. Most of the stone on the map is in"
+" the isthmus itself, making it vital to fight for its control."
+msgstr "두 개의 땅덩어리가 좁은 땅덩어리로 연결되어 있는데, '이스무스(지협)'이라고 불리며, 그리스의 어원 지역에서 영감을 받았습니다. 지도상에 있는 대부분의 돌은 지혈 자체에 있기 때문에, 지혈의 통제를 위해 싸우는 것이 필수적입니다."
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -462,9 +460,10 @@ msgstr "지옥의 길"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
-"Each player starts in a coastal area between forested hills and the Caspian "
-"Sea."
-msgstr "각 플레이어들은 숲이 우거진 언덕과 카스피해 사이의 해안 지역에서 시작합니다."
+"Each player starts in a coastal area between forested hills and the Sea. "
+"Inspired by the southern regions of the Caspian Sea known in Antiquity as "
+"Hyrcania."
+msgstr "각 플레이어는 숲이 우거진 언덕과 바다 사이의 해안 지역에서 시작합니다. 고대에는 히르카니아로 알려진 카스피해의 남쪽 지역에서 영감을 받았습니다."
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -863,6 +862,19 @@ msgid "Aegean-Anatolian"
 msgstr "에게해-아나톨리아인"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Between the high summits of the Alps, the valleys are filled with fog in the"
+" early morning. The ground is full of gravel and rocks, but silver fir and "
+"spruce trees grow between them and provide shelter for deer and mountain "
+"goats."
+msgstr "알프스의 높은 정상 사이에 있는 계곡은 이른 아침 안개로 가득차 있습니다. 땅에는 자갈과 바위가 가득하지만, 그 사이로 은빛 전나무와 가문비나무가 자라고 사슴과 산양에게 쉼터를 제공합니다."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Subalpine"
+msgstr "아고산지대"
+
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -870,11 +882,6 @@ msgid ""
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "높은 눈 덮인 산의 지역. 물린 바람이 풍부한 응습기 숲을 휩쓸고, 더욱 탄력있는 사슴과 산염소가 떨립니다."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "알파인"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
@@ -884,16 +891,16 @@ msgstr "북극"
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "절정기의 가을. 풍경은 돌이킬 수없는 얽혀 색상의 눈부신 대시입니다. 이 온대 지역의 토착 네이치와 오크 나무는 여러 가지 색상의 단풍을 표시하고 상록 소나무는 다가오는 겨울에 무관심으로 바라봅니다."
+"The first leaves have fallen. The landscape is a dazzling dash of colors "
+"irrevocably intertwined. The native beech and oak trees of this temperate "
+"zone display a multi-colored foliage while animals try to prepare for the "
+"approaching winter."
+msgstr "첫 번째 잎이 떨어졌습니다. 그 풍경은 돌이킬 수 없이 뒤엉킨 눈부신 빛깔의 연속입니다. 이 온대 지역의 토종 너도밤나무와 참나무는 여러 가지 색깔의 잎을 보이고 동물들은 다가오는 겨울을 준비하려고 노력합니다."
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Autumn"
-msgstr "가을"
+msgid "Rhine Valley (Fall)"
+msgstr "라인강 계곡 (가을)"
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -938,20 +945,24 @@ msgstr "사하라"
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "단단한 바오밥 나무만 번성하는 건조한 기후, 사바나입니다. 단일 개젤은 드문드문 풀을 뜯고, 얼룩말, 들베스트, 기린 또는 코끼리 떼는 먹이를 찾아 야생에서 돌아다닙니다."
+"The transition between the dry Sahara to the north and the tropical forests "
+"to the south. The sunlight floods through the open canopy and lights the "
+"grassland between the trees, where herds of zebras, wildebeest, giraffes and"
+" elephants roam."
+msgstr "북쪽의 건조한 사하라와 남쪽의 열대림 사이의 변화입니다. 햇빛은 탁 트인 캐노피를 통해 홍수를 이루고 얼룩말, 들벌, 기린, 코끼리 떼가 배회하는 나무 사이의 초원을 밝혀줍니다."
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Savanna"
-msgstr "사바나"
+msgid "Sudanian Savanna"
+msgstr "수단 사바나"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid "Wide grasslands without trees"
-msgstr "나무가 없는 넓은 초원"
+msgid ""
+"Wide grasslands stretching to the horizon, without any trees blocking the "
+"view. The Steppe is home to large herds of wild horses, which graze "
+"peacefully on the empty land, but flee quickly if you try to catch them."
+msgstr "시야를 가리는 나무 없이 지평선까지 펼쳐진 넓은 초원입니다. 스텝 지대는 넓은 야생마 무리의 서식지로, 빈 땅에서는 평화롭게 풀을 뜯지만, 잡으려고 하면 재빨리 도망칩니다."
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -1154,6 +1165,14 @@ msgstr "알 수 없습니다."
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
 msgstr "임의의 영토 풍경 선택"
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "지중해에서 두 개의 육지를 연결하는 좁고 잘록한 땅, '지협' 이라고 부릅니다."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -1694,7 +1713,7 @@ msgstr "로마"
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
-msgstr "비경쟁적 멀티플레이어 게임에서 게임 플레이를 테스트하기 위해 많은 자원과 물이 포함된 작은 맵입니다."
+msgstr "비경쟁적 멀티플레이어 게임에서 게임 플레이를 테스트하기 위해 많은 자원과 물이 포함된 작은 지도입니다."
 
 #: maps/scenarios/multiplayer_demo.xml:Name:26
 msgid "Multiplayer Demo"
@@ -1872,7 +1891,7 @@ msgstr "페르시아인"
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[3].Name:38
 msgid "The Gauls"
-msgstr "갈리아인"
+msgstr "갈리아족"
 
 #: maps/scenarios/sandbox_britons.xml:Description:38
 #: maps/scenarios/sandbox_gauls.xml:Description:39
@@ -1881,7 +1900,7 @@ msgstr "목가적인 샌드박스 설정에서 갈리아 파벌과 함께 즐기
 
 #: maps/scenarios/sandbox_britons.xml:Name:38
 msgid "Sandbox - The Britons"
-msgstr "샌드박스 - 브리톤"
+msgstr "샌드박스 - 브리턴족"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
@@ -1908,15 +1927,15 @@ msgstr "크립스"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:39
 msgid "Sandbox - The Gauls"
-msgstr "샌드박스 - 갈리아인"
+msgstr "샌드박스 - 갈리아족"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
-msgstr "이베리아를 위한 데모 지도입니다."
+msgstr "이베리아족을 위한 데모 지도입니다."
 
 #: maps/scenarios/sandbox_iberians.xml:Name:38
 msgid "Sandbox - The Iberians"
-msgstr "샌드박스 - 이베리아"
+msgstr "샌드박스 - 이베리아족"
 
 #: maps/scenarios/sandbox_kushites.xml:Description:39
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
@@ -2124,7 +2143,7 @@ msgstr "영역 데모"
 msgid ""
 "This map is designed to help artists and modders find the adequate "
 "foundation for a specific building. This map is not meant to be playable."
-msgstr "이 지도은 아티스트와 모더가 특정 건물에 적합한 기초를 찾을 수 있도록 설계되었습니다. 이 지도은 플레이할 수 없습니다."
+msgstr "이 지도는 아티스트와 모더가 특정 건물에 적합한 기초를 찾을 수 있도록 설계되었습니다. 이 지도는 플레이할 수 없습니다."
 
 #: maps/scenarios/test_foundation.xml:Name:39
 msgid "Foundation Testing Map"
@@ -2297,7 +2316,7 @@ msgstr "추격 테스트 유닛"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
-msgstr "이 맵은 '춤'의 몇 가지 다른 사례를 테스트하도록 설계되었습니다."
+msgstr "이 지도는 '춤'의 몇 가지 다른 사례를 테스트하도록 설계되었습니다."
 
 #: maps/scenarios/unit_dancing_test.xml:Name:40
 msgid "Unit Dancing test"
@@ -2309,7 +2328,7 @@ msgid ""
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
 "integrated test map. Look for things such as stuck units, wrong animations, "
 "and weird pathing."
-msgstr "이 지도은 몇 가지 기본 유닛 이동 사례를 테스트하기 위해 설계되었습니다. 유닛이 포함됩니다.AI, unitMotion 및 관련 경로찾기가 통합 테스트 지도 역할을 합니다. 고착된 유닛, 잘못된 애니메이션, 이상한 패칭과 같은 것들을 찾아보세요."
+msgstr "이 지도는 몇 가지 기본 유닛 이동 사례를 테스트하기 위해 설계되었습니다. 유닛이 포함됩니다.AI, unitMotion 및 관련 경로찾기가 통합 테스트 지도 역할을 합니다. 고착된 유닛, 잘못된 애니메이션, 이상한 패칭과 같은 것들을 찾아보세요."
 
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
@@ -2583,7 +2602,7 @@ msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
-msgstr "알프스 근처의 북이탈리아는 로마인들에 의해 시살피네 갈리아라고 불립니다. 이곳은 갈리아인, 에트루리아인, 로마인 모두가 경쟁하는 비옥한 지역입니다.\n\n주의: 맵에는 저가형 하드웨어의 그래픽 성능에 영향을 미칠 수 있는 많은 눈 입자가 있습니다."
+msgstr "알프스 근처의 북이탈리아는 로마인들에 의해 시살피네 갈리아라고 불립니다. 이곳은 갈리아족, 에트루리아인, 로마인 모두가 경쟁하는 비옥한 지역입니다.\n\n주의: 지도에는 저가형 하드웨어의 그래픽 성능에 영향을 미칠 수 있는 많은 눈 입자가 있습니다."
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"
@@ -2874,7 +2893,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr "옛날부터 좋아하던 것. 그렇지 않으면 넓게 펼쳐져 평평한 사막 지도가 무성한 오아시스에 의해 중앙에 뚫려 있습니다.\n\n이것은 이집트의 나일강 서쪽에 있는 사하라 사막의 일부인 리비아 사막을 나타냅니다.\n\n이베리아인들은 여기서 서킷 벽을 받지 않습니다. 대신 모든 세력은 4개의 무료 석탑을받습니다."
+msgstr "옛날부터 좋아하던 것. 그렇지 않으면 넓게 펼쳐져 평평한 사막 지도가 무성한 오아시스에 의해 중앙에 뚫려 있습니다.\n\n이것은 이집트의 나일강 서쪽에 있는 사하라 사막의 일부인 리비아 사막을 나타냅니다.\n\n이베리아족은 여기서 서킷 벽을 받지 않습니다. 대신 모든 세력은 4개의 무료 석탑을받습니다."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:38
 msgid "Libyan Oasis (2)"
@@ -2941,7 +2960,7 @@ msgid ""
 "All players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\n"
 "\n"
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
-msgstr "중앙 동부 아나톨리아의 '카파도키아'지역.\n\n모든 플레이어는 맵의 서쪽 끝에서 시작하여 정복과 멸종을 위해 익지 않은 광활한 광야가 펼쳐집니다.\n\n석재와 금속 자원, 특히 석재가 풍부하지만 목재는 다소 부족합니다."
+msgstr "중앙 동부 아나톨리아의 '카파도키아'지역.\n\n모든 플레이어는 지도의 서쪽 끝에서 시작하여 정복과 멸종을 위해 익지 않은 광활한 광야가 펼쳐집니다.\n\n석재와 금속 자원, 특히 석재가 풍부하지만 목재는 다소 부족합니다."
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Name:38
 msgid "Neareastern Badlands (2)"
@@ -2987,7 +3006,7 @@ msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
-msgstr "느리게 흐르는 강이 이 세르비아 습지를 굽이쳐 흐릅니다. 돌은 드물지만, 많은 보철 덩어리가 발견되기를 기다리고 있습니다.\n\n*이 맵은 성능에 부정적인 영향을 줄 수 있는 풀 행위자를 많이 사용합니다."
+msgstr "느리게 흐르는 강이 이 세르비아 습지를 굽이쳐 흐릅니다. 돌은 드물지만, 많은 보철 덩어리가 발견되기를 기다리고 있습니다.\n\n*이 지도는 성능에 부정적인 영향을 줄 수 있는 풀 행위자를 많이 사용합니다."
 
 #: maps/skirmishes/obedska_bog_4p.xml:Name:39
 msgid "Obedska Bog (4)"
@@ -3202,7 +3221,7 @@ msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr "아프리카 사바나는 사냥을 위해 동물들의 생명이 가득찬 반면, 근처의 광물 매장량은 풍부합니다. 건기가 다가오고 있고 물웅덩이가 마르고 있습니다.\n\n참고: 이것은 매우 작은 \"빠르고 격렬한\" 지도입니다. 이베리아인들은 그들의 단골 원형 벽에서 시작하지 않습니다."
+msgstr "아프리카 사바나는 사냥을 위해 동물들의 생명이 가득찬 반면, 근처의 광물 매장량은 풍부합니다. 건기가 다가오고 있고 물웅덩이가 마르고 있습니다.\n\n참고: 이것은 매우 작은 \"빠르고 격렬한\" 지도입니다. 이베리아족은 그들의 단골 원형 벽에서 시작하지 않습니다."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:38
 msgid "Watering Holes (4)"
@@ -3217,7 +3236,7 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr "외국인들이 브리타니아를 침략하고 있습니다. 영국 원주민들은 다음 세대를 위해 그들의 조국을 지키기 위해 거대한 적의 침략군과 싸워야 합니다!\n\n플레이어 1은 브리턴족입니다. 2-5명의 플레이어는 침략군으로 도버의 백색 절벽에서 떨어진 해협에서 자신의 강력한 선박을 타고 주둔합니다.\n\n팀은 맵 스크립트에 의해 설정되지만, 디자이너가 정의한 시나리오와 반대로 맵을 플레이하려는 경우 설정에서 플레이어가 변경할 수 있습니다. 이 경우 게임 주최자는 보트의 플레이어가 평화롭게 착륙하고 첫 번째 정착지를 심을 적절한 장소를 찾을 수 있도록 휴전을 설정해야합니다.\n\n할당된 문명은 제안일 뿐이며, 호스트는 시작 자원을 1000으로 설정하여 시민 회관이 처음에 건설될 수 있도록 해야합니다."
+msgstr "외국인들이 브리타니아를 침략하고 있습니다. 브리턴족들은 다음 세대를 위해 그들의 조국을 지키기 위해 거대한 적의 침략군과 싸워야 합니다!\n\n플레이어 1은 브리턴족입니다. 2-5명의 플레이어는 침략군으로 도버의 백색 절벽에서 떨어진 해협에서 자신의 강력한 선박을 타고 주둔합니다.\n\n팀은 지도 스크립트에 의해 설정되지만, 디자이너가 정의한 시나리오와 반대로 지도를 플레이하려는 경우 설정에서 플레이어가 변경할 수 있습니다. 이 경우 게임 주최자는 보트의 플레이어가 평화롭게 착륙하고 첫 번째 정착지를 심을 적절한 장소를 찾을 수 있도록 휴전을 설정해야합니다.\n\n할당된 문명은 제안일 뿐이며, 호스트는 시작 자원을 1000으로 설정하여 시민 회관이 처음에 건설될 수 있도록 해야합니다."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
@@ -3225,7 +3244,7 @@ msgstr "도버의 하얀 절벽 (5)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
 msgid "Britons"
-msgstr "브리톤"
+msgstr "브리턴족"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"

@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:30+0000\n"
-"Last-Translator: 4435baa6199ac215530476fd5704813e_135056b <9849f67473aff5558ade9bb65f4c4942_118217>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-09 20:32+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,9 +190,9 @@ msgstr "Каледонские луга"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
-"Each player starts on a hill surrounded by steep cliffs. Represents "
+"Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr "Каждый игрок начинает на холме, окружённом отвесными скалами. Представляет Кантабрии, гористый регион на севере Пиренейского полуострова."
+msgstr ""
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -217,13 +217,11 @@ msgid "Continent"
 msgstr "Континент"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "Две большие средиземноморские земли, соединенные узким прямым участком суши, называемым перешейком."
+"Two land masses connected by a narrow spit of land, called an 'Isthmus', "
+"inspired by the eponymous area in Greece. Most of the stone on the map is in"
+" the isthmus itself, making it vital to fight for its control."
+msgstr ""
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -470,9 +468,10 @@ msgstr "Адский перевал"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
-"Each player starts in a coastal area between forested hills and the Caspian "
-"Sea."
-msgstr "Каждый игрок начинает в прибрежной зоне между лесистыми холмами и Каспийским морем."
+"Each player starts in a coastal area between forested hills and the Sea. "
+"Inspired by the southern regions of the Caspian Sea known in Antiquity as "
+"Hyrcania."
+msgstr ""
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -871,6 +870,19 @@ msgid "Aegean-Anatolian"
 msgstr ""
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Between the high summits of the Alps, the valleys are filled with fog in the"
+" early morning. The ground is full of gravel and rocks, but silver fir and "
+"spruce trees grow between them and provide shelter for deer and mountain "
+"goats."
+msgstr ""
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Subalpine"
+msgstr ""
+
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -879,29 +891,24 @@ msgid ""
 "goats shiver."
 msgstr "Местность в высоких заснеженных горах. Суровые ветры, проносясь сквозь густые хвойные леса, заставляя дрожать даже привыкших к холоду оленей и горных козлов."
 
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Высокогорье"
-
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Arctic"
-msgstr ""
+msgstr "Арктика"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Осень в самом разгаре. Пейзаж ослепляет пёстрым переплетением красок. Местные буки и дубы окутаны разноцветной листвой, а вечнозеленые сосны с безразличием смотрят на приближающуюся зиму."
+"The first leaves have fallen. The landscape is a dazzling dash of colors "
+"irrevocably intertwined. The native beech and oak trees of this temperate "
+"zone display a multi-colored foliage while animals try to prepare for the "
+"approaching winter."
+msgstr ""
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Осень"
+msgid "Rhine Valley (Fall)"
+msgstr "Долина Рейна (Осень)"
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -928,7 +935,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/nubia.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Nubia"
-msgstr ""
+msgstr "Нубия"
 
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Description
 msgctxt "biome definition"
@@ -941,24 +948,28 @@ msgstr ""
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Sahara"
-msgstr ""
+msgstr "Сахара"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Саванна, в засушливом климате которой могут расти лишь могучие баобабы. Одинокие газели щиплют редкую траву, а стада зебр, антилоп гну, жирафов и слонов бродят в поисках пищи."
+"The transition between the dry Sahara to the north and the tropical forests "
+"to the south. The sunlight floods through the open canopy and lights the "
+"grassland between the trees, where herds of zebras, wildebeest, giraffes and"
+" elephants roam."
+msgstr ""
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Саванна"
+msgid "Sudanian Savanna"
+msgstr "Саванна Судана"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid "Wide grasslands without trees"
+msgid ""
+"Wide grasslands stretching to the horizon, without any trees blocking the "
+"view. The Steppe is home to large herds of wild horses, which graze "
+"peacefully on the empty land, but flee quickly if you try to catch them."
 msgstr ""
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
@@ -1162,6 +1173,14 @@ msgstr "Неизвестное."
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
 msgstr "Выбрать случайный сухопутный рельеф"
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "Две большие средиземноморские земли, соединенные узким прямым участком суши, называемым перешейком."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -2546,7 +2565,7 @@ msgid ""
 "South of the river are rich arable lands and plentiful wood and forage. North of the river lie a mountain range pierced by wide mountain passes and guarded by natural defensive positions.\n"
 "\n"
 "Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
-msgstr ""
+msgstr "В восточной части Бактрии лежит богатая долина, вырезанная рекой Аму Дарья.\n\nЮг реки - богатые пахотные земли и обильный лес и корм. К северу от реки располагается горный хребет пронзенный перевалом и охраняемыми естественными оборонительными позициями.\n\nВ горах можно найти множество опасностей. Игрок, который сможет эксплуатировать горный район, будет иметь значительное преимущество перед противником. "
 
 #: maps/skirmishes/bactria_2p.xml:Name:39
 msgid "Bactriana (2)"
@@ -2609,7 +2628,7 @@ msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
-msgstr ""
+msgstr "Северную Италию около Альп римляне называли Цизальпийской Галлией. Это плодородный регион, который в равной степени оспаривается галлами, этрусками и римлянами.\n\nВНИМАНИЕ! На карте много частиц снега, которые могут влиять на производительность графики на слабом оборудовании. "
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"
@@ -2921,7 +2940,7 @@ msgstr "Лотарингское плато (2)"
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
-msgstr ""
+msgstr "Магадха (2)"
 
 #: maps/skirmishes/median_oasis_2p.xml:Description:38
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
@@ -3005,7 +3024,7 @@ msgstr ""
 
 #: maps/skirmishes/nubian_frontier_2p.xml:Name:39
 msgid "Nubian Frontier (2)"
-msgstr ""
+msgstr "Нубийский фронтир (2)"
 
 #: maps/skirmishes/obedska_bog_4p.xml:Description:39
 #: maps/skirmishes/obedska_bog_night_4p.xml:Description:39
@@ -3062,7 +3081,7 @@ msgstr ""
 
 #: maps/skirmishes/saharan_oases_2p.xml:Name:39
 msgid "Saharan Oases (2)"
-msgstr ""
+msgstr "Оазисы Сахары (2)"
 
 #: maps/skirmishes/saharan_oases_4p.xml:Name:39
 msgid "Saharan Oases (4)"
@@ -3105,11 +3124,11 @@ msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
-msgstr ""
+msgstr "Степи Средней Азии. Широко открытые луга с небольшим количеством деревьев (примерно на 90% меньше деревьев, чем на карте умеренного климата или Эгейского моря). Однако животный мир изобилует, так что пользуйтесь охотой. "
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
-msgstr ""
+msgstr "Скифские степи (4)"
 
 #: maps/skirmishes/sicilia_2p.xml:Description:38
 msgid "The large Mediterranean island of Sicily is open for conquest."
@@ -3243,7 +3262,7 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr ""
+msgstr "Иностранцы вторгаются в Британию. Местные бриты должны бороться с массивным вторжением, чтобы обеспечить своё будущее!\n\nИгрок 1 - Брит. Игроки 2-5 - это силы вторжения, с гарнизонами на борту их крепких кораблей в канале около Белых скал Дувра.\n\nКоманды устанавливаются сценарием карты, но могут быть изменены игроками в настройках. В этом в созданной игре необходимо установить прекращение огня, чтобы игроки в лодках могли мирно пришвартоваться и найти подходящее место для новых поселений.\n\nПрисвоенные цивилизации являются просто предложениями, и хост должен установить начальные ресурсы до 1000, чтобы построить Городские Центры. "
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
@@ -3255,19 +3274,19 @@ msgstr "Бритты"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
-msgstr ""
+msgstr "Захватчик 1"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
 msgid "Invader 2"
-msgstr ""
+msgstr "Захватчик 2"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
 msgid "Invader 3"
-msgstr ""
+msgstr "Захватчик 3"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
-msgstr ""
+msgstr "Захватчик 4"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

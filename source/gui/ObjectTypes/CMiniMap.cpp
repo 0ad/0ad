@@ -144,8 +144,8 @@ CMiniMap::CMiniMap(CGUI& pGUI) :
 	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(this, "mask", false),
 	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false),
 	m_FlareTextureCount(this, "flare_texture_count", 0), m_FlareRenderSize(this, "flare_render_size", 0),
-	m_FlareAnimationSpeed(this, "flare_animation_speed", 0), m_FlareInterleave(this, "flare_interleave", false),
-	m_FlareLifetimeSeconds(this, "flare_lifetime_seconds", 0)
+	m_FlareInterleave(this, "flare_interleave", false), m_FlareAnimationSpeed(this, "flare_animation_speed", 0.0f),
+	m_FlareLifetimeSeconds(this, "flare_lifetime_seconds", 0.0f)
 {
 	m_Clicking = false;
 	m_MouseHovering = false;

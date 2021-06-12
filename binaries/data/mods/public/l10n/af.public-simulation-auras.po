@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:30+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Afrikaans (http://www.transifex.com/wildfire-games/0ad/language/af/)\n"
 "MIME-Version: 1.0\n"
@@ -26,14 +26,6 @@ msgstr "Beleëringstuie met garnisoen aan boord +3 gesondheid re-generasie tempo
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr ""
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
-msgid "Units gain experience while garrisoned in barracks."
-msgstr "Manskappe bou ondervinding tydens garnisoen in kaserne"
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
-msgid "Rigorous Training"
-msgstr "Intensiewe Opleiding"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -144,6 +136,14 @@ msgstr ""
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Glorieryke Uitbreiding"
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraDescription
+msgid "Units gain experience while garrisoned inside the building."
+msgstr ""
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "Intensiewe Opleiding"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."

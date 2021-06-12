@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
+# Aryan Mn <aarmn80@gmail.com>, 2018
 # Farshad A, 2017
 # hamed farri <hamed.farri@gmail.com>, 2016
 # Hessam Shahpouri, 2017
@@ -12,13 +12,13 @@
 # Mostafa Bodagh <mosi2772@gmail.com>, 2017
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019,2021
 # reza latifi <reza.bubba@gmail.com>, 2019
-# علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
+# Aryan Mn <aarmn80@gmail.com>, 2018
 # бахром дуниахо <brandonw041@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-10 08:30+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:30+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -34,14 +34,6 @@ msgstr ""
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr ""
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
-msgid "Units gain experience while garrisoned in barracks."
-msgstr "سربازان مستقر شده در پادگان با گذر زمان درمان می شوند."
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
-msgid "Rigorous Training"
-msgstr "تمرین سختگیرانه"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -152,6 +144,14 @@ msgstr ""
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "گسترش شکوهمندانه"
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraDescription
+msgid "Units gain experience while garrisoned inside the building."
+msgstr ""
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "تمرین سختگیرانه"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."

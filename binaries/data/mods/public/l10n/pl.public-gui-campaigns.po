@@ -8,22 +8,34 @@
 # Leszek Szary, 2021
 # miragae <miragae@gmail.com>, 2021
 # Bartosz Bobin <bartosz@bobin.eu>, 2021
-# Przemysław Murach <moonshine133@vp.pl>, 2021
 # Szymon Blaut <szymonblaut315@gmail.com>, 2021
 # Marcin S <dzidek1003@o2.pl>, 2021
+# Przemysław Murach <moonshine133@vp.pl>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>, 2021\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>, 2021\n"
 "Language-Team: Polish (https://www.transifex.com/wildfire-games/teams/17418/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: campaigns/new_maps.jsonDescription
+msgctxt "Campaign Template"
+msgid ""
+"Discover the new maps in Alpha 25 with a demo campaign, taking you through "
+"all of them."
+msgstr "Odkryj nowe mapy w Alfa 25 z kampanią w wersji demo."
+
+#: campaigns/new_maps.jsonName
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "Kampania demo - nowe mapy"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -65,17 +77,17 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr "Samouczek"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:119
+#: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Wykonano"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:121
+#: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Dostępne"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:183
+#: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Błąd podczas ładowania kampanii %s: %s."

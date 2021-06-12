@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-10 07:08+0000\n"
-"PO-Revision-Date: 2021-05-12 12:15+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 12:59+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -42,14 +42,6 @@ msgstr "Bemande belegeringswapens +3 genezingssnelheid."
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr "Werkplaats Reparaties"
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
-msgid "Units gain experience while garrisoned in barracks."
-msgstr "Eenheden krijgen meer ervaring terwijl ze in de kazerne verblijven."
-
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
-msgid "Rigorous Training"
-msgstr "Genadeloze training"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -160,6 +152,14 @@ msgstr "+20% maximale bevolkingslimiet (vereist \"Glorieuze Expansie\" technolog
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Glorieuze Expansie"
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraDescription
+msgid "Units gain experience while garrisoned inside the building."
+msgstr "Eenheden krijgen meer ervaring terwijl ze in de kazerne verblijven."
+
+#: simulation/data/auras/structures/xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "Genadeloze training"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."

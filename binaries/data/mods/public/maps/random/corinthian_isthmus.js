@@ -30,6 +30,7 @@ const oGoat = "gaia/fauna_goat";
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
+const oMetalSmall = g_Gaia.metalSmall;
 const oDatePalm = g_Gaia.tree1;
 const oSDatePalm = g_Gaia.tree2;
 const oCarob = g_Gaia.tree3;
@@ -83,7 +84,7 @@ var riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter
 var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);
 
 createArea(
-	new PathPlacer(riverStart, riverEnd, riverWidth, 0.2, 15 * scaleByMapSize(1, 3), 0.04, 0.01),
+	new PathPlacer(riverStart, riverEnd, riverWidth, 0.2, scaleByMapSize(0.3, 1), 0.04, 0.01),
 	new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4));
 
 g_Map.log("Creating small puddles at the map border to ensure players being separated");
@@ -111,7 +112,7 @@ createArea(
 		passageEnd,
 		passageWidth * 2,
 		0.2,
-		3 * scaleByMapSize(1, 4),
+		scaleByMapSize(0.2, 0.4),
 		0.1,
 		0.01,
 		100.0),
@@ -131,7 +132,7 @@ createArea(
 		passageEnd,
 		passageWidth,
 		0.5,
-		3 * scaleByMapSize(1, 4),
+		scaleByMapSize(0.2, 0.4),
 		0.1,
 		0.01),
 	new MultiPainter([
@@ -229,13 +230,12 @@ createObjectGroups(
 );
 
 g_Map.log("Creating metal mines");
-createMines(
-	[
-		[new SimpleObject(oMetalLarge, 1, 1, 0, 4)]
-	],
-	avoidClasses(clForest, 4, clPassageway, 10, clPlayer, 15, clMetal, 10, clRock, 5, clWater, 4, clHill, 4),
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
 	clMetal,
-	scaleByMapSize(5, 20)
+	avoidClasses(clPassageway, 1, clWater, 0, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clRock, 10),
+	0.9 // less available area -> slightly less metal
 );
 
 Engine.SetProgress(65);

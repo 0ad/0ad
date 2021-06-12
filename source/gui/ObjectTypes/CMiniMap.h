@@ -79,9 +79,9 @@ private:
 
 	CGUISimpleSetting<u32> m_FlareTextureCount;
 	CGUISimpleSetting<u32> m_FlareRenderSize;
-	CGUISimpleSetting<u32> m_FlareAnimationSpeed;
 	CGUISimpleSetting<bool> m_FlareInterleave;
-	CGUISimpleSetting<u32> m_FlareLifetimeSeconds;
+	CGUISimpleSetting<float> m_FlareAnimationSpeed;
+	CGUISimpleSetting<float> m_FlareLifetimeSeconds;
 
 	// Whether to draw a black square around and under the minimap.
 	CGUISimpleSetting<bool> m_Mask;

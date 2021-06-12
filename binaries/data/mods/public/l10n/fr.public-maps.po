@@ -43,9 +43,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-30 14:11+0000\n"
-"Last-Translator: François Magimel\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,9 +203,9 @@ msgstr "Prairies calédoniennes"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
-"Each player starts on a hill surrounded by steep cliffs. Represents "
+"Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr "Chaque joueur commence sur une colline entourée de falaises abruptes. Représente la Cantabrie, une région montagneuse au nord de la péninsule ibérique."
+msgstr ""
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -230,13 +230,11 @@ msgid "Continent"
 msgstr "Continent"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "Deux grandes étendues de terre méditerranéennes reliées par une étroite bande de terre, appelée 'isthme'."
+"Two land masses connected by a narrow spit of land, called an 'Isthmus', "
+"inspired by the eponymous area in Greece. Most of the stone on the map is in"
+" the isthmus itself, making it vital to fight for its control."
+msgstr ""
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -483,9 +481,10 @@ msgstr "Col de l'Enfer"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
-"Each player starts in a coastal area between forested hills and the Caspian "
-"Sea."
-msgstr "Chaque joueur commence dans une zone côtière entre des collines boisées et la mer Caspienne."
+"Each player starts in a coastal area between forested hills and the Sea. "
+"Inspired by the southern regions of the Caspian Sea known in Antiquity as "
+"Hyrcania."
+msgstr ""
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -884,6 +883,19 @@ msgid "Aegean-Anatolian"
 msgstr ""
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Between the high summits of the Alps, the valleys are filled with fog in the"
+" early morning. The ground is full of gravel and rocks, but silver fir and "
+"spruce trees grow between them and provide shelter for deer and mountain "
+"goats."
+msgstr ""
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Subalpine"
+msgstr ""
+
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -891,11 +903,6 @@ msgid ""
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "Une région située dans de hautes montagnes enneigées. Des vents mordants balayent les abondantes forêts de conifères, ce qui fait même frissonner les plus résistants cerfs et chèvres de montagne ."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpes"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
@@ -905,16 +912,16 @@ msgstr ""
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "L'automne est à son apogée. Le paysage possède un impressionnant mélange de couleurs irrévocablement entremêlées. Les hêtres et les chênes natifs de cette zone tempérée présentent un feuillage multicolore tandis que les pins se montrent indifférents à l'hiver qui approche."
+"The first leaves have fallen. The landscape is a dazzling dash of colors "
+"irrevocably intertwined. The native beech and oak trees of this temperate "
+"zone display a multi-colored foliage while animals try to prepare for the "
+"approaching winter."
+msgstr ""
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Automne"
+msgid "Rhine Valley (Fall)"
+msgstr ""
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -959,19 +966,23 @@ msgstr ""
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "La savane, un climat sec dans lequel seuls les robustes baobabs prospèrent. Les gazelles solitaires pâturent l'herbe éparse, tandis que les troupeaux de zèbres, de gnous, de girafes ou d'éléphants errent dans la nature à la recherche de nourriture."
+"The transition between the dry Sahara to the north and the tropical forests "
+"to the south. The sunlight floods through the open canopy and lights the "
+"grassland between the trees, where herds of zebras, wildebeest, giraffes and"
+" elephants roam."
+msgstr ""
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savane"
+msgid "Sudanian Savanna"
+msgstr ""
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid "Wide grasslands without trees"
+msgid ""
+"Wide grasslands stretching to the horizon, without any trees blocking the "
+"view. The Steppe is home to large herds of wild horses, which graze "
+"peacefully on the empty land, but flee quickly if you try to catch them."
 msgstr ""
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
@@ -1175,6 +1186,14 @@ msgstr "L‘Inconnu"
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
 msgstr "Choisissez un paysage terrestre aléatoire"
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "Deux grandes étendues de terre méditerranéennes reliées par une étroite bande de terre, appelée 'isthme'."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"

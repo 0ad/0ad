@@ -26,6 +26,7 @@ const oBerryBush = g_Gaia.fruitBush;
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
+const oMetalSmall = g_Gaia.metalSmall;
 const oDeer = g_Gaia.mainHuntableAnimal;
 const oRabbit = g_Gaia.secondaryHuntableAnimal;
 const oFish = g_Gaia.fish;
@@ -174,22 +175,22 @@ createPatches(
  clDirt);
 Engine.SetProgress(65);
 
-g_Map.log("Creating stone mines");
-createMines(
- [
-  [new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
-  [new SimpleObject(oStoneSmall, 2,5, 1,3)]
- ],
- avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
- clRock);
-
 g_Map.log("Creating metal mines");
-createMines(
- [
-  [new SimpleObject(oMetalLarge, 1,1, 0,4)]
- ],
- avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
- clMetal
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
+	clMetal,
+	avoidClasses(clWater, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1),
+	0.9
+);
+
+g_Map.log("Creating stone mines");
+createBalancedStoneMines(
+	oStoneSmall,
+	oStoneLarge,
+	clRock,
+	avoidClasses(clWater, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clMetal, 10),
+	0.9
 );
 Engine.SetProgress(70);
 

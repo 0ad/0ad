@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-05 05:32+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-10 18:45+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,6 @@ msgstr "아고게"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
@@ -76,9 +75,14 @@ msgstr "아고게"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
@@ -208,28 +212,6 @@ msgstr "다이너마이스"
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
 msgstr "병사, 공성 무기, 선박 공격 피해량이  +25% 증가합니다."
 
-#: simulation/data/technologies/attack_steel_working.jsondescription
-msgid ""
-"Secret steel working techniques give sword blades distinctive and beautiful "
-"markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "비밀 강철 작업 기법은 칼날에 독특하고 아름다운 자국이 나타납니다. 그뿐만 아니라 강철의 경도도 비교할 데가 없습니다."
-
-#: simulation/data/technologies/attack_steel_working.jsongenericName
-msgid "Steel Working"
-msgstr "철강 제조"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
-msgid "Toledo Steel"
-msgstr "톨레도 철강"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
-msgid "Wootz Steel"
-msgstr "인도제 철강"
-
-#: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "Swordsmen +20% attack damage."
-msgstr "검객 공격 피해량이 +20%증가합니다"
-
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
@@ -314,7 +296,7 @@ msgstr "건축물의 건설 시간이 -20%, 내구력이 -20%, 점유 점수가 
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr "갈리아인들은 효과적인 기병으로 유명했습니다. 켈트족 용병들은 지중해 전역에 걸쳐 수요가 있었습니다."
+msgstr "갈리아족은 효과적인 기병으로 유명했습니다. 켈트족 용병들은 지중해 전역에 걸쳐 수요가 있었습니다."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
@@ -551,7 +533,7 @@ msgstr "일꾼의 곡물 수확률이 +20% 증가합니다."
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr "갈리아인들은 곡식을 훨씬 쉽게 수확 할 수 있도록 수확기를 발명했습니다."
+msgstr "갈리아족은 곡식을 훨씬 쉽게 수확 할 수 있도록 수확기를 발명했습니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
@@ -1253,13 +1235,52 @@ msgstr "청동 대신 철을 사용하는 것은 무기에 추가적인 힘을 �
 msgid "Iron Weapons"
 msgstr "철제 무기"
 
+#: simulation/data/technologies/soldier_attack_melee_03.jsondescription
+msgid ""
+"By adding a small amount of carbon during the iron smelting process, a "
+"stronger material, steel, can be forged."
+msgstr "철 제련 과정 중에 소량의 탄소를 첨가함으로써, 더 강한 물질인 강철을 단조할 수 있습니다."
+
+#: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
+msgid "Carburization"
+msgstr "탄소 첨가"
+
+#: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
+msgid "Soldiers +20% melee attack damage."
+msgstr "병사들의 근접 공격 피해량이 +20% 증가합니다."
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
+msgid ""
+"Secret steel working techniques give sword blades distinctive and beautiful "
+"markings. Not only that, but the steel's hardness is unparalleled."
+msgstr "비밀 강철 작업 기법은 칼날에 독특하고 아름다운 자국이 나타납니다. 그뿐만 아니라 강철의 경도도 비교할 데가 없습니다."
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsongenericName
+msgid "Steel Working"
+msgstr "철강 제조"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.iber
+msgid "Toledo Steel"
+msgstr "톨레도 철강"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.maur
+msgid "Wootz Steel"
+msgstr "인도제 철강"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
+msgid ""
+"Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
+msgstr "병사들의 근접 공격 피해량이 +20% 증가합니다. 검병이 +20% 추가 보너스를 받습니다."
+
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
-msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr "철로 만든 발사체 끝부분은 쏘아대는 무기가 더 깊숙이 침투할 수 있게 합니다."
+msgid ""
+"Improving the fletching of arrows increases their stability and speed, and "
+"thus their penetration."
+msgstr "화살촉을 개선하면 화살의 안정성과 속도가 향상되어 관통력이 높아집니다."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
-msgid "Iron Arrowheads"
-msgstr "쇠 화살촉"
+msgid "Improved Fletching"
+msgstr "향상된 화살 깃 달기"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1267,12 +1288,24 @@ msgid "Soldiers +15% ranged attack damage."
 msgstr "병사들의 원거리 공격 피해량이 +15% 증가합니다."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr "철로 만든 발사체 끝부분은 쏘아대는 무기가 더 깊숙이 침투할 수 있게 합니다."
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+msgid "Iron Arrowheads"
+msgstr "쇠 화살촉"
+
+#: simulation/data/technologies/soldier_attack_ranged_03.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
 msgstr "두개의 날보다 세개의 날이 있는 화살촉이 더 큰 상처를 입힙니다."
 
-#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+#: simulation/data/technologies/soldier_attack_ranged_03.jsongenericName
 msgid "Trilobate Arrowheads"
 msgstr "세날 화살촉"
+
+#: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
+msgid "Soldiers +20% ranged attack damage."
+msgstr "병사들의 원거리 공격 피해량이 +20% 증가합니다."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1315,6 +1348,18 @@ msgstr "적층 린넨 갑옷"
 msgid "Linothōrax"
 msgstr "리노호락스"
 
+#: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
+msgid "Body armor made of small metal rings linked together."
+msgstr "작은 금속 고리로 만든 갑옷이 함께 연결됩니다."
+
+#: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
+msgid "Mail Body Armor"
+msgstr "미늘 갑옷"
+
+#: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
+msgid "Soldiers +2 hack resistance."
+msgstr "병사들의 난도질 저항이 +2 증가합니다."
+
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
@@ -1337,6 +1382,18 @@ msgstr "금속 테두리 또는 돌기로 방패를 강화합니다."
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
 msgstr "금속 돌기"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
+msgid "Strengthen shields further with stronger metal alloys."
+msgstr "더 강한 금속 합금으로 방패를 더욱 강화합니다."
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
+msgid "Improved Shield Alloys"
+msgstr "개선된 방패 합금"
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
+msgid "Soldiers +2 pierce resistance."
+msgstr "병사들의 관통 저항력이 +2 증가합니다."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."

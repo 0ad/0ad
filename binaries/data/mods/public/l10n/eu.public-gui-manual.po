@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-04-02 07:08+0000\n"
-"PO-Revision-Date: 2021-04-03 09:58+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 09:17+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -565,163 +565,167 @@ msgid ""
 "structure with an existing nearby structure"
 msgstr " hotkey.session.snaptoedges + Sagua egituretatik gertu mugitu – lerrokatu egitura berria dagoeneko bertan dagoen beste batekin"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:118
+msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
+msgstr ""
+
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Geruzak[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – Txandakatu GUI"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr " hotkey.session.devcommands.toggle – Erakutsi garatzailearen geruza (aukera teknikoekin)"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr " hotkey.wireframe – wireframe modua txandakatu (zapaldu behin wireframe gainjarriak lortzeko eredu testurentzat, bi aldiz testurak koloretutako wireframeak lortzeko, hiru aldiz testura arruntetara itzultzeko)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr " hotkey.silhouettes – Gaitu edo desgaitzen ditu unitateen siluetak (desgaitzeak errendimendua hobetu dezake)"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr " hotkey.session.diplomacycolors – Txandakatu diplomazia kolooreak"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr " hotkey.session.toggleattackrange – Aukeratutako unitate eta egituren eraso-irismen bistaratzeak txandakatzen ditu"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr " hotkey.session.toggleaurasrange – Aukeratutako unitate eta egituren aura-irismen bistaratzeak txandakatzen ditu"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr " hotkey.session.togglehealrange – Aukeratutako unitateen osasun-irismen bistaratzeak txandakatzen ditu"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Kameraren erabilera[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr " hotkey.camera.up – Eraman kamera gora"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr " hotkey.camera.down – Eraman kamera beheraka"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr " hotkey.camera.left – Eraman kamera ezkerrera"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr " hotkey.camera.right – Eraman kamera eskuinera"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr " hotkey.camera.rotate.up – Kamera biratu goraka ikusteko"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr " hotkey.camera.rotate.down – Kamera biratu beheraka ikusteko"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr " hotkey.camera.rotate.cw –  Biratu kamera erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr " hotkey.camera.rotate.ccw – Biratu kamera erlojuaren kontrako zentzuan lurraren inguruan"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr " hotkey.camera.rotate.wheel.cw –  Biratu kamera erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr " hotkey.camera.rotate.wheel.ccw – Biratu kamera erlojuaren kontrako zentzuan lurraren inguruan"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr " hotkey.camera.follow – Jarraitu aukeratutako unitatea (mugitu kamera unitatea jarraitzeari uzteko)"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr " hotkey.camera.reset – Kamera bere hasierako balioetara eta norabidera eraman"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr " hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Kamera lurrera gerturatu (Jarraitu sakatzen polikiago egiteko)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr " hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Kamera lurretik urrundu (Jarraitu sakatzen polikiago egiteko)"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr " hotkey.camera.pan – Mantendu sakatuta eta mugitu sagua kamera mugitzeko"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Egitura kokatu bitartean[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr " hotkey.session.rotate.ccw – Biratu egitura 15 gradu erlojuaren kontrako norabidean "
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:149
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr " hotkey.session.rotate.cw – Biratu egitura 15 gradu erlojuaren norabidean "
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "Ezker botoiaz arrastatu – Biratu egitura sagua erabiliz (oinarriak botoia askatzean kokatuko dira)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Gordetako jokoa bat kargatzean[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid "  hotkey.cancel – Cancel"
 msgstr " hotkey.cancel – Utzi"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:154
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr " hotkey.session.savedgames.delete –  Gordetako partida ezabatzen da baieztapena eskatuz"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:155
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

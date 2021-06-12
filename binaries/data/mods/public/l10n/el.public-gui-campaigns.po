@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-05-21 07:19+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2021\n"
 "Language-Team: Greek (https://www.transifex.com/wildfire-games/teams/17418/el/)\n"
@@ -24,6 +24,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: campaigns/new_maps.jsonDescription
+msgctxt "Campaign Template"
+msgid ""
+"Discover the new maps in Alpha 25 with a demo campaign, taking you through "
+"all of them."
+msgstr ""
+
+#: campaigns/new_maps.jsonName
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr ""
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -67,17 +79,17 @@ msgctxt "Campaign Template"
 msgid "Tutorial"
 msgstr " Οδηγός Εκμάθησης"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:119
+#: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Ολοκληρώθηκε"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:121
+#: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Διαθέσιμο"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:183
+#: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Σφάλμα κατά τη φόρτωση  εκκίνησης εκστρατείας %s:%s."

@@ -46,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:31+0000\n"
-"Last-Translator: Swyter ™ <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 08:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4030,14 +4030,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Utilizar sombreadores OpenGL 2.0 (recomendado)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Calidad de sombras"
+msgid "Quality"
+msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Muy bajo"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Muy alto"
 
@@ -4048,54 +4044,72 @@ msgid ""
 msgstr "Resolución de los mapas de sombras. Si tienes una tarjeta gráfica con poca memoria y pones valores altos, el juego puede llegar a quedarse bloqueado."
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Filtrado de sombras"
+msgid "Filtering"
+msgstr ""
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Sombras suaves."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr ""
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr ""
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Efectos del agua"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Al desactivarse utiliza los ajustes más sencillos para dibujar el agua, aumentando el rendimiento significativamente. Al activarse inutiliza otras opciones relacionadas."
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Agua de alta calidad"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Utiliza los efectos visuales más complejos al dibujar el agua, incluyendo olas costeras, espuma en la orilla y estelas de barcos en la superficie."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Reflejos del agua"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Hace que el agua actúe como un espejo reflejando sobre ella los objetos."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Refracción del agua"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Usar un mapa de refracción de agua real sin transparencia."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Agua con profundidad real"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Usar la verdadera profundidad del agua en los cálculos de representación."
 
@@ -4198,7 +4212,7 @@ msgstr "La nitidez del filtro seleccionado."
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Bajo"
@@ -4207,7 +4221,7 @@ msgstr "Bajo"
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4217,7 +4231,7 @@ msgstr "Medio"
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Alto"
@@ -5251,13 +5265,13 @@ msgstr "Los %(civilization)s en el juego"
 msgid "History of the %(civilization)s"
 msgstr "Historia de los %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonificación de civilización"
 msgstr[1] "Bonificaciones de civilización"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonificación de equipo"
@@ -5295,7 +5309,7 @@ msgstr "%(hotkey)s: Cambiar al árbol de estructuras."
 msgid "Civilization:"
 msgstr "Civilización:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s a %(health_max)s"

@@ -36,6 +36,7 @@
 # Patrick B <chessplayer95.pb@googlemail.com>, 2015
 # Raymond Vetter, 2014
 # Raymond Vetter, 2014-2017,2019
+# RedNicStone <nic@struktur.de>, 2021
 # richyguitar <richyguitargod@gmail.com>, 2014
 # richyguitar <richyguitargod@gmail.com>, 2014
 # Robert Halbscheffel <robert.halbscheffel@gmail.com>, 2019
@@ -49,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-04 12:47+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-09 22:45+0000\n"
+"Last-Translator: RedNicStone <nic@struktur.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -189,7 +190,7 @@ msgid "Train Heroes and research technologies."
 msgstr "Bilde Helden aus und erforsche Technologien."
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
 msgstr "Rat"
@@ -387,8 +388,8 @@ msgstr "Dunon"
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
-msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Erzeugt Territorium. Bilde Helden aus. Quartiere Soldaten für zusätzliche Pfeile ein."
+msgid "Train Heroes. Garrison Soldiers for additional arrows."
+msgstr "Helden ausbilden. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -642,15 +643,15 @@ msgstr "Kurzer Holzzaun"
 msgid "Stone Fence"
 msgstr "Steinzaun"
 
-#: simulation/templates/structures/gaul/assembly.xml:30
+#: simulation/templates/structures/gaul/assembly.xml:27
 msgid "Assembly of Princes"
 msgstr "Prinzenversammlung"
 
-#: simulation/templates/structures/gaul/assembly.xml:31
+#: simulation/templates/structures/gaul/assembly.xml:28
 msgid "Remogantion"
 msgstr "Remogantion"
 
-#: simulation/templates/structures/gaul/assembly.xml:32
+#: simulation/templates/structures/gaul/assembly.xml:29
 msgid "Train Champion Trumpeters and Heroes."
 msgstr "Bilde Gardistentrompeter und Helden aus."
 
@@ -1027,19 +1028,19 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur/palace.xml:22
-#: simulation/templates/structures/maur/palace.xml:26
+#: simulation/templates/structures/maur/palace.xml:19
+#: simulation/templates/structures/maur/palace.xml:23
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
 msgstr "Palast"
 
-#: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:20
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/structures/maur/palace.xml:24
+#: simulation/templates/structures/maur/palace.xml:21
 msgid "Territory root. Train Maiden Guards and Heroes."
 msgstr "Erzeugt Territorium. Bilde jungfräuliche Wachen und Helden aus."
 
@@ -1712,7 +1713,7 @@ msgstr "Haus"
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
-#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 #: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Village"
 msgstr "Dorf"
@@ -1925,13 +1926,13 @@ msgid ""
 "Siege Engine technologies."
 msgstr "Bilde Gardearmbrustschützen aus, baue Belagerungswaffen und erforsche Belagerungstechnologien."
 
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
@@ -1963,15 +1964,15 @@ msgstr "An der Küste in eigenem, neutralem oder alliiertem Territorium bauen. R
 msgid "Naval"
 msgstr "Marine"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
 msgstr "Elefantenstall"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:28
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Bilde Elefanten aus und erforsche Elefantentechnologien."
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 msgid "ElephantStable"
 msgstr "Elefantenstall"
 
@@ -1997,8 +1998,8 @@ msgid "Fortress"
 msgstr "Festung"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
-msgid "Territory root. Garrison Soldiers for additional arrows."
-msgstr "Erzeugt Territorium. Quartiere Soldaten für zusätzliche Pfeile ein."
+msgid "Garrison Soldiers for additional arrows."
+msgstr "Soldaten einquartieren für zusätzliche Pfeile"
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -2012,12 +2013,12 @@ msgstr "Bilde Fernkampfinfanterie aus und erforsche Technologien."
 msgid "Range"
 msgstr "Reichweite"
 
-#: simulation/templates/template_structure_military_stable.xml:23
 #: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 msgid "Stable"
 msgstr "Stall"
 
-#: simulation/templates/template_structure_military_stable.xml:25
+#: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
 msgstr "Bilde Kavalleristen aus und erforsche Kavallerietechnologien."
 

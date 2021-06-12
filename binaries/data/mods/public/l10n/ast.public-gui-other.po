@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 21:40+0000\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 19:41+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -3994,14 +3994,10 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Usar los asolombradores d'OpenGL 2.0 (encamiéntase)."
 
 #: gui/options/options.json[2].options[10].label
-msgid "Shadow quality"
-msgstr "Calidá de solombres"
+msgid "Quality"
+msgstr "Calidá"
 
-#: gui/options/options.json[2].options[10].list[0].label
-msgid "Very Low"
-msgstr "Perbaxo"
-
-#: gui/options/options.json[2].options[10].list[4].label
+#: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
 msgstr "Peralto"
 
@@ -4012,54 +4008,72 @@ msgid ""
 msgstr "Resolución del mapa solombres. ¡Los valores altos puen facer que'l xuegu se bloquie si uses una tarxeta gráfica con poca memoria!"
 
 #: gui/options/options.json[2].options[11].label
-msgid "Shadow filtering"
-msgstr "Peñeráu de solombres"
+msgid "Filtering"
+msgstr "Peñeráu"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
 msgstr "Solombres ñidies."
 
 #: gui/options/options.json[2].options[12].label
+msgid "Cutoff distance"
+msgstr "Distancia llende"
+
+#: gui/options/options.json[2].options[12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "Cortar solombres a una distancia determinada d'una cámara."
+
+#: gui/options/options.json[2].options[13].label
+msgid "Cover whole map"
+msgstr "Cubrir tol mapa"
+
+#: gui/options/options.json[2].options[13].tooltip
+msgid ""
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "Activao, les solombres cubren el mapa enteru, y ensin cortase. Val al facer semeyes de tol mapa."
+
+#: gui/options/options.json[2].options[14].label
 msgid "Water effects"
 msgstr "Efeutos d'agua"
 
-#: gui/options/options.json[2].options[12].tooltip
+#: gui/options/options.json[2].options[14].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Si ta DESACTIVAO, emplega los axustes más baxos posibles pa renderizar l'agua. Eso fai que los demás axustes nun seyan relevantes.  "
 
-#: gui/options/options.json[2].options[13].label
+#: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
 msgstr "Efeutos d'agua en calidá alta"
 
-#: gui/options/options.json[2].options[13].tooltip
+#: gui/options/options.json[2].options[15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Emplegar efeutos calidables pa l'agua, renderizando foles costeres, espluma marina & repompos navales."
 
-#: gui/options/options.json[2].options[14].label
+#: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
 msgstr "Reflexos na agua"
 
-#: gui/options/options.json[2].options[14].tooltip
+#: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
 msgstr "Dexar que l'agua reflexe una imaxe especular."
 
-#: gui/options/options.json[2].options[15].label
+#: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
 msgstr "Refraición d'agua"
 
-#: gui/options/options.json[2].options[15].tooltip
+#: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
 msgstr "Emplegar un mapa de refraición d'agua real & non una tresparencia."
 
-#: gui/options/options.json[2].options[16].label
+#: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
 msgstr "Fondura real d'agua"
 
-#: gui/options/options.json[2].options[16].tooltip
+#: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
 msgstr "Emplegar la fondura efeutiva de l'agua nos cálculos de renderización."
 
@@ -4162,7 +4176,7 @@ msgstr "L'anidiadura del pasu escoyíu."
 msgid "Model quality"
 msgstr "Calidá del modeláu"
 
-#: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Baxo"
@@ -4171,7 +4185,7 @@ msgstr "Baxo"
 msgid "Simpler models for better performance."
 msgstr "Modelos senciellos pa un rindimientu meyor."
 
-#: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4181,7 +4195,7 @@ msgstr "Normal"
 msgid "Average quality and average performance."
 msgstr "Calidá y rindimientu normales."
 
-#: gui/options/options.json[2].options[10].list[3].label
+#: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Alto"
@@ -5215,13 +5229,13 @@ msgstr "Xugabilidá de los %(civilization)s"
 msgid "History of the %(civilization)s"
 msgstr "Historia de los %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonificación cultural"
 msgstr[1] "Bonificaciones culturales"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonificación d'equipu"
@@ -5259,7 +5273,7 @@ msgstr "%(hotkey)s: Cambiar a «Árbole de construcciones»."
 msgid "Civilization:"
 msgstr "Civilización:"
 
-#: gui/reference/common/TemplateParser.js:147
+#: gui/reference/common/TemplateParser.js:151
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s a %(health_max)s"

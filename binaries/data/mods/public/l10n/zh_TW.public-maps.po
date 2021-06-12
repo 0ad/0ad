@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-29 16:02+0000\n"
-"Last-Translator: StarAtt <tea55688@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-09 03:46+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,9 +180,9 @@ msgstr "蘇格蘭草原"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
-"Each player starts on a hill surrounded by steep cliffs. Represents "
+"Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr "每個玩家都在一個由陡峭的懸崖所包圍的小山丘上開始遊戲。代表了坎塔布里亞，在伊比利半島的北部山區。"
+msgstr "每個玩家都在一個由陡峭的懸崖所包圍的小山丘上開始遊戲。啟發自坎塔布里亞，在伊比利半島的北部山區。"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -207,13 +207,11 @@ msgid "Continent"
 msgstr "大陸"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "由狹長的陸地所連接的兩塊地中海陸地，稱為「地峽」。"
+"Two land masses connected by a narrow spit of land, called an 'Isthmus', "
+"inspired by the eponymous area in Greece. Most of the stone on the map is in"
+" the isthmus itself, making it vital to fight for its control."
+msgstr "兩塊陸地由一條狹窄的土地相連，稱為「地峽」，其靈感來自於希臘的同名地區。地圖上的大部分石頭都在地峽本身，這使得為爭奪它的控制權而戰至關重要。"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -460,9 +458,10 @@ msgstr "地獄通道"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
-"Each player starts in a coastal area between forested hills and the Caspian "
-"Sea."
-msgstr "每一個玩家都在多樹木的小山丘與裏海間的沿岸地區間開始遊戲。"
+"Each player starts in a coastal area between forested hills and the Sea. "
+"Inspired by the southern regions of the Caspian Sea known in Antiquity as "
+"Hyrcania."
+msgstr "每個玩家都從森林丘陵和大海之間的沿海地區開始。靈感來自於古代稱為希爾卡尼亞的里海南部地區。"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -861,6 +860,19 @@ msgid "Aegean-Anatolian"
 msgstr "愛琴海：安那托利亞"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Between the high summits of the Alps, the valleys are filled with fog in the"
+" early morning. The ground is full of gravel and rocks, but silver fir and "
+"spruce trees grow between them and provide shelter for deer and mountain "
+"goats."
+msgstr "在阿爾卑斯山的高峰之間，山谷在清晨充滿了迷霧。地面上到處是碎石和岩石，但它們之間生長著銀杉和雲杉，為鹿和山羊提供了庇護所。"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Subalpine"
+msgstr "亞高山"
+
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -868,11 +880,6 @@ msgid ""
 "abundant conifer forests, making even the more resilient deer and mountain "
 "goats shiver."
 msgstr "高雪山地區。刺骨的風席捲整個針葉林，甚至使更具韌性的鹿和野山羊顫抖著。"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "高山"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
@@ -882,16 +889,16 @@ msgstr "北極"
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "秋季在其高峰期。風景是令人眼花亂的色彩，不可挽回地交織在一起。溫帶地區的原生山毛櫸和橡樹顯示出五彩繽紛的葉子，而常綠的松樹則在即將來臨的冬天顯得冷漠。"
+"The first leaves have fallen. The landscape is a dazzling dash of colors "
+"irrevocably intertwined. The native beech and oak trees of this temperate "
+"zone display a multi-colored foliage while animals try to prepare for the "
+"approaching winter."
+msgstr "第一片葉子已落下。風景是令人眼花亂的色彩，不可挽回地交織在一起。溫帶地區的原生山毛櫸和橡樹顯示出五彩繽紛的葉子，而動物們試圖為即將到來的冬天做準備。"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Autumn"
-msgstr "秋季"
+msgid "Rhine Valley (Fall)"
+msgstr "萊茵峽谷（秋季）"
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -936,20 +943,24 @@ msgstr "撒哈拉"
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "稀樹草原，一種只有堅硬的猴麵包樹才能生長的干燥氣候。孤獨的瞪羚在稀疏的草地上吃草，而斑馬、牛羚、長頸鹿或大象則在野外尋找食物。"
+"The transition between the dry Sahara to the north and the tropical forests "
+"to the south. The sunlight floods through the open canopy and lights the "
+"grassland between the trees, where herds of zebras, wildebeest, giraffes and"
+" elephants roam."
+msgstr "北部乾燥的撒哈拉沙漠和南部的熱帶森林之間的過渡。陽光透過敞開的樹冠，照亮了樹林間的草地，斑馬、角馬、長頸鹿和大象在那裡遊蕩著。"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
-msgid "Savanna"
-msgstr "熱帶草原"
+msgid "Sudanian Savanna"
+msgstr "蘇丹草原"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
-msgid "Wide grasslands without trees"
-msgstr "沒有樹木的廣闊草原。"
+msgid ""
+"Wide grasslands stretching to the horizon, without any trees blocking the "
+"view. The Steppe is home to large herds of wild horses, which graze "
+"peacefully on the empty land, but flee quickly if you try to catch them."
+msgstr "廣闊的草原一直延伸到地平線，沒有任何樹木擋住視線。草原是大群野馬的家園，它們在空地上安靜地吃草，但如果你試圖抓住它們，它們就會迅速逃跑。"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -1152,6 +1163,14 @@ msgstr "未知物"
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
 msgstr "選擇一個隨機陸戰景觀"
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "由狹長的陸地所連接的兩塊地中海陸地，稱為「地峽」。"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -2581,7 +2600,7 @@ msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
-msgstr "靠近阿爾卑斯山的意大利北部被羅馬人稱為山南高盧。這是一塊肥沃的地區，受到高盧人、伊特魯里亞人和羅馬人的爭奪。\n\n注意：地圖有很多雪粒子，可能會影響低端硬件的圖形性能。"
+msgstr "靠近阿爾卑斯山的義大利北部被羅馬人稱為山南高盧。這是一塊肥沃的地區，受到高盧人、伊特魯里亞人和羅馬人的爭奪。\n\n注意：地圖有很多雪粒子，可能會影響低端硬件的圖形性能。"
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"

@@ -550,6 +550,14 @@
 				"max": 30
 			},
 			{
+				"type": "slider",
+				"label": "Flare display duration",
+				"tooltip": "How long the flare markers on the minimap are displayed in seconds.",
+				"config": "gui.session.flarelifetime",
+				"min": 0,
+				"max": 60
+			},
+			{
 				"type": "boolean",
 				"label": "Chat notification attack",
 				"tooltip": "Show a chat notification if you are attacked by another player.",

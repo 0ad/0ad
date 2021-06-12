@@ -154,7 +154,7 @@ var mercenaryCampGuards = {
 		{ "Template": "units/brit/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/brit/cavalry_swordsman_e", "Count": 3 },
 		{ "Template": "units/brit/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/brit/champion_infantry", "Count": 3 }
+		{ "Template": "units/brit/champion_infantry_swordsman", "Count": 3 }
 	],
 	"generic/sahara": [
 		{ "Template": "structures/ptol/mercenary_camp" },
@@ -175,7 +175,7 @@ var mercenaryCampGuards = {
 		{ "Template": "units/iber/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/iber/cavalry_spearman_e", "Count": 3 },
 		{ "Template": "units/iber/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/iber/champion_infantry", "Count": 3 }
+		{ "Template": "units/iber/champion_infantry_swordsman", "Count": 3 }
 	],
 	"generic/savanna": [
 		{ "Template": "structures/merc_camp_egyptian" },
@@ -196,7 +196,7 @@ var mercenaryCampGuards = {
 		{ "Template": "units/gaul/infantry_javelineer_b", "Count": 4 },
 		{ "Template": "units/gaul/cavalry_swordsman_e", "Count": 3 },
 		{ "Template": "units/gaul/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/gaul/champion_infantry", "Count": 3 }
+		{ "Template": "units/gaul/champion_infantry_swordsman", "Count": 3 }
 	]
 };
 

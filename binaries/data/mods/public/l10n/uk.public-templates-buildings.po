@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-31 16:37+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2021-06-07 07:53+0000\n"
+"PO-Revision-Date: 2021-06-07 10:31+0000\n"
+"Last-Translator: 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +165,7 @@ msgid "Train Heroes and research technologies."
 msgstr "Тренувати героїв та досліджувати технології."
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
 msgstr "Нарада"
@@ -363,8 +363,8 @@ msgstr "Дунон"
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
-msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Корінне володіння. Тренує героїв. Розміщуйте воїнів всередині для підсилення оборонної стрільби."
+msgid "Train Heroes. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -618,15 +618,15 @@ msgstr "Короткий дерев'яний паркан"
 msgid "Stone Fence"
 msgstr "Кам'яний паркан"
 
-#: simulation/templates/structures/gaul/assembly.xml:30
+#: simulation/templates/structures/gaul/assembly.xml:27
 msgid "Assembly of Princes"
 msgstr "Асамблея принців"
 
-#: simulation/templates/structures/gaul/assembly.xml:31
+#: simulation/templates/structures/gaul/assembly.xml:28
 msgid "Remogantion"
 msgstr "Ремоґантіон"
 
-#: simulation/templates/structures/gaul/assembly.xml:32
+#: simulation/templates/structures/gaul/assembly.xml:29
 msgid "Train Champion Trumpeters and Heroes."
 msgstr ""
 
@@ -1003,19 +1003,19 @@ msgstr "Віпана"
 msgid "Uparaksana"
 msgstr "Упараксана"
 
-#: simulation/templates/structures/maur/palace.xml:22
-#: simulation/templates/structures/maur/palace.xml:26
+#: simulation/templates/structures/maur/palace.xml:19
+#: simulation/templates/structures/maur/palace.xml:23
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
 msgstr "Палац"
 
-#: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:20
 msgid "Harmya"
 msgstr "Харм'я"
 
-#: simulation/templates/structures/maur/palace.xml:24
+#: simulation/templates/structures/maur/palace.xml:21
 msgid "Territory root. Train Maiden Guards and Heroes."
 msgstr "Корінне володіння. Тренує жіночу варту та героїв."
 
@@ -1688,7 +1688,7 @@ msgstr "Будинок"
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
-#: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 #: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Village"
 msgstr "Село"
@@ -1901,13 +1901,13 @@ msgid ""
 "Siege Engine technologies."
 msgstr "Тренувати чемпіонських піхотних арбалетників, конструювати облогові знаряддя та досліджувати технології облогового знаряддя."
 
-#: simulation/templates/structures/gaul/assembly.xml:34
+#: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:74
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:41
 msgid "City"
@@ -1939,15 +1939,15 @@ msgstr "Побудуйте на береговій лінії на власні�
 msgid "Naval"
 msgstr "Морські"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
 msgstr "Стайня слонів"
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:28
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Тренувати слонів та досліджувати слонові технології."
 
-#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:29
 msgid "ElephantStable"
 msgstr "Стайня слонів"
 
@@ -1973,8 +1973,8 @@ msgid "Fortress"
 msgstr "Фортеця"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
-msgid "Territory root. Garrison Soldiers for additional arrows."
-msgstr "Корінне володіння. Розміщуйте воїнів всередині для підсилення оборонної стрільби."
+msgid "Garrison Soldiers for additional arrows."
+msgstr "Розмістити солдатів у гарнізоні для додаткових стріл."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -1988,12 +1988,12 @@ msgstr "Тренувати піхоту дистанційного бою та �
 msgid "Range"
 msgstr "Полігон"
 
-#: simulation/templates/template_structure_military_stable.xml:23
 #: simulation/templates/template_structure_military_stable.xml:26
+#: simulation/templates/template_structure_military_stable.xml:29
 msgid "Stable"
 msgstr "Стайня"
 
-#: simulation/templates/template_structure_military_stable.xml:25
+#: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
 msgstr "Тренувати кавалерію та досліджувати кавалерійські технології."
 
