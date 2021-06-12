@@ -493,22 +493,37 @@ g_SelectionPanels.Queue = {
 	 */
 	"getItems": function(unitEntStates)
 	{
-		let queue = [];
+		const queue = [];
 		let foundNew = true;
 		for (let i = 0; foundNew; ++i)
 		{
 			foundNew = false;
-			for (let state of unitEntStates)
+			for (const state of unitEntStates)
 			{
 				if (!state.production || !state.production.queue[i])
 					continue;
 				queue.push({
 					"producingEnt": state.id,
-					"queuedItem": state.production.queue[i]
+					"queuedItem": state.production.queue[i],
+					"autoqueue": state.production.autoqueue && state.production.queue[i].unitTemplate,
 				});
 				foundNew = true;
 			}
 		}
+		if (!queue.length)
+			return queue;
+		// Add 'ghost' items to show autoqueues.
+		const repeat = [];
+		for (const item of queue)
+			if (item.autoqueue)
+			{
+				const ghostItem = clone(item);
+				ghostItem.ghost = true;
+				repeat.push(ghostItem);
+			}
+		if (repeat.length)
+			for (let i = 0; queue.length < g_SelectionPanels.Queue.getMaxNumberOfItems(); ++i)
+				queue.push(repeat[i % repeat.length]);
 		return queue;
 	},
 	"resizePanel": function(numberOfItems, rowLength)
@@ -536,10 +551,11 @@ g_SelectionPanels.Queue = {
 			warning("Unknown production queue template " + uneval(queuedItem));
 			return false;
 		}
-
 		data.button.onPress = function() { removeFromProductionQueue(data.item.producingEnt, queuedItem.id); };
 
 		const tooltips = [getEntityNames(template)];
+		if (data.item.ghost)
+			tooltips.push(translate("The auto-queue will try to train this item later."));
 		if (queuedItem.neededSlots)
 		{
 			tooltips.push(coloredText(translate("Insufficient population capacity:"), "red"));
@@ -553,22 +569,32 @@ g_SelectionPanels.Queue = {
 
 		data.countDisplay.caption = queuedItem.count > 1 ? queuedItem.count : "";
 
-		// Show the time remaining to finish the first item
-		if (data.i == 0)
-			Engine.GetGUIObjectByName("queueTimeRemaining").caption =
-				Engine.FormatMillisecondsIntoDateStringGMT(queuedItem.timeRemaining, translateWithContext("countdown format", "m:ss"));
+		if (data.item.ghost)
+		{
+			data.button.enabled = false;
+			Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]").sprite="color:0 150 250 50";
+		}
+		else
+		{
+			// Show the time remaining to finish the first item
+			if (data.i == 0)
+				Engine.GetGUIObjectByName("queueTimeRemaining").caption =
+					Engine.FormatMillisecondsIntoDateStringGMT(queuedItem.timeRemaining, translateWithContext("countdown format", "m:ss"));
 
-		let guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]");
-		let size = guiObject.size;
+			const guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]");
+			guiObject.sprite = "queueProgressSlider";
+			const size = guiObject.size;
 
-		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
-		size.top = size.left + Math.round(queuedItem.progress * (size.right - size.left));
-		guiObject.size = size;
+			// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
+			size.top = size.left + Math.round(queuedItem.progress * (size.right - size.left));
+			guiObject.size = size;
+
+			data.button.enabled = controlsPlayer(data.player);
+		}
 
 		if (template.icon)
-			data.icon.sprite = "stretched:session/portraits/" + template.icon;
+			data.icon.sprite = (data.item.ghost ? "grayscale:" : "") + "stretched:session/portraits/" + template.icon;
 
-		data.button.enabled = controlsPlayer(data.player);
 
 		const showTemplateFunc = () => { showTemplateDetails(data.item.queuedItem.unitTemplate || data.item.queuedItem.technologyTemplate, data.playerState.civ); };
 		data.button.onPressRight = showTemplateFunc;
