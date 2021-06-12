@@ -65,23 +65,23 @@
 				"list": [
 					{
 						"value": 0,
-						"label": "Specific primary.",
-						"tooltip": "Show specific names as primary and generic names as secondary."
+						"label": "Specific names first",
+						"tooltip": "Display specific names before generic names."
 					},
 					{
 						"value": 1,
-						"label": "Generic primary.",
-						"tooltip": "Show generic names as primary and specific names as secondary."
+						"label": "Generic names first",
+						"tooltip": "Display generic names before specific names."
 					},
 					{
 						"value": 2,
-						"label": "Only Specific.",
-						"tooltip": "Show only specific names for units."
+						"label": "Only specific names",
+						"tooltip": "Display only specific names for entities."
 					},
 					{
 						"value": 3,
-						"label": "Only Generic.",
-						"tooltip": "Show only generic names for units."
+						"label": "Only generic names",
+						"tooltip": "Display only generic names for entities."
 					}
 				]
 			}
@@ -706,7 +706,7 @@
 					},
 					{
 						"value": "false",
-						"label": "No Override",
+						"label": "No override",
 						"tooltip": "Units in formations stay in formations."
 					}
 				]
