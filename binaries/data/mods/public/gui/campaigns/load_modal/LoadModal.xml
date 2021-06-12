@@ -4,8 +4,8 @@
 	<!-- TODO: add a way to load the directory we're in ? -->
 	<script directory="gui/campaigns/load_modal/" />
 
-	<!-- Add a translucent black background to fade out the page -->
-	<object type="image" z="0" sprite="ModernFade"/>
+	<!-- Add a background (this is currently switched on, not pushed, so it needs something) -->
+	<object type="image" z="0" sprite="ModernDarkBoxOpaque" size="0 0 110% 100%"/>
 
 	<object type="image" style="ModernDialog" size="50%-300 50%-200 50%+300 50%+200">
 		<object type="image" z="0" sprite="ModernFade"/>
