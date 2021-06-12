@@ -88,7 +88,7 @@ var g_LastFlareTime;
 /**
  * The duration in ms for which we disable flaring after each flare to prevent overusage.
  */
-const g_FlareCooldown = 5000;
+const g_FlareCooldown = 3000;
 
 // Same double-click behaviour for hotkey presses.
 const doublePressTime = 500;
