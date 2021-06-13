@@ -28,6 +28,7 @@
 #include "graphics/Terrain.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
+#include "maths/Vector2D.h"
 #include "maths/Vector4D.h"
 #include "ps/Game.h"
 #include "ps/World.h"
@@ -166,7 +167,29 @@ float CCamera::GetAspectRatio() const
 
 void CCamera::GetViewQuad(float dist, Quad& quad) const
 {
-	ENSURE(m_ProjType == ProjectionType::PERSPECTIVE || m_ProjType == ProjectionType::ORTHO);
+	if (m_ProjType == ProjectionType::CUSTOM)
+	{
+		const CMatrix3D invProjection = m_ProjMat.GetInverse();
+		const std::array<CVector2D, 4> ndcCorners = {
+			CVector2D{-1.0f, -1.0f}, CVector2D{1.0f, -1.0f},
+			CVector2D{1.0f, 1.0f}, CVector2D{-1.0f, 1.0f}};
+		for (size_t idx = 0; idx < 4; ++idx)
+		{
+			const CVector2D& corner = ndcCorners[idx];
+			CVector4D nearCorner =
+				invProjection.Transform(CVector4D(corner.X, corner.Y, -1.0f, 1.0f));
+			nearCorner /= nearCorner.W;
+			CVector4D farCorner =
+				invProjection.Transform(CVector4D(corner.X, corner.Y, 1.0f, 1.0f));
+			farCorner /= farCorner.W;
+			const float t = (dist - nearCorner.Z) / (farCorner.Z - nearCorner.Z);
+			const CVector4D quadCorner = nearCorner * (1.0 - t) + farCorner * t;
+			quad[idx].X = quadCorner.X;
+			quad[idx].Y = quadCorner.Y;
+			quad[idx].Z = quadCorner.Z;
+		}
+		return;
+	}
 
 	const float y = m_ProjType == ProjectionType::PERSPECTIVE ? dist * tanf(m_FOV * 0.5f) : m_OrthoScale * 0.5f;
 	const float x = y * GetAspectRatio();

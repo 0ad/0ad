@@ -284,6 +284,46 @@ public:
 		CompareQuadsInWorldSpace(camera, farQuad, expectedWorldSpaceFarQuad);
 	}
 
+	void test_custom_plane_points()
+	{
+		SViewPort viewPort;
+		viewPort.m_X = 0;
+		viewPort.m_Y = 0;
+		viewPort.m_Width = 512;
+		viewPort.m_Height = 512;
+
+		CCamera camera;
+		camera.SetViewPort(viewPort);
+		camera.LookAt(
+			CVector3D(10.0f, 20.0f, 10.0f),
+			CVector3D(10.0f, 10.0f, 20.0f),
+			CVector3D(0.0f, 1.0f, 1.0f).Normalized()
+		);
+
+		CCamera cameraPerspective = camera;
+		cameraPerspective.SetPerspectiveProjection(1.0f, 101.0f, DEGTORAD(90.0f));
+
+		CMatrix3D projection;
+		projection.SetPerspective(
+			cameraPerspective.GetFOV(), cameraPerspective.GetAspectRatio(),
+			cameraPerspective.GetNearPlane(), cameraPerspective.GetFarPlane());
+		camera.SetProjection(projection);
+
+		const std::vector<float> distances = {
+			cameraPerspective.GetNearPlane(),
+			(cameraPerspective.GetNearPlane() + cameraPerspective.GetFarPlane()) / 2.0f,
+			cameraPerspective.GetFarPlane()
+		};
+
+		CCamera::Quad quad, expectedQuad;
+		for (const float distance : distances)
+		{
+			camera.GetViewQuad(distance, quad);
+			cameraPerspective.GetViewQuad(distance, expectedQuad);
+			CompareQuads(quad, expectedQuad);
+		}
+	}
+
 	void test_perspective_screen_rays()
 	{
 		const float EPS = 1e-4f;
