@@ -809,12 +809,6 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 
 				cmpPlayer.UnBlockTraining();
 
-				// AutoQueue: We add the second batch after starting the first.
-				// (As opposed to when the first batch finishes.)
-				// This is to make the feature not infinitely better than good micro.
-				if (this.autoqueuing)
-					this.AddItem(item.unitTemplate, "unit", item.count, item.metadata);
-
 				Engine.PostMessage(this.entity, MT_TrainingStarted, { "entity": this.entity });
 			}
 			if (item.technologyTemplate)
@@ -891,6 +885,26 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 		time -= item.timeRemaining;
 		this.queue.shift();
 		Engine.PostMessage(this.entity, MT_ProductionQueueChanged, null);
+
+		// If autoqueuing, push a new unit on the queue immediately,
+		// but don't start right away. This 'wastes' some time, making
+		// autoqueue slightly worse than regular queuing, and also ensures
+		// that autoqueue doesn't train more than one item per turn,
+		// if the units would take fewer than ProgressInterval ms to train.
+		if (this.autoqueuing && item.unitTemplate)
+		{
+			if (!this.AddItem(item.unitTemplate, "unit", item.count, item.metadata))
+			{
+				this.DisableAutoQueue();
+				const cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGUIInterface.PushNotification({
+					"players": [cmpPlayer.GetPlayerID()],
+					"message": markForTranslation("Could not auto-queue unit, de-activating."),
+					"translateMessage": true
+				});
+			}
+			break;
+		}
 	}
 
 	if (!this.queue.length)

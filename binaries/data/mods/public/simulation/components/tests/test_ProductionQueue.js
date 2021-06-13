@@ -615,7 +615,7 @@ function test_auto_queue()
 	cmpProdQueue.AddItem("some_template", "unit", 3);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 	cmpProdQueue.ProgressTimeout(null, 0);
-	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 2);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 }
 
 testEntitiesList();

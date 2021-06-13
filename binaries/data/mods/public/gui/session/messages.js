@@ -9,9 +9,9 @@ var g_TutorialMessages = [];
 var g_TutorialNewMessageTags = { "color": "255 226 149" };
 
 /**
- * The number of seconds we observe for rate limiting flares.
+ * The number of seconds we monitor to rate limit flares.
  */
-var g_FlareRateLimitScope = 10;
+var g_FlareRateLimitScope = 6;
 
 /**
  * The maximum allowed number of flares within g_FlareRateLimitScope seconds.

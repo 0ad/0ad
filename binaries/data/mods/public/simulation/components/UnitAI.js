@@ -2497,6 +2497,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"FINDINGNEWTARGET": {
 				"enter": function() {
+					const previousForced = this.order.data.force;
 					let previousTarget = this.order.data.target;
 					let resourceTemplate = this.order.data.template;
 					let resourceType = this.order.data.type;
@@ -2535,14 +2536,18 @@ UnitAI.prototype.UnitFsmSpec = {
 					};
 
 					// Current position is often next to a dropsite.
+					// But don't use that on forced orders, as the order may want us to go
+					// to the other side of the map on purpose.
 					let pos = cmpPosition.GetPosition();
-					let nearbyResource = this.FindNearbyResource(Vector2D.from3D(pos), filter);
+					let nearbyResource;
+					if (!previousForced)
+						nearbyResource = this.FindNearbyResource(Vector2D.from3D(pos), filter);
 
 					// If there is an initPos, search there as well when we haven't found anything.
 					// Otherwise set initPos to our current pos.
 					if (!initPos)
 						initPos = { 'x': pos.X, 'z': pos.Z };
-					else if (!nearbyResource)
+					else if (!nearbyResource || previousForced)
 						nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z), filter);
 
 					if (nearbyResource)
