@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-10 18:39+0000\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-12 15:17+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr "영웅들은 주둔할 수 없으며 습격에 취약합니다."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "팀 잠김"
+msgstr "팀 고정됨"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
@@ -714,7 +714,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "점령 점수:"
+msgstr "점령 포인트:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -820,7 +820,7 @@ msgstr "%(projectileString)s / %(attackRateString)s"
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr "%(rangeLabel)s %(minRange)s ~ %(maxRange)s (%(relativeRange)s) %(rangeUnit)s (번역확인??)"
+msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
@@ -832,7 +832,7 @@ msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr "%(rangeLabel)s %(minRange)s ~ %(maxRange)s %(rangeUnit)s (번역확인??)"
+msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
@@ -951,7 +951,7 @@ msgstr "(확장)"
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr "(바꿈)"
+msgstr "(교체)"
 
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
@@ -1116,7 +1116,7 @@ msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
-msgstr "자원 흐름??:"
+msgstr "자원 공급:"
 
 #: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
@@ -1444,7 +1444,7 @@ msgstr "프로그래밍 관리자"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr "특별히 감사한분들"
+msgstr "특별한 도움을 주신 분들"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
@@ -1468,7 +1468,7 @@ msgstr "설계 공동 지도자"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr "특별히 감사한분들:"
+msgstr "특별한 도움을 주신 분들:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
@@ -1480,7 +1480,7 @@ msgstr "이 프로젝트의 개발 중에 어떤 역사학자도 피해를 입�
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr "특별 제작진"
+msgstr "특별한 제작진"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
@@ -1731,6 +1731,16 @@ msgstr "카메라 이동 위치 4 지정."
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
 msgstr "카메라 이동 4 지정"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
+msgctxt "hotkey metadata"
+msgid "Focus the camera on the position of the last attack notification."
+msgstr "마지막 공격 알림 위치에 카메라를 집중시킵니다."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
+msgctxt "hotkey metadata"
+msgid "Focus on last attack notification"
+msgstr "마지막 공격 알림에 집중"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
@@ -2017,13 +2027,15 @@ msgstr "클립보드로 잘라내기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
-msgid "Exit to desktop."
-msgstr "바탕 화면으로 나갑니다."
+msgid ""
+"Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
+" / etc.) are always active."
+msgstr "데스크톱 종료 시 트리거할 사용자 지정 단축키입니다. 기본 단축키(Alt+F4 / Cmd+Q / 등)는 항상 활성 상태입니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
-msgid "Exit to desktop"
-msgstr "데스크톱으로 종료"
+msgid "Custom exit to desktop"
+msgstr "바탕화면으로 커스텀 종료"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2275,6 +2287,26 @@ msgstr "선택하는 대신 그룹 아이콘을 클릭할때 유닛을 선택취
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
 msgstr "유닛 유형 선택취소"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare while this hotkey is pressed."
+msgstr "이 단축키를 누르고 있는 동안 커서를 플레어로 지정합니다."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
+msgctxt "hotkey metadata"
+msgid "Flare (hold)"
+msgstr "플레어 (누르고 있기)"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare. The hotkey can be released."
+msgstr "커서를 플레어로 설정합니다. 단축키를 해제할 수 있습니다."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
+msgctxt "hotkey metadata"
+msgid "Flare (toggle)"
+msgstr "플레어 (전환)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -4675,7 +4707,7 @@ msgstr "걷기/순찰 만"
 
 #: gui/options/options.json[6].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr "다른 명령은 기존 진형을 해체합니다."
+msgstr "다른 명령은 기존 대형을 해체합니다."
 
 #: gui/options/options.json[6].options[20].list[1].label
 msgid "No Override"
@@ -4683,13 +4715,13 @@ msgstr "재정의 안함"
 
 #: gui/options/options.json[6].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr "진형의 유닛은 진형에 남아 있습니다."
+msgstr "진형의 유닛은 대형에 남아 있습니다."
 
 #: gui/options/options.json[6].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr "모든 명령에 대해 진형을 사용할지, 아니면 '걷기'와 '순찰'만 사용할지 결정합니다."
+msgstr "모든 명령에 대해 대형을 사용할지, 아니면 '걷기'와 '순찰'만 사용할지 결정합니다."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -4716,7 +4748,7 @@ msgstr "공물 채팅 알림"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "같은 팀이 잠긴 경우 동료가 다른 팀 구성원에게 자원을 요청하고 모든 조공이 관찰자 모드에 있는 경우 대화 알림을 표시합니다. (번역확인할것??)"
+msgstr "아군이 팀이 고정된 경우 다른 팀원에게 자원을 공물하면 채팅 알림을 표시하고 관찰자 모드에서는 모든 공물을 표시합니다."
 
 #: gui/options/options.json[6].options[5].label
 msgid "Chat notification barter"
@@ -5270,7 +5302,7 @@ msgstr "%(hotkey)s: 건축물 도감으로 바꿉니다."
 msgid "Civilization:"
 msgstr "문명:"
 
-#: gui/reference/common/TemplateParser.js:151
+#: gui/reference/common/TemplateParser.js:152
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s 부터 %(health_max)s"
@@ -5570,7 +5602,7 @@ msgstr "[imgleft=\"iconLag\"]이 게임은 특히 큰 지도와 많은 유닛을
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]진형은 아직 완성되지 않았습니다만, 원하는 대로 진형을 짜거나 푸는것은 할 수 있습니다."
+msgstr "[imgleft=\"iconFormation\"]대형이 아직 완성되지 않았지만, 원하는 대로 대형을 짜거나 푸는것은 할 수 있습니다."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5762,11 +5794,11 @@ msgstr "인구"
 
 #: gui/summary/layout.js:197
 msgid "Map control (peak)"
-msgstr "지도 제어 (절정??)"
+msgstr "지도 제어 (봉우리)"
 
 #: gui/summary/layout.js:198
 msgid "Map control (finish)"
-msgstr "지도 제어 (종료??)"
+msgstr "지도 제어 (완료)"
 
 #: gui/summary/layout.js:199
 msgid "Map exploration"
@@ -5998,8 +6030,8 @@ msgid ""
 msgstr "중립 또는 적 영토에 지을수 있습니다. 적의 배후에 비밀 기지를 건설하거나 적의 영토 내의 이익을 강화하는데 적합합니다."
 
 #: gui/text/tips/army_camp.txt:3
-msgid "Construct siege weapons and train citizen-soldiers."
-msgstr "공성 무기를 구축하고 시민 병사들을 훈련합니다."
+msgid "Construct rams and train citizen soldiers."
+msgstr "충차를 만들고 시민 병사를 훈련합니다."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6007,29 +6039,73 @@ msgid ""
 "and decay."
 msgstr "주둔지 유닛은 그들을 천천히 치유하고 공격과 부패로부터 군대 막사를 보호합니다."
 
+#: gui/text/tips/autoqueue.txt:1
+msgid "AUTOQUEUE"
+msgstr "자동 대기열"
+
+#: gui/text/tips/autoqueue.txt:2
+msgid "Enable the autoqueue feature to automatically train units."
+msgstr "자동 대기열 기능을 활성화하여 유닛을 자동으로 훈련시킵니다."
+
+#: gui/text/tips/autoqueue.txt:3
+msgid "Works as long as you have enough resources, then it will stop."
+msgstr "충분한 자원이 있는 동안 작업하고, 그 다음에 중지될 것입니다."
+
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
 msgstr "막사"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "모든 시민 병사들을 훈련합니다. 어떤 파벌들은 대표전사들의 훈련도 잠금을 풀 수 있습니다."
+msgstr "모든 시민 군인을 훈련시킵니다. 일부 문명들은 대표전사들의 훈련도 가능하게 할 수 있습니다."
 
-#: gui/text/tips/barracks.txt:3
-msgid "Research military technologies unique to each faction."
-msgstr "각 파벌 고유의 군사 기술을 연구합니다."
+#: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
+msgid "Units gain experience while garrisoned inside the building."
+msgstr "유닛은 건물 내부에 주둔하는 동안 경험치를 얻습니다."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
-"Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "정착을 단계적으로 향상시키는 동안 시민 병사들을 훈련시키기 위해 일찍 건설하십시오."
+msgstr "정착지를 단계적으로 향상시키는 동안 시민 군인들을 훈련시킬 수 있는 건물을 일찍 건설하십시오."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
 msgstr "신선한 부대로 습격을 다시 지원하기 위해 전방 기지에 건설합니다."
+
+#: gui/text/tips/biomes.txt:1
+msgid "BIOMES"
+msgstr "생물군계"
+
+#: gui/text/tips/biomes.txt:2
+msgid ""
+"Biomes can be used on some random maps and determine which region of the "
+"world the map represents."
+msgstr "생물군계는 일부 무작위 지도에서 사용될 수 있으며, 지도가 나타내는 세계의 영역을 결정할 수 있습니다."
+
+#: gui/text/tips/biomes.txt:3
+msgid ""
+"They influence the appearence of the maps and also the amount of resources "
+"that are available."
+msgstr "지도 모양과 사용 가능한 자원 양에도 영향을 미칩니다."
+
+#: gui/text/tips/briton_war_dog.txt:1
+msgid "WAR DOG"
+msgstr "전투견"
+
+#: gui/text/tips/briton_war_dog.txt:2
+msgid "A dog that the Britons can train at the cavalry stable."
+msgstr "브리턴족이 기병 마굿간에서 훈련할 수 있는 개입니다."
+
+#: gui/text/tips/briton_war_dog.txt:3
+msgid "Has low health, but is fast and will fearlessly attack enemies."
+msgstr "체력은 낮지만, 빠르며 두려움없이 적을 공격합니다."
+
+#: gui/text/tips/briton_war_dog.txt:4
+msgid "Use them as support in your army or for quick raids."
+msgstr "군대에서 지원하거나 빠른 습격을 위해 사용하십시오."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6051,6 +6127,22 @@ msgid ""
 " shock against siege weapons and skirmishers."
 msgstr "창병을 기병에 대항하여 중보병으로서 활용하십시오. 기병을 공성 무기와 척후병에 대한 강한 공격으로 사용합니다."
 
+#: gui/text/tips/carth_shipyard.txt:1
+msgid "CARTHAGINIAN NAVAL SHIPYARD"
+msgstr "카르타고의 해군 조선소"
+
+#: gui/text/tips/carth_shipyard.txt:2
+msgid "Special dock of the Carthaginians to construct warships."
+msgstr "전함을 건조하기 위한 카르타고인들의 특별한 부두입니다."
+
+#: gui/text/tips/carth_shipyard.txt:3
+msgid "Garrison ships inside to slowly repair them."
+msgstr "주둔지 선박은 천천히 수리하기 위해서 안에 있습니다"
+
+#: gui/text/tips/carth_shipyard.txt:4
+msgid "Much stronger than other docks, but also more expensive."
+msgstr "다른 부두보다 훨씬 강하지만, 가격도 더 비쌉니다."
+
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "투석기"
@@ -6069,9 +6161,22 @@ msgid ""
 "attack!"
 msgstr "움직일 때는 수레에 넣고, 공격 할때는 전개되어 고정무기가 됩니다!"
 
+#: gui/text/tips/cavalry_stable.txt:1
+msgid "CAVALRY STABLE"
+msgstr "기병 사육장"
+
+#: gui/text/tips/cavalry_stable.txt:2
+msgid ""
+"Trains cavalry units and lets you research cavalry specific technologies."
+msgstr "기병 유닛을 훈련시키고 기병 특정 기술을 연구할 수 있습니다."
+
+#: gui/text/tips/cavalry_stable.txt:3
+msgid "Units gain experience while garrisoned inside the structure."
+msgstr "유닛은 구조 내부에서 수비하는 동안 경험을 쌓습니다."
+
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr "켈트 전투 상륙함(번역확인??)"
+msgstr "켈트 전투 바지선"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
@@ -6088,6 +6193,24 @@ msgstr "최대 40기의 유닛을 운반할 수 있습니다."
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
 msgstr "주둔한 보병으로 화력이 증가합니다."
+
+#: gui/text/tips/city_walls.txt:1
+msgid "CITY WALLS"
+msgstr "성벽"
+
+#: gui/text/tips/city_walls.txt:2
+msgid "Strong stone walls that help you protect your city."
+msgstr "도시를 보호하는 데 도움이 되는 튼튼한 돌담."
+
+#: gui/text/tips/city_walls.txt:3
+msgid ""
+"When your ranged infantry units are occupying the turrets, they have "
+"additional armor and can shoot at the enemy. "
+msgstr "원거리 보병 부대가 포탑을 점령하고 있을 때, 그들은 추가 갑옷을 가지고 있고 적을 향해 쏠 수 있습니다."
+
+#: gui/text/tips/city_walls.txt:4
+msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
+msgstr "투석기, 충차, 전투 코끼리와 같은 공성 무기에 취약합니다."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6111,23 +6234,47 @@ msgid ""
 "citizen-soldiers."
 msgstr "여성 시민, 보병 시민 병사, 기병 시민 병사들의 시민을 훈련시킵니다."
 
+#: gui/text/tips/defense_towers.txt:1
+msgid "DEFENSE TOWERS"
+msgstr "방어탑"
+
+#: gui/text/tips/defense_towers.txt:2
+msgid "Strong watchtowers, which help you defend your position."
+msgstr "자신의 위치를 방어하는데 도움이 되는 강력한 망루."
+
+#: gui/text/tips/defense_towers.txt:3
+msgid ""
+"They have a large vision range and will shoot arrows at the enemy in sight. "
+msgstr "그들은 시야 범위가 넓고 시야에있는 적에게 화살을 쏠 것입니다."
+
+#: gui/text/tips/defense_towers.txt:4
+msgid ""
+"You can garrison more infantry inside them to increase the number of arrows "
+"they shoot."
+msgstr "더 많은 보병을 주둔하여 발사하는 화살의 수를 늘릴 수 있습니다."
+
+#: gui/text/tips/elephant_stable.txt:1
+msgid "ELEPHANT STABLE"
+msgstr "코끼리 사육장"
+
+#: gui/text/tips/elephant_stable.txt:2
+msgid ""
+"The structure is available to some civilizations to train elephant units."
+msgstr "이 건축물은 일부 문명에서 코끼리 유닛을 훈련할 수 있습니다."
+
 #: gui/text/tips/embassies.txt:1
-msgid "EMBASSIES"
-msgstr "대사관"
+msgid "EMBASSIES AND MERCENARY CAMPS"
+msgstr "대사관 및 용병 막사"
 
 #: gui/text/tips/embassies.txt:2
-msgid "Special Barracks available to the Carthaginians."
-msgstr "카르타고 사람들이 이용할 수 있는 특수 막사입니다."
+msgid "Special structures allowing you to hire mercenaries for your army."
+msgstr "군대를 위해 용병을 고용할 수 있는 특별한 건축물."
 
 #: gui/text/tips/embassies.txt:3
-msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr "각각의 민족별 대사관에서 용병을 훈련합니다."
-
-#: gui/text/tips/embassies.txt:4
 msgid ""
-"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
-"cost."
-msgstr "용병 시민 병사들은 정상적인 식량 비용을 금속 비용으로 바꿉니다."
+"Mercenaries will not gather resources and cost only metal, but they are "
+"experienced and strong."
+msgstr "용병들은 자원을 모으지 않고 금속 비용만 들지만, 경험이 풍부하고 강합니다."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6161,23 +6308,26 @@ msgstr "모든 파벌에 대한 건축물을 연구합니다."
 msgid "Research weapon and armor upgrades for your units."
 msgstr "유닛의 무기 및 방어구 업그레이드를 연구하십시오."
 
+#: gui/text/tips/formations.txt:1
+msgid "FORMATIONS"
+msgstr "대형"
+
+#: gui/text/tips/formations.txt:2
+msgid ""
+"Arrange your soldiers in formations to keep them organized during battles."
+msgstr "병사를 대형으로 배치하여 전투 중에 조직을 유지하십시오."
+
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "요새"
 
 #: gui/text/tips/fortress.txt:2
-msgid "The Fortress is usually each faction's strongest structure."
-msgstr "요새는 대개 각 진영에서 가장 강력한 건축물입니다."
+msgid ""
+"Usually the strongest structure of a civilization and the place where you "
+"can train Heroes."
+msgstr "일반적으로 문명의 가장 강력한 건축물이며 영웅을 훈련할 수 있는 장소입니다."
 
 #: gui/text/tips/fortress.txt:3
-msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "대표전사, 영웅, 공성 무기들을 훈련 합니다."
-
-#: gui/text/tips/fortress.txt:4
-msgid "Gives a population boost."
-msgstr "인구 증가를 제공합니다."
-
-#: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
 msgstr "그것을 방어하기 위해 내부에 주둔지 병사를 배치하여 화력을 증강합니다."
 
@@ -6248,23 +6398,58 @@ msgstr "다른 유닛 또는 건축물의 능력치를 변경하는 아우라를
 msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "주의: 각 영웅은 경기당 한 번만 모집할 수 있습니다!"
 
-#: gui/text/tips/iphicrates.txt:1
-msgid "IPHICRATES"
-msgstr "이피크라테스"
+#: gui/text/tips/iber_fireship.txt:1
+msgid "IBERIAN FIRESHIP"
+msgstr "이베리아의 화공선"
 
-#: gui/text/tips/iphicrates.txt:2
+#: gui/text/tips/iber_fireship.txt:2
 msgid ""
-"The Athenian general who reformed the Athenian army to be faster and more "
-"maneuverable."
-msgstr "아테네 군대를 보다 빠르고 기동성이 뛰어나도록 개혁한 아테네 장군."
+"The special Iberian fireship is very effective against other ships and "
+"buildings, but steadily loses health."
+msgstr "특별한 이베리아 화공선은 다른 선박과 건물에 매우 효과적이지만 꾸준히 내구력을 잃습니다."
 
-#: gui/text/tips/iphicrates.txt:3
-msgid "Units in his formation are faster and stronger."
-msgstr "그의 편대 유닛은 더 빠르고 강력합니다."
+#: gui/text/tips/lighthouse.txt:1
+msgid "LIGHTHOUSE"
+msgstr "등대"
 
-#: gui/text/tips/iphicrates.txt:4
-msgid "Skirmishers move faster while he lives."
-msgstr "척후병은 그가 살아있는 동안 더 빨리 움직입니다."
+#: gui/text/tips/lighthouse.txt:2
+msgid ""
+"Special Ptolemaic structures to increase your vision range when built on the"
+" shore."
+msgstr "해안가에 건설될 때 시야 범위를 넓히는 특별한 프톨레마이오스 건축물."
+
+#: gui/text/tips/map_flare.txt:1
+msgid "MAP FLARE"
+msgstr "지도 플레어"
+
+#: gui/text/tips/map_flare.txt:2
+msgid ""
+"Use this feature to let your team know where on the map something important "
+"happens."
+msgstr "이 기능을 사용하여 지도에서 중요한 일이 발생하는 위치를 팀에게 알려줍니다."
+
+#: gui/text/tips/map_flare.txt:3
+msgid "They will see the flare on their minimap."
+msgstr "미니맵에서 플레어를 볼 수 있습니다."
+
+#: gui/text/tips/meroe_pyramids.txt:1
+msgid "PYRAMIDS OF MEROË"
+msgstr "메로에의 피라미드"
+
+#: gui/text/tips/meroe_pyramids.txt:2
+msgid "Special structures available for the Kushites."
+msgstr "쿠시테인들을 위한 사용할 수 있는 특별한 건축물."
+
+#: gui/text/tips/meroe_pyramids.txt:3
+msgid ""
+"The small pyramids improve the gathering rate of the workers around them."
+msgstr "작은 피라미드들은 그들 주위의 노동자들의 집결율을 개선합니다."
+
+#: gui/text/tips/meroe_pyramids.txt:4
+msgid ""
+"The large pyramids increase the military capabilities of soldiers around "
+"them."
+msgstr "큰 피라미드는 그들 주위에 있는 병사들의 군사력을 증가시킵니다."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6295,22 +6480,6 @@ msgstr "모든 파벌이 이용할 수 있는 빠르고 값싼 나무 벽입니�
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
 msgstr "대부분의 파벌은 부락 단계에서 접근할 수 있습니다."
-
-#: gui/text/tips/pericles.txt:1
-msgid "PERICLES"
-msgstr "페리클레스"
-
-#: gui/text/tips/pericles.txt:2
-msgid "The foremost Athenian politician of the 5th century BC."
-msgstr "기원전 5 세기의 최고의 아테네 정치인입니다."
-
-#: gui/text/tips/pericles.txt:3
-msgid "Structures are built faster within his range."
-msgstr "그의 범위 내에서 건축물이 더 빨리 만들어집니다."
-
-#: gui/text/tips/pericles.txt:4
-msgid "Temples are cheaper while he lives."
-msgstr "그가 사는 동안 성전은 더 쌉니다."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6369,9 +6538,25 @@ msgstr "최대 50 유닛을 운반합니다."
 msgid "Increases firepower with garrisoned catapults."
 msgstr "주둔지 투석기로 화력을 증가시킵니다."
 
+#: gui/text/tips/resource_counter.txt:1
+msgid "RESOURCE COUNTER"
+msgstr "자원 창구"
+
+#: gui/text/tips/resource_counter.txt:2
+msgid ""
+"The resource counter panel shows you how much of each resources you have at "
+"the moment."
+msgstr "자원 창구 패널은 현재 보유하고있는 각 자원의 양을 보여줍니다."
+
+#: gui/text/tips/resource_counter.txt:3
+msgid ""
+"The number below it shows you how many citizens are currently gathering "
+"them."
+msgstr "아래의 숫자는 현재 얼마나 많은 시민이 모이고 있는지를 보여줍니다."
+
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr "사바나 생물 군계"
+msgstr "사바나 생물군계"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
@@ -6388,24 +6573,6 @@ msgstr "모든 유형의 광산이 풍부합니다."
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
 msgstr "목재는 드문 편이지만 많은 목재를 낼수있는 바오밥 나무로 구성되어 있습니다."
-
-#: gui/text/tips/scout_towers.txt:1
-msgid "DEFENSE TOWERS"
-msgstr "방어탑"
-
-#: gui/text/tips/scout_towers.txt:2
-msgid "Free-standing towers good for defending large areas of countryside."
-msgstr "시골의 넓은 지역을 방어하기에 적합한 독립형 탑입니다."
-
-#: gui/text/tips/scout_towers.txt:3
-msgid ""
-"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
-"Wood and 250 Stone (because they're stronger)."
-msgstr "그들은 보통 100 목재와 100 석재를 소비합니다. 이베리아 방어탑의 50 목재와 250 석재를 소비합니다 (그들은 강하기 때문입니다)."
-
-#: gui/text/tips/scout_towers.txt:4
-msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr "주둔한 유닛마다 원거리 공격이 증가합니다."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -6526,23 +6693,30 @@ msgid ""
 "influential neighbor."
 msgstr "붕괴가 완료되면 그 건축물은 가장 영향력 있는 이웃에게 주어질 것입니다."
 
-#: gui/text/tips/themistocles.txt:1
-msgid "THEMISTOCLES"
-msgstr "테미스토클레스"
+#: gui/text/tips/theater.txt:1
+msgid "THEATER"
+msgstr "극장"
 
-#: gui/text/tips/themistocles.txt:2
+#: gui/text/tips/theater.txt:2
 msgid ""
-"Athenian hero who commanded the Greeks at the great naval battles of "
-"Artemisium and Salamis."
-msgstr "아르테미시움과 살라미스의 대해전에서 그리스인을 지휘한 아테네의 영웅입니다."
+"Special structures of the Hellenic civilizations to increase the size of "
+"your territory while you control it."
+msgstr "헬레니즘 문명의 특별한 건축물을 통해 영토의 크기를 늘리고 통제합니다."
 
-#: gui/text/tips/themistocles.txt:3
-msgid "All ships are built faster while he lives."
-msgstr "그가 살아있는 동안 모든 선박은 더 빨리 지어집니다."
+#: gui/text/tips/treasure.txt:1
+msgid "TREASURES"
+msgstr "보물"
 
-#: gui/text/tips/themistocles.txt:4
-msgid "The ship he is garrisoned inside sails much faster."
-msgstr "그가 주둔하고 있는 배는 훨씬 더 빨리 항해합니다."
+#: gui/text/tips/treasure.txt:2
+msgid ""
+"Collectible chests and bare resources on land and shipwrecks on the shore."
+msgstr "육지와 해안의 난파선에서 수집 가능한 상자와 아주 적은 자원."
+
+#: gui/text/tips/treasure.txt:3
+msgid ""
+"Provide you with a resource boost, so keep an eye out for them as you "
+"explore."
+msgstr "자원 부양책을 제공하므로, 탐색할 때 눈을 떼지 마십시오."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6560,26 +6734,6 @@ msgstr "수송이나 전투에 좋습니다."
 msgid "Garrison troops aboard to increase fire power."
 msgstr "화력을 증강하기 위해 주둔지 병력을 탑승시킵니다."
 
-#: gui/text/tips/viriato.txt:1
-msgid "VIRIATO"
-msgstr "비리아토"
-
-#: gui/text/tips/viriato.txt:2
-msgid "Iberian hero of the Lusitani tribe."
-msgstr "루시타니 부족의 이베리아 영웅입니다."
-
-#: gui/text/tips/viriato.txt:3
-msgid ""
-"At least seven campaigns against the Romans during the Lusitani Wars from "
-"147 to 139 BC."
-msgstr "기원전 147 년부터 139 년까지 루시타니 전쟁 동안 적어도 로마인을 상대로 한 7건의 군사작전이 있었습니다."
-
-#: gui/text/tips/viriato.txt:4
-msgid ""
-"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
-"their opponents."
-msgstr "인근 이베리아 부대가 상대방을 매복공격할 수 있는 게릴라 전술의 아우라를 보유하고 있습니다."
-
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
 msgstr "전투 코끼리"
@@ -6596,7 +6750,7 @@ msgstr "식량과 금속 가격은 비싸지만 매우 강력합니다."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "카르타고, 쿠시, 모리아스, 페르시아, 프톨레마이오스, 셀레우코스가 이용 가능합니다."
+msgstr "카르타고인, 쿠시테인, 모리아스인, 페르시아인, 프톨레마이오스인, 셀레우코스인이 이용 가능합니다."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

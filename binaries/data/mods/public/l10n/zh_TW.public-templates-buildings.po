@@ -14,7 +14,7 @@
 # Mysterelee <8161525@qq.com>, 2014
 # neil000 <neil200063@gmail.com>, 2017
 # nigelinux <nnigelinux@gmail.com>, 2016
-# Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018,2021
 # StarAtt <tea55688@gmail.com>, 2019,2021
 # Yuan <daan0014119@gmail.com>, 2020-2021
 # 又齊 劉 <bill19981002@gmail.com>, 2018
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-08 01:26+0000\n"
-"Last-Translator: StarAtt <tea55688@gmail.com>\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-12 03:36+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1317,22 +1317,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "TriumphalArch"
 
-#: simulation/templates/structures/rome/army_camp.xml:70
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Army Camp"
 msgstr "部隊營地"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid ""
-"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
-" Soldiers for additional arrows."
-msgstr "在中立地帶或敵方領土建造。訓練高等近戰步兵。進駐士兵以增加箭數。"
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. "
+"Construct Rams. Garrison Soldiers for additional arrows."
+msgstr "在中立或敵方領土上建造。 訓練高級近戰步兵，建造衝撞車。 進駐士兵將會增加射出的箭支。 "
 
 #: simulation/templates/structures/rome/army_camp.xml:37
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "部隊營地"
 
@@ -1510,7 +1510,7 @@ msgstr "柱廊"
 
 #: simulation/templates/structures/sele_colonnade.xml:12
 msgid "Corinthian Colonnade"
-msgstr "Corinthian Colonnade"
+msgstr "科林斯柱廊 "
 
 #: simulation/templates/structures/shrine_egyptian.xml:5
 msgid "Sanctuary Kiosk"
@@ -1902,7 +1902,7 @@ msgstr "訓練鬥士弩步兵、建造攻城武器及研發攻城武器科技。
 #: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:76
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
@@ -2030,7 +2030,7 @@ msgstr "特殊建築"
 #: simulation/templates/template_structure_special_amphitheater.xml:18
 #: simulation/templates/template_structure_special_amphitheater.xml:20
 msgid "Amphitheater"
-msgstr "Amphitheater"
+msgstr "希臘圓型劇場"
 
 #: simulation/templates/template_structure_special_library.xml:25
 #: simulation/templates/template_structure_special_library.xml:27

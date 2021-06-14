@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 08:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-12 11:35+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgstr "Spartalılar askeri hayatın doğurabileceği tüm zorluklara göğüs g
 
 #: simulation/data/technologies/agoge.jsongenericName
 msgid "The Agoge"
-msgstr "The Agoge"
+msgstr "Zorlu Askeri Eğitim"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
@@ -175,7 +175,7 @@ msgstr "Anıtsal Yapı"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Yerleşim Yapıları +%20 inşa süresi, +%20 sağlık ve +%20 ele geçirme puanı."
+msgstr "Şehir Yapıları +%20 inşa süresi, +%20 sağlık ve +%20 ele geçirme puanı."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -416,7 +416,7 @@ msgstr "Kolonicilik"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr ""
+msgstr "Sivil yapılara -%25 inşa süresi ve kaynak masrafı."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -786,7 +786,7 @@ msgstr "Savaş alanı Tıbbı"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr ""
+msgstr "Boştaki Organik birimler +0.5 sağlık yenileme oranı"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -801,11 +801,11 @@ msgstr "Helenistik Büyükşehir"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Kent Merkezleri +%100 sağlık ve ele geçirme puanı, iki kat öntanımlı ok."
+msgstr "Şehir Merkezleri +%100 sağlık ve ele geçirme puanı, iki kat öntanımlı ok."
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr ""
+msgstr "Mızraklı Ağır Piyade'ler Yunan ordusunda çoğunluğu oluştururdu."
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
@@ -813,7 +813,7 @@ msgstr "Mızraklı Ağır Piyade Geleneği"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr ""
+msgstr "Mızraklı Ağır Piyadeler -%25 eğitim süresi ve -%50 tecrübe"
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -890,11 +890,11 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr ""
+msgstr "Şampiyon Süvari Piyadeler +%20 sağlık ama +%10 eğitim süresi."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
-msgstr ""
+msgstr "İleri karakol görüş mesafesini arttırır."
 
 #: simulation/data/technologies/outpost_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -902,7 +902,7 @@ msgstr "Posta Güvercinleri"
 
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
-msgstr ""
+msgstr "İleri karakollar için +%33 görüş alanı."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -912,7 +912,7 @@ msgstr "Geleneksel Ordu vs Reform Ordusu"
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
 "thousands of well-equipped troops participated in the opening procession."
-msgstr ""
+msgstr "Defne'deki festival Selevkos Imparatorluğunun en önemli etkinliklerinden biriydi: on binlerce iyi donanımlı birlik açılış merasimine katılırdı."
 
 #: simulation/data/technologies/parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -959,7 +959,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Halk Merkezleri +% 50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
+msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Şehir Merkezleri +%50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -972,7 +972,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Halk Merkezleri +% 50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
+msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Şehir Merkezleri +% 50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1011,7 +1011,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Daha fazla varlık ve teknolojiye ulaşabilmek için Kasaba Aşamasına geç. Şehir Merkezleri +%30 etki alanı çapı. Yapılarda garnizonlu birim başına +7 ele geçirme puanı yenileme. İşçiler +%10 metal toplama oranı."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1023,7 +1023,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Daha fazla varlık ve teknolojiye ulaşabilmek için Kasaba Aşamasına geç. Şehir Merkezleri +%30 etki alanı çapı. Yapılarda garnizonlu birim başına +7 ele geçirme puanı yenileme."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1045,15 +1045,15 @@ msgstr "Ev Bahçesi"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 msgid "Peristylon"
-msgstr ""
+msgstr "Peristil -Sütunlu koridorlar ile çevrelenmiş dikdörtgen biçimli üstü açık bir avlu"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 msgid "Paradaidām"
-msgstr ""
+msgstr "Cennet Bahçesi"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 msgid "Peristylium"
-msgstr ""
+msgstr "Peristil -Sütunlu koridorlar ile çevrelenmiş dikdörtgen biçimli üstü açık bir avlu"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1151,11 +1151,11 @@ msgstr "Ok Atıcılara -%20 menzilli saldırı sapması."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr ""
+msgstr "Kuşatma kurma veya yürütme bilimi veya sanatı."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
-msgstr ""
+msgstr "Kuşatma Sanatı"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
@@ -1219,7 +1219,7 @@ msgstr "Yedek Silahlar"
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
 msgid "Xiphos"
-msgstr ""
+msgstr "Düz kısa kılıç"
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -1242,15 +1242,15 @@ msgstr "Demir Silahlar"
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
-msgstr ""
+msgstr "Demir eritme sürecinde küçük bir miktar karbon eklenmesi ile daha güçlü bir malzeme, çelik, dövülebilir.  "
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
-msgstr ""
+msgstr "Demir sertleştirme"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr ""
+msgstr "Askerlere  +%20 yakın dövüş saldırı hasarı."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
@@ -1273,22 +1273,22 @@ msgstr "Wootz Çeliği"
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
-msgstr ""
+msgstr "Askerlere +%20 yakın dövüş saldırı hasarı.\nKılıçlı Piyadelere fazladan +%20 ilave. "
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr ""
+msgstr "Ok tüyünün iyileştirilmesi okların stabilitesini ve hızını arttırır, ve böylelikle delme etkisi artar."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
-msgstr ""
+msgstr "İyileştirilmiş Ok Tüyü"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr ""
+msgstr "Askerlere  +%15 menzilli saldırı hasarı."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
@@ -1304,11 +1304,11 @@ msgstr "İki yerine üç loblu ok uçları daha büyük yaralara neden olur."
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsongenericName
 msgid "Trilobate Arrowheads"
-msgstr ""
+msgstr "Üç Parçalı Ok Uçları "
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
 msgid "Soldiers +20% ranged attack damage."
-msgstr ""
+msgstr "Askerlere  +%20 menzilli saldırı hasarı."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1349,19 +1349,19 @@ msgstr "Lamine Keten Vücut Zırhı"
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.sele
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.spart
 msgid "Linothōrax"
-msgstr ""
+msgstr "Keten göğüs zırhı"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
 msgid "Body armor made of small metal rings linked together."
-msgstr ""
+msgstr "Birbirine bağlı küçük metal halkalardan yapılmış vücut zırhı."
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr ""
+msgstr "Zincir Vücut Zırhı"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr ""
+msgstr "Askerler +2 darbe direnci."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
@@ -1388,15 +1388,15 @@ msgstr "Metal Çerçeve"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr ""
+msgstr "Kalkanları, daha kuvvetli metal alaşımlar ile daha da güçlendir."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
-msgstr ""
+msgstr "Gelişmis Kalkan Alaşımları"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr ""
+msgstr "Askerler +2 delme direnci."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1526,7 +1526,7 @@ msgstr "Gelişmiş Zanaat"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr ""
+msgstr "Karavanla birlikte seyahat eden tacirler saldırıya daha az maruz kalırlar. "
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
@@ -1590,7 +1590,7 @@ msgstr "Şampiyon Süvari kilidini aç"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr ""
+msgstr "Ahırda Şampiyon Süvari kilidini aç"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
@@ -1598,7 +1598,7 @@ msgstr "Şampiyon Savaş Araba Kilidini Aç"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr ""
+msgstr "Ahırda Şampiyon Savaş Araba kilidini aç"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
@@ -1607,7 +1607,7 @@ msgstr "Şampiyon Piyade Kilidini Aç"
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
 msgid "Agēma"
-msgstr ""
+msgstr "Özel Birlik"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1702,7 +1702,7 @@ msgstr "Savaş Uzmanlığı"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
-msgstr ""
+msgstr "Paralı askerler Gelişmiş seviye ile başlar."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1718,10 +1718,10 @@ msgstr "Şanlı Yayılmacılık"
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
 msgid "Peristasis"
-msgstr ""
+msgstr "Peripteros plânlı bir tapınağın etrafını çevreleyen sütun sırası."
 
 #: simulation/data/technologies/wonder_population_cap.jsontooltip
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "\"Şanlı Genişleme\"yi etkinleştir: sahip olunan \"Dünya Harikası\" başına +%20 azami nüfus sınırı."

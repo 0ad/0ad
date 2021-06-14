@@ -16,7 +16,7 @@
 # ryat <mj0011@yopmail.com>, 2015
 # samrmrf, 2013
 # 青海 <wfzhang0511@gmail.com>, 2018
-# Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018,2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # StarAtt <tea55688@gmail.com>, 2021
 # Yuan <daan0014119@gmail.com>, 2020-2021
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:35+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"PO-Revision-Date: 2021-06-12 03:50+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr "選擇遊戲速度"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "按%(hotkey)s開啟選單"
+msgstr "按%(hotkey)s切換選單"
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -55,12 +55,12 @@ msgstr "儲存"
 
 #: gui/session/MenuButtons.js:77
 msgid "Summary"
-msgstr "摘要"
+msgstr "總結"
 
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "按%(hotkey)s開啟摘要畫面"
+msgstr "按%(hotkey)s開啟總結畫面"
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
@@ -71,7 +71,7 @@ msgstr "大廳"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "按%(hotkey)s不離開遊戲而打開多人遊戲大廳"
+msgstr "按 %(hotkey)s 打開多人遊戲大廳而不離開遊戲"
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -118,7 +118,7 @@ msgstr "已連線至伺服器。"
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr "已失去與伺服器間的連線。"
+msgstr "與伺服器的連線已中斷。"
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
@@ -126,7 +126,7 @@ msgstr "等待玩家連線："
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "正在與其他玩家同步遊戲..."
+msgstr "正在同步化與其他玩家的遊戲..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"

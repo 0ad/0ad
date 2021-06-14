@@ -89,8 +89,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:06+0000\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-13 09:08+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -1794,6 +1794,16 @@ msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
 msgstr "设置镜头跳转 4"
 
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
+msgctxt "hotkey metadata"
+msgid "Focus the camera on the position of the last attack notification."
+msgstr "镜头聚焦于最末一次攻击通知。"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
+msgctxt "hotkey metadata"
+msgid "Focus on last attack notification"
+msgstr "聚焦于最末一次攻击通知。"
+
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
@@ -2079,13 +2089,15 @@ msgstr "剪切到剪切板"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
-msgid "Exit to desktop."
-msgstr "退出到桌面."
+msgid ""
+"Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
+" / etc.) are always active."
+msgstr "自定义“退出到桌面”的热键。 原始热键（Alt+F4 / Cmd+Q ）始终激活。"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
-msgid "Exit to desktop"
-msgstr "退出到桌面"
+msgid "Custom exit to desktop"
+msgstr "自定义“退出到桌面”"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2337,6 +2349,26 @@ msgstr "当点击组图标时, 以 取消选择 替代 选择 的修饰键."
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
 msgstr "取消选择单位类型"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare while this hotkey is pressed."
+msgstr "按下此热键时，将光标处设为警戒点。"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
+msgctxt "hotkey metadata"
+msgid "Flare (hold)"
+msgstr "警戒点（固定）"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare. The hotkey can be released."
+msgstr "将光标处设为警戒点。热键可取消。"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
+msgctxt "hotkey metadata"
+msgid "Flare (toggle)"
+msgstr "警戒点（切换）"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -5332,7 +5364,7 @@ msgstr "%(hotkey)s：切换到建筑谱表。"
 msgid "Civilization:"
 msgstr "文明："
 
-#: gui/reference/common/TemplateParser.js:151
+#: gui/reference/common/TemplateParser.js:152
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s到%(health_max)s"
@@ -6060,8 +6092,8 @@ msgid ""
 msgstr "可建在中立区域或敌方领土上。 适合建立敌后的秘密基地，或巩固敌方领土内的收益。"
 
 #: gui/text/tips/army_camp.txt:3
-msgid "Construct siege weapons and train citizen-soldiers."
-msgstr "建造攻城武器，并训练民兵。"
+msgid "Construct rams and train citizen soldiers."
+msgstr "建造冲车，训练民兵。"
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6069,29 +6101,73 @@ msgid ""
 "and decay."
 msgstr "驻守单位，对其进行缓慢治疗，并保护军营免遭攻击以及防止失落。"
 
+#: gui/text/tips/autoqueue.txt:1
+msgid "AUTOQUEUE"
+msgstr "自动队列"
+
+#: gui/text/tips/autoqueue.txt:2
+msgid "Enable the autoqueue feature to automatically train units."
+msgstr "可自动训练单位。"
+
+#: gui/text/tips/autoqueue.txt:3
+msgid "Works as long as you have enough resources, then it will stop."
+msgstr "只要资源够，就一直工作。"
+
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
 msgstr "军营"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "训练所有民兵。某些文明可训练精锐单位。"
+msgstr "可训练全部公民士兵。某些文明可解锁冠勇单位。"
 
-#: gui/text/tips/barracks.txt:3
-msgid "Research military technologies unique to each faction."
-msgstr "研究不同文明特有的军事技术"
+#: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
+msgid "Units gain experience while garrisoned inside the building."
+msgstr "驻扎在建筑内的单位，可获取经验."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
-"Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "在殖民早期建造的可以训练公民士兵的建筑。"
+msgstr "尽早建一个生产民兵的建筑。"
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
 msgstr "建立一个前沿基地，不断补充兵力。"
+
+#: gui/text/tips/biomes.txt:1
+msgid "BIOMES"
+msgstr "生物群落"
+
+#: gui/text/tips/biomes.txt:2
+msgid ""
+"Biomes can be used on some random maps and determine which region of the "
+"world the map represents."
+msgstr "生物群落用于随机地图，代表地理环境。"
+
+#: gui/text/tips/biomes.txt:3
+msgid ""
+"They influence the appearence of the maps and also the amount of resources "
+"that are available."
+msgstr "它们可改变地图外观，以及资源数量。"
+
+#: gui/text/tips/briton_war_dog.txt:1
+msgid "WAR DOG"
+msgstr "猎犬"
+
+#: gui/text/tips/briton_war_dog.txt:2
+msgid "A dog that the Britons can train at the cavalry stable."
+msgstr "布立吞猎犬，可在马厩生产。"
+
+#: gui/text/tips/briton_war_dog.txt:3
+msgid "Has low health, but is fast and will fearlessly attack enemies."
+msgstr "速度快，血条低，打击敌人很猛烈。"
+
+#: gui/text/tips/briton_war_dog.txt:4
+msgid "Use them as support in your army or for quick raids."
+msgstr "编入军队，快速突袭。"
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6113,6 +6189,22 @@ msgid ""
 " shock against siege weapons and skirmishers."
 msgstr "使用枪兵对抗敌方步兵，使用骑兵消灭敌方射手和攻城机械。"
 
+#: gui/text/tips/carth_shipyard.txt:1
+msgid "CARTHAGINIAN NAVAL SHIPYARD"
+msgstr "迦太基船坞"
+
+#: gui/text/tips/carth_shipyard.txt:2
+msgid "Special dock of the Carthaginians to construct warships."
+msgstr "迦太基特有船坞，建造战舰。"
+
+#: gui/text/tips/carth_shipyard.txt:3
+msgid "Garrison ships inside to slowly repair them."
+msgstr "派兵驻守船只，受损船只会缓慢回血。"
+
+#: gui/text/tips/carth_shipyard.txt:4
+msgid "Much stronger than other docks, but also more expensive."
+msgstr "造价比其它船坞高，也更坚固。"
+
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "抛石机"
@@ -6130,6 +6222,19 @@ msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
 msgstr "收起后方可移动，再次部署即可攻击。"
+
+#: gui/text/tips/cavalry_stable.txt:1
+msgid "CAVALRY STABLE"
+msgstr "马厩"
+
+#: gui/text/tips/cavalry_stable.txt:2
+msgid ""
+"Trains cavalry units and lets you research cavalry specific technologies."
+msgstr "训练骑兵，提升骑兵科技。"
+
+#: gui/text/tips/cavalry_stable.txt:3
+msgid "Units gain experience while garrisoned inside the structure."
+msgstr "单位驻扎在建筑内，可获取经验。"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6150,6 +6255,24 @@ msgstr "可传输40单位。"
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
 msgstr "驻扎步兵，以加强火力。"
+
+#: gui/text/tips/city_walls.txt:1
+msgid "CITY WALLS"
+msgstr "城墙"
+
+#: gui/text/tips/city_walls.txt:2
+msgid "Strong stone walls that help you protect your city."
+msgstr "坚固的城墙，拱卫城市。"
+
+#: gui/text/tips/city_walls.txt:3
+msgid ""
+"When your ranged infantry units are occupying the turrets, they have "
+"additional armor and can shoot at the enemy. "
+msgstr "占领敌方炮塔的远程步兵单位有额外的护甲。"
+
+#: gui/text/tips/city_walls.txt:4
+msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
+msgstr "易受攻城武器的伤害，如弩车、冲车及战象。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6173,23 +6296,47 @@ msgid ""
 "citizen-soldiers."
 msgstr "训练公民：妇女、公民步兵和公民骑兵。"
 
+#: gui/text/tips/defense_towers.txt:1
+msgid "DEFENSE TOWERS"
+msgstr "碉楼"
+
+#: gui/text/tips/defense_towers.txt:2
+msgid "Strong watchtowers, which help you defend your position."
+msgstr "保卫领土的强力望楼。"
+
+#: gui/text/tips/defense_towers.txt:3
+msgid ""
+"They have a large vision range and will shoot arrows at the enemy in sight. "
+msgstr "他们视野很广，会自动向敌人射箭。"
+
+#: gui/text/tips/defense_towers.txt:4
+msgid ""
+"You can garrison more infantry inside them to increase the number of arrows "
+"they shoot."
+msgstr "可多驻扎步兵单位，提升箭矢数量。"
+
+#: gui/text/tips/elephant_stable.txt:1
+msgid "ELEPHANT STABLE"
+msgstr "象厩"
+
+#: gui/text/tips/elephant_stable.txt:2
+msgid ""
+"The structure is available to some civilizations to train elephant units."
+msgstr "某些文明的建筑，可训练象兵。"
+
 #: gui/text/tips/embassies.txt:1
-msgid "EMBASSIES"
-msgstr "使馆"
+msgid "EMBASSIES AND MERCENARY CAMPS"
+msgstr "使馆和佣兵营地"
 
 #: gui/text/tips/embassies.txt:2
-msgid "Special Barracks available to the Carthaginians."
-msgstr "迦太基特有的军营。"
+msgid "Special structures allowing you to hire mercenaries for your army."
+msgstr "特殊建筑，可招募雇佣兵。"
 
 #: gui/text/tips/embassies.txt:3
-msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr "从各处使馆征召雇佣兵。"
-
-#: gui/text/tips/embassies.txt:4
 msgid ""
-"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
-"cost."
-msgstr "雇佣兵消耗金属。"
+"Mercenaries will not gather resources and cost only metal, but they are "
+"experienced and strong."
+msgstr "雇佣兵招募仅需金属。他们不收集资源，但年富力强。"
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6223,23 +6370,26 @@ msgstr "所有派系都有的研究建筑。"
 msgid "Research weapon and armor upgrades for your units."
 msgstr "升级单位的兵器和铠甲。"
 
+#: gui/text/tips/formations.txt:1
+msgid "FORMATIONS"
+msgstr "阵型"
+
+#: gui/text/tips/formations.txt:2
+msgid ""
+"Arrange your soldiers in formations to keep them organized during battles."
+msgstr "将士兵编队，让他们在战斗中井然有序。"
+
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "堡垒"
 
 #: gui/text/tips/fortress.txt:2
-msgid "The Fortress is usually each faction's strongest structure."
-msgstr "通常，堡垒是最坚固的建筑。"
+msgid ""
+"Usually the strongest structure of a civilization and the place where you "
+"can train Heroes."
+msgstr "通常是最厉害的建筑，可以训练英雄。"
 
 #: gui/text/tips/fortress.txt:3
-msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "训练精锐单位、英雄和攻城武器。"
-
-#: gui/text/tips/fortress.txt:4
-msgid "Gives a population boost."
-msgstr "增加人口。"
-
-#: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
 msgstr "驻守士兵可增加建筑火力。"
 
@@ -6310,23 +6460,58 @@ msgstr "具有可改变其它单位或建筑物状态的光环。"
 msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "提示：每局游戏英雄只能征召一次。"
 
-#: gui/text/tips/iphicrates.txt:1
-msgid "IPHICRATES"
-msgstr "伊菲克拉特斯"
+#: gui/text/tips/iber_fireship.txt:1
+msgid "IBERIAN FIRESHIP"
+msgstr "伊比利亚喷火船"
 
-#: gui/text/tips/iphicrates.txt:2
+#: gui/text/tips/iber_fireship.txt:2
 msgid ""
-"The Athenian general who reformed the Athenian army to be faster and more "
-"maneuverable."
-msgstr "改良亚甸军队，增加军队速度和机动性的亚甸将军。"
+"The special Iberian fireship is very effective against other ships and "
+"buildings, but steadily loses health."
+msgstr "伊比利亚火船，攻击船只和建筑非常有效，但会逐步掉血。"
 
-#: gui/text/tips/iphicrates.txt:3
-msgid "Units in his formation are faster and stronger."
-msgstr "编队中的单位速度更快、攻击力更高。"
+#: gui/text/tips/lighthouse.txt:1
+msgid "LIGHTHOUSE"
+msgstr "灯塔"
 
-#: gui/text/tips/iphicrates.txt:4
-msgid "Skirmishers move faster while he lives."
-msgstr "他存活时，散兵的移动速度更快。"
+#: gui/text/tips/lighthouse.txt:2
+msgid ""
+"Special Ptolemaic structures to increase your vision range when built on the"
+" shore."
+msgstr "托勒密独有建筑，建在岸上时可扩大视野。"
+
+#: gui/text/tips/map_flare.txt:1
+msgid "MAP FLARE"
+msgstr "地图警戒点"
+
+#: gui/text/tips/map_flare.txt:2
+msgid ""
+"Use this feature to let your team know where on the map something important "
+"happens."
+msgstr "可告知队友，地图上某个位置有情况。"
+
+#: gui/text/tips/map_flare.txt:3
+msgid "They will see the flare on their minimap."
+msgstr "能在小地图上看到警戒点。"
+
+#: gui/text/tips/meroe_pyramids.txt:1
+msgid "PYRAMIDS OF MEROË"
+msgstr "麦罗埃金字塔"
+
+#: gui/text/tips/meroe_pyramids.txt:2
+msgid "Special structures available for the Kushites."
+msgstr "库什文明的特殊建筑。"
+
+#: gui/text/tips/meroe_pyramids.txt:3
+msgid ""
+"The small pyramids improve the gathering rate of the workers around them."
+msgstr "小金字塔会提升周围工人的效率。"
+
+#: gui/text/tips/meroe_pyramids.txt:4
+msgid ""
+"The large pyramids increase the military capabilities of soldiers around "
+"them."
+msgstr "大金字塔会提升周围士兵的军事能力。"
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6357,22 +6542,6 @@ msgstr "各文明都有的廉价的木墙，建造速度快."
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
 msgstr "大多数文明都可在乡村阶段建造。"
-
-#: gui/text/tips/pericles.txt:1
-msgid "PERICLES"
-msgstr "伯里克利"
-
-#: gui/text/tips/pericles.txt:2
-msgid "The foremost Athenian politician of the 5th century BC."
-msgstr "公元前5世纪时，雅典最著名的执政官。"
-
-#: gui/text/tips/pericles.txt:3
-msgid "Structures are built faster within his range."
-msgstr "在他的影响范围内，建造速度加快。"
-
-#: gui/text/tips/pericles.txt:4
-msgid "Temples are cheaper while he lives."
-msgstr "存活时，神庙的造价更加便宜。"
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6431,6 +6600,22 @@ msgstr "最多运输50个单位。"
 msgid "Increases firepower with garrisoned catapults."
 msgstr "驻扎单位，加强火力。"
 
+#: gui/text/tips/resource_counter.txt:1
+msgid "RESOURCE COUNTER"
+msgstr "资源统计面板"
+
+#: gui/text/tips/resource_counter.txt:2
+msgid ""
+"The resource counter panel shows you how much of each resources you have at "
+"the moment."
+msgstr "显示当前各种资源的数量。"
+
+#: gui/text/tips/resource_counter.txt:3
+msgid ""
+"The number below it shows you how many citizens are currently gathering "
+"them."
+msgstr "下面的数字显示了当前工人数。"
+
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
 msgstr "草原生物群落"
@@ -6450,24 +6635,6 @@ msgstr "富含各种矿藏。"
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
 msgstr "木材虽然稀少，但面包树的产量很高。"
-
-#: gui/text/tips/scout_towers.txt:1
-msgid "DEFENSE TOWERS"
-msgstr "碉楼"
-
-#: gui/text/tips/scout_towers.txt:2
-msgid "Free-standing towers good for defending large areas of countryside."
-msgstr "独立的碉楼可以提供大面积的防御。"
-
-#: gui/text/tips/scout_towers.txt:3
-msgid ""
-"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
-"Wood and 250 Stone (because they're stronger)."
-msgstr "一般要花费 100 木材和 100 石料。伊比利亚的碉楼要成本 300 石料(更高的生命值)。"
-
-#: gui/text/tips/scout_towers.txt:4
-msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr "远程攻击。每驻守一个单位，攻击力加强。"
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -6588,23 +6755,30 @@ msgid ""
 "influential neighbor."
 msgstr "最终失落时，建筑物会被周围最有影响力的邻国获取。"
 
-#: gui/text/tips/themistocles.txt:1
-msgid "THEMISTOCLES"
-msgstr "地米斯托克利"
+#: gui/text/tips/theater.txt:1
+msgid "THEATER"
+msgstr "剧院"
 
-#: gui/text/tips/themistocles.txt:2
+#: gui/text/tips/theater.txt:2
 msgid ""
-"Athenian hero who commanded the Greeks at the great naval battles of "
-"Artemisium and Salamis."
-msgstr "雅典英雄，在阿尔弥忒斯大海战和萨拉公尺斯大海战期间御统希腊人对抗波斯。"
+"Special structures of the Hellenic civilizations to increase the size of "
+"your territory while you control it."
+msgstr "希腊文明的独有建筑，控制及扩大领土。"
 
-#: gui/text/tips/themistocles.txt:3
-msgid "All ships are built faster while he lives."
-msgstr "他存活时，散兵的移动速度更快。"
+#: gui/text/tips/treasure.txt:1
+msgid "TREASURES"
+msgstr "宝藏"
 
-#: gui/text/tips/themistocles.txt:4
-msgid "The ship he is garrisoned inside sails much faster."
-msgstr "有驻防的船只航行更快。"
+#: gui/text/tips/treasure.txt:2
+msgid ""
+"Collectible chests and bare resources on land and shipwrecks on the shore."
+msgstr "陆上的宝箱和资源，还有岸边的沉船。"
+
+#: gui/text/tips/treasure.txt:3
+msgid ""
+"Provide you with a resource boost, so keep an eye out for them as you "
+"explore."
+msgstr "为玩家提供资源，探索地图时多留意一下。"
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6621,26 +6795,6 @@ msgstr "擅长传送士兵或战斗。"
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
 msgstr "驻扎士兵，以增强火力。"
-
-#: gui/text/tips/viriato.txt:1
-msgid "VIRIATO"
-msgstr "维里亚托 "
-
-#: gui/text/tips/viriato.txt:2
-msgid "Iberian hero of the Lusitani tribe."
-msgstr "伊比利亚半岛西部卢西塔尼亚部落（为一印欧部落）的英雄"
-
-#: gui/text/tips/viriato.txt:3
-msgid ""
-"At least seven campaigns against the Romans during the Lusitani Wars from "
-"147 to 139 BC."
-msgstr "在卢西塔尼亚战争(公元前147—前139年)中，至少参加了7次对抗罗马的战斗。"
-
-#: gui/text/tips/viriato.txt:4
-msgid ""
-"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
-"their opponents."
-msgstr "拥有“游击战术”的光环，在其光环下的伊比利亚士兵可以伏击敌人。"
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

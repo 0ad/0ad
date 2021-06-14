@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-13 18:40+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -818,25 +818,25 @@ msgstr "%(projectileString)s / %(attackRateString)s"
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:356 gui/common/tooltips.js:1045
 msgid "Range:"
@@ -868,17 +868,17 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:393
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s Roiske"
 
 #: gui/common/tooltips.js:396
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -911,13 +911,13 @@ msgstr "antaa %(name)s"
 #: gui/common/tooltips.js:447
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:466
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:477
 msgid "Attack:"
@@ -926,17 +926,17 @@ msgstr "Hyökkää:"
 #: gui/common/tooltips.js:504
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:509
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:520
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:521
 msgid "Duration"
@@ -960,7 +960,7 @@ msgstr "(pinoutuu)"
 #: gui/common/tooltips.js:541
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:552
 #, javascript-format
@@ -988,7 +988,7 @@ msgstr "Terveys"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
@@ -1030,26 +1030,26 @@ msgstr "Per yksikkö"
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Korjaajien lukumäärä:"
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Jäljellä oleva korjausaika:"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lisää toinen työntekijä nopeuttamaan korjauksia %(second)s sekunnilla."
+msgstr[1] "Lisää toinen työntekijä nopeuttamaan korjauksia %(second)s sekunnilla."
 
 #: gui/common/tooltips.js:658
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lisää työntekijä suorittaakseen korjaukset loppuun %(second)s sekunnissa."
+msgstr[1] "Lisää työntekijä suorittaakseen korjaukset loppuun %(second)s sekunnissa."
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
@@ -1057,22 +1057,22 @@ msgstr "Rakentajien määrä:"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Jäljellä oleva rakennusaika:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lisää toinen työntekijä nopeuttamaan rakennustyötä %(second)s sekunnilla."
+msgstr[1] "Lisää toinen työntekijä nopeuttamaan rakennustyötä %(second)s sekunnilla."
 
 #: gui/common/tooltips.js:692
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lisää työntekijä suorittaaksesi rakennustyö loppuun %(second)s sekunnissa."
+msgstr[1] "Lisää työntekijä suorittaaksesi rakennustyö loppuun %(second)s sekunnissa."
 
 #: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
@@ -1110,16 +1110,16 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Palkkio:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Resurssien valuma:"
 
 #: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
@@ -1128,7 +1128,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
-msgstr ""
+msgstr "Ylläpito:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1166,7 +1166,7 @@ msgstr "Vaatii %(technology)s"
 #: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
@@ -1209,8 +1209,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1042
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Terveys"
+msgstr[1] "Terveys"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1230,12 +1230,12 @@ msgstr "Kantama:"
 #: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1149
 msgid "Classes:"
@@ -1256,11 +1256,11 @@ msgstr "Ryöstösaalis:"
 #: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1197
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Pudotusalue:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
@@ -1279,17 +1279,17 @@ msgstr "Napsauta nähdäksesi lisätietoja."
 #: gui/common/tooltips.js:1220
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1317,11 +1317,11 @@ msgstr "Äänipäällikkö"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Pääsäveltäjä"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Audiovastaavat"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1329,7 +1329,7 @@ msgstr "Alttoviulu, viulu"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
+msgstr "Lisämusiikki, lyömäsoittimet, djembe, näytteenotto"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
 msgid "Additional music"
@@ -1345,7 +1345,7 @@ msgstr "Djembe"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
+msgstr "Runkorumpu, darbuka, riq, tomit"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -1361,7 +1361,7 @@ msgstr "Kelttiläinen harppu"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Tinapillit"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
@@ -1382,11 +1382,11 @@ msgstr "Latinalainen"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatalainen"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Persialainen"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
@@ -1394,7 +1394,7 @@ msgstr "Äänet"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1403,7 +1403,7 @@ msgstr "Päällikkö"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Tasapainotus"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1441,7 +1441,7 @@ msgstr "Satunnaiset kartan ohjelmat"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Kartat"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1498,47 +1498,47 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Vaikka tekoälyn oletustaso on kohtuullisen helppo kokeneelle pelaajalle, se on melko haastava uusille pelaajille, jotka eivät vielä hallitse pelin perusmekanismeja. Aloittelijoiden kannattaa aloittaa pelaamalla alemman tason tekoälyä vastaan (Sandbox tai Very Easy). Vaihda tekoälytasoa napsauttamalla hammasratas-kuvaketta yllä olevassa valintapaneelissa sen pelaajan vieressä, jota haluat muuttaa."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Muut pikanäppäimet"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr "(pidä pohjassa tallentaaksesi)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Syötä uusi pikanäppäin, pidä pohjassa tallentaaksesi."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(käyttämätön)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Voi olla ristiriidassa:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Kaikki pikanäppäimet"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "Kaikki saatavilla olevat pikanäppäimet."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Nollataanko kaikki pikanäppäimet oletusarvoihin?\nVAROITUS: tätä ei voi peruuttaa."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1547,7 +1547,7 @@ msgstr "Vahvistus"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Työkaluvihjettä ei ole saatavilla."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1564,17 +1564,17 @@ msgstr "Nollaa"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Pikanäppäin"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Pikanäppäimen kuvaus"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Voit muokata mitä tahansa määritystä napsauttamalla sitä.\\n Sinulla voi olla enintään 4 erilaista pikanäppäintä."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1596,7 +1596,7 @@ msgstr "Nimi"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Määritys"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -1609,351 +1609,361 @@ msgstr "Tallentaa muutokset"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Tallentamattomat muutokset menetetään"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Aseta pikanäppäin napsauttamalla"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Poista pikanäppäin napsauttamalla"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Muuta pikanäppäimiä ja sulje"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Pikanäppäimiä ei muuteta"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "Kameraan liittyvät pikanäppäimet."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Vieritä taaksepäin tai käännä alaspäin."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Vieritä/käännä alaspäin"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Seuraa valinnan ensimmäistä yksikköä."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr ""
+msgstr "Seuraa yksikköä"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "Siirry kameran sijaintiin 1 (katso \"Aseta kameran hyppy 1\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "Hyppää kameraan 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr ""
+msgstr "Siirry kameran sijaintiin 2 (katso \"Aseta kameran hyppy 2\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr ""
+msgstr "Hyppää kameraan 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr ""
+msgstr "Siirry kameran sijaintiin 3 (katso \"Aseta kameran hyppy 3\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "Hyppää kameraan 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr ""
+msgstr "Siirry kameran sijaintiin 4 (katso \"Aseta kameran hyppy 4\")."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "Hyppää kameraan 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Aseta kameran hypyn sijainti 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "Aseta kameran hyppy 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Aseta kameran hypyn sijainti 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "Aseta kameran hyppy 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Aseta kameran hypyn sijainti 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "Aseta kameran hyppy 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Aseta kameran hypyn sijainti 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "Aseta kameran hyppy 4"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
+msgctxt "hotkey metadata"
+msgid "Focus the camera on the position of the last attack notification."
+msgstr "Keskitä kamera viimeisimmän hyökkäysilmoituksen sijaintiin."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
+msgctxt "hotkey metadata"
+msgid "Focus on last attack notification"
+msgstr "Keskitä viimeisimpäään hyökkäysilmoitukseen"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Vieritä tai käännä vasemmalle."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Vieritä/käännä vasemmalle"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
 msgid "Enable scrolling by moving the mouse."
-msgstr ""
+msgstr "Ota vieritys hiirtä liikuttamalla käyttöön."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
 msgid "Pan camera"
-msgstr ""
+msgstr "Liikuta kameraa"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "Keskitä kamera valitun rakennuksen kokoontumispaikkaan."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "Keskitä kokoontumispaikkaan"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "Palauta kameran kierto oletusarvoon."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "Nollaa kamera"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Vieritä tai käännä oikealle."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Vieritä/käännä oikealle"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Kierrä kameraa vastapäivään maaston ympäri."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Kierrä vastapäivään"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Kierrä kameraa myötäpäivään maaston ympäri."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Kierrä myötäpäivään"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look downwards."
-msgstr ""
+msgstr "Käännä kameraa katsomaan alaspäin."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "Käännä alaspäin"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Vähennä kameran kiertonopeutta."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Vähennä kiertonopeutta"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Lisää kameran kiertonopeutta."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Lisää kiertonopeutta"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look upwards."
-msgstr ""
+msgstr "Käännä kameraa katsomaan ylöspäin."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "Käännä ylöspäin"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Kierrä kameraa vastapäivään maaston ympäri - vaikutus riippuu FPS:stä."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Kierrä kameraa myötäpäivään maaston ympäri - vaikutus riippuu FPS:stä."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "Vähennä kameran vieritysnopeutta."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Vähennä vieritysnopeutta"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "Lisää kameran vieritysnopeutta."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "Lisää vieritysnopeutta"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "Vieritä eteenpäin tai käännä ylöspäin."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "Vieritä/käännä ylös"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Lähennä kameraa."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Lähennä"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Loitonna kameraa."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "Loitonna"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "Vähennä kameran lähennys-/loitonnusnopeutta."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "Vähennä lähennys-/loitonnusnopeutta"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "Lisää kameran lähennys-/loitonnusnopeutta."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "Lisää lähennys-/loitonnusnopeutta"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Lähennä kameraa - vaikutus riippuu FPS:stä."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Lähennä (askel askeleelta)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Loitonna kameraa - vaikutus riippuu FPS:stä."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Loitonna (askel askeleelta)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "Yleiset pikanäppäimet."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -1963,27 +1973,27 @@ msgstr "Yleinen"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "Ota suuri BMP-kuvakaappaus."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Suuri kuvakaappaus"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "Sulje tai peruuta nykyinen valintaikkuna/ponnahdusikkuna."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Sulje/Peruuta"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Vahvista nykyinen komento."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -1993,197 +2003,199 @@ msgstr "Vahvista"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Open/close console."
-msgstr ""
+msgstr "Avaa/sulje konsoli."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Avaa/sulje konsoli"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Kopioi leikepöydälle."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopioi leikepöydälle"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Leikkaa valittu teksti ja kopioi leikepöydälle."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Leikkaa leikepöydälle"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
-msgid "Exit to desktop."
-msgstr ""
+msgid ""
+"Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
+" / etc.) are always active."
+msgstr "Mukautettu pikanäppäin, joka käynnistää työpöydälle poistumisen. Natiivit pikanäppäimet (Alt+F4 / Cmd+Q / jne.) ovat aina aktiivisia."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
-msgid "Exit to desktop"
-msgstr ""
+msgid "Custom exit to desktop"
+msgstr "Mukautettu työpöydälle poistuminen"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "Liitä leikepöydältä."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Liitä leikepöydältä"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/unpause game."
-msgstr ""
+msgstr "Aloita/lopeta pelitauko."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "Aloita/lopeta pelitauko"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Tallenna nykyiset profilointitiedot tiedostoon logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Tallenna profiili"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable real-time profiler."
-msgstr ""
+msgstr "Ota reaaliaikainen profilointi käyttöön tai poista se käytöstä."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "Profilointi päälle/pois"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "HTTP/GPU-tilojen ottaminen käyttöön tai poistaminen käytöstä uudessa profiloijassa."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "Profiler2 päälle/pois"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "Ota PNG-kuvakaappaus."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Kuvakaappaus"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Ota tuotteen/yrityksen vesileima käyttöön virallisia kuvakaappauksia varten tai poista se käytöstä."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Vesileima päälle/pois"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Näytä seuraava välilehti."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Seuraava välilehti"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Näytä edellinen välilehti."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Edellinen välilehti"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Poista kursorin vasemmalla puolella oleva sana."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Poista ennen kursoria"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Poista kursorin oikealla puolella oleva sana."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Poista kursorin jälkeen"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Siirrä kursori kursorin vasemmalla puolella olevan sanan alkuun."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Siirrä kursori vasempaan sanaan"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Siirrä kursori kursorin oikealla puolella olevan sanan alkuun."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Siirrä kursori oikeaan sanaan"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "Vaihda tilaa koko näytön ja ikkunan välillä."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Koko näyttö/Ikkuna"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Rautalankamalli päälle/pois."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "Rautalankamalli päälle/pois"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr ""
+msgstr "Pelin asetusnäytössä aktiiviset pikanäppäimet."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2193,67 +2205,67 @@ msgstr "Pelin asetukset"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "Avaa karttaselain."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Avaa karttaselain"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Pelinsisäiset pikanäppäimet"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "Pelinsisäinen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr ""
+msgstr "Muuntonäppäin jolla hyökätään kohteeseen toisen toiminnon (esim. valtauksen) sijasta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "Pakota hyökkäys"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Muuntonäppäin, jolla hyökätään ja liikutaan kun painetaan sijaintia."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Hyökkäysliike"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Muuntonäppäin, jolla hyökätään vain yksiköiden kimppuun ja liikutaan, kun painetaan sijaintia."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "Hyökkäysliike (vain yksiköt)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr ""
+msgstr "Muunnin, joka asettaa kokoontumispaikan itse rakennukseen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "Automaattinen kokoontumispaikka"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "Yksikkö menee takaisin töihin."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2263,38 +2275,58 @@ msgstr "Takaisin tyohön"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "Muuntonäppäin, jolla koulutetaan yksiköitä erissä."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "Koulutus erissä"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
+msgstr "Muuntonäppäin, jolla poistetaan yksiköiden valinta, kun painetaan ryhmän ikonia, valitsemisen sijaan."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "Poista yksikkötyypin valinta"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare while this hotkey is pressed."
+msgstr "Asettaa kursorin soihduksi, kun tätä pikanäppäintä painetaan."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
+msgctxt "hotkey metadata"
+msgid "Flare (hold)"
+msgstr "Hätäsoihtu (pidä painettuna)"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare. The hotkey can be released."
+msgstr "Asettaa kursorin soihduksi. Näppäintä ei tarvitse pitää painettuna."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
+msgctxt "hotkey metadata"
+msgid "Flare (toggle)"
+msgstr "Hätäsoihtu (päälle/pois)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr ""
+msgstr "Muuntonäppäin, jolla asetetaan haluttu kaupparesurssi 100 %:iin."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "Aseta kauppa 100 %:iin"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Muuntonäppäin, jolla miehitetään rakennus sitä napsautettaessa."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2304,7 +2336,7 @@ msgstr "Miehitä"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Muuntonäppäin, jolla saatetaan/suojellaan kun napstautetaan yksikköä/rakennusta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2314,87 +2346,87 @@ msgstr "Vartioi"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr ""
+msgstr "Tuhoa valitut yksiköt."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Tuhoa valitut yksiköt"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Käske entiteetin poistua tykkitornipisteestä."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Poistu tykkitornipisteestä"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Muuntonäppäin, jolla käydä vaihtokauppaa joukosta resursseja."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Suurilukuinen vaihtokauppa"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr ""
+msgstr "Muuntonäppäin, jolla antaa kunnianosoituksena joukko resursseja."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Suurilukuinen kunnianosoitus"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
+msgstr "Muuntonäppäin, jolla voit siirtyä pisteeseen jonkin toisen toiminnon (esim. keräämisen) sijasta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr ""
+msgstr "Pakota liikkuminen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Älä kysy vahvistusta, kun poistetaan rakennus/yksikkö."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Hävitä ilman vahvistusta"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr ""
+msgstr "Muunnin, jolla voit miehittää tykkitornin, kun napsautat tornin pidikettä."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "Miehitä tykkitornipiste"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr ""
+msgstr "Muuntonäppäin, joka määrää vain yhden olion valinnassa."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Määrää yhtä yksikköä"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Muuntonäppäin yksikön partioimiseksi."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2404,127 +2436,127 @@ msgstr "Partioi"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr ""
+msgstr "Muuntonäppäin, joka suorittaa tämän toiminnon ja palaa sitten takaisin nykyiseen toimintoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Työnnä toiminto etummaiseksi"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr ""
+msgstr "Muuntonäppäin, joka asettaa yksikkötilaukset jonoon korvaamisen sijasta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Jonojärjestys"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr ""
+msgstr "Lisää ensimmäinen yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
 msgid "Queue 1st unit"
-msgstr ""
+msgstr "Lisää 1. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr ""
+msgstr "Lisää toinen yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
 msgid "Queue 2nd unit"
-msgstr ""
+msgstr "Lisää 2. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr ""
+msgstr "Lisää kolmas yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
 msgid "Queue 3rd unit"
-msgstr ""
+msgstr "Lisää 3. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr ""
+msgstr "Lisää neljäs yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
 msgid "Queue 4th unit"
-msgstr ""
+msgstr "Lisää 4. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr ""
+msgstr "Lisää viides yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
 msgid "Queue 5th unit"
-msgstr ""
+msgstr "Lisää 5. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr ""
+msgstr "Lisää kuudes yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
 msgid "Queue 6th unit"
-msgstr ""
+msgstr "Lisää 6. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr ""
+msgstr "Lisää seitsemäs yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
 msgid "Queue 7th unit"
-msgstr ""
+msgstr "Lisää 7. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr ""
+msgstr "Lisää kahdeksas yksikkötyyppi jonoon."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
-msgstr ""
+msgstr "Lisää 8. yksikkö jonoon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr ""
+msgstr "Kytke automaattinen jonotus pois käytöstä valittujen rakenteiden osalta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
 msgid "Deactivate auto-queue"
-msgstr ""
+msgstr "Poista automaattinen jonotus käytöstä"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr ""
+msgstr "Kytke automaattinen jonotus käyttöön valittujen rakenteiden osalta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
 msgid "Activate auto-queue"
-msgstr ""
+msgstr "Kytke automaattinen jonotus käyttöön"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
+msgstr "Muuntonäppäin, jolla korjataan, kun napsautetaan rakennusta/mekaanista yksikköä."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2534,59 +2566,59 @@ msgstr "Korjaa"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview anticlockwise."
-msgstr ""
+msgstr "Käännä rakennuksen sijoittelun esikatselua vastapäivään."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Käännä rakennusta vastapäivään"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr ""
+msgstr "Käännä rakennuksen sijoittelun esikatselua myötäpäivään."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Pyöritä rakennusta myötäpäivään"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr ""
+msgstr "Muuntonäppäin, jolla uudet rakenteet sovitetaan läheiseen olemassa olevaan rakenteeseen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Kytke reunaan kiinnittäminen päälle/pois"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Pysäytä nykyinen toiminto."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr ""
+msgstr "Pysäytä yksiköt"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "Vaihda tyhjän oletusmuodostelman ja viimeksi käytetyn oletusmuodostelman välillä (oletusarvo on 'laatikko')."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr ""
+msgstr "Kytke oletusmuodostelma"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Purkaa miehittävät yksiköt, kun rakennus/mekaaninen yksikkö on valittu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2596,72 +2628,72 @@ msgstr "Pura"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Purkka tykkitorniyksiköt."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Pura tykkitornit"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Muuntonäppäin, joka purkaa kaikki tyypin yksiköt."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Pura yksikkötyyppi"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Pelin käyttöliittymän pikanäppäimet."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "Pelinsisäinen graafinen käyttöliittymä"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Tulitaukolaskuri päälle/pois."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Tulitaukolaskuri päälle/pois"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Näytä/piilota keskusteluikkuna"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Näytä/piilota keskustelu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Näytä sivilisaation tidot"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "Näytä/piilota sivilisaation tiedot"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr ""
+msgstr "Näytä/piilota ruutunopeuslaskuri."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr ""
+msgstr "Näytä/piilota FPS-laskuri"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2671,721 +2703,721 @@ msgstr "Näytä moninpeliaula valintaikkunassa."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr ""
+msgstr "Avaa/sulje moninpeliaula"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Näytä/piilota keskusteluikkunaa ja valitse edellinen yksityinen keskustelukumppani."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Näytä/piilota yksityinen keskustelu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr ""
+msgstr "Lataa viimeisin pikatallennettu peli. Ei tee mitään, jos pikatallennuksia ei ole."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "Pikalataus"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr ""
+msgstr "Tee pelistä väliaikainen tallennus, joka voidaan ladata pikalatauksella. Pikatallennus korvaa aina edellisen tallennuksen."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
 msgid "Quicksave"
-msgstr ""
+msgstr "Pikatallennus"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr ""
+msgstr "Näytä/piilota tietokoneen kellonaika."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Näytä/piilota reaaliaika"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle developer commands panel."
-msgstr ""
+msgstr "Näytä/piilota kehittäjäkomentojen paneeli."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr ""
+msgstr "Näytä/piilota kehityspaneeli"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr ""
+msgstr "Diplomatiavärit päälle tai pois."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Diplomatiavärit päälle tai pois"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Avaa/sulje pelin sisäinen vaihtokauppa-/kauppasivu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Avaa/sulje vaihtokauppa"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr ""
+msgstr "Avaa/sulje pelinsisäinen diplomatiasivu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr ""
+msgstr "Avaa/sulje diplomatia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Avaa/sulje pelinsisäinen valikko"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr ""
+msgstr "Avaa/sulje pelinsisäinen valikko"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Avaa/sulje pelin sisäinen tavoitesivu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr ""
+msgstr "Avaa/sulje tavoitteet"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr ""
+msgstr "Näytä/piilota pelinsisäinen käyttöliittymä"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Näytä/piilota käyttöliittymä"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Näytä/piilota pelinsisäinen opaspaneeli."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Näytä/piilota opas"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Näytä/piilota vartioitujen yksiköiden korostus."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Näytä/piilota vartioitujen korostus"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Näytä/piilota vartioivien yksiköiden korostus."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Näytä/piilota vartioivien korostus"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr ""
+msgstr "Poista tallennettu peli (tallennus-/latausikkunassa)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Poista tallennettu peli"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Älä pyydä vahvistusta, kun tallennettua peliä poistetaan."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Poista ilman vahvistusta"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of status bars."
-msgstr ""
+msgstr "Näytä/piilota tilapalkit."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr ""
+msgstr "Näytä/piilota tilapalkit"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
+msgstr "Aktivoi pikakelaus-tila. Ajansiirron on oltava aktivoituna."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Pikakelaus (ajansiirto)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Kelaa aikaa taaksepäin. Ajansiirron on oltava aktivoituna."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
-msgstr ""
+msgstr "Kelaus taaksepäin (ajansiirto)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr ""
+msgstr "Näytä/piilota valittujen puolustusrakenteiden hyökkäyskantamien peitetasot."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Togge attack ranges"
-msgstr ""
+msgstr "Näytä/piilota hyökkäyskantamat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr ""
+msgstr "Näytä/piilota valittujen rakenteiden ja yksiköiden auran kantamien peitetasot."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr ""
+msgstr "Näytä/piilota auran kantamat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr ""
+msgstr "Näytä/piilota valittujen yksiköiden parannuskantamien peitetasot."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr ""
+msgstr "Näytä/piilota parannuskantamat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes."
-msgstr ""
+msgstr "Näytä/piilota yksikköjen siluetit."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr ""
+msgstr "Näytä/piilota yksiköiden siluetit"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Show structure tree."
-msgstr ""
+msgstr "Näytä rakennepuu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr ""
+msgstr "Näytä rakennepuu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Näytä pelinsisäinen yhteenveto."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr ""
+msgstr "Näytä yhteenveto"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Näytä/piilota keskusteluikkuna tiimikeskustelutilassa."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Näytä/piilota tiimikeskustelu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Shows the game time elapsed since the game started."
-msgstr ""
+msgstr "Näyttää pelin alkamisesta kuluneen peliajan."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr ""
+msgstr "Näytä peliajan peitetaso"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Yksikön valinnan muokkaamiseen liittyvät pikanäppäimet."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "Yksiköiden valinta"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Lisää yksiköitä valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "Lisää valintaan"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Poista kaikkien yksiköiden valinta ja peruuta rakennuksen sijoittaminen."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Peruuta valinta"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 0 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0"
-msgstr ""
+msgstr "Lisää ohjausryhmä 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 1 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr ""
+msgstr "Lisää ohjausryhmä 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 2 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr ""
+msgstr "Lisää ohjausryhmä 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 3 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr ""
+msgstr "Lisää ohjausryhmä 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 4 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr ""
+msgstr "Lisää ohjausryhmä 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 5 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr ""
+msgstr "Lisää ohjausryhmä 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 6 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr ""
+msgstr "Lisää ohjausryhmä 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 7 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr ""
+msgstr "Lisää ohjausryhmä 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 8 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr ""
+msgstr "Lisää ohjausryhmä 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr ""
+msgstr "Lisää ohjausryhmä 9 nykyiseen valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr ""
+msgstr "Lisää ohjausryhmä 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 0."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 0"
-msgstr ""
+msgstr "Aseta ohjausryhmä 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr ""
+msgstr "Aseta ohjausryhmä 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr ""
+msgstr "Aseta ohjausryhmä 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr ""
+msgstr "Aseta ohjausryhmä 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr ""
+msgstr "Aseta ohjausryhmä 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr ""
+msgstr "Aseta ohjausryhmä 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr ""
+msgstr "Aseta ohjausryhmä 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr ""
+msgstr "Aseta ohjausryhmä 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr ""
+msgstr "Aseta ohjausryhmä 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr ""
+msgstr "Tallenna nykyinen valinta ohjausryhmäksi 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr ""
+msgstr "Aseta ohjausryhmä 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 0."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 0"
-msgstr ""
+msgstr "Valitse ohjausryhmä 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 1."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr ""
+msgstr "Valitse ohjausryhmä 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 2."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr ""
+msgstr "Valitse ohjausryhmä 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 3."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr ""
+msgstr "Valitse ohjausryhmä 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 4."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr ""
+msgstr "Valitse ohjausryhmä 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 5."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr ""
+msgstr "Valitse ohjausryhmä 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 6."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr ""
+msgstr "Valitse ohjausryhmä 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 7."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr ""
+msgstr "Valitse ohjausryhmä 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 8."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr ""
+msgstr "Valitse ohjausryhmä 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 9."
-msgstr ""
+msgstr "Vaihda nykyinen valinta ohjausryhmään 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr ""
+msgstr "Valitse ohjausryhmä 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "Valitse seuraava joutilas rakentaja."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "Valitse seuraava joutilas rakentaja"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Valitse vain joutilaat yksiköt."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Valitse vain joutilaat yksiköt"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Valitse seuraava joutilas yksikkö"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Valitse seuraava joutilas yksikkö"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Valitse seuraava joutilas soturi."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Valitse seuraava joutilas soturi"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Valitse seuraava joutilas työntekijä."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Valitse seuraava joutilas työntekijä"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Lisää valintaan vain sotilasyksiköitä."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Valitse vain sotilasyksiköitä"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Lisää valintaan vain ei-sotilaallisia yksiköitä."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Lisää vain ei-sotilaallisia"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Sisällytä näytön ulkopuoliset yksiköt valintaan."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Sisällytä näytön ulkopuoliset"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Poista yksiköt valinnasta."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Poista yksiköt valinnasta"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Valitse vain haavoittuneet yksiköt."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Valitse vain haavoittuneet yksiköt"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Poista valittu tallennus painamalla %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Pidä %(hotkey)s painettuna ohittaaksesi vahvistusvalintaikkunan poistamisen aikana."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -3436,7 +3468,7 @@ msgstr "Tämä pelitallennus vaatii vanhemman version 0 A.D.:stä."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Tämä tallennus tarvitsee erilaiset modit:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -3553,7 +3585,7 @@ msgstr "Ei mitään"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "Virheellinen lokaali"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3609,7 +3641,7 @@ msgstr "Perus"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Kaikki kartat paitsi merelliset ja demokartat."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
@@ -3617,7 +3649,7 @@ msgstr "Merikartat"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Kartat, joissa tarvitaan laivoja vihollisen tavoittamiseksi."
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
@@ -3625,7 +3657,7 @@ msgstr "Demokartat"
 
 #: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Nämä kartat eivät ole pelattavissa, vaan ainoastaan esittelytarkoituksia varten."
 
 #: gui/maps/MapFilters.js:109
 msgid "New Maps"
@@ -3633,23 +3665,23 @@ msgstr "Uudet kartat"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Kartat, jotka ovat upouusia tässä peliversiossa."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Paras moninpeliin"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Kartat, joita suositellaan moninpeliin."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Liipaisinkartat"
 
 #: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Kartat, joihin liittyy käsikirjoitettuja tapahtumia ja jotka mahdollisesti synnyttävät vihollisyksiköitä."
 
 #: gui/maps/MapFilters.js:127
 msgid "All Maps"
@@ -3657,16 +3689,16 @@ msgstr "Kaikki kartat"
 
 #: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Jokainen valitun karttatyypin kartta."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Karttaselain"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Sulje karttaselain ja hylkää valinta."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3678,7 +3710,7 @@ msgstr "Sulje"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Sulje karttaselain."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3688,11 +3720,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Etsi karttaa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3700,42 +3732,42 @@ msgstr "Karttasuodatin:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Valitse satunnainen kartta"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Valitse"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Siirry edelliselle sivulle."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Siirry seuraavalle sivulle."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Suurenna kartan esikatselun kokoa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Pienennä kartan esikatselun kokoa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Karttoja: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Sivu: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Valitse kartta sattumanvaraisesti."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3774,11 +3806,11 @@ msgstr "Asetusten nollaus poistaa tallennetut asetuksesi. Haluatko jatkaa?"
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Jotkin asetusarvot ovat virheellisiä! Haluatko varmasti tallentaa ne?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Sinulla on tallentamattomia muutoksia, haluatko sulkea tämän ikkunan?"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -3786,19 +3818,19 @@ msgstr "Yleinen"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Pelaajan nimi (yksinpeli)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Millä nimellä haluat sinua kutsuttavan yksinpeliotteluissa."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Pelaajan nimi (moninpeli)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Millä nimellä haluat sinua kutsuttavan moninpeliotteluissa (paitsi aulassa)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -3856,7 +3888,7 @@ msgstr "Keskustelun aikaleima"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Näyttää kellonajan, jolloin keskusteluviesti lähetettiin."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
@@ -3900,7 +3932,7 @@ msgstr "Määrittää kuinka yksiköiden nimet näytetään."
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Grafiikka (yleinen)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -3990,7 +4022,7 @@ msgstr "Aseta tasapaino suorituskyvyn ja ulkonäön välille."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Grafiikka (edistynyt)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Prefer GLSL"
@@ -4002,7 +4034,7 @@ msgstr "Käytä OpenGL 2.0 -varjostimia (suositeltu)."
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
-msgstr ""
+msgstr "Laatu"
 
 #: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
@@ -4016,7 +4048,7 @@ msgstr "Varjokartan resoluutio. Suuret arvot voivat kaataa pelin, jos käytöss�
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
-msgstr ""
+msgstr "Suodatus"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
@@ -4024,21 +4056,21 @@ msgstr "Pehmeät varjostukset"
 
 #: gui/options/options.json[2].options[12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Katkaisuetäisyys"
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Piilottaa varjot tietyn etäisyyden päässä kamerasta."
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Kata koko kartta"
 
 #: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Kun kytketty päälle, varjot peittävät koko kartan ja varjojen katkaisuetäisyys jätetään huomiotta. Hyödyllinen koko kartan kuvakaappausten tekemiseen."
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
@@ -4217,7 +4249,7 @@ msgstr "Mallin laatuasetus."
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Mallin ulkoasun satunnaistaminen"
 
 #: gui/options/options.json[2].options[7].list[0].label
 msgid "None"
@@ -4225,15 +4257,15 @@ msgstr "Ei mitään"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr ""
+msgstr "Oliot näyttävät kaikki samalta."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
-msgstr ""
+msgstr "Rajoitettu"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "Oliot ovat vähemmän monimuotoisia."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4241,13 +4273,13 @@ msgstr "Normaali"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Olioiden ulkonäkö satunnaistetaan normaalisti."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Satunnaistaa olioiden ulkoasun. Käytöstä poistaminen parantaa suorituskykyä hieman."
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
@@ -4259,7 +4291,7 @@ msgstr "Varjostintehosteiden määrä. VAATII PELIN UUDELLEENKÄYNNISTÄMISEN"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
-msgstr ""
+msgstr "Tarkemmat renderöintiasetukset."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Master volume"
@@ -4291,31 +4323,31 @@ msgstr "Toimintaäänien voimakkuus"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "Yksikön toimintaäänien taso pelissä."
 
 #: gui/options/options.json[3].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Käyttöliittymän äänenvoimakkuus"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "Käyttöliittymän äänenvoimakkuus."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Nimimerkin mainintailmoitus"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Saat ääni-ilmoituksen, kun joku kirjoittaa nimimerkkisi."
 
 #: gui/options/options.json[3].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Uuden pelaajan ilmoitus pelin alustuksessa"
 
 #: gui/options/options.json[3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Saat ääni-ilmoituksen, kun uusi asiakas liittyy pelin alustukseen."
 
 #: gui/options/options.json[4].label
 msgid "Game Setup"
@@ -4323,32 +4355,32 @@ msgstr "Pelin asetukset"
 
 #: gui/options/options.json[4].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Ota pelin alustusvihjeet käyttöön"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "Näytä vinkkejä peliä alustettaessa."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Ota asetuspaneelin liukuma käyttöön"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "Liu'uta asetuspaneelia avattaessa, suljettaessa tai kokoa muutettaessa."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Persist match settings"
-msgstr ""
+msgstr "Säilytä otteluasetukset"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "Tallenna ja palauta otteluasetukset nopeaa uudelleenkäyttöä varten, kun isännöit toista peliä."
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Tekoälyn oletusvaikeustaso"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4376,7 +4408,7 @@ msgstr "Tekoälyn oletusvaikeustaso."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Tekoälyn oletuskäyttäytyminen"
 
 #: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
@@ -4396,76 +4428,76 @@ msgstr "Puolustava"
 
 #: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Tekoälyn oletuskäyttäytyminen."
 
 #: gui/options/options.json[4].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Määritä pelaajat"
 
 #: gui/options/options.json[4].options[5].list[0].label
 #: gui/options/options.json[5].options[4].list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Kaikki"
 
 #: gui/options/options.json[4].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Otteluun liittyvät pelaajat lisätään peliin, jos pelipaikkoja on vapaana."
 
 #: gui/options/options.json[4].options[5].list[1].label
 #: gui/options/options.json[5].options[4].list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "Kaverit"
 
 #: gui/options/options.json[4].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Otteluun liittyvät pelaajat lisätään peliin vain, jos he ovat isännän kavereita ja jos pelipaikkoja on vapaana."
 
 #: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Pelaajat saavat pelipaikan vain silloin, kun isäntä nimenomaisesti osoittaa sen heille."
 
 #: gui/options/options.json[4].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Määritä automaattisesti liittymässä olevat asiakkaat vapaisiin pelaajapaikkoihin ottelun alustuksen aikana."
 
 #: gui/options/options.json[5].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Verkostoituminen / Aula"
 
 #: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS-salaus"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Suojaa kirjautuminen ja aulapalvelimen kanssa vaihdetut tiedot TLS-salauksella."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Keskustelun logi"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Aulaan liityttäessä logista ladattavien viestien määrä."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Pelin luokitus -sarake"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Näytä osallistuvien pelaajien keskimääräinen luokitus omassa sarakkeessaan pelilistassa."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Verkon varoitukset"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -4473,88 +4505,88 @@ msgstr "Näytä kenellä pelaajista on huono yhteys moninpelipeleissä."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Myöhäinen katselijoiden liittyminen"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Salli kaikkien tai kavereiden liittyä peliin tarkkailijana sen alkamisen jälkeen."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Katselijoiden enimmäismäärä"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "Estää uusien katselijoiden liittymisen, jos raja on saavutettu."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Katselijoiden enimmäislagi"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Kun isännöit peliä, keskeytä peli, jos katselijat ovat jäljessä enemmän kuin tämän verran kierroksia. Jos arvoksi asetetaan -1, katselijat jätetään huomiotta."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Katselija) Nopeuta peliä, kun yhteys lagaa."
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Kun katselet peliä, nopeuta peliä automaattisesti, jos yhteytesi hidastelee, jotta saat kiinni live-ottelun tahdin."
 
 #: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Nämä asetukset vaikuttavat vain moninpeliin."
 
 #: gui/options/options.json[6].label
 msgid "Game Session"
-msgstr ""
+msgstr "Peli-istunto"
 
 #: gui/options/options.json[6].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Haavoittuneen yksikön terveys"
 
 #: gui/options/options.json[6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "Haavoittuneen yksikön pikanäppäin pitää valittuja yksiköitä haavoittuneina, jos niiden terveysprosentti laskee alle tämän luvun."
 
 #: gui/options/options.json[6].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Arvokuvake tilarivin yläpuolella"
 
 #: gui/options/options.json[6].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Näytä arvokuvakkeet tilapalkkien yläpuolella."
 
 #: gui/options/options.json[6].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Kokemuksen tilapalkki"
 
 #: gui/options/options.json[6].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Näytä kokemuksen tilapalkki jokaisen valitun yksikön yläpuolella."
 
 #: gui/options/options.json[6].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Yksityiskohtaiset työkaluvihjeet"
 
 #: gui/options/options.json[6].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Näytä yksityiskohtaiset työkaluvihjeet koulutettaville yksiköille yksikköjä tuottavissa rakenteissa."
 
 #: gui/options/options.json[6].options[13].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Järjestä resurssit ja väestö -työkaluvihje"
 
 #: gui/options/options.json[6].options[13].list[0].label
 msgid "Unordered"
@@ -4571,170 +4603,170 @@ msgstr "Laskeva"
 #: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "Järjestä pelaajat dynaamisesti resurssit ja väestö -tooltipissä arvon mukaan."
 
 #: gui/options/options.json[6].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Diplomatiavärit: oma"
 
 #: gui/options/options.json[6].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Yksikkösi väri, kun diplomatiavärit ovat käytössä."
 
 #: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Diplomatiavärit: liittolainen"
 
 #: gui/options/options.json[6].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Liittolaisten väri, kun diplomatiavärit ovat käytössä."
 
 #: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Diplomatiavärit: neutraali"
 
 #: gui/options/options.json[6].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "Neutraalien pelaajien väri, kun diplomatiavärit ovat käytössä."
 
 #: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Diplomatiavärit: vihollinen"
 
 #: gui/options/options.json[6].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Vihollisten väri, kun diplomatiavärit ovat käytössä."
 
 #: gui/options/options.json[6].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Kiinnitä reunoihin"
 
 #: gui/options/options.json[6].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Pikanäppäin, joka ottaa kiinnityksen käyttöön"
 
 #: gui/options/options.json[6].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Uudet rakenteet kohdistetaan läheisiin rakenteisiin, kun painat pikanäppäintä."
 
 #: gui/options/options.json[6].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Pikanäppäin, joka poistaa kiinnityksen käytöstä"
 
 #: gui/options/options.json[6].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Uudet rakenteet kohdistetaan läheisten rakenteiden kanssa, ellei pikanäppäintä paineta."
 
 #: gui/options/options.json[6].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Tämän vaihtoehdon avulla uudet rakenteet voidaan kohdistaa läheisiin rakenteisiin."
 
 #: gui/options/options.json[6].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Ohjausryhmän jäsenyys"
 
 #: gui/options/options.json[6].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Yksinkertainen"
 
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Kun yksikkö tai rakenne lisätään ohjausryhmään, ne poistetaan muista ohjausryhmistä. Käytä tätä vaihtoehtoa, jos haluat ohjausryhmien viittaavan erillisiin armeijoihin."
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Moninkertainen"
 
 #: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Yksiköt ja rakenteet voivat kuulua useisiin ohjausryhmiin. Tämä on hyödyllistä, jos haluat pitää ohjausryhmiä erillisille armeijoille ja ohjausryhmää koko armeijalle samanaikaisesti."
 
 #: gui/options/options.json[6].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Päätä, voivatko yksiköt kuulua useampaan ohjausryhmään."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Koulutuserän koko"
 
 #: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Koulutettujen yksiköiden määrä erää kohti oletusarvoisesti."
 
 #: gui/options/options.json[6].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Muodostelman hallinta"
 
 #: gui/options/options.json[6].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Ainoastaan kävely/partiointi"
 
 #: gui/options/options.json[6].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Muut käskyt hajottavat olemassa olevat muodostelmat."
 
 #: gui/options/options.json[6].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "Ei ohitusta"
 
 #: gui/options/options.json[6].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Muodostelmissa olevat yksiköt pysyvät muodostelmissaan."
 
 #: gui/options/options.json[6].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Päätä, otetaanko muodostelmat käyttöön kaikille käskyille vai vain 'Kävely' ja ’Partio' -käskyille."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Vierityksen ja eräkoon kasvatuksen suhde"
 
 #: gui/options/options.json[6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Kuinka monta kertaa joudut vierittämään, kun haluat lisätä/vähentää eräkokoa 1:llä."
 
 #: gui/options/options.json[6].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Keskusteluilmoitus hyökkäyksestä"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Näytä keskusteluilmoitus, jos toinen pelaaja hyökkää kimppuusi."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Keskusteluilmoitus kunnianosoituksesta"
 
 #: gui/options/options.json[6].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Näytä keskusteluilmoitus, jos liittolainen luovuttaa resursseja toiselle tiimin jäsenelle kunnianosoituksena, jos tiimit on lukittu, ja kaikki kunnianosoitukset katselutilassa."
 
 #: gui/options/options.json[6].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Keskusteluilmoitus vaihtokaupasta"
 
 #: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Näytä chat-ilmoitus katsojille, kun pelaaja käy vaihtokauppaa resursseista."
 
 #: gui/options/options.json[6].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Keskusteluilmoitus vaiheista"
 
 #: gui/options/options.json[6].options[6].list[0].label
 msgid "Disable"
@@ -4746,47 +4778,47 @@ msgstr "Suoritettu"
 
 #: gui/options/options.json[6].options[6].list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "Kaikki näytetään"
 
 #: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Näytä keskusteluilmoitus, jos sinä tai liittolainen olet aloittanut, keskeyttänyt tai päättänyt uuden vaiheen, sekä kaikkien pelaajien vaiheet katselutilassa."
 
 #: gui/options/options.json[6].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Hyökkäyskantaman visualisaatio"
 
 #: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Näytä valittujen puolustusrakenteiden hyökkäyskantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
 
 #: gui/options/options.json[6].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Auran kantaman visualisaatio"
 
 #: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Näytä valittujen ykiköiden ja rakenteiden auran kantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
 
 #: gui/options/options.json[6].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Parannuskantaman visualisaatio"
 
 #: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Näytä valittujen yksiköiden parannuskantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Muuta pelin sisäisiä asetuksia koskevia valintoja."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -4812,7 +4844,7 @@ msgstr "Opettele pelaamaan"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Opi pelaamaan, aloita opetusohjelma, tutustu teknologiapuihin ja sivilisaatioiden historiaan."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -4828,7 +4860,7 @@ msgstr "Tutoriaali"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "Aloita taloudellinen opetusohjelma."
 
 #: gui/pregame/MainMenuItems.js:27
 #: gui/reference/common/Buttons/StructreeButton.js:21
@@ -4840,55 +4872,55 @@ msgstr "Teknologiapuu"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Tutustu kohdassa 0 A.D. esiteltyjen sivilisaatioiden rakennepuuhun."
 
 #: gui/pregame/MainMenuItems.js:39
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Sivilisaation yleisnäkymä"
 
 #: gui/pregame/MainMenuItems.js:40
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Tutustu sivilisaatioihin, jotka esiintyvät 0 A.D:ssa."
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Katafalkkien yleisnäkymä"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Vertaa 0 A.D.:ssa esiintyvien katafalkkien bonuksia."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
-msgstr ""
+msgstr "Kartan yleisnäkymä"
 
 #: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Tutustu eri karttoihin, jotka esiintyvät 0 A.D.:ssa."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Jatka kampanjaa"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Koe historia uudelleen historiallisten sotilaallisten kampanjoiden kautta."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Virhe kampanjan peluukerran avaamisessa:"
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
-msgstr ""
+msgstr "Yksinpeli"
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Aloita, lataa tai pelaa uudelleen yksinpeliottelu."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
@@ -4896,15 +4928,15 @@ msgstr "Pelit"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Aloita uusi yksinpeliottelu."
 
 #: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
-msgstr ""
+msgstr "Lataa tallennettu peli."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr ""
+msgstr "Uusi kampanja"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
@@ -4952,7 +4984,7 @@ msgstr "Peliaula"
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: Käynnistä moninpeliaula liittyäksesi julkisesti näkyviin peleihin ja isännöidäksesi niitä sekä keskustellaksesi muiden pelaajien kanssa."
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -4964,7 +4996,7 @@ msgstr "Asetukset"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Change game options."
-msgstr ""
+msgstr "Muuta pelin asetuksia."
 
 #: gui/pregame/MainMenuItems.js:203
 msgid "Options"
@@ -4980,7 +5012,7 @@ msgstr "Pikanäppäimet"
 
 #: gui/pregame/MainMenuItems.js:214
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Säädä pikanäppäimiä."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
@@ -5006,7 +5038,7 @@ msgstr "Tervetuloa-näyttö"
 
 #: gui/pregame/MainMenuItems.js:235
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Näytä tervetuloruutu uudelleen. Hyödyllinen, jos piilotit sen vahingossa."
 
 #: gui/pregame/MainMenuItems.js:243
 msgid "Scenario Editor"
@@ -5020,7 +5052,7 @@ msgstr "Avaa Atlas skenaario editori uudessa ikkunassa. Voit suorittaa ohjelman 
 
 #: gui/pregame/MainMenuItems.js:249
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Oletko varma, että haluat lopettaa 0 A.D.:n ja avata skenaarioeditorin?"
 
 #: gui/pregame/MainMenuItems.js:256
 msgid ""
@@ -5038,7 +5070,7 @@ msgstr "Lopputekstit"
 
 #: gui/pregame/MainMenuItems.js:262
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Näytä 0 A.D.:n tekijät."
 
 #: gui/pregame/MainMenuItems.js:268
 msgid "Exit"
@@ -5046,7 +5078,7 @@ msgstr "Poistu"
 
 #: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
-msgstr ""
+msgstr "Poistu pelistä"
 
 #: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5064,7 +5096,7 @@ msgstr "Alfa XXV: Y——"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Ilmoitus: Tämä peli on kehitteillä ja monia ominaisuuksia ei ole vielä lisätty."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -5084,7 +5116,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Klikkaa avataksesi 0 A.D. IRC-keskustelu selaimessasi (#0ad webchat.quakenet.org). Sitä pyörittävät vapaaehtoiset, jotka tekevät kaikenlaisia tehtäviä, joten kysymykseesi vastaaminen voi kestää jonkin aikaa. Vaihtoehtoisesti voit käyttää foorumia (katso verkkosivu)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5097,11 +5129,11 @@ msgstr "Paina vieraillaksesi 0 A.D. -Trac-sivustolla. Voit raportoida bugeista, 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "UKK"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "Klikkaa siirtyäksesi selaimellasi Usein kysytyt kysymykset -sivulle."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5126,11 +5158,11 @@ msgstr "Käyttöehdot"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Lue ja hyväksy UserReporterin käyttöehdot."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Julkaisut"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -5190,16 +5222,16 @@ msgstr "Auta 0 A.D:n kehitystyössä!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Voit lähettää meille automaattisesti palautetta, joka auttaa meitä korjaamaan virheitä ja parantamaan suorituskykyä ja yhteensopivuutta."
 
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Sulje katalfalkkibonukset."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Katafalkkibonukset"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -5208,7 +5240,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -5219,12 +5251,12 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Sulje sivilisaation yleiskatsaus."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5251,39 +5283,39 @@ msgstr[1] "Joukkuebonukset"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sankari"
+msgstr[1] "Sankarit"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tietty rakennelma"
+msgstr[1] "Tietyt rakennelmat"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tietty teknologia"
+msgstr[1] "Tietyt teknologiat"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Siirry sivilisaation yleiskatsaukseen."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Siirry rakennepuuhun."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
 msgstr "Sivilisaatio:"
 
-#: gui/reference/common/TemplateParser.js:151
+#: gui/reference/common/TemplateParser.js:152
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s – %(health_max)s"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/tooltips.js:10
@@ -5309,35 +5341,35 @@ msgstr "Kouluttaja:"
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr ""
+msgstr "Tutkittavissa:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
 #. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
-msgstr ""
+msgstr "Rakentaa:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr ""
+msgstr "Tutkii:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr ""
+msgstr "Kouluttaa:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Päivitettävissä:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
@@ -5346,12 +5378,12 @@ msgstr "Harjoitusyksiköt"
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Sulje rakennepuu."
 
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Sulje mallikatselin"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -5359,7 +5391,7 @@ msgstr "Tiedot"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "Tämä uusinta tarvitsee erilaiset modit:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -5449,7 +5481,7 @@ msgstr "Mikä tahansa"
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr ""
+msgstr "Yksinpeli"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
@@ -5463,7 +5495,7 @@ msgstr "Kampanjat"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
-msgstr ""
+msgstr "Mikä tahansa voiton ehto"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
@@ -5480,12 +5512,12 @@ msgstr "Arvostamattomat pelit"
 #: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Suodata uusintoja kirjoittamalla yksi tai useampi, osittainen tai täydellinen pelaajan nimi."
 
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Poista valittu uusinta painamalla %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
@@ -5518,7 +5550,7 @@ msgstr "Päävalikko"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Luo välimuisti uudelleen"
 
 #: gui/replaymenu/replay_menu.xml:(caption):246
 #: gui/summary/summary.xml:(caption):26
@@ -5551,11 +5583,11 @@ msgstr "Kesto"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Etsi pelaaja"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Rakenna uusintavälimuisti uudelleen tyhjästä. Mahdollisesti hidas!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -5628,7 +5660,7 @@ msgstr "Tutkimusmatkapisteet"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "Rakenteet"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -5667,7 +5699,7 @@ msgstr "Ihmeet"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Rakennetilastot (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -5695,7 +5727,7 @@ msgstr "Sankarit"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
-msgstr ""
+msgstr "Piiritys"
 
 #: gui/summary/layout.js:79
 msgid "Navy"
@@ -5708,7 +5740,7 @@ msgstr "Kauppiaat"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Yksikkötilastot (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -5716,7 +5748,7 @@ msgstr "Resurssit"
 
 #: gui/summary/layout.js:121
 msgid "Tributes"
-msgstr ""
+msgstr "Kunnianosoitukset"
 
 #: gui/summary/layout.js:122
 #, javascript-format
@@ -5735,7 +5767,7 @@ msgstr "Ryöstösaalis"
 
 #: gui/summary/layout.js:132
 msgid "Livestock bred"
-msgstr ""
+msgstr "Kasvatettu karja"
 
 #: gui/summary/layout.js:136
 #, javascript-format
@@ -5774,15 +5806,15 @@ msgstr "Väkiluku"
 
 #: gui/summary/layout.js:197
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Kartan hallinta (huipussaan)"
 
 #: gui/summary/layout.js:198
 msgid "Map control (finish)"
-msgstr ""
+msgstr "Kartan hallinta (lopussa)"
 
 #: gui/summary/layout.js:199
 msgid "Map exploration"
-msgstr ""
+msgstr "Kartan tutkiminen"
 
 #: gui/summary/layout.js:200
 msgid "Vegetarian ratio"
@@ -5813,7 +5845,7 @@ msgstr "Joukkoeen kokonais"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr ""
+msgstr "Koulutettu"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -5825,7 +5857,7 @@ msgstr "Kerätty"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Määrä"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -5837,7 +5869,7 @@ msgstr "Ostettu"
 
 #: gui/summary/summary.js:59
 msgid "Income"
-msgstr ""
+msgstr "Tulot"
 
 #: gui/summary/summary.js:64
 msgid "Captured"
@@ -5845,7 +5877,7 @@ msgstr "Vallattu"
 
 #: gui/summary/summary.js:69
 msgid "Succeeded"
-msgstr ""
+msgstr "Onnistui"
 
 #: gui/summary/summary.js:74
 msgid "Destroyed"
@@ -5873,22 +5905,22 @@ msgstr "Myyty"
 
 #: gui/summary/summary.js:109
 msgid "Outcome"
-msgstr ""
+msgstr "Lopputulos"
 
 #: gui/summary/summary.js:114
 msgid "Failed"
-msgstr ""
+msgstr "Epäonnistui"
 
 #: gui/summary/summary.js:201
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -5897,11 +5929,11 @@ msgstr ","
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr ""
+msgstr "Aikaa kulunut"
 
 #: gui/summary/summary.js:510
 msgid "Current Scores"
-msgstr ""
+msgstr "Nykyiset pisteet"
 
 #: gui/summary/summary.js:512
 msgid "Scores at the end of the game."
@@ -5940,22 +5972,22 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: Näytä moninpeliaula valintaikkunassa tai piilota se."
 
 #: gui/summary/summary.js:557
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Näytä/piilota %(name)s-yhteenvetovälilehti."
 
 #: gui/summary/summary.js:558
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Paina %(hotkey)s siirtyäksesi oikeanpuoleiseen yhteenvetovälilehteen."
 
 #: gui/summary/summary.js:559
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Paina %(hotkey)s siirtyäksesi vasemmanpuoleiseen yhteenvetovälilehteen."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -5974,7 +6006,7 @@ msgstr "Tyyppi:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Ryhmittele joukkueen mukaan"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -6007,17 +6039,29 @@ msgstr "ROOMALAINEN ARMEIJALEIRI"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Rakennettavissa puolueettomalle tai vihollisen alueelle. Sopii hyvin salaisen tukikohdan rakentamiseen vihollislinjojen taakse tai voittojen vahvistamiseen vihollisen alueella."
 
 #: gui/text/tips/army_camp.txt:3
-msgid "Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgid "Construct rams and train citizen soldiers."
+msgstr "Rakenna muurinmurtajia ja kouluta kansalaissotilaita."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Miehitä yksiköillä parantaaksesi niitä hitaasti ja suojataksesi armeijan leiriä hyökkäyksiltä ja rappeutumiselta."
+
+#: gui/text/tips/autoqueue.txt:1
+msgid "AUTOQUEUE"
+msgstr "AUTOMAATTINEN JONOTUS"
+
+#: gui/text/tips/autoqueue.txt:2
+msgid "Enable the autoqueue feature to automatically train units."
+msgstr "Ota automaattinen jonotus käyttöön yksiköiden automaattista kouluttamista varten."
+
+#: gui/text/tips/autoqueue.txt:3
+msgid "Works as long as you have enough resources, then it will stop."
+msgstr "Toimii niin kauan kuin sinulla on tarpeeksi resursseja, ja loppuu sitten."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6025,23 +6069,55 @@ msgstr "KASARMI"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Kouluttakaa kaikki kansalaissotilaat. Jotkut sivilisaatiot voivat avata myös mestareiden kouluttamisen."
 
-#: gui/text/tips/barracks.txt:3
-msgid "Research military technologies unique to each faction."
-msgstr ""
+#: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
+msgid "Units gain experience while garrisoned inside the building."
+msgstr "Yksiköt saavat kokemusta miehittäessään rakennusta."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
-"Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Rakenna yksi varhain, jotta voit kouluttaa kansalaissotilaita, kun kehität asutustasi seuraaviin vaiheisiin."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Rakenna etutukikohta, jotta voit täydentää hyökkäystäsi tuoreilla joukoilla."
+
+#: gui/text/tips/biomes.txt:1
+msgid "BIOMES"
+msgstr "BIOMIT"
+
+#: gui/text/tips/biomes.txt:2
+msgid ""
+"Biomes can be used on some random maps and determine which region of the "
+"world the map represents."
+msgstr "Biomeja voidaan käyttää joissakin satunnaiskartoissa, ja ne määrittävät, mitä maailman aluetta kartta edustaa."
+
+#: gui/text/tips/biomes.txt:3
+msgid ""
+"They influence the appearence of the maps and also the amount of resources "
+"that are available."
+msgstr "Ne vaikuttavat karttojen ulkoasuun ja käytettävissä olevien resurssien määrään."
+
+#: gui/text/tips/briton_war_dog.txt:1
+msgid "WAR DOG"
+msgstr "SOTAKOIRA"
+
+#: gui/text/tips/briton_war_dog.txt:2
+msgid "A dog that the Britons can train at the cavalry stable."
+msgstr "Koira, jota britit voivat kouluttaa ratsuväen tallilla."
+
+#: gui/text/tips/briton_war_dog.txt:3
+msgid "Has low health, but is fast and will fearlessly attack enemies."
+msgstr "Sillä on alhainen terveys, mutta se on nopea ja hyökkää pelottomasti vihollisten kimppuun."
+
+#: gui/text/tips/briton_war_dog.txt:4
+msgid "Use them as support in your army or for quick raids."
+msgstr "Käytä niitä armeijasi tukena tai nopeisiin hyökkäyksiin."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6049,19 +6125,35 @@ msgstr "KARTHAGOLAINEN PYHÄ JOUKKO"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Mestarikeihäsmiehiä ja ratsuväen mestarikeihäsmiehiä Karthagolle."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Molempia voi kouluttaa temppelistä, eikä linnoituksesta, kuten useimpia muita mestareita."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Käytä keihäsmiehiä raskaana jalkaväkenä ratsuväkeä vastaan. Käytä ratsuväkeä raskaana iskujoukkona piiritysaseita ja kahakoitsijoita vastaan."
+
+#: gui/text/tips/carth_shipyard.txt:1
+msgid "CARTHAGINIAN NAVAL SHIPYARD"
+msgstr "KARTHAGOLAISEN LAIVASTON TELAKKA"
+
+#: gui/text/tips/carth_shipyard.txt:2
+msgid "Special dock of the Carthaginians to construct warships."
+msgstr "Karthagonilaisten erityinen telakka sotalaivojen rakentamista varten."
+
+#: gui/text/tips/carth_shipyard.txt:3
+msgid "Garrison ships inside to slowly repair them."
+msgstr "Miehitä laivat telakalle korjataksesi niitä hitaasti."
+
+#: gui/text/tips/carth_shipyard.txt:4
+msgid "Much stronger than other docks, but also more expensive."
+msgstr "Paljon vahvempi kuin muut telakat, mutta myös kalliimpi."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6069,7 +6161,7 @@ msgstr "KATAPULTIT"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Piirityskoneita, jotka ovat hyviä rakenteita vastaan."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -6079,7 +6171,20 @@ msgstr "Kallis ja hidas."
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Pakkaa vaunuihin liikkumista varten ja pura paikallaan oleviksi piirityskoneiksi hyökkäystä varten!"
+
+#: gui/text/tips/cavalry_stable.txt:1
+msgid "CAVALRY STABLE"
+msgstr "RATSUVÄEN TALLI"
+
+#: gui/text/tips/cavalry_stable.txt:2
+msgid ""
+"Trains cavalry units and lets you research cavalry specific technologies."
+msgstr "Kouluttaa ratsuväen yksiköitä ja mahdollistaa ratsuväkikohtaisten teknologioiden tutkimisen."
+
+#: gui/text/tips/cavalry_stable.txt:3
+msgid "Units gain experience while garrisoned inside the structure."
+msgstr "Yksiköt saavat kokemusta miehittäessään rakennetta."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6087,19 +6192,37 @@ msgstr "Kelttiläinen sotakaleeri"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Keskikokoinen kolmisoutuluokan sotalaiva."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Saatavilla briteille, gallialaisille ja iberialaisille."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr ""
+msgstr "Voi kuljettaa jopa 40 yksikköä."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Lisää tulivoimaa miehittävän jalkaväen avulla."
+
+#: gui/text/tips/city_walls.txt:1
+msgid "CITY WALLS"
+msgstr "KAUPUNGINMUURI"
+
+#: gui/text/tips/city_walls.txt:2
+msgid "Strong stone walls that help you protect your city."
+msgstr "Vahvat kivimuurit, jotka auttavat sinua suojelemaan kaupunkiasi."
+
+#: gui/text/tips/city_walls.txt:3
+msgid ""
+"When your ranged infantry units are occupying the turrets, they have "
+"additional armor and can shoot at the enemy. "
+msgstr "Kun kaukotaisteluun kykenevät jalkaväkiyksikkösi ovat tykkitorneissa, niillä on lisäpanssari ja ne voivat ampua vihollista. "
+
+#: gui/text/tips/city_walls.txt:4
+msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
+msgstr "Haavoittuva piiritysaseille, kuten katapulteille, muurinmurtajille ja sotanorsuille."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6111,35 +6234,59 @@ msgstr "Uuden yhteiskuntasi perusta."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Ota haltuun suuria alueita."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "Voidaan rakentaa ystävälliselle tai neutraalille alueelle."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Kouluta kansalaisia: naiskansalaisia, jalkaväen kansalaissotilaita ja ratsuväen kansalaissotilaita."
+
+#: gui/text/tips/defense_towers.txt:1
+msgid "DEFENSE TOWERS"
+msgstr "PUOLUSTUSTORNIT"
+
+#: gui/text/tips/defense_towers.txt:2
+msgid "Strong watchtowers, which help you defend your position."
+msgstr "Vahvoja vartiotorneja, jotka auttavat sinua puolustamaan asemaasi."
+
+#: gui/text/tips/defense_towers.txt:3
+msgid ""
+"They have a large vision range and will shoot arrows at the enemy in sight. "
+msgstr "Niillä on suuri näköalue, ja ne ampuvat nuolia näkemiinsä vihollisiin."
+
+#: gui/text/tips/defense_towers.txt:4
+msgid ""
+"You can garrison more infantry inside them to increase the number of arrows "
+"they shoot."
+msgstr "Voit miehittää lisää jalkaväkeä niiden sisälle kasvattaaksesi niiden ampumien nuolen määrää."
+
+#: gui/text/tips/elephant_stable.txt:1
+msgid "ELEPHANT STABLE"
+msgstr "NORSUTALLI"
+
+#: gui/text/tips/elephant_stable.txt:2
+msgid ""
+"The structure is available to some civilizations to train elephant units."
+msgstr "Rakenne on joidenkin sivilisaatioiden käytettävissä norsuyksiköiden kouluttamiseen."
 
 #: gui/text/tips/embassies.txt:1
-msgid "EMBASSIES"
-msgstr "LÄHETYSTÖT"
+msgid "EMBASSIES AND MERCENARY CAMPS"
+msgstr "SUURLÄHETYSTÖT JA PALKKASOTILASLEIRIT"
 
 #: gui/text/tips/embassies.txt:2
-msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgid "Special structures allowing you to hire mercenaries for your army."
+msgstr "Erityisrakenteita, joiden avulla voit palkata palkkasotureita armeijaasi."
 
 #: gui/text/tips/embassies.txt:3
-msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
-
-#: gui/text/tips/embassies.txt:4
 msgid ""
-"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
-"cost."
-msgstr ""
+"Mercenaries will not gather resources and cost only metal, but they are "
+"experienced and strong."
+msgstr "Palkkasoturit eivät kerää resursseja ja maksavat vain metallia, mutta ne ovat kokeneita ja vahvoja."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6147,15 +6294,15 @@ msgstr "KALASTUS"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Kalasta meriä runsaan saaliin saamiseksi."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Kalastusveneet kuljettavat suuria määriä ruokaa matkaa kohti."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Kalastus on nopeampaa kuin ruoan kerääminen pelloilta."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
@@ -6163,54 +6310,57 @@ msgstr "Huomio! Kalat eivät ole ikuinen resurssi!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "AHJO"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
-msgstr ""
+msgstr "Tutkimusrakenne kaikille ryhmittymille."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Tutki ase- ja panssaripäivityksiä yksiköillesi."
+
+#: gui/text/tips/formations.txt:1
+msgid "FORMATIONS"
+msgstr "MUODOSTELMAT"
+
+#: gui/text/tips/formations.txt:2
+msgid ""
+"Arrange your soldiers in formations to keep them organized during battles."
+msgstr "Järjestä sotilaasi kokoonpanoihin, jotta ne pysyvät järjestyksessä taistelujen aikana."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "LINNOITUS"
 
 #: gui/text/tips/fortress.txt:2
-msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgid ""
+"Usually the strongest structure of a civilization and the place where you "
+"can train Heroes."
+msgstr "Yleensä sivilisaation vahvin rakenne ja paikka, jossa voi kouluttaa sankareita."
 
 #: gui/text/tips/fortress.txt:3
-msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
-
-#: gui/text/tips/fortress.txt:4
-msgid "Gives a population boost."
-msgstr ""
-
-#: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Miehitä sotilailla lisätäksesi sen puolustusvoimaa."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "VAPAAN KÄDEN SIJAINTI"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Hanki etulyöntiasema taistelukentällä sijoittamalla yksikkösi taktisesti!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Valitse siis joitakin yksiköitä, pidä hiiren oikeaa painiketta painettuna, piirrä jokin viiva ja vapauta painike."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Yksikkösi levittäytyvät nyt tälle linjalle."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -6218,65 +6368,100 @@ msgstr "RESURSSIN KERÄÄMINEN"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Käytä kansalaissotilaita ja naispuolisia kansalaisia resurssien keräämiseen."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Naispuoliset kansalaiset keräävät vihannesresursseja nopeammin."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Jalkaväen kansalaissotilaat keräävät mineraaleja nopeammin."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Ratsuväen kansalaissotilaat ovat nopeampia keräämään lihaa."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Mitä korkeammalla tasolla kansalaissotilas on (edistynyt, eliitti), sitä paremmin hän taistelee, mutta sitä tehottomampi hän on resurssien keräämisessä."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "SANKARIT"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Historialliset hahmot, kuten Kserkses, Leonidas, Perikles, Hannibal, Scipio ja Boudicca."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Paljon terveyttä ja erittäin voimakkaita hyökkäyksiä."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Niillä on auroja, jotka muuttavat muiden yksiköiden tai rakenteiden tilastoja."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Varoitus: Jokainen sankari voidaan värvätä vain kerran ottelun aikana!"
 
-#: gui/text/tips/iphicrates.txt:1
-msgid "IPHICRATES"
-msgstr "IPHICRATES"
+#: gui/text/tips/iber_fireship.txt:1
+msgid "IBERIAN FIRESHIP"
+msgstr "IBERIALAINEN TULILAIVA"
 
-#: gui/text/tips/iphicrates.txt:2
+#: gui/text/tips/iber_fireship.txt:2
 msgid ""
-"The Athenian general who reformed the Athenian army to be faster and more "
-"maneuverable."
-msgstr ""
+"The special Iberian fireship is very effective against other ships and "
+"buildings, but steadily loses health."
+msgstr "Erityinen iberialainen tulilaiva on erittäin tehokas muita aluksia ja rakennuksia vastaan, mutta menettää jatkuvasti terveyttään."
 
-#: gui/text/tips/iphicrates.txt:3
-msgid "Units in his formation are faster and stronger."
-msgstr "Yksiköt hänen muodostelmassaan ovat nopeampia ja vahvempia."
+#: gui/text/tips/lighthouse.txt:1
+msgid "LIGHTHOUSE"
+msgstr "MAJAKKA"
 
-#: gui/text/tips/iphicrates.txt:4
-msgid "Skirmishers move faster while he lives."
-msgstr ""
+#: gui/text/tips/lighthouse.txt:2
+msgid ""
+"Special Ptolemaic structures to increase your vision range when built on the"
+" shore."
+msgstr "Erityisiä ptolemaioslaisia rakenteita, jotka lisäävät näköaluettasi, kun ne on rakennettu rannalle."
+
+#: gui/text/tips/map_flare.txt:1
+msgid "MAP FLARE"
+msgstr "KARTTASOIHTU"
+
+#: gui/text/tips/map_flare.txt:2
+msgid ""
+"Use this feature to let your team know where on the map something important "
+"happens."
+msgstr "Käytä tätä ominaisuutta kertoaksesi tiimillesi, missä kohtaa karttaa jokin tärkeä asia tapahtuu."
+
+#: gui/text/tips/map_flare.txt:3
+msgid "They will see the flare on their minimap."
+msgstr "He näkevät soihdun minikartassaan."
+
+#: gui/text/tips/meroe_pyramids.txt:1
+msgid "PYRAMIDS OF MEROË"
+msgstr "MEROËN PYRAMIDIT"
+
+#: gui/text/tips/meroe_pyramids.txt:2
+msgid "Special structures available for the Kushites."
+msgstr "Kušilaisille saatavilla olevia erityisrakenteita."
+
+#: gui/text/tips/meroe_pyramids.txt:3
+msgid ""
+"The small pyramids improve the gathering rate of the workers around them."
+msgstr "Pienet pyramidit parantavat niiden ympärillä olevien työntekijöiden keräysnopeutta."
+
+#: gui/text/tips/meroe_pyramids.txt:4
+msgid ""
+"The large pyramids increase the military capabilities of soldiers around "
+"them."
+msgstr "Suuret pyramidit lisäävät niiden ympärillä olevien sotilaiden sotilaallisia kykyjä."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6284,17 +6469,17 @@ msgstr "ETUVARTIOASEMAT"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Rakenna omalle tai puolueettomalle alueelle."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Halpa ja nopeasti rakennettava, mutta heikko."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Miehitä jalkaväellä laajan näköalueen saamiseksi ja etuvartioaseman hallinnan menettämisenestämiseksi alueen rappeutumisen vuoksi."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6302,27 +6487,11 @@ msgstr "PAALUAITAMUURIT"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Nopea ja halpa puinen muuri, joka on kaikkien ryhmittymien saatavilla."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
-
-#: gui/text/tips/pericles.txt:1
-msgid "PERICLES"
-msgstr "PERIKLES"
-
-#: gui/text/tips/pericles.txt:2
-msgid "The foremost Athenian politician of the 5th century BC."
-msgstr "Huomattavin ateenalainen politiikko n. 495 – 429 eaa."
-
-#: gui/text/tips/pericles.txt:3
-msgid "Structures are built faster within his range."
-msgstr ""
-
-#: gui/text/tips/pericles.txt:4
-msgid "Temples are cheaper while he lives."
-msgstr "Temppelit ovat halvempia kun hän elää."
+msgstr "Useimmat ryhmittymät voivat käyttää niitä kylävaiheessa."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6334,17 +6503,17 @@ msgstr "Erikoisteknologiaa persialaisille."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Rakenteille +25% terveyttä."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Rakennusaika pidentyy tämän seurauksena +20 %."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Persialaisilla on myös käytettävissään suuri määrä rakenne- ja puolustusteknologioita."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -6352,34 +6521,50 @@ msgstr "PEITSIMIES"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Raskaasti panssaroitu ja hidas. Heikko hyökkäys."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Käytetään ratsuväkeä tai muuta lähitaistelujalkaväkeä vastaan niiden kiinnittämiseksi paikalleen."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Saatavilla: kushilaisille, makedonialaisille, ptolemaioksille ja seleukideille."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr ""
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Raskain tavallinen sotalaiva. Saatavilla karthagolaisille, ptolemaioksille, roomalaisille ja seleukideille."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "Voi kuljettaa jopa 50 yksikköä."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Lisää tulivoimaa miehittävien katapulttien avulla."
+
+#: gui/text/tips/resource_counter.txt:1
+msgid "RESOURCE COUNTER"
+msgstr "RESURSSILASKURI"
+
+#: gui/text/tips/resource_counter.txt:2
+msgid ""
+"The resource counter panel shows you how much of each resources you have at "
+"the moment."
+msgstr "Resurssilaskuripaneelista näet kuinka paljon sinulla on kutakin resurssia tällä hetkellä."
+
+#: gui/text/tips/resource_counter.txt:3
+msgid ""
+"The number below it shows you how many citizens are currently gathering "
+"them."
+msgstr "Sen alapuolella oleva numero kertoo, kuinka moni kansalainen kerää niitä tällä hetkellä."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6387,57 +6572,39 @@ msgstr "SAVANNI BIOMI"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Yleisesti ottaen tasainen, lukuun ottamatta joitakin juomapaikkoja ja kalliopaljastumia."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Täynnä laumaeläimiä, mikä tarjoaa runsaat metsästysmahdollisuudet."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Runsaasti kaikentyyppisiä louhoksia."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
-
-#: gui/text/tips/scout_towers.txt:1
-msgid "DEFENSE TOWERS"
-msgstr "PUOLUSTUSTORNIT"
-
-#: gui/text/tips/scout_towers.txt:2
-msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
-
-#: gui/text/tips/scout_towers.txt:3
-msgid ""
-"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
-"Wood and 250 Stone (because they're stronger)."
-msgstr ""
-
-#: gui/text/tips/scout_towers.txt:4
-msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "Puusto on yleensä niukkaa, mutta koostuu korkeatuottoisista apinanleipäpuista."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "KIINNITYS LINJAAN"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Rakenteet voidaan tasata linjaan pitämällä kiinnityspikanäppäintä painettuna sijoittamisen aikana."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Rakenteiden asettaminen linjaan mahdollistaa tilan säästämisen tulevaa rakentamista varten."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Tiiviitä rakenneryhmiä voidaan käyttää myös hyökkäävien vihollisten estämiseen."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -6445,17 +6612,17 @@ msgstr "SPARTIATES"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "Pelin vahvin jalkaväkiyksikkö."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Spartalaisten käytettävissä oleva mestarijalkaväki."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Käytä niitä vihollisen ratsuväen teurastamiseen tai iskujoukkoina tukemaan tavallista jalkaväkeäsi."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -6463,21 +6630,21 @@ msgstr "KEIHÄSMIEHET"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Lähitaistelujalkaväen perusyksikkö jokaiselle pelissä olevalle ryhmittymälle."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Käytetään ratsuväkeä vastaan hyökkäysbonusta varten."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Kunnollinen hakkaushyökkäys tekee heistä hyviä etulinjan joukkoja."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Niitä vastaan taistelevat kantamataisteluyksiköt ja miekkamiehet, joten tue keihäsmiehiä linkomiehillä tai ratsuväellä."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -6485,13 +6652,13 @@ msgstr "VARASTOTALOT"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Halpa pudotusalue muille kuin elintarvikeresursseille (puu, kivi, metalli)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Tutki teknologioita, joilla parannetaan kansalaisten keräyskykyä."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -6499,11 +6666,11 @@ msgstr "TEMPPELIT"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Kauppalavaiheen rakenne."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Värvää parantajia parantamaan joukkoja taistelukentällä."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -6511,11 +6678,11 @@ msgstr "Tutki parannusteknologioita."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Sen aura parantaa lähellä olevia yksiköitä."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Aseta haavoittuneet yksiköt miehittämään rakennusta nopeuttaaksesi niiden parantumista."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -6524,37 +6691,44 @@ msgstr "Aluerappeutuminen"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Rappeutumista tapahtuu, kun rakenteet eivät ole yhteydessä liittolaisen kansalaiskeskukseen."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Rappeutumisprosessia voidaan hidastaa tai peruuttaa asettamalla rakennukseen joitakin yksiköitä miehittäjiksi."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Kun rappeutuminen on päättynyt, rakenne luovutetaan vaikutusvaltaisimmalle naapurille."
 
-#: gui/text/tips/themistocles.txt:1
-msgid "THEMISTOCLES"
-msgstr "THEMISTOKLES"
+#: gui/text/tips/theater.txt:1
+msgid "THEATER"
+msgstr "TEATTERI"
 
-#: gui/text/tips/themistocles.txt:2
+#: gui/text/tips/theater.txt:2
 msgid ""
-"Athenian hero who commanded the Greeks at the great naval battles of "
-"Artemisium and Salamis."
-msgstr ""
+"Special structures of the Hellenic civilizations to increase the size of "
+"your territory while you control it."
+msgstr "Helleenien sivilisaatioiden erikoisrakenteita, joilla voit kasvattaa alueesi kokoa, kun hallitset sitä."
 
-#: gui/text/tips/themistocles.txt:3
-msgid "All ships are built faster while he lives."
-msgstr "Kaikki laivat rakentuvat nopeammin, kun hän elää."
+#: gui/text/tips/treasure.txt:1
+msgid "TREASURES"
+msgstr "AARTEET"
 
-#: gui/text/tips/themistocles.txt:4
-msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+#: gui/text/tips/treasure.txt:2
+msgid ""
+"Collectible chests and bare resources on land and shipwrecks on the shore."
+msgstr "Kerättäviä kirstuja ja paljaita resursseja maalla ja haaksirikkoja rannikolla."
+
+#: gui/text/tips/treasure.txt:3
+msgid ""
+"Provide you with a resource boost, so keep an eye out for them as you "
+"explore."
+msgstr "Antaa lisäresursseja, joten pidä näitä silmällä, kun tutkit maailmaa."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6566,31 +6740,11 @@ msgstr "Keskitason sotalaiva."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Sopii kuljetukseen tai taisteluun."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
-
-#: gui/text/tips/viriato.txt:1
-msgid "VIRIATO"
-msgstr "VIRIATO"
-
-#: gui/text/tips/viriato.txt:2
-msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
-
-#: gui/text/tips/viriato.txt:3
-msgid ""
-"At least seven campaigns against the Romans during the Lusitani Wars from "
-"147 to 139 BC."
-msgstr ""
-
-#: gui/text/tips/viriato.txt:4
-msgid ""
-"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
-"their opponents."
-msgstr ""
+msgstr "Miehitä alus joukoilla lisätäksesi tulivoimaa."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -6598,17 +6752,17 @@ msgstr "SOTANORSUT"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Afrikasta ja Intiasta kotoisin olevia valtavia petoja, jotka on koulutettu sotaan."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Korkea ruoka- ja metallikustannus, mutta erittäin voimakas."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Saatavilla: karthagolaisille, kušilaisille, mauryoille, persialaisille, ptolemaioksille ja seleukideille."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -6628,11 +6782,11 @@ msgstr "Kerättävissä kalastusalusten toimesta, kun valas on tapettu."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Purjehdi pelin valtamerillä ja pakene, kun kimppuusi hyökätään."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Kerätään eläimistä, marjapensaista, kaloista tai pelloilta."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -6711,7 +6865,7 @@ msgstr "Liha"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Kaivetaan metallikaivoksista tai louhoksista."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -6764,7 +6918,7 @@ msgstr "Rauniot"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Kaivetaan kallioista, kivilouhoksista tai raunioista."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -6798,7 +6952,7 @@ msgstr "Kivi"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Kaadetaan puista tai metsiköistä."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

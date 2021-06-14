@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 08:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-12 12:43+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,11 +92,11 @@ msgstr "Mestarijalkaväen keihäsmiehille +25% terveyttä, mutta +5% koulutusaik
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr ""
+msgstr "Jos sotilaita kannustetaan harjoittelemaan jousiammuntaa, heidän tarkkuutensa paranee."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
-msgstr ""
+msgstr "Jousiammunnan harjoittelu"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
@@ -129,7 +129,7 @@ msgstr "Avautuu kaupunkivaiheessa."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr ""
+msgstr "Jousimiehille -20% kantamahyökkäysten hajonta."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -281,13 +281,13 @@ msgstr "Puinen rakentaminen"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr ""
+msgstr "Rakenteille -20 % rakennusaikaa, -20 % terveyttä ja -20 % kaappauspisteitä."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr ""
+msgstr "Gallialaiset olivat tunnettuja tehokkaasta ratsuväestään. Kelttien palkkasotilaat olivat kysyttyjä kaikkialla Välimerellä."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
@@ -295,7 +295,7 @@ msgstr "Ylivoimainen ratsuväki"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr ""
+msgstr "Ratsuväelle +10% lähitaisteluhyökkäysvahinko."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -307,7 +307,7 @@ msgstr "Helleeninen arkkitehtuuri"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Rakenteille +10% terveyttä ja +10% kaappauspisteitä."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -315,15 +315,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "Intia on norsujen maa. Norsusodankäynti sai alkunsa Intiasta ja jatkui vuosituhansien ajan. Se oli myös norsujen lähde itäiselle Välimerelle. Intian kuninkailla oli käytössään suuri määrä sotanorsuja."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Norsuperinne"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Norsuille -30% koulutusaika."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -333,7 +333,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr ""
+msgstr "Mauryanien valtakunta käsitti kymmeniä aiemmin itsenäisiä kuningaskuntia 5 miljoonan neliökilometrin alueella, ja sen väkiluku oli lähes 60 miljoonaa. Mauryan-hallitsijat pitivät hallussaan keisareiden keisarin arvonimeä ja komensivat 600 000 jalkaväen, 9000 norsun, 8000 sotavaunun ja 30 000 ratsuväen muodostamaa pysyvää armeijaa, mikä teki siitä kiistatta aikansa suurimman armeijan."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -346,13 +346,13 @@ msgstr "Chakravarti Samrāt"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr ""
+msgstr "+10% enimmäisväestökatto"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr ""
+msgstr "Mauryat rakensivat kaupunginmuurinsa puusta, joka oli Intiassa runsas luonnonvara."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -360,7 +360,7 @@ msgstr "Puiset muurit"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Kaupunkimuurien osalta -20 % rakennusaikaa ja -20 % terveyttä."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -370,7 +370,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "Persialaiset pystyivät ja käyttivät sodan aikana suuren määrän jalkaväkeä, mikä johtui Akhamenidien valtakunnan koosta ja sen rakenteesta. Persialainen jalkaväki oli yleisesti ottaen hyvin koulutettua ja taisteli erittäin sitkeästi. Samalla jalkaväki oli kuitenkin huono lähitaistelussa. Persian jalkaväki ei myöskään ollut eliittirykmenttejä lukuun ottamatta pysyvä ammattijoukko."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -382,21 +382,21 @@ msgid ""
 "especially where wood was scarce. Although not as strong and durable as "
 "fired bricks or natural stone and vulnerable to constant rains and heavy "
 "floods, mud bricks have the advantage they are cheap and easy to produce."
-msgstr ""
+msgstr "Auringossa kuivatut savitiilet olivat yleinen rakennusmateriaali kuumilla ja kuivilla alueilla, erityisesti siellä, missä puuta oli vähän. Vaikka savitiilet eivät ole yhtä vahvoja ja kestäviä kuin poltetut tiilet tai luonnonkivet ja alttiita jatkuville sateille ja tulville, niiden etuna on, että ne ovat halpoja ja helppoja valmistaa."
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr ""
+msgstr "Auringossa kuivatut savitiilet"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr ""
+msgstr "Taloille ja talousrakenteille -40% puukustannuksia ja terveyttä."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "Karthagonilaiset perustivat monia kauppakeskuksia siirtokunniksi ja hallitsivat lopulta 300 kaupunkia ja kylää pelkästään Pohjois-Afrikassa."
 
 #: simulation/data/technologies/colonization.jsongenericName
 msgid "Colonization"
@@ -404,7 +404,7 @@ msgstr "Asuttaminen"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr ""
+msgstr "Kaupunkirakenteille -25 % rakennusaikaa ja resurssikustannuksia."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -415,7 +415,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "Varhaiset akhaimenidien hallitsijat pyrkivät tekemään Persiasta ensimmäisen suuren Aasian valtakunnan, joka hallitsi meriä. Suuri kuningas käyttäytyi suopeasti eri merenkulkijakansoja kohtaan varmistaakseen niiden palvelukset, mutta toteutti myös erilaisia merellisiä aloitteita. Dareios Suuren valtakaudella rakennettiin esimerkiksi kanava Egyptiin ja Persian laivasto lähetettiin tutkimaan Indus-jokea. Herodotoksen mukaan noin 300 Persian laivaston alusta varustettiin jälkikäteen kuljettamaan hevosia ja niiden ratsastajia."
 
 #: simulation/data/technologies/equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -423,7 +423,7 @@ msgstr "Hevoseläinkuljetukset"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
-msgstr ""
+msgstr "Foinikialaiset kolmisoudut saavat kyvyn kouluttaa ratsuväkeä."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -447,11 +447,11 @@ msgstr "Kalastusverkko"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
+msgstr "Kalastusveneille +30% kalojen keräämisnopeus."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr ""
+msgstr "Yksiköt saavat terveyttä ajan myötä miehittäessään kohdetta."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -459,11 +459,11 @@ msgstr "Asumisolot"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr ""
+msgstr "Rakenteille +1 miehittäjien parannusnopeus."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
-msgstr ""
+msgstr "Kasvattaa karjaa lihaksi teurastettavaksi."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -471,11 +471,11 @@ msgstr "Karjanristeytys"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr ""
+msgstr "Kotieläimille -25% kasvatusaika."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Työntekijät käyttävät koreja. Lisää kaikkien resurssien kuljetuskapasiteettia."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -485,13 +485,13 @@ msgstr "Korit"
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr ""
+msgstr "Työntekijöille +5 resurssikapasiteetti."
 
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr ""
+msgstr "Työntekijät käyttävät hevoskärryjä. Lisää kaikkien resurssien kuljetuskapasiteettia."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -500,7 +500,7 @@ msgstr "Hevostenvetämät kärryt"
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr ""
+msgstr "Työntekijät käyttävät kottikärryjä. Lisää kaikkien resurssien kuljetuskapasiteettia."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -518,13 +518,13 @@ msgstr "Lannoite"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr ""
+msgstr "Työntekijöille +20% viljan keräysnopeus."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Gallialaiset keksivät sadonkorjuukoneen, joka helpotti viljan korjuuta huomattavasti."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
@@ -532,13 +532,13 @@ msgstr "Sadonkorjuulaitteet"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr ""
+msgstr "Työntekijöille +10% viljan keräysnopeus."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr ""
+msgstr "Varusta työntekijäsi rauta-auroilla, eläinten vetämillä välineillä, joilla maata käännetään."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -560,27 +560,27 @@ msgstr "Nostaa puunhakkuun keräysnopeutta."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Axe Heads"
-msgstr ""
+msgstr "Rautaiset kirveenpäät"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr ""
+msgstr "Työntekijöille +25% puun keräysnopeus."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
-msgstr ""
+msgstr "Terävät kirveenpäät"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Axe"
-msgstr ""
+msgstr "Voimakkaampi kirves"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Pakota maaorjat auttamaan työläisiäsi kiven louhinnassa. Lisää kiven keräysnopeutta."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -588,17 +588,17 @@ msgstr "Maatyöläinen"
 
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 msgid "Heilōtes"
-msgstr ""
+msgstr "Heilōtes"
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr ""
+msgstr "Työntekijöille +25% kiven keräysnopeus."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr ""
+msgstr "Palkkaa palvelijoita auttamaan kiven louhinnassa. Lisää kiven keräysnopeutta."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -610,11 +610,11 @@ msgstr "Palvelijat"
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 msgid "Douloi"
-msgstr ""
+msgstr "Douloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Kehitetään kaivoskuilut. Lisää metallien keräysnopeutta."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -624,11 +624,11 @@ msgstr "Kaivoskuilulouhinta"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr ""
+msgstr "Työntekijöille +25% metallin keräysnopeus."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr ""
+msgstr "Löydä hopeasuoni. Lisää metallin keräysnopeutta."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -646,7 +646,7 @@ msgstr "Krenideksen kaivokset"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Osta orjia auttamaan työläisiäsi kiven louhinnassa. Lisää kiven keräysnopeutta."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -658,16 +658,16 @@ msgstr "Orjat"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 msgid "Andrapoda"
-msgstr ""
+msgstr "Andrapoda"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
 msgid "Servi"
-msgstr ""
+msgstr "Servi"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr ""
+msgstr "Varusta työntekijäsi hyödyllisillä työkaluilla. Lisää metallin keräysnopeutta."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -675,7 +675,7 @@ msgstr "Kiila ja nuija"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr ""
+msgstr "Varusta marjankerääjät pajukoreilla."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -683,12 +683,12 @@ msgstr "Vitsakorit"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr ""
+msgstr "Työntekijöille +50% marjojen ja hedelmien keräysnopeus."
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr ""
+msgstr "Lisää kaikkien parantajien parantamis- ja näkökantamaa."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -713,12 +713,12 @@ msgstr "Parannuskantama 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
-msgstr ""
+msgstr "Akadēmeia"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the healing rate of all healers."
-msgstr ""
+msgstr "Lisää kaikkien parantajien parannusnopeutta."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -730,12 +730,12 @@ msgstr "Parantumisnopeus"
 #: simulation/data/technologies/heal_rate.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 msgid "Sphagia"
-msgstr ""
+msgstr "Sfagia"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Parantajille -20% parannusaika."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -754,7 +754,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Kangaspuiden avulla voitiin valmistaa hienompia vaatteita uudisasukkaille. Kotitalouden naiset opetettiin nuoresta pitäen kutomaan kangaspuilla, ja myöhemmin he viettivät suuren osan elämästään kangaspuiden parissa työskennellen."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -762,11 +762,11 @@ msgstr "Kangastuspuu"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr ""
+msgstr "Naiskansalaisille +100% terveyttä."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "Orgaaniset yksiköt saavat hitaasti lisää terveyttä ollessaan käyttämättöminä."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -774,14 +774,14 @@ msgstr "Taistelukentän lääkkeet"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr ""
+msgstr "Joutilaille orgaanisille yksiköille +0.5 terveyden parantumisnopeus."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr ""
+msgstr "Aleksanterista alkaen hellenistiset hallitsijat perustivat valtakuntansa eri puolille monia kaupunkeja, joissa kreikkalainen kulttuuri ja taide sekoittuivat paikallisiin tapoihin luoden kirjavan hellenistisen sivilisaation."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -789,25 +789,25 @@ msgstr "Helleeninen suurkaupunki"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Kansalaiskeskuksille +100% terveytttä ja valloituspisteitä sekä kaksinkertainen määrä nuolia oletuksena."
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr ""
+msgstr "Hopliittisotilaat muodostivat suurimman osan Kreikan armeijoista."
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
-msgstr ""
+msgstr "Hopliittiperinne"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr ""
+msgstr "Hopliiteille -25 % koulutusaikaa ja -50 % ylennyskokemusta."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Akhaimenideillä oli 10 000 hengen eliittijoukko, jota kreikkalaiset kirjoittajat kutsuivat athanatoiksi (\"kuolemattomiksi\")."
 
 #: simulation/data/technologies/immortals.jsongenericName
 msgid "Immortals"
@@ -815,13 +815,13 @@ msgstr "Kuolemattomat"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr ""
+msgstr "Kuolemattomille -50 % koulutusaikaa, mutta -10 % terveyttä."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr ""
+msgstr "Jalkaväkijoukkojen kutsuminen koolle sodan aikana auttaa vahvistamaan kuninkaan armeijan rivejä."
 
 #: simulation/data/technologies/infantry_cost_time.jsongenericName
 msgid "Levy Infantry"
@@ -829,13 +829,13 @@ msgstr "Nostettu jalkaväki"
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."
-msgstr ""
+msgstr "Jalkaväelle -10% koulutusaika."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Ateenalaiset kolmisoudut voivat kouluttaa merijalkaväen sotilaita (Epibates Athenaikos) ja kreetalaisia palkkajousimiehiä (Toxotes Kretikos)."
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -843,7 +843,7 @@ msgstr "Ifikrateen Uudistukset"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Ateenalaiset kolmisoudut voivat kouluttaa merijalkaväen sotilaita ja kreetalaisia palkkajousimiehiä."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -859,14 +859,14 @@ msgstr "Ateenalaiset pitkät muurit"
 
 #: simulation/data/technologies/long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "Rakenna muureja omalle tai puolueettomalle alueelle."
 
 #: simulation/data/technologies/nisean_horses.jsondescription
 msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr ""
+msgstr "Nyttemmin sukupuuttoon kuollut nisialainen hevosrotu oli yksi muinaisajan suurimmista ja vahvimmista hevosista. Seleukidit ja persialaiset pitivät niitä erittäin haluttuina, sillä sekä ratsastaja että ratsu saivat ajan myötä raskaammat panssarit."
 
 #: simulation/data/technologies/nisean_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -878,11 +878,11 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr ""
+msgstr "Mestariratsuväen keihäsmiehille +20% terveyttä, mutta +10% koulutusaika."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
-msgstr ""
+msgstr "Lisää etuvartioaseman näkökykyä."
 
 #: simulation/data/technologies/outpost_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -890,17 +890,17 @@ msgstr "Viestipuluja"
 
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
-msgstr ""
+msgstr "Etuvartioasemile +33% näkökantama."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Perinteinen armeija vs. uudisarmeija"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
 "thousands of well-equipped troops participated in the opening procession."
-msgstr ""
+msgstr "Daphnen festivaali oli Seleukidien valtakunnan suurtapahtuma: avajaiskulkueeseen osallistui kymmeniä tuhansia hyvin varustettuja sotilaita."
 
 #: simulation/data/technologies/parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -908,13 +908,13 @@ msgstr "Daphnen paraati"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr ""
+msgstr "Mestareille -20% koulutusaika."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Malliteknologia käytettäväksi mallinnusvaatimuksissa, korvataan phase_city_generic- tai phase_city_{civ}-teknologialla."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -927,12 +927,12 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Kehittyy vilkkaasta kaupungista todelliseksi metropoliksi, joka on täynnä modernin teknologian ihmeitä. Tämä on Ateenan kaupunkivaihe, jossa metallin keräysaste nousee \"hopeapöllöjen\" bonuksen ansiosta."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires four Town Structures."
-msgstr ""
+msgstr "Vaatii neljä kaupunkirakennelmaa."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -940,33 +940,33 @@ msgstr ""
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 msgid "Megalopolis"
-msgstr ""
+msgstr "Megalopolis"
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Etene kaupunkivaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +50% alueen vaikutussäde. Rakenteille +9 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti. Työntekijöille +10 % metallin keräysaste."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr ""
+msgstr "Kehittyy vilkkaasta kaupungista todelliseksi metropoliksi, joka on täynnä modernin teknologian ihmeitä."
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Etene kaupunkivaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +50% alueen vaikutussäde. Rakenteille +9 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Malliteknologia käytettäväksi mallinnusvaatimuksissa, korvataan phase_town_generic- tai phase_town_{civ}-teknologialla."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -979,12 +979,12 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr ""
+msgstr "Kehittyy pienestä kylästä vilkkaaksi kauppalaksi, joka on valmis laajentumaan nopeasti. Tämä on Ateenan kauppalavaihe, jossa metallien keräysaste nousee \"hopeapöllöjen\" bonuksen ansiosta."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
-msgstr ""
+msgstr "Vaatii viisi kylärakennelmaa."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -992,26 +992,26 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmopolis"
-msgstr ""
+msgstr "Kōmopolis"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Etene kauppalavaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +30% alueen vaikutussäde. Rakenteille +7 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti. Työntekijöille +10 % metallin keräysaste."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr ""
+msgstr "Etene pienestä kylästä vilkkaaksi kauppalaksi, joka on valmis laajentumaan nopeasti."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Etene kauppalavaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kansalaiskeskuksille +30% alueen vaikutussäde. Rakenteille +7 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1021,7 +1021,7 @@ msgstr "Kylävaihe"
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr ""
+msgstr "Kotipuutarhat vaihtelivat yksinkertaisista aidatuista alueista suuriin hoidettuihin ja pylväiden ympäröimiin tiloihin."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1033,25 +1033,25 @@ msgstr "Kotipuutarha"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 msgid "Peristylon"
-msgstr ""
+msgstr "Peristyyli"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 msgid "Paradaidām"
-msgstr ""
+msgstr "Paradaidām"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 msgid "Peristylium"
-msgstr ""
+msgstr "Peristyyli"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr ""
+msgstr "Taloille +20% väestöbonus."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
-msgstr ""
+msgstr "Kodit laajenivat yleensä sitä mukaa, kun asutuksen varallisuus ja väkiluku kasvoivat."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -1063,7 +1063,7 @@ msgstr "Insulae"
 
 #: simulation/data/technologies/reformed_army_sele.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Seleukidien armeijan roomalaistyyppinen ydin."
 
 #: simulation/data/technologies/reformed_army_sele.jsongenericName
 msgid "Reform Army"
@@ -1071,13 +1071,13 @@ msgstr "Reformoi armeijaa"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Avaa mestarijalkaväen miekkamies"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
 "construction."
-msgstr ""
+msgstr "Palkkaa ammattitaitoisia laivanrakentajia, joilla on erikoistyökaluja laivanrakennuksen nopeuttamiseksi."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1103,7 +1103,7 @@ msgstr "Laivoille +25 % terveyttä."
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr ""
+msgstr "Kouluta soutajia ja merimiehiä, jotta voit liikkua tehokkaammin ja nopeuttaa laivojasi."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
@@ -1115,7 +1115,7 @@ msgstr "Laivoille +10 % liikkumisnopeutta."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
-msgstr ""
+msgstr "Kehittyneet teknologiat parantavat piiritysaseiden tehokkuutta."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1123,11 +1123,11 @@ msgstr "Kehittynyt piiritys"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "Piirityskoneille +25% hyökkäyksen murskavahinko."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr ""
+msgstr "Parantaa ammusten tarkkuutta."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1135,36 +1135,36 @@ msgstr "Vasaman tarkkuus"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr ""
+msgstr "Varsijousiampujille -20% kantamahyökkäysten hajonta."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr ""
+msgstr "Piiritysten toteuttamiseen liittyvä tieto ja taito."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
-msgstr ""
+msgstr "Piiritystaito"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr ""
+msgstr "Piirityskoneille -20% rakennusaika."
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr ""
+msgstr "Peitä ulkokuori rautalevyillä tulelta ja ammuksilta suojaamiseksi."
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
-msgstr ""
+msgstr "Panssarin metallipinnoitus"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr ""
+msgstr "Muurinsärkijöille ja piiritystorneille +25 % terveyttä."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
-msgstr ""
+msgstr "Sotilasinsinöörit ovat vastuussa piiritysmoottoreiden parannuksista."
 
 #: simulation/data/technologies/siege_pack_unpack.jsongenericName
 msgid "Military Engineers"
@@ -1172,13 +1172,13 @@ msgstr "Sotilasinsinöörit"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr ""
+msgstr "Piirityskoneille -40% pakkaus- ja purkamisaika."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Hopeakilvet eli Argyraspidat olivat Makedonian armeijan raskaan jalkaväen eliittijoukko."
 
 #: simulation/data/technologies/silvershields.jsongenericName
 msgid "Silver Shields Regiment"
@@ -1188,14 +1188,14 @@ msgstr "Hopeakilpien rykmentti"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Päivitä kilvenkantajien mestarijalkaväki hopeakilviksi, joilla on enemmän terveyttä ja hyökkäysvahinkoa."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr ""
+msgstr "Usein sotilaalla oli ensisijaisen aseensa lisäksi mukanaan toissijainen ase, joka otettiin esiin, kun ensisijainen ase oli pettänyt tai rikkoutunut."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1207,7 +1207,7 @@ msgstr "Toissijaiset aseet"
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
 msgid "Xiphos"
-msgstr ""
+msgstr "Ksifos"
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -1216,7 +1216,7 @@ msgstr "Pugio"
 #: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
 msgid "Soldiers +15% melee attack damage."
-msgstr ""
+msgstr "Sotilaille +15% vahinkoa lähitaisteluhyökkäyksiin."
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -1230,15 +1230,15 @@ msgstr "Aseet raudasta"
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
-msgstr ""
+msgstr "Lisäämällä pieni määrä hiiltä raudan sulatusprosessin aikana voidaan takoa vahvempaa materiaalia, terästä."
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
-msgstr ""
+msgstr "Hiiletys"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr ""
+msgstr "Sotilaille +20% vahinkoa lähitaisteluhyökkäyksiin."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
@@ -1261,26 +1261,26 @@ msgstr "Upokasteräs"
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
-msgstr ""
+msgstr "Sotilaille +20% vahinkoa lähitaisteluhyökkäyksiin. Miekkamiehet saavat ylimääräisen +20% bonuksen."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr ""
+msgstr "Nuolien sulituksen parantaminen lisää niiden vakautta ja nopeutta ja siten niiden läpäisykykyä."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
-msgstr ""
+msgstr "Paranneltu sulitus"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr ""
+msgstr "Sotilaille +15% vahinkoa kantamahyökkayksiin."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr ""
+msgstr "Raudasta valmistetut ammuskärjet mahdollistavat ohjusten tunkeutumisen syvemmälle."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Iron Arrowheads"
@@ -1288,23 +1288,23 @@ msgstr "Rautaiset nuolenkärjet"
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
-msgstr ""
+msgstr "Nuolenkärjet, joissa on kahden sijasta kolme liuskaa, aiheuttavat suurempia haavoja."
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsongenericName
 msgid "Trilobate Arrowheads"
-msgstr ""
+msgstr "Kolmiliuskaiset nuolenkärjet"
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
 msgid "Soldiers +20% ranged attack damage."
-msgstr ""
+msgstr "Sotilaille +20% vahinkoa kantamahyökkayksiin."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "Kantamasotilaille +25% ylennyskokemusta."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr ""
+msgstr "Tikatusta villasta, pellavasta, puuvillasta tai nahasta valmistettu vartalopanssari."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -1321,11 +1321,11 @@ msgstr "Spolas"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr ""
+msgstr "Sotilaille +1 vastustus hakkausiskuille."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
-msgstr ""
+msgstr "Laminoidusta pellavasta valmistettu vartalopanssari."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
@@ -1337,82 +1337,82 @@ msgstr "Kerrostettu palttinapanssari"
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.sele
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.spart
 msgid "Linothōrax"
-msgstr ""
+msgstr "Linothōrax"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
 msgid "Body armor made of small metal rings linked together."
-msgstr ""
+msgstr "Pienistä, toisiinsa liitetyistä metallirenkaista valmistettu panssari."
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr ""
+msgstr "Rengaspanssari"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr ""
+msgstr "Sotilaille +2 vastustus hakkausiskuille."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
-msgstr ""
+msgstr "Puiset kilvet ovat raskaampia, mutta ne kestävät ammuksia ja iskuja paljon paremmin kuin pajurunkoiset kilvet."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
-msgstr ""
+msgstr "Puinen kilpi"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
 msgid "Soldiers +1 pierce resistance."
-msgstr ""
+msgstr "Sotilaille +1 vastustus lävistyksille."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr ""
+msgstr "Vahvistaa kilpiä metallisella reunalla tai rungolla."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
-msgstr ""
+msgstr "Metallireunus"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr ""
+msgstr "Vahvista kilpiä entistä vahvemmilla metalliseoksilla."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
-msgstr ""
+msgstr "Parannetut metalliseokset kilpiin"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr ""
+msgstr "Sotilaille +2 vastustus lävistyksille."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr ""
+msgstr "Rekrytoi ilmiantajien verkosto, joka valvoo kansaasi."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
-msgstr ""
+msgstr "Vastatiedustelu"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr ""
+msgstr "Tee yksiköistäsi 50 prosenttia kalliimpia lahjottavia."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr ""
+msgstr "Lisää merkittävästi ratsuväen koulutusnopeutta kouluttamalla ratsuväkeä suurissa erissä tai komppanioissa."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr ""
+msgstr "Talleille -10% eräkoulutusaika."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr ""
+msgstr "Linnoitusten sakarat mahdollistavat sotilaille laajemman ampuma-alueen puolustettaessa linnoitusta."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1420,7 +1420,7 @@ msgstr "Muurin vetoketjuaukot"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Vartio- ja kivitorneille +40% enemmän nuolia miehittävää sotilasta kohti."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1444,7 +1444,7 @@ msgstr "Ampuma-aukot"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Vartio- ja kivitornien vähimmäishyökkäysetäisyys on 0."
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -1456,7 +1456,7 @@ msgstr "Nuolenampujat"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "Vartio- ja kivitorneille +8 hyökkäyksen kantama"
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1480,11 +1480,11 @@ msgstr "Vigiles"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Vartio- ja kivitorneille +1 oletusnuolimäärään."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
-msgstr ""
+msgstr "Parantaa kansainvälisen kaupan voittoa."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
@@ -1492,12 +1492,12 @@ msgstr "Kaupallinen sopimus"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "+10% kansainvälisen kaupan bonus."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "Käsityön edistyminen parantaa kaupankäynnin voittoa."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
@@ -1506,7 +1506,7 @@ msgstr "Käsityö"
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% trade gain."
-msgstr ""
+msgstr "Kauppiaille +15% kaupan voitto."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1514,19 +1514,19 @@ msgstr "Kehittynyt käsityö"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr ""
+msgstr "Yhdessä karavaaneissa matkustavat kauppiaat ovat vähemmän haavoittuvia."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
-msgstr ""
+msgstr "Kauppakaravaani"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr ""
+msgstr "Maakauppiaille +50% terveyttä."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Seleukidien armeijan makedonialaistyylinen ydin."
 
 #: simulation/data/technologies/traditional_army_sele.jsongenericName
 msgid "Traditional Army"
@@ -1534,7 +1534,7 @@ msgstr "Perinteinen armeija"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Avaa mestarijalkaväen piikkimies."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1542,19 +1542,19 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "Edistyneille ja eliittiyksiköille +20% koulutusaikaa, +25% terveyttä, +0.7 kaappaushyökkäysvoimaa, +20% ryöstösaalista ja -30% keräysnopeutta; Parantajille +5 parantavaa voimaa ja +3 parannuksen kantamaa; Lähitaisteluyksiköille +1 vastustuskykyä ja +20% hyökkäysvahinkoa; Kantamayksiköille -20% hajontaa."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Afrikkalaisille norsuille -10 % resurssikustannuksia, koulutusaikaa, terveyttä, hyökkäysvahinkoja ja ryöstösaalista."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "Intialaisille norsuille +10 % resurssikustannuksia, koulutusaikaa, terveyttä, hyökkäysvahinkoja ja ryöstösaalista."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1562,7 +1562,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr ""
+msgstr "Eliittiyksiköille +20% koulutusaikaa, +25% terveyttä, +0.8 kaappaushyökkäysvoimaa, +20% ryöstösaalista ja -30% keräysnopeutta; Parantajille +5 parantavaa voimaa ja +3 parannuksen kantamaa; Lähitaisteluyksiköille +1 vastustuskykyä ja +20% hyökkäysvahinkoa; Kantamayksiköille -20% hajontaa."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1570,32 +1570,32 @@ msgstr ""
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr ""
+msgstr "Vartioyksiköt (Mestarit) ovat ammattilaisia, joilla on parhaat aseet ja paras koulutus."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr ""
+msgstr "Avaa mestariratsuväki"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr ""
+msgstr "Avaa mestariratsuväen tallilla"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr ""
+msgstr "Avaa mestarisotavaunut"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr ""
+msgstr "Avaa mestarisotavaunut tallilla."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr ""
+msgstr "Avaa mestarijalkaväki"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
 msgid "Agēma"
-msgstr ""
+msgstr "Agēma"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1603,11 +1603,11 @@ msgstr "Regio Cohors"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr ""
+msgstr "Avaa mestarijalkaväen kasarmilla."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr ""
+msgstr "Festivaali, johon osallistuvat vain naiset ja jolla juhlitaan naisten hedelmällisyyttä."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -1619,7 +1619,7 @@ msgstr "Hedelmällisyysjuhlat"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.sele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 msgid "Thesmophoria"
-msgstr ""
+msgstr "Thesmoforia"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"
@@ -1634,26 +1634,26 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Kaupan laajentuminen johtaa siihen, että kauppiaat ja heidän perheensä asettuvat pysyvästi ulkomaille, jolloin he voivat hyödyntää näiden maiden rikkauksia."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "Diaspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires three Traders"
-msgstr ""
+msgstr "Vaatii kolme kauppiasta"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr ""
+msgstr "Sallii liittolaisten pudotusalueiden käytön."
 
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "Kaupankäynnin ja matkustamisen avulla ihmiset tutustuivat alueisiin maidensa rajojen ulkopuolelle ja piirsivät niistä karttoja jakaakseen löytönsä ja tallentaakseen ne muistiin."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1663,38 +1663,38 @@ msgstr "Kartographia"
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Katso, mitä liittolaisesi näkevät, selaa heidän yhteenvetojaan ja tarkista heidän resurssinsa ja väestömääränsä yläpaneelista."
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
-msgstr ""
+msgstr "Kauppiaiden ensisijainen tavoite oli kaupankäynti, mutta he keräsivät myös tietoa maista, joiden kautta he kulkivat."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "Vakoilu"
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Mahdollistaa muiden pelaajien yksiköiden lahjomisen, jotta nämä jakaisivat näkönsä."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Palkkaa ammattimaisia palkkasotureita taistelemaan armeijassasi."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "Sodan tuntemus"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
-msgstr ""
+msgstr "Palkkasoturit aloittavat edistyneellä tasolla."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Ihme houkuttelee lukuisia ihmisiä sivilisaatiosi pariin."
 
 #: simulation/data/technologies/wonder_population_cap.jsongenericName
 msgid "Glorious Expansion"
@@ -1706,10 +1706,10 @@ msgstr "Kunniallinen laajentuminen"
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
 msgid "Peristasis"
-msgstr ""
+msgstr "Peristasis"
 
 #: simulation/data/technologies/wonder_population_cap.jsontooltip
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "Ota käyttöön \"Loistokas laajeneminen\" -aura: +20% enimmäisväestöraja omistettua ihmettä kohden."

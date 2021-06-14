@@ -29,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:31+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-12 06:11+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -368,7 +368,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Kahramanlar eğit. Daha fazla ok için asker konuşlandırın."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -1323,22 +1323,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Zafer Kemeri"
 
-#: simulation/templates/structures/rome/army_camp.xml:70
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Army Camp"
 msgstr "Ordu Kampı (bu oyunda bile kamp mı yapıyon)"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid ""
-"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
-" Soldiers for additional arrows."
-msgstr "Tarafsız veya düşman bölgesinde inşa edin. Gelişmiş Piyade eğitin. İlave oklar için askerleri konuşlandırın."
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. "
+"Construct Rams. Garrison Soldiers for additional arrows."
+msgstr "Tarafsız veya düşman bölgesinde inşa edin. Gelişmiş Piyade eğit. Koç Başı inşaa et. İlave oklar için askerleri konuşlandır."
 
 #: simulation/templates/structures/rome/army_camp.xml:37
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "Ordu Kampı (bu oyunda bile kamp mı yapıyon)"
 
@@ -1520,15 +1520,15 @@ msgstr "Korint Tarzı Kemeraltı"
 
 #: simulation/templates/structures/shrine_egyptian.xml:5
 msgid "Sanctuary Kiosk"
-msgstr ""
+msgstr "Kutsal Köşk"
 
 #: simulation/templates/structures/shrine_italian.xml:9
 msgid "Temple of Healing"
-msgstr ""
+msgstr "Şifa Tapınağı"
 
 #: simulation/templates/structures/shrine_italian.xml:10
 msgid "Aedēs Sanitatem"
-msgstr ""
+msgstr "Şifa Tapınağı"
 
 #: simulation/templates/structures/kush/shrine.xml:12
 #: simulation/templates/structures/shrine_kushite.xml:5
@@ -1595,7 +1595,7 @@ msgstr "Kare Masa"
 
 #: simulation/templates/structures/tent_desert.xml:35
 msgid "Desert Army Tent"
-msgstr ""
+msgstr "Askeri Çöl Çadırı"
 
 #: simulation/templates/structures/rome/tent.xml:24
 #: simulation/templates/structures/tent_desert.xml:36
@@ -1615,19 +1615,19 @@ msgstr "Askerler için geçici barınak. nüfusa +5 katkı sağlar."
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
-msgstr ""
+msgstr "Makedonyalı Askeri Çadır"
 
 #: simulation/templates/structures/tent_rome.xml:35
 msgid "Roman Army Tent"
-msgstr ""
+msgstr "Romalı Askeri Çadır"
 
 #: simulation/templates/structures/trading_post_celtic.xml:9
 msgid "Celtic Tavern"
-msgstr ""
+msgstr "Kelt Tavernası"
 
 #: simulation/templates/structures/trading_post_desert.xml:9
 msgid "Desert Bazaar"
-msgstr ""
+msgstr "Çöl Pazarı"
 
 #: simulation/templates/structures/uffington_horse.xml:10
 msgid "Uffington White Horse"
@@ -1635,11 +1635,11 @@ msgstr "Uffington Beyaz Atı"
 
 #: simulation/templates/template_structure_civic.xml:5
 msgid "Civic Structure"
-msgstr "Kent  Yapısı"
+msgstr "Şehir Yapısı"
 
 #: simulation/templates/template_structure_civic.xml:6
 msgid "Civic"
-msgstr "Kent"
+msgstr "Şehir"
 
 #: simulation/templates/structures/rome/army_camp.xml:5
 #: simulation/templates/template_structure_civic_civil_centre.xml:11
@@ -1651,7 +1651,7 @@ msgstr "Yay"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:75
 msgid "Civic Center"
-msgstr "Hükümet Binası"
+msgstr "Şehir Merkezi"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid ""
@@ -1741,7 +1741,7 @@ msgstr "Karakol"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
 msgid "Build in own or neutral territory."
-msgstr ""
+msgstr "Kendi bölgende ya da tarafsız bölgede inşa et."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1908,7 +1908,7 @@ msgstr "Şampiyon Kundaklı Yaycı Piyade eğit, Kuşatma Makineleri inşa et ve
 #: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:76
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
