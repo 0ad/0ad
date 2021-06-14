@@ -319,6 +319,10 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": markForTranslation("Once you meet the City Phase requirements, select your Civic Center and advance to City Phase."),
+		"IsDone": function()
+		{
+			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_city_generic");
+		},
 		"OnResearchQueued": function(msg)
 		{
 			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "CivilCentre"))
@@ -327,6 +331,10 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": markForTranslation("While waiting for the phase change, you may train more soldiers at the Barracks."),
+		"IsDone": function()
+		{
+			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_city_generic");
+		},
 		"OnResearchFinished": function(msg)
 		{
 			if (msg.tech == "phase_city_generic")
@@ -346,7 +354,7 @@ Trigger.prototype.tutorialGoals = [
 		"OnTrainingQueued": function(msg)
 		{
 			if (msg.unitTemplate == "units/spart/siege_ram")
-				++this.ramCount;
+				this.ramCount += msg.count;
 			if (this.IsDone())
 			{
 				this.RemoveChampions();
@@ -369,6 +377,11 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": markForTranslation("The enemy has been defeated. These tutorial tasks are now completed."),
+		"Init": function()
+		{
+			let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+			cmpEndGameManager.MarkPlayerAndAlliesAsWon(1, () => "Tutorial completed", () => "");
+		}
 	}
 ];
 

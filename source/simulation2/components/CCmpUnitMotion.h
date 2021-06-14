@@ -111,6 +111,14 @@ constexpr u8 ALTERNATE_PATH_TYPE_DELAY = 3;
 constexpr u8 ALTERNATE_PATH_TYPE_EVERY = 6;
 
 /**
+ * Units can occasionally get stuck near corners. The cause is a mismatch between CheckMovement and the short pathfinder.
+ * The problem is the short pathfinder finds an impassable path when units are right on an obstruction edge.
+ * Fixing this math mismatch is perhaps possible, but fixing it in UM is rather easy: just try backing up a bit
+ * and that will probably un-stuck the unit. This is the 'failed movement' turn on which to try that.
+ */
+constexpr u8 BACKUP_HACK_DELAY = 10;
+
+/**
  * After this many failed computations, start sending "VERY_OBSTRUCTED" messages instead.
  * Should probably be larger than ALTERNATE_PATH_TYPE_DELAY.
  */
@@ -1255,6 +1263,22 @@ bool CCmpUnitMotion::HandleObstructedMove(bool moved)
 		if (InShortPathRange(goal, pos))
 			return false;
 
+		// On rare occasions, when following a short path, we can end up in a position where
+		// the short pathfinder thinks we are inside an obstruction (and can leave)
+		// but the CheckMovement logic doesn't. I believe the cause is a small numerical difference
+		// in their calculation, but haven't been able to pinpoint it precisely.
+		// In those cases, the solution is to back away to prevent the short-pathfinder from being confused.
+		// TODO: this should only be done if we're obstructed by a static entity.
+		if (!m_ShortPath.m_Waypoints.empty() && m_FailedMovements == BACKUP_HACK_DELAY)
+		{
+			Waypoint next = m_ShortPath.m_Waypoints.back();
+			CFixedVector2D backUp(pos.X - next.x, pos.Y - next.z);
+			backUp.Normalize();
+			next.x = pos.X + backUp.X;
+			next.z = pos.Y + backUp.Y;
+			m_ShortPath.m_Waypoints.push_back(next);
+			return true;
+		}
 		// Delete the next waypoint if it's reasonably close,
 		// because it might be blocked by units and thus unreachable.
 		// NB: this number is tricky. Make it too high, and units start going down dead ends, which looks odd (#5795)
