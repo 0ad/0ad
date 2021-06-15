@@ -176,10 +176,13 @@ RepairableMirage.prototype.Init = function(cmpRepairable)
 {
 	this.numBuilders = cmpRepairable.GetNumBuilders();
 	this.buildTime = cmpRepairable.GetBuildTime();
+	if (cmpRepairable.unrepairable)
+		this.unrepairable = cmpRepairable.unrepairable;
 };
 
 RepairableMirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
 RepairableMirage.prototype.GetBuildTime = function() { return this.buildTime; };
+RepairableMirage.prototype.IsRepairable = function() { return !this.unrepairable; };
 
 Engine.RegisterGlobal("RepairableMirage", RepairableMirage);
 
