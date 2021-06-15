@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-12 15:16+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,7 @@ msgstr "Kaçma lan"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Canlı Yayın gecikmesi:%(delay)s s"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -901,7 +901,7 @@ msgstr "Bilinmeyen Oyuncu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:29
 msgid "Send a flare to your allies"
-msgstr ""
+msgstr "Müttefiklere işaret fişeği gönder"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -910,11 +910,11 @@ msgstr "Boş duran işçi bul"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — Paketlendi"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Paketlendi"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -986,7 +986,7 @@ msgstr "Olan/en fazla toplayıcı"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -995,7 +995,7 @@ msgstr "Yakalama Noktaları:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
@@ -1140,17 +1140,17 @@ msgstr "Geliştirilirken eğitilemez."
 #: gui/session/selection_panels.js:1086
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)'a yükselt.%(tooltip)s"
 
 #: gui/session/selection_panels.js:1092
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s) 'a yükselt."
 
 #: gui/session/selection_panels.js:1100
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "%(primaryName)s'a yükselt. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1105
 #, javascript-format
@@ -1346,7 +1346,7 @@ msgstr "Gruplanmış birimlere tıklayın, çift tıklayarak gruplanmış biriml
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alfa 25: Y——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1385,15 +1385,15 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "Nüfus: şuan/limit(azami)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Toplayıcılar: Şu an"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1642,7 +1642,7 @@ msgstr "Ticaret varış pazarı olarak ayarlamak için sağ tıklayın"
 #: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "Seçili Küçük Kuleler: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
 #, javascript-format
@@ -1691,7 +1691,7 @@ msgstr "Seçilen birimleri bir binaya ya da birime konuşlandır."
 
 #: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Seçilen birimleri bir küçük kuleyi işgal etmelerini emredin."
 
 #: gui/session/unit_actions.js:1479
 msgid "Unload"
@@ -1753,11 +1753,11 @@ msgstr "Bu açılır listeyi kullanmanıza izniniz var"
 
 #: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Seçili yapılar için otomatik sırayı aktive edin."
 
 #: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Seçili yapılar için otomatik sırayı deaktive edin."
 
 #: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"

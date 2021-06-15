@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # ali topçu <ali134636@gmail.com>, 2018
-# Cem Aktas <cemwstone@gmail.com>, 2018
+# Cem Aktas <cemwstone@gmail.com>, 2018,2021
 # Hüseyin Cem KOÇ <hckweb@gmail.com>, 2015
 # Emre JILTA <jilta.e@gmail.com>, 2020
 # Günay Yılmaz, 2019-2021
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:21+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2021-06-12 11:42+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,12 +105,12 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr ""
+msgstr "Yılan veya zehirli silahların neden olduğu zehir hasarı."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr ""
+msgstr "Zehir"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -650,7 +650,7 @@ msgstr "Antik Kalıntılar"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr ""
+msgstr "İsis tarikatı görüntüsü"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -677,19 +677,19 @@ msgstr "Kushite Heykeli (Mısır ve Sudan da kurulmuş olan Kushite Krallığı'
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
 msgid "Stone Resource"
-msgstr ""
+msgstr "Taş Kaynağı"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr ""
+msgstr "Kuşit Kuş Heykeli"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
-msgstr ""
+msgstr "Apedamak Aslan Heykesli"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
-msgstr ""
+msgstr "Amon-Ra Koç Heykeli"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -759,16 +759,16 @@ msgstr "Değerli Taş Hazinesi"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr ""
+msgstr "Kesilmiş Granit"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
-msgstr ""
+msgstr "Kesilmiş Taş"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
 msgid "Cut Sandstone"
-msgstr ""
+msgstr "Kesilmiş Kumtaşı"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
@@ -776,7 +776,7 @@ msgstr "Ahşap Hazine"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:4
 msgid "Milled Lumber"
-msgstr ""
+msgstr "Öğütülmüş Kereste"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -991,7 +991,7 @@ msgstr "Yağmur Ormanı Ağacı"
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
-msgstr ""
+msgstr "İnşaacı"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1003,7 +1003,7 @@ msgstr "Tapınak"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
-msgstr ""
+msgstr "Ticaret Noktası"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1068,7 +1068,7 @@ msgstr "Yok"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Sadece Piyade Hoplitleri en az 10 gerektirir."
+msgstr "Sadece Ağır Mızraklı Piyade en az 10 gerektirir."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"

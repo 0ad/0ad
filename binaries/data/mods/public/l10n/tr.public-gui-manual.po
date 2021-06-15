@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # ali topçu <ali134636@gmail.com>, 2018
+# Cem Aktas <cemwstone@gmail.com>, 2021
 # Doğu Kan, 2014
 # Emre JILTA <jilta.e@gmail.com>, 2020
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 09:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-12 13:29+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,7 +154,7 @@ msgstr "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] –Harita yap�
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – Harita yapımcıları tarafından yapılmış uygarlıkları seçilebilen bir harita."
+msgstr "• [font=\"sans-bold-14\"]Çatışma Haritası[font=\"sans-14\"] – Harita yapımcıları tarafından yapılmış uygarlıkları seçilebilen bir harita."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -239,7 +240,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr " hotkey.tab.prev – Önceki sekmeye geçer"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -291,7 +292,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr " hotkey.confirm – Sohbeti aç veya mesaj gönder"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
@@ -362,7 +363,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr " hotkey.session.stop – Seçili birimleri durdur (dur)"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
@@ -372,25 +373,25 @@ msgstr ""
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr " hotkey.session.unload – Seçili yapı(lar) içindeki birimleri boşaltın."
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr " hotkey.selection.group.select.1 – Kontrol Grubu 1'i (varsayılan olarak, sırayla 2,3, ...) seçili birim(birimler) / yapı(yapılar)dan yarat"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr " hotkey.selection.group.select.1 – Kontrol Grubu 1'deki birim(birimler)/yapı(yapıları) seç"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.add.1 – Kontrol Grubu 1'i (0'a) seçili olan birime(birimlere)/yapıya(yapılara) ekle"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -471,7 +472,7 @@ msgstr "[font=\"sans-bold-14\"]Fare Hareketini Yönlendir[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr " hotkey.session.garrison + yapı üstüne Sağ Tık  – Birimleri binanın içine yerleştirir"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
@@ -492,7 +493,7 @@ msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr " hotkey.session.orderone + Sağ Tık – Seçili birimler içerisinden bir tanesini seçip yürü/inşa et/topla/vb. emri ver ve seçimi kaldır. Özel görevli birimleri hızlıca seçili gruptan ayırmak için kullanılır."
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -601,7 +602,7 @@ msgstr ""
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr ""
+msgstr " hotkey.silhouettes – Siluetler arası geçiş (küçük bir performance artışı sağlayabilir)"
 
 #: gui/manual/intro.txt:125
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"

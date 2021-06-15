@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-10 17:59+0000\n"
+"PO-Revision-Date: 2021-06-12 14:25+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -885,7 +885,7 @@ msgstr "알 수 없는 플레이어"
 
 #: gui/session/minimap/MiniMapFlareButton.js:29
 msgid "Send a flare to your allies"
-msgstr "동맹국에게 조명탄 보내기"
+msgstr "동맹국에게 플레어 보내기"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -974,7 +974,7 @@ msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
-msgstr "점령 점수:"
+msgstr "점령 포인트:"
 
 #: gui/session/selection_details.js:460
 #, javascript-format
@@ -1296,7 +1296,7 @@ msgstr "체력"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
-msgstr "점령 점수"
+msgstr "점령 포인트"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
@@ -1732,7 +1732,7 @@ msgstr "개체를 수집하려면 먼저 죽여야합니다"
 #: gui/session/unit_actions.js:1820
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "점령 지수의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다"
+msgstr "점령 포인트의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다"
 
 #: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"

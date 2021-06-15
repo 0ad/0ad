@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 18:49+0000\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-13 17:16+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1760,6 +1760,16 @@ msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
 msgstr "Stel camera positie 4 in"
 
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
+msgctxt "hotkey metadata"
+msgid "Focus the camera on the position of the last attack notification."
+msgstr "Richt de camera op de plek van de laatste aanvalsmelding."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
+msgctxt "hotkey metadata"
+msgid "Focus on last attack notification"
+msgstr "Ga naar de laatste aanvalsmelding."
+
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
@@ -2045,13 +2055,15 @@ msgstr "Knip naar klembord"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
-msgid "Exit to desktop."
-msgstr "Afsluiten en naar het bureaublad."
+msgid ""
+"Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
+" / etc.) are always active."
+msgstr "Zelf in te stellen sneltoets om af te sluiten en naar het bureaublad te gaan. De standaard sneltoetsen (Alt+F4, Cmd-Q, etc.) zijn altijd actief."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
-msgid "Exit to desktop"
-msgstr "Afsluiten"
+msgid "Custom exit to desktop"
+msgstr "Custom afsluiten naar desktop"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2303,6 +2315,26 @@ msgstr "Speciale toets om eenheden te deselecteren in plaats van te selecteren w
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
 msgstr "Deselecteer type eenheid"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare while this hotkey is pressed."
+msgstr "Plaats een vlag wanneer deze sneltoets is ingedrukt."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
+msgctxt "hotkey metadata"
+msgid "Flare (hold)"
+msgstr "Vlag plaatsen (vasthouden)"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare. The hotkey can be released."
+msgstr "Plaats een vlag. Deze sneltoets kan worden vrijgegeven."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
+msgctxt "hotkey metadata"
+msgid "Flare (toggle)"
+msgstr "Vlag plaatsen (aan/uit)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -5303,7 +5335,7 @@ msgstr "%(hotkey)s: Ga naar structuurboom."
 msgid "Civilization:"
 msgstr "Beschaving:"
 
-#: gui/reference/common/TemplateParser.js:151
+#: gui/reference/common/TemplateParser.js:152
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)stot%(health_max)s"
@@ -6033,8 +6065,8 @@ msgid ""
 msgstr "Kan gebouwd worden in neutraal en vijandig territorium. Goed om vijand te verassen met een verborgen basis achter de linies of om gebied te versterken in vijandelijk gebied."
 
 #: gui/text/tips/army_camp.txt:3
-msgid "Construct siege weapons and train citizen-soldiers."
-msgstr "Bouw belegeringswapens en rekruteer burgersoldaten."
+msgid "Construct rams and train citizen soldiers."
+msgstr "Bouw stormrammen en rekruteer burgersoldaten."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6042,29 +6074,73 @@ msgid ""
 "and decay."
 msgstr "Stationeer eenheden om ze traag te genezen en ze het Legerkamp te laten beschermen tegen aanvallen en verval."
 
+#: gui/text/tips/autoqueue.txt:1
+msgid "AUTOQUEUE"
+msgstr "AUTO-WACHTRIJ"
+
+#: gui/text/tips/autoqueue.txt:2
+msgid "Enable the autoqueue feature to automatically train units."
+msgstr "Schakel de auto-wachtrij functie in om automatisch eenheden te rekruteren."
+
+#: gui/text/tips/autoqueue.txt:3
+msgid "Works as long as you have enough resources, then it will stop."
+msgstr "Werkt zolang er voldoende grondstoffen zijn, daarna stop het."
+
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
 msgstr "KAZERNE"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
-"Train all citizen-soldiers. Some factions can unlock the training of "
+"Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
 msgstr "Rekruteer burgersoldaten. Sommige beschavingen kunnen ook kampioenen rekruteren."
 
-#: gui/text/tips/barracks.txt:3
-msgid "Research military technologies unique to each faction."
-msgstr "Onderzoek militaire technologieën, uniek voor iedere beschaving."
+#: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
+msgid "Units gain experience while garrisoned inside the building."
+msgstr "Eenheden krijgen meer ervaring terwijl ze in de kazerne verblijven."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
-"Build one early to train citizen-soldiers while you phase up your "
+"Build one early to train citizen soldiers while you phase up your "
 "settlement."
 msgstr "Bouw er vroeg één zodat u, terwijl u naar de volgende fase gaat, nieuwe burgersoldaten kunt blijven rekruteren."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
 msgstr "Bouw dicht bij de frontlijn om de aanval van verse troepen te kunnen voorzien."
+
+#: gui/text/tips/biomes.txt:1
+msgid "BIOMES"
+msgstr "BIOMEN"
+
+#: gui/text/tips/biomes.txt:2
+msgid ""
+"Biomes can be used on some random maps and determine which region of the "
+"world the map represents."
+msgstr "Op sommige willekeurige kaarten kunnen biomen worden gebruikt die bepalen welke regio van de wereld de kaart vertegenwoordigt."
+
+#: gui/text/tips/biomes.txt:3
+msgid ""
+"They influence the appearence of the maps and also the amount of resources "
+"that are available."
+msgstr "Ze beïnvloeden het uitzicht van de kaart en ook het aantal grondstoffen die beschikbaar zijn."
+
+#: gui/text/tips/briton_war_dog.txt:1
+msgid "WAR DOG"
+msgstr ""
+
+#: gui/text/tips/briton_war_dog.txt:2
+msgid "A dog that the Britons can train at the cavalry stable."
+msgstr ""
+
+#: gui/text/tips/briton_war_dog.txt:3
+msgid "Has low health, but is fast and will fearlessly attack enemies."
+msgstr ""
+
+#: gui/text/tips/briton_war_dog.txt:4
+msgid "Use them as support in your army or for quick raids."
+msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6086,6 +6162,22 @@ msgid ""
 " shock against siege weapons and skirmishers."
 msgstr "Gebruik de Speervechters als zware Infanterie tegen Ruiters. Gebruik Ruiters om snel Belegeringswapenen en Tirailleurs uit te schakelen."
 
+#: gui/text/tips/carth_shipyard.txt:1
+msgid "CARTHAGINIAN NAVAL SHIPYARD"
+msgstr ""
+
+#: gui/text/tips/carth_shipyard.txt:2
+msgid "Special dock of the Carthaginians to construct warships."
+msgstr ""
+
+#: gui/text/tips/carth_shipyard.txt:3
+msgid "Garrison ships inside to slowly repair them."
+msgstr ""
+
+#: gui/text/tips/carth_shipyard.txt:4
+msgid "Much stronger than other docks, but also more expensive."
+msgstr ""
+
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
 msgstr "KATAPULTEN"
@@ -6103,6 +6195,19 @@ msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
 msgstr "Pak ze in tot wagens om te vervoeren en pak ze uit om te gebruiken!"
+
+#: gui/text/tips/cavalry_stable.txt:1
+msgid "CAVALRY STABLE"
+msgstr ""
+
+#: gui/text/tips/cavalry_stable.txt:2
+msgid ""
+"Trains cavalry units and lets you research cavalry specific technologies."
+msgstr ""
+
+#: gui/text/tips/cavalry_stable.txt:3
+msgid "Units gain experience while garrisoned inside the structure."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6123,6 +6228,24 @@ msgstr "Kan tot 40 eenheden vervoeren."
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
 msgstr "Verhoog de vuurkracht door infanteriebemanning."
+
+#: gui/text/tips/city_walls.txt:1
+msgid "CITY WALLS"
+msgstr ""
+
+#: gui/text/tips/city_walls.txt:2
+msgid "Strong stone walls that help you protect your city."
+msgstr ""
+
+#: gui/text/tips/city_walls.txt:3
+msgid ""
+"When your ranged infantry units are occupying the turrets, they have "
+"additional armor and can shoot at the enemy. "
+msgstr ""
+
+#: gui/text/tips/city_walls.txt:4
+msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
+msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6146,23 +6269,47 @@ msgid ""
 "citizen-soldiers."
 msgstr "Rekruteer burgers: vrouwen en burgersoldaten te voet en te paard."
 
+#: gui/text/tips/defense_towers.txt:1
+msgid "DEFENSE TOWERS"
+msgstr "VERDEDIGINGSTORENS"
+
+#: gui/text/tips/defense_towers.txt:2
+msgid "Strong watchtowers, which help you defend your position."
+msgstr ""
+
+#: gui/text/tips/defense_towers.txt:3
+msgid ""
+"They have a large vision range and will shoot arrows at the enemy in sight. "
+msgstr ""
+
+#: gui/text/tips/defense_towers.txt:4
+msgid ""
+"You can garrison more infantry inside them to increase the number of arrows "
+"they shoot."
+msgstr ""
+
+#: gui/text/tips/elephant_stable.txt:1
+msgid "ELEPHANT STABLE"
+msgstr ""
+
+#: gui/text/tips/elephant_stable.txt:2
+msgid ""
+"The structure is available to some civilizations to train elephant units."
+msgstr ""
+
 #: gui/text/tips/embassies.txt:1
-msgid "EMBASSIES"
-msgstr "AMBASSADES"
+msgid "EMBASSIES AND MERCENARY CAMPS"
+msgstr ""
 
 #: gui/text/tips/embassies.txt:2
-msgid "Special Barracks available to the Carthaginians."
-msgstr "Speciale Kazerne voor the Carthagers."
+msgid "Special structures allowing you to hire mercenaries for your army."
+msgstr ""
 
 #: gui/text/tips/embassies.txt:3
-msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr "Rekruteer huurlingen van elk van de ambassades van verschillende beschavingen."
-
-#: gui/text/tips/embassies.txt:4
 msgid ""
-"Mercenary citizen-soldiers have their normal Food cost converted to Metal "
-"cost."
-msgstr "Huurlingen kosten Metaal in plaats van Voedsel."
+"Mercenaries will not gather resources and cost only metal, but they are "
+"experienced and strong."
+msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6196,23 +6343,26 @@ msgstr "Onderzoeksgebouw voor alle beschavingen."
 msgid "Research weapon and armor upgrades for your units."
 msgstr "Onderzoek nieuwe wapens en verbeterde bescherming voor uw eenheden."
 
+#: gui/text/tips/formations.txt:1
+msgid "FORMATIONS"
+msgstr ""
+
+#: gui/text/tips/formations.txt:2
+msgid ""
+"Arrange your soldiers in formations to keep them organized during battles."
+msgstr ""
+
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
 msgstr "FORT"
 
 #: gui/text/tips/fortress.txt:2
-msgid "The Fortress is usually each faction's strongest structure."
-msgstr "Het fort is meestal het sterkste gebouw van een beschaving."
+msgid ""
+"Usually the strongest structure of a civilization and the place where you "
+"can train Heroes."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:3
-msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "Rekruteer Kampioenen en Helden en maak Belegeringswapenen."
-
-#: gui/text/tips/fortress.txt:4
-msgid "Gives a population boost."
-msgstr "Geeft een bevolkingsbonus."
-
-#: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
 msgstr "Beman met soldaten om meer vuurkracht te geven aan de defensie."
 
@@ -6283,23 +6433,58 @@ msgstr "Hun auras beïnvloeden de krachten van andere eenheden of gebouwen."
 msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "Let op: iedere held kan slechte één keer per spel gerekruteerd worden!"
 
-#: gui/text/tips/iphicrates.txt:1
-msgid "IPHICRATES"
-msgstr "IPHICRATES"
+#: gui/text/tips/iber_fireship.txt:1
+msgid "IBERIAN FIRESHIP"
+msgstr ""
 
-#: gui/text/tips/iphicrates.txt:2
+#: gui/text/tips/iber_fireship.txt:2
 msgid ""
-"The Athenian general who reformed the Athenian army to be faster and more "
-"maneuverable."
-msgstr "De Atheense generaal die het Atheense leger hervormd heeft om sneller en beter manuvreerbaar te zijn."
+"The special Iberian fireship is very effective against other ships and "
+"buildings, but steadily loses health."
+msgstr ""
 
-#: gui/text/tips/iphicrates.txt:3
-msgid "Units in his formation are faster and stronger."
-msgstr "Eenheden in zijn formatie zijn sneller en sterker."
+#: gui/text/tips/lighthouse.txt:1
+msgid "LIGHTHOUSE"
+msgstr ""
 
-#: gui/text/tips/iphicrates.txt:4
-msgid "Skirmishers move faster while he lives."
-msgstr "Tirailleurs bewegen sneller zolang hij leeft."
+#: gui/text/tips/lighthouse.txt:2
+msgid ""
+"Special Ptolemaic structures to increase your vision range when built on the"
+" shore."
+msgstr ""
+
+#: gui/text/tips/map_flare.txt:1
+msgid "MAP FLARE"
+msgstr ""
+
+#: gui/text/tips/map_flare.txt:2
+msgid ""
+"Use this feature to let your team know where on the map something important "
+"happens."
+msgstr ""
+
+#: gui/text/tips/map_flare.txt:3
+msgid "They will see the flare on their minimap."
+msgstr ""
+
+#: gui/text/tips/meroe_pyramids.txt:1
+msgid "PYRAMIDS OF MEROË"
+msgstr ""
+
+#: gui/text/tips/meroe_pyramids.txt:2
+msgid "Special structures available for the Kushites."
+msgstr ""
+
+#: gui/text/tips/meroe_pyramids.txt:3
+msgid ""
+"The small pyramids improve the gathering rate of the workers around them."
+msgstr ""
+
+#: gui/text/tips/meroe_pyramids.txt:4
+msgid ""
+"The large pyramids increase the military capabilities of soldiers around "
+"them."
+msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6330,22 +6515,6 @@ msgstr "Een snelle, goedkope schutting beschikbaar voor alle beschavingen."
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
 msgstr "De meeste beschavingen kunnen ze al gebruiken in de Dorpsfase."
-
-#: gui/text/tips/pericles.txt:1
-msgid "PERICLES"
-msgstr "PERIKLES"
-
-#: gui/text/tips/pericles.txt:2
-msgid "The foremost Athenian politician of the 5th century BC."
-msgstr "De bekendste Atheense politicus van de 5de eeuw V.C."
-
-#: gui/text/tips/pericles.txt:3
-msgid "Structures are built faster within his range."
-msgstr "Gebouwen in zijn aura zijn sneller compleet."
-
-#: gui/text/tips/pericles.txt:4
-msgid "Temples are cheaper while he lives."
-msgstr "Tempels zijn goedkoper tijdens zijn leven."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6404,6 +6573,22 @@ msgstr "Kan tot 50 eenheden vervoeren."
 msgid "Increases firepower with garrisoned catapults."
 msgstr "Verhoog de vuurkracht door katapultenbemanning."
 
+#: gui/text/tips/resource_counter.txt:1
+msgid "RESOURCE COUNTER"
+msgstr ""
+
+#: gui/text/tips/resource_counter.txt:2
+msgid ""
+"The resource counter panel shows you how much of each resources you have at "
+"the moment."
+msgstr ""
+
+#: gui/text/tips/resource_counter.txt:3
+msgid ""
+"The number below it shows you how many citizens are currently gathering "
+"them."
+msgstr ""
+
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
 msgstr "SAVANNE BIOTOOP"
@@ -6423,24 +6608,6 @@ msgstr "Rijk aan alle soorten mijnbouw grondstoffen."
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
 msgstr "Hout is veelal zeldzaam, doch omvat dikke Baobab bomen."
-
-#: gui/text/tips/scout_towers.txt:1
-msgid "DEFENSE TOWERS"
-msgstr "VERDEDIGINGSTORENS"
-
-#: gui/text/tips/scout_towers.txt:2
-msgid "Free-standing towers good for defending large areas of countryside."
-msgstr "Alleenstaande torens, goed om grote porties buitengebied te verdedigen."
-
-#: gui/text/tips/scout_towers.txt:3
-msgid ""
-"They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
-"Wood and 250 Stone (because they're stronger)."
-msgstr "Ze kosten normaal 100 Hout en 100 Steen. Iberische Verdedigingstorens kosten 50 Hout en 250 Steen (omdat ze sterker zijn)."
-
-#: gui/text/tips/scout_towers.txt:4
-msgid "Has a ranged attack that increases for each garrisoned unit."
-msgstr "Hoe meer bemanning, hoe meer pijlen er geschoten worden."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -6561,23 +6728,30 @@ msgid ""
 "influential neighbor."
 msgstr "Wanneer het verval compleet is, zal het gebouw aan de meest invloedrijke buur gegeven worden."
 
-#: gui/text/tips/themistocles.txt:1
-msgid "THEMISTOCLES"
-msgstr "THEMISTOCLES"
+#: gui/text/tips/theater.txt:1
+msgid "THEATER"
+msgstr ""
 
-#: gui/text/tips/themistocles.txt:2
+#: gui/text/tips/theater.txt:2
 msgid ""
-"Athenian hero who commanded the Greeks at the great naval battles of "
-"Artemisium and Salamis."
-msgstr "Atheense held die de Grieken commandeerde tijdens de grote zeeslagen van Artemsium en Salamis."
+"Special structures of the Hellenic civilizations to increase the size of "
+"your territory while you control it."
+msgstr ""
 
-#: gui/text/tips/themistocles.txt:3
-msgid "All ships are built faster while he lives."
-msgstr "Alle schepen worden sneller gebouwd tijdens zijn leven."
+#: gui/text/tips/treasure.txt:1
+msgid "TREASURES"
+msgstr ""
 
-#: gui/text/tips/themistocles.txt:4
-msgid "The ship he is garrisoned inside sails much faster."
-msgstr "Het schip waarin hij zich bevindt kan sneller zeilen."
+#: gui/text/tips/treasure.txt:2
+msgid ""
+"Collectible chests and bare resources on land and shipwrecks on the shore."
+msgstr ""
+
+#: gui/text/tips/treasure.txt:3
+msgid ""
+"Provide you with a resource boost, so keep an eye out for them as you "
+"explore."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6594,26 +6768,6 @@ msgstr "Goed als transportmiddel of om te vechten."
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
 msgstr "Beman met troepen om de vuurkracht te verhogen."
-
-#: gui/text/tips/viriato.txt:1
-msgid "VIRIATO"
-msgstr "VIRIATO"
-
-#: gui/text/tips/viriato.txt:2
-msgid "Iberian hero of the Lusitani tribe."
-msgstr "Iberische Held van de Lusitani stam."
-
-#: gui/text/tips/viriato.txt:3
-msgid ""
-"At least seven campaigns against the Romans during the Lusitani Wars from "
-"147 to 139 BC."
-msgstr "Minstens zeven veldtochten tegen de Romeinen tijdens de 'Lusitani oorlogen' van 147 tot 139 V.C."
-
-#: gui/text/tips/viriato.txt:4
-msgid ""
-"Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
-"their opponents."
-msgstr "Heeft de 'guerrilla tactiek' aura waarmee dichtbijzijnde Iberische eenheden hun tegenstanders in een hinderlaag kunnen lokken."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

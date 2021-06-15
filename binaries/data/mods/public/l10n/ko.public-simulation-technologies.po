@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-10 18:45+0000\n"
+"PO-Revision-Date: 2021-06-12 15:18+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -172,7 +172,7 @@ msgstr "기념비적 건축 양식"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "시민 건축물의 건설 시간이 +20%, 내구력이 +20%, 점유 점수가 +20% 증가합니다."
+msgstr "시민 건축물의 건설 시간이 +20%, 내구력이 +20%, 점령 포인트가 +20% 증가합니다."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -188,7 +188,7 @@ msgstr "페르시아 건축양법"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "건축물은 내구력과 점령 지점이 +25% 증가하고, 건설 시간도+20% 증가합니다."
+msgstr "건축물은 내구력과 점령 포인트가 +25% 증가하지만, 건설 시간 또한 +20% 증가합니다."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -290,7 +290,7 @@ msgstr "목조 건축"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "건축물의 건설 시간이 -20%, 내구력이 -20%, 점유 점수가 -20% 감소합니다."
+msgstr "건축물의 건설 시간이 -20%, 내구력이 -20%, 점령 포인트가 -20% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -537,7 +537,7 @@ msgstr "갈리아족은 곡식을 훨씬 쉽게 수확 할 수 있도록 수확�
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr "수확기"
+msgstr "수확 기계"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
@@ -783,7 +783,7 @@ msgstr "전장 의술"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "노는 유기체 유닛의 체력 재생 속도가 +0.5 증가합니다."
+msgstr "노는 유기체 유닛의 체력 회복 속도가 +0.5 증가합니다."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -875,7 +875,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "지금은 멸종된 니시아 품종의 말은 고대의 가장 크고 강력한 말의 한 계통이었습니다. 셀레우코스와 페르시아에게 많은 관심을 받았는데 말과 사람이 점차 무거운 갑옷을 입게 될 수 있기때문이었습니다. (번역확인??)"
+msgstr "지금은 멸종된 니시안 품종의 말은 고대의 가장 크고 튼튼한 말들 중 하나였습니다. 시간이 지날수록 기수와 탈것이 더 무거운 갑옷을 입게 되면서 셀레우키드와 페르시아인들에게 많은 관심을 받았습니다."
 
 #: simulation/data/technologies/nisean_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -956,7 +956,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔한 유닛당 점령 지점 재생률을 +9 증가시킵니다. 일꾼은 금속 채집률을 +10% 증가시킵니다."
+msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복율이 +9 증가합니다. 일꾼은 금속 채집률을 +10% 증가합니다."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -969,7 +969,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "더 많은 개체들과 기술을 잠금해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔한 유닛당 점령 지점 재생률을 +9 증가시킵니다."
+msgstr "더 많은 개체들과 기술을 잠금해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복 속도가 +9 증가합니다."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1008,7 +1008,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물은 주둔한 유닛당 점령 지점 재생률을 +7 증가시킵니다. 일꾼은 금속 채집률이 +10% 증가합니다."
+msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복 속도가 +7 증가합니다. 일꾼은 금속 채집률이 +10% 증가합니다."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1020,7 +1020,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 다녜로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물은 주둔한 유닛당 점령 지점 재생률을 +7 증가시킵니다."
+msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 다녜로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복 속도가 +7 증가합니다."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

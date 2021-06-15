@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 17:15+0000\n"
+"PO-Revision-Date: 2021-06-13 19:08+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr "%(icon)s ¡%(attacker)s atacóte!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Calca pa centrate na unidá atacada."
+msgstr "Calca pa enfocar escontra la unidá atacada."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -1162,7 +1162,7 @@ msgstr "Fincase"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Atacar enemigos averaos, centrase n'atacadores & persiguilos mentanto se vean"
+msgstr "Atacar enemigos averaos, centrándose nos agresores y persiguiéndolos hasta perdelos de vista"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
@@ -1174,17 +1174,17 @@ msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Atacar enemigos averaos, escorrelos cierta distancia & volver al allugamientu orixinal"
+msgstr "Atacar enemigos averaos, persiguiéndolos un poco y tornando darréu al so puestu"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr "Fuxir si se-y ataca"
+msgstr "Fuxir al vese atacáu"
 
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Atacar enemigos a tiru, pero ensin movese"
+msgstr "Atacar enemigos averaos ensin persiguilos"
 
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
@@ -1305,7 +1305,7 @@ msgstr "Riestra de producción"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Calca pa esbillar unidaes agrupaes, calca dos vegaes pa enfocar les unidaes agrupaes & calca col botón derechu pa dixebrar el grupu."
+msgstr "Calca pa esbillar un garapiellu d'unidaes, calca dos vegaes pa enfocar escontra elli y calca col botón derechu pa dixebralu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
@@ -1666,7 +1666,7 @@ msgstr "Ordena que les unidaes esbillaes igüen una construcción, barcu o máqu
 
 #: gui/session/unit_actions.js:1520
 msgid "Focus on Rally Point."
-msgstr "Centrase nel puntu d'alcuentru."
+msgstr "Enfocar escontra'l puntu d'alcuentru."
 
 #: gui/session/unit_actions.js:1557
 msgid "Back to Work"

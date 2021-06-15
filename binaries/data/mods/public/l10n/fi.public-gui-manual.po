@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 09:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-13 09:22+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,11 +47,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Voit vaihtaa koko näytön ja ikkunallisen tilan välillä painamalla Alt + Enter. Ikkunatilassa voit muuttaa ikkunan kokoa. Jos peli toimii liian hitaasti, voit muuttaa joitakin asetuksia asetusikkunassa: kokeile poistaa ”Korkealaatuiset vesitehosteet\" ja ”Varjot\" -asetukset käytöstä."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pelin pelaaminen[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -59,45 +59,45 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Ohjauksen ja pelattavuuden pitäisi olla tuttua perinteisten reaaliaikaisten strategiapelien (RTS) pelaajille. Tällä hetkellä pelistä puuttuu paljon ominaisuuksia ja sen tilastot ovat huonosti tasapainossa - sinun on luultavasti odotettava beta-julkaisua, ennen kuin se toimii kunnolla."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Perusohjaus (oletusarvoisesti):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Valitse yksiköt hiiren vasemmalla painikkeella"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Pidä hiiren vasen painike pohjassa ja vedä valitaksesi useita yksiköitä."
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Oikea hiirenpainike käskee yksikön kohteeseen."
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Nuolinäppäimet tai WASD-näppäimet liikuttavat kameraa."
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + nuolinäppäimet tai shift + hiiren rulla kääntävät kameraa"
 
 #: gui/manual/intro.txt:16
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr ""
+msgstr "- Hiiren rulla tai \"hotkey.camera.zoom.in\" ja \"hotkey.camera.zoom.out\" -näppäimet lähentävät ja loitontavat kameraa."
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pelimuodot[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Päävalikossa on pääsy kahteen pelimuotoon:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -105,13 +105,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Yksinpeli[font=\"sans-14\"] - Pelaa hiekkalaatikkopeliä tai yhtä tai useampaa tietokonepelaajaa (tekoälyä) vastaan. Oletusarvoinen tekoäly (Petra) on kehitteillä, eikä se välttämättä ole aina ajan tasalla uusista ominaisuuksista, mutta voit silti pelata peliä sen kanssa tai sitä vastaan."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Moninpeli[font=\"sans-14\"] – pelaa ihmisvastustajia vastaan Internetin välityksellä."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -119,15 +119,15 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Pystyttääksesi moninpelin, yhden pelaajan tulee valita \"Aloita moninpeli\". Peli käyttää UDP-porttia 20595, joten isännän tulee konfiguroida NAT tai palomuuri hyväksymään yhteydet. Muut pelaajat valitsevat \"Liity peliin\" ja syöttävät isännän IP-osoitteen."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pelin asetukset[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Vain isäntä voi muuttaa pelin asetuksia moninpelissä."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -137,19 +137,19 @@ msgstr "Ensimmäiseksi valitse minkälaista karttatyyppiä haluat pelata:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Satunnainen kartta[font=\"sans-14\"] — Automaattisesti skriptillä luotu kartta"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Skenaariokartta[font=\"sans-14\"] – Karttasuunnittelijoiden luoma kartta, jossa on etukäteen määritellyt sivilisaatiot."
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Kahakkakartta[font=\"sans-14\"] – Karttasuunnittelijoiden luoma kartta, jossa sivilisaatiot voi valita itse."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -158,7 +158,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Tämän jälkeen karttoja voidaan suodattaa edelleen. Oletuskartat ovat yleensä pelattavia karttoja. Merelliset kartat ovat karttoja, joissa kaikkia vastustajia ei voi tavoittaa maata pitkin, ja demokartat ovat karttoja, joita käytetään testaustarkoituksiin (niitä ei yleensä kannata pelata). \"Kaikki kartat\" -suodatin näyttää kaikki kartat yhdessä luettelossa."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -167,238 +167,238 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Viimeiseksi muuta asetuksia. Satunnaiskartoissa voit muuttaa pelaajien määrää, kartan kokoa jne. Skenaarioiden osalta voit vain valita, kuka hallitsee mitäkin pelaajaa (määrittää mistä aloitat kartalla jne.). Vaihtoehdot ovat joko ihmispelaaja, tekoäly tai ei lainkaan pelaajaa (vastustaja on vain toimettomana)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Kun olet valmis aloittamaan, paina \"Aloita peli\" -painiketta."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pikanäppäimet[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "Voit muuttaa pikanäppäimiä kohdassa [font=\"sans-bold-14\"]Valinnat > Pikanäppäimet[font=\"sans-14\"] mieleiseksesi."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ohjelman laajuiset[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  hotkey.exit – Sulje peli välittömästi pyytämättä vahvistusta."
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  hotkey.togglefullscreen – Vaihda koko näytön ja ikkunan välillä"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr "  hotkey.console.toggle – Avaa/sulje konsoli"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  hotkey.fps.toggle – Näytä/piilota ruutunopeus (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "  hotkey.profile.toggle – Ota käyttöön/poista käytöstä reaaliaikainen profiloija (painaminen vaihtaa näytettäviä tietoja)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save – Tallenna nykyiset profilointitiedot tiedostoon logs/profile.txt"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.screenshot – Ota kuvakaappaus (.png-muodossa, sijainti näkyy graafisen käyttöliittymän vasemmassa yläkulmassa, kun tiedosto on tallennettu, ja se näkyy myös konsolissa/lokissa, jos et ehtinyt nähdä sitä)."
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.bigscreenshot – Ota valtava kuvakaappaus (6400×4800 pikseliä, .bmp-muodossa, sijainti näkyy graafisen käyttöliittymän vasemmassa yläkulmassa, kun tiedosto on tallennettu, ja se näkyy myös konsolissa/lokeissa, jos et ehdi nähdä sitä)."
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "  hotkey.tab.next – Siirry seuraavaan välilehteen"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  hotkey.tab.prev – Siirry edelliseen välilehteen"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Pelin sisäiset[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Kaksoisnapsauta hiiren oikealla \\[yksikköä] – Valitse kaikki samantyyppiset yksikkösi ruudulta (riippumatta sotilasarvosta)."
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "Kolmoisnapsausta \\[yksikköä] – Valitse kaikki samantyyppiset ja samanarvoiset yksikkösi ruudulta."
 
 #: gui/manual/intro.txt:57
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + tuplanapsautus hiiren vasemmalla \\[yksikköön]: Valitse kartan kaikki samanlaiset yksiköt (vaikka ne olisivat eriarvoisia)"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "Alt + kolmoisnapsautus hiiren vasemmalle \\[yksikköön]:  Valitse kaikki samantyyppiset ja -arvoiset yksikkösi koko kartalta."
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  hotkey.quicksave – Pikatallennus"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "  hotkey.quickload – Pikalataus"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "  hotkey.session.gui.menu.toggle – Avaa/sulje valikko"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr ""
+msgstr "  hotkey.timeelapsedcounter.toggle – Näytä/piilota kulunut aika"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr ""
+msgstr "  hotkey.cancel – Sulje kaikki dialogit (chat, valikko)"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr "  hotkey.confirm – Avaa chat tai lähetä viesti"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "  hotkey.teamchat – Lähetä viesti joukkuechatissä"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr "  hotkey.privatechat – Keskustele aiemmin valitun yksityisen keskustelukumppanin kanssa"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "  hotkey.pause – Keskytä peli tai jatka sitä"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "  hotkey.session.kill – Poista valitut yksiköt/rakenteet, pyydä vahvistusta."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "    • Näppäimellä hotkey.session.noconfirmation – Poista valitut yksiköt/rakenteet välittömästi pyytämättä vahvistusta."
 
 #: gui/manual/intro.txt:70
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.add – muuntonäppäin – lisää valintaan (toimii napsauttamalla ja pikanäppäimillä, esim. joutilaiden yksikköjen valinnan pikanäppäimellä)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.remove – muuntonäppäin – poista valinnasta (toimii napsauttamalla ja pikanäppäimillä, esim. joutilaiden yksikköjen valinnan pikanäppäimellä)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr "  hotkey.selection.offscreen – muuntonäppäin – lisää kaikki yksiköt, myös ruudun ulkopuoliset yksiköt, valintaan."
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement."
-msgstr ""
+msgstr "  hotkey.selection.cancel – Poista kaikkien yksiköiden valinta, peruuta rakennuksen sijoittaminen."
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
-msgstr ""
+msgstr "  hotkey.selection.idlebuilder – Valitse joutilas rakentaja"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr "  hotkey.selection.idlewarrior – Valitsa joutilas taistelija"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  hotkey.selection.idleworker – Valitse joutilas työntekijä (myös kansalaissotilaat)"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "  hotkey.selection.idleunit – Valitse joutilas yksikkö"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  hotkey.session.stop – Pysäytä valitut yksiköt"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "  hotkey.session.backtowork – Yksikkö palaa töihin"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "  hotkey.session.unload – Pura miehittävät yksiköt valituista rakenteista"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.save.1 – Luo ohjausryhmä 1 (oletusarvoisesti, vastaavasti 2, 3, ...) valitusta yksiköistä/rakenteista."
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 – Valitse ohjausryhmän 1 yksiköt/rakenteet"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.add.1 – Lisää ohjausryhmä 1 valituille yksiköille/rakenteille"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr "  hotkey.camera.jump.set.1 – Merkitse nykyinen kameran sijainti, jotta voit palata siihen myöhemmin (oletusarvoisesti on 4 mahdollista sijaintia)."
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  hotkey.camera.jump.1 – Siirtää kameran merkattuun paikkaan. Hyppää takaisin edeltävään paikkaa jos kamera on jo valmiiksi merkatun paikan yläpuolella."
 
 #: gui/manual/intro.txt:86
 msgid ""
@@ -407,332 +407,332 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Kun koulutusrakenne on valittu. Lisää kaikkien valittujen rakenteiden koulutusjonoon 1., 2., ... näkyvillä oleva yksikkö."
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr ""
+msgstr "  hotkey.session.highlightguarded kun yksikkö(jä) valittuna – Korosta yksiköt/rakenteet, joita valinta suojaa."
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr ""
+msgstr "  hotkey.session.highlightguarding kun yksikkö(jä) valittuna –  Korosta valintaa vartioivat yksiköt"
 
 #: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr ""
+msgstr "  highlightguarding.showstatusbars – Näytä kaikki tilapalkit (jotka näyttävät myös rakennustyön edistymisen)"
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  hotkey.summary – Avaa/sulje yhteenvetoikkuna"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  hotkey.lobby – Näytä moninpeliaula valintaikkunassa"
 
 #: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  hotkey.session.gui.diplomacy.toggle – Avaa/sulje pelinsisäinen diplomatiapaneeli"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  hotkey.session.gui.barter.toggle – Avaa/sulje pelinsisäinen vaihtokaupan- ja kaupankäyntipaneeli"
 
 #: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  hotkey.session.gui.objectives.toggle – Avaa/sulje pelinsisäinen tavoitepaneeli"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  hotkey.session.gui.tutorial.toggle – Avaa/sulje pelinsisäinen opaspaneeli"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr "  hotkey.structree – Avaa/sulje rakennepuupaneeli"
 
 #: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr "  hotkey.civinfo – Avaa/sulje sivilisaation tietopaneeli"
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Muokkaa hiiren toimintoja[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  hotkey.session.garrison + rakenteen napsauttaminen hiiren oikealla – Miehitä"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr "  hotkey.session.repair + rakenteen napsauttaminen hiiren oikealla – Korjaa"
 
 #: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr ""
+msgstr "  hotkey.session.patrol + napsauttaminen hiiren oikealla – Partioi"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr ""
+msgstr "  hotkey.session.queue + napsauttaminen hiiren oikealla – Lisää liikkumis/rakennus/keräys/jne. käsky jonoon"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "  hotkey.session.orderone + napsauttaminen hiiren oikealla – Määrää yksi yksikkö nykyisestä valinnasta liikkumaan/rakentamaan/keräämään jne. ja poista sen valinta. Käytetään yksikköjen nopeaan lähettämiseen tiettyihin tehtäviin"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  hotkey.session.batchtrain + napsautus hiiren oikealla yksikköjä koulutettaessa – Lisää yksiköitä erissä (eräkoko on oletusarvoisesti 5, mutta sitä voidaan muuttaa asetuksista)."
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr "  hotkey.selection.add + napsautus tai veto hiiren oikealla yksikön yli kartalla – Lisää yksikkö valintaan"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr ""
+msgstr "  hotkey.selection.remove + napsautus tai veto hiiren oikealla yksikön yli kartalla – Poista yksikkö valinnasta"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr ""
+msgstr "  hotkey.selection.militaryonly + veto hiiren vasemmalla yksiköiden yli kartalla – Valitse vain sotilasyksiköt"
 
 #: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr ""
+msgstr "  hotkey.selection.nonmilitaryonly + veto hiiren vasemmalla yksiköiden yli kartalla – Valitse vain siviiliyksiköt"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr ""
+msgstr "  hotkey.selection.idleonly + veto hiiren vasemmalla yksiköiden yli kartalla – Valitse vain joutilaat yksiköt"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr ""
+msgstr "  hotkey.selection.woundedonly + veto hiiren vasemmalla yksiköiden yli kartalla – Valitse vain haavoittuneet yksiköt"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "  Napsautus hiiren oikealla, kun rakenteita valittuna – Aseta kokoontumispaikka yksiköille, jotka luodaan kyseisessä rakennuksessa tai jotka poistuvat miehittämästä sitä"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr "  hotkey.session.garrison + napsautus hiiren oikealla, kun yksikkö(jä) valittuna – Miehitä (jos kursori on oman tai liittolaisen rakenteen päällä)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr ""
+msgstr "  hotkey.session.attack + napsautus hiiren oikealla, kun yksikkö(jä) valittuna – Hyökkää (äläkä valloita tai kerää)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr ""
+msgstr "  hotkey.session.attackmoveUnit + hiiren oikea, kun yksikkö(jä) valittuna – Hyökkäysliike  (oletusarvoisesti kaikki matkan varrella olevat vihollisyksiköt ja -rakenteet ovat kohteena)."
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr "  hotkey.session.attackmoveUnit + hiiren oikea, kun yksikkö(jä) valittuna – Hyökkäysliike, vain matkan varrella olevat yksiköt ovat kohteena."
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr ""
+msgstr "  hotkey.session.snaptoedges + hiren liikuttaminen rakenteiden lähelle – Aseta uusi rakenne linjaan olemassa olevan läheisen rakenteen kanssa."
 
 #: gui/manual/intro.txt:118
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
-msgstr ""
+msgstr "  hotkey.session.flare + hiiren oikea - Lähetä soihtu liittolaisillesi."
 
 #: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Peittotasot[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr ""
+msgstr "  hotkey.session.gui.toggle – Graafinen käyttöliittymä päälle/pois"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr ""
+msgstr "  hotkey.session.devcommands.toggle – Kehittäjäpaneeli päälle/pois (kehittäjän asetuksilla)\n "
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "  hotkey.wireframe – Rautalankamallitila päälle/pois (paina kerran jolloin raukalankamalli peittää tekstuurimallit, paina kahdesti jolloin saat vain rautalankamallit jotka ovat väritetty tekstuureilla, paina kolmasti palataksesi normaaliin tekstuuritilaan)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr ""
+msgstr "  hotkey.silhouettes – Ota yksikköjen siluetit päälle tai poista ne käytöstä (poistaminen voi tuoda pienen nopeuslisän)"
 
 #: gui/manual/intro.txt:125
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr ""
+msgstr "  hotkey.session.diplomacycolors – Diplomatiavärit päälle/pois"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "  hotkey.session.toggleattackrange – Ota valittujen yksiköiden ja rakenteiden hyökkäyskantaman visualisoinnit käyttöön tai poista ne käytöstä. "
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "  hotkey.session.toggleaurasrange – Ota valittujen yksiköiden ja rakenteiden auran kantaman visualisoinnit käyttöön tai poista ne käytöstä."
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr ""
+msgstr "  hotkey.session.togglehealrange – Ota valittujen yksiköiden parannuskantaman visualisoinnit käyttöön tai poista ne käytöstä."
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kameran käyttäminen[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:131
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr ""
+msgstr "  hotkey.camera.up – Liikuta näkymää ylös"
 
 #: gui/manual/intro.txt:132
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr ""
+msgstr "  hotkey.camera.down – Liikuta näkymää alas"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr ""
+msgstr "  hotkey.camera.left – Liikuta näkymää vasemmalle"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr ""
+msgstr "  hotkey.camera.right – Liikuta näkymää oikealle"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr ""
+msgstr "  hotkey.camera.rotate.up – Käännä kameraa katsomaan ylöspäin"
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr "  hotkey.camera.rotate.down – Käännä kameraa katsomaan alaspäin"
 
 #: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw – Kierrä kameraa myötäpäivään maaston ympäri"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.ccw – Kierrä kameraa vastapäivään maaston ympäri"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.cw – Kierrä kameraa myötäpäivään maaston ympäri"
 
 #: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.ccw – Kierrä kameraa vastapäivään maaston ympäri"
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr "  hotkey.camera.follow – Seuraa valittua yksikköä (siirrä kameraa pysäyttääksesi seuraaminen)"
 
 #: gui/manual/intro.txt:142
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr "  hotkey.camera.reset – Nollaa kameran loitonnus ja suuntaus"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr ""
+msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Lähennä (pidä painettuna, niin lähennys on jatkuvaa)"
 
 #: gui/manual/intro.txt:144
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr ""
+msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Loitonna (pidä painettuna, niin loitonnus on jatkuvaa)"
 
 #: gui/manual/intro.txt:145
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "  hotkey.camera.pan – Pidä painettuna ja siirrä hiirtä liikuttaaksesi näkymää"
 
 #: gui/manual/intro.txt:147
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Rakenteen sijoittamisen aikana[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:148
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.ccw – Käännä rakennetta 15 astetta vastapäivään"
 
 #: gui/manual/intro.txt:149
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.cw – Käännä rakennetta 15 astetta myötäpäivään"
 
 #: gui/manual/intro.txt:150
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "Hiiren vasen, veto – Käännä rakennetta käyttäen hiirtä (perustukset asetetaan kun hiiri vapautetaan)"
 
 #: gui/manual/intro.txt:152
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Pelitallennetta ladattaessa[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:153
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "  hotkey.cancel – Peruuta"
 
 #: gui/manual/intro.txt:154
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "  hotkey.session.savedgames.delete – Poista valittu tallennettu peli, pyydä vahvistusta"
 
 #: gui/manual/intro.txt:155
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr ""
+msgstr "    • Näppäimellä hotkey.session.savedgames.noconfirmation – Älä pyydä vahvistusta"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

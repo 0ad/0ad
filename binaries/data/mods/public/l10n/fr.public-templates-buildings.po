@@ -37,6 +37,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
 # Nikolaos Vidalis <nikvid1914@gmail.com>, 2016
+# Oumph <oumph@free.fr>, 2021
 # Pablo colson <pabloppfr@gmail.com>, 2014
 # Pierre-Henri Koch <anwynn@gmail.com>, 2021
 # polien delamarque <m.oleil@laposte.net>, 2016
@@ -57,9 +58,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:31+0000\n"
-"Last-Translator: Manu Nadiras <enadiras@gmail.com>\n"
+"POT-Creation-Date: 2021-06-11 07:08+0000\n"
+"PO-Revision-Date: 2021-06-13 18:11+0000\n"
+"Last-Translator: Oumph <oumph@free.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +74,7 @@ msgstr ""
 #: simulation/templates/structures/sele/arsenal.xml:5
 #: simulation/templates/structures/spart/arsenal.xml:5
 msgid "Hoplothēkē"
-msgstr "Hoplothēkē"
+msgstr "Hoplothēkē (arsenal)"
 
 #: simulation/templates/structures/athen/barracks.xml:12
 #: simulation/templates/structures/mace/barracks.xml:12
@@ -81,7 +82,7 @@ msgstr "Hoplothēkē"
 #: simulation/templates/structures/sele/barracks.xml:12
 #: simulation/templates/structures/spart/barracks.xml:12
 msgid "Stratopedon"
-msgstr "Stratopedon"
+msgstr "Stratopedon (camp militaire)"
 
 #: simulation/templates/structures/athen/civil_centre.xml:8
 #: simulation/templates/structures/mace/civil_centre.xml:8
@@ -396,7 +397,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Former des Héros. Mettre des soldats en garnison pour des flèches additionnelles."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -1351,22 +1352,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Arc de triomphe"
 
-#: simulation/templates/structures/rome/army_camp.xml:70
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Army Camp"
 msgstr "Camp militaire"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid ""
-"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
-" Soldiers for additional arrows."
-msgstr "Construire dans un territoire neutre ou ennemi. Entraîner une Infanterie Mêlée Avancée. Soldats en garnison pour des flèches supplémentaires."
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. "
+"Construct Rams. Garrison Soldiers for additional arrows."
+msgstr "Construire dans un territoire neutre ou ennemi. Entraîner une Infanterie mêlée avancée. Construire des Béliers. Mettre des soldats en garnison pour des flèches supplémentaires."
 
 #: simulation/templates/structures/rome/army_camp.xml:37
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "Camp militaire"
 
@@ -1548,11 +1549,11 @@ msgstr "Colonnade Corinthienne"
 
 #: simulation/templates/structures/shrine_egyptian.xml:5
 msgid "Sanctuary Kiosk"
-msgstr ""
+msgstr "Kiosque du Sanctuaire"
 
 #: simulation/templates/structures/shrine_italian.xml:9
 msgid "Temple of Healing"
-msgstr ""
+msgstr "Temple de la Guérison"
 
 #: simulation/templates/structures/shrine_italian.xml:10
 msgid "Aedēs Sanitatem"
@@ -1623,7 +1624,7 @@ msgstr "Table carrée"
 
 #: simulation/templates/structures/tent_desert.xml:35
 msgid "Desert Army Tent"
-msgstr ""
+msgstr "Tente de l'armée du désert"
 
 #: simulation/templates/structures/rome/tent.xml:24
 #: simulation/templates/structures/tent_desert.xml:36
@@ -1643,19 +1644,19 @@ msgstr "Un abri temporaire pour les soldats. Bonus +5 de population."
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
-msgstr ""
+msgstr "Tente de l'armée macédonienne"
 
 #: simulation/templates/structures/tent_rome.xml:35
 msgid "Roman Army Tent"
-msgstr ""
+msgstr "Tente de l'armée romaine"
 
 #: simulation/templates/structures/trading_post_celtic.xml:9
 msgid "Celtic Tavern"
-msgstr ""
+msgstr "Taverne celte"
 
 #: simulation/templates/structures/trading_post_desert.xml:9
 msgid "Desert Bazaar"
-msgstr ""
+msgstr "Bazar du désert"
 
 #: simulation/templates/structures/uffington_horse.xml:10
 msgid "Uffington White Horse"
@@ -1769,7 +1770,7 @@ msgstr "Avant-poste"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
 msgid "Build in own or neutral territory."
-msgstr ""
+msgstr "Construire dans un territoire vous appartenant ou neutre."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1936,7 +1937,7 @@ msgstr "Entraîner des champions d'infanterie arbalétriers, construire des engi
 #: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:76
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
