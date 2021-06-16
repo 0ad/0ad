@@ -56,6 +56,10 @@ GameSettings.prototype.Attributes.Landscape = class Landscape extends GameSettin
 
 	pickRandomItems()
 	{
+		// If the map is random, we need to wait until it is selected.
+		if (this.settings.map.map === "random")
+			return true;
+
 		if (!this.value || !this.value.startsWith("random"))
 			return false;
 

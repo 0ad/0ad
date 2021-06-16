@@ -39,6 +39,10 @@ GameSettings.prototype.Attributes.TeamPlacement = class TeamPlacement extends Ga
 
 	pickRandomItems()
 	{
+		// If the map is random, we need to wait until it is selected.
+		if (this.settings.map.map === "random")
+			return true;
+
 		if (this.value !== "random")
 			return false;
 		this.value = pickRandom(this.available).Id;
