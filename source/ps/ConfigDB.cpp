@@ -143,6 +143,7 @@ CConfigDB* CConfigDB::Instance()
 
 CConfigDB::CConfigDB()
 {
+	m_HasChanges.fill(false);
 }
 
 CConfigDB::~CConfigDB()
@@ -443,6 +444,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		LOGERROR("Config file does not have a new line after the last config setting '%s'", name);
 
 	m_Map[ns].swap(newMap);
+	m_HasChanges[ns] = false;
 
 	return true;
 }
