@@ -1116,8 +1116,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return;
 					}
-					this.FindWalkAndFightTargets();
-					++this.stopSurveying;
+					if (!this.FindWalkAndFightTargets())
+						++this.stopSurveying;
 				}
 			}
 		},
@@ -1819,8 +1819,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return;
 					}
-					this.FindWalkAndFightTargets();
-					++this.stopSurveying;
+					if (!this.FindWalkAndFightTargets())
+						++this.stopSurveying;
 				}
 			}
 		},
