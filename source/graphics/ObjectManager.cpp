@@ -157,10 +157,15 @@ void CObjectManager::UnloadObjects()
 
 Status CObjectManager::ReloadChangedFile(const VfsPath& path)
 {
+	bool changed = false;
+
 	// Mark old entries as outdated so we don't reload them from the cache
 	for (std::pair<const ObjectKey, Hotloadable<CObjectEntry>>& object : m_Objects)
 		if (!object.second.outdated && object.second.obj->m_Base->UsesFile(path))
+		{
 			object.second.outdated = true;
+			changed = true;
+		}
 
 	const CSimulation2::InterfaceListUnordered& cmps = m_Simulation.GetEntitiesWithInterfaceUnordered(IID_Visual);
 
@@ -168,15 +173,23 @@ Status CObjectManager::ReloadChangedFile(const VfsPath& path)
 	for (std::pair<const CStrW, Hotloadable<CActorDef>>& actor : m_ActorDefs)
 	{
 		if (!actor.second.outdated && actor.second.obj->UsesFile(path))
+		{
 			actor.second.outdated = true;
+			changed = true;
 
-		// Slightly ugly hack: The graphics system doesn't preserve enough information to regenerate the
-		// object with all correct variations, and we don't want to waste space storing it just for the
-		// rare occurrence of hotloading, so we'll tell the component (which does preserve the information)
-		// to do the reloading itself
-		for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
-			static_cast<ICmpVisual*>(eit->second)->Hotload(actor.first);
+			// Slightly ugly hack: The graphics system doesn't preserve enough information to regenerate the
+			// object with all correct variations, and we don't want to waste space storing it just for the
+			// rare occurrence of hotloading, so we'll tell the component (which does preserve the information)
+			// to do the reloading itself
+			for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
+				static_cast<ICmpVisual*>(eit->second)->Hotload(actor.first);
+		}
 	}
+
+	if (changed)
+		// Trigger an interpolate call - needed because the game may be paused & if so, models disappear.
+		m_Simulation.Interpolate(0.f, 0.f, 0.f);
+
 	return INFO::OK;
 }
 
