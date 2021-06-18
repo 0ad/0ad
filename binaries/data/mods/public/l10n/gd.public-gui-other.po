@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-11 08:26+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 08:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr ""
@@ -3918,35 +3918,35 @@ msgid "Naming of entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
+msgid "Specific names first"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
+msgid "Display specific names before generic names."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
+msgid "Generic names first"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
+msgid "Display generic names before specific names."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
+msgid "Only specific names"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
+msgid "Display only specific names for entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
+msgid "Only generic names"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
+msgid "Display only generic names for entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].tooltip
@@ -4583,139 +4583,119 @@ msgid ""
 msgstr "Taghaidh grad-iuchair nan aonadan leònta na h-aonadan aig a bheil ceudad nas lugha de shlàine aca na an àireamh seo."
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Samhlaidhean astar an t-slànachaidh"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Seall astar leigheas nan aonadan a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Ìomhaigheag rang os cionn a’ bhàir-staide"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Seall ìomhaigheagan rang os cionn nam bàraichean-staide."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Bàr-staide an eòlais"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Seall bàr-staide an eòlais os cionn gach aonad air a thaghadh."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Gliocasan-sgrìn mionaideach"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas oideachadh ann an togalaichean a nì aonadan."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Seòrsaich gliocasan-sgrìn nan stòrasan is an t-sluaigh"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Gun òrdugh"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "A’ dìreadh"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "A’ teàrnadh"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Seòrsaich na cluicheadairean a-rèir an luachan gu h-innsginneach ann an gliocasan-sgrìn nan stòrasan is an t-sluaigh."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Dathan dioplòmasachd: thusa"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Dath nan aonadan agad nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Dathan dioplòmasachd: caidreabhach"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Dath nan aonadan caidreabhach nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Dathan dioplòmasachd: neo-phàirteach"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Dath nan aonadan neo-phàirteach nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Dathan dioplòmasachd: nàmhaid"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Dath nan aonadan nàimhdeil nuair a bhios dathan na dioplòmasachd an comas."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Greimich ris na h-oirean"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "A’ ghrad-iuchair a chuireas an greimeachadh an comas"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Thèid togalaichean ùra a cho-thaobhadh le togalaichean am fagas fhad ’s a bhios tu a’ brùthadh air a’ ghad-iuchair."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "A’ ghrad-iuchair a chuireas an greimeachadh à comas"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Thèid togalaichean ùra a cho-thaobhadh le togalaichean faisg orra ach ma bhios tu a’ brùthadh air a’ ghad-iuchair."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Leigidh an roghainn seo leat togalaichean ùra a cho-thaobhachadh le togalaichean am fagas."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "Ballrachd nam buidhnean-smachd"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "Fa leth"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Nuair a chuireas tu aonad no togalach ri buidheann-smachd, thèid a thoirt air falbh o bhuidheann-smachd sam bith eile. Cleachd an roghainn seo ma tha thu airson feachdan fa leth a stiùireadh leis na biuidhnean-smachd."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Iomadach"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "’S urrainn dhut aonad no togalach a chur ann an iomadh buidheann-smachd. Tha seo feumail airson buidhnean-smachd do dh’fheachdan fa leth agus buidheann-smachd air am feachd gu lèir a chumail aig an aon àm."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Cuir romhad am faod aonadan a bhith nam ball de dh’iomadh buidheann-smachd gus nach fhaod."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4726,26 +4706,56 @@ msgid "Number of units trained per batch by default."
 msgstr "An uiread dhe dh’aonadan a thèid oideachadh ann an grunn a ghnàth."
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "Ballrachd nam buidhnean-smachd"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "Fa leth"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Nuair a chuireas tu aonad no togalach ri buidheann-smachd, thèid a thoirt air falbh o bhuidheann-smachd sam bith eile. Cleachd an roghainn seo ma tha thu airson feachdan fa leth a stiùireadh leis na biuidhnean-smachd."
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "Iomadach"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "’S urrainn dhut aonad no togalach a chur ann an iomadh buidheann-smachd. Tha seo feumail airson buidhnean-smachd do dh’fheachdan fa leth agus buidheann-smachd air am feachd gu lèir a chumail aig an aon àm."
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Cuir romhad am faod aonadan a bhith nam ball de dh’iomadh buidheann-smachd gus nach fhaod."
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "Stiùireadh nan cumaidhean"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Coiseachd/Cuairteachan a-mhàin"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Sgaoilidh òrduighean eile cumaidhean a tha ann."
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "Gun tar-àithneadh"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr ""
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Fuirichidh na h-aonadan sna cumaidhean aca."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4761,83 +4771,81 @@ msgid ""
 msgstr "Co meud turas a nì thu sgroladh gus an dèid meud nan grunnan a mheudachadh no lùghdachadh le 1."
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr ""
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr ""
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Brathan cabadaich air ionnsaighean"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Seall brath na cabadaich nuair a bheir cluicheadair eile ionnsaigh ort."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Brathan cabadaich air cìsean"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Seall brath na cabadaich ma bheir caidreabhach cìs a stòrasan gu ball eile an sgioba nuair a bhios na sgiobaidhean glaiste agus airson gach cìs sa mhodh amhairc."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Brathan cabadaich air iomlaideadh"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Seall brath na cabadaich dha na h-amhairc nuair a dh’iomlaidich cluicheadair stòrasan."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Brathan cabadaich air linntean"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Cuir à comas"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Coileanta"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Na h-uile"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Seall brath na cabadaich nuair a bhios tu fhèin no caidreabhach (no na cluicheadairean uile sa mhodh amhairc) air linn ùr a thòiseachadh no choileanadh no air a sgur dheth."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Samhlaidhean astar na h-ionnsaighe"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Seall astar ionnsaighe nan togalaichean dìona a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Samhlaidhean astar nan aura"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Seall astar aura nan aonadan is togalaichean a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Samhlaidhean astar an t-slànachaidh"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Seall astar leigheas nan aonadan a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5112,7 +5120,7 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
@@ -5637,9 +5645,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[icon=\"constructionIcon\"]Tha an geama seo ’ga phrògramachadh fhathast. Tha gleusan a dhìth ’s bugaichean ann."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5649,9 +5657,15 @@ msgstr "[imgleft=\"iconLag\"]Dh’fhaoidte gum bi duilgheadasan dèanadais aig a
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Tha sinn ag obair air na cumaidhean fhathast, ach ’s urrainn dhut an cur ri chèile no sgaradh mar a thogras tu."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr ""
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5662,12 +5676,12 @@ msgid "Show this message in the future"
 msgstr "Seall an teachdaireachd seo a-rithist"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Duilgheadasan as aithne dhuinn (lìon)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "Ceart ma-thà"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr ""
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6282,6 +6296,26 @@ msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
 msgstr "Oidich saoranaich: saoranaich bhoireann, coisridh-dhùthcha is eachraidh-dùthcha."
+
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr ""
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"

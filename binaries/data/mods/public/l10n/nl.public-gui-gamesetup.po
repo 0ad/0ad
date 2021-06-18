@@ -47,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 09:31+0000\n"
-"Last-Translator: Robin van der Kruit <Robin.Kruit@hotmail.com>\n"
+"PO-Revision-Date: 2021-06-15 20:04+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -242,7 +242,7 @@ msgstr "Cheats"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
-msgstr "Zet de mogelijkheid om vals te spelen."
+msgstr "Zet de mogelijkheid om vals te spelen aan/uit."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -274,7 +274,7 @@ msgstr "Teams Vergrendeld"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "Zet de teams vast of variabel."
+msgstr "Vaste of variabele teams."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -314,7 +314,7 @@ msgstr "Zichtbare Kaart"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr "Toon de volledige kaart (bekijk alles)."
+msgstr "Toon/verberg de volledige kaart (bekijk alles)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
@@ -474,7 +474,7 @@ msgstr "Per speler"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Waarschuwing: er kunnen performantie problemen optreden als alle %(players)s spelers aan %(popCap)s inwoners geraken."
+msgstr "Waarschuwing: er kunnen prestatieproblemen optreden als alle %(players)s spelers %(popCap)s inwoners bereiken."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
@@ -482,7 +482,7 @@ msgstr "Beginkapitaal"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
-msgstr "Selecteer de resources die u krijgt bij de start van het spel."
+msgstr "Selecteer de grondstoffen die u krijgt bij de start van het spel."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
@@ -533,7 +533,7 @@ msgstr "Selecteer een maximum voor de wereldbevolking."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Waarschuwing: de werking van het spel kan minder worden wanneer %(popCap)s inwoners zijn."
+msgstr "Waarschuwing: de werking van het spel kan minder worden wanneer er %(popCap)s inwoners zijn."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -572,7 +572,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Totaal aantal relikwieën op map geplaatst. Relikwieënoverwinning is het meest realistisch met enkel een of twee relikwieën. Bij een groter aantal is het belangrijk om ze te vergaren zodat u aurabonussen kunt opstrijken."
+msgstr "Totaal aantal op de kaart geplaatste relikwieën. Relikwieënoverwinning is het meest realistisch met enkel een of twee relikwieën. Bij een groter aantal is het belangrijk om ze te vergaren zodat u aurabonussen kunt opstrijken."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
@@ -654,11 +654,11 @@ msgstr "Sta klaar"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr "Ik ben niet gereed"
+msgstr "Ik ben niet gereed!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Stel in dat u klaar bent om te spelen"
+msgstr "Geef aan dat u klaar bent om te spelen"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
@@ -1576,7 +1576,7 @@ msgid ""
 "“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
 " when passing through a barbarian village in the Alps (Plutarch, “Parallel "
 "Lives”, “Caesar”, sec. 11)"
-msgstr "\"Ik ben liever hier de eerste man dan nummer twee in Rome.\" \\n— Caesar, toen hij door een barbaars dorpje in de Alpen trok. (Plutarchus, “Parallelle levens”, “Caesar”, sec. 11)"
+msgstr "\"Ik ben liever de eerste man hier dan nummer twee in Rome.\" \\n— Caesar, toen hij door een barbaars dorpje in de Alpen trok. (Plutarchus, “Parallelle levens”, “Caesar”, sec. 11)"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1610,7 +1610,7 @@ msgid ""
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
-msgstr "“De meest onmenselijke en arrogante der landen, vinden zij \\[de Romeinen] rdat de wereld van hen is en dat ze ermee kunnen doen wat ze willen. Met wie we oorlog zullen voeren, met wie het vrede is, zij denken dat het goed is dat zij dat bepalen.” \\n— Hannibal, sprekend tot zijn troepen (Livius, “Vanaf de Stichting van de Stad”, XXI. 44)"
+msgstr "“De meest onmenselijke en arrogante der landen, vinden zij \\[de Romeinen] dat de wereld van hen is en dat ze ermee kunnen doen wat ze willen. Met wie we oorlog zullen voeren, met wie het vrede is, zij denken dat het goed is dat zij dat bepalen.” \\n— Hannibal, sprekend tot zijn troepen (Livius, “Vanaf de Stichting van de Stad”, XXI. 44)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1623,7 +1623,7 @@ msgid ""
 "“War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
 "Refutation of all Heresies”, IX. 4)"
-msgstr "“Oorlog is de vader en koning van alles: sommigen maakt hij goden en anderen mensen; sommigen slaven en anderen vrij mens.” \\n— Heraclitus (Hippolytus, “De weerlegging van alle ketterijen”, IX. 4)"
+msgstr "“Oorlog is de vader en koning van alles: sommigen maakt hij goden en anderen mensen; sommigen slaven en anderen een vrij mens.” \\n— Heraclitus (Hippolytus, “De weerlegging van alle ketterijen”, IX. 4)"
 
 #: gui/text/quotes.txt:94
 msgid ""
@@ -1689,7 +1689,7 @@ msgid ""
 "the Athenians!” \\n— Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I, the Persian king (“The "
 "Histories”, V. 105)"
-msgstr "“Hij \\[Koning Darius] vroeg wie de Atheners waren, en toen hem dat verteld was vroeg hij om zijn boog. Hij plaatste een pijl en schoot die omhoog de lucht in, terwijl hij zei toen hij de pees losliet: Laat mij, O Zeus, mij wraken op de Atheners!!” \\n— Herodotus, verhalend hoe de Atheense steun voor de Ionische opstand de woede wekte van Darius I, de Perzische koning (“Historiën”, V. 105)"
+msgstr "“Hij \\[Koning Darius] vroeg wie de Atheners waren, en toen hem dat verteld was vroeg hij om zijn boog. Hij plaatste een pijl en schoot die omhoog de lucht in, terwijl hij zei toen hij de pees losliet: Laat mij, O Zeus, mij wraken op de Atheners!” \\n— Herodotus, verhalend hoe de Atheense steun voor de Ionische opstand de woede wekte van Darius I, de Perzische koning (“Historiën”, V. 105)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1779,7 +1779,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.” \\n— Livy, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (“History of Rome”, XXII. 51)"
-msgstr "“Er lagen duizenden en duizenden Romeinen \\[…]. Hier en daar kroop tussen de doden een bloederig figuur wiens wonden met de kou van de zonsopgang begonnen te bonzen, en die werd neergestoken door zijn vijanden.” \\n— Livy, describing the aftermath of the Battle of Cannae, where Hannibal inflicted the greatest defeat on the Romans in all their history (“Vanaf de Stichting van de Stad”, XXII. 51)"
+msgstr "“Er lagen duizenden en duizenden Romeinen \\[…]. Hier en daar kroop tussen de doden een bloederig figuur wiens wonden met de kou van de zonsopgang begonnen te bonzen, en die werd neergestoken door zijn vijanden.” \\n— Livy, over de naweeën van de Slag bij Cannae, waar Hannibal de Romeinen de grootste nederlaag in hun hele geschiedenis toebracht(“Vanaf de Stichting van de Stad”, XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1911,7 +1911,7 @@ msgid ""
 "virtue.” \\n— Pericles in his Funeral Oration for Athenians that died in the"
 " first year of the war (Thucydides, “History of the Peloponnesian War”, II. "
 "43.2)"
-msgstr "“Als je nadenkt over de macht van Athene, bedenk dan die is bereikt door dappere mannen die hun plicht kenden, die wisten wanneer ze oneerlijk moesten vechten en die, als hun plannen mislukten, liever hun leven gaven dan dat ze tekortschoten in burgermoed.” \\n— Pericles in zijn lijkrede voor de Atheners die in het eerste jaar van de oorlog sneuvelden (Thucydides, “De geschiedenis van de Peloponnesische Oorlog”, II. 43.2)"
+msgstr "“Als je nadenkt over de macht van Athene, bedenk dan die is bereikt door dappere mannen die hun plicht kenden, die wisten wat oneerlijk vechten was en die, als hun plannen mislukten, liever hun leven gaven dan dat ze tekortschoten in burgermoed.” \\n— Pericles in zijn lijkrede voor de Atheners die in het eerste jaar van de oorlog sneuvelden (Thucydides, “De geschiedenis van de Peloponnesische Oorlog”, II. 43.2)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -2109,7 +2109,7 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, “Nine books on "
 "memorable deeds and sayings”, 5.3.2)"
-msgstr "“Ondankbaar vaderland, je zult zelfs mijn botten niet krijgen!” \\n— het grafschrift van Scipio Africanus, nadat hij die Hannibal verslagen had, door de Romeinse Senaat herhaaldelijk van misdaden was beschuldigd (Valerius Maximus, “Negen boeken memorabele daden en uitspraken”, 5.3.2)"
+msgstr "“Ondankbaar vaderland, je zult zelfs mijn botten niet krijgen!” \\n— het grafschrift van Scipio Africanus, nadat hij, die Hannibal verslagen had, door de Romeinse Senaat herhaaldelijk van misdaden was beschuldigd (Valerius Maximus, “Negen boeken memorabele daden en uitspraken”, 5.3.2)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -2148,7 +2148,7 @@ msgid ""
 "to live. Which is better God only knows.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) \\n— Plato (“Apology”, 42a)"
-msgstr "“Maar nu is het uur gekomen om te gaan – aan mij de dood, aan u het leven. Wie van ons een beter lot treft, voor de goden om te weten.” Socrates, in zijn verdediging tegen de beschuldiging de jeugd te misleiden en niet de goden van de stad te vereren (hij dronk later de gifbeker nadat hij ter dood veroordeeld was)  \\n— Plato (“Apologie van Socrates”, 42a)"
+msgstr "“Maar nu is het uur gekomen om te gaan – aan mij de dood, aan u het leven. Wie van ons een beter lot treft, is voor de goden om te weten.” Socrates, in zijn verdediging tegen de beschuldiging de jeugd te misleiden en niet de goden van de stad te vereren (hij dronk later de gifbeker nadat hij ter dood veroordeeld was)  \\n— Plato (“Apologie van Socrates”, 42a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -2174,7 +2174,7 @@ msgstr "“Hij kon pochen dat hij een stad van steen gevonden had en die als een
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
-msgstr "“Gematigdheid in alles.” \n— Terentius (“Andria”, 61)"
+msgstr "“Gematigdheid in alles.” \\n— Terentius (“Andria”, 61)"
 
 #: gui/text/quotes.txt:170
 msgid ""

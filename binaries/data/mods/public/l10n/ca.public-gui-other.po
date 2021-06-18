@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-11 08:26+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 08:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr ""
@@ -3900,35 +3900,35 @@ msgid "Naming of entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
+msgid "Specific names first"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
+msgid "Display specific names before generic names."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
+msgid "Generic names first"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
+msgid "Display generic names before specific names."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
+msgid "Only specific names"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
+msgid "Display only specific names for entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
+msgid "Only generic names"
 msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
+msgid "Display only generic names for entities."
 msgstr ""
 
 #: gui/options/options.json[0].options[9].tooltip
@@ -4565,139 +4565,119 @@ msgid ""
 msgstr "La tecla de drecera d'unitats ferides considerarà que una unitat està ferida si el percentatge de salut està per sota d'aquest número."
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Mostra l'abast de curació"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Mostra l'abast de curació de les unitats seleccionades (també es pot activar durant la partida amb la tecla de drecera)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Icona de rang damunt la barra d'estat"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Mostra les icones de rang damunt les barres d'estat."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Barra d'estat d'experiència"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Mostra una barra d'estat d'experiència damunt de cada unitat seleccionada."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Indicadors de funció detallats"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Mostra indicadors de funció detallats per a les unitats a les estructures que recluten unitats."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Ordena l'indicador de recursos i població"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Desordenat"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Ascendent"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "Descendent"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Ordena dinàmicament els jugadors a l'indicador de recursos i població."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Colors de diplomàcia: propi"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "El color de les vostres unitats amb els colors de diplomàcia activats."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Colors de diplomàcia: aliats"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "El color dels aliats amb els colors de diplomàcia activats."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Colors de diplomàcia: neutral"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "El color dels jugadors neutrals amb els colors de diplomàcia activats."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Colors de diplomàcia: enemics"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "El color dels enemics amb els colors de diplomàcia activats."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Alinea les estructures"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Tecla drecera per alinear estructures"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Les estructures noves s'alineen amb les existents quan es prem la tecla drecera."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Tecla drecera per no alinear estructures"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Les estructures noves s'alineen amb les existents si no es prem la tecla drecera."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Aquesta opció permet alinear les noves estructures amb estructures existents."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "Control de pertanyença a grups"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "Un sol grup"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Quan s'afegeix una unitat o estructura a un grup de control, s'elimina dels altres grups. Utilitzeu aquesta opció si voleu que els grups de control representin exèrcits diferenciats."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Més d'un grup"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Les unitats i estructures poden formar part de més d'un grup de control. Això és útil per tenir grups de control per a diferents exèrcits i un grup per a tot l'exèrcit alhora."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Decidiu si les unitats poden formar part de més d'un grup de control."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4708,26 +4688,56 @@ msgid "Number of units trained per batch by default."
 msgstr "Nombre d'unitats que es recluten per defecte en cada tanda"
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "Control de pertanyença a grups"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "Un sol grup"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Quan s'afegeix una unitat o estructura a un grup de control, s'elimina dels altres grups. Utilitzeu aquesta opció si voleu que els grups de control representin exèrcits diferenciats."
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "Més d'un grup"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Les unitats i estructures poden formar part de més d'un grup de control. Això és útil per tenir grups de control per a diferents exèrcits i un grup per a tot l'exèrcit alhora."
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Decidiu si les unitats poden formar part de més d'un grup de control."
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "Control de formacions"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Només camina/patrulla"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Altres ordres trencaran les formacions existents."
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "No sobreescriure"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr ""
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Les unitats en formació es queden en formació."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4743,83 +4753,81 @@ msgid ""
 msgstr "Nombre de vegades que s'ha de moure la rodeta del ratolí per augmentar/disminuir la mida de la tanda de reclutament en 1."
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr ""
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr ""
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Notificació d'atac al xat"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Mostra una notificació al xat si us ataca un altre jugador."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Notificació de tribut al xat"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Mostra una notificació al xat si un aliat envia un tribut a un altre membre de l'equip, en cas que els equips estiguin bloquejats i tots els tributs en mode observador."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Notificació d'intercanvi al xat"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Mostra una notificació al xat per als observadors quan un jugador bescanviï recursos."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Notificació de fase al xat"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Desactiva"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Completat"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Tot visible"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Mostra una notificació al xat si algú de l'equip aliat comença, cancel·la o completa un avançament de fase. Els jugadors en mode observador reben notificació per canvis de fase de qualsevol jugador."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Mostra l'abast d'atac"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Mostra l'abast d'atac de les estructures defensives seleccionades (també es pot activar durant la partida amb la tecla de drecera)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Mostra l'abast d'aures"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Mostra l'abast de les aures de les unitats i estructures seleccionades (també es pot activar durant la partida amb la tecla de drecera)."
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Mostra l'abast de curació"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Mostra l'abast de curació de les unitats seleccionades (també es pot activar durant la partida amb la tecla de drecera)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5094,7 +5102,7 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
@@ -5605,9 +5613,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Aquest joc encara està en desenvolupament. Hi falten característiques i conté errors."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5617,9 +5625,15 @@ msgstr "[imgleft=\"iconLag\"]El joc pot tenir problemes de rendiment, sobretot a
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Encara s'està treballant en les formacions, però es poden activar i desactivar."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr ""
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5630,12 +5644,12 @@ msgid "Show this message in the future"
 msgstr "Mostra aquest missatge en el futur"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Problemes coneguts (web)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "D'acord"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr ""
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6250,6 +6264,26 @@ msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
 msgstr "Recluta ciutadans: dones i soldats ciutadans d'infanteria o de cavalleria."
+
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr ""
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"

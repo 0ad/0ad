@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 19:59+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 23:54+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -353,53 +353,57 @@ msgid ""
 "%(details)s"
 msgstr "Tienes dellos camudos incompatibles:\n%(details)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:121
+#: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
 msgstr "Esti camudu nun cinca a la compatibilidá multixugador"
 
-#: gui/lobby/LobbyPage/GameDetails.js:140
+#: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
 msgstr "Agospiu: %(playername)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:142
+#: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Xugadores: %(current)s/%(total)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:144
+#: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
 msgstr "Condiciones de victoria:"
 
 #. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:147
+#: gui/lobby/LobbyPage/GameDetails.js:149
 msgid ", "
 msgstr ", "
 
-#: gui/lobby/LobbyPage/GameDetails.js:149
+#: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
 msgstr "Camudos:"
 
+#: gui/lobby/LobbyPage/GameDetails.js:153
+msgid "Mods (incompatible):"
+msgstr "Camudos (incompatibles):"
+
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:152
+#: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "La partida entamó a les %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-#: gui/lobby/LobbyPage/GameDetails.js:154
+#: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/LobbyPage/GameDetails.js:156
+#: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
 msgstr "Tipu de mapa:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:158
+#: gui/lobby/LobbyPage/GameDetails.js:162
 msgid "Map Size:"
 msgstr "Tamañu del mapa:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:160
+#: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
 msgstr "Descripción del mapa:"
 

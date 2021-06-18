@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
+# Antonio J. A <antoniojartunedo@gmail.com>, 2021
 # Daniel Matute <borealink@gmail.com>, 2018
 # David Heredia <dherediat97@gmail.com>, 2018
 # The_Gipsy <xelectronhd@gmail.com>, 2018
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 10:17+0000\n"
-"Last-Translator: Federico Castro <dwcels@gmail.com>\n"
+"PO-Revision-Date: 2021-06-14 18:22+0000\n"
+"Last-Translator: Antonio J. A <antoniojartunedo@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +110,7 @@ msgstr "Activado: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "¡Has intentado iniciar el juego con mods incompatibles o inexistentes!"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -119,13 +120,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Resuelve el problema de compatibilidad desactivando los mods no válidos o activando las dependencias necesarias. A continuación, puedes guardar e iniciar el juego."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "Los mods incompatibles aparecerán en rojo en la lista de mods habilitados (panel inferior). Las dependencias se pueden añadir habilitándolas en el panel superior."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -414,7 +415,7 @@ msgstr "Visitar mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Este mod no existe"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -423,7 +424,7 @@ msgstr "Activar"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Dependencias no satisfechas"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
@@ -436,7 +437,7 @@ msgstr "No se ha elegido ningún mod."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Habilitar al menos mod 0ad"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -480,7 +481,7 @@ msgstr "Guardar configuración"
 
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Save and Restart"
-msgstr ""
+msgstr "Guardar y reiniciar"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

@@ -89,8 +89,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-13 09:08+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 07:44+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "帧率：%(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s-%(templateName)s"
@@ -1324,14 +1324,14 @@ msgstr "资源回收点："
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1205
 msgid "Right-click to view more information."
-msgstr "右击获取更多消息"
+msgstr "右击获取更多信息"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Click to view more information."
-msgstr "单击以获取更多消息。"
+msgstr "单击以获取更多信息。"
 
 #: gui/common/tooltips.js:1220
 msgctxt "One letter abbreviation for million"
@@ -1439,7 +1439,7 @@ msgstr "拉丁语"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr "Napatan"
+msgstr "纳帕塔语"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -3875,7 +3875,7 @@ msgstr "通用"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr "玩家名昵称( 单人模式 )"
+msgstr "玩家昵称( 单人模式 )"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3952,40 +3952,40 @@ msgid "Naming of entities."
 msgstr "实体名称."
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "指定的首要名称."
+msgid "Specific names first"
+msgstr "特定名在前"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "显示首要指定名称和次要一般名称"
+msgid "Display specific names before generic names."
+msgstr "先显示特定名，后显示通用名。"
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "首要一般名称."
+msgid "Generic names first"
+msgstr "通用名在前"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "显示首要一般名称和次要指定名称."
+msgid "Display generic names before specific names."
+msgstr "先显示通用名，后显示特定名。"
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "仅指定名称."
+msgid "Only specific names"
+msgstr "仅有特定名"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "仅显示单位的指定名称."
+msgid "Display only specific names for entities."
+msgstr "只显示单位的特定名。"
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "仅一般的"
+msgid "Only generic names"
+msgstr "仅有通用名"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr "只显示单位通用名称."
+msgid "Display only generic names for entities."
+msgstr "只显示单位的通用名。"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr "如何显示实体名称."
+msgstr "如何显示实体名称。"
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
@@ -4617,139 +4617,119 @@ msgid ""
 msgstr "受伤单位快捷键，如果所选单位健康百分比低于这个数值，判定其受伤。"
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "显示治疗范围"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "显示所选单位的治疗范围。(可在游戏中通过热键切换)"
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "状态栏上方的排名图标"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "在状态栏上方显示排名"
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "经验状态栏"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "在每个选定的单位上方显示经验状态栏。"
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "详细工具提示"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "物资和人口提示"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "未排序"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "升序"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "降序"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "物资和人口按数值大小动态排序。"
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "外交颜色：自身"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "当启动政策色后，显示你的颜色。"
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "外交颜色：同盟"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "启动外交颜色时，显示同盟颜色。"
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "外交颜色：中立"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "启用外交颜色时为中立玩家颜色"
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "外交颜色：敌人"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "启用外交颜色时，为敌方颜色"
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "自动对齐建筑"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "禁用自动对齐"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "须按下快捷键，新建筑方与附近的建筑对齐。"
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "启用自动对齐"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "除非按下快捷键，否则新建筑自动与附近的建筑对齐。"
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "此选项决定是否将新建筑与附近的建筑自动对齐。”"
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "单位隶属编队"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "单个编队"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "将单位或建筑物添加到编队时，会将它们从其他编队中删除。 如果希望各只编队的成员互不交叉，请使用此选项。"
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "多个编队"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "单位与建筑物可以同时隶属于多个编队。这在需要既能分别控制不同的部队，又能同时控制所有的部队的情况下非常有用。"
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "此选项决定同一单位是否可以隶属于多个编队"
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4760,30 +4740,60 @@ msgid "Number of units trained per batch by default."
 msgstr "默认批次训练的单位数量。"
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "单位隶属编队"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "单个编队"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "将单位或建筑物添加到编队时，会将它们从其他编队中删除。 如果希望各只编队的成员互不交叉，请使用此选项。"
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "多个编队"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "单位与建筑物可以同时隶属于多个编队。这在需要既能分别控制不同的部队，又能同时控制所有的部队的情况下非常有用。"
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "此选项决定同一单位是否可以隶属于多个编队"
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "编队控制"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "仅步行/巡逻"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "其他命令将解散现有编队。"
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "不可解散"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr "不要覆盖"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "编队中的单位留在编队中。"
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr "此选项决定是否对所有命令启用编队，还是仅对“步行”和巡逻启用"
+msgstr "是否对所有命令启用编队，还是仅对“步行”和“巡逻”启用。"
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -4795,83 +4805,81 @@ msgid ""
 msgstr "滚动鼠标滚轮，改变增减的次数。"
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr "警戒点持续时长"
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr "小地图上警戒点的显示时间（以秒为单位）。"
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "攻击通知"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "受到攻击时，弹出提示。"
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "进贡通知"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "如果一个盟友在团队被锁定的情况下，向另一个团队成员提供物资，则所有玩家会收到通知。"
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "市场买卖提示"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "玩家交换物资时，向观察者显示通知。"
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "聊天通知状态"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "禁用"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "完成"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "显示所有"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "如果你或某个盟友已开始、中止或完成新阶段，并且所有玩家都处于观察员模式阶段，则显示聊天通知。"
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "显示攻击范围"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "显示所选防御建筑的攻击范围。（可在游戏中使用热键切换）。"
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "显示光环范围"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "显示所选单位和建筑的光环范围（可使用热键切换）。"
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "显示治疗范围"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "显示所选单位的治疗范围。(可在游戏中通过热键切换)"
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5146,8 +5154,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "内测版 25：Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "内测版25：伊奥尼亚"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5562,7 +5570,7 @@ msgstr "非排位赛"
 #: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr "输入单字，或完整的玩家名称来过滤重放。"
+msgstr "输入玩家名称来筛选。"
 
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
@@ -5650,9 +5658,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]此游戏仍处于开发中。某些功能不完善并包含 bug。"
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr "[imgleft=\"constructionIcon\"]游戏仍在开发阶段。 可能会遇到错误，并且某些功能并不如期望的那样充实。"
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5662,9 +5670,15 @@ msgstr "[imgleft=\"iconLag\"]游戏可能有性能问题，尤其是地图尺寸
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]编队功能尚未开发完成，但您可以根据需要切换编队和解散编队。"
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr "[imgleft=\"iconMap\"]0 A.D. 为一款免费游戏，你可以参与开发。"
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr "如果想在美术、音效、玩法及编程方面提供帮助，请加入我们的官方论坛。"
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5675,12 +5689,12 @@ msgid "Show this message in the future"
 msgstr "稍后显示此消息"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "已知问题 (网页)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "确定"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr "官方论坛（网页）"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6296,6 +6310,26 @@ msgid ""
 "citizen-soldiers."
 msgstr "训练公民：妇女、公民步兵和公民骑兵。"
 
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr "默认编队"
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr "右击图标，设置默认编队：命令单位自动步行或巡逻。"
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr "可默认设定“无编队”，取消阵型。"
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr "“编队控制”还可选择其它命令。"
+
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "碉楼"
@@ -6372,7 +6406,7 @@ msgstr "升级单位的兵器和铠甲。"
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr "阵型"
+msgstr "编队"
 
 #: gui/text/tips/formations.txt:2
 msgid ""

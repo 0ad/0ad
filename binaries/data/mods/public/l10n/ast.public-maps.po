@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-13 00:17+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-18 04:00+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -949,7 +949,7 @@ msgid ""
 "Wide grasslands stretching to the horizon, without any trees blocking the "
 "view. The Steppe is home to large herds of wild horses, which graze "
 "peacefully on the empty land, but flee quickly if you try to catch them."
-msgstr "Praderes tan estenses como pa perdese nel horizonte y ensin árboles qu'emparamenten la vista. La estepa puéblenla corros de caballos monteses, que pacen tranquilos nes llanures, sacante que les caces."
+msgstr "Praderes tan estenses como pa perdese nel horizonte, y ensin árboles qu'emparamenten la vista. La estepa puéblenla corros de caballos monteses, que pacen tranquilos nes llanures, sacante que les caces."
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -1288,7 +1288,6 @@ msgstr "Llagu bravu"
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
-#: maps/skirmishes/magadha_2p.xml:Description:39
 msgid "Give an interesting description of your map."
 msgstr "Fai una descripción interesante del to mapa. "
 
@@ -2595,7 +2594,7 @@ msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
-msgstr ""
+msgstr "A la Italia septentrional que llenda colos Alpes los romanos denómabenlu la Galia Cisalpina. Ye por esta estaya fértil qu'agora compiten los galos, los etruscos y, cómo non, los romanos.\n\nAVISU: El mapa tien munches partícules de nieve que podríen cincar al rindimientu gráficu d'equipos cenciellos."
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"
@@ -2625,7 +2624,7 @@ msgid ""
 "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
 "\n"
 "The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
-msgstr ""
+msgstr "A la vera d'onde'l Nilu traviesa l'ermu de Libia queda'l llagu de Méride, un llugar d'asitiamientu exipiciu dende tiempos prehistóricos.\n\nLa redolada ta llarada de templos y monumentos, tanto nuevos como antiguos, y l'agua ta enlleno de tilapia, ranao por comer."
 
 #: maps/skirmishes/crocodilopolis_4p.xml:Name:39
 msgid "Crocodilopolis (4)"
@@ -2841,7 +2840,7 @@ msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
-msgstr ""
+msgstr "El paropamisu (Hindú Kux) dixebraba la India de la Bactriana y formaba la frontera ente los imperios seléucida ya maurián. Más sero, nel periodu alexandrín, esta fastera entra na órbita de los reinos grecobactrianu y indogriegu.\n\nLa fastera escarez de madera y abonda en piedra y metal. El centru de la fastera crúcialu una vía comercial con factoríes que puedes tomar y aprovechar."
 
 #: maps/skirmishes/hindu_kush_2p.xml:Name:39
 msgid "Hindu Kush (2)"
@@ -2852,11 +2851,11 @@ msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
-msgstr ""
+msgstr "El ríu Hidaspe, güei «Jhelum», del Panxab. Ye'l sitiu de la famosa batalla ente los macedonios, so Alexandru'l Grande, y los indios, sol rei Puru de los Páurava."
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
-msgstr "El ríu Hisdaspes (4)"
+msgstr "El ríu Hysdaspes (4)"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
@@ -2905,6 +2904,13 @@ msgstr "El mapa permédialu un ríu que cuerre d'oriente a occidente con dalguno
 msgid "Lorraine Plain (2)"
 msgstr "Llanera de Lorena (2)"
 
+#: maps/skirmishes/magadha_2p.xml:Description:39
+msgid ""
+"Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
+"\n"
+"This map was designed as a 1v1 map suitable for rated and tournament play."
+msgstr "Dos de los grandes imperios indios, l'imperiu mauria y l'imperiu gupta, aniciaron en Mágadha, una rexón septentrional de la India a la vera'l sagráu ríu Ganxes.\n\nEsti mapa ta diseñáu pa partíes clasificaes y torneos de dos xugadores."
+
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
 msgstr "Mágadha (2)"
@@ -2939,7 +2945,7 @@ msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
-msgstr ""
+msgstr "Cada xugador entama nel somu d'una ciudá, o acrópolis.\n\nAl oriente de la península, atópase una badea poblada de pexe. Al occidente, un acrópolis desiertu que da pal mar Axéu."
 
 #: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
 msgid "Miletus Peninsula (2)"
@@ -3044,7 +3050,7 @@ msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
-msgstr ""
+msgstr "Al fondu'l Sáḥara atópase un requexucu de cuetos y oasis.\n\nHai mui bien de piedra nos caspios y abonda madera y animales a la oriella de los oasis que chisquen el terrén. Amás, les palmeres datileres averaes pervalen como fonte inicial de comida."
 
 #: maps/skirmishes/saharan_oases_2p.xml:Name:39
 msgid "Saharan Oases (2)"
@@ -3091,7 +3097,7 @@ msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
-msgstr ""
+msgstr "Les estepes de l'Asia central. Una pradería abierta con perpocos árboles (aprosimao'l décimu de los árboles de la faza templada o exea). Sicasí, son abondoses en vida animal y, poro, en caza."
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
@@ -3229,11 +3235,11 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr ""
+msgstr "¡Los foriatos quieren tomar Britania! Los britanos han lluchar contra ensames d'invasores p'asegurar la islla polos albionucos de mañana.\n\nEl xugador 1 ye britanu. Los xugadores 2-5 son invasores, que tán a bordu de los barcos fondiaos cabo los cantiles blancos de Dubres.\n\nLos equipos afítalos el script del mapa, pero los xugadores pueden camudalos na configuración pa personalizar l'escenariu. Nesi casu, l'agospiu de la partida ha establecer un altu'l fueu al envís de dar tiempu a los invasores a alcontrar un llugar apode pa desembarcar y asitiar en paz.\n\nLes civilizaciones predeterminaes nun son namái que suxerencies, y l'agospiu tien qu'afitar los recursos iniciales a 1000 pa que los invasores puedan llevantar places al entamar."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
-msgstr "Los cantiles de Dubris (5)"
+msgstr "Los cantiles de Dubres (5)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
 msgid "Britons"

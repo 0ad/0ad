@@ -9,13 +9,14 @@
 # Vojtěch Dubský <dub@dubix.eu>, 2021
 # Vladim Štér <vladim.ster94@gmail.com>, 2021
 # Martin Křížek <krizekmartin@gmail.com>, 2021
+# Lukáš Bačovský <l.bacovsky@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2018-10-14 18:34+0000\n"
-"Last-Translator: Martin Křížek <krizekmartin@gmail.com>, 2021\n"
+"Last-Translator: Lukáš Bačovský <l.bacovsky@gmail.com>, 2021\n"
 "Language-Team: Czech (https://www.transifex.com/wildfire-games/teams/17418/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +43,9 @@ msgid ""
 "Wildfire Games and community developers to improve the performance and "
 "compatibility of 0 A.D."
 msgstr ""
+"UserReporter je nástroj, který tobě, hráči 0 A.D., umožňuje automaticky "
+"odesílat hardwarové a softwarové podrobnosti za účelem pomoci Wildfire Games"
+" a komunitě vývojařů vylepšit výkon a kompatibilitu 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:7
 msgid "[font=\"sans-bold-14\"]Purpose of the UserReport:[/font]"
@@ -78,17 +82,21 @@ msgid ""
 " 1. Hardware Details, for example the screen size, CPU clock rate, memory "
 "capacity and the sound card manufacturer."
 msgstr ""
+"1. Podrobnosti o hardware. Například velikost obrazovky, frekvence CPU, "
+"kapacita operační paměti a výrobce zvukové karty."
 
 #: gui/userreport/Terms_and_Conditions.txt:14
 msgid ""
 " 2. System Software Details, for example the operating system version, "
 "graphics driver version, OpenGL capabilities."
 msgstr ""
+"2. Softwarové podrobnosti. Například verze operačního systému, verze "
+"grafického ovladače, možnosti OpenGL."
 
 #: gui/userreport/Terms_and_Conditions.txt:15
 msgid ""
 " 3. Application Details, for example the 0 A.D. version and build number."
-msgstr ""
+msgstr "3. Podrobnosti o aplikaci. Například verze a číslo sestavení 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:16
 msgid ""
@@ -174,7 +182,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:31
 msgid "[font=\"sans-bold-14\"]You agree to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Souhlasíte s:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:32
 msgid ""

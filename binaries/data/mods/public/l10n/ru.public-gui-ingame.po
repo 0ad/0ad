@@ -70,9 +70,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-09 04:35+0000\n"
-"Last-Translator: nwtour <nwtour@mail.ru>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 07:26+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,7 +204,7 @@ msgid "Click to Resume Game"
 msgstr "Нажмите для продолжения игры"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -927,7 +927,7 @@ msgstr "Следуйте указаниям."
 msgid "Unknown Player"
 msgstr "Неизвестный Игрок"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr "Отправить метку вашим союзникам"
 
@@ -1102,7 +1102,7 @@ msgstr "Выгрузить %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Щёлкните для выгрузки одной единицы. Зажмите Shift и щёлкните для выгрузки всех этого типа. "
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Игрок: %(playername)s"
@@ -1131,16 +1131,20 @@ msgstr "Отменить сворачивание"
 msgid "Cancel Unpacking"
 msgstr "Отменить разворачивание"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr ""
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "Недостаточная вместимость населения:"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1149,49 +1153,49 @@ msgstr[1] "%(number)s объектов класса %(class)s"
 msgstr[2] "%(number)s объектов класса %(class)s"
 msgstr[3] "%(number)s объекта класса %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Осталось: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "Невозможно проводить исследования, пока объект улучшается."
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "Невозможно проводить обучение, пока идёт улучшение."
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "Отменить улучшение"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1389,8 +1393,8 @@ msgid ""
 msgstr "Щёлкните, чтобы выбрать отряд, двойной щелчок чтобы показать отряд, а правый щелчок для расформирования отряда."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "Альфа XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

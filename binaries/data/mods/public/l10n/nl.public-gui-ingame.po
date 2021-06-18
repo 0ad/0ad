@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 13:04+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-16 10:08+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -172,7 +172,7 @@ msgstr ","
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr "Gepauseerd door %(players)s"
+msgstr "Gepauzeerd door %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
@@ -183,7 +183,7 @@ msgid "Click to Resume Game"
 msgstr "Klik om het spel te hervatten"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -310,7 +310,7 @@ msgstr "Druk op %(hotkey)s om de bondgenoten chat te openen."
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Druk %(hotkey)s om de vorige geselecteerd privé-chat te openen."
+msgstr "Druk %(hotkey)s om de laatst geselecteerde privé-chat te openen."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -393,7 +393,7 @@ msgstr "Klik om de aangevallen eenheid naar de voorgrond te halen."
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)sruilden %(amountGiven)s voor %(amountGained)s."
+msgstr "%(player)s ruilden %(amountGiven)s voor %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -549,7 +549,7 @@ msgstr "Versperring overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
 msgid "Unit motion overlay"
-msgstr "Eenhedenverplaatsingsoverlay"
+msgstr "Eenhedenverplaatsingen overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
 msgid "Range overlay"
@@ -557,7 +557,7 @@ msgstr "Bereik overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
 msgid "Bounding box overlay"
-msgstr "Begrensingskader overlay"
+msgstr "Begrenzingskader overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
 msgid "Restrict camera"
@@ -581,7 +581,7 @@ msgstr "Promoveer geselecteerde eenheden"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr "Culling toestaan."
+msgstr "Culling toestaan"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
@@ -612,7 +612,7 @@ msgstr "Vraag"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr "Ja, of nee?"
+msgstr "Ja of nee?"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
 msgid "Name"
@@ -692,7 +692,7 @@ msgstr "Vijand"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Koop een willekeurig eenheid om van deze speler, en deel in zijn gezichtsveld voor een beperkte periode."
+msgstr "Koop een willekeurige eenheid van deze speler om en deel in zijn gezichtsveld voor een bepaalde periode."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -902,9 +902,9 @@ msgstr "Volg de instructies."
 msgid "Unknown Player"
 msgstr "Onbekende Speler"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Schiet een vuurpijl af voor uw bondgenoten"
+msgstr "Plaats een vlag voor uw bondgenoten"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -1046,7 +1046,7 @@ msgstr ","
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr "Luid de alarmsklok!"
+msgstr "Luid de alarmklok!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
@@ -1077,7 +1077,7 @@ msgstr "Stuur %(name)s naar buiten"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klik om een eenheid van dit type naar buiten te sturen. Shift-klik om alle eenheden van dit type naar buiten te sturen."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Speler: %(playername)s"
@@ -1106,65 +1106,69 @@ msgstr "Stop inpakken"
 msgid "Cancel Unpacking"
 msgstr "Stop uitpakken"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr "De wachtrij zal deze entiteit later proberen te rekruteren."
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "Onvoldoende bevolkingscapaciteit:"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entiteit van klasse %(class)s"
 msgstr[1] "%(number)s entiteiten van klasse %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Resterend: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "Kan geen onderzoek doen tijdens het upgraden."
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "Kan niet trainen tijdens het upgraden."
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Upgrade naar een %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Upgrade naar een %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Upgrade naar een %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Upgrade naar een %(primaryName)s."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "Upgrade Annuleren"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1348,8 +1352,8 @@ msgid ""
 msgstr "Klik om de groep eenheden te selecteren, dubbelklik om te focussen en rechts klikken om de groep te verwijderen."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1484,7 +1488,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Selecteer het type goederen dat u wilt veranderen door er op te klikken. Gebruik dan de pijlen bij de andere goederen om hun deel te veranderen. U kunt ook %(hotkey)sindrukken terwijl u een type selecteert, om het aandeel naar 100 %% te brengen."
+msgstr "Selecteer het type goederen dat u wilt veranderen door er op te klikken. Gebruik dan de pijlen bij de andere goederen om hun deel te veranderen. U kunt ook %(hotkey)s indrukken terwijl u een type selecteert, om het aandeel naar 100 %% te brengen."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1669,7 +1673,7 @@ msgstr[1] "Deze entiteiten kunnen niet worden bestuurd."
 
 #: gui/session/unit_actions.js:1306
 msgid "Unload All."
-msgstr "Iedereen uitlaten."
+msgstr "Iedereen naar buiten sturen."
 
 #: gui/session/unit_actions.js:1341
 msgid "Unload Turrets."
@@ -1744,7 +1748,7 @@ msgstr "Klik om bondgenoten toegang tot dit pakhuis te ontzeggen."
 
 #: gui/session/unit_actions.js:1706
 msgid "The use of this dropsite is prohibited"
-msgstr "U kan dit pakhuis niet gebruiken."
+msgstr "U kunt dit pakhuis niet gebruiken."
 
 #: gui/session/unit_actions.js:1712
 msgid "Allies are allowed to use this dropsite."
@@ -1764,7 +1768,7 @@ msgstr "Wachtrij voor geselecteerde gebouwen uitzetten."
 
 #: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "Dit dier moet gedood worden voordat er voedsel kan worden verzameld."
+msgstr "Het dier moet gedood worden voordat er voedsel kan worden verzameld"
 
 #: gui/session/unit_actions.js:1820
 msgid ""
@@ -1773,4 +1777,4 @@ msgstr "U kunt dit niet vernietigen omdat u niet de meerderheid van de veroverpu
 
 #: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"
-msgstr "Deze entiteit kan niet worden verwijderd."
+msgstr "Deze entiteit kan niet worden verwijderd"

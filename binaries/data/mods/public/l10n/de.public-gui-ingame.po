@@ -50,7 +50,7 @@
 # Thelxinoe, 2015
 # Patremus, 2014
 # Patrick B <chessplayer95.pb@googlemail.com>, 2016
-# Patrick Kohan <patrick.kohan@gmail.com>, 2014
+# 820324eb4225977345186c7a0414bab6_b7d8beb <8eb40dbcb9345415d2b228de7379fed1_142385>, 2014
 # Peter Gasse <gasse.peter@gmail.com>, 2017
 # pointhi, 2014
 # qwertz, 2015
@@ -80,8 +80,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 18:25+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 19:19+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -214,7 +214,7 @@ msgid "Click to Resume Game"
 msgstr "Klicken zum Fortsetzen"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -933,7 +933,7 @@ msgstr "Folge den Anweisungen."
 msgid "Unknown Player"
 msgstr "Unbekannter Spieler"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr "Ein Signal an deine Verbündeten senden"
 
@@ -1108,7 +1108,7 @@ msgstr "%(name)s ausquartieren"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klicke, um 1 Einheit auszuquartieren. Umschalt+Klick, um alle Einheiten dieses Typs auszuquartieren."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Spieler: %(playername)s"
@@ -1137,65 +1137,69 @@ msgstr "Packen abbrechen"
 msgid "Cancel Unpacking"
 msgstr "Entpacken abbrechen"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr "Die Autowarteschlange wird versuchen, dieses Element später auszubilden."
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "Unzureichendes Bevölkerungslimit:"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s Entität der Klasse %(class)s"
 msgstr[1] "%(number)s Entitäten der Klasse %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Verbleibend: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "Während des Aufrüstens kann nicht geforscht werden."
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "Während des Aufrüstens kann nicht ausgebildet werden."
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Aktualisieren zu %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Aktualisieren zu %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Aktualisieren zu %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Aktualisieren zu %(primaryName)s."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "Aufrüstung Beenden"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1379,8 +1383,8 @@ msgid ""
 msgstr "Klicke auf gruppierte Einheiten, um diese auszuwählen, doppelklicke auf gruppierte Einheiten, um auf diese zu fokussieren und rechtsklicke, um die Gruppe aufzulösen."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

@@ -33,12 +33,13 @@
 # Szymon Blaut <szymonblaut315@gmail.com>, 2021
 # tombox <wptom@wp.pl>, 2016,2018
 # Voltinus <voltinusmail@gmail.com>, 2014
+# Xu Ux <zaeek@pm.me>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 18:44+0000\n"
+"Last-Translator: Xu Ux <zaeek@pm.me>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -887,7 +888,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Subalpine"
-msgstr ""
+msgstr "Subalpejski"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
@@ -968,7 +969,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Sudanian Savanna"
-msgstr ""
+msgstr "Sudańska sawanna"
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Description
 msgctxt "biome definition"
@@ -1315,7 +1316,6 @@ msgstr "Dzikie jezioro"
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
-#: maps/skirmishes/magadha_2p.xml:Description:39
 msgid "Give an interesting description of your map."
 msgstr "Daj ciekawy opis swojej mapie."
 
@@ -2943,6 +2943,13 @@ msgstr "Teren mapy jest przecięty przez środek przez rzekę z kilkoma płycizn
 #: maps/skirmishes/lorraine_plain_2p.xml:Name:39
 msgid "Lorraine Plain (2)"
 msgstr "Równina Lotaryngii (2)"
+
+#: maps/skirmishes/magadha_2p.xml:Description:39
+msgid ""
+"Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
+"\n"
+"This map was designed as a 1v1 map suitable for rated and tournament play."
+msgstr ""
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"

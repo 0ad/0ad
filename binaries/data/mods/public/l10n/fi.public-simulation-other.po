@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-22 09:57+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 12:21+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -433,7 +433,7 @@ msgstr "ei-yhdistynyt liittolaisen"
 #: simulation/components/BuildRestrictions.js:208
 msgctxt "Territory type"
 msgid "neutral"
-msgstr "neutraali"
+msgstr "puelueeton"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -497,7 +497,7 @@ msgstr "liittolainen"
 #: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr "neutraali"
+msgstr "puelueeton"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -577,9 +577,13 @@ msgstr "Yksikköä päivitetään. Ei voida aloittaa tuotantoa."
 msgid "The production queue is full."
 msgstr "Tuotantojono on täysi."
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
 msgstr "Vapaata tilaa uusille yksiköille ei löydy."
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
+msgstr "Yksikön lisääminen jonoon automaattisesti ei onnistunut. Automaattinen jonotus poistetaan käytöstä."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -901,19 +905,19 @@ msgstr "Hyökkäys pelaajaa %(_player_)s vastaan pyydetty."
 msgid "There are no bribable units"
 msgstr "Lahjottavissa olevia yksiköitä ei ole."
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr "Ei voida purkaa yksikköä(-köitä)"
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr "Jokin yksikkö(-köt) eivät voi mennä takaisin töihin"
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s ei voida ohjata."
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr "Rakennuksen teknologiavaatimukset eivät täyty."
