@@ -5,7 +5,7 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # Bart <b.anthonisse@gmail.com>, 2020
-# Bart <b.anthonisse@gmail.com>, 2020
+# Bart <b.anthonisse@gmail.com>, 2020-2021
 # Bart Groeneveld, 2017
 # bb <b.jansen5@students.uu.nl>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 21:06+0000\n"
-"Last-Translator: Jeroen Bourgois <jeroenbourgois@gmail.com>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-16 20:07+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +133,7 @@ msgstr "Het commando '%(cmd)s' is voorbehouden voor moderators."
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr "Het commando '%(cmd)s' benodigd ten minste één argument."
+msgstr "Het commando '%(cmd)s' benodigt ten minste één argument."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
@@ -145,11 +145,11 @@ msgstr "Zet uw status naar 'Online'."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Verwijder een speciieke gebruiken uit de lobby.\nGebruik \\kick naam reden"
+msgstr "Verwijder een speciieke gebruiker uit de lobby.\nGebruik \\kick naam reden"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Verban een specifieke gebruiken uit de lobby. \nGebruik: /ban naam reden"
+msgstr "Verban een specifieke gebruiker uit de lobby. \nGebruik: /ban naam reden"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
 msgid "Show this help."
@@ -371,55 +371,59 @@ msgstr "Eindeloos Spel"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Je hebt incompatibele mods:\n%(details)s"
+msgstr "U heeft incompatibele mods:\n%(details)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:121
+#: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
 msgstr "Deze mod heeft geen invloed op MP compatibiliteit"
 
-#: gui/lobby/LobbyPage/GameDetails.js:140
+#: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
 msgstr "Host: %(playername)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:142
+#: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Spelers: %(current)s/%(total)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:144
+#: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
 msgstr "Vereisten voor overwinning:"
 
 #. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:147
+#: gui/lobby/LobbyPage/GameDetails.js:149
 msgid ", "
 msgstr ","
 
-#: gui/lobby/LobbyPage/GameDetails.js:149
+#: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
 msgstr "Mods:"
 
+#: gui/lobby/LobbyPage/GameDetails.js:153
+msgid "Mods (incompatible):"
+msgstr "Mods (niet verenigbaar):"
+
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:152
+#: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Spel gestart om %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-#: gui/lobby/LobbyPage/GameDetails.js:154
+#: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/LobbyPage/GameDetails.js:156
+#: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
 msgstr "Kaarttype:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:158
+#: gui/lobby/LobbyPage/GameDetails.js:162
 msgid "Map Size:"
 msgstr "Kaart grootte:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:160
+#: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
 msgstr "Omschrijving van de kaart:"
 
@@ -443,7 +447,7 @@ msgstr "Spelers"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
 msgid "Show only open games"
-msgstr "Toon enkel de vrije spelletjes"
+msgstr "Toon enkel de vrije spelen"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -479,17 +483,17 @@ msgstr "U bent uit de lobby gezet!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr "U bent verbannen van de lobby"
+msgstr "U bent uit de lobby verbannen!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s is uit de lobby gezet"
+msgstr "%(nick)s is uit de lobby gezet."
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s is verbannen uit de lobby"
+msgstr "%(nick)s is verbannen uit de lobby."
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
@@ -561,7 +565,7 @@ msgstr "%(percentage)s%%"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
 msgid "Current Rank:"
-msgstr "Huidige rank:"
+msgstr "Huidige rang:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
@@ -805,7 +809,7 @@ msgstr " 1. Moderators kunnen chatberichten screenen voor de handhaving van de g
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr " 2. Wildfire Games kunnen zich wenden tot, of het oplossen van, bugrapporten, balanceringskwesties of functievoorkeuren die zijn aangegeven door spelers in de chatroom."
+msgstr " 2. Wildfire Games kunnen zich aandacht geven aan, of oplossen voorstellen van, bugrapporten, balanceringskwesties of functionele voorstellen die zijn aangegeven door spelers in de chatroom."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
@@ -853,7 +857,7 @@ msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr " 2. Bereken en publiceer communitystatistieken om het spel en de service te verbeteren, bijvoorbeeld om het balanceren van het spel te verbeteren of om bepaalde aspecten van het spel aantrekkelijker te maken."
+msgstr " 2. Communitystatistieken te berekenen en te publiceren teneinde het spel en de service te verbeteren, bijvoorbeeld door verbeteringen aan de spelbalans of door bepaalde aspecten van het spel aantrekkelijker te maken."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
@@ -1194,7 +1198,7 @@ msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
-msgstr " 4. Niet anderen lastigvallen, schaadden, intimideren, discrimineren, bedreigen, belasteren, schade toebrengen of opzettelijk de waarde van anderen die deze service gebruiken verlagen."
+msgstr " 4. Niet anderen lastigvallen, schaden, intimideren, discrimineren, bedreigen, belasteren, schade toebrengen of opzettelijk de waarde van anderen die deze service gebruiken verlagen."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""

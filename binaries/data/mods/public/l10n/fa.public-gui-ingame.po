@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:29+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 07:26+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -151,7 +151,7 @@ msgid "Click to Resume Game"
 msgstr "برای ادامه بازی کلیک کنید"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -870,7 +870,7 @@ msgstr "دستور العمل ها را دنبال کنید."
 msgid "Unknown Player"
 msgstr "بازیکن ناشناخته"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr ""
 
@@ -1045,7 +1045,7 @@ msgstr "خارج کردن %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "یک بار کلیک کنید تا 1 نفر خارج شود. هنگام کلیک شیفت را نگه دارید تا همه نیروهای از نوع خارج شوند."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "بازیکن: %(playername)s"
@@ -1074,65 +1074,69 @@ msgstr "لغو بستن"
 msgid "Cancel Unpacking"
 msgstr "لغو بازکردن"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr ""
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "جای کافی موجود نیست:"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s وجود کلاس %(class)s"
 msgstr[1] "%(number)s وجود کلاس %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "باقی مانده: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "،"
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "لغو ارتقا"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1316,7 +1320,7 @@ msgid ""
 msgstr "برای انتخاب نیروهای های گروه بندی شده کلیک کنید، برای تمرکز کردن روی نیروهای های گروه بندی شده دابل کلیک کنید و برای انحلال گروه راست کلیک کنید."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
 msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80

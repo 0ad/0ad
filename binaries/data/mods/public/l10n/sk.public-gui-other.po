@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-12 16:29+0000\n"
-"Last-Translator: Zuzana Miadoková\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 08:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -3934,36 +3934,36 @@ msgid "Naming of entities."
 msgstr "Pomenovania entít."
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "Primárne špecifické."
+msgid "Specific names first"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "Ukazuj primárne špecifické mená a sekundárne všeobecné mená."
+msgid "Display specific names before generic names."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "Primárne všeobecné."
+msgid "Generic names first"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "Ukazuj primárne všeobecné mená a sekundárne špecifické mená."
+msgid "Display generic names before specific names."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "Len špecifické."
+msgid "Only specific names"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "Ukazuj len špecifické mená jednotiek."
+msgid "Display only specific names for entities."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "Len všeobecné."
+msgid "Only generic names"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr "Ukazuj len všeobecné mená jednotiek."
+msgid "Display only generic names for entities."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4599,139 +4599,119 @@ msgid ""
 msgstr "Tlačidlo pre zranené jednotky považuje jednotku za zranenú keď je jej percentuálne zdravie menšie ako toto číslo."
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Zobrazenie dosahu liečenia"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Zobraziť dosah liečenia vybraných jednotiek. (Môže taktiež byť prepnuté klávesovou skratkou priamo v hre)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Hodnosť nad životom"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Ukáž hodnosť nad životom."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Stavový riadok so zobrazením skúseností"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Ukazovať stavový riadok so skúsenosťami jednotky nad každou vybratou jednotkou."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Podrobná nápoveda"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Ukázať detailné popisky pre trénovateľné jednotky v štruktúrach produkujúcich jednotky."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Tooltip na zoradenie surovín a populácie"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Nezoradené"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Rastúce"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "Klesajúce"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Tooltip na dynamické zoradenie hráčov podla surovinových a populačných hodnôt. "
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Diplomatické farby: vlastné"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Farba tvojich jednotiek keď sú aktivované diplomatické farby."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Farby Diplomacie: Spojenec "
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Farba spojencov keď sú aktivované diplomatické farby."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Farby Diplomacie: Neutrálne "
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Farba neutrálnych hráčov keď sú aktivované diplomatické farby."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Diplomatické farby: nepriateľské"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Farba nepriateľov keď sú aktivované diplomatické farby."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Prichytávať k rohom"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Klávesová skratka na zapnutie prichytávania."
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Nové budovy sú zarovnané k budovám v blízkosti, ak je stlačená klávesová skratka."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Klávesová kombinácia na vypnutie prichytávania"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Ak nie je použitá klávesová kombinácia, nové budovy sú zarovnané k stavbám v ich blízkosti."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Táto možnosť umožňuje zarovnať nové budovy k budovám v blízkosti."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "Ovládať členstvo v skupine"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "V jednej"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Keď pridáš jednotku alebo budovu do kontrolnej skupiny, je odstránená z ostatných kontrolných skupín. Použi túto voľbu pokiaľ chceš aby kontrolné skupiny zodpovedali rozličným armádam."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Viaceré"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Jednotky a budovy môžu byť súčasťou viacerých kontrolných skupín. Toto je užitočné pokiaľ máš kontrolné skupiny pre rozličné oddiely armády a kontrolnú skupinu pre celú armádu súčasne."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Rozhodni či môžu jednotky patriť do viacerých kontrolných skupín."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4742,26 +4722,56 @@ msgid "Number of units trained per batch by default."
 msgstr "Počet jednotiek vytrénovaných v predvolenej skupine. "
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "Ovládať členstvo v skupine"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "V jednej"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Keď pridáš jednotku alebo budovu do kontrolnej skupiny, je odstránená z ostatných kontrolných skupín. Použi túto voľbu pokiaľ chceš aby kontrolné skupiny zodpovedali rozličným armádam."
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "Viaceré"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Jednotky a budovy môžu byť súčasťou viacerých kontrolných skupín. Toto je užitočné pokiaľ máš kontrolné skupiny pre rozličné oddiely armády a kontrolnú skupinu pre celú armádu súčasne."
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Rozhodni či môžu jednotky patriť do viacerých kontrolných skupín."
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "Ovládanie formácie"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Iba kráčať/hliadkovať"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Iné príkazy rozpustia jestvujúce formácie."
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "Žiadny prepis"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr ""
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Jednotky vo formáciách zostanú vo formáciách."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4777,83 +4787,81 @@ msgid ""
 msgstr "Počet rolovaní na zvýšenie/zníženie počtu dávky o 1. "
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr ""
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr ""
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Upozornenie o útoku"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Zobraz notifikáciu keď si napadnutý iným hráčom."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Upozornenie o daroch"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Ukáž notifikáciu keď spojenec pošle suroviny inému členovy týmu ak sú týmy uzamknuté, a všetky príspevky surovín keď si v pozorovacom móde."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Upozornenie o výmenách surovín"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Zobraz notifikáciu pre pozorovateľov keď hráč vymenil suroviny."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Upozornenie o fáze"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Znemožni"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Ukončené"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Všetko zobrazené"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Zobraz notifikáciu ak ty alebo tvoj spojenec začne, opustí alebo ukončí novú fázu, a fázy všetkých hráčov pre pozorovateľov."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Zobrazenie dosahu útoku"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Zobraziť dosah útoku vybraných obranných budov. (Môže taktiež byť prepnuté klávesovou skratkou priamo v hre)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Zobrazenie dosahu aury"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Zobraz dosah aury označených jednotiek a budov (môže byť zmenené v hre pomocou klávesnice)"
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Zobrazenie dosahu liečenia"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Zobraziť dosah liečenia vybraných jednotiek. (Môže taktiež byť prepnuté klávesovou skratkou priamo v hre)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5128,8 +5136,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5653,9 +5661,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Táto hra je stále vo vývoji. Niektoré funkcie chýbajú a hra obsahuje chyby."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5665,9 +5673,15 @@ msgstr "[imgleft=\"iconLag\"]Táto hra môže mať problémy s výkonom, najmä 
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Na formáciach sa stále pracuje, ale môžete si prepnúť formovanie a rozpustenie formácii podľa želania."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr ""
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5678,12 +5692,12 @@ msgid "Show this message in the future"
 msgstr "Zobraziť túto správu aj v budúcnosti"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Známe problémy (web)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "OK"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr ""
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6298,6 +6312,26 @@ msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
 msgstr "Trénuje občanov: ženy-občianky, občanov-vojakov - pechotu i jazdcov."
+
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr ""
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"

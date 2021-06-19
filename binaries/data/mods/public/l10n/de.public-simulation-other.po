@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 12:48+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 19:38+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -588,9 +588,13 @@ msgstr "Die Einheit wird aufgerüstet. Eine Ausbildung kann nicht durchgeführt 
 msgid "The production queue is full."
 msgstr "Die Produktionswarteschlange ist voll."
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
 msgstr "Es konnte kein freier Platz gefunden werden, um ausgebildete Einheiten zu platzieren."
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
+msgstr "Einheit konnte nicht in die Autowarteschlange aufgenommen werden, Ausschaltung."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -912,19 +916,19 @@ msgstr "Angriff gegen %(_player_)s erbeten."
 msgid "There are no bribable units"
 msgstr "Es gibt keine bestechlichen Einheiten."
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr "Einheit(en) können nicht ausgeladen werden."
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr "Einige Einheit(en) können die Arbeit nicht wieder aufnehmen"
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s kann nicht kontrolliert werden. "
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr "Erforderliche Technologien für das Gebäude fehlen."

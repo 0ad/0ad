@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-14 05:12+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-16 13:41+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr "岛屿星罗棋布，玩家分布两侧。"
+msgstr "岛屿星罗棋布，玩家分别位于两侧。"
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -984,12 +984,12 @@ msgid ""
 "diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
 "supremacy but this root-war is a neverending struggle. Numerous apple trees "
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "郁郁葱葱的草原为这片土地铺设了地毯，上面是宏伟多样的阔叶林。 杨树、松树、山毛榉和橡树都争夺着阳光，无休无止。 这片土地点缀着许多苹果树，也有鹿和绵羊纵横驰骋。"
+msgstr "郁郁葱葱的草原编织成地毯，地毯上面是雄姿多彩的阔叶林。 杨树、松树、山毛榉和橡树都争先恐后，获取阳光。 地毯点缀着果树，鹿和绵羊驰骋其间。"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Temperate"
-msgstr "适宜"
+msgstr "温带"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
@@ -1009,7 +1009,7 @@ msgid ""
 "A late spring breeze ripples through the conifer forests of the Gulf of "
 "Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
 "undergrowth."
-msgstr "暮春的微风拂过波斯尼亚湾的针叶林。 成群的鹿点缀着风景，顽皮的兔子在灌木丛中嬉戏。"
+msgstr "暮春的微风拂过波斯尼亚湾的针叶林。 成群的鹿点缀其间，贪玩的野兔在灌木丛中嬉戏。"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgctxt "biome definition"
@@ -1021,7 +1021,7 @@ msgctxt "biome definition"
 msgid ""
 "Winter has set in, carpeting the land with its first snow. The still "
 "unfrozen gulf offers great fishing opportunities."
-msgstr "冬天已至，地上盖了一层初雪。 仍未冰封的海湾提供了很好的捕鱼机会。"
+msgstr "冬天到了，地上盖了一层初雪。 还未冰冻海湾可供打渔。"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgctxt "biome definition"
@@ -1034,7 +1034,7 @@ msgid ""
 "Spring in the highlands, yet the heat has already begun making itself felt. "
 "The short-lived green grasses are on the retreat, paving the way for "
 "scorching summer."
-msgstr "春天的高原，热气送来。 短暂的绿草正在消逝，准备迎接炎热的夏日。"
+msgstr "春天的高原热浪袭来。 短暂的绿茵慢慢消逝，准备迎接炎热的夏日。"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
 msgctxt "biome definition"
@@ -1046,7 +1046,7 @@ msgctxt "biome definition"
 msgid ""
 "An arid, hostile land. The blistering heat has baked the ground to a sickly "
 "brown and the remaining trees struggle for survival."
-msgstr "干旱而又危机四伏的地方。地面被灼烧成病态的褐色，只遗下些许树木。"
+msgstr "干旱、危机四伏之地。地面被灼烧成褐色，只遗下些许树木。"
 
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgctxt "biome definition"
@@ -1146,7 +1146,7 @@ msgstr "有一波敌人来袭！"
 #: maps/random/survivalofthefittest_triggers.js:292
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr "%(player)s已战败(失去市政中心)。"
+msgstr "%(player)s失败了(失去市政中心)。"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1309,7 +1309,6 @@ msgstr "野外湖泊"
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
-#: maps/skirmishes/magadha_2p.xml:Description:39
 msgid "Give an interesting description of your map."
 msgstr "给地图一个有趣的说明。"
 
@@ -1660,7 +1659,7 @@ msgstr "捕鱼演示"
 
 #: maps/scenarios/flight_demo.xml:Description:39
 msgid "Fly some Mustangs."
-msgstr "野马驰骋"
+msgstr "野马战斗机"
 
 #: maps/scenarios/flight_demo.xml:Name:39
 msgid "Flight Demo"
@@ -1679,7 +1678,7 @@ msgstr "淘金热"
 
 #: maps/scenarios/gorge.xml:Description:26
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
-msgstr "河岸峡谷蜿蜒流过高卢南部土地。"
+msgstr "峡谷溪水蜿蜒流过高卢南部。"
 
 #: maps/scenarios/gorge.xml:Name:26
 msgid "Gorge"
@@ -1690,7 +1689,7 @@ msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr "伯罗奔尼撒半岛东南的拉科尼亚峡谷，是斯巴达人的家园。\n由于马其顿人侵犯斯巴达人的领土。在一场难分难解的酣战中失利后，斯巴达人必须在马其顿完全占领峡谷前，尽快重新建立一直军队。"
+msgstr "伯罗奔尼撒半岛东南之拉科尼亚峡谷，为斯巴达的家园。\n马其顿入侵后，斯巴达在一场难分难解的酣战中失利。必须在敌人完全占领峡谷前，尽快重建一支军队。"
 
 #: maps/scenarios/laconia.xml:Name:26
 msgid "Laconia"
@@ -1701,11 +1700,11 @@ msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
-msgstr "多人图。所有玩家都在一个资源缺乏的小岛上，小岛在大型陆块海岸线附近。\n\n设计人员：SMST、NOXAS1 和 Yodaspirine 。"
+msgstr "多人地图。所有玩家都在一座资源缺乏的小岛上，小岛离大陆海岸线很近。\n\n设计人员：SMST、NOXAS1 和 Yodaspirine 。"
 
 #: maps/scenarios/miletus.xml:Description:26
 msgid "A sandbox scenario for one player."
-msgstr "一个单人玩家的测试场景。"
+msgstr "单人玩家的测试场景。"
 
 #: maps/scenarios/miletus.xml:Name:26
 #: maps/scenarios/miletus.xml:PlayerData[0].Name:26
@@ -1750,7 +1749,7 @@ msgstr "墓群"
 
 #: maps/scenarios/pathfinding_demo.xml:Description:38
 msgid "A map for testing unit movement algorithms."
-msgstr "一个被用以测试单位运动程序的地图。"
+msgstr "测试单位运动程序的地图。"
 
 #: maps/scenarios/pathfinding_demo.xml:Name:38
 msgid "Pathfinding Demo"
@@ -1760,7 +1759,7 @@ msgstr "寻路测试"
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
-msgstr "一个使用 AI 寻路算法测试移动花费和地形属性的地图。"
+msgstr "使用 AI 寻路算法测试移动花费和地形属性的地图。"
 
 #: maps/scenarios/pathfinding_terrain_demo.xml:Name:26
 msgid "Pathfinding Terrain Demo"
@@ -1818,7 +1817,7 @@ msgstr "瓦努阿图"
 
 #: maps/scenarios/reservoir.xml:Description:26
 msgid "A demo showing water planes."
-msgstr "一个显示水面效果的演示地图"
+msgstr "显示水面效果的演示地图"
 
 #: maps/scenarios/reservoir.xml:Name:26
 msgid "Reservoir"
@@ -1844,14 +1843,14 @@ msgstr "道路贴图演示"
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
-msgstr "一张有着沙漠的生物群落的地图，每个玩家都会发现自己的殖民地位于他们自己的苍翠繁茂的绿洲里。地图其余的地方则是相当的开阔且贫瘠。"
+msgstr "有着沙漠的生物群落的地图，每个玩家都会发现自己的殖民地位于他们自己的苍翠繁茂的绿洲里。地图其余的地方则是相当的开阔且贫瘠。"
 
 #: maps/scenarios/sahel.xml:Description:38
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
-msgstr "座落于位在北非的阿特拉斯山脉的南边。\n\n有着大量食物及矿物资源的开阔地图，而木头则较为缺乏。"
+msgstr "位于北非的阿特拉斯山脉的南边。\n\n开阔地图，食物和矿物丰盛，木头则较为缺乏。"
 
 #: maps/scenarios/sahel.xml:PlayerData[0].Name:38
 msgid "Aulus Manlius Capitolinus"
@@ -1908,7 +1907,7 @@ msgstr "在悠闲的测试环境中试玩高卢文明。"
 
 #: maps/scenarios/sandbox_britons.xml:Name:38
 msgid "Sandbox - The Britons"
-msgstr "沙盒-布立吞"
+msgstr "沙盒——布立吞"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
@@ -1921,7 +1920,7 @@ msgstr "探索迦太基的建筑和单位。"
 
 #: maps/scenarios/sandbox_carthaginians.xml:Name:38
 msgid "Sandbox - The Carthaginians"
-msgstr "沙盒-迦太基"
+msgstr "沙盒——迦太基"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:38
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:26
@@ -1935,11 +1934,11 @@ msgstr "爬行"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:39
 msgid "Sandbox - The Gauls"
-msgstr "沙盒- 高卢"
+msgstr "沙盒——高卢"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
-msgstr "演示地图-伊比利亚"
+msgstr "演示地图——伊比利亚"
 
 #: maps/scenarios/sandbox_iberians.xml:Name:38
 msgid "Sandbox - The Iberians"
@@ -2042,7 +2041,7 @@ msgstr "利比亚"
 
 #: maps/scenarios/sandbox_romans.xml:Description:38
 msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr "一个罗马文明的测试场景。"
+msgstr "测试罗马文明的场景。"
 
 #: maps/scenarios/sandbox_romans.xml:Name:38
 msgid "Sandbox - The Republican Romans"
@@ -2054,7 +2053,7 @@ msgstr "供玩家尝试塞琉古文明的测试剧情。"
 
 #: maps/scenarios/sandbox_seleucids.xml:Name:38
 msgid "Sandbox - The Seleucids"
-msgstr "沙盒 - 塞琉古"
+msgstr "沙盒 -——塞琉古"
 
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:38
 msgid "The Seleucids"
@@ -2071,13 +2070,13 @@ msgstr "和斯巴达在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/sandbox_spartans.xml:Name:38
 msgid "Sandbox - The Spartans"
-msgstr "沙盒-斯巴达"
+msgstr "沙盒——斯巴达"
 
 #: maps/scenarios/savanna_ravine.xml:Description:38
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
-msgstr "一个开阔的热带草原地图，有一个可以轻松涉过的小峡谷可以通往中心。"
+msgstr "开阔热带草原地图，有一座可以轻松通往中心的小峡谷。"
 
 #: maps/scenarios/savanna_ravine.xml:Name:38
 msgid "Savanna Ravine"
@@ -2087,7 +2086,7 @@ msgstr "热带草原峡谷"
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
-msgstr "非洲的塞伦盖提有许多的动物在平原上到处游走。矿产资源及木头也都相当的丰富。"
+msgstr "非洲的塞伦盖提平原，许多动物到处游走，矿产及木材相当丰富。"
 
 #: maps/scenarios/serengeti.xml:Name:26
 msgid "Serengeti 1"
@@ -2119,7 +2118,7 @@ msgstr "船"
 
 #: maps/scenarios/shipattacks.xml:Description:26
 msgid "Move ships around. Attack other ships."
-msgstr "四处移动船舶。攻击其他的船舶。"
+msgstr "四处移动船舶。攻击其它船舶。"
 
 #: maps/scenarios/shipattacks.xml:Name:26
 msgid "Ships Demo"
@@ -2161,7 +2160,7 @@ msgstr "地基测试地图"
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
-msgstr "凯尔特已入侵希腊。防御中央山谷，或切断丰富资源的高原，确保德尔斐的安全！"
+msgstr "希腊正遭受凯尔特的侵略。防御中央山谷，或切断资源丰富的高原，确保德尔斐的安全！"
 
 #: maps/scenarios/the_massacre_of_delphi.xml:Name:38
 msgid "Massacre of Delphi"
@@ -2174,7 +2173,7 @@ msgid ""
 "\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
 "\n"
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr "“一直以来，希腊人都梦想着东进。”\n\n“小心这种奇想。东方可能会吞噬某人的梦想。”\n\n或让亚历山大推进到波斯隘口，或是阿里奥巴尔赞自己守住这片古老的波斯领地，不让外人入侵？"
+msgstr "“一直以来，希腊都梦想着东进。”\n\n“小心这种奇想，东方可能会吞噬某些人的梦想。”\n\n是让亚历山大推进到波斯隘口，还是阿里奥巴尔赞守住这片古老的波斯领地，不让外人入侵？"
 
 #: maps/scenarios/the_persian_gates.xml:Name:26
 msgid "The Persian Gates"
@@ -2220,7 +2219,7 @@ msgstr "希腊联盟"
 
 #: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "赶在敌人前收集宝藏！更易获胜！"
+msgstr "赶在敌人前收集宝藏，更易获胜！"
 
 #: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
@@ -2228,7 +2227,7 @@ msgstr "革命尚未成功，同志仍须努力！"
 
 #: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "敌人的金库满满当当，而你的空空如也！"
+msgstr "敌人的金库满满当当，而你却空空如也！"
 
 #: maps/scenarios/treasure_islands.js:48
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -2467,22 +2466,22 @@ msgstr "%(_player_)s获得一座奇观，将在%(time)s后获胜。"
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr "%(_player_)s赢得一个奇迹，将在%(time)s后获胜。"
+msgstr "%(_player_)s获得一座奇观，将在%(time)s后获胜。"
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr "%(_player_)s赢得一座奇观，将在%(time)s后获胜。"
+msgstr "%(_player_)s获得一座奇观，%(time)s后你将获胜。"
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr "你赢得了一个奇迹，你和你的同盟将在%(time)s后获胜。"
+msgstr "你获得了一座奇观，你和同盟将在%(time)s后获胜。"
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr "你赢得了一个奇迹，将在%(time)s回合内获胜。"
+msgstr "你获得了一座奇观，将在%(time)s后获胜。"
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
@@ -2502,7 +2501,7 @@ msgid ""
 "Each player starts the match atop a large flat plateau.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed plateau commanding the valley below."
-msgstr "大地图，玩家开局位于平坦的高原上。\n\n东部是大型的海湾，可能适合打渔。西边则是一片崎岖的腹地，及一座扼守山谷的无人卫城。"
+msgstr "大地图，玩家开局位于平坦的高原上。\n\n东部是大型的海湾，可能适合打渔。西边是一片崎岖的腹地，有一座扼守山谷的无人卫城。"
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:38
 msgid "Acropolis Bay (2)"
@@ -2534,7 +2533,7 @@ msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
-msgstr "阿特拉斯山脉，白雪皑皑的山脉笼罩着沙漠的绿洲。 不同位置的玩家有着不一样的优势和挑战。"
+msgstr "阿特拉斯山脉，白雪皑皑的山脉笼罩着沙漠里的绿洲。不同位置的玩家，对应不同的优势和挑战。"
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Name:39
 msgid "Atlas Valleys (8)"
@@ -2559,7 +2558,7 @@ msgid ""
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
-msgstr "树木繁茂、人迹罕至的神秘小岛。处处是森林和黄金。 山脉、海洋和茂密的森林构成了快节奏的 3 人地图。"
+msgstr "树木繁茂、人迹罕至的神秘小岛。处处是森林和黄金。 山脉、海洋和密林构成了快节奏的 3 人地图。"
 
 #: maps/skirmishes/barcania_3p.xml:Name:26
 msgid "Barcania (3)"
@@ -2580,7 +2579,7 @@ msgstr "比利时沼泽  (2)"
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
-msgstr "位于撒哈拉以南、尼罗河以东，如今称作布塔那草原的半干旱地区。"
+msgstr "位于撒哈拉以南、尼罗河以东的半干旱地区，如今称作布塔那草原。"
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Island of Meroë (2)"
@@ -2629,7 +2628,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr "玩家在两块相对的岛屿开始游戏，两块皆为有著茂密的丛林，使得登陆难度提高。\n\n最初是被托雷亚人所佔领，尔后被伊特鲁里亚人、福西亚人及叙拉古人殖民。罗马人在第一次布匿战争从迦太基人手中夺得了这两个岛屿，在西元前238年时创立了「科西嘉与萨丁尼亚」省。科西嘉人在长达一世纪中经常起义，使得岛上损失了三分之二的人口数。"
+msgstr "玩家分列两座岛屿上，皆有茂密的丛林，登陆作战难度不少。\n\n最初被托雷亚占领，尔后被伊特鲁里亚、福西亚及叙拉古殖民。第一次布匿战争中，罗马从迦太基手中夺取了两岛，前238年设立科西嘉与萨丁尼亚省。在长达一世纪中，科西嘉起义此起彼伏，损失了岛上 2/3 的人口。"
 
 #: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
 msgid "Corsica and Sardinia (4)"
@@ -2727,7 +2726,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "为古埃及的生存而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞琉古为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
+msgstr "为了古埃及，准备战斗！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞琉古为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的 Al-Dschabal al-Achdar 西北部，罗马正准备入侵。来自东部沙漠的 at-Tih 和西奈山的敌人（以波斯为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
@@ -2856,7 +2855,7 @@ msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
-msgstr "兴都库什山脉将印度与巴克特里亚（今阿富汗）分隔开来，形成了塞琉古王国和孔雀王朝的边界。 该地区后来被希腊化的希腊-巴克特里亚及印度-希腊诸国控制。\n\n该地区木材较少，但石头和金属资源丰富。 一条贸易路线贯穿地图的中心，可占领贸易仓库，通过贸易收集资源。"
+msgstr "兴都库什山脉将印度与巴克特里亚（中文师籍中的大夏，位于当今阿富汗）分隔开来，形成了塞琉古和孔雀王朝的边界。 该地区后来被希腊化的希腊-巴克特里亚及印度-希腊诸国控制。\n\n该地区木材较少，但石头和金属资源丰富。 一条贸易路线贯穿地图的中心，可占领贸易仓库，通过贸易收集资源。"
 
 #: maps/skirmishes/hindu_kush_2p.xml:Name:39
 msgid "Hindu Kush (2)"
@@ -2867,7 +2866,7 @@ msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
-msgstr "海达佩斯河，又名杰赫勒姆河，位于印度旁遮普邦。 是马其顿亚历山大大帝与印度保拉瓦国王波鲁斯会战之地。"
+msgstr "海达佩斯河，又名杰赫勒姆河，位于印度旁遮普邦。 是马其顿亚历山大大帝与印度保拉瓦国王波鲁斯会战处。"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
@@ -2919,6 +2918,13 @@ msgstr "一条东西流向的河流，将地图分割成南北两部分。\n\n�
 #: maps/skirmishes/lorraine_plain_2p.xml:Name:39
 msgid "Lorraine Plain (2)"
 msgstr "洛林平原 (2)"
+
+#: maps/skirmishes/magadha_2p.xml:Description:39
+msgid ""
+"Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
+"\n"
+"This map was designed as a 1v1 map suitable for rated and tournament play."
+msgstr "印度史上两大帝国，孔雀王朝和笈多王朝，起源于北印摩揭陀，靠近神圣的恒河。\n\n单人对单人，适合评级和锦标赛。"
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
@@ -3147,7 +3153,7 @@ msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
-msgstr "一片不毛之地，几乎没有动植物。 宝藏星罗棋布，对前期发育至关重要。\n\n越早建立商队的玩家，优势越大。\n"
+msgstr "一片不毛之地，几乎没有动植物。 宝藏星罗棋布，对前期发育至关重要。\n\n通商越早，优势越大。\n"
 
 #: maps/skirmishes/syria_2p.xml:Name:39
 msgid "Coele-Syria (2)"

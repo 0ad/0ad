@@ -12,12 +12,13 @@
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017,2020
 # Samuel <srandiny@gmail.com>, 2014-2016
 # Samuel <srandiny@gmail.com>, 2017
+# d5f629f7f4b251b1c1597d8275ebee28_4786982 <925977b1d7c7fa858030fd4acd751107_1008495>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 06:49+0000\n"
+"Last-Translator: d5f629f7f4b251b1c1597d8275ebee28_4786982 <925977b1d7c7fa858030fd4acd751107_1008495>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -358,55 +359,59 @@ msgstr "Permainan tak berujung"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr ""
+msgstr "Anda memiliki beberapa modifikasi yang tidak kompatibel:\n%(details)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:121
+#: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr ""
+msgstr "Modifikasi ini tidak memengaruhi kompatibilitas MP"
 
-#: gui/lobby/LobbyPage/GameDetails.js:140
+#: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
 msgstr "Host: %(playername)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:142
+#: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Pemain: %(current)s/%(total)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:144
+#: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
 msgstr "Kondisi Kemenangan:"
 
 #. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:147
+#: gui/lobby/LobbyPage/GameDetails.js:149
 msgid ", "
 msgstr ", "
 
-#: gui/lobby/LobbyPage/GameDetails.js:149
+#: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
 msgstr "Modifikasi:"
 
+#: gui/lobby/LobbyPage/GameDetails.js:153
+msgid "Mods (incompatible):"
+msgstr "Modifikasi (tidak kompatibel)"
+
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:152
+#: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Permainan dimulai pada %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-#: gui/lobby/LobbyPage/GameDetails.js:154
+#: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/LobbyPage/GameDetails.js:156
+#: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
 msgstr "Tipe Peta:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:158
+#: gui/lobby/LobbyPage/GameDetails.js:162
 msgid "Map Size:"
 msgstr "Ukuran Peta:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:160
+#: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
 msgstr "Deskripsi Peta:"
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-14 09:29+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 09:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Kazakh (http://www.transifex.com/wildfire-games/0ad/language/kk/)\n"
 "MIME-Version: 1.0\n"
@@ -566,8 +566,12 @@ msgstr ""
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
+msgstr ""
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
 msgstr ""
 
 #: simulation/components/Upgrade.js:241
@@ -890,19 +894,19 @@ msgstr ""
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr ""
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr ""
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr ""

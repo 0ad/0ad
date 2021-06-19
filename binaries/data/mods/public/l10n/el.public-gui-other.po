@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-11 10:47+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 14:08+0000\n"
+"Last-Translator: geo pap <gppapado@outlook.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -3900,36 +3900,36 @@ msgid "Naming of entities."
 msgstr "Ονομασία των οντοτήτων."
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "Συγκεκριμένο αρχικό."
+msgid "Specific names first"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "Εμφάνιση συγκεκριμένων ονομάτων ώς πρωτέυοντα και γενικά ονόματα ώς δευτερεύοντα."
+msgid "Display specific names before generic names."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "Γενικό αρχικό."
+msgid "Generic names first"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "Εμφάνιση γενικών ονομάτων ώς πρωτεύοντα και συγκεκριμένα ώς δευτερεύοντα."
+msgid "Display generic names before specific names."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "Μόνο Συγκεκριμένα."
+msgid "Only specific names"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "Εμφάνισε μόνο συγκεκριμένα ονόματα για τις μονάδες."
+msgid "Display only specific names for entities."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "Μόνο Γενικό."
+msgid "Only generic names"
+msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr " Εμφάνισε μόνο γενικά ονόματα για τις μονάδες."
+msgid "Display only generic names for entities."
+msgstr ""
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4565,139 +4565,119 @@ msgid ""
 msgstr "Η συντόμευση πλήκτρου για τις τραυματισμένες μονάδες επιλέγει μόνο τις τραυματισμένες μονάδες εάν το ποσοστό υγείας τους πέσει κάτω από αυτόν τον αριθμό."
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Οπτικοποίηση βεληνεκές θεραπείας"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Εμφάνιση εικονιδίων κατάταξης πάνω από τις μπάρες κατάστασης."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Μπάρα προόδου εμπειρίας"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Εμφάνιση μιας μπάρας προόδου της εμπειρίας πάνω από κάθε επιλεγμένη μονάδα."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Λεπτομερείς επεξηγήσεις"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Εμφάνιση λεπτομερών επεξηγήσεων για εκπαιδεύσιμες μονάδες σε κτίρια παραγωγής μονάδων."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Επεξήγηση ταξινόμησης πόρων και πληθυσμού"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Χωρίς ταξινόμηση"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Αύξουσα σειρά"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "Φθίνουσα σειρά"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Δυναμική ταξινόμηση τον παιχτών στην επεξήγηση των πόρων και του πληθυσμού κατά τιμή."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Χρώματα διπλωματίας: Εγώ"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Χρωματισμός των μονάδων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Χρώματα διπλωματίας: Σύμμαχοι"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Χρωματισμός των συμμάχων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Χρώματα διπλωματίας: Ουδέτεροι"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Χρωματισμός των ουδέτερων παιχτών όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Χρώματα διπλωματίας: Εχθροί"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Χρωματισμός των εχθρών σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Προσκόλληση στα άκρα"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές πιέζοντας το πλήκτρο συντόμευσης."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές έκτος αν πατιέται το πλήκτρο συντόμευσης."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Αυτή η επιλογή επιτρέπει την ευθυγράμμιση νέων κατασκευών με κοντινές δομές."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "'Έλεγχος ομαδικής συμμετοχής."
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "Μονό"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Όταν προσθέτετε μια Μονάδα ή Κτίριο σε μια ομάδα ελέγχου, αφαιρούνται από άλλες ομάδες ελέγχου. Χρησιμοποιήστε αυτήν την επιλογή εάν θέλετε οι ομάδες ελέγχου να αναφέρονται σε συγκεκριμένα στρατεύματα."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Πολλαπλό"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Αποφασίστε αν οι μονάδες θα μπορούν να είναι μέλη πολλαπλών ομάδων ελέγχου."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4708,26 +4688,56 @@ msgid "Number of units trained per batch by default."
 msgstr "Αριθμός των μονάδων που θα εκπαιδεύονται ανά παρτίδα από προεπιλογή."
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "'Έλεγχος ομαδικής συμμετοχής."
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "Μονό"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Όταν προσθέτετε μια Μονάδα ή Κτίριο σε μια ομάδα ελέγχου, αφαιρούνται από άλλες ομάδες ελέγχου. Χρησιμοποιήστε αυτήν την επιλογή εάν θέλετε οι ομάδες ελέγχου να αναφέρονται σε συγκεκριμένα στρατεύματα."
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "Πολλαπλό"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Αποφασίστε αν οι μονάδες θα μπορούν να είναι μέλη πολλαπλών ομάδων ελέγχου."
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "Έλεγχος Σχηματισμού"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Βηματισμός/Περιπολία Μόνο"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "'Άλλες εντολές θα διαλύσουν υπάρχοντες σχηματισμούς."
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "Καμία Παράκαμψη"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr ""
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Οι Μονάδες σε σχηματισμούς διατηρούν του σχηματισμούς."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4743,83 +4753,81 @@ msgid ""
 msgstr "Αριθμός φορών που πρέπει να κυλήσεις τη ροδέλα για να αυξήσεις/μειώσεις το μέγεθος παρτίδας κατά 1."
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr ""
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr ""
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Ειδοποίηση επίθεσης στη συνομιλία"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν δεχθείς επίθεση από άλλον παίχτη."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Ειδοποίηση για εισφορές"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Ειδοποίηση ανταλλαγής στη συνομιλία"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Ειδοποίηση στη συνομιλία για φάση πόλης"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Ολοκληρώθηκε"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Εμφάνιση όλων"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος ξεκίνησε, ακύρωσε ή ολοκλήρωσε μία νέα φάση και θέτει τις φάσεις για όλους τους παίχτες σε λειτουργία παρατήρησης."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Οπτικοποίηση βεληνεκές επίθεσης"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Εμφάνιση εμβέλειας επίθεσης των επιλεγμένων αμυντικών κατασκευών. (Μπορεί επίσης να εναλλαχτεί με το πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Οπτικοποίηση βεληνεκές αύρας"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Οπτικοποίηση βεληνεκές θεραπείας"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5094,8 +5102,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5605,9 +5613,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Αυτό το παιχνίδι είναι υπό ανάπτυξη. Λείπουν χαρακτηριστικά και εμπεριέχονται σφάλματα."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5617,9 +5625,15 @@ msgstr "[imgleft=\"iconLag\"]Το παιχνίδι έχει προβλήματα
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Οι σχηματισμοί είναι υπό κατασκευή άλλα μπορείς να αλλάξεις και να διαλύσεις σχηματισμούς κατά βούληση."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr ""
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5630,12 +5644,12 @@ msgid "Show this message in the future"
 msgstr "Δείξε αυτό το μήνυμα στο μέλλον"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Γνωστά ζητήματα (ιστός)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "ΟΚ"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr ""
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6080,7 +6094,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Οι μονάδες αποκτούν εμπειρία όσο είναι τοποθετημένες μέσα στο κτίριο."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6250,6 +6264,26 @@ msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
 msgstr "Εκπαιδεύει πολίτες: γυναίκες πολίτες, πεζικάριους πολίτες οπλίτες και ιππικό πολίτες οπλίτες."
+
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr ""
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr ""
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"

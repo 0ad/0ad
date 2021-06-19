@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-13 19:08+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 23:42+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgid "Click to Resume Game"
 msgstr "Calca pa siguir cola partida"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -862,7 +862,7 @@ msgstr "Sigui les instrucciones."
 msgid "Unknown Player"
 msgstr "Xugador desconocíu"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr "Facer una seña a los aliaos"
 
@@ -1037,7 +1037,7 @@ msgstr "Descargar %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Calca una vegada pa descargar 1. Calca con Mayús primida pa descargar tolos d'esti tipu."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Xugador: %(playername)s"
@@ -1066,65 +1066,69 @@ msgstr "Encaboxar el desarme"
 msgid "Cancel Unpacking"
 msgstr "Encaboxar l'armadura"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr "Si se pue, ello enrestaráse más alantre de mou automáticu."
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "Nun hai capacidá pa más población:"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entidá de clas %(class)s"
 msgstr[1] "%(number)s entidaes de clas %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "%(entityCounts)s restantes"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "Nun pue desendolcase demientres la meyora."
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "Nun pue allistase demientres la meyora."
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Ascender a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Ascender a %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Ascender a %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Ascender a %(primaryName)s."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "Encaboxar la meyora"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1308,8 +1312,8 @@ msgid ""
 msgstr "Calca pa esbillar un garapiellu d'unidaes, calca dos vegaes pa enfocar escontra elli y calca col botón derechu pa dixebralu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "Alfa XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alfa XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

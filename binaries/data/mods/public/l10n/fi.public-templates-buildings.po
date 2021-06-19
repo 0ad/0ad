@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-11 15:40+0000\n"
+"PO-Revision-Date: 2021-06-15 12:20+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -579,22 +579,22 @@ msgstr "Talo"
 
 #: simulation/templates/structures/celt_longhouse.xml:20
 msgid "Longhouse"
-msgstr "Pitkä talo"
+msgstr "Pitkätalo"
 
 #: simulation/templates/structures/column_doric.xml:11
 #: simulation/templates/structures/column_doric_fallen.xml:11
 #: simulation/templates/structures/column_doric_fallen_b.xml:11
 msgid "Column"
-msgstr "Kolonna"
+msgstr "Pylväs"
 
 #: simulation/templates/structures/column_doric.xml:12
 msgid "Doric Column"
-msgstr "Doorilainen kolonna"
+msgstr "Doorilainen pylväs"
 
 #: simulation/templates/structures/column_doric_fallen.xml:12
 #: simulation/templates/structures/column_doric_fallen_b.xml:12
 msgid "Fallen Doric Column"
-msgstr "Kaatunut Doorilainen kolonna"
+msgstr "Kaatunut Doorilainen pylväs"
 
 #: simulation/templates/structures/fence_long.xml:12
 #: simulation/templates/structures/fence_short.xml:12
@@ -668,7 +668,7 @@ msgstr "Naos Parthenos"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
-msgstr "Miehitä joukkosi, parantaaksesi ne nopeammin."
+msgstr "Miehitä yksiköilläsi parantaaksesi niitä nopeammin."
 
 #: simulation/templates/structures/hellenic_propylaea.xml:20
 msgid "Portico"
@@ -1045,7 +1045,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr "Korkean terveystason torni, jossa on valleja jopa 16 jousimiehelle. Näkyvästi tornia miehittävät jousimiehet saavat etäisyys- ja panssaribonuksen. Voidaan miehittää vain jousimiehillä. Tarvitsee ampuma-aukkoteknologian ampuakseen juurelle."
+msgstr "Korkean terveystason torni, jossa on valleja jopa 16 jousimiehelle. Näkyvästi tornia miehittävät jousimiehet saavat etäisyys- ja panssaribonuksen. Voidaan miehittää vain jousimiehillä. Ampuma-aukkoteknologia tarvitaan, jotta rakennuksesta voi ampua sen juurelle."
 
 #: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
@@ -1284,7 +1284,7 @@ msgstr "Palkkasoturileiri"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Halpa kasarmien kaltainen rakennus, joka voidaan rakentaa neutraalille alueelle, mutta joka ei vaikuta alueeseen. Kouluta palkkasotureita."
+msgstr "Halpa kasarmin kaltainen rakennus, joka voidaan rakentaa puolueettomalle alueelle, mutta joka ei vaikuta alueeseen. Kouluta palkkasotureita."
 
 #: simulation/templates/structures/ptol/military_colony.xml:9
 #: simulation/templates/structures/sele/military_colony.xml:9
@@ -1937,15 +1937,15 @@ msgstr "Merellinen"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
-msgstr "Elefanttitalli"
+msgstr "Norsutalli"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:28
 msgid "Train Elephants and research Elephant technologies."
-msgstr "Kouluta elefantteja ja tutki niihin liittyviä teknologioita."
+msgstr "Kouluta norsuja ja tutki niihin liittyviä teknologioita."
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
 msgid "ElephantStable"
-msgstr "Elefanttitalli"
+msgstr "Norsutalli"
 
 #: simulation/templates/structures/cart/embassy.xml:18
 #: simulation/templates/template_structure_military_embassy.xml:22

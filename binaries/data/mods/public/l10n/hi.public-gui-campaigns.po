@@ -5,13 +5,14 @@
 # Translators:
 # Ravi Kumar, 2021
 # Mangat Ram <mangatram346@gmail.com>, 2021
+# jaiprak tiger <jai@xola.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Mangat Ram <mangatram346@gmail.com>, 2021\n"
+"Last-Translator: jaiprak tiger <jai@xola.com>, 2021\n"
 "Language-Team: Hindi (https://www.transifex.com/wildfire-games/teams/17418/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,11 +26,13 @@ msgid ""
 "Discover the new maps in Alpha 25 with a demo campaign, taking you through "
 "all of them."
 msgstr ""
+"डेमो अभियान के साथ अल्फा 25 में नए नक्शे खोजें, जो आपको उन सभी के द्वारा ले "
+"जाएगा।"
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "डेमो अभियान"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -61,7 +64,7 @@ msgstr "ये आपको 0 A.D. खेलने की शुरूआत क
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
 msgid "Introductory Tutorial"
-msgstr "आरंभिक ट्यूटोरियल"
+msgstr "आरंभिक पाठ"
 
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
@@ -81,11 +84,11 @@ msgstr "उपलब्ध"
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "मुहिम के चलने में दिक्कत %s:%s"
+msgstr "अभियान के चलने में दिक्कत %s:%s"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr "मुहिम का नाम"
+msgstr "अभियान का नाम"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
@@ -125,7 +128,7 @@ msgstr "दस्तावेज नहीं उठा सकते"
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
-"क्या आप चाल %s को मिटाने के प्रति आस्वस्त है ? इसको वापस सुधारा नहीं जा "
+"क्या आप चाल %s को मिटाने के प्रति आश्वस्त हैं ? इसको वापस सुधारा नहीं जा "
 "सकेगा।"
 
 #: gui/campaigns/load_modal/LoadModal.js:105
@@ -143,11 +146,11 @@ msgstr "हाँ"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr "मुहिम उठाएं"
+msgstr "अभियान लोड करें"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr "कोई चलायमान मुहिम नहीं"
+msgstr "कोई चलायमान अभियान नहीं"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
@@ -164,28 +167,28 @@ msgstr "मिटाएं"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr "एक मुहिम चलाएं"
+msgstr "एक अभियान शुरू करें"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr "कृपया अपनी नई चलने वाली मुहिम का नाम डालें:"
+msgstr "कृपया चलाए गए अपने नए अभियान का नाम डालें:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr "मुहिम चलाएं"
+msgstr "अभियान शुरू करें"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr "किसी भी मुहिम का चयन नहीं"
+msgstr "किसी भी अभियान का चयन नहीं"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr "मुहिमें"
+msgstr "अभियान"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr "किसी भी मुहिम का चयन नहीं"
+msgstr "किसी भी अभियान का चयन नहीं"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

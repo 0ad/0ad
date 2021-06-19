@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-15 08:29+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 03:20+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -581,9 +581,13 @@ msgstr "개체를 업그레이드하는 중입니다. 생산을 시작할 수 �
 msgid "The production queue is full."
 msgstr "생산 대기열이 가득 찼습니다."
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
 msgstr "훈련된 유닛을 생성할 여유 공간을 찾을 수 없습니다"
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
+msgstr "유닛을 자동 대기열에 넣을 수 없습니다. 비활성화 중입니다."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -905,19 +909,19 @@ msgstr "%(_player_)s님의 공격 요청입니다."
 msgid "There are no bribable units"
 msgstr "매수할 수 있는 유닛이 없습니다"
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr "유닛을 내릴 수 없습니다."
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr "일부 유닛은 다시 작업할 수 없습니다"
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s을(를) 제어할 수 없습니다."
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr "이 건물에 필요한 기술이 충족되지 않았습니다."

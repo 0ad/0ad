@@ -7,6 +7,7 @@
 # Albert, 2016-2017
 # Albert, 2016
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
+# Antonio J. A <antoniojartunedo@gmail.com>, 2021
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
 # Cristian Alejandro Rueda Rodriguez <crisrueda99@gmail.com>, 2020
 # The_Gipsy <xelectronhd@gmail.com>, 2018
@@ -23,14 +24,14 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
-# Swyter <Swyterzone@gmail.com>, 2014-2018
+# Swyter ™ <Swyterzone@gmail.com>, 2014-2018
 # Víctor Rodríguez Bouza, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-16 13:50+0000\n"
-"Last-Translator: Víctor Rodríguez Bouza\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 18:15+0000\n"
+"Last-Translator: Antonio J. A <antoniojartunedo@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -588,9 +589,13 @@ msgstr "Entidad promocionando. La producción no puede comenzar."
 msgid "The production queue is full."
 msgstr "La cola de producción está llena."
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
 msgstr "Las unidades reclutadas no tienen suficiente sitio para aparecer"
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
+msgstr "No se ha podido poner en cola la unidad, desactivando."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -912,19 +917,19 @@ msgstr "Se ha solicitado un ataque contra %(_player_)s."
 msgid "There are no bribable units"
 msgstr "No hay unidades sobornables"
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr "No se han podido desalojar las unidades."
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s no pueden ser controladas."
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr "Todavía no se han cumplido los requisitos tecnológicos del edificio."

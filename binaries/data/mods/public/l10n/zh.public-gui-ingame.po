@@ -58,8 +58,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-08 11:31+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 08:06+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -192,7 +192,7 @@ msgid "Click to Resume Game"
 msgstr "继续游戏"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -200,7 +200,7 @@ msgstr "m:ss"
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr "所有人"
+msgstr "全体玩家"
 
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
@@ -220,22 +220,22 @@ msgstr "敌方"
 #: gui/session/chat/ChatAddressees.js:106
 msgctxt "chat message context"
 msgid "Enemy"
-msgstr "敌对"
+msgstr "敌方"
 
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "观察者"
+msgstr "观察人员"
 
 #: gui/session/chat/ChatAddressees.js:117
 msgctxt "chat message context"
 msgid "Observer"
-msgstr "观察者"
+msgstr "观察人员"
 
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
 msgid "Private"
-msgstr "私有"
+msgstr "私人"
 
 #: gui/session/chat/ChatHistory.js:49
 #, javascript-format
@@ -269,17 +269,17 @@ msgstr "玩家聊天"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "同盟聊天"
+msgstr "盟友间聊天"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "敌人聊天"
+msgstr "和敌人聊天"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "观察者聊天"
+msgstr "观察人员聊天"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
@@ -388,7 +388,7 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)s你的家畜正被 %(attacker)s 攻击!"
+msgstr "%(icon)s你的家畜正被 %(attacker)s 攻击！"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
@@ -641,15 +641,15 @@ msgstr "他们"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
 msgid "A"
-msgstr "同盟"
+msgstr "友"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
 msgid "N"
-msgstr "中立"
+msgstr "中"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
 msgid "E"
-msgstr "敌对"
+msgstr "敌"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
@@ -723,13 +723,13 @@ msgstr "向%(playerName)s进贡Tribute %(resourceAmount)s %(resourceType)s 。Sh
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] "基本范围: %(range)s 公尺"
+msgstr[0] "基本范围: %(range)s 米"
 
 #: gui/session/input.js:191
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] "额外范围: %(range)s 公尺"
+msgstr[0] "额外范围: %(range)s 米"
 
 #: gui/session/input.js:701
 msgid "Cannot build wall here!"
@@ -830,11 +830,11 @@ msgstr "确定要退出吗?"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
-msgstr "胜利!"
+msgstr "胜利！"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:55
 msgid "DEFEATED!"
-msgstr "战败!"
+msgstr "失败！"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
@@ -909,7 +909,7 @@ msgstr "遵照指示"
 msgid "Unknown Player"
 msgstr "未知玩家"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr "向盟友发送信号"
 
@@ -929,7 +929,7 @@ msgstr "压缩"
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr "\\[离线] %(player)s"
+msgstr "\\[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:83
 #, javascript-format
@@ -1084,7 +1084,7 @@ msgstr "卸下%(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "单击 撤销 1。Shift+单击 撤销该类所有单位。"
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "玩家 : %(playername)s"
@@ -1113,64 +1113,68 @@ msgstr "取消打包"
 msgid "Cancel Unpacking"
 msgstr "取消展开"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr "自动队列稍后尝试训练此项目。"
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "人口容量不足"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s 进入  %(class)s "
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "剩余：%(entityCounts)s "
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "，"
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "升级期间无法研发。"
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "升级期间无法训练。"
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "升级到%(primaryName)s（%(secondaryName)s）。%(tooltip)s"
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "升级到%(primaryName)s（%(secondaryName)s）。"
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "升级到%(primaryName)s。%(tooltip)s"
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "升级到%(primaryName)s。"
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "取消升级"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1187,17 +1191,17 @@ msgstr "暴力"
 #: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Aggressive"
-msgstr "积极的"
+msgstr "好斗"
 
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
-msgstr "防守的"
+msgstr "防御"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Passive"
-msgstr "被动的"
+msgstr "被动"
 
 #: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
@@ -1322,7 +1326,7 @@ msgstr "生命值"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
-msgstr "捕获点"
+msgstr "占领点"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
@@ -1347,8 +1351,8 @@ msgid ""
 msgstr "单击选择群组，双击跟踪群组，右击解散群组。"
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "内测版 25：Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "内测版25：伊奥尼亚"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1423,7 +1427,7 @@ msgstr "菜单"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr "观察者"
+msgstr "观察人员"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
@@ -1461,11 +1465,11 @@ msgstr "以物易物"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr "出售："
+msgstr "售出："
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr "购买："
+msgstr "买入："
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
@@ -1483,7 +1487,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "通过单击选择要修改的商品类型，然后使用其他类型的箭头修改它们的份额。您也可以按%(hotkey)s，同时选择一种商品，使其份额达到100%%。"
+msgstr "通过单击选择要修改的商品类型，然后使用其他类型的箭头修改它们的份额。您也可以按%(hotkey)s，同时选择一种商品，使其份额达到 100 %%。"
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1506,7 +1510,7 @@ msgstr "资源："
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "共有 %(numberTrading)s 陆商 正进行贸易"
+msgstr[0] "共有 %(numberTrading)s 陆商正进行贸易"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1762,4 +1766,4 @@ msgstr "你无法破坏此建筑，因为你的占领点数不到一半。"
 
 #: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"
-msgstr "该独立存在的实体是不可删除的"
+msgstr "不可删除该实体。"

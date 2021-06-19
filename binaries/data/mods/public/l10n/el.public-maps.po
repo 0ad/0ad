@@ -8,6 +8,7 @@
 # Aristomahos Nikiforakis <barbounism@gmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
 # crippledmoon <domas392@in.gr>, 2016
+# geo pap <gppapado@outlook.com>, 2021
 # George Spere <g.sperelakis@gmail.com>, 2018
 # gloria <glorialiapoudi@yahoo.gr>, 2015
 # LOUKAS SKOUROLIAKOS, 2015
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 10:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 14:29+0000\n"
+"Last-Translator: geo pap <gppapado@outlook.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +189,7 @@ msgstr "Καληδόνια Λιβάδια"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr ""
+msgstr "Κάθε παίκτης ξεκινάει πάνω σε ένα λόγο που περικλείεται από απότομoυς γκρεμούς. Ιδέα εμπνευσμένη από την Κανταβρία, μια ορεινή περιοχή στο βόρειο τμήμα της ιβηρικής χερσονήσου."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -1305,7 +1306,6 @@ msgstr "Άγρια Λίμνη"
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
-#: maps/skirmishes/magadha_2p.xml:Description:39
 msgid "Give an interesting description of your map."
 msgstr "Δώστε μια ενδιαφέρουσα περιγραφή στο χάρτη σας. "
 
@@ -2862,7 +2862,7 @@ msgstr ""
 
 #: maps/skirmishes/hindu_kush_2p.xml:Name:39
 msgid "Hindu Kush (2)"
-msgstr ""
+msgstr "Ινδοκούς"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Description:39
 msgid ""
@@ -2921,6 +2921,13 @@ msgstr "Ο χάρτης κόβεται στη μέση από ένα ποτάμ�
 #: maps/skirmishes/lorraine_plain_2p.xml:Name:39
 msgid "Lorraine Plain (2)"
 msgstr "Πεδιάδες Λωρραίνης (2)"
+
+#: maps/skirmishes/magadha_2p.xml:Description:39
+msgid ""
+"Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
+"\n"
+"This map was designed as a 1v1 map suitable for rated and tournament play."
+msgstr ""
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"

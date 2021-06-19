@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-12 02:40+0000\n"
-"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 13:37+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -2287,22 +2287,22 @@ msgstr "取消選取單位類型"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "當壓著快捷鍵時，讓游標呈現耀斑效果。"
+msgstr "當壓著快捷鍵時，讓游標呈現信號彈效果。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "耀斑（保持）"
+msgstr "信號彈（保持）"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "游標呈現耀斑效果，快捷鍵可以鬆開。"
+msgstr "游標呈現信號彈效果。快捷鍵可以鬆開。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr "耀斑（切換）"
+msgstr "信號彈（切換）"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -2437,112 +2437,112 @@ msgstr "提前指令"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr "編入單位順序而非取代的指示鍵。"
+msgstr "佇列單位順序而非取代的指示鍵。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr "編隊命令"
+msgstr "佇列命令"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr "加入第一種單位類型到編隊中。"
+msgstr "加入第一種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
 msgid "Queue 1st unit"
-msgstr "編列第 1 個單位"
+msgstr "佇列第 1 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr "加入第二種單位類型到編隊中。"
+msgstr "加入第二種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
 msgid "Queue 2nd unit"
-msgstr "編列第 2 個單位"
+msgstr "佇列第 2 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr "加入第三種單位類型到編隊中。"
+msgstr "加入第三種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
 msgid "Queue 3rd unit"
-msgstr "編列第 3 個單位"
+msgstr "佇列第 3 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr "加入第四種單位類型到編隊中。"
+msgstr "加入第四種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
 msgid "Queue 4th unit"
-msgstr "編列第 4 個單位"
+msgstr "佇列第 4 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr "加入第五種單位類型到編隊中。"
+msgstr "加入第五種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
 msgid "Queue 5th unit"
-msgstr "編列第 5 個單位"
+msgstr "佇列第 5 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr "加入第六種單位類型到編隊中。"
+msgstr "加入第六種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
 msgid "Queue 6th unit"
-msgstr "編列第 6 個單位"
+msgstr "佇列第 6 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr "加入第七種單位類型到編隊中。"
+msgstr "加入第七種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
 msgid "Queue 7th unit"
-msgstr "編列第 7 個單位"
+msgstr "佇列第 7 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr "加入第八種單位類型到編隊中。"
+msgstr "加入第八種單位類型到佇列中。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
-msgstr "編列第 8 個單位"
+msgstr "佇列第 8 個單位"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr "關閉選取建築的自動編隊。"
+msgstr "關閉選取建築的自動佇列。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
 msgid "Deactivate auto-queue"
-msgstr "停用自動編隊"
+msgstr "停用自動佇列"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr "開啟選取建築的自動編隊。"
+msgstr "開啟選取建築的自動佇列。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
 msgid "Activate auto-queue"
-msgstr "啟用自動編隊"
+msgstr "啟用自動佇列"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
@@ -3886,36 +3886,36 @@ msgid "Naming of entities."
 msgstr "實體的命名。"
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "指定的為主。"
+msgid "Specific names first"
+msgstr "特殊名稱在前"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "顯示指定名稱成為主要的而一般名稱成為次要的。"
+msgid "Display specific names before generic names."
+msgstr "顯示特殊名稱在一般名稱之前。"
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "一般的為主。"
+msgid "Generic names first"
+msgstr "普通名稱在前"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "顯示一般名稱成為主要的而指定名稱成為次要的。"
+msgid "Display generic names before specific names."
+msgstr "顯示一般名稱在特殊名稱之前。"
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "限指定的。"
+msgid "Only specific names"
+msgstr "僅特殊名稱"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "只顯示指定的單位名稱。"
+msgid "Display only specific names for entities."
+msgstr "只顯示實體的特殊名稱。"
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "限一般的。"
+msgid "Only generic names"
+msgstr "僅普通名稱"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr "只顯示單位的一般名稱。"
+msgid "Display only generic names for entities."
+msgstr "只顯示實體的一般名稱。"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4551,139 +4551,119 @@ msgid ""
 msgstr "如果單位的血量百分比低於此數字，將會被受傷單位快捷鍵認定為受傷。"
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "治療範圍可見度"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "顯示所選單位的治療範圍（也可以在遊戲時用快捷鍵切換）。"
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "在狀態列上的階級圖示"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "在狀態列上顯示階級圖示。"
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "經驗狀態條"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "在每個所選單位上方顯示一個經驗狀態欄。"
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "詳細的工具提示"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "在可生產單位的建築物中顯示詳細的工具提示。"
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "排序資源與人口工具提示"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "未排序"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
-msgstr "升冪排序"
+msgstr "升冪"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "降冪"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "按照值來動態排序資源與人口工具提示中的玩家。"
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "自己的外交顏色"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "當外交顏色啟用時，你自己的單位之顏色"
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "同盟的外交顏色"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "當外交顏色啟用時，同盟者之顏色"
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "中立的外交顏色"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "當外交顏色啟用時，中立玩家之顏色"
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "敵人的外交顏色"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "當外交顏色啟用時，敵對玩家之顏色"
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "邊緣吸附"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "用快捷鍵來啟用吸附"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "當按下快捷鍵時把新建築和附近的建築對齊。"
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "用快捷鍵來停用吸附"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "把新建築和附近的建築對齊，除非按下快捷鍵。"
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "此選項能讓新建築與附近的建築對齊。"
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "控制隊伍成員"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "單一"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "當加入一個單位或建築進入一個控制群組時，他們會從其他群組中移出。如果您希望控制群組引用獨立的軍隊，請使用此選項。"
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "多個"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "單位和建築可以是多個控制群組的一部分。實用於同時讓控制群組代表獨立軍隊，和一個控制群組代表整個軍隊。"
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "確定單位是否可以屬於多個控制群組。"
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4694,26 +4674,56 @@ msgid "Number of units trained per batch by default."
 msgstr "預設一批訓練多少單位。"
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "控制隊伍成員"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "單一"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "當加入一個單位或建築進入一個控制群組時，他們會從其他群組中移出。如果您希望控制群組引用獨立的軍隊，請使用此選項。"
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "多個"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "單位和建築可以是多個控制群組的一部分。實用於同時讓控制群組代表獨立軍隊，和一個控制群組代表整個軍隊。"
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "確定單位是否可以屬於多個控制群組。"
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "陣型控制"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "僅限行走/巡邏"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "其他命令將解散現有陣型。"
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "不可覆寫"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr "不覆蓋"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "在陣型中的單位待在陣型中。"
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4729,83 +4739,81 @@ msgid ""
 msgstr "您必須捲動以將批次生產大小增加／減少 1 的次數。"
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr "信號彈顯示延遲"
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr "信號彈標記在小地圖上顯示的時間有多長，以秒計。"
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "聊天通知攻擊"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "如果您被其他玩家攻擊時顯示聊天通知。"
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "聊天通知進貢"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "如果有盟友在團隊鎖定的情況下進貢資源給另一個團隊成員時顯示聊天通知，且所有進貢都可以在觀察者模式中看到。"
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "聊天通知交易"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "當玩家交換資源時向觀察者顯示聊天通知。"
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "聊天通知時代"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "停用"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "已完成"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "所有已顯示"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "如果您或盟友開始、中止或完成新的時代時顯示聊天通知，且所有玩家的時代都會在觀察者模式中顯示。"
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "攻擊範圍可見度"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "顯示所選防禦建築的攻擊範圍（也可以在遊戲時用快捷鍵切換）。"
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "光環範圍可見度"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "顯示所選單位和建築的光環範圍（也可以在遊戲時用快捷鍵切換）。"
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "治療範圍可見度"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "顯示所選單位的治療範圍（也可以在遊戲時用快捷鍵切換）。"
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5080,8 +5088,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5584,9 +5592,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]本遊戲仍在開發中，有些功能缺失和 bug。"
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr "[imgleft=\"constructionIcon\"]這款遊戲還在開發中。您可能會遇到錯誤，並且某些功能並不像我們希望的那樣充份。"
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5596,9 +5604,15 @@ msgstr "[imgleft=\"iconLag\"]  遊戲過程可能會有效能上的問題，尤�
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]  陣型部份仍積極開發中，但您可以視需要切換及關閉陣型功能。"
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr "[imgleft=\"iconMap\"]0 A.D. 是一個自由軟體：您可以參與它的開發。"
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr "如果您想為美術、音效、遊戲內容或程式撰寫盡一份心力，請加入我們的官方論壇。"
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5609,12 +5623,12 @@ msgid "Show this message in the future"
 msgstr "未來請顯示此訊息"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "已知問題（網頁）"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "確定"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr "官方論壇（網站）"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6037,11 +6051,11 @@ msgstr "可駐守單位以較慢的速度治療他們並保護軍營不被攻擊
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
-msgstr "自動排隊"
+msgstr "自動佇列"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr "啟用自動排隊特色來自動訓練單位"
+msgstr "啟用自動佇列功能來自動訓練單位。"
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
@@ -6230,6 +6244,26 @@ msgid ""
 "citizen-soldiers."
 msgstr "訓練公民：女性公民、公民步兵與公民騎兵。"
 
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr "預設陣型"
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr "右鍵點擊圖示來設定預設陣型：單位會在行軍或巡邏時自動使用它。"
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr "可藉由選擇「無陣型」為預設來取消啟用。"
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr "「陣型控制」選項可讓您選擇是否根據行軍或巡邏以外的命令解散陣型。"
+
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "防禦塔"
@@ -6416,7 +6450,7 @@ msgstr "托勒密的特殊建築，蓋在岸邊可增加您的視野範圍。 "
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr "地圖耀斑"
+msgstr "地圖信號彈"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
@@ -6426,7 +6460,7 @@ msgstr "使用此功能讓您的團隊知道在地圖上哪裡有重要的事件
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr "他們會在小地圖上看到耀斑。 "
+msgstr "他們會在小地圖上看到信號彈。"
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"

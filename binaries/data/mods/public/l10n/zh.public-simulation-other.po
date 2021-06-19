@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-14 21:34+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 07:44+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -322,7 +322,7 @@ msgstr "%(_player_)s ,要是给我 %(_amount_)s %(_resource_)s，我能接受中
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "%(_player_)s，我不接受你的中立请求，除非你能进贡 %(_amount_)s %(_resource_)s 。 "
+msgstr "%(_player_)s，除非向我进贡 %(_amount_)s %(_resource_)s ，否则我不会接受你的中立请求。 "
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
@@ -522,7 +522,7 @@ msgstr "你现在可以攻击了！"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(players)s 和 %(lastPlayer)s 获胜 (胜者为王）。"
+msgstr[0] "%(players)s 和 %(lastPlayer)s 获胜了 (胜者为王）。"
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -578,9 +578,13 @@ msgstr "实体正在升级，无法开始生产制造。"
 msgid "The production queue is full."
 msgstr "生产队列已满。"
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
 msgstr "无法找到可用空间来部署受训单位"
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
+msgstr "单位无法自动队列，已停用。"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -902,19 +906,19 @@ msgstr "已请求向 %(_player_)s 发动攻击。"
 msgid "There are no bribable units"
 msgstr "没有可贿赂的单位"
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr "无法卸载单位"
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr "某些单位无法返回工作岗位"
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr " 不可控制%(unit)s。"
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr "未满足本建筑的科技要求。"

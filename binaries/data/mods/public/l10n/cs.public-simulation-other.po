@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-14 07:08+0000\n"
-"PO-Revision-Date: 2021-05-14 09:29+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 09:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -585,9 +585,13 @@ msgstr "Objekt se modernizuje. Není možné začít výrobu."
 msgid "The production queue is full."
 msgstr "Výrobní řada je plná."
 
-#: simulation/components/ProductionQueue.js:863
+#: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
 msgstr "Nelze najít místo na vytváření cvičených jednotek"
+
+#: simulation/components/ProductionQueue.js:902
+msgid "Could not auto-queue unit, de-activating."
+msgstr ""
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -909,19 +913,19 @@ msgstr "Požadován útok proti %(_player_)s."
 msgid "There are no bribable units"
 msgstr "Nejsou tu žádné podplatitelné jednotky"
 
-#: simulation/helpers/Commands.js:912
+#: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
 msgstr "Nelze vyložit jednotky"
 
-#: simulation/helpers/Commands.js:926
+#: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
 msgstr "Některé jednotky nemohou jít zpět do práce"
 
-#: simulation/helpers/Commands.js:945
+#: simulation/helpers/Commands.js:955
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)snemohou být ovládáni."
 
-#: simulation/helpers/Commands.js:1196
+#: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požadavky na postavení budovy nejsou splněny."

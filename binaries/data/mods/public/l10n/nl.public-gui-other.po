@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-13 17:16+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 14:47+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -1215,11 +1215,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1019
 msgid "Walk"
-msgstr "Wandelen"
+msgstr "Lopen"
 
 #: gui/common/tooltips.js:1024
 msgid "Run"
-msgstr "Lopen"
+msgstr "Rennen"
 
 #: gui/common/tooltips.js:1039 gui/common/tooltips.js:1044
 #: gui/common/tooltips.js:1049 gui/common/tooltips.js:1074
@@ -3918,36 +3918,36 @@ msgid "Naming of entities."
 msgstr "Namen van entiteiten."
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "Specifiek primair."
+msgid "Specific names first"
+msgstr "Specifieke namen eerst"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "Toon specifieke namen als primaire naam en algemene namen als secondaire naam."
+msgid "Display specific names before generic names."
+msgstr "Toon specifieke namen vóór algemene namen."
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "Algemeen primail."
+msgid "Generic names first"
+msgstr "Algemene namen eerst"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "Toon algemene namen als primaire naam en specifieke namen als secondaire naam."
+msgid "Display generic names before specific names."
+msgstr "Toon algemene namen vóór specifieke namen."
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "Alleen specifiek."
+msgid "Only specific names"
+msgstr "Alleen specifieke namen"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "Toon enkel specifieke namen van eenheden."
+msgid "Display only specific names for entities."
+msgstr "Toon alleen specifieke namen van entiteiten."
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "Alleen algemeen."
+msgid "Only generic names"
+msgstr "Alleen algemene namen"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr "Toon enkel algemene namen van eenheden."
+msgid "Display only generic names for entities."
+msgstr "Toon alleen algemene namen van entiteiten."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4583,139 +4583,119 @@ msgid ""
 msgstr "De sneltoets voor gewonde eenheden markeert de geselecteerde eenheden als gewond wanneer hun gezondheidspercentage onder dit getal zakt."
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Zichtbaar helersbereik"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Laat het genezingsbereik van de geselecteerde eenheden zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Rang icoon boven statusbalk"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Laat Rang icoon boven statusbalken zien."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Ervaringsbalk"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Toon een ervaringsbalk boven iedere geselecteerde eenheid."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Gedetailleerde tips"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Toon gedetailleerde tips voor rekruteerbare eenheden zien in gebouwen die eenheden produceren."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Sorteer de grondstoffen- en populatie-informatie"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Ongeordend"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Oplopend"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "Aflopend"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Sorteer spelers in de grondstoffen- en populatie-informatie op waarde"
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Diplomatie kleuren: eigen"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Kleur van uw eigen eenheden wanneer diplomatie kleuren zijn geactiveerd."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Diplomatie kleuren: geallieerd"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Kleur van de geallieerden wanneer diplomatie kleuren zijn geactiveerd."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Diplomatie kleuren: neutraal"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Kleur van neutrale spelers wanneer diplomatie kleuren zijn geactiveerd."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Diplomatie kleuren: vijandelijk"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Kleur van de vijanden wanneer diplomatie kleuren zijn ingeschakeld."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Uitlijnen op rand"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Sneltoets om uitlijnen op rand in te schakelen"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen wanneer de sneltoets wordt ingedrukt."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Sneltoets om uitlijnen op rand uit te schakelen"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen behalve wanneer de sneltoets wordt ingedrukt."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Deze optie maakt het mogelijk om nieuwe gebouwen uit te lijnen met nabij gelegen gebouwen."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "Stel groepssamenstelling in"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "Enkele"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Wanneer een eenheid of gebouw aan een controlgroep wordt toegevoegd, wordt deze verwijderd uit andere controlgroepen. Gebruik deze optie als je wil dat controlgroepen betrekking hebben op specifieke legers."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Meerdere"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Eenheden en gebouwen kunnen deel uitmaken van meerdere controlgroepen. Dit is handig om controlgroepen voor bepaalde legeronderdelen én een controlgroep voor het hele leger te gebruiken."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Beslis of eenheden deel kunnen uitmaken van meerdere controlgroepen."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4726,26 +4706,56 @@ msgid "Number of units trained per batch by default."
 msgstr "Standaard aantal opgeleide eenheden per groep."
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "Stel groepssamenstelling in"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "Enkele"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Wanneer een eenheid of gebouw aan een controlgroep wordt toegevoegd, wordt deze verwijderd uit andere controlgroepen. Gebruik deze optie als je wil dat controlgroepen betrekking hebben op specifieke legers."
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "Meerdere"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Eenheden en gebouwen kunnen deel uitmaken van meerdere controlgroepen. Dit is handig om controlgroepen voor bepaalde legeronderdelen én een controlgroep voor het hele leger te gebruiken."
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Beslis of eenheden deel kunnen uitmaken van meerdere controlgroepen."
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "Formatie-instellingen"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Alleen lopen / patrouilleren"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Andere bevelen heffen de bestaande formatie op."
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "Niet te niet doen"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr "Blijf in formatie"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Eenheden in formatie blijven in formatie."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4761,83 +4771,81 @@ msgid ""
 msgstr "Het aantal keer dat u moet scrollen om de groepsgrootte met 1 te vergroten/verkleinen."
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr "Vlagtijd"
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr "De tijdsduur in seconden dat vlaggen op de minimap getoond worden."
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Chatnotificatie aanval"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Laat een chatnotificatie zien wanneer u wordt aangevallen door een andere speler."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Chatnotificatie schenking"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Laat een chatnotificatie zien wanneer een geallieerde grondstoffen geschonken heeft aan een teamgenoot als Vaste Teams aan staat en alle schenkingen in waarnemer modus."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Chatnotificatie ruilhandel"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Laat een chatnotificatie zien aan waarnemers als een speler grondstoffen heeft geruild."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Chatnotificatie Fasen"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Voltooid"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Alles weergegeven"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Laat een chatnotificatie zien wanneer u of een geallieerde het onderzoeken van een nieuwe fase bent begonnen, heeft afgebroken of heeft voltooid en van fasen van alle spelers in waarnemer modus."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Zichtbaar aanvalsbereik"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Laat het aanvalsbereik van de geselecteerde verdedigingswerken zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Zichtbaar aurabereik"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Laat het aurabereik van de geselecteerde eenheden en gebouwen zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Zichtbaar helersbereik"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Laat het genezingsbereik van de geselecteerde eenheden zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5112,8 +5120,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5623,9 +5631,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[icon=\"constructionIcon\"]Dit spel is nog steeds in ontwikkeling. Er zijn zaken nog niet geïmplementeerd en ook zijn er nog verschillende problemen."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr "[imgleft=\"constructionIcon\"]Dit spel is nog steeds in ontwikkeling. U kunt bugs bemerken en sommige zaken zijn nog niet helemaal uitgewerkt zoals we het zouden willen."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5635,9 +5643,15 @@ msgstr "[imgleft=\"iconLag\"]Het spel kan prestatie problemen hebben, in het bij
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Formaties zijn nog in volle ontwikkeling, maar u kunt formaties aan-/uitzetten naar wens."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr "[imgleft=\"iconMap\"]0 A.D. is freeware: u kunt bijdragen aan de ontwikkeling ervan."
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr "Wanneer u wilt meehelpen met beeld, geluid, spelverloop of programmeren, meld u dan aan op ons officiële forum."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5648,12 +5662,12 @@ msgid "Show this message in the future"
 msgstr "Toon dit bericht ook in de toekomst."
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Gekende Problemen (web)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "OK"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr "Officieel forum (web)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6128,19 +6142,19 @@ msgstr "Ze beïnvloeden het uitzicht van de kaart en ook het aantal grondstoffen
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
-msgstr ""
+msgstr "VECHTHOND"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "Een hond die de Britten kunnen rekruteren in de stal."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Heeft weinig gezondheid maar is snel en valt onverschrokken de vijand aan."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Gebruik ze ter ondersteuning in uw leger of voor snelle overvallen."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6164,19 +6178,19 @@ msgstr "Gebruik de Speervechters als zware Infanterie tegen Ruiters. Gebruik Rui
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr ""
+msgstr "CARTHAAGSE SCHEEPSWERF"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Speciale haven van de Carthagers om oorlogsschepen te produceren."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Repareer schepen langzaam door ze hier naar binnen te varen.."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Veel sterker dan andere dokken, maar ze kosten dan ook meer."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6198,16 +6212,16 @@ msgstr "Pak ze in tot wagens om te vervoeren en pak ze uit om te gebruiken!"
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr ""
+msgstr "CAVALERIEKAZERNE"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Rekruteer cavalerie-eenheden en onderzoek technologieën speciaal voor militaire ruiterij."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "Eenheden krijgen meer ervaring terwijl ze in de kazerne verblijven."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6231,21 +6245,21 @@ msgstr "Verhoog de vuurkracht door infanteriebemanning."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr ""
+msgstr "STADSMUREN"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Sterke stenen muren ter ondersteuning van uw stadsverdediging"
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Wanneer afstandsinfanterie eenheden gelegerd zijn in de torens hebben zij extra pantser en kunnen ze de vijand beschieten."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Kwetsbaar voor belegeringswerktuigen zoals katapulten, rammen en oorlogsolifanten."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6269,47 +6283,67 @@ msgid ""
 "citizen-soldiers."
 msgstr "Rekruteer burgers: vrouwen en burgersoldaten te voet en te paard."
 
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr "STANDAARD FORMATIE"
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr "Klik met rechts op een icoon om de standaard formatie in te stellen; eenheden die gaan lopen of patrouilleren zullen deze automatisch gebruiken."
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr "Kan uitgeschakeld worden door “geen formatie” als standaard te kiezen."
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr "Met de “verlaat formatie” optie kunt u kiezen of formaties uit elkaar gaan voor bevelen anders dan lopen of patrouilleren."
+
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "VERDEDIGINGSTORENS"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Sterke wachttorens ter verdediging van uw positie."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Deze hebben een groot gezichtsveld en schieten pijlen op de naderende vijand."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr ""
+msgstr "Beman ze met infanterie om ze meer pijlen te laten schieten."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr ""
+msgstr "OLIFANTENSTAL"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr ""
+msgstr "Dit gebouw om olifant eenheden te rekruteren is aanwezig in sommige beschavingen."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
-msgstr ""
+msgstr "AMBASSADES EN HUURLINGENKAMPEN"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Speciale gebouwen van waaruit huurlingen voor uw leger gerekruteerd kunnen worden."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr ""
+msgstr "Huurlingen verzamelen geen grondstoffen en kosten enkel metaal maar ze zijn ervaren en sterk."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6345,12 +6379,12 @@ msgstr "Onderzoek nieuwe wapens en verbeterde bescherming voor uw eenheden."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "FORMATIES"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Gebruik formaties om uw soldaten in veldslagen georganiseerd te houden."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6360,7 +6394,7 @@ msgstr "FORT"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Doorgaans het sterkste gebouw van een beschaving en de plek waar u Helden kunt rekruteren."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6435,56 +6469,56 @@ msgstr "Let op: iedere held kan slechte één keer per spel gerekruteerd worden!
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
-msgstr ""
+msgstr "IBERISCH VUURSCHIP"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid ""
 "The special Iberian fireship is very effective against other ships and "
 "buildings, but steadily loses health."
-msgstr ""
+msgstr "Het vuurschip, specifiek voor Iberië, is bijzonder effectief tegen andere schepen en gebouwen, maar verliest geleidelijk aan kracht."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "VUURTOREN"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr ""
+msgstr "Speciaal Ptolemeïsch gebouw om uw gezichtsveld te vergroten wanneer dit aan de kust staat."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "VLAG"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr ""
+msgstr "Gebruik dit om uw team te laten weten waar op de kaart iets bijzonders gebeurt."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr ""
+msgstr "Zij zien de vlag op de minikaart."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
-msgstr ""
+msgstr "PIRAMIDEN VAN MEROË"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Speciale gebouwen van de Koesjiten."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "De kleine piramiden verbeteren de verzamelsnelheid van de werkers in de buurt."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "De grote piramiden doen de militaire capaciteiten van de soldaten in de buurt toenemen."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6575,19 +6609,19 @@ msgstr "Verhoog de vuurkracht door katapultenbemanning."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
-msgstr ""
+msgstr "GRONDSTOFFEN"
 
 #: gui/text/tips/resource_counter.txt:2
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "Het grondstoffen paneel toont u hoeveel van elke grondstof u momenteel heeft."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr ""
+msgstr "Het nummer eronder geeft aan hoeveel burgers thans bezig zijn met verzamelen."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6730,28 +6764,28 @@ msgstr "Wanneer het verval compleet is, zal het gebouw aan de meest invloedrijke
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "THEATER"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Speciaal gebouw van de Helleense beschavingen doet de omvang van uw gebied toenemen."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "SCHATTEN"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Kisten en losse grondstoffen op het land om te verzamelen en scheepswrakken op de kust."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Verschaft u direct een flinke hoeveelheid grondstoffen, dus kijk er naar uit terwijl u het terrein verkent."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"

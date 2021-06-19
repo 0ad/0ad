@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-12 03:50+0000\n"
-"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 00:45+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -160,7 +160,7 @@ msgid "Click to Resume Game"
 msgstr "點按可繼續遊戲"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -877,7 +877,7 @@ msgstr "按照說明進行操作。"
 msgid "Unknown Player"
 msgstr "未知玩家"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr "向你的盟友發送信號彈"
 
@@ -1052,7 +1052,7 @@ msgstr "卸載 %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "單擊卸載 1 名單位。按住 Shift 點擊卸載所有該類型的單位。"
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "玩家：%(playername)s"
@@ -1081,64 +1081,68 @@ msgstr "取消打包"
 msgid "Cancel Unpacking"
 msgstr "取消解壓縮"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr "自動佇列會嘗試晚點訓練這個項目。"
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "人口上限不足："
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s 給等級 %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "剩餘：%(entityCounts)s"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "，"
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "升級時無法研究。"
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "升級時無法訓練。"
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "升級成%(primaryName)s（%(secondaryName)s）。%(tooltip)s"
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "升級成%(primaryName)s（%(secondaryName)s）。"
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "升級成%(primaryName)s。%(tooltip)s"
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "升級成%(primaryName)s。"
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "取消升級"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1306,7 +1310,7 @@ msgstr "等級"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr "生產隊列"
+msgstr "生產佇列"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
@@ -1315,8 +1319,8 @@ msgid ""
 msgstr "左鍵點擊 選擇單位隊組， 左鍵點擊兩次 著眼於單位隊組，右鍵點擊 解散隊組"
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1713,11 +1717,11 @@ msgstr "您被允許使用此資源放置點"
 
 #: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
-msgstr "啟用所選建築的自動生產。"
+msgstr "啟用所選建築的自動佇列。"
 
 #: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
-msgstr "停用所選建築的自動生產。"
+msgstr "停用所選建築的自動佇列。"
 
 #: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"

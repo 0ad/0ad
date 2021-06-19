@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 08:29+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-14 08:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
@@ -353,53 +353,57 @@ msgid ""
 "%(details)s"
 msgstr ""
 
-#: gui/lobby/LobbyPage/GameDetails.js:121
+#: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr ""
-
-#: gui/lobby/LobbyPage/GameDetails.js:140
-#, javascript-format
-msgid "Host: %(playername)s"
 msgstr ""
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
-msgid "Players: %(current)s/%(total)s"
+msgid "Host: %(playername)s"
 msgstr ""
 
 #: gui/lobby/LobbyPage/GameDetails.js:144
+#, javascript-format
+msgid "Players: %(current)s/%(total)s"
+msgstr ""
+
+#: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
 msgstr ""
 
 #. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:147
+#: gui/lobby/LobbyPage/GameDetails.js:149
 msgid ", "
 msgstr ", "
 
-#: gui/lobby/LobbyPage/GameDetails.js:149
+#: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
 msgstr ""
 
+#: gui/lobby/LobbyPage/GameDetails.js:153
+msgid "Mods (incompatible):"
+msgstr ""
+
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:152
+#: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr ""
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-#: gui/lobby/LobbyPage/GameDetails.js:154
+#: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/LobbyPage/GameDetails.js:156
+#: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
 msgstr "Tipo de Mapa:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:158
+#: gui/lobby/LobbyPage/GameDetails.js:162
 msgid "Map Size:"
 msgstr "Tamaño del Mapa:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:160
+#: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
 msgstr ""
 

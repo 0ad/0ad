@@ -51,7 +51,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-17 17:23+0000\n"
+"PO-Revision-Date: 2021-06-15 12:03+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -173,15 +173,15 @@ msgstr "未知错误"
 
 #: lobby/XmppClient.cpp:1433
 msgid "Stream error"
-msgstr "媒体流错误"
+msgstr "流媒体错误"
 
 #: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
-msgstr "传入的媒体流版本不受支持"
+msgstr "传入的流媒体版本不受支持"
 
 #: lobby/XmppClient.cpp:1435
 msgid "The stream has been closed by the server"
-msgstr "服务器已关闭媒体流"
+msgstr "服务器已关闭流媒体"
 
 #: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
@@ -211,7 +211,7 @@ msgstr "服务器未提供必须的 TLS 加密"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "验证失败. 密码不正确或账户不存在"
+msgstr "验证失败。密码不正确或账户不存在"
 
 #: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"

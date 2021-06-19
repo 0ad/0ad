@@ -9,13 +9,14 @@
 # Rui <xymarior@yandex.com>, 2021
 # Danny Reese <danny@angolateam.org>, 2021
 # Pedro Santos <estevespubl@gmail.com>, 2021
+# Pedro Osório <mebm.pedrosorio@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Pedro Santos <estevespubl@gmail.com>, 2021\n"
+"Last-Translator: Pedro Osório <mebm.pedrosorio@gmail.com>, 2021\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/wildfire-games/teams/17418/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,16 +30,18 @@ msgid ""
 "Discover the new maps in Alpha 25 with a demo campaign, taking you through "
 "all of them."
 msgstr ""
+"Descobre os novos mapas no Alfa 25 com uma nova campanha de demonstração, "
+"que tos mostra todos."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "Campanha de demonstração - mapas novos"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "Aprende a jogar 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -49,11 +52,16 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Este mapa é um guia básico de como iniciar o jogo de forma eficaz. No início"
+" do jogo, o mais importante é obter recursos o mais rápido possível para "
+"mais tarde poder constituir tropas em número suficiente. Aviso: Este guia é "
+"muito rápido no começo; prepara-te para repetir a parte inicial várias "
+"vezes."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "Guia de Economia"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -78,41 +86,41 @@ msgstr "Ao terminar"
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Disponível"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Error ao carregar a campanha %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr ""
+msgstr "Nome da Campanha"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
-msgstr ""
+msgstr "Nenhum cenário seleccionado"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "Voltar ao menu principal"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
-msgstr ""
+msgstr "Jogos guardados"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
-msgstr ""
+msgstr "Começar cenário"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Continuar jogo guardado"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "Nome do cenário"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
@@ -121,12 +129,14 @@ msgstr "Estado"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "Não foi possível carregar o ficheiro"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
+"Tens a certeza que queres eliminar a campanha %s? Esta ação não pode ser "
+"revertida."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -143,15 +153,15 @@ msgstr "Sim"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "Carregar Campanha"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Não existem campanhas a decorrer"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Nome da campanha:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -164,20 +174,20 @@ msgstr "Eliminar"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Começar uma campanha"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "Por favor introduz o nome da nova campanha:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "Começar campanha"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "Nenhuma campanha seleccionada."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -185,7 +195,7 @@ msgstr "Campanhas"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "Nenhuma campanha seleccionada"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
@@ -199,4 +209,4 @@ msgstr "Nome"
 #: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-12 12:00+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 03:13+0000\n"
 "Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -363,53 +363,57 @@ msgid ""
 "%(details)s"
 msgstr "호환되지 않는 모드가 있습니다:\n%(details)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:121
+#: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
 msgstr "이 모드는 MP 호환성에 영향을 주지 않습니다."
 
-#: gui/lobby/LobbyPage/GameDetails.js:140
+#: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
 msgstr "호스트: %(playername)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:142
+#: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "플레이어: %(current)s/%(total)s"
 
-#: gui/lobby/LobbyPage/GameDetails.js:144
+#: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
 msgstr "승리 조건:"
 
 #. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:147
+#: gui/lobby/LobbyPage/GameDetails.js:149
 msgid ", "
 msgstr ", "
 
-#: gui/lobby/LobbyPage/GameDetails.js:149
+#: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
 msgstr "모드:"
 
+#: gui/lobby/LobbyPage/GameDetails.js:153
+msgid "Mods (incompatible):"
+msgstr "모드 (호환되지 않음):"
+
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:152
+#: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "%(time)s에 게임 시작"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-#: gui/lobby/LobbyPage/GameDetails.js:154
+#: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/LobbyPage/GameDetails.js:156
+#: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
 msgstr "지도 유형:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:158
+#: gui/lobby/LobbyPage/GameDetails.js:162
 msgid "Map Size:"
 msgstr "지도 크기:"
 
-#: gui/lobby/LobbyPage/GameDetails.js:160
+#: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
 msgstr "지도 설명:"
 

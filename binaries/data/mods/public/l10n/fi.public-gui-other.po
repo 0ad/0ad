@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-13 18:40+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-15 12:40+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -268,7 +268,7 @@ msgstr "pois käytöstä"
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Ensimmäisen minuutin aikana muut pelaajat pysyvät neutraaleina."
-msgstr[1] "Ensimmäisen %(min)s minuutin aikana muut pelaajat pysyvät neutraaleina."
+msgstr[1] "Ensimmäisen %(min)s minuutin aikana muut pelaajat pysyvät puolueettomina."
 
 #: gui/common/gamedescription.js:286
 msgctxt "Map Selection"
@@ -289,7 +289,7 @@ msgstr "Kartan kuvaus"
 
 #: gui/common/gamedescription.js:304
 msgid "Map Type"
-msgstr "Kartan tyyppi"
+msgstr "Karttatyyppi"
 
 #: gui/common/gamedescription.js:313
 msgid "Map Size"
@@ -2932,12 +2932,12 @@ msgstr "Näytä/piilota parannuskantamat"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes."
-msgstr "Näytä/piilota yksikköjen siluetit."
+msgstr "Näytä/piilota yksikköjen varjokuvat."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr "Näytä/piilota yksiköiden siluetit"
+msgstr "Näytä/piilota yksiköiden varjokuvat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
@@ -3546,7 +3546,7 @@ msgstr "Päivä / Aika"
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
 msgid "Map Type"
-msgstr "Kartan tyyppi"
+msgstr "Karttatyyppi"
 
 #: gui/loadgame/load.xml:(heading):35
 #: gui/replaymenu/replay_menu.xml:(heading):79
@@ -3895,36 +3895,36 @@ msgid "Naming of entities."
 msgstr "Kohteiden nimeäminen."
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "Erisnimi ensin."
+msgid "Specific names first"
+msgstr "Erisnimet ensin"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "Näytä erisnimet ensisijaisina ja yleisnimet toissijaisina."
+msgid "Display specific names before generic names."
+msgstr "Näytä erisnimet ennen yleisnimiä."
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "Yleisnimi ensin."
+msgid "Generic names first"
+msgstr "Yleisnimet ensin"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "Näytä yleisnimet ensisijaisina ja erisnimet toissijaisina."
+msgid "Display generic names before specific names."
+msgstr "Näytä yleisnimet ennen erisnimiä."
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "Vain erisnimet."
+msgid "Only specific names"
+msgstr "Vain erisnimet"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "Näytä vain yksiköiden erisnimet."
+msgid "Display only specific names for entities."
+msgstr "Näytä vain olioiden erisnimet."
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "Vain yleisnimet."
+msgid "Only generic names"
+msgstr "Vain yleisnimet"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr "Näytä vain yksiköiden yleisnimet."
+msgid "Display only generic names for entities."
+msgstr "Näytä vain olioiden yleisnimet."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4560,139 +4560,119 @@ msgid ""
 msgstr "Haavoittuneen yksikön pikanäppäin pitää valittuja yksiköitä haavoittuneina, jos niiden terveysprosentti laskee alle tämän luvun."
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Parannuskantaman visualisaatio"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Näytä valittujen yksiköiden parannuskantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Arvokuvake tilarivin yläpuolella"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Näytä arvokuvakkeet tilapalkkien yläpuolella."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Kokemuksen tilapalkki"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Näytä kokemuksen tilapalkki jokaisen valitun yksikön yläpuolella."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Yksityiskohtaiset työkaluvihjeet"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Näytä yksityiskohtaiset työkaluvihjeet koulutettaville yksiköille yksikköjä tuottavissa rakenteissa."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Järjestä resurssit ja väestö -työkaluvihje"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Järjestelemätön"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Nouseva"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "Laskeva"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Järjestä pelaajat dynaamisesti resurssit ja väestö -tooltipissä arvon mukaan."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Diplomatiavärit: oma"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Yksikkösi väri, kun diplomatiavärit ovat käytössä."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Diplomatiavärit: liittolainen"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Liittolaisten väri, kun diplomatiavärit ovat käytössä."
 
-#: gui/options/options.json[6].options[16].label
-msgid "Diplomacy colors: neutral"
-msgstr "Diplomatiavärit: neutraali"
-
-#: gui/options/options.json[6].options[16].tooltip
-msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "Neutraalien pelaajien väri, kun diplomatiavärit ovat käytössä."
-
 #: gui/options/options.json[6].options[17].label
+msgid "Diplomacy colors: neutral"
+msgstr "Diplomatiavärit: puolueeton"
+
+#: gui/options/options.json[6].options[17].tooltip
+msgid "Color of neutral players when diplomacy colors are enabled."
+msgstr "Puolueettomien pelaajien väri, kun diplomatiavärit ovat käytössä."
+
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Diplomatiavärit: vihollinen"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Vihollisten väri, kun diplomatiavärit ovat käytössä."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Kiinnitä reunoihin"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Pikanäppäin, joka ottaa kiinnityksen käyttöön"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Uudet rakenteet kohdistetaan läheisiin rakenteisiin, kun painat pikanäppäintä."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Pikanäppäin, joka poistaa kiinnityksen käytöstä"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Uudet rakenteet kohdistetaan läheisten rakenteiden kanssa, ellei pikanäppäintä paineta."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Tämän vaihtoehdon avulla uudet rakenteet voidaan kohdistaa läheisiin rakenteisiin."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "Ohjausryhmän jäsenyys"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "Yksinkertainen"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Kun yksikkö tai rakenne lisätään ohjausryhmään, ne poistetaan muista ohjausryhmistä. Käytä tätä vaihtoehtoa, jos haluat ohjausryhmien viittaavan erillisiin armeijoihin."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Moninkertainen"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Yksiköt ja rakenteet voivat kuulua useisiin ohjausryhmiin. Tämä on hyödyllistä, jos haluat pitää ohjausryhmiä erillisille armeijoille ja ohjausryhmää koko armeijalle samanaikaisesti."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Päätä, voivatko yksiköt kuulua useampaan ohjausryhmään."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4703,26 +4683,56 @@ msgid "Number of units trained per batch by default."
 msgstr "Koulutettujen yksiköiden määrä erää kohti oletusarvoisesti."
 
 #: gui/options/options.json[6].options[20].label
+msgid "Control group membership"
+msgstr "Ohjausryhmän jäsenyys"
+
+#: gui/options/options.json[6].options[20].list[0].label
+msgid "Single"
+msgstr "Yksinkertainen"
+
+#: gui/options/options.json[6].options[20].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Kun yksikkö tai rakenne lisätään ohjausryhmään, ne poistetaan muista ohjausryhmistä. Käytä tätä vaihtoehtoa, jos haluat ohjausryhmien viittaavan erillisiin armeijoihin."
+
+#: gui/options/options.json[6].options[20].list[1].label
+msgid "Multiple"
+msgstr "Moninkertainen"
+
+#: gui/options/options.json[6].options[20].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Yksiköt ja rakenteet voivat kuulua useisiin ohjausryhmiin. Tämä on hyödyllistä, jos haluat pitää ohjausryhmiä erillisille armeijoille ja ohjausryhmää koko armeijalle samanaikaisesti."
+
+#: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Päätä, voivatko yksiköt kuulua useampaan ohjausryhmään."
+
+#: gui/options/options.json[6].options[21].label
 msgid "Formation control"
 msgstr "Muodostelman hallinta"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Ainoastaan kävely/partiointi"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Muut käskyt hajottavat olemassa olevat muodostelmat."
 
-#: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
 msgstr "Ei ohitusta"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Muodostelmissa olevat yksiköt pysyvät muodostelmissaan."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
@@ -4738,83 +4748,81 @@ msgid ""
 msgstr "Kuinka monta kertaa joudut vierittämään, kun haluat lisätä/vähentää eräkokoa 1:llä."
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr "Soihdun näkymisaika"
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr "Kuinka kauan minikartan soihdut näkyvät, sekunteina."
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Keskusteluilmoitus hyökkäyksestä"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Näytä keskusteluilmoitus, jos toinen pelaaja hyökkää kimppuusi."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Keskusteluilmoitus kunnianosoituksesta"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Näytä keskusteluilmoitus, jos liittolainen luovuttaa resursseja toiselle tiimin jäsenelle kunnianosoituksena, jos tiimit on lukittu, ja kaikki kunnianosoitukset katselutilassa."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Keskusteluilmoitus vaihtokaupasta"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Näytä chat-ilmoitus katsojille, kun pelaaja käy vaihtokauppaa resursseista."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Keskusteluilmoitus vaiheista"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Poista käytöstä"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Suoritettu"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Kaikki näytetään"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Näytä keskusteluilmoitus, jos sinä tai liittolainen olet aloittanut, keskeyttänyt tai päättänyt uuden vaiheen, sekä kaikkien pelaajien vaiheet katselutilassa."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Hyökkäyskantaman visualisaatio"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Näytä valittujen puolustusrakenteiden hyökkäyskantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Auran kantaman visualisaatio"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Näytä valittujen ykiköiden ja rakenteiden auran kantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Parannuskantaman visualisaatio"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Näytä valittujen yksiköiden parannuskantama (Voidaan myös näyttää/piilottaa pikanäppäimellä pelin aikana)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5089,8 +5097,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDIFRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "Alfa XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alfa XXV: Yaunā"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5600,9 +5608,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Tämä peli on vielä kehityksessä, Ominaisuuksia puuttuu ja siinä on ohjelmointivirheitä."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr "[imgleft=\"constructionIcon\"]Tämä peli on vielä kehitteillä. Saatat törmätä bugeihin, ja jotkin ominaisuudet eivät ole vielä niin valmiita kuin haluaisimme."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5612,9 +5620,15 @@ msgstr "[imgleft=\"iconLag\"]Pelin suorituskyky voi olla ongelmallinen etenkin s
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Muodostelmat ovat työn alla, mutta voit hallita muodostelmien muodostusta sekä hajottamista haluamallasi tavalla."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr "[imgleft=\"iconMap\"]0 A.D. on vapaa ohjelmisto: voit osallistua sen kehittämiseen."
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr "Jos haluat auttaa taiteen, äänen, pelattavuuden tai ohjelmoinnin kanssa, liity viralliselle foorumillemme."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5625,12 +5639,12 @@ msgid "Show this message in the future"
 msgstr "Näytä tämä viesti tulevaisuudessa"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Tiedetyt ongelmat (netti)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "Ok"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr "Virallinen foorumi (verkossa)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6238,13 +6252,33 @@ msgstr "Ota haltuun suuria alueita."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr "Voidaan rakentaa ystävälliselle tai neutraalille alueelle."
+msgstr "Voidaan rakentaa ystävälliselle tai puolueettomille alueelle."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
 msgstr "Kouluta kansalaisia: naiskansalaisia, jalkaväen kansalaissotilaita ja ratsuväen kansalaissotilaita."
+
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr "OLETUSMUODOSTELMA"
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr "Napsauta kuvaketta hiiren oikealla painikkeella asettaaksesi oletusmuodostelman: yksiköt, jotka käsketään kävelemään tai partioimaan, käyttävät sitä automaattisesti."
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr "Voidaan poistaa käytöstä valitsemalla oletusarvoksi \"ei muodostelmaa\"."
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr "\"Muodostelmien hallinta\" -asetuksen avulla voit valita, hajotetaanko muodostelmat muiden käskyjen kuin kävelyn ja partioimisen yhteydessä."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"

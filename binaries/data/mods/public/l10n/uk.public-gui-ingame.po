@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-13 10:24+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-16 09:18+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgid "Click to Resume Game"
 msgstr "Клацнути, щоб продовжити гру"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:559
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -884,7 +884,7 @@ msgstr "Дотримуйтесь інструкцій."
 msgid "Unknown Player"
 msgstr "Невідомий гравець"
 
-#: gui/session/minimap/MiniMapFlareButton.js:29
+#: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
 msgstr ""
 
@@ -1059,7 +1059,7 @@ msgstr "Вивести %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Клацнути один раз, щоб вивести одиницю. Клацнути, утримуючи Shift, щоб вивести всі одиниці цього типу."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:868
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Гравець: %(playername)s"
@@ -1088,16 +1088,20 @@ msgstr "Скасувати пакування"
 msgid "Cancel Unpacking"
 msgstr "Скасувати розпакування"
 
-#: gui/session/selection_panels.js:545
+#: gui/session/selection_panels.js:558
+msgid "The auto-queue will try to train this item later."
+msgstr ""
+
+#: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
 msgstr "Недостатня місткість населення:"
 
-#: gui/session/selection_panels.js:546
+#: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:733
+#: gui/session/selection_panels.js:759
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1106,49 +1110,49 @@ msgstr[1] "%(number)s об'єктів категорії %(class)s"
 msgstr[2] "%(number)s об'єктів категорії %(class)s"
 msgstr[3] "%(number)s об'єктів категорії %(class)s"
 
-#: gui/session/selection_panels.js:739
+#: gui/session/selection_panels.js:765
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Залишилось: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:740
+#: gui/session/selection_panels.js:766
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:818
 msgid "Cannot research while upgrading."
 msgstr "Не можливо провести дослідження під час удосконалення."
 
-#: gui/session/selection_panels.js:1017
+#: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
 msgstr "Не можливо провести тренування під час удосконалення."
 
-#: gui/session/selection_panels.js:1086
+#: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Вдосконалення до %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1092
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Вдосконалення до %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1100
+#: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Вдосконалення до %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1105
+#: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Вдосконалення до %(primaryName)s."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
 msgstr "Скасувати вдосконалення"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1183
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1346,8 +1350,8 @@ msgid ""
 msgstr "Клацнути, щоб вибрати згруповані підрозділи, подвійно клацнути, щоб сфокусуватися на згрупованих підрозділах та клацнути правою кнопкою миші, щоб розформовувати групу."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Y——"
-msgstr "Alpha XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

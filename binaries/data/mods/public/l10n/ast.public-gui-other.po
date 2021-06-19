@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 01:13+0000\n"
+"POT-Creation-Date: 2021-06-14 07:08+0000\n"
+"PO-Revision-Date: 2021-06-16 22:29+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "CPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:116
+#: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -3888,36 +3888,36 @@ msgid "Naming of entities."
 msgstr "Denomación."
 
 #: gui/options/options.json[0].options[9].list[0].label
-msgid "Specific primary."
-msgstr "Principal particular."
+msgid "Specific names first"
+msgstr "Nomes propios enriba"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
-msgid "Show specific names as primary and generic names as secondary."
-msgstr "Amosar el nome particular como'l principal y el nome xeneral como'l secundariu."
+msgid "Display specific names before generic names."
+msgstr "Amosar los nomes propios enriba de los nomes xenerales."
 
 #: gui/options/options.json[0].options[9].list[1].label
-msgid "Generic primary."
-msgstr "Principal xeneral."
+msgid "Generic names first"
+msgstr "Nomes xenerales enriba"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
-msgid "Show generic names as primary and specific names as secondary."
-msgstr "Amosar el nome xeneral como'l principal y el nome particular como'l secundariu."
+msgid "Display generic names before specific names."
+msgstr "Amosar los nomes xenerales enriba de los nomes propios."
 
 #: gui/options/options.json[0].options[9].list[2].label
-msgid "Only Specific."
-msgstr "Namái'l particular."
+msgid "Only specific names"
+msgstr "Nomes propios namái"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
-msgid "Show only specific names for units."
-msgstr "Amosar namái'l nome particular de les unidaes."
+msgid "Display only specific names for entities."
+msgstr "Amosar namái los nomes propios de los entes."
 
 #: gui/options/options.json[0].options[9].list[3].label
-msgid "Only Generic."
-msgstr "Namái'l xeneral."
+msgid "Only generic names"
+msgstr "Nomes xenerales namái"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
-msgid "Show only generic names for units."
-msgstr "Amosar namái'l nome xeneral de les unidaes."
+msgid "Display only generic names for entities."
+msgstr "Amosar namái los nomes xenerales de los entes."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4553,139 +4553,119 @@ msgid ""
 msgstr "L'atayu de tecláu «unidaes mancaes» tien les unidaes esbillaes por mancaes si'l so porcentaxe de salú caye embaxo d'esti númberu.  "
 
 #: gui/options/options.json[6].options[10].label
+msgid "Heal range visualization"
+msgstr "Visualización del algame curatible"
+
+#: gui/options/options.json[6].options[10].tooltip
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Amosar l'algame curatible de les unidaes esbillaes. (Tamién puedes amosalu col atayu al xugar)."
+
+#: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Iconos de rangu enriba barra d'estáu"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Amosar iconos de rangu enriba barres d'estáu."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
 msgstr "Barra d'estáu d'esperiencia"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Amosar una barra d'estáu d'esperiencia enriba de cada unidá esbillada."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Conseyos detallaos"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Amosar conseyos detallaos pa unidaes allistables en construcciones que producen unidaes."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Ordenar conseyu de recursos & población"
 
-#: gui/options/options.json[6].options[13].list[0].label
+#: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Desordenaos"
 
-#: gui/options/options.json[6].options[13].list[1].label
+#: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Ascendentes"
 
-#: gui/options/options.json[6].options[13].list[2].label
+#: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
 msgstr "Descendentes"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Ordenar por valor & dinámicamente a xugadores nel conseyu de recursos & población."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Colores diplomátiques: yo"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Color de les unidaes tos cuando colores diplomátiques tán activaes."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Colores diplomátiques: aliáu"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Color d'aliaos cuando colores diplomátiques tán activaes."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Colores diplomátiques: neutral"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Color de xugadores neutrales cuando colores diplomátiques tán activaes."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Colores diplomátiques: enemigu"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Color d'enemigos cuando colores diplomátiques tán activaes."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
 msgstr "Alliniar"
 
-#: gui/options/options.json[6].options[18].list[0].label
+#: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Atayu p'activar l'alliniadura"
 
-#: gui/options/options.json[6].options[18].list[0].tooltip
+#: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Les construcciones nueves allíniense con construcciones cercanes al primir l'atayu de tecláu."
 
-#: gui/options/options.json[6].options[18].list[1].label
+#: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Atayu pa desactivar l'alliniadura"
 
-#: gui/options/options.json[6].options[18].list[1].tooltip
+#: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Les construcciones nueves allíniense con construcciones cercanes sacante que primas l'atayu de tecláu."
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Esta opción permítete alliniar construcciones nueves con construcciones cercanes."
-
-#: gui/options/options.json[6].options[19].label
-msgid "Control group membership"
-msgstr "Venceyamientu a grupos de control"
-
-#: gui/options/options.json[6].options[19].list[0].label
-msgid "Single"
-msgstr "Simple"
-
-#: gui/options/options.json[6].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Al amestar a un grupu control una Unidá o Construcción, esta xébrase de los demás grupos de control. Usa dicha opción si quies que los grupos de control representen exércitos estremaos."
-
-#: gui/options/options.json[6].options[19].list[1].label
-msgid "Multiple"
-msgstr "Múltiple"
-
-#: gui/options/options.json[6].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Les unidaes & construcciones puen formar parte de dellos grupos de control. Val pa tener un grupu de control pa tol exércitu & otros grupos de control pa continxentes."
-
-#: gui/options/options.json[6].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Decidi si les unidaes puen formar parte de dellos grupos de control."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4696,30 +4676,60 @@ msgid "Number of units trained per batch by default."
 msgstr "Cuantes unidaes s'allisten per allistamientu por defeutu."
 
 #: gui/options/options.json[6].options[20].label
-msgid "Formation control"
-msgstr "Control de formaciones"
+msgid "Control group membership"
+msgstr "Venceyamientu a grupos de control"
 
 #: gui/options/options.json[6].options[20].list[0].label
-msgid "Walk/Patrol Only"
-msgstr "Namái al marchar, roldar"
+msgid "Single"
+msgstr "Simple"
 
 #: gui/options/options.json[6].options[20].list[0].tooltip
-msgid "Other orders will disband existing formations."
-msgstr "Cualquier otra orde va romper la formación."
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Al amestar a un grupu control una Unidá o Construcción, esta xébrase de los demás grupos de control. Usa dicha opción si quies que los grupos de control representen exércitos estremaos."
 
 #: gui/options/options.json[6].options[20].list[1].label
-msgid "No Override"
-msgstr "Constante"
+msgid "Multiple"
+msgstr "Múltiple"
 
 #: gui/options/options.json[6].options[20].list[1].tooltip
-msgid "Units in formations stay in formations."
-msgstr "Les unidaes formaes caltienen la formación."
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Les unidaes & construcciones puen formar parte de dellos grupos de control. Val pa tener un grupu de control pa tol exércitu & otros grupos de control pa continxentes."
 
 #: gui/options/options.json[6].options[20].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Decidi si les unidaes puen formar parte de dellos grupos de control."
+
+#: gui/options/options.json[6].options[21].label
+msgid "Formation control"
+msgstr "Control formacional"
+
+#: gui/options/options.json[6].options[21].list[0].label
+msgid "Walk/Patrol Only"
+msgstr "Marchar o roldar namái"
+
+#: gui/options/options.json[6].options[21].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr "Les otres órdenes van romper la formación."
+
+#: gui/options/options.json[6].options[21].list[1].label
+msgid "No override"
+msgstr "Ensin romper"
+
+#: gui/options/options.json[6].options[21].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr "Les unidaes caltienen la formación."
+
+#: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr "Determina si los soldaos caltienen la formación siempre que nun la camudes o solo si-yos ordenes «marchar» o «roldar»."
+msgstr "Determina si los soldaos han siguir en formación o formase solo al «marchar» o «roldar»."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -4731,83 +4741,81 @@ msgid ""
 msgstr "Cuantes vegaes hai que mover la rueda del mur p'aumentar/amenorgar en 1 el tamañu del allistamientu."
 
 #: gui/options/options.json[6].options[3].label
+msgid "Flare display duration"
+msgstr "Duranza les señes"
+
+#: gui/options/options.json[6].options[3].tooltip
+msgid "How long the flare markers on the minimap are displayed in seconds."
+msgstr "El tiempu en segundos que les señes amuésense en mapiquín."
+
+#: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
 msgstr "Avisu d'ataque"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Amosar un avisu si daquién t'ataca."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Avisu d'apurrida"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Amosar un avisu si dalgún miembru del equipu apurre recursos a otru al tar los equipos fixos y toles apurríes en mou espeutador."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
 msgstr "Avisu de troquéu"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Amosar un avisu a los espeutadores al entrocar daquién recursos."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
 msgstr "Avisu de fas"
 
-#: gui/options/options.json[6].options[6].list[0].label
+#: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
 msgstr "Desactivar"
 
-#: gui/options/options.json[6].options[6].list[1].label
+#: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
 msgstr "Completóse"
 
-#: gui/options/options.json[6].options[6].list[2].label
+#: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Too amosao"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Amosar un avisu si dalgún aliáu entama, apara o completa un avance de fas al tar les fases de tolos xugadores en mou espeutador."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
 msgstr "Visualización del algame ofensible"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Amosar l'algame ofensible de les construcciones esbillaes. (Tamién puedes amosalu col atayu al xugar)."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
 msgstr "Visualización del algame aural"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Amosar l'algame aural de les unidaes o construcciones esbillaes. (Tamién puedes amosalu col atayu al xugar)."
-
-#: gui/options/options.json[6].options[9].label
-msgid "Heal range visualization"
-msgstr "Visualización del algame curatible"
-
-#: gui/options/options.json[6].options[9].tooltip
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with "
-"the hotkey during a game)."
-msgstr "Amosar l'algame curatible de les unidaes esbillaes. (Tamién puedes amosalu col atayu al xugar)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5082,8 +5090,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Y——"
-msgstr "Alfa XXV: Y——"
+msgid "Alpha XXV: Yaunā"
+msgstr "Alfa XXV: Yaunā"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5593,9 +5601,9 @@ msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]El xuegu sigue en desendolcu, asina qu'escarez d'elementos y contién fallos."
+"[imgleft=\"constructionIcon\"]This game is still in development. You may "
+"encounter bugs, and some features are not as fleshed out as we would like."
+msgstr "[imgleft=\"constructionIcon\"]Esti xuegu sigue en desendolcu. Ye posible qu'atopes fallos, y hai estremaos aspeutos que nun tán tolo pulío que quixéremos."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5605,9 +5613,15 @@ msgstr "[imgleft=\"iconLag\"]Pue haber problemes de rindimientu, sobre manera no
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Les formaciones aínda tán n'ellaboración, masque pues activales o desactivales como quieras."
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"development."
+msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programa llibre: puedes participar nel so desendolcu."
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"If you want to help with art, sound, gameplay or programming, make sure to "
+"join our official forum."
+msgstr "Si te lleva xera l'arte, el soníu, el diseñu o la programación, nun duldes en facete miembru del foru oficial."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5618,12 +5632,12 @@ msgid "Show this message in the future"
 msgstr "Volver amosar esti mensaxe"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Problemes conocíos (web)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
 msgstr "Aceutar"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "Official Forum (web)"
+msgstr "Foru oficial (na Rede)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6074,7 +6088,7 @@ msgstr "Les unidaes aduechen guarecíes nel edificiu."
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Llevántalu ceo p'allistar conscritos de la que cambies de fas."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6088,13 +6102,13 @@ msgstr "BIOMES"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Los biomes puedes usalos en dellos mapes al debalu. Determinen la estaya del mundu que'l mapa representa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Inflúin nel aspeutu de los mapes y tamién na cantidá de recursos que tienen disponibles."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6102,15 +6116,15 @@ msgstr "CANES DE GUERRA"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "Perru que los britanos pueden criar na corte."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Tien pocos puntos de vida, pero cuerre rápido y ataca ensin mieu."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Val pa encontar les tropes o pa faer incursiones."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6138,15 +6152,15 @@ msgstr "CASTRU PORTUARIU CARTAXINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Puertu militar que ye esclusivu de los cartaxineses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Meti barcos nelli pa dir iguándolos pali que pali."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Ye muncho más fuerte qu'otros cais, pero tamién más caru."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6173,11 +6187,11 @@ msgstr "CORTE"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Allista unidaes d'a caballu y desendolca téuniques ecuestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "Les unidaes aduechen guarecíes na corte."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6205,17 +6219,17 @@ msgstr "MURALLES"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Muralles macices de piedra que sirven pa protexer la ciudá."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Al ocupar les torrines unidaes tiradores, estes ganen más armadura y pueden tirar al enemigu."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Esbarrúmbenles fácilmente catapultes, arietes, elefantes y otres armes d'asediu."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6239,24 +6253,44 @@ msgid ""
 "citizen-soldiers."
 msgstr "Allista ciudadanos: ciudadanes, conscritos d'a pie y conscritos d'a caballu."
 
+#: gui/text/tips/default_formation.txt:1
+msgid "DEFAULT FORMATION"
+msgstr "FORMACIÓN POR DEFEUTU"
+
+#: gui/text/tips/default_formation.txt:2
+msgid ""
+"Right-click an icon to set the default formation: units that are ordered to "
+"walk or patrol will automatically use it."
+msgstr "Col botón derechu del mur, calca nun iconu p'afitar la formación por defeutu: les unidaes asúmenla automáticamente al marchar o roldar."
+
+#: gui/text/tips/default_formation.txt:3
+msgid "Can be de-activated by choosing “no formation” as the default."
+msgstr "Puedes desactivala escoyendo «nenguna» como'l valor por defeutu."
+
+#: gui/text/tips/default_formation.txt:4
+msgid ""
+"The “Formation control” option lets you choose whether formations disband "
+"for orders other than walking or patrolling."
+msgstr "El control formacional déxate escoyer si los soldaos han caltenese en formación inda que nun tean marchando o roldando."
+
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
 msgstr "TORRES DE DEFENSA"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Torres fortificaes que sirven pa defender una posición."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Tienen muncha visión y tiren fleches al enemigu."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr ""
+msgstr "Puedes guarecer más infantería nelles pa tirar más fleches."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6265,7 +6299,7 @@ msgstr "CORTE DEL ELEFANTE"
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr ""
+msgstr "Esta corte sirve a delles civilizaciones p'allistar unidaes elefantines."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6273,13 +6307,13 @@ msgstr "EMBAXAES Y CAMPAMENTOS DE MERCENARIOS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Construcciones especiales que te dexen contratar mercenarios."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr ""
+msgstr "Los mercenarios nun llogren recursos y namái cuesten metal, pero son fuertes y aguerríos."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6320,7 +6354,7 @@ msgstr "FORMACIONES"
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Usa formaciones pa caltener l'orde ente les tos files al batallar."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6330,7 +6364,7 @@ msgstr "FORTALEZA"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Polo xeneral, ye la mayor fortificación de la civilización y el llugar onde allistar héroes."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6411,7 +6445,7 @@ msgstr "BRULOTE ÍBERU"
 msgid ""
 "The special Iberian fireship is very effective against other ships and "
 "buildings, but steadily loses health."
-msgstr ""
+msgstr "El brulote íberu funde barcos y edificios con facilidá, pero a costa de dir perdiendo puntos de vida."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6421,21 +6455,21 @@ msgstr "FARU"
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr ""
+msgstr "Construcción ptolemaica que vixila les orielles y muncha de la redolada."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "SEÑES"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr ""
+msgstr "Fai señes p'avisar al equipu d'ónde asoceden acontecimientos importantes."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr ""
+msgstr "Van ver la seña en mapiquín."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6443,18 +6477,18 @@ msgstr "PIRÁMIDES DE MEDEWI"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Construcciones esclusives de los cuxinos."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "Les pirámides menores entaínen el llogru de recursos a obreros averaos."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "Les pirámides mayores aumenten la marcialidá de soldaos averaos."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6706,7 +6740,7 @@ msgstr "TEATRU"
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Construcción helena qu'aumenta'l tamañu del territoriu mentanto lu caltengas nel to poder."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
@@ -6715,13 +6749,13 @@ msgstr "AYALGUES"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Cofres, naufraxos y nieros de recursos afayables nel interior y na mariña."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Son recursos de baldre, conque esplora colos güeyos abiertos."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
