@@ -4,6 +4,7 @@
 # Translators:
 # Adhika Setya Pramudita <hello@adhikasetyap.me>, 2016
 # Ahmad Rifa'i Faiz <arf.faiz33@gmail.com>, 2020
+# azayrahmad <azayrahmad@gmail.com>, 2021
 # Dito Kurnia Pratama <ditokpl@gmail.com>, 2018
 # Ilham Nur Pratama <ilham151096@gmail.com>, 2017
 # Joshua Randiny <jrandiny2@gmail.com>, 2016
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-17 10:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-20 06:58+0000\n"
+"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,32 +32,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "Kecepatan gulir bertambah menjadi %.1f"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "Kecepatan gulir berkurang menjadi %.1f"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Kecepatan putar bertambah menjadi X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Kecepatan putar berkurang menjadi X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "Kecepatan pembesaran bertambah menjadi %.1f"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "Kecepatan pembesaran berkurang menjadi %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -206,7 +207,7 @@ msgstr "Nama pengguna sudah ada"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "Tidak dapat menulis mod.json external untuk mod terkompresi '%s'. Mod harus dipasang ulang."
 
 #: ps/ModIo.cpp:263
 #, c-format

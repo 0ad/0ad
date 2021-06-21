@@ -5,7 +5,7 @@
 # Translators:
 # Andreas I <andreasi@tutanota.com>, 2019
 # Anique van Berne <avanberne@gmail.com>, 2016
-# Bart <b.anthonisse@gmail.com>, 2020-2021
+# rollieoo, 2020-2021
 # bb <b.jansen5@students.uu.nl>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-02 15:42+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"PO-Revision-Date: 2021-06-18 20:59+0000\n"
+"Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +54,7 @@ msgstr "Katafalk"
 
 #: simulation/templates/template_unit_catafalque.xml:21
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "Een katafalk die de overblijfselen bewaard van een groot leider."
+msgstr "Een katafalk die de overblijfselen bevat van een groot leider."
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -499,7 +499,7 @@ msgstr "Olifantenboogschutter"
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
-msgstr "Dood om vlees te verzamelen als voedsel."
+msgstr "Dood om vlees te verzamelen voor voedsel."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
@@ -617,7 +617,7 @@ msgstr "Mêlee Infanterie"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
-msgstr "infanterie knotsvechter"
+msgstr "Infanterie knotsvechter"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
@@ -706,7 +706,7 @@ msgstr "Vang vis in het water voor voedsel."
 
 #: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "FishingBoat"
-msgstr "vissersboot"
+msgstr "Vissersboot"
 
 #: simulation/templates/template_unit_ship_merchant.xml:17
 msgid "Merchantman"
@@ -716,7 +716,7 @@ msgstr "Koopman"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Handel tussen havens. Beman met een handelaar voor extra profijt (+20% per handelaar). Gebruik dit schip om zeeschatten te verzamelen."
+msgstr "Handel tussen havens. Beman met een handelaar voor extra winst (+20% per handelaar). Gebruik dit schip om zeeschatten te verzamelen."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -742,7 +742,7 @@ msgstr "Zwaar oorlogsschip"
 #: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
-msgstr "Quinquereme"
+msgstr "Quinquereem"
 
 #: simulation/templates/template_unit_ship_trireme.xml:44
 msgid "Medium Warship"
@@ -794,7 +794,7 @@ msgstr "Ram"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"
-msgstr "steenslingeraar"
+msgstr "Steenslingeraar"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:46
 msgid "Siege Catapult"
@@ -1535,7 +1535,7 @@ msgstr "Sǝḫīr Ḥanīt"
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:11
 msgid "Gallic Mercenary Swordsman"
-msgstr "Gallische huurlingenzwaardvechter"
+msgstr "Gallische huurlingzwaardvechter"
 
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:14
 msgid "Seḫīr Ḥerev"
@@ -1562,7 +1562,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Handel tussen dokken. Beman met een handelaar voor extra profijt (+20% per handelaar). Gebruik dit schip om maritieme schatten te verzamelen. Carthagers hebben +25% maritieme handelsbonus."
+msgstr "Handel tussen dokken. Beman met een handelaar voor extra winst (+20% per handelaar). Gebruik dit schip om maritieme schatten te verzamelen. Carthagers hebben +25% maritieme handelsbonus."
 
 #: simulation/templates/units/cart/ship_quinquereme.xml:10
 msgid "Ḥameš-Mašōt"
@@ -1952,7 +1952,7 @@ msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr "Financiële Reorganisatie: geallieerd met Rome reorganiseerde Filips de interne zaken en financiën van het land, met als nalatenschap: heropende mijnen en een nieuwe munt. Verkrijg een gestage winst aan metaal."
+msgstr "Financiële Reorganisatie: geallieerd met Rome reorganiseerde Philippus de interne zaken en financiën van het land, met als nalatenschap: heropende mijnen en een nieuwe munt. Verkrijg een gestage winst aan metaal."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
@@ -2005,7 +2005,7 @@ msgstr "Alexander de Grote"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexandros ho Megas"
-msgstr "Alexander de Grote"
+msgstr "Alexandros ho Megas"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Counters: 1.2× vs Heroes."
@@ -2025,7 +2025,7 @@ msgstr "Demetrius I Stedenbelegeraar"
 
 #: simulation/templates/units/mace/hero_demetrius_i.xml:15
 msgid "Dēmētrios Poliorkētēs"
-msgstr "Demetrius Stedenbelegeraar"
+msgstr "Dēmētrios Poliorkētēs"
 
 #: simulation/templates/units/mace/hero_philip_ii.xml:9
 #: simulation/templates/units/mace/hero_philip_ii_pike.xml:9
@@ -2035,7 +2035,7 @@ msgstr "Philippus II van Macedonië"
 #: simulation/templates/units/mace/hero_philip_ii.xml:10
 #: simulation/templates/units/mace/hero_philip_ii_pike.xml:10
 msgid "Philippos B' ho Makedōn"
-msgstr "Philippus II van Macedoniê"
+msgstr "Philippos B' ho Makedōn"
 
 #: simulation/templates/units/mace/hero_pyrrhus_i.xml:9
 msgid "Pyrrhus I of Epirus"
@@ -2043,7 +2043,7 @@ msgstr "Pyrrhus I van Epirus"
 
 #: simulation/templates/units/mace/hero_pyrrhus_i.xml:10
 msgid "Pyrrhos ho Epeiros"
-msgstr "Pyrrhus I van Epirus"
+msgstr "Pyrrhos ho Epeiros"
 
 #: simulation/templates/units/mace/infantry_javelineer_b.xml:7
 msgid "Agrianian Peltast"
@@ -2055,7 +2055,7 @@ msgstr "Peltastḗs Agrías"
 
 #: simulation/templates/units/mace/infantry_pikeman_b.xml:7
 msgid "Foot Companion"
-msgstr "Ondersteuning te voet"
+msgstr "Konings' metgezel"
 
 #: simulation/templates/units/mace/infantry_pikeman_b.xml:8
 msgid "Pezétairos"
@@ -2156,7 +2156,7 @@ msgstr "Vachii Gaja"
 #: simulation/templates/units/maur/hero_ashoka.xml:12
 #: simulation/templates/units/maur/hero_ashoka_infantry.xml:8
 msgid "Ashoka the Great"
-msgstr "Ashoka de Grote"
+msgstr "Asoka de Grote"
 
 #: simulation/templates/units/maur/hero_ashoka.xml:13
 #: simulation/templates/units/maur/hero_ashoka_infantry.xml:9
@@ -2167,7 +2167,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr "Speciaal: \"Eer aan Ashoka\" - Pilaren ter ere van Ashoka die enkel tijdens zijn leven kunnen gebouwd worden."
+msgstr "Speciaal: \"Edicten van Asoka\" - Pilaren ter ere van Asoka die enkel tijdens zijn leven gebouwd kunnen worden."
 
 #: simulation/templates/units/maur/hero_chanakya.xml:9
 msgid "Acharya Chanakya"
@@ -2303,7 +2303,7 @@ msgstr "Artaxšaçā"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:7
 msgid "Parthian Horse Archer"
-msgstr "Parthische ruiter-boogschutter"
+msgstr "Parthische boogschutter te paard"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:8
 msgid "Asabāra Parθava"
@@ -2438,7 +2438,7 @@ msgstr "Peltastes Kardakes"
 
 #: simulation/templates/units/pers/ship_bireme.xml:10
 msgid "Cypriot Galley"
-msgstr "Cypriotisch gallei"
+msgstr "Cypriotische galei"
 
 #: simulation/templates/units/pers/ship_bireme.xml:11
 msgid "Hamaraniyanava"
@@ -2458,7 +2458,7 @@ msgstr "Nauš Yauna"
 
 #: simulation/templates/units/pers/ship_trireme.xml:10
 msgid "Phoenician Trireme"
-msgstr "Fenicisch trireem"
+msgstr "Fenicische trireme"
 
 #: simulation/templates/units/pers/ship_trireme.xml:11
 msgid "Hamaraniyanava Vazarka"
@@ -2517,7 +2517,7 @@ msgstr "Een Amerikaans gevechtsvliegtuig uit WOII."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr "Ptolemy III Euergetes (Benefactor)"
+msgstr "Ptolemaeus III Euergetes (Benefactor)"
 
 #: simulation/templates/units/ptol/cavalry_archer_b.xml:17
 msgid "Nabataean Camel Archer"
@@ -2529,7 +2529,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 
 #: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:6
 msgid "Tarantine Settler Cavalry"
-msgstr "Tarantaanse immigratiecavalerie"
+msgstr "Tarantaanse immigranten cavalerie"
 
 #: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:7
 msgid "Hippeús Tarantînos"
@@ -2537,7 +2537,7 @@ msgstr "Hippeús Tarantînos"
 
 #: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
-msgstr "Macedonische immigratiecavalerie"
+msgstr "Macedonische immigranten cavalerie"
 
 #: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
@@ -2581,7 +2581,7 @@ msgstr "Cleopatra VII"
 
 #: simulation/templates/units/ptol/hero_cleopatra_vii.xml:12
 msgid "Kleopatra H' Philopatōr"
-msgstr "Cleopatra VII Philopator"
+msgstr "Kleopatra H' Philopatōr"
 
 #: simulation/templates/units/ptol/hero_ptolemy_i.xml:9
 msgid "Ptolemy I"
@@ -2589,7 +2589,7 @@ msgstr "Ptolemaeus I Soter"
 
 #: simulation/templates/units/ptol/hero_ptolemy_i.xml:10
 msgid "Ptolemaios A' Sōter"
-msgstr "Ptolemaeus I Soter"
+msgstr "Ptolemaios A' Sōter"
 
 #: simulation/templates/units/ptol/hero_ptolemy_iv.xml:9
 msgid "Ptolemy IV"
@@ -2597,7 +2597,7 @@ msgstr "Ptolemaeus IV Philopator"
 
 #: simulation/templates/units/ptol/hero_ptolemy_iv.xml:10
 msgid "Ptolemaios D' Philopatōr"
-msgstr "Ptolemaeus IV Philopator"
+msgstr "Ptolemaios D' Philopatōr"
 
 #: simulation/templates/units/ptol/infantry_javelineer_b.xml:12
 msgid "Mercenary Thureos Skirmisher"
@@ -2711,7 +2711,7 @@ msgstr "Murmillo"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
 msgid "Italic Heavy Infantry"
-msgstr "Italiaanse zware cavalerie"
+msgstr "Italische zware cavalerie"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
 msgid "Extrāōrdinārius"
@@ -2863,7 +2863,7 @@ msgstr "Antiochus I Soter (Redder)"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr "Dahae ruiter-boogschutter"
+msgstr "Dahae boogschutter te paard"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
@@ -2935,7 +2935,7 @@ msgstr "Antiochus IV Epiphanes"
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:10
 msgid "Antiokhos D' Epiphanēs"
-msgstr "Antiochus IV Epiphanes"
+msgstr "Antiokhos D' Epiphanēs"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:9
 msgid "Seleucus I"
@@ -2943,7 +2943,7 @@ msgstr "Seleucus I Nicator"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:10
 msgid "Seleukos A' Nikatōr"
-msgstr "Seleucus I Nicator"
+msgstr "Seleukos A' Nikatōr"
 
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:7
 msgid "Syrian Archer"
@@ -2963,7 +2963,7 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:7
 msgid "Phalangite"
-msgstr "Phalangite"
+msgstr "Falanxsoldaat"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:8
 msgid "Phalangitēs"
@@ -3068,7 +3068,7 @@ msgstr "Leonidas I"
 
 #: simulation/templates/units/spart/hero_leonidas.xml:10
 msgid "Leōnidēs"
-msgstr "Leonidas"
+msgstr "Leōnidēs"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:13
 msgid "Helot Skirmisher"

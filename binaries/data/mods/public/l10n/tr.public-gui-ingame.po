@@ -4,7 +4,9 @@
 # project.
 # Translators:
 # Abdullah Ilgaz <abdullahilgaz@live.com>, 2013-2014
+# Ahmet Elgun <ahmetelgn@gmail.com>, 2021
 # ali topçu <ali134636@gmail.com>, 2018
+# Barış Aydın <barisn0on@gmail.com>, 2021
 # Berke Güvenç <ybguvenc@yandex.com>, 2016
 # Cem Aktas <cemwstone@gmail.com>, 2015,2017,2021
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
@@ -21,7 +23,7 @@
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
 # Merve BİÇKES <dark_angel_369_06@hotmail.com>, 2014
 # Mete Han <scorpion000000@hotmail.com>, 2013
-# Muha Aliss <muhaaliss@gmail.com>, 2017
+# Muha Aliss <muhaaliss@gmail.com>, 2017,2021
 # Muhammed Aydın <mma-95@hotmail.com>, 2013
 # Necibe E <necibeerdal55@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
@@ -47,8 +49,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-19 22:33+0000\n"
+"Last-Translator: Barış Aydın <barisn0on@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,16 +60,16 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Oyun hızı seç"
+msgstr "Oyun hızını seç"
 
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Bu menüyü sabitlemek için %(hotkey)s tuşuna basın."
+msgstr "Bu menüyü açıp kapatmak için %(hotkey)s tuşuna basın."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "Sıcak Sohbet"
+msgstr "Sohbet"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -1105,7 +1107,7 @@ msgstr "Paketi Açmayı Durdur"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Otomatik sıra, bu öğeyi daha sonra eğitecektir."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1350,7 +1352,7 @@ msgstr "Gruplanmış birimlere tıklayın, çift tıklayarak gruplanmış biriml
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Yaunā"
-msgstr ""
+msgstr "Alfa XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

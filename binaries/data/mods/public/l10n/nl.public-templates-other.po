@@ -4,8 +4,8 @@
 # project.
 # Translators:
 # annihilator solar <incoming@upcmail.nl>, 2019
-# Bart <b.anthonisse@gmail.com>, 2020
-# Bart <b.anthonisse@gmail.com>, 2020-2021
+# rollieoo, 2020
+# rollieoo, 2020-2021
 # bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-29 14:50+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"PO-Revision-Date: 2021-06-19 21:04+0000\n"
+"Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,7 @@ msgstr "Deze eenheid staat in brand."
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr "Brandt"
+msgstr "Brandend"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
@@ -333,7 +333,7 @@ msgstr "Cervus elaphus"
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr "Slagtanden"
+msgstr "Hoektanden"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:24
 msgid "Mastiff"
@@ -361,7 +361,7 @@ msgstr "Equus africanus asinus"
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr "Boomstam"
+msgstr "Slurf"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
@@ -500,7 +500,7 @@ msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
-msgstr "Brandend varken"
+msgstr "Vuurvarken"
 
 #: simulation/templates/gaia/fauna_piglet.xml:11
 msgid "Piglet"
@@ -713,7 +713,7 @@ msgstr "Half-begraven vaten"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "Perzische voedselwinkel"
+msgstr "Perzische voedselvoorraden"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
@@ -1010,13 +1010,13 @@ msgstr "Handelspost"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Wordt door een 10-bev huis vervangen voor beschavingen die dergelijke huizen hebben. Wordt verwijderd voor andere beschavingen."
+msgstr "Wordt door een 10-persoons huis vervangen bij beschavingen die dergelijke huizen hebben. Wordt verwijderd bij andere beschavingen."
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Wordt door een 5-bev huis vervangen voor beschavingen die dergelijke huizen hebben. Wordt verwijderd voor andere beschavingen."
+msgstr "Wordt door een 5-persoons huis vervangen bij beschavingen die dergelijke huizen hebben. Wordt verwijderd bij andere beschavingen."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1033,7 +1033,7 @@ msgstr "Aanvalslijn"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Benodigd ten minste 4 Soldaten of Belegeringswapenen."
+msgstr "Ten minste 4 Soldaten of Belegeringswerktuigen vereist."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1049,7 +1049,7 @@ msgstr "Open kolom"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Benodigd ten minste 8 Soldaten of Belegeringswapenen."
+msgstr "Ten minste 8 Soldaten of Belegeringswerktuigen vereist."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1069,7 +1069,7 @@ msgstr "Geen"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Slechts Infanterie Hoplieten, ten minste 10 benodigd."
+msgstr "Alleen voor Infanterie Hoplieten, ten minste 10 benodigd."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1081,7 +1081,7 @@ msgstr "Verspreiden"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr "Slechts Afstandseenheden, ten minste 2 benodigd."
+msgstr "Alleen voor afstandseenheden, ten minste 2 benodigd."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1089,7 +1089,7 @@ msgstr "Schermutseling"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Slechts Infanterie Piekeniers, ten minste 16 benodigd."
+msgstr "Alleen voor Infanterie Piekeniers, ten minste 16 benodigd."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1101,7 +1101,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Slechts Ruiters, ten minste 6 benodigd."
+msgstr "Alleen voor cavalerie, ten minste 6 benodigd."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

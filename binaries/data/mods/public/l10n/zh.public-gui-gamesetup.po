@@ -51,7 +51,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-15 08:09+0000\n"
+"PO-Revision-Date: 2021-06-18 09:59+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +288,7 @@ msgstr "游牧"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "在游牧模式下，玩家从少数单位开局并需要找到一个合适的地方来建造他们的城市。 建议停战。"
+msgstr "游牧模式下，玩家开局仅有少量单位，需要找到一个合适的地方来建造城市。 建议设置停战期。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -425,7 +425,7 @@ msgstr "选择地图"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
 msgid "Select a map to play on."
-msgstr "选择一个地图来开始游戏."
+msgstr "选择一张地图，开始游戏。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
 msgctxt "map selection"
@@ -442,7 +442,7 @@ msgstr "地图尺寸"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:42
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "选择地图大小. (大的地图可能会影响性能)"
+msgstr "选择地图大小 (大地图可能会影响性能)。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
@@ -450,7 +450,7 @@ msgstr "地图类型"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:68
 msgid "Select a map type."
-msgstr "选择一个地图类型."
+msgstr "选择一个地图类型。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
@@ -496,7 +496,7 @@ msgstr "初始资源数%(resources)s"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "每一位玩家"
+msgstr "每一名玩家"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
@@ -541,7 +541,7 @@ msgstr "警告：到达人口上限%(popCap)s时，可能会出现性能问题�
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
-msgstr "停火"
+msgstr "停战期"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
@@ -550,7 +550,7 @@ msgstr "在没有攻击时设置时间是可能的。"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr "无停火"
+msgstr "无停战期"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:44
 #, javascript-format

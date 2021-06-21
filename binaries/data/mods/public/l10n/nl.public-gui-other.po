@@ -5,8 +5,8 @@
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
 # annihilator solar <incoming@upcmail.nl>, 2019
-# Bart <b.anthonisse@gmail.com>, 2020
-# Bart <b.anthonisse@gmail.com>, 2020-2021
+# rollieoo, 2020
+# rollieoo, 2020-2021
 # Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
 # bb <b.jansen5@students.uu.nl>, 2019-2020
@@ -29,6 +29,7 @@
 # niektb <niektb95@gmail.com>, 2015-2016
 # Piers T <pierstitus@gmail.com>, 2019
 # Reginas - <reginas@hotmail.nl>, 2016
+# rollieoo, 2021
 # Ruben De Smet <ruben.de.smet@telenet.be>, 2015
 # Sam Crauwels <sam.crauwels@gmail.com>, 2018
 # Sander Bol <k.ander@gmail.com>, 2017
@@ -41,8 +42,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-15 14:47+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"PO-Revision-Date: 2021-06-20 15:26+0000\n"
+"Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,7 +206,7 @@ msgstr "Eindeloos Spel"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Geen winnaar zal worden uitgeroepen, ook als iedereen verslagen is."
+msgstr "Er zal geen winnaar worden uitgeroepen, ook wanneer iedereen verslagen is."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -325,7 +326,7 @@ msgstr "Willekeurige bioom"
 
 #: gui/common/gamedescription.js:323
 msgid "Randomly select a biome from the list."
-msgstr "Kies een bioom willekeurig van de lijst."
+msgstr "Uit de lijst wordt een willekeurige bioom gekozen."
 
 #: gui/common/gamedescription.js:338
 msgid "Nomad Mode"
@@ -333,7 +334,7 @@ msgstr "Nomade Modus"
 
 #: gui/common/gamedescription.js:338
 msgid "Civic Centers"
-msgstr "Beschavingcentrums"
+msgstr "Beschavingcentra"
 
 #: gui/common/gamedescription.js:341
 msgid ""
@@ -402,7 +403,7 @@ msgstr "Cheats"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Zodra de winnaar van het spel is bepaald wordt de score in de lobby aangepast."
+msgstr "Zodra de winnaar van het spel bepaald is, wordt de score in de lobby aangepast."
 
 #: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
 msgid "Rated game"
@@ -628,7 +629,7 @@ msgstr "Schermutseling"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Een kaart met een voorgedefinieerd landschap en spelersaantal. De overige instellingen mag u zelf instellen."
+msgstr "Een kaart met een voorgedefinieerd landschap en spelersaantal. De overige instellingen kunt u zelf instellen."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -1039,7 +1040,7 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:616
 msgid "Projectile Limit"
-msgstr "Projectiellimiet"
+msgstr "Projectielgrens"
 
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
@@ -1364,11 +1365,11 @@ msgstr "Fluit"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
 msgid "Djembe"
-msgstr "Djembe"
+msgstr "Djembé"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr "Lijsttrommel, darboeka, riq, tom-tom"
+msgstr "Lijsttrommel, darboeka, riq, toms"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -1448,7 +1449,7 @@ msgstr "IndieGoGo 2013 campagne\nMeer dan 1000 donoren (!), waaronder:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr "Donors"
+msgstr "Donoren"
 
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
@@ -1504,7 +1505,7 @@ msgstr "En bedankt aan de hele 0 A.D. gemeenschap om dit project mogelijk te mak
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr "Er werden geen geschiedkundigen gefolterd bij het maken van dit project."
+msgstr "Er hebben geen geschiedkundigen pijn geleden bij het maken van dit project."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
@@ -1521,7 +1522,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Alhoewel redelijk gemakkelijk voor een ervaren speler, is het niveau van standaard AI nogal uitdagend voor nieuwe spelers welke de basismechanismen van het spel nog moeten beheersen. Beginnelingen worden geadviseerd om te starten met spelen tegen een lager niveau AI (Zandbak of Heel makkelijk). Verander het niveau van de AI door op het tandwiel icoon te klikken nabij de speler welke u aan wilt passen, in het selectiepaneel hierboven."
+msgstr "Alhoewel redelijk gemakkelijk voor een ervaren speler, is het niveau van standaard AI nogal uitdagend voor nieuwe spelers welke de basismechanismen van het spel nog moeten beheersen. Beginnelingen wordt geadviseerd om te starten met spelen tegen een lager niveau AI (Zandbak of Heel makkelijk). Verander het niveau van de AI door op het tandwiel icoon te klikken nabij de speler welke u aan wilt passen, in het selectiepaneel hierboven."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1865,7 +1866,7 @@ msgstr "Minder rotatiesnelheid"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr "Laat rotatiesnelheid van de camera toenemen"
+msgstr "Laat rotatiesnelheid van de camera toenemen."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
@@ -2268,7 +2269,7 @@ msgstr "Aanvalsbeweging"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr "Speciale toets om een aanvalsbeweging alleen gericht op eenheden uit te voeren bij het klikken op een plek. Dit betekent dat de geselecteerde eenheden enkel vijandelijke eenheden aanvallen wanneer ze die onderweg tegenkomen. "
+msgstr "Speciale toets om een aanvalsbeweging alleen gericht op eenheden uit te voeren bij het klikken op een plek. Dit betekent dat de geselecteerde eenheden enkel vijandelijke eenheden aanvallen wanneer ze die onderweg tegenkomen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
@@ -3375,7 +3376,7 @@ msgstr "Selecteer volgende inactieve vechter"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr "Selecteer de volgende inactieve werker.."
+msgstr "Selecteer de volgende inactieve werker."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
@@ -3491,7 +3492,7 @@ msgstr "Dit opgeslagen spel vereist een oudere versie van 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "Dit opgeslagen spel vereist een andere volgorde mods:"
+msgstr "Dit opgeslagen spel vereist een andere volgorde van mods:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -3790,7 +3791,7 @@ msgstr "Pagina: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr "Kies een willekeurige map."
+msgstr "Kies een willekeurige kaart."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3871,7 +3872,7 @@ msgstr "Schakel het welkomstscherm in"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Als u het uitschakeld wordt het welkomsscherm slechts éénmaal getoond, elke keer wanneer er een nieuwe versie beschikbaar is. U kunt het altijd openen uit het hoofdmenu."
+msgstr "Als u dit uitschakelt wordt het welkomstscherm slechts éénmaal getoond, elke keer wanneer er een nieuwe versie beschikbaar is. U kunt het altijd openen uit het hoofdmenu."
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
@@ -4067,7 +4068,7 @@ msgstr "Erg hoog"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr "Schaduwmap resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
+msgstr "Schaduwkaart resolutie. Te hoge waarden kunnen leiden tot een spelcrash wanneer er een videokaart met te weinig geheugen wordt gebruikt."
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
@@ -4113,7 +4114,7 @@ msgstr "Hoge kwaliteit watereffecten"
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolfen, schuimkoppen en hekgolven."
+msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolven, schuimkoppen en hekgolven."
 
 #: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
@@ -4121,7 +4122,7 @@ msgstr "Waterreflectie"
 
 #: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr "Laat water toe om een spiegelbeeld te reflecteren."
+msgstr "Laat het wateroppervlak een spiegelbeeld reflecteren."
 
 #: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
@@ -4534,7 +4535,7 @@ msgstr "Late toetreding waarnemers"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Sta iedereen of enkel vrienden toe om het spel toe te treden als waarnemer nadat het spel gestart is."
+msgstr "Sta iedereen of enkel vrienden toe om tot het spel toe te treden als waarnemer nadat het spel gestart is."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Observer limit"
@@ -4794,7 +4795,7 @@ msgstr "Chatnotificatie schenking"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Laat een chatnotificatie zien wanneer een geallieerde grondstoffen geschonken heeft aan een teamgenoot als Vaste Teams aan staat en alle schenkingen in waarnemer modus."
+msgstr "Laat een chatnotificatie zien wanneer een geallieerde speler grondstoffen schenkt aan een teamgenoot als Vaste Teams aan staat, en bij alle schenkingen in de Waarnemer modus."
 
 #: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
@@ -5127,7 +5128,7 @@ msgstr "Alpha XXV: Yaunā"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr "Let op: dit spel is in ontwikkeling. Veel functies zijn nog niet toegepast."
+msgstr "Let op: dit spel is in ontwikkeling, veel functies moeten nog toegevoegd worden."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -5147,7 +5148,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Klik om de 0 A.D. IRC chat te openen in je browser (#0ad op webchat.quakenet.org). Deze wordt gerunt door vrijwilligers die allerlei taken uitvoeren, het kan een tijdje duren vooraleer je vraag beantwoord wordt. Als alternatief kan je ook het forum gebruiken (zie Website)."
+msgstr "Klik om de 0 A.D. IRC chat te openen in uw browser (#0ad op webchat.quakenet.org). Deze wordt gerund door vrijwilligers die allerlei taken uitvoeren, het kan een tijdje duren vooraleer uw vraag beantwoord wordt. Als alternatief kunt u ook het forum gebruiken (zie Website)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5164,7 +5165,7 @@ msgstr "FAQ"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr "Klik om de veel gestelde vragen pagina te openen in je browser."
+msgstr "Klik om de veel gestelde vragen pagina te openen in uw browser."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5422,7 +5423,7 @@ msgstr "Informatie"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr "Deze herhaling vereist een andere volgorde mods:"
+msgstr "Deze herhaling vereist een andere volgorde van mods:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -5725,7 +5726,7 @@ msgstr "Vestingen"
 
 #: gui/summary/layout.js:40
 msgid "Civ centers"
-msgstr "Beschavings-centra"
+msgstr "Beschavingscentra"
 
 #: gui/summary/layout.js:41
 msgid "Wonders"
@@ -5817,11 +5818,11 @@ msgstr "Markt"
 
 #: gui/summary/layout.js:163
 msgid "Trade income"
-msgstr "Handel inkomsten"
+msgstr "Handelsinkomsten"
 
 #: gui/summary/layout.js:164
 msgid "Barter efficiency"
-msgstr "Handel-efficiëntie"
+msgstr "Handelsefficiëntie"
 
 #. Translation: use %(resourceWithinSentence)s if needed
 #: gui/summary/layout.js:170
@@ -6086,7 +6087,7 @@ msgstr "Bouw stormrammen en rekruteer burgersoldaten."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "Stationeer eenheden om ze traag te genezen en ze het Legerkamp te laten beschermen tegen aanvallen en verval."
+msgstr "Stationeer eenheden om ze langzaam te laten genezen en ze het Legerkamp te laten beschermen tegen aanvallen en verval."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6098,7 +6099,7 @@ msgstr "Schakel de auto-wachtrij functie in om automatisch eenheden te rekrutere
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr "Werkt zolang er voldoende grondstoffen zijn, daarna stop het."
+msgstr "Werkt zolang er voldoende grondstoffen zijn, daarna stopt het."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6138,7 +6139,7 @@ msgstr "Op sommige willekeurige kaarten kunnen biomen worden gebruikt die bepale
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr "Ze beïnvloeden het uitzicht van de kaart en ook het aantal grondstoffen die beschikbaar zijn."
+msgstr "Ze beïnvloeden het uiterlijk van de kaart en ook het aantal grondstoffen die beschikbaar zijn."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6174,7 +6175,7 @@ msgstr "Kunnen beiden in de Tempel gerekruteerd worden, in tegenstelling tot het
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "Gebruik de Speervechters als zware Infanterie tegen Ruiters. Gebruik Ruiters om snel Belegeringswapenen en Tirailleurs uit te schakelen."
+msgstr "Gebruik de Speervechters als zware Infanterie tegen Ruiters. Gebruik Ruiters om snel Belegeringswapens en Tirailleurs uit te schakelen."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
@@ -6186,7 +6187,7 @@ msgstr "Speciale haven van de Carthagers om oorlogsschepen te produceren."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr "Repareer schepen langzaam door ze hier naar binnen te varen.."
+msgstr "Repareer schepen langzaam door ze hier naar binnen te varen."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
@@ -6295,7 +6296,7 @@ msgstr "Klik met rechts op een icoon om de standaard formatie in te stellen; een
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr "Kan uitgeschakeld worden door “geen formatie” als standaard te kiezen."
+msgstr "Kan uitgeschakeld worden door “geen formatie” als standaard te kiezen."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
@@ -6367,7 +6368,7 @@ msgstr "Voorzichtig! Vis is geen onuitputtelijke grondstof!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr "VASTE PLAATSING"
+msgstr "SMIDSE"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -6407,7 +6408,7 @@ msgstr "VRIJE PLAATSING"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr "Verkrijg voordeel op het slagveld door je eenheden tactisch te plaatsen!"
+msgstr "Verkrijg voordeel op het slagveld door uw eenheden tactisch te plaatsen!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
@@ -6453,7 +6454,7 @@ msgstr "HELDEN"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr "Historische figuren zoals Xerxes, Leonidas, Pericles, Hannibal, Scipio en Boudicca."
+msgstr "Historische figuren zoals Xerxes, Leonidas, Pericles, Hannibal, Scipio en Boudica."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
@@ -6536,7 +6537,7 @@ msgstr "Snel en goedkoop om te bouwen, maar niet sterk."
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr "Beman met infanterie om verder te kunnen kijken en om verlies van de uitkijkpost als gevolg van invloedsverlies tegen te gaan."
+msgstr "Beman met infanterie om verder te kunnen kijken en om verlies van de uitkijkpost als gevolg van verval tegen te gaan."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6587,11 +6588,11 @@ msgstr "Gebruikt tegen cavalerie of andere mêlee infanterie om hen op hun plaat
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "- Beschikbaar voor: Kushiten, Macedoniërs, Ptolemaeïers en Seleuciden."
+msgstr "Beschikbaar voor: Kushiten, Macedoniërs, Ptolemaeïers en Seleuciden."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr "QUINQUEREME"
+msgstr "QUINQUEREEM"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -6605,7 +6606,7 @@ msgstr "Kan tot 50 eenheden vervoeren."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr "Verhoog de vuurkracht door katapultenbemanning."
+msgstr "Verhoog de vuurkracht door katapulten aan boord te plaatsen."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -6621,7 +6622,7 @@ msgstr "Het grondstoffen paneel toont u hoeveel van elke grondstof u momenteel h
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr "Het nummer eronder geeft aan hoeveel burgers thans bezig zijn met verzamelen."
+msgstr "Het nummer eronder geeft aan hoeveel burgers thans bezig zijn met het verzamelen ervan."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6665,7 +6666,7 @@ msgstr "Strak geplaatste groepen van gebouwen kunnen ook gebruikt worden als obs
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "Spartanen"
+msgstr "SPARTIATES"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
@@ -6705,7 +6706,7 @@ msgstr "Zwak tegen afstandseenheden en zwaardvechters. Ondersteun uw speervechte
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr "BERGPLAATS"
+msgstr "PAKHUIZEN"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
@@ -6819,7 +6820,7 @@ msgstr "Hoge Voedsel- en Metaalkosten, maar heel krachtig."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Beschikbaar voor: Carthagers, Kushiten, Mauriërs, Perzen, Ptolemaeïers en Seleuciden."
+msgstr "Beschikbaar voor: Carthagers, Koesjiten, Mauriërs, Perzen, Ptolemaeën en Seleuciden."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
