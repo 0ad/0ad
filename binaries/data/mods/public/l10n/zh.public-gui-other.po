@@ -90,7 +90,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-15 07:44+0000\n"
+"PO-Revision-Date: 2021-06-18 14:18+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -131,12 +131,12 @@ msgstr "中断载入"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
-msgstr "盖亚－大地女神"
+msgstr "大自然"
 
 #: gui/common/functions_utility.js:236
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "创建: %(buildDate)s (%(revision)s)"
+msgstr "建造: %(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -244,7 +244,7 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:171
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] "观察者"
+msgstr[0] "观察人员"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
@@ -267,7 +267,7 @@ msgstr[0] "奇观分钟数 %(min)s"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] "占领或捕获遗迹 (%(min)s 分钟)"
+msgstr[0] "占领遗迹 (%(min)s 分钟)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
@@ -327,7 +327,7 @@ msgstr "某人获胜时，盟友一起获胜。"
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
-msgstr "停火"
+msgstr "停战期"
 
 #: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
@@ -577,7 +577,7 @@ msgstr "无法找到STUN端点"
 #: gui/common/network.js:84
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "[无效值 %(id)s]"
+msgstr "\\[无效值 %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
@@ -915,13 +915,13 @@ msgstr "+%(number)s"
 #. meters"
 #: gui/common/tooltips.js:363
 msgid "meters"
-msgstr "公尺"
+msgstr "米"
 
 #: gui/common/tooltips.js:364 gui/common/tooltips.js:1047
 #: gui/common/tooltips.js:1077
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] "公尺"
+msgstr[0] "米"
 
 #: gui/common/tooltips.js:374
 #, javascript-format
@@ -946,7 +946,7 @@ msgstr "%(label)s: %(effects)s"
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr "友好火力：%(enabled)s"
+msgstr "友方伤害：%(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
@@ -1013,7 +1013,7 @@ msgstr "(扩展)"
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr "(重置)"
+msgstr "(替换)"
 
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
@@ -1555,7 +1555,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“测试”或“极易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
+msgstr "对于老玩家来说，默认 AI 级别虽然相对容易，但是对还未掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的 AI 级别(“测试”或“极易”)开始。你可以用过在上面的面板上点击 AI 玩家旁边的齿轮图标来修改他们的 AI 级别。"
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1631,7 +1631,7 @@ msgstr "热键说明"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "单击任何已存在的快捷键以修改它。\\n您最多可配置4个不同的热键。"
+msgstr "单击任何已存在的快捷键以修改它。\\n最多可配置 4 个不同的热键。"
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1717,47 +1717,47 @@ msgstr "跟随单位"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr "跳转到镜头位置1(见 \"设置镜头跳转1\")"
+msgstr "跳转到镜头位置 1 (见 “设置镜头跳转1”)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr "跳转到镜头1"
+msgstr "跳转到镜头 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr "跳转到镜头位置2 (见 \"设置镜头跳转2\")"
+msgstr "跳转到镜头位置 2  (见 “设置镜头跳转 2”)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr "跳转到镜头2"
+msgstr "跳转到镜头 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr "跳转到镜头位置3 （见 “设置镜头跳转3”）"
+msgstr "跳转到镜头位置 3 （见 “设置镜头跳转3”）"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr "跳转到镜头3"
+msgstr "跳转到镜头 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr "跳转到镜头位置4 （见 “设置镜头跳转4”）"
+msgstr "跳转到镜头位置 4 （见 “设置镜头跳转4”）"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr "跳转到镜头4"
+msgstr "跳转到镜头 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr "设置镜头跳转位置1"
+msgstr "设置镜头跳转位置 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-15 07:44+0000\n"
+"PO-Revision-Date: 2021-06-18 10:06+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr "抱歉，我仍在加紧军备。不过，将来我会准备攻击 %(_pl
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "这会儿我无帮你对抗 %(_player_)s ，我正计划攻打 %(_player_2)s 。 "
+msgstr "这会儿我无法帮你对抗 %(_player_)s ，我正计划攻打 %(_player_2)s 。 "
 
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
@@ -94,7 +94,7 @@ msgstr "区区薄礼， %(_player_)s ，善加利用。"
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "听说你们情况不妙，  %(_player_)s ，希望对你有所帮助。"
+msgstr "听说你们情况不妙，  %(_player_)s ，希望对你有用。"
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
@@ -106,14 +106,14 @@ msgstr "这次我可以帮你， %(_player_)s，记得要合理调配资源。"
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "我需要 %(resource)s ,  你可以帮忙吗？我会补偿你的。"
+msgstr "我需要 %(resource)s ,  可以帮忙吗？我会补偿你的。"
 
 #: simulation/ai/petra/chatHelper.js:34
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "如果你能提供给我一些 %(resource)s, 我会更积极地参与联合行动。"
+msgstr "如果能给我一些 %(resource)s，我会更积极地参与联合行动。"
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
@@ -249,14 +249,14 @@ msgstr "%(_player_)s ， 你若能给我%(_amount_)s %(_resource_)s，可以考�
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr "除非你给我%(_amount_)s%(_resource_)s ,否则同盟免谈%(_player_)s 。"
+msgstr "%(_player_)s，除非你给我%(_amount_)s%(_resource_)s ，否则同盟的事免谈。"
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr "%(_player_)s， 我们的态度不变，如果你能进贡 %(_amount_)s %(_resource_)s， 我们将与你结盟。"
+msgstr "%(_player_)s， 我们的态度不变，如果你能进贡 %(_amount_)s %(_resource_)s， 我们将跟你结盟。"
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
@@ -287,14 +287,14 @@ msgstr "%(_player_)s ，我必须拒绝你的中立条约。"
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr "%(_player_)s，我们先前的中立条约还未失效，不必另外续签。"
+msgstr "%(_player_)s，我们之前的中立条约还未失效，不必另外续签。"
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr "%(_player_)s，热切欢迎你的和平提议，我们表示接受。"
+msgstr "%(_player_)s，热切欢迎你的和平提议，我们接受。"
 
 #: simulation/ai/petra/chatHelper.js:100
 #, javascript-format
@@ -373,7 +373,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra 是默认的 AI 。 可向 Wildfire Games 提交问题（请参阅主菜单中的链接）。\n\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％ 。 最易的AI科研、训练和建筑较慢。沙盒级别的 AI 既不会扩张，也不会主动攻击。"
+msgstr "Petra 是默认的 AI . 可向 Wildfire Games 提交问题（请参阅主菜单中的链接）.\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％ . 最易的 AI 科研、训练和建筑较慢. 沙盒级别的 AI 既不会扩张，也不会主动攻击."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -405,7 +405,7 @@ msgstr " 不能在无效的地形上建造 %(name)s"
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "own"
-msgstr "自己的"
+msgstr "己方"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -413,7 +413,7 @@ msgstr "自己的"
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr "未与拥有的关联"
+msgstr "未连通"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -421,7 +421,7 @@ msgstr "未与拥有的关联"
 #: simulation/components/BuildRestrictions.js:199
 msgctxt "Territory type"
 msgid "allied"
-msgstr "盟友"
+msgstr "友方"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -429,7 +429,7 @@ msgstr "盟友"
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr "未与盟友关联"
+msgstr "未与盟友连通"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -445,14 +445,14 @@ msgstr "中立"
 #: simulation/components/BuildRestrictions.js:215
 msgctxt "Territory type"
 msgid "enemy"
-msgstr "敌对"
+msgstr "敌方"
 
 #: simulation/components/BuildRestrictions.js:220
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "不能在 %(territoryType)s 的领土上建造 %(name)s.。有效的领土： %(validTerritories)s"
+msgstr "不能在 %(territoryType)s 的领土上建造 %(name)s。有效的领土： %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:234
 #, javascript-format
@@ -531,17 +531,17 @@ msgstr "笑到最后的玩家获胜。"
 #: simulation/components/EntityLimits.js:192
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(category)s 已达到最大建造数 %(limit)s"
+msgstr "%(category)s 已达最大建造数 %(limit)s"
 
 #: simulation/components/EntityLimits.js:194
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)s 已达到最大训练数 %(limit)s"
+msgstr "%(category)s 已达最大训练数 %(limit)s"
 
 #: simulation/components/EntityLimits.js:198
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr "%(category)s  已达到最高限制 %(limit)s "
+msgstr "%(category)s  已达最高限制 %(limit)s "
 
 #: simulation/components/Player.js:347
 #, javascript-format
@@ -572,7 +572,7 @@ msgstr "资源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 
 #: simulation/components/ProductionQueue.js:364
 msgid "Entity is being upgraded. Cannot start production."
-msgstr "实体正在升级，无法开始生产制造。"
+msgstr "实体正在升级，无法开始生产。"
 
 #: simulation/components/ProductionQueue.js:375
 msgid "The production queue is full."
@@ -650,7 +650,7 @@ msgstr "小型"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "小地图，适合1v1比赛，可以及早碰头，也有一些扩展空间。"
+msgstr "小地图，适合 1v1 比赛，可以及早碰头，也有一些扩展空间。"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -666,7 +666,7 @@ msgstr "本地图适宜两名玩家，最多容纳八名玩家。"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "适合4-8名玩家的理想地图，有足够的空间可以扩展，同时玩家相邻不远。"
+msgstr "适合 4-8 名玩家的理想地图，有足够的空间可以扩展，同时玩家相邻不远。"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -823,7 +823,7 @@ msgstr "征服单位"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centres."
-msgstr "摧毁对方所有市政中心，赢得胜利。"
+msgstr "摧毁对方所有市政中心，获得胜利。"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
 msgid "Conquest Civic Centres"
