@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:21+0000\n"
-"Last-Translator: Sgàire Uallas <zjwallace96@gmail.com>\n"
+"PO-Revision-Date: 2021-06-24 16:48+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "Brùilleadh"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr ""
+msgstr "Seo dochann a dh’adhbhraicheas nithean a tha ’nan teine, can leus no saighead ’na theine."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -96,12 +96,12 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr ""
+msgstr "Seo dochann a dh’adhbhraicheas nithean puinnseanach no a chaidh a phuinnseanachadh, can nathair no arm puinnseanaichte."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr ""
+msgstr "Puinsean"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -641,7 +641,7 @@ msgstr "Làrach àrsaidh"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr ""
+msgstr "Ìomhaigh cràbhadh Isis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -668,19 +668,19 @@ msgstr "Ìomhaigh Kulušach"
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
 msgid "Stone Resource"
-msgstr ""
+msgstr "Stòras cloiche"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr ""
+msgstr "Ìomhaigh eòin Kulušach"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
-msgstr ""
+msgstr "Ìomhaigh leòmhainn Apademak"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
-msgstr ""
+msgstr "Ìomhaigh reithe Ammon-Ra"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -750,16 +750,16 @@ msgstr "Ulaidh chloiche"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr ""
+msgstr "Gaireal air a ghearradh"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
-msgstr ""
+msgstr "Clach air a gearradh"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
 msgid "Cut Sandstone"
-msgstr ""
+msgstr "Clach-ghainmhich air a gearradh"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
@@ -767,7 +767,7 @@ msgstr "Ulaidh fhiodha"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:4
 msgid "Milled Lumber"
-msgstr ""
+msgstr "Fiodh air a bhuain"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -982,7 +982,7 @@ msgstr "Craobh coille-uisge"
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
-msgstr ""
+msgstr "Neach-togail"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -994,7 +994,7 @@ msgstr "Sgrìn"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
-msgstr ""
+msgstr "Raon malairt"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1055,7 +1055,7 @@ msgstr "Òrdugh fosgailte"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
-msgstr "Chan eil gin"
+msgstr "Gun chumadh"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."

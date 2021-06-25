@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# GunChleoc, 2014-2020
+# GunChleoc, 2014-2021
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-24 17:04+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s – %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -999,25 +999,25 @@ msgstr "Slàinte"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "Meud a’ ghearastain"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "Ionadan turaide"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1129,12 +1129,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Duais:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1147,7 +1147,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
-msgstr ""
+msgstr "Beathachadh:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1230,10 +1230,10 @@ msgstr[3] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1042
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Slàinte"
+msgstr[1] "Slàinte"
+msgstr[2] "Slàinte"
+msgstr[3] "Slàinte"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1253,12 +1253,12 @@ msgstr "Astar:"
 #: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1149
 msgid "Classes:"
@@ -1302,12 +1302,12 @@ msgstr "Briog air gus barrachd fiosrachaidh a shealltainn."
 #: gui/common/tooltips.js:1220
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #: gui/credits/credits.js:83
 #, javascript-format
@@ -1525,43 +1525,43 @@ msgstr "Ged a tha e furasta gu leòr dhan chluicheadair eòlach, tha leibheil t�
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Grad-iuchraichean eile"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr " (cùm sìos airson clàradh)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Cuir a-steach grad-iuchair ùr, cùm sìos i airson a clàradh."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(gun chleachdadh)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Còmhstri bhuailteach: "
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "A h-uile grad-iuchair"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "A h-uile grad-iuchair a tha ri faighinn."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "A bheil thu airson a h-uile grad-iuchair ath-shuidheachadh air a’ bhun-roghainn?\nRABHADH: Cha ghabh seo a neo-dhèanamh."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1570,7 +1570,7 @@ msgstr "Dearbhadh"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Chan eil gliocas-sgrìn ri fhaighinn."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1587,17 +1587,17 @@ msgstr "Ath-shuidhich"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Grad-iuchair"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Tuairisgeul na grad-iuchrach"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Briog air mapadh sam bith gus atharrachadh.\\n Faodaidh suas ri 4 grad-iuchraichean eadar-dhealaichte a bhith agad."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1619,7 +1619,7 @@ msgstr "Ainm"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Mapadh"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -1632,361 +1632,361 @@ msgstr "Sàbhailidh seo na dh’atharraich thu"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Caillidh tu atharrachadh sam bith nach deach a shàbhaladh"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Briog gus a’ ghrad-iuchair a shuidheachadh"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Briog gus a’ ghrad-iuchair a sguabadh às"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Atharraich na grad-iuchraichean is dùin"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Cha dèid na grad-iuchraichean atharrachadh"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "Grad-iuchraichean a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Camara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Sgrolaich an comhair a’ chùil no cuairtich sìos."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Sgrolaich/cuairtich sìos"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Lean air a’ chiad aonad san taghadh."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr ""
+msgstr "Lean air aonad"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "Geàrr leum gu ionad 1 a’ chamara (faic “Suidhich ionad 1 a’ chamara”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "Geàrr leum gu camara 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr ""
+msgstr "Geàrr leum gu ionad 2 a’ chamara (faic “Suidhich ionad 2 a’ chamara”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr ""
+msgstr "Geàrr leum gu camara 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr ""
+msgstr "Geàrr leum gu ionad 3 a’ chamara (faic “Suidhich ionad 3 a’ chamara”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "Geàrr leum gu camara 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr ""
+msgstr "Geàrr leum gu ionad 4 a’ chamara (faic “Suidhich ionad 4 a’ chamara”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "Geàrr leum gu camara 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Suidhich ionad 1 airson leum a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "Suidhich ionad 1 a’ chamara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Suidhich ionad 2 airson leum a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "Suidhich ionad 2 a’ chamara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Suidhich ionad 3 airson leum a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "Suidhich ionad 3 a’ chamara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Suidhich ionad 4 airson leum a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "Suidhich ionad 4 a’ chamara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the position of the last attack notification."
-msgstr ""
+msgstr "Cuir fòcas a’ chamara air ionad a’ bhratha ionnsaighe mu dheireadh."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on last attack notification"
-msgstr ""
+msgstr "Fòcas air a’ bhrath ionnsaighe mu dheireadh"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Sgrolaich no cuairtich dhan taobh chlì."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Sgrolaich/Cuairtich gu clì"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
 msgid "Enable scrolling by moving the mouse."
-msgstr ""
+msgstr "Cuir an comas an sgroladh le gluasad na luchaige."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
 msgid "Pan camera"
-msgstr ""
+msgstr "Panaich an camara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "Cuir fòcas a’ chamara air ceann-cruinneachaidh an togalaich a thagh thu."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "Fòcas air ceann-cruinneachaidh"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "Ath-shuidhich cuairteachadh a’ chamara air a’ bhun-roghainn."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "Ath-shuidhich an camara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Sgrolaich no cuairtich dhan taobh deas."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Sgrolaich/Cuairtich gu deas"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Cuairtich an camara gu tuathail air an tìr."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Cuairtich a’ dol tuathail"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Cuairtich an camara gu deiseil air an tìr."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Cuairtich a’ dol deiseil"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look downwards."
-msgstr ""
+msgstr "Cuairtich an camara a shealltainn sìos."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "Cuairtich sìos"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Lùghdaich luaths cuairteachadh a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Cuairtich nas maille"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Meudaich luaths cuairteachadh a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Cuairtich nas luaithe"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look upwards."
-msgstr ""
+msgstr "Cuairtich an camara a shealltainn suas."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "Cuairtich suas"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Cuairtich an camara gu tuathail air an tìr – tha an èifeachd a’ crochadh air na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Cuairtich an camara gu deiseil air an tìr – tha an èifeachd a’ crochadh air na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "Lùghdaich luaths sgrolaidh a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Sgrolaich nas maille"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "Meudaich luaths sgrolaidh a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "Sgrolaich nas luaithe"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "Sgrolaich an comhair a’ bheòil no cuairtich suas."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "Sgrolaich/Cuairtich suas"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Sùm an camara a-steach."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Sùm a-steach"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Sùm an camara a-mach."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "Sùm a-mach"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "Lùghdaich luaths sùmaidh a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "Sùm nas maille"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "Meudaich luaths sùmaidh a’ chamara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "Sùm nas luaithe"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Sùm an camara a-steach – tha an èifeachd a’ crochadh air na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Sùm a-steach (ceum air cheum)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Sùm an camara a-mach – tha an èifeachd a’ crochadh air na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Sùm a-mach (ceum air cheum)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "Grad-iuchraichean coitcheann."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -1996,27 +1996,27 @@ msgstr "Coitcheann"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "Tog glacadh-sgrìn BMP mòr."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Glacadh-sgrìn mòr"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "Dùin no sguir dhen bhogsa-chòmhraidh/priob-uinneag làithreach."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Dùin/Sguir dheth"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Dearbh an t-òrdugh làithreach."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2026,199 +2026,199 @@ msgstr "Dearbh"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Open/close console."
-msgstr ""
+msgstr "Fosgail/Dùin a’ chonsoil."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Toglaich a’ chonsoil"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Cuir lethbhreac air an stòr-bhòrd."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Lethbhreac dhan stòr-bhòrd"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Geàrr às an teacsa a thagh tu is cuir lethbhreac dheth air an stòr-bhòrd."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Geàrr às dhan stòr-bhòrd"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr ""
+msgstr "Grad-iuchair ghnàthaichte airson fàgail dhan deasg adhbharachadh. Bidh na grad-iuchraichean tùsail (Alt+F4 / Cmd+Q / is msaa.) gnìomhach an-còmhnaidh."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr ""
+msgstr "Fàgail ghnàthaichte dhan deasg"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "Cuir ann on stòr-bhòrd."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Cuir ann on stòr-bhòrd"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/unpause game."
-msgstr ""
+msgstr "Cuir an geama ’na stad/lean air."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "’Na stad/lean air"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Sàbhail dàta a’ phròifileir làithrich gu logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Sàbhail pròifil"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable real-time profiler."
-msgstr ""
+msgstr "Cuir an comas/à comas am pròifilear fìor-ama."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "Toglaich am pròifilear"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Cuir an comas/à comas na modhan HTTP/GPU dhan phròifilear ùr."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "Toglaich pròifilear2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "Tog glacadh-sgrìn PNG."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Glacadh-sgrìn"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Toglaich comharra-uisge a’ bhathair/na companaidh airson glacaidhean-sgrìn oifigeil."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Toglaich an comharra-uisge"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Seall an ath-thaba."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "An t-ath-thaba"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Seall an taba roimhe."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "An taba roimhe"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Sguab às am facal taobh clì a’ chùrsair."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Sguab às ron chùrsair"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Sguab às am facal taobh deas a’ chùrsair."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Sguab às às dèidh a’ chùrsair"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Gluais an cùrsair gu toiseach an fhacail taobh clì a’ chùrsair."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Gluais an cùrsair dhan fhacal taobh clì"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Gluais an cùrsair gu toiseach an fhacail taobh deas a’ chùrsair."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Gluais an cùrsair dhan fhacal taobh deas"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "Toglaich am modh làn-sgrìn/uinneagach."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Toglaich modh na làn-sgrìn"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Toglaich am modh frèam-uèir."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "Toglaich am modh frèam-uèir"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr ""
+msgstr "Grad-iuchraichean a tha gnìomhach air sgrìn suidheachadh a’ gheama."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2228,67 +2228,67 @@ msgstr "Suidheachadh a’ gheama"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "Fosgail brabhsair nam mapaichean."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Fosgail brabhsair nam mapaichean"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Grad-iuchraichean am broinn a’ gheama."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "Am broinn geama"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr ""
+msgstr "Atharraichear airson ionnsaigh a thoirt seach gnìomh eile (can glacadh)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "Spàrr ionnsaigh"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Atharraichear airson gluasad ionnsaighe le briogadh am badeigin."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Gluasad ionnsaighe"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Atharraichear airson gluasad ionnsaighe nach eil ag amas ach air aonadan le briogadh am badeigin."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "Gluasad ionnsaighe (aonadan a-mhain)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr ""
+msgstr "Atharraichear airson ceann-cruinneachaidh a shuidheachadh air an togalach fhèin."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "Ceann-cruinneachaidh fèin-obrachail"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "Tillidh an t-aonad dhan obair."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2298,58 +2298,58 @@ msgstr "Tillibh dhan obair"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "Atharraichear airson aonadan oideachadh ’nan grunnan."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "Saothrachadh ’nan grunnan"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
+msgstr "Atharraichear airson aonadan a dhì-thaghadh le briogadh air ìomhaigheag buidhinn seach a bhith ’gan taghadh."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "Dì-thagh seòrsa de dh’aonad"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr ""
+msgstr "Dèan lasan dhen chùrsair fhad ’s a bhios a’ ghrad-iuchair seo ’ga cumail sìos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr ""
+msgstr "Lasan (’ga cumail)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr ""
+msgstr "Dèan lasan dhen chùrsair. Gabhaidh a’ ghrad-iuchair a leigeil às."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr ""
+msgstr "Lasan (toglaich)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr ""
+msgstr "Atharraichear airson an stòras mhalairt a shuidheachadh air 100%."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "Suidhich a’ mhalairt air 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Atharraichear airson dol ’na ghearastan le briogadh air togalach."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2359,7 +2359,7 @@ msgstr "Rach ’nad ghearastan"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Atharraichear airson dol ’na gheàrd le briogadh air togalach."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2369,87 +2369,87 @@ msgstr "Geàrd"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr ""
+msgstr "Mill na h‑aonadan a thagh thu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Mill aonadan a thagh thu"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Cuir aonad air falbh o phuing turaide."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Fàg a’ phuing turaide"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Atharraichear airson grunn stòrasan iomlaideadh."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Grunn iomlaididh"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr ""
+msgstr "Atharraichear airson cìs de ghrunn stòrasan a phàigheadh."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Grunn cìse"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
+msgstr "Atharraichear airson gluasad am badeigin seach gnìomh eile (can cruinneachadh)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr ""
+msgstr "Spàrr gluasad"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Na iarr dearbhadh nuair a thèid togalach/aonad a sguabadh às."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Mill gun dearbhadh"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr ""
+msgstr "Atharraichear airson gluasad gu turaid le briogadh air puing turaide."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "Lìon puing turaide"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr ""
+msgstr "Atharraichear airson òrdugh a chur gu aon aonad a-mhàin san taghadh."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Òrdugh air aonad a-mhàin"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Atharraichear airson aonad a chur air cuairteachan."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2459,127 +2459,127 @@ msgstr "Cuairteachan"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr ""
+msgstr "Atharraichear airson an t-òrdugh seo a choileanadh is tilleadh dhan òrdugh roimhe an uairsin."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Cuir òrdugh air thoiseach càich"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr ""
+msgstr "Atharraichear airson òrduighean aonaid a chur air ciutha seach an cur ’nan àite."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Cuir òrdugh ris a’ chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr ""
+msgstr "Cuir a’ chiad seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
 msgid "Queue 1st unit"
-msgstr ""
+msgstr "Cuir a’ 1ad aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr ""
+msgstr "Cuir an dàrna seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
 msgid "Queue 2nd unit"
-msgstr ""
+msgstr "Cuir an 2na aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr ""
+msgstr "Cuir an treas seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
 msgid "Queue 3rd unit"
-msgstr ""
+msgstr "Cuir an 3s aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr ""
+msgstr "Cuir an ceathramh seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
 msgid "Queue 4th unit"
-msgstr ""
+msgstr "Cuir an 4mh aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr ""
+msgstr "Cuir an còigeamh seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
 msgid "Queue 5th unit"
-msgstr ""
+msgstr "Cuir an 5mh aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr ""
+msgstr "Cuir an t-siathamh seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
 msgid "Queue 6th unit"
-msgstr ""
+msgstr "Cuir an t-6mh aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr ""
+msgstr "Cuir an t-seachdamh seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
 msgid "Queue 7th unit"
-msgstr ""
+msgstr "Cuir an t-7mh aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr ""
+msgstr "Cuir an ochdamh seòrsa de dh’aonad ris a’ chiutha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
-msgstr ""
+msgstr "Cuir an 8mh aonad dhan chiutha"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr ""
+msgstr "Cuir an ciutha fèin-obrachail dheth dha na togalaichean a thagh thu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
 msgid "Deactivate auto-queue"
-msgstr ""
+msgstr "Cuir an ciutha fèin-obrachail à gnìomh"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr ""
+msgstr "Cuir an ciutha fèin-obrachail air dha na togalaichean a thagh thu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
 msgid "Activate auto-queue"
-msgstr ""
+msgstr "Cuir an ciutha fèin-obrachail an gnìomh"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
+msgstr "Atharraichear airson càradh le briogadh air togalach/aonad meacanaigeach."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2589,59 +2589,59 @@ msgstr "Càraich"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview anticlockwise."
-msgstr ""
+msgstr "Cuairtich ro-shealladh air cur ann togalaich a’ dol tuathail."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Cuairtich togalach a’ dol tuathail"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr ""
+msgstr "Cuairtich ro-shealladh air cur ann togalaich a’ dol deiseil."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Cuairtich togalach a’ dol deiseil"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr ""
+msgstr "Atharraichear airson togalaichean ùra a cho-thaobhadh le togalach eile faisg air."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Toglaich greimeachadh dhan òir"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Sguir dhen ghnìomh làithreach."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr ""
+msgstr "Cuir stad air aonadan"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "Geàrr leum eadar modh gun chumadh ’s an cumadh tùsail mu dheireadh a chleachd thu (’s e “Bogsa” a tha sa bhun-roghainn air sin)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr ""
+msgstr "Toglaich an cumadh tùsail"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Falbhaidh na h-aonadan a tha ’nan gearastan ann nuair a thèid togalach/aonad meacanaigeach a thaghadh."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2651,72 +2651,72 @@ msgstr "A-mach leat"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Dì-luchdaich na h-aonadan a tha sna turaidean."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "A-mach às na turaidean"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Atharraichear airson falbh a thoirt air a h-uile aonad dhen t-seòrsa."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Thoir falbh air seòrsa aonaid"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Grad-iuchraichean air eadar-aghaidh a’ chleachdaiche am broinn geama."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "GUI am broinn a’ gheama"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Toglaich cunntair na foise-losgaidh."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Toglaich cunntair na foise-losgaidh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Toglaich uinneag na cabadaich."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Toglaich a’ chabadaich"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Seall fiosrachadh an t-sìobhaltais."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "Toglaich fiosrachadh an t-sìobhaltais"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr ""
+msgstr "Toglaich cunntair nam “frèaman gach diog”,"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr ""
+msgstr "Toglaich cunntair nan FPS"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2726,179 +2726,179 @@ msgstr "Seall an lobaidh ioma-chluicheadair ann an uinneag còmhraidh."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr ""
+msgstr "Toglaich an lobaidh ioma-chluicheadair"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Toglaich uinneag na cabadaich agus tagh an neach leis an do rinn thu cabadaich phrìobhaideach roimhe."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Toglaich a’ chabadaich phrìobhaideach"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr ""
+msgstr "Luchdaich an geama mu dheireadh air a ghrad-shàbhaladh. Cha dèan seo dad mura deach grad-shàbhaladh a dhèanamh."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "Grad-luchdaich"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr ""
+msgstr "Dèan sàbhaladh sealadach dhen gheama a ghabhas a ghrad-luchdadh. Sgrìobhaidh an grad-shàbhaladh thar an t-sàbhalaidh roimhe an-còmhnaidh."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
 msgid "Quicksave"
-msgstr ""
+msgstr "Grad-shàbhail"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr ""
+msgstr "Toglaich taisbeanadh àm a’ choimpiutair."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Toglaich tar-chòmhdachadh an fhìor-ama"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle developer commands panel."
-msgstr ""
+msgstr "Toglaich panail àitheantan an luchd-leasachaidh."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr ""
+msgstr "Toglaich tar-chòmhdachadh an leasachaidh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr ""
+msgstr "Toglaich dathan na dioplòmasachd."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Toglaich dathan na dioplòmasachd"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Toglaich duilleag iomlaididh/malairt am broinn a’ gheama."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Toglaich an t-iomlaideadh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr ""
+msgstr "Toglaich duilleag na dioplòmasachd am broinn a’ gheama."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr ""
+msgstr "Toglaich an dioplòmasachd"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Toglaich an clàr-taice am broinn a’ gheama."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr ""
+msgstr "Toglaich clàr-taice a’ gheama"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Toglaich duilleag nan amasan am broinn a’ gheama."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr ""
+msgstr "Toglaich na h-amasan"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr ""
+msgstr "Toglaich am faic thu eadar-aghaidh a’ chleachdaiche am broinn geama gus nach fhaic."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Toglaich faicsinneachd a’ GUI"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Toglaich panail an oideachaidh am broinn a’ gheama."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Toglaich an t-oideachadh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Toglaich soillseachadh nan aonadan fo gheàrd."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Toglaich soillseachadh a’ gheàrdaidh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Toglaich soillseachadh nan aonadan a nì geàrdadh."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Toglaich soillseachadh a’ gheàird"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr ""
+msgstr "Sguab às geama air a shàbhaladh (ann an uinneag sàbhalaidh/luchdaidh)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Sguab às geama air a shàbhaladh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Na iarr dearbhadh nuair a thèid geama air a shàbhaladh a sguabadh às."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Sguab às gun dearbhadh"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of status bars."
-msgstr ""
+msgstr "Toglaich am faic thu bàraichean-staide gus nach fhaic."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr ""
+msgstr "Toglaich bàraichean-staide"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
@@ -3604,7 +3604,7 @@ msgstr "Adhartach"
 #: gui/locale_advanced/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr "Gun chumha"
+msgstr "Chan eil gin"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
@@ -3692,11 +3692,11 @@ msgstr "Mapaichean ùra a chaidh a chur ris a’ gheama leis an sgaoileadh seo."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Do dh’ioma-chluicheadair"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Na mapaichean a mholamaid airson geamannan ioma-chluicheadair."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3716,12 +3716,12 @@ msgstr "Gach mapa dhen t-seòrsa a thagh thu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Brabhsair nam mapaichean"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Dùin brabhsair nam mapaichean is leig seachad na thagh thu."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3733,7 +3733,7 @@ msgstr "Dùin"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Dùin brabhsair nam mapaichean."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3743,11 +3743,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Lorg mapa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3755,42 +3755,42 @@ msgstr "Criathrag:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Tagh mapa air thuaiream"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Tagh"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Rach gun duilleag roimhpe."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Rach gun ath-dhuilleag."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Meudaich ro-shealladh nam mapaichean."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Lùghdaich ro-shealladh nam mapaichean."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Mapaichean: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Duilleag: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Tagh mapa air thuaiream."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3915,47 +3915,47 @@ msgstr "Seall cuin a chaidh teachdaireachd cabadaich a chur."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Ainmean nan nithean."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Ainmean sònraichte an toiseach"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Seall na h-ainmean sònraichte air thoiseach nan ainmean coitcheann."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Ainmean coitcheann an toiseach"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Seall na h-ainmean coitcheann air thoiseach nan ainmean sònraichte."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Ainmean sònraichte a-mhàin"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Na seall ach ainmean sònraichte air nithean."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Ainmean coitcheann a-mhàin"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Na seall ach ainmean coitcheann air nithean."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Mar a thèid ainmean a shealltainn dhut."
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Grafaigeachd (choitcheann)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -4045,7 +4045,7 @@ msgstr "Suidhich a’ mheidh eadar dèanadas is coltas lèirsinneach."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Grafaigeachd (adhartach)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Prefer GLSL"
@@ -4057,7 +4057,7 @@ msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)."
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
-msgstr ""
+msgstr "Càileachd"
 
 #: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
@@ -4071,7 +4071,7 @@ msgstr "An dùmhlachd-bhreacaidh aig mapa nan sgàilean. Dh’fhaoidte gun tuisl
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
-msgstr ""
+msgstr "Criathradh"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
@@ -4079,21 +4079,21 @@ msgstr "Sgàilean rèidhe."
 
 #: gui/options/options.json[2].options[12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Crìoch-astair"
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Falaichidh seo na sgàilean a bhios nas fhaide air falbh on chamara na astar sònraichte."
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Còmhdaich am mapa gu lèir"
 
 #: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Nuair a bhios seo AIR, còmhdaichidh na sgàilean am mapa gu lèir agus thèid a’ chrìoch-astair a leigeil dhan dàrna taobh. Tha seo feumail airson glacaihean-sgrìn dhen mhapa shlàn a thogail."
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
@@ -4236,7 +4236,7 @@ msgstr "Dè cho geur ’s a bhios an ceum a thagh thu."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "Càileachd nam modailean"
 
 #: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
@@ -4245,7 +4245,7 @@ msgstr "Ìosal"
 
 #: gui/options/options.json[2].options[6].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Modailean nas sìmplidhe airson dèanadas nas fheàrr."
 
 #: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
@@ -4255,7 +4255,7 @@ msgstr "Meadhanach"
 
 #: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Càileachd cuibheasach is dèanadas cuibheasach."
 
 #: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
@@ -4264,31 +4264,31 @@ msgstr "Àrd"
 
 #: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Modailean le càileachd àrd."
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Suidheachadh càileachd nam modailean."
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Tuaiream air coltas nam modailean"
 
 #: gui/options/options.json[2].options[7].list[0].label
 msgid "None"
-msgstr "Gun chumha"
+msgstr "Chan eil gin"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr ""
+msgstr "Bidh an t-aon choltas air a h-uile nì."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
-msgstr ""
+msgstr "Cuingichte"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "Cha bhi na nithean cho caochlaideach."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4296,13 +4296,13 @@ msgstr "Àbhaisteach"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Thèid coltas tuaireamach a chur air na nithean gu h-àbhaisteach."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Thoir coltas tuaireamach air nithean. Ma chuireas tu seo à comas, gheibh thu piseach beag air an dèanadas."
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
@@ -4314,7 +4314,7 @@ msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACH
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
-msgstr ""
+msgstr "Roghainnean reandaraidh nas sònraichte."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Master volume"
@@ -4489,7 +4489,7 @@ msgstr "Iomruin ionadan saora dha chluicheadairean a thig a-steach rè suidheach
 
 #: gui/options/options.json[5].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Lìonrachadh / Lobaidh"
 
 #: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
@@ -4546,23 +4546,23 @@ msgstr "Na leig le amhairc eile tighinn a-steach nuair a chaidh a’ chrìoch a 
 
 #: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "An dàil as motha dhan luchd-amhairc"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Nuair a nì thu òstadh, cuir an geama ’na stad nuair a bhios dàil nas motha na an àireamh seo de chuairtean air an luchd-amhairc. Ma shuidhicheas tu seo air -1, cha doir an geama an aire air an luchd-amhairc."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "Luathachadh (’nad neach-amhairc) nuair a bhios dàil orra."
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Nuair a bhios tu ’nad neach-amhairc air geama, luathaich gu fèin-obrachail nuair a thig dàil ort ach am bi thu cho làithreach ris a’ gheama bheò."
 
 #: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4749,7 +4749,7 @@ msgstr "Sgaoilidh òrduighean eile cumaidhean a tha ann."
 
 #: gui/options/options.json[6].options[21].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Gun tar-àithneadh"
 
 #: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -4772,11 +4772,11 @@ msgstr "Co meud turas a nì thu sgroladh gus an dèid meud nan grunnan a mheudac
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Faide sealladh nan lasanan"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Dè cho fada ’s a chì thu comharran lasain air a’ mheanbh-mhapa, ann an diog."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -4934,16 +4934,16 @@ msgstr "Seall na mapaichean diofraichte a thig an cois 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Lean air iomairt"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Atharrais an eachdraidh le iomairtean an airm eachdraidheil."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Mearachd le fosgladh ruith na h-iomairte:"
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
@@ -4967,11 +4967,11 @@ msgstr "Luchdaich geama air a shàbhaladh."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr ""
+msgstr "Iomairt ùr"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
-msgstr ""
+msgstr "Luchdaich an iomairt"
 
 #: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
@@ -5121,7 +5121,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Yaunā"
-msgstr ""
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5147,7 +5147,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Briog gus a’ chabadaich IRC aig 0 A.D. fhosgladh sa bhrabhsair-lìn agad. (#0ad air webchat.quakenet.org). Tha i fo stiùireadh luchd saor-thoileach a nì iomadh saothair agus dh’fhaoidte gum bi sinn greis mus fhreagair sinn dhan cheist agad. Mar roghainn eile, ’s urrainn dhut am bòrd-brath a chleachdadh (faic an làrach-lìn)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5160,11 +5160,11 @@ msgstr "Briog gus tadhal air 0 A.D. Trac ach an dèan thu aithris air buga, tuis
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "CÀBHA"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "Briog a thadhail air duilleag nan ceistean àbhaisteach sa bhrabhsair agad."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5258,11 +5258,11 @@ msgstr "’S urrainn dhut fiosrachadh a chur thugainn gu fèin-obrachail a chuid
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Dùin buannachdan na leapa-righe."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Buannachdan na leapa-righe"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -5647,7 +5647,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Tha an geama seo fo leasachadh fhathast. Dh’fhaoidte gun tachair thu ri bugaichean agus nach bi gach gleus cho rèidh mar bu mhiann leinn."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5659,13 +5659,13 @@ msgstr "[imgleft=\"iconLag\"]Dh’fhaoidte gum bi duilgheadasan dèanadais aig a
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]’S e bathar-bog saor a th’ ann an 0 A.D. agus ’s urrainn dhut dol an sàs san obair-leasachaidh air."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Nam bu toigh leat cuideachadh le obair-ealain, fuaimean, cluiche a’ gheama no prògramachadh, dèan cinnteach gum faigh thu ballrachd sa bhòrd-bhrath oifigeil againn."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5681,7 +5681,7 @@ msgstr "Ceart ma-thà"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
-msgstr ""
+msgstr "Bòrd-brath oifigeil (lìon)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6094,7 +6094,7 @@ msgstr "Gabhaidh a thogail àite sam bith air ranntair an nàmhad no neo-phàirt
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Tog reitheachan is oidich saighdearan-dùthcha."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6104,15 +6104,15 @@ msgstr "Cuir aonadan ’nan gearastan ann gus an slànachadh gu mall is campa an
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
-msgstr ""
+msgstr "CIUTHA FÈIN-OBRACHAIL"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr ""
+msgstr "Cuir an comas gleus a’ chiutha fhèin-obrachail airson aonadan oideachadh gu fèin-obrachail."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Obraichidh seo cho fad ’s a bhios stòras gu leòr agad agus thig stad air an uairsin."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6122,17 +6122,17 @@ msgstr "TAIGHEAN-FEACHD"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Oidich a h‑uile seòrsa de shaighdearan-dùthcha. ’S urrainn dha cuid a shìobhaltasan a’ ghlas a thoirt far oideachadh nan laoch cuideachd."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Buannaichidh aonadan eòlas fad ’s a bhios iad ’nan gearastan san togalach."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Tog fear tràth gus saighdearan-dùthcha oideachadh fhad ’s a bhios tu ag àrdachadh do thuineachadh gu linn ùr."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6140,35 +6140,35 @@ msgstr "Tog iad ann am bunait adhartach ach am faigh an ionnsaigh agad foirliona
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
-msgstr ""
+msgstr "GNÀTH-SHÌDE"
 
 #: gui/text/tips/biomes.txt:2
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "’S urrainn dhut a’ gnàth-shìde a chleachdadh air cuid a mhapaichean tuaireamach airson taghadh dè an sgìre dhen t-saoghal a riochdaicheas am mapa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Bheir i buaidh air coltas a’ mhapa agus air co mheud a stòrasan a bhios ri fhaighinn."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
-msgstr ""
+msgstr "CÙ COGAIDH"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "Seo cù as urrainn dha na Breatannaich oideachadh aig stàball eachraidh."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Chan eil cus puingean-slàinte aige ach tha e luath agus bheir e ionnsaigh air nàimhdean gun eagal."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Cleachd iad mar aonad-taice san fheachd agad no airson creachadh luath."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6192,19 +6192,19 @@ msgstr "Cleachd na sleaghairean mar choisridh throm an aghaidh eachraidh. Cleach
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr ""
+msgstr "DOCA CABHLAICH CHARTAGAiCH"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Seo doca sònraichte nan Cartagach airson longan-cogaidh a thogail."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Cuir longan ’nan gearastan ann airson an càradh beag air bheag."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "The a mòran nas treasa na docaichean càich ach tha e nas daoire cuideachd."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6226,16 +6226,16 @@ msgstr "Paisg ’nan cairtean iad airson an gluasad agus neo-phaisg iad ’nan u
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr ""
+msgstr "STÀBALL EACHRAIDH"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Oidichidh seo aonadan eachraidh agus leigidh e leat teicneolasan sònraichte a rannsachadh dhan eachraidh."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "Buannaichidh aonadan eòlas fad ’s a bhios iad ’nan gearastan san togalach."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6259,21 +6259,21 @@ msgstr "Cuiridh seo ri buannachd an losgaidh nuair a bhios coisridh ’na gheara
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr ""
+msgstr "BALLACHAN BALLA"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Seo ballachan cloiche làidir a chuidicheas le dìon do bhaile."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Nuair a bhios a’ choisridh astair sna turaidean aca, gheibh iad-san barrachd armachd agus ’s urrainn dhaibh losgadh air an nàmhaid. "
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Tha iad so-leònta an aghaibh innealan-sèiste mar chrainn-thabhaill, reitheachan agus ailbheanan cogaidh."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6299,23 +6299,23 @@ msgstr "Oidich saoranaich: saoranaich bhoireann, coisridh-dhùthcha is eachraidh
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
-msgstr ""
+msgstr "CUMADH TÙSAIL"
 
 #: gui/text/tips/default_formation.txt:2
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr ""
+msgstr "Nuair a nì thu briogadh deas air ìomhaigheag, suidhichidh seo an cumadh tùsail: cleachdaidh na h-aonadan a gheibh òrdugh airson coiseachd no cuairteachan e gu fèin-obrachail."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr ""
+msgstr "’S urrainn dhut seo a chur à comas ma thaghas tu “Gun chumadh” na chumadh tùsail."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr ""
+msgstr "Leigidh an roghainn “Stiùireadh nan cumaidhean” leat taghadh an dèid cumaidhean a sgaoileadh airson òrduighean seach coiseachd no cuairteachan gus nach dèid."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -6323,12 +6323,12 @@ msgstr "TÙIR DHÌONA"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Seo tùir dhìona làidir a chuidicheas le dìon na sgìre agad."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Tha astar lèirsinne fada aca agus loisgidh iad saighdean air gach nàmhaid a chì iad. "
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
@@ -6393,12 +6393,12 @@ msgstr "Rannsaich leasachaidhean air airm ’s armachd airson nan aonadan agad."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "CUMAIDHEAN"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Cuir rian air na saighdearan agad air a’ bhlàr is tu ’gan cumail ann an cumadh."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

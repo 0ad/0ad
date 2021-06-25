@@ -30,19 +30,17 @@ msgctxt "Campaign Template"
 msgid ""
 "Discover the new maps in Alpha 25 with a demo campaign, taking you through "
 "all of them."
-msgstr ""
-"Entdecke die neuen Karten in Alpha 25 mit einer Demo-Kampagne, die sie dir "
-"alle vorstellt."
+msgstr "Eine Demo-Kampagne stellt Dir alle neuen Karten in Alpha 25 vor."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr "Demokampagne - Neue Karten"
+msgstr "Demo-Kampagne - neue Karten"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr "0 A.D. spielen lernen."
+msgstr "0 A.D. kennenlernen."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -62,7 +60,7 @@ msgstr ""
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr "Wirtschaftseinführung"
+msgstr "Einführung in die Wirtschaft"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -96,7 +94,7 @@ msgstr "Fehler beim Laden des Kampagnenlaufs %s: %s.-"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr "Kampagnenname"
+msgstr "Name der Kampagne"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
@@ -121,7 +119,7 @@ msgstr "Gespeichertes Spiel fortsetzen"
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr "Szenarioname"
+msgstr "Name des Szenarios"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
@@ -158,7 +156,7 @@ msgstr "Kampagne laden"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr "Keine laufenden Kampagnen."
+msgstr "Keine laufenden Kampagnen"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
@@ -188,7 +186,7 @@ msgstr "Kampagne starten"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr "Keine Kampagne ausgewählt."
+msgstr "Keine Kampagne ausgewählt"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -196,7 +194,7 @@ msgstr "Kampagnen"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr "Keine Kampagne ausgewählt."
+msgstr "Keine Kampagne ausgewählt"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

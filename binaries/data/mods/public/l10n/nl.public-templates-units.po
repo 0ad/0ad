@@ -25,6 +25,7 @@
 # Pim de Graaf <pimdegraaf1997@gmail.com>, 2019
 # Reinout De Geest <rlgdegeest@gmail.com>, 2017
 # Robin van der Kruit <Robin.Kruit@hotmail.com>, 2018
+# rollieoo, 2021
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Ruben De Smet <ruben.de.smet@telenet.be>, 2015
 # Sander Deryckere, 2014-2016
@@ -35,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-06-18 20:59+0000\n"
+"PO-Revision-Date: 2021-06-21 19:22+0000\n"
 "Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -665,7 +666,7 @@ msgstr "Oorlogsschip"
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
 msgid "Bireme"
-msgstr "Bireme"
+msgstr "Bireem"
 
 #: simulation/templates/template_unit_ship_fire.xml:5
 #: simulation/templates/units/theb_siege_fireraiser.xml:5
@@ -751,7 +752,7 @@ msgstr "Medium oorlogsschip"
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
-msgstr "Trireme"
+msgstr "Trireem"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -773,7 +774,7 @@ msgstr "Ballista"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "Bolt Shooter"
-msgstr "Pijlgeschut"
+msgstr "Ballista"
 
 #: simulation/templates/template_unit_siege_ram.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1156,7 +1157,7 @@ msgstr "Toxótēs Krētikós"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:5
 msgid "Athenian Slinger Militia"
-msgstr "Atheense slinger militie"
+msgstr "Atheense slingeraar"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:6
 msgid "Psilòs Athēnaîos"
@@ -1203,7 +1204,7 @@ msgstr "Triḗrēs Athēnaía"
 
 #: simulation/templates/units/athen/ship_trireme.xml:9
 msgid "Athenian Trireme"
-msgstr "Atheense trireme"
+msgstr "Atheense trireem"
 
 #: simulation/templates/units/athen/siege_lithobolos_packed.xml:4
 #: simulation/templates/units/mace/siege_lithobolos_packed.xml:5
@@ -1335,12 +1336,12 @@ msgstr "Caratacos"
 #: simulation/templates/units/brit/hero_cunobelin.xml:8
 #: simulation/templates/units/brit/hero_cunobelin_infantry.xml:8
 msgid "Cunobeline"
-msgstr "Cunobeline"
+msgstr "Cunobelin"
 
 #: simulation/templates/units/brit/hero_cunobelin.xml:9
 #: simulation/templates/units/brit/hero_cunobelin_infantry.xml:9
 msgid "Cunobelinos"
-msgstr "Cunobeline"
+msgstr "Cunobelinos"
 
 #: simulation/templates/units/brit/infantry_javelineer_b.xml:13
 #: simulation/templates/units/gaul/infantry_javelineer_b.xml:11
@@ -1637,7 +1638,7 @@ msgstr "Vercingetorix"
 #: simulation/templates/units/gaul/hero_vercingetorix.xml:9
 #: simulation/templates/units/gaul/hero_vercingetorix_infantry.xml:9
 msgid "Uercingetorix"
-msgstr "Vercingetorix"
+msgstr "Uercingetorix"
 
 #: simulation/templates/units/gaul/hero_viridomarus.xml:8
 msgid "Viridomarus"
@@ -1645,7 +1646,7 @@ msgstr "Viridomarus"
 
 #: simulation/templates/units/gaul/hero_viridomarus.xml:9
 msgid "Britomaros"
-msgstr "Vertomarus"
+msgstr "Britomaros"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Mandonius"
@@ -1750,11 +1751,11 @@ msgstr "iry hr ssmwtt"
 
 #: simulation/templates/units/kush/cavalry_javelineer_b.xml:8
 msgid "Napatan Light Cavalry"
-msgstr "Napataanse Lichte Cavalerie"
+msgstr "Napataanse lichte cavalerie"
 
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:17
 msgid "Blemmye Desert Raider"
-msgstr "Blemmische Woestijn Rover"
+msgstr "Blemmische woestijn rover"
 
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:18
 msgid "nhw Bulahau gml"
@@ -1767,7 +1768,7 @@ msgstr "Kameel"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:7
 msgid "Meroitic Heavy Cavalry"
-msgstr "Meroëense Zware Cavalerie"
+msgstr "Meroëense zware cavalerie"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:8
 msgid "Htr"
@@ -1783,7 +1784,7 @@ msgstr "Htr Msʿ n mh-ib"
 
 #: simulation/templates/units/kush/champion_elephant.xml:6
 msgid "Meroitic War Elephant"
-msgstr "Meroëense Krijgsolifant"
+msgstr "Meroëense krijgsolifant"
 
 #: simulation/templates/units/kush/champion_elephant.xml:7
 msgid "Abore ʿhȝ"
@@ -1791,7 +1792,7 @@ msgstr "Abore ʿhȝ"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
-msgstr "Napataanse Tempel Bewaker"
+msgstr "Napataanse tempelbewaker"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
 msgid "rs ʿImn"
@@ -1799,7 +1800,7 @@ msgstr "rs ʿImn"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
-msgstr "Meroëense Tempel Bewaker"
+msgstr "Meroëense tempelbewaker"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
@@ -1807,7 +1808,7 @@ msgstr "rs ʿIprmk"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:6
 msgid "Noble Archer"
-msgstr "Nobele Boogschutter"
+msgstr "Nobele boogschutter"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:7
 msgid "Hry pdty"
@@ -1869,7 +1870,7 @@ msgstr "nhw Noba"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:16
 msgid "Meroitic Pikeman"
-msgstr "Meroïtische Piekenier"
+msgstr "Meroïtische piekenier"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:17
 msgid "siȝwrd"
@@ -1877,7 +1878,7 @@ msgstr "siȝwrd"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:16
 msgid "Nubian Spearman"
-msgstr "Nubische Speervechter"
+msgstr "Nubische speervechter"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:17
 msgid "iry-rdwy Nhsyw"
@@ -1885,7 +1886,7 @@ msgstr "iry-rdwy Nhsyw"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:16
 msgid "Meroitic Swordsman"
-msgstr "Meroïtische Zwaardvechter"
+msgstr "Meroïtische zwaardvechter"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:17
 msgid "knw hps"
@@ -1905,7 +1906,7 @@ msgstr "Dȝy sbt"
 
 #: simulation/templates/units/kush/ship_trireme.xml:10
 msgid "Ptolemaic Mercenary Trireme"
-msgstr "Ptolemaeënse Huurlingen Trireem"
+msgstr "Ptolemaeënse huurlingen trireem"
 
 #: simulation/templates/units/kush/ship_trireme.xml:11
 msgid "shry ʿȝ"
@@ -1937,7 +1938,7 @@ msgstr "wʿb nsw"
 
 #: simulation/templates/units/kush/support_trader.xml:10
 msgid "Nilotic Merchant"
-msgstr "Nilotische Handelaar"
+msgstr "Nilotische handelaar"
 
 #: simulation/templates/units/kush/support_trader.xml:11
 msgid "rmt sbt"
@@ -1952,7 +1953,7 @@ msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr "Financiële Reorganisatie: geallieerd met Rome reorganiseerde Philippus de interne zaken en financiën van het land, met als nalatenschap: heropende mijnen en een nieuwe munt. Verkrijg een gestage winst aan metaal."
+msgstr "Financiële reorganisatie: geallieerd met Rome reorganiseerde Philippus de interne zaken en financiën van het land, met als nalatenschap: heropende mijnen en een nieuwe munt. Verkrijg een gestage winst aan metaal."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
@@ -1964,7 +1965,7 @@ msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace/cavalry_spearman_b.xml:7
 msgid "Thessalian Lancer"
-msgstr "Thessalische Lansier"
+msgstr "Thessalische lansier"
 
 #: simulation/templates/units/mace/cavalry_spearman_b.xml:8
 msgid "Xystophóros Thessalikós"
@@ -2184,7 +2185,7 @@ msgstr "Chandragupta Maurya"
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:12
 msgid "Longbowman"
-msgstr "Longbow schutter"
+msgstr "Longbow boogschutter"
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:13
 msgid "Dhanurdhar"
@@ -2258,7 +2259,7 @@ msgctxt ""
 "Name of an attack using a rhomphaia (ῥομφαία), a Thracian two-handed weapon "
 "capable of both thrusting and slashing."
 msgid "Rhomphaia"
-msgstr "Rhomphaia"
+msgstr "Breedzwaard"
 
 #: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
 #: simulation/templates/units/merc_black_cloak.xml:10
@@ -2458,7 +2459,7 @@ msgstr "Nauš Yauna"
 
 #: simulation/templates/units/pers/ship_trireme.xml:10
 msgid "Phoenician Trireme"
-msgstr "Fenicische trireme"
+msgstr "Fenicische trireem"
 
 #: simulation/templates/units/pers/ship_trireme.xml:11
 msgid "Hamaraniyanava Vazarka"
@@ -2795,7 +2796,7 @@ msgstr "Quīnquerēmis Rōmāna"
 
 #: simulation/templates/units/rome/ship_quinquereme.xml:10
 msgid "Roman Quinquereme"
-msgstr "Romeins quinquireem"
+msgstr "Romeins quinquereem"
 
 #: simulation/templates/units/rome/ship_trireme.xml:8
 msgid "Trirēmis Rōmāna"
@@ -2803,7 +2804,7 @@ msgstr "Trirēmis Rōmāna"
 
 #: simulation/templates/units/rome/ship_trireme.xml:9
 msgid "Roman Trireme"
-msgstr "Romeins trireem"
+msgstr "Romeinse trireem"
 
 #: simulation/templates/units/rome/siege_onager.xml:26
 msgid "Onager"

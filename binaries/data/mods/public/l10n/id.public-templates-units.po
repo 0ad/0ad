@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# azayrahmad <azayrahmad@gmail.com>, 2014-2015
+# azayrahmad <azayrahmad@gmail.com>, 2014-2015,2021
 # Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Esther Randiny <esrandiny@gmail.com>, 2021
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-06-15 06:51+0000\n"
-"Last-Translator: d5f629f7f4b251b1c1597d8275ebee28_4786982 <925977b1d7c7fa858030fd4acd751107_1008495>\n"
+"PO-Revision-Date: 2021-06-25 07:16+0000\n"
+"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,15 +29,15 @@ msgstr ""
 
 #: simulation/templates/template_unit_catafalque.xml:16
 msgid "Relic"
-msgstr "Relik"
+msgstr "Pusaka"
 
 #: simulation/templates/template_unit_catafalque.xml:18
 msgid "Catafalque"
-msgstr "Podium Jenazah"
+msgstr "Keranda"
 
 #: simulation/templates/template_unit_catafalque.xml:21
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "Sebuah podium jenazah yang menyimpan sisa-sisa pemimpin besar."
+msgstr "Sebuah keranda yang menyimpan jenazah pemimpin besar."
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -312,7 +312,7 @@ msgstr "Lembing"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr "Kavaleri Pelempar Lembing"
+msgstr "Kavaleri Pelembing"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
@@ -321,7 +321,7 @@ msgstr "Kavaleri Pelempar Lembing"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr "Pelempar Lembing"
+msgstr "Pelembing"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -349,7 +349,7 @@ msgstr "Jawara Kavaleri Busur Silang"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr "Jawara Kavaleri Pelempar Lembing"
+msgstr "Jawara Kavaleri Pelembing"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
@@ -381,7 +381,7 @@ msgstr "Gajah"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr "Bagasi"
+msgstr "Belalai"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -419,7 +419,7 @@ msgstr "Jawara Infanteri Gada"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Pike"
-msgstr "Tembiang"
+msgstr "Galah"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
@@ -608,7 +608,7 @@ msgstr "Infanteri Busur Silang"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr "Infanteri Pelempar Lembing"
+msgstr "Infanteri Pelembing"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -659,7 +659,7 @@ msgstr "Api"
 #: simulation/templates/template_unit_ship_fire.xml:22
 #: simulation/templates/units/theb_siege_fireraiser.xml:35
 msgid "Circular"
-msgstr "Sirkular"
+msgstr "Melingkar"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -667,7 +667,7 @@ msgstr "Kapal Api"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr "Tidak dapat diperbaiki. Secara bertahap kehilangan kesehatan. Hanya dapat menyerang Kapal."
+msgstr "Tidak dapat diperbaiki. Secara bertahap kehilangan nyawa. Hanya dapat menyerang Kapal."
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
@@ -748,7 +748,7 @@ msgstr "Baut"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:27
 msgid "Linear"
-msgstr "Linier"
+msgstr "Lurus"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 msgid "BoltShooter"
@@ -798,7 +798,7 @@ msgstr "Gajah Pekerja"
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
-msgstr "Pisau Belati"
+msgstr "Belati"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:34
 msgid "Female Citizen"
@@ -1578,7 +1578,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul/catafalque.xml:9
 msgid "Ambiorix"
-msgstr "Ambiorix"
+msgstr "Ambioriks"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
@@ -1852,7 +1852,7 @@ msgstr "nhw Noba"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:16
 msgid "Meroitic Pikeman"
-msgstr "Pasukan Tembiang Meroë"
+msgstr "Penggalah Meroë"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:17
 msgid "siȝwrd"
@@ -1984,7 +1984,7 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:21
 msgid "Alexander III the Great"
-msgstr "Iskandar III Agung"
+msgstr "Alexander III Agung"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexandros ho Megas"
@@ -1996,7 +1996,7 @@ msgstr "Membalas: 1.2x vs  Pahlawan."
 
 #: simulation/templates/units/mace/hero_craterus.xml:14
 msgid "Craterus"
-msgstr "Craterus"
+msgstr "Krateros"
 
 #: simulation/templates/units/mace/hero_craterus.xml:15
 msgid "Krateros"
@@ -2842,7 +2842,7 @@ msgstr "Pasukan Pedang Samnium"
 
 #: simulation/templates/units/sele/catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr "Antiokhus I Soter (Penyelamat)"
+msgstr "Antiokhos I Soter (Penyelamat)"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -2990,7 +2990,7 @@ msgstr "Wanita Suriah"
 
 #: simulation/templates/units/spart/catafalque.xml:10
 msgid "Lycurgus"
-msgstr "Lycurgus"
+msgstr "Lykourgos"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:7
 msgid "Perioikoi Cavalryman"

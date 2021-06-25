@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 10:17+0000\n"
+"PO-Revision-Date: 2021-06-24 11:00+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "Gnìomhach: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]Dh’fheuch thu ris an geama a thòiseachadh le tuilleadan nach eil co-chòrdail no a tha dhìth![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -108,17 +108,17 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Fuasgail duilgheadas na co-chòrdalachd is tu a’ cur à comas nan tuilleadan nach eil dligheach no a’ cur an comas nan eisimeileachdan riatanach. ’S urrainn dhut an geama a shàbhaladh ⁊ a thòiseachadh an uairsin."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "Nochdaidh na tuilleadan neo-chòrdail le dath dearg orra air liosta nan tuilleadan an comas (sa phanail aig a’ bhonn). ’S urrainn dhut na h-eisimeileachdan a chur ris is tu ’gan cur an comas sa phanail uachdarach."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
-msgstr ""
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
@@ -403,7 +403,7 @@ msgstr "Tadhail air mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Chan eil an tuilleadan seo ann"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -412,7 +412,7 @@ msgstr "Cuir an comas"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Cha deach na h-eisimeileachdan a choileanadh"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
@@ -425,7 +425,7 @@ msgstr "Cha deach tuilleadan a thaghadh."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Cuir an comas an tuilleadan 0ad air a char as lugha"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -437,7 +437,7 @@ msgstr "Àicheadh"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "Criathraich an fheadhainn cho-chòrdail"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -469,7 +469,7 @@ msgstr "Sàbhail an rèiteachadh"
 
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Save and Restart"
-msgstr ""
+msgstr "Sàbhail is ath-thòisich"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

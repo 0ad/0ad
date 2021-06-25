@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # ali topçu <ali134636@gmail.com>, 2018
+# Barış Aydın <barisn0on@gmail.com>, 2021
 # Cem Aktas <cemwstone@gmail.com>, 2021
 # Doğu Kan, 2014
 # Emre JILTA <jilta.e@gmail.com>, 2020
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-18 18:05+0000\n"
-"Last-Translator: Muha Aliss <muhaaliss@gmail.com>\n"
+"PO-Revision-Date: 2021-06-21 18:08+0000\n"
+"Last-Translator: Barış Aydın <barisn0on@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,12 +214,12 @@ msgstr "  hotkey.fps.toggle – Kare sayacını aç/kapat (FPS)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr " hotkey.profile.toggle – Gerçek zamanlı profil oluşturucuyu aç/kapat  (bilgi ekranları arasında geçiş yapar)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "hotkey.profile.save – Geçerli profil oluşturucu verilerini “logs/profile.txt” olarak kaydet."
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -312,7 +313,7 @@ msgstr "  hotkey.pause – Oyunu duraklat veya devam ettir"
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "hotkey.session.kill – Seçili olan birim(leri)/yapı(ları) silin, onay isteyin."
 
 #: gui/manual/intro.txt:69
 msgid ""
@@ -324,42 +325,42 @@ msgstr "    • hotkey.session.noconfirmation ile – Onay gerektirmeden, haliha
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "hotkey.selection.add – Değiştirici – seç (tıklama ve kısayol tuşlarıyla çalışır, örneğin boşta kalan kısayol tuşları)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr " hotkey.selection.remove –Değiştirici –  seçimden kaldır (tıklama ve kısayol tuşlarıyla çalışır, örneğin boşta kalan kısayol tuşları)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr " hotkey.selection.offscreen – Değiştirici – ekran dışı birimler de dahil olmak üzere tüm birimleri seçin."
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement."
-msgstr ""
+msgstr "hotkey.selection.cancel – Tüm birimlerin seçimini kaldırın, bina yerleşimini iptal edin."
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
-msgstr ""
+msgstr "hotkey.selection.idlebuilder – Boşta olan inşaatçıyı seçin"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr "hotkey.selection.idlewarrior – Boşta olan savaşçıyı seçin"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "hotkey.selection.idleworker – Boşta olan işçiyi seçin (vatandaş-askerler dahil)"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "hotkey.selection.idleunit – Boşta olan birimi seç"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
@@ -367,7 +368,7 @@ msgstr " hotkey.session.stop – Seçili birimleri durdur (dur)"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "hotkey.session.backtowork – Birim çalışmaya geri döner"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -397,13 +398,13 @@ msgstr "  hotkey.selection.group.add.1 – Kontrol Grubu 1'i (0'a) seçili olan 
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr "hotkey.camera.jump.set.1 – Daha sonra geri dönmek için mevcut kamera konumunu işaretleyin (varsayılan olarak 4 olası konum vardır)"
 
 #: gui/manual/intro.txt:85
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "hotkey.camera.jump.1 – Kamerayı işaretli bir konuma taşıyın. Kamera zaten işaretli konumun üzerindeyse, son konuma geri dönün"
 
 #: gui/manual/intro.txt:86
 msgid ""

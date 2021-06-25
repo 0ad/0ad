@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# GunChleoc, 2014-2019
+# GunChleoc, 2014-2019,2021
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 # Michael Bauer, 2014
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-24 12:42+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +91,7 @@ msgstr "Fàg an-seo"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Dàil air an t-sruthadh bheò: %(delay)sd"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -870,7 +870,7 @@ msgstr "Cluicheadair neo-aithnichte"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr ""
+msgstr "Cuir lasan dha na caidreabhaich agad"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -879,11 +879,11 @@ msgstr "Lorg obraiche na thàmh"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s – air a phasgadh"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Air a phasgadh"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -955,7 +955,7 @@ msgstr "Cruinnichean an-dràsta/as motha"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -964,11 +964,11 @@ msgstr "Puingean glacaidh:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr ""
+msgstr "Meud a’ ghearastain"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1074,7 +1074,7 @@ msgstr "Sguir dhen neo-phasgadh"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Feuchaidh an ciutha fèin-obrachail ris an nì seo oideachadh uaireigin eile."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1115,22 +1115,22 @@ msgstr "Chan urrainn dhut trèanadh fhad ’s a tha thu ag àrdachadh."
 #: gui/session/selection_panels.js:1112
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Àrdaich gu %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Àrdaich gu %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1126
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Àrdaich gu %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1131
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Àrdaich gu %(primaryName)s."
 
 #: gui/session/selection_panels.js:1168
 msgid "Cancel Upgrading"
@@ -1335,7 +1335,7 @@ msgstr "Briog gus aonadan buidhnichte a thaghadh, dèan briogadh dùbailte gus a
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Yaunā"
-msgstr ""
+msgstr "Alpha XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1374,15 +1374,15 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "Sluagh: làithreach/crìoch (as motha)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Cruinnichean: làithreach"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1649,7 +1649,7 @@ msgstr "Dèan briogadh deas gus a’ mhargaid a shuidheachadh mar cheann-uidhe a
 #: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr ""
+msgstr "Turaidean làithreach: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
 #, javascript-format
@@ -1679,7 +1679,7 @@ msgstr "A-mach leotha uile."
 
 #: gui/session/unit_actions.js:1341
 msgid "Unload Turrets."
-msgstr ""
+msgstr "Fàg na turaidean."
 
 #: gui/session/unit_actions.js:1361
 msgid "Destroy the selected units or structures."
@@ -1700,7 +1700,7 @@ msgstr "Cuir na h-aonadan a thagh thu ’nan gearastan ann an togalach no ann an
 
 #: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Thoir air na h-aonadan a thagh thu gun lìon iad puing turaide."
 
 #: gui/session/unit_actions.js:1479
 msgid "Unload"
@@ -1762,11 +1762,11 @@ msgstr "Faodaidh tu an t-ionad-stòrais seo a chleachdadh"
 
 #: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Gnìomhaich an ciutha fèin-obrachail dha na togalaichean a thagh thu."
 
 #: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Cuir an ciutha fèin-obrachail à gnìomh air na togalaichean a thagh thu."
 
 #: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"

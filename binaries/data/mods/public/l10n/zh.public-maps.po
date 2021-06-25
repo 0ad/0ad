@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-21 07:17+0000\n"
+"PO-Revision-Date: 2021-06-22 05:28+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgid ""
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr "巴林岛，位于波斯湾，处于珍珠贸易的中心战略位置上。从公元前800年开始，历经苏美尔、亚述、巴比伦、波斯的统治。因采珠业发达，时刻被人们关注。 如今，昔人都已湮没无闻，为了这片土地， 你能成为下一任统治者吗？"
+msgstr "巴林岛，位于波斯湾，处于珍珠贸易的中心战略位置上。从公元前 800 年开始，历经苏美尔、亚述、巴比伦、波斯的统治。因采珠业发达，时刻被人们关注。 如今，昔人都已湮没无闻，为了这片土地， 你能成为下一任统治者吗？"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -1137,7 +1137,7 @@ msgstr "适者生存"
 #: maps/random/survivalofthefittest_triggers.js:163
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
-msgstr "第一波攻击将会在%(time)s后到来！"
+msgstr "%(time)s后开始第一波攻击！"
 
 #: maps/random/survivalofthefittest_triggers.js:268
 msgid "An enemy wave is attacking!"
@@ -2173,7 +2173,7 @@ msgid ""
 "\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
 "\n"
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr "“一直以来，希腊都梦想着东进。”\n\n“小心这种奇想，东方可能会吞噬某些人的梦想。”\n\n是让亚历山大推进到波斯隘口，还是阿里奥巴尔赞守住这片古老的波斯领地，不让外人入侵？"
+msgstr "“一直以来，希腊梦想着东进。”\n\n“小心这种奇想，东方可能会吞噬某些人的梦想。”\n\n是让亚历山大推进到波斯隘口，还是阿里奥巴尔赞守住这片古老的波斯领地，不让外人入侵？"
 
 #: maps/scenarios/the_persian_gates.xml:Name:26
 msgid "The Persian Gates"
@@ -2335,7 +2335,7 @@ msgid ""
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
 "integrated test map. Look for things such as stuck units, wrong animations, "
 "and weird pathing."
-msgstr "本地图旨在测试一些基本的单位运动案例。 涉及了 unitAI、unitMotion 和相关的探测器，因此可作为综合测试图。 寻找诸如卡单位，错误动画，和奇怪的路径。"
+msgstr "本地图旨在测试一些基本的单位运动案例。 涉及了 unitAI、unitMotion 和相关的探测器，因此可作为综合测试图。 寻找诸如卡单位、错误动画以及怪异路径。"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
@@ -2628,7 +2628,7 @@ msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
-msgstr "玩家分列两座岛屿上，皆有茂密的丛林，登陆作战难度不少。\n\n最初被托雷亚占领，尔后被伊特鲁里亚、福西亚及叙拉古殖民。第一次布匿战争中，罗马从迦太基手中夺取了两岛，前238年设立科西嘉与萨丁尼亚省。在长达一世纪中，科西嘉起义此起彼伏，损失了岛上 2/3 的人口。"
+msgstr "玩家分列两座岛屿上，皆有茂密的丛林，登陆作战难度不少。\n\n最初被托雷亚占领，尔后被伊特鲁里亚、福西亚及叙拉古殖民。第一次布匿战争中，罗马从迦太基手中夺取了两岛，前 238 年设立科西嘉与萨丁尼亚省。在长达一世纪中，科西嘉起义此起彼伏，损失了岛上 2/3 的人口。"
 
 #: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
 msgid "Corsica and Sardinia (4)"
@@ -3153,7 +3153,7 @@ msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
-msgstr "一片不毛之地，几乎没有动植物。 宝藏星罗棋布，对前期发育至关重要。\n\n通商越早，优势越大。\n"
+msgstr "一片不毛之地，几乎看不到动植物。 宝藏星罗棋布，对前期发育至关重要。\n\n通商越早，优势越大。\n"
 
 #: maps/skirmishes/syria_2p.xml:Name:39
 msgid "Coele-Syria (2)"
