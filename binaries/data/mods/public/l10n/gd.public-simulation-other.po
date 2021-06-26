@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# GunChleoc, 2015-2018
+# GunChleoc, 2015-2018,2021
 # GunChleoc, 2014-2015
 # GunChleoc, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-24 12:42+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,7 +581,7 @@ msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an oideachadh a shìoladh
 
 #: simulation/components/ProductionQueue.js:902
 msgid "Could not auto-queue unit, de-activating."
-msgstr ""
+msgstr "Cha b’ urrainn dhuinn an t-aonad a chur air a’ chiutha gu fèin-obrachail, ’ga chur à gnìomh."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -820,11 +820,11 @@ msgstr "Ceannsachadh"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centres."
-msgstr ""
+msgstr "Mill ionadan sìobhalta slàna uile nan nàmhad gus ruaig a chur orra."
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
 msgid "Conquest Civic Centres"
-msgstr ""
+msgstr "Ceannsaich ionadan sìobhalta"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
@@ -905,7 +905,7 @@ msgstr "Chan eil aonad a ghabhas ceannach ann"
 
 #: simulation/helpers/Commands.js:922
 msgid "Unable to unload unit(s)."
-msgstr ""
+msgstr "Tha aonad no dhà nach do dh’fhalbh."
 
 #: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"

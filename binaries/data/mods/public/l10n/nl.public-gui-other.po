@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-20 15:26+0000\n"
+"PO-Revision-Date: 2021-06-21 20:10+0000\n"
 "Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -472,7 +472,7 @@ msgstr "Dit wordt vaak veroorzaakt doordat UDP poort 20595 niet geforward wordt 
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr "De host heeft het spel beëindigd."
+msgstr "De spelleider heeft het spel beëindigd."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
@@ -1427,7 +1427,7 @@ msgstr "Leider"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr "Audio balans "
+msgstr "Balancering"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1505,7 +1505,7 @@ msgstr "En bedankt aan de hele 0 A.D. gemeenschap om dit project mogelijk te mak
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr "Er hebben geen geschiedkundigen pijn geleden bij het maken van dit project."
+msgstr "Er is tijdens de uitvoering van dit project geen letsel toegebracht aan geschiedkundigen."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
@@ -1539,7 +1539,7 @@ msgstr " (houd ingedrukt om vast te leggen)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr "Voer nieuwe sneltoets in, houd ingedrukt om vast te leggen."
+msgstr "Druk nieuwe sneltoets in en houd ingedrukt."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
@@ -1598,7 +1598,7 @@ msgstr "Sneltoets beschrijving"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "Klik op een toekenning om deze te wijzigen.\\n U kunt maximaal vier sneltoetsen instellen."
+msgstr "Klik op een toegewezen toetscombinatie om deze te wijzigen.\\n U kunt maximaal vier sneltoetsen instellen."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1620,7 +1620,7 @@ msgstr "Naam"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr "Kaartmakers"
+msgstr "Toetsen"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -3846,7 +3846,7 @@ msgstr "Naam speler (singleplayer)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr "Jouw naam in singleplayer spellen."
+msgstr "Uw naam in singleplayer spellen."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -3854,7 +3854,7 @@ msgstr "Naam speler (multiplayer)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "Jouw naam in multiplayer spellen (met uitzondering van de lobby)."
+msgstr "Uw naam in multiplayer spellen (met uitzondering van de lobby)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -4677,7 +4677,7 @@ msgstr "Uitlijnen op rand"
 
 #: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr "Sneltoets om uitlijnen op rand in te schakelen"
+msgstr "Sneltoets voor inschakelen"
 
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
@@ -4686,7 +4686,7 @@ msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen wanneer de sneltoe
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr "Sneltoets om uitlijnen op rand uit te schakelen"
+msgstr "Sneltoets voor uitschakelen"
 
 #: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
@@ -4826,7 +4826,7 @@ msgstr "Alles weergegeven"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Laat een chatnotificatie zien wanneer u of een geallieerde het onderzoeken van een nieuwe fase bent begonnen, heeft afgebroken of heeft voltooid en van fasen van alle spelers in waarnemer modus."
+msgstr "Laat een chatnotificatie zien wanneer u of een bondgenoot een nieuwe fase bent gestart, heeft afgebroken of heeft voltooid. Toon de fasen van alle spelers in waarnemer modus."
 
 #: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
@@ -6444,7 +6444,7 @@ msgstr "Ruiter burgersoldaten zijn sneller in het verzamelen van vlees."
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Hoe hoger de rang van een burgersoldaat (Geavanceerd, Elite), hoe beter deze vecht maar hoe minder efficient hij grondstoffen kan verzamelen."
+msgstr "Hoe hoger de rang van een burgersoldaat (Geavanceerd, Elite), hoe beter deze vecht maar hoe minder efficiënt hij grondstoffen kan verzamelen."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"

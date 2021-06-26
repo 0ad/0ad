@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-20 12:19+0000\n"
+"PO-Revision-Date: 2021-06-25 06:14+0000\n"
 "Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr "Berbagai efek (waktunya)."
+msgstr "Berbagai efek (berwaktu)."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
@@ -39,7 +39,7 @@ msgstr "Terapkan Status"
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Mengurangi titik tangkap target."
+msgstr "Mengurangi poin perebutan target."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -49,7 +49,7 @@ msgstr "Merebut"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Mengurangi kesehatan target."
+msgstr "Mengurangi nyawa target."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -113,7 +113,7 @@ msgstr "Racun"
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Unit ini menyebabkan kerusakan akibat kebakaran."
+msgstr "Unit ini menyebabkan kerusakan api."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
@@ -142,11 +142,11 @@ msgstr "Keracunan"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
-msgstr "Pasukan Iskandar Agung"
+msgstr "Pasukan Alexander Agung."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
-msgstr "Pasukan Iskandar Agung"
+msgstr "Pasukan Alexander Agung"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
@@ -186,7 +186,7 @@ msgstr "Polis Kecil Yunani"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "Ini adalah kota minor Yunani."
+msgstr "Ini adalah kota kecil Yunani."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
@@ -194,15 +194,15 @@ msgstr "Polis Yunani"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
-msgstr "Ini adalah kota mayor Yunani."
+msgstr "Ini adalah kota besar Yunani."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr "Tempat Suci Beragama"
+msgstr "Suaka Agama"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Tempat Suci Keagamaan Yunani"
+msgstr "Suaka Agama Yunani"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
@@ -211,7 +211,7 @@ msgstr "Tempat Suci Keagamaan Yunani"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr "Mengais"
+msgstr "Cakar"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
@@ -254,7 +254,7 @@ msgstr "Sus scrofa"
 
 #: simulation/templates/gaia/fauna_camel.xml:11
 msgid "Dromedary"
-msgstr "Unta"
+msgstr "Unta Arab"
 
 #: simulation/templates/gaia/fauna_camel.xml:12
 msgid "Camelus dromedarius"
@@ -339,7 +339,7 @@ msgstr "Anjing Mastif"
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:25
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:25
 msgid "Canis lupus familiaris"
-msgstr "Anjing"
+msgstr "Canis lupus familiaris"
 
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:24
 msgid "Wolfhound"
@@ -358,7 +358,7 @@ msgstr "Equus africanus asinus"
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr "Bagasi"
+msgstr "Belalai"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
@@ -380,7 +380,7 @@ msgstr "Gajah Asia"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
-msgstr "Gajah terbesar"
+msgstr "Elephas maximus"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:11
 msgid "Asian Elephant Calf"
@@ -477,7 +477,7 @@ msgstr "Lembu Kasturi"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
-msgstr "Muskox"
+msgstr "Ovibos moschatus"
 
 #: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
@@ -485,7 +485,7 @@ msgstr "Merak"
 
 #: simulation/templates/gaia/fauna_peacock.xml:12
 msgid "Pavo cristatus"
-msgstr "Merak biru "
+msgstr "Pavo cristatus"
 
 #: simulation/templates/gaia/fauna_pig.xml:17
 msgid "Pig"
@@ -493,7 +493,7 @@ msgstr "Babi"
 
 #: simulation/templates/gaia/fauna_pig.xml:18
 msgid "Sus scrofa domesticus"
-msgstr "Babi domestik"
+msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -509,7 +509,7 @@ msgstr "Kelinci"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr "Kelinci Eropa"
+msgstr "Oryctolagus cuniculus"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -522,11 +522,11 @@ msgstr "Badak putih"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
 msgid "Ceratotherium simum"
-msgstr "Badak Putih"
+msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr "Hiu putih raksasa"
+msgstr "Hiu Putih"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -554,7 +554,7 @@ msgstr "Walrus"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
-msgstr "Walrus"
+msgstr "Odobenus rosmarus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:11
 msgid "Fin Whale"
@@ -562,23 +562,23 @@ msgstr "Paus Sirip"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
 msgid "Balaenoptera physalus"
-msgstr "Paus sirip"
+msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
-msgstr "Paus Humpack"
+msgstr "Paus Bungkuk"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
-msgstr "Paus bungkuk "
+msgstr "Megaptera novaeangliae"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:11
 msgid "Blue Wildebeest"
-msgstr "Rusa Kutub"
+msgstr "Wildebeest Biru"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
 msgid "Connochaetes taurinus"
-msgstr "Rusa Kutub"
+msgstr "Connochaetes taurinus"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -598,11 +598,11 @@ msgstr "Zebra biasa"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
 msgid "Equus quagga"
-msgstr "Zebra dataran"
+msgstr "Equus quagga"
 
 #: simulation/templates/gaia/fish/tilapia.xml:4
 msgid "Tilapia"
-msgstr "Tilapia"
+msgstr "Nila"
 
 #: simulation/templates/gaia/fish/tuna.xml:4
 msgid "Tuna"
@@ -665,7 +665,7 @@ msgstr "Batu Berdiri Kelt"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Ptolemaic Egyptian Statues"
-msgstr "Patung Mesir Ptolemi"
+msgstr "Patung Mesir Ptolemaik"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
@@ -675,11 +675,11 @@ msgstr "Patung Kush"
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
 msgid "Stone Resource"
-msgstr "Sumber daya Batu"
+msgstr "Sumberdaya Batu"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr "Patung burung Kush"
+msgstr "Patung Burung Kush"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
@@ -718,7 +718,7 @@ msgstr "Harta Karun Makanan Persia"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
-msgstr "Kapas Emas"
+msgstr "Domba Emas"
 
 #: simulation/templates/gaia/treasure/metal.xml:8
 msgid "Secret Box"
@@ -830,13 +830,13 @@ msgstr "Kacang locust"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr "Cedar Sapling Atlas"
+msgstr "Aras Atlas Muda"
 
 #: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
-msgstr "Atlas Cedar"
+msgstr "Aras Atlas"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
@@ -855,12 +855,12 @@ msgstr "Cypress"
 #: simulation/templates/gaia/tree/temperate_autumn.xml:4
 #: simulation/templates/gaia/tree/temperate_winter.xml:4
 msgid "Deciduous Tree"
-msgstr "Tumbuhan peluruh "
+msgstr "Pohon Gugur"
 
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr "Pohon Elem"
+msgstr "Pohon Elm"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
@@ -869,7 +869,7 @@ msgstr "Beech Eropa"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
-msgstr "Birch Putih"
+msgstr "Betula Putih"
 
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
@@ -1007,13 +1007,13 @@ msgstr "Pos Dagang"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Perubahan pada 10 rumah untuk peradaban dengan rumah tadi, dihapus untuk peradaban lain."
+msgstr "Perubahan pada rumah 10-penduduk untuk bangsa dengan rumah tersebut, dihapus untuk bangsa lain."
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Perubahan pada 5 rumah untuk peradaban dengan rumah tadi, dihapus untuk peradaban lain."
+msgstr "Perubahan pada rumah 5-penduduk untuk bangsa dengan rumah tersebut, dihapus untuk bangsa lain."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1038,11 +1038,11 @@ msgstr "Kotak"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "Paksa Berbaris"
+msgstr "Baris Cepat"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "Kolom Buka"
+msgstr "Kolom Terbuka"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1054,11 +1054,11 @@ msgstr "Sisi"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "Tutup Perintah"
+msgstr "Baris Tertutup"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
-msgstr "Open Order"
+msgstr "Baris Terbuka"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
@@ -1070,7 +1070,7 @@ msgstr "Infanteri Hoplites saja, membutuhkan setidaknya 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "Phalanx"
+msgstr "Falangs"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1086,7 +1086,7 @@ msgstr "Skirmis"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Infanteri Pasukan Galah saja, membutuhkan setidaknya 16."
+msgstr "Infanteri Penggalah saja, membutuhkan setidaknya 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1127,7 +1127,7 @@ msgstr "ikan"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "Tangkap ikan untuk mendapatkan makanan."
+msgstr "Tangkap ikan untuk pangan."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1135,7 +1135,7 @@ msgstr "buah"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "Petik buah untuk mendapatkan makanan."
+msgstr "Petik buah untuk pangan."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
@@ -1156,7 +1156,7 @@ msgstr "Galian Batu"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr "Tambang batu untuk batu."
+msgstr "Gali bebatuan untuk batu."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -1164,7 +1164,7 @@ msgstr "Reruntuhan"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "Bongkar reruntuhan untuk mendapatkan batu."
+msgstr "Bongkar reruntuhan untuk batu."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -1172,7 +1172,7 @@ msgstr "Harta Karun"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Ambil harta karun untuk mendapatkan sumber daya."
+msgstr "Ambil harta karun untuk mendapatkan sumberdaya."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
@@ -1193,8 +1193,8 @@ msgstr "Unit"
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
-msgstr "Dinding"
+msgstr "Tembok"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr "Membentengi satu area."
+msgstr "Membentengi wilayah."
