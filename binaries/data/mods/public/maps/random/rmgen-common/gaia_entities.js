@@ -125,11 +125,10 @@ function createMines(objects, constraint, tileClass, count)
  * @param oLarge - the large mine object
  * @param clMine - the 'mine' class to paint.
  * @param constraints - Custom constraints. Note that the function automatically avoids clMine as well.
- * @param counts - optional, either a single number acting as multiplier to the defaults
- *                 or a dict of numbers{ "largeCount": 0, "smallCount": 1, "randomSmallCount": 2 }
+ * @param counts - a dict of numbers { "largeCount": 10, "smallCount": 100, "randomSmallCount": 2 }
  * @param randomness - randomize counts by a random multiplier between [1 - randomness, 1 + randomness]
  */
-function createBalancedMines(oSmall, oLarge, clMine, constraints, counts = 1.0, randomness = 0.1)
+function createBalancedMines(oSmall, oLarge, clMine, constraints, counts, randomness)
 {
 	let largeCount = counts.largeCount;
 	let smallCount = counts.smallCount;
