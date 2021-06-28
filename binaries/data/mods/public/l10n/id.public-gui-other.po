@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# azayrahmad <azayrahmad@gmail.com>, 2014,2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2014,2021
 # Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Dhemas E. Rilian N. <dhemaser@gmail.com>, 2017
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
-# Joshua Randiny <jrandiny2@gmail.com>, 2016
-# Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
-# Joshua Randiny <jrandiny2@gmail.com>, 2016
+# Joshua Randiny <jrandiny@gmail.com>, 2016
+# Joshua Randiny <jrandiny@gmail.com>, 2014-2015
+# Joshua Randiny <jrandiny@gmail.com>, 2016
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017,2020
 # Samuel <srandiny@gmail.com>, 2015-2016
 # Samuel <srandiny@gmail.com>, 2017,2021
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-25 02:48+0000\n"
-"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
+"PO-Revision-Date: 2021-06-26 08:26+0000\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -299,7 +299,7 @@ msgstr "Bioma Acak"
 
 #: gui/common/gamedescription.js:323
 msgid "Randomly select a biome from the list."
-msgstr "Pilih biome secara acak dari daftar."
+msgstr "Pilih bioma secara acak dari daftar."
 
 #: gui/common/gamedescription.js:338
 msgid "Nomad Mode"
@@ -1484,11 +1484,11 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Meski cukup mudah untuk pemain berpengalaman, level AI default cukup menantang bagi pemain baru yang belum menguasai mekanisme dasar permainan. Para pemula disarankan untuk memulai dengan bermain melawan AI level yang lebih rendah (Sandbox atau Sangat Mudah). Ubah level AI dengan mengklik ikon roda gigi di sebelah pemutar yang ingin Anda modifikasi pada panel pilihan di atas."
+msgstr "Meski cukup mudah untuk pemain berpengalaman, level AI bawaan cukup menantang bagi pemain baru yang belum menguasai mekanisme dasar permainan. Pemula disarankan untuk memulai dengan bermain melawan AI level yang lebih rendah (Sandbox atau Sangat Mudah). Ubah level AI dengan mengklik ikon roda gigi di sebelah pemutar yang ingin Anda ubah pada panel pilihan di atas."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr "Tombol Pintasan Lainnya"
+msgstr "Pintasan Lainnya"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
@@ -1501,7 +1501,7 @@ msgstr " (tahan untuk meregistrasi)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr "Masukkan Tombol Pintasan baru, tahan untuk meregistrasi."
+msgstr "Masukkan Pintasan baru, tahan untuk mendaftarkan."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
@@ -1514,7 +1514,7 @@ msgstr "Dapat berkonflik dengan:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr "Semua Tombol Pintasan"
+msgstr "Semua Pintasan"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
@@ -1524,7 +1524,7 @@ msgstr "Semua tombol pintasan yang tersedia"
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr "Reset semua tombol pintasan ke pengaturan standar\nPERINGATAN: langkah ini tidak dapat dibatalkan"
+msgstr "Atur ulang semua pintasan ke pengaturan bawaan?\nPERINGATAN: langkah ini tidak dapat dibatalkan"
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1550,17 +1550,17 @@ msgstr "Reset"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr "Tombol Pintasan"
+msgstr "Pintasan"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr "Deskripsi Tombol Pintasan"
+msgstr "Deskripsi Pintasan"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "Klik pemetaan mana pun untuk mengubahnya.\\n Anda bisa memiliki hingga 4 tombol pintasan yang berbeda."
+msgstr "Klik pemetaan mana pun untuk mengubahnya.\\n Anda bisa memiliki hingga 4 pintasan yang berbeda."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1599,19 +1599,19 @@ msgstr "Perubahan yang tidak disimpan akan hilang"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr "Klik untuk mengatur tombol pintasan"
+msgstr "Klik untuk mengatur pintasan"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr "Klik untuk menghapus tombol pintasan"
+msgstr "Klik untuk menghapus pintasan"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr "Ubah tombol pintasan dan tutup"
+msgstr "Ubah pintasan dan tutup"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr "Tombol pintasan tidak akan dimodifikasi"
+msgstr "Pintasan tidak akan diubah"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
@@ -1766,7 +1766,7 @@ msgstr "Fokus pada titik temu"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr "Atur ulang rotasi kamera ke standar."
+msgstr "Atur ulang rotasi kamera ke bawaan."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
@@ -1949,7 +1949,7 @@ msgstr "Perkecil (perlahan)"
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr "Tombol pintasan umum."
+msgstr "Pintasan umum."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -3804,11 +3804,11 @@ msgstr "Umum"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr "Nama pemain (pemain tunggal)"
+msgstr "Nama pemain (main sendiri)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr "Bagaimana Anda ingin disapa dalam pertandingan pemain tunggal."
+msgstr "Bagaimana Anda ingin disapa dalam pertandingan sendiri."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -3824,7 +3824,7 @@ msgstr "Jeda latar belakang"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr "Jeda game pemain tunggal saat jendela kehilangan fokus."
+msgstr "Jeda permainan sendiri saat jendela kehilangan fokus."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -4366,7 +4366,7 @@ msgstr "Simpan dan pulihkan pengaturan pertandingan untuk digunakan kembali deng
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Kesulitan AI standar"
+msgstr "Kesulitan AI bawaan"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4390,11 +4390,11 @@ msgstr "Sangat Susah"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "Kesulitan standar dari AI."
+msgstr "Kesulitan bawaan dari AI."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
-msgstr "Perilaku AI standar"
+msgstr "Perilaku AI bawaan"
 
 #: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
@@ -4414,7 +4414,7 @@ msgstr "Defensif"
 
 #: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "Perilaku standar dari AI."
+msgstr "Perilaku bawaan dari AI."
 
 #: gui/options/options.json[4].options[5].label
 msgid "Assign players"
@@ -4509,7 +4509,7 @@ msgstr "Cegah pengamat lebih lanjut untuk bergabung jika batas tercapai."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
-msgstr "Maks lag penonton"
+msgstr "Maks lag pengamat"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
@@ -4543,7 +4543,7 @@ msgstr "Nyawa unit yang terluka"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr "Tombol pintas unit yang terluka menganggap unit yang dipilih terluka jika persentase kesehatannya turun di bawah angka ini."
+msgstr "Pintasan unit terluka menganggap unit yang dipilih terluka jika persentase nyawanya turun di bawah angka ini."
 
 #: gui/options/options.json[6].options[10].label
 msgid "Heal range visualization"
@@ -4553,7 +4553,7 @@ msgstr "Visualisasi  jangkauan penyembuhan"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr "Menampilkan rentang penyembuhan dari unit yang dipilih. (Ini juga dapat diubah dengan tombol pintas selama pertandingan)."
+msgstr "Menampilkan jarak penyembuhan dari unit yang dipilih. (Dapat juga dialihkan dengan pintasan selama pertandingan)."
 
 #: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
@@ -4639,22 +4639,22 @@ msgstr "Tempelkan ke ujung"
 
 #: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr "Tombol pintas untuk mengaktifkan snapping"
+msgstr "Pintasan untuk menghidupkan snapping"
 
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Struktur baru disejajarkan dengan bangunan di dekatnya sambil menekan tombol pintas."
+msgstr "Struktur baru disejajarkan dengan bangunan di dekatnya sambil menekan pintasan."
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr "Tombol pintas untuk menonaktifkan snapping"
+msgstr "Pintasan untuk mematikan snapping"
 
 #: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "Struktur baru disejajarkan dengan bangunan di dekatnya kecuali tombol pintas ditekan."
+msgstr "Struktur baru disejajarkan dengan bangunan di dekatnya kecuali pintasan ditekan."
 
 #: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
@@ -4674,7 +4674,7 @@ msgstr "Keanggotaan grup kontrol"
 
 #: gui/options/options.json[6].options[20].list[0].label
 msgid "Single"
-msgstr "Tunggal"
+msgstr "Sendiri"
 
 #: gui/options/options.json[6].options[20].list[0].tooltip
 msgid ""
@@ -4798,7 +4798,7 @@ msgstr "Visualisasi jangkauan serangan"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr "Menampilkan jangkauan serangan dari struktur pertahanan yang dipilih. (Ini juga dapat diubah dengan tombol pintas selama pertandingan)."
+msgstr "Menampilkan jarak serang dari struktur pertahanan yang dipilih. (Dapat juga dialihkan dengan pintasan selama pertandingan)."
 
 #: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
@@ -4808,7 +4808,7 @@ msgstr "Visualisasi jangkauan aura"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr "Menampilkan jangkauan aura unit dan struktur yang dipilih. (Ini juga dapat diubah dengan tombol pintas selama pertandingan)."
+msgstr "Menampilkan jarak aura unit dan struktur yang dipilih. (Dapat juga dialihkan dengan pintasan selama permainan)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -4910,11 +4910,11 @@ msgstr "Terjadi kesalahan saat membuka petualangan:"
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
-msgstr "Pemain tunggal"
+msgstr "Main sendiri"
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
-msgstr "Memulai, memuat, atau memutar ulang game pemain tunggal."
+msgstr "Memulai, memuat, atau memutar ulang permainan sendiri."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
@@ -4922,7 +4922,7 @@ msgstr "Peperangan"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
-msgstr "Mulai permainan pemain tunggal baru."
+msgstr "Mulai permainan sendiri baru."
 
 #: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
@@ -5002,11 +5002,11 @@ msgstr "Sesuaikan pengaturan permainan."
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
 msgid "Hotkeys"
-msgstr "Hotkeys"
+msgstr "Pintasan"
 
 #: gui/pregame/MainMenuItems.js:214
 msgid "Adjust hotkeys."
-msgstr "Sesuaikan tombol pintas."
+msgstr "Sesuaikan pintasan."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
@@ -5468,7 +5468,7 @@ msgstr "Apa saja"
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr "Pemain tunggal"
+msgstr "Main Sendiri"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
@@ -6118,7 +6118,7 @@ msgstr "PASUKAN SUCI KARTAGO"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "Jawara Penombak dan Jawara Kavaleri Penombak untuk Kartagi"
+msgstr "Jawara Penombak dan Jawara Kavaleri Penombak untuk Kartago"
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
@@ -6311,11 +6311,11 @@ msgstr "Memancing di laut untuk panen yang melimpah."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr "Kapal penangkap ikan membawa makanan dalam jumlah besar per perjalanan."
+msgstr "Kapal penangkap ikan membawa pangan dalam jumlah besar per perjalanan."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "Memancing lebih cepat daripada mengumpulkan makanan di ladang."
+msgstr "Memancing lebih cepat daripada mengumpulkan pangan di ladang."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
@@ -6389,7 +6389,7 @@ msgstr "Rakyat wanita mengumpulkan sayuran lebih cepat dari unit lain."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr "Prajurit-bayaran infanteri lebih cepat mengumpulkan mineral."
+msgstr "Prajurit-rakyat infanteri lebih cepat mengumpulkan mineral."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
@@ -6607,7 +6607,7 @@ msgstr "GERTAKAN"
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr "Struktur dapat disejajarkan dengan terus menekan tombol pintas snap selama penempatan."
+msgstr "Struktur dapat disejajarkan dengan terus menekan pintasan snap selama penempatan."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
@@ -6665,7 +6665,7 @@ msgstr "GUDANG"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr "Dropsite murah untuk sumber daya non-makanan (kayu, batu, logam)."
+msgstr "Dropsite murah untuk sumber daya non-pangan (kayu, batu, logam)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -6769,7 +6769,7 @@ msgstr "Binatang besar dari Afrika dan India, dilatih untuk berperang."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr "Biaya Makanan dan Logam Tinggi, tetapi sangat kuat."
+msgstr "Biaya Pangan dan Logam Tinggi, tetapi sangat kuat."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -6787,7 +6787,7 @@ msgstr "Sebuah sumberdaya maritim."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr "2000 Makanan."
+msgstr "2000 Pangan."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
@@ -6806,7 +6806,7 @@ msgstr "Panen dari hewan, semak berry, ikan, atau ladang."
 #: simulation/data/resources/food.jsonname
 msgctxt "firstWord"
 msgid "Food"
-msgstr "makanan"
+msgstr "Pangan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -6814,7 +6814,7 @@ msgstr "makanan"
 #: simulation/data/resources/food.jsonname
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "makanan"
+msgstr "Pangan"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

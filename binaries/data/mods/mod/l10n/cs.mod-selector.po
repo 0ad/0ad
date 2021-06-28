@@ -8,12 +8,12 @@
 # Martin Křížek <krizekmartin@gmail.com>, 2021
 # fri, 2014,2018
 # Petr Velička <petrvelicka@tuta.io>, 2021
-# Tomáš Matýs <thommathys@gmail.com>, 2018
+# Tomáš Matýs <thommathys@gmail.com>, 2018,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 10:17+0000\n"
+"PO-Revision-Date: 2021-06-27 09:34+0000\n"
 "Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "Zapnutý: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]Pokusili jste se spustit hru s nekompatibilními nebo chybějícími pozměňujícími verzemi! [/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -111,17 +111,17 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Vyřešte problém s kompatibilitou deaktivací neplatných pozměňovacích verzí nebo povolením požadovaných závislostí. Poté můžete hru uložit a spustit."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "Nekompatibilní pozměňovací verze se v seznamu povolených pozměňovacích verzí (spodní panel) zobrazí červeně. Závislosti lze přidat povolením v horním panelu."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
-msgstr ""
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
@@ -406,7 +406,7 @@ msgstr "Navštívit mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Tato pozměňovací verze neexistuje"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -415,7 +415,7 @@ msgstr "Povolit"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Závislosti nebyly splněny"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
@@ -428,7 +428,7 @@ msgstr "Nebyla vybrána žádná pozměněná verze"
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Povol alespoň 0ad pozměňovací verzi"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -472,7 +472,7 @@ msgstr "Nastavení ukládání"
 
 #: gui/modmod/modmod.xml:(caption):216
 msgid "Save and Restart"
-msgstr ""
+msgstr "Uložit a restartovat"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"

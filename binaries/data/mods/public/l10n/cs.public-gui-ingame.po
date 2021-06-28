@@ -23,7 +23,7 @@
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017,2020
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
-# Tomáš Matýs <thommathys@gmail.com>, 2018
+# Tomáš Matýs <thommathys@gmail.com>, 2018,2021
 # Tomáš Weber <webertomas01@gmail.com>, 2021
 # Vit Pelcak, 2014
 # Vít Pelčák, 2014
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-06-27 09:43+0000\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -890,7 +890,7 @@ msgstr "Neznámý hráč"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr ""
+msgstr "Pošlete signální světlo svým spojencům"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -1094,7 +1094,7 @@ msgstr "Zrušit rozbalování"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Automatická fronta se pokusí tuto položku vycvičit později."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1355,7 +1355,7 @@ msgstr "Klepněte pro vybrání seskupených jednotek, klepněte dvakrát pro p�
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Yaunā"
-msgstr ""
+msgstr "Alfa XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1394,15 +1394,15 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "Počet obyvatel: aktuální / limit (max)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Sběrači: aktuální"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1720,7 +1720,7 @@ msgstr "Přikažte vybraným jednotkám obsadit stavbu nebo jednotku."
 
 #: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Přiřaďte vybraným jednotkám obsazení bodu věže."
 
 #: gui/session/unit_actions.js:1479
 msgid "Unload"
@@ -1782,11 +1782,11 @@ msgstr "Je vám dovoleno používat tento odhazovací prostor"
 
 #: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Aktivovat automatickou frontu pro vybrané struktury."
 
 #: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Deaktivujte automatickou frontu pro vybrané struktury."
 
 #: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"
