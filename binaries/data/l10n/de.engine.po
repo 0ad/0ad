@@ -6,6 +6,7 @@
 # xtother90, 2018-2021
 # eclipse, 2013
 # Maximilian Wagenbach <foaly@posteo.de>, 2016
+# Heraklit of Ephesos, 2021
 # leper <leper@wildfiregames.com>, 2013-2016
 # b53a4c6b86c5e58f09676ea42b536be9_2d04222 <3dd17ded6f065980fc0039767675503a_244748>, 2014
 # 999f6a43cef2718a4332fbe42b808991_de12e9e <3f94b88e9a60e6d6ccd40a3cb09a8c56_424596>, 2016
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 10:01+0000\n"
-"Last-Translator: xtother90\n"
+"PO-Revision-Date: 2021-06-25 13:59+0000\n"
+"Last-Translator: Heraklit of Ephesos\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,32 +33,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "Scrollgeschwindigkeit erhöht auf %.1f"
+msgstr "Scroll-Geschwindigkeit erhöht auf %.1f"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "Scrollgeschwindigkeit reduziert auf %.1f"
+msgstr "Scroll-Geschwindigkeit vermindert auf %.1f"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "Drehgeschwindigkeit erhöht auf X=%.3f, Y=%.3f"
+msgstr "Dreh-Geschwindigkeit erhöht auf X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "Drehgeschwindigkeit reduziert auf X=%.3f, Y=%.3f"
+msgstr "Dreh-Geschwindigkeit vermindert auf X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "Zoomgeschwindigkeit erhöht auf %.1f"
+msgstr "Zoom-Geschwindigkeit erhöht auf %.1f"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "Zoomgeschwindigkeit reduziert auf %.1f"
+msgstr "Zoom-Geschwindigkeit vermindert auf %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -89,7 +90,7 @@ msgstr "Das Zertifikat ist noch nicht aktiv."
 
 #: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "Das Zertifikat ist nicht für den verbundenen Peer ausgestellt worden."
+msgstr "Das Zertifikat ist nicht für den verbundenen Partner ausgestellt worden."
 
 #: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
@@ -142,19 +143,19 @@ msgstr "Unbekannter Fehler"
 
 #: lobby/XmppClient.cpp:1433
 msgid "Stream error"
-msgstr "Streamfehler"
+msgstr "Datenstrom-Fehler"
 
 #: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
-msgstr "Die eingehende Streamversion wird nicht unterstützt."
+msgstr "Die Version des eingehenden Daten-Stroms wird nicht unterstützt."
 
 #: lobby/XmppClient.cpp:1435
 msgid "The stream has been closed by the server"
-msgstr "Der Stream wurde vom Server geschlossen."
+msgstr "Der Daten-Strom wurde vom Server geschlossen."
 
 #: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
-msgstr "Ein E/A-Fehler trat auf"
+msgstr "Ein Eingabe/Ausgabe-Fehler trat auf."
 
 #: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
@@ -172,7 +173,7 @@ msgstr "Dieses System hat keinen freien Speicher mehr zur Verfügung."
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Das Zertifikat des Servers konnte nicht verifiziert werden oder der TLS-Handshake konnte nicht erfolgreich abgeschlossen werden."
+msgstr "Das Zertifikat des Servers konnte nicht verifiziert werden oder der TLS-Handshake wurde nicht erfolgreich abgeschlossen."
 
 #: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
@@ -188,15 +189,15 @@ msgstr "Der Benutzer oder das System forderten eine Verbindungstrennung."
 
 #: lobby/XmppClient.cpp:1450
 msgid "There is no active connection"
-msgstr "Es existiert keine aktive Verbindung"
+msgstr "Es existiert keine aktive Verbindung."
 
 #: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
-msgstr "Dein Konto wurde erfolgreich eingerichtet"
+msgstr "Dein Konto wurde erfolgreich eingerichtet."
 
 #: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
-msgstr "Nicht alle erforderlichen Informationen wurden bereitgestellt"
+msgstr "Nicht alle erforderlichen Informationen wurden bereitgestellt."
 
 #: lobby/XmppClient.cpp:1473
 msgid "Username already exists"
@@ -207,46 +208,46 @@ msgstr "Benutzername bereits in Verwendung"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Das externe mod.json für die gezippte Mod '%s' konnte nicht geschrieben werden. Die Mod sollte neu installiert werden."
+msgstr "Die externe Datei mod.json für die gezippte Modifikation '%s' konnte nicht geschrieben werden. Die Modifikation sollte neu installiert werden."
 
 #: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Fehler beim Starten der Abfrage für die Spiel-ID. Fehler: %s; %s."
+msgstr "Abfrage der Spiel-ID gescheitert. Fehler: %s; %s"
 
 #: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Fehler beim Start der Abfrage nach Mods. Fehler: %s; %s."
+msgstr "Abfrage der Modifikationen gescheitert. Fehler: %s; %s"
 
 #: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Mod-Verzeichnis konnte nicht erstellt werden: %s."
+msgstr "Modifikationen-Verzeichnis konnte nicht erstellt werden. Fehler: %s"
 
 #: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Temporäre Datei konnte nicht für Mod-Download geöffnet werden: %s."
+msgstr "Temporäre Datei konnte nicht für Modifikationen-Download geöffnet werden. Fehler: %s"
 
 #: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Download konnte nicht gestartet werden. Fehler: %s; %s."
+msgstr "Download konnte nicht gestartet werden. Fehler: %s; %s"
 
 #: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Fehler beim asynchronen Download: %s, %s."
+msgstr "Asynchroner Download gescheitert. Fehler: %s, %s"
 
 #: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Download-Fehler. Server-Antwort: %s; %s."
+msgstr "Download gescheitert. Server-Antwort: %s; %s"
 
 #: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
-msgstr "Dateigrößen passen nicht zusammen."
+msgstr "Die Dateigrößen passen nicht zusammen."
 
 #: ps/ModIo.cpp:548
 #, c-format
