@@ -131,7 +131,7 @@ AtObj ActorEditor::FreezeData()
 		actor.set("float", "");
 
 	if (m_Material->GetValue().length())
-		actor.set("material", m_Material->GetValue());
+		actor.set("material", m_Material->GetValue().utf8_str());
 
 	AtObj out;
 	out.set("actor", actor);
@@ -185,10 +185,10 @@ static AtObj ConvertToLatestFormat(AtObj in)
 		// new format doesn't store the entire path)
 		#define THING1(out,outname, in,inname, prefix) \
 			wxASSERT( wxString::FromUTF8(in["Object"][inname]).StartsWith(_T(prefix)) ); \
-			out.add(outname, wxString::FromUTF8(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()))
+			out.add(outname, wxString::FromUTF8(in["Object"][inname]).Mid(wxString(_T(prefix)).Length()).utf8_str())
 		#define THING2(out,outname, in,inname, prefix) \
 			wxASSERT( wxString::FromUTF8(in[inname]).StartsWith(_T(prefix)) ); \
-			out.add(outname, wxString::FromUTF8(in[inname]).Mid(wxString(_T(prefix)).Length()))
+			out.add(outname, wxString::FromUTF8(in[inname]).Mid(wxString(_T(prefix)).Length()).utf8_str())
 
 		if (wxString::FromUTF8(in["Object"]["Material"]).Len())
 		{
@@ -350,7 +350,7 @@ AtObj ActorEditor::ExportData()
 	AtObj material = *m_Actor["material"];
 	actor.set("material", material);
 	if (m_Material->GetValue().length())
-		actor.set("material", m_Material->GetValue());
+		actor.set("material", m_Material->GetValue().utf8_str());
 
 	AtObj out;
 	out.set("actor", actor);

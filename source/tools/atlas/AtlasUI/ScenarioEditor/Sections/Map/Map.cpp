@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -187,7 +187,7 @@ void MapSettingsControl::CreateWidgets()
 		AtObj victoryCondition = AtlasObject::LoadFromJSON(victoryConditionJson);
 		long index = wxWindow::NewControlId();
 		wxString title = wxString::FromUTF8(victoryCondition["Data"]["Title"]);
-		std::string escapedTitle = wxString::FromUTF8(title).Lower().ToStdString();
+		std::string escapedTitle = title.Lower().ToStdString();
 		std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
 		AtObj updateCondition = *(victoryCondition["Data"]["Title"]);
 		updateCondition.setString(escapedTitle.c_str());
