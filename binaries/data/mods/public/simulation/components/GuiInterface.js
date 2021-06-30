@@ -1896,6 +1896,10 @@ GuiInterface.prototype.IdleUnitFilter = function(unit, idleClasses, excludeUnits
 	if (cmpGarrisonable && cmpGarrisonable.IsGarrisoned())
 		return { "idle": false };
 
+	const cmpTurretable = Engine.QueryInterface(unit, IID_Turretable);
+	if (cmpTurretable && cmpTurretable.IsTurreted())
+		return { "idle": false };
+
 	let cmpIdentity = Engine.QueryInterface(unit, IID_Identity);
 	if (!cmpIdentity)
 		return { "idle": false };

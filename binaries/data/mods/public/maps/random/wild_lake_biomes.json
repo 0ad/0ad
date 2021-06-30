@@ -1,0 +1,285 @@
+{
+	"generic/aegean": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/merc_camp_egyptian"
+			},
+			{
+				"Template": "units/iber/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/iber/cavalry_spearman_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/iber/infantry_slinger_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/iber/champion_infantry_swordsman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/iber/farmstead",
+			"animal": "gaia/fauna_pig"
+		}
+	},
+	"generic/alpine": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/ptol/mercenary_camp"
+			},
+			{
+				"Template": "units/rome/infantry_swordsman_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/rome/cavalry_spearman_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/rome/infantry_javelineer_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/rome/champion_infantry_swordsman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/rome/farmstead",
+			"animal": "gaia/fauna_goat"
+		}
+	},
+	"generic/arctic": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/ptol/mercenary_camp"
+			},
+			{
+				"Template": "units/brit/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/brit/cavalry_swordsman_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/brit/infantry_slinger_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/brit/champion_infantry_swordsman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/brit/farmstead",
+			"animal": "gaia/fauna_sheep"
+		}
+	},
+	"generic/autumn": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/ptol/mercenary_camp"
+			},
+			{
+				"Template": "units/gaul/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/gaul/cavalry_swordsman_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/gaul/infantry_slinger_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/gaul/champion_infantry_swordsman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/gaul/farmstead",
+			"animal": "gaia/fauna_horse"
+		}
+	},
+	"generic/india": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/merc_camp_egyptian"
+			},
+			{
+				"Template": "units/ptol/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/ptol/cavalry_archer_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/ptol/infantry_slinger_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/ptol/champion_infantry_pikeman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/ptol/farmstead",
+			"animal": "gaia/fauna_camel"
+		}
+	},
+	"generic/nubia": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/ptol/mercenary_camp"
+			},
+			{
+				"Template": "units/kush/infantry_javelineer_merc_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/kush/cavalry_javelineer_merc_b",
+				"Count": 3
+			},
+			{
+				"Template": "units/kush/infantry_maceman_merc_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/kush/champion_infantry_amun",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/kush/farmstead",
+			"animal": "gaia/fauna_camel"
+		}
+	},
+	"generic/sahara": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/ptol/mercenary_camp"
+			},
+			{
+				"Template": "units/pers/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/pers/cavalry_axeman_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/pers/infantry_archer_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/pers/champion_infantry",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/pers/farmstead",
+			"animal": "gaia/fauna_camel"
+		}
+	},
+	"generic/savanna": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/merc_camp_egyptian"
+			},
+			{
+				"Template": "units/sele/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/sele/cavalry_spearman_merc_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/sele/infantry_spearman_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/sele/champion_infantry_swordsman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/sele/farmstead",
+			"animal": "gaia/fauna_horse"
+		}
+	},
+	"generic/steppe": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/ptol/mercenary_camp"
+			},
+			{
+				"Template": "units/sele/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/sele/cavalry_spearman_merc_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/sele/infantry_spearman_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/sele/champion_infantry_swordsman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/sele/farmstead",
+			"animal": "gaia/fauna_horse"
+		}
+	},
+	"generic/temperate": {
+		"mercenaryCampEntities": [
+			{
+				"Template": "structures/merc_camp_egyptian"
+			},
+			{
+				"Template": "units/mace/infantry_javelineer_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/mace/cavalry_spearman_e",
+				"Count": 3
+			},
+			{
+				"Template": "units/mace/infantry_archer_a",
+				"Count": 4
+			},
+			{
+				"Template": "units/mace/champion_infantry_spearman",
+				"Count": 3
+			}
+		],
+		"farmEntities": {
+			"building": "structures/mace/farmstead",
+			"animal": "gaia/fauna_pig"
+		}
+	},
+	"campEntities": [
+		"gaia/treasure/metal",
+		"gaia/treasure/standing_stone",
+		"actor|props/special/common/waypoint_flag.xml",
+		"actor|props/special/eyecandy/barrel_a.xml",
+		"actor|props/special/eyecandy/basket_celt_a.xml",
+		"actor|props/special/eyecandy/crate_a.xml",
+		"actor|props/special/eyecandy/dummy_a.xml",
+		"actor|props/special/eyecandy/handcart_1.xml",
+		"actor|props/special/eyecandy/handcart_1_broken.xml",
+		"actor|props/special/eyecandy/sack_1.xml",
+		"actor|props/special/eyecandy/sack_1_rough.xml"
+	]
+}

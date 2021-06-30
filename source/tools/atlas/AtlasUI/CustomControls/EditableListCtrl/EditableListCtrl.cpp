@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -257,7 +257,7 @@ void EditableListCtrl::SetCellString(long item, long column, wxString& str)
 {
 	wxCHECK(item >= 0 && column >= 0 && column < (int)m_ColumnTypes.size(), );
 	MakeSizeAtLeast(item+1);
-	m_ListData[item].set(m_ColumnTypes[column].key, str);
+	m_ListData[item].set(m_ColumnTypes[column].key, str.utf8_str());
 }
 
 void EditableListCtrl::SetCellObject(long item, long column, AtObj& obj)

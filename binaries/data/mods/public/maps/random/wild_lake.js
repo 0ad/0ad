@@ -141,64 +141,13 @@ let wildLakeBiome = [
 	}
 ];
 
-var mercenaryCampGuards = {
-	"generic/temperate": [
-		{ "Template": "structures/merc_camp_egyptian" },
-		{ "Template": "units/mace/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/mace/cavalry_spearman_e", "Count": 3 },
-		{ "Template": "units/mace/infantry_archer_a", "Count": 4 },
-		{ "Template": "units/mace/champion_infantry_spearman", "Count": 3 }
-	],
-	"generic/arctic": [
-		{ "Template": "structures/ptol/mercenary_camp" },
-		{ "Template": "units/brit/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/brit/cavalry_swordsman_e", "Count": 3 },
-		{ "Template": "units/brit/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/brit/champion_infantry_swordsman", "Count": 3 }
-	],
-	"generic/sahara": [
-		{ "Template": "structures/ptol/mercenary_camp" },
-		{ "Template": "units/pers/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/pers/cavalry_axeman_e", "Count": 3 },
-		{ "Template": "units/pers/infantry_archer_a", "Count": 4 },
-		{ "Template": "units/pers/champion_infantry", "Count": 3 }
-	],
-	"generic/alpine": [
-		{ "Template": "structures/ptol/mercenary_camp" },
-		{ "Template": "units/rome/infantry_swordsman_b", "Count": 4 },
-		{ "Template": "units/rome/cavalry_spearman_e", "Count": 3 },
-		{ "Template": "units/rome/infantry_javelineer_a", "Count": 4 },
-		{ "Template": "units/rome/champion_infantry_swordsman", "Count": 3 }
-	],
-	"generic/aegean": [
-		{ "Template": "structures/merc_camp_egyptian" },
-		{ "Template": "units/iber/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/iber/cavalry_spearman_e", "Count": 3 },
-		{ "Template": "units/iber/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/iber/champion_infantry_swordsman", "Count": 3 }
-	],
-	"generic/savanna": [
-		{ "Template": "structures/merc_camp_egyptian" },
-		{ "Template": "units/sele/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/sele/cavalry_spearman_merc_e", "Count": 3 },
-		{ "Template": "units/sele/infantry_spearman_a", "Count": 4 },
-		{ "Template": "units/sele/champion_infantry_swordsman", "Count": 3 }
-	],
-	"generic/india": [
-		{ "Template": "structures/merc_camp_egyptian" },
-		{ "Template": "units/ptol/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/ptol/cavalry_archer_e", "Count": 3 },
-		{ "Template": "units/ptol/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/ptol/champion_infantry_pikeman", "Count": 3 }
-	],
-	"generic/autumn": [
-		{ "Template": "structures/ptol/mercenary_camp" },
-		{ "Template": "units/gaul/infantry_javelineer_b", "Count": 4 },
-		{ "Template": "units/gaul/cavalry_swordsman_e", "Count": 3 },
-		{ "Template": "units/gaul/infantry_slinger_a", "Count": 4 },
-		{ "Template": "units/gaul/champion_infantry_swordsman", "Count": 3 }
-	]
-};
+const wildLakeEntities = Engine.ReadJSONFile("maps/random/wild_lake_biomes.json");
+const farmEntities = wildLakeEntities[currentBiome()].farmEntities;
+const mercenaryCampEntities = wildLakeEntities[currentBiome()].mercenaryCampEntities;
+const guards = mercenaryCampEntities
+	.map(ent => ent.Template)
+	.filter(ent => ent.indexOf("units/") != -1);
+const campEntities = wildLakeEntities.campEntities.concat(guards);
 
 /**
  * Resource spots and other points of interest
@@ -241,7 +190,7 @@ function placeGrove(point,
 )
 {
 	let position = new Vector2D(point.x, point.y);
-	g_Map.placeEntityPassable(pickRandom(["structures/gaul/outpost", "gaia/tree/oak_new"]), 0, position, randomAngle());
+	g_Map.placeEntityPassable(pickRandom(["structures/gaul/outpost", g_Gaia.tree1]), 0, position, randomAngle());
 
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
@@ -266,16 +215,7 @@ function placeGrove(point,
 	}
 }
 
-var farmEntities = {
-	"generic/temperate": { "building": "structures/mace/farmstead", "animal": "gaia/fauna_pig" },
-	"generic/arctic": { "building": "structures/brit/farmstead", "animal": "gaia/fauna_sheep" },
-	"generic/sahara": { "building": "structures/pers/farmstead", "animal": "gaia/fauna_camel" },
-	"generic/alpine": { "building": "structures/rome/farmstead", "animal": "gaia/fauna_sheep" },
-	"generic/aegean": { "building": "structures/iber/farmstead", "animal": "gaia/fauna_pig" },
-	"generic/savanna": { "building": "structures/sele/farmstead", "animal": "gaia/fauna_horse" },
-	"generic/india": { "building": "structures/ptol/farmstead", "animal": "gaia/fauna_camel" },
-	"generic/autumn": { "building": "structures/gaul/farmstead", "animal": "gaia/fauna_horse" }
-};
+
 
 g_WallStyles.other = {
 	"overlap": 0,
@@ -283,8 +223,8 @@ g_WallStyles.other = {
 	"fence_short": readyWallElement("structures/fence_short", "gaia"),
 	"bench": { "angle": Math.PI / 2, "length": 1.5, "indent": 0, "bend": 0, "templateName": "structures/bench" },
 	"foodBin": { "angle": Math.PI / 2, "length": 1.5, "indent": 0, "bend": 0, "templateName": "gaia/treasure/food_bin" },
-	"animal": { "angle": 0, "length": 0, "indent": 0.75, "bend": 0, "templateName": farmEntities[currentBiome()].animal },
-	"farmstead": { "angle": Math.PI, "length": 0, "indent": -3, "bend": 0, "templateName": farmEntities[currentBiome()].building }
+	"animal": { "angle": 0, "length": 0, "indent": 0.75, "bend": 0, "templateName": farmEntities.animal },
+	"farmstead": { "angle": Math.PI, "length": 0, "indent": -3, "bend": 0, "templateName": farmEntities.building }
 };
 
 let fences = [
@@ -325,11 +265,7 @@ for (let i = 0; i < num; ++i)
 
 // Camps with fire and gold treasure
 function placeCamp(position,
-	centerEntity = "actor|props/special/eyecandy/campfire.xml",
-	otherEntities = ["gaia/treasure/metal", "gaia/treasure/standing_stone",
-		"units/brit/infantry_slinger_b", "units/brit/infantry_javelineer_b", "units/gaul/infantry_slinger_b", "units/gaul/infantry_javelineer_b", "units/gaul/champion_fanatic",
-		"actor|props/special/common/waypoint_flag.xml", "actor|props/special/eyecandy/barrel_a.xml", "actor|props/special/eyecandy/basket_celt_a.xml", "actor|props/special/eyecandy/crate_a.xml", "actor|props/special/eyecandy/dummy_a.xml", "actor|props/special/eyecandy/handcart_1.xml", "actor|props/special/eyecandy/handcart_1_broken.xml", "actor|props/special/eyecandy/sack_1.xml", "actor|props/special/eyecandy/sack_1_rough.xml"
-	]
+	centerEntity = "actor|props/special/eyecandy/campfire.xml"
 )
 {
 	g_Map.placeEntityPassable(centerEntity, 0, position, randomAngle());
@@ -340,7 +276,7 @@ function placeCamp(position,
 	{
 		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
-		g_Map.placeEntityPassable(pickRandom(otherEntities), 0, Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
+		g_Map.placeEntityPassable(pickRandom(campEntities), 0, Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
 	}
 
 	addCivicCenterAreaToClass(position, clGaiaCamp);
@@ -624,7 +560,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	{
 		if (mercenaryCamps)
 		{
-			placeStartingEntities(resourceSpots[i], 0, mercenaryCampGuards[currentBiome()]);
+			placeStartingEntities(resourceSpots[i], 0, mercenaryCampEntities);
 			radius = 15;
 			--mercenaryCamps;
 		}

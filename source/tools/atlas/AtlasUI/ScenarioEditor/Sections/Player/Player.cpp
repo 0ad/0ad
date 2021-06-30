@@ -858,7 +858,7 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		if (choice->IsEnabled() && choice->GetSelection() >= 0)
 		{
 			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
-			player.set("Civ", str->GetData());
+			player.set("Civ", str->GetData().utf8_str());
 		}
 		else
 			player.unset("Civ");
@@ -876,17 +876,14 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 
 		// player type
 		choice = controls.ai;
-		if (choice->IsEnabled())
+		if (choice->IsEnabled() && choice->GetSelection() > 0)
 		{
-			if (choice->GetSelection() > 0)
-			{
-				// ai - get id
-				wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
-				player.set("AI", str->GetData());
-			}
-			else // human
-				player.set("AI", _(""));
+			// ai - get id
+			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
+			player.set("AI", str->GetData().utf8_str());
 		}
+		else // human
+			player.unset("AI");
 
 		// resources
 		AtObj resObj;
