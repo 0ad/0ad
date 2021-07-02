@@ -53,10 +53,10 @@ msgid ""
 "times."
 msgstr ""
 "Peta ini akan memberikan panduan kasar untuk memulai permainan secara "
-"efektif. Hal yang paling penting di awal permainan adalah mengumpulkan "
-"sumberdaya secepat mungkin agar nantinya Anda dapat membangun pasukan yang "
-"cukup. Peringatan: Proses ini sangat cepat di awal, jadi bersiaplah untuk "
-"mengulangi bagian awal ini beberapa kali."
+"efektif. Hal terpenting di awal permainan adalah mengumpulkan sumberdaya "
+"secepat mungkin agar nantinya Anda dapat membangun pasukan yang cukup. "
+"Peringatan: Proses ini sangat cepat di awal, jadi bersiaplah untuk "
+"mengulangi bagian ini beberapa kali."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -115,7 +115,7 @@ msgstr "Mulai Skenario"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr "Lanjutkan Permainan yang Tersimpan"
+msgstr "Lanjutkan Permainan Tersimpan"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
@@ -134,7 +134,7 @@ msgstr "berkas tidak bisa dimuat"
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr "Anda yakin menghapus %s? Ini tidak dapat dibatalkan."
+msgstr "Anda yakin menghapus misi %s? Ini tidak dapat dibatalkan."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -159,7 +159,7 @@ msgstr "Tak ada petualangan yang berlangsung"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr "Nama operasi:"
+msgstr "Nama misi yang dipilih:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -176,7 +176,7 @@ msgstr "Mulai sebuah petualangan"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr "Mohon masukkan nama operasi petualangan baru Anda:"
+msgstr "Mohon masukkan nama misi petualangan baru Anda:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -193,7 +193,7 @@ msgstr "Petualangan"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr "Tidak Ada Petualangan yang dipilih"
+msgstr "Tidak ada Petualangan yang dipilih"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

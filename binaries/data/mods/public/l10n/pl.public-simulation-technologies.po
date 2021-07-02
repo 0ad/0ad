@@ -7,7 +7,7 @@
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014-2015
 # Andrzej Preibisz <andrzejjpreibisz@gmail.com>, 2016
 # Bartosz Bobin <bartosz@bobin.eu>, 2017-2018
-# Bartosz Bobin <bartosz@bobin.eu>, 2018,2020
+# Bartosz Bobin <bartosz@bobin.eu>, 2018,2020-2021
 # Daniel Whatever <Deynyel@protonmail.com>, 2017
 # Jacek <jacek15klb@gmail.com>, 2015
 # Krzysztof Grabania, 2015
@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 11:03+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"PO-Revision-Date: 2021-06-29 08:10+0000\n"
+"Last-Translator: Bartosz Bobin <bartosz@bobin.eu>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1255,11 +1255,11 @@ msgstr "Poprzez dodanie nieco węgla podczas wytapiania można stworzyć silniej
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
-msgstr ""
+msgstr "Nawęglanie"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr ""
+msgstr "Wojownicy +20% ataku wręcz."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
@@ -1282,17 +1282,17 @@ msgstr "Bułat - stal wootz"
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
-msgstr ""
+msgstr "Wojownicy +20% ataku wręcz. Szermierze otrzymują dodatkowy bonus +20%."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr ""
+msgstr "Ulepszone lotki strzał zwiększają ich stabilność i szybkość oraz penetrację."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
-msgstr ""
+msgstr "Ulepsza lotka strzały"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1317,7 +1317,7 @@ msgstr "Trójpłatkowe groty"
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
 msgid "Soldiers +20% ranged attack damage."
-msgstr ""
+msgstr "Wojownicy +20% ataku dystansowego."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1362,15 +1362,15 @@ msgstr "Linothōrax"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
 msgid "Body armor made of small metal rings linked together."
-msgstr ""
+msgstr "Pancerz z połączonych ze sobą małych metalowych pierścieni."
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr ""
+msgstr "Kolczuga"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr ""
+msgstr "+2 pancerza przed obrażeniami siecznymi dla wojowników."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
@@ -1397,15 +1397,15 @@ msgstr "Metalowa obręcz"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr ""
+msgstr "Wzmocnij tarcze mocniejszym stopem metalu."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
-msgstr ""
+msgstr "Tarcza ulepszona stopem metalu."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr ""
+msgstr "Wojownicy +2 pancerza przed obrażeniami kłutymi."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."

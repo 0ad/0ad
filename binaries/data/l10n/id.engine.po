@@ -4,24 +4,28 @@
 # Translators:
 # Adhika Setya Pramudita <hello@adhikasetyap.me>, 2016
 # Ahmad Rifa'i Faiz <arf.faiz33@gmail.com>, 2020
-# azayrahmad <azayrahmad@gmail.com>, 2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2021
 # Dito Kurnia Pratama <ditokpl@gmail.com>, 2018
+# Eggar Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 # Ilham Nur Pratama <ilham151096@gmail.com>, 2017
-# Joshua Randiny <jrandiny2@gmail.com>, 2016
-# Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
-# Joshua Randiny <jrandiny2@gmail.com>, 2017
-# Joshua Randiny <jrandiny2@gmail.com>, 2014
+# Joshua Randiny <jrandiny@gmail.com>, 2016
+# Joshua Randiny <jrandiny@gmail.com>, 2014-2015
+# Joshua Randiny <jrandiny@gmail.com>, 2017
+# Joshua Randiny <jrandiny@gmail.com>, 2014,2016-2017
+# Joshua Randiny <jrandiny@gmail.com>, 2014
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2020
 # Samuel <srandiny@gmail.com>, 2016
-# Samuel <srandiny@gmail.com>, 2017
+# Samuel <srandiny@gmail.com>, 2016-2017
 # Eggar Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
+# Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-06-20 06:58+0000\n"
-"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
+"PO-Revision-Date: 2021-07-02 03:26+0000\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,11 +102,11 @@ msgstr "Pengesah sertifikat bukan pemilik sertifikat."
 #: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
 #: lobby/XmppClient.cpp:1468
 msgid "Error"
-msgstr "Eror"
+msgstr "Kesalahan"
 
 #: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
 msgid "No error"
-msgstr "Tidak ada eror"
+msgstr "Tidak ada kesalahan"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Player already logged in"
@@ -130,7 +134,7 @@ msgstr "Penerima sementara tak tersedia"
 
 #: lobby/XmppClient.cpp:1404
 msgid "Registration required"
-msgstr "Registrasi dibutuhkan"
+msgstr "Pendaftaran dibutuhkan"
 
 #: lobby/XmppClient.cpp:1408
 msgid "Service unavailable"
@@ -138,11 +142,11 @@ msgstr "Servis tidak tersedia"
 
 #: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
 msgid "Unknown error"
-msgstr "Eror tidak diketahui"
+msgstr "Kesalahan tidak diketahui"
 
 #: lobby/XmppClient.cpp:1433
 msgid "Stream error"
-msgstr "Eror stream"
+msgstr "Kesalahan stream"
 
 #: lobby/XmppClient.cpp:1434
 msgid "The incoming stream version is unsupported"
@@ -154,7 +158,7 @@ msgstr "Stream ini telah ditutup oleh server"
 
 #: lobby/XmppClient.cpp:1439
 msgid "An I/O error occurred"
-msgstr "Sebuah galat I/O terjadi."
+msgstr "Sebuah kesalahan I/O terjadi."
 
 #: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
@@ -192,7 +196,7 @@ msgstr "Tidak ada koneksi aktif"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
-msgstr "Akun kamu sudah berhasil diregistrasikan"
+msgstr "Akun Anda berhasil didaftarkan"
 
 #: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
@@ -212,7 +216,7 @@ msgstr "Tidak dapat menulis mod.json external untuk mod terkompresi '%s'. Mod ha
 #: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Gagal saat memulai permintaan untuk id game. Eror: %s; %s."
+msgstr "Gagal saat memulai permintaan untuk id permainan. Kesalahan: %s; %s."
 
 #: ps/ModIo.cpp:293
 #, c-format
@@ -227,22 +231,22 @@ msgstr "Tidak dapat membuat direktori mod: %s."
 #: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Tidak dapat membuka berkas sementara untuk download mod: %s."
+msgstr "Tidak dapat membuka berkas sementara untuk mengunduh mod: %s."
 
 #: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Gagal memulai download. Eror: %s; %s."
+msgstr "Gagal memulai unduhan. Kesalahan: %s; %s."
 
 #: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Kegagalan download asinkron: %s, %s."
+msgstr "Kegagalan unduhan tidak sinkron: %s, %s."
 
 #: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Gagal mendownload. Respon server: %s; %s."
+msgstr "Gagal mengunduh. Respon server: %s; %s."
 
 #: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
@@ -251,7 +255,7 @@ msgstr "Ukuran berkas tidak cocok."
 #: ps/ModIo.cpp:548
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "Berkas tidak valid. Seharusnya md5 %s, yang didapat %s."
+msgstr "Berkas tidak sah. Seharusnya md5 %s, yang didapat %s."
 
 #: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."

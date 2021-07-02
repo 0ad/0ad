@@ -13,7 +13,7 @@
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017,2020
 # Tomáš Machala <haman3k@gmail.com>, 2017
-# Tomáš Matýs <thommathys@gmail.com>, 2018
+# Tomáš Matýs <thommathys@gmail.com>, 2018,2021
 # Tomáš Weber <webertomas01@gmail.com>, 2021
 # Tonda 12, 2021
 # Vojtěch Dubský <dub@dubix.eu>, 2021
@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-11 07:08+0000\n"
-"PO-Revision-Date: 2021-06-11 10:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-07-01 11:29+0000\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,7 +360,7 @@ msgstr "Pevnost"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Vycvičte hrdiny. Umísti posádku vojáků pro další šípy."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -533,7 +533,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Stavěj na pobřeží ve vlastním, neutrálním nebo spojeneckém území. Získejte velké plochy území. Generuje hranici teritoria. Postavte válečné lodě a výzkumné technologie."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 msgid "Shipyard"
@@ -616,15 +616,15 @@ msgstr "Kamenný plot"
 
 #: simulation/templates/structures/gaul/assembly.xml:27
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "Shromáždění princů."
 
 #: simulation/templates/structures/gaul/assembly.xml:28
 msgid "Remogantion"
-msgstr ""
+msgstr "Remogance"
 
 #: simulation/templates/structures/gaul/assembly.xml:29
 msgid "Train Champion Trumpeters and Heroes."
-msgstr ""
+msgstr "Vycvičte šampiony trubačů a hrdiny."
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
@@ -648,7 +648,7 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul/wonder.xml:9
 msgid "Sanctuary of Corent"
-msgstr ""
+msgstr "Svatyně Corent"
 
 #: simulation/templates/structures/gaul/wonder.xml:10
 msgid "Celicnon"
@@ -769,7 +769,7 @@ msgstr "Ištařina babylonská brána"
 
 #: simulation/templates/structures/ishtar_gate.xml:26
 msgid "Territory root."
-msgstr ""
+msgstr "Generuje hranici teritoria."
 
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms"
@@ -785,15 +785,15 @@ msgstr "Blemmyjský tábor"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr ""
+msgstr "Vycvičte blemmyeské žoldáky."
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
-msgstr ""
+msgstr "Nabijská vesnice "
 
 #: simulation/templates/structures/kush/camp_noba.xml:23
 msgid "Train Noba Mercenaries."
-msgstr ""
+msgstr "Vycvičte nabijské žoldáky."
 
 #: simulation/templates/structures/kush/civil_centre.xml:9
 msgid "Pr-nsw"
@@ -825,7 +825,7 @@ msgstr "sht"
 
 #: simulation/templates/structures/kush/forge.xml:5
 msgid "hmw hʿy n rȝ-ʿ"
-msgstr ""
+msgstr "hmw hʿy n rȝ-ʿ"
 
 #: simulation/templates/structures/kush/fortress.xml:9
 msgid "Htm"
@@ -849,7 +849,7 @@ msgstr "Velká pyramida"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:27
 msgid "mr ʿȝ"
-msgstr ""
+msgstr "mr ʿȝ"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/pyramid_small.xml:29
@@ -866,7 +866,7 @@ msgstr "mr"
 
 #: simulation/templates/structures/kush/range.xml:8
 msgid "Pr-Pdt"
-msgstr ""
+msgstr "Pr-Pdt"
 
 #: simulation/templates/structures/kush/sentry_tower.xml:5
 msgid "tsmt"
@@ -878,11 +878,11 @@ msgstr "ḥwt-nṯr"
 
 #: simulation/templates/structures/kush/stable.xml:9
 msgid "Ỉḥ Ssmt"
-msgstr ""
+msgstr "Ỉḥ Ssmt"
 
 #: simulation/templates/structures/kush/storehouse.xml:5
 msgid "wdȝt"
-msgstr ""
+msgstr "wdȝt"
 
 #: simulation/templates/structures/kush/temple.xml:8
 msgid "Temple of Apedemak"
@@ -890,12 +890,12 @@ msgstr "Apademakův chrám"
 
 #: simulation/templates/structures/kush/temple.xml:9
 msgid "Pr-ʿIprmk"
-msgstr ""
+msgstr "Pr-ʿIprmk"
 
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedemak Champions and research healing technologies."
-msgstr ""
+msgstr "Vycvičte léčitele a apedemakské šampióny  a zkoumejte léčivé technologie."
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
@@ -907,11 +907,11 @@ msgstr "Velkolepý Amonův chrám"
 
 #: simulation/templates/structures/kush/temple_amun.xml:28
 msgid "Pr-ʿImn"
-msgstr ""
+msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
 msgid "Train Amun Champions and Elite Healers. Research healing technologies."
-msgstr ""
+msgstr "Vycvičte šampiony Amuna a elitní léčitele . Vyzkoumej léčivé technologie."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -919,7 +919,7 @@ msgstr "Amonův chrám"
 
 #: simulation/templates/structures/kush/wall_gate.xml:9
 msgid "ʿryt"
-msgstr ""
+msgstr "ʿryt"
 
 #: simulation/templates/structures/kush/wall_long.xml:9
 #: simulation/templates/structures/kush/wall_medium.xml:9
@@ -930,7 +930,7 @@ msgstr "sbty"
 
 #: simulation/templates/structures/kush/wall_tower.xml:9
 msgid "sȝwt"
-msgstr ""
+msgstr "sȝwt"
 
 #: simulation/templates/structures/kush/wonder.xml:9
 msgid "Mnw nht"
@@ -944,7 +944,7 @@ msgstr "Knihovna"
 
 #: simulation/templates/structures/mace/wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
-msgstr ""
+msgstr "Hieron tou Dios tou Olympiou"
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -1013,7 +1013,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur/palace.xml:21
 msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr ""
+msgstr "Generuje hranici teritoria. Vycvičte dívčí stráže a hrdiny."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1045,7 +1045,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Vyšší zdravotní věž s hradbami až pro 16 lukostřelců. Viditelně obsazeni lučištníci dostávají bonus k dosahu a zbroji. Posádku mohou obsadit pouze střelci. Potřebuje technologii vražedných děr, aby chránila úpatí."
 
 #: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
@@ -1086,7 +1086,7 @@ msgstr "Egyptský žoldnéřský tábor"
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 #: simulation/templates/structures/ptol/mercenary_camp.xml:28
 msgid "Stratopedeia Misthophorōn"
-msgstr ""
+msgstr "Stratopedeia Misthophorōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:31
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -1119,7 +1119,7 @@ msgstr "Možno přestavět na palisádovou bránu."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "Úhel hrotu"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
@@ -1139,7 +1139,7 @@ msgstr "Trůnní sál"
 
 #: simulation/templates/structures/pers/apadana.xml:27
 msgid "Apadāna"
-msgstr ""
+msgstr "Apadāna"
 
 #: simulation/templates/structures/pers/apadana.xml:28
 #: simulation/templates/structures/spart/syssiton.xml:25
@@ -1198,7 +1198,7 @@ msgstr "Brána všech národů"
 
 #: simulation/templates/structures/pers/hall.xml:24
 msgid "Duvarθi Visadahyu"
-msgstr ""
+msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers/hall.xml:25
 msgid "Hall"
@@ -1259,7 +1259,7 @@ msgstr "Visuté babylonské zahrady"
 #: simulation/templates/structures/ptol/elephant_stable.xml:5
 #: simulation/templates/structures/sele/elephant_stable.xml:5
 msgid "Stathmos tōn Elepantōn"
-msgstr ""
+msgstr "Stathmos tōn Elepantōn"
 
 #: simulation/templates/structures/ptol/lighthouse.xml:25
 #: simulation/templates/structures/ptol/lighthouse.xml:29
@@ -1297,7 +1297,7 @@ msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol/wonder.xml:9
 msgid "Hieron tou Hōrou"
-msgstr ""
+msgstr "Hieron tou Hōrou"
 
 #: simulation/templates/structures/rome/amphitheater_pompeii.xml:6
 msgid "Amphitheātrum"
@@ -1309,11 +1309,11 @@ msgstr "Vítězný oblouk"
 
 #: simulation/templates/structures/rome/arch.xml:23
 msgid "Arcus Triumphālis"
-msgstr ""
+msgstr "Arcus Triumphālis"
 
 #: simulation/templates/structures/rome/arch.xml:24
 msgid "TriumphalArch"
-msgstr ""
+msgstr "Triumfální oblouk"
 
 #: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Army Camp"
@@ -1327,7 +1327,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. "
 "Construct Rams. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Budujte na neutrálním nebo nepřátelském území. Vycvičte pokročilou pěchotu na blízko. Postav beranidla. Umístěte posádku vojáků pro další šípy."
 
 #: simulation/templates/structures/rome/army_camp.xml:37
 #: simulation/templates/structures/rome/army_camp.xml:76
@@ -1336,7 +1336,7 @@ msgstr "Vojenský tábor"
 
 #: simulation/templates/structures/rome/arsenal.xml:5
 msgid "Ballistārium"
-msgstr ""
+msgstr "Ballistārium"
 
 #: simulation/templates/structures/rome/barracks.xml:12
 msgid "Castrum"
@@ -1354,7 +1354,7 @@ msgstr "Saeptum"
 #: simulation/templates/structures/rome/tower_artillery.xml:9
 #: simulation/templates/structures/rome/tower_bolt.xml:9
 msgid "Turris Laterīcia"
-msgstr ""
+msgstr "Turris Laterīcia"
 
 #: simulation/templates/structures/rome/dock.xml:12
 msgid "Portus"
@@ -1362,7 +1362,7 @@ msgstr "Portus"
 
 #: simulation/templates/structures/rome/farmstead.xml:8
 msgid "Vīlla"
-msgstr ""
+msgstr "Vila"
 
 #: simulation/templates/structures/rome/field.xml:5
 msgid "Ager"
@@ -1370,7 +1370,7 @@ msgstr "Ager"
 
 #: simulation/templates/structures/rome/forge.xml:5
 msgid "Armāmentārium"
-msgstr ""
+msgstr "Armāmentārium"
 
 #: simulation/templates/structures/rome/fortress.xml:5
 msgid "Castellum"
@@ -1382,15 +1382,15 @@ msgstr "Domus"
 
 #: simulation/templates/structures/rome/market.xml:12
 msgid "Mercātus"
-msgstr ""
+msgstr "Mercātus"
 
 #: simulation/templates/structures/rome/outpost.xml:5
 msgid "Vigilārium"
-msgstr ""
+msgstr "Vigilārium"
 
 #: simulation/templates/structures/rome/sentry_tower.xml:5
 msgid "Turris Līgnea"
-msgstr ""
+msgstr "Turris Līgnea"
 
 #: simulation/templates/structures/rome/siege_wall_gate.xml:22
 msgid "Siege Wall Gate"
@@ -1398,7 +1398,7 @@ msgstr "Brána v obléhací zdi"
 
 #: simulation/templates/structures/rome/siege_wall_gate.xml:23
 msgid "Porta Circummūnītiōnis"
-msgstr ""
+msgstr "Porta Circummūnītiōnis"
 
 #: simulation/templates/structures/rome/siege_wall_gate.xml:24
 #: simulation/templates/structures/rome/siege_wall_long.xml:25
@@ -1407,7 +1407,7 @@ msgstr ""
 #: simulation/templates/structures/rome/siege_wall_tower.xml:29
 #: simulation/templates/structures/rome/wallset_siege.xml:9
 msgid "SiegeWall"
-msgstr ""
+msgstr "Obléhací zeď"
 
 #: simulation/templates/structures/rome/siege_wall_long.xml:23
 #: simulation/templates/structures/rome/siege_wall_medium.xml:23
@@ -1421,7 +1421,7 @@ msgstr "Obléhací zeď"
 #: simulation/templates/structures/rome/siege_wall_short.xml:24
 #: simulation/templates/structures/rome/wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
-msgstr ""
+msgstr "Mūrus Circummūnītiōnis"
 
 #: simulation/templates/structures/rome/siege_wall_tower.xml:26
 msgid "Siege Wall Tower"
@@ -1429,19 +1429,19 @@ msgstr "Věž v obléhací zdi"
 
 #: simulation/templates/structures/rome/siege_wall_tower.xml:27
 msgid "Turris Circummūnītiōnis"
-msgstr ""
+msgstr "Turris Circummūnītiōnis"
 
 #: simulation/templates/structures/rome/stable.xml:5
 msgid "Equīle"
-msgstr ""
+msgstr "Equīle"
 
 #: simulation/templates/structures/rome/storehouse.xml:8
 msgid "Receptāculum"
-msgstr ""
+msgstr "Receptāculum"
 
 #: simulation/templates/structures/rome/temple.xml:9
 msgid "Aedēs"
-msgstr ""
+msgstr "Aedēs"
 
 #: simulation/templates/structures/rome/temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1449,11 +1449,11 @@ msgstr "Martův chrám"
 
 #: simulation/templates/structures/rome/temple_mars.xml:13
 msgid "Aedēs Mārtiālis"
-msgstr ""
+msgstr "Aedēs Mārtiālis"
 
 #: simulation/templates/structures/rome/temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "Chrám Marse"
 
 #: simulation/templates/structures/rome/temple_vesta.xml:18
 msgid "Temple of Vesta"
@@ -1461,11 +1461,11 @@ msgstr "Vestin chrám"
 
 #: simulation/templates/structures/rome/temple_vesta.xml:19
 msgid "Aedēs Vestālis"
-msgstr ""
+msgstr "Aedēs Vestālis"
 
 #: simulation/templates/structures/rome/temple_vesta.xml:21
 msgid "TempleOfVesta"
-msgstr ""
+msgstr "Chrám Vesty"
 
 #: simulation/templates/structures/rome/tent.xml:25
 msgid "Tabernāculum"
@@ -1492,15 +1492,15 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome/wallset_siege.xml:7
 msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr ""
+msgstr "Opevni oblasti. Budujte na vlastním, neutrálním nebo nepřátelském území."
 
 #: simulation/templates/structures/rome/wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedēs Iovis Optimi Maximi"
 
 #: simulation/templates/structures/sele/wonder.xml:9
 msgid "Hieron tou Apollōnos Pythiou"
-msgstr ""
+msgstr "Hieron tou Apollōnos Pythiou"
 
 #: simulation/templates/structures/sele_colonnade.xml:11
 msgid "Colonnade"
@@ -1512,15 +1512,15 @@ msgstr "Korintská kolonáda"
 
 #: simulation/templates/structures/shrine_egyptian.xml:5
 msgid "Sanctuary Kiosk"
-msgstr ""
+msgstr "Svatyně Kiosk"
 
 #: simulation/templates/structures/shrine_italian.xml:9
 msgid "Temple of Healing"
-msgstr ""
+msgstr "Chrám uzdravení"
 
 #: simulation/templates/structures/shrine_italian.xml:10
 msgid "Aedēs Sanitatem"
-msgstr ""
+msgstr "Aedēs Sanitatem"
 
 #: simulation/templates/structures/kush/shrine.xml:12
 #: simulation/templates/structures/shrine_kushite.xml:5
@@ -1549,11 +1549,11 @@ msgstr "Syssition"
 
 #: simulation/templates/structures/spart/syssiton.xml:27
 msgid "Syssiton"
-msgstr ""
+msgstr "Syssiton"
 
 #: simulation/templates/structures/spart/wonder.xml:9
 msgid "Hieron tēs Artemidos Orthias"
-msgstr ""
+msgstr "Hieron tēs Artemidos Orthias"
 
 #: simulation/templates/structures/stall_big.xml:11
 msgid "Big stall"
@@ -1587,7 +1587,7 @@ msgstr "Čtvercový stůl"
 
 #: simulation/templates/structures/tent_desert.xml:35
 msgid "Desert Army Tent"
-msgstr ""
+msgstr "Stan pouštního vojska"
 
 #: simulation/templates/structures/rome/tent.xml:24
 #: simulation/templates/structures/tent_desert.xml:36
@@ -1607,23 +1607,23 @@ msgstr "Dočasný úkryt pro vojáky. Přídavek k populaci +5."
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
-msgstr ""
+msgstr " Makedonský vojenský stan"
 
 #: simulation/templates/structures/tent_rome.xml:35
 msgid "Roman Army Tent"
-msgstr ""
+msgstr "Stan římského vojska"
 
 #: simulation/templates/structures/trading_post_celtic.xml:9
 msgid "Celtic Tavern"
-msgstr ""
+msgstr "Keltský hostinec"
 
 #: simulation/templates/structures/trading_post_desert.xml:9
 msgid "Desert Bazaar"
-msgstr ""
+msgstr "Pouštní bazar"
 
 #: simulation/templates/structures/uffington_horse.xml:10
 msgid "Uffington White Horse"
-msgstr ""
+msgstr "Uffingtonský bílý kůň"
 
 #: simulation/templates/template_structure_civic.xml:5
 msgid "Civic Structure"
@@ -1650,7 +1650,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr ""
+msgstr "Staví se na vlastním nebo neutrálním území. Získejte velké plochy území. Generuje hranici teritoria. Vycvičte občany a vyzkoumejte technologie. Umístěte posádku vojáků pro další šípy."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:42
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
@@ -1718,7 +1718,7 @@ msgstr "Chrám"
 
 #: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Vycvič léčitele a vyzkoumej léčivé technologie."
 
 #: simulation/templates/template_structure_defensive.xml:4
 msgid "Defensive Structure"
@@ -1733,7 +1733,7 @@ msgstr "Rozhledna"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:30
 msgid "Build in own or neutral territory."
-msgstr ""
+msgstr "Stavěj na vlastním nebo neutrálním území."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1745,7 +1745,7 @@ msgstr "Hradba z kůlů"
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/template_structure_defensive_palisade.xml:15
 msgid "Wall off an area. Build in own or neutral territory."
-msgstr ""
+msgstr "Opevni oblasti. Stavěj na vlastním nebo neutrálním území."
 
 #: simulation/templates/template_structure_defensive_tower.xml:36
 #: simulation/templates/template_structure_defensive_tower.xml:52
@@ -1769,7 +1769,7 @@ msgstr "Odstřelovací Věž"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr ""
+msgstr "Šipka"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:47
 msgid "Bolt Tower"
@@ -1788,7 +1788,7 @@ msgstr "Strážní věž"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "Umístit pěchotu pro další šípy. K ochraně úpatí potřebuje technologii „Murder Holes“."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 msgid "SentryTower"
@@ -1824,7 +1824,7 @@ msgstr "Brána"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:26
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Povolte jednotkám přístup přes zdi. Lze uzamknout, aby se zabránilo přístupu."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:17
 msgid "Can be converted into a Gate."
@@ -1851,7 +1851,7 @@ msgstr "Zemědělská usedlost"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
-msgstr ""
+msgstr "Vyzkoumejte technologie sběru jídla."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1862,7 +1862,7 @@ msgstr "Trh"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "Směňujte zdroje. Stanovte obchodní cesty. Vycvičte obchodníky a vyzkoumejte obchodní a směnné technologie."
 
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1876,7 +1876,7 @@ msgstr "Skladiště"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:26
 msgid "Research gathering technologies."
-msgstr ""
+msgstr "Vyzkoumejte technologie sběru."
 
 #: simulation/templates/template_structure_military.xml:10
 msgid "Military Structure"
@@ -1895,7 +1895,7 @@ msgstr "Arzenál"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr ""
+msgstr "Vycvičte šampiónské pěchotní kušníky, konstruujte obléhací stroje a zkoumejte technologie obléhacích strojů."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/kush/pyramid_large.xml:29
@@ -1916,7 +1916,7 @@ msgstr "Kasárna"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Infantry and research Infantry technologies."
-msgstr ""
+msgstr "Vycvičte pěchotu a zkoumejte pěchotní technologie."
 
 #: simulation/templates/template_structure_military_dock.xml:24
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1927,13 +1927,13 @@ msgstr "Přístaviště"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Establish trade"
 " routes. Construct Ships and research Ship technologies."
-msgstr ""
+msgstr "Staví se na pobřeží ve vlastním, neutrálním nebo spojeneckém území. Stanovte obchodní cesty. Konstruujte lodě a zkoumejte technologie lodí."
 
 #: simulation/templates/structures/brit/crannog.xml:17
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Naval"
-msgstr ""
+msgstr "Námořní"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
@@ -1960,7 +1960,7 @@ msgstr "Tavící pec"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
-msgstr ""
+msgstr "Zkoumejte technologie poškození a odolnosti proti poškození"
 
 #: simulation/templates/template_structure_military_fortress.xml:35
 #: simulation/templates/template_structure_military_fortress.xml:65
@@ -1970,7 +1970,7 @@ msgstr "Pevnost"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Umísti posádku vojáků pro další šípy."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-07-01 10:39+0000\n"
+"Last-Translator: Zuzana Miadoková\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "Zhrnutie"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Stlačením %(hotkey)s otvoríte obrazovku so zhrnutím.."
+msgstr "Stlačením %(hotkey)s otvoríš obrazovku so zhrnutím."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
@@ -94,7 +94,7 @@ msgstr "Pauza"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Stlačte %(hotkey)s pre pozastavenie alebo pokračovanie hry."
+msgstr "Stlač %(hotkey)s pre pozastavenie alebo pokračovanie hry."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -124,7 +124,7 @@ msgstr "Spojenie so serverom bolo prerušené."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr "Čaká sa na pripojenie ostatných hráčov..."
+msgstr "Čaká sa na pripojenie ostatných hráčov:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
@@ -671,7 +671,7 @@ msgstr "Nepriateľ"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Podplať náhodného obyvateľa tohto hráča a na určitý čas zisti, čo vidí."
+msgstr "Podplať náhodnú jednotku tohto hráča a na určitý čas zisti, čo vidí."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -760,7 +760,7 @@ msgstr "Tvoj stav hry sa odlišuje od stavu hostiteľa. "
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Znovu pripojenie do hry viacerých hráčov s AI nie je zatiaľ podporované."
+msgstr "Opakované pripojenie do hry viacerých hráčov s AI nie je zatiaľ podporované!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -770,7 +770,7 @@ msgstr "Uisti sa že všetci hráči používajú rovnaké módy. "
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Klikni na \"Nahlásiť chybu\" v hlavnom menu aby si pomohol ju opraviť."
+msgstr "Klikni na \"Nahlásiť chybu\" v hlavnom menu aby si pomohol s jej opravou."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -1091,7 +1091,7 @@ msgstr "Zrušiť rozkladanie"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Automatická fronta sa pokúsi túto položku vytrénovať neskôr."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1352,7 +1352,7 @@ msgstr "Kliknite pre označenie skupiny jednotiek, kliknite dva krát, aby ste p
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Yaunā"
-msgstr ""
+msgstr "Alfa XXV: Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
