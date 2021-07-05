@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-02 06:17+0000\n"
+"PO-Revision-Date: 2021-07-05 06:59+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -2301,17 +2301,17 @@ msgstr "Αποεπιλογή τύπου μονάδας."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Ορισμός του κέρσορα σε Φωτοβολίφα όσο αυτό το πλήκτρο συντόμευσης είναι πατημένο."
+msgstr "Ορισμός του κέρσορα σε Φωτοβολίδα όσο αυτό το πλήκτρο συντόμευσης είναι πατημένο."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr ""
+msgstr "Φωτοβολίδα (πατημένο)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr ""
+msgstr "Ορισμός κέρσορα σε Φωτοβολίδα. Το πλήκτρο συντόμευσης μπορεί να ελευθερωθεί."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
@@ -3678,7 +3678,7 @@ msgstr "Καλύτερο για MP"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Χάρτες που προτείνονται για παιχνίδι Πολλαπλών παικτών."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3905,7 +3905,7 @@ msgstr "Συγκεκριμένα ονόματα πρώτα."
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Εμφάνισε συγκεκριμένα ονόματα πρίν τα γενικά ονόματα."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
@@ -5103,7 +5103,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Yaunā"
-msgstr ""
+msgstr "Alpha XXV/ Αλφα 25:  Yaunā/ Γιαούνα"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5649,7 +5649,7 @@ msgstr "ΟΚ"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
-msgstr ""
+msgstr "Επίσημο Φόρουμ (Ιστός)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6062,7 +6062,7 @@ msgstr "Οικοδομήσιμο σε ουδέτερο ή εχθρικό έδα�
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Κατασκευή ποίορκητικών κριών και εκπαίδευση πολιτών-στρατιωτών."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6090,7 +6090,7 @@ msgstr "ΣΤΡΑΤΩΝΕΣ"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Εκπαιδεύει όλους τους πολίτες στρατιώτες. Ορισμένοι πολιτισμοί μπορούν να ξεκλειδώσουν την εκπαίδευση των πρωταθλητών επίσης."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6124,7 +6124,7 @@ msgstr ""
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
-msgstr ""
+msgstr "ΣΚΥΛΙ ΤΟΥ ΠΟΛΕΜΟΥ"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
@@ -6132,11 +6132,11 @@ msgstr ""
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Έχει χαμηλή υγεία ,αλλά είναι γρήγορο και θα επιτεθεί άφοβα τους εχθρούς."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Χρησιμοποιήστε τους σάν υποστήριξη στο στρατό σας ή για γρήγορες πολιορκίες."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6227,11 +6227,11 @@ msgstr "Αυξάνει τη δύναμη πυρός με τη φρουρά πε�
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr ""
+msgstr "ΤΕΙΧΗ ΠΟΛΗΣ"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Δυνατά τείχη από πέτρα που θα σας βοηθήσουν να προστατεύσετε την πόλη σας."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
@@ -6273,17 +6273,17 @@ msgstr "ΠΡΟΚΑΘΟΡΙΣΜΕΝΟΣ ΣΧΗΜΑΤΙΣΜΟΣ"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr ""
+msgstr "Δεξί κλίκ σε ένα εικονίδιο για να ορίσετε το προκαθορισμένο σχηματισμό: μονάδες που έχουν διαταχθεί να περπατούν ή να περιπολούν ,θα τον χρησιμοποιήσουν αυτόματα."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr ""
+msgstr "Μπορεί να απενεργοποιηθεί επιλέγοντας \"κανένα σχηματισμό\" για το προκαθορισμένο."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr ""
+msgstr "Η επιλογή \"Έλεγχος Σχηματισμού \" σας επιτρέπει να επιλέξετε άν οι σχηματισμοί διαλύονται για εντολές εκτός από τις βάδην ή περιπολία."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"

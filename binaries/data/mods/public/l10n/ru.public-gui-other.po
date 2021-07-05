@@ -34,6 +34,7 @@
 # Uzumaker Uzumaki <uzumaki1337pro@gmail.com>, 2017
 # Vic Grin <aliented@mail.ru>, 2016
 # _Arkan0ID_ <vinnikf24@gmail.com>, 2016
+# Vitaly Orekhov <7opex0@mail.ru>, 2021
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2018,2021
 # webslavic <webslavic@yahoo.com>, 2014-2015
@@ -41,7 +42,7 @@
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017-2018
 # Vitaly Orekhov <7opex0@mail.ru>, 2016
-# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2020
+# Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2021
 # Evgeniy <azarov.evg.ua@gmail.com>, 2017
 # Михаил Пелёвин <pelewin@list.ru>, 2018
 # Николай Авдеев <nickkolok@mail.ru>, 2016
@@ -50,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-07-04 20:33+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2302,7 +2303,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Атака в движении"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
@@ -2852,17 +2853,17 @@ msgstr "Меню дипломатии"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Показать/скрыть игровое меню."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr ""
+msgstr "Показать/скрыть игровое меню"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Показать/скрыть страницу заданий."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
@@ -2882,12 +2883,12 @@ msgstr "Скрыть графический интерфейс"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Показать/скрыть игровую панель обучения."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Показать/скрыть обучение"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
@@ -3069,7 +3070,7 @@ msgstr "Отменить выбор всех юнитов, отменить ра
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Отменить выбор"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
@@ -3464,12 +3465,12 @@ msgstr "Убрать юнитов из выбранного"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Выбрать только раненых юнитов."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Выбрать только раненых юнитов"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -3731,11 +3732,11 @@ msgstr "Карты, появившиеся в этом релизе игры."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Лучшее для MP"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Карты, рекомендуемые для мультиплеера."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3958,35 +3959,35 @@ msgstr "Наименование объектов"
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Сначала специфические имена"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Показывать специфические имена перед обычными."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Сначала обычные имена"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Показывать обычные имена перед специфическими."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Только специфические имена"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Показывать только специфические имена сущностей."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Только обычные имена"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Показывать только обычные имена сущностей."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4110,7 +4111,7 @@ msgstr "Разрешение текстуры для расчёта тени. В
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
-msgstr ""
+msgstr "Фильтрация"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
@@ -4122,11 +4123,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Скрывает тени за пределами определённого расстояния от камеры."
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Покрывать всю карту"
 
 #: gui/options/options.json[2].options[13].tooltip
 msgid ""
@@ -4319,15 +4320,15 @@ msgstr "Нет"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr ""
+msgstr "Сущности будут выглядеть одинаково."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
-msgstr ""
+msgstr "Ограничено"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "Между сущностями будет меньше различий."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4335,7 +4336,7 @@ msgstr "Обычная"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Внешность сущностей будет произвольной."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
@@ -5199,7 +5200,7 @@ msgstr "Нажмите, чтобы посетить 0 A.D. Trac для отче�
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
@@ -5686,7 +5687,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Эта игра всё ещё в разработке. Вы можете столкнуться с багами, а некоторые функции могут быть описаны не так точно, как мы хотели бы."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5698,13 +5699,13 @@ msgstr "[imgleft=\"iconLag\"]Игра может иметь проблемы с 
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. является свободно распространяемым ПО: вы можете принять участие в разработке."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Если вы хотите помочь с графикой, звуком, геймплеем или программированием, присоединяйтесь к нашему официальному форуму."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5720,7 +5721,7 @@ msgstr "OK"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
-msgstr ""
+msgstr "Официальный форум (веб-сайт)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -6165,7 +6166,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Юниты набирают опыт, пока находятся внутри постройки."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6390,7 +6391,7 @@ msgstr ""
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Специальные постройки, позволяющие нанимать наёмников для вашей армии."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
@@ -6432,7 +6433,7 @@ msgstr "Исследуйте улучшения вооружения и брон
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "ПОСТРОЕНИЯ"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
@@ -6532,13 +6533,13 @@ msgstr ""
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "МАЯК"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr ""
+msgstr "Особые здания Птолемеев, увеличивающие дальность обзора, будучи построенными на берегу."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
@@ -6560,18 +6561,18 @@ msgstr ""
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Особые здания, доступные Кушитам."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "Маленькие пирамиды улучшают скорость сбора у рабочих вокруг них."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "Большие пирамиды усиливают мощь солдат вокруг них."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6662,19 +6663,19 @@ msgstr "Огневая мощь увеличивается при размеще
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
-msgstr ""
+msgstr "СЧЁТЧИК РЕСУРСОВ"
 
 #: gui/text/tips/resource_counter.txt:2
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "Панель счётчика ресурсов показывает ваш текущий запас каждого из ресурсов."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr ""
+msgstr "Число под ними показывает количество жителей, добывающих их в данный момент времени."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6817,7 +6818,7 @@ msgstr "Когда разрушение заканчивается, здание
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "ТЕАТР"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
@@ -6827,18 +6828,18 @@ msgstr ""
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "СОКРОВИЩА"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Собираемые сундуки, разбросанные ресурсы на земле и разбитые корабли на берегу."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Существенно увеличивают количество ресурсов, поэтому обращайте на них внимание во время исследований."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
