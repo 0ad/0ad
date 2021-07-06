@@ -622,6 +622,8 @@ ProductionQueue.prototype.ResetQueue = function()
 {
 	while (this.queue.length)
 		this.RemoveItem(this.queue[0].id);
+
+	this.DisableAutoQueue();
 };
 
 /*

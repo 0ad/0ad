@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-02 03:43+0000\n"
+"PO-Revision-Date: 2021-07-04 08:17+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Tekan %(hotkey)s untuk setel menu ini."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "Percakapan"
+msgstr "Obrolan"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -72,7 +72,7 @@ msgstr "Lobi"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Tekan %(hotkey)s untuk membuka halaman lobi multipemain tanpa meninggalkan permainan."
+msgstr "Tekan %(hotkey)s untuk membuka halaman lobi main bersama tanpa meninggalkan permainan."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -223,37 +223,37 @@ msgstr "HH:mm"
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Percakapan dan notifikasi"
+msgstr "Obrolan dan notifikasi"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr "Pesan Percakapan"
+msgstr "Pesan Obrolan"
 
 #: gui/session/chat/ChatHistory.js:92
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "Percakapan pemain"
+msgstr "Obrolan pemain"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Percakapan sekutu"
+msgstr "Obrolan sekutu"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Percakapan musuh"
+msgstr "Obrolan musuh"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Percakapan pengamat"
+msgstr "Obrolan pengamat"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr "Percakapan pribadi"
+msgstr "Obrolan pribadi"
 
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
@@ -273,22 +273,22 @@ msgstr "Ketik pesan untuk dikirim."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Tekan %(hotkey)s untuk membuka percakapan umum."
+msgstr "Tekan %(hotkey)s untuk membuka obrolan umum."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Tekan %(hotkey)s untuk membuka percakapan pengamat."
+msgstr "Tekan %(hotkey)s untuk membuka obrolan pengamat."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Tekan %(hotkey)s untuk membuka percakapan sekutu."
+msgstr "Tekan %(hotkey)s untuk membuka obrolan sekutu."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Tekan %(hotkey)s untuk membuka percakapan pribadi terpilih sebelumnya."
+msgstr "Tekan %(hotkey)s untuk membuka obrolan pribadi yang dipilih sebelumnya."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -300,7 +300,7 @@ msgstr "%(player)s mencoba bergabung kembali ke permainan."
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s mulai untuk mengikuti permainan."
+msgstr "%(player)s mulai bergabung ke permainan."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
@@ -310,7 +310,7 @@ msgstr "%(player)s telah meninggalkan permainan."
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s telah dilarang untuk masuk"
+msgstr "%(username)s telah dilarang masuk"
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
@@ -391,17 +391,17 @@ msgstr "Anda sekarang netral dengan %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s sekarang bersekutu dengan anda."
+msgstr "%(player)s sekarang bersekutu dengan Anda."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s sekarang sedang berperang dengan anda."
+msgstr "%(player)s sekarang sedang berperang dengan Anda."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s sekarang netral dengan anda."
+msgstr "%(player)s sekarang netral dengan Anda."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
@@ -443,7 +443,7 @@ msgstr ", "
 #: gui/session/chat/ChatMessageFormatSimulation.js:159
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s telah mengirimmu %(amounts)s."
+msgstr "%(player)s telah mengirim Anda %(amounts)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
@@ -458,7 +458,7 @@ msgstr "%(player)s telah mengirim %(player2)s %(amounts)s."
 #: gui/session/chat/chat_window.xml:(caption):19
 msgctxt "chat input"
 msgid "Filter:"
-msgstr "Filter:"
+msgstr "Saring:"
 
 #: gui/session/chat/chat_window.xml:(caption):46
 msgctxt "chat input"
@@ -486,7 +486,7 @@ msgstr "Kirim"
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Filter riwayat percakapan."
+msgstr "Saring riwayat obrolan."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
@@ -519,7 +519,7 @@ msgstr "Lapisan penemu jalur"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
-msgstr "Overlay hierarki pathfinder"
+msgstr "Lapisan penemu jalur hierarkis"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
 msgid "Obstruction overlay"
@@ -535,7 +535,7 @@ msgstr "Lapisan jarak"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
 msgid "Bounding box overlay"
-msgstr "Lapisan Kotak Sentuhan"
+msgstr "Lapisan kotak sentuhan"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
 msgid "Restrict camera"
@@ -551,7 +551,7 @@ msgstr "Hidupkan pelengkungan waktu"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr "Aktifkan Rejoin Test"
+msgstr "Aktifkan Uji Gabung Ulang"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -567,11 +567,11 @@ msgstr "Kunci kamera penyisihan"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr "Tampilkan frustrasi kamera"
+msgstr "Tampilkan frustum kamera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Tampilkan bayangan frustum"
+msgstr "Tampilkan frustum bayangan "
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -640,7 +640,7 @@ msgstr "Sisa waktu gencatan senjata: %(time)s"
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr "Alihkan Warna Diplomasi"
+msgstr "Setel Warna Diplomasi"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -649,7 +649,7 @@ msgstr "Meminta sekutu Anda untuk meyerang musuh ini"
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
 msgid "None"
-msgstr "None"
+msgstr "Tak ada"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
@@ -670,11 +670,11 @@ msgstr "Musuh"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Menyogok sebuah unit dari pemain ini untuk melihat apa yang dilihatnya dalam jangka waktu pendek."
+msgstr "Sogok sebuah unit acak dari pemain ini untuk melihat apa yang dilihatnya dalam jangka waktu pendek."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
-msgstr "Suap yang gagal akan dikenakan biaya:"
+msgstr "Sogokan yang gagal akan dikenakan biaya:"
 
 #: gui/session/diplomacy/playercontrols/StanceButton.js:60
 msgctxt "diplomatic stance selection"
@@ -732,7 +732,7 @@ msgstr "Ya"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Tidak dapat disinkronisasikan pada giliran ke- %(turn)s."
+msgstr "Kesalahan sinkronisasi pada giliran ke- %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -743,7 +743,7 @@ msgstr "Pemain: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "Status permainan Anda mirip dengan status pembuat permainan."
+msgstr "Status permainan Anda sama dengan status pembuat permainan."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
@@ -753,7 +753,7 @@ msgstr "Status permainan Anda berbeda dengan status pembuat permainan."
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Mengikuti kembali permainan bersama dengan AI belum didukung!"
+msgstr "Gabung kembali permainan bersama dengan AI belum didukung!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -780,12 +780,12 @@ msgstr "Membuang status saat ini ke %(filepath)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
 msgid "Out of Sync"
-msgstr "Tidak Dapat Disinkronisasikan"
+msgstr "Tidak Sinkron"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr "Tidak sinkron"
+msgstr "Tidak-Sinkron"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -834,7 +834,7 @@ msgstr "Konfirmasi"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "Tayangan ulang telah selesai. Apakah anda yakin ingin keluar?"
+msgstr "Tayangan ulang telah selesai. Apakah Anda yakin ingin keluar?"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:22
 msgctxt "replayFinished"
@@ -848,7 +848,7 @@ msgstr "Ya"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr "Apakah anda yakin ingin menyerah?"
+msgstr "Apakah Anda yakin ingin menyerah?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
@@ -880,7 +880,7 @@ msgstr "Pemain Tidak Dikenal"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Mengirim suar ke sekutu anda."
+msgstr "Kirim suar ke sekutu Anda."
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
@@ -903,7 +903,7 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s Peringkat"
+msgstr "%(rank)s Pangkat"
 
 #: gui/session/selection_details.js:140
 #, javascript-format
@@ -922,7 +922,7 @@ msgstr "%(experience)s %(current)s / %(required)s"
 
 #: gui/session/selection_details.js:202 gui/session/selection_details.js:208
 msgid "Experience:"
-msgstr "Pengalaman:"
+msgstr "Keahlian:"
 
 #: gui/session/selection_details.js:207
 #, javascript-format
@@ -960,7 +960,7 @@ msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
-msgstr "Jumlah sekarang/maksimum pengumpul"
+msgstr "Jumlah pengumpul sekarang/maksimum "
 
 #: gui/session/selection_details.js:306
 #, javascript-format
@@ -969,7 +969,7 @@ msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
-msgstr "Poin Penguasaan:"
+msgstr "Poin Perebutan:"
 
 #: gui/session/selection_details.js:460
 #, javascript-format
@@ -978,7 +978,7 @@ msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr "Jumlah Garnisun"
+msgstr "Jumlah Penempatan"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1001,7 +1001,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:476
 msgid "Loot:"
-msgstr "Jarahan:"
+msgstr "Rampasan:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:537
@@ -1030,19 +1030,19 @@ msgstr "Akhir dari peringatan."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr "Formasi standar dimatikan."
+msgstr "Formasi bawaan dimatikan."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Klik kanan untuk mematikan fitur formasi standar."
+msgstr "Klik-kanan untuk mematikan fitur formasi bawaan."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr "Ini adalah formasi standar, digunakan untuk perintah pergerakan."
+msgstr "Ini adalah formasi bawaan, digunakan untuk perintah pergerakan."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Klik kanan untuk menyetel ini sebagai formasi standar."
+msgstr "Klik-kanan untuk menyetel ini sebagai formasi bawaan."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1051,7 +1051,7 @@ msgstr "Keluarkan %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Klik untuk mengeluarkan 1. Shift-klik untuk mengeluarkan semua pasukan dengan tipe sama."
+msgstr "Klik untuk mengeluarkan 1. Shift-klik untuk mengeluarkan semua pasukan dengan jenis yang sama."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
 #, javascript-format
@@ -1084,7 +1084,7 @@ msgstr "Batalkan Bongkar"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr "Antre-otomatis akan mencoba melatih ini nanti."
+msgstr "Antre-otomatis akan mencoba melatih unit ini nanti."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1099,7 +1099,7 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] "%(number)s entitas kelas %(class)s"
+msgstr[0] "%(number)s entitas dari kelas %(class)s"
 
 #: gui/session/selection_panels.js:765
 #, javascript-format
@@ -1117,7 +1117,7 @@ msgstr "Tidak dapat meneliti saat meningkatkan."
 
 #: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
-msgstr "Tidak bisa melatih saat meningkatkan."
+msgstr "Tidak dapat melatih saat meningkatkan."
 
 #: gui/session/selection_panels.js:1112
 #, javascript-format
@@ -1180,19 +1180,19 @@ msgstr "Diam"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Serang musuh disekitar, fokus ke penyerang dan mengejar selama terlihat"
+msgstr "Serang musuh di sekitar, fokus ke penyerang dan kejar selama terlihat"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "Menyerang musuh disekitar"
+msgstr "Menyerang musuh di sekitar"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Serang musuh disekitar, kejar untuk jarak yang pendek dan kembali ke posisi awal"
+msgstr "Serang musuh di sekitar, kejar untuk jarak yang pendek dan kembali ke posisi awal"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
@@ -1202,7 +1202,7 @@ msgstr "Melarikan diri saat diserang"
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Menyerang musuh dari jarak jauh, tetapi tidak bergerak"
+msgstr "Menyerang musuh dari jarak jauh, tetapi tidak berpindah"
 
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
@@ -1232,7 +1232,7 @@ msgstr "Dapat dibangun hanya sekali."
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] "Bisa dibangunCan %(count)s beberapa kali."
+msgstr[0] "Bisa dibangun %(count)s kali lagi."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
@@ -1247,7 +1247,7 @@ msgstr "Hanya bisa dilatih sekali."
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] "Bisa dilatih %(count)s beberapa kali."
+msgstr[0] "Bisa dilatih %(count)s kali lagi."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
@@ -1262,7 +1262,7 @@ msgstr "Hanya bisa dibuat sekali."
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] "Bisa dibuat %(count)s beberapa kali."
+msgstr[0] "Bisa dibuat %(count)s kali lagi."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1295,29 +1295,29 @@ msgstr "Nyawa"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
-msgstr "Poin ambil alih:"
+msgstr "Poin perebutan:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
-msgstr "Serangan dan Perlawanan"
+msgstr "Daya Serang dan Tahan"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
-msgstr "Pengalaman"
+msgstr "Keahlian"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):105
 msgid "Rank"
-msgstr "Peringkat"
+msgstr "Pangkat"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr "Antrian produksi"
+msgstr "Antrean produksi"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Klik untuk memilih kumpulan unit, klik-ganda untuk fokus pada kumpulan dan klik-kanan untuk membubarkan grup."
+msgstr "Klik untuk memilih unit yang dikelompokkan, klik-ganda untuk fokus pada kelompok dan klik-kanan untuk membubarkan kelompok."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Yaunā"
@@ -1329,12 +1329,12 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Lihat Tinjauan Peradaban / Pohon Struktur\nTerakhir dibuka akan dibuka kembali saat diklik."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Lihat Tinjauan Bangsa / Pohon Bangunan\nTerakhir dibuka akan dibuka kembali saat diklik."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr "%(order)s: %(hotkey)s untuk merubah susunan."
+msgstr "%(order)s: %(hotkey)s untuk mengubah urutan."
 
 #: gui/session/top_panel/CounterManager.js:105
 msgid "Unordered"
@@ -1342,11 +1342,11 @@ msgstr "Tidak urut"
 
 #: gui/session/top_panel/CounterManager.js:107
 msgid "Descending"
-msgstr "Meningkat"
+msgstr "Menurun"
 
 #: gui/session/top_panel/CounterManager.js:108
 msgid "Ascending"
-msgstr "Menurun"
+msgstr "Meningkat"
 
 #: gui/session/top_panel/CounterManager.js:133
 #, javascript-format
@@ -1388,7 +1388,7 @@ msgstr "Kecepatan Permainan"
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
 msgid "Objectives"
-msgstr "Obyektif"
+msgstr "Tujuan"
 
 #: gui/session/top_panel/MenuButton.xml:(caption):15
 msgid "Menu"
@@ -1430,7 +1430,7 @@ msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr "Tukar"
+msgstr "Barter"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
@@ -1456,7 +1456,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Pilih satu tipe barang yang ingin dimodifikasi dengan mengkliknya, lalu gunakan panah dari tipe yang lain untuk memodifikasi bagian-bagiannya. Kamu juga bisa menekan tombol %(hotkey)s ketika menyeleksi satu tipe barang untuk membuat bagiannya menjadi 100 %%."
+msgstr "Pilih satu jenis barang yang ingin diubah dengan mengkliknya, lalu gunakan panah dari jenis yang lain untuk mengubah bagiannya. Anda juga bisa menekan %(hotkey)s ketika memilih satu jenis barang untuk membuat bagiannya menjadi 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1465,7 +1465,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Dimulai dengan menyeleksi sumber daya yang ingin kamu jual dari baris atas. Untuk setiap kali tombol yang lebih rendah ditekan, %(quantity)s dari sumber daya atas akan dijual untuk jumlah yang ditampilkan lebih rendah. Tekan dan tahan %(hotkey)s untuk sementara mengalikan jumlah yang diperdagangkan dengan %(multiplier)s."
+msgstr "Mulai dengan memilih sumberdaya yang ingin Anda jual dari baris atas. Setiap kali tombol di bawahnya ditekan, %(quantity)s dari sumberdaya atas akan dijual untuk jumlah yang ditampilkan di bawah. Tekan dan tahan %(hotkey)s untuk sementara mengalikan jumlah yang diperdagangkan dengan %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1473,7 +1473,7 @@ msgstr "Dagang"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr "Sumber Daya"
+msgstr "Sumberdaya:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1583,19 +1583,19 @@ msgstr "Siap"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Ini adalah pasar perdagangan asal. \nKlik kanan untuk membatalkan rute perdagangan."
+msgstr "Ini adalah pasar asal. \nKlik-kanan untuk membatalkan jalur dagang."
 
 #: gui/session/unit_actions.js:631
 msgid "Origin trade market."
-msgstr "Pasar asal"
+msgstr "Pasar asal."
 
 #: gui/session/unit_actions.js:641
 msgid "Destination trade market."
-msgstr "Pasar tujuan"
+msgstr "Pasar tujuan."
 
 #: gui/session/unit_actions.js:648
 msgid "Right-click to set as origin trade market"
-msgstr "Klik kanan untuk menetapkan sebagai pasar asal"
+msgstr "Klik-kanan untuk menetapkan sebagai pasar asal"
 
 #: gui/session/unit_actions.js:655 gui/session/unit_actions.js:1139
 msgid "This market is too close to the origin market."
@@ -1652,11 +1652,11 @@ msgstr "Batalkan perintah saat ini."
 
 #: gui/session/unit_actions.js:1435
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Perintahkan unit terpilih untuk menempati sebuah struktur atau unit."
+msgstr "Perintahkan unit terpilih untuk menempati sebuah bangunan atau unit."
 
 #: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
-msgstr "Menyuruh unit terpilih untuk menempati pos penjaga."
+msgstr "Perintahkan unit terpilih untuk menempati pos penjaga."
 
 #: gui/session/unit_actions.js:1479
 msgid "Unload"
@@ -1664,7 +1664,7 @@ msgstr "Keluarkan"
 
 #: gui/session/unit_actions.js:1499
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Menyuruh unit yang dipilih untuk memperbaiki struktur, kapal, atau mesin pengepungan."
+msgstr "Perintahkan unit yang dipilih untuk memperbaiki bangunan, kapal, atau mesin kepung."
 
 #: gui/session/unit_actions.js:1520
 msgid "Focus on Rally Point."
@@ -1676,7 +1676,7 @@ msgstr "Kembali Bekerja"
 
 #: gui/session/unit_actions.js:1578
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Menyuruh unit yang dipilih untuk menjaga struktur atau unit."
+msgstr "Perintahkan unit yang dipilih untuk mengawal bangunan atau unit."
 
 #: gui/session/unit_actions.js:1598
 msgid "Remove guard"
@@ -1686,7 +1686,7 @@ msgstr "Batalkan melindungi"
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1617
 msgid "Barter & Trade"
-msgstr "Pertukaran & Perdagangan"
+msgstr "Barter & Perdagangan"
 
 #: gui/session/unit_actions.js:1637
 msgid "Patrol"
@@ -1694,11 +1694,11 @@ msgstr "Patroli"
 
 #: gui/session/unit_actions.js:1638
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Serang semua unit musuh yang ditemui sambil menghindari struktur."
+msgstr "Serang semua unit musuh yang ditemui sambil menghindari bangunan,"
 
 #: gui/session/unit_actions.js:1666
 msgid "Press to allow allies to use this dropsite"
-msgstr "Tekan untuk mengijinkan sekutu menggunakan tempat penyimpanan ini"
+msgstr "Tekan untuk mengizinkan sekutu menggunakan tempat penyimpanan ini"
 
 #: gui/session/unit_actions.js:1671
 msgid "Press to prevent allies from using this dropsite"
@@ -1731,7 +1731,7 @@ msgstr "Entitas ini harus dibunuh dahulu sebelum bisa dikumpulkan"
 #: gui/session/unit_actions.js:1820
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Anda tidak dapat menghancurkan ini karena anda hanya memiliki kurang dari setengah poin penguasaan."
+msgstr "Anda tidak dapat menghancurkan entitas ini karena Anda hanya memiliki kurang dari setengah poin perebutan."
 
 #: gui/session/unit_actions.js:1823
 msgid "This entity is undeletable"

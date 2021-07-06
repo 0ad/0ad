@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-28 10:04+0000\n"
+"PO-Revision-Date: 2021-07-04 13:50+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr "Peradaban Tidak Diketahui"
+msgstr "Kebangsaan Tidak Diketahui"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
@@ -154,7 +154,7 @@ msgstr "menang"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Tidak Ada Regu"
+msgstr "Tanpa Regu"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
@@ -179,7 +179,7 @@ msgstr[0] "Pengamat"
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Permainan tak berujung"
+msgstr "Permainan Tanpa Akhir"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
@@ -197,11 +197,11 @@ msgstr[0] "Keajaiban Dunia (%(min)s menit)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] "Kuasai semua peninggalan (%(min)s menit)"
+msgstr[0] "Rebut Pusaka (%(min)s menit)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
-msgstr "Jumlah Relikui"
+msgstr "Jumlah Pusaka"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
@@ -213,7 +213,7 @@ msgstr "Pahlawan dapat ditempatkan"
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "Tunjukkan Pahlawan"
+msgstr "Pahlawan Terlihat"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
@@ -225,7 +225,7 @@ msgstr "Regu Terkunci"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Pemain tidak dapat mengganti tim."
+msgstr "Pemain tidak dapat mengganti regu."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -233,7 +233,7 @@ msgstr "Diplomasi"
 
 #: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
-msgstr "Pemain dapat membuat aliansi dan menyatakan perang dengan aliansi lain."
+msgstr "Pemain dapat membuat persekutuan dan menyatakan perang dengan persekutuan lain."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
@@ -308,21 +308,21 @@ msgstr "Mode Nomaden"
 
 #: gui/common/gamedescription.js:338
 msgid "Civic Centers"
-msgstr "Pusat Peradaban"
+msgstr "Pusat Bangsa"
 
 #: gui/common/gamedescription.js:341
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Pemain mulai dengan hanya beberapa unit dan harus menemukan tempat yang cocok untuk membangun kota mereka."
+msgstr "Pemain memulai dengan hanya beberapa unit yang harus mencari tempat yang cocok untuk membangun kota mereka."
 
 #: gui/common/gamedescription.js:342
 msgid "Players start with a Civic Center."
-msgstr "Pemain mulai dengan Pusat Peradaban"
+msgstr "Pemain mulai dengan Pusat Bangsa."
 
 #: gui/common/gamedescription.js:347
 msgid "Starting Resources"
-msgstr "Sumber Daya Awal"
+msgstr "Sumberdaya Awal"
 
 #: gui/common/gamedescription.js:351
 msgctxt "starting resources"
@@ -345,7 +345,7 @@ msgstr "Tiap Pemain"
 
 #: gui/common/gamedescription.js:375
 msgid "World Population Cap"
-msgstr "Kapasitas Populasi Dunia"
+msgstr "Batas Populasi Dunia"
 
 #: gui/common/gamedescription.js:383
 msgid "Treasures"
@@ -359,7 +359,7 @@ msgstr "Dimatikan"
 #: gui/common/gamedescription.js:386
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "Seperti yang didefinisikan oleh peta."
+msgstr "Seperti yang ditetapkan oleh peta."
 
 #: gui/common/gamedescription.js:390
 msgid "Explored Map"
@@ -421,22 +421,22 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "Kehilangan koneksi dengan server (%(seconds)ss)"
+msgstr "Kehilangan sambungan dengan server (%(seconds)sd)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr "%(player)s kehilangan koneksi (%(seconds)ss)"
+msgstr "%(player)s kehilangan sambungan (%(seconds)sd)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "Koneksi buruk dengan server (%(milliseconds)sms)"
+msgstr "Sambungan buruk dengan server (%(milliseconds)smd)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Koneksi buruk dengan %(player)s (%(milliseconds)sms)"
+msgstr "Sambungan buruk dengan %(player)s (%(milliseconds)smd)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -454,7 +454,7 @@ msgstr "Versi protokol jaringan keliru."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "Sedang memuat permainan, mohon coba lagi nanti."
+msgstr "Permainan dimuat, mohon coba lagi nanti."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -466,7 +466,7 @@ msgstr "Anda telah dikeluarkan."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr "Anda telah dibanned."
+msgstr "Anda telah dilarang untuk masuk."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -478,7 +478,7 @@ msgstr "Server penuh."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr "Otentikasi lobi aman gagal. Bergabunglah melalui lobi."
+msgstr "Autentikasi lobi aman gagal. Bergabunglah melalui lobi."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -494,7 +494,7 @@ msgstr "Kesalahan: Klien mensimulasikan giliran permainan yang tidak terduga."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr "Kata sandi tidak valid."
+msgstr "Kata sandi tidak sah."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -511,11 +511,11 @@ msgstr "\\[Nilai tidak sah %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
-msgstr "Kehilangan koneksi dengan server."
+msgstr "Kehilangan sambungan dengan server."
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
-msgstr "Gagal untuk menyambungkan dengan server."
+msgstr "Gagal tersambung dengan server."
 
 #: gui/common/network.js:101
 msgid "Disconnected"
@@ -523,7 +523,7 @@ msgstr "Terputus"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
-msgstr "Hanya pembuat permainan yang dapat mengeluarkan klien!"
+msgstr "Hanya host permainan yang dapat mengeluarkan klien!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -567,12 +567,12 @@ msgstr "Sedang"
 #: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr "Susah"
+msgstr "Sulit"
 
 #: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "Sangat Susah"
+msgstr "Sangat Sulit"
 
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
@@ -603,7 +603,7 @@ msgstr "Perperangan"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Peta dengan lanskap yang telah ditentukan dan jumlah pemain.  Pilih pengaturan game lainnya dengan bebas."
+msgstr "Peta dengan lanskap dan jumlah pemain yang telah ditentukan.  Pilih pengaturan permainan lainnya dengan bebas."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -614,7 +614,7 @@ msgstr "Acak"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Membuat sebuah peta unik dengan distribusi sumber daya berbeda tiap kali. Pilih dengan bebas jumlah pemain dan regu."
+msgstr "Membuat sebuah peta unik dengan penyebaran sumberdaya berbeda tiap kalinya. Pilih dengan bebas jumlah pemain dan regu."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -623,7 +623,7 @@ msgstr "Skenario"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
-msgstr "Sebuah peta dengan relief tanah dan pengaturan yang sudah ditentukan."
+msgstr "Sebuah peta dengan lanskap dan pengaturan pertandingan yang sudah ditentukan."
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
@@ -642,7 +642,7 @@ msgstr "Tidak diketahui"
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
 msgid "Default"
-msgstr "Standar"
+msgstr "Bawaan"
 
 #: gui/common/settings.js:376
 msgctxt "map type"
@@ -652,7 +652,7 @@ msgstr "Tidak diketahui"
 #: gui/common/settings.js:388
 msgctxt "map size"
 msgid "Default"
-msgstr "Standar"
+msgstr "Bawaan"
 
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
@@ -666,7 +666,7 @@ msgstr "Tidak diketahui"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
-msgstr "Kondisi Kemenangan Tidak Diketahui"
+msgstr "Syarat Kemenangan Tak Diketahui"
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -706,7 +706,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "Poin penguasaan:"
+msgstr "Poin perebutan:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -722,11 +722,11 @@ msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
-msgstr "Ketahanan:"
+msgstr "Daya Tahan:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr "Kerusakan:"
+msgstr "Daya Serang:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
@@ -740,12 +740,12 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr "Menguasai:"
+msgstr "Rebut:"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr "Merebut"
+msgstr "Rebut"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -754,7 +754,7 @@ msgstr "Efek Status:"
 #: gui/common/tooltips.js:267
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr "Blocks %(name)s"
+msgstr "Menepis %(name)s"
 
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:280
 #: gui/common/tooltips.js:287
@@ -770,13 +770,13 @@ msgstr "Pengurangan durasi: %(durationReduction)s%%"
 #: gui/common/tooltips.js:282
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr "Blocks: %(blockPercentage)s%%"
+msgstr "Menepis: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:289
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr "Blocks: %(blockPercentage)s%%, Pengurangan durasi: %(durationReduction)s%%"
+msgstr "Menepis: %(blockPercentage)s%%, Pengurangan durasi: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
@@ -784,11 +784,11 @@ msgstr "Tempati untuk menembakkan panah"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
-msgstr "Interval:"
+msgstr "Rentang:"
 
 #: gui/common/tooltips.js:312
 msgid "Rate:"
-msgstr "Tingkat:"
+msgstr "Laju:"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
@@ -812,7 +812,7 @@ msgstr "%(projectileString)s / %(attackRateString)s"
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
+msgstr "%(rangeLabel)s %(minRange)s hingga %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
@@ -824,7 +824,7 @@ msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
+msgstr "%(rangeLabel)s %(minRange)s hingga %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
@@ -938,7 +938,7 @@ msgstr "Durasi"
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr "(meluas)"
+msgstr "(menambah)"
 
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
@@ -948,7 +948,7 @@ msgstr "(menggantikan)"
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr "(tumpukan)"
+msgstr "(menumpuk)"
 
 #: gui/common/tooltips.js:541
 #, javascript-format
@@ -962,7 +962,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:553
 msgid "Garrison Limit"
-msgstr "Batas Unit yang Ditempatkan"
+msgstr "Batas Penempatan"
 
 #: gui/common/tooltips.js:560
 #, javascript-format
@@ -985,7 +985,7 @@ msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr "Jumlah Garnisun"
+msgstr "Jumlah Penempatan"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -999,7 +999,7 @@ msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr "Posisi Menara"
+msgstr "Posisi Penjaga"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -4843,7 +4843,7 @@ msgstr "Belajar cara bermain, memulai tutorial, menemukan pohon teknologi dan se
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
-msgstr "Manual"
+msgstr "Petunjuk"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
@@ -5103,7 +5103,7 @@ msgstr "Klik untuk membuka play0ad.com di browser anda"
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
-msgstr "Percakapan"
+msgstr "Obrolan"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
