@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Aziz Rahmad <azayrahmad@gmail.com>, 2014-2015,2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2021
 # Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Esther Randiny <esrandiny@gmail.com>, 2021
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
@@ -18,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-06-26 07:55+0000\n"
+"PO-Revision-Date: 2021-07-09 07:02+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -45,14 +46,14 @@ msgstr "Sebuah keranda yang menyimpan jenazah pemimpin besar."
 #: simulation/templates/template_unit_infantry.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr "Merebut"
+msgstr "Rebut"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
 #: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr "Menyembelih"
+msgstr "Jagal"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_cavalry.xml:35
@@ -129,7 +130,7 @@ msgstr "Kapak"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr "Kavaleri Berkapak"
+msgstr "Kavaleri Kapak"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -139,7 +140,7 @@ msgstr "Kavaleri Berkapak"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "Pasukan Kapak"
+msgstr "Prajurit Kapak"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -162,7 +163,7 @@ msgstr "Kavaleri Gada"
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Maceman"
-msgstr "Pasukan Gada"
+msgstr "Prajurit Gada"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -217,7 +218,7 @@ msgstr "Kavaleri Pedang"
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Swordsman"
-msgstr "Pasukan Pedang"
+msgstr "Prajurit Pedang"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:7
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -298,7 +299,7 @@ msgstr "Kavaleri Busur Silang"
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
 msgid "Crossbowman"
-msgstr "Pasukan Busur Silang"
+msgstr "Prajurit Busur Silang"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -341,7 +342,7 @@ msgstr "Jawara Kavaleri Pemanah"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr "Jawara Kavaleri Berkapak"
+msgstr "Jawara Kavaleri Kapak"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
@@ -400,7 +401,7 @@ msgstr "Jawara Pemanah"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
-msgstr "Jawara Berkapak"
+msgstr "Jawara Kapak"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
@@ -408,7 +409,7 @@ msgstr "Jawara Infanteri Busur Silang"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr "Jawara Infanteri Pelempar Lembing"
+msgstr "Jawara Infanteri Pelembing"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
@@ -423,7 +424,7 @@ msgstr "Galah"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
-msgstr "Jawara Pasukan Tembiang"
+msgstr "Jawara Penggalah"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:27
@@ -439,7 +440,7 @@ msgstr "Membalas: 3x vs Kavaleri."
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 msgid "Pikeman"
-msgstr "Pasukan Tembiang"
+msgstr "Penggalah"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
@@ -451,11 +452,11 @@ msgstr "Jawara Pedang"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr "Peniup Terompet"
+msgstr "Peniup Sangkakala"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr "Jawara Infanteri Peniup Terompet"
+msgstr "Jawara Infanteri Sangkakala"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -477,7 +478,7 @@ msgstr "Anjing"
 #: simulation/templates/template_unit_elephant_archer.xml:33
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
-msgstr "Pemanah Gajah"
+msgstr "Gajah Pemanah"
 
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
@@ -518,7 +519,7 @@ msgstr "Pahlawan Kavaleri Pemanah"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr "Pahlawan Kavaleri Berkapak"
+msgstr "Pahlawan Kavaleri Kapak"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
@@ -526,7 +527,7 @@ msgstr "Pahlawan Kavaleri Busur Silang"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
-msgstr "Pahlawan Kavaleri Pelempar Lembing"
+msgstr "Pahlawan Kavaleri Pelembing"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
@@ -554,7 +555,7 @@ msgstr "Pendukung"
 #: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/template_unit_support_healer.xml:27
 msgid "Healer"
-msgstr "Tabib"
+msgstr "Penyembuh"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
@@ -562,7 +563,7 @@ msgstr "Pahlawan Pemanah"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
-msgstr "Pahlawan Berkapak"
+msgstr "Pahlawan Kapak"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
@@ -570,7 +571,7 @@ msgstr "Pahlawan Infanteri Busur Silang"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
-msgstr "Pahlawan Infanteri Pelempar Lembing"
+msgstr "Pahlawan Infanteri Pelembing"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
@@ -578,7 +579,7 @@ msgstr "Pahlawan Infanteri Gada"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
-msgstr "Pahlawan Pasukan Tembiang"
+msgstr "Pahlawan Penggalah"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 msgid "Hero Spearman"
@@ -634,7 +635,7 @@ msgstr "Kapal Perang Ringan"
 #: simulation/templates/template_unit_ship_trireme.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Tempatkan unit untuk transportasi dan meningkatkan serangan."
+msgstr "Tempatkan unit untuk mengangkut dan meningkatkan serangan."
 
 #: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/template_unit_ship_fire.xml:42
@@ -676,7 +677,7 @@ msgstr "Kapal api"
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Harpoon"
-msgstr "Seruit"
+msgstr "Harpun"
 
 #: simulation/templates/template_unit_ship_fishing.xml:28
 #: simulation/templates/units/kush/ship_fishing.xml:9
@@ -685,7 +686,7 @@ msgstr "Perahu Nelayan"
 
 #: simulation/templates/template_unit_ship_fishing.xml:30
 msgid "Fish the waters for food."
-msgstr "Memancing di perairan untuk pangan."
+msgstr "Tangkap ikan di perairan untuk pangan."
 
 #: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "FishingBoat"
@@ -744,7 +745,7 @@ msgstr "Kepung"
 #: simulation/templates/template_unit_siege_boltshooter.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr "Baut"
+msgstr "Pasak"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:27
 msgid "Linear"
@@ -752,16 +753,16 @@ msgstr "Lurus"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 msgid "BoltShooter"
-msgstr "PenembakPanah"
+msgstr "PenembakPasak"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "Bolt Shooter"
-msgstr "Penembak Panah"
+msgstr "Penembak Pasak"
 
 #: simulation/templates/template_unit_siege_ram.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Ram"
-msgstr "Pelantak Tubruk"
+msgstr "Pelantak"
 
 #: simulation/templates/template_unit_siege_ram.xml:35
 msgid "Battering Ram"
@@ -769,11 +770,11 @@ msgstr "Pelantak Tubruk"
 
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
-msgstr "Tidak dapat menyerang tanah lapang atau benda hidup."
+msgstr "Tidak dapat menyerang Ladang atau Unit Organik."
 
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
-msgstr "Pelantak Tubruk"
+msgstr "Pelantak"
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 msgid "StoneThrower"
@@ -927,7 +928,7 @@ msgstr "Solon"
 #: simulation/templates/units/spart/support_healer_a.xml:4
 msgctxt "Rank"
 msgid "Advanced"
-msgstr "Berpangkat"
+msgstr "Menengah"
 
 #: simulation/templates/units/athen/cavalry_javelineer_b.xml:5
 msgid "Pródromos"
@@ -1037,7 +1038,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/spart/support_healer_e.xml:4
 msgctxt "Rank"
 msgid "Elite"
-msgstr "Elit"
+msgstr "Tinggi"
 
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:5
 #: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:5
@@ -1087,7 +1088,7 @@ msgstr "Toxótēs Skythikós"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:8
 msgid "Iphicrates"
-msgstr "Iphicrates"
+msgstr "Iphikrates"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:9
 msgid "Iphikratēs"
@@ -1208,7 +1209,7 @@ msgstr "Oxybelḗs"
 #: simulation/templates/units/sele/siege_ram.xml:9
 #: simulation/templates/units/spart/siege_ram.xml:9
 msgid "Krios"
-msgstr "Keios"
+msgstr "Krios"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:4
 msgid "Gýnē Athēnaía"
@@ -1224,7 +1225,7 @@ msgstr "Wanita Athena"
 #: simulation/templates/units/sele/support_healer_b.xml:6
 #: simulation/templates/units/spart/support_healer_b.xml:6
 msgid "Surgeon"
-msgstr "Dokter Bedah"
+msgstr "Ahli Bedah"
 
 #: simulation/templates/units/athen/support_healer_b.xml:5
 #: simulation/templates/units/mace/support_healer_b.xml:7
@@ -1429,11 +1430,11 @@ msgstr "Kavaleri Berat Iberia"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr "Pasukan Kavaleri Suci"
+msgstr "Askar Suci Kavaleri"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:6
 msgid "Sacred Band of Astarte"
-msgstr "Pasukan Suci Astarte"
+msgstr "Askar Suci Astarte"
 
 #: simulation/templates/units/cart/champion_elephant.xml:5
 msgid "North African War Elephant"
@@ -1445,15 +1446,15 @@ msgstr "Pil Malḥamit"
 
 #: simulation/templates/units/cart/champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr "Pasukan Infanteri Suci"
+msgstr "Askar Suci Infanteri"
 
 #: simulation/templates/units/cart/champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
-msgstr "Pasukan Suci Ba'al"
+msgstr "Askar Suci Ba'al"
 
 #: simulation/templates/units/cart/champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr "Pasukan Tembiang Suci"
+msgstr "Askar Suci Penggalah"
 
 #: simulation/templates/units/cart/champion_pikeman.xml:6
 msgid "Mašal"
@@ -1518,7 +1519,7 @@ msgstr "Sǝḫīr Ḥanīt"
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:11
 msgid "Gallic Mercenary Swordsman"
-msgstr "Pasukan Pedang Bayaran Galia"
+msgstr "Prajurit Pedang Bayaran Galia"
 
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:14
 msgid "Seḫīr Ḥerev"
@@ -1582,7 +1583,7 @@ msgstr "Ambioriks"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr "Kavaleri Terhormat Gallia"
+msgstr "Kavaleri Bangsawan Galia"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:6
 msgid "Uerouicos"
@@ -1620,7 +1621,7 @@ msgstr "Vercingetorix"
 #: simulation/templates/units/gaul/hero_vercingetorix.xml:9
 #: simulation/templates/units/gaul/hero_vercingetorix_infantry.xml:9
 msgid "Uercingetorix"
-msgstr "Vercingetorix"
+msgstr "Uercingetorix"
 
 #: simulation/templates/units/gaul/hero_viridomarus.xml:8
 msgid "Viridomarus"
@@ -1868,7 +1869,7 @@ msgstr "iry-rdwy Nhsyw"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:16
 msgid "Meroitic Swordsman"
-msgstr "Pasukan Pedang Meroë"
+msgstr "Prajurit Pedang Meroë"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:17
 msgid "knw hps"
@@ -1888,7 +1889,7 @@ msgstr "Dȝy sbt"
 
 #: simulation/templates/units/kush/ship_trireme.xml:10
 msgid "Ptolemaic Mercenary Trireme"
-msgstr "Trireme Bayaran Ptolemy"
+msgstr "Trireme Bayaran Ptolemaik"
 
 #: simulation/templates/units/kush/ship_trireme.xml:11
 msgid "shry ʿȝ"
@@ -1928,14 +1929,14 @@ msgstr "rmt sbt"
 
 #: simulation/templates/units/mace/catafalque.xml:8
 msgid "Philip V"
-msgstr "Philip V"
+msgstr "Philippos V"
 
 #: simulation/templates/units/mace/catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr "Reorganisasi Finansial: Bersekutu dengan Roma, Philip menyusun ulang urusan internal dan finansial negeri, meninggalkan warisan berupa tambang-tambang yang kembali dibuka dan mata uang baru. Mendapatkan cucuran lambat logam."
+msgstr "Susun Ulang Keuangan: Setelah bersekutu dengan Roma, Philip menyusun ulang urusan dalam negeri dan keuangan, meninggalkan warisan berupa tambang-tambang yang kembali dibuka dan mata uang baru. Mendapatkan aliran lambat logam."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
@@ -2022,7 +2023,7 @@ msgstr "Philippos B' ho Makedōn"
 
 #: simulation/templates/units/mace/hero_pyrrhus_i.xml:9
 msgid "Pyrrhus I of Epirus"
-msgstr "Pyrrhus I dari Epirus"
+msgstr "Pyrrhos I dari Epiros"
 
 #: simulation/templates/units/mace/hero_pyrrhus_i.xml:10
 msgid "Pyrrhos ho Epeiros"
@@ -2088,7 +2089,7 @@ msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr "Kavaleri Penyerang India"
+msgstr "Kavaleri Penyamun India"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -2150,7 +2151,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr "Kehebatan Pahlawan: \"Dekrit Asoka\" - Pilar Dekrit Asoka dapat dibangun selama hidupnya Asoka."
+msgstr "Khusus Pahlawan: \"Maklumat Asoka\" - Pilar Maklumat Asoka dapat dibangun selama hidupnya Asoka."
 
 #: simulation/templates/units/maur/hero_chanakya.xml:9
 msgid "Acharya Chanakya"
@@ -2183,7 +2184,7 @@ msgstr "Kauntika"
 
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:17
 msgid "Indian Swordsman"
-msgstr "Pasukan Pedang India"
+msgstr "Prajurit Pedang India"
 
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:18
 msgid "Khadagdhari"
@@ -2254,7 +2255,7 @@ msgstr "Rhomphaiophoros"
 
 #: simulation/templates/units/merc_thorakites.xml:12
 msgid "Armored Swordsman"
-msgstr "Pasukan Pedang Berzirah"
+msgstr "Prajurit Pedang Berzirah"
 
 #: simulation/templates/units/merc_thorakites.xml:13
 msgid "Thōrakitēs"
@@ -2302,7 +2303,7 @@ msgstr "Asabāra Varkaniya"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:7
 msgid "Median Light Cavalry"
-msgstr "Kavaleri Ringan Median"
+msgstr "Kavaleri Ringan Media"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:8
 msgid "Asabāra Māda"
@@ -2351,7 +2352,7 @@ msgstr "Anušiya"
 
 #: simulation/templates/units/pers/champion_infantry.xml:8
 msgid "Immortal"
-msgstr "Kebal"
+msgstr "Pasukan Abadi"
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
@@ -2496,11 +2497,11 @@ msgstr "P-51 Mustang"
 
 #: simulation/templates/units/plane.xml:48
 msgid "A World War II American fighter plane."
-msgstr "Pesawat Tempur  Perang Dunia II Amerika."
+msgstr "Pesawat tempur Perang Dunia II Amerika."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr "Ptolemy III Euergetes (Penyokong)"
+msgstr "Ptolemaios III Euergetes (Penyokong)"
 
 #: simulation/templates/units/ptol/cavalry_archer_b.xml:17
 msgid "Nabataean Camel Archer"
@@ -2568,7 +2569,7 @@ msgstr "Kleopatra H' Philopatōr"
 
 #: simulation/templates/units/ptol/hero_ptolemy_i.xml:9
 msgid "Ptolemy I"
-msgstr "Ptolemy I"
+msgstr "Ptolemaios I"
 
 #: simulation/templates/units/ptol/hero_ptolemy_i.xml:10
 msgid "Ptolemaios A' Sōter"
@@ -2576,7 +2577,7 @@ msgstr "Ptolemaios A' Sōter"
 
 #: simulation/templates/units/ptol/hero_ptolemy_iv.xml:9
 msgid "Ptolemy IV"
-msgstr "Ptolemy IV"
+msgstr "Ptolemaios IV"
 
 #: simulation/templates/units/ptol/hero_ptolemy_iv.xml:10
 msgid "Ptolemaios D' Philopatōr"
@@ -2592,7 +2593,7 @@ msgstr "Thureophóros Akrobolistḗs"
 
 #: simulation/templates/units/ptol/infantry_pikeman_b.xml:12
 msgid "Egyptian Pikeman"
-msgstr "Pasukan Tembiang Mesir"
+msgstr "Penggalah Mesir"
 
 #: simulation/templates/units/ptol/infantry_pikeman_b.xml:13
 msgid "Phalaggomákhimos"
@@ -2608,7 +2609,7 @@ msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:12
 msgid "Mercenary Thureos Spearman"
-msgstr "Penombak Thureos Bayaran"
+msgstr "Penombak Bayaran Thureos"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
 msgid "Thureophóros Misthophóros"
@@ -2686,7 +2687,7 @@ msgstr "Hoplomachus"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:20
 msgid "Gladiator Swordsman"
-msgstr "Pasukan Pedang Gladiator"
+msgstr "Prajurit Pedang Gladiator"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
 msgid "Murmillo"
@@ -2818,7 +2819,7 @@ msgstr "Medicus"
 
 #: simulation/templates/units/rome/support_trader.xml:10
 msgid "Plebeian Merchant"
-msgstr "Saudagar Jelata"
+msgstr "Saudagar Plebs"
 
 #: simulation/templates/units/rome/support_trader.xml:11
 msgid "Mercātor"
@@ -2838,7 +2839,7 @@ msgstr "Penombak Samnium"
 #: simulation/templates/units/samnite_swordsman.xml:4
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
-msgstr "Pasukan Pedang Samnium"
+msgstr "Prajurit Pedang Samnium"
 
 #: simulation/templates/units/sele/catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
@@ -2906,7 +2907,7 @@ msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele/hero_antiochus_iii.xml:9
 msgid "Antiochus III the Great"
-msgstr "Antiokhus III Agung"
+msgstr "Antiokhos III Agung"
 
 #: simulation/templates/units/sele/hero_antiochus_iii.xml:10
 msgid "Antiokhos G' Megas"
@@ -2914,7 +2915,7 @@ msgstr "Antiokhos G' Megas"
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:9
 msgid "Antiochus IV"
-msgstr "Antiokhus IV"
+msgstr "Antiokhos IV"
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:10
 msgid "Antiokhos D' Epiphanēs"
@@ -2922,7 +2923,7 @@ msgstr "Antiokhos D' Epiphanēs"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:9
 msgid "Seleucus I"
-msgstr "Seleucus I"
+msgstr "Seleukos I"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:10
 msgid "Seleukos A' Nikatōr"
@@ -2946,7 +2947,7 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:7
 msgid "Phalangite"
-msgstr "Phalangite"
+msgstr "Falangs"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:8
 msgid "Phalangitēs"
@@ -2962,7 +2963,7 @@ msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:12
 msgid "Thracian Mercenary Swordsman"
-msgstr "Pasukan Pedang Bayaran Trakhia"
+msgstr "Prajurit Pedang Bayaran Trakhia"
 
 #: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:13
 msgid "Rhomphaiaphoros Thrakikós"
@@ -3010,7 +3011,7 @@ msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart/champion_infantry_pike.xml:6
 msgid "Spartan Pikeman"
-msgstr "Pasukan Tembiang Sparta"
+msgstr "Penggalah Sparta"
 
 #: simulation/templates/units/spart/champion_infantry_pike.xml:7
 msgid "Phalangites Spartiatis"

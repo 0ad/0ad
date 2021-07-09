@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Aziz Rahmad <azayrahmad@gmail.com>, 2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2021
 # Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # e628d465dac42212314cccfedeb58a39_4bd0330 <da4c4a9c7424e7eb88624d82301cb7c1_147575>, 2014
 # Joshua Randiny <jrandiny@gmail.com>, 2016
@@ -14,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-27 07:31+0000\n"
+"PO-Revision-Date: 2021-07-08 06:00+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +29,11 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "Pembukaan %(url)s\ndi browser web standar. Mohon tunggu…"
+msgstr "Membuka %(url)s\n di peramban web bawaan. Mohon tunggu…"
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
-msgstr "Halaman pembuka"
+msgstr "Membuka halaman"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -112,13 +113,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Selesaikan isu kecocokan dengan mematikan mod yang tidak valid atau menghidupkan mod yang diperlukan. Anda dapat kemudian menyimpan dan memulai kembali permainan."
+msgstr "Selesaikan isu kecocokan dengan mematikan mod yang tidak sah atau menghidupkan mod yang diperlukan. Anda dapat kemudian menyimpan dan memulai permainan."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr "Mod yang tidak cocok akan tampil dengan warna merah di daftar mod yang dihidupkan (panel bawah). Dependensi dapat ditambahkan dengan menghidupkannya di panel atas."
+msgstr "Mod yang tidak cocok akan tampil dengan warna merah di daftar mod yang dihidupkan (panel bawah). Keperluan dapat ditambahkan dengan menghidupkannya di panel atas."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -126,7 +127,7 @@ msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
-msgstr "Modifikasi tidak kompatibel"
+msgstr "Mod tidak cocok"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -134,7 +135,7 @@ msgstr "Ok"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr "Peringatan mod.io 0 A.D. Empires Ascendant"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
@@ -142,14 +143,14 @@ msgstr "Tanggal Dokumen: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "Anda akan terhubung ke layanan online mod.io."
+msgstr "Anda akan terhubung ke layanan daring mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Layanan ini menyediakan cara mudah untuk mengunduh dan menginstal mod buatan komunitas dan disediakan oleh DBolical Pty Ltd, perusahaan di balik IndieDB dan ModDB."
+msgstr "Layanan ini menyediakan cara mudah untuk mengunduh dan memasang mod buatan komunitas dan disediakan oleh DBolical Pty Ltd, perusahaan di balik IndieDB dan ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -167,7 +168,7 @@ msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Dengan menggunakan layanan ini, Anda memahami bahwa Syarat Penggunaan dan Kebijakan Privasi mod.io berlaku dan bahwa Wildfire Games tidak bertanggung jawab atas segala kerusakan yang diakibatkan dari layanan ini."
+msgstr "Dengan menggunakan layanan ini, Anda memahami bahwa Ketentuan Penggunaan dan Kebijakan Privasi mod.io berlaku dan bahwa Wildfire Games tidak bertanggung jawab atas segala kerusakan yang diakibatkan oleh layanan ini."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -176,7 +177,7 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "ID Game tidak dapat diambil.\n\n%(technicalDetails)s"
+msgstr "ID Permainan tak dapat diperoleh.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
@@ -213,7 +214,7 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Download file gagal.\n\n%(technicalDetails)s"
+msgstr "Unduh berkas gagal.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
@@ -274,7 +275,7 @@ msgstr "Mengunduh"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Batalkan Download"
+msgstr "Batalkan Unduhan"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -303,11 +304,11 @@ msgstr "∞"
 #: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr "%(number)s %(unit)s/s"
+msgstr "%(number)s %(unit)s/d"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io Mods"
+msgstr " Mod mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
@@ -315,7 +316,7 @@ msgstr "Mod yang Tersedia"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr "Filter mod yang valid"
+msgstr "Saring mod yang sah"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -346,7 +347,7 @@ msgstr "Label Mod"
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
-msgstr "Ukuran file"
+msgstr "Ukuran Berkas"
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):142
@@ -356,13 +357,13 @@ msgstr "Keperluan"
 #: gui/modio/modio.xml:(placeholder_text):35
 msgctxt "placeholder text for input field to filter mods"
 msgid "Filter"
-msgstr "Filter"
+msgstr "Saring"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. dirancang agar mudah dimodifikasi. Mod didistribusikan dalam bentuk file .pyromod, yang dapat dibuka seperti file .zip."
+msgstr "0 A.D. dirancang agar mudah dimodifikasi. Mod didistribusikan dalam bentuk berkas .pyromod, yang dapat dibuka seperti berkas .zip."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -372,13 +373,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Untuk menginstal mod, cukup buka file dengan 0 A.D. (klik dua kali pada file dan pilih untuk membukanya dengan permainan, atau jalankan \"pyrogenesis file.pyromod\" di terminal). Mod kemudian akan tersedia di pemilih mod. Anda dapat mengaktifkannya dan menonaktifkannya sesuka hati. Anda dapat menghapus mod secara manual menggunakan file browser Anda jika diperlukan (lihat https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Untuk memasang mod, cukup buka berkas dengan 0 A.D. (klik dua kali pada file dan pilih untuk membukanya dengan permainan, atau jalankan \"pyrogenesis berkas.pyromod\" di terminal). Mod kemudian akan tersedia di pemilih mod. Anda dapat mematikan dan menghidupkannya sesuka hati. Anda dapat menghapus mod secara manual menggunakan pengelola berkas Anda jika diperlukan (lihat https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Untuk informasi lebih lanjut tentang modding game, lihat Panduan Modding online (klik tombol Panduan Modding di bawah)."
+msgstr "Untuk informasi lebih lanjut tentang memodifikasi permainan, lihat Panduan Modifikasi daring (klik tombol Panduan Modifikasi di bawah)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -387,7 +388,7 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "Layanan mod.io dikembangkan oleh DBolical, perusahaan di balik IndieDB dan ModDB. Situs web tersebut telah menyebarkan berita tentang 0 A.D. dan proyek indie lainnya untuk waktu yang lama! Hari ini, mod.io memungkinkan kita untuk membuat daftar dan mengunduh semua mod yang diverifikasi oleh tim. Klik \"Unduh Mod\" untuk mencobanya dan menginstal beberapa!"
+msgstr "Layanan mod.io dikembangkan oleh DBolical, perusahaan di balik IndieDB dan ModDB. Situs web tersebut telah lama menyebarkan berita tentang 0 A.D. dan proyek indie lainnya! Saat ini, mod.io memungkinkan kita untuk membuat daftar dan mengunduh semua mod yang diverifikasi oleh tim. Klik \"Unduh Mod\" untuk mencoba dan memasang beberapa!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -399,7 +400,7 @@ msgstr "Tutup"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Panduan Modding"
+msgstr "Panduan Modifikasi"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -412,16 +413,16 @@ msgstr "Mod ini tidak ada"
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
-msgstr "Aktifkan"
+msgstr "Hidupkan"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr "Dependensi tidak terpenuhi"
+msgstr "Keperluan tidak terpenuhi"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
-msgstr "Nonaktifkan"
+msgstr "Matikan"
 
 #: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
@@ -441,7 +442,7 @@ msgstr "Menegatifkan"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr "Filter yang kompatibel"
+msgstr "Saring yang cocok"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -461,11 +462,11 @@ msgstr "Keluar"
 
 #: gui/modmod/modmod.xml:(caption):201
 msgid "Help"
-msgstr "Tolong"
+msgstr "Bantuan"
 
 #: gui/modmod/modmod.xml:(caption):206
 msgid "Download Mods"
-msgstr "Unduh Mods"
+msgstr "Unduh Mod"
 
 #: gui/modmod/modmod.xml:(caption):211
 msgid "Save Configuration"
@@ -481,7 +482,7 @@ msgstr "(Folder)"
 
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
-msgstr "Website"
+msgstr "Situs web"
 
 #: gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
@@ -491,15 +492,15 @@ msgstr "Filter"
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Ubah urutan peluncuran mod. Ini harus cocok dengan dependensi mods."
+msgstr "Ubah urutan peluncuran mod. Ini harus cocok dengan keperluan mod."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr "Penolakan"
+msgstr "Peringatan"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr "Persyaratan mod.io"
+msgstr "Ketentuan mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
@@ -514,12 +515,12 @@ msgstr "OK"
 #. default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr "Lihat Online"
+msgstr "Lihat daring"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr "Buka %(url)s di browser."
+msgstr "Buka %(url)s di peramban."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
