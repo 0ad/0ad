@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-07-05 06:50+0000\n"
+"PO-Revision-Date: 2021-07-07 01:28+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -132,11 +132,11 @@ msgstr "Untuk menyiapkan permainan bersama, satu pemain harus memilih opsi “Bu
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Pengaturan permainan[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Penyiapan permainan[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr "Dalam permainan bersama, hanya host yang dapat mengubah pilihan pengaturan permainan."
+msgstr "Dalam permainan bersama, hanya host yang dapat mengubah pilihan penyiapan permainan."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -167,7 +167,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Kemudian peta dapat disaring lebih lanjut. Peta bawaan umumnya dapat dimainkan. Peta laut adalah peta di mana tidak semua lawan dapat dijangkau melalui darat dan peta demo adalah peta yang digunakan untuk tujuan pengujian (umumnya tidak berguna untuk dimainkan). Saringan “Semua Peta” menunjukkan semua peta bersama dalam satu daftar."
+msgstr "Kemudian peta dapat disaring lebih lanjut. Peta bawaan umumnya dapat dimainkan. Peta Perairan adalah peta di mana tidak semua lawan dapat dijangkau melalui darat dan peta demo adalah peta yang digunakan untuk tujuan pengujian (umumnya tidak berguna untuk dimainkan). Saringan “Semua Peta” menunjukkan semua peta bersama dalam satu daftar."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -383,19 +383,19 @@ msgstr "  hotkey.session.unload – Keluarkan unit yang menempati bangunan yang 
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.save.1 – Buat grup kontrol 1 (secara standar, masing-masing 2, 3, ...) dari unit/bangunan yang dipilih"
+msgstr "  hotkey.selection.group.save.1 – Buat regu kendali 1 (secara baku, masing-masing 2, 3, ...) dari unit/bangunan yang dipilih"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr "  hotkey.selection.group.select.1 – Pilih unit/bangunan dalam kelompok kontrol 1"
+msgstr "  hotkey.selection.group.select.1 – Pilih unit/bangunan dalam regu kendali 1"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.add.1 – Tambahkan grup kontrol 1 (ke 0) ke unit/bangunan yang dipilih"
+msgstr "  hotkey.selection.group.add.1 – Tambahkan regu kendali 1 (ke 0) ke unit/bangunan yang dipilih"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -660,23 +660,23 @@ msgstr "  hotkey.camera.rotate.down – Putar kamera untuk melihat ke bawah"
 
 #: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr "  hotkey.camera.rotate.cw – Putar kamera searah jarum jam di sekitar medan"
+msgstr "  hotkey.camera.rotate.cw – Putar kamera searah jarum jam pada medan"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr "  hotkey.camera.rotate.ccw – Putar kamera berlawanan arah jarum jam di sekitar medan"
+msgstr "  hotkey.camera.rotate.ccw – Putar kamera berlawanan arah jarum jam pada medan"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr "  hotkey.camera.rotate.wheel.cw – Putar kamera searah jarum jam di sekitar medan"
+msgstr "  hotkey.camera.rotate.wheel.cw – Putar kamera searah jarum jam pada medan"
 
 #: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr "  hotkey.camera.rotate.wheel.ccw – Putar kamera berlawanan arah jarum jam di sekitar medan"
+msgstr "  hotkey.camera.rotate.wheel.ccw – Putar kamera berlawanan arah jarum jam pada medan"
 
 #: gui/manual/intro.txt:141
 msgid ""
@@ -706,7 +706,7 @@ msgstr "  hotkey.camera.pan – Tekan terus dan gerakkan mouse untuk menggeser"
 
 #: gui/manual/intro.txt:147
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Selama Penempatan Bangunan[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Saat Penempatan Bangunan[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:148
 msgid ""
@@ -721,7 +721,7 @@ msgstr "  hotkey.session.rotate.cw – Putar bangunan 15 derajat searah jarum ja
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  Tarik Kiri – Putar bangunan menggunakan mouse (pondasi akan ditempatkan pada pelepasan mouse)"
+msgstr "  Tarik Kiri – Putar bangunan dengan mouse (fondasi akan ditempatkan saat mouse dilepas)"
 
 #: gui/manual/intro.txt:152
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
@@ -741,7 +741,7 @@ msgstr "  hotkey.session.savedgames.delete – Hapus permainan tersimpan yang di
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr "    • With hotkey.session.savedgames.noconfirmation – Jangan minta konfirmasi"
+msgstr "    • Dengan hotkey.session.savedgames.noconfirmation – Jangan minta konfirmasi"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

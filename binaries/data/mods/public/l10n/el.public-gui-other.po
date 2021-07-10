@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-05 06:59+0000\n"
+"PO-Revision-Date: 2021-07-09 06:41+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -2301,12 +2301,12 @@ msgstr "Αποεπιλογή τύπου μονάδας."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Ορισμός του κέρσορα σε Φωτοβολίδα όσο αυτό το πλήκτρο συντόμευσης είναι πατημένο."
+msgstr "Ορισμός του κέρσορα σε λάμψη όσο αυτό το πλήκτρο συντόμευσης είναι πατημένο."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "Φωτοβολίδα (πατημένο)"
+msgstr "Λάμψη (πατημένο)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
@@ -2316,7 +2316,7 @@ msgstr "Ορισμός κέρσορα σε Φωτοβολίδα. Το πλήκτ
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr ""
+msgstr "Λάμψη (κουμπί)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -3913,7 +3913,7 @@ msgstr "Γενικά ονόματα πρώτα"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Εμφάνισε γενικά  ονόματα πρίν τα  συγκεκριμένα ονόματα."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
@@ -4061,11 +4061,11 @@ msgstr "Εξομάλυνση σκιών."
 
 #: gui/options/options.json[2].options[12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Οριο απόστασης"
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Κρύβει τις σκιές πέρα απο μια ορισμένη απόσταση απο την κάμερα."
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
@@ -4075,7 +4075,7 @@ msgstr "Επικάλυψη ολόκληρου χάρτη"
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Οταν είναι ΕΝΕΡΓΟ σκίές που καλύπτουν ολόκληρο το χάρτη και τα όρια απόστασης σκιών αγνούνται. Χρήσιμο για να τραβάτε στιγμιότυπα οθόνης ολόκληρου του χάρτη"
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
@@ -4278,13 +4278,13 @@ msgstr "Κανονικός"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Η εμφάνιση των οντοτήτων τυχιοποιείται κανονικά."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Τυχαιοποίηση της εμφάνισης οντοτήτων Η απενεργοποίηση δίνει μία μικρή αύξηση στην απόδοση."
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
@@ -4754,11 +4754,11 @@ msgstr "Αριθμός φορών που πρέπει να κυλήσεις τη
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Διάρκεις εμφάνισης Λάμψης"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Η διάρκεια στιγμάτων λάμψης στο μικρό χάρτη εμφανίζεται σε δευτερόλεπτα."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -5633,7 +5633,7 @@ msgstr "[imgleft=\"iconMap\"] Το 0 A.D είναι Ελέυθερο Λογισ�
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Άν θέλετε να βοηθήσετε με τη σχεδίαση, τον ήχο , το παιχνίδι ή τον προγραμματισμό ,βεβαιώστε πώς θα συμμετάσχετε στο επίσημο φόρουμ μας."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -6072,15 +6072,15 @@ msgstr "Οχύρωσε μονάδες για να θεραπεύονται με 
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
-msgstr ""
+msgstr "ΑΥΤΟΜΑΤΗΟΥΡΑΑΝΑΜΟΝΗΣ"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr ""
+msgstr "Ενεργοποίηση λειτουργίας της αυτόματης ουράς αναμονής για την αυτόματη εκπαίδευση μονάδων."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Δουλέυει για όσο χρόνο έχετε αρκετούς πόρους, μετά  θα σταματήσει.."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6100,7 +6100,7 @@ msgstr "Οι μονάδες αποκτούν εμπειρία όσο είναι 
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Κατασκευάστε ένα νωρίτερα να εκπαιδεύσει πολίτες στρατιώτες καθώς αναβαθμίζετε το στάδιο του πολιτισμού σας. "
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6108,19 +6108,19 @@ msgstr "Κατασκευάστε μια προκεχωρημένη βάση γι
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
-msgstr ""
+msgstr "BIOMAZA"
 
 #: gui/text/tips/biomes.txt:2
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Το μεγαοικοσύστημα μπορεί να χρησιμοποιηθεί σε ορισμένους τυχαίους χάρτες και να προσδιορίσει ποια περιοχή του κόσμου αντιπροσωπέυει ο χάρτης."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Επηρεάζουν την εμφάνιση των χαρτών και επίσης τη ποσότητα των διαθέσιμων πόρων."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6160,19 +6160,19 @@ msgstr "Χρησιμοποίησε τους Λογχοφόρους ως βαρύ
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr ""
+msgstr "ΚΑΡΧΗΔΟΝΙΚΟ ΝΑΥΠΗΓΕΙΟ"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Ειδική προβλήτα των Καρχηδόνων για κατασκευή πολεμικών πλοίων."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Οχυρώστε τα πλοία μέσα να τα επιδιορθώσετε σιγά σιά."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Πολύ πιο ισχυρή απο άλλες προβλήτες ,άλλα επίσης πιο ακριβή."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6199,7 +6199,7 @@ msgstr "ΣΤΑΥΛΟΣ ΙΠΠΙΚΟΥ"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Εκπαιδεύει μονάδες Ιππικού και σας επιτρέπει να ερευνήσετε  συγκεκριμένες τεχνολογίες για το ιππικό σας."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6237,11 +6237,11 @@ msgstr "Δυνατά τείχη από πέτρα που θα σας βοηθή�
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Οταν  οι μονάδες παζικού έυρους καταλαμβάνουν τους πυργίσκους, έχουν επιπλέον πανωπλία και μπορούν να ρίξουν στον εχθρό."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Ευάλωτο σε όπλα πολιορκίας όπως οι καταπέλτες, πολιορκητικοί κριοί και ελέφαντες πολέμου."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6291,35 +6291,35 @@ msgstr "ΑΜΥΝΤΙΚΟΙ ΠΥΡΓΟΙ"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Δυνατά παρατηρητήρια ,που θα σας βοηθήσουν στην άμυνα της θλεσης σας."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Εχουν μεγάλο πεδίο οράσεως και θα ρίξουν βέλη με το που ο εχθρός μπεί στο οπτικό τους πεδίο."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr ""
+msgstr "Μπορείτς να οχυρώσετε περισσότερο πεζικό μέσα  για να αυξήσετε τον αριθμό βελών που ρίχνουν."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr ""
+msgstr "ΣΤΑΒΛΟΣ ΕΛΕΦΑΝΤΩΝ"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr ""
+msgstr "Η κατασκευή είναι διαθέσιμη σε ορισμένους πολιτισμούς για να εκπαιδεύσουν   μονάδες  με ελεφαντες."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
-msgstr ""
+msgstr "ΠΡΕΣΒΙΕΣ ΚΑΙ ΚΑΤΑΥΛΙΣΜΟΙ ΜΙΣΘΟΦΟΡΩΝ"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Ειδικές κατασκευές που σας επιτρέπουν να προσλάβετε μισθοφόρους για το στρατό σας."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
@@ -6361,12 +6361,12 @@ msgstr "Ανακάλυψε βελτιώσεις όπλων και πανοπλί
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "ΣΧΗΜΑΤΙΣΜΟΙ"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Τακτοποιείστε τους στρατιώτες σας σε σχηματισμούς για να τους κρατήσετε οργανωμένους κατα τη διάρκεια των μαχών,."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6376,7 +6376,7 @@ msgstr "ΦΡΟΥΡΙΟ"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Συνήθως η ισχυρότερη κατασκευή ενος πιλιτισμού και το μέρος που μπορείτε να εκπαιδεύσετε Ήρωες."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6451,7 +6451,7 @@ msgstr "Προσοχή: Κάθε ήρωας μπορεί να επιστρατε
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
-msgstr ""
+msgstr "ΙΒΗΡΙΚΟ ΠΥΡΠΟΛΙΚΟ"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid ""
@@ -6461,7 +6461,7 @@ msgstr ""
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "ΦΑΡΟΣ"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
@@ -6471,7 +6471,7 @@ msgstr ""
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "ΛΑΜΨΗ ΧΑΡΤΗ"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
@@ -6481,7 +6481,7 @@ msgstr ""
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr ""
+msgstr "Θα δούνε τη λάμψη στον μικρό χάρτη."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6494,13 +6494,13 @@ msgstr ""
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "Οι μικρές πυραμίδες βελτιώνουν το ρυθμό συλλογής των εργατών τρυγίρω τους "
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "Οι μεγάλες πυραμίδες θα αυξήσουν τις στρατιωτικές ικανότητες των στρατιωτώνπου βρίσκονται  κοντά τους."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6591,13 +6591,13 @@ msgstr "Αυξάνει τη δύναμη πυρός με τη φρουρά κα�
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
-msgstr ""
+msgstr "ΜΕΤΡΗΤΗΣ ΠΟΡΩΝ"
 
 #: gui/text/tips/resource_counter.txt:2
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "Το πάνελ μετρητή πόρων σάς δείχνει τους  διαθέσιμους πόρους που έχετε άμεσα στη κατοχή σας."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
@@ -6746,28 +6746,28 @@ msgstr "Όταν η παρακμή ολοκληρωθεί, τότε το κτή�
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "ΘΕΑΤΡΟ"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Ειδικές κατασκευές Ελληνικών πολιτισμών για αύξηση του μεγέθους της περιοχής σας καθώς την ελέγχετε."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "ΘΗΣΑΥΡΟΙ"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Συλλεκτικά μπαούλα και γεματοι πόροι σε γή και συντρίμια πλοίων στη στεριά."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Σάς παρέχει με μια ώθηση πόρων ,γιαυτό κοιτάξτε τριγύρω σας  καθώς εξερευνείτε."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"

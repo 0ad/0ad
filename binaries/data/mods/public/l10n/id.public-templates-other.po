@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Aziz Rahmad <azayrahmad@gmail.com>, 2014,2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2021
 # Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Dedi Wahyudi <dedi.dkv@gmail.com>, 2017
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
@@ -17,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-26 07:49+0000\n"
+"PO-Revision-Date: 2021-07-08 05:42+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +45,7 @@ msgstr "Mengurangi poin perebutan target."
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
 msgid "Capture"
-msgstr "Merebut"
+msgstr "Rebut"
 
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
@@ -54,22 +55,22 @@ msgstr "Mengurangi nyawa target."
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr "Kerusakan"
+msgstr "Daya Serang"
 
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Kerusakan yang diakibatkan kekuatan, seperti dengan pentung atau ditimpa."
+msgstr "Serangan dengan tenaga, seperti dipentung atau ditimpa."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
 msgid "Crush"
-msgstr "Lindas"
+msgstr "Hantam"
 
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Kerusakan yang diakibatkan benda terbakar, seperti obor atau panah berapi."
+msgstr "Serangan dengan benda terbakar, seperti obor atau panah berapi."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -81,7 +82,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Kerusakan yang diakibatkan benda tajam menyayat atau memotong, seperti dengan pedang atau kapak."
+msgstr "Serangan dengan benda tajam menyayat atau mencincang, seperti pedang atau kapak."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -91,7 +92,7 @@ msgstr "Tebas"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Kerusakan yang diakibatkan benda tajam yang menusuk, seperti panah atau tombak."
+msgstr "Serangan dengan benda tajam yang menusuk, seperti panah atau tombak."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -103,7 +104,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Kerusakan yang diakibatkan benda berbisa atau beracun, seperti ular atau senjata beracun."
+msgstr "Serangan dengan benda berbisa atau beracun, seperti ular atau senjata beracun."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -113,7 +114,7 @@ msgstr "Racun"
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Unit ini menyebabkan kerusakan api."
+msgstr "Unit ini menyebabkan serangan api."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
@@ -128,7 +129,7 @@ msgstr "Terbakar"
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr "Unit ini menyebabkan kerusakan racun."
+msgstr "Unit ini menyebabkan keracunan."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
@@ -160,7 +161,7 @@ msgstr "Pasukan Makedonia"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr "Pasukan Makedon"
+msgstr "Pasukan Makedonia"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
@@ -309,7 +310,7 @@ msgstr "Gigi"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
-msgstr "Buaya sungai Nil"
+msgstr "Buaya Nil"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:24
 msgid "Crocodylus niloticus"
@@ -429,7 +430,7 @@ msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
-msgstr "Jerapah muda"
+msgstr "Jerapah Muda"
 
 #: simulation/templates/gaia/fauna_goat.xml:17
 msgid "Goat"
@@ -441,7 +442,7 @@ msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:24
 msgid "Hippopotamus"
-msgstr "Kuda nil"
+msgstr "Kuda Nil"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus amphibius"
@@ -457,7 +458,7 @@ msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_horse_pony.xml:8
 msgid "Pony"
-msgstr "Kuda poni"
+msgstr "Kuda Poni"
 
 #: simulation/templates/gaia/fauna_lion.xml:23
 msgid "Lion"
@@ -514,7 +515,7 @@ msgstr "Oryctolagus cuniculus"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr "Tanduk"
+msgstr "Cula"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
@@ -550,7 +551,7 @@ msgstr "Panthera tigris"
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
-msgstr "Walrus"
+msgstr "Anjing Laut"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
@@ -594,7 +595,7 @@ msgstr "Serigala Arktik"
 
 #: simulation/templates/gaia/fauna_zebra.xml:11
 msgid "Common Zebra"
-msgstr "Zebra biasa"
+msgstr "Zebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
 msgid "Equus quagga"
@@ -648,7 +649,7 @@ msgstr "Runtuhan Kuno"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr "Gambar Kultus Isis"
+msgstr "Arca Kultus Isis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -706,11 +707,11 @@ msgstr "Harta Karun Pangan"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "Barel Setengah Terkubur"
+msgstr "Gentong Setengah Terkubur"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "Gudang Pangan Persia"
+msgstr "Simpanan Pangan Persia"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
@@ -730,7 +731,7 @@ msgstr "Perabot Persia"
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
 msgid "Persian Rugs"
-msgstr "Karpet Persia"
+msgstr "Tikar Persia"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
@@ -774,7 +775,7 @@ msgstr "Harta Karun Kayu"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:4
 msgid "Milled Lumber"
-msgstr "Kayu Giling"
+msgstr "Kayu Potong"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -805,7 +806,7 @@ msgstr "Baobab"
 
 #: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr "Baobab Sapling"
+msgstr "Tunas Baobab"
 
 #: simulation/templates/gaia/tree/baobab_2_young.xml:4
 msgid "Young Baobab"
@@ -826,7 +827,7 @@ msgstr "Semak"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr "Kacang locust"
+msgstr "Kacang Locust"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -878,11 +879,11 @@ msgstr "Pohon Cemara"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr "Anak pohon cemara"
+msgstr "Anak Pohon Cemara"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr "Aras beri cokelat"
+msgstr "Aras Beri Cokelat"
 
 #: simulation/templates/gaia/tree/mangrove.xml:4
 msgid "Mangrove"
@@ -902,20 +903,20 @@ msgstr "Palem Kipas Mediterania"
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
-msgstr "Oak"
+msgstr "Ek"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 msgid "Holly Oak"
-msgstr "Holly Oak"
+msgstr "Ek Holly"
 
 #: simulation/templates/gaia/tree/oak_hungarian.xml:4
 #: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr "Oak Hungaria"
+msgstr "Ek Hungaria"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr "Oak besar"
+msgstr "Ek Besar"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -923,7 +924,7 @@ msgstr "Pohon Pinang"
 
 #: simulation/templates/gaia/tree/palm_doum.xml:4
 msgid "Doum Palm"
-msgstr "Buah Zuriat "
+msgstr "Palem Zuriat "
 
 #: simulation/templates/gaia/tree/palm_palmyra.xml:4
 msgid "Palmyra Palm"
@@ -931,7 +932,7 @@ msgstr "Siwalan"
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
 msgid "Palm"
-msgstr "Pohon Palm"
+msgstr "Pohon Palem"
 
 #: simulation/templates/gaia/tree/palm_tropical.xml:4
 msgid "Tropical Palm"
@@ -945,7 +946,7 @@ msgstr "Pinus"
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
 msgid "Black Pine"
-msgstr "Pinus hitam Jepang"
+msgstr "Pinus Hitam"
 
 #: simulation/templates/gaia/tree/pine_maritime.xml:4
 #: simulation/templates/gaia/tree/pine_maritime_short.xml:4
@@ -961,7 +962,7 @@ msgstr "Populus"
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr "Poplar hitam"
+msgstr "Populus hitam"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -969,7 +970,7 @@ msgstr "Pohon Kurma Senegal"
 
 #: simulation/templates/gaia/tree/strangler.xml:8
 msgid "Strangler Fig"
-msgstr "Strangler Fig"
+msgstr "Ara Pencekik"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
@@ -1026,7 +1027,7 @@ msgstr "Anti Kavaleri"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "Garis Perang"
+msgstr "Barisan Tempur"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1070,7 +1071,7 @@ msgstr "Infanteri Hoplites saja, membutuhkan setidaknya 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "Falangs"
+msgstr "Phalanx"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1114,7 +1115,7 @@ msgstr "Mata-mata"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Membutuhkan setidaknya 2 Tentara atau Mesin Kepung."
+msgstr "Membutuhkan setidaknya 2 Prajurit atau Mesin Kepung."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1123,7 +1124,7 @@ msgstr "Gaia"
 #: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8
 msgid "Fish"
-msgstr "ikan"
+msgstr "Ikan"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
@@ -1131,7 +1132,7 @@ msgstr "Tangkap ikan untuk pangan."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
-msgstr "buah"
+msgstr "Buah"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
@@ -1172,7 +1173,7 @@ msgstr "Harta Karun"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Ambil harta karun untuk mendapatkan sumberdaya."
+msgstr "Kumpulkan harta karun untuk sumberdaya."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
@@ -1184,7 +1185,7 @@ msgstr "Tebang pohon untuk mendapatkan kayu."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
-msgstr "Struktur"
+msgstr "Bangunan"
 
 #: simulation/templates/template_unit.xml:39
 msgid "Unit"

@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Aziz Rahmad <azayrahmad@gmail.com>, 2014,2021
+# Aziz Rahmad <azayrahmad@gmail.com>, 2021
 # constantius damar wicaksono <constantiusdamar@gmail.com>, 2015
 # Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
@@ -18,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-26 08:27+0000\n"
+"PO-Revision-Date: 2021-07-08 06:44+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +94,7 @@ msgstr "Jawara Infanteri Penombak +25% nyawa, tetapi +5% waktu berlatih."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr "Mengajak prajurit untuk berlatih panahan meningkatkan akurasi."
+msgstr "Menggiatkan prajurit untuk berlatih panahan meningkatkan ketepatan."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
@@ -136,7 +137,7 @@ msgstr "Pemanah −20% sebaran serangan jarak jauh."
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr "Orang-orang India, Iran, dan Kushite memiliki tradisi memanah yang bagus dan kegemaran menggunakan pemanah massal dalam pertempuran."
+msgstr "Orang-orang India, Iran, dan Kush memiliki tradisi memanah bermutu dan kegemaran menggunakan kumpulan pemanah dalam pertempuran."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -164,7 +165,7 @@ msgstr "Aristektur Monumental"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Struktur Sipil +20% waktu tempuh bangunan, +20% nyawa, dan +20% poin menguasai."
+msgstr "Bangunan Sipil +20% waktu bangun, +20% nyawa, dan +20% poin perebutan."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -172,7 +173,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Bangsa Persia membangun Jalan Raya Royal sepanjang 1677 mil dari Sardis ke Susa; Darius Agung dan Xerxes juga membangun Persepolis yang megah; Koresh Agung meningkatkan Ecbatana dan hampir 'membangun ulang' Susa, ibukota Elam."
+msgstr "Bangsa Persia membangun Jalan Kerajaan sepanjang 1677 mil dari Sardis ke Susa; Darius Agung dan Xerxes juga membangun Persepolis yang megah; Koresh Agung meningkatkan Ekbatana dan bisa dibilang 'membangun ulang' Susa, ibukota Elam."
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Persian Architecture"
@@ -180,17 +181,17 @@ msgstr "Arsitektur Persia"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Struktur +25% nyawa dan poin mengambil alih, tetapi juga +20% waktu tempuh bangunan."
+msgstr "Bangunan +25% nyawa dan poin perebutan, tetapi juga +20% waktu pembangunan."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr "Keinginan untuk bertarung sangat penting untuk kemenangan.  Kobarkan pasukan Anda dengan gaji lebih tinggi."
+msgstr "Semangat tempur sangat penting untuk kemenangan. Kobarkan semangat pasukan Anda dengan gaji lebih tinggi."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
-msgstr "Keinginan untuk Bertarung"
+msgstr "Semangat Tempur"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
@@ -202,13 +203,13 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "Prajurit, Mesin Pengepungan, dan Kapal + 25% kerusakan serangan."
+msgstr "Prajurit, Mesin Kepung, dan Kapal +25% daya serang."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr "Secara signifikan meningkatkan kecepatan pelatihan infanteri dengan melatih mereka dalam kelompok atau kompi yang besar."
+msgstr "Meningkatkan kecepatan pelatihan infanteri dengan melatih mereka dalam kelompok atau kompi yang besar."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -217,7 +218,7 @@ msgstr "Wajib Militer"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
-msgstr "Barak −10%  sejumlah waktu pelatihan."
+msgstr "Barak −10% waktu latih kelompok."
 
 #: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
@@ -235,7 +236,7 @@ msgstr "Waktu pelatihan Kavaleri −10%."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
-msgstr "Secara selektif membiakkan kuda perang yang lebih baik."
+msgstr "Membiakkan selektif kuda perang yang lebih baik."
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
@@ -270,7 +271,7 @@ msgstr "Tembok Tiga Lapis"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Tembok Kota +100% waktu tempuh bangunan, +100% biaya batu, dan +200% nyawa."
+msgstr "Tembok Kota +100% waktu bangun, +100% biaya batu, dan +200% nyawa."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -282,13 +283,13 @@ msgstr "Pembangunan Kayu"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Struktur −20% waktu tempuh bangunan, −20% nyawa, dan −20% titik penangkapan."
+msgstr "Bangunan −20% waktu bangun, −20% nyawa, dan −20% poin perebutan."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr "Galia terkenal karena kavaleri mereka yang efektif. Tentara bayaran Celtic banyak diminati di seluruh Mediterania."
+msgstr "Bangsa Galia terkenal karena kavaleri mereka yang efektif. Prajurit bayaran Kelt banyak diminati di seluruh Mediterania."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
@@ -296,7 +297,7 @@ msgstr "Kavaleri Unggul"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr "Kavaleri + 10% kerusakan serangan jarak dekat."
+msgstr "Kavaleri +10% daya serang jarak dekat."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -308,7 +309,7 @@ msgstr "Arsitektur Yunani"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "Bangunan +10% nyawa dan 10% poin penguasaan."
+msgstr "Bangunan +10% nyawa dan +10% poin perebutan."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -316,7 +317,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr "India adalah tanah para gajah. Peperangan menggunakan gajah berasal dari India dan berlanjut selama ribuan tahun. India juga merupakan sumber Gajah untuk orang-orang di Mediterania timur. Raja-raja India mampu menaklukkan gajah-gajah perang dalam jumlah besar."
+msgstr "India adalah tanah para gajah. Peperangan bergajah berasal dari India dan berlanjut selama ribuan tahun. India juga merupakan sumber gajah untuk orang-orang di Mediterania timur. Raja-raja India mampu membawa gajah-gajah perang dalam jumlah besar."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
@@ -334,7 +335,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "Kekaisaran Maurya meliputi puluhan kerajaan yang dulunya terpisah pada daerah seluas 5 juta kilometer persegi dengan populasi mendekati 60 juta jiwa. Bupati Maurya bergelar Kaisar para Kaisar dan memimpin pasukan sebanyak 600.000 infanteri, 9000 gajah, 8000 kereta, dan 30.000 pasukan kuda, menjadikannya pasukan terbesar pada masa itu."
+msgstr "Kemaharajaan Maurya meliputi puluhan kerajaan yang dulunya terpisah pada daerah seluas 5 juta kilometer persegi dengan populasi mendekati 60 juta jiwa. Para pemimpin Maurya bergelar Raja Diraja dan memimpin pasukan sebanyak 600.000 infanteri, 9000 gajah, 8000 kereta, dan 30.000 pasukan kuda, menjadikannya pasukan terbesar pada masa itu."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -353,7 +354,7 @@ msgstr "+10% batas populasi maksimum."
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr "Suku Maurya membangun tembok kota mereka dari kayu, sumber daya alam yang melimpah di India."
+msgstr "Bangsa Maurya membangun tembok kota mereka dari kayu, sumber daya alam yang melimpah di India."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -387,11 +388,11 @@ msgstr "Batu bata lumpur yang dijemur adalah bahan bangunan umum di daerah yang 
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr "Batu Bata Lumpur yang dijemur"
+msgstr "Batu Bata Lumpur yang Dijemur"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "Rumah dan Struktur Ekonomi −40% biaya kayu dan nyawa."
+msgstr "Rumah dan Bangunan Ekonomi −40% biaya kayu dan nyawa."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -405,7 +406,7 @@ msgstr "Kolonisasi"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr "Struktur Sipil -25% waktu pembangunan dan biaya sumberdaya."
+msgstr "Bangunan Sipil -25% waktu pembangunan dan biaya sumberdaya."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -424,11 +425,11 @@ msgstr "Angkutan Kuda"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
-msgstr "Phoenician Triremes mendapatkan kemampuan untuk melatih Kavaleri."
+msgstr "Trireme Punisia mendapatkan kemampuan untuk melatih Kavaleri."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
-msgstr "Menggarami ikan dapat menjaga keawetan ikan lebih lama."
+msgstr "Menggarami ikan mengawetkannya lebih lama."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
 msgid "Salting Fish"
@@ -436,11 +437,11 @@ msgstr "Penggaraman Ikan"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "Kapal nelayan +20 kapasitas bawa makanan."
+msgstr "Perahu Nelayan +20 kapasitas pangan."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr "Gunakan jaring untuk meningkatkan produktivitas perahu nelayan."
+msgstr "Gunakan jala untuk meningkatkan produktivitas perahu nelayan."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
 msgid "Fishing Net"
@@ -1124,7 +1125,7 @@ msgstr "Pengepungan Canggih"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "Mesin Pengepungan +25% kerusakan serangan menghancurkan."
+msgstr "Mesin Pengepungan +25% daya serang hantam."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1385,7 +1386,7 @@ msgstr "Peningkatan Paduan Perisai"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr "Prajurit +2 ketahanan tusuk."
+msgstr "Prajurit +2 daya tahan tusuk."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
