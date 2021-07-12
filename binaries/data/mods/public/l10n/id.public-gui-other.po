@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-08 06:44+0000\n"
+"PO-Revision-Date: 2021-07-12 01:29+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -728,7 +728,7 @@ msgstr "Daya Tahan:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr "Daya Serang:"
+msgstr "Serangan:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
@@ -1590,7 +1590,7 @@ msgstr "Pemetaan"
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
-msgstr "Atur ulang pengaturan pengguna ke bawaan permainan"
+msgstr "Kembalikan pengaturan pengguna ke bawaan permainan"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
@@ -2194,12 +2194,12 @@ msgstr "Penyiapan Permainan"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr "Membuka penjelajah peta."
+msgstr "Membuka penelusur peta."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr "Buka penjelajah peta"
+msgstr "Buka penelusur peta"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -3415,7 +3415,7 @@ msgstr "\"%(label)s\""
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Permainan tersimpan akan dibuang permanen, anda yakin?"
+msgstr "Permainan tersimpan akan dibuang permanen, Anda yakin?"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
@@ -3483,7 +3483,7 @@ msgstr "Simpan"
 
 #: gui/loadgame/SavegameWriter.js:46
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Permainan tersimpan akan ditimpa permanen, anda yakin?"
+msgstr "Permainan tersimpan akan ditimpa permanen, Anda yakin?"
 
 #: gui/loadgame/SavegameWriter.js:47
 msgid "OVERWRITE SAVE"
@@ -3682,12 +3682,12 @@ msgstr "Semua peta dari jenis peta yang terpilih."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr "Penjelajah Peta"
+msgstr "Penelusur Peta"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Tutup penjelajah peta dan hapus pilihan. "
+msgstr "%(hotkey)s: Tutup penelusur peta dan hapus pilihan. "
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3699,7 +3699,7 @@ msgstr "Tutup"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr "%(hotkey)s: Tutup penjelajah peta. "
+msgstr "%(hotkey)s: Tutup penelusur peta. "
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3885,7 +3885,7 @@ msgstr "Penamaan entitas."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr "Nama khusus dahulu"
+msgstr "Nama khusus dulu"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
@@ -3893,7 +3893,7 @@ msgstr "Menampilkan nama khusus sebelum nama biasa. "
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr "Nama biasa dahulu"
+msgstr "Nama biasa dulu"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
@@ -4913,7 +4913,7 @@ msgstr "Terjadi kesalahan saat membuka petualangan:"
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
-msgstr "Main sendiri"
+msgstr "Main Sendiri"
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
@@ -5079,7 +5079,7 @@ msgstr "Keluar dari permainan."
 
 #: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Apa anda yakin ingin menutup 0 A.D.?"
+msgstr "Apa Anda yakin ingin menutup 0 A.D.?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5672,7 +5672,7 @@ msgstr "Ekonomi"
 
 #: gui/summary/layout.js:37
 msgid "Outposts"
-msgstr "Pos"
+msgstr "Pos Pengawas"
 
 #: gui/summary/layout.js:38
 msgid "Military"
@@ -6471,7 +6471,7 @@ msgstr "Bangunan khusus yang tersedia untuk Bangsa Kush."
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr "Piramida kecil meningkatkan tingkat pengumpulan pekerja di sekitarnya."
+msgstr "Piramida kecil meningkatkan laju pengumpulan pekerja di sekitarnya."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
