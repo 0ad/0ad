@@ -6,18 +6,18 @@
 # Pavel Šindelář <pavelsin123@gmail.com>, 2017
 # Vít Pelčák, 2017
 # Warriog <warrriog@gmail.com>, 2018
-# Tomáš Matýs <thommathys@gmail.com>, 2018
 # fri, 2019
 # Kuba Nepekchal <nepejchaljakub@gmail.com>, 2019
 # Cyril Chudáček <cyr.chudac@centrum.cz>, 2020
 # Martin Křížek <krizekmartin@gmail.com>, 2021
+# Tomáš Matýs <thommathys@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-04-09 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Martin Křížek <krizekmartin@gmail.com>, 2021\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2021\n"
 "Language-Team: Czech (https://www.transifex.com/wildfire-games/teams/17418/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -161,6 +161,10 @@ msgid ""
 "Village Phase structure that you have built, allowing you to advance to the "
 "Town Phase."
 msgstr ""
+"Postavte poblíž kasárnu. Kdykoli je dosaženo vašeho populačního omezení, "
+"postavte si pomocí libovolných dostupných stavebních jednotek další dům. "
+"Bude to pátá budova vesnické fáze, kterou jste postavili, což vám umožní "
+"postoupit do městské fáze."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -168,6 +172,9 @@ msgid ""
 "II icon (you have to wait for the barracks to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"Znovu vyberte Správní středisko a postupte do Městské Fáze kliknutím na II "
+"ikonu (musíte nejprve vyčkat dokud nebude postavena kasárna). To vám umožní "
+"stavět budovy z Městské fáze."
 
 #: maps/tutorials/introductory_tutorial.js:205
 msgid ""
@@ -182,6 +189,8 @@ msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory."
 msgstr ""
+"Nařiďte nečinným jednotkám, aby postavili vyhlídkovou věž na severovýchodě "
+"na okraji vašeho území."
 
 #: maps/tutorials/introductory_tutorial.js:228
 msgid ""
@@ -559,6 +568,10 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Toto je velmi důležitý koncept, který je třeba mít na paměti: shromážděné "
+"zdroje musí být vráceny zpět do skladiště, aby byly započítány, a měli byste"
+" se vždy snažit minimalizovat vzdálenost mezi zdrojem a nejbližším "
+"skladištěm, abyste zlepšili efektivitu shromažďování."
 
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
@@ -578,6 +591,13 @@ msgid ""
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
+"Protože je musí přivést zpět do Správního střediska, aby je uložili, jejich "
+"účinnost shromažďování trpí vzdáleností. Abychom to napravili, můžeme poblíž"
+" stromů postavit skladiště, skladiště na dřevo, kámen a kov. Chcete-li tak "
+"učinit, vyberte svých pět nově vycvičených občanských vojáků a vyhledejte "
+"stavební panel vpravo dole, klikněte na ikonu Skladiště, přesuňte myš co "
+"nejblíže ke stromům, které chcete shromáždit, a klikněte na platné místo pro"
+" stavbu skladiště.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -623,6 +643,11 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
+"Mezitím se zdá, že máme dostatek pracovníků, kteří sbírají dřevo. Měli "
+"bychom odstranit současný bod shromažďování Správního střediska od sbírání "
+"dřeva. Za tímto účelem klepněte pravým tlačítkem myši na Správní středisko, "
+"když je vybráno (a ikona vlajky označující bod shromažďování je "
+"přeškrtnuta)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -636,6 +661,10 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Mezitím zaměřte svou pozornost na počet obyvatel na horním panelu. Jedná se "
+"o pátou položku zleva, po zdrojích. Bylo by rozumné to sledovat. Udává vaši "
+"aktuální populaci (včetně trénovaných) a aktuální populační omezení, které "
+"je určeno vašimi postavenými budovami."
 
 #: maps/tutorials/starting_economy_walkthrough.js:206
 msgid ""
@@ -643,6 +672,9 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the House.\n"
 msgstr ""
+"Protože jste téměř dosáhli populační omezení, musíte jej navýšit vybudováním"
+" novými budovami, pokud chcete trénovat více jednotek. Nejefektivnější "
+"budovou pro zvýšení populačního omezení je Dům.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
@@ -665,6 +697,15 @@ msgid ""
 "Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
+"Vyberte dvě ze svých nově vycvičených občanek a požádejte je, aby postavily "
+"tyto domy v prázdném prostoru na východ od Správní střediska. Chcete-li tak "
+"učinit, po výběru občanek klikněte na ikonu domu v pravém dolním panelu a "
+"podržte klávesu Shift a klikněte nejprve na pozici na mapě, kde chcete "
+"postavit první dům, a poté klikněte na pozici, kde chcete postavit druhý dům"
+" (když podáte příkaz se stisknutou klávesou Shift, vložíte příkaz do fronty;"
+" jednotky automaticky přepnou na další příkaz ve své frontě, když dokončí "
+"svůj aktuální příkaz). Stisknutím klávesy Escape se zbavíte kurzoru Domu, "
+"abyste nespamovali domy  po celé mapě.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
@@ -680,6 +721,9 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Můžete si všimnout, že bobule jsou omezenou zásobou jídla. Budeme potřebovat"
+" trvalejší zdroj potravy. Pole produkují neomezené zdroje potravy, ale "
+"shromažďují se pomaleji než viditelné plody bobulí.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
@@ -695,6 +739,9 @@ msgid ""
 "Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Vyberte tři zbývající (nečinné) občanky a nařiďte jim, aby postavily "
+"zemědělskou usedlost uprostřed velké otevřené oblasti na západ od správního "
+"střediska.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
@@ -702,6 +749,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Budeme potřebovat slušný kus prostoru kolem zemědělské usedlosti, abychom "
+"mohli vytvořit pole. Kromě toho můžeme vidět kozy na západní straně, aby "
+"dále zlepšily naši účinnost sběru potravin, pokud bychom se někdy rozhodli "
+"je lovit.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
@@ -712,18 +763,28 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Pokud se pokusíte vybrat tři nečinné Občanky kliknutím a přetažením přes ně "
+"obdélníkem, můžete náhodně vybrat další jednotky. Chcete-li tomu zabránit, "
+"podržte při výběru klávesu I, aby byly vybrány pouze nečinné jednotky. Pokud"
+" omylem vyberete jezdeckou jednotku, podržte Ctrl a klikněte na ikonu "
+"jezdecké jednotky na výběrovém panelu v dolní části obrazovky, abyste "
+"jezdeckou jednotku odstranily z aktuálního výběru."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
 "When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Když je stavba Zemědělská usedlost dokončena, její stavitelé automaticky "
+"hledají potravu a v tomto případě půjdou lovit blízké kozy.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
 "But your House builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the Houses."
 msgstr ""
+"Ale vaši stavitelé domu budou hledat něco jiného, co by mohli postavit, a "
+"pokud se nic nenalezne, stanou se nečinnými. Počkejme, až postaví Domy."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -731,12 +792,15 @@ msgid ""
 "to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Když jsou postaveny oba domy, vyberte své dvě občanky a přikažte jim, aby "
+"postavily pole co nejblíže k zemědělské usedlosti, což je skladiště pro "
+"všechny druhy potravin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
 "When the Field is ready, the builders will automatically start gathering "
 "it.\n"
-msgstr ""
+msgstr "Až bude pole připraveno, stavitelé jej automaticky začnou sklízet.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -745,6 +809,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Jezdecká jednotka už měla všechny kuřata pozabíjet. Vyberte ji a "
+"prozkoumejte jihozápadní oblast: tam je jezero a několik velbloudů je okolo "
+"jezera . Přesuňte svou jízdu kliknutím pravým tlačítkem myši na bod, kterým "
+"chcete jít, a když uvidíte stádo velbloudů, klikněte pravým tlačítkem na "
+"jednoho z nich a začněte lovit potravu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -753,6 +822,11 @@ msgid ""
 "on it. If the Field is not yet finished, new Workers sent by a rally point "
 "will help building it, and when built, they will gather food."
 msgstr ""
+"Až pět pracovníků může obdělávat pole . Chcete-li přidat další pracovníky, "
+"vyberte Správní středisko a kliknutím na něj umístěte bod shromažďování na "
+"pole. Pokud pole ještě není hotové, pomohou jej postavit noví pracovníci "
+"vyslaní bodem shromažďování, a když budou pole postavena, budou shromažďovat"
+" jídlo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the Field."
@@ -787,6 +861,11 @@ msgid ""
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Rychlost farmaření může být například vylepšena prozkoumatelnou technologií "
+"ve zemědělské usedlosti. Vyberte zemědělskou usedlost a podívejte se na jeho"
+" produkční panel vpravo dole. Uvidíte několik zkoumatelných technologií. "
+"Umístěte kurzor na ně, abyste viděli jejich náklady a účinky, a klikněte na "
+"ten, který chcete prozkoumat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -794,6 +873,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Měli bychom začít připravovat postupné zavádění do městské fáze, která "
+"odemkne mnohem více jednotek a budov. Vyberte Správní středisko a najeďte "
+"kurzorem na ikonu Městská fáze, abyste viděli, co je ještě potřeba.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -801,6 +883,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Nyní máme dostatek zdrojů, ale chybí jedna budova. I když se jedná o "
+"ekonomický tutoriál, je užitečné se připravit na obranu v případě útoku, tak"
+" pojďme postavit kasárnu.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -809,6 +894,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Vyberte čtyři ze svých vojáků a požádejte je, aby postavili kasárnu: stejně "
+"jako dříve začněte vybírat vojáky, klikněte na ikonu kasáren na produkčním "
+"panelu a poté položte základnu nedaleko od vašeho správního střediska, kde "
+"chcete stavět."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -818,6 +907,12 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the Hoplite icon twice."
 msgstr ""
+"Počkejme na vybudování kasáren. Protože je tato konstrukce zdlouhavá, můžete"
+" přidat dva vojáky, abyste ji postavili rychleji. Chcete-li tak učinit, "
+"vyberte své Správní středisko a nastavte bod shromažďování  na místě, kde se"
+" staví Kasárna kliknutím pravým tlačítkem myši (měla by se zobrazit ikona "
+"kladiva). Poté vytvořte další dva stavitele kliknutím dvakrát na ikonu "
+"Hoplíty."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -842,6 +937,10 @@ msgid ""
 "done, you will send half of your idle Citizen Soldiers (who have finished "
 "building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
+"V pozdějších fázích potřebujete obvykle kámen a kov, abyste mohli stavět "
+"větší budovy a trénovat lepší vojáky. Během čekání na dokončení výzkumu  "
+"pošlete polovinu svých nečinných občanských vojáků (kteří dokončili stavbu "
+"kasáren), aby získali kámen a druhou polovinu, aby získali kov.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
@@ -851,6 +950,11 @@ msgid ""
 "soldiers were gathering wood, so they may still carry some wood which would "
 "be lost when starting to gather another resource."
 msgstr ""
+"K tomu bychom mohli vybrat tři občanské vojáky a kliknout pravým tlačítkem "
+"na kamenolom na západ od Správního střediska (kurzor se změní, když jej "
+"přenesete přes kamenolom, zatímco jsou vybráni vaši vojáci). Tito vojáci "
+"však sbírali dřevo, takže mohou nést ještě nějaké dřevo, které bude "
+"ztraceno, jakmile začnou sbírat jiný zdroj."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
@@ -860,6 +964,11 @@ msgid ""
 "their wood and then hold Shift and right-click on the stone quarry to gather"
 " it.\n"
 msgstr ""
+"Proto bychom jim měli nařídit, aby po cestě uložili své dřevo do správního "
+"střediska. Abychom to udělali, podržíme Shift a klikneme na pořadí příkazů: "
+"vyberte své vojáky, podržte Shift a klikněte pravým tlačítkem na Správní "
+"středisko, abyste uložili jejich dřevo, a pak podržte Shift a klikněte "
+"pravým tlačítkem na kamenolom, abyste jej mohli začít sbírat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
@@ -883,6 +992,9 @@ msgid ""
 " the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"Tato mapa vám nabídne hrubý návod na to, jak začít hru efektivně. Na začátku"
+" je nejdůležitější nasbírat materiály co nejrychleji to jde, abyste byli "
+"později schopni postavit dostatek jednotek."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
