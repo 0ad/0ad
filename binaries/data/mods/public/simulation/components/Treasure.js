@@ -70,7 +70,7 @@ Treasure.prototype.Reward = function(entity)
 	if (this.resources)
 		cmpPlayer.AddResources(this.resources);
 
-	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	let cmpStatisticsTracker = QueryOwnerInterface(entity, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseTreasuresCollectedCounter();
 
