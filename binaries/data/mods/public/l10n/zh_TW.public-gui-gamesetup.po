@@ -5,6 +5,7 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
 # CAGD_lulofun滷肉飯 <cagd.lulofun@gmail.com>, 2019
+# Chi-Feng Tsai <b07902123@ntu.edu.tw>, 2021
 # Cirro Yuan, 2013
 # helen, 2021
 # Hiunn-hué <hiunnhue108@ymail.com>, 2018
@@ -26,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-09 13:57+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"PO-Revision-Date: 2021-07-15 17:50+0000\n"
+"Last-Translator: Chi-Feng Tsai <b07902123@ntu.edu.tw>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,7 @@ msgstr "圓環"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "同盟玩家被分組並與對手玩家放置在地圖上的一個圓圈上。"
+msgstr "所有玩家在地圖上將會被放置成一個圓圈，而同盟玩家將會被安排在附近。"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:58
 msgctxt "team placement"
@@ -58,7 +59,7 @@ msgstr "直線"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:59
 msgid "Allied players are placed in a linear pattern."
-msgstr "同盟玩家被放置在線性的位置。"
+msgstr "同盟玩家在地圖上被放置呈一直線。"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgctxt "team placement"
@@ -67,7 +68,7 @@ msgstr "隨機分隊"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:64
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "同盟玩家被分組，不過其餘的會被隨機放在地圖上。"
+msgstr "同盟玩家在地圖上會被安排在附近，而其他玩家則被隨機放置。"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgctxt "team placement"
@@ -76,11 +77,11 @@ msgstr "要塞"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:69
 msgid "Allied players are grouped in one random place of the map."
-msgstr "同盟的玩家被分組在地圖的一個隨機位置。"
+msgstr "同盟玩家會被安排在附近，但在地圖上的位置是隨機的。"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr "AI 配置"
+msgstr "AI 設定"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
@@ -221,7 +222,7 @@ msgstr "作弊秘技"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
-msgstr "切換是否可以使用作弊秘技。"
+msgstr "允許/禁用 作弊祕技。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -235,7 +236,7 @@ msgstr "已探索的地圖"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr "切換已探索的地圖（看初始地圖）。"
+msgstr "切換是否使用已探索的地圖（可以看到初始地圖，但後續不會自動更新）。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
@@ -263,7 +264,7 @@ msgstr "遊牧"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "在遊牧模式，玩家一開始只有少數的單位，必須尋找到適合的地方建立自己的城市，建議先停火。"
+msgstr "在遊牧模式，玩家一開始只有少數的單位，必須尋找到適合的地方建立自己的城市。建議啟用停火。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -279,7 +280,7 @@ msgstr "英雄駐守"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "切換英雄是否可以駐守。"
+msgstr "切換英雄是否可以駐守建築物。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -293,7 +294,7 @@ msgstr "全地圖視野"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr "切換是否使用顯示全地圖(可以看到所有東西)。"
+msgstr "切換是否使用顯示全地圖（可以看到所有東西）。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
@@ -520,7 +521,7 @@ msgstr "停火"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr "設定不允許任何攻擊的時間。"
+msgstr "設定「不允許任何攻擊」的時間。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
@@ -594,7 +595,7 @@ msgstr "奇觀持續時間"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "玩家獲得奇觀勝利前的分鐘數"
+msgstr "玩家獲得奇觀勝利前的倒數分鐘數"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -748,7 +749,7 @@ msgstr "已啟用作弊。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
-msgstr "排名的遊戲。"
+msgstr "排位賽。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
