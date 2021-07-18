@@ -721,10 +721,9 @@ PETRA.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirem
 	let units;
 	if (classes.indexOf("Hero") != -1)
 		units = gameState.findTrainableUnits(classes, []);
-	else if (classes.indexOf("Siege") != -1)	// We do not want siege tower as AI does not know how to use it
-		units = gameState.findTrainableUnits(classes, ["SiegeTower"]);
-	else						// We do not want hero when not explicitely specified
-		units = gameState.findTrainableUnits(classes, ["Hero"]);
+	// We do not want siege tower as AI does not know how to use it nor hero when not explicitely specified.
+	else
+		units = gameState.findTrainableUnits(classes, ["Hero", "SiegeTower"]);
 
 	if (!units.length)
 		return undefined;
