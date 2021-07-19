@@ -368,7 +368,7 @@ PETRA.AttackPlan.prototype.addSiegeUnits = function(gameState)
 		return false;
 
 	let civ = gameState.getPlayerCiv();
-	let classes = [["Siege", "Melee"], ["Siege", "Ranged"], ["Elephant", "Melee"]];
+	const classes = [["Siege+Melee"], ["Siege+Ranged"], ["Elephant+Melee"]];
 	let hasTrainer = [false, false, false];
 	for (let ent of gameState.getOwnTrainingFacilities().values())
 	{
@@ -625,7 +625,7 @@ PETRA.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	{
 		// find the actual queue we want
 		let queue = this.queue;
-		if (MatchesClassList(firstOrder[3].classes, ["Siege", "Elephant+Melee+Champion"]))
+		if (firstOrder[4] == "Siege")
 			queue = this.queueSiege;
 		else if (firstOrder[3].classes.indexOf("Hero") != -1)
 			queue = this.queueSiege;
