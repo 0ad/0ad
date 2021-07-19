@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-26 13:19+0000\n"
+"PO-Revision-Date: 2021-07-16 19:43+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -2627,7 +2627,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Перемкнути прикріплення до країв"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
@@ -3729,12 +3729,12 @@ msgstr "Кожна мапа з обраного типу мап."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Переглядач Карт"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Закрити переглядач карт та відмінити вибір."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3746,7 +3746,7 @@ msgstr "Закрити"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Закрити переглядач карт."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -4685,11 +4685,11 @@ msgstr "Колір ворогів, коли кольори дипломатії 
 
 #: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Прикріплятися до країв"
 
 #: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Гаряча клавіша для увімкнення прикріплення"
 
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
@@ -4698,17 +4698,17 @@ msgstr "Нові споруди стають в ряд зі спорудами �
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Гаряча клавіша для вимкнення прикріплення"
 
 #: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Нові споруди стають в ряд зі спорудами поруч, доки не буде натиснута гаряча клавіша."
 
 #: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Опція дозволяє вирівнювати нові споруди зі спорудами поруч."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -6672,7 +6672,7 @@ msgstr "Дерева, як правило, зустрічаються рідко
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "ПРИКРІПЛЕННЯ"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
