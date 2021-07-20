@@ -343,6 +343,19 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (cmpVisual && cmpBuildingVisual)
 			cmpBuildingVisual.SetActorSeed(cmpVisual.GetActorSeed());
 
+		const cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+		const cmpBuildingIdentity = Engine.QueryInterface(building, IID_Identity);
+		if (cmpIdentity && cmpBuildingIdentity)
+		{
+			const oldPhenotype = cmpIdentity.GetPhenotype();
+			if (cmpBuildingIdentity.GetPhenotype() !== oldPhenotype)
+			{
+				cmpBuildingIdentity.SetPhenotype(oldPhenotype);
+				if (cmpVisualCorpse)
+					cmpVisualCorpse.RecomputeActorName();
+			}
+		}
+
 		if (cmpPlayerStatisticsTracker)
 			cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
 
