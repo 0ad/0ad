@@ -614,7 +614,7 @@ PETRA.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
 	// default template
 	let requirementsDef = [ ["costsResource", 1, "food"] ];
-	let classesDef = ["Support", "Worker"];
+	const classesDef = ["Support+Worker"];
 	let templateDef = this.findBestTrainableUnit(gameState, classesDef, requirementsDef);
 
 	// counting the workers that aren't part of a plan
@@ -700,9 +700,9 @@ PETRA.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		else
 			requirements = [ ["strength", 1] ];
 
-		let classes = ["CitizenSoldier", "Infantry"];
-		//  We want at least 33% ranged and 33% melee
-		classes.push(pickRandom(["Ranged", "Melee", "Infantry"]));
+		const classes = [["CitizenSoldier", "Infantry"]];
+		// We want at least 33% ranged and 33% melee.
+		classes[0].push(pickRandom(["Ranged", "Melee", "Infantry"]));
 
 		template = this.findBestTrainableUnit(gameState, classes, requirements);
 	}
