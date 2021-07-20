@@ -337,6 +337,12 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 		let building = ChangeEntityTemplate(this.entity, this.finalTemplateName);
 
+		// Make sure the foundation object is the same as the final object.
+		const cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+		const cmpBuildingVisual = Engine.QueryInterface(building, IID_Visual);
+		if (cmpVisual && cmpBuildingVisual)
+			cmpBuildingVisual.SetActorSeed(cmpVisual.GetActorSeed());
+
 		if (cmpPlayerStatisticsTracker)
 			cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter(building);
 
