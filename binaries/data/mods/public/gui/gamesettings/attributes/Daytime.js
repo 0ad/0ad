@@ -2,8 +2,7 @@ GameSettings.prototype.Attributes.Daytime = class Daytime extends GameSetting
 {
 	init()
 	{
-		this.data = undefined;
-		this.value = undefined;
+		this.setDataValueHelper(undefined, undefined);
 		this.settings.map.watch(() => this.onMapChange(), ["map"]);
 	}
 
@@ -26,13 +25,11 @@ GameSettings.prototype.Attributes.Daytime = class Daytime extends GameSetting
 		let mapData = this.settings.map.data;
 		if (!mapData || !mapData.settings || !mapData.settings.Daytime)
 		{
-			this.value = undefined;
-			this.data = undefined;
+			this.setDataValueHelper(undefined, undefined);
 			return;
 		}
 		// TODO: validation
-		this.data = mapData.settings.Daytime;
-		this.value = "random";
+		this.setDataValueHelper(mapData.settings.Daytime, "random");
 	}
 
 	setValue(val)
@@ -54,5 +51,18 @@ GameSettings.prototype.Attributes.Daytime = class Daytime extends GameSetting
 			return false;
 		this.value = pickRandom(this.data).Id;
 		return true;
+	}
+
+	/**
+	 * Helper function to ensure this.data and this.value
+	 * are assigned in the correct order to prevent
+	 * crashes in the renderer.
+	 * @param {object} data - The day time option data.
+	 * @param {string} value - The option's key.
+	*/
+	setDataValueHelper(data, value)
+	{
+		this.data = data;
+		this.value = value;
 	}
 };

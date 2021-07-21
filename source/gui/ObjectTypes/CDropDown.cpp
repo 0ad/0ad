@@ -169,7 +169,10 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			m_ElementHighlight = m_Selected;
 
 			// Start at the position of the selected item, if possible.
-			GetScrollBar(0).SetPos(m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] - 60);
+			if (m_ItemsYPositions.empty() || m_ElementHighlight < 0 || static_cast<size_t>(m_ElementHighlight) >= m_ItemsYPositions.size())
+				GetScrollBar(0).SetPos(0);
+			else
+				GetScrollBar(0).SetPos(m_ItemsYPositions[m_ElementHighlight] - 60);
 
 			PlaySound(m_SoundOpened);
 			return; // overshadow

@@ -50,8 +50,8 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 	{
 		if (!this.enabled)
 		{
-			const mapData = this.mapCache.getMapData(g_GameSettings.map.mapType, g_GameSettings.map.map);
-			this.label.caption = g_GameSettings.mapName.value || mapData.settings.Name;
+			const mapName = this.mapCache.getTranslatableMapName(g_GameSettings.map.mapType, g_GameSettings.map.map);
+			this.label.caption = g_GameSettings.mapName.value || this.mapCache.translateMapName(mapName);
 			return;
 		}
 

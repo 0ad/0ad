@@ -201,6 +201,11 @@ Identity.prototype.SetControllable = function(controllability)
 	this.controllable = controllability;
 };
 
+Identity.prototype.SetPhenotype = function(phenotype)
+{
+	this.phenotype = phenotype;
+};
+
 function IdentityMirage() {}
 IdentityMirage.prototype.Init = function(cmpIdentity)
 {

@@ -378,6 +378,22 @@ Health.prototype.CreateCorpse = function()
 		cmpVisualCorpse.SelectAnimation("death", true, 1);
 	}
 
+	const cmpIdentityCorpse = Engine.QueryInterface(entCorpse, IID_Identity);
+	if (cmpIdentityCorpse)
+	{
+		const cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+		if (cmpIdentity)
+		{
+			const oldPhenotype = cmpIdentity.GetPhenotype();
+			if (cmpIdentityCorpse.GetPhenotype() !== oldPhenotype)
+			{
+				cmpIdentityCorpse.SetPhenotype(oldPhenotype);
+				if (cmpVisualCorpse)
+					cmpVisualCorpse.RecomputeActorName();
+			}
+		}
+	}
+
 	if (resource)
 		Engine.PostMessage(this.entity, MT_EntityRenamed, {
 			"entity": this.entity,
