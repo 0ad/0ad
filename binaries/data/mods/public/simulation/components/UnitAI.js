@@ -2884,9 +2884,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
-				let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-				if (cmpTrader)
-					cmpTrader.StopTrading();
 			},
 
 			"APPROACHINGMARKET": {
