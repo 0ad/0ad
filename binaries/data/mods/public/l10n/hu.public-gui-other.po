@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-07-21 11:12+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,7 +207,7 @@ msgstr[1] "Csoda (%(min)s perc)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] "Szerezd meg az ereklyéket (%(min)s perc)"
+msgstr[0] "Szerezd meg az ereklyét (%(min)s perc)"
 msgstr[1] "Szerezd meg az ereklyét (%(min)s perc)"
 
 #: gui/common/gamedescription.js:232
@@ -5472,8 +5472,8 @@ msgstr "Bármilyen"
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] "< %(max)s min."
-msgstr[1] "< %(max)s min."
+msgstr[0] "< %(max)s perc"
+msgstr[1] "< %(max)s perc"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:127
@@ -5481,15 +5481,15 @@ msgstr[1] "< %(max)s min."
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] "> %(min)s min."
-msgstr[1] "> %(min)s min."
+msgstr[0] "> %(min)s perc"
+msgstr[1] "> %(min)s perc"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr "%(min)s - %(max)s min."
+msgstr "%(min)s - %(max)s perc"
 
 #: gui/replaymenu/replay_filters.js:145
 msgctxt "replay filter"
