@@ -2386,6 +2386,11 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("FINDINGNEWTARGET");
 						return true;
 					}
+					if (this.CheckRange(this.order.data, IID_ResourceGatherer))
+					{
+						this.SetNextState("GATHERING");
+						return true;
+					}
 					this.SetAnimationVariant("approach_" + this.order.data.type.specific);
 					return false;
 				},
@@ -2593,6 +2598,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 					this.order.data.formerTarget = this.order.data.target;
 					this.order.data.target = nearestDropsite;
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					{
+						this.SetNextState("DROPPINGRESOURCES");
+						return true;
+					}
 					this.SetDefaultAnimationVariant();
 					this.SetNextState("APPROACHING");
 					return true;
