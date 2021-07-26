@@ -116,7 +116,7 @@
 # Valentin Ambroise <valentin.amb@hotmail.com>, 2015
 # Valentin Chevalier <valche5@hotmail.com>, 2015
 # ecaba88ae861835563a122a2209143f0_c75c0b0 <ecd3cd68364b3e7b593275a415b55a41_99458>, 2014
-# Xavier Tardieu <xapitoun@gmail.com>, 2016
+# Xavier Tardieu <xapitoun@gmail.com>, 2016,2021
 # Yannick Heintz, 2014
 # Yannick Heintz, 2014
 # youritch .... <youri.duret@gmail.com>, 2021
@@ -125,8 +125,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-10 03:43+0000\n"
-"Last-Translator: tuxayo/Victor Grousset <victor@tuxayo.net>\n"
+"PO-Revision-Date: 2021-07-26 06:25+0000\n"
+"Last-Translator: Xavier Tardieu <xapitoun@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,7 +204,7 @@ msgstr "Quitter"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr "Latence de streaming: %(delay)ss"
+msgstr "Latence de streaming : %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -454,7 +454,7 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)sVos réserves de nourriture ont été attaquées par%(attacker)s"
+msgstr "%(icon)sVos réserves de nourriture ont été attaquées par %(attacker)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
@@ -468,7 +468,7 @@ msgstr "Cliquer pour centrer la vue sur l'unité attaquée."
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s a troqué %(amountGiven)s contre %(amountGained)s"
+msgstr "%(player)s a troqué %(amountGiven)s contre %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -737,7 +737,7 @@ msgstr "Temps restant avant la fin du cessez-le-feu : %(time)s"
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr "Basculer couleurs diplomatiques"
+msgstr "Basculer les couleurs diplomatiques"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -1073,7 +1073,7 @@ msgstr "Points de capture :"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr "%(label)s: %(details)s\n "
+msgstr "%(label)s : %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
@@ -1428,7 +1428,7 @@ msgstr "Cliquer pour sélectionner le groupe, double-cliquer pour centrer la cam
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Yaunā"
-msgstr "Alpha XXV: Yaunā"
+msgstr "Alpha XXV : Yaunā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1436,7 +1436,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Afficher l'aperçu de la civilisation / l'arbre de structure\nLa dernière ouverture sera rouverte au clic."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s : Afficher l'aperçu de la civilisation / l'arbre de structure\nLa dernière ouverture sera rouverte au clic."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1467,11 +1467,11 @@ msgstr "%(playername)s : %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
+msgstr "%(popCount)s / %(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr "Population : actuelle/limite (max)"
+msgstr "Population : actuelle / limite (max)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
@@ -1555,7 +1555,7 @@ msgstr "Aucun marché disponible"
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr "%(amount)s%%"
+msgstr "%(amount)s %%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1563,7 +1563,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Sélectionnez un type de bien que vous voulez modifier en cliquant dessus et utilisez les flèches pour modifier leur valeur. Vous pouvez aussi appuyer sur %(hotkey)s lorsque vous le sélectionnez pour le modifier à 100%%."
+msgstr "Sélectionnez un type de bien que vous voulez modifier en cliquant dessus et utilisez les flèches pour les autres types de bien pour modifier leurs valeurs. Vous pouvez aussi appuyer sur %(hotkey)s lorsque vous sélectionnez un type de bien pour amener son niveau à 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1572,7 +1572,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Commencez par sélectionner la ressource que vous souhaitez vendre sur la ligne supérieur. Chaque fois que vous appuyez sur le bouton inférieur, %(quantity)s de la ressource supérieure sera vendue pour la quantité affichée de la partie inférieure. Appuyez et maintenez la touche %(hotkey)s pour multiplier toutes les quantités par %(multiplier)s."
+msgstr "Commencez par sélectionner la ressource que vous souhaitez vendre sur la ligne supérieure. Chaque fois que vous appuyez sur le bouton inférieur, %(quantity)s de la ressource supérieure sera vendue pour la quantité affichée de la partie inférieure. Appuyez et maintenez la touche %(hotkey)s pour multiplier toutes les quantités échangées par %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1724,7 +1724,7 @@ msgstr "Clic droit pour définir le marché de destination."
 #: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr "Tourelles actuelles : %(occupied)s/%(capacity)s"
+msgstr "Tourelles actuelles : %(occupied)s / %(capacity)s"
 
 #: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
 #, javascript-format
@@ -1769,11 +1769,11 @@ msgstr "Abandonner l'ordre actuel."
 
 #: gui/session/unit_actions.js:1435
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Ordonner à l'unité de se mettre en garnison dans la structure ou unité"
+msgstr "Ordonner aux unités sélectionnées de se mettre en garnison dans une structure ou une unité."
 
 #: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
-msgstr "Ordonner au(x) unité(s) sélectionnée(s)de garder une structure."
+msgstr "Ordonner au(x) unité(s) sélectionnée(s) de garder un point de tourelle."
 
 #: gui/session/unit_actions.js:1479
 msgid "Unload"
@@ -1781,7 +1781,7 @@ msgstr "Décharger"
 
 #: gui/session/unit_actions.js:1499
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Ordonner à l'unité sélectionné de réparer la structure, navire ou engin de siège?"
+msgstr "Ordonner aux unités sélectionnées de réparer la structure, le navire ou l’engin de siège."
 
 #: gui/session/unit_actions.js:1520
 msgid "Focus on Rally Point."
@@ -1793,7 +1793,7 @@ msgstr "Retour au travail"
 
 #: gui/session/unit_actions.js:1578
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Ordonner à l'unité sélectionné de garder la structure ou unité. "
+msgstr "Ordonner aux unités sélectionnées de garder la structure ou l’unité. "
 
 #: gui/session/unit_actions.js:1598
 msgid "Remove guard"
@@ -1827,7 +1827,7 @@ msgstr "L'utilisation de ce dépôt vous est interdite"
 
 #: gui/session/unit_actions.js:1712
 msgid "Allies are allowed to use this dropsite."
-msgstr "Vos alliés peuvent utiliser ce dépôt"
+msgstr "Vos alliés peuvent utiliser ce dépôt."
 
 #: gui/session/unit_actions.js:1713
 msgid "You are allowed to use this dropsite"
