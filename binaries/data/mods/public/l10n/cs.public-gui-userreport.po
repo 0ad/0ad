@@ -10,13 +10,14 @@
 # Vladim Štér <vladim.ster94@gmail.com>, 2021
 # Martin Křížek <krizekmartin@gmail.com>, 2021
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2021
+# Tonda12, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2018-10-14 18:34+0000\n"
-"Last-Translator: Lukáš Bačovský <l.bacovsky@gmail.com>, 2021\n"
+"Last-Translator: Tonda12, 2021\n"
 "Language-Team: Czech (https://www.transifex.com/wildfire-games/teams/17418/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,16 +58,16 @@ msgid ""
 "sets and OpenGL capabilities) are widely supported by the computer systems "
 "of 0 A.D. players."
 msgstr ""
-"UserReports ukazuje jaké systémové prvky (například architektura CPU a "
-"OpenGL vlastnosti) jsou široce podporovány počítači hráčů 0 A.D."
+"Uživatelská zpráva ukazuje jaké systémové prvky (například architektura CPU "
+"a OpenGL vlastnosti) jsou široce podporovány počítači hráčů 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:9
 msgid ""
 "This allows developers to decide which 0 A.D. program code is safe to use "
 "and which optimizations are most feasible to implement next."
 msgstr ""
-"Toto umožňuje vývojářúm rozhodnou který 0 A.D. programje bezpečný pro "
-"použití a které optimalizace jsou jsou nejschůdnější realizovat jako další."
+"Toto umožňuje vývojářům rozhodnout, který kód je bezpečný pro použití a "
+"které optimalizace je nejschůdnější implementovat jako další."
 
 #: gui/userreport/Terms_and_Conditions.txt:10
 msgid ""
@@ -74,19 +75,19 @@ msgid ""
 "is uploaded to Wildfire Games once per program launch (GDPR 13.1.c, GDPR "
 "15.1.a)."
 msgstr ""
-"Pokud je UserReporter zapnutý, report obsahující tuto informaci je odeslán "
-"do Wildfire Games po spuštění programu (GDPR 13.1.c, GDPR 15.1.a)"
+"Pokud je UserReporter zapnutý, zpráva obsahující tuto informaci je odeslána "
+"Wildfire Games po spuštění programu (GDPR 13.1.c, GDPR 15.1.a)"
 
 #: gui/userreport/Terms_and_Conditions.txt:12
 msgid "[font=\"sans-bold-14\"]UserReport data:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Obsah uživatelské zprávy:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:13
 msgid ""
 " 1. Hardware Details, for example the screen size, CPU clock rate, memory "
 "capacity and the sound card manufacturer."
 msgstr ""
-"1. Podrobnosti o hardware. Například velikost obrazovky, frekvence CPU, "
+"1. Podrobnosti o hardwaru. Například velikost obrazovky, frekvence CPU, "
 "kapacita operační paměti a výrobce zvukové karty."
 
 #: gui/userreport/Terms_and_Conditions.txt:14
@@ -125,8 +126,8 @@ msgid ""
 " 5. The date of the upload of the UserReport. This allows focus on recent "
 "UserReports and disregard old reports."
 msgstr ""
-"5. datum odeslání UserReportu. Toto umožňuje soustředit se na nedávné "
-"reporty a nezohledňovat reporty staré."
+"5. Datum odeslání uživatelské zprávy. Toto umožňuje soustředit se na nedávné"
+" zprávy a nezohledňovat zprávy staré."
 
 #: gui/userreport/Terms_and_Conditions.txt:20
 msgid ""
@@ -142,6 +143,8 @@ msgid ""
 "unintentional loss in encrypted backups for additional time (GDPR 30.1.g, "
 "GDPR 32)."
 msgstr ""
+"Přenos je chráněný pomocí SSL. Data jsou chráněna před nechtěnou ztrátou "
+"pomocí šifrovaných záloh uchovaných po delší dobu (GDPR 30.1.g, GDPR 32)."
 
 #: gui/userreport/Terms_and_Conditions.txt:23
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
@@ -153,6 +156,8 @@ msgid ""
 "community developers may help contribute to 0 A.D. development using this "
 "data (GDPR 4.5)."
 msgstr ""
+"1. Zveřejnit získané data, kromě UserID, aby vývojáři z řad komunity mohli "
+"lépe pomoci s vývojem 0 A.D. využívajíce těchto dat (GDPR 4.5)."
 
 #: gui/userreport/Terms_and_Conditions.txt:25
 msgid ""
@@ -160,6 +165,9 @@ msgid ""
 "UserReport analysis at http://feedback.wildfiregames.com/ (GDPR 13.1.e, GDPR"
 " 15.1.c)."
 msgstr ""
+"    V době tohoto dokumentu, Wildfire Games zveřejnila poslední analýzu "
+"uživatelských zpráv na http://feedback.wildfiregames.com/ (GDPR 13.1.e, GDPR"
+" 15.1.c)."
 
 #: gui/userreport/Terms_and_Conditions.txt:26
 msgid ""
@@ -167,7 +175,7 @@ msgid ""
 "to the erasure of his or her data for one of the reasons specified by the "
 "GDPR (GDPR 18, GDPR 21)."
 msgstr ""
-"2. Vymažte jakékoli uživatelské zprávy z jakéhokoli důvodu, kromě případů, "
+"2. Vymazat jakékoli uživatelské zprávy z jakéhokoli důvodu, kromě případů, "
 "kdy uživatel vznesl námitku proti vymazání svých údajů z jednoho z důvodů "
 "uvedených v GDPR (GDPR 18, GDPR 21)."
 
@@ -176,7 +184,7 @@ msgid ""
 " 3. Store the users IP address to protect against cyberattacks, for no "
 "longer than 4 months (EU Court of Justice Press Release No 112/16)."
 msgstr ""
-"3. Uchovávejte IP adresy uživatelů na ochranu před kybernetickými útoky po "
+"3. Uchovávat IP adresy uživatelů na ochranu před kybernetickými útoky po "
 "dobu nejdéle 4 měsíců (tisková zpráva Soudního dvora EU č. 112/16)."
 
 #: gui/userreport/Terms_and_Conditions.txt:28
@@ -184,25 +192,26 @@ msgid ""
 " 4. Change this document. The document date indicates the version of the "
 "Terms and Conditions."
 msgstr ""
+"4. Měnit tento dokument. Datum dokumentu označuje verzi smluvních podmínek."
 
 #: gui/userreport/Terms_and_Conditions.txt:29
 msgid ""
 "    The UserReport is disabled with each version update and only enabled if "
 "the user agreed to the new document (GDPR 13.3)."
 msgstr ""
-"UserReport je zakázán s každou aktualizací verze a povolen pouze v případě, "
-"že uživatel souhlasil s novým dokumentem (GDPR 13.3)."
+"UserReporter je zakázán při každé aktualizaci verze a povolen pouze v "
+"případě, že uživatel souhlasil s novým dokumentem (GDPR 13.3)."
 
 #: gui/userreport/Terms_and_Conditions.txt:31
 msgid "[font=\"sans-bold-14\"]You agree to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Souhlasíte s:[/font]"
+msgstr "[font=\"sans-bold-14\"]Souhlasíte s tím, že:[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:32
 msgid ""
 " 1. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for damages resulting from this service."
 msgstr ""
-"1. Službu využívejte na své vlastní riziko. Wildfire Games nepřebírá "
+"1. Službu využíváte na své vlastní riziko. Wildfire Games nepřebírá "
 "odpovědnost za škody vyplývající z této služby."
 
 #: gui/userreport/Terms_and_Conditions.txt:33
@@ -211,8 +220,9 @@ msgid ""
 "UserReport data or prevent the user from being informed of updated Terms and"
 " Conditions."
 msgstr ""
-"2. Nepoužívejte službu se softwarem nebo mody třetích stran, které mění data"
-" UserReport nebo brání uživateli v informování o aktualizovaných podmínkách."
+"2. Nepoužíváte službu se softwarem nebo modifikacemi třetích stran, které "
+"mění data uživatelských zpráv nebo brání uživateli v informování se o "
+"aktualizovaných podmínkách."
 
 #: gui/userreport/Terms_and_Conditions.txt:35
 msgid "[font=\"sans-bold-14\"]User rights (GDPR 13):[/font]"
@@ -223,34 +233,39 @@ msgid ""
 " 1. Contact Wildfire Games, by sending an email to webmaster at "
 "wildfiregames dot com (GDPR 13.1.a, GDPR 13.1.b)."
 msgstr ""
-"1. Kontaktujte Wildfire Games zasláním e-mailu na adresu "
+"1. Kontaktovat Wildfire Games zasláním e-mailu na adresu "
 "webmaster@wildfiregames.com (GDPR 13.1.a, GDPR 13.1.b)."
 
 #: gui/userreport/Terms_and_Conditions.txt:37
 msgid "    To exercise any user right, please refer to this contact."
 msgstr ""
+"    Tento kontakt použijte, pokud chcete využít některé z těchto práv."
 
 #: gui/userreport/Terms_and_Conditions.txt:38
 msgid ""
 " 2. Right of access to UserReport data concerning him or her (GDPR 15)."
 msgstr ""
-"2. Právo na přístup k údajům UserReport, které se ho/ji týkají (GDPR 15)."
+"2. Právo na přístup k údajům uživatelské zprávy, které se ho týkají (GDPR "
+"15)."
 
 #: gui/userreport/Terms_and_Conditions.txt:39
 msgid ""
 "    The UserID pseudonym can be found in the user.cfg file of the "
 "configuration folder of 0 A.D."
 msgstr ""
+"    UserID je možné najít v souboru user.cfg v konfigurační složce 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
-msgstr "Moje aktuální uspořádávací složka je %(configPath)s."
+msgstr "    Současná konfigurační složka je %(configPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
 "UserReport data in the logs folder of 0 A.D. (GDPR 20)."
 msgstr ""
+"    Uživatel může získat strojově a okem čitelnou kopii uživatelské zprávy "
+"ve složce záznamů 0 A.D. (GDPR 20)."
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
@@ -258,7 +273,7 @@ msgstr "Data lze zkontrolovat před tím, než je UserReporter povolen."
 
 #: gui/userreport/Terms_and_Conditions.txt:43
 msgid "    The current logfolder is %(logPath)s."
-msgstr "Moje aktuální připojovací složka je %(logPath)s."
+msgstr "    Současná složka záznamů je %(logPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:44
 msgid ""
@@ -266,6 +281,9 @@ msgid ""
 "and provide your UserID pseudonym (GDPR 11). Only with that we may identify "
 "your data and process requests (GDPR 13.2.e)."
 msgstr ""
+"    Pokud si přejete získat další data z vašich uživatelských zpráv, "
+"kontaktujte Wildfire Games a poskytněte nám vaše UserID (GDPR 11). Bez toho "
+"nemůžeme identifikovat vaše data a splnit váš požadavek (GDPR 13.2.e)."
 
 #: gui/userreport/Terms_and_Conditions.txt:45
 msgid ""
@@ -274,7 +292,7 @@ msgstr "Data lze získat v přenosném, strojově čitelném formátu (GDPR 20).
 
 #: gui/userreport/Terms_and_Conditions.txt:46
 msgid " 3. Right to rectification of inaccurate UserReport data (GDPR 16)."
-msgstr ""
+msgstr "3. Právo na opravu nepřesných dat v uživatelské zprávě (GDPR 16)."
 
 #: gui/userreport/Terms_and_Conditions.txt:47
 msgid ""
@@ -282,6 +300,9 @@ msgid ""
 "development of 0 A.D., if the data was processed unlawfully or if the user "
 "objects to the processing and has overriding legitimate grounds (GDPR 17)."
 msgstr ""
+"4. Právo na vymazání uživatelských zpráv, pokud to pro uvedené účely není "
+"relevantní, pokud byly data zpracovány nezákonně nebo pokud uživatel vznesl "
+"námitku proti zpracování a má převažující oprávněné důvody (GDPR 17)."
 
 #: gui/userreport/Terms_and_Conditions.txt:48
 msgid ""
@@ -289,42 +310,53 @@ msgid ""
 " data is contested by the user, if the data was processed unlawfully or if "
 "the user requires the data for a legal claim (GDPR 18)."
 msgstr ""
+"5. Právo na omezení zpracování uživatelských zpráv v případě, že uživatel "
+"zpochybňuje přesnost dat, pokud byly data zpracovány nezákonně nebo pokud "
+"uživatel požaduje údaje pro právní nárok (GDPR 18)."
 
 #: gui/userreport/Terms_and_Conditions.txt:49
 msgid ""
 " 6. Right to object to the processing of UserReports concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
 msgstr ""
+"6. Právo vznést námitku proti zpracování uživatelských zpráv, které se jej "
+"týkají, z důvodů týkajících se jejich konkrétní situace (GDPR 21)."
 
 #: gui/userreport/Terms_and_Conditions.txt:50
 msgid ""
 " 7. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
-msgstr ""
+msgstr "7. Právo podat stížnost u dozorového úřadu (GDPR 13.2.d, GDPR 77)."
 
 #: gui/userreport/Terms_and_Conditions.txt:51
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
 msgstr ""
-"Žádosti, které jsou zjevně neopodstatněné nebo nepřiměřené nebude reagováno,"
-" nebo mohou být účtovány (GDPR 12,4, GDPR 12,5)."
+"Na žádosti, které jsou zjevně neopodstatněné nebo nepřiměřené nebude "
+"reagováno, nebo mohou být účtovány (GDPR 12,4, GDPR 12,5)."
 
 #: gui/userreport/Terms_and_Conditions.txt:53
 msgid "[font=\"sans-bold-14\"]Legal grounds of processing (GDPR 13.1.c):[/font]"
 msgstr ""
+"[font=\"sans-bold-14\"]Právní důvody pro zpracovávání dat (GDPR "
+"13.1.c):[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:54
 msgid ""
 " 1. The processing is necessary for the performance of the service defined "
 "in this document (GDPR 6.1.b)."
 msgstr ""
+"1. Zpracování je nezbytné pro výkon služby definované v podmínkách (GDPR "
+"6.1.b)."
 
 #: gui/userreport/Terms_and_Conditions.txt:55
 msgid ""
 " 2. Wildfire Games has legitimate interests in the development of 0 A.D and "
 "protection against cyberattacks (GDPR 6.1.f)."
 msgstr ""
+"2. Wildfire Games má oprávněné zájmy ve vývoji 0 A.D. a obraně proti "
+"kybernetickým útokům (GDPR 6.1.f)."
 
 #: gui/userreport/Terms_and_Conditions.txt:56
 msgid ""
@@ -332,17 +364,21 @@ msgid ""
 "and does not ask for consent to further data processing (GDPR 6.1.a, GDPR 7,"
 " GDPR 8, GDPR 13.2.c)."
 msgstr ""
+"3. Wildfire Games nezpracovává žádná další data pro UserReporter a "
+"nepožaduje souhlas s dalším zpracováním těchto dat (GDPR 6.1.a, GDPR 7, GDPR"
+" 8, GDPR 13.2.c)."
 
 #: gui/userreport/Terms_and_Conditions.txt:58
 msgid ""
 "[font=\"sans-bold-14\"]Wildfire Games obligations (GDPR 5, GDPR 13):[/font]"
 msgstr ""
+"[font=\"sans-bold-14\"]Povinnosti Wildfire Games (GDPR 5, GDPR 13):[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:59
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "\"accountability\")."
-msgstr ""
+msgstr "1. Wildfire Games prokazuje soulad s GDPR (GDPR 5.2 „odpovědnost“)."
 
 #: gui/userreport/Terms_and_Conditions.txt:60
 msgid ""
@@ -370,18 +406,27 @@ msgid ""
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e, GDPR 13.2.f, GDPR 15.1, GDPR 15.4)."
 msgstr ""
+"4. Wildfire Games informuje uživatele o účelech, právních základech, "
+"oprávněných zájmech a dobách uchovávání osobních údajů v době, kdy jsou "
+"zpracovávány, příjemcích osobních údajů a případně o přenosu osobních údajů "
+"do třetích zemí a automatizovaném rozhodování ( GDPR 13.1.c-f, GDPR 13.2.a, "
+"GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
 
 #: gui/userreport/Terms_and_Conditions.txt:63
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, \"purpose limitation\", GDPR 13.3)."
 msgstr ""
+"5. Wildfire Games nezpracovává osobní údaje pro jiné než uvedené účely (GDPR"
+" 5.1.b, „omezení účelu“, GDPR 13.3)."
 
 #: gui/userreport/Terms_and_Conditions.txt:64
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, \"data minimisation\")."
 msgstr ""
+"6. Wildfire Games nezpracovává osobní údaje, které nejsou potřebné pro "
+"stanovené účely (GDPR 5.1.c, „minimalizace údajů“)."
 
 #: gui/userreport/Terms_and_Conditions.txt:65
 msgid ""
@@ -389,6 +434,8 @@ msgid ""
 " natural persons for longer than necessary (GDPR 5.1.e \"storage "
 "limitation\")."
 msgstr ""
+"7. Wildfire Games používá podobu ukládání, která neumožňuje identifikaci "
+"fyzických osob po dobu delší, než je nutné (GDPR 5.1.e „omezení ukládání“)."
 
 #: gui/userreport/Terms_and_Conditions.txt:66
 msgid ""
@@ -396,6 +443,9 @@ msgid ""
 "or unlawful processing and accidental loss (GDPR 5.1.f. \"integrity and "
 "confidentiality\")."
 msgstr ""
+"8. Wildfire Games zajišťuje zpracování osobních údajů tak, aby se zabránilo "
+"neoprávněnému nebo nezákonnému zpracování a náhodné ztrátě (GDPR 5.1.f. "
+"„integrita a důvěrnost“)."
 
 #: gui/userreport/Terms_and_Conditions.txt:67
 msgid ""
@@ -423,10 +473,13 @@ msgid ""
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
 msgstr ""
+"11. Wildfire Games informuje uživatele, že pro uplatnění jejich práv mohou "
+"uživatelé potřebovat poskytnout další informace k identifikaci fyzické osoby"
+" nebo údajů (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/userreport/Terms_and_Conditions.txt:71
 msgid "The minimum age to use the service is 13."
-msgstr "Minimální věk na užívání této služby je 13."
+msgstr "Minimální věk pro užívání této služby je 13."
 
 #: gui/userreport/Terms_and_Conditions.txt:72
 msgid ""
@@ -449,12 +502,16 @@ msgid ""
 "Wildfire Games obtains all UserReport data exclusively from the user (GDPR "
 "14)."
 msgstr ""
+"Wildfire Games získává všechna data z uživatelských zpráv jen a pouze od "
+"uživatele (GDPR 14)."
 
 #: gui/userreport/Terms_and_Conditions.txt:76
 msgid ""
 "Wildfire Games does not perform any automated decision making affecting "
 "natural persons (GDPR 22)."
 msgstr ""
+"Wildfire Games neprovádí žádné automatické rozhodování, které by ovlivňovalo"
+" fyzické osoby (GDPR 22)."
 
 #: gui/userreport/Terms_and_Conditions.txt:78
 msgid ""

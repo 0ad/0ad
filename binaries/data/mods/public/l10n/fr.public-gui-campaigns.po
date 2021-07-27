@@ -14,13 +14,14 @@
 # François Magimel, 2021
 # Oumph <oumph@free.fr>, 2021
 # Raz Ou <razieze@ymail.com>, 2021
+# Xavier Tardieu <xapitoun@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Raz Ou <razieze@ymail.com>, 2021\n"
+"Last-Translator: Xavier Tardieu <xapitoun@gmail.com>, 2021\n"
 "Language-Team: French (https://www.transifex.com/wildfire-games/teams/17418/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgid ""
 "all of them."
 msgstr ""
 "Découvrez les nouvelles cartes de l'alpha 25 avec une partie de "
-"démonstration, qui vous fera découvrir chacune d'entre-elles."
+"démonstration, qui vous fera découvrir chacune d'entre elles."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
@@ -56,9 +57,9 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
-"Cette carte vous donnera une aide partielle pour démarrer le jeu en "
-"pratique. Au début du jeu, le principe le plus important est de collecter "
-"des ressources aussi vite que possible pour être capable de produire "
+"Cette carte vous donnera une aide partielle pour démarrer réellement le jeu."
+" Au début du jeu, le principe le plus important est de collecter des "
+"ressources aussi vite que possible pour être capable de produire "
 "suffisamment de troupes plus tard. Attention : ceci est très rapide au "
 "début, soyez prêt à recommencer au début plusieurs fois."
 
@@ -70,7 +71,7 @@ msgstr "Visite guidée de l'économie"
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "C’est un tutoriel basique pour commencer le jeu 0 A.D."
+msgstr "C’est un tutoriel basique pour vous aider à débuter avec 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -95,7 +96,7 @@ msgstr "Disponible"
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "Erreur lors du chargement de la campagne : %s."
+msgstr "Erreur lors du chargement de la campagne %s : %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
@@ -103,7 +104,7 @@ msgstr "Nom de la campagne"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
-msgstr "Aucun scénario sélectionné"
+msgstr "Aucun scénario n’est sélectionné"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
@@ -139,8 +140,8 @@ msgstr "le fichier ne peut être chargé"
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
-"Êtes-vous sûr de vouloir supprimer la partie%s? Cela ne peut être annulé "
-"ensuite."
+"Êtes-vous sûr de vouloir supprimer la partie %s ? Cela ne pourra pas être "
+"annulé."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -182,7 +183,7 @@ msgstr "Démarrer une campagne"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr "Veuillez entrer le nom de votre nouvelle partie :"
+msgstr "Veuillez entrer le nom de votre nouvelle campagne :"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -191,7 +192,7 @@ msgstr "Débuter la campagne"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr "Aucune campagne sélectionnée."
+msgstr "Aucune campagne n’est sélectionnée."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -199,7 +200,7 @@ msgstr "Campagnes"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr "Aucune campagne sélectionnée"
+msgstr "Il n’y a pas de campagne sélectionnée"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

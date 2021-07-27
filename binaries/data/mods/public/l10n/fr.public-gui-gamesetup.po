@@ -107,7 +107,7 @@
 # Vahe Avagyan <vahe-a@outlook.fr>, 2019
 # Valentin Chevalier <valche5@hotmail.com>, 2015
 # ecaba88ae861835563a122a2209143f0_c75c0b0 <ecd3cd68364b3e7b593275a415b55a41_99458>, 2014
-# Xavier Tardieu <xapitoun@gmail.com>, 2016
+# Xavier Tardieu <xapitoun@gmail.com>, 2016,2021
 # Yannick Heintz, 2014
 # Yannick Heintz, 2014
 # youritch .... <youri.duret@gmail.com>, 2021
@@ -116,8 +116,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-07-21 09:06+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-07-26 06:23+0000\n"
+"Last-Translator: Xavier Tardieu <xapitoun@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,7 +201,7 @@ msgstr "Joueur IA"
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr "%(setting)s:"
+msgstr "%(setting)s :"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.js:57
 msgid "Yes"
@@ -335,7 +335,7 @@ msgstr "Mode survie"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Indiquer si le dernier joueur ou le dernier groupe d'alliés survivant obtient la victoire."
+msgstr "Indiquer si le dernier joueur ou le dernier groupe d'alliés survivants obtient la victoire."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
@@ -409,7 +409,7 @@ msgstr "Population mondiale"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Lorsque coché, la limite de population sera uniformément réparti sur tous les joueurs vivants.\n \n\n \n \n \n "
+msgstr "Lorsque coché, la limite de population sera uniformément répartie entre tous les joueurs vivants."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -602,7 +602,7 @@ msgstr "Sélectionner la limite de population."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Avertissement :  les performances peuvent être réduites lorsque la population atteint%(popCap)s. "
+msgstr "Avertissement :  les performances peuvent être réduites lorsque la population atteint %(popCap)s. "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -649,7 +649,7 @@ msgstr "Durée de la relique"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Minutes avant que le joueur achève la victoire par Reliques."
+msgstr "Nombre de minutes minimales à atteindre pour gagner grâce aux Reliques."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -688,7 +688,7 @@ msgstr "Durée de la merveille"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Quelques minutes avant que le joueur n'atteigne la victoire merveilleuse."
+msgstr "Nombre de minutes minimales à atteindre pour gagner grâce à la Merveille."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -707,7 +707,7 @@ msgstr "Revenir au menu principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Aperçu de la civilisation / Arborescence\nLors du clic, la dernière civilisation ouverte sera chargée."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s : Aperçu de la civilisation / Arborescence\nLors du clic, la dernière civilisation ouverte sera chargée."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -1061,7 +1061,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "« Zeus \\[…] a établi sa loi: la sagesse passe par la souffrance. \\[…] Alors les hommes contre leur volonté apprendront à pratiquer la modération. \\[…] Une telle grâce est dure et violente. »\\n— Eschyle (« Agamemnon », 176–183)"
+msgstr "« Zeus \\[…] a établi sa loi : la sagesse passe par la souffrance. \\[…] Alors les hommes contre leur volonté apprendront à pratiquer la modération. \\[…] Une telle grâce est dure et violente. »\\n— Eschyle (« Agamemnon », 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -1105,7 +1105,7 @@ msgstr "« Il est économe de se préparer aujourd'hui aux besoins de demain. »
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr "« L'union fait la force. » \\n— Ésope (“Les Enfants désunis du laboureur”)"
+msgstr "« L'union fait la force. » \\n— Ésope (« Les Enfants désunis du laboureur »)"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -1123,54 +1123,54 @@ msgstr "« La familiarité engendre le mépris; la connaissance adoucit les pré
 msgid ""
 "“Self-conceit may lead to self-destruction.” \\n— Aesop (“The Frog and the "
 "Ox”)"
-msgstr "\"Sa propre suffisance mène souvent à la destruction\" \\n— Ésope (\"De la grenouille et du Bœuf\")"
+msgstr "« Sa propre suffisance mène souvent à la destruction » \\n— Ésope (« De la grenouille et du bœuf »)"
 
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr "\"Lente et régulière remporte la course.\"  \\n—Ésope (\"Le lièvre et la tortue\")"
+msgstr "« Lente et régulière remporte la course. »  \\n—Ésope (« Le lièvre et la tortue »)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "“Better be wise by the misfortunes of others than by your own.” \\n— Aesop "
 "(“The Lion, the Ass, and the Fox Hunting”)"
-msgstr "\"Mieux vaut être sage par les malheurs des autres que par le vôtre.\" \\n—Ésope (\"Le Lion, l'âne et la chasse au renard\")"
+msgstr "« Mieux vaut être sage par les malheurs des autres que par le vôtre. » \\n—Ésope (« Le Lion, l'âne et la chasse au renard »)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr "\"Les promesses des ennemis ont été faites pour être brisées.\" \\n—Ésope (\"L'infirmière et le loup\")"
+msgstr "« Les promesses des ennemis ont été faites pour être brisées.» \\n—Ésope (« L'infirmière et le loup »)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
-msgstr "\"Toute excuse servira un tyran.\"  \\n—Ésope (\"Le loup et l'agneau\")\n "
+msgstr "« Toute excuse servira un tyran. »  \\n—Ésope (« Le loup et l'agneau »)\n "
 
 #: gui/text/quotes.txt:17
 msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr "“Car, ajouta-t-il, si j'ai fait de belles actions, elles me serviront de trophée ; autrement, toutes les statues, ouvrages de la main des hommes, ne sauraient éterniser ma mémoire.” \\n— Agésilas II de Sparte (Plutarque, « Œuvres morales », « Apophtegmes laconiens », 215a)"
+msgstr "« Car, ajouta-t-il, si j'ai fait de belles actions, elles me serviront de trophée ; autrement, toutes les statues, ouvrages de la main des hommes, ne sauraient éterniser ma mémoire.» \\n— Agésilas II de Sparte (Plutarque, « Œuvres morales », « Apophtegmes laconiens », 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr "\"Les Spartiates ne demandent pas combien sont les ennemis, mais seulement où les trouver.\" \\n— Agis II of Sparta (Plutarque, “Œuvres Morales”, “Apophtegmes laconiens”, 215d)"
+msgstr "« Les Spartiates ne demandent pas combien sont les ennemis, mais seulement où les trouver. » \\n— Agis II of Sparta (Plutarque, « Œuvres Morales »,  « Apophtegmes laconiens », 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "“Weep not for me, as I suffer unjustly, I am in a happier situation than my "
 "murderers.” \\n— Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, “Parallel Lives”, “Agis”, sec. 20)"
-msgstr "\"Ne pleurez pas pour moi, car je souffre injustement, je suis dans une situation plus heureuse que mes assassins.\"  \\n—Agis IV de Sparte en voyant pleurer un de ses bourreaux (Plutarque, \"Vies parallèles\", \"Agis\", sec. 20)"
+msgstr "« Ne pleurez pas pour moi, car je souffre injustement, je suis dans une situation plus heureuse que mes assassins. »  \\n—Agis IV de Sparte en voyant pleurer un de ses bourreaux (Plutarque, « Vies parallèles », « Agis », sec. 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr "\"Faire l'amour et dormir seul me font prendre conscience que je suis un mortel.\" \\n— Alexandre Le Grand (Plutarque, “Vies Parallèles”, “Alexandre”, sec. 22)"
+msgstr "« Faire l'amour et dormir seul me font prendre conscience que je suis un mortel. » \\n— Alexandre Le Grand (Plutarque, « Vies Parallèles », « Alexandre », sec. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1178,7 +1178,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr "«C'est très servile de vivre dans le luxe, mais très royal de peiner. \\[…] Ne savez-vous pas que la fin et l'objet de la conquête sont d'éviter les vices et les infirmités des subjugués? » \\n—Alexandre le Grand (Plutarque,« Vies parallèles »,« Alexandre », art. 40)"
+msgstr "« C'est très servile de vivre dans le luxe, mais très royal de peiner. \\[…] Ne savez-vous pas que la fin et l'objet de la conquête sont d'éviter les vices et les infirmités des subjugués ? » \\n—Alexandre le Grand (Plutarque, « Vies parallèles », « Alexandre », art. 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1186,7 +1186,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.” \\n— Alexander the Great, addressing his troops "
 "(Arrian, “The Anabasis of Alexander”, 5.26)"
-msgstr "«Glorieuses sont les actions de ceux qui subissent un travail et courent le risque du danger; et il est délicieux de vivre une vie de valeur et de mourir en laissant une gloire immortelle. \" \\n—Alexandre le Grand, s'adressant à ses troupes (Arrien,\" L'Anabase d'Alexandre \", 5.26)\n "
+msgstr "« Glorieuses sont les actions de ceux qui subissent un travail et courent le risque du danger; et il est délicieux de vivre une vie de valeur et de mourir en laissant une gloire immortelle ». \\n—Alexandre le Grand, s'adressant à ses troupes (Arrien, « L'Anabase d'Alexandre », 5.26)\n "
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -1194,14 +1194,14 @@ msgid ""
 "labors themselves, provided they lead to glorious achievements.” \\n— "
 "Alexander the Great, addressing his troops (Arrian, “The Anabasis of "
 "Alexander”, 5.26)"
-msgstr "\"Pour ma part, je pense que pour un homme courageux, il n'y a pas de fin aux travaux, sauf les travaux eux-mêmes, à condition qu'ils conduisent à de glorieuses réalisations.\"  \\n—Alexandre le Grand, s'adressant à ses troupes (Arrien, \" L'Anabase d'Alexandre\", 5.26 )\n "
+msgstr "« Pour ma part, je pense que pour un homme courageux, il n'y a pas de fin aux travaux, sauf les travaux eux-mêmes, à condition qu'ils conduisent à de glorieuses réalisations. »  \\n—Alexandre le Grand, s'adressant à ses troupes (Arrien, « L'Anabase d'Alexandre », 5.26 )\n "
 
 #: gui/text/quotes.txt:24
 msgid ""
 "“If I were not Alexander, I should wish to be Diogenes \\[of Sinope].” \\n— "
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, “Moralia”, “On the Fortunes of Alexander the Great”, 332a–b)"
-msgstr "\"Si je n'étais pas Alexandre, je souhaiterais être Diogène \\[de Sinope].\"  \\n—Alexandre le Grand, impressionné par la simplicité du philosophe qu'il avait rencontré (Plutarque, \"Œuvres morales\", \"Sur la fortune d'Alexandre le Grand ”, 332a – b)"
+msgstr "« Si je n'étais pas Alexandre, je souhaiterais être Diogène \\[de Sinope]. »  \\n—Alexandre le Grand, impressionné par la simplicité du philosophe qu'il avait rencontré (Plutarque, « Œuvres morales », « Sur la fortune d'Alexandre le Grand », 332a – b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -1235,20 +1235,20 @@ msgid ""
 "“It was not by taking care of the fields, but of ourselves, that we acquired"
 " those fields.” \\n— Anaxandridas II of Sparta (Plutarch, “Moralia”, "
 "“Sayings of Spartans”, 217a)"
-msgstr "«Ce n'est pas en prenant soin des champs, mais de nous-mêmes, que nous avons acquis ces champs.»  \\n—Anaxandridas II de Sparte (Plutarque, «Œuvres Morales», «Apophtegmes laconiens», 217a)"
+msgstr "« Ce n'est pas en prenant soin des champs, mais de nous-mêmes, que nous avons acquis ces champs. »  \\n—Anaxandridas II de Sparte (Plutarque, « Œuvres Morales », « Apophtegmes laconiens », 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "“States are doomed when they are unable to distinguish good men from bad.” "
 "\\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent "
 "Philosophers”, “Antisthenes”, sec. 5)"
-msgstr "«Les États sont condamnés lorsqu'ils ne sont pas en mesure de distinguer les bons des mauvais.»  \\n—Antisthènes (Diogène Laertius, «La vie et les opinions d'éminents philosophes», «Antisthènes», sec. 5)\n "
+msgstr "« Les États sont condamnés lorsqu'ils ne sont pas en mesure de distinguer les bons des mauvais. »  \\n—Antisthènes (Diogène Laertius, « La vie et les opinions d'éminents philosophes », « Antisthènes », sec. 5)\n "
 
 #: gui/text/quotes.txt:31
 msgid ""
 "“The fox knows many tricks; the hedgehog one good one.” \\n— Archilochus "
 "(fragment 201)"
-msgstr "«Le renard connaît de nombreuses astuces; le hérisson une bonne. \" \\n— Archilochus (fragment 201)"
+msgstr "« Le renard connaît de nombreuses astuces; le hérisson une bonne. » \\n— Archilochus (fragment 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
@@ -1261,7 +1261,7 @@ msgstr "\"Donnez-moi un point fixe et un levier et je soulèverai la Terre.\"  \
 msgid ""
 "“It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.” \\n— Aristophanes (“Birds”)"
-msgstr "«C'est de leurs ennemis, et non de leurs amis, que les villes apprennent la leçon de la construction de hauts murs et de navires de guerre.»  \\n—Aristophane («Oiseaux»)"
+msgstr "« C'est de leurs ennemis, et non de leurs amis, que les villes apprennent la leçon de la construction de hauts murs et de navires de guerre. »  \\n—Aristophane (« Oiseaux »)"
 
 #: gui/text/quotes.txt:34
 msgid ""
@@ -1274,26 +1274,26 @@ msgstr "\"Il est obligatoire, encore plus pour un philosophe, de sacrifier, mêm
 msgid ""
 "“Happiness depends on leisure; for we are busy to have leisure, and make war"
 " to live in peace.” \\n— Aristotle (“Nicomachean Ethics”, X. 1177b.4)"
-msgstr "«le bonheur parfait consiste également dans le loisir. Nous ne nous privons de loisirs qu'en vue d'en obtenir et c'est pour vivre en paix que nous faisons la guerre. » \\n— Aristote (« Éthique à Nicomaque », X. 1177b.4)"
+msgstr "« Le bonheur parfait consiste également dans le loisir. Nous ne nous privons de loisirs qu'en vue d'en obtenir et c'est pour vivre en paix que nous faisons la guerre. » \\n— Aristote (« Éthique à Nicomaque », X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr "« L'Homme est par nature un animal politique. »\n— Aristote (“Politique”, I. 1253a.2)"
+msgstr "« L'Homme est par nature un animal politique. »\n— Aristote (« Politique », I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
 " their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
-msgstr "« L'oligarque et le tyran se méfient du peuple et le privent donc de leurs armes. »\n— Aristote (\"Politique, V. 1311a.11)"
+msgstr "« L'oligarque et le tyran se méfient du peuple et le privent donc de leurs armes. »\n— Aristote (« Politique », V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "“I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
-msgstr "«J'ai gagné cela par la philosophie: que je fasse sans être commandé ce que les autres ne font que par crainte de la loi.»  \\n—Aristote (Diogène Laertius, «La vie et les opinions des philosophes éminents», «Aristote», art. 20 )"
+msgstr "« J'ai gagné cela par la philosophie: que je fasse sans être commandé ce que les autres ne font que par crainte de la loi. »  \\n—Aristote (Diogène Laertius, « La vie et les opinions des philosophes éminents », « Aristote », art. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -1311,7 +1311,7 @@ msgid ""
 "immediately poured it upon the ground in the sight of all.” \\n— Arrian "
 "about Alexander's march through the Gedrosian desert (“The Anabasis of "
 "Alexander”, 6.26)"
-msgstr "«Alexandre lui-même, en proie à la soif, avec une grande douleur et des difficultés, a néanmoins mené l'armée à pied \\[…]. À ce moment-là, quelques-uns des soldats en armes légères \\[…] ont trouvé de l'eau \\[…], ont versé l'eau dans un casque et l'ont apportée à lui. Il le prit et, félicitant les hommes qui l'avaient apporté, le déversa immédiatement sur le sol à la vue de tous. » \\n— Arrian à propos de la marche d'Alexandre à travers le désert de Gedrosie (« L'Anabase d'Alexandre », 6.26)\n "
+msgstr "« Alexandre lui-même, en proie à la soif, avec une grande douleur et des difficultés, a néanmoins mené l'armée à pied \\[…]. À ce moment-là, quelques-uns des soldats en armes légères \\[…] ont trouvé de l'eau \\[…], ont versé l'eau dans un casque et l'ont apportée à lui. Il le prit et, félicitant les hommes qui l'avaient apporté, le déversa immédiatement sur le sol à la vue de tous. » \\n— Arrian à propos de la marche d'Alexandre à travers le désert de Gedrosie (« L'Anabase d'Alexandre », 6.26)\n "
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -1322,7 +1322,7 @@ msgid ""
 "had already raised his sword against Alexander from behind when Clitus \\[…]"
 " cut his arm off.” \\n— Arrian about the Battle of the Granicus (“The "
 "Anabasis of Alexander”, 1.15)"
-msgstr "«Enfonçant sa lance dans le visage de Mithridate, il \\[Alexandre] l'a jeté au sol. Puis Rhoesaces \\[un Perse] \\[…] l'a frappé à la tête avec son épée. \\[…] Alexandre le jeta lui aussi au sol, enfonçant sa lance à travers son plastron dans sa poitrine. Sphithridates \\[un Persen] avait déjà levé son épée contre Alexandre par derrière lorsque Clitus \\[…] lui coupa le bras. \" \\n— Arrien à propos de la bataille du Granique (\" L'anabase d'Alexandre \", 1.15)"
+msgstr "« Enfonçant sa lance dans le visage de Mithridate, il \\[Alexandre] l'a jeté au sol. Puis Rhoesaces \\[un Perse] \\[…] l'a frappé à la tête avec son épée. \\[…] Alexandre le jeta lui aussi au sol, enfonçant sa lance à travers son plastron dans sa poitrine. Sphithridates \\[un Persen] avait déjà levé son épée contre Alexandre par derrière lorsque Clitus \\[…] lui coupa le bras. » \\n— Arrien à propos de la bataille du Granique (« L'anabase d'Alexandre », 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
@@ -1353,7 +1353,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr "«J'ai mené des guerres, civiles et étrangères, dans le monde entier, sur mer et sur terre, et, victorieux, j'ai épargné tous les citoyens qui demandaient pardon. Les nations étrangères qui pouvaient être pardonnées en toute sécurité, j'ai préféré les sauver plutôt que les détruire. \" \\n— Auguste, dans son autobiographie (\" les Actes du divin Auguste \", sec. 3)"
+msgstr "« J'ai mené des guerres, civiles et étrangères, dans le monde entier, sur mer et sur terre, et, victorieux, j'ai épargné tous les citoyens qui demandaient pardon. Les nations étrangères qui pouvaient être pardonnées en toute sécurité, j'ai préféré les sauver plutôt que les détruire. » \\n— Auguste, dans son autobiographie (« les Actes du divin Auguste », sec. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1375,7 +1375,7 @@ msgid ""
 "“He has not acquired a fortune; the fortune has acquired him.” \\n— Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, “The Lives and"
 " Opinions of Eminent Philosophers”, “Bion”, sec. 50)"
-msgstr "«Il n'a pas acquis de fortune; la fortune l'a acquis. »\\n— Bion de Borysthène, se référant à un avare riche (Diogène Laërce,« La vie et les opinions d'éminents philosophes »,« Bion », sec. 50)"
+msgstr "« Il n'a pas acquis de fortune; la fortune l'a acquis. »\\n— Bion de Borysthène, se référant à un avare riche (Diogène Laërce, « La vie et les opinions d'éminents philosophes », « Bion », sec. 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -1393,7 +1393,7 @@ msgid ""
 "they make a wasteland and call it peace.” \\n— Calgacus, Caledonian "
 "chieftain in a speech before the Battle of Mons Graupius (Tacitus, "
 "“Agricola”, 30)"
-msgstr "«Vol, massacre, pillage, ils \\[les Romains] nomment trompeusement empire; ils font un terrain vague et l'appellent la paix. »\\n— Calgacus, chef calédonien dans un discours avant la bataille des monts Graupius (Tacite,« Agricola », 30)"
+msgstr "« Vol, massacre, pillage, ils \\[les Romains] nomment trompeusement empire; ils font un terrain vague et l'appellent la paix. »\\n— Calgacus, chef calédonien dans un discours avant la bataille des monts Graupius (Tacite,« Agricola », 30)"
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
@@ -1438,21 +1438,21 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.” \\n— Curtius Rufus about the Battle of Issus "
 "(“Histories of Alexander the Great”, III. 11.5)"
-msgstr "«Puis le sang à vraiment coulé, car les deux lignes étaient si proches que les bouclier s'entrechoquaient, et ils ont poussé leurs épées dans les visages les uns des autres. Il était impossible pour les faibles ou les lâches de battre en retraite; d'homme à homme, ils se sont battus comme en un combat unique. \"\\n— Quintus Curtius Rufus à propos de la bataille d'Issus (\" Histoires d'Alexandre le Grand \", III. 11.5)"
+msgstr "« Puis le sang à vraiment coulé, car les deux lignes étaient si proches que les boucliers s'entrechoquaient, et ils ont poussé leurs épées dans les visages les uns des autres. Il était impossible pour les faibles ou les lâches de battre en retraite ; d'homme à homme, ils se sont battus comme en un combat unique. »\\n— Quintus Curtius Rufus à propos de la bataille d'Issus (« Histoires d'Alexandre le Grand », III. 11.5)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
-msgstr "«Je suis Cyrus, qui a remporté pour les Perses leur empire. Ne me reprochez donc pas ce morceau de terre qui recouvre mes os. »\\n— Épitaphe de Cyrus le Grand (Plutarque,« Vies parallèles »,« Alexandre », sec. 69)\n "
+msgstr "« Je suis Cyrus, qui a remporté pour les Perses leur empire. Ne me reprochez donc pas ce morceau de terre qui recouvre mes os. »\\n— Épitaphe de Cyrus le Grand (Plutarque, « Vies parallèles », « Alexandre », sec. 69)\n "
 
 #: gui/text/quotes.txt:59
 msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
-msgstr "«Je suis Darius, le grand roi, le roi des rois, le roi de Perse, le roi des pays, \\[…] 23 terres au total.» \\n— Darius I (inscription de Behistun, colonne I, 1–6)"
+msgstr "« Je suis Darius, le grand roi, le roi des rois, le roi de Perse, le roi des pays, \\[…] 23 terres au total. » \\n— Darius I (inscription de Behistun, colonne I, 1–6)"
 
 #: gui/text/quotes.txt:60
 msgid ""
@@ -1462,13 +1462,13 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.” \\n— Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr "«Phraortes a été capturé et amené devant moi. J'ai coupé son nez, ses oreilles et sa langue, et j'ai sorti un œil, et il a été enchaîné à l'entrée de mon palais, et tout le monde l'a vu. Puis je l'ai crucifié à Ecbatana; et les hommes qui étaient ses premiers disciples \\[…] J'ai écorché et étendu leurs peaux, farcies de paille. »\\n— Darius I (inscription de Behistun, colonne II, 32)\n "
+msgstr "« Phraortes a été capturé et amené devant moi. J'ai coupé son nez, ses oreilles et sa langue, et j'ai sorti un œil, et il a été enchaîné à l'entrée de mon palais, et tout le monde l'a vu. Puis je l'ai crucifié à Ecbatana; et les hommes qui étaient ses premiers disciples \\[…] J'ai écorché et étendu leurs peaux, farcies de paille. »\\n— Darius I (inscription de Behistun, colonne II, 32)\n "
 
 #: gui/text/quotes.txt:61
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
-msgstr "«En désirant peu, un pauvre devient riche.» \\n— Démocrite (fragment)"
+msgstr "« En désirant peu, un pauvre devient riche. » \\n— Démocrite (fragment)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1486,7 +1486,7 @@ msgid ""
 "“It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.” \\n— Demosthenes, in one of his many speeches against the rising"
 " Philip II of Macedon (“Olynthiac II”, 10)"
-msgstr "«Il n'est pas possible de fonder un pouvoir durable sur l'injustice, le parjure et la trahison.» \\n— Démosthène, dans l'un de ses nombreux discours contre l'élévation de Philippe II de Macédoine («Olynthiac II», 10)\n "
+msgstr "« Il n'est pas possible de fonder un pouvoir durable sur l'injustice, le parjure et la trahison. » \\n— Démosthène, dans l'un de ses nombreux discours contre l'élévation de Philippe II de Macédoine (« Olynthiac II », 10)\n "
 
 #: gui/text/quotes.txt:65
 msgid ""
@@ -2072,7 +2072,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.” \\n— Polybius (“Histories”, VI. 24)"
-msgstr "«On ne leur[aux Centurions] demande pas de prendre l’initiative de l’attaque et d’engager le combat, mais plutôt de tenir bon ou de se faire tuer sur place quand, ayant le dessous, ils sont soumis à la pression de l’ennemi. »\\n— Polybe (« Histoires », VI.24)"
+msgstr "«On ne leur \\[aux Centurions] demande pas de prendre l’initiative de l’attaque et d’engager le combat, mais plutôt de tenir bon ou de se faire tuer sur place quand, ayant le dessous, ils sont soumis à la pression de l’ennemi. »\\n— Polybe (« Histoires », VI.24)"
 
 #: gui/text/quotes.txt:148
 msgid ""

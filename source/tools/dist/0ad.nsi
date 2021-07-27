@@ -86,12 +86,14 @@
 ;--------------------------------
 ;Languages
 ; Keep in sync with remove-incomplete-translations.sh
- 
-  !insertmacro MUI_LANGUAGE "English" ;first language is the default language
+
+  !insertmacro MUI_LANGUAGE "English" ; The first language is the default language
   !insertmacro MUI_LANGUAGE "Asturian"
   !insertmacro MUI_LANGUAGE "Basque"
   !insertmacro MUI_LANGUAGE "Catalan"
+  !insertmacro MUI_LANGUAGE "Czech"
   !insertmacro MUI_LANGUAGE "Dutch"
+  !insertmacro MUI_LANGUAGE "Finnish"
   !insertmacro MUI_LANGUAGE "French"
   !insertmacro MUI_LANGUAGE "German"
   !insertmacro MUI_LANGUAGE "Greek"
