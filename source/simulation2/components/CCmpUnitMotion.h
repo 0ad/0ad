@@ -564,6 +564,11 @@ private:
 		return m_FormationController != INVALID_ENTITY;
 	}
 
+	bool IsMovingAsFormation() const
+	{
+		return IsFormationMember() && m_MoveRequest.m_Type == MoveRequest::OFFSET;
+	}
+
 	bool IsFormationControllerMoving() const
 	{
 		CmpPtr<ICmpUnitMotion> cmpControllerMotion(GetSimContext(), m_FormationController);
@@ -1111,7 +1116,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 
 	fixed basicSpeed = m_Speed;
 	// If in formation, run to keep up; otherwise just walk.
-	if (IsFormationMember())
+	if (IsMovingAsFormation())
 		basicSpeed = m_Speed.Multiply(m_RunMultiplier);
 
 	// Find the speed factor of the underlying terrain.
