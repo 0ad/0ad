@@ -42,11 +42,10 @@ private:
 	CUnit(CObjectManager& objectManager, const CActorDef& actor, uint32_t seed);
 
 public:
-	// Attempt to create a unit with the given actor, with a set of
-	// suggested selections (with the rest being randomised using the
-	// given random seed).
+	// Attempt to create a unit with the given actor.
+	// If specific selections are wanted, call SetEntitySelection or SetActorSelections after creation.
 	// Returns NULL on failure.
- 	static CUnit* Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>& selections, CObjectManager& objectManager);
+	static CUnit* Create(const CStrW& actorName, uint32_t seed, CObjectManager& objectManager);
 
 	// destructor
 	~CUnit();
@@ -77,6 +76,9 @@ public:
 
 	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
 
+	/**
+	 * Overwrite the seed-selected actor selections. Likely only useful for Atlas or debugging.
+	 */
 	void SetActorSelections(const std::set<CStr>& selections);
 
 private:
@@ -96,9 +98,11 @@ private:
 	// seed used when creating unit
 	uint32_t m_Seed;
 
-	// actor-level selections for this unit
+	// Actor-level selections for this unit. This is normally set at init time,
+	// so that we always re-use the same aesthetic variants.
+	// These have lower priority than entity-level selections.
 	std::set<CStr> m_ActorSelections;
-	// entity-level selections for this unit
+	// Entity-level selections for this unit (used for e.g. animation variants).
 	std::map<CStr, CStr> m_EntitySelections;
 
 	// object manager which looks after this unit's objectentry

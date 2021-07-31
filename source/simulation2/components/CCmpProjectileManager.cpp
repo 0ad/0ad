@@ -202,8 +202,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(CFixedVector3D launchPoint, CFi
 
 	projectile.origin = launchPoint;
 
-	std::set<CStr> selections;
-	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(actorName, m_ActorSeed++, selections);
+	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(actorName, m_ActorSeed++);
 	if (!projectile.unit) // The error will have already been logged
 		return currentId;
 
@@ -302,8 +301,7 @@ void CCmpProjectileManager::Interpolate(float frameTime)
 			quat.ToMatrix(transform);
 			transform.Translate(m_Projectiles[i].pos);
 
-			std::set<CStr> selections;
-			CUnit* unit = GetSimContext().GetUnitManager().CreateUnit(m_Projectiles[i].impactActorName, m_ActorSeed++, selections);
+			CUnit* unit = GetSimContext().GetUnitManager().CreateUnit(m_Projectiles[i].impactActorName, m_ActorSeed++);
 			unit->GetModel().SetTransform(transform);
 
 			ProjectileImpactAnimation projectileImpactAnimation;

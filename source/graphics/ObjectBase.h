@@ -229,6 +229,11 @@ public:
 
 	VfsPath GetPathname() const { return m_Pathname; }
 
+	/**
+	 * Return a list of selections specifying a particular variant in all groups, based on the seed.
+	 */
+	std::set<CStr> PickSelectionsAtRandom(uint32_t seed) const;
+
 // Interface accessible from CObjectManager / CObjectBase
 protected:
 	/**

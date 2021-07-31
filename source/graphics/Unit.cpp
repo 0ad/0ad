@@ -31,6 +31,15 @@
 CUnit::CUnit(CObjectManager& objectManager, const CActorDef& actor, uint32_t seed)
 : m_ID(INVALID_ENTITY), m_ObjectManager(objectManager), m_Actor(actor), m_Seed(seed), m_Animation(nullptr)
 {
+	/**
+	 * When entity selections change, we might end up with a different layout in terms of variants/groups,
+	 * which means the random key calculation might end up with different results for the same seed.
+	 * This is bad, as it means entities randomly change appearence when changing e.g. animation.
+	 * To fix this, we'll initially pick a random and complete specification based on our seed,
+	 * and then pass that as the lowest priority selections. Thus, if the actor files are properly specified,
+	 * we can ensure that the entities will look the same no matter what happens.
+	 */
+	SetActorSelections(m_Actor.PickSelectionsAtRandom(m_Seed)); // Calls ReloadObject().
 }
 
 CUnit::~CUnit()
@@ -39,14 +48,13 @@ CUnit::~CUnit()
 	delete m_Model;
 }
 
-CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>& selections, CObjectManager& objectManager)
+CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, CObjectManager& objectManager)
 {
 	auto [success, actor] = objectManager.FindActorDef(actorName);
 	
 	UNUSED2(success);
 
 	CUnit* unit = new CUnit(objectManager, actor, seed);
-	unit->SetActorSelections(selections); // Calls ReloadObject().
 	if (!unit->m_Model)
 	{
 		delete unit;
