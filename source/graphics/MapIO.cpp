@@ -69,7 +69,8 @@ Status ParseHeightmapImage(const std::shared_ptr<u8>& fileData, size_t fileSize,
 	Tex tex;
 	RETURN_STATUS_IF_ERR(tex.decode(fileData, fileSize));
 
-	// Convert to uncompressed BGRA with no mipmaps
+	// Convert to uncompressed BGRA with no mipmaps.
+	// Note that grayscale images don't get converted - they remain grayscale, 8-bits per pixel.
 	RETURN_STATUS_IF_ERR(tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)));
 
 	// Pick smallest side of texture; truncate if not divisible by PATCH_SIZE
@@ -82,17 +83,26 @@ Status ParseHeightmapImage(const std::shared_ptr<u8>& fileData, size_t fileSize,
 
 	// Copy image data into the heightmap
 	heightmap.resize(SQR(tileSize + 1));
-	for (ssize_t y = 0; y < tileSize + 1; ++y)
-		for (ssize_t x = 0; x < tileSize + 1; ++x)
-		{
-			// Repeat the last pixel of the image for the last vertex of the heightmap
-			int offset = std::min(y, tileSize - 1) * mapLineSkip + std::min(x, tileSize - 1) * bytesPP;
-
-			heightmap[(tileSize - y) * (tileSize + 1) + x] = static_cast<u16>(256) * std::max({
-				mapdata[offset],
-				mapdata[offset + bytesPP],
-				mapdata[offset + bytesPP * 2]});
-		}
+	// if hoisted out of the loop as a micro-optimisation that doesn't harm readability much.
+	if (bytesPP == 1)
+		for (ssize_t y = 0; y < tileSize + 1; ++y)
+			for (ssize_t x = 0; x < tileSize + 1; ++x)
+			{
+				// Repeat the last pixel of the image for the last vertex of the heightmap
+				int offset = std::min(y, tileSize - 1) * mapLineSkip + std::min(x, tileSize - 1);
+				heightmap[(tileSize - y) * (tileSize + 1) + x] = static_cast<u16>(256) * mapdata[offset];
+			}
+	else if (bytesPP == 4)
+		for (ssize_t y = 0; y < tileSize + 1; ++y)
+			for (ssize_t x = 0; x < tileSize + 1; ++x)
+			{
+				// Repeat the last pixel of the image for the last vertex of the heightmap
+				int offset = std::min(y, tileSize - 1) * mapLineSkip + std::min(x, tileSize - 1) * bytesPP;
+				heightmap[(tileSize - y) * (tileSize + 1) + x] = static_cast<u16>(256) * std::max({
+					mapdata[offset],
+					mapdata[offset + 1],
+					mapdata[offset + 2]});
+			}
 
 	return INFO::OK;
 }
