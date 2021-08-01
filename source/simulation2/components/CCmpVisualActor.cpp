@@ -598,11 +598,10 @@ void CCmpVisualActor::InitModel()
 	if (!GetSimContext().HasUnitManager())
 		return;
 
-	std::set<CStr> selections;
 	std::wstring actorName = m_ActorName;
 	if (actorName.find(L".xml") == std::wstring::npos)
 		actorName += L".xml";
-	m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed(), selections);
+	m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed());
 	if (!m_Unit)
 		return;
 

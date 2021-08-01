@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,12 +87,12 @@ void CUnitManager::DeleteAll()
 
 ///////////////////////////////////////////////////////////////////////////////
 // CreateUnit: create a new unit and add it to the world
-CUnit* CUnitManager::CreateUnit(const CStrW& actorName, uint32_t seed, const std::set<CStr8>& selections)
+CUnit* CUnitManager::CreateUnit(const CStrW& actorName, uint32_t seed)
 {
 	if (! m_ObjectManager)
 		return NULL;
 
-	CUnit* unit = CUnit::Create(actorName, seed, selections, *m_ObjectManager);
+	CUnit* unit = CUnit::Create(actorName, seed, *m_ObjectManager);
 	if (unit)
 		AddUnit(unit);
 	return unit;

@@ -781,6 +781,14 @@ CActorDef::CActorDef(CObjectManager& objectManager) : m_ObjectManager(objectMana
 {
 }
 
+std::set<CStr> CActorDef::PickSelectionsAtRandom(uint32_t seed) const
+{
+	// Use the selections from the highest quality actor - this lets artists maintain compatibility (or not)
+	// when going to lower quality levels.
+	std::vector<std::set<CStr>> noSelections;
+	return GetBase(255)->CalculateRandomRemainingSelections(seed, noSelections);
+}
+
 std::vector<u8> CActorDef::QualityLevels() const
 {
 	std::vector<u8> splits;

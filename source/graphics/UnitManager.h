@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ public:
 	void DeleteAll();
 
 	// creates a new unit and adds it to the world
-	CUnit* CreateUnit(const CStrW& actorName, uint32_t seed, const std::set<CStr8>& selections);
+	CUnit* CreateUnit(const CStrW& actorName, uint32_t seed);
 
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }
