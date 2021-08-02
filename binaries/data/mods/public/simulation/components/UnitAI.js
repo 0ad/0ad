@@ -247,7 +247,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
-		if (!this.AbleToMove())
+		if (!this.IsFormationMember() || !this.AbleToMove())
 			return this.FinishOrder();
 
 		if (this.CanPack())
