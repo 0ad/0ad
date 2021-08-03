@@ -5961,16 +5961,12 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 {
 	if (this.IsFormationController())
 	{
-		let cmpUnitAI;
+		let foundSomething = false;
 		let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-		for (let ent of cmpFormation.members)
-		{
-			if (!(cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI)))
-				continue;
-			if (cmpUnitAI.FindWalkAndFightTargets())
-				return true;
-		}
-		return false;
+		for (const ent of cmpFormation.members)
+			if (Engine.QueryInterface(ent, IID_UnitAI)?.FindWalkAndFightTargets())
+				foundSomething = true;
+		return foundSomething;
 	}
 
 	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
