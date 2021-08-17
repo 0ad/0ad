@@ -1,0 +1,147 @@
+.TH 0AD "6" "April 7, 2012"
+.SH NAME
+0ad \- A real-time strategy game of ancient warfare
+.SH SYNOPSIS
+.B 0ad
+.RI [ options ]
+.SH DESCRIPTION
+0 A.D. is a free, open-source, cross-platform real-time strategy game
+of ancient warfare. As the military leader of an ancient civilisation,
+you must gather the resources you need to raise a military force
+capable of dominating your enemies.
+.SH OPTIONS
+.SS Basic gameplay
+.TP
+.B \-autostart
+Load a map instead of showing main menu (see below).
+.TP
+.B \-editor
+Launch the Atlas scenario editor.
+.TP
+.B \-mod NAME
+Start the game using NAME mod.
+.TP
+.B \-quickstart
+Load faster (disables audio and some system info logging).
+.SS Autostart
+.TP
+.B \-autostart=NAME
+Map NAME for scenario, or rms name for random map.
+.TP
+.B \-autostart-ai=PLAYER:AI
+Adds named AI to the given PLAYER (e.g. 2:testbot).
+.SS Multiplayer
+.TP
+.B \-autostart-playername=NAME
+Multiplayer local player NAME (default 'anonymous').
+.TP
+.B \-autostart-host
+Multiplayer host mode.
+.TP
+.B \-autostart-players=NUMBER
+Multiplayer host: NUMBER of client players (default 2).
+.TP
+.B \-autostart-client
+Multiplayer client mode.
+.TP
+.B \-autostart-ip=IP
+Multiplayer client: connect to this host IP.
+.SS Random maps only
+.TP
+.B \-autostart-random
+Random map.
+.TP
+.B \-autostart-random=SEED
+Random map with SEED value (default 0, use \-1 for random).
+.TP
+.B \-autostart-size=TILES
+Random map SIZE in tiles (default 192).
+.TP
+.B \-autostart-players=NUMBER
+NUMBER of players on random map.
+.SS Configuration
+.TP
+.B \-conf:KEY=VALUE
+Set a config value (overrides the contents of system.cfg).
+.TP
+.B \-g=F
+Set the gamma correction to 'F' (default 1.0).
+.TP
+.B \-nosound
+Disable audio.
+.TP
+.B \-onlyPublicFiles
+Force game to use only the public (default) mod.
+.TP
+.B \-shadows
+Enable shadows.
+.TP
+.B \-vsync
+Enable VSync, i.e. lock FPS to monitor refresh rate.
+.TP
+.B \-xres=N
+Set screen X resolution to 'N'.
+.TP
+.B \-yres=N
+Set screen Y resolution to 'N'.
+.SS Advanced / diagnostic
+.TP
+.B \-dumpSchema
+Creates a file entity.rng in the working directory, containing
+complete entity XML schema, used by various analysis tools.
+.TP
+.B \-replay=PATH
+Non-visual replay of a previous game, used for analysis purposes.
+PATH is system path to commands.txt containing simulation log.
+.TP
+.B \-writableRoot
+Store runtime game data in root data directory (only use if you
+have write permissions on that directory).
+.SS Archive builder
+.TP
+.B \-archivebuild=PATH
+System PATH of the base directory containing mod data to be
+archived/precached.
+.TP
+.B \-archivebuild-output=PATH
+System PATH to output of the resulting .zip archive (use with
+archivebuild).
+.TP
+.B \-archivebuild-compress
+Enable deflate compression in the .zip (no zip compression by
+default since it hurts compression of release packages).
+
+.SH "FILES"
+.TP
+.B ~/.config/0ad/config/local.cfg
+User specific settings. You may put in this file any user specific
+settings using the same syntax of the default settings file.
+.PP
+0 A.D. also uses the 
+.B ~/.cache/0ad/
+,
+.B ~/.config/0ad/
+and
+.B ~/.local/share/0ad/
+directories for other user specific files, such as texture cache,
+screenshots and saved games.
+
+.SH SEE ALSO
+.TP
+.B http://wildfiregames.com/0ad/
+0 A.D. main web site.
+.TP
+.B http://trac.wildfiregames.com/
+0 A.D. wiki and developer web site.
+
+.SH AUTHOR
+0ad was written by the 0 A.D. Team.
+.PP
+This manual page was written by Fabio Pedretti <fabio.ped@libero.it>,
+for the Debian project (and may be used by others). Permission is
+granted to copy, distribute and/or modify this document under the
+terms of the GNU General Public License, Version 2 or any later version
+published by the Free Software Foundation.
+.PP
+On Debian systems, the complete text of the GNU General Public License
+can be found in /usr/share/common-licenses/GPL-2.

@@ -1,0 +1,21 @@
+Description: Fix search path for pyrogenesis
+ Modify launcher script to execute /usr/games/pyrogenesis if /usr/games is
+ not in the user's $PATH.
+Forwarded: http://trac.wildfiregames.com/ticket/1424
+Author: Vincent Cheng <vcheng@debian.org>
+Bug-Debian: https://bugs.debian.org/679033
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1380737
+Last-Update: 2014-10-13
+
+--- a/build/resources/0ad.sh
++++ b/build/resources/0ad.sh
+@@ -3,6 +3,9 @@
+ pyrogenesis=$(which pyrogenesis 2> /dev/null)
+ if [ -x "$pyrogenesis" ] ; then
+   "$pyrogenesis" "$@"
++elif [ -x /usr/games/pyrogenesis ] ; then
++  # Fallback in case /usr/games is not in $PATH; see #679033 and LP: #1380737
++  /usr/games/pyrogenesis "$@"
+ else
+   echo "Error: pyrogenesis not found in ($PATH)"
+   exit 1

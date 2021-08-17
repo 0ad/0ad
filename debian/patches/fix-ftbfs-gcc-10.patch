@@ -1,0 +1,106 @@
+Description: Fix FTBFS with gcc-10
+Origin: upstream, https://trac.wildfiregames.com/changeset/23794
+Bug: https://trac.wildfiregames.com/ticket/5756
+Bug-Debian: https://bugs.debian.org/956967
+
+--- a/libraries/source/fcollada/src/FColladaPlugins/FArchiveXML/FAXPhysicsExport.cpp
++++ b/libraries/source/fcollada/src/FColladaPlugins/FArchiveXML/FAXPhysicsExport.cpp
+@@ -329,16 +329,3 @@
+ 		FArchiveXML::LetWriteObject(physicsRigidBodyParameters->GetPhysicsShape(i), techniqueNode);
+ 	}
+ }
+-
+-template <class TYPE, int QUAL>
+-xmlNode* FArchiveXML::AddPhysicsParameter(xmlNode* parentNode, const char* name, FCDParameterAnimatableT<TYPE,QUAL>& value)
+-{
+-	xmlNode* paramNode = AddChild(parentNode, name);
+-	AddContent(paramNode, FUStringConversion::ToString((TYPE&) value));
+-	if (value.IsAnimated())
+-	{
+-		const FCDAnimated* animated = value.GetAnimated();
+-		FArchiveXML::WriteAnimatedValue(animated, paramNode, name);
+-	}
+-	return paramNode;
+-}
+--- a/libraries/source/fcollada/src/FColladaPlugins/FArchiveXML/FArchiveXML.h
++++ b/libraries/source/fcollada/src/FColladaPlugins/FArchiveXML/FArchiveXML.h
+@@ -553,7 +553,16 @@
+ 
+ 	static void WritePhysicsRigidBodyParameters(FCDPhysicsRigidBodyParameters* physicsRigidBodyParameters, xmlNode* techniqueNode);
+ 	template <class TYPE, int QUAL>
+-	static xmlNode* AddPhysicsParameter(xmlNode* parentNode, const char* name, FCDParameterAnimatableT<TYPE,QUAL>& value);
++	static xmlNode* AddPhysicsParameter(xmlNode* parentNode, const char* name, FCDParameterAnimatableT<TYPE,QUAL>& value) {
++		xmlNode* paramNode = AddChild(parentNode, name);
++		AddContent(paramNode, FUStringConversion::ToString((TYPE&) value));
++		if (value.IsAnimated())
++		{
++			const FCDAnimated* animated = value.GetAnimated();
++			FArchiveXML::WriteAnimatedValue(animated, paramNode, name);
++		}
++		return paramNode;
++	}
+ 
+ 
+ 	//
+--- a/source/simulation2/helpers/HierarchicalPathfinder.cpp
++++ b/source/simulation2/helpers/HierarchicalPathfinder.cpp
+@@ -697,28 +697,6 @@
+ 	jGoal = jBest;
+ }
+ 
+-void HierarchicalPathfinder::FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass)
+-{
+-	// Flood-fill the region graph, starting at 'from',
+-	// collecting all the regions that are reachable via edges
+-
+-	std::vector<RegionID> open;
+-	open.push_back(from);
+-	reachable.insert(from);
+-
+-	while (!open.empty())
+-	{
+-		RegionID curr = open.back();
+-		open.pop_back();
+-
+-		for (const RegionID& region : m_Edges[passClass][curr])
+-			// Add to the reachable set; if this is the first time we added
+-			// it then also add it to the open list
+-			if (reachable.insert(region).second)
+-				open.push_back(region);
+-	}
+-}
+-
+ void HierarchicalPathfinder::FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass)
+ {
+ 	// Construct a set of all regions of all chunks for this pass class
+--- a/source/simulation2/helpers/HierarchicalPathfinder.h
++++ b/source/simulation2/helpers/HierarchicalPathfinder.h
+@@ -148,7 +148,27 @@
+ 
+ 	void FindEdges(u8 ci, u8 cj, pass_class_t passClass, EdgesMap& edges);
+ 
+-	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass);
++	void FindReachableRegions(RegionID from, std::set<RegionID>& reachable, pass_class_t passClass)
++	{
++		// Flood-fill the region graph, starting at 'from',
++		// collecting all the regions that are reachable via edges
++
++		std::vector<RegionID> open;
++		open.push_back(from);
++		reachable.insert(from);
++
++		while (!open.empty())
++		{
++			RegionID curr = open.back();
++			open.pop_back();
++
++			for (const RegionID& region : m_Edges[passClass][curr])
++				// Add to the reachable set; if this is the first time we added
++				// it then also add it to the open list
++				if (reachable.insert(region).second)
++					open.push_back(region);
++		}
++	}
+ 
+ 	void FindPassableRegions(std::set<RegionID>& regions, pass_class_t passClass);
+ 

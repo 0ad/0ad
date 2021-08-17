@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+
+# mozjs' build process does not seem to be compatible with other shells
+# like zsh
+export SHELL = /bin/sh
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+include /usr/share/dpkg/architecture.mk
+
+PARALLEL_JOBS=$(shell getconf _NPROCESSORS_ONLN)
+ifeq ($(findstring parallel=,$(DEB_BUILD_OPTIONS)),)
+	export DEB_BUILD_OPTIONS+=parallel=$(PARALLEL_JOBS)
+endif
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	build/workspaces/clean-workspaces.sh
+	# Clean up some extra cruft not picked up by clean-workspaces.sh
+	find binaries/system/ -type f ! -name readme.txt -delete
+	rm -f libraries/fcollada/lib/*.a
+	rm -f build/premake/.*.tmp
+	rm -f libraries/source/spidermonkey/lib/*
+	rm -f libraries/source/cxxtest-4.4/python/cxxtest/*.pyc
+	rm -f libraries/source/fcollada/lib/*
+	rm -rf libraries/source/spidermonkey/include-unix-*
+	rm -f source/ps/tests/stub_impl_hack.cpp
+	dh_auto_clean
+
+override_dh_auto_build:
+	mkdir -p libraries/source/fcollada/lib
+	build/workspaces/update-workspaces.sh \
+		--bindir=/usr/games \
+		--libdir=/usr/lib/games/0ad \
+		--datadir=/usr/share/games/0ad \
+		-j$(PARALLEL_JOBS)
+	
+	$(MAKE) config=release verbose=1 -C build/workspaces/gcc \
+		-j$(PARALLEL_JOBS)
+
+override_dh_auto_test:
+	# Note: Avoid running tests from root dir of build, otherwise certain
+	# tests (i.e. in testsuite MeshManager) may not work as intended and
+	# create spurious directories above root dir (../data/mods).
+ifeq (,$(filter armhf arm64 kfreebsd-amd64 kfreebsd-i386, $(DEB_HOST_ARCH)))
+	cd binaries/system/ && LD_LIBRARY_PATH=. ./test -libdir .
+endif
+
+override_dh_auto_install:
+	install -Dm 0755 build/resources/0ad.sh $(CURDIR)/debian/tmp/usr/games/0ad
+	dh_auto_install
+
+override_dh_strip:
+	dh_strip --dbgsym-migration='0ad-dbg (<< 0.0.20-2~)'
+
+override_dh_makeshlibs:
+	dh_makeshlibs -Xusr/lib/games/0ad
+
+override_dh_dwz:
+	echo skipping dh_dwz
+
+
+override_dh_link:
+	# Remove embedded fonts and use system copies instead
+	rm -f $(CURDIR)/debian/0ad-data-common/usr/share/games/0ad/tools/fontbuilder/fonts/{DejaVuSansMono,Free*,texgyrepagella*}.{ttf,otf}
+	dh_link
+
+override_dh_builddeb:
+	dh_builddeb -- -Zxz

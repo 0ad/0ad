@@ -1,0 +1,14 @@
+Description: Update cxxtestgen shebang.
+Author: Dimitri John Ledkov <xnox@ubuntu.com>
+Bug-Debian: https://bugs.debian.org/967118
+Forwarded: not-needed
+Last-Update: 2020-08-18
+
+--- a/libraries/source/cxxtest-4.4/bin/cxxtestgen
++++ b/libraries/source/cxxtest-4.4/bin/cxxtestgen
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/env python2
+ #
+ # The CxxTest driver script, which uses the cxxtest Python package.
+ #

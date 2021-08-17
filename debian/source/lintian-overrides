@@ -1,0 +1,31 @@
+# Not a problem since 0ad and 0ad-data are uploaded at the same time, and
+# dpkg-gencontrol doesn't provide any other substitution variables for packages
+# to depend on versioned packages built from a separate source package
+0ad source: version-substvar-for-external-package
+# Source for the following files can be found in debian/missing-sources/
+# (they trigger lintian errors because they are not named the same as the
+# non-minified files in debian/missing-sources/, or contain inline
+# javascript dependencies). See debian/missing-sources/README.txt for details.
+0ad source: insane-line-length-in-source-file source/tools/replayprofile/jquery.flot.js line length is 2981 characters (>512)
+0ad source: source-contains-prebuilt-javascript-object source/tools/replayprofile/jquery.flot.js line length is 2981 characters (>512)
+0ad source: source-is-missing source/tools/replayprofile/jquery.flot.js line length is 2981 characters (>512)
+0ad source: insane-line-length-in-source-file source/tools/replayprofile/jquery.flot.navigate.js line length is 1984 characters (>512)
+0ad source: source-contains-prebuilt-javascript-object source/tools/replayprofile/jquery.flot.navigate.js line length is 1984 characters (>512)
+0ad source: source-is-missing source/tools/replayprofile/jquery.flot.navigate.js line length is 1984 characters (>512)
+0ad source: insane-line-length-in-source-file source/tools/templatesanalyzer/tablefilter/tablefilter.js line length is 32005 characters (>512)
+0ad source: source-contains-prebuilt-javascript-object source/tools/templatesanalyzer/tablefilter/tablefilter.js line length is 32005 characters (>512)
+0ad source: source-is-missing source/tools/templatesanalyzer/tablefilter/tablefilter.js line length is 32005 characters (>512)
+0ad source: insane-line-length-in-source-file source/tools/templatesanalyzer/tablefilter/tf-1.js line length is 32004 characters (>512)
+0ad source: source-contains-prebuilt-javascript-object source/tools/templatesanalyzer/tablefilter/tf-1.js line length is 32004 characters (>512)
+0ad source: source-is-missing source/tools/templatesanalyzer/tablefilter/tf-1.js line length is 32004 characters (>512)
+
+## Currently unused overrides/comments:
+# These files actually are non-minified source code. Silly lintian assumes
+# that all javascript files with lines that have more than 512 characters must
+# be minified javascript files, which is a faulty assumption here.
+#
+# This is where the lintian source-is-missing tag suggests putting non-minified
+# files in, in place of files in the source tarball that only have minified
+# versions. I know for a fact that none of the javascript files in this
+# directory are minified (lintian is just being stupid here...).
+#0ad source: source-is-missing debian/missing-sources/*.js

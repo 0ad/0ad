@@ -1,0 +1,383 @@
+0ad (0.0.25a) UNRELEASED; urgency=medium
+
+  * Yuanã
+
+ -- Vitex <info@vitexsoftware.cz>  Fri, 23 Jul 2021 09:42:15 +0200
+
+0ad (0.0.24) UNRELEASED; urgency=medium
+
+  * Xšayāršā
+
+ -- Vitex <info@vitexsoftware.cz>  Fri, 23 Jul 2021 09:42:15 +0200
+
+0ad (0.0.23.1-5) unstable; urgency=medium
+
+  * Fix FTBFS with gcc-10. (Closes: #956967)
+  * Avoid build-dep on unversioned python2. (Closes: #967118)
+  * Cherrypick patch from upstream to add workaround for L3 cache detection on
+    Ryzen 3000 series CPUs. (Closes: #949699)
+  * Update to dh compat level 12.
+  * Update Standards version to 4.5.0.
+  * Add upstream metadata file.
+
+ -- Vincent Cheng <vcheng@debian.org>  Tue, 18 Aug 2020 02:48:00 -0700
+
+0ad (0.0.23.1-4) unstable; urgency=medium
+
+  * Team upload.
+  * Re-upload source-only to enable migration to testing.
+
+ -- Bruno Kleinert <fuddl@debian.org>  Mon, 05 Aug 2019 18:56:58 +0200
+
+0ad (0.0.23.1-3) unstable; urgency=medium
+
+  * Team upload.
+  * Build against GTK 3 version of wxWidget. Replaced build dependency
+    libwxgtk3.0-dev by libwxgtk3.0-gtk3-dev. (Closes: #933456)
+  * Added NEWS.Debian to document a workaround for a known issue caused by the
+    GTK 3 variant of wxWidget.
+
+ -- Bruno Kleinert <fuddl@debian.org>  Sat, 03 Aug 2019 05:18:37 +0200
+
+0ad (0.0.23.1-2) unstable; urgency=medium
+
+  * d/control: version 0.0.23.1 also needs a new 0ad-data
+
+ -- Ludovic Rousseau <rousseau@debian.org>  Wed, 09 Jan 2019 10:33:09 +0100
+
+0ad (0.0.23.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Re-release of 0 A.D. Alpha 23 Ken Wood
+      https://play0ad.com/re-release-of-0-a-d-alpha-23-ken-wood/
+  * d/control: change Depends: to use 0.0.23 since 0ad-data is unchanged.
+  * Fix "Alpha 23 Lobby lag and other multiplayer issues" (Closes: #905470)
+
+ -- Ludovic Rousseau <rousseau@debian.org>  Fri, 04 Jan 2019 11:18:19 +0100
+
+0ad (0.0.23-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Remove enable-hardening-relro.patch and armhf-wchar-signedness.patch;
+      obsolete, applied upstream.
+    - Remove create_empty_dirs.patch and move logic into debian/rules.
+  * Add new build-dep on libsodium-dev (>= 1.0.14).
+  * Restore all supported archs as of 0ad/0.0.21-2, i.e. arm64 and kfreebsd-*.
+  * Update Standards version to 4.1.4, no changes required.
+
+ -- Vincent Cheng <vcheng@debian.org>  Mon, 21 May 2018 23:38:30 -0700
+
+0ad (0.0.22-4) unstable; urgency=medium
+
+  * Create empty directory not stored in git
+  * Add description to a quilt patch
+  * Enable parallel build
+  * Use debhelper version 10 (instead of 9)
+  * Migrate the repository from SVN to GIT
+
+ -- Ludovic Rousseau <rousseau@debian.org>  Wed, 10 Jan 2018 16:27:16 +0100
+
+0ad (0.0.22-3.1) unstable; urgency=medium
+
+  * Non-maintainer upload with maintainers permission.
+  * Add armhf back to architecture list.
+  * Fix "0ad FTBFS with on armhf with gcc 7: error: call of overloaded
+    'abs(unsigned int)' is ambiguous" (Closes: #879071)
+
+ -- Peter Michael Green <plugwash@debian.org>  Tue, 21 Nov 2017 00:15:10 +0000
+
+0ad (0.0.22-3) unstable; urgency=medium
+
+  * remove support of kfreebsd-amd64 and kfreebsd-i386 since auto test fails
+    for 0ad alpha 22 and then 0ad FTBFS.
+  * debian/source/lintian-overrides: remove unused-override
+    outdated-autotools-helper-file.
+    Reported by lintian.
+  * debian/rules: enable hardening=+all
+
+ -- Ludovic Rousseau <rousseau@debian.org>  Sat, 04 Nov 2017 11:04:26 +0100
+
+0ad (0.0.22-2) unstable; urgency=medium
+
+  * Fix "0ad FTBFS with on armhf with gcc 7: error: call of overloaded
+    'abs(unsigned int)' is ambiguous" by removing support of armhf
+    (Closes: #879071)
+  * remove support of arm64 because of FTBFS in spidermonkey/mozjs-38.0.0
+    https://buildd.debian.org/status/fetch.php?pkg=0ad&arch=arm64&ver=0.0.22-1&stamp=1508351579&raw=0
+
+ -- Ludovic Rousseau <rousseau@debian.org>  Fri, 27 Oct 2017 16:22:15 +0200
+
+0ad (0.0.22-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Fix "New Release: 0 A.D. Alpha 22 Venustas" (Closes: #872654)
+  * Export SHELL to make mozjs-38 build using debuild(1)
+
+ -- Ludovic Rousseau <rousseau@debian.org>  Wed, 18 Oct 2017 15:33:17 +0200
+
+0ad (0.0.21-2) unstable; urgency=medium
+
+  * Fix FTBFS by installing missing files with dh_install.
+
+ -- Vincent Cheng <vcheng@debian.org>  Sat, 12 Nov 2016 22:57:56 -0800
+
+0ad (0.0.21-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Drop debian/patches/fix-gcc6-segfault.patch, obsolete.
+    - Refresh remaining patches.
+
+ -- Vincent Cheng <vcheng@debian.org>  Sat, 12 Nov 2016 16:46:11 -0800
+
+0ad (0.0.20-3) unstable; urgency=medium
+
+  * Add debian/patches/fix-gcc6-segfault.patch to fix spidermonkey segfault
+    when built with gcc6. (Closes: #835176)
+  * Temporarily disable test suite on arm64 to fix arch-specific FTBFS.
+  * Call dh_strip --dbgsym-migration to cleanly migrate from the old -dbg
+    package to -dbgsym.
+
+ -- Vincent Cheng <vcheng@debian.org>  Wed, 07 Sep 2016 22:44:22 -0700
+
+0ad (0.0.20-2) unstable; urgency=medium
+
+  * Team upload.
+  * Drop 0ad-dbg package and use the automatic -dbgsym package instead.
+  * d/rules: Remove override for dh_builddeb because xz is the default
+    compression.
+  * Declare compliance with Debian Policy 3.9.8.
+  * Build-depend on python and fix FTBFS.
+    Thanks to Lucas Nussbaum for the report. (Closes: #832870)
+  * Ensure that 0ad can be built twice in a row by updating dh_auto_clean
+    target. Thanks to Peter Green for the patch.
+
+ -- Markus Koschany <apo@debian.org>  Sun, 21 Aug 2016 04:54:55 +0200
+
+0ad (0.0.20-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Drop build-dep on libjpeg-dev.
+    - Refresh patches.
+  * Remove debian/menu file as per tech-ctte decision in #741573.
+  * Update Standards version to 3.9.7, no changes required.
+  * Update jQuery/JavaScript related lintian overrides.
+
+ -- Vincent Cheng <vcheng@debian.org>  Sun, 03 Apr 2016 19:42:21 -0700
+
+0ad (0.0.19-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #807447)
+    - Add support for arm64. (Closes: #790306)
+    - Replace dependency on libsdl1.2-dev with libsdl2-dev (>= 2.0.2).
+    - Remove gcc-5.1.patch, applied upstream.
+    - Refresh remaining patches.
+  * Fix typo in override target in d/rules.
+  * Update watch file.
+
+ -- Vincent Cheng <vcheng@debian.org>  Sun, 20 Dec 2015 19:56:20 -0800
+
+0ad (0.0.18-2) unstable; urgency=medium
+
+  [ Logan Rosen ]
+  * debian/patches/gcc-5.1.patch: Pull patch from upstream Git to fix build
+    with GCC 5.1.
+
+ -- Vincent Cheng <vcheng@debian.org>  Fri, 28 Aug 2015 20:46:34 -0700
+
+0ad (0.0.18-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Refresh patches.
+    - Replace build-dep on libmozjs-24-dev with libnspr4-dev.
+
+ -- Vincent Cheng <vcheng@debian.org>  Wed, 18 Mar 2015 16:58:45 -0700
+
+0ad (0.0.17-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Drop debian/patches/{support_miniupnpc_1.9.patch,fix_gcc4.9_ftbfs.patch}:
+      applied upstream.
+    - Add debian/patches/allow-build-with-root.patch.
+    - Add debian/patches/fix-bindir.patch. (LP: #1380737)
+    - Refresh remaining patches.
+  * Update Standards version to 3.9.6, no changes required.
+
+ -- Vincent Cheng <vcheng@debian.org>  Mon, 13 Oct 2014 20:01:57 -0700
+
+0ad (0.0.16-4) unstable; urgency=medium
+
+  * Add debian/patches/fix_gcc4.9_ftbfs.patch to fix FTBFS when running the
+    test suite when built with gcc 4.9. (Closes: #746822)
+
+ -- Vincent Cheng <vcheng@debian.org>  Tue, 24 Jun 2014 21:21:36 -0700
+
+0ad (0.0.16-3) unstable; urgency=medium
+
+  * Add debian/patches/support_miniupnpc_1.9.patch to fix FTBFS when built
+    with miniupnpc >= 1.9. (Closes: #751224)
+  * Tighten build-dep on libminiupnpc-dev (>= 1.6).
+
+ -- Vincent Cheng <vcheng@debian.org>  Wed, 11 Jun 2014 19:46:46 -0700
+
+0ad (0.0.16-2) unstable; urgency=medium
+
+  * Remove armel from Architecture list in debian/control.
+
+ -- Vincent Cheng <vcheng@debian.org>  Sun, 18 May 2014 19:14:10 -0700
+
+0ad (0.0.16-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Drop debian/patches/fix-kfreebsd-ftbfs.patch; applied upstream.
+  * Avoid repacking tarball by including missing jquery sources in Debian diff,
+    see debian/missing-sources/jquery-1.8.{0,3}.js. Alternative way of fixing
+    #735349.
+    - Update debian/copyright to include missing license entries for the
+      various javascript libraries contained in the source tarball.
+    - Revert changes made to debian/control in 0ad/0.0.15+dfsg-3, i.e.:
+      revert: debian/control: Hardcode versions of 0ad-data{,-common} to
+              depend on to workaround the fact that 0.0.15+dfsg is strictly
+              greater than 0.0.15.
+  * Build-dep on libgloox-dev (>= 1.0.9) to ensure that 0ad is built with
+    newer enough gloox to avoid lobby connectivity issues.
+  * Add new build-deps: libicu-dev, libmozjs-24-dev.
+
+ -- Vincent Cheng <vcheng@debian.org>  Sat, 17 May 2014 16:30:39 -0700
+
+0ad (0.0.15+dfsg-3) unstable; urgency=medium
+
+  * Repack tarball to remove minified javascript files without source in
+    source/tools/jsdebugger/. (Closes: #735349)
+    - debian/control: Hardcode versions of 0ad-data{,-common} to depend on to
+      workaround the fact that 0.0.15+dfsg is strictly greater than 0.0.15.
+  * Update debian/copyright to include text of IBM Common Public License.
+  * Update email address.
+
+ -- Vincent Cheng <vcheng@debian.org>  Tue, 18 Feb 2014 23:21:11 -0800
+
+0ad (0.0.15-2) unstable; urgency=medium
+
+  * Add debian/patches/fix-kfreebsd-ftbfs.patch to fix FTBFS on kfreebsd.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Fri, 27 Dec 2013 15:03:44 -0800
+
+0ad (0.0.15-1) unstable; urgency=low
+
+  * New upstream release.
+    - Remove fix-arm-ftbfs.patch, fixed upstream.
+  * Add build-dep on libgloox-dev and libminiupnpc-dev.
+  * Append '~' to libnvtt-dev build dependency to ease backporting.
+  * Prefer libwxgtk3.0-dev over libwxgtk2.8-dev as build-dep (keep latter as
+    alternate build-dep to ease backports).
+  * Update Standards version to 3.9.5, no changes required.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Wed, 25 Dec 2013 17:41:29 -0800
+
+0ad (0.0.14-3) unstable; urgency=low
+
+  * Add debian/patches/fix-arm-ftbfs.patch to fix FTBFS on armel and armhf.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Tue, 17 Sep 2013 01:08:10 -0700
+
+0ad (0.0.14-2) unstable; urgency=low
+
+  * Tighten build dependency on libnvtt-dev to >= 2.0.8-1+dfsg-4 to ensure
+    that amd64 builds of 0ad do not FTBFS on certain hardware. See #713966
+    for details.
+  * Build 0ad for armel and armhf.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Fri, 06 Sep 2013 23:00:24 -0700
+
+0ad (0.0.14-1) unstable; urgency=low
+
+  * New upstream release.
+    - Remove fix-bindir.patch, boost-libnames.patch; applied/fixed upstream.
+    - Refresh remaining patches.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Thu, 05 Sep 2013 20:02:20 -0700
+
+0ad (0.0.13-2) unstable; urgency=low
+
+  * Add boost-libnames.patch to fix FTBFS with boost 1.53. (Closes: #709570)
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Fri, 24 May 2013 01:47:14 -0700
+
+0ad (0.0.13-1) unstable; urgency=low
+
+  * New upstream release.
+    - Refresh patches.
+  * Add icon to Debian menu entry. (Closes: #703254)
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Tue, 02 Apr 2013 19:40:54 -0700
+
+0ad (0.0.12-1) unstable; urgency=low
+
+  [ Vincent Cheng ]
+  * New upstream release.
+    - Remove debian/patches/fix-kfreebsd-ftbfs.patch; applied upstream.
+    - Refresh remaining patches.
+  * Add depends on 0ad-data-common.
+  * Add lintian overrides for:
+    - outdated-autotools-helper-file (caused by config.{guess,sub} in a
+      convenience copy of libenet, which we don't use).
+    - version-substvar-for-external-package (not a problem since 0ad and
+      0ad-data uploaded at same time, and no other mechanism provided by
+      dpkg-gencontrol for packages that want to depend on versioned packages
+      built from a separate source package).
+  * Update Standards version to 3.9.4, no changes required.
+  * Enable verbose build.
+
+  [ Ansgar Burchardt ]
+  * debian/control: Remove DM-Upload-Allowed.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Tue, 12 Feb 2013 19:24:59 -0800
+
+0ad (0.0.11-1) unstable; urgency=low
+
+  * New upstream release. (Alpha 11 Kronos)
+    - Upstream disabled FAM support as of svn r12550, so remove build-depends
+      on libgamin-dev, and remove depends on gamin | fam. (Closes: #679087)
+    - Refresh existing patches.
+  * Add fallback to launcher script when /usr/games is not in $PATH.
+    (Closes: #679033)
+  * Restrict list of architectures to i386, amd64, and kfreebsd-{i386,amd64}.
+    (Closes: #683282)
+  * Update debian/watch file.
+  * Add DMUA field in debian/control with agreement of sponsor.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Sat, 08 Sep 2012 02:43:25 -0700
+
+0ad (0~r11863-2) unstable; urgency=low
+
+  * Add stricter dependency on 0ad-data. (Closes: #673526)
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Sun, 20 May 2012 01:48:59 -0700
+
+0ad (0~r11863-1) unstable; urgency=low
+
+  * New upstream release.
+    - Refresh patches.
+  * Add debian/patches/enable-hardening-relro.patch to build using the
+    "read-only relocation" link flag, as suggested by lintian.
+  * Add build-depends on libxcursor-dev.
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Wed, 16 May 2012 23:50:12 -0700
+
+0ad (0~r11339-2) unstable; urgency=low
+
+  * Add debian/patches/fix-kfreebsd-ftbfs.patch to fix FTBFS on kfreebsd.
+  * Update debian/0ad.6.
+  * Add build-depends on dpkg-dev (>= 1.15.5) for xz compression support.
+  * Change build-depends on libjpeg8-dev to libjpeg-dev.
+  * Change build-depends on libpng12-dev to libpng-dev. (Closes: #668453)
+  * Add alternate build-depends on libcurl4-dev.
+  * Add alternate dependency on fam. (Closes: #668353)
+  * Override dh_auto_clean to clean source properly. (Closes: #668686)
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Thu, 26 Apr 2012 19:12:26 -0700
+
+0ad (0~r11339-1) unstable; urgency=low
+
+  * Initial release (Closes: #594800)
+
+ -- Vincent Cheng <Vincentc1208@gmail.com>  Thu, 29 Mar 2012 16:13:33 -0700
