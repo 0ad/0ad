@@ -1,1 +1,0 @@
-start pyrogenesis.exe -editor
