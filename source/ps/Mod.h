@@ -57,6 +57,16 @@ public:
 	const std::vector<ModData>& GetAvailableMods() const;
 
 	/**
+	 * Fetches available mods and stores some metadata about them.
+	 * This may open the zipped mod archives, depending on the situation,
+	 * and/or try to write files to the user mod folder,
+	 * which can be quite slow, so should be run rarely.
+	 * TODO: if this did not need the scriptInterface to parse JSON,
+	 * we could run it in different contexts and possibly cleaner.
+	 */
+	void UpdateAvailableMods(const ScriptInterface& scriptInterface);
+
+	/**
 	 * Enables specified mods (& mods required by the engine).
 	 * @param addPublic - if true, enable the public mod.
 	 * @return whether the mods were enabled successfully. This can fail if e.g. mods are incompatible.
@@ -83,15 +93,6 @@ public:
 	 */
 	static bool AreModsPlayCompatible(const std::vector<const Mod::ModData*>& modsA, const std::vector<const Mod::ModData*>& modsB);
 private:
-	/**
-	 * Fetches available mods and stores some metadata about them.
-	 * This may open the zipped mod archives, depending on the situation,
-	 * and/or try to write files to the user mod folder,
-	 * which can be quite slow, so should be run rarely.
-	 * TODO: if this did not need the scriptInterface to parse JSON,
-	 * we could run it in different contexts and possibly cleaner.
-	 */
-	void UpdateAvailableMods(const ScriptInterface& scriptInterface);
 
 	/**
 	 * Checks a list of @a mods and returns the incompatible mods, if any.
