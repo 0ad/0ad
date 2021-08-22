@@ -485,7 +485,9 @@ bool ModIo::AdvanceRequest(const ScriptInterface& scriptInterface)
 		{
 			Paths paths(g_CmdLineArgs);
 			CModInstaller installer(paths.UserData() / "mods", paths.Cache());
-			installer.Install(m_DownloadFilePath, g_ScriptContext, false);
+			CModInstaller::ModInstallationResult result = installer.Install(m_DownloadFilePath, g_ScriptContext, false);
+			if (result != CModInstaller::ModInstallationResult::SUCCESS)
+				LOGERROR("Failed to install '%s'", m_DownloadFilePath.string8().c_str());
 			g_Mods.UpdateAvailableMods(scriptInterface);
 		}
 		break;
