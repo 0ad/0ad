@@ -486,6 +486,7 @@ bool ModIo::AdvanceRequest(const ScriptInterface& scriptInterface)
 			Paths paths(g_CmdLineArgs);
 			CModInstaller installer(paths.UserData() / "mods", paths.Cache());
 			installer.Install(m_DownloadFilePath, g_ScriptContext, false);
+			g_Mods.UpdateAvailableMods(scriptInterface);
 		}
 		break;
 	default:

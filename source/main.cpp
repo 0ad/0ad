@@ -193,6 +193,8 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		else
 		{
 			LOGMESSAGE("Installed mod %s", installer.GetInstalledMods().front());
+			ScriptInterface modInterface("Engine", "Mod", g_ScriptContext);
+			g_Mods.UpdateAvailableMods(modInterface);
 			RestartEngine();
 		}
 		break;
