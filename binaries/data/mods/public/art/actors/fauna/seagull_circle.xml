@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="fish mesh">
+      <animations>
+        <animation file="others/bird_circle_idle_01.dae" name="Idle" speed="100"/>
+      </animations>
+      <mesh>skeletal/bird_circle.dae</mesh>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Variant A">
+      <props>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_01"/>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_09"/>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_19"/>
+      </props>
+    </variant>
+    <variant frequency="100" name="Variant B">
+      <props>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_02"/>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_10"/>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_20"/>
+      </props>
+    </variant>
+    <variant frequency="100" name="Variant C">
+      <props>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_05"/>
+        <prop actor="fauna/seagull.xml" attachpoint="fish_20"/>
+      </props>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

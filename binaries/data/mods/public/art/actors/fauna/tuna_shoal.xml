@@ -28,11 +28,8 @@
         <prop actor="fauna/tuna.xml" attachpoint="fish_18"/>
         <prop actor="fauna/tuna.xml" attachpoint="fish_19"/>
         <prop actor="fauna/tuna.xml" attachpoint="fish_20"/>
+        <prop actor="fauna/seagull_circle.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="generic texture">
       <textures>
         <texture file="null_white.dds" name="baseTex"/>
       </textures>
