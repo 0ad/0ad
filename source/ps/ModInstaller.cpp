@@ -20,6 +20,8 @@
 #include "ModInstaller.h"
 
 #include "lib/file/vfs/vfs_util.h"
+#include "lib/file/file_system.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
