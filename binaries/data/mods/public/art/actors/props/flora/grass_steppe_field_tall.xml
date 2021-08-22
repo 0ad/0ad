@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant frequency="1" name="massive">
-      <mesh>gaia/grass_steppe.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="texture">
+    <variant frequency="1" name="Steppe Field Tall">
+      <mesh>gaia/grass_large_2_tall.dae</mesh>
       <textures>
         <texture file="gaia/grass_steppe.png" name="baseTex"/>
       </textures>

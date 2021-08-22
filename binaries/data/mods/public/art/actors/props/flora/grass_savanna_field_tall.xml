@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant frequency="1" name="massive">
+    <variant frequency="1" name="Savanna Field Tall">
       <mesh>gaia/grass_large_2_tall.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="texture">
       <textures>
         <texture file="gaia/grass_savanna_a.png" name="baseTex"/>
       </textures>

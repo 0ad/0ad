@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant frequency="1" name="large">
+    <variant frequency="1" name="Tropic Field">
       <mesh>gaia/grass_large_1.dae</mesh>
-    </variant>
-    <variant frequency="1" name="massive">
-      <mesh>gaia/grass_large_2.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="taxture">
-      <textures><texture file="gaia/grass_tropic_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_tropic_a.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans_wind.xml</material>
