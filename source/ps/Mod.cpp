@@ -136,7 +136,7 @@ const std::vector<Mod::ModData>& Mod::GetAvailableMods() const
 	return m_AvailableMods;
 }
 
-bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic)
+bool Mod::EnableMods(const std::vector<CStr>& mods, const bool addPublic)
 {
 	m_IncompatibleMods.clear();
 	m_EnabledMods.clear();

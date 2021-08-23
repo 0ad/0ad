@@ -193,6 +193,8 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		else
 		{
 			LOGMESSAGE("Installed mod %s", installer.GetInstalledMods().front());
+			ScriptInterface modInterface("Engine", "Mod", g_ScriptContext);
+			g_Mods.UpdateAvailableMods(modInterface);
 			RestartEngine();
 		}
 		break;
@@ -663,7 +665,11 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 			// Install the mods without deleting the pyromod files
 			for (const OsPath& modPath : modsToInstall)
-				installer.Install(modPath, g_ScriptContext, true);
+			{
+				CModInstaller::ModInstallationResult result = installer.Install(modPath, g_ScriptContext, true);
+				if (result != CModInstaller::ModInstallationResult::SUCCESS)
+					LOGERROR("Failed to install '%s'", modPath.string8().c_str());
+			}
 
 			installedMods = installer.GetInstalledMods();
 

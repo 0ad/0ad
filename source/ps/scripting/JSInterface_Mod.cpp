@@ -156,9 +156,9 @@ bool AreModsPlayCompatible(const std::vector<Mod::ModData>& a, const std::vector
 	return Mod::AreModsPlayCompatible(modsA, modsB);
 }
 
-bool SetModsAndRestartEngine(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods)
+bool SetModsAndRestartEngine(const std::vector<CStr>& mods)
 {
-	if (!g_Mods.EnableMods(scriptInterface, mods, false))
+	if (!g_Mods.EnableMods(mods, false))
 		return false;
 
 	RestartEngine();

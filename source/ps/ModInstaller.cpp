@@ -20,6 +20,8 @@
 #include "ModInstaller.h"
 
 #include "lib/file/vfs/vfs_util.h"
+#include "lib/file/file_system.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -49,9 +51,18 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 	CreateDirectories(modTemp.Parent(), 0700);
 
 	if (keepFile)
-		CopyFile(mod, modTemp, true);
-	else
-		wrename(mod, modTemp);
+	{
+		if (CopyFile(mod, modTemp, true) != INFO::OK)
+		{
+			LOGERROR("Failed to copy '%s' to '%s'", mod.string8().c_str(), modTemp.string8().c_str());
+			return FAIL_ON_MOD_COPY;
+		}
+	}
+	else if (RenameFile(mod, modTemp) != INFO::OK)
+	{
+		LOGERROR("Failed to rename '%s' into '%s'", mod.string8().c_str(), modTemp.string8().c_str());
+		return FAIL_ON_MOD_MOVE;
+	}
 
 	// Load the mod to VFS
 	if (m_VFS->Mount(m_CacheDir, m_TempDir / "") != INFO::OK)
@@ -88,8 +99,12 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 	//     mod-name.zip
 	//     mod.json
 	CreateDirectories(modDir, 0700);
-	if (wrename(modTemp, modPath) != 0)
+	if (RenameFile(modTemp, modPath) != INFO::OK)
+	{
+		LOGERROR("Failed to rename '%s' into '%s'", modTemp.string8().c_str(), modPath.string8().c_str());
 		return FAIL_ON_MOD_MOVE;
+	}
+
 	DeleteDirectory(modTemp.Parent());
 
 	std::ofstream mod_json((modDir / "mod.json").string8());

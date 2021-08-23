@@ -8,12 +8,13 @@
         <animation file="other/fish_generic_idle_b.dae" name="Idle" speed="50"/>
         <animation file="other/fish_generic_idle_c.dae" name="Idle" speed="35"/>
       </animations>
+      <props>
+        <prop actor="fauna/seagull_circle.xml" attachpoint="root"/>
+      </props>
       <mesh>skeletal/fish_generic.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="generic texture">
-      <textures><texture file="skeletal/animal_fish_generic.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_fish_generic.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

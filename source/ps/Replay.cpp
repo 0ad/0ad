@@ -233,7 +233,8 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 					mods.emplace_back(data.m_Pathname);
 
 				// Ignore the return value, we check below.
-				g_Mods.EnableMods(scriptInterface, mods, false);
+				g_Mods.UpdateAvailableMods(scriptInterface);
+				g_Mods.EnableMods(mods, false);
 				CheckReplayMods(replayMods);
 
 				MountMods(Paths(g_CmdLineArgs), g_Mods.GetEnabledMods());

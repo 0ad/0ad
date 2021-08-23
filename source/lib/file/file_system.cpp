@@ -193,6 +193,24 @@ Status DeleteDirectory(const OsPath& path)
 	return INFO::OK;
 }
 
+Status RenameFile(const OsPath& path, const OsPath& newPath)
+{
+	if (path.empty())
+		return INFO::OK;
+
+	try
+	{
+		fs::rename(path.string8(), newPath.string8());
+	}
+	catch (fs::filesystem_error& err)
+	{
+		debug_printf("RenameFile: failed to rename %s to %s.\n%s\n", path.string8().c_str(), path.string8().c_str(), err.what());
+		return ERR::EXCEPTION;
+	}
+
+	return INFO::OK;
+
+}
 
 Status CopyFile(const OsPath& path, const OsPath& newPath, bool override_if_exists/* = false*/)
 {

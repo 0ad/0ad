@@ -72,7 +72,7 @@ public:
 	 * @return whether the mods were enabled successfully. This can fail if e.g. mods are incompatible.
 	 * If true, GetEnabledMods() should be non-empty, GetIncompatibleMods() empty. Otherwise, GetIncompatibleMods() is non-empty.
 	 */
-	bool EnableMods(const ScriptInterface& scriptInterface, const std::vector<CStr>& mods, const bool addPublic);
+	bool EnableMods(const std::vector<CStr>& mods, const bool addPublic);
 
 	/**
 	 * Get data for the given mod.
