@@ -2,7 +2,7 @@ GameSettings.prototype.Attributes.MatchID = class MatchID extends GameSetting
 {
 	init()
 	{
-		this.matchID = Engine.GetMatchID();
+		this.matchID = 0;
 	}
 
 	toInitAttributes(attribs)
@@ -14,5 +14,10 @@ GameSettings.prototype.Attributes.MatchID = class MatchID extends GameSetting
 	{
 		if (attribs.matchID !== undefined)
 			this.matchID = attribs.matchID;
+	}
+
+	pickRandomItems()
+	{
+		this.matchID = Engine.GetMatchID();
 	}
 };
