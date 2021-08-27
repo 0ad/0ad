@@ -65,6 +65,16 @@ class MessageChecker:
                       f'Found unknown {self.human_name} {", ".join(["`" + x + "`" for x in unknown_patterns])} in the translation '
                       f'which do not match any of the URLs in the template: {", ".join(["`" + x + "`" for x in patterns])}')
 
+            if translationMessage.pluralizable:
+                for indx, val in enumerate(translationMessage.string):
+                    if indx == 0:
+                        continue
+                    translatedPatternsMulti = set(self.regex.findall(val))
+                    unknown_patterns_multi = translatedPatternsMulti.difference(pluralUrls)
+                    if unknown_patterns_multi:
+                        print(f'{inputFilePath} - {translationCatalog.locale}: '
+                              f'Found unknown {self.human_name} {", ".join(["`" + x + "`" for x in unknown_patterns_multi])} in the pluralised translation '
+                              f'which do not match any of the URLs in the template: {", ".join(["`" + x + "`" for x in pluralUrls])}')
 
 def check_translations(inputFilePath):
     if VERBOSE:

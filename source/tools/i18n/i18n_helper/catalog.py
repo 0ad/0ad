@@ -38,7 +38,7 @@ class Catalog(BabelCatalog):
 
     @staticmethod
     def readFrom(file_path, locale = None):
-        return read_po(open(file_path, "r+"), locale=locale)
+        return read_po(open(file_path, "r+",encoding="utf-8"), locale=locale)
 
     def writeTo(self, file_path):
         return write_po(
