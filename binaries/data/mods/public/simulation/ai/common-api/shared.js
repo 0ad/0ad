@@ -357,11 +357,7 @@ m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
 
 m.SharedScript.prototype.getMetadata = function(player, ent, key)
 {
-	let metadata = this._entityMetadata[player][ent.id()];
-
-	if (!metadata || !(key in metadata))
-		return undefined;
-	return metadata[key];
+	return this._entityMetadata[player][ent.id()]?.[key];
 };
 
 m.SharedScript.prototype.deleteMetadata = function(player, ent, key)
