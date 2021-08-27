@@ -188,6 +188,11 @@ bool SetFile(const std::wstring& cfgNsString, const Path& path)
 	return true;
 }
 
+void PauseOnFocusLoss(bool pause)
+{
+	g_PauseOnFocusLoss = pause;
+}
+
 void RegisterScriptFunctions(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&HasChanges>(rq, "ConfigDB_HasChanges");
@@ -201,5 +206,6 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&CreateAndWriteValueToFile>(rq, "ConfigDB_CreateAndWriteValueToFile");
 	ScriptFunction::Register<&SetFile>(rq, "ConfigDB_SetFile");
 	ScriptFunction::Register<&Reload>(rq, "ConfigDB_Reload");
+	ScriptFunction::Register<&PauseOnFocusLoss>(rq, "PauseOnFocusLoss");
 }
 }
