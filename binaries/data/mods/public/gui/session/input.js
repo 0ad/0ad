@@ -18,6 +18,7 @@ const ACTION_REPAIR = 2;
 const ACTION_GUARD = 3;
 const ACTION_PATROL = 4;
 const ACTION_OCCUPY_TURRET = 5;
+const ACTION_CALLTOARMS = 6;
 var preSelectedAction = ACTION_NONE;
 
 const INPUT_NORMAL = 0;

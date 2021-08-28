@@ -556,6 +556,17 @@ UnitAI.prototype.UnitFsmSpec = {
 		return ACCEPT_ORDER;
 	},
 
+	"Order.DropAtNearestDropSite": function(msg) {
+		const cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+		if (!cmpResourceGatherer)
+			return this.FinishOrder();
+		const nearby = this.FindNearestDropsite(cmpResourceGatherer.GetMainCarryingType());
+		if (!nearby)
+			return this.FinishOrder();
+		this.ReturnResource(nearby, false, true);
+		return ACCEPT_ORDER;
+	},
+
 	"Order.ReturnResource": function(msg) {
 		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.RETURNRESOURCE.DROPPINGRESOURCES");
@@ -955,6 +966,13 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.Unpack": function(msg) {
 			this.CallMemberFunction("Unpack", [false]);
+
+			this.SetNextState("MEMBER");
+			return ACCEPT_ORDER;
+		},
+
+		"Order.DropAtNearestDropSite": function(msg) {
+			this.CallMemberFunction("DropAtNearestDropSite", [false, false]);
 
 			this.SetNextState("MEMBER");
 			return ACCEPT_ORDER;
@@ -5233,6 +5251,9 @@ UnitAI.prototype.GetTargetPositions = function()
 		case "Stop":
 			return [];
 
+		case "DropAtNearestDropSite":
+			break;
+
 		default:
 			error("GetTargetPositions: Unrecognised order type '"+order.type+"'");
 			return [];
@@ -5406,6 +5427,15 @@ UnitAI.prototype.WalkToPointRange = function(x, z, min, max, queued, pushFront)
 UnitAI.prototype.Stop = function(queued, pushFront)
 {
 	this.AddOrder("Stop", { "force": true }, queued, pushFront);
+};
+
+/**
+ * The unit will drop all resources at the closest dropsite. If this unit is no gatherer or
+ * no dropsite is available, it will do nothing.
+ */
+UnitAI.prototype.DropAtNearestDropSite = function(queued, pushFront)
+{
+	this.AddOrder("DropAtNearestDropSite", { "force": true }, queued, pushFront);
 };
 
 /**

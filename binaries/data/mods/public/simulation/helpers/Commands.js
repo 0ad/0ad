@@ -279,6 +279,27 @@ var g_Commands = {
 		}
 	},
 
+	"call-to-arms": function(player, cmd, data)
+	{
+		const unitsToMove = data.entities.filter(ent =>
+			MatchesClassList(Engine.QueryInterface(ent, IID_Identity).GetClassesList(),
+				["Soldier", "Warship", "Siege", "Healer"])
+		);
+		GetFormationUnitAIs(unitsToMove, player, cmd, data.formation).forEach(cmpUnitAI => {
+			const target = cmd.target;
+			if (cmd.pushFront)
+			{
+				cmpUnitAI.WalkAndFight(target.x, target.z, cmd.targetClasses, cmd.allowCapture, false, cmd.pushFront);
+				cmpUnitAI.DropAtNearestDropSite(false, cmd.pushFront);
+			}
+			else
+			{
+				cmpUnitAI.DropAtNearestDropSite(cmd.queued, false)
+				cmpUnitAI.WalkAndFight(target.x, target.z, cmd.targetClasses, cmd.allowCapture, true, false);
+			}
+		});
+	},
+
 	"remove-guard": function(player, cmd, data)
 	{
 		for (let ent of data.entities)
