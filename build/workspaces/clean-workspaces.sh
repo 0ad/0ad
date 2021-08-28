@@ -61,8 +61,9 @@ fi
 (cd ../premake/premake5/build/gmake2.macosx && ${MAKE} clean)
 (cd ../premake/premake5/build/gmake2.unix && ${MAKE} clean)
 
-echo "Removing generated test files..."
+echo "Removing generated stub and test files..."
 
+find ../../source -name "stub_*.cpp" -type f -exec rm {} \;
 find ../../source -name "test_*.cpp" -type f -not -name "test_setup.cpp" -exec rm {} \;
 
 echo "Cleaning build output..."
