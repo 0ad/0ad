@@ -69,26 +69,17 @@ PETRA.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID, type
 {
 	if (type == "default")
 	{
-		// Try to add it to an existing army.
 		for (let army of this.armies)
 			if (army.getType() == type && army.addFoe(gameState, entityID))
-				return;	// over
+				return;
 	}
 
-	// Create a new army for it.
-	let army = new PETRA.DefenseArmy(gameState, [entityID], type);
-
-	this.armies.push(army);
+	this.armies.push(new PETRA.DefenseArmy(gameState, [entityID], type));
 };
 
 PETRA.DefenseManager.prototype.getArmy = function(partOfArmy)
 {
-	// Find the army corresponding to this ID partOfArmy.
-	for (let army of this.armies)
-		if (army.ID == partOfArmy)
-			return army;
-
-	return undefined;
+	return this.armies.find(army => army.ID == partOfArmy);
 };
 
 PETRA.DefenseManager.prototype.isDangerous = function(gameState, entity)

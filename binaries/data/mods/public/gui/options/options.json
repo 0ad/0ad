@@ -19,7 +19,8 @@
 				"type": "boolean",
 				"label": "Background pause",
 				"tooltip": "Pause single-player games when window loses focus.",
-				"config": "pauseonfocusloss"
+				"config": "pauseonfocusloss",
+				"function": "PauseOnFocusLoss"
 			},
 			{
 				"type": "boolean",

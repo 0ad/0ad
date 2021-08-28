@@ -24,7 +24,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/svn_revision.h"
 
-const char* engine_version = "0.0.25";
+const char* engine_version = "0.0.26";
 const char* main_window_name = "0 A.D.";
 
 // convert contents of file <in_filename> from char to wchar_t and
