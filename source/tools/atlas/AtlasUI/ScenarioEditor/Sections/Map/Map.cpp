@@ -39,6 +39,7 @@ enum
 	ID_MapName,
 	ID_MapDescription,
 	ID_MapReveal,
+	ID_MapAlly,
 	ID_MapType,
 	ID_MapPreview,
 	ID_MapTeams,
@@ -169,6 +170,7 @@ void MapSettingsControl::CreateWidgets()
 	gridSizer->Add(Tooltipped(new wxTextCtrl(this, ID_MapPreview, wxEmptyString),
 		_("Texture used for map preview")), wxSizerFlags().Expand());
 	CREATE_CHECKBOX(this, gridSizer, "Reveal map", "If checked, players won't need to explore", ID_MapReveal);
+	CREATE_CHECKBOX(this, gridSizer, "Ally view", "If checked, players will be able to see what their teammates see and won't need to research cartography", ID_MapAlly);
 	CREATE_CHECKBOX(this, gridSizer, "Lock teams", "If checked, teams will be locked", ID_MapTeams);
 	sizer->Add(gridSizer, wxSizerFlags().Expand());
 
@@ -232,6 +234,9 @@ void MapSettingsControl::ReadFromEngine()
 
 	// reveal map
 	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString::FromUTF8(m_MapSettings["RevealMap"]) == "true");
+
+	// ally view
+	wxDynamicCast(FindWindow(ID_MapAlly), wxCheckBox)->SetValue(wxString::FromUTF8(m_MapSettings["AllyView"]) == "true");
 
 	// victory conditions
 	m_MapSettingsVictoryConditions.clear();
@@ -363,6 +368,9 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 
 	// reveal map
 	m_MapSettings.setBool("RevealMap", wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->GetValue());
+
+	// ally view
+	m_MapSettings.setBool("AllyView", wxDynamicCast(FindWindow(ID_MapAlly), wxCheckBox)->GetValue());
 
 	// victory conditions
 #define INSERT_VICTORY_CONDITION_CHECKBOX(name, ID) \

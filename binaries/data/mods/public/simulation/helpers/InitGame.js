@@ -68,6 +68,9 @@ function InitGame(settings)
 
 		if (settings.PopulationCap)
 			cmpPlayer.SetMaxPopulation(settings.PopulationCap);
+
+		if (settings.AllyView)
+			Engine.QueryInterface(cmpPlayer.entity, IID_TechnologyManager)?.ResearchTechnology(cmpPlayer.template.SharedLosTech);
 	}
 	if (settings.WorldPopulationCap)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).SetMaxWorldPopulation(settings.WorldPopulationCap);

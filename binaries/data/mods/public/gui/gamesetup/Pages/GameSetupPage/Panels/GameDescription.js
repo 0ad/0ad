@@ -23,6 +23,7 @@ class GameDescription
 		g_GameSettings.map.watch(update, ["map", "type"]);
 		g_GameSettings.mapExploration.watch(update, ["explored"]);
 		g_GameSettings.mapExploration.watch(update, ["revealed"]);
+		g_GameSettings.mapExploration.watch(update, ["allied"]);
 		g_GameSettings.nomad.watch(update, ["enabled"]);
 		g_GameSettings.population.watch(update, ["perPlayer", "cap", "useWorldPop"]);
 		g_GameSettings.rating.watch(update, ["enabled"]);

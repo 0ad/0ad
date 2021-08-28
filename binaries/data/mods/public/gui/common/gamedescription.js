@@ -397,6 +397,11 @@ function getGameDescription(initAttributes, mapCache)
 	});
 
 	titles.push({
+		"label": translate("Allied View"),
+		"value": initAttributes.settings.AllyView
+	});
+
+	titles.push({
 		"label": translate("Cheats"),
 		"value": initAttributes.settings.CheatsEnabled
 	});
