@@ -17,6 +17,10 @@ class PlayerList
 		this.nickList = [];
 		this.ratingList = [];
 
+		this.playersFilter = Engine.GetGUIObjectByName("playersFilter");
+		this.playersFilter.onPress = this.selectPlayer.bind(this);
+		this.playersFilter.onTab = this.autocomplete.bind(this);
+
 		this.selectionChangeHandlers = new Set();
 		this.mouseLeftDoubleClickItemHandlers = new Set();
 
@@ -32,6 +36,20 @@ class PlayerList
 		this.registerMouseLeftDoubleClickItemHandler(buddyButton.onPress.bind(buddyButton));
 
 		this.rebuildPlayerList();
+	}
+
+	selectPlayer()
+	{
+		let index = this.playersBox.list.indexOf(this.playersFilter.caption);
+		if (index != -1)
+			this.playersBox.selected = index;
+	}
+
+	autocomplete()
+	{
+		autoCompleteText(
+			this.playersFilter,
+			Engine.GetPlayerList().map(player => player.name));
 	}
 
 	registerSelectionChangeHandler(handler)
