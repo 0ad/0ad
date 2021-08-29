@@ -76,10 +76,12 @@ function Cheat(input)
 			owner = cmpOwnership.GetOwner();
 		for (let i = 0; i < Math.min(input.parameter, cmpPlayer.GetMaxPopulation() - cmpPlayer.GetPopulationCount()); ++i)
 			cmpProductionQueue.SpawnUnits({
-				"count": 1,
 				"player": owner,
 				"metadata": null,
-				"unitTemplate": input.templates[i % input.templates.length]
+				"entity": {
+					"template": input.templates[i % input.templates.length],
+					"count": 1
+				}
 			});
 		return;
 	case "fastactions":
