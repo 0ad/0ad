@@ -20,7 +20,8 @@ var g_GameSettingsLayout = [
 			"Nomad",
 			"Treasures",
 			"ExploredMap",
-			"RevealedMap"
+			"RevealedMap",
+			"AlliedView"
 		]
 	},
 	{

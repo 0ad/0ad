@@ -553,10 +553,7 @@ function initGUIButtons()
 
 	let allPanelsData = g_ScorePanelsData.concat(g_ChartPanelsData);
 	for (let tab in allPanelsData)
-		allPanelsData[tab].tooltip =
-			sprintf(translate("Toggle the %(name)s summary tab."), { "name": allPanelsData[tab].label }) +
-			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a summary tab right."), "tab.next") +
-			colorizeHotkey("\n" + translate("Use %(hotkey)s to move a summary tab left."), "tab.prev");
+		allPanelsData[tab].tooltip = sprintf(translate("Focus the %(name)s summary tab."), { "name": allPanelsData[tab].label });
 
 	placeTabButtons(
 		allPanelsData,

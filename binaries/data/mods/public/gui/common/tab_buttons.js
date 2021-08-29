@@ -60,7 +60,10 @@ function placeTabButtons(categoriesData, horizontal, buttonSize, spacing, onPres
 			size.rbottom = 0;
 		}
 		button.size = size;
-		button.tooltip = categoriesData[category].tooltip || "";
+		button.tooltip = (categoriesData[category].tooltip ? categoriesData[category].tooltip + "\n" : "") +
+			(g_TabHorizontal ?
+				colorizeHotkey(translate("Scroll down or use %(hotkey)s to move a tab right."), "tab.next") + "\n" + colorizeHotkey(translate("Scroll up or use %(hotkey)s to move a tab left."), "tab.prev"):
+				colorizeHotkey(translate("Scroll down or use %(hotkey)s to move a tab down."), "tab.next") + "\n" + colorizeHotkey(translate("Scroll up or use %(hotkey)s to move a tab up."), "tab.prev"));
 
 		let categoryNum = +category;
 		button.onPress = () => { onPress(categoryNum); };

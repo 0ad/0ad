@@ -246,6 +246,48 @@ var g_UnitActions =
 		"specificness": 10,
 	},
 
+	"call-to-arms": {
+		"execute": function(target, action, selection, queued, pushFront)
+		{
+			let targetClasses;
+			if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
+				targetClasses = { "attack": ["Unit"] };
+			else
+				targetClasses = { "attack": ["Unit", "Structure"] };
+			Engine.PostNetworkCommand({
+				"type": "call-to-arms",
+				"entities": selection,
+				"target": target,
+				"targetClasses": targetClasses,
+				"queued": queued,
+				"pushFront": pushFront,
+				"allowCapture": true,
+				"formation": g_AutoFormation.getNull()
+			});
+			return true;
+		},
+		"getActionInfo": function(entState, targetState)
+		{
+			return { "possible": !!entState.unitAI };
+		},
+		"actionCheck": function(target, selection)
+		{
+			const actionInfo = getActionInfo("call-to-arms", target, selection);
+			return actionInfo.possible && {
+				"type": "call-to-arms",
+				"cursor": "action-attack",
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
+			};
+		},
+		"preSelectedActionCheck": function(target, selection)
+		{
+			return preSelectedAction == ACTION_CALLTOARMS &&
+				this.actionCheck(target, selection);
+		},
+		"specificness": 50,
+	},
+
 	"patrol":
 	{
 		"execute": function(target, action, selection, queued, pushFront)
@@ -1419,6 +1461,27 @@ var g_EntityCommands =
 		{
 			if (entStates.length)
 				stopUnits(entStates.map(entState => entState.id));
+		},
+		"allowedPlayers": ["Player"]
+	},
+
+	"call-to-arms": {
+		"getInfo": function(entStates)
+		{
+			const classes = ["Soldier", "Warship", "Siege", "Healer"];
+			if (entStates.every(entState => !MatchesClassList(entState.identity.classes, classes)))
+				return false;
+			return {
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.calltoarms") +
+						translate("Send the selected units on attack move to the specified location after dropping resources."),
+				"icon": "call-to-arms.png",
+				"enabled": true
+			};
+		},
+		"execute": function(entStates)
+		{
+			inputState = INPUT_PRESELECTEDACTION;
+			preSelectedAction = ACTION_CALLTOARMS;
 		},
 		"allowedPlayers": ["Player"]
 	},
