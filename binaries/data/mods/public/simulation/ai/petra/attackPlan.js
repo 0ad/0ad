@@ -32,7 +32,7 @@ PETRA.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	let rallyPoint;
 	let rallyAccess;
 	let allAccesses = {};
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 	{
 		if (!base.anchor || !base.anchor.position())
 			continue;
@@ -816,7 +816,7 @@ PETRA.AttackPlan.prototype.chooseTarget = function(gameState)
 		let rallySame;
 		let distminDiff = Math.min();
 		let rallyDiff;
-		for (let base of gameState.ai.HQ.baseManagers)
+		for (const base of gameState.ai.HQ.baseManagers())
 		{
 			let anchor = base.anchor;
 			if (!anchor || !anchor.position())
@@ -2001,7 +2001,7 @@ PETRA.AttackPlan.prototype.Abort = function(gameState)
 				dist = API3.SquareVectorDistance(this.position, rallyPoint);
 			}
 			// Then check if we have a nearer base (in case this attack has captured one)
-			for (let base of gameState.ai.HQ.baseManagers)
+			for (const base of gameState.ai.HQ.baseManagers())
 			{
 				if (!base.anchor || !base.anchor.position())
 					continue;
@@ -2083,7 +2083,7 @@ PETRA.AttackPlan.prototype.checkEvents = function(gameState, events)
 		if (!gameState.isPlayerEnemy(ent.owner()))
 			continue;
 		let access = PETRA.getLandAccess(gameState, ent);
-		for (let base of gameState.ai.HQ.baseManagers)
+		for (const base of gameState.ai.HQ.baseManagers())
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;

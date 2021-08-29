@@ -21,7 +21,6 @@ PETRA.HQ = function(Config)
 	this.lastFailedGather = {};
 
 	this.firstBaseConfig = false;
-	this.currentBase = 0;	// Only one base (from baseManager) is run every turn.
 
 	// Workers configuration.
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
@@ -35,7 +34,7 @@ PETRA.HQ = function(Config)
 	this.extraTowers = Math.round(Math.min(this.Config.difficulty, 3) * this.Config.personality.defensive);
 	this.extraFortresses = Math.round(Math.max(Math.min(this.Config.difficulty - 1, 2), 0) * this.Config.personality.defensive);
 
-	this.baseManagers = [];
+	this.basesManager = new PETRA.BasesManager(this.Config);
 	this.attackManager = new PETRA.AttackManager(this.Config);
 	this.buildManager = new PETRA.BuildManager();
 	this.defenseManager = new PETRA.DefenseManager(this.Config);
@@ -54,8 +53,6 @@ PETRA.HQ = function(Config)
 PETRA.HQ.prototype.init = function(gameState, queues)
 {
 	this.territoryMap = PETRA.createTerritoryMap(gameState);
-	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
-	this.basesMap = new API3.Map(gameState.sharedScript, "territory");
 	// create borderMap: flag cells on the border of the map
 	// then this map will be completed with our frontier in updateTerritories
 	this.borderMap = PETRA.createBorderMap(gameState);
@@ -76,90 +73,8 @@ PETRA.HQ.prototype.init = function(gameState, queues)
  */
 PETRA.HQ.prototype.postinit = function(gameState)
 {
-	// Rebuild the base maps from the territory indices of each base
-	this.basesMap = new API3.Map(gameState.sharedScript, "territory");
-	for (let base of this.baseManagers)
-		for (let j of base.territoryIndices)
-			this.basesMap.map[j] = base.ID;
-
-	for (let ent of gameState.getOwnEntities().values())
-	{
-		if (!ent.resourceDropsiteTypes() || !ent.hasClass("Structure"))
-			continue;
-		// Entities which have been built or have changed ownership after the last AI turn have no base.
-		// they will be dealt with in the next checkEvents
-		let baseID = ent.getMetadata(PlayerID, "base");
-		if (baseID === undefined)
-			continue;
-		let base = this.getBaseByID(baseID);
-		base.assignResourceToDropsite(gameState, ent);
-	}
-
+	this.basesManager.postinit(gameState);
 	this.updateTerritories(gameState);
-};
-
-/**
- * Create a new base in the baseManager:
- * If an existing one without anchor already exist, use it.
- * Otherwise create a new one.
- * TODO when buildings, criteria should depend on distance
- * allowedType: undefined       => new base with an anchor
- *              "unconstructed" => new base with a foundation anchor
- *              "captured"      => captured base with an anchor
- *              "anchorless"    => anchorless base, currently with dock
- */
-PETRA.HQ.prototype.createBase = function(gameState, ent, type)
-{
-	let access = PETRA.getLandAccess(gameState, ent);
-	let newbase;
-	for (let base of this.baseManagers)
-	{
-		if (base.accessIndex != access)
-			continue;
-		if (type != "anchorless" && base.anchor)
-			continue;
-		if (type != "anchorless")
-		{
-			// TODO we keep the fisrt one, we should rather use the nearest if buildings
-			// and possibly also cut on distance
-			newbase = base;
-			break;
-		}
-		else
-		{
-			// TODO here also test on distance instead of first
-			if (newbase && !base.anchor)
-				continue;
-			newbase = base;
-			if (newbase.anchor)
-				break;
-		}
-	}
-
-	if (this.Config.debug > 0)
-	{
-		API3.warn(" ----------------------------------------------------------");
-		API3.warn(" HQ createBase entrance avec access " + access + " and type " + type);
-		API3.warn(" with access " + uneval(this.baseManagers.map(base => base.accessIndex)) +
-			  " and base nbr " + uneval(this.baseManagers.map(base => base.ID)) +
-			  " and anchor " + uneval(this.baseManagers.map(base => !!base.anchor)));
-	}
-
-	if (!newbase)
-	{
-		newbase = new PETRA.BaseManager(gameState, this.Config);
-		newbase.init(gameState, type);
-		this.baseManagers.push(newbase);
-	}
-	else
-		newbase.reset(type);
-
-	if (type != "anchorless")
-		newbase.setAnchor(gameState, ent);
-	else
-		newbase.setAnchorlessEntity(gameState, ent);
-
-	return newbase;
 };
 
 /**
@@ -182,11 +97,8 @@ PETRA.HQ.prototype.getSeaBetweenIndices = function(gameState, index1, index2)
 	return undefined;
 };
 
-/** TODO check if the new anchorless bases should be added to addBase */
 PETRA.HQ.prototype.checkEvents = function(gameState, events)
 {
-	let addBase = false;
-
 	this.buildManager.checkEvents(gameState, events);
 
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
@@ -201,76 +113,7 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 		break;
 	}
 
-	for (let evt of events.Destroy)
-	{
-		// Let's check we haven't lost an important building here.
-		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
-			evt.metadata[PlayerID].base)
-		{
-			let ent = evt.entityObj;
-			if (ent.owner() != PlayerID)
-				continue;
-			// A new base foundation was created and destroyed on the same (AI) turn
-			if (evt.metadata[PlayerID].base == -1 || evt.metadata[PlayerID].base == -2)
-				continue;
-			let base = this.getBaseByID(evt.metadata[PlayerID].base);
-			if (ent.resourceDropsiteTypes() && ent.hasClass("Structure"))
-				base.removeDropsite(gameState, ent);
-			if (evt.metadata[PlayerID].baseAnchor && evt.metadata[PlayerID].baseAnchor === true)
-				base.anchorLost(gameState, ent);
-		}
-	}
-
-	for (let evt of events.EntityRenamed)
-	{
-		let ent = gameState.getEntityById(evt.newentity);
-		if (!ent || ent.owner() != PlayerID || ent.getMetadata(PlayerID, "base") === undefined)
-			continue;
-		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-		if (!base.anchorId || base.anchorId != evt.entity)
-			continue;
-		base.anchorId = evt.newentity;
-		base.anchor = ent;
-	}
-
-	for (let evt of events.Create)
-	{
-		// Let's check if we have a valuable foundation needing builders quickly
-		// (normal foundations are taken care in baseManager.assignToFoundations)
-		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || ent.owner() != PlayerID || ent.foundationProgress() === undefined)
-			continue;
-
-		if (ent.getMetadata(PlayerID, "base") == -1)	// Standard base around a cc
-		{
-			// Okay so let's try to create a new base around this.
-			let newbase = this.createBase(gameState, ent, "unconstructed");
-			// Let's get a few units from other bases there to build this.
-			let builders = this.bulkPickWorkers(gameState, newbase, 10);
-			if (builders !== false)
-			{
-				builders.forEach(worker => {
-					worker.setMetadata(PlayerID, "base", newbase.ID);
-					worker.setMetadata(PlayerID, "subrole", "builder");
-					worker.setMetadata(PlayerID, "target-foundation", ent.id());
-				});
-			}
-		}
-		else if (ent.getMetadata(PlayerID, "base") == -2)	// anchorless base around a dock
-		{
-			let newbase = this.createBase(gameState, ent, "anchorless");
-			// Let's get a few units from other bases there to build this.
-			let builders = this.bulkPickWorkers(gameState, newbase, 4);
-			if (builders != false)
-			{
-				builders.forEach(worker => {
-					worker.setMetadata(PlayerID, "base", newbase.ID);
-					worker.setMetadata(PlayerID, "subrole", "builder");
-					worker.setMetadata(PlayerID, "target-foundation", ent.id());
-				});
-			}
-		}
-	}
+	this.basesManager.checkEvents(gameState, events);
 
 	for (let evt of events.ConstructionFinished)
 	{
@@ -281,84 +124,17 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 			continue;
 		if (ent.hasClass("Market") && this.maxFields)
 			this.maxFields = false;
-		if (ent.getMetadata(PlayerID, "base") === undefined)
-			continue;
-		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-		base.buildings.updateEnt(ent);
-		if (ent.resourceDropsiteTypes())
-			base.assignResourceToDropsite(gameState, ent);
-
-		if (ent.getMetadata(PlayerID, "baseAnchor") === true)
-		{
-			if (base.constructing)
-				base.constructing = false;
-			addBase = true;
-		}
 	}
 
 	for (let evt of events.OwnershipChanged)   // capture events
 	{
-		if (evt.from == PlayerID)
-		{
-			let ent = gameState.getEntityById(evt.entity);
-			if (!ent || ent.getMetadata(PlayerID, "base") === undefined)
-				continue;
-			let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-			if (ent.resourceDropsiteTypes() && ent.hasClass("Structure"))
-				base.removeDropsite(gameState, ent);
-			if (ent.getMetadata(PlayerID, "baseAnchor") === true)
-				base.anchorLost(gameState, ent);
-		}
-
 		if (evt.to != PlayerID)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent)
 			continue;
-		if (ent.hasClass("Unit"))
+		if (!ent.hasClass("Unit"))
 		{
-			PETRA.getBestBase(gameState, ent).assignEntity(gameState, ent);
-			ent.setMetadata(PlayerID, "role", undefined);
-			ent.setMetadata(PlayerID, "subrole", undefined);
-			ent.setMetadata(PlayerID, "plan", undefined);
-			ent.setMetadata(PlayerID, "PartOfArmy", undefined);
-			if (ent.hasClass("Trader"))
-			{
-				ent.setMetadata(PlayerID, "role", "trader");
-				ent.setMetadata(PlayerID, "route", undefined);
-			}
-			if (ent.hasClass("Worker"))
-			{
-				ent.setMetadata(PlayerID, "role", "worker");
-				ent.setMetadata(PlayerID, "subrole", "idle");
-			}
-			if (ent.hasClass("Ship"))
-				PETRA.setSeaAccess(gameState, ent);
-			if (!ent.hasClasses(["Support", "Ship"]) && ent.attackTypes() !== undefined)
-				ent.setMetadata(PlayerID, "plan", -1);
-			continue;
-		}
-		if (ent.hasClass("CivCentre"))   // build a new base around it
-		{
-			let newbase;
-			if (ent.foundationProgress() !== undefined)
-				newbase = this.createBase(gameState, ent, "unconstructed");
-			else
-			{
-				newbase = this.createBase(gameState, ent, "captured");
-				addBase = true;
-			}
-			newbase.assignEntity(gameState, ent);
-		}
-		else
-		{
-			let base;
-			// If dropsite on new island, create a base around it
-			if (!ent.decaying() && ent.resourceDropsiteTypes())
-				base = this.createBase(gameState, ent, "anchorless");
-			else
-				base = PETRA.getBestBase(gameState, ent) || this.baseManagers[0];
-			base.assignEntity(gameState, ent);
 			if (ent.decaying())
 			{
 				if (ent.isGarrisonHolder() && this.garrisonManager.addDecayingStructure(gameState, evt.entity, true))
@@ -366,7 +142,27 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 				if (!this.decayingStructures.has(evt.entity))
 					this.decayingStructures.add(evt.entity);
 			}
+			continue;
 		}
+
+		ent.setMetadata(PlayerID, "role", undefined);
+		ent.setMetadata(PlayerID, "subrole", undefined);
+		ent.setMetadata(PlayerID, "plan", undefined);
+		ent.setMetadata(PlayerID, "PartOfArmy", undefined);
+		if (ent.hasClass("Trader"))
+		{
+			ent.setMetadata(PlayerID, "role", "trader");
+			ent.setMetadata(PlayerID, "route", undefined);
+		}
+		if (ent.hasClass("Worker"))
+		{
+			ent.setMetadata(PlayerID, "role", "worker");
+			ent.setMetadata(PlayerID, "subrole", "idle");
+		}
+		if (ent.hasClass("Ship"))
+			PETRA.setSeaAccess(gameState, ent);
+		if (!ent.hasClasses(["Support", "Ship"]) && ent.attackTypes() !== undefined)
+			ent.setMetadata(PlayerID, "plan", -1);
 	}
 
 	// deal with the different rally points of training units: the rally point is set when the training starts
@@ -417,43 +213,6 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 				if (!attack || attack.state != "unexecuted")
 					ent.setMetadata(PlayerID, "plan", -1);
 			}
-			// Assign it immediately to something useful to do
-			if (ent.getMetadata(PlayerID, "role") == "worker")
-			{
-				let base;
-				if (ent.getMetadata(PlayerID, "base") === undefined)
-				{
-					base = PETRA.getBestBase(gameState, ent);
-					base.assignEntity(gameState, ent);
-				}
-				else
-					base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-				base.reassignIdleWorkers(gameState, [ent]);
-				base.workerObject.update(gameState, ent);
-			}
-			else if (ent.resourceSupplyType() && ent.position())
-			{
-				let type = ent.resourceSupplyType();
-				if (!type.generic)
-					continue;
-				let dropsites = gameState.getOwnDropsites(type.generic);
-				let pos = ent.position();
-				let access = PETRA.getLandAccess(gameState, ent);
-				let distmin = Math.min();
-				let goal;
-				for (let dropsite of dropsites.values())
-				{
-					if (!dropsite.position() || PETRA.getLandAccess(gameState, dropsite) != access)
-						continue;
-					let dist = API3.SquareVectorDistance(pos, dropsite.position());
-					if (dist > distmin)
-						continue;
-					distmin = dist;
-					goal = dropsite.position();
-				}
-				if (goal)
-					ent.moveToRange(goal[0], goal[1]);
-			}
 		}
 	}
 
@@ -471,22 +230,6 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 		}
 		else if (ent.isGarrisonHolder())
 			this.garrisonManager.removeDecayingStructure(evt.entity);
-	}
-
-	if (addBase)
-	{
-		if (!this.firstBaseConfig)
-		{
-			// This is our first base, let us configure our starting resources
-			this.configFirstBase(gameState);
-		}
-		else
-		{
-			// Let us hope this new base will fix our possible resource shortage
-			this.saveResources = undefined;
-			this.saveSpace = undefined;
-			this.maxFields = false;
-		}
 	}
 
 	// Then deals with decaying structures: destroy them if being lost to enemy (except in easier difficulties)
@@ -526,6 +269,20 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 			ent.destroy();
 		}
 		this.decayingStructures.delete(entId);
+	}
+};
+
+PETRA.HQ.prototype.handleNewBase = function(gameState)
+{
+	if (!this.firstBaseConfig)
+		// This is our first base, let us configure our starting resources.
+		this.configFirstBase(gameState);
+	else
+	{
+		// Let us hope this new base will fix our possible resource shortage.
+		this.saveResources = undefined;
+		this.saveSpace = undefined;
+		this.maxFields = false;
 	}
 };
 
@@ -803,44 +560,12 @@ PETRA.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirem
  */
 PETRA.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 {
-	let accessIndex = baseRef.accessIndex;
-	if (!accessIndex)
-		return false;
-	// sorting bases by whether they are on the same accessindex or not.
-	let baseBest = this.baseManagers.slice().sort((a, b) => {
-		if (a.accessIndex == accessIndex && b.accessIndex != accessIndex)
-			return -1;
-		else if (b.accessIndex == accessIndex && a.accessIndex != accessIndex)
-			return 1;
-		return 0;
-	});
-
-	let needed = number;
-	let workers = new API3.EntityCollection(gameState.sharedScript);
-	for (let base of baseBest)
-	{
-		if (base.ID == baseRef.ID)
-			continue;
-		base.pickBuilders(gameState, workers, needed);
-		if (workers.length >= number)
-			break;
-		needed = number - workers.length;
-	}
-	if (!workers.length)
-		return false;
-	return workers;
+	return this.basesManager.bulkPickWorkers(gameState, baseRef, number);
 };
 
-PETRA.HQ.prototype.getTotalResourceLevel = function(gameState)
+PETRA.HQ.prototype.getTotalResourceLevel = function(gameState, resources, proximity)
 {
-	let total = {};
-	for (let res of Resources.GetCodes())
-		total[res] = 0;
-	for (let base of this.baseManagers)
-		for (let res in total)
-			total[res] += base.getResourceLevel(gameState, res);
-
-	return total;
+	return this.basesManager.getTotalResourceLevel(gameState, resources, proximity);
 };
 
 /**
@@ -849,22 +574,7 @@ PETRA.HQ.prototype.getTotalResourceLevel = function(gameState)
  */
 PETRA.HQ.prototype.GetCurrentGatherRates = function(gameState)
 {
-	if (!this.turnCache.currentRates)
-	{
-		let currentRates = {};
-		for (let res of Resources.GetCodes())
-			currentRates[res] = 0.5 * this.GetTCResGatherer(res);
-
-		for (let base of this.baseManagers)
-			base.addGatherRates(gameState, currentRates);
-
-		for (let res of Resources.GetCodes())
-			currentRates[res] = Math.max(currentRates[res], 0);
-
-		this.turnCache.currentRates = currentRates;
-	}
-
-	return this.turnCache.currentRates;
+	return this.basesManager.GetCurrentGatherRates(gameState);
 };
 
 /**
@@ -1105,7 +815,7 @@ PETRA.HQ.prototype.findEconomicCCLocation = function(gameState, template, resour
 
 	// Define a minimal number of wanted ships in the seas reaching this new base
 	let indexIdx = gameState.ai.accessibility.landPassMap[bestIdx];
-	for (let base of this.baseManagers)
+	for (const base of this.baseManagers())
 	{
 		if (!base.anchor || base.accessIndex == indexIdx)
 			continue;
@@ -1248,7 +958,7 @@ PETRA.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 
 	// Define a minimal number of wanted ships in the seas reaching this new base
 	let indexIdx = gameState.ai.accessibility.landPassMap[bestIdx];
-	for (let base of this.baseManagers)
+	for (const base of this.baseManagers())
 	{
 		if (!base.anchor || base.accessIndex == indexIdx)
 			continue;
@@ -1306,7 +1016,7 @@ PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 		// do not try on the narrow border of our territory
 		if (this.borderMap.map[j] & PETRA.narrowFrontier_Mask)
 			continue;
-		if (this.basesMap.map[j] == 0)   // only in our territory
+		if (this.baseAtIndex(j) == 0)   // only in our territory
 			continue;
 		// with enough room around to build the market
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -1376,7 +1086,7 @@ PETRA.HQ.prototype.findMarketLocation = function(gameState, template)
 			return false;
 	}
 	else
-		idx = this.basesMap.map[bestJdx];
+		idx = this.baseAtIndex(bestJdx);
 
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
@@ -1451,7 +1161,7 @@ PETRA.HQ.prototype.findDefensiveLocation = function(gameState, template)
 			if (this.borderMap.map[j] & PETRA.largeFrontier_Mask && isTower)
 				continue;
 		}
-		if (this.basesMap.map[j] == 0)   // inaccessible cell
+		if (this.baseAtIndex(j) == 0)   // inaccessible cell
 			continue;
 		// with enough room around to build the cc
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
@@ -1518,7 +1228,7 @@ PETRA.HQ.prototype.findDefensiveLocation = function(gameState, template)
 
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
-	return [x, z, this.basesMap.map[bestJdx]];
+	return [x, z, this.baseAtIndex(bestJdx)];
 };
 
 PETRA.HQ.prototype.buildTemple = function(gameState, queues)
@@ -1770,7 +1480,7 @@ PETRA.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 	if (queues.civilCentre.hasQueuedUnits())
 		return;
 	// First build one cc if all have been destroyed
-	if (this.numPotentialBases() == 0)
+	if (!this.hasPotentialBase())
 	{
 		this.buildFirstBase(gameState);
 		return;
@@ -1800,7 +1510,7 @@ PETRA.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 
 PETRA.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
-	if (this.numPotentialBases() > 0 && this.currentPhase == 1 && !gameState.isResearching(gameState.getPhaseName(2)))
+	if (this.hasPotentialBase() && this.currentPhase == 1 && !gameState.isResearching(gameState.getPhaseName(2)))
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
@@ -2073,7 +1783,7 @@ PETRA.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	{
 		let access = gameState.ai.accessibility.getAccessValue(pos);
 		// check nearest base anchor
-		for (let base of this.baseManagers)
+		for (const base of this.baseManagers())
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;
@@ -2195,7 +1905,7 @@ PETRA.HQ.prototype.canBuild = function(gameState, structure)
 		return false;
 	}
 
-	if (this.numActiveBases() < 1)
+	if (!this.hasActiveBase())
 	{
 		// if no base, check that we can build outside our territory
 		let buildTerritories = template.buildTerritories();
@@ -2237,23 +1947,7 @@ PETRA.HQ.prototype.updateTerritories = function(gameState)
 			this.borderMap.map[j] &= ~PETRA.fullFrontier_Mask;	// reset the frontier
 
 		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
-		{
-			// If this tile was already accounted, remove it
-			if (this.basesMap.map[j] == 0)
-				continue;
-			let base = this.getBaseByID(this.basesMap.map[j]);
-			if (base)
-			{
-				let index = base.territoryIndices.indexOf(j);
-				if (index != -1)
-					base.territoryIndices.splice(index, 1);
-				else
-					API3.warn(" problem in headquarters::updateTerritories for base " + this.basesMap.map[j]);
-			}
-			else
-				API3.warn(" problem in headquarters::updateTerritories without base " + this.basesMap.map[j]);
-			this.basesMap.map[j] = 0;
-		}
+			this.basesManager.removeBaseFromTerritoryIndex(j);
 		else
 		{
 			// Update the frontier
@@ -2291,42 +1985,8 @@ PETRA.HQ.prototype.updateTerritories = function(gameState)
 			if (onFrontier && !(this.borderMap.map[j] & PETRA.narrowFrontier_Mask))
 				this.borderMap.map[j] |= PETRA.largeFrontier_Mask;
 
-			// If this tile was not already accounted, add it.
-			if (this.basesMap.map[j] != 0)
-				continue;
-			let landPassable = false;
-			let ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);
-			let access;
-			for (let k of ind)
-			{
-				if (!this.landRegions[gameState.ai.accessibility.landPassMap[k]])
-					continue;
-				landPassable = true;
-				access = gameState.ai.accessibility.landPassMap[k];
-				break;
-			}
-			if (!landPassable)
-				continue;
-			let distmin = Math.min();
-			let baseID;
-			let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-			for (let base of this.baseManagers)
-			{
-				if (!base.anchor || !base.anchor.position())
-					continue;
-				if (base.accessIndex != access)
-					continue;
-				let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
-				if (dist >= distmin)
-					continue;
-				distmin = dist;
-				baseID = base.ID;
-			}
-			if (!baseID)
-				continue;
-			this.getBaseByID(baseID).territoryIndices.push(j);
-			this.basesMap.map[j] = baseID;
-			expansion++;
+			if (this.basesManager.addTerritoryIndexToBase(gameState, j, passabilityMap))
+				expansion++;
 		}
 	}
 
@@ -2340,57 +2000,12 @@ PETRA.HQ.prototype.updateTerritories = function(gameState)
 		this.tradeManager.routeProspection = true;
 };
 
-/** Reassign territories when a base is going to be deleted */
-PETRA.HQ.prototype.reassignTerritories = function(deletedBase)
-{
-	let cellSize = this.territoryMap.cellSize;
-	let width = this.territoryMap.width;
-	for (let j = 0; j < this.territoryMap.length; ++j)
-	{
-		if (this.basesMap.map[j] != deletedBase.ID)
-			continue;
-		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
-		{
-			API3.warn("Petra reassignTerritories: should never happen");
-			this.basesMap.map[j] = 0;
-			continue;
-		}
-
-		let distmin = Math.min();
-		let baseID;
-		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-		for (let base of this.baseManagers)
-		{
-			if (!base.anchor || !base.anchor.position())
-				continue;
-			if (base.accessIndex != deletedBase.accessIndex)
-				continue;
-			let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
-			if (dist >= distmin)
-				continue;
-			distmin = dist;
-			baseID = base.ID;
-		}
-		if (baseID)
-		{
-			this.getBaseByID(baseID).territoryIndices.push(j);
-			this.basesMap.map[j] = baseID;
-		}
-		else
-			this.basesMap.map[j] = 0;
-	}
-};
-
 /**
  * returns the base corresponding to baseID
  */
 PETRA.HQ.prototype.getBaseByID = function(baseID)
 {
-	for (let base of this.baseManagers)
-		if (base.ID == baseID)
-			return base;
-
-	return undefined;
+	return this.basesManager.getBaseByID(baseID);
 };
 
 /**
@@ -2400,54 +2015,22 @@ PETRA.HQ.prototype.getBaseByID = function(baseID)
  */
 PETRA.HQ.prototype.numActiveBases = function()
 {
-	if (!this.turnCache.base)
-		this.updateBaseCache();
-	return this.turnCache.base.active;
+	return this.basesManager.numActiveBases();
+};
+
+PETRA.HQ.prototype.hasActiveBase = function()
+{
+	return this.basesManager.hasActiveBase();
 };
 
 PETRA.HQ.prototype.numPotentialBases = function()
 {
-	if (!this.turnCache.base)
-		this.updateBaseCache();
-	return this.turnCache.base.potential;
+	return this.basesManager.numPotentialBases();
 };
 
-PETRA.HQ.prototype.updateBaseCache = function()
+PETRA.HQ.prototype.hasPotentialBase = function()
 {
-	this.turnCache.base = { "active": 0, "potential": 0 };
-	for (let base of this.baseManagers)
-	{
-		if (!base.anchor)
-			continue;
-		++this.turnCache.base.potential;
-		if (base.anchor.foundationProgress() === undefined)
-			++this.turnCache.base.active;
-	}
-};
-
-PETRA.HQ.prototype.resetBaseCache = function()
-{
-	this.turnCache.base = undefined;
-};
-
-/**
- * Count gatherers returning resources in the number of gatherers of resourceSupplies
- * to prevent the AI always reassigning idle workers to these resourceSupplies (specially in naval maps).
- */
-PETRA.HQ.prototype.assignGatherers = function()
-{
-	for (let base of this.baseManagers)
-	{
-		for (let worker of base.workers.values())
-		{
-			if (worker.unitAIState().split(".").indexOf("RETURNRESOURCE") === -1)
-				continue;
-			let orders = worker.unitAIOrderData();
-			if (orders.length < 2 || !orders[1].target || orders[1].target != worker.getMetadata(PlayerID, "supply"))
-				continue;
-			this.AddTCGatherer(orders[1].target);
-		}
-	}
+	return this.basesManager.hasPotentialBase();
 };
 
 PETRA.HQ.prototype.isDangerousLocation = function(gameState, pos, radius)
@@ -2528,76 +2111,6 @@ PETRA.HQ.prototype.updateCaptureStrength = function(gameState)
 	this.capturableTargetsTime = gameState.ai.elapsedTime;
 };
 
-/** Some functions that register that we assigned a gatherer to a resource this turn */
-
-/** add a gatherer to the turn cache for this supply. */
-PETRA.HQ.prototype.AddTCGatherer = function(supplyID)
-{
-	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID] !== undefined)
-		++this.turnCache.resourceGatherer[supplyID];
-	else
-	{
-		if (!this.turnCache.resourceGatherer)
-			this.turnCache.resourceGatherer = {};
-		this.turnCache.resourceGatherer[supplyID] = 1;
-	}
-};
-
-/** remove a gatherer to the turn cache for this supply. */
-PETRA.HQ.prototype.RemoveTCGatherer = function(supplyID)
-{
-	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID])
-		--this.turnCache.resourceGatherer[supplyID];
-	else
-	{
-		if (!this.turnCache.resourceGatherer)
-			this.turnCache.resourceGatherer = {};
-		this.turnCache.resourceGatherer[supplyID] = -1;
-	}
-};
-
-PETRA.HQ.prototype.GetTCGatherer = function(supplyID)
-{
-	if (this.turnCache.resourceGatherer && this.turnCache.resourceGatherer[supplyID])
-		return this.turnCache.resourceGatherer[supplyID];
-
-	return 0;
-};
-
-/** The next two are to register that we assigned a gatherer to a resource this turn. */
-PETRA.HQ.prototype.AddTCResGatherer = function(resource)
-{
-	if (this.turnCache["resourceGatherer-" + resource])
-		++this.turnCache["resourceGatherer-" + resource];
-	else
-		this.turnCache["resourceGatherer-" + resource] = 1;
-
-	if (this.turnCache.currentRates)
-		this.turnCache.currentRates[resource] += 0.5;
-};
-
-PETRA.HQ.prototype.GetTCResGatherer = function(resource)
-{
-	if (this.turnCache["resourceGatherer-" + resource])
-		return this.turnCache["resourceGatherer-" + resource];
-
-	return 0;
-};
-
-/**
- * flag a resource as exhausted
- */
-PETRA.HQ.prototype.isResourceExhausted = function(resource)
-{
-	if (this.turnCache["exhausted-" + resource] == undefined)
-		this.turnCache["exhausted-" + resource] = this.baseManagers.every(base =>
-			!base.dropsiteSupplies[resource].nearby.length &&
-			!base.dropsiteSupplies[resource].medium.length &&
-			!base.dropsiteSupplies[resource].faraway.length);
-
-	return this.turnCache["exhausted-" + resource];
-};
-
 /**
  * Check if a structure in blinking territory should/can be defended (currently if it has some attacking armies around)
  */
@@ -2656,6 +2169,20 @@ PETRA.HQ.prototype.getAccountedWorkers = function(gameState)
 	return this.turnCache.accountedWorkers;
 };
 
+PETRA.HQ.prototype.baseManagers = function()
+{
+	return this.basesManager.baseManagers;
+};
+
+/**
+ * @param {number} territoryIndex - The index to get the map for.
+ * @return {number} - The ID of the base at the given territory index.
+ */
+PETRA.HQ.prototype.baseAtIndex = function(territoryIndex)
+{
+	return this.basesManager.baseAtIndex(territoryIndex);
+};
+
 /**
  * Some functions are run every turn
  * Others once in a while
@@ -2700,7 +2227,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 	else
 		this.researchManager.checkPhase(gameState, queues);
 
-	if (this.numActiveBases() > 0)
+	if (this.hasActiveBase())
 	{
 		if (gameState.ai.playedTurn % 4 == 0)
 			this.trainMoreWorkers(gameState, queues);
@@ -2718,7 +2245,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 			this.researchManager.update(gameState, queues);
 	}
 
-	if (this.numPotentialBases() < 1 ||
+	if (!this.hasPotentialBase() ||
 	    this.canExpand && gameState.ai.playedTurn % 10 == 7 && this.currentPhase > 1)
 		this.checkBaseExpansion(gameState, queues);
 
@@ -2750,21 +2277,11 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 			this.buildDefenses(gameState, queues);
 	}
 
-	this.assignGatherers();
-	let nbBases = this.baseManagers.length;
-	let activeBase;	// We will loop only on 1 active base per turn
-	do
-	{
-		this.currentBase %= this.baseManagers.length;
-		activeBase = this.baseManagers[this.currentBase++].update(gameState, queues, events);
-		--nbBases;
-		// TODO what to do with this.reassignTerritories(this.baseManagers[this.currentBase]);
-	}
-	while (!activeBase && nbBases != 0);
+	this.basesManager.update(gameState, queues, events);
 
 	this.navalManager.update(gameState, queues, events);
 
-	if (this.Config.difficulty > 0 && (this.numActiveBases() > 0 || !this.canBuildUnits))
+	if (this.Config.difficulty > 0 && (this.hasActiveBase() || !this.canBuildUnits))
 		this.attackManager.update(gameState, queues, events);
 
 	this.diplomacyManager.update(gameState, events);
@@ -2782,7 +2299,6 @@ PETRA.HQ.prototype.Serialize = function()
 {
 	let properties = {
 		"phasing": this.phasing,
-		"currentBase": this.currentBase,
 		"lastFailedGather": this.lastFailedGather,
 		"firstBaseConfig": this.firstBaseConfig,
 		"supportRatio": this.supportRatio,
@@ -2807,15 +2323,11 @@ PETRA.HQ.prototype.Serialize = function()
 		"capturableTargetsTime": this.capturableTargetsTime
 	};
 
-	let baseManagers = [];
-	for (let base of this.baseManagers)
-		baseManagers.push(base.Serialize());
-
 	if (this.Config.debug == -100)
 	{
 		API3.warn(" HQ serialization ---------------------");
 		API3.warn(" properties " + uneval(properties));
-		API3.warn(" baseManagers " + uneval(baseManagers));
+		API3.warn(" baseManagers " + uneval(this.basesManager.Serialize()));
 		API3.warn(" attackManager " + uneval(this.attackManager.Serialize()));
 		API3.warn(" buildManager " + uneval(this.buildManager.Serialize()));
 		API3.warn(" defenseManager " + uneval(this.defenseManager.Serialize()));
@@ -2830,7 +2342,7 @@ PETRA.HQ.prototype.Serialize = function()
 	return {
 		"properties": properties,
 
-		"baseManagers": baseManagers,
+		"basesManager": this.basesManager.Serialize(),
 		"attackManager": this.attackManager.Serialize(),
 		"buildManager": this.buildManager.Serialize(),
 		"defenseManager": this.defenseManager.Serialize(),
@@ -2848,16 +2360,10 @@ PETRA.HQ.prototype.Deserialize = function(gameState, data)
 	for (let key in data.properties)
 		this[key] = data.properties[key];
 
-	this.baseManagers = [];
-	for (let base of data.baseManagers)
-	{
-		// the first call to deserialize set the ID base needed by entitycollections
-		let newbase = new PETRA.BaseManager(gameState, this.Config);
-		newbase.Deserialize(gameState, base);
-		newbase.init(gameState);
-		newbase.Deserialize(gameState, base);
-		this.baseManagers.push(newbase);
-	}
+
+	this.basesManager = new PETRA.BasesManager(this.Config);
+	this.basesManager.init(gameState);
+	this.basesManager.Deserialize(gameState, data.basesManager);
 
 	this.navalManager = new PETRA.NavalManager(this.Config);
 	this.navalManager.init(gameState, true);

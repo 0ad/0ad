@@ -19,16 +19,7 @@ PETRA.HQ.prototype.gameAnalysis = function(gameState)
 	this.structureAnalysis(gameState);
 
 	// Let's get our initial situation here.
-	let nobase = new PETRA.BaseManager(gameState, this.Config);
-	nobase.init(gameState);
-	nobase.accessIndex = 0;
-	this.baseManagers.push(nobase);   // baseManagers[0] will deal with unit/structure without base
-	let ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
-	for (let cc of ccEnts.values())
-		if (cc.foundationProgress() === undefined)
-			this.createBase(gameState, cc);
-		else
-			this.createBase(gameState, cc, "unconstructed");
+	this.basesManager.init(gameState);
 	this.updateTerritories(gameState);
 
 	// Assign entities and resources in the different bases
@@ -54,7 +45,7 @@ PETRA.HQ.prototype.gameAnalysis = function(gameState)
 	}
 
 	// configure our first base strategy
-	if (this.baseManagers.length > 1)
+	if (!this.hasPotentialBase())
 		this.configFirstBase(gameState);
 };
 
@@ -94,41 +85,10 @@ PETRA.HQ.prototype.assignStartingEntities = function(gameState)
 			for (let id of ent.garrisoned())
 				ent.unload(id);
 
-		let bestbase;
 		let territorypos = this.territoryMap.gamePosToMapPos(pos);
 		let territoryIndex = territorypos[0] + territorypos[1]*this.territoryMap.width;
-		for (let i = 1; i < this.baseManagers.length; ++i)
-		{
-			let base = this.baseManagers[i];
-			if ((!ent.getMetadata(PlayerID, "base") || ent.getMetadata(PlayerID, "base") != base.ID) &&
-			    base.territoryIndices.indexOf(territoryIndex) == -1)
-				continue;
-			base.assignEntity(gameState, ent);
-			bestbase = base;
-			break;
-		}
-		if (!bestbase)	// entity outside our territory
-		{
-			if (ent.hasClass("Structure") && !ent.decaying() && ent.resourceDropsiteTypes())
-				bestbase = this.createBase(gameState, ent, "anchorless");
-			else
-				bestbase = PETRA.getBestBase(gameState, ent) || this.baseManagers[0];
-			bestbase.assignEntity(gameState, ent);
-		}
-		// now assign entities garrisoned inside this entity
-		if (ent.isGarrisonHolder() && ent.garrisoned().length)
-			for (let id of ent.garrisoned())
-				bestbase.assignEntity(gameState, gameState.getEntityById(id));
-		// and find something useful to do if we already have a base
-		if (pos && bestbase.ID !== this.baseManagers[0].ID)
-		{
-			bestbase.assignRolelessUnits(gameState, [ent]);
-			if (ent.getMetadata(PlayerID, "role") === "worker")
-			{
-				bestbase.reassignIdleWorkers(gameState, [ent]);
-				bestbase.workerObject.update(gameState, ent);
-			}
-		}
+
+		this.basesManager.assignEntity(gameState, ent, territoryIndex);
 	}
 };
 
@@ -434,7 +394,7 @@ PETRA.HQ.prototype.dispatchUnits = function(gameState)
  */
 PETRA.HQ.prototype.configFirstBase = function(gameState)
 {
-	if (this.baseManagers.length < 2)
+	if (!this.hasPotentialBase())
 		return;
 
 	this.firstBaseConfig = true;
@@ -443,7 +403,7 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	let startingLand = [];
 	for (let region in this.landRegions)
 	{
-		for (let base of this.baseManagers)
+		for (const base of this.baseManagers())
 		{
 			if (!base.anchor || base.accessIndex != +region)
 				continue;
@@ -477,20 +437,8 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 
 	// - count the available food resource, and react accordingly
 	let startingFood = gameState.getResources().food;
-	let check = {};
-	for (let proxim of ["nearby", "medium", "faraway"])
-	{
-		for (let base of this.baseManagers)
-		{
-			for (let supply of base.dropsiteSupplies.food[proxim])
-			{
-				if (check[supply.id])    // avoid double counting as same resource can appear several time
-					continue;
-				check[supply.id] = true;
-				startingFood += supply.ent.resourceSupplyAmount();
-			}
-		}
-	}
+	startingFood += this.getTotalResourceLevel(gameState, ["food"], ["nearby", "medium", "faraway"]).food;
+
 	if (startingFood < 800)
 	{
 		if (startingSize < 25000)
@@ -503,20 +451,8 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	}
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
 	let startingWood = gameState.getResources().wood;
-	check = {};
-	for (let proxim of ["nearby", "medium", "faraway"])
-	{
-		for (let base of this.baseManagers)
-		{
-			for (let supply of base.dropsiteSupplies.wood[proxim])
-			{
-				if (check[supply.id])    // avoid double counting as same resource can appear several time
-					continue;
-				check[supply.id] = true;
-				startingWood += supply.ent.resourceSupplyAmount();
-			}
-		}
-	}
+	startingWood += this.getTotalResourceLevel(gameState, ["wood"], ["nearby", "medium", "faraway"]).wood;
+
 	if (this.Config.debug > 1)
 		API3.warn("startingWood: " + startingWood + " (cut at 8500 for no rush and 6000 for saveResources)");
 	if (startingWood < 6000)
@@ -547,7 +483,7 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	// immediatly build a wood dropsite if possible.
 	if (!gameState.getOwnEntitiesByClass("DropsiteWood", true).hasEntities())
 	{
-		const newDP = this.baseManagers[1].findBestDropsiteAndLocation(gameState, "wood");
+		const newDP = this.baseManagers()[0].findBestDropsiteAndLocation(gameState, "wood");
 		if (newDP.quality > 40 && this.canBuild(gameState, newDP.templateName))
 		{
 			// if we start with enough workers, put our available resources in this first dropsite
@@ -559,7 +495,7 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 				const cost = new API3.Resources(gameState.getTemplate(newDP.templateName).cost());
 				gameState.ai.queueManager.setAccounts(gameState, cost, "dropsites");
 			}
-			gameState.ai.queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, newDP.templateName, { "base": this.baseManagers[1].ID }, newDP.pos));
+			gameState.ai.queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, newDP.templateName, { "base": this.baseManagers()[0].ID }, newDP.pos));
 		}
 	}
 	// and build immediately a corral if needed
@@ -567,6 +503,6 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	{
 		const template = gameState.applyCiv("structures/{civ}/corral");
 		if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities() && this.canBuild(gameState, template))
-			gameState.ai.queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }));
+			gameState.ai.queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, template, { "base": this.baseManagers()[0].ID }));
 	}
 };

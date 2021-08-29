@@ -253,7 +253,7 @@ PETRA.TransportPlan.prototype.cancelTransport = function(gameState)
 	let base = gameState.ai.HQ.getBaseByID(ent.getMetadata(PlayerID, "base"));
 	if (!base.anchor || !base.anchor.position())
 	{
-		for (let newbase of gameState.ai.HQ.baseManagers)
+		for (const newbase of gameState.ai.HQ.baseManagers())
 		{
 			if (!newbase.anchor || !newbase.anchor.position())
 				continue;

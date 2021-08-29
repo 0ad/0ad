@@ -254,13 +254,13 @@ PETRA.returnResources = function(gameState, ent)
 PETRA.IsSupplyFull = function(gameState, ent)
 {
 	return ent.isFull() === true ||
-		ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(ent.id()) >= ent.maxGatherers();
+		ent.resourceSupplyNumGatherers() + gameState.ai.HQ.basesManager.GetTCGatherer(ent.id()) >= ent.maxGatherers();
 };
 
 /**
  * Get the best base (in terms of distance and accessIndex) for an entity.
  * It should be on the same accessIndex for structures.
- * If nothing found, return the base[0] for units and undefined for structures.
+ * If nothing found, return the noBase for units and undefined for structures.
  * If exclude is given, we exclude the base with ID = exclude.
  */
 PETRA.getBestBase = function(gameState, ent, onlyConstructedBase = false, exclude = false)
@@ -274,7 +274,7 @@ PETRA.getBestBase = function(gameState, ent, onlyConstructedBase = false, exclud
 		{
 			API3.warn("Petra error: entity without position, but not garrisoned");
 			PETRA.dumpEntity(ent);
-			return gameState.ai.HQ.baseManagers[0];
+			return gameState.ai.HQ.basesManager.baselessBase();
 		}
 		pos = holder.position();
 		accessIndex = PETRA.getLandAccess(gameState, holder);
@@ -285,9 +285,9 @@ PETRA.getBestBase = function(gameState, ent, onlyConstructedBase = false, exclud
 	let distmin = Math.min();
 	let dist;
 	let bestbase;
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 	{
-		if (base.ID == gameState.ai.HQ.baseManagers[0].ID || exclude && base.ID == exclude)
+		if (base.ID == gameState.ai.HQ.basesManager.baselessBase().ID || exclude && base.ID == exclude)
 			continue;
 		if (onlyConstructedBase && (!base.anchor || base.anchor.foundationProgress() !== undefined))
 			continue;
@@ -319,7 +319,7 @@ PETRA.getBestBase = function(gameState, ent, onlyConstructedBase = false, exclud
 		bestbase = base;
 	}
 	if (!bestbase && !ent.hasClass("Structure"))
-		bestbase = gameState.ai.HQ.baseManagers[0];
+		bestbase = gameState.ai.HQ.basesManager.baselessBase();
 	return bestbase;
 };
 

@@ -419,7 +419,7 @@ PETRA.QueueManager.prototype.checkPausedQueues = function(gameState)
 	for (let q in this.queues)
 	{
 		let toBePaused = false;
-		if (gameState.ai.HQ.numPotentialBases() == 0)
+		if (!gameState.ai.HQ.hasPotentialBase())
 			toBePaused = q != "dock" && q != "civilCentre";
 		else if (numWorkers < workersMin / 3)
 			toBePaused = q != "citizenSoldier" && q != "villager" && q != "emergency";

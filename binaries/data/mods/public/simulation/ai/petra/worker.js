@@ -66,8 +66,8 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 	}
 
 	this.entAccess = PETRA.getLandAccess(gameState, ent);
-	// base 0 for unassigned entities has no accessIndex, so take the one from the entity
-	if (this.baseID == gameState.ai.HQ.baseManagers[0].ID)
+	// Base for unassigned entities has no accessIndex, so take the one from the entity.
+	if (this.baseID == gameState.ai.HQ.basesManager.baselessBase().ID)
 		this.baseAccess = this.entAccess;
 	else
 		this.baseAccess = this.base.accessIndex;
@@ -222,10 +222,10 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 				if (supply && !supply.hasClasses(["Field", "Animal"]) &&
 					supplyId != ent.getMetadata(PlayerID, "supply"))
 				{
-					let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplyId);
+					const nbGatherers = supply.resourceSupplyNumGatherers() + this.base.GetTCGatherer(supplyId);
 					if (nbGatherers > 1 && supply.resourceSupplyAmount()/nbGatherers < 30)
 					{
-						gameState.ai.HQ.RemoveTCGatherer(supplyId);
+						this.base.RemoveTCGatherer(supplyId);
 						this.startGathering(gameState);
 					}
 					else
@@ -236,7 +236,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 							ent.setMetadata(PlayerID, "supply", supplyId);
 						else if (nearby.length)
 						{
-							gameState.ai.HQ.RemoveTCGatherer(supplyId);
+							this.base.RemoveTCGatherer(supplyId);
 							this.startGathering(gameState);
 						}
 						else
@@ -244,7 +244,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 							let medium = this.base.dropsiteSupplies[gatherType].medium;
 							if (medium.length && !medium.some(sup => sup.id == supplyId))
 							{
-								gameState.ai.HQ.RemoveTCGatherer(supplyId);
+								this.base.RemoveTCGatherer(supplyId);
 								this.startGathering(gameState);
 							}
 							else
@@ -309,7 +309,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 				ent.setMetadata(PlayerID, "target-foundation", undefined);
 				ent.setMetadata(PlayerID, "subrole", "idle");
 				ent.stopMoving();
-				if (this.baseID != gameState.ai.HQ.baseManagers[0].ID)
+				if (this.baseID != gameState.ai.HQ.basesManager.baselessBase().ID)
 				{
 					// reassign it to something useful
 					this.base.reassignIdleWorkers(gameState, [ent]);
@@ -330,7 +330,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 		{
 			ent.setMetadata(PlayerID, "subrole", "idle");
 			ent.setMetadata(PlayerID, "target-foundation", undefined);
-			if (this.baseID != gameState.ai.HQ.baseManagers[0].ID)
+			if (this.baseID != gameState.ai.HQ.basesManager.baselessBase().ID)
 			{
 				// reassign it to something useful
 				this.base.reassignIdleWorkers(gameState, [ent]);
@@ -357,7 +357,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 			{
 				// nothing to hunt around. Try another region if any
 				let nowhereToHunt = true;
-				for (let base of gameState.ai.HQ.baseManagers)
+				for (const base of gameState.ai.HQ.baseManagers())
 				{
 					if (!base.anchor || !base.anchor.position())
 						continue;
@@ -448,7 +448,8 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	if (resource == "food" && this.startHunting(gameState))
 		return true;
 
-	let findSupply = function(ent, supplies) {
+	const findSupply = function(worker, supplies) {
+		const ent = worker.ent;
 		let ret = false;
 		let gatherRates = ent.resourceGatherRates();
 		for (let i = 0; i < supplies.length; ++i)
@@ -468,7 +469,7 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 			if (!gatherRates[supplyType])
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
-			let nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
+			const nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + worker.base.GetTCGatherer(supplies[i].id);
 			if (supplies[i].ent.resourceSupplyType().specific != "grain" && nbGatherers > 0 &&
 			    supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
@@ -476,7 +477,7 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				continue;
-			gameState.ai.HQ.AddTCGatherer(supplies[i].id);
+			worker.base.AddTCGatherer(supplies[i].id);
 			ent.setMetadata(PlayerID, "supply", supplies[i].id);
 			ret = supplies[i].ent;
 			break;
@@ -490,7 +491,7 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	// first look in our own base if accessible from our present position
 	if (this.baseAccess == this.entAccess)
 	{
-		supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].nearby);
+		supply = findSupply(this, this.base.dropsiteSupplies[resource].nearby);
 		if (supply)
 		{
 			this.ent.gather(supply);
@@ -512,7 +513,7 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 				return true;
 			}
 		}
-		supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].medium);
+		supply = findSupply(this, this.base.dropsiteSupplies[resource].medium);
 		if (supply)
 		{
 			this.ent.gather(supply);
@@ -521,13 +522,13 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	}
 	// So if we're here we have checked our whole base for a proper resource (or it was not accessible)
 	// --> check other bases directly accessible
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 	{
 		if (base.ID == this.baseID)
 			continue;
 		if (base.accessIndex != this.entAccess)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby);
+		supply = findSupply(this, base.dropsiteSupplies[resource].nearby);
 		if (supply)
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -537,7 +538,7 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	}
 	if (resource == "food")	// --> for food, try to gather from fields if any, otherwise build one if any
 	{
-		for (let base of gameState.ai.HQ.baseManagers)
+		for (const base of gameState.ai.HQ.baseManagers())
 		{
 			if (base.ID == this.baseID)
 				continue;
@@ -559,13 +560,13 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 			}
 		}
 	}
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 	{
 		if (base.ID == this.baseID)
 			continue;
 		if (base.accessIndex != this.entAccess)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium);
+		supply = findSupply(this, base.dropsiteSupplies[resource].medium);
 		if (supply)
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -596,11 +597,11 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 		return true;
 
 	// Still nothing ... try bases which need a transport
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 	{
 		if (base.accessIndex == this.entAccess)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby);
+		supply = findSupply(this, base.dropsiteSupplies[resource].nearby);
 		if (supply && navalManager.requireTransport(gameState, this.ent, this.entAccess, base.accessIndex, supply.position()))
 		{
 			if (base.ID != this.baseID)
@@ -610,7 +611,7 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	}
 	if (resource == "food")	// --> for food, try to gather from fields if any, otherwise build one if any
 	{
-		for (let base of gameState.ai.HQ.baseManagers)
+		for (const base of gameState.ai.HQ.baseManagers())
 		{
 			if (base.accessIndex == this.entAccess)
 				continue;
@@ -630,11 +631,11 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 			}
 		}
 	}
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 	{
 		if (base.accessIndex == this.entAccess)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium);
+		supply = findSupply(this, base.dropsiteSupplies[resource].medium);
 		if (supply && navalManager.requireTransport(gameState, this.ent, this.entAccess, base.accessIndex, supply.position()))
 		{
 			if (base.ID != this.baseID)
@@ -680,20 +681,20 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	{
 		if (this.baseAccess == this.entAccess)
 		{
-			supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].faraway);
+			supply = findSupply(this, this.base.dropsiteSupplies[resource].faraway);
 			if (supply)
 			{
 				this.ent.gather(supply);
 				return true;
 			}
 		}
-		for (let base of gameState.ai.HQ.baseManagers)
+		for (const base of gameState.ai.HQ.baseManagers())
 		{
 			if (base.ID == this.baseID)
 				continue;
 			if (base.accessIndex != this.entAccess)
 				continue;
-			supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway);
+			supply = findSupply(this, base.dropsiteSupplies[resource].faraway);
 			if (supply)
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -701,11 +702,11 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 				return true;
 			}
 		}
-		for (let base of gameState.ai.HQ.baseManagers)
+		for (const base of gameState.ai.HQ.baseManagers())
 		{
 			if (base.accessIndex == this.entAccess)
 				continue;
-			supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway);
+			supply = findSupply(this, base.dropsiteSupplies[resource].faraway);
 			if (supply && navalManager.requireTransport(gameState, this.ent, this.entAccess, base.accessIndex, supply.position()))
 			{
 				if (base.ID != this.baseID)
@@ -781,7 +782,7 @@ PETRA.Worker.prototype.startHunting = function(gameState, position)
 		if (PETRA.IsSupplyFull(gameState, supply))
 			continue;
 		// Check if available resource is worth one additionnal gatherer (except for farms).
-		let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
+		const nbGatherers = supply.resourceSupplyNumGatherers() + this.base.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			continue;
 
@@ -826,7 +827,7 @@ PETRA.Worker.prototype.startHunting = function(gameState, position)
 	{
 		if (position)
 			return true;
-		gameState.ai.HQ.AddTCGatherer(nearestSupply.id());
+		this.base.AddTCGatherer(nearestSupply.id());
 		this.ent.gather(nearestSupply);
 		this.ent.setMetadata(PlayerID, "supply", nearestSupply.id());
 		this.ent.setMetadata(PlayerID, "target-foundation", undefined);
@@ -893,7 +894,7 @@ PETRA.Worker.prototype.startFishing = function(gameState)
 		if (PETRA.IsSupplyFull(gameState, supply))
 			return;
 		// check if available resource is worth one additionnal gatherer (except for farms)
-		let nbGatherers = supply.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supply.id());
+		const nbGatherers = supply.resourceSupplyNumGatherers() + this.base.GetTCGatherer(supply.id());
 		if (nbGatherers > 0 && supply.resourceSupplyAmount()/(1+nbGatherers) < 30)
 			return;
 
@@ -919,7 +920,7 @@ PETRA.Worker.prototype.startFishing = function(gameState)
 
 	if (nearestSupply)
 	{
-		gameState.ai.HQ.AddTCGatherer(nearestSupply.id());
+		this.base.AddTCGatherer(nearestSupply.id());
 		this.ent.gather(nearestSupply);
 		this.ent.setMetadata(PlayerID, "supply", nearestSupply.id());
 		this.ent.setMetadata(PlayerID, "target-foundation", undefined);
@@ -948,7 +949,7 @@ PETRA.Worker.prototype.gatherNearestField = function(gameState, baseID)
 		let diminishing = field.getDiminishingReturns();
 		if (diminishing < 1)
 		{
-			let num = field.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(field.id());
+			const num = field.resourceSupplyNumGatherers() + this.base.GetTCGatherer(field.id());
 			if (num > 0)
 				rate = Math.pow(diminishing, num);
 		}
@@ -961,7 +962,7 @@ PETRA.Worker.prototype.gatherNearestField = function(gameState, baseID)
 	if (!bestFarm || bestFarm.rate < 0.70 &&
 	                 gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).filter(API3.Filters.byMetadata(PlayerID, "base", baseID)).hasEntities())
 		return false;
-	gameState.ai.HQ.AddTCGatherer(bestFarm.ent.id());
+	this.base.AddTCGatherer(bestFarm.ent.id());
 	this.ent.setMetadata(PlayerID, "supply", bestFarm.ent.id());
 	return bestFarm.ent;
 };
