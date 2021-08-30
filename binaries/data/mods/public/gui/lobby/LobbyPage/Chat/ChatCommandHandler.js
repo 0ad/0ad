@@ -29,8 +29,9 @@ class ChatCommandHandler
 			this.chatMessagesPanel.addText(
 				Date.now() / 1000,
 				this.systemMessageFormat.format(
-					sprintf(translate("The command '%(cmd)s' is not supported."), {
-						"cmd": setStringTags(escapeText(command), this.ChatCommandTags)
+					sprintf(translate("The command '%(cmd)s' is not supported. Try %(help)s to get more information about the supported commands."), {
+						"cmd": setStringTags(escapeText(command), this.ChatCommandTags),
+						"help": setStringTags(escapeText("/help"), this.ChatCommandTags)
 					})));
 			this.chatMessagesPanel.flushMessages();
 			return true;
