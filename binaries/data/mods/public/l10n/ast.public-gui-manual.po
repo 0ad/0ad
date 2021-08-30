@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 17:18+0000\n"
+"PO-Revision-Date: 2021-08-27 02:04+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Un xugador[font=\"sans-14\"] – Xuega en mou amistosu contra un o más xugadores d'intelixencia artificial (IA). El por defeutu (Petra), magar xugable, sigue en desendolcu y dacuando nun tendrá les carauterístiques nueves."
+msgstr "• [font=\"sans-bold-14\"]Un xugador[font=\"sans-14\"] – Xuega una partida personalizada contra un o más xugadores d'intelixencia artificial (IA). La IA por defeutu (Petra), magar que funcional, sigue en desendolcu y pue nun tener les sos carauterístiques anovaes."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -186,21 +186,21 @@ msgstr "  hotkey.exit – Zarrar la partida nel intre, ensin confirmanza"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr "  hotkey.togglefullscreen – Cambiar ente la pantalla completa y la ventana"
+msgstr "  hotkey.togglefullscreen – Alternar ente la pantalla completa y la ventana"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr "  hotkey.console.toggle – Amosar, anubrir la consola"
+msgstr "  hotkey.console.toggle – Alternar la consola"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr "  hotkey.fps.toggle – Amosar, anubrir los cuadros per segundu (CPS)"
+msgstr "  hotkey.fps.toggle – Alternar los cuadros per segundu (CPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – Activar, desactivar el perfilador en tiempu real, (amuesa darréu los datos, ún tres otru)"
+msgstr "  hotkey.profile.toggle – Alternar el perfilador en tiempu real (amuesa los informes ún tres otru)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -267,11 +267,11 @@ msgstr "  hotkey.quickload – Cargar nel intre"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr "  hotkey.session.gui.menu.toggle – Amosar, anubrir el menú"
+msgstr "  hotkey.session.gui.menu.toggle – Alternar el menú"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr "  hotkey.timeelapsedcounter.toggle – Amosar, anubrir el tiempu corrío"
+msgstr "  hotkey.timeelapsedcounter.toggle – Alternar el tiempu corrío"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
@@ -354,7 +354,7 @@ msgstr "  hotkey.session.stop – Aparar les unidaes esbillaes"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr "  hotkey.session.backtowork – Facer volver al trabayu"
+msgstr "  hotkey.session.backtowork – Facer volver al llabor"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -421,7 +421,7 @@ msgstr "  highlightguarding.showstatusbars – Ver tolos estaos (y, poro, l'avan
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr "  hotkey.summary – Amosar, anubrir el resume"
+msgstr "  hotkey.summary – Alternar el resume"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
@@ -429,29 +429,29 @@ msgstr "  hotkey.lobby – Amosar l'antepar nun ventanu de diálogu"
 
 #: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr "  hotkey.session.gui.diplomacy.toggle – Amosar, anubrir el panel diplomáticu"
+msgstr "  hotkey.session.gui.diplomacy.toggle – Alternar el panel diplomáticu"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr "  hotkey.session.gui.barter.toggle – Amosar, anubrir el panel comercial"
+msgstr "  hotkey.session.gui.barter.toggle – Alternar el panel comercial"
 
 #: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr "  hotkey.session.gui.objectives.toggle – Amosar, anubrir los oxetivos"
+msgstr "  hotkey.session.gui.objectives.toggle – Alternar los oxetivos"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr "  hotkey.session.gui.tutorial.toggle – Amosar, anubrir el panel tutorial"
+msgstr "  hotkey.session.gui.tutorial.toggle – Alternar el panel tutorial"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr "  hotkey.structree – Amosar, anubrir l'árbole de construcciones"
+msgstr "  hotkey.structree – Alternar l'árbole de construcciones"
 
 #: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr "  hotkey.civinfo – Amosar, anubrir el panel civilizacional"
+msgstr "  hotkey.civinfo – Alternar el panel civilizacional"
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -570,48 +570,48 @@ msgstr "[font=\"sans-bold-14\"]Pa les sobrecapes[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:121
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr "  hotkey.session.gui.toggle – Amosar, anubrir la interfaz gráfica del usuariu (IGU)"
+msgstr "  hotkey.session.gui.toggle – Alternar la interfaz gráfica del usuariu (IGU)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr "  hotkey.session.devcommands.toggle – Amosar, anubrir la sobrecapa de desendolcu, (que tien opciones pa desendolcadores)"
+msgstr "  hotkey.session.devcommands.toggle – Alternar la sobrecapa de desendolcu (que tien opciones pa desendolcadores)"
 
 #: gui/manual/intro.txt:123
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  hotkey.wireframe – Activar, desactivar el mou cadarma (primi una vegada pa ver los modelos cola cadarma y la testura, dos vegaes pa ver namái la cadarma y la testura, tres vegaes pa volver al mou normal)"
+msgstr "  hotkey.wireframe – Alternar el mou cadarma (primi una vez p'amosar la cadarma de los modelos testuraos, dos veces p'amosar namái la cadarma coloriao de les testures, tres veces pa volver al mou normal)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr "  hotkey.silhouettes – Amosar, anubrir los contornos de les unidaes (quiciabes ameyore'l rindimientu)"
+msgstr "  hotkey.silhouettes – Alternar los contornos de les unidaes (podría ameyorar el rindimientu)"
 
 #: gui/manual/intro.txt:125
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr "  hotkey.session.diplomacycolors – Activar, desactivar les colores diplomátiques"
+msgstr "  hotkey.session.diplomacycolors – Alternar les colores diplomátiques"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleattackrange – Amosar, anubrir l'algame ofensible de les unidaes o construcciones esbillaes"
+msgstr "  hotkey.session.toggleattackrange – Alternar l'algame ofensible de les unidaes o construcciones esbillaes"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleaurasrange – Amosar, anubrir l'algame aural de les unidaes o construcciones esbillaes"
+msgstr "  hotkey.session.toggleaurasrange – Alternar l'algame aural de les unidaes o construcciones esbillaes"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr "  hotkey.session.togglehealrange – Amosar, anubrir l'algame curatible de les unidaes esbillaes"
+msgstr "  hotkey.session.togglehealrange – Alternar l'algame curatible de les unidaes esbillaes"
 
 #: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"

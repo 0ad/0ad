@@ -6,15 +6,15 @@
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # Martin Křížek <krizekmartin@gmail.com>, 2021
-# fri, 2014,2018
+# fri, 2014,2018,2021
 # Petr Velička <petrvelicka@tuta.io>, 2021
 # Tomáš Matýs <thommathys@gmail.com>, 2018,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-27 09:34+0000\n"
-"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
+"PO-Revision-Date: 2021-07-29 09:02+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Vyřešte problém s kompatibilitou deaktivací neplatných pozměňovacích verzí nebo povolením požadovaných závislostí. Poté můžete hru uložit a spustit."
+msgstr "Vyřešte problém s kompatibilitou zakázáním neplatných pozměněných verzí nebo povolením požadovaných závislostí. Poté můžete hru uložit a spustit."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
@@ -248,7 +248,7 @@ msgstr "Zrušit"
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr "Neplatný mod: %(error)s"
+msgstr "Neplatná pozměněná verze: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -314,7 +314,7 @@ msgstr "Dostupné pozměněné verze"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr "Odfiltrovat validní mody"
+msgstr "Odfiltrovat platné pozměněné verze"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -406,7 +406,7 @@ msgstr "Navštívit mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr "Tato pozměňovací verze neexistuje"
+msgstr "Tato pozměněná verze neexistuje"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -428,7 +428,7 @@ msgstr "Nebyla vybrána žádná pozměněná verze"
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr "Povol alespoň 0ad pozměňovací verzi"
+msgstr "Povol alespoň 0ad pozměněnou verzi"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"

@@ -61,8 +61,8 @@
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
-# Swyter ™ <Swyterzone@gmail.com>, 2013-2018
-# Swyter ™ <Swyterzone@gmail.com>, 2020
+# Swyter <Swyterzone@gmail.com>, 2013-2018
+# Swyter <Swyterzone@gmail.com>, 2020
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
 # vega93 <arkadas_llisa@hotmail.com>, 2013
@@ -71,8 +71,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 17:29+0000\n"
-"Last-Translator: Antonio J. A <antoniojartunedo@gmail.com>\n"
+"PO-Revision-Date: 2021-08-29 16:45+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -414,7 +414,7 @@ msgstr "Haz clic para posicionarte sobre la unidad atacada."
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s han intercambiado %(amountGiven)s por %(amountGained)s."
+msgstr "%(player)s ha cambiado %(amountGiven)s por %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -1421,7 +1421,7 @@ msgstr "Población: actual/límite (max.)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr "Recolectores: actuales"
+msgstr "Recolectores: num."
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11

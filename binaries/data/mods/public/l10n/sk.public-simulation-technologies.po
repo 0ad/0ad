@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-12 13:27+0000\n"
+"PO-Revision-Date: 2021-07-29 10:46+0000\n"
 "Last-Translator: Zuzana Miadoková\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "Šampiónski pechotní kopijníci +25% zdravia, ale +5% doby tréningu."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr "Povzbudovanie vojakou aby trénovali lukostrelbu vie zlepšiť ich presnosť."
+msgstr "Povzbudovanie vojakov aby trénovali lukostreľbu vie zlepšiť ich presnosť."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
@@ -260,14 +260,14 @@ msgstr "Horské závody"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "Jazda +10% rýchlosť chôdze jazdy."
+msgstr "Jazda +10% rýchlosť chôdze."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr "Kartáginci budovali svoje mestské hradby ako tri sústredné okruhy. Tieto hradby neboli nikdy prelomené. Dokonca aj keď bolo mesto ovládnuté Rímanmi, bolo to cez mestský prístav, a nie útokom na hradby."
+msgstr "Kartáginci budovali svoje mestské hradby v troch sústredných okruhoch. Tieto hradby neboli nikdy prelomené. Dokonca aj keď bolo mesto ovládnuté Rimanmi, bolo to cez mestský prístav a nie útokom na hradby."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -366,7 +366,7 @@ msgstr "Drevené hradby"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Mestské hradby -20% doba výstavby a -20% výdrže."
+msgstr "Mestské hradby -20% doba výstavby a -20% zdravia."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -681,7 +681,7 @@ msgstr "Klin a kladivo"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
-msgstr "Vybavte svojich zberačov prútenými košmi pre zber ovocia."
+msgstr "Vybav svojich zberačov prútenými košmi pre zber ovocia."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -938,7 +938,7 @@ msgstr "Postúpi z rušného mestečka na naozajstnú metropolu, plnú zázrakov
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires four Town Structures."
-msgstr "Vyžaduje 4 mestské budovy."
+msgstr "Vyžaduje štyri mestské budovy."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -990,7 +990,7 @@ msgstr "Vylepší malú dedinu na rušné mesto, pripravené na rapídnu expanzi
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
-msgstr "Je nutných päť dedinských budov."
+msgstr "Vyžaduje päť dedinských budov."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1145,7 +1145,7 @@ msgstr "Vrhače šípov -20% rozptyl útoku zdiaľky."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr "Umenie obliehania."
+msgstr "Veda alebo remeslo stavania alebo vykonávania obliehania."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
@@ -1194,7 +1194,7 @@ msgstr "Pluk Strieborných štítov "
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "Vylepšiť śampiónsku pechotu so štítmi na strieborné štíty s väčším množstvom bodov zdravia a bodov útoku."
+msgstr "Vylepšiť Šampiónsku pechotu so štítmi na Strieborné štíty s väčším množstvom bodov zdravia a bodov útoku."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1524,7 +1524,7 @@ msgstr "Obchodníci cestujúci spolu v karavánach sú menej zraniteľní."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
-msgstr "Obchodná karavana"
+msgstr "Obchodná karavána"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
@@ -1648,7 +1648,7 @@ msgstr "Diaspóra"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires three Traders"
-msgstr "Vyžaduje 3 obchodníkov"
+msgstr "Vyžaduje troch obchodníkov"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -1718,4 +1718,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "Povoliť \"Slávnu expanziu\" aura: +20% maximálna populácia na vlastnený div sveta."
+msgstr "Povoliť auru “Slávna expanzia”: +20% maximálnej populácie za každý vlastnený div sveta."

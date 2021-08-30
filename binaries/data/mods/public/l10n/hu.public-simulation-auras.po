@@ -15,14 +15,16 @@
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # János Fehér <feher.janos@mindworks.hu>, 2021
 # Nagy András <asd0707@freemail.hu>, 2018,2020
+# Scael Blu <groteszk@totalcar.hu>, 2021
 # Schafer Gergő <gergoschafer@gmail.com>, 2020
+# Szabó Lambert, 2021
 # Tibor Buzási, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 08:30+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-08-23 18:06+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +34,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "+3 életerő regenerációs sebesség a beszállásolt ostromgépeknél."
+msgstr "+3 életerő regenerációs sebesség a beszállásolt ostromgépeknek."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -40,7 +42,7 @@ msgstr "Fegyvertári javítások"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "+10 életerő regenerációs sebesség a beszállásolt hajóknál."
+msgstr "+10 életerő regenerációs sebesség a beszállásolt hajóknak."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -75,7 +77,7 @@ msgstr "Buzdító jelenlét"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "-5% életerő a hősöknél."
+msgstr "−5% életerő a hősöknek."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -87,7 +89,7 @@ msgstr "-15% nyersanyagköltség és kutatási idő az épületekben kutatott fe
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "A tudományok központja"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -150,7 +152,7 @@ msgstr "Dicsőséges hódítás"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Az egységek tapasztalatot gyűjtenek, amíg az épületbe vannak szállásolva."
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -190,7 +192,7 @@ msgstr "Gall termékek"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr "Polgári lándzsadobók -10% nyersanyagköltség."
+msgstr "Polgári gerelyeseknek -10% nyersanyagköltség."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -305,7 +307,7 @@ msgstr "Gerilla taktika"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelineers +20% attack range."
-msgstr "Cassivellaunus gyorsan mozgó csatárokat vetett be, hogy zaklassák a római csapatokat és gyűjtögetőket.\n+20% támadási hatótávolság a lándzsásoknál."
+msgstr "Cassivellaunus gyorsan mozgó csatárokat vetett be, hogy zaklassák a római csapatokat és gyűjtögetőket.\n+20% támadási hatótávolság a gerelyeseknek."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -445,7 +447,7 @@ msgstr "Lucretia megbosszulója"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr "Brutus a monarchia megdöntésének és a Római Köztársaság megalapításának egyik kulcsfigurája volt. Később konzulként győzelemre vezette a római sereget Tarquinius etruszk király ellen, aki megpróbálta visszavenni a trónt.\nEmberek és ostromgépek +1 zúzás, csapás, átütés ellenállás."
+msgstr "Brutus a monarchia megdöntésének és a Római Köztársaság megalapításának egyik kulcsfigurája volt. Később konzulként győzelemre vezette a római sereget Tarquinius etruszk király ellen, aki megpróbálta visszavenni a trónt.\nEmbereknek és ostromgépeknek +1 zúzási, vágási, szúrási ellenállás."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -490,11 +492,11 @@ msgstr "Lükurgosz számos katonai reformot vezetett be, és így az ő kormány
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
 msgid "Lycurgan Military Reforms"
-msgstr "Lükurgoszi hadi reformok"
+msgstr "Lükurgosz katonai reformjai"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr "-5% nyersanyagköltség a bajnok lándzsás gyalogosoknál."
+msgstr "−5% nyersanyagköltség a bajnok lándzsás gyalogosoknak."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -526,7 +528,7 @@ msgstr "Alakzat reformok"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
-msgstr "+15% mozgási sebesség a gerelyes gyalogosoknál."
+msgstr "+15% mozgási sebesség a gyalogos gerelyeseknek."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -534,7 +536,7 @@ msgstr "Peltasztész reformok"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
-msgstr "+15% építési sebesség a kőműveseknél."
+msgstr "+15% építési sebesség az építőknek."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -542,7 +544,7 @@ msgstr "Periklészi építési program"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr "Templomok -25% kő igény, +2 beszállásolt gyógyulási sebesség"
+msgstr "Templomoknak -25% kő költség, +2 beszállásolt gyógyítási sebesség."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
@@ -655,7 +657,7 @@ msgstr "Hadi előkészület"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "Amikor beszállásolt, az épületnek +2 szállásoló foglalási pont regenerációs sebessége van."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -761,7 +763,7 @@ msgstr "Imperializmus"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr "−50% foglalási pont regenerációs sebesség az ellenséges városházáknál."
+msgstr "−50% foglalási pont regenerációs sebesség a szállásoló ellenséges városházáknak."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
@@ -908,7 +910,7 @@ msgstr "−10% közelharci és távolsági sebzés az ellenséges gyalogságnál
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Embereknek és épületeknek +1 zúzási, vágási, szúrási ellenállás."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -926,7 +928,7 @@ msgstr "Diadal"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Lovasságnak +1 zúzás, csapás, átütés ellenállás."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -952,7 +954,7 @@ msgstr "Zooiarchos (elefánt parancsnok)"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr ""
+msgstr "Polgári gyalogos gerelyesek +1 zúzási, vágási, szúrási ellenállás, +25% távolsági szúrási sebzés."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"

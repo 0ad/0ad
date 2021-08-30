@@ -12,14 +12,15 @@
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017-2018
 # János Kiss <kisjanivagyok@freemail.hu>, 2018
 # Péter Dóbé <dobepeter@gmail.com>, 2017
+# Scael Blu <groteszk@totalcar.hu>, 2021
 # Stew Den <stewden55@hotmail.com>, 2014
 # Tibor Buzási, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 09:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-08-19 01:14+0000\n"
+"Last-Translator: Scael Blu <groteszk@totalcar.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Az Alt + Enter billentyűzetkombinációval válthatsz a teljes képernyős és az ablakos mód között. Ablakos módban át lehet méretezni az ablakot. Ha a játék lassan fut, a beállítások ablakban módosíthatsz néhány beállítást: próbáld meg kikapcsolni a „Magas minőségű vízhatások” és az „Árnyékok” beállításokat."
+msgstr "Az Alt + Enter billentyűzetkombinációval válthatsz a teljes képernyős és az ablakos mód között. Ablakos módban át tudod méretezni az ablakot. Ha a játék lassan fut, a beállítások ablakban módosíthatsz néhány beállítást: próbáld meg kikapcsolni a „Magas minőségű vízhatások” és az „Árnyékok” beállításokat."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -60,7 +61,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "A vezérlés és a játékmenet ismerős kell legyen a hagyományos RTS játékosoknak. Egyelőre sok a hiányzó funkció, valamint a rosszul kezelt statisztika ‒ valószínűleg várni kell a béta kiadásra, hogy minden jól működjön."
+msgstr "A vezérlés és a játékmenet ismerős lehet a hagyományos valós idejű stratégiai (RTS) játékosoknak. Egyelőre sok a hiányzó funkció, valamint a rosszul kezelt statisztika ‒ valószínűleg várni kell a béta kiadásra, hogy minden jól működjön."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
@@ -176,7 +177,7 @@ msgstr "Ha készen állsz, kattints a „Játék indítása” gombra."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Gyorsbillentyű[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Gyorsbillentyűk[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
@@ -363,13 +364,13 @@ msgstr "  hotkey.session.stop – A jelenleg kiválasztott egységek megállít�
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "hotkey.session.backtowork – Az egység visszamegy dolgozni"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr " hotkey.session.unload – Ürítsd ki a beszállásolt egységeket a kijelölt épület(ek)ből"
 
 #: gui/manual/intro.txt:81
 msgid ""

@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-04 20:30+0000\n"
+"PO-Revision-Date: 2021-08-02 20:31+0000\n"
 "Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -192,7 +192,7 @@ msgstr "Каледонские луга"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr ""
+msgstr "Каждый игрок начинает на холме, окружённом отвесными скалами. Карта создана по мотивам Кантабрии - гористого региона на севере Пиренейского полуострова."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -367,7 +367,7 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr "«Остров Мероэ», огромный полуостров, омываемый реками Нил и Атбара, сердце древнего Куша. Место, где жестокая пустыня начинает переходить в засушливую саванну и появляются маленькие акациевые рощи. Земля эта богата ресурсами и воды вечного Нил даруют ей жизнь, но смертельная угроза сгущается на другом берегу."
+msgstr "«Остров Мероэ», огромный полуостров, омываемый реками Нил и Атбара, сердце древнего Куша. Место, где жестокая пустыня начинает переходить в засушливую саванну и пейзаж усеян небольшими рощами акации. Земля эта богата ресурсами и воды вечного Нила даруют ей жизнь, но смертельная угроза сгущается на другом берегу."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
@@ -471,7 +471,7 @@ msgid ""
 "Each player starts in a coastal area between forested hills and the Sea. "
 "Inspired by the southern regions of the Caspian Sea known in Antiquity as "
 "Hyrcania."
-msgstr ""
+msgstr "Каждый игрок начинает на побережье между лесистыми холмами и морем. Карта напоминает южные области Каспийского моря, во времена античности известные как Гиркания."
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
@@ -516,7 +516,7 @@ msgid ""
 "Lands”, the ancient religious capital of Napata lay in its shadow. This is "
 "where kings were made – and unmade! Abutting a rich floodplain downstream "
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
-msgstr "Начиная от плодородных берегов Нила, игроки штурмуют хорошо защищённую Напату, лежащую у подножия холма Джебель-Баркал, «Священной скалы». Это южный дом Амона и, в соответствии с верованиями как кушитов, так и египтян, место зарождения человека. Известная как «Престол двух земель», религиозная столица Напата лежит в его тени. Город в котором короновали... и низвергали! Эта земля, примыкающая к богатой пойме ниже четвёртого порога Нила, стала житницей древнего Куша."
+msgstr "Начиная игру возле плодородных берегов Нила, игроки осаждают хорошо защищённый город Напата, лежащий у подножия холма Джебель-Баркал, «Священной скалы». Это южный дом Амона и, согласно верованиям как кушитов, так и египтян, место зарождения человека. Известная как «Престол двух земель», древняя религиозная столица Напата лежит в его тени. Город в котором короновали... и низвергали царей! Эта земля, примыкающая к богатой пойме ниже четвёртого порога Нила, стала житницей древнего Куша."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
@@ -903,7 +903,7 @@ msgid ""
 "irrevocably intertwined. The native beech and oak trees of this temperate "
 "zone display a multi-colored foliage while animals try to prepare for the "
 "approaching winter."
-msgstr ""
+msgstr "Опали первые листья. Пейзаж ослепляет пёстрым переплетением красок. Местные буки и дубы окутаны разноцветной листвой, а животные тем временем готовятся к приближающейся зиме."
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
@@ -975,7 +975,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Eurasian Steppe"
-msgstr ""
+msgstr "Великая Степь"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -2434,14 +2434,14 @@ msgstr "%(player)s был побежден (потерял всех критич
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all civic centres)."
-msgstr ""
+msgstr "%(player)s потерпел поражение (потерял все городские центры)."
 
 #: maps/scripts/ConquestCivicCentres.js:9
 #, javascript-format
 msgid ""
 "%(player)s has been defeated (lost all civic centres and critical units and "
 "structures)."
-msgstr ""
+msgstr "%(player)sпотерпел поражение (потерял все городские центры, важных юнитов и постройки)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
@@ -2568,7 +2568,7 @@ msgstr "В восточной части Бактрии лежит богата�
 
 #: maps/skirmishes/bactria_2p.xml:Name:39
 msgid "Bactriana (2)"
-msgstr ""
+msgstr "Бактриана (2)"
 
 #: maps/skirmishes/barcania_3p.xml:Description:26
 msgid ""
@@ -2873,11 +2873,11 @@ msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
-msgstr ""
+msgstr "Горы Гиндукуш отделяют Индию от Бактрии (современный Афганистан) и служат естественной границей между государствами Селевкидов и Маурьев. В последствии эта область находилась под контролем Греко-Бактрийского и Индо-Греческого царств в период позднего эллинизма.\n\nВ этой области мало древесины, но в изобилии камень и металл. Через центр карты пролегает торговый путь. Расположенные на нем Торговые посты могут быть захвачены и использованы как дополнительный источник ресурсов."
 
 #: maps/skirmishes/hindu_kush_2p.xml:Name:39
 msgid "Hindu Kush (2)"
-msgstr ""
+msgstr "Гиндукуш (2)"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Description:39
 msgid ""
@@ -2888,17 +2888,17 @@ msgstr ""
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
-msgstr ""
+msgstr "Река Гидасп (4)"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
 msgid "Macedonian Position"
-msgstr ""
+msgstr "Позиция македонян"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
 msgid "Pauravan Position"
-msgstr ""
+msgstr "Позиция Пуруравы"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2942,7 +2942,7 @@ msgid ""
 "Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
 "\n"
 "This map was designed as a 1v1 map suitable for rated and tournament play."
-msgstr ""
+msgstr "Две величайших индийских империи, Империя Маурьев и Империя Гуптов, брали свое начало в Магадхе, области на севере Индии возле священной реки Ганг.\n\nЭта карта разработана для игры 1v1 и подходит для турниров."
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
@@ -2982,7 +2982,7 @@ msgstr ""
 
 #: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
 msgid "Miletus Peninsula (2)"
-msgstr ""
+msgstr "Милетский полуостров (2)"
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Description:38
 #: maps/skirmishes/neareastern_badlands_4p.xml:Description:38
@@ -3175,7 +3175,7 @@ msgstr "Бесплодная земля с клочками леса и малы
 
 #: maps/skirmishes/syria_2p.xml:Name:39
 msgid "Coele-Syria (2)"
-msgstr ""
+msgstr "Келесирия (2)"
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3272,7 +3272,7 @@ msgstr "Иностранцы вторгаются в Британию. Мест�
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
-msgstr ""
+msgstr "Белые скалы Дувра (5)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
 msgid "Britons"

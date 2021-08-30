@@ -14,11 +14,11 @@
 # Marek Harok <kenturin@seznam.cz>, 2017
 # Martin Křížek <krizekmartin@gmail.com>, 2021
 # Pavel Borecki <pavel.borecki@gmail.com>, 2019
-# fri, 2014-2019
+# fri, 2014-2019,2021
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Warriog <warrriog@gmail.com>, 2018
-# Robin Kriebel <kriebel.robin@gmail.com>, 2016
+# Robin Kriebel <kriebel.robin@gmail.com>, 2016,2021
 # Roman Kalivoda <kalivodaroman@gmail.com>, 2020
 # Tomáš Matýs <thommathys@gmail.com>, 2018,2021
 # Tomáš Weber <webertomas01@gmail.com>, 2021
@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-25 11:59+0000\n"
-"Last-Translator: Tonda12\n"
+"PO-Revision-Date: 2021-08-07 12:00+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -316,11 +316,11 @@ msgstr "Velikost mapy"
 #: gui/common/gamedescription.js:322
 msgctxt "biome"
 msgid "Random Biome"
-msgstr "Náhodný bióm"
+msgstr "Náhodné prostředí"
 
 #: gui/common/gamedescription.js:323
 msgid "Randomly select a biome from the list."
-msgstr "Náhodně vybrat bióm ze seznamu."
+msgstr "Náhodně vybrat prostředí ze seznamu."
 
 #: gui/common/gamedescription.js:338
 msgid "Nomad Mode"
@@ -502,7 +502,7 @@ msgstr "Bezpečné přihlášení selhalo. Připojte se přes herní skupinu."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr "Chyba: Serveru se nepodařilo klientovy přidělit unikátní identifikátor."
+msgstr "Chyba: Serveru se nepodařilo klientovy přidělit jedinečný identifikátor."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -510,11 +510,11 @@ msgstr "Chyba: Klientovy příkazy byly připraveny pro neočekávaný tah hry."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr "Chyba: Klient simuloval neočekávaný tah hry."
+msgstr "Chyba: Klient zahrál neočekávaný tah hry."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr "Nesprávné heslo"
+msgstr "Nesprávné heslo."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -623,7 +623,7 @@ msgstr "Potyčka"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Mapa s předdefinovanou krajinou a počtem hráčů. Ostatní nastavení si zvolte podle chuti."
+msgstr "Mapa s již stanovenou krajinou a počtem hráčů. Ostatní nastavení si zvolte podle chuti."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -806,7 +806,7 @@ msgstr "Blokuje:%(blockPercentage)s%%, Snížení doby trvání:%(durationReduct
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr "Umísti posádku aby začala střílet šípy"
+msgstr "Umísti posádku, aby začala střílet šípy"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
@@ -1034,7 +1034,7 @@ msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr "Pozice věže"
+msgstr "Poloha věže"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1228,7 +1228,7 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1019
 msgid "Walk"
-msgstr "Jít"
+msgstr "Obchůzka"
 
 #: gui/common/tooltips.js:1024
 msgid "Run"
@@ -1333,7 +1333,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "Zásluhy o 0 A.D."
+msgstr "Přispěvatelé do 0 A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1447,7 +1447,7 @@ msgstr "Vyvažování"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
-msgstr "Společenství a správa"
+msgstr "Komunita a správa"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1481,7 +1481,7 @@ msgstr "Skripty náhodných map"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr "Mapy\n"
+msgstr "Mapy"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1517,7 +1517,7 @@ msgstr "Zvláštní poděkování:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "A poděkování celému společenství za umožnění 0 A.D."
+msgstr "A děkujeme celé komunitě. Bez pospolitosti by vznik 0 A.D. nebyl možný."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -1587,7 +1587,7 @@ msgstr "Potvrzení"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr "Žádný popis není k dispozici."
+msgstr "Žádný popis není dostupný."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1614,7 +1614,7 @@ msgstr "Popis klávesové zkratky"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "Kliknutím na libovolné mapování jej upravíte. \\ N Můžete mít až 4 různé klávesové zkratky."
+msgstr "Klepněte na libovolné přiřazení a upravte je.\\n Můžete mít až 4 různé klávesové zkratky."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1653,11 +1653,11 @@ msgstr "Neuložené změny budou ztraceny"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr "Kliknutím nastavíte klávesovou zkratku"
+msgstr "Klepněte a nastavte klávesovou zkratku"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr "Kliknutím smažete klávesovou zkratku"
+msgstr "Klepněte a smažte klávesovou zkratku"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
@@ -1700,7 +1700,7 @@ msgstr "Sledovat jednotku"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr "Přejít na pozici kamery 1 (viz “Nastavit skok kamery 1”)."
+msgstr "Přejít na polohu kamery 1 (viz “Nastavit skok kamery 1”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
@@ -1710,7 +1710,7 @@ msgstr "Přejít na kameru 1"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr "Přejít na pozici kamery 2 (viz “Nastavit skok kamery 2”)."
+msgstr "Přejít na polohu kamery 2 (viz “Nastavit skok kamery 2”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
@@ -1720,7 +1720,7 @@ msgstr "Přejít na kameru 2"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr "Přejít na pozici kamery 3 (viz “Nastavit skok kamery 3”)."
+msgstr "Přejít na polohu kamery 3 (viz “Nastavit skok kamery 3”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
@@ -1730,7 +1730,7 @@ msgstr "Přejít na kameru 3"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr "Přejít na pozici kamery 4 (viz “Nastavit skok kamery 4”)."
+msgstr "Přejít na polohu kamery 4 (viz “Nastavit skok kamery 4”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
@@ -1740,7 +1740,7 @@ msgstr "Přejít na kameru 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr "Nastavte pozici skoku kamery 1."
+msgstr "Nastavte polohu skoku kamery 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
@@ -1750,7 +1750,7 @@ msgstr "Nastavit skok kamery 1"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr "Nastavte pozici skoku kamery 2."
+msgstr "Nastavte polohu skoku kamery 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
@@ -1760,7 +1760,7 @@ msgstr "Nastavit skok kamery 2"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr "Nastavte pozici skoku kamery 3."
+msgstr "Nastavte polohu skoku kamery 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
@@ -1770,7 +1770,7 @@ msgstr "Nastavit skok kamery 3"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr "Nastavte pozici skoku kamery 4."
+msgstr "Nastavte polohu skoku kamery 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
@@ -1780,7 +1780,7 @@ msgstr "Nastavit skok kamery 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the position of the last attack notification."
-msgstr "Zaměřte kameru na pozici posledního oznámení o útoku."
+msgstr "Zaměřte kameru na místo posledního oznámení o útoku."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
 msgctxt "hotkey metadata"
@@ -1795,7 +1795,7 @@ msgstr "Posuňte nebo otočte doleva."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr "Posouvání / otáčení doleva"
+msgstr "Posouvání/Otáčení doleva"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -1810,200 +1810,200 @@ msgstr "Posouvání kamery"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "Přepnout kameru na shromažďovací místo vybrané budovy."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "Přepnout na shromaždiště"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "Uvést otáčení kamery do výchozího stavu."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "Vynulovat kameru"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Posuňte nebo otočte doprava."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Posouvání/Otáčení doprava"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Otočit proti směru hodinových ručiček"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Otáčet kamerou po směru hodinových ručiček okolo terénu krajiny."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Otočit po směru hodinových ručiček"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look downwards."
-msgstr ""
+msgstr "Otočit pohled kamery dolů."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "Otočit dolů"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Snížit rychlost otáčení kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Snížit rychlost otáčení"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Zvýšit rychlost otáčení kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Zvýšit rychlost otáčení"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look upwards."
-msgstr ""
+msgstr "Otočit pohled kamery nahoru."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "Otočit nahoru"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Otáčet kamerou proti směru hodinových ručiček okolo terénu krajiny - účinek závisí na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Otáčet kamerou po směru hodinových ručiček okolo země, terénu (krajiny) - účinek závisí na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "Snížit rychlost posouvání kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Snížit rychlost posouvání"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "Zvýšit rychlost posouvání kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "Zvýšit rychlost posouvání"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "Posunout dopředu nebo otočit nahoru."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "Posunout/Otočit nahoru"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Přiblížit kameru"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Přiblížit"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Oddálit kameru"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "Oddálit"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "Snížit rychlost přiblížení kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "Snížit rychlost přiblížení"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "Zvýšit rychlost přiblížení kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "Zvýšit rychlost přiblížení"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Přiblížit kameru - účinek závisí na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Přiblížit (krokově)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Oddálit kameru - účinek závisí na FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Oddálit (krokově)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "Obecné klávesové zkratky."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -2013,22 +2013,22 @@ msgstr "Obecné"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "Udělat velký snímek obrazovky v BMP."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Velký snímek obrazovky"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "Závřít nebo zrušit nynější dialogové okno/vyskakovací okno."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Zavřít/Zrušit"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -2048,7 +2048,7 @@ msgstr "Otevřít/Zavřít konzoli."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Přepnout konzoli"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -2068,19 +2068,19 @@ msgstr "Vyjmout označený text a zkopírovat do schránky."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Vystřihnout do schránky"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr ""
+msgstr "Vlastní klávesová zkratka pro ukončení do pracovní plochy. Vždy jsou zapnuty klávesové zkratky programu (Alt+F4 / Cmd+Q / atd.)."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr ""
+msgstr "Vlastní ukončení do pracovní plochy"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2095,17 +2095,17 @@ msgstr "Vložit ze schránky"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/unpause game."
-msgstr ""
+msgstr "Pozastavit/pokračovat ve hře."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "Pozastavit/Pokračovat"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Uložit nynější data profilovacího programu do logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
@@ -2115,27 +2115,27 @@ msgstr "Uložit profil"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable real-time profiler."
-msgstr ""
+msgstr "Povolit/Zakázat profilovací program ve skutečném čase."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "Přepnout profilovací program"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Povolit/Zakázat pro nový profilovací program režimy HTTP/GPU."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "Přepnout profilovací program 2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr "Pořídit PNG screenshot."
+msgstr "Pořídit snímek obrazovky ve formátu PNG."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
@@ -2145,42 +2145,42 @@ msgstr "Snímek obrazovky"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Přepnout vodoznak produktu/společnosti pro oficiální snímky obrazovky."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Přepnout vodoznak"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Ukázat další kartu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Další karta"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Ukázat předchozí kartu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Předchozí záložka"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Smazat slovo nalevo od ukazatele."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Smazat před ukazatelem"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
@@ -2190,52 +2190,52 @@ msgstr "Smazat slovo vpravo od kurzoru."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Smazat po ukazateli"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Přesunout ukazatel na začátek slova nalevo od ukazatele."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Přesunout ukazatel ke slovu nalevo"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Přesunout ukazatel na začátek slova napravo od ukazatele."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Přesunout ukazatel ke slovu napravo"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "Přepnout režim na celou obrazovku/okenní."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Přepnout na celou obrazovku"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Přepnout do režimu drátového modelu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "Přepnout do režimu drátového modelu"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr ""
+msgstr "Klávesové zkratky činné v obrazovce s nastavením hry."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2245,67 +2245,67 @@ msgstr "Nastavení hry"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "Otevřít prohlížeč map."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Otevřít prohlížeč map"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Klávesové zkratky ve hře."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "Ve hře"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr ""
+msgstr "Modifikátor pro zaútočení namísto jiné činnosti (např. zajetí)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "Vynutit útok"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Modifikátor pro útočný pohyb při klepnutí na bod."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Útočný pohyb"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Modifikátor pro útočný pohyb při klepnutí na bod cílící pouze na jednotky."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "Útočný pohyb (pouze jednotka)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr ""
+msgstr "Modifikátor pro stanovení shromaždiště na samotné budově."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "Shromaždiště automaticky"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "Jednotka se vráti zpět do práce."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2315,58 +2315,58 @@ msgstr "Zpět do práce"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "Modifikátor pro cvičení jednotek v dávkách."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "Sériová výroba"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
+msgstr "Modifikátor pro zrušení výběru jednotek při klepnutí na ikonu skupiny, namísto vybrání."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "Zrušit výběr typu jednotky"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr ""
+msgstr "Nastavit ukazovátko, aby se při stisknutí této klávesové zkratky rozzářilo."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr ""
+msgstr "Rozzářit (podržet)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr ""
+msgstr "Nastavit ukazovátko, aby se rozzářilo. Klávesovou zkratku lze uvolnit."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr ""
+msgstr "Rozzářit (přepnout)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr ""
+msgstr "Modifikátor pro nastavení požadovaného obchodního zdroje na 100 %."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "Nastavit obchod na 100 %"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Modifikátor pro obsazení posádkou při klepnutí na budovu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2376,7 +2376,7 @@ msgstr "Obsadit"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Modifikátor pro doprovod/hlídání při klepnutí na jednotku/budovu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2386,87 +2386,87 @@ msgstr "Stráž"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr ""
+msgstr "Zničit vybrané jednotky."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Zničit vybrané jednotky"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Nařiďte jednotce, aby opustila bod věže."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Opustit bod věže"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Modifikátor pro výměnu spousty zdrojů."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Hromadná výměna"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr ""
+msgstr "Modifikátor pro darování spousty zdrojů."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Hromadný dar"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
+msgstr "Modifikátor pro přesunutí se na bod namísto jiné činnosti (např. sbírání)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr ""
+msgstr "Vynutit pohyb"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Neptat se na potvrzení při mazání stavby/jednotky."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Zničit bez potvrzení"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr ""
+msgstr "Modifikátor k obsazení věže při klepnutí na držitele věže."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "Obsadit bod věže"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr ""
+msgstr "Modifikátor pro přikázání pouze jedné jednotky ve výběru."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Přikázat jednu jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Modifikátor pro hlídkování jednotky."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2476,127 +2476,127 @@ msgstr "Hlídka"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr ""
+msgstr "Modifikátor k provedení tohoto příkazu, poté se vrátit k nynějšímu příkazu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Posuňte příkaz dopředu"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr ""
+msgstr "Modifikátor pro řazení příkazů jednotkám namísto nahrazení."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Zařadit příkaz"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr ""
+msgstr "Přidat první typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
 msgid "Queue 1st unit"
-msgstr ""
+msgstr "Zařadit první jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr ""
+msgstr "Přidat druhý typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
 msgid "Queue 2nd unit"
-msgstr ""
+msgstr "Zařadit druhou jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr ""
+msgstr "Přidat třetí typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
 msgid "Queue 3rd unit"
-msgstr ""
+msgstr "Zařadit třetí jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr ""
+msgstr "Přidat čtvrtý typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
 msgid "Queue 4th unit"
-msgstr ""
+msgstr "Zařadit čtvrtou jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr ""
+msgstr "Přidat pátý typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
 msgid "Queue 5th unit"
-msgstr ""
+msgstr "Zařadit pátou jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr ""
+msgstr "Přidat šestý typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
 msgid "Queue 6th unit"
-msgstr ""
+msgstr "Zařadit šestou jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr ""
+msgstr "Přidat sedmý typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
 msgid "Queue 7th unit"
-msgstr ""
+msgstr "Zařadit sedmou jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr ""
+msgstr "Přidat osmý typ jednotky do řady."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
-msgstr ""
+msgstr "Zařadit osmou jednotku"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr ""
+msgstr "Vypnout automatickou řadu pro vybrané stavby."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
 msgid "Deactivate auto-queue"
-msgstr ""
+msgstr "Vypnout automatickou řadu"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr ""
+msgstr "Zapnout automatickou řadu pro vybrané stavby."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
 msgid "Activate auto-queue"
-msgstr ""
+msgstr "Zapnout automatickou řadu"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
+msgstr "Modifikátor pro opravení při klepnutí na budovu/mechanickou jednotku."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2606,59 +2606,59 @@ msgstr "Opravit"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview anticlockwise."
-msgstr ""
+msgstr "Otočit náhled umístění budovy proti směru hodinových ručiček."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Otočit budovu proti směru hodinových ručiček"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr ""
+msgstr "Otočit náhled umístění budovy po směru hodinových ručiček."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Otočit budovu po směru ručiček"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr ""
+msgstr "Modifikátor pro zarovnání nových staveb s blízkou stávající stavbou."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Přepnout přichytávání k okraji"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Přerušit nynější činnost."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr ""
+msgstr "Zastavit jednotky"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "Přepnout mezi nulovým výchozím uskupením a posledním použitým výchozím uskupením (výchozí hodnota je „box“)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr ""
+msgstr "Přepnout výchozí uskupení"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Když je vybrána budova/mechanická jednotka, vyložit jednotky, kterými je obsazena."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2668,72 +2668,72 @@ msgstr "Vyložit"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Vyložit jednotky ve věžích."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Vyložit věže"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Modifikátor pro vyložení všech jednotek daného druhu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Vyložit druh jednotky"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Klávesové zkratky pro uživatelské rozhraní ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "Herní uživatelské rozhraní"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Přepnout počítadlo příměří."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Přepnout počítadlo příměří"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Přepnout na okno pro vedení rozhovoru."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Přepnout na rozhovor"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Show civilization info."
-msgstr ""
+msgstr "Ukázat údaje o civilizaci"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "Přepnout údaje o civilizaci"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr ""
+msgstr "Přepnout čítač „snímků za sekundu“."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr ""
+msgstr "Přepnout FPS ukazatel"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2743,291 +2743,291 @@ msgstr "Ukázat skupinu hry pro více hráčů v dialogovém okně."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr ""
+msgstr "Přepnout herní skupinu MP"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Přepnout na okno pro vedení rozhovoru a vybrat předchozího účastníka soukromého rozhovoru."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Přepnout na soukromý rozhovor"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr ""
+msgstr "Nahrát nejnovější rychle uloženou hru. Nic nedělá, pokud neexistují žádné rychle uložené hry."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "Rychlé nahrání"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr ""
+msgstr "Provést dočasné uložení hry, kterou lze nahrát pomocí rychlého nahrání. Rychlé ukládání vždy přepíše předchozí uložení."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
 msgid "Quicksave"
-msgstr ""
+msgstr "Rychlé uložení"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr ""
+msgstr "Přepnout nynější zobrazení času na počítači."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Přepnout překrytí ve skutečném čase"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle developer commands panel."
-msgstr ""
+msgstr "Přepnout panel s příkazy vývojáře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr ""
+msgstr "Přepnout panel příkazů vývojáře"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr ""
+msgstr "Přepnout barvy diplomacie."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Přepnout barvy diplomacie"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Přepnout stránku s výměnným obchodem/obchodní směnou ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Přepnout výměnný obchod"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr ""
+msgstr "Přepnout stránku diplomacie ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr ""
+msgstr "Přepnout diplomacii"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Přepnout nabídku ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr ""
+msgstr "Přepnout nabídku ve hře"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Přepnout stránku cílů ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr ""
+msgstr "Přepnout cíle"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr ""
+msgstr "Přepnout viditelnost uživatelského rozhraní ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Přepnout viditelnost uživatelského rozhraní"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Přepnout panel s návodem ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Přepnout návod"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Přepnout zvýraznění hlídaných jednotek."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Přepnout zvýraznění hlídaných"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Přepnout zvýraznění strážních jednotek."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Přepnout zvýraznění hlídajících"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr ""
+msgstr "Smazat uloženou hru (v oknech pro uložení/nahrání)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Smazat uloženou hru "
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Neptat se na potvrzení při mazání uložené hry"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Smazat bez potvrzení"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of status bars."
-msgstr ""
+msgstr "Přepnout zobrazení stavových řádků."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr ""
+msgstr "Přepnout stavové řádky"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
+msgstr "Zapnout režim rychlého přetáčení vpřed. Musí mít zapnuto zrychlení času."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Rychle vpřed (zrychlení času)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Čas přetáčení. Musí mít zapnuto zrychlení času."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
-msgstr ""
+msgstr " Přetáčet (zrychlení času)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr ""
+msgstr "Přepnout zobrazení překrytí dosahu útoku vybraných obranných staveb."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Togge attack ranges"
-msgstr ""
+msgstr "Přepnout dosahy útoků"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr ""
+msgstr "Přepnout zobrazení překrytí dosahu aur vybraných jednotek a staveb."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr ""
+msgstr "Přepnout dosahy aur"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr ""
+msgstr "Přepnout zobrazení překrytí dosahu léčení vybraných jednotek."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr ""
+msgstr "Přepnout dosahy léčení"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes."
-msgstr ""
+msgstr "Přepnout obrysy jednotek."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr ""
+msgstr "Přepnout obrysy jednotek"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Show structure tree."
-msgstr ""
+msgstr "Ukázat strom staveb."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr ""
+msgstr "Přepnout strom staveb"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Přepnout souhrn ve hře."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr ""
+msgstr "Přepnout souhrn"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Přepnout na okno pro vedení rozhovoru v režimu skupinového vedení rozhovoru."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Přepnout na skupinový rozhovor"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Shows the game time elapsed since the game started."
-msgstr ""
+msgstr "Ukazuje herní čas, který uplynul od začátku hry."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr ""
+msgstr "Přepnout překrytí času ve hře"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Klávesové zkratky týkající se úpravy výběru jednotky."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "Výběr jednotek"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
@@ -3042,7 +3042,7 @@ msgstr "Přidat do výběru"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Zrušte výběr všech jednotek a zrušte umístění budovy."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
@@ -3052,412 +3052,412 @@ msgstr "Zrušit výběr"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 0 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0"
-msgstr ""
+msgstr "Přidat ovládací skupinu 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 1 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr ""
+msgstr "Přidat ovládací skupinu 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 2 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr ""
+msgstr "Přidat ovládací skupinu 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 3 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr ""
+msgstr "Přidat ovládací skupinu 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 4 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr ""
+msgstr "Přidat ovládací skupinu 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 5 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr ""
+msgstr "Přidat ovládací skupinu 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 6 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr ""
+msgstr "Přidat ovládací skupinu 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 7 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr ""
+msgstr "Přidat ovládací skupinu 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 8 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr ""
+msgstr "Přidat ovládací skupinu 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr ""
+msgstr "Přidat ovládací skupinu 9 do nynějšího výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr ""
+msgstr "Přidat ovládací skupinu 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 0."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 0"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr ""
+msgstr "Uložit nynější výběr jako ovládací skupinu 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr ""
+msgstr "Nastavit ovládací skupinu 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 0."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 0"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 1."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 2."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 3."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 4."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 5."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 6."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 7."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 8."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to control group 9."
-msgstr ""
+msgstr "Přejít z nynějšího výběru na ovládací skupinu 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr ""
+msgstr "Vybrat ovládací skupinu 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "Vybrat dalšího nečinného stavitele."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "Vybrat dalšího nečinného stavitele"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Vybrat pouze nečinné jednotky."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Vybrat pouze nečinné jednotky"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Vybrat další nečinnou jednotku."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Vybrat další nečinnou jednotku"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Vybrat dalšího nečinného bojovníka."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Vybrat dalšího nečinného bojovníka"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Vybrat dalšího nečinného dělníka."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Vybrat dalšího nečinného dělníka"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Přidat do výběru pouze vojenské jednotky."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Vybrat pouze vojenské"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Přidat do výběru pouze nevojenské jednotky."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Vybrat pouze nevojenské"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Zahrnout do výběru i jednotky mimo obrazovku."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Zahrnout i mimo obrazovku"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Odebrat jednotky z výběru."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Odebrat jednotky z výběru"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Vybrat pouze poškozené jednotky."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Vybrat pouze poškozené jednotky"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Smažte vybrané uložení hry stisknutím %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Podržte %(hotkey)s pro přeskočení potvrzovacího dialogu při mazání."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -3625,7 +3625,7 @@ msgstr "Žádný"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "Neplatný jazyk"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3709,11 +3709,11 @@ msgstr "Mapy, jež jsou v tomto vydání hry úplně nové."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Nejlepší pro hru více hráčů"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Mapy doporučené pro hru více hráčů."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3733,12 +3733,12 @@ msgstr "Všechny mapy zvoleného typu mapy."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Prohlížeč map"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Zavřít prohlížeč map a zrušit výběr."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3750,7 +3750,7 @@ msgstr "Zavřít"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Zavřít prohlížeč map."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3760,11 +3760,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Hledat mapu:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3772,42 +3772,42 @@ msgstr "Filtr map:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Vybrat náhodnou mapu"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Vybrat"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Přejít na předchozí stránku."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Přejít na další stránku."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Zvětšit velikost náhledu mapy."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Zmenšit velikost náhledu mapy."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Mapy: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Strana: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Náhodně vyberte mapu."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3846,7 +3846,7 @@ msgstr "Jste si jisti, že chcete uvést nastavení do výchozího stavu ?"
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Některé nastavené hodnoty jsou neplatné! Opravdu je chcete uložit?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -3858,11 +3858,11 @@ msgstr "Obecné"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Jméno hráče (hra jednoho hráče)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Jak máte být jmenován ve hrách pro jednoho hráče."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -3870,15 +3870,15 @@ msgstr "Jméno hráče (hra více hráčů)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Jak máte být jmenován ve hrách pro více hráčů (kromě herní skupiny)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Pozastavení pozadí"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pozastavit hru jednoho hráče, když okno ztratí zaměření."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -3892,7 +3892,7 @@ msgstr "Když ji vypnete, uvítací obrazovka se znovu objeví, vždy když bude
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Překrytí FPS"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -3900,7 +3900,7 @@ msgstr "Ukázat počet snímků za sekundu v horním pravém rohu."
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Překrytí skutečným časem"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
@@ -3908,7 +3908,7 @@ msgstr "Ukázat nynější systémový čas v horním pravém rohu."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Překrytí herním časem"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
@@ -3916,7 +3916,7 @@ msgstr "Ukázat nynější čas simulace v horním pravém rohu."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Překrytí časem klidu zbraní"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -3924,55 +3924,55 @@ msgstr "Vždy ukázat zbývající čas klidu zbraní."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Časové razítko rozhovoru"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Zobrazit čas, v němž byla zpráva v rozhovoru odeslána."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Pojmenování jednotek."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Nejprve zvláštní jména"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Zobrazit zvláštní názvy před obecnými názvy."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Nejprve obecná jména"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Zobrazit obecné názvy před zvláštními názvy."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Pouze zvláštní jména"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Zobrazit jen zvláštní názvy jednotek."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Pouze obecná jména"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Zobrazit jen obecné názvy jednotek."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Jak zobrazit názvy jednotek."
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Grafika (obecné)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -3990,17 +3990,17 @@ msgstr "Mlha"
 #: gui/options/options.json[1].options[1].tooltip
 #: gui/options/options.json[2].options[1].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Povolit mlhu."
 
 #: gui/options/options.json[1].options[2].label
 #: gui/options/options.json[2].options[2].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Následné zpracování"
 
 #: gui/options/options.json[1].options[2].tooltip
 #: gui/options/options.json[2].options[2].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Použít filtry pro další zpracování plochy obrazovky (HDR, Bloom, DOF atd.)."
 
 #: gui/options/options.json[1].options[3].label
 #: gui/options/options.json[2].options[9].label
@@ -4014,11 +4014,11 @@ msgstr "Povolit stíny."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Obrysy jednotek"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Ukázat obrysy jednotek za stavbami."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Particles"
@@ -4038,7 +4038,7 @@ msgstr "Použít svislou synchronizaci k opravení trhání obrazovky. VYŽADUJE
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Přidušení FPS v nabídkách"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid ""
@@ -4048,7 +4048,7 @@ msgstr "Pro šetření zatížení procesoru, přidusit častost vykreslování 
 
 #: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Přidušení FPS ve hrách"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid ""
@@ -4062,7 +4062,7 @@ msgstr "Nastavit vyvážení mezi provedením (výkonem) a viditelným vzhledem.
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Grafika (pokročilé)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Prefer GLSL"
@@ -4074,7 +4074,7 @@ msgstr "Použít OpenGL 2.0 shaders (doporučeno)."
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
-msgstr ""
+msgstr "Kvalita"
 
 #: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
@@ -4088,7 +4088,7 @@ msgstr "Rozlišení mapy při stínování. Vysoké hodnoty mohou vést k pádu 
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
-msgstr ""
+msgstr "Filtrování"
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
@@ -4096,25 +4096,25 @@ msgstr "Jemné stíny."
 
 #: gui/options/options.json[2].options[12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Mezní vzdálenost"
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Skryje stíny za určitou vzdáleností od kamery."
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Pokrýt celou mapu"
 
 #: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Když jsou stíny zapnuty, pokrývají celou mapu a vzdálenost mezi stíny se přehlíží. Užitečné pro vytváření snímků obrazovky celé mapy."
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
-msgstr ""
+msgstr "Efekty vody"
 
 #: gui/options/options.json[2].options[14].tooltip
 msgid ""
@@ -4124,7 +4124,7 @@ msgstr "Když je VYPNUTO, použít nejnižší možnou kvalitu nastavení pro kr
 
 #: gui/options/options.json[2].options[15].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Vysoce působivé vodní efekty"
 
 #: gui/options/options.json[2].options[15].tooltip
 msgid ""
@@ -4134,7 +4134,7 @@ msgstr "Použít vysoce kvalitní efekty pro vodu, kreslení pobřežních vln, 
 
 #: gui/options/options.json[2].options[16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Zrcadlení vody"
 
 #: gui/options/options.json[2].options[16].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -4142,7 +4142,7 @@ msgstr "Povolit, aby vody odrážela zrcadlový obraz."
 
 #: gui/options/options.json[2].options[17].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Lom světla ve vodě"
 
 #: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -4150,7 +4150,7 @@ msgstr "Použít mapu s opravdovým lámáním světla ve vodě a ne průhlednos
 
 #: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Skutečná hloubka vody"
 
 #: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -4158,7 +4158,7 @@ msgstr "Použít opravdovou hloubku vody při výpočtech vykreslování."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
-msgstr "Antialiasing"
+msgstr "Vyhlazování"
 
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
@@ -4169,15 +4169,15 @@ msgstr "Zakázáno"
 
 #: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Nepoužívat vyhlazování."
 
 #: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Rychlé ale jednoduché vyhlazování."
 
 #: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
@@ -4187,7 +4187,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Pomalé, ale vysoce kvalitní vyhlazování, používá dva vzorky na pixel. Podporováno pro GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4197,7 +4197,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Pomalé, ale vysoce kvalitní vyhlazování, používá čtyři vzorky na pixel. Podporováno pro GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
@@ -4207,7 +4207,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Pomalé, ale vysoce kvalitní vyhlazování, používá osm vzorků na pixel. Podporováno pro GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4217,43 +4217,43 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Pomalé, ale vysoce kvalitní vyhlazování, používá šestnáct vzorků na pixel. Podporováno pro GL3.3+."
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Zmenšit vliv vyhlazování na okraje."
 
 #: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Ostření"
 
 #: gui/options/options.json[2].options[4].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Nepoužívat ostření."
 
 #: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Přizpůsobivé ostření s kontrastem, rychlé ostření s kontrastem."
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Omezte rozmazávající efekty."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Faktor ostrosti"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Ostrost zvoleného průchodu."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "Zpracování modelu"
 
 #: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
@@ -4262,7 +4262,7 @@ msgstr "Nízké "
 
 #: gui/options/options.json[2].options[6].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Jednodušší modely pro lepší výkon."
 
 #: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
@@ -4272,7 +4272,7 @@ msgstr "Střední "
 
 #: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Průměrné zpracování a průměrný výkon."
 
 #: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
@@ -4281,15 +4281,15 @@ msgstr "Vysoké"
 
 #: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Velmi dobře zpracované modely."
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Nastavení úrovně zpracování modelu."
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Náhodnost vzhledu modelu"
 
 #: gui/options/options.json[2].options[7].list[0].label
 msgid "None"
@@ -4297,15 +4297,15 @@ msgstr "Žádný"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr ""
+msgstr "Jednotky budou všechny vypadat stejně."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
-msgstr ""
+msgstr "Omezený"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "Jednotky budou méně různorodé."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4313,17 +4313,17 @@ msgstr "Normální"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Vzhled jednotek je znáhodněn pravidelně."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Znáhodněte vzhled jednotek. Vypnutí znáhodnění přináší malé zlepšení výkonu."
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Stínovací efekty"
 
 #: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -4331,11 +4331,11 @@ msgstr "Počet stínovacích efektů. VYŽADUJE ZNOVUSPUŠTĚNÍ HRY"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
-msgstr ""
+msgstr "Určitější nastavení vykreslování."
 
 #: gui/options/options.json[3].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Celková hlasitost"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Master audio gain."
@@ -4343,7 +4343,7 @@ msgstr "Hlavní hlasitost."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Hlasitost hudby"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "In game music gain."
@@ -4351,7 +4351,7 @@ msgstr "Hudba na pozadí."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Hlasitost zvuků prostředí"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -4359,7 +4359,7 @@ msgstr "Hlasitost šumění okolí."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Hlasitost činností"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -4367,7 +4367,7 @@ msgstr "Hlasitost činností jednotek."
 
 #: gui/options/options.json[3].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Hlasitost rozhraní"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "UI sound gain."
@@ -4375,7 +4375,7 @@ msgstr "Hlasitost rozhraní."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Upozornění na přezdívku"
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -4383,7 +4383,7 @@ msgstr "Zvukové upozornění pokud někdo napíše tvou přezdívku."
 
 #: gui/options/options.json[3].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Oznámení nového hráče v nastavení hry"
 
 #: gui/options/options.json[3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -4395,7 +4395,7 @@ msgstr "Nastavení hry"
 
 #: gui/options/options.json[4].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Povolit rady v nastavení hry"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -4403,7 +4403,7 @@ msgstr "Při nastavování hry ukázat rady."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Povolit zasunutí panelu s nastavením"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -4420,7 +4420,7 @@ msgstr "Uložit a obnovit nastavení hry pro rychlé opětovné užití při hos
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Výchozí obtížnost umělé inteligence"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4448,7 +4448,7 @@ msgstr "Výchozí obtížnost umělé inteligence."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
-msgstr "Výchozí chování AI"
+msgstr "Výchozí chování umělé inteligence (AI)"
 
 #: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
@@ -4472,7 +4472,7 @@ msgstr "Výchozí chování umělé inteligence."
 
 #: gui/options/options.json[4].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Přiřadit hráče"
 
 #: gui/options/options.json[4].options[5].list[0].label
 #: gui/options/options.json[5].options[4].list[0].label
@@ -4481,7 +4481,7 @@ msgstr "Každý"
 
 #: gui/options/options.json[4].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Hráči, kteří se připojí k zápasu, budou přiřazeni, pokud bude volné místo."
 
 #: gui/options/options.json[4].options[5].list[1].label
 #: gui/options/options.json[5].options[4].list[1].label
@@ -4492,11 +4492,11 @@ msgstr "Kamarádi"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Hráči, kteří se připojí k zápasu, budou přiřazeni pouze v případě, že jsou kamarádem hostitele a pokud je volné místo."
 
 #: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Hráči obdrží místo pouze v případě, že je hostitel výslovně přiřadí."
 
 #: gui/options/options.json[4].options[5].tooltip
 msgid ""
@@ -4506,7 +4506,7 @@ msgstr "Automaticky přiřadit připojující se klienty pro uvolnění hráčsk
 
 #: gui/options/options.json[5].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Sítě/herní skupina"
 
 #: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
@@ -4519,7 +4519,7 @@ msgstr "Chraňte přihlašování a data, která jsou vyměňována s herním se
 
 #: gui/options/options.json[5].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Nevyřízený rozhovor"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -4527,7 +4527,7 @@ msgstr "Počet posledních hlášení načtených při vstupu do zájmové skupi
 
 #: gui/options/options.json[5].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Sloupec s hodnocením hry"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
@@ -4537,7 +4537,7 @@ msgstr "Ukázat průměrné ohodnocení zúčastněných hráčů ve sloupci sez
 
 #: gui/options/options.json[5].options[3].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Síťová varování"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -4545,7 +4545,7 @@ msgstr "Ukázat, který hráč má ve hrách pro více hráčů špatné spojen�
 
 #: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Přistoupení pozdního pozorovatele"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -4563,23 +4563,23 @@ msgstr "Zabránit dalším pozorovatelům v připojení se, pokud je dosaženo h
 
 #: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Největší zpoždění pro pozorovatele"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Pokud hostitelé zaostávají více než tento počet kol, při hostování hru pozastavit. Pokud je nastaveno na -1, pozorovatelé jsou přehlíženi."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Pozorovatel) Při zaostávání zrychlit."
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Při sledování hry automaticky zrychlit, pokud začnete zaostávat, abyste dohnali živý zápas."
 
 #: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4587,11 +4587,11 @@ msgstr "Tato nastavení ovlivní pouze hru pro více hráčů."
 
 #: gui/options/options.json[6].label
 msgid "Game Session"
-msgstr ""
+msgstr "Herní sezení"
 
 #: gui/options/options.json[6].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Zdraví zraněné jednotky"
 
 #: gui/options/options.json[6].options[0].tooltip
 msgid ""
@@ -4601,13 +4601,13 @@ msgstr "Klávesová zkratka zraněné jednotky považuje vybrané jednotky za po
 
 #: gui/options/options.json[6].options[10].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Znázornění dosahu léčení"
 
 #: gui/options/options.json[6].options[10].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Zobrazit dosah léčení vybraných jednotek (lze rovněž pomocí klávesové zkratky přepnout ve hře)."
 
 #: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
@@ -4619,20 +4619,20 @@ msgstr "Ukázat ikony nad stavovými řádkky."
 
 #: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Stavový řádek zkušeností"
 
 #: gui/options/options.json[6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Zobrazit stavový řádek zkušeností nad každou vybranou jednotkou."
 
 #: gui/options/options.json[6].options[13].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Podrobné nástrojové rady"
 
 #: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Ukázat podrobné nástrojové rady pro jednotky vycvičitelné ve savbách určených pro výcvik."
 
 #: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
@@ -4657,7 +4657,7 @@ msgstr "Dynamicky řadit hráče v nástrojové radě ke zdrojům a k obyvatelst
 
 #: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Diplomatické barvy: Moje"
 
 #: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -4673,7 +4673,7 @@ msgstr "Barvy přátel, když jsou povoleny diplomatické barvy."
 
 #: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Diplomatické barvy: Neutrál"
 
 #: gui/options/options.json[6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -4681,7 +4681,7 @@ msgstr "Barvy neutrálních hráčů, když jsou povoleny diplomatické barvy."
 
 #: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Diplomatické barvy: Nepřítel"
 
 #: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -4689,34 +4689,34 @@ msgstr "Barvy nepřátel, když jsou povoleny diplomatické barvy."
 
 #: gui/options/options.json[6].options[19].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Přichytávat k okrajům"
 
 #: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Klávesová zkratka pro povolení přichytávání"
 
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Nové stavby jsou zarovnány s blízkými stavbami při stisknutí klávesové zkratky."
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Klávesová zkratka pro zakázání přichytávání"
 
 #: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Nové stavby jsou zarovnány s blízkými stavbami, dokud není stisknuta klávesová zkratka."
 
 #: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Tato volba umožňuje zarovnat nové stavby s blízkými stavbami."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Velikost cvičené skupiny"
 
 #: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -4724,63 +4724,63 @@ msgstr "Počet jednotek cvičených standardně v jedné skupině."
 
 #: gui/options/options.json[6].options[20].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Členství v ovládací skupině"
 
 #: gui/options/options.json[6].options[20].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Jedna"
 
 #: gui/options/options.json[6].options[20].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Když přidáváte jednotku nebo stavbu do ovládací skupiny, budou odebrány z jiných ovládacích skupin. Tuto volbu použijte, pokud chcete, aby se ovládací skupiny odkazovaly na odlišné armády."
 
 #: gui/options/options.json[6].options[20].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Více"
 
 #: gui/options/options.json[6].options[20].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Jednotky a stavby mohou být součástí více ovládacích skupin. To je užitečné pro udržení ovládacích skupin pro odlišné armády a ovládací skupiny pro celou armádu současně."
 
 #: gui/options/options.json[6].options[20].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Rozhodněte, zda jednotky mohou být součástí více ovládacích skupin."
 
 #: gui/options/options.json[6].options[21].label
 msgid "Formation control"
-msgstr ""
+msgstr "Ovládání uskupení"
 
 #: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Pouze Obchůzka/Hlídka"
 
 #: gui/options/options.json[6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Ostatní příkazy rozpustí stávající uskupení."
 
 #: gui/options/options.json[6].options[21].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Žádné přepsání"
 
 #: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Jednotky v uskupeních zůstávají v uskupeních."
 
 #: gui/options/options.json[6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Rozhodněte, zda jsou uskupení povolena pro všechny příkazy, nebo pouze „Obchůzka“ a „Hlídka“."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Přírůstkové číslo (koeficient) pro měnění stavu skupiny"
 
 #: gui/options/options.json[6].options[2].tooltip
 msgid ""
@@ -4789,15 +4789,15 @@ msgstr "Kolikrát musíte otočit kolečkem pro zvýšení/snížení počtu jed
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Doba zobrazení záře"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Jak dlouho jsou značky záře v maličké mapě zobrazeny v sekundách."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Upozornění zprávou při napadení"
 
 #: gui/options/options.json[6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -4805,7 +4805,7 @@ msgstr "Ukázat upozornění zprávou, pokud na vás zaútočil jiný hráč."
 
 #: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Upozornění zprávou o daru"
 
 #: gui/options/options.json[6].options[5].tooltip
 msgid ""
@@ -4815,7 +4815,7 @@ msgstr "Ukázat upozornění zprávou, když spojenec věnuje zdroje jinému čl
 
 #: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Upozornění zprávou o směnném obchodu"
 
 #: gui/options/options.json[6].options[6].tooltip
 msgid ""
@@ -4824,7 +4824,7 @@ msgstr "Ukázat upozornění zprávou pro pozorovatele, když hráč směnil zdr
 
 #: gui/options/options.json[6].options[7].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Upozornění zprávou o fázi"
 
 #: gui/options/options.json[6].options[7].list[0].label
 msgid "Disable"
@@ -4846,23 +4846,23 @@ msgstr "Ukázat upozornění zprávou, když jste vy nebo spojenec začal, přer
 
 #: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Znázornění dosahu útoku"
 
 #: gui/options/options.json[6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Zobrazit útočný dosah vybraných obranných staveb. (Lze jej  během hry také přepínat pomocí klávesové zkratky)."
 
 #: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Znázornění dosahu aury"
 
 #: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Zobrazit dosah aur vybraných jednotek a staveb. (Lze jej  během hry také přepínat pomocí klávesové zkratky)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -4892,7 +4892,7 @@ msgstr "Jak hrát"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Učte se, jak hrát, spusťte návod, zkoumejte stromy technologií a historii civilizací."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -4926,41 +4926,41 @@ msgstr "%(hotkey)s: Podívejte se na strom staveb civilizací uváděných v 0 A
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Přehled civilizace"
 
 #: gui/pregame/MainMenuItems.js:40
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Učte se o civilizacích uváděných v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Přehled katafalku"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Porovnejte přídavky katafalků z roku 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
-msgstr ""
+msgstr "Přehled map"
 
 #: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Prohlédněte si různé mapy přítomné v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Pokračovat v kampaňi"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Zažijte historii skrze historické vojenské kampaně."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Chyba při otevírání kampaně:"
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
@@ -4968,7 +4968,7 @@ msgstr "Hra jednoho hráče"
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Začít, nahrát nebo hrát znovu hru pro jednoho hráče"
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
@@ -4984,7 +4984,7 @@ msgstr "Načíst uloženou hru."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr ""
+msgstr "Nová kampaň"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
@@ -5004,7 +5004,7 @@ msgstr "Hra více hráčů"
 
 #: gui/pregame/MainMenuItems.js:150
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Bojujte s jedním či více lidskými hráči ve hře pro více hráčů."
+msgstr "Bojujte proti jednomu či více lidem ve hře pro více hráčů."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:154
@@ -5021,7 +5021,7 @@ msgstr "Pořádat hru"
 
 #: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Hostěte hru pro více hráčů."
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
@@ -5044,7 +5044,7 @@ msgstr "Nastavení"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Change game options."
-msgstr ""
+msgstr "Změňte herní volby."
 
 #: gui/pregame/MainMenuItems.js:203
 msgid "Options"
@@ -5086,7 +5086,7 @@ msgstr "Uvítací obrazovka"
 
 #: gui/pregame/MainMenuItems.js:235
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Ukázat znovu uvítací obrazovku. Užitečné v případě, že jste ji skryl omylem."
 
 #: gui/pregame/MainMenuItems.js:243
 msgid "Scenario Editor"
@@ -5118,7 +5118,7 @@ msgstr "Zásluhy"
 
 #: gui/pregame/MainMenuItems.js:262
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Zobrazit zásluhy o 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:268
 msgid "Exit"
@@ -5126,7 +5126,7 @@ msgstr "Ukončit"
 
 #: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
-msgstr ""
+msgstr "Ukončit hru."
 
 #: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5144,7 +5144,7 @@ msgstr "Alfa XXV: Yaunā"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Upozornění: Tato hra je ve vývoji a mnoho funkcí zatím nebylo přidáno."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -5164,7 +5164,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Klepnutím otevřete chat IRC 0 A.D. v prohlížeči (#0ad na webchat.quakenet.org). Je provozován dobrovolníky, kteří dělají nejrůznější úkoly. Než vám odpovíme na vaši otázku, může to chvíli trvat. Alternativně můžete použít fórum (viz stránky)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5177,11 +5177,11 @@ msgstr "Klepněte na 0 A.D. Trac pro nahlášení chyby, pádu nebo jiného prob
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "Často kladené otázky"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "Klepnutím  v prohlížeči přejdete na stránku Často kladené otázky."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5193,7 +5193,7 @@ msgstr "Klepněte pro otevření překladatelské stránky 0 A.D. ve svém prohl
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
-msgstr "Darovat"
+msgstr "Přispět"
 
 #: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
@@ -5275,11 +5275,11 @@ msgstr "Můžete nám automaticky poslat zpětnou vazbu, která nám pomůže p�
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Zavřít přídavky katafalků."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Přídavky katafalků"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -5288,7 +5288,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -5299,12 +5299,12 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Zavřít přehled civilizace."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5335,31 +5335,31 @@ msgstr[3] "Týmových přídavků"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Hrdina"
+msgstr[1] "Hrdinové"
+msgstr[2] "Hrdinů"
+msgstr[3] "Hrdinové"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zvláštní stavba"
+msgstr[1] "Zvláštní stavby"
+msgstr[2] "Zvláštních staveb"
+msgstr[3] "Zvláštní stavby"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zvláštní technologie"
+msgstr[1] "Zvláštní technologie"
+msgstr[2] "Zvláštní technologie"
+msgstr[3] "Zvláštní technologie"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Přepnout do přehledu civilizace."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -5441,7 +5441,7 @@ msgstr "%(hotkey)s: Zavřít strom staveb."
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Zavřít prohlížeč předloh."
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -5557,7 +5557,7 @@ msgstr "Tažení"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
-msgstr ""
+msgstr "Jakákoliv podmínka vítězství"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
@@ -5579,7 +5579,7 @@ msgstr "Filtrování záznamů her, podle jednoho či více anebo částečných
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Smažte vybranou odpověď stisknutím %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
@@ -5612,7 +5612,7 @@ msgstr "Hlavní nabídka"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Obnovit vyrovnávací paměť"
 
 #: gui/replaymenu/replay_menu.xml:(caption):246
 #: gui/summary/summary.xml:(caption):26
@@ -5621,7 +5621,7 @@ msgstr "Shrnutí"
 
 #: gui/replaymenu/replay_menu.xml:(caption):252
 msgid "Start Replay"
-msgstr "Začít přehrávání záznamu"
+msgstr "Přehrát záznam"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
@@ -5645,7 +5645,7 @@ msgstr "Trvání"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Hledat hráče"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -5664,7 +5664,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Tato hra je stále ve vývoji. Můžete se setkat s chybami a některé funkce nejsou tak vyzkoušené, jak bychom si přáli."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5676,13 +5676,13 @@ msgstr "[imgleft=\"iconLag\"]Tato hra může mít potíže s výkonem, zvlášt�
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. je svobodný software: můžete se podílet na jeho vývoji."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Pokud chcete pomoci s uměním, zvukem, hratelností nebo programováním, nezapomeňte se připojit k našemu oficiálnímu fóru."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5698,7 +5698,7 @@ msgstr "OK"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
-msgstr ""
+msgstr "Oficiální fórum (web)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -5767,7 +5767,7 @@ msgstr "Divy světa"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Statistika staveb (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -5808,7 +5808,7 @@ msgstr "Obchodníci"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Statistika jednotek (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -5925,7 +5925,7 @@ msgstr "Shromážděno"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Počet"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -5983,12 +5983,12 @@ msgstr "Nepodařilo se"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -6045,17 +6045,17 @@ msgstr "%(hotkey)s: Přepnout skupinu hry pro více hráčů v dialogovém okně
 #: gui/summary/summary.js:557
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Přepnout kartu se souhrnem %(name)s."
 
 #: gui/summary/summary.js:558
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Použijte %(hotkey)s pro posunutí karty se souhrnem vpravo."
 
 #: gui/summary/summary.js:559
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Použijte %(hotkey)s pro posunutí karty se souhrnem vlevo."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6074,11 +6074,11 @@ msgstr "Dosah aury"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Skupina podle týmu"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
-msgstr "Sledovat přehrávání záznamu"
+msgstr "Sledovat záznam"
 
 #: gui/summary/summary.xml:(caption):192
 msgid "Continue"
@@ -6107,29 +6107,29 @@ msgstr "ŘÍMSKÝ VOJENSKÝ TÁBOR"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Lze stavět na neutrálním nebo nepřátelském území. Dobré pro budování tajné základny za nepřátelskými liniemi nebo pro upevnění zisků na nepřátelském území."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Postavte berany a cvičte občanské vojáky."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr ""
+msgstr "Obsaďte jednotkami, aby se pomalu vyléčily, a chránily vojenský tábor proti útokům a zničení."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
-msgstr ""
+msgstr "AUTOMATICKÉ ZAŘAZENÍ"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr ""
+msgstr "Povolte funkci automatického zařazení pro automatický výcvik jednotek."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Pracuje, pokud máte dostatek zdrojů, pak se zastaví."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6139,7 +6139,7 @@ msgstr "KASÁRNA"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Provádějte výcvik všech občanských vojáků. Některé civilizace mohou odemknout i výcvik elitních vojáků."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6149,43 +6149,43 @@ msgstr "Jednotky získávají zkušenosti, když jsou obsazeny uvnitř budovy."
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Postavte jedny brzy pro vycvičení občanských vojáků, zatímco povyšujete vlastní osadu."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Postavte předsunutou základu, abyste svůj útok mohli podpořit novými jednotkami."
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
-msgstr ""
+msgstr "PROSTŘEDÍ"
 
 #: gui/text/tips/biomes.txt:2
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Prostředí (biomy) lze použít na některých náhodných mapách a určit, kterou oblast světa mapa představuje."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Ovlivňují vzhled map a také množství dostupných zdrojů."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
-msgstr ""
+msgstr "BOJOVÝ PES"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "Pes, kterého mohou Britonové (Britové, britští Keltové) vycvičit v jezdecké stáji."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Má nízké zdraví, ale je rychlý a bude nebojácně útočit na nepřátele."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Použijte je jako podporu ve své armádě nebo pro rychlé nájezdy."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6193,35 +6193,35 @@ msgstr "KARTAGINSKÝ SVATÝ ODDÍL"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Elitní bojovníci s oštěpem a elitní jízdní bojovníci s oštěpem pro Kartágo."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Oba můžou být cvičeni ve chrámu, na rozdíl od většiny ostatních šampionů."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Použijte bojovníky s oštěpem jako těžkou pěchotu proti jízdě. Použijte jízdu pro těžký úder proti obléhacím strojům a harcovníkům."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr ""
+msgstr "KARTAGINSKÝ NÁMOŘNÍ LODĚNICE"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Zvláštní kartaginská loděnice ke stavbě válečných lodí."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Poslat lodě dovnitř a pomalu je opravovat."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Mnohem silnější než jiné loděnice, ale také dražší."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6229,7 +6229,7 @@ msgstr "KATAPULTY"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Dalekonosné obléhací stroje, které jsou účinné proti stavbám."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -6239,20 +6239,20 @@ msgstr "Drahý a pomalý."
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Kvůli přesunu je uložte do vozů, a pro útok je rozložte do stálých válečných strojů."
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr ""
+msgstr "STÁJ JÍZDY"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Cvičí jezdecké jednotky a umožňuje vám zkoumat zvláštní technologie jízdy."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "Jednotky získávají zkušenosti, když jsou umístěny uvnitř stavby."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6260,11 +6260,11 @@ msgstr "KELTSKÝ VÁLEČNÝ ŘÍČNÍ ČLUN"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Středně těžká válečná loď."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Dostupné Britonům (Britům, britským Keltům), Galům a Iberům."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -6272,25 +6272,25 @@ msgstr "Může přepravit až 40 jednotek."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "Zvýší palebnou sílu, pokud je osazeno pěchotou."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr ""
+msgstr "MĚSTSKÉ HRADBY"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Silné kamenné zdi, které pomohou chránit vaše město."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Když vaše jednotky pěchoty pro boj na dálku obsazují věže, mají další brnění a mohou střílet na nepřítele."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Zranitelný obléhacími zbraněmi, jako jsou katapulty, berani a váleční sloni."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6298,41 +6298,41 @@ msgstr "SPRÁVNÍ STŘEDISKA"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "Založení nové kolonie."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Obsaďte rozsáhlá území."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "Může být postaveno na vlastním či neutrálním území."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr ""
+msgstr "Cvičte občany: občanky (ženské pohlaví), občanské vojáky pěchoty a občanské vojáky jízdy."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
-msgstr ""
+msgstr "VÝCHOZÍ USKUPENÍ"
 
 #: gui/text/tips/default_formation.txt:2
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr ""
+msgstr "Výchozí uskupení nastavíte klepnutím pravým tlačítkem na ikonu: jednotky, které mají rozkaz obcházet nebo hlídkovat, ji automaticky použijí."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr ""
+msgstr "Lze vypnout výběrem „bez uskupení“ jako výchozího nastavení."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr ""
+msgstr "Volba „Ovládání uskupení“ vám umožňuje zvolit, zda se uskupení rozpustí pro jiné příkazy, než jsou obchůzky nebo hlídkování."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -6340,41 +6340,41 @@ msgstr "OBRANNÉ VĚŽE"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Silné strážní věže, které vám pomohou bránit vaše postavení."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Mají velký dosah vidění a budou střílet šípy na nepřítele v dohledu."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr ""
+msgstr "Můžete je osadit více pěšáky, abyste zvýšili počet šípů, které vystřelí."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr ""
+msgstr "STÁJ PRO SLONY"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr ""
+msgstr "Stavba je některým civilizacím dostupná pro výcvik sloních jednotek."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
-msgstr ""
+msgstr "VYSLANECTVÍ A ŽOLDNÉŘSKÉ TÁBORY"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Zvláštní stavby, které umožní najmout žoldáky pro vaši armádu."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr ""
+msgstr "Žoldáci nebudou sbírat zdroje a budou stát jen kov, ale jsou zkušení a silní."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6382,23 +6382,23 @@ msgstr "RYBOLOV"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Lovte ryby na mořích pro bohatý úlovek."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Rybářské lodě jednou cestou přepraví velké množství jídla."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Rybolov je rychlejší než získávání jídla na polích."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "Pozor! Opatrně. Rybolov není nevyčerpatelný zdroj!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "KOVÁRNA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -6406,16 +6406,16 @@ msgstr "Stavba pro výzkum pro všechny frakce."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "Zkoumejte vylepšení zbraní a brnění svých jednotek."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "USKUPENÍ"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Uspořádejte své vojáky v uskupeních, aby byli během bitev uspořádaní."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6425,11 +6425,11 @@ msgstr "PEVNOST"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Obvykle nejsilnější stavba civilizace a místo, kde můžete cvičit hrdiny."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "Obsaďte posádkou vojáků pro zvýšení palebné síly pro posílení obrany."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6438,17 +6438,17 @@ msgstr "PŘIBLIŽNÁ POLOHA"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Získejte výhodu na bojišti pomocí taktického umístění vašich jednotek!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "- Proto vyberte nějaké jednotky, stiskněte a podržte pravé tlačítko myši, nakreslete jakoukoliv linii, poté pusťte tlačítko myši."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Vaše jednotky se nyní rozmístí na této linii."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -6456,25 +6456,25 @@ msgstr "SBÍRÁNÍ ZDROJŮ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr ""
+msgstr "Využijte občany ve zbrani a občanky pro získávání surovin."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr ""
+msgstr "Občanky sbírají zeleninu rychleji."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr ""
+msgstr "Občanští vojáci pěchoty jsou rychlejšími při sběru nerostů."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr ""
+msgstr "Občanští vojáci jízdy jsou rychlejšími při sběru masa."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr ""
+msgstr "Čím vyšší je úroveň občanského vojáka (zkušený, elitní), tím lépe bojuje, ale zároveň tím menší pracovní výkon podává při získávání surovin."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6484,72 +6484,72 @@ msgstr "HRDINOVÉ"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Postavy z dějin, jako Xerxés, Leónidás, Periklés, Hannibal, Scipio a Boudica (Boudicca)."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Hodně zdraví a velice silné útoky."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Mějte aury, které mění statistiky jiných jednotek nebo staveb."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Upozornění: Každý hrdina může být přijat pouze jednou za zápas!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
-msgstr ""
+msgstr "IBERSKÁ ZÁPALNÁ LOĎ"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid ""
 "The special Iberian fireship is very effective against other ships and "
 "buildings, but steadily loses health."
-msgstr ""
+msgstr "Zvláštní iberská palba je velmi účinná proti jiným lodím a budovám, ale neustále ztrácí zdraví."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "MAJÁK"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr ""
+msgstr "Zvláštní Ptolemaiovská stavba pro zvýšení dosahu vidění, když je postavena na břehu."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "ZÁŘE V MAPĚ"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr ""
+msgstr "Pomocí této funkce dáte svému týmu vědět, kde se na mapě děje něco důležitého."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr ""
+msgstr "Na své maličké mapě uvidí záři."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
-msgstr ""
+msgstr "PYRAMIDY V MEROE"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Zvláštní stavby dostupné pro Kušity."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "Malé pyramidy zlepšují rychlost shromažďování dělníků kolem nich."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "Velké pyramidy zvyšují vojenské schopnosti vojáků kolem nich."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6557,17 +6557,17 @@ msgstr "ROZHLEDNY"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Budujte na neutrálním nebo vlastním území."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Levné a rychle postavené, ale slabé."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Osaďte posádkou pěchoty pro rozsáhlé vidění a zabránění ztrátě kontroly nad základnou v důsledku rozpadu území."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6575,11 +6575,11 @@ msgstr "PALISÁDOVÉ HRADBY"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Levná, rychle postavitelná dřevěná ochranná zeď, dostupná všem stranám."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "Většina stran je může používat od vesnické fáze."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6587,21 +6587,21 @@ msgstr "PERSKÁ ARCHITEKTURA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Zvláštní technologie pro Peršany."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "+25% bodů ke zdraví pro stavby."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Následkem je o +20% delší čas stavby."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
 "Persians also have access to a great number of structural and defensive "
 "technologies."
-msgstr ""
+msgstr "Peršané mají také přístup k velkému množství stavebních a obraných technologií."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
@@ -6609,16 +6609,16 @@ msgstr "KOPINÍK"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Těžce vyzbrojený a pomalý. Chabý útok."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Používáno proti jízdě nebo proti jiné pěchotě při boji na blízko k jejich přišpendlení na místě."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Dostupné: Kušitům, Makedoncům, Ptolemaiovcům a Seleukovcům."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -6628,7 +6628,7 @@ msgstr "QUINQUEREME"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Nejtěžší dostupná válečná loď. Dostupná: Kartagincům, Ptolemaiovcům, Římanům a Seleukovcům."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -6636,63 +6636,63 @@ msgstr "Přepravuje až 50 jednotek"
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Zvýší palebnou sílu, pokud je osazeno katapulty."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
-msgstr ""
+msgstr "POČÍTADLO ZDROJŮ"
 
 #: gui/text/tips/resource_counter.txt:2
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "Panel počítadla zdrojů vám ukáže, kolik z jednotlivých zdrojů v tuto chvíli máte."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr ""
+msgstr "Níže uvedené číslo ukazuje, kolik občanů je v současnosti shromažďuje."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr "BIOM SAVANA"
+msgstr "PROSTŘEDÍ SAVANY"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Většinou rovinatý povrch, s několika výmoly s vodou a vyčnívajícími skalami."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Velká stáda zvěře pro bohatý lov."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Bohaté na veškeré druhy těžby."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Les bývá řídký, ale sestává z vysoce výnosných stromů baobabu."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "PŘICHYTÁVÁNÍ"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Stavby lze zarovnat podržením klávesové zkratky pro přichycení stisknuté během umísťování."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Zarovnání staveb umožňuje zachovat prostor pro budoucí výstavbu."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Těsně zhuštěné skupiny staveb lze také použít k brždění útočících nepřátel."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -6704,13 +6704,13 @@ msgstr "Nejsilnější pěchotní jednotka ve hře."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Elitní pěchota dostupná Sparťanům."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Používejte je k pobíjení nepřátelské jízdy nebo jako údernou sílu k podpoření vaší pravidelné řadové pěchoty."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -6718,21 +6718,21 @@ msgstr "BOJOVNÍK S OŠTĚPEM"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Základní pěchota pro boj na blízko používaná každou ze stran ve hře."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr "Používáno proti jízdě pro zvýhodnění pro útok."
+msgstr "Používáno proti jízdě pro přídavek při útoku."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Slušný útok sekem z nich dělá dobré jednotky pro přední linii."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Jsou znevýhodněni při boji proti jednotkám bojujícím na dálku a proti bojovníkům s mečem, takže podporují vaše bojovníky s oštěpem společně s prakovníky nebo jízdou."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -6740,13 +6740,13 @@ msgstr "SKLADIŠTĚ"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Levné skladiště pro všechny zdroje vyjma potravy (dřevo, kámen, kov)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Zkoumejte technologie zlepšující schopnosti sběru surovin vašich občanů."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -6754,23 +6754,23 @@ msgstr "CHRÁMY"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Stavba městské fáze."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Najměte léčitele, aby uzdravili vaše jednotky na bojišti."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Vyzkoumejte léčebné technologie."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Jeho aura léči blízké jednotky."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Obsaďte zraněnými jednotkami pro zrychlení léčení."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -6779,44 +6779,44 @@ msgstr "ÚZEMNÍ ROZPAD"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Rozpad nastává, když stavby nejsou spojeny se spojeneckým správním střediskem."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Postup rozpadu může být zpomalen nebo zvrácen umístěním několika jednotek do stavby."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Když je rozpad dokončen, stavba padne do rukou nejvlivnějšího souseda."
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "DIVADLO"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Zvláštní stavby helénských civilizací zvyšují velikost vámi ovládaného území."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "POKLADY"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Sebratelné bedny a prosté zdroje na souši a vraky lodí na břehu."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Poskytuje posílení zdrojů, takže na ně při průzkumu dávejte pozor."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6824,7 +6824,7 @@ msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Střední válečná loď."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
@@ -6832,7 +6832,7 @@ msgstr "Dobrá pro přepravu nebo pro boj."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Naloďte jednotky pro zvýšení palebné síly."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -6840,17 +6840,17 @@ msgstr "VÁLEČNÍ SLONI"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Obrovská zvířata z Afriky a Indie vycvičená pro boj."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Vysoká cena v potravinách a kovu, ale velmi silná."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Dostupné: Kartagincům, Kušitům, Maurjovcům, Peršanům, Ptolemaiovcům a Seleukovcům."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -6858,7 +6858,7 @@ msgstr "VELRYBY"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Mořský zdroj."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
@@ -6866,11 +6866,11 @@ msgstr "2000 Jídlo."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Lze sebrat pomocí rybářských člunů, poté co byla velryba zabita."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Touláte se po oceánech a prcháte, když na vás někdo zaútočí."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

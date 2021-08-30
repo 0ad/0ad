@@ -24,15 +24,17 @@
 # Peter Darvasi <darvasipeter@windowslive.com>, 2013-2014
 # Rácz Zsolt <zsoltr@gmail.com>, 2015
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
+# Scael Blu <groteszk@totalcar.hu>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
+# Szabó Lambert, 2021
 # Tibor Buzási, 2014
 # Tibor Buzási, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-08-27 14:16+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +85,7 @@ msgstr "Beállítások"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr "Gyorsbillentyű"
+msgstr "Gyorsbillentyűk"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -276,22 +278,22 @@ msgstr "Írd be a küldendő üzenetet."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Nyomd meg a nyilvános csevegés megnyitásához: %(hotkey)s."
+msgstr "A nyilvános csevegés megnyitásához nyomd meg a(z) %(hotkey)s gombot!"
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Nyomd meg a megfigyelő csevegés megnyitásához: %(hotkey)s."
+msgstr "A megfigyelő csevegés megnyitásához nyomd meg a(z) %(hotkey)s gombot!"
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Nyomd meg a szövetséges csevegés megnyitásához: %(hotkey)s."
+msgstr "A szövetséges csevegés megnyitásához nyomd meg a(z) %(hotkey)s gombot!"
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Nyomd meg a legutóbb kiválasztott privát csevegés megnyitásához: %(hotkey)s."
+msgstr "A legutóbb kiválasztott privát csevegés megnyitásához nyomd meg a(z) %(hotkey)s gombot!"
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -894,11 +896,11 @@ msgstr "Tétlen munkás keresése"
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr "%(secondaryName)s — Tömörített"
+msgstr "%(secondaryName)s — becsomagolt"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr "Tömörített"
+msgstr "Becsomagolt"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -979,7 +981,7 @@ msgstr "Foglalási pontok:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr "%(label)s: %(details)s"
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
@@ -1658,7 +1660,7 @@ msgstr "Összes kirakása."
 
 #: gui/session/unit_actions.js:1341
 msgid "Unload Turrets."
-msgstr "Lövegek csövének kiürítése."
+msgstr "Tornyok kiürítése."
 
 #: gui/session/unit_actions.js:1361
 msgid "Destroy the selected units or structures."
@@ -1679,7 +1681,7 @@ msgstr "Kijelölt egységek utasítása egy épületbe vagy egységbe történő
 
 #: gui/session/unit_actions.js:1457
 msgid "Order the selected units to occupy a turret point."
-msgstr "A kiválasztott egység utasítása a lövegtorony elfoglalására."
+msgstr "Utasítsd a kijelölt egységet, hogy elfoglaljon egy torony pontot!"
 
 #: gui/session/unit_actions.js:1479
 msgid "Unload"

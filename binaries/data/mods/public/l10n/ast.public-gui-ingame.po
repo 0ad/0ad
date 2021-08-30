@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-28 01:39+0000\n"
+"PO-Revision-Date: 2021-08-27 02:03+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Afita la velocidá del xuegu"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Calca %(hotkey)s p'abrir o zarrar esti menú."
+msgstr "Calca %(hotkey)s p'alternar esti menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -501,7 +501,7 @@ msgstr "Sobrecapa d'aldadorios"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
-msgstr "Sobrecapa d'aldadorios xerárquica"
+msgstr "Sobrecapa del aldadoriu xerárquicu"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
 msgid "Obstruction overlay"
@@ -616,13 +616,13 @@ msgstr "Zarrar"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr "Tiempu que queda del altu'l fueu: %(time)s."
+msgstr "Tiempu que queda d'enducia: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr "Activar colores diplomátiques"
+msgstr "Alternar colores diplomátiques"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -1072,7 +1072,7 @@ msgstr "Si se pue, ello enrestaráse más alantre de mou automáticu."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
-msgstr "Nun hai capacidá pa más población:"
+msgstr "Nun cabe más naide:"
 
 #: gui/session/selection_panels.js:562
 #, javascript-format
@@ -1321,7 +1321,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Güeyada a la civilización / Árbole de construcciones\nL'últimu abiertu va reabrise en calcando."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Sinopsis civilizacional / Árbole de construcciones\nL'últimu abiertu va reabrise en calcando."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1674,7 +1674,7 @@ msgstr "Enfocar escontra'l puntu d'alcuentru."
 
 #: gui/session/unit_actions.js:1557
 msgid "Back to Work"
-msgstr "Volver al trabayu"
+msgstr "Volver al llabor"
 
 #: gui/session/unit_actions.js:1578
 msgid "Order the selected units to guard a structure or unit."

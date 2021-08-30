@@ -30,14 +30,16 @@
 # Pista Joska <jojoskapi@freemail.hu>, 2015-2016
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
 # 271a73fe325823f2941533b778424ef0, 2017
+# Scael Blu <groteszk@totalcar.hu>, 2021
 # Stew Den <stewden55@hotmail.com>, 2014
+# Szabó Lambert, 2021
 # Tibor Buzási, 2015,2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-07-21 11:10+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
+"PO-Revision-Date: 2021-08-27 14:10+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,7 +225,7 @@ msgstr "Térképek tallózása"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "Nyomd meg az összes elérhető térkép megtekintéséhez: %(hotkey)s."
+msgstr "Az összes elérhető térkép megtekintéséhez nyomd meg a(z) %(hotkey)s gombot!"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -231,7 +233,7 @@ msgstr "Csalások"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
-msgstr "Csalás használhatóság váltása."
+msgstr "Csalások engedélyezése / tiltása"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -346,7 +348,7 @@ msgstr "Véletlenszerű"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
-msgstr "Véletlenszerű biom választása."
+msgstr "Véletlenszerű biom kiválasztása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
@@ -382,7 +384,7 @@ msgstr "Véletlenszerű"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr ""
+msgstr "Véletlenszerű táj kiválasztása."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -499,7 +501,7 @@ msgstr "Véletlenszerű"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "Véletlenszerű csapatelhelyezési minta választása a játék indításakor"
+msgstr "Véletlenszerű csapatelhelyezési minta választása a játék indításakor."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
@@ -511,11 +513,11 @@ msgstr "Válaszd ki a küldetés nehézségét"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr "Világ népességkorlátka"
+msgstr "Világ népességkorlátja"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr "Válaszd ki a világ népességének korlátját."
+msgstr "Állítsd be, hogy mekkora legyen a világ népességkorlátja!"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
@@ -781,7 +783,7 @@ msgstr "%(hotkey)s lenyomása az előző beállításlapra ugráshoz."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "Nincs kiválasztott térkép"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
@@ -981,19 +983,19 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "„bölcsességre ő \\[Zeusz] vezet, embereknek ily szabályt ad: „ki szenved, az tanul” álmában szívére csöppen a bűntudó kín a vétkesnek, így észretérni kényszerül: ily erőszakos kegyes hatalmak ülnek szent kormánypadon.” \\n– Aiszkhülosz („Agamemnón”, 176-183. sor)"
+msgstr "„\\[…]bölcsességre ő \\[Zeusz] vezet, embereknek ily szabályt ad: „ki szenved, az tanul” álmában szívére csöppen a bűntudó kín a vétkesnek, így észretérni kényszerül: ily erőszakos kegyes hatalmak ülnek szent kormánypadon.” \\n– Aiszkhülosz („Agamemnón”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr "„\\[Heléna] Iliumba vitte a hozományát, a pusztítást.\" \\n– Aiszkhülosz („Agamemnón”, 406. sor)"
+msgstr "„\\[Heléna] Iliumba vitte a hozományát, a pusztítást.\" \\n– Aiszkhülosz („Agamemnón”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr "„A zsarnoksággal mindig együtt jár e kór: barátaikban sem mernek megbízni ők.” \\n– Aiszkhülosz („Leláncolt Prométheusz”, 224-225. sor)"
+msgstr "„A zsarnoksággal mindig együtt jár e kór: barátaikban sem mernek megbízni ők.” \\n– Aiszkhülosz („Leláncolt Prométheusz”, 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -1071,26 +1073,26 @@ msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr "„Ha valami nemeset tettem, az elég emlékmű; ha nem, akkor a világ összes szobra sem őrzi meg az emlékem.” \\n– II. Agészilaosz spártai király (Plutarkhosz, „Moralia”, „Spártai mondások”, 215a)"
+msgstr "„Mert ha valami jót is tettem, az legyen az én emlékművem; ha viszont semmi jót nem tettem, a világ összes szobra sem tudja azt feledtetni.” \\n– II. Agészilaosz spártai király (Plutarkhosz, „Moralia”, „Spártai mondások”, 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr "„A spártaiakat nem az érdekli, mennyi az ellenség, hanem az, hogy hol van.” \\n– II. Agisz spártai király (Plutarkhosz, „Moralia”, „Spártaiak mondásai”, 215d)"
+msgstr "„A spártaiak nem azt kérdezték, mennyi az ellenség, hanem azt, hol vannak?” \\n– II. Agisz spártai király (Plutarkhosz, „Moralia”, „Spártai mondások”, 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "“Weep not for me, as I suffer unjustly, I am in a happier situation than my "
 "murderers.” \\n— Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, “Parallel Lives”, “Agis”, sec. 20)"
-msgstr "„Ne sirasson engem, jóember, hiszen a törvény és az igazság ellenére kell meghalnom, ezért nagyobb leszek elpusztítóimnál.” \\n– IV. Agisz spártai király, amint sírni látta az egyik hóhérját (Plutarkhosz, „Párhuzamos életrajzok”, „Agisz”, 20. bekezdés)"
+msgstr "„Ne sirasson engem, jóember, hiszen a törvény és az igazság ellenére kell meghalnom, ezért nagyobb leszek elpusztítóimnál.” \\n– IV. Agisz spártai király, mikor meglátta, hogy az egyik hóhérja sír (Plutarkhosz, „Párhuzamos életrajzok”, „Agisz”, 20.1)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr "„Azt szokta mondani, hogy az alvásból és a nemi érintkezésből tudja leginkább, hogy halandó.” \\n– Nagy Sándor (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 22. bekezdés)"
+msgstr "„Azt szokta mondani, hogy az alvásból és a nemi érintkezésből tudja leginkább, hogy halandó\\[...]” \\n– Nagy Sándor (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 22.3)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1098,7 +1100,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr "„…mennyire szolgai dolog a henyélés, és milyen királyi a fáradságos munka. \\[…] Nem tudjátok-e – tette hozzá –, hogy a győzni tudás lényege: mást tenni, mint amit a legyőzöttek tesznek?” \\n– Nagy Sándor (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 40. bekezdés)"
+msgstr "„\\[…]mennyire szolgai dolog a henyélés, és milyen királyi a fáradságos munka. \\[…] Nem tudjátok-e – tette hozzá –, hogy a győzni tudás lényege: mást tenni, mint amit a legyőzöttek tesznek?” \\n– Nagy Sándor (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 40.2–3)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1121,7 +1123,7 @@ msgid ""
 "“If I were not Alexander, I should wish to be Diogenes \\[of Sinope].” \\n— "
 "Alexander the Great, impressed by the simplicity of the philosopher he had "
 "met (Plutarch, “Moralia”, “On the Fortunes of Alexander the Great”, 332a–b)"
-msgstr ""
+msgstr "„Ha nem lennék Sándor, én bizony \\[szinópéi] Diogenész szeretnék lenni” \\n– Nagy Sándor; a király találkozott a szóban forgó filozófussal, s annak egyszerűsége igencsak lenyűgözte őt (Plutarkhosz, „Moralia”, „Nagy Sándor szerencséje és erénye”, 332a–b)"
 
 #: gui/text/quotes.txt:25
 msgid ""
@@ -1133,7 +1135,7 @@ msgstr "„A legerősebb!” \\n– Nagy Sándor, a halálos ágyán, amikor meg
 msgid ""
 "“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
-msgstr "„Én nem lopom a győzelmet.” \\n– Nagy Sándor, a javaslatra, hogy éjjel rohanják meg a perzsákat (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 31. bekezdés)"
+msgstr "„Én nem lopom a győzelmet.” \\n– Nagy Sándor, amikor javasolták, hogy éjjel rohanják meg a perzsákat (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 31. szakasz)"
 
 #: gui/text/quotes.txt:27
 msgid ""
@@ -1148,7 +1150,7 @@ msgid ""
 "covetously.” \\n— Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "“Anacharsis”, sec. 5)"
-msgstr ""
+msgstr "„A piacot annak a helynek nevezte, ahol az emberek becsaphatják egymást és meggazdagodhatnak.” \\n– Diogenész Laertiosz Anakharsziszról, egy szkíta filozófusról, aki ellátogatott Hellászba („A filozófiában jeleskedők élete és nézetei tíz könyvben”, „Anakharszisz”, 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
@@ -1188,32 +1190,32 @@ msgid ""
 "“It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.” \\n— Aristotle (“Nicomachean"
 " Ethics”, I. 1096a.11)"
-msgstr ""
+msgstr "„S mégis úgy véljük, hogy ez a legbecsületesebb eljárás, sőt egyenesen kötelességünk is, hogy az igazság védelmében még azt is feláldozzuk, ami a szívünkhöz közel áll, már csak azért is, mert hiszen filozófusok vagyunk: szeretjük ugyan mind a kettőt, de szent kötelességünknek tartjuk, hogy elsősorban az igazságot szolgáljuk.” \\n– Arisztotelész („Nikomakhoszi etika”, I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "“Happiness depends on leisure; for we are busy to have leisure, and make war"
 " to live in peace.” \\n— Aristotle (“Nicomachean Ethics”, X. 1177b.4)"
-msgstr ""
+msgstr "„Végül a boldogságról azt is tudjuk, hogy főképp a szabad időben valósul meg; hiszen még a szabad időről is azért mondunk le néha, hogy aztán igazi szabad időnk legyen, és sokszor csak azért háborúskodunk, hogy aztán békében élhessünk.” \\n– Arisztotelész („Nikomakhoszi etika”, X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr "„\\[…]az ember természeténél fogva állami életre hivatott élőlény” \\n– Arisztotelész („Politika”, I. könyv, 2. szakasz)"
+msgstr "„\\[…]az ember természeténél fogva állami életre hivatott élőlény\\[...]” \\n– Arisztotelész („Politika”, I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
 " their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
-msgstr "„\\[…]a népben egyáltalában nem bízik meg (ezért is szedi el tőle a fegyvert; de az is mindkettőben, ti. az oligarchiában és a türanniszban közös, hogy a köznépet sanyargatják, lakóhelyükről elüldözik és széttelepítik)” \\n– Arisztotelész („Politika”, V. könyv 10. szakasz)"
+msgstr "„\\[…]a népben egyáltalában nem bízik meg (ezért is szedi el tőle a fegyvert; de az is mindkettőben, ti. az oligarchiában és a türanniszban közös, hogy a köznépet sanyargatják, lakóhelyükről elüldözik és széttelepítik)” \\n– Arisztotelész („Politika”, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "“I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
-msgstr "„A filozófia ezt tanította nekem: meg tudom irányítás nélkül tenni azt, amit mások csak a törvény félelmében.” \\n– Arisztotelész (Diogenész Laertiosz, „A filozófiában jeleskedők élete és nézetei”, „Arisztotelész”, 20. szakasz)"
+msgstr "„Amikor affelől kérdezték \\[Arisztotelészt], mi haszna van a filozófiából, így szólt: »Az, hogy önként teszem amit mások a törvényektől való félelmükben tesznek.«” \\n– Diogenész Laertiosz („A filozófiában jeleskedők élete és nézetei tíz könyvben”, „Arisztotelész”, 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -1256,7 +1258,7 @@ msgid ""
 "“Quintilius Varus, give me back my legions!” \\n— Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "“Divus Augustus”, sec. 23)"
-msgstr ""
+msgstr "„Quintilius Varus, add vissza a légiói­mat!” \\n– Augustus, miután megsemmisült három légiója a teutoburgi csatában (Suetonius, „Az isteni Augustus”, 23.2)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -1264,7 +1266,7 @@ msgid ""
 " an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.” \\n— Augustus, in his autobiography (“Res Gestae Divi"
 " Augusti”, sec. 1)"
-msgstr ""
+msgstr "„Tizenkilenc éves koromban a magam költségén hadsereget szerveztem, melynek segítségével a párturalomtól szorongatott államot felszabadítottam.” \\n– Augustus az önélrajzában („Res Gestae Divi Augusti”, 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -1273,7 +1275,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr ""
+msgstr "„Nemegyszer viseltem hadat szárazon és vizen, belső és külső ellenség ellen, az egész földkerekségen, és győzelmeim után minden kegyelmet kérő polgárnak megkegyelmeztem. Az idegen népeket sem irtottam ki, ha biztonságunk veszélyeztetése nélkül meg lehetett nekik bocsátani, inkább megol­talmaztam.” \\n– Augustus az önélrajzában („Res Gestae Divi Augusti”, 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1281,21 +1283,21 @@ msgid ""
 "adopted it, then persevere in it with firmness.” \\n— Bias of Priene "
 "(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "“Bias”, sec. 5)"
-msgstr ""
+msgstr "„Légy lassú a vállalkozásban, de amit elvállaltál, abban tarts ki.” \\n– priénéi Biasz (Diogenész Laertiosz, „A filozófiában jeleskedők élete és nézetei tíz könyvben”, „Biasz”, 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "“How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.” \\n— Bion of Borysthenes (Cicero, "
 "“Tusculan Disputations”, III. 26)"
-msgstr "„Mily ostoba volt a király, hogy őrületében kitépte a haját, mintha a kopaszság gyógyír lenne a bánatára.” \\n– Borüszthenészi Bion (Cicero, „Tusculumi eszmecsere”, III. 26.)"
+msgstr "„\\[…]az ostoba király elkeseredésében úgy tépdesi a haját, mintha a kopaszság enyhítené a bánatot.” \\n– borüszthenészi Bión (Cicero, „Tusculumi eszmecsere”, III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "“He has not acquired a fortune; the fortune has acquired him.” \\n— Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, “The Lives and"
 " Opinions of Eminent Philosophers”, “Bion”, sec. 50)"
-msgstr ""
+msgstr "„Nem ő szerezte a vagyont, hanem a vagyon szerezte őt.” \\n– borüsthenészi Bión egy vagyonos fösvényről (Diogenész Laertiosz, „A filozófiában jeleskedők élete és nézetei tíz könyvben”, „Bión”, 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -1305,7 +1307,7 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, “Histories”, II. "
 "18)"
-msgstr "„Jaj a legyőzötteknek!” – Brennus, gall törzsfőnök, aki bevette Rómát (a Kapitólium-dombon lévő kaszárnya kivételével). Amikor Camillus megostromolta a veii felmentő sereggel, akkor visszavonulást kezdeményezett, amely 1000 font aranyba került, és Brennus még a kardját is rádobta a mérlegre, amikor a rómaiak panaszkodtak, hogy hamis súlyokat használnak. (Polübiosz, „Történelem”, II. 18.)"
+msgstr "“Jaj a legyőzötteknek!” \\n– Brennus gall vezér, akinek – a capitoliumi helyőrséget leszámítva – sikerült bevennie Róma városát. Camillus, miután visszatért Veiiből, ostrom alá vette Rómát; Brennus 1000 font arany fejében hajlott a visszavonulásra, ám a kimérés során hamis súlyokat alkalmazott, sőt a kardját is serpenyőbe vágta, mikor a rómaiak panaszkodni kezdtek. (Livius, „A római nép története a város alapításától”, V. 48)"
 
 #: gui/text/quotes.txt:50
 msgid ""
@@ -1313,7 +1315,7 @@ msgid ""
 "they make a wasteland and call it peace.” \\n— Calgacus, Caledonian "
 "chieftain in a speech before the Battle of Mons Graupius (Tacitus, "
 "“Agricola”, 30)"
-msgstr ""
+msgstr "„Elhurcolni, gyilkolni, rabolni – hazug névvel ezt mondják birodalomnak, és ahol pusztaságot teremtenek, békének.” \\n– Calgacus kaledóniai törzsfőnök beszéde a mons graupius-i csata előtt (Tacitus, „Agricola”, 30)"
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
@@ -1323,26 +1325,26 @@ msgstr ""
 msgid ""
 "“All mankind rules its women, and we rule all mankind, but our women rule "
 "us.” \\n— Cato the Elder (Plutarch, “Moralia”, “Sayings of Romans”, 198e)"
-msgstr ""
+msgstr "„Az emberiség uralkodik a nők fölött, mi uralkodunk az emberiség fölött, de asszonyaink uralkodnak fölöttünk.” \\n– idősebb Cato (Plutarkhosz, „Moralia”, „Római mondások”, 198e)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "“The worst ruler is one who cannot rule himself.” \\n— Cato the Elder "
 "(Plutarch, “Moralia”, “Sayings of Romans”, 198f)"
-msgstr "„A legrosszabb uralkodó az, aki magán sem tud uralkodni.” - idősebb Cato (Plutarkhosz, „Moralia”, III. „Római mondások”, 198f)"
+msgstr "„\\[…]a legrosszabb uralkodó az, aki nem tud uralkodni saját magán.” \\n– idősebb Cato (Plutarkhosz, „Moralia”, „Római mondások”, 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "“Wise men learn more from fools than fools from the wise.” \\n— Cato the "
 "Elder (Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 9)"
-msgstr ""
+msgstr "„Azt állította, hogy az okos embernek több haszna van az oktalan­ból, mint az oktalannak az okosból, mert az okos őrizkedik az ok­talan hibáitól, de az oktalan nem tudja utánozni az okos jó példáját.” \\n– idősebb Cato (Plutarkhosz, „Párhuzamos életrajzok”, „Marcus Cato”,  9.4)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "“Moreover, I consider that Carthage should be destroyed.” \\n— Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 27)"
-msgstr "„És Karthágónak pusztulnia kell.” \\n– idősebb Cato, aki későbbi életében minden beszédét így fejezte be (Plutarkhosz, „Párhuzamos életrajzok”, „Idősebb Cato”, 27. bekezdés)"
+msgstr "„Szerintem Karthágónak el kell pusztulnia.” \\n– idősebb Cato, aki élete későbbi szakaszában minden beszédét ezzel a mondattal zárta (Plutarkhosz, „Párhuzamos életrajzok”, „Marcus Cato”, 27.1)"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -1358,21 +1360,21 @@ msgid ""
 "It was impossible for the weak or cowardly to retreat; man to man they "
 "fought like in single combat.” \\n— Curtius Rufus about the Battle of Issus "
 "(“Histories of Alexander the Great”, III. 11.5)"
-msgstr ""
+msgstr "„Patakban ömlött a vér, mivel a két sereg annyira összetorlódott, hogy acél acélon csattogott, s a kardhegy egyenest az ellenfél arcába döfött. Sem a gyáva, sem az erőtlen nem adhatta fel a küzdelmet: egymáshoz szorítva szinte párviadalt vívtak, tapodtat sem mozdulva, amíg a győzelem utat nem nyitott nekik.” \\n– Quintus Curtius Rufus az isszoszi csatáról („Nagy Sándor története”, III. 11.5)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
-msgstr "„Én Kürosz vagyok, aki a perzsák birodalmát alapította. Ne irigyeld tőlem azt a kevés földet, amely testemet fedi.” \\n– Nagy Kürosz sírfelirata (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 69. bekezdés)"
+msgstr "„\\[…]én Kürosz vagyok, aki a perzsák birodalmát alapította. Ne irigyeld tőlem azt a kevés földet, amely testemet fedi.” \\n– II. (Nagy) Kurus perzsa király sírfelirata (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 69.2)"
 
 #: gui/text/quotes.txt:59
 msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
-msgstr ""
+msgstr "„Én \\[vagyok] Dārayavauš, a nagy király, a királyok királya, király Pārsában, a tartományok királya, \\[…] amelyek birtokomba kerültek \\[…] összesen 23 tartomány.” \\n– I. Dárajavaus perzsa király (Behisztuni felirat, 1. oszlop, 1–6)"
 
 #: gui/text/quotes.txt:60
 msgid ""
@@ -1382,7 +1384,7 @@ msgid ""
 "Ecbatana; and the men who were his foremost followers \\[…] I flayed and "
 "hung out their skins, stuffed with straw.” \\n— Darius I (Behistun "
 "inscription, column II, 32)"
-msgstr ""
+msgstr "„Fravartišt elfogták, hozzám vezették. Én neki mind az orrát, mind a fülét, mind a nyelvét levágattam, és  egyik szemét kiszúrattam, udvaromban megkötözve tar­tottam. Az egész hadi nép látta őt. Azután Hagmatānában karóba húzattam őt. És az em­bereket, akik legfőbb hívei voltak, ezeket Hagmatānában a várban felakasztattam.” \\n– I. Dárajavaus perzsa király (Behisztuni felirat, 2. oszlop, 32)"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -1412,7 +1414,7 @@ msgstr "„Lehetetlen tartós hatalmat alapítani igazságtalanság, hazugságok
 msgid ""
 "“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
-msgstr ""
+msgstr "„Azt mondják, Démoszthenész ennek \\[az előadásmódnak] adta az első helyet, amikor megkérdezték tőle, hogy a szónoki művészetben mi az első, de ennek adta a másodikat, de ennek a harmadikat is.” \\n– Cicero („A szónokról”, 3.213)"
 
 #: gui/text/quotes.txt:66
 msgid ""
@@ -1447,7 +1449,7 @@ msgstr ""
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
-msgstr ""
+msgstr "\"A kozmosz polgára vagyok.\" \\n— Szinópéi Diogenész (Diogenész Laertiosz, \"A filozófiában jeleskedők élete és nézetei\", \"Diogenész\", 63. szakasz)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1460,7 +1462,7 @@ msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
-msgstr ""
+msgstr "„Állj egy kicsit odébb, ne fogd el előlem a napot!” \\n– Szinópéi Diogenész válasza Nagy Sándornak; a király azt kérdezte a filozófustól, kíván-e tőle valamit (Plutarkhosz, „Párhuzamos életrajzok”, „Alexandrosz”, 14.2)"
 
 #: gui/text/quotes.txt:72
 msgid ""
@@ -1473,13 +1475,13 @@ msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
-msgstr "„Itt fekszünk, vándor, vidd hírül a spártaiaknak: megcselekedtük, amit megkövetelt a haza.” \\n– Leónidasz és katonái számára állított síremlék felirata Thermopülainál (Hérodotosz: Történelem, VII. 228.)"
+msgstr "„Itt fekszünk, vándor, vidd hírül a spártaiaknak: megcselekedtük, amit megkövetelt a haza.” \\n– Leónidasz és katonái számára állított síremlék felirata Thermopülainál (Hérodotosz: „A görög-perzsa háború”, VII. 228)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
 "(“Iphigenia in Tauris”)"
-msgstr "„A gyáva hátat fordít, míg a bátor ember a veszélyt választja.” \\n– Euripidész („Iphigeneia Tauriszban”)"
+msgstr "„A bátor szembenéz a vésszel, míg a gyáva semmi mindenütt.” \\n– Euripidész („Iphigenia a tauruszok között”, 114–115)"
 
 #: gui/text/quotes.txt:75
 msgid ""
@@ -1504,25 +1506,25 @@ msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
-msgstr ""
+msgstr "„Fiam, vagy ezzel vagy ezen!” \\n– egy spártai anya a csatába induló fiának; küzdelmek során általában a megfutamodók hagyták maguk mögött a pajzsukat, az anya tehát azt kérte gyerekétől, hogy küzdjön az utolsó leheletéig (Plutarkhosz, „Moralia”, „Spártai nők híres mondásai”, 241f)"
 
 #: gui/text/quotes.txt:79
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
-msgstr "„Jöttem, láttam, győztem.” \\n– Caesar, miután leverte II. Pharnakész pontoszi királyt az első rohammal (Plutarkhosz, „Párhuzamos életrajzok”, „Caius Iulius Caesar”, 50. bekezdés)"
+msgstr "„Jöttem, láttam, győztem.” \\n– Caesar, miután az első támadással sikerült megfutamítania II. Pharnakész pontoszi királyt (Plutarkhosz, „Párhuzamos életrajzok”, „Iulius Caesar”, 50.2)"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
-msgstr "„Az emberek szívesen elhiszik azt, amire vágynak.” \\n– Caesar („De Bello Gallico”, III. 18.)"
+msgstr "„[...]és az az általános emberi tulajdonság, hogy szívesen elhisszük, amire vágyunk.” \\n– Caesar („A gall háború”, III. 18.)"
 
 #: gui/text/quotes.txt:81
 msgid ""
 "“It is not the well-fed long-haired man I fear, but the pale and the hungry "
 "looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
-msgstr ""
+msgstr "„\\[…]Caesar azt mondta, ő nem fél ezektől a kövér, gondosan fésült emberektől, annál inkább a sápadt arcúaktól és soványaktól\\[…]” \\n– Caesar (Plutarkhosz, „Párhuzamos életrajzok”, „Antonius”, 11.3)"
 
 #: gui/text/quotes.txt:82
 msgid ""
@@ -1531,7 +1533,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.” \\n— Caesar about the Battle of Alesia (“De Bello Gallico”, "
 "VII. 80)"
-msgstr ""
+msgstr "„Dél óta tartott az ütközet, lassanként lenyugodott a nap, de még mindig nem lehetett tudni, ki lesz a győztes. Ekkor a germánok az egyik ponton tömött sorokban megrohamozták és visszaszorították az ellenséget, aztán, mikor a lovasok futásnak eredtek, körülvették az íjászokat, és mindet lekaszabolták.” \\n– Caesar az alesiai csatáról („A gall háború”, VII. 80)"
 
 #: gui/text/quotes.txt:83
 msgid ""
@@ -1541,7 +1543,7 @@ msgid ""
 "legion, Publius Sextius Baculus, a very valiant man, who was so exhausted by"
 " many and severe wounds, that he was already unable to support himself.” "
 "\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
-msgstr ""
+msgstr "„A negyedik cohors összes centuriója elesett, meghalt a cohors jelvényhordozója is, a jelvényt pedig elvesztették. A többi cohors centuriója is majdnem mind elesett vagy megsebesült, köztük a rangidős centurio, P. Sextius Baculus is: a rettenthetetlen, bátor tisztet olyan súlyos sebek érték, hogy jártányi ereje sem maradt.” \\n– Caesar a sabisi csatáról („A gall háború”, II. 25)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1551,27 +1553,27 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.” \\n— Caesar "
 "about the Battle of the Sabis (“De Bello Gallico”, II. 27)"
-msgstr ""
+msgstr "„Az ellenség azonban továbbra is bámulatos vitézséget tanúsított, noha győzelmi esélyei teljesen szétfoszlottak. Mikor arcvonaluk harcosai elestek, a mögöttük állók bajtársaik holttetemére hágtak, úgy folytatták a harcot; s miután ezeket is sorra leterítették, a még életben maradt harcosok az immár dombnak is beillő hullahalmazról tovább hajigálták a mieinkre dárdáikat, sőt a mieink célt tévesztett dárdáit is mind visszadobták.” \\n– Caesar a sabisi csatáról („A gall háború”, II. 27)"
 
 #: gui/text/quotes.txt:85
 msgid ""
 "“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
-msgstr ""
+msgstr "„A kocka el van vetve.” \\n– Caesar, amikor légiójával a Rubiconon átkelve visszatért Itáliába; súlyos vétségnek számított ez – gyakorlatilag egy Róma elleni hadüzenetnek –, s ez alapozta meg a Pompeiusszal vívott polgárháborút is (Suetonius, „Az isteni Iulius”, 32)"
 
 #: gui/text/quotes.txt:86
 msgid ""
 "“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
 " when passing through a barbarian village in the Alps (Plutarch, “Parallel "
 "Lives”, “Caesar”, sec. 11)"
-msgstr ""
+msgstr "„Ami engem illet, inkább lennék itt első, mint Rómában második.” \\n– Caesar a barátainak, mikor keresztülhaladtak egy barbár falun az Alpokban (Plutarkhosz, „Párhuzamos életrajzok”, „Iulius Caesar”, 11.2)"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "“Stop quoting laws, we carry weapons!” \\n— Pompey (Plutarch, “Parallel "
 "Lives”, “Pompey”, sec. 10)"
-msgstr "„Ne idézd a törvényeket, fegyverünk van!” \\n– Pompeius (Plutarkhosz, „Párhuzamos életrajzok”, 10. bekezdés)"
+msgstr "„Minek idézgetitek a törvényeket – szólt –, mikor nekünk kard van az oldalunkon?” \\n– Pompeius (Plutarkhosz, „Párhuzamos életrajzok”, „Pompeius”, 10.2)"
 
 #: gui/text/quotes.txt:88
 msgid ""
@@ -1583,7 +1585,7 @@ msgstr "„Ha valaki másnak a szemét kioltja: szemét oltsák ki.” \\n– Ha
 msgid ""
 "“I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.” \\n— Hannibal (Polybius, “Histories”, III. 85)"
-msgstr ""
+msgstr "„\\[…]nem azért érkezett \\[Hannibál] ide, hogy az itt lakók, hanem azért, hogy a rómaiak ellen viseljen háborút, az itt lakó népek szabadságáért.” \\n– Polübiosz („Történelem”, III. 85)"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1591,7 +1593,7 @@ msgid ""
 "an old man.” \\n— Hannibal's last words before his suicide, in exile with "
 "Flaminius pressuring the local ruler to hand him over (Livy, “History of "
 "Rome”, XXXIX. 51)"
-msgstr ""
+msgstr "„Szabadítsuk meg – mondta – a római népet ettől a nem szűnő gondtól, ha már hosszúnak találják az időt, hogy kivárják egy öregember halálát!” \\n– Hannibál, mielőtt végett vetett életének; az egykori hadvezér ekkor már Bithüniában élt, száműzetésben, ám a rómaiak – Flaminiuson keresztül – mindenáron el akarták érni I. Prusziasz királynál a kiadatását (Livius, „A római nép története a város alapításától”, XXXIX. 51)"
 
 #: gui/text/quotes.txt:91
 msgid ""
@@ -1599,20 +1601,20 @@ msgid ""
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
-msgstr "„Ez a végsőkig kegyetlen és gőgös nép \\[a rómaiak] mindenen uralkodni, mindenütt parancsolni akar. Úgy véli, egyedül ő döntheti el, ki ellen viselhetünk háborút, s kivel élhetünk békében.” \\n– Hannibál, a seregéhez szólva (Livius, „A római nép története”, XXI. könyv, 44. szakasz)"
+msgstr "„Ez a végsőkig kegyetlen és gőgös nép \\[a római] mindenen uralkodni, mindenütt parancsolni akar. Úgy véli, egyedül ő döntheti el, ki ellen viselhetünk háborút, s kivel élhetünk békében.” \\n– Hannibál a katonáinak (Livius, „A római nép története a város alapításától”, XXI. 44)"
 
 #: gui/text/quotes.txt:92
 msgid ""
 "“You must be brave and discard all hopes of anything but victory or death.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
-msgstr ""
+msgstr "„Nektek azonban hőssé kell válnotok, s mivel semmi reményünk, hogy a győzelmen vagy a halálon kívül más kiutat találhatunk, vagy győznötök kell, vagy – ha a szerencse nem pártol benneteket – inkább harc, mint futás közben fogadnotok a halált.” \\n– Hannibál a katonáinak (Livius, „A római nép története a város alapításától”, XXI. 44)"
 
 #: gui/text/quotes.txt:93
 msgid ""
 "“War is the father and king of all things: some he has made gods, and some "
 "men; some slaves and some free.” \\n— Heraclitus (Hippolytus, “The "
 "Refutation of all Heresies”, IX. 4)"
-msgstr ""
+msgstr "„Háború mindenek atyja és mindenek királya, egyeseket istenekké tett meg, másokat emberekké, egyeseket rabszolgákká tett, másokat szabadokká...” \\n– Hérakleitosz (Hippolütosz, „Minden eretnekség cáfolata”, IX. 9.1)"
 
 #: gui/text/quotes.txt:94
 msgid ""
@@ -1624,32 +1626,32 @@ msgstr "„Nem léphetsz kétszer ugyanabba a folyóba.” \\n– Hérakleitosz 
 msgid ""
 "“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
 "Histories”, III. 52)"
-msgstr ""
+msgstr "„\\[…]mennyivel jobb irigyeltnek, mint megvetettnek lenni\\[…]” \\n– Hérodotosz („A görög-perzsa háború”, III. 52)"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "“In soft regions are born soft men.” \\n— Herodotus (“The Histories”, IX. "
 "122)"
-msgstr ""
+msgstr "„Mert puha földön puha emberek teremnek\\[…]” \\n– Hérodotosz („A görög-perzsa háború”, IX. 122)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "“This is the bitterest pain among men, to have much knowledge but no power.”"
 " \\n— Herodotus (“The Histories”, IX. 16)"
-msgstr "„Az a legkeserűbb fájdalom az emberek közt, hogy túl sok tudáshoz nem társul hatalom.” \\n– Hérodotosz („Történelem”, IX. 16.)"
+msgstr "„Az a legnagyobb csapás az embernek, hogy sok mindent lát előre, amit nincs hatalma megváltoztatni.” \\n– Hérodotosz („A görög-perzsa háború”, IX. 16)"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "“Although he \\[Xerxes] had plenty of troops he had few men.” \\n— Herodotus"
 " (“The Histories”, VII. 210)"
-msgstr ""
+msgstr "„S világossá vált mindenki, nem utolsósorban a király \\[I. Khsajársá] előtt, hogy a seregében sok az ember, de kevés a férfi.” \\n– Hérodotosz („A görög-perzsa háború”, VII. 210)"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
-msgstr "„A lakedaimóniak emlékezetes csatát vívtak; világossá tették, hogy ők voltak a szakértők, és hogy amatőrök ellen harcoltak.” \\n– Hérodotosz („Történelem”, VII. 211.)"
+msgstr "„A lakedaimóniak példamutatóan harcoltak, nemegyszer ügyesebbnek bizonyultak a harcban tapasztalatlanabb ellenfeleik­nél\\[…]” \\n– Hérodotosz („A görög-perzsa háború”, VII. 211.)"
 
 #: gui/text/quotes.txt:100
 msgid ""
@@ -1660,7 +1662,7 @@ msgid ""
 "would be in the shade and not in the sun.” \\n— Herodotus describing "
 "Dieneces, reputedly the bravest Spartan soldier at Thermopylae (Polybius, "
 "“Histories”, VII. 226)"
-msgstr ""
+msgstr "„A médekkel való összecsapás előtt ugyanis azt mondta neki egy trakhiszi ember, hogy a barbárok olyan sokan vannak, hogy ha kilövik nyila­ikat, még a nap is elsötétül. Diénekész azonban nem ijedt meg a médek sokaságától, hanem azt válaszolta, hogy jó hírt hozott a trakhiszi idegen: ha a médek elsötétítik a napot, legalább nem napsütésben kell harcolniuk, hanem árnyékban.” \\n– Hérodotosz leírása Diénekészről, a legbátrabbnak mondott Thermopülainál küzdő spártai harcosról („A görög-perzsa háború”, VII. 226)"
 
 #: gui/text/quotes.txt:101
 msgid ""
@@ -1668,7 +1670,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.” \\n— Herodotus, later mentioning that the empire "
 "Croesus destroyed was his own (“The Histories”, I. 53)"
-msgstr ""
+msgstr "„A kérdésre mind a két jóshely egyforma választ adott. Azt felelték Kroiszosznak, hogy ha háborút indít, roppant birodalmat fog megdönteni.” \\n– Hérodotosz Kroiszosz perzsák elleni támadásáról; később megemlíti, hogy a királynak végül a saját birodalmát sikerült megdöntenie („A görög-perzsa háború”, I. 53)"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1678,7 +1680,7 @@ msgid ""
 "the Athenians!” \\n— Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I, the Persian king (“The "
 "Histories”, V. 105)"
-msgstr ""
+msgstr "„\\[…]hanem afelől kezdett kérdezősködni, hogy kik is azok az athéniak. Végighallgatta a választ, majd felhúzta íját, rátett egy nyílvesszőt, fellőtte az ég felé, és közben így fohász­kodott: »Zeusz atyám, add meg nekem, hogy bosszút állhassak az athéniakon!«” ” \\n– Hérodotosz elbeszélése arról, miként gerjedt haragra I. Dareiosz perzsa király hallva a jón felkelés athéniak általi támogatásáról („A görög-perzsa háború”, V. 105)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1686,7 +1688,7 @@ msgid ""
 " spread, three times to repeat to him: Master, remember the Athenians!” \\n—"
 " Herodotus, narrating how the Athenian support for the Ionian revolt lead to"
 " the Persian Wars (“The Histories”, V. 105)"
-msgstr ""
+msgstr "„Aztán megparancsolta az egyik szolgának, hogy ahányszor leül étkezni, mindig figyelmeztesse háromszor, e szavak­kal: »Uram, ne feledd az athéniakat!«” \\n– Hérodotosz elbeszélése arról, miként gerjedt haragra I. Dareiosz perzsa király hallva a jón felkelés athéniak általi támogatásáról („A görög-perzsa háború”, V. 105)"
 
 #: gui/text/quotes.txt:104
 msgid ""
@@ -1710,11 +1712,11 @@ msgstr ""
 msgid ""
 "“It is sweet and honorable to die for one's country.” \\n— Horace (“Odes”, "
 "III., ode II., 13)"
-msgstr "„Édes és dicső meghalni a hazáért.” \\n– Horatius („Ódák”, III., II. óda, 13.)"
+msgstr "„Dísz és dicsőség halni a nemzetért.” \\n– Horatius („Ódák”, III., II. óda, 13)"
 
 #: gui/text/quotes.txt:108
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
-msgstr "„Kurus vagyok, a világ királya…”\\n – Felirat (Kürosz-henger) "
+msgstr "„Én \\[vagyok] Kyros, a mindenség királya\\[…]”\\n – Felirat (Kürosz-henger)"
 
 #: gui/text/quotes.txt:109
 msgid ""
@@ -1741,14 +1743,14 @@ msgid ""
 "“Marry a good man, and bear good children.” \\n— Leonidas, to his wife who "
 "asked what to do if he died, before he left for Thermopylae (Plutarch, "
 "“Moralia”, “Sayings of Spartans”, 225a)"
-msgstr ""
+msgstr "„Derék emberhez menj feleségül, és szülj kiváló gyermekeket!” \\n– I. Leónidasz spártai király a feleségének, mielőtt elindult a Thermopülai-szoros felé;  Gorgó azt kérdezte tőle, mit tegyen, ha ő elesik (Plutarkhosz, „Moralia”, „Spártaiak mondásai”, 225a)"
 
 #: gui/text/quotes.txt:113
 msgid ""
 "“Come and get them!” \\n— Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms (Plutarch, “Moralia”, “Sayings of "
 "Spartans”, 225c)"
-msgstr ""
+msgstr "„Vedd el azokat!” \\n– I. Leónidasz spártai király válasza I. Khsajársá levelére; a perzsa uralkodó fegyverletételre szólította föl őt és embereit (Plutarkhosz, „Moralia”, „Spártaiak mondásai”, 225c)"
 
 #: gui/text/quotes.txt:114
 msgid ""
@@ -1759,7 +1761,7 @@ msgid ""
 " Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (“History "
 "of Rome”, XXII. 51)"
-msgstr ""
+msgstr "„Mások, akiket úgy találtak ott, átvágott lábbal vagy térddel, hogy még éltek, csupasz nyakukat, torkukat nyújtották oda, és azt kívánták, hogy ontsák ki megmaradt vérüket. Találtak olyanokat is, akiknek a feje a kikapart földbe volt temetve, ezekről nyilvánvaló volt, hogy gödröt vájtak, s fejüket beásva és földdel befedve fojtották meg saját magukat.” \\n– Livius leírása a cannaei csatát követő állapotokról; Hannibál súlyos vereséget mért a rómaiakra, súlyosabbat, mint előtte és utána bárki („A római nép története a város alapításától”, XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1768,59 +1770,59 @@ msgid ""
 "of dawn, and was cut down by his enemies.” \\n— Livy, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (“History of Rome”, XXII. 51)"
-msgstr ""
+msgstr "„Annyi ezer római holtteste hevert ott szanaszét, gyalogosok és lovasok, úgy ahogy harc vagy menekülés közben a véletlen egymás mellé sodorta őket. Azt a néhányat, akik a hajnali hidegben sajogni kezdő sebeik kínjára feléledtek, és vérrel borítva kimásztak a holttestek halmai alól, az ellenség leöldöste.” \\n– Livius leírása a cannaei csatát követő állapotokról; Hannibál súlyos vereséget mért a rómaiakra, súlyosabbat, mint előtte és utána bárki („A római nép története a város alapításától”, XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "“A city is well-fortified which has a wall of men instead of brick.” \\n— "
 "Lycurgus of Sparta (Plutarch, “Parallel Lives”, “Lycurgus”, sec. 19)"
-msgstr ""
+msgstr "„Nem marad védtelen az olyan város, amelyet emberek és nem téglák vesznek körül.” \\n– Lükurgosz (Plutarkhosz, „Párhuzamos életrajzok”, „Lükurgosz”, 19.4)"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "“Escape, yes, but this time with my hands, not my feet.” \\n— Brutus, before"
 " committing suicide after losing a battle against Caesar's avengers "
 "(Plutarch, “Parallel Lives”, “Brutus”, sec. 52)"
-msgstr "„Valóban menekülni kell, de nem a lábunkkal, hanem a kezünkkel.” \\n– Brutus, mielőtt öngyilkos lett a Caesar megbosszulóival vívott csata elvesztése után (Plutarkhosz, „Párhuzamos életrajzok”, „Brutus”, 52. szakasz)"
+msgstr "„Valóban menekülni kell, de nem a lábunkkal, hanem a kezünkkel.” \\n– Brutus, mielőtt öngyilkos lett, a Caesar megbosszulóival vívott csata elvesztése után (Plutarkhosz, „Párhuzamos életrajzok”, „Brutus”, 52.2)"
 
 #: gui/text/quotes.txt:118
 msgid "“O, the times, O, the customs!” \\n— Cicero (“Against Catiline”, I.)"
-msgstr "„Ó idők, ó erkölcsök!.” \\n– Cicero („Catilina ellen”, I.)"
+msgstr "„Ó, idők, ó, erkölcsök!.” \\n– Cicero („Catilina ellen”, I.)"
 
 #: gui/text/quotes.txt:119
 msgid ""
 "“A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.” \\n— Cicero (“De Re Publica”, III., 23)"
-msgstr ""
+msgstr "„A legjobb állam nem indít háborút, kivéve, ha szerződésben vállalt vagy puszta fennmaradásáért vívott háborúról van szó.” \\n– Cicero („Az állam”, III. 23)"
 
 #: gui/text/quotes.txt:120
 msgid ""
 "“The first duty of a man is the seeking after and the investigation of "
 "truth.” \\n— Cicero (“On Duties”, I., 13)"
-msgstr "„Az ember első kötelessége, hogy utánajárjon és kivizsgálja az igazságot.” \\n– Cicero („A kötelességekről”, I., 13.)"
+msgstr "„Az ember elsőrendű megkülönböztető jegye az igazság keresése és kutatása.” \\n– Cicero („A kötelességekről”, I. 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "“No one is so old as to think that he cannot live one more year.” \\n— "
 "Cicero (“On Old Age”, sec. 24)"
-msgstr ""
+msgstr "„\\[…]hisz nincs olyan vénember, aki ne hinné, hogy elélhet még egy évet\\[…]” \\n– idősebb Cato (Cicero, „Az öregségről”, 24)"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "“Let the welfare of the people be the ultimate law.” \\n— Cicero (“On the "
 "Laws”, III., sec. 3)"
-msgstr "„Hagyd, hogy a nép jóléte legyen az utolsó törvény.” \\n– Cicero („A törvényekről”, III. 3. szakasz)"
+msgstr "„Szá­mukra a legfőbb törvény a nép üdve legyen.” \\n– Cicero a praetorokról („A törvényekről”, III. 8)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "“Endless money forms the sinews of war.” \\n— Cicero (“Philippics”, V., sec."
 " 5)"
-msgstr ""
+msgstr "„Mi más ez, mint polgárháború céljára átjátszani az ellenségnek minden eszközt: először a háború éltető erejét, a mérhetetlen sok pénzt\\[…]” \\n– Cicero („Philippicák”, V. 5)"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "“Laws are silent in time of war.” \\n— Cicero (“Pro Milone”, IV., sec. 11)"
-msgstr ""
+msgstr "„Fegyverzaj közepette ugyanis hallgatnak a törvények\\[…]” \\n– Cicero („Milo védelmében”, IV. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1828,7 +1830,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!” \\n— Cicero, "
 "condemning Mark Anthony who had not killed him (yet) (“Philippics”, II., "
 "sec. 5)"
-msgstr "„Ez, szenátorok, amit a csőcselék szívessége ér. Tartózkodnak megölni valakit; aztán dicsekednek hogy megkímélték életét!” \\n– Cicero, elítélve Marcus Antoniust, aki (még) nem ölette meg („Philippikák”, II., 5. szakasz)"
+msgstr "„Mi másból áll a rablók jótéteménye, összeírt atyák, mint hogy elmondhatják: megajándékozták az élettel azt, akit nem fosztottak meg tőle.” \\n– Cicero az őt (egyelőre) meg nem ölető Marcus Antoniusról („Philippicák”, II. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1837,7 +1839,7 @@ msgid ""
 " rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.” \\n— Mark Antony, taunting Augustus who delegated his duties as "
 "naval commander (Suetonius, “Divus Augustus”, sec. 16)"
-msgstr ""
+msgstr "„Azt hiszem, ennek alapján vetette szemére Antonius, hogy nem is tudott biztos tekintettel végignézni felsorakoztatott csapatain, ha­nem az eget bámulta hanyatt fekve, bambán, és addig föl sem kelt, nem is került katonái szeme elé, míg Marcus Agrippa meg nem futamította az ellenség hajóit.” \\n– Marcus Antonius gúnyos megjegyzése a flottaparancsnokként tevékenykedő Augustusnak (Suetonius, „Az isteni Augustus”, 16.2)"
 
 #: gui/text/quotes.txt:127
 msgid ""
@@ -1867,7 +1869,7 @@ msgid ""
 "and material advantages, they drove out the invaders and made our city what "
 "it is now.” \\n— Pericles (Thucydides, “History of the Peloponnesian War”, "
 "I. 144.3–4)"
-msgstr ""
+msgstr "“\\[…]a legnagyobb veszélyek hozzák meg az állam és az egyes emberek számára a legnagyobb di­csőséget. Hiszen a mi atyáink szálltak szembe a médekkel, noha koránt­sem indultak ilyen felkészülten a küzdelembe, hanem még azt is otthagyták, amijük volt, s mikor több belátással, mint szerencsével, s nagyobb vakmerőséggel, mint hatalommal visszaűzték a barbárt, jutottak el idáig, ahol most vagyunk.” \\n– Periklész (Thuküdidész, „A peloponnészoszi háború”, I. 144.3–4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1875,7 +1877,7 @@ msgid ""
 " we think it an indispensable preliminary to any wise action at all.” \\n— "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, “History of the Peloponnesian War”, II. 40.2)"
-msgstr ""
+msgstr "„\\[…]s amiként ez helyes is, mi ma­gunk döntünk és tanácskozunk ügyeinkben abban a meggyőződés­ben, hogy nem a vita akadályozza meg a cselekvést, hanem ellenke­zőleg éppen az, ha előzőleg megtárgyalva nem tisztázzuk, hogy mit is kell tennünk.” \\n– részlet Periklész gyászbeszédéből; szónoklatával azon athéniak előtt kívánta leróni tiszteletét, akik a háború első évében estek el (Thuküdidész, „A peloponnészoszi háború”, II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1883,14 +1885,14 @@ msgid ""
 "nothing, we think he is good for nothing.” \\n— Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "“History of the Peloponnesian War”, II. 40.2)"
-msgstr ""
+msgstr "„Mert mi \\[athéniak] vagyunk az egyetlenek, akik a közélettel szemben teljesen közönyös embert nem visszahúzódó­nak, hanem semmirevalónak tartjuk \\[…]” \\n– részlet Periklész gyászbeszédéből; szónoklatával azon athéniak előtt kívánta leróni tiszteletét, akik a háború első évében estek el (Thuküdidész, „A peloponnészoszi háború”, II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "“Future ages will wonder at us, as the present age wonders at us now.” \\n— "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, “History of the Peloponnesian War”, II. 41.5)"
-msgstr ""
+msgstr "„Nagy és nem megalapozatlan bizonyítékokkal igazolhatjuk ha­talmunkat, amelyet a jelen és a jövő egyaránt megcsodál.” \\n– részlet Periklész gyászbeszédéből; szónoklatával azon athéniak előtt kívánta leróni tiszteletét, akik a háború első évében estek el (Thuküdidész, „A peloponnészoszi háború”, II. 41.4)"
 
 #: gui/text/quotes.txt:135
 msgid ""
@@ -1900,7 +1902,7 @@ msgid ""
 "virtue.” \\n— Pericles in his Funeral Oration for Athenians that died in the"
 " first year of the war (Thucydides, “History of the Peloponnesian War”, II. "
 "43.2)"
-msgstr ""
+msgstr "“S ha ennek \\[Athénnak] hatalmát nagynak látjá­tok, gondoljátok meg, hogy ezt olyan bátor férfiak alapozták meg, akik jól tudták, mi a kötelességük, akiket cselekvés közben a becsü­let érzése vezérelt. S ha olykor valamelyik vállalkozásuk kudarcba fulladt, akkor se jutott eszükbe, hogy ne bocsássák képességeiket városuk rendelkezésére, hanem meghozták érte a legnagyobb áldo­zatot is.” \\n– részlet Periklész gyászbeszédéből; szónoklatával azon athéniak előtt kívánta leróni tiszteletét, akik a háború első évében estek el (Thuküdidész, „A peloponnészoszi háború”, II. 43.1)"
 
 #: gui/text/quotes.txt:136
 msgid ""
@@ -1909,7 +1911,7 @@ msgid ""
 " that will outlast any monument.” \\n— Pericles in his Funeral Oration for "
 "Athenians that died in the first year of the war (Thucydides, “History of "
 "the Peloponnesian War”, II. 43.3)"
-msgstr ""
+msgstr "„Mert kiváló emberek sírja az egész föld, s nemcsak a hazájukban felállított sztélé felirata emlékeztet rájuk, hanem idegen földön is, felirat nélkül is mindenki őrzi nem is annyira cselekedeteiknek, mint inkább szellemüknek az emlékét.” \\n– részlet Periklész gyászbeszédéből; szónoklatával azon athéniak előtt kívánta leróni tiszteletét, akik a háború első évében estek el (Thuküdidész, „A peloponnészoszi háború”, II. 43.3)"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1917,13 +1919,13 @@ msgid ""
 "courage.” \\n— Pericles in his Funeral Oration for Athenians that died in "
 "the first year of the war (Thucydides, “History of the Peloponnesian War”, "
 "II. 43.4)"
-msgstr ""
+msgstr "„Lelkesítsen benneteket az ő példájuk, s abban a meggyőződésben, hogy a boldogság a szabadsá­gon, a szabadság pedig a biztonságon alapul, ne féljetek a háború veszélyeitől.” \\n– részlet Periklész gyászbeszédéből; szónoklatával azon athéniak előtt kívánta leróni tiszteletét, akik a háború első évében estek el (Thuküdidész, „A peloponnészoszi háború”, II. 43.4)"
 
 #: gui/text/quotes.txt:138
 msgid ""
 "“Wait for the wisest of all counsellors, time.” \\n— Pericles, a cautious "
 "politician who avoided war (Plutarch, “Parallel Lives”, “Pericles”, sec. 18)"
-msgstr ""
+msgstr "„Ekkor mondta a népgyűlésen azokat az emlékezetes szavakat, hogy ha Tolmidész rá már nem hallgat is, hallgasson legalább a legjobb tanácsadóra, az időre.” \\n– Periklész, aki óvatos politikusként igyekezett elkerülni a kockázatos háborúkat (Plutarkhosz, „Párhuzamos életrajzok”, „Periklész”, 18.2)"
 
 #: gui/text/quotes.txt:139
 msgid ""
@@ -1931,7 +1933,7 @@ msgid ""
 " certainly dangerous to let it go.” \\n— Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, “History of the "
 "Peloponnesian War”, II. 63.3)"
-msgstr ""
+msgstr "„Hiszen hatalmatok immár zsarnoki ura­lommá vált, s lehet, hogy ennek kialakítása helytelennek látszik, de lemondani róla veszélyes.” \\n– Periklész az athéni népgyűlésnek azt követően, hogy egy járvány megtizedelte a város a lakosságát (Thuküdidész, „A peloponnészoszi háború”, II. 63.2)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1944,7 +1946,7 @@ msgid ""
 "“Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.” \\n— Plato, no friend "
 "of the Athenian navy (Plutarch, “Parallel Lives”, “Themistocles”, sec. 3)"
-msgstr ""
+msgstr "„Meg is vádolták, hogy kivette kezükből a dárdát, megfosztotta őket pajzsuktól, s gályapadhoz és evezőkhöz láncolta az athéni népet.” \\n– Plutarkhosz („Párhuzamos életrajzok”, „Themisztoklész”, 4.3)"
 
 #: gui/text/quotes.txt:142
 msgid ""
@@ -1957,14 +1959,14 @@ msgstr "„Ámde bármi kedvesen is fogadjon a jóbarát, a vendég három napon
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
 "immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
-msgstr ""
+msgstr "„Ha jól meggondolod, nem mondhatod, hacsak ezüstöd halhatatlannak nem hiszed.”\\n– Plautus („Három ezüst”, II. 413–414)"
 
 #: gui/text/quotes.txt:144
 msgid ""
 "“He \\[Alexander] thought nothing invincible for the courageous, and nothing"
 " secure for the cowardly.” \\n— Plutarch (“Parallel Lives”, “Alexander”, "
 "sec. 58)"
-msgstr ""
+msgstr "„Ő azonban a balszerencsét merészséggel, a hatalmat vitézséggel akarta felülmúlni, abban a hitben, hogy a bátrak számára nincs leküzdhetetlen nehézség, a gyáváknak pedig semmi sem biztos erősség.” \\n– Plutarkhosz („Párhuzamos életrajzok”, „Alexandrosz”, 58.1)"
 
 #: gui/text/quotes.txt:145
 msgid ""
@@ -1974,7 +1976,7 @@ msgid ""
 "received many wounds, at last was struck on the neck with a mace, and leaned"
 " against the city wall, his eyes still fixed upon his foes.” \\n— Plutarch "
 "about the Mallian Campaign (“Parallel Lives”, “Alexander”, sec. 63)"
-msgstr ""
+msgstr "„\\[…]az egyik barbár pedig \\[…] olyan pontosan és olyan nagy erővel lőtte ki rá nyilát, hogy a nyílhegy áttörte mellvédjét, és a mellén a bordái közé fúródott. Az ütéstől Alexandrosz megtántorodott, és a földre rogyott. \\[...] Alexandrosznak sikerült megölnie a bar­bárt, bár közben ő maga is sok sebből vérzett. Végül egy husánggal nyakszirten sújtották, a falnak dőlt, és úgy nézett farkasszemet ellenfeleivel.” \\n– Plutarkhosz a malloszi hadjáratról („Párhuzamos életrajzok”, „Alexandrosz”, 63.3–4)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1983,7 +1985,7 @@ msgid ""
 " and he volunteered to pay fifty.” \\n— Plutarch, who mentions later that "
 "Caesar got his money back and had his captors crucified (“Parallel Lives”, "
 "“Caesar”, sec. 2)"
-msgstr ""
+msgstr "„A kalózok először húsz talentum váltságdíjat követeltek Caesartól, mire ő jót nevetett, és azt mondta, nyilván nem tudják, kit ejtettek foglyul, majd önként felajánlott nekik ötven talentumot.” \\n– Plutarkhosz Caesarról; a történetíró később megemlíti, hogy Caesar végül visszaszerezte a pénzét, fogva tartóit pedig keresztre feszíttette („Párhuzamos életrajzok”, „Iulius Caesar”, 2.1)"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1992,7 +1994,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.” \\n— Polybius (“Histories”, VI. 24)"
-msgstr ""
+msgstr "„A centurio esetében nem az a legfőbb követelmény, hogy vakmerő legyen, minden veszélyt vállaljon, hanem az, hogy vezetői képességekkel rendelkezzen és magatartását a meggondoltság és rendíthetetlen kitartás jellemezze. Ha a körülmények nem kényszerítik rá, ne támadjon azonnal és ne kezdjen küzdelmet, viszont ha szorongatott helyzetbe kerül, küzdjön kitartóan, a csatában egy lépést se hátráljon és hajlandó legyen az életét is feláldozni, és helyét utolsó leheletéig védelmezni.” \\n– Polübiosz („Történelem”, VI. 24)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -2000,7 +2002,7 @@ msgid ""
 "both individually and collectively; so that a formation can fight in any "
 "direction, with the maniples nearest to the point of danger wheeling around "
 "to face it.” \\n— Polybius (“Histories”, XV. 15)"
-msgstr ""
+msgstr "„A római hadvezér úgy sorakoztatta fel seregét, hogy megfelelő térközöket hagyott az egyes katonák és az egyes csapatok között, így a római katona anélkül, hogy helyéről elmozdult volna, minden irányban fel tudta venni a küzdelmet, és a veszélyeztetett manipulus mindig könnyen arrafelé tudott fordulni, ahonnan a veszély fenyegette.” \\n– Polübiosz („Történelem”, XV. 15)"
 
 #: gui/text/quotes.txt:149
 msgid ""
@@ -2011,7 +2013,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbor and close to shore.” \\n— Polybius on the "
 "Athenian constitution (“Histories”, VI. 44)"
-msgstr ""
+msgstr "„Ugyanis az athéni nép kezdettől fogva egy olyan hajóhoz hasonlított, amelynek nincsen parancsnoka. Márpedig egy hajó legénysége akkor cselekszik helyesen, ha, amikor ellenséges támadás vagy vihar fenyegeti, olyan pontosan hajtja végre a kormányos utasításait, amennyire csak képes rá. Amennyiben viszont megmenekülésük után \\[…] semmiben sem értenek egyet és vita támad közöttük \\[…] az is előfordulhat, hogy miután sikerült szerencsésen túlélniük a tengereken fenyegető veszélyeket és viharokat, végül valamelyik öbölben, vagy a part mellett szenvednek hajótörést.” \\n– Polübiosz az athéniak alkotmányáról („Történelem”, VI. 44)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -2020,7 +2022,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.” "
 "\\n— Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (“Histories”, I. 34)"
-msgstr ""
+msgstr "„Így hát a minden oldalról szorongatott rómaiakat részben a roppant tömegű állatok \\[elefántok] taposták szét, a többi harcosok közül pedig a legtöbbet lövedékekkel a karthágói lovasok öltek meg, s csak néhányan voltak képesek a síkságon futásra fogni a dolgot.” \\n– Polübiosz a első pun háború részét képező bagradaszi csatáról, mely során a rómaiak serege szinte teljesen megsemmisült („Történelem”, I. 34)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -2028,7 +2030,7 @@ msgid ""
 "the troops lying in ambush on the hills to do the same, and thus delivered "
 "an assault upon the enemy at every point at once.” \\n— Polybius on the "
 "beginning of a Roman disaster at the Trasymene Lake (“Histories”, III. 84)"
-msgstr ""
+msgstr "„Amikor Hannibal meglátta, hogy a rómaiak menetoszlopa már mélyen bent jár a völgyben, \\[…] jelt adott a harc megkezdésére, s hasonló parancsot küldött a leshelyeken rejtőzködőknek is, így egyidőben, egyszerre minden oldalról támadtak rá az ellenségre.” \\n– Polübiosz trasimenus-tavi csata kezdetéről, mely ütközet a rómaiak totális vereségével zárult („Történelem”, XV. 15), III. 84)"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -2037,7 +2039,7 @@ msgid ""
 "could get at; until, unable to resist, they were forced to throw away their "
 "shields and flee.” \\n— Polybius, describing the defeat of Philip V. of "
 "Macedon by Flaminius in the Battle of Cynoscephalae (“Histories”, XVIII. 26)"
-msgstr ""
+msgstr "„A phalangiták, miután képtelenek voltak arra, hogy visszafordulva kezdjenek közelharcot az ellenség ellen, nem tudtak magukon segíteni, s a római csapatok hátbatámadták őket; közülük mindazt, aki csak eléjük került, megölték, és a makedónok arra kényszerültek, hogy futásban keressenek menedéket.” \\n– Polübiosz V. Philipposz makedón király Flaminius ellen elszenvedett vereségéről a künoszkephalai csatában („Történelem”, XVIII. 26)"
 
 #: gui/text/quotes.txt:153
 msgid ""
@@ -2048,7 +2050,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.” \\n— Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (“Histories”, "
 "XVIII. 32)"
-msgstr ""
+msgstr "„Mert a makedón phalanxba beosztott katona még a phalanx egy részével sem foghat össze, nem úgy, mint a rómaiak esetében, akiknek harci módszerei erre lehetőséget adnak. Mert egy római katona, ha egyszer felfegyverkezve harci készültségben van, bármilyen terepen és bármilyen helyzetben, akármelyik irányból támadjon is rá az ellenség, helyt fog állni. Akár az egész seregbe, akár annak valamelyik részébe van is beosztva, s akár egy manipulus tagja, akár magára hagyatva küzd, ez a különbség nem akadályozza meg, hogy minden erejét összeszedve férfiasan helytálljon.” \\n– Polübiosz magyarázata arra, miért képesek a rómaiak legyőzni a makedón falanxot („Történelem”, XVIII. 32)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -2058,7 +2060,7 @@ msgid ""
 "all cities, nations, and authorities must, like men, meet their doom.” \\n— "
 "Polybius, eyewitness to the destruction of Carthage (“Histories”, XXXVIII. "
 "22)"
-msgstr ""
+msgstr "„Amint a város a lángok martalékává vált, Scipio könnyekben tört ki és hosszasan állt ott, töprengve a városok, népek, dinasztiák elkerülhetetlen végzetén, mely mindegyiket utoléri, akárcsak az egyes embereket.” \\n– Polübiosz, aki szemtanúja volt Karthágó pusztulásának („Történelem”, XXXVIII. 22)"
 
 #: gui/text/quotes.txt:155
 msgid ""
@@ -2066,7 +2068,7 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, “Parallel Lives”, "
 "“Pyrrhus”, sec. 21)"
-msgstr ""
+msgstr "„Ha még egy csatában győzünk a rómaiakon, végképp elveszünk.” \\n– I. Pürrhosz épeiroszi király az Asculumnál aratott győzelme után; a rómaiak ugyan kétszer annyi embert vesztettek, mint ő, seregének összlétszámához mérten viszont nála voltak nagyobbak a veszteségek (Plutarkhosz, „Párhuzamos életrajzok”, „Pürrhosz”, 21.9)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -2105,7 +2107,7 @@ msgid ""
 "“Prepare for war, since you have been unable to endure a peace.” \\n— Scipio"
 " Africanus, replying to Hannibal's offer of peace terms before the Battle of"
 " Zama (Livy, “History of Rome”, XXX. 31)"
-msgstr "„Készülj a háborúra, ha a békét nem bírod elviselni.” \\n– Scipio Africanus, válaszul Hannibál békefeltételeire a zámai csata előtt (Livius, „Ab Urbe Condita”, XXX. 31.)"
+msgstr "„\\[…]készüljetek a háborúra, mivel nem tudtátok elviselni a békét.” \\n– Scipio Africanus válasza Hannibál békefeltételeire a zamai csata előtt (Livius, „A római nép története a város alapításától”, XXX. 31)"
 
 #: gui/text/quotes.txt:162
 msgid ""
@@ -2114,7 +2116,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.” \\n— Socrates (Xenophon, "
 "“Memorabilia”, 3.1.6)"
-msgstr ""
+msgstr "„De hát az a hadtudománynak csak töredéke – jegyezte meg Szókratész –, mert a hadvezérnek mindenre fel kell készülnie egy háborúhoz: értenie kell a katonák élelmezéséhez, találékonynak kell lennie, tevékenynek és körültekintőnek, edzettnek, gyors eszűnek, barátságosnak, de keménykezűnek, egyenes szavúnak, de cselre késznek, elővigyázatosnak és ravasznak, bőkezűnek és zsákmányra éhesnek, adakozónak és önzőnek, továbbá biztonságra törekvőnek és harciasnak, és még sok más természet adta és tanulással szerzett képességre is szüksége van annak, aki jó hadvezér akar lenni. ” \\n– Szókratész (Xenophón, „Emlékeim Szókratészról”, 3.1.6)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -2122,14 +2124,14 @@ msgid ""
 " if the city is stronger, one may recommend her to go to war, but if weaker "
 "than the enemy, may persuade her to beware.” \\n— Socrates (Xenophon, "
 "“Memorabilia”, 3.6.9)"
-msgstr ""
+msgstr "„Aki azt fontolgatja, hogy ki ellen viseljen háborút, annak ismernie kell mind saját államának, mind ellenfelének erejét, hogy ha az övéi erősebbek az ellenségnél, javasolja a háború megindítását, ha pedig gyengébbek, meggondoltságra intsen.” \\n– Szókratész (Xenophón, „Emlékeim Szókratészról”, 3.6.8)"
 
 #: gui/text/quotes.txt:164
 msgid ""
 "“The unexamined life is not worth living.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) \\n— Plato (“Apology”, 38a)"
-msgstr ""
+msgstr "„\\[…]a vizsgálódás nélküli élet nem embernek való élet\\[…]”  \\n– Szókratész a bíráknak; a filozófust azzal vádolták, hogy rossz hatással volt a fiatalok gondolkodásmódjára, továbbá azzal, hogy nem a megfelelő isteneket tisztelte, az ítéletként meghozott halálbüntetést ugyanakkor már nem tudták végrehajtani: büröknedvvel vetett véget életének (Platón, „Szókratész védőbeszéde”, 38a)"
 
 #: gui/text/quotes.txt:165
 msgid ""
@@ -2137,13 +2139,13 @@ msgid ""
 "to live. Which is better God only knows.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) \\n— Plato (“Apology”, 42a)"
-msgstr ""
+msgstr "„De ideje már, hogy távozzunk. Én halni indulok, ti élni; de kettőnk közül melyik megy jobb sors elé, az mindenki előtt rejtve van, kivéve az istent.” \\n– Szókratész a bíráknak; a filozófust azzal vádolták, hogy rossz hatással volt a fiatalok gondolkodásmódjára, továbbá azzal, hogy nem a megfelelő isteneket tisztelte, az ítéletként meghozott halálbüntetést ugyanakkor már nem tudták végrehajtani: büröknedvvel vetett véget életének (Platón, „Szókratész védőbeszéde”, 42a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
 "“Walls and ships are nothing without men living together inside them.” \\n— "
 "Sophocles (“Oedipus Rex”)"
-msgstr ""
+msgstr "„Mivel semmi a torony, semmi a hajó a benne-népes emberektől özvegyen.” \\n– Szophoklész („Oedipus király”, 56–57)"
 
 #: gui/text/quotes.txt:167
 msgid ""
@@ -2152,24 +2154,24 @@ msgid ""
 "interest. It was not we who set the example, for it has always been the law "
 "that the weak should be subject to the strong.” \\n— Speech of an Athenian "
 "embassy in Sparta (Thucydides, “History of the Peloponnesian War”, I. 76.2)"
-msgstr ""
+msgstr "„Mi sem műveltünk hát semmiféle különös vagy az emberi természettől idegen dolgot, amikor a felajánlott hatalmat elfogadtuk, s a leghaté­konyabb indítékok: a tekintély, a félelem és az érdek hatására nem akarjuk kiengedni kezünkből. Nem is mi vagyunk az elsők, akik erre az útra léptünk; hiszen mindig is az volt a helyzet, hogy az erősebb uralkodik a gyengébb felett.” \\n– részlet egy athéni küldöttség Spártában előadott beszédéből (Thuküdidész, „A peloponnészoszi háború”, I. 76.2)"
 
 #: gui/text/quotes.txt:168
 msgid ""
 "“He could boast that he found a city of brick and left it a city of "
 "marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
 " in Rome (“Divus Augustus”, 28.3)"
-msgstr ""
+msgstr "„\\[…]jogosan büszkélkedett azzal, hogy téglavárost kapott, de márványvárost hagy az utókorra.”\\n– Suetonius, utalva az Augustus által elrendelt római építkezések nagy számára („Az isteni Augustus”, 28.3)"
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
-msgstr ""
+msgstr "„\\[…]mitse szerfelett.” \\n– Terentius („Az androszi leány”, 61)"
 
 #: gui/text/quotes.txt:170
 msgid ""
 "“Fortune favors the bold.” \\n— Terence in a play about a great Athenian "
 "admiral (“Phormio”, 203)"
-msgstr "„Bátraké a szerencse.” \\n– Terentius egy nagy athéni admirálisról szóló darabban („Phormio”, 203)"
+msgstr "„\\[...]a bátrakon segít a sors!” \\n– Terentius egy nagy athéni admirálisról szóló darabban („Az élősdi”, 203)"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -2177,7 +2179,7 @@ msgid ""
 "raise a city that was small and unimportant to glory and greatness.” \\n— "
 "Themistocles, defending his lack of cultural sophistication (Plutarch, "
 "“Parallel Lives”, “Themistocles”, sec. 2)"
-msgstr "„Nem tudok lantot pengetni vagy hárfázni, de ahhoz jól értek, hogyan tegyem naggyá és híressé a legkisebb és legismeretlenebb várost.” \\n– Themisztoklész, megvédve kulturális kifinomultságának hiányát (Plutarkhosz, „Párhuzamos életrajzok”, „Themisztoklész”, 2. szakasz)"
+msgstr "„\\[…]öntudatosan védte magát, hogy bár nem tud lantot penget­ni vagy hárfázni, ahhoz jól ért, hogyan tegye naggyá és híressé a legkisebb és legismeretlenebb községet, ha majd egyszer a kezébe kapja.” \\n– Themisztoklész, megvédve kulturális kifinomultságának hiányát (Plutarkhosz, „Párhuzamos életrajzok”, „Themisztoklész”, 2.3)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -2185,7 +2187,7 @@ msgid ""
 " with the Spartan fleet commander who threatened to beat him with his staff,"
 " before the Battle of Salamis (Plutarch, “Parallel Lives”, “Themistocles”, "
 "sec. 11)"
-msgstr ""
+msgstr "„Üss csak meg, de hallgass rám.” \\n– Themisztoklész a spártai flottaparancsnokkal folytatott heves vita során, a szalamiszi csatát megelőzően; Eurübiadész flottaparancsnok már meg akarta őt ütni a botjával (Plutarkhosz, „Párhuzamos életrajzok”, „Themisztoklész”, 11.3)"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -2193,34 +2195,34 @@ msgid ""
 "mother commands me, and you command your mother.” \\n— Themistocles, "
 "jokingly to his infant son (Plutarch, “Parallel Lives”, “Themistocles”, sec."
 " 18)"
-msgstr ""
+msgstr "„\\[…]a görögöknek az athéniak parancsolnak, az athéniaknak ő, neki a gyermek anyja, annak pedig a fiú.” \\n– Themisztoklész tréfás megjegyzése újszülött fiához (Plutarkhosz, „Párhuzamos életrajzok”, „Themisztoklész”, 18.5)"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "“So little pains does the mob take in finding out the truth, accepting "
 "readily the first story at hand.” \\n— Thucydides (“History of the "
 "Peloponnesian War”, I. 21.3)"
-msgstr ""
+msgstr "„Annyira sajnálja az emberek többsége a fáradságot az igazság felderítésére, és sokkal szívesebben elfogadják azt, amit éppen hallanak.” \\n– Thuküdidész („A peloponnészoszi háború”, I. 20.3)"
 
 #: gui/text/quotes.txt:175
 msgid ""
 "“The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.” \\n— Thucydides (“History of the Peloponnesian"
 " War”, I. 23.6)"
-msgstr ""
+msgstr "„A legigazibb, noha a legritkábban emlegetett ok­nak azt tartom, hogy az athéniak megnövekedett hatalma félelem­mel töltötte el, majd háború megindítására késztette a lakedaimóniakat.” \\n– Thuküdidész („A peloponnészoszi háború”, I. 23.6)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "“War is a matter not so much of arms as of money.” \\n— Thucydides (“History"
 " of the Peloponnesian War”, I. 83.2)"
-msgstr ""
+msgstr "„\\[…]a háború sorsát pedig nem annyira a fegyverek döntik el, hanem inkább a pénz\\[…]” \\n– Thuküdidész („A peloponnészoszi háború”, I. 83.2)"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "“It is a general rule of human nature that people despise those who treat "
 "them well, and look up to those who make no concessions.” \\n— Thucydides "
 "(“History of the Peloponnesian War”, III. 39.5)"
-msgstr ""
+msgstr "„Az embernek különben is természete, hogy a szolgálatkészet megveti, s azt tiszteli, aki nem alkuszik.” \\n– Thuküdidész („A peloponnészoszi háború”, III. 39.5)"
 
 #: gui/text/quotes.txt:178
 msgid ""
@@ -2231,7 +2233,7 @@ msgid ""
 " ever had perished, nothing was saved and few of so many ever returned home."
 " Thus ended the Sicilian expedition.” \\n— Thucydides (“History of the "
 "Peloponnesian War”, VII. 87.6–7)"
-msgstr ""
+msgstr "„Elmondhatjuk, hogy ez volt ebben a háborúban, sőt – véleményem szerint –, a hellénség egész eddig ismert történetében a legdöntőbb esemény, s nem volt még győztes diadala dicsőségesebb, s a vesztes veresége megsemmisítőbb. Hiszen a legyőzött minden tekintetben teljes vereséget szen­vedett, vesztesége minden téren óriási volt. Szárazföldi seregét és hajóhadát, mint mondani szokták, mind egy szálig elvesztette, s a roppant seregből csak néhányan tértek vissza hazájukba. Ezek az események zajlottak le Szicíliában.” \\n– Thuküdidész („A peloponnészoszi háború”, VII. 87.6–7)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -2239,7 +2241,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.” \\n— "
 "Thucydides, describing Athenians addressing the defeated Melians who are "
 "unwilling to surrender (“History of the Peloponnesian War”, V. 89.1)"
-msgstr ""
+msgstr "„Hiszen éppoly jól tudjátok, mint mi, hogy emberek között jogegyenlőségről csak az erők egyensúlya esetében lehet be­szélni, a hatalmas azonban végrehajtja, amit akar, a gyenge pedig meghajlik előtte.” \\n– részlet az egyik olyan Thuküdidész által közölt beszédből, amelyet az athéniak intéztek az általuk legyőzött, ám magukat nekik megadni nem akaró mélosziakhoz („A peloponnészoszi háború”, V. 89.1)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -2248,7 +2250,7 @@ msgid ""
 "darts to the closest man at hand.” \\n— Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (“History of the Peloponnesian War”, "
 "IV. 34.2)"
-msgstr ""
+msgstr "„Később azonban a lakedaimóniak már nem tudták olyan hevesen viszonozni a táma­dásokat, s a könnyűfegyverzetűek \\[…] sűrű sorokban törtek a lakedaimóniakra, elárasztva őket kö­vekkel, nyilakkal, dárdákkal, és ami csak éppen a kezükbe került.” \\n– Thuküdidész a spártaiak szfaktériai vereségéről („A peloponnészoszi háború”, IV. 34.2)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -2258,7 +2260,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up while they were on"
 " campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
-msgstr ""
+msgstr "„Még az Itáliában élő vadállatoknak is – érvelt – van barlangjuk vagy búvóhelyük, ahol meghúzzák magukat, de azoknak, akik harcolnak és meghalnak Itáliáért, egyebük sincs a levegőnél és a világosságnál; nincs házuk, nincs fejüket hova lehajtaniuk, földönfutókként kó­borolnak gyermekeikkel és feleségükkel.”\\n– Tiberius Gracchus az otthonukat vesztett, munkanélküli veteránokról; helyzetükön földreformmal kívánt javítani, addig ugyanis míg ők katonai szolgálatot teljesítettek, földjeiket általában felvásárolták (Plutarkhosz, „Párhuzamos életrajzok”, „Tiberius Gracchus”, 9.4–5)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2268,24 +2270,24 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
 "“Tiberius Gracchus”, 9.5)"
-msgstr ""
+msgstr "„\\[…]vadidegenek fényűzéséért és vagyonáért harcolnak és halnak meg; a világ urainak hívják őket, de nincs egy talpalatnyi saját földjük sem.”\\n– Tiberius Gracchus az otthonukat vesztett, munkanélküli veteránokról; helyzetükön földreformmal kívánt javítani, addig ugyanis míg ők katonai szolgálatot teljesítettek, földjeiket általában felvásárolták (Plutarkhosz, „Párhuzamos életrajzok”, „Tiberius Gracchus”, 9.5)"
 
 #: gui/text/quotes.txt:183
 msgid ""
 "“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
-msgstr ""
+msgstr "„Vagy más csel lappang itt: teucrus, a lóba ne bízzál. Bármi is ez, danaóknak ajándékát se kivánom!” \\n– Vergilius („Aeneis”, II. 48–49)"
 
 #: gui/text/quotes.txt:184
 msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"
-msgstr ""
+msgstr "„Vagy sikerül csele, vagy készülhet a szörnyü halálra.” \\n– Vergilius („Aeneis”, II. 61)"
 
 #: gui/text/quotes.txt:185
 msgid ""
 "“Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.” \\n— Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "„Rákent isteneinkre Homérosz Hésziodosszal minden olyant, ami bűn vagy szégyen az emberi nemnél: lopni, paráználkodni s amellett csalni is egymást.” \\n– Xenophanész (B11)"
 
 #: gui/text/quotes.txt:186
 msgid ""
@@ -2293,13 +2295,13 @@ msgid ""
 "of art as men do, horses would paint the forms of the gods like horses, and "
 "oxen like oxen, and make their God's bodies each in their own image.” \\n— "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "„Ám ha a lónak, ökörnek, oroszlánnak keze volna, s festeni tudna kezük s vele azt tennék, mit az ember: akkor a ló is a lóra, ökör meg ökörre hasonlón mintázná meg az isteneit, míg testük olyanná tenné, mint amilyen formát épp önmaga hordoz.” \\n– Xenophanész (B15)"
 
 #: gui/text/quotes.txt:187
 msgid ""
 "“The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.” \\n— Xenophanes (fragment 16)"
-msgstr ""
+msgstr "„Lám, mig a négernek fekete s laposorru az isten, addig a thrákoknál ime kékszemü, rőt valamennyi.” \\n– Xenophanész (B16)"
 
 #: gui/text/quotes.txt:188
 msgid ""
@@ -2307,21 +2309,21 @@ msgid ""
 "are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?” \\n— Xenophanes, likely referring to a punitive "
 "expedition against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "„Ily szavakat kell szólni a tűznél téli időben \\[…]: Honnan jössz, ki vagy és hány éves drága barátom? S mekkora voltál már, amikor megjöttek a médek?” \\n– Xenophanész; minden bizonnyal arra a büntető hadjáratra utalt, amelyet a médek indítottak a ióniai görög városok ellen (B22)"
 
 #: gui/text/quotes.txt:189
 msgid ""
 "“A prudent commander will never take risks unnecessarily, except when it is "
 "clear beforehand that he will have the advantage.” \\n— Xenophon (“The "
 "Cavalry General”, 4.13)"
-msgstr ""
+msgstr "„A körültekintő hadvezér kötelessége az is, hogy soha ne vál­laljon szándékosan kockázatot, csak abban az esetben, ha egyértel­műen előre látható csapatainak fölénye az ellenséggel szemben.” \\n– Xenophón („A lovassági parancsnok feladatairól”, 4.13)"
 
 #: gui/text/quotes.txt:190
 msgid ""
 "“Attack the enemy where he is weakest, even if that is a long way off, since"
 " hard work is less dangerous than a struggle against superior forces.” \\n— "
 "Xenophon (“The Cavalry General”, sec. 4.14)"
-msgstr ""
+msgstr "„Helyes dolog ott indítani támadást, ahol az ellenség állásai gyengék, még ha ez a hely messze van is. Nagy fáradalmakat kiállni ugyanis kevesebb veszéllyel jár, mint túlerővel szemben harcolni.” \\n– Xenophón („A lovassági parancsnok feladatairól”, 4.14)"
 
 #: gui/text/quotes.txt:191
 msgid ""
@@ -2329,7 +2331,7 @@ msgid ""
 " force appear large and a large one small, to appear absent when close at "
 "hand, and within striking distance when a long way off.” \\n— Xenophon (“The"
 " Cavalry General”, sec. 5)"
-msgstr ""
+msgstr "„A parancsnoknak kellőképpen találékonynak kell lennie ahhoz, hogy kevés lovasát soknak tüntesse fel, vagy fordítva: sok lovasát kevés­nek. Értsen hozzá, hogy úgy tűnjön, mintha távol lenne, miközben ott van, és mintha ott lenne, amikor távol van\\[…]” \\n– Xenophón („A lovassági parancsnok feladatairól”, 5.2)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2345,7 +2347,7 @@ msgid ""
 "better; and throughout all difficulties that he can endure hardships better."
 " This will help to make him loved by his men.” \\n— Xenophon (“The Education"
 " of Cyrus”, 1.6.25)"
-msgstr ""
+msgstr "„Amikor pedig harcra kerül sor, akár nyáron, akár télen, akármi­lyen megpróbáltatások között, a hadvezér legyen az, aki legjobban tűri a hőséget, a fagyot és a szenvedéseket. Ezzel biztosan elnyeri katonái szeretetét.” \\n– Xenophón („Kürosz nevelkedése”, 1.6.25)"
 
 #: gui/text/quotes.txt:194
 msgid ""
@@ -2359,7 +2361,7 @@ msgid ""
 "that we are human beings! We've got to appear to them like an uncontrollable"
 " nightmare of shields, swords, battle-axes and spears!” \\n— Xenophon (“The "
 "Education of Cyrus”, 4.2.22)"
-msgstr ""
+msgstr "„\\[…]ne engedjünk időt nekik tanácskozásra, sem arra, hogy alaposan felkészüljenek, sőt egyáltalán ne is vegyék észre,hogy emberek vagyunk, higgyék csak, hogy csupa pajzzsal, szablyával, bárddal, megannyi villámcsapással van dolguk.” \\n– Xenophón („Kürosz nevelkedése”, 4.2.22)"
 
 #: gui/text/quotes.txt:196
 msgid ""
@@ -2367,7 +2369,7 @@ msgid ""
 "plunder, fame, freedom, power – all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.” \\n— Xenophon (“The Education of "
 "Cyrus”, 7.1.13)"
-msgstr ""
+msgstr "„Gondolom, jól tudjátok, férfiak, milyen jutalom vár most a győztesekre: hogy űzzék, vágják, pusztítsák az ellenséget, hogy kin­cseket szerezzenek, ragyogó hírük legyen, szabadok maradjanak,uralkodjanak, és világos, hogy a gyávákra mindennek ez ellentéte vár.” \\n– Xenophón („Kürosz nevelkedése”, 7.1.13)"
 
 #: gui/text/quotes.txt:197
 msgid ""
@@ -2375,7 +2377,7 @@ msgid ""
 "thief and a robber, overreaching the enemy at every point.” \\n— Xenophon on"
 " how best to gain advantage over the enemy (“The Education of Cyrus”, "
 "1.6.26)"
-msgstr ""
+msgstr "„\\[…]álnoknak, alattomosnak, csalónak, hazugnak, tolvajnak, rablónak kell lenned, minden módon felül kell kerekedned az ellenségen, csak így kerülhetsz kedvező helyzetbe.” \\n– Xenophón arról, hogyan lehet a legbiztosabban kedvező helyzetbe kerülni az ellenséggel szemben („Kürosz nevelkedése”, 1.6.26)"
 
 #: gui/text/quotes.txt:198
 msgid ""
@@ -2383,7 +2385,7 @@ msgid ""
 "watching Artemisia ram a ship while most of his fleet suffered the reverse, "
 "not knowing that the sunk vessel was his own (Herodotus, “The Histories”, "
 "VIII. 88)"
-msgstr ""
+msgstr "„A perzsa férfiak asszonyokká válnak, az asszonyok pedig férfiakká!” \\n– I. Khsajársá perzsa király, miután végignézte, ahogy I. Artemiszia halikarnasszoszi királynő elsüllyeszt egy hajót a szalamiszi csatában; flottáját az ellenség igencsak megtépázta, ám hogy az elsüllyesztett hajó is az övé volt, arról nem szerzett később sem tudomást (Hérodotosz, „A görög-perzsa háború”, VIII. 88)"
 
 #: gui/text/quotes.txt:199
 msgid ""

@@ -18,14 +18,16 @@
 # Nagy András <asd0707@freemail.hu>, 2014,2019
 # Péter Dóbé <dobepeter@gmail.com>, 2017
 # Robert Müller <mullerrobi93@gmail.com>, 2015
+# Scael Blu <groteszk@totalcar.hu>, 2021
+# Szabó Lambert, 2021
 # Tibor Buzási, 2014
 # Ács Zoltán <acszoltan111@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-04-30 09:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-08-17 23:06+0000\n"
+"Last-Translator: Scael Blu <groteszk@totalcar.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -295,7 +297,7 @@ msgstr "Számszeríj"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 msgid "Cavalry Crossbowman"
-msgstr ""
+msgstr "Lovas számszeríjász"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -304,7 +306,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
 msgid "Crossbowman"
-msgstr "Íjpuskás"
+msgstr "Számszeríjász"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -343,7 +345,7 @@ msgstr "Bajnok lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
-msgstr "Bajnok lovassági íjász"
+msgstr "Bajnok lovas íjász"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
@@ -351,7 +353,7 @@ msgstr "Bajnok baltás lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr ""
+msgstr "Bajnok lovas számszeríjász"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
@@ -410,7 +412,7 @@ msgstr "Bajnok baltás"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr ""
+msgstr "Bajnok gyalogos számszeríjász"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
@@ -516,7 +518,7 @@ msgstr "Hős lovas"
 msgid ""
 "\n"
 "        "
-msgstr ""
+msgstr "\n        "
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
@@ -528,7 +530,7 @@ msgstr "Hős baltás lovas"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr ""
+msgstr "Hős lovas számszeríjász"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
@@ -572,7 +574,7 @@ msgstr "Hős baltás"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr ""
+msgstr "Hős gyalogos számszeríjász"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
@@ -610,7 +612,7 @@ msgstr "Buzogányos gyalogos"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
-msgstr ""
+msgstr "Gyalogos számszeríjász"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
@@ -665,7 +667,7 @@ msgstr "Tűz"
 #: simulation/templates/template_unit_ship_fire.xml:22
 #: simulation/templates/units/theb_siege_fireraiser.xml:35
 msgid "Circular"
-msgstr ""
+msgstr "Körkörös"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -754,7 +756,7 @@ msgstr "Nyíl"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:27
 msgid "Linear"
-msgstr ""
+msgstr "Egyenes"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 msgid "BoltShooter"
