@@ -250,7 +250,7 @@ PETRA.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 			this.makeIntoArmy(gameState, ent.id());
 	}
 
-	if (i != 0 || this.armies.length > 1 || gameState.ai.HQ.numActiveBases() == 0)
+	if (i != 0 || this.armies.length > 1 || !gameState.ai.HQ.hasActiveBase())
 		return;
 	// Look for possible gaia buildings inside our territory (may happen when enemy resign or after structure decay)
 	// and attack it only if useful (and capturable) or dangereous.
@@ -588,7 +588,7 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 		{
 			let base = gameState.ai.HQ.getBaseByID(target.getMetadata(PlayerID, "base"));
 			if (this.territoryMap.isBlinking(target.position()) && !gameState.ai.HQ.isDefendable(target) ||
-			    !base || gameState.ai.HQ.baseManagers.every(b => !b.anchor || b.accessIndex != base.accessIndex))
+			    !base || gameState.ai.HQ.baseManagers().every(b => !b.anchor || b.accessIndex != base.accessIndex))
 			{
 				let capture = target.capturePoints();
 				if (!capture)

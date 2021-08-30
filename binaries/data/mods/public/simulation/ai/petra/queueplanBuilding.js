@@ -197,13 +197,13 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			let base = this.metadata.base;
 			for (let j = 0; j < placement.map.length; ++j)
-				if (HQ.basesMap.map[j] == base)
+				if (HQ.baseAtIndex(j) == base)
 					placement.set(j, 45);
 		}
 		else
 		{
 			for (let j = 0; j < placement.map.length; ++j)
-				if (HQ.basesMap.map[j] != 0)
+				if (HQ.baseAtIndex(j) != 0)
 					placement.set(j, 45);
 		}
 
@@ -266,7 +266,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		let base = this.metadata.base;
 		for (let j = 0; j < placement.map.length; ++j)
 		{
-			if (HQ.basesMap.map[j] != base)
+			if (HQ.baseAtIndex(j) != base)
 				placement.map[j] = 0;
 			else if (placement.map[j] > 0)
 			{
@@ -286,7 +286,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		for (let j = 0; j < placement.map.length; ++j)
 		{
-			if (HQ.basesMap.map[j] == 0)
+			if (HQ.baseAtIndex(j) == 0)
 				placement.map[j] = 0;
 			else if (placement.map[j] > 0)
 			{
@@ -299,7 +299,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
-				else if (favoredBase && HQ.basesMap.map[j] == favoredBase)
+				else if (favoredBase && HQ.baseAtIndex(j) == favoredBase)
 					placement.set(j, placement.map[j] + 100);
 			}
 		}
@@ -346,7 +346,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	let territorypos = placement.gamePosToMapPos([x, z]);
 	let territoryIndex = territorypos[0] + territorypos[1]*placement.width;
 	// default angle = 3*Math.PI/4;
-	return { "x": x, "z": z, "angle": 3*Math.PI/4, "base": HQ.basesMap.map[territoryIndex] };
+	return { "x": x, "z": z, "angle": 3*Math.PI/4, "base": HQ.baseAtIndex(territoryIndex) };
 };
 
 /**
@@ -524,7 +524,7 @@ PETRA.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	// Assign this dock to a base
-	let baseIndex = gameState.ai.HQ.basesMap.map[bestJdx];
+	let baseIndex = gameState.ai.HQ.baseAtIndex(bestJdx);
 	if (!baseIndex)
 		baseIndex = -2;	// We'll do an anchorless base around it
 

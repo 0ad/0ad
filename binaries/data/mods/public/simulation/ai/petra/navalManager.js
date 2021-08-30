@@ -708,7 +708,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 
 PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 {
-	if (!gameState.ai.HQ.navalMap || !gameState.ai.HQ.baseManagers[1])
+	if (!gameState.ai.HQ.navalMap || !gameState.ai.HQ.hasPotentialBase())
 		return;
 
 	if (gameState.ai.HQ.getAccountedPopulation(gameState) > this.Config.Economy.popForDock)
@@ -718,7 +718,7 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 			gameState.ai.HQ.canBuild(gameState, "structures/{civ}/dock"))
 		{
 			let dockStarted = false;
-			for (let base of gameState.ai.HQ.baseManagers)
+			for (const base of gameState.ai.HQ.baseManagers())
 			{
 				if (dockStarted)
 					break;
@@ -757,7 +757,7 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	else
 		return;
 	let wantedLand = {};
-	for (let base of gameState.ai.HQ.baseManagers)
+	for (const base of gameState.ai.HQ.baseManagers())
 		if (base.anchor)
 			wantedLand[base.accessIndex] = true;
 	let sea = this.docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
