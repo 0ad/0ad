@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-25 09:44+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-08-17 06:55+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -645,7 +645,7 @@ msgstr "Duilgheas nach aithne dhuinn"
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
 msgid "Default"
-msgstr "Tùsail"
+msgstr "Bunaiteach"
 
 #: gui/common/settings.js:376
 msgctxt "map type"
@@ -1032,7 +1032,7 @@ msgstr "Uiread as motha dhe dh’astasan"
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
 msgid "Default"
-msgstr "Tùsail"
+msgstr "Bunaiteach"
 
 #: gui/common/tooltips.js:626
 msgctxt "projectiles"
@@ -1521,7 +1521,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Ged a tha e furasta gu leòr dhan chluicheadair eòlach, tha leibheil tùsail an IF caran dùbhlanach dha na cluicheadairean ùra gus an ionnsaich iad mar a dh’obraicheas an geama. Mholamaid gun cluich thu an aghaidh IF le leibheil ìosail an toiseach (can bogsa-gainmhich no glè fhurasta). Gus leibheil an IF atharrachadh, briog air ìomhaigheag a’ ghèar ri taobh a’ chluicheadair a bu toigh leat atharrachadh sa phanail taghaidh gu h-àrd."
+msgstr "Ged a tha e furasta gu leòr dhan chluicheadair eòlach, tha leibheil bunaiteach an IF caran dùbhlanach dha na cluicheadairean ùra gus an ionnsaich iad mar a dh’obraicheas an geama. Mholamaid gun cluich thu an aghaidh IF le leibheil ìosail an toiseach (can bogsa-gainmhich no glè fhurasta). Gus leibheil an IF atharrachadh, briog air ìomhaigheag a’ ghèar ri taobh a’ chluicheadair a bu toigh leat atharrachadh sa phanail taghaidh gu h-àrd."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -2631,12 +2631,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr "Geàrr leum eadar modh gun chumadh ’s an cumadh tùsail mu dheireadh a chleachd thu (’s e “Bogsa” a tha sa bhun-roghainn air sin)."
+msgstr "Geàrr leum eadar modh gun chumadh ’s an cumadh bunaiteach mu dheireadh a chleachd thu (’s e “Bogsa” a tha sa bhun-roghainn air sin)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr "Toglaich an cumadh tùsail"
+msgstr "Toglaich an cumadh bunaiteach"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
@@ -3660,7 +3660,7 @@ msgstr "Mapa a chaidh a thaghadh air thuaiream."
 
 #: gui/maps/MapFilters.js:91
 msgid "Default"
-msgstr "Tùsail"
+msgstr "Bunaiteach"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
@@ -4403,7 +4403,7 @@ msgstr "Sàbhail roghainnean a’ mhaids ach an gabh iad aiseag gu luath nuair a
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Duilgheas tùsail na h-IF"
+msgstr "Duilgheas bunaiteach na h-IF"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4427,11 +4427,11 @@ msgstr "Dùbhlanach"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "Duilgheas tùsail na h-IF."
+msgstr "Duilgheas bunaiteach na h-IF."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
-msgstr "Giùlan tùsail na h-IF"
+msgstr "Giùlan bunaiteach na h-IF"
 
 #: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
@@ -4451,7 +4451,7 @@ msgstr "Dìonadach"
 
 #: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "Giùlan tùsail na h-IF."
+msgstr "Giùlan bunaiteach na h-IF."
 
 #: gui/options/options.json[4].options[5].label
 msgid "Assign players"
@@ -6299,17 +6299,17 @@ msgstr "Oidich saoranaich: saoranaich bhoireann, coisridh-dhùthcha is eachraidh
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
-msgstr "CUMADH TÙSAIL"
+msgstr "CUMADH BUNAITEACH"
 
 #: gui/text/tips/default_formation.txt:2
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr "Nuair a nì thu briogadh deas air ìomhaigheag, suidhichidh seo an cumadh tùsail: cleachdaidh na h-aonadan a gheibh òrdugh airson coiseachd no cuairteachan e gu fèin-obrachail."
+msgstr "Nuair a nì thu briogadh deas air ìomhaigheag, suidhichidh seo an cumadh bunaiteach: cleachdaidh na h-aonadan a gheibh òrdugh airson coiseachd no cuairteachan e gu fèin-obrachail."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr "’S urrainn dhut seo a chur à comas ma thaghas tu “Gun chumadh” na chumadh tùsail."
+msgstr "’S urrainn dhut seo a chur à comas ma thaghas tu “Gun chumadh” na chumadh bunaiteach."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""

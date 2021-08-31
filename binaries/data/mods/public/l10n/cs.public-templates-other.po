@@ -4,10 +4,10 @@
 # project.
 # Translators:
 # Josef Hrdina <hrdinajosef11@gmail.com>, 2016
-# LiberteCzech <liberte.czech@gmail.com>, 2018
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2018
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020-2021
-# LiberteCzech <liberte.czech@gmail.com>, 2015
-# fri, 2014,2016-2018
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2015
+# fri, 2014,2016-2018,2021
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2017
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-07-02 10:20+0000\n"
-"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
+"PO-Revision-Date: 2021-08-04 06:20+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,7 +215,7 @@ msgstr "Tlapy"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
-msgstr "Černý medvěd"
+msgstr "Medvěd černý (baribal)"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:25
 msgid "Ursus americanus"
@@ -235,7 +235,7 @@ msgstr "Polární medvěd"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:25
 msgid "Ursus maritimus"
-msgstr "Ursus maritimus"
+msgstr "Medvěd lední"
 
 #: simulation/templates/gaia/fauna_boar.xml:5
 #: simulation/templates/gaia/fauna_hippopotamus.xml:5
@@ -254,11 +254,11 @@ msgstr "Prase divoké"
 
 #: simulation/templates/gaia/fauna_camel.xml:11
 msgid "Dromedary"
-msgstr "Velbloud jednohrbý"
+msgstr "Dromedár"
 
 #: simulation/templates/gaia/fauna_camel.xml:12
 msgid "Camelus dromedarius"
-msgstr "Camelus dromedarius"
+msgstr "Velbloud jednohrbý"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -300,7 +300,7 @@ msgstr "Kuře"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr "Gallus gallus domesticus"
+msgstr "Kur domácí"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -321,7 +321,7 @@ msgstr "Rudý jelen"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
 msgid "Cervus elaphus"
-msgstr "Cervus elaphus"
+msgstr "Jelen evropský"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:5
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:5
@@ -339,7 +339,7 @@ msgstr "Doga"
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:25
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:25
 msgid "Canis lupus familiaris"
-msgstr "Canis lupus familiaris"
+msgstr "Pes domácí"
 
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:24
 msgid "Wolfhound"
@@ -351,7 +351,7 @@ msgstr "Osel"
 
 #: simulation/templates/gaia/fauna_donkey.xml:12
 msgid "Equus africanus asinus"
-msgstr "Equus africanus asinus"
+msgstr "Osel domácí"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:5
 #: simulation/templates/gaia/fauna_elephant_asian.xml:5
@@ -367,7 +367,7 @@ msgstr "Africký divoký slon"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
 msgid "Loxodonta africana"
-msgstr "Loxodonta africana"
+msgstr "Slon africký"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:11
 msgid "African Bush Elephant Calf"
@@ -380,7 +380,7 @@ msgstr "Asijský slon"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
-msgstr "Elephas maximus"
+msgstr "Slon indický"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:11
 msgid "Asian Elephant Calf"
@@ -392,7 +392,7 @@ msgstr "Africký lesní slon"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:26
 msgid "Loxodonta cyclotis"
-msgstr "Loxodonta cyclotis"
+msgstr "Slon pralesní"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:24
 msgid "Arctic Fox"
@@ -400,7 +400,7 @@ msgstr "Arktická liška"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:25
 msgid "Vulpes lagopus"
-msgstr "Vulpes lagopus"
+msgstr "Liška polární"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:24
 msgid "Red Fox"
@@ -408,7 +408,7 @@ msgstr "Liška obecná"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:25
 msgid "Vulpes vulpes"
-msgstr "Vulpes vulpes"
+msgstr "Liška obecná"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:11
 msgid "Thomson's Gazelle"
@@ -437,7 +437,7 @@ msgstr "Koza"
 
 #: simulation/templates/gaia/fauna_goat.xml:18
 msgid "Capra aegagrus hircus"
-msgstr "Capra aegagrus hircus"
+msgstr "Koza domácí"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:24
 msgid "Hippopotamus"
@@ -453,7 +453,7 @@ msgstr "Kůň"
 
 #: simulation/templates/gaia/fauna_horse.xml:12
 msgid "Equus ferus caballus"
-msgstr "Equus ferus caballus"
+msgstr "Kůň domácí"
 
 #: simulation/templates/gaia/fauna_horse_pony.xml:8
 msgid "Pony"
@@ -465,7 +465,7 @@ msgstr "Lev"
 
 #: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Panthera leo"
-msgstr "Panthera leo"
+msgstr "Lev pustinný"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -477,7 +477,7 @@ msgstr "Pižmoň severní"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
-msgstr "Ovibos moschatus"
+msgstr "Pižmoň severní"
 
 #: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
@@ -509,7 +509,7 @@ msgstr "Králík"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr "Oryctolagus cuniculus"
+msgstr "Králík divoký"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -522,7 +522,7 @@ msgstr "Bílý nosorožec"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
 msgid "Ceratotherium simum"
-msgstr "Ceratotherium simum"
+msgstr "Nosorožec tuponosý"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
@@ -530,7 +530,7 @@ msgstr "Velký bílý žralok"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr "Carcharodon carcharias"
+msgstr "Žralok bílý"
 
 #: simulation/templates/gaia/fauna_sheep.xml:17
 msgid "Sheep"
@@ -538,7 +538,7 @@ msgstr "Ovce"
 
 #: simulation/templates/gaia/fauna_sheep.xml:18
 msgid "Ovis aries"
-msgstr "Ovis aries"
+msgstr "Ovce domácí"
 
 #: simulation/templates/gaia/fauna_tiger.xml:23
 msgid "Tiger"
@@ -546,7 +546,7 @@ msgstr "Tygr"
 
 #: simulation/templates/gaia/fauna_tiger.xml:24
 msgid "Panthera tigris"
-msgstr "Panthera tigris"
+msgstr "Tygr"
 
 #: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
@@ -554,7 +554,7 @@ msgstr "Mrož"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
-msgstr "Odobenus rosmarus"
+msgstr "Mrož lední"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:11
 msgid "Fin Whale"
@@ -562,7 +562,7 @@ msgstr "Plejtvák myšok"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
 msgid "Balaenoptera physalus"
-msgstr "Balaenoptera physalus"
+msgstr "Plejtvák myšok též jako plejtvák tmavý"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
@@ -570,7 +570,7 @@ msgstr "Keporkak"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
-msgstr "Megaptera novaeangliae"
+msgstr "Plejtvák dlouhoploutvý, hrboun dlouhoploutvý, velryba hrbatá, plejtvák keporkak"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:11
 msgid "Blue Wildebeest"
@@ -578,7 +578,7 @@ msgstr "Modrý pakůň"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
 msgid "Connochaetes taurinus"
-msgstr "Connochaetes taurinus"
+msgstr "Pakůň žíhaný"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -586,7 +586,7 @@ msgstr "Vlk"
 
 #: simulation/templates/gaia/fauna_wolf.xml:25
 msgid "Canis lupus"
-msgstr "Canis lupus"
+msgstr "Vlk obecný"
 
 #: simulation/templates/gaia/fauna_wolf_arctic.xml:4
 msgid "Arctic Wolf"
@@ -598,7 +598,7 @@ msgstr "Běžná zebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
 msgid "Equus quagga"
-msgstr "Equus quagga"
+msgstr "Zebra stepní"
 
 #: simulation/templates/gaia/fish/tilapia.xml:4
 msgid "Tilapia"
@@ -809,7 +809,7 @@ msgstr "Baobab stromeček"
 
 #: simulation/templates/gaia/tree/baobab_2_young.xml:4
 msgid "Young Baobab"
-msgstr "Mladý Baobab"
+msgstr "Mladý baobab"
 
 #: simulation/templates/gaia/tree/bush_badlands.xml:4
 msgid "Hardy Bush"
@@ -869,7 +869,7 @@ msgstr "Evropský buk"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
-msgstr "Stříbrná Bříza"
+msgstr "Stříbrná bříza"
 
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
@@ -1066,7 +1066,7 @@ msgstr "Žádná"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Pouze pěchotní hoplité, vyžaduje alespoň 10."
+msgstr "Pouze pěší hoplité, vyžaduje alespoň 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -1098,7 +1098,7 @@ msgstr "Želva"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Pouze kavalerie, vyžaduje minimálně 6."
+msgstr "Pouze kavalerie, vyžaduje nejméně 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"

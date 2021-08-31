@@ -15,13 +15,14 @@
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Karolína Pokorná <karolinapoky@gmail.com>, 2021
 # Katie Trochimovičová <Kattienika@gmail.com>, 2018
-# LiberteCzech <liberte.czech@gmail.com>, 2018
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2018
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020-2021
-# LiberteCzech <liberte.czech@gmail.com>, 2015
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2015
+# Michal Škoula <michal@skoula.cz>, 2021
 # Milan Stevanović <miki.stevanovic802@gmail.com>, 2021
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2020
+# fri, 2014-2021
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-07-11 19:45+0000\n"
-"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
+"PO-Revision-Date: 2021-08-11 00:52+0000\n"
+"Last-Translator: Michal Škoula <michal@skoula.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,16 +59,16 @@ msgstr "Kruh"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Spojenecký hráči jsou seskupeni a umístěni s protihráči na jednom kruhu přesahujícím mapu."
+msgstr "Spojenečtí hráči jsou seskupeni a umístěni s protihráči v kruhu přesahujícím mapu."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:58
 msgctxt "team placement"
 msgid "Line"
-msgstr "Linie"
+msgstr "Čára"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:59
 msgid "Allied players are placed in a linear pattern."
-msgstr "Spojenci jsou umístěni lineárně."
+msgstr "Spojenci jsou umístěni v přímočarém vzoru."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgctxt "team placement"
@@ -76,7 +77,7 @@ msgstr "Náhodná skupina"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:64
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Spojenci jsou na mapě umístěni pohromadě ale jinak náhodně."
+msgstr "Spojenci jsou na mapě umístěni pohromadě, jinak ale náhodně."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgctxt "team placement"
@@ -222,7 +223,7 @@ msgstr "Prohlížet mapy"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "stiskni%(hotkey)s pro zobrazení map k dispozici"
+msgstr "Stiskněte %(hotkey)s pro zobrazení seznamu dostupných map."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -328,7 +329,7 @@ msgstr "Počet obyvatel světa"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "když zkontroluješ populaci bude rovnoměrně rozdělaná všude ostatním žijícím hráčům"
+msgstr "Když je zaškrtnuto, obyvatelstvo bude rovnoměrně rozděleno přes všechny živé hráče."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -349,11 +350,11 @@ msgstr "Vyberte náhodně bióm."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
-msgstr "denní doba"
+msgstr "Denní doba"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
-msgstr "Zvolte zda se zápas bude odehrávat ve dne nebo v noci."
+msgstr "Zvolte, zda se zápas bude odehrávat ve dne nebo v noci."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
@@ -381,7 +382,7 @@ msgstr "Náhodná"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr "Vyberte náhodnou krajinou."
+msgstr "Vyberte náhodnou krajinu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -488,7 +489,7 @@ msgstr "Umístění týmu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
-msgstr "Vyberte jednu ze začínajících pozic na této mapě."
+msgstr "Vyberte jedno z počátečních rozestavění pro tuto mapu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
@@ -498,7 +499,7 @@ msgstr "Náhodná"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "když začínáš hru vyber si náhodný vzor umístění týmu"
+msgstr "Při spuštění hry vyberte náhodný vzor pro umístění týmu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
@@ -510,18 +511,18 @@ msgstr "Vyberte obtížnost hry."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr "světová populace "
+msgstr "Omezení na počet obyvatel světa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr "vyber si světové populační omezení"
+msgstr "Vyberte omezení počtu obyvatel světa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "varování: mohou být zde problémy s výkonem když %(popCap)spopulace dosáhne svého limitu"
+msgstr "Varování: Mohou se objevit potíže s výkonem, když je dosaženo hranice počtu obyvatel %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -557,22 +558,22 @@ msgid_plural "%(number)s relics"
 msgstr[0] "%(number)srelikvie"
 msgstr[1] "%(number)srelikvií"
 msgstr[2] "%(number)srelikvií"
-msgstr[3] "%(number)srelikvií"
+msgstr[3] "%(number)spamátek"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Celkový počet relikvií vytvořených na mapě. Vítězství s relikviemi je nejvíce realistické s jenom jednou nebo dvěma relikviemi. S větším množstvím jsou relikvie důležité pro získání bonusů z aury."
+msgstr "Celkový počet památek vytvořených na mapě. Vítězství s památkami je nejvíce realistické s jenom jednou nebo dvěma památkami. Při větším množství jsou památky důležité pro získání zvláštních odměn za auru."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
-msgstr "Trvání relikvie"
+msgstr "Trvání památky"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Počet minut, než hráč zvítězí s pomocí relikvie."
+msgstr "Počet minut, než hráč dosáhne vítězství za držení památky."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -589,15 +590,15 @@ msgstr[3] "%(min)s minut"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:47
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr "Okamžité vítězství"
+msgstr "Okamžité vítězství."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Sea Level Rise Time"
-msgstr "Příliv"
+msgstr "Čas vzestupu hladiny moře"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
-msgstr "Nastavit čas kdy se začne zvedat vodní hladina."
+msgstr "Nastavit čas, kdy se začne zvedat vodní hladina."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
@@ -615,7 +616,7 @@ msgstr "Trvání divu světa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "minuty než hráč dosáhne úžasného vítězství "
+msgstr "Počet minut, než hráč zvítězí za postavení divu světa."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -634,7 +635,7 @@ msgstr "Vrátit se do hlavní nabídky."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zobrazit přehled civilizace / Strom staveb\nPo kliknutí se zobrazí naposledy otevřený."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zobrazit přehled civilizace / Strom staveb\nPo klepnutí se znovu zobrazí naposledy otevřený."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -774,25 +775,25 @@ msgstr "Hodnocená hra."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "Klikni pro přepnutí karty s nastavením %(name)s."
+msgstr "Klepněte pro přepnutí karty s nastavením %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "Stiskněte %(hotkey)s aby jste přešli do dalšího nastavení. "
+msgstr "Stiskněte %(hotkey)s pro přechod na další kartu s nastavením."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "Stiskněte %(hotkey)s aby jste přešli na předchozí kartu nastavení. "
+msgstr "Stiskněte %(hotkey)s pro přechod na předchozí kartu s nastavením. "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr "Není vybraná mapa."
+msgstr "Není vybrána mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr "Kliknutím zobrazíte seznam dostupných mapy."
+msgstr "Klepněte pro zobrazení seznamu dostupných map."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -834,7 +835,7 @@ msgstr "Server neběží."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
-msgstr "Nesprávné heslo"
+msgstr "Nesprávné heslo."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
@@ -844,7 +845,7 @@ msgstr "Byl jste zakázán."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Nepodařilo se získat lokální IP adresu serveru (předpokládalo se že je ve stejné síti)"
+msgstr "Nepodařilo se získat místní IP adresu serveru (předpokládalo se, že je ve stejné síti)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -957,7 +958,7 @@ msgstr "Ponechejte prázdné pro použití výchozí přípojky (port)."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr "Ponechejte prázdné není nutno."
+msgstr "Ponechte prázdné, abyste to nevyžadovali."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -988,19 +989,19 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "“Zeus \\[…] ustanovil zákon: moudrosti člověk nabývá skrz utrpení. \\[…] A tak se lidé navzdory své vůli učí umírněnosti. \\[…] Takové požehnání je tvrdé a násilné.” \\n— Aischylos (“Agamemnon”, 176–183)"
+msgstr "“Zeus \\[…] ustanovil svůj zákon: moudrosti člověk nabývá skrze utrpení. \\[…] A tak se lidé navzdory své vůli učí umírněnosti. \\[…] Takové požehnání je tvrdé a násilné.” \\n— Aischylos (“Agamemnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr "“A \\[Helena] přinesla jako věno Íionu zánik” \\n— Aischylos, (“Agamemnon”, 406)"
+msgstr "“A \\[Helena] přinesla jako věno Íionu zánik.” \\n— Aischylos, (“Agamemnon”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr "“V srdci každého tyrana nakonec vyvstane ten jed, že nemůže důvěřovat příteli” \\n— Aischylos (“Připoutaný Prometheus”, 224-225)"
+msgstr "“V srdci každého tyrana nakonec vyvstane ten jed, že nemůže důvěřovat příteli.” \\n— Aischylos (“Připoutaný Prometheus”, 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -1078,7 +1079,7 @@ msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr ""
+msgstr "\"Pokud jsem udělal něco ušlechtilého, je to dostatečná památka na mou osobu; pokud ne, všechny sochy světa mi nezaručí nesmrtelnost.\" \\n— Agesilaus II ze Sparty (Plutarch, “Moralia”, “Pořekadla Sparťanů”, 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -1097,7 +1098,7 @@ msgstr "\"Neplač pro mne, nespravedlivě trpě tak jako já, jsem na tom lépe 
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr ""
+msgstr "“Díky sexu a spánku jsem si uvědomil, že jsem smrtelný.” \\n— Alexander Veliký (Plutarch, “Životopisy slavných Řeků a Římanů”, “Alexander”, sec. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1140,7 +1141,7 @@ msgstr ""
 msgid ""
 "“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
-msgstr "\"Nekradu svá vítězství\"\\n— Alexandr Veliký, na radu přepadnout Peršany v noci (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
+msgstr "\"Nekradu svá vítězství.\"\\n— Alexandr Veliký po radě, aby Peršany přepadl v noci (Plutarch, “Životopisy slavných Řeků a Římanů”, “Alexandr”, sec. 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
@@ -1280,7 +1281,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr "“Často jsem vedl války, občanské i zahraniční, na zemi i na moři po celém světě a jako vítěz jsem ušetřil všechny občany žádající o milost. Cizí kmeny, kterým se mohlo bez nebezpečí odpustit, jsem chtěl raději ušetřit než zničit.” \\n— Augustus, ve své autobiografii (“Res Gestae Divi Augusti”, sec. 3)"
+msgstr "“Často jsem vedl války, občanské i zahraniční, na zemi i na moři po celém světě, a jako vítěz jsem ušetřil všechny občany žádající o milost. Cizí kmeny, kterým se mohlo bez nebezpečí odpustit, jsem chtěl raději ušetřit než zničit.” \\n— Augustus, ve své autobiografii (“Res Gestae Divi Augusti”, sec. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1295,7 +1296,7 @@ msgid ""
 "“How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.” \\n— Bion of Borysthenes (Cicero, "
 "“Tusculan Disputations”, III. 26)"
-msgstr "“Jak hlopé to od krále bylo, když si ve smutku vytrhl vlas svůj, jako by pleš zármutek jeho vyléčit měla.” \\n— Bion z Borystenu (Plešek, “ Tuskulařská Debata”, III. 26)"
+msgstr "“Jak hloupé to od krále bylo, když si ve smutku vytrhl vlas svůj, jako by pleš zármutek jeho vyléčit měla.” \\n— Bion z Borystenu (Plešek, “ Tuskulařská Debata”, III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
@@ -1460,7 +1461,7 @@ msgstr ""
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
-msgstr "“Není to tím že bych byl šílenec, to jen má hlava je jiná než ta vaše.” \\n— Diogenes ze Sinope (Stobaeus, “Florilegium”, 51)"
+msgstr "“Není to tím, že bych byl šílenec, to jen má hlava je jiná než ta vaše.” \\n— Diogenes ze Sinope (Stobaeus, “Florilegium”, 51)"
 
 #: gui/text/quotes.txt:71
 msgid ""
@@ -1517,13 +1518,13 @@ msgstr ""
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
-msgstr "“Přišel jsem, viděl jsem, zvítězil jsem” \\n— Caesar, po rychle vyhrané bitvě proti pontskému králi Farnakovi II. (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
+msgstr "“Přišel jsem, viděl jsem, zvítězil jsem.” \\n— Caesar, po rychle vyhrané bitvě proti pontskému králi Farnakovi II. (Plutarch, “Životopisy slavných Řeků a Římanů”, “Caesar”, sec. 50)"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
-msgstr "“Lidé rádi věří tomu, co si přejí.” \\n— Caesar (“De Bello Gallico”, III. 18)"
+msgstr "“Lidé rádi věří tomu, co si přejí.” \\n— Gaius Julius Caesar (“Zápisky o válce Galské”, III. 18)"
 
 #: gui/text/quotes.txt:81
 msgid ""
@@ -1827,7 +1828,7 @@ msgstr ""
 #: gui/text/quotes.txt:124
 msgid ""
 "“Laws are silent in time of war.” \\n— Cicero (“Pro Milone”, IV., sec. 11)"
-msgstr "\"Za války neplatí zákony.\"  \\n— Cicero (“Pro Milone”, IV., sec. 11)"
+msgstr "\"Za války neplatí zákony.\"  \\n— Marcus Tullius Cicero (“Pro Milone”, IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1850,7 +1851,7 @@ msgstr ""
 msgid ""
 "“We live, not as we wish to, but as we can.” \\n— Menander (“Lady of "
 "Andros”, fragment 50)"
-msgstr "\"Nežijeme tak, jak chceme, ale jak umíme.\" \\n— Menandros (“Lady of Andros”, fragment 50)"
+msgstr "\"Nežijeme tak, jak chceme, ale jak umíme.\" \\n— Menandros (“Žena z Andru”, fragment 50)"
 
 #: gui/text/quotes.txt:128
 msgid "“The man who runs may fight again.” \\n— Menander (“Monosticha”)"
@@ -1860,7 +1861,7 @@ msgstr ""
 msgid ""
 "“Whom the Gods love dies young.” \\n— Menander (“The Double Deceiver”, "
 "fragment 4)"
-msgstr "\"Koho bozi milují, umírá mlád.\" \\n— Menandros (“The Double Deceiver”, fragment 4)"
+msgstr "\"Koho bozi milují, umírá mlád.\" \\n— Menandros (“Dvojitý podvodník”, fragment 4)"
 
 #: gui/text/quotes.txt:130
 msgid "“I call a fig a fig, a spade a spade.” \\n— Menander (fragment 545 K)"

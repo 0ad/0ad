@@ -24,14 +24,14 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
-# Swyter ™ <Swyterzone@gmail.com>, 2014-2018
+# Swyter <Swyterzone@gmail.com>, 2014-2018
 # Víctor Rodríguez Bouza, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 18:15+0000\n"
-"Last-Translator: Antonio J. A <antoniojartunedo@gmail.com>\n"
+"PO-Revision-Date: 2021-08-29 16:53+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,7 +180,7 @@ msgstr "No voy a aliarme contigo, %(_player_)s, pero podemos ser neutrales."
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr "Sólo me planteo un pacto de neutralidad, %(_player_)s."
+msgstr "Solo me planteo un pacto de neutralidad, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
@@ -243,7 +243,7 @@ msgstr "Ahora %(_player_)s y yo somos aliados."
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "Me aliaré contigo, %(_player_)s, pero sólo si me envías un tributo de %(_amount_)s %(_resource_)s."
+msgstr "Me aliaré contigo, %(_player_)s, pero solo si me envías un tributo de %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
@@ -316,7 +316,7 @@ msgstr "%(_player_)s, acepto tu petición de neutralidad. Que nuestras civilizac
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr "Si me pagas %(_amount_)s %(_resource_)s como tributo, aceptaré tu petición de neutralidad,  %(_player_)s."
+msgstr "Si me pagas %(_amount_)s de %(_resource_)s como tributo, aceptaré tu petición de neutralidad, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
@@ -460,7 +460,7 @@ msgstr "enemigo"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "«%(name)s» no se puede construir en territorio %(territoryType)s. Sólo disponible en: %(validTerritories)s"
+msgstr "Imposible construir «%(name)s» en territorio %(territoryType)s. Solo disponible en: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:234
 #, javascript-format
@@ -923,7 +923,7 @@ msgstr "No se han podido desalojar las unidades."
 
 #: simulation/helpers/Commands.js:936
 msgid "Some unit(s) can't go back to work"
-msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
+msgstr "Alguna/s unidad/es no pueden volver al trabajo"
 
 #: simulation/helpers/Commands.js:955
 #, javascript-format

@@ -32,15 +32,15 @@
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
 # Saul Axel Martínez Ortiz <saulaxel.50@gmail.com>, 2019
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017,2021
-# Swyter ™ <Swyterzone@gmail.com>, 2016-2018
-# Swyter ™ <Swyterzone@gmail.com>, 2020
+# Swyter <Swyterzone@gmail.com>, 2016-2018
+# Swyter <Swyterzone@gmail.com>, 2020
 # Víctor Rodríguez Bouza, 2021
 # Vince LaRue <mc1171611@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-11 17:18+0000\n"
+"PO-Revision-Date: 2021-08-26 13:06+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Entrenamiento riguroso"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."
-msgstr "Buques de guerra −25% en tiempo de construcción."
+msgstr "Buques de guerra (Tiempo de construcción: −25%)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -185,7 +185,7 @@ msgstr "Liga de Delos"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr "Sanadores −20% en coste de recursos."
+msgstr "Sanadores (Coste de recursos: −20%)."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -209,7 +209,7 @@ msgstr "Productos de la Galia"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr "Jabalineros ciudadanos −10% en coste de recursos."
+msgstr "Ciudadanos con javalinas (Coste de recursos: −10%)."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -251,7 +251,7 @@ msgstr "El camino real"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
-msgstr "+1.0 en la tasa de goteo de alimentos."
+msgstr "Tasa de generación de comida: +1.0"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -275,7 +275,7 @@ msgstr "Tetrápolis siria"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr "Lancero de infantería ciudadanos +10% en salud."
+msgstr "Ciudadanos-lanceros de infantería (Salud: +10%)."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -444,7 +444,7 @@ msgstr "Gran constructor"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr "Continuando con el trabajo de sus predecesores en la Gran Biblioteca de Alejandría, se apoderó de todo libro llegado a la ciudad, atesorando así una gran cantidad de sabiduría que quedaría como legado para su pueblo.\nCoste de recursos para todas las tecnologías: -10%."
+msgstr "Continuando con el trabajo de sus predecesores en la Gran Biblioteca de Alejandría, se apoderó de todo libro llegado a la ciudad, atesorando así una gran cantidad de sabiduría que quedaría como legado para su pueblo.\nCoste de recursos para todas las tecnologías: −10%."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -504,7 +504,7 @@ msgstr "Basileus Megas"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "Citizen Infantry Spearmen −10% resource costs."
-msgstr "Licurgo instituyó varias reformas militares. Así, bajo su gobierno, se estableció la total e íntegra lealtad de todos los ciudadanos a Esparta.\nCiudadanos-lanceros de infantería (Coste de recursos −10%)."
+msgstr "Licurgo instituyó varias reformas militares. Así, bajo su gobierno, se estableció la total e íntegra lealtad de todos los ciudadanos a Esparta.\nCiudadanos-lanceros de infantería (Coste de recursos: −10%)."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -674,7 +674,7 @@ msgstr "Preparaciones de guerra"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr "Estructuras (Regeneración de puntos de captura con guarnición: +2)."
+msgstr "Estructuras con guarnición (Regeneración de puntos de captura: +2)."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

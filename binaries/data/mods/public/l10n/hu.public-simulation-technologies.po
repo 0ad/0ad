@@ -20,14 +20,16 @@
 # Mikola Péter <mikopet@gmail.com>, 2015
 # Nagy András <asd0707@freemail.hu>, 2015,2020
 # Pista Joska <jojoskapi@freemail.hu>, 2015
+# Scael Blu <groteszk@totalcar.hu>, 2021
+# Szabó Lambert, 2021
 # Tibor Buzási, 2016
 # Ács Zoltán <acszoltan111@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 08:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-08-18 23:53+0000\n"
+"Last-Translator: Scael Blu <groteszk@totalcar.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,15 +95,15 @@ msgstr "Agogé"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Nagyvárosi szakasztól érhető el."
+msgstr "Nagyvárosi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "+25% életerő, de +5% kiképzési idő a lándzsás gyalogos bajnokoknál."
+msgstr "+25% életerő, ugyanakkor +5% kiképzési idő a bajnok gyalogos lándzsásoknak"
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr ""
+msgstr "A katonák íjászkodásra való ösztönzése növeli a lövésük pontosságát."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
@@ -134,11 +136,11 @@ msgstr ""
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Városi szakasztól érhető el."
+msgstr "Városi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr ""
+msgstr "−20% szórás íjászoknak"
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -159,11 +161,11 @@ msgstr "Íjászhagyomány"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Falusi szakasztól érhető el."
+msgstr "Falusi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
-msgstr ""
+msgstr "+10 hatótávolság az íjászoknak."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -263,7 +265,7 @@ msgstr "Lóverseny"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "+10% sétálási sebesség a lovasságnak."
+msgstr "+10% mozgási sebesség a lovasságnak"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -395,7 +397,7 @@ msgstr "A napszárított vályogtéglák gyakori építőanyagok voltak a forró
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr "Nap-szárított vályogtéglák"
+msgstr "Napon szárított vályogtéglák"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
@@ -891,7 +893,7 @@ msgstr ""
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
-msgstr ""
+msgstr "Megnöveli az előőrs látótávolságát"
 
 #: simulation/data/technologies/outpost_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -899,7 +901,7 @@ msgstr "Postagalambok"
 
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
-msgstr ""
+msgstr "+33% látótávolság az előőrsöknek"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1156,7 +1158,7 @@ msgstr "Ostromlás"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr ""
+msgstr "−20% elkészítési idő az ostromgépeknek"
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
@@ -1165,7 +1167,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
-msgstr "Páncélkovácsság"
+msgstr "Páncél bádogozás"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
@@ -1330,7 +1332,7 @@ msgstr "Spolas"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr ""
+msgstr "Katonáknak +1 vágási ellenállás."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
@@ -1377,11 +1379,11 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr "Pajzsok megerősítése fém abronccsal vagy gerinccel."
+msgstr "Pajzsok megerősítése fém peremmel vagy tüskével."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
-msgstr "Fém abroncs"
+msgstr "Fém perem"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."

@@ -6,8 +6,8 @@
 # Cyril Chudáček <cyr.chudac@centrum.cz>, 2020
 # David Nováček, 2020
 # Jakub Jelen <jakuje@gmail.com>, 2017
-# LiberteCzech <liberte.czech@gmail.com>, 2015
-# fri, 2014-2018
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2015
+# fri, 2014-2018,2021
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Petr Velička <petrvelicka@tuta.io>, 2021
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-26 09:32+0000\n"
-"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
+"PO-Revision-Date: 2021-07-29 08:57+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -287,7 +287,7 @@ msgstr "Odpojeno."
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr "System:"
+msgstr "Systém:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -389,7 +389,7 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
-msgstr "Mody:"
+msgstr "Pozměňovací verze:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
@@ -590,7 +590,7 @@ msgstr "Hráč \"%(nick)s\" nenalezen."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr "zadejte hráčské jméno:"
+msgstr "Zadejte hráčské jméno:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -702,7 +702,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "Jméno hráče slouží jako pseudonym. Totožnost (fyzická osoba) hráčů není známa společnosti Wildfire Games, kromě případů, kdy byly informace o osobě identifikovatelné (například skutečné jméno) zveřejněny v Lobby Chatu, v jiných službách Wildfire Games nebo jinde na veřejnosti, nebo když je adresa IP použita k trestnímu řízení."
+msgstr "Jméno hráče slouží jako pseudonym. Totožnost (fyzická osoba) hráčů není známa společnosti Wildfire Games, kromě případů, kdy byly informace o osobě ztotožnitelné (například skutečné jméno) zveřejněny v Lobby Chatu, v jiných službách Wildfire Games nebo jinde na veřejnosti, nebo když je adresa IP použita k trestnímu řízení."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -886,7 +886,7 @@ msgstr "[font=\"sans-bold-16\"]Právní základ pro zpracování:[/font]"
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr "1. Zpracování je nezbytné pro výkon služby definované v podmínkách (GDPR 6.1.b)."
+msgstr "1. Zpracování je nezbytné pro výkon služby stanovené v podmínkách (GDPR 6.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -894,14 +894,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games má oprávněné zájmy na poskytování Lobby pro více hráčů, na vývoji a vylepšování hry 0 A.D. a Hry pro více hráčů, na prosazování Podmínek užití a na ochraně před kybernetickými útoky (GDPR 6.1.f)."
+msgstr "2. Wildfire Games má oprávněné zájmy na poskytování Hry pro více hráčů, na vývoji a vylepšování hry 0 A.D. a Hry pro více hráčů, na prosazování Podmínek užití a na ochraně před kybernetickými útoky (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Games nezpracovává žádné další údaje pro Lobby pro více hráčů a nepožaduje souhlas se zpracováním údajů (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr "3. Wildfire Games nezpracovává žádné další údaje pro Hru pro více hráčů a nepožaduje souhlas se zpracováním údajů (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -911,7 +911,7 @@ msgstr "[font=\"sans-bold-16\"]Uživatelská práva:[/font]"
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr "1. Kontaktujte Wildfire Games zasláním e-mailu webmasterovi na wildfiregames dot com (GDPR 13.1.a, GDPR 13.1.b)."
+msgstr "1. Spojte se s Wildfire Games zasláním e-mailu správci stránek na wildfiregames dot com (GDPR 13.1.a, GDPR 13.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "   To exercise any user right, please refer to this contact."
@@ -960,7 +960,7 @@ msgstr "8. Právo podat stížnost u dozorového úřadu (GDPR 13.2.d, GDPR 77).
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr "Žádosti, které jsou zjevně neopodstatněné nebo nepřiměřené nebude reagováno, nebo mohou být účtovány (GDPR 12,4, GDPR 12,5)."
+msgstr "Na žádosti, které jsou zjevně neopodstatněné nebo nepřiměřené, nebude odpovídáno, nebo mohou být účtovány (GDPR 12,4, GDPR 12,5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
@@ -983,7 +983,7 @@ msgstr "2. Wildfire Games náležitě dokumentuje své činnosti zpracování, z
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr "3. Wildfire Games zpracovává osobní údaje zákonně, spravedlivě a transparentně (GDPR 5.1.a, GDPR 12.1)."
+msgstr "3. Wildfire Games zpracovává osobní údaje zákonně, spravedlivě a průhledně (GDPR 5.1.a, GDPR 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
@@ -1011,7 +1011,7 @@ msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
-msgstr "7. Wildfire Games používá úložiště, které neumožňuje identifikaci fyzických osob po dobu delší, než je nutné (GDPR 5.1.e „omezení ukládání“)."
+msgstr "7. Wildfire Games používá úložiště, které neumožňuje ztotožnění fyzických osob po dobu delší, než je nutné (GDPR 5.1.e „omezení ukládání“)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
@@ -1039,7 +1039,7 @@ msgid ""
 "11. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr "11. Wildfire Games informuje uživatele, že pro uplatnění jejich práv mohou uživatelé potřebovat poskytnout další informace k identifikaci fyzické osoby nebo údajů (GDPR 12.6, GDPR 13.2.e)."
+msgstr "11. Wildfire Games informuje uživatele, že pro uplatnění jejich práv mohou uživatelé potřebovat poskytnout další informace ke ztotožnění fyzické osoby nebo údajů (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
@@ -1047,7 +1047,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr "12. Wildfire Games nebudou vědomě shromažďovat osobní údaje od dětí mladších 13 let (zákon o ochraně soukromí dětí online). Pokud si myslíte, že Wildfire Games obdržela jakékoli osobní údaje od dítěte nebo o dítěti do 13 let, kontaktujte Wildfire Games."
+msgstr "12. Wildfire Games nebudou vědomě shromažďovat osobní údaje od dětí mladších 13 let (zákon o ochraně soukromí dětí online). Pokud si myslíte, že Wildfire Games obdržela jakékoli osobní údaje od dítěte nebo o dítěti do 13 let, spojte se s Wildfire Games."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
@@ -1058,7 +1058,7 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr "13. Pokud společnost Wildfire Games zpracovává citlivé osobní údaje na základě oprávněných zájmů, společnost Wildfire Games zvažuje provedení, zaznamenání a pravidelné přezkoumání posouzení legitimních zájmů a posouzení dopadů na ochranu údajů (GDPR 35), aby si byla jistá, že zájmy jednotlivce nepřeváží legitimní zájmy hry Wildfire Games, a že Wildfire Games nepoužívá osobní údaje dotěrně, pokud k tomu není velmi dobrý důvod."
+msgstr "13. Pokud společnost Wildfire Games zpracovává citlivé osobní údaje na základě oprávněných zájmů, společnost Wildfire Games zvažuje provedení, zaznamenání a pravidelné přezkoumání posouzení oprávněných zájmů a posouzení dopadů na ochranu údajů (GDPR 35), aby si byla jistá, že zájmy jednotlivce nepřeváží oprávněné zájmy hry Wildfire Games, a že Wildfire Games nepoužívá osobní údaje dotěrně, pokud k tomu není velmi dobrý důvod."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
@@ -1082,14 +1082,14 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr "The 0 A.D. Empires Ascendant Multiplayer Lobby je online služba poskytovaná Wildfire Games, která umožňuje hráčům nastavit online zápasy pro více hráčů, diskutovat o hře ve veřejné chatovací místnosti a získat hodnocení, které odráží jejich dovednosti."
+msgstr "The 0 A.D. Empires Ascendant Multiplayer Lobby je online služba poskytovaná Wildfire Games, která umožňuje hráčům nastavit internetové zápasy pro více hráčů, diskutovat o hře ve veřejné chatovací místnosti a získat hodnocení, které odráží jejich dovednosti."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Vzhledem k předmětu historické války, popisu a vyobrazení násilí a jazyka v lobby pro více hráčů není hra 0 A.D. a hra pro více hráčů zaměřena na malé děti (COPPA §312.2)."
+msgstr "Vzhledem k předmětu historické války, popisu a vyobrazení násilí a jazyka ve hře pro více hráčů není hra 0 A.D. a hra pro více hráčů zaměřena na malé děti (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."

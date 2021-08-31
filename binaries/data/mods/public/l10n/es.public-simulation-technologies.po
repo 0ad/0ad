@@ -34,16 +34,16 @@
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2021
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
-# Swyter ™ <Swyterzone@gmail.com>, 2014-2018,2020
-# Swyter ™ <Swyterzone@gmail.com>, 2020
+# Swyter <Swyterzone@gmail.com>, 2014-2018,2020
+# Swyter <Swyterzone@gmail.com>, 2020
 # vega93 <arkadas_llisa@hotmail.com>, 2015,2018
 # Víctor Rodríguez Bouza, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-18 20:42+0000\n"
-"Last-Translator: Antonio Vazquez <antoniovavazquez@gmail.com>\n"
+"PO-Revision-Date: 2021-08-25 16:28+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -429,7 +429,7 @@ msgstr "Colonización"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr "Estructuras Civiles -25% de tiempo de construcción y costo de recursos."
+msgstr "Estructuras Civiles (Tiempo de construcción y coste de recursos: −25%)."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -826,7 +826,7 @@ msgstr "Tradición Hoplita"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr ""
+msgstr "Hoplitas (Tiempo de adiestramiento: −25%; Experiencia para promocionar: −50%)."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -907,7 +907,7 @@ msgstr "Caballería de élite con lanza (Salud: +20%; Tiempo de reclutamiento: +
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
-msgstr ""
+msgstr "Aumenta el alcance de visión de los puestos de avanzada."
 
 #: simulation/data/technologies/outpost_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -915,7 +915,7 @@ msgstr "Palomas mensajeras"
 
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
-msgstr ""
+msgstr "Puestos de avanzada (Campo de visión: +33%)."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1255,7 +1255,7 @@ msgstr "Armas de hierro"
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
-msgstr ""
+msgstr "Añadiendo pequeñas cantidades de carbono durante el proceso de fundición del hierro se puede obtener un metal más fuerte: el acero."
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
@@ -1292,11 +1292,11 @@ msgstr "Soldados +20% al daño cuerpo a cuerpo. Los espadachines obtienen un bon
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr ""
+msgstr "Mejorando las remeras de las flechas se aumenta la estabilidad, velocidad y en consecuencia su penetración."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
-msgstr ""
+msgstr "Emplumado de flechas mejorado"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1321,7 +1321,7 @@ msgstr "Puntas de flecha trilobuladas"
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
 msgid "Soldiers +20% ranged attack damage."
-msgstr ""
+msgstr "Soldados (Daño a distancia: +20%)."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1366,15 +1366,15 @@ msgstr "Linothōrax"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
 msgid "Body armor made of small metal rings linked together."
-msgstr ""
+msgstr "Armadura realizada a partir de pequeñas anillas de metal unidas unas con otras."
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr ""
+msgstr "Armadura de malla"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr ""
+msgstr "Soldados (Resistencia al corte: +2)."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
@@ -1401,7 +1401,7 @@ msgstr "Borde de metal"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr ""
+msgstr "Aumenta la resistencia de los escudos con aleaciones más fuertes."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
@@ -1715,7 +1715,7 @@ msgstr "Pericia guerrera"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
-msgstr ""
+msgstr "Los mercenarios comienzan con un rango superior."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

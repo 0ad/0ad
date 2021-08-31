@@ -280,6 +280,11 @@ var g_UnitActions =
 				"firstAbleEntity": actionInfo.entity
 			};
 		},
+		"hotkeyActionCheck": function(target, selection)
+		{
+			return Engine.HotkeyIsPressed("session.calltoarms") &&
+				this.actionCheck(target, selection);
+		},
 		"preSelectedActionCheck": function(target, selection)
 		{
 			return preSelectedAction == ACTION_CALLTOARMS &&

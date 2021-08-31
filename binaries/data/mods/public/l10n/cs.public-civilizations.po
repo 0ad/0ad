@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# lynx121 <adam.ostruszka@seznam.cz>, 2016
+# cd16528e781b93a5c74ed80984fd5012_ec89011 <8b367250df6f15f94fa982ca911a009f_479130>, 2016
 # attilla1996 <attilla1996@gmail.com>, 2014
 # David Exner <essdyk@gmail.com>, 2014
 # Devinate <m.brezek@gmail.com>, 2014
@@ -13,7 +13,7 @@
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2018
+# fri, 2014-2018,2021
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014
 # Petr Velička <petrvelicka@tuta.io>, 2021
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-11 17:02+0000\n"
-"Last-Translator: Petr Velička <petrvelicka@tuta.io>\n"
+"PO-Revision-Date: 2021-08-07 10:45+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,11 +174,11 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Britoni byli keltské kmeny na Britských ostrovech. Používali dvoukolé válečné vozy, bojovníky s dlouhými meči a silné vojáky vycvičené pro boj z blízka, a bezestrachu pořadali výpady i proti Římanům, aby chránili svoje uzemí a zájmy. Také postavili tisíce jedinečných staveb, jako jsou například pevnosti na kopcích, umělé obyvatelné ostrůvky a kamenné kruhové věže známé jako broch."
+msgstr "Britoni (Britové) byli keltské kmeny na Britských ostrovech. Používali dvoukolé válečné vozy, bojovníky s dlouhými meči a silné vojáky vycvičené pro boj z blízka, a bezestrachu pořadali výpady i proti Římanům, aby chránili svoje uzemí a zájmy. Také postavili tisíce jedinečných staveb, jako jsou například pevnosti na kopcích, umělé obyvatelné ostrůvky a kamenné kruhové věže známé jako broch."
 
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
-msgstr "Britové"
+msgstr "Britonové"
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hannibal Barca"
@@ -246,7 +246,7 @@ msgstr "Himilco"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr "Obchodní lodě získávají 25% zvýšení tržeb."
+msgstr "Obchodní lodě získávají +25 % k zisku z obchodu."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
@@ -369,17 +369,17 @@ msgstr "S výjimkou náplavových rovin a říčních údolí oplývá Iberský 
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr "Startovní hradby"
+msgstr "Počáteční hradby"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "Kamenné věže -50 % cena dřeva, +150 % cena kamenů, +33 % rychlost stavby, +60 % zdraví, +3 kapacita posádky a +1 výchozí počet šípů."
+msgstr "Kamenné věže -50 % z ceny dřeva, +150 % k ceně kamenů, +33 % k rychlosti stavby, +60 % ke zdraví, +3 kapacita posádky a +1 výchozí počet šípů."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr "Masivní Věže"
+msgstr "Velké a důkladné věže"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -454,7 +454,7 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr "Beranidla +20 % poškození a +2 kapacita posádky."
+msgstr "Beranidla +20 % k poškození a +2 ke kapacitě posádky."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
@@ -477,7 +477,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "Království Kush bylo starobylé africké království ležící na soutoku Modrého Nilu, bílého Nilu a řeky Atbary v dnešní Republice Súdán. Kušitská doba vlády v oblasti byla založena až po zhroucení království Nového Egypta v době bronzové a měla hlavní sídlo v Napatě v rané fázi. Kúšité vpadli do Egypta v 8. století před naším letopočtem a kúšanští císaři vládli jako faraonové dvacáté páté dynastie Egypta po celé století, dokud nebyli vyhoštěni Asyřany. Kúšanská kultura byla silně ovlivněna Egypťany, se stavbou kúšanské pyramidy a monumentální chrámovou architekturou, jež se stále používá. Kúšité dokonce uctívali mnoho egyptských bohů, včetně Amona. Během klasického starověku bylo císařské hlavní město v Meroe. V rané řecké geografii, Meroejské království bylo známé jako Aethiopia. Kúšanské království trvalo až do 4. století, kdy se oslabilo a rozpadlo kvůli vnitřní vzpouře a nakonec podlehlo vzrůstající moci Axumu."
+msgstr "Kušanské království  bylo starobylé africké království ležící na soutoku Modrého Nilu, bílého Nilu a řeky Atbary v dnešní Republice Súdán. Kušitská doba vlády v oblasti byla založena až po zhroucení království Nového Egypta v době bronzové a měla hlavní sídlo v Napatě v rané fázi. Kúšité vpadli do Egypta v 8. století před naším letopočtem a kúšanští císaři vládli jako faraonové dvacáté páté dynastie Egypta po celé století, dokud nebyli vyhoštěni Asyřany. Kúšanská kultura byla silně ovlivněna Egypťany, se stavbou kúšanské pyramidy a monumentální chrámovou architekturou, jež se stále používá. Kúšité dokonce uctívali mnoho egyptských bohů, včetně Amona. Během klasického starověku bylo císařské hlavní město v Meroe. V rané řecké geografii, Meroejské království bylo známé jako Aethiopia. Kúšanské království trvalo až do 4. století, kdy se oslabilo a rozpadlo kvůli vnitřní vzpouře a nakonec podlehlo vzrůstající moci Axumu."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -595,7 +595,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Založena v roku 322 před Kristem Čandraguptou Maurjou, byla Maurská říše první, která vládla většině indického subkontinentu, a zároveň i jednou z největších a nejlidnatějších říší starověku. Vojsko této říše se skládalo z lukostřelců používajících bambusové luky s dlouhým dostřelem, divokých bojujících žen, vozů a tisíců ozbrojených válečných slonů. Její filosofové, zvláště Acharja Čánakja, přispěli do množství různých oborů, jako je ekonomika, diplomacie, vojenství a dobrá správa věcí veřejných. Pod vládou Ašóky Velkého zažila říše 40 roků míru, harmonie a prosperity."
+msgstr "Založena v roku 322 před Kristem Čandraguptou Maurjou, byla Maurjovská říše první, která vládla většině indického subkontinentu, a zároveň i jednou z největších a nejlidnatějších říší starověku. Vojsko této říše se skládalo z lukostřelců používajících bambusové luky s dlouhým dostřelem, divokých bojujících žen, vozů a tisíců ozbrojených válečných slonů. Její filosofové, zvláště Acharja Čánakja, přispěli do množství různých oborů, jako je ekonomika, diplomacie, vojenství a dobrá správa věcí veřejných. Pod vládou Ašóky Velkého zažila říše 40 roků míru, harmonie a prosperity."
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
@@ -651,7 +651,7 @@ msgstr "Artaxerxés III. Óchos"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr "Pozemští obchodníci +25 % zvýšení obchodů."
+msgstr "Pozemští obchodníci +25 % k zisku z obchodu."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
@@ -750,7 +750,7 @@ msgstr "Ptolemaios XII. Neos Dionýsos"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr "Vrhač šípů -33 % poškození a -33 % doba útoku."
+msgstr "Vrhači šípů -33 % z poškození a -33 % z doby útoku."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -1034,11 +1034,11 @@ msgstr "Eurykrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr "Občanky +40 % zdraví a +50 % poškození při boji zblízka."
+msgstr "Občanky +40 % ke zdraví a +50 % k poškození při boji zblízka."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr "Sparťanská Žena"
+msgstr "Sparťanská žena"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

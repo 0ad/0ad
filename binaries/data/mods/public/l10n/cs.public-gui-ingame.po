@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# lynx121 <adam.ostruszka@seznam.cz>, 2016
+# cd16528e781b93a5c74ed80984fd5012_ec89011 <8b367250df6f15f94fa982ca911a009f_479130>, 2016
 # attilla1996 <attilla1996@gmail.com>, 2014
 # David Exner <essdyk@gmail.com>, 2014
 # Devinate <m.brezek@gmail.com>, 2014
@@ -16,9 +16,9 @@
 # Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # Martin Křížek <krizekmartin@gmail.com>, 2021
-# LiberteCzech <liberte.czech@gmail.com>, 2015
+# LiberteCzech <martin.kriz.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
-# fri, 2014-2018,2020
+# fri, 2014-2018,2020-2021
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017,2020
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-27 09:43+0000\n"
-"Last-Translator: Tomáš Matýs <thommathys@gmail.com>\n"
+"PO-Revision-Date: 2021-08-04 10:23+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +76,7 @@ msgstr "Herní skupina"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Stisknutím %(hotkey)s otevřete stránku lobby pro více hráčů, aniž byste hru opustili."
+msgstr "Stisknutím %(hotkey)s otevřete stránku herní skupiny pro více hráčů, aniž byste hru opustili."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -97,7 +97,7 @@ msgstr "Pozastavit"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Zmáčkněte %(hotkey)s pro pozastavení / pokračování hry."
+msgstr "Stiskněte %(hotkey)s pro pozastavení hry/pokračování ve hře."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -111,7 +111,7 @@ msgstr "Ukončit"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr "Zpoždění live streamu: %(delay)ss"
+msgstr "Zpoždění živého proudu: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -366,11 +366,11 @@ msgstr "%(icon)s Vaše hospodářská zvířata byla napadena hráčem %(attacke
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)s byl si napaden hráčem %(attacker)s!"
+msgstr "%(icon)s byl jste napaden hráčem %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Kliknutím se přesunete na napadenou jednotku."
+msgstr "Klepnutím se přesunete na napadenou jednotku."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -555,7 +555,7 @@ msgstr "Povolit zrychlení času"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr "Zapnout test znovupřipojení"
+msgstr "Zapnout zkoušku znovupřipojení"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -563,19 +563,19 @@ msgstr "Povýšit vybrané jednotky"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr "Povolit culling"
+msgstr "Povolit vybírání"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr "Zamknout cull kameru"
+msgstr "Zamknout vybírací kameru"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr "Zobrazit frustum kamery"
+msgstr "Zobrazit kužel kamery"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Zobrazit frustum stínů"
+msgstr "Zobrazit kužel stínů"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -586,7 +586,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Poznámka: Režim cestování časem je možnost pro vývojáře a není záměrem, aby se používala po dlouhou dobu. Její špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
+msgstr "Poznámka: Režim zrychlení času je možnost pro vývojáře a není záměrem, aby se používal po dlouhou dobu. Jeho špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1044,7 +1044,7 @@ msgstr "Výchozí formace je zakázána."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Kliknutím pravým tlačítkem zakážete výchozí funkci formace."
+msgstr "Klepnutím pravým tlačítkem zakážete výchozí funkci formace."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
@@ -1052,7 +1052,7 @@ msgstr "Toto je výchozí formace používaná pro příkazy k pohybu."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Kliknutím pravým tlačítkem nastavíte tuto formaci jako výchozí."
+msgstr "Klepnutím pravým tlačítkem nastavíte tuto formaci jako výchozí."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1094,7 +1094,7 @@ msgstr "Zrušit rozbalování"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr "Automatická fronta se pokusí tuto položku vycvičit později."
+msgstr "Automatická řada se pokusí tuto položku vycvičit později."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1130,7 +1130,7 @@ msgstr "Během vylepšování nelze zkoumat."
 
 #: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
-msgstr "Během vylepšování nelze trénovat."
+msgstr "Během vylepšování nelze cvičit."
 
 #: gui/session/selection_panels.js:1112
 #, javascript-format
@@ -1166,7 +1166,7 @@ msgid_plural ""
 msgstr[0] "Nelze vylepšovat, pokud se entita trénuje, zkoumá, nebo již vylepšuje."
 msgstr[1] "Nelze vylepšovat, pokud se všechny entity trénují, zkoumají, nebo již vylepšují."
 msgstr[2] "Nelze vylepšovat, pokud se všechny entity trénují, zkoumají, nebo již vylepšují."
-msgstr[3] "Nelze vylepšovat, pokud se všechny entity trénují, zkoumají, nebo již vylepšují."
+msgstr[3] "Nelze vylepšovat, pokud se všechny jednotky cvičí, zkoumají, nebo již vylepšují."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1262,11 +1262,11 @@ msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Může být vytrénováno pouze jednou."
 msgstr[1] "Může být vytrénováno pouze %(limit)s krát."
 msgstr[2] "Může být vytrénováno pouze %(limit)s krát."
-msgstr[3] "Může být vytrénováno pouze %(limit)s krát."
+msgstr[3] "Může být vycvičeno pouze %(limit)s krát."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr "Může být vytrénováno pouze jednou."
+msgstr "Může být vycvičeno pouze jednou."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
@@ -1275,7 +1275,7 @@ msgid_plural "Can be trained %(count)s more times."
 msgstr[0] "Může být vytrénováno ještě %(count)s krát."
 msgstr[1] "Může být vytrénováno ještě %(count)s krát."
 msgstr[2] "Může být vytrénováno ještě %(count)s krát."
-msgstr[3] "Může být vytrénováno ještě %(count)s krát."
+msgstr[3] "Může být vycvičeno ještě %(count)s krát."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
@@ -1363,7 +1363,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Zobrazit přehled civilizace / Strom staveb\nPo kliknutí se zobrazí naposledy otevřený."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Zobrazit přehled civilizace / Strom staveb\nPo klepnutí se zobrazí naposledy otevřený."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1398,11 +1398,11 @@ msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr "Počet obyvatel: aktuální / limit (max)"
+msgstr "Počet obyvatel: nynější/hranice (max)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr "Sběrači: aktuální"
+msgstr "Sběrači: nynější"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1644,7 +1644,7 @@ msgstr "Připraven"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Toto je zdrojový obchodní trh. \nPravým klik pro zrušení obchodní cesty."
+msgstr "Toto je zdrojový obchodní trh. \nKlepněte pravým tlačítkem myši pro zrušení obchodní cesty."
 
 #: gui/session/unit_actions.js:631
 msgid "Origin trade market."
@@ -1691,7 +1691,7 @@ msgid_plural "These entities cannot be controlled."
 msgstr[0] "Tato entita nemůže být ovládána."
 msgstr[1] "Tyto entity nemohou být ovládány."
 msgstr[2] "Tyto entity nemohou být ovládány."
-msgstr[3] "Tyto entity nemohou být ovládány."
+msgstr[3] "Tyto jednotky nemohou být ovládány."
 
 #: gui/session/unit_actions.js:1306
 msgid "Unload All."
@@ -1782,11 +1782,11 @@ msgstr "Je vám dovoleno používat tento odhazovací prostor"
 
 #: gui/session/unit_actions.js:1732
 msgid "Activate auto-queue for selected structures."
-msgstr "Aktivovat automatickou frontu pro vybrané struktury."
+msgstr "Zapnout automatickou řadu pro vybrané stavby."
 
 #: gui/session/unit_actions.js:1752
 msgid "Deactivate auto-queue for selected structures."
-msgstr "Deaktivujte automatickou frontu pro vybrané struktury."
+msgstr "Vypnout automatickou řadu pro vybrané stavby."
 
 #: gui/session/unit_actions.js:1817
 msgid "The entity has to be killed before it can be gathered from"

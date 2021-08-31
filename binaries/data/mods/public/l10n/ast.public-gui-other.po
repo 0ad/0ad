@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-27 22:42+0000\n"
+"PO-Revision-Date: 2021-08-27 02:05+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -231,13 +231,13 @@ msgstr "Los xugadores puen aliase y declarar la guerra a aliaos."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
-msgstr "El caberu de pie"
+msgstr "A vida o muerte"
 
 #: gui/common/gamedescription.js:263
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Namái pue ganar un xugador. Si los que queden tán aliaos, l'alcuentru sigue hasta que quede solo ún."
+msgstr "Nun pue haber mas un vencedor. Si tolos xugadores vivos tán aliaos, l'alcuentru sigue hasta quedar solo ún."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
@@ -251,7 +251,7 @@ msgstr "Al ganar un xugador, tola alianza tamién gana. Al quedar una alianza, g
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
-msgstr "Altu'l fueu"
+msgstr "Enducia"
 
 #: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
@@ -331,7 +331,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:363
 msgid "Population Limit"
-msgstr "Población máxima"
+msgstr "Techu poblacional"
 
 #: gui/common/gamedescription.js:367
 msgctxt "population limit"
@@ -340,7 +340,7 @@ msgstr "Por xugador"
 
 #: gui/common/gamedescription.js:375
 msgid "World Population Cap"
-msgstr "Población global máxima"
+msgstr "Techu poblacional del mundu"
 
 #: gui/common/gamedescription.js:383
 msgid "Treasures"
@@ -542,7 +542,7 @@ msgstr ","
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Quedu"
+msgstr "Xole"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
@@ -1491,7 +1491,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar que'l xugador tralláu nun lu vea tan difícil, el nivel por defeutu de la IA ye enforma abegosu pa novatos, que siguen ensin dominar los fundamentales del xuegu. A estos aconséyase-yos entamar xugando escontra una IA de nivel más baxu (Quedu o Perfácil). Cambia'l nivel de la IA calcando nel iconu del engrane cabo'l xugador que quieras camudar nel panel d'esbilla enriba."
+msgstr "Magar que fácil pal xugador veteranu, al novatu la dificultá por defeutu de la IA pue resulta-y lluendia enforma. A esti aconséyase-y prauticar con una IA de menor dificultá (Xole o Perfácil). Pa cambiar la dificultá de la IA, calca nel iconu del engrane co'l xugador del panel superior que quieras camudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -2001,7 +2001,7 @@ msgstr "Abrir o zarrar la consola."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr "Abrir/zarrar la consola"
+msgstr "Alternar la consola"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -2073,7 +2073,7 @@ msgstr "Acitvar o desactivar el perfilador en tiempu real."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr "Activar el perfilador"
+msgstr "Alternar el perfilador"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
@@ -2083,7 +2083,7 @@ msgstr "Activar o desactivar los moos HTTP o GPU pal perfilador nuevu."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr "Activar el perfilador2"
+msgstr "Alternar el perfilador2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2103,7 +2103,7 @@ msgstr "Amosar o anubrir la marca tresllúcida de la compaña o productu pa seme
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr "Amosar la marca"
+msgstr "Alternar la marca"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
@@ -2173,17 +2173,17 @@ msgstr "Cambiar ente la pantalla completa y la ventana."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr "Cambiar a la pantalla completa"
+msgstr "Alternar la pantalla completa"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr "Activar/desactivar el mou cadarma."
+msgstr "Activar o desactivar el mou cadarma."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr "Activar el mou cadarma"
+msgstr "Alternar el mou cadarma"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
@@ -2198,12 +2198,12 @@ msgstr "Configuración de partida"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr "Abrir nel restolador de mapes."
+msgstr "Abrir el restolador cartográficu."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr "Abrir el restolador de mapes"
+msgstr "Abrir el restolador cartográficu"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -2258,12 +2258,12 @@ msgstr "Xuntase equí mesmo"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr "La unidá va volver al trabayu."
+msgstr "La unidá va volver al llabor."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
 msgid "Back to Work"
-msgstr "Volver al trabayu"
+msgstr "Volver al llabor"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
@@ -2294,17 +2294,17 @@ msgstr "Facer señes col punteru primiendo l'atayu al calcar."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "Aseñar"
+msgstr "Aseñar (primiendo)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Activar o desactivar el mou «aseñar» del punteru. Nun hai que caltener l'atayu primíu."
+msgstr "Facer señes col punteru. L'atayu pue soltase."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr "Mou aseñar"
+msgstr "Aseñar (alternancia)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -2584,7 +2584,7 @@ msgstr "Alliniar una construcción nueva con una construcción esistente."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr "Activar l'alliniadura"
+msgstr "Alternar l'alliniadura"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
@@ -2606,7 +2606,7 @@ msgstr "Cambiar ente nenguna formación por defeutu y la última formación por 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr "Activar la formación por defeutu"
+msgstr "Alternar la formación por defeutu"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
@@ -2651,12 +2651,12 @@ msgstr "IGU al xugar"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr "Activar o desactivar el cuntador del altu'l fueu."
+msgstr "Activar o desactivar el cuntador de la enducia."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr "Activar el cuntador del altu'l fueu"
+msgstr "Alternar el cuntador de la enducia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
@@ -2666,7 +2666,7 @@ msgstr "Amosar o anubrir la ventana «Charra»."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr "Amosar la charra"
+msgstr "Alternar la charra"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
@@ -2676,7 +2676,7 @@ msgstr "Amosar o anubrir la información civilizacional."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr "Amosar la información civilizacional"
+msgstr "Alternar la información civilizacional"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
@@ -2686,7 +2686,7 @@ msgstr "Activar o desactivar el cuntador «cuadros per segundu»."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr "Activar el cuntador CPS"
+msgstr "Alternar el cuntador CPS"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2696,7 +2696,7 @@ msgstr "Amosar l'antepar nun ventanu de diálogu."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr "Abrir l'antepar"
+msgstr "Alternar l'antepar"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
@@ -2706,7 +2706,7 @@ msgstr "Abrir, o zarrar, la ventana «Charra» y esbillar l'últimu contautu de 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr "Abrir la charra privada"
+msgstr "Alternar la charra privada"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
@@ -2738,7 +2738,7 @@ msgstr "Amosar o anubrir la hora actual."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr "Amosar la sobrecapa temporal"
+msgstr "Alternar la sobrecapa horaria"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
@@ -2748,7 +2748,7 @@ msgstr "Amosar o anubrir el panel desendolcador."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr "Amosar la sobrecapa de desendolcu"
+msgstr "Alternar la sobrecapa de desendolcu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
@@ -2758,7 +2758,7 @@ msgstr "Activar o desactivar les colores diplomátiques."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr "Activar les colores diplomátiques"
+msgstr "Alternar les colores diplomátiques"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2768,7 +2768,7 @@ msgstr "Abrir o zarrar el ventanu comercial."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr "Abrir el ventanu comercial"
+msgstr "Alternar el ventanu comercial"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
@@ -2778,17 +2778,17 @@ msgstr "Abrir o zarrar el ventanu diplomáticu."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr "Abrir el ventanu diplomáticu"
+msgstr "Alternar el ventanu diplomáticu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr "Abrir el menú al xugar."
+msgstr "Abrir o zarrar el menú al xugar."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr "Abrir el menú"
+msgstr "Alternar el menú"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
@@ -2798,17 +2798,17 @@ msgstr "Abrir o zarrar el ventanu d'oxetivos."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr "Amosar los oxetivos"
+msgstr "Alternar los oxetivos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr "Amosar o anubrir l'interfaz d'usuariu al xugar."
+msgstr "Amosar o anubrir l'interfaz del usuariu al xugar."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr "Amosar l'interfaz d'usuariu"
+msgstr "Alternar l'interfaz del usuariu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
@@ -2818,7 +2818,7 @@ msgstr "Amosar o anubrir el panel del tutorial."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr "Amosar el tutorial"
+msgstr "Alternar el tutorial"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
@@ -2828,7 +2828,7 @@ msgstr "Señalar o non les unidaes curiaes."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr "Señalar lo curiao"
+msgstr "Alternar el señalamientu de lo curiao"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
@@ -2838,7 +2838,7 @@ msgstr "Señalar o non les unidaes curiadores."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr "Señalar los curiadores"
+msgstr "Alternar el señalamientu de los curiadores"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
@@ -2868,7 +2868,7 @@ msgstr "Amosar o anubrir los estaos."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr "Amosar los estaos"
+msgstr "Alternar los estaos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
@@ -2910,7 +2910,7 @@ msgstr "Amosar o anubrir l'algame aural de les unidaes o construcciones esbillae
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr "Amosar l'algame aural"
+msgstr "Alternar l'algame aural"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
@@ -2920,7 +2920,7 @@ msgstr "Amosar o anubrir l'algame curatible de les unidaes esbillaes."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr "Amosar l'algame curatible"
+msgstr "Alternar l'algame curatible"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
@@ -2930,7 +2930,7 @@ msgstr "Amosar o anubrir el contornu de les unidaes."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr "Amosar los contornos"
+msgstr "Alternar los contornos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
@@ -2940,7 +2940,7 @@ msgstr "Amosar o anubrir l'árbole de construcciones."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr "Amosar l'árbole de construcciones"
+msgstr "Alternar l'árbole de construcciones"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
@@ -2950,7 +2950,7 @@ msgstr "Abrir o zarrar el resume de la partida."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr "Abrir el resume"
+msgstr "Alternar el resume"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
@@ -2960,7 +2960,7 @@ msgstr "Abrir o zarrar una charra en mou equipu."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr "Abrir la charra n'equipu"
+msgstr "Alternar la charra n'equipu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2970,7 +2970,7 @@ msgstr "Amosar o anubrir el tiempu pasao desque entamó'l xuegu."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr "Amosar la sobrecapa de tiempu corrío"
+msgstr "Alternar la sobrecapa cronométrica"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
@@ -3686,12 +3686,12 @@ msgstr "Cada mapa del tipu escoyíu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr "Restolador de mapes"
+msgstr "Restolador cartográficu"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Zarrar el restolador de mapes y escartar la esbilla."
+msgstr "%(hotkey)s: Zarrar el restolador cartográficu y escartar la esbilla."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3703,7 +3703,7 @@ msgstr "Zarrar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr "%(hotkey)s: Zarrar el restolador de mapes."
+msgstr "%(hotkey)s: Zarrar el restolador cartográficu."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3845,7 +3845,7 @@ msgstr "Si la desactives, la pantalla d'acoyida entá va apaecer una vegada, cad
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr "Sobrecapa CPS"
+msgstr "Sobrecapa frecuencimétrica"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -3853,7 +3853,7 @@ msgstr "Amosar los cuadros per segundu na esquina cimera drecha."
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
-msgstr "Sobrecapa de tiempu real"
+msgstr "Sobrecapa horaria"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
@@ -3861,7 +3861,7 @@ msgstr "Amosar el tiempu del sistema na esquina cimera drecha."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
-msgstr "Sobrecapa'l tiempu de xuegu"
+msgstr "Sobrecapa cronométrica"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
@@ -3869,11 +3869,11 @@ msgstr "Amosar el tiempu de la simulación na esquina cimera drecha."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
-msgstr "Sobrecapa'l tiempu del altu'l fueu"
+msgstr "Sobrecapa d'enducia"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr "Amosar siempre'l tiempu del altu'l fueu que quede."
+msgstr "Amosar siempre'l tiempu que quede d'enducia."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
@@ -4023,7 +4023,7 @@ msgstr "Preferir GLSL"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Usar los asolombradores d'OpenGL 2.0 (encamiéntase)."
+msgstr "Usar los asolombradores d'OpenGL 2.0 (aconséyase)."
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4377,7 +4377,7 @@ msgstr "Dificultá por defeutu de la IA"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
-msgstr "Quedu"
+msgstr "Xole"
 
 #: gui/options/options.json[4].options[3].list[1].label
 msgid "Very Easy"
@@ -4589,7 +4589,7 @@ msgstr "Amosar conseyos detallaos pa unidaes allistables en construcciones que p
 
 #: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
-msgstr "Ordenar conseyu de recursos & población"
+msgstr "Ordenar el conseyu de recursos y población"
 
 #: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
@@ -4606,7 +4606,7 @@ msgstr "Descendentes"
 #: gui/options/options.json[6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr "Ordenar por valor & dinámicamente a xugadores nel conseyu de recursos & población."
+msgstr "Ordenar por valor a los xugadores nel conseyu de recursos y población."
 
 #: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
@@ -4879,7 +4879,7 @@ msgstr "%(hotkey)s: Ver les construcciones de les civilizaciones qu'apaecen en 0
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr "Güeyada a les civilizaciones"
+msgstr "Sinopsis civilizacional"
 
 #: gui/pregame/MainMenuItems.js:40
 #, javascript-format
@@ -4888,7 +4888,7 @@ msgstr "%(hotkey)s: Descubrir les civilizaciones qu'apaecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
-msgstr "Güeyada a los catafalcos"
+msgstr "Sinopsis de los catafalcos"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
@@ -4896,7 +4896,7 @@ msgstr "Comparar les ventayes de los catafalcos qu'apaecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
-msgstr "Güeyada a los mapes"
+msgstr "Sinopsis de los mapes"
 
 #: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
@@ -5257,7 +5257,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "%(hotkey)s: Zarrar la güeyada a la civilizaciones."
+msgstr "%(hotkey)s: Zarrar la sinopsis civilizacional."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5302,7 +5302,7 @@ msgstr[1] "Téuniques úniques"
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Cambiar a «Güeyada a les civilizaciones»."
+msgstr "%(hotkey)s: Cambiar a «Sinopsis civilizacional»."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -5979,7 +5979,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Llanzar, zarrar el ventanu del antepar."
+msgstr "%(hotkey)s: Alternar el ventanu del antepar."
 
 #: gui/summary/summary.js:557
 #, javascript-format
