@@ -198,11 +198,3 @@ function colorizeAutocompleteHotkey(string)
 			setStringTags("\\[" + translateWithContext("hotkey", "Tab") + "]", g_HotkeyTags)
 	});
 }
-
-/**
- * Adds grey font if savegame/replay is not compatible.
- */
-function compatibilityColor(text, isCompatible)
-{
-	return isCompatible ? text : coloredText(text, "96 96 96");
-}
