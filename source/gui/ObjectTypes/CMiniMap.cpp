@@ -59,8 +59,6 @@
 #include <cmath>
 #include <vector>
 
-extern bool g_GameRestarted;
-
 namespace
 {
 

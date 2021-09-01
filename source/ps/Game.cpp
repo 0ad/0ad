@@ -54,7 +54,6 @@
 
 #include <fstream>
 
-extern bool g_GameRestarted;
 extern GameLoopState* g_AtlasGameLoop;
 
 /**
@@ -343,8 +342,6 @@ PSRETURN CGame::ReallyStartGame()
 	// The call tree we've built for pregame probably isn't useful in-game.
 	if (CProfileManager::IsInitialised())
 		g_Profiler.StructuralReset();
-
-	g_GameRestarted = true;
 
 	return 0;
 }
