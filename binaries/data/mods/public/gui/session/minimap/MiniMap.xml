@@ -25,6 +25,16 @@
 		mouse_event_mask="texture:session/minimap-idle.png"
 	/>
 
+	<!-- Total number of idle workers -->
+	<object name="totalNumberIdleWorkers"
+		type="text"
+		size="85% 89% 97% 98%"
+		style="totalNumberIdleWorkersCount"
+		z="100"
+		text_align="right"
+		text_valign="bottom"
+	/>
+
 	<!-- Diplomacy Colors Button -->
 	<object name="diplomacyColorsButton"
 		type="button"

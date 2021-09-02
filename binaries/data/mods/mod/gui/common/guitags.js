@@ -21,3 +21,12 @@ function setStringTags(text, tags)
 
 	return result;
 }
+
+
+/**
+ * Adds grey font if is not compatible.
+ */
+function compatibilityColor(text, isCompatible)
+{
+	return isCompatible ? text : coloredText(text, "96 96 96");
+}

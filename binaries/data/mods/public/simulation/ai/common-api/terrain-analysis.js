@@ -18,6 +18,20 @@ m.TerrainAnalysis = function()
 
 m.copyPrototype(m.TerrainAnalysis, m.Map);
 
+m.TerrainAnalysis.prototype.IMPASSABLE = 0;
+/**
+* non-passable by land units
+*/
+m.TerrainAnalysis.prototype.DEEP_WATER = 200;
+/**
+* passable by land units and water units
+*/
+m.TerrainAnalysis.prototype.SHALLOW_WATER = 201;
+/**
+* passable by land units
+*/
+m.TerrainAnalysis.prototype.LAND = 255;
+
 m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 {
 	let passabilityMap = rawState.passabilityMap;
@@ -30,22 +44,15 @@ m.TerrainAnalysis.prototype.init = function(sharedScript, rawState)
 
 	let obstructionTiles = new Uint8Array(passabilityMap.data.length);
 
-	/* Generated map legend:
-	 0 is impassable
-	 200 is deep water (ie non-passable by land units)
-	 201 is shallow water (passable by land units and water units)
-	 255 is land (or extremely shallow water where ships can't go).
-	*/
 
 	for (let i = 0; i < passabilityMap.data.length; ++i)
 	{
-		// If impassable for land units, set to 0, else to 255.
-		obstructionTiles[i] = (passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
+		obstructionTiles[i] = (passabilityMap.data[i] & obstructionMaskLand) ? this.IMPASSABLE : this.LAND;
 
-		if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 0)
-			obstructionTiles[i] = 200; // if navigable and not walkable (ie basic water), set to 200.
-		else if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 255)
-			obstructionTiles[i] = 201; // navigable and walkable.
+		if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === this.IMPASSABLE)
+			obstructionTiles[i] = this.DEEP_WATER;
+		else if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === this.LAND)
+			obstructionTiles[i] = this.SHALLOW_WATER;
 	}
 
 	this.Map(rawState, "passability", obstructionTiles);
@@ -84,7 +91,7 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 
 	for (let i = 0; i < this.landPassMap.length; ++i)
 	{
-		if (this.map[i] !== 0)
+		if (this.map[i] !== this.IMPASSABLE)
 		{	// any non-painted, non-inacessible area.
 			if (this.landPassMap[i] == 0 && this.floodFill(i, this.regionID, false))
 				this.regionType[this.regionID++] = "land";
@@ -255,7 +262,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		return false;	// already painted.
 
 	let floodFor = "land";
-	if (this.map[startIndex] === 0)
+	if (this.map[startIndex] === this.IMPASSABLE)
 	{
 		this.landPassMap[startIndex] = 1;
 		this.navalPassMap[startIndex] = 1;
@@ -264,14 +271,14 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 
 	if (onWater === true)
 	{
-		if (this.map[startIndex] !== 200 && this.map[startIndex] !== 201)
+		if (this.map[startIndex] !== this.DEEP_WATER && this.map[startIndex] !== this.SHALLOW_WATER)
 		{
 			this.navalPassMap[startIndex] = 1;	// impassable for naval
 			return false;	// do nothing
 		}
 		floodFor = "water";
 	}
-	else if (this.map[startIndex] === 200)
+	else if (this.map[startIndex] === this.DEEP_WATER)
 	{
 		this.landPassMap[startIndex] = 1;	// impassable for land
 		return false;
@@ -304,9 +311,9 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 			let index = newIndex + w*y;
 			if (index < 0)
 				break;
-			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
+			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== this.IMPASSABLE && this.map[index] !== this.DEEP_WATER)
 				loop = true;
-			else if (floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201))
+			else if (floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === this.DEEP_WATER || this.map[index] === this.SHALLOW_WATER))
 				loop = true;
 			else
 				break;
@@ -318,12 +325,12 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		do {
 			index = newIndex + w*y;
 
-			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
+			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== this.IMPASSABLE && this.map[index] !== this.DEEP_WATER)
 			{
 				this.landPassMap[index] = value;
 				this.regionSize[value]++;
 			}
-			else if (floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201))
+			else if (floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === this.DEEP_WATER || this.map[index] === this.SHALLOW_WATER))
 			{
 				this.navalPassMap[index] = value;
 				this.regionSize[value]++;
@@ -333,7 +340,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 
 			if (index%w > 0)
 			{
-				if (floodFor === "land" && this.landPassMap[index -1] === 0 && this.map[index -1] !== 0 && this.map[index -1] !== 200)
+				if (floodFor === "land" && this.landPassMap[index -1] === 0 && this.map[index -1] !== this.IMPASSABLE && this.map[index -1] !== this.DEEP_WATER)
 				{
 					if (!reachLeft)
 					{
@@ -341,7 +348,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 						reachLeft = true;
 					}
 				}
-				else if (floodFor === "water" && this.navalPassMap[index -1] === 0 && (this.map[index -1] === 200 || this.map[index -1] === 201))
+				else if (floodFor === "water" && this.navalPassMap[index -1] === 0 && (this.map[index -1] === this.DEEP_WATER || this.map[index -1] === this.SHALLOW_WATER))
 				{
 					if (!reachLeft)
 					{
@@ -355,7 +362,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 
 			if (index%w < w - 1)
 			{
-				if (floodFor === "land" && this.landPassMap[index +1] === 0 && this.map[index +1] !== 0 && this.map[index +1] !== 200)
+				if (floodFor === "land" && this.landPassMap[index +1] === 0 && this.map[index +1] !== this.IMPASSABLE && this.map[index +1] !== this.DEEP_WATER)
 				{
 					if (!reachRight)
 					{
@@ -363,7 +370,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 						reachRight = true;
 					}
 				}
-				else if (floodFor === "water" && this.navalPassMap[index +1] === 0 && (this.map[index +1] === 200 || this.map[index +1] === 201))
+				else if (floodFor === "water" && this.navalPassMap[index +1] === 0 && (this.map[index +1] === this.DEEP_WATER || this.map[index +1] === this.SHALLOW_WATER))
 				{
 					if (!reachRight)
 					{

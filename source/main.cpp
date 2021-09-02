@@ -103,9 +103,6 @@ that of Atlas depending on commandline parameters.
 
 extern CStrW g_UniqueLogPostfix;
 
-// Marks terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
-bool g_GameRestarted = false;
-
 // Determines the lifetime of the mainloop
 enum ShutdownType
 {
@@ -460,8 +457,6 @@ static void Frame()
 	}
 
 	g_Profiler.Frame();
-
-	g_GameRestarted = false;
 
 	LimitFPS();
 }
