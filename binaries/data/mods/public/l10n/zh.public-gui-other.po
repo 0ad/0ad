@@ -89,9 +89,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-24 16:30+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 08:24+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -440,25 +440,29 @@ msgid "Revealed Map"
 msgstr "显示地图"
 
 #: gui/common/gamedescription.js:400
+msgid "Allied View"
+msgstr ""
+
+#: gui/common/gamedescription.js:405
 msgid "Cheats"
 msgstr "作弊"
 
-#: gui/common/gamedescription.js:403
+#: gui/common/gamedescription.js:408
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "当这场比赛的获胜者确定后，大厅的分数将被调整。"
 
-#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
 msgid "Rated game"
 msgstr "排位赛"
 
-#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "取消"
 
-#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -470,20 +474,20 @@ msgstr "取消"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:425
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "加载"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:438
 msgid "Victorious"
 msgstr "胜利"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:443
 msgid "Defeated"
 msgstr "失败"
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:452
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -737,6 +741,26 @@ msgstr "未知"
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
 msgstr "未知胜利条件"
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab right."
+msgstr ""
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab left."
+msgstr ""
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab down."
+msgstr ""
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab up."
+msgstr ""
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -2338,6 +2362,18 @@ msgstr "批量训练单位的修饰键."
 msgctxt "hotkey metadata"
 msgid "Batch production"
 msgstr "批量生产"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
+msgctxt "hotkey metadata"
+msgid "Call to arms"
+msgstr ""
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -5154,8 +5190,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Yaunā"
-msgstr "内测版25：伊奥尼亚"
+msgid "Alpha XXVI: Z——"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -6038,20 +6074,10 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s:在对话窗口中切换多人游戏大厅。"
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:556
 #, javascript-format
-msgid "Toggle the %(name)s summary tab."
-msgstr "切换 %(name)s 的概要面板。"
-
-#: gui/summary/summary.js:558
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab right."
-msgstr "使用 %(hotkey)s来右移概要面板"
-
-#: gui/summary/summary.js:559
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab left."
-msgstr "使用 %(hotkey)s来左移概要面板"
+msgid "Focus the %(name)s summary tab."
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"

@@ -8,7 +8,7 @@
 # Estevan Borges Martins <tet3e@hotmail.com>, 2021
 # Ezequias de Sousa <ezequiasa.sousa@gmail.com>, 2018
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
-# Jorno Jornade <jfcarrer@hotmail.com>, 2018
+# João Francisco Gauze Carrer <jfcarrer@hotmail.com>, 2018
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
 # Lourenço Gaiteiro <loredal@gmail.com>, 2017
 # Marcelo Augusto Kniss <marcelo.kniss@outlook.com>, 2016
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 08:25+0000\n"
+"Last-Translator: Estevan Borges Martins <tet3e@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,13 +51,13 @@ msgstr "Posição"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):13
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):21
 msgid "Name"
 msgstr "Nome"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
 #: gui/lobby/LobbyPage/GameList.xml:(heading):28
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):24
 msgid "Rating"
 msgstr "Avaliação"
 
@@ -509,30 +509,34 @@ msgstr "Lobby Multijogador"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:178
+#: gui/lobby/LobbyPage/PlayerList.js:196
 msgid "Online"
 msgstr "Conectado"
 
-#: gui/lobby/LobbyPage/PlayerList.js:184
+#: gui/lobby/LobbyPage/PlayerList.js:202
 msgid "Away"
 msgstr "Longe"
 
-#: gui/lobby/LobbyPage/PlayerList.js:190
+#: gui/lobby/LobbyPage/PlayerList.js:208
 msgid "Busy"
 msgstr "Ocupado"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:214
 msgid "Offline"
 msgstr "Desconectado"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:220
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Status"
 msgstr "Status"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
+msgid "Search for Player"
+msgstr "Procurar por jogador"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"

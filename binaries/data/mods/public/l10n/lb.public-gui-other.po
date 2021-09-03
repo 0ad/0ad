@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 08:25+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 08:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Luxembourgish (http://www.transifex.com/wildfire-games/0ad/language/lb/)\n"
 "MIME-Version: 1.0\n"
@@ -361,25 +361,29 @@ msgid "Revealed Map"
 msgstr ""
 
 #: gui/common/gamedescription.js:400
+msgid "Allied View"
+msgstr ""
+
+#: gui/common/gamedescription.js:405
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:403
+#: gui/common/gamedescription.js:408
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
 msgid "Rated game"
 msgstr ""
 
-#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
 msgctxt "game setup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -391,20 +395,20 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:425
 msgctxt "game setup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:438
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:443
 msgid "Defeated"
 msgstr ""
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:452
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr ""
@@ -657,6 +661,26 @@ msgstr ""
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
+msgstr ""
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab right."
+msgstr ""
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab left."
+msgstr ""
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab down."
+msgstr ""
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab up."
 msgstr ""
 
 #: gui/common/tooltips.js:63
@@ -2269,6 +2293,18 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
+msgctxt "hotkey metadata"
+msgid "Call to arms"
 msgstr ""
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
@@ -5086,7 +5122,7 @@ msgid "WILDFIRE GAMES"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Yaunā"
+msgid "Alpha XXVI: Z——"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
@@ -5977,19 +6013,9 @@ msgstr ""
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr ""
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:556
 #, javascript-format
-msgid "Toggle the %(name)s summary tab."
-msgstr ""
-
-#: gui/summary/summary.js:558
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
-
-#: gui/summary/summary.js:559
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab left."
+msgid "Focus the %(name)s summary tab."
 msgstr ""
 
 #: gui/summary/summary.xml:(caption):120

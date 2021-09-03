@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-09-01 19:40+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,7 +249,7 @@ msgstr "Últim supervivent"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Només un jugador pot guanyar la partida. Si els jugadors restants són aliats, la partida continua fins que només en queda un."
+msgstr "Només un jugador pot guanyar la partida. Si els jugadors restants són aliats, la partida continua fins que només en quedi un."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
@@ -282,7 +282,7 @@ msgstr "Mapa aleatori"
 
 #: gui/common/gamedescription.js:287
 msgid "Randomly select a map from the list."
-msgstr "Selecciona aleatòriament un mapa de la llista."
+msgstr "Selecciona un mapa a l'atzar de la llista."
 
 #: gui/common/gamedescription.js:292
 msgid "Map Name"
@@ -377,25 +377,29 @@ msgid "Revealed Map"
 msgstr "Mapa revelat"
 
 #: gui/common/gamedescription.js:400
+msgid "Allied View"
+msgstr ""
+
+#: gui/common/gamedescription.js:405
 msgid "Cheats"
 msgstr "Trucs"
 
-#: gui/common/gamedescription.js:403
+#: gui/common/gamedescription.js:408
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Quan es determini el guanyador d'aquesta partida, s'adaptarà la classificació."
 
-#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
 msgid "Rated game"
 msgstr "Partida classificada"
 
-#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "desactivat"
 
-#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -407,20 +411,20 @@ msgstr "desactivat"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:425
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "activat"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:438
 msgid "Victorious"
 msgstr "Victoriós"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:443
 msgid "Defeated"
 msgstr "Derrotat"
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:452
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -505,11 +509,11 @@ msgstr "La contrasenya no és vàlida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr "No s'ha pogut trobar un port no utilitzat per el protocol d'internet enet del client."
+msgstr "No s'ha pogut trobar un port disponible per al client del protocol STUN enet."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr "No s'ha pogut trobar el final del protocol d'internet."
+msgstr "No s'ha pogut trobar l'extrem del protocol STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -674,6 +678,26 @@ msgstr "Desconegut"
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
 msgstr "Condició de victòria desconeguda"
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab right."
+msgstr ""
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab left."
+msgstr ""
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab down."
+msgstr ""
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab up."
+msgstr ""
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -945,7 +969,7 @@ msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:521
 msgid "Duration"
-msgstr "Duració"
+msgstr "Durada"
 
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
@@ -1115,7 +1139,7 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Recompensa:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
@@ -1133,7 +1157,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
-msgstr ""
+msgstr "Manteniment:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1214,8 +1238,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1042
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Salut"
+msgstr[1] "Salut"
 
 #: gui/common/tooltips.js:1066
 #, javascript-format
@@ -1235,12 +1259,12 @@ msgstr "Abast:"
 #: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1149
 msgid "Classes:"
@@ -2018,7 +2042,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Copia al porta-retalls."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
@@ -2055,7 +2079,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Enganxa des del porta-retalls"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
@@ -2130,7 +2154,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Mostra la pestanya anterior."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
@@ -2285,6 +2309,18 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
+msgctxt "hotkey metadata"
+msgid "Call to arms"
 msgstr ""
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
@@ -4119,7 +4155,7 @@ msgstr "Aigua amb profunditat real"
 
 #: gui/options/options.json[2].options[18].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr "Utilitza la profunditat real de l'aigua en els càlculs de la renderització."
+msgstr "Renderitza la profunditat real de l'aigua."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -4246,11 +4282,11 @@ msgstr "Alt"
 
 #: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Models d'alta qualitat."
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Ajusta la qualitat dels models."
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
@@ -4348,7 +4384,7 @@ msgstr "Rebeu una notificació de so quan algú escrigui el vostre nom."
 
 #: gui/options/options.json[3].options[6].label
 msgid "New player notification in game setup"
-msgstr "Nova notificació d'un jugador a la configuració de la partida"
+msgstr "Notificació de nou jugador a la configuració de la partida"
 
 #: gui/options/options.json[3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -4949,7 +4985,7 @@ msgstr "Carrega una partida desada."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr ""
+msgstr "Campanya nova"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
@@ -5102,7 +5138,7 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Yaunā"
+msgid "Alpha XXVI: Z——"
 msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
@@ -5555,7 +5591,7 @@ msgstr "Filtra les gravacions compatibles"
 
 #: gui/replaymenu/replay_menu.xml:(caption):215
 msgid "Spoiler"
-msgstr "Spoiler"
+msgstr "Revela el final"
 
 #: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Main Menu"
@@ -5809,7 +5845,7 @@ msgstr "Eficiència\ndel bescanvi"
 #: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s intercanviat"
+msgstr "%(resourceFirstWord)s intercanviats"
 
 #: gui/summary/layout.js:192
 msgid "Miscellaneous"
@@ -5876,7 +5912,7 @@ msgstr "Recollits"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr "Compte"
+msgstr "Recompte"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -5993,20 +6029,10 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Mostra/Amaga la sala multijugador en una finestra de diàleg."
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:556
 #, javascript-format
-msgid "Toggle the %(name)s summary tab."
-msgstr "Mostra/Amaga la pestanya de resum %(name)s."
-
-#: gui/summary/summary.js:558
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab right."
-msgstr "Utilitzeu %(hotkey)s per moure una pestanya de resum cap a la dreta."
-
-#: gui/summary/summary.js:559
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab left."
-msgstr "Utilitzeu %(hotkey)s per moure una pestanya de resum cap a l'esquerra."
+msgid "Focus the %(name)s summary tab."
+msgstr ""
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"

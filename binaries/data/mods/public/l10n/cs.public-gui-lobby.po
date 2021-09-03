@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-29 08:57+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 08:25+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -44,13 +44,13 @@ msgstr "Hodnost"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):13
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):21
 msgid "Name"
 msgstr "Jméno"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
 #: gui/lobby/LobbyPage/GameList.xml:(heading):28
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):24
 msgid "Rating"
 msgstr "Hodnocení"
 
@@ -502,30 +502,34 @@ msgstr "Zájmová skupina více hráčů"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:178
+#: gui/lobby/LobbyPage/PlayerList.js:196
 msgid "Online"
 msgstr "Připojen"
 
-#: gui/lobby/LobbyPage/PlayerList.js:184
+#: gui/lobby/LobbyPage/PlayerList.js:202
 msgid "Away"
 msgstr "Pryč"
 
-#: gui/lobby/LobbyPage/PlayerList.js:190
+#: gui/lobby/LobbyPage/PlayerList.js:208
 msgid "Busy"
 msgstr "Zaneprázdněn"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:214
 msgid "Offline"
 msgstr "Nepřipojen"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:220
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Status"
 msgstr "Stav"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
+msgid "Search for Player"
+msgstr "Hledat hráče"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"

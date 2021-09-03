@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-08-25 12:48+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-09-01 21:48+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -53,13 +53,13 @@ msgstr "Rango"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):13
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):21
 msgid "Name"
 msgstr "Nombre"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
 #: gui/lobby/LobbyPage/GameList.xml:(heading):28
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):24
 msgid "Rating"
 msgstr "Puntuación"
 
@@ -511,30 +511,34 @@ msgstr "Sala multijugador"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:178
+#: gui/lobby/LobbyPage/PlayerList.js:196
 msgid "Online"
 msgstr "En línea"
 
-#: gui/lobby/LobbyPage/PlayerList.js:184
+#: gui/lobby/LobbyPage/PlayerList.js:202
 msgid "Away"
 msgstr "Ausente"
 
-#: gui/lobby/LobbyPage/PlayerList.js:190
+#: gui/lobby/LobbyPage/PlayerList.js:208
 msgid "Busy"
 msgstr "Ocupado"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:214
 msgid "Offline"
 msgstr "Desconectado"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:220
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Status"
 msgstr "Estado"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
+msgid "Search for Player"
+msgstr "Buscar jugador"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
@@ -1165,13 +1169,13 @@ msgstr "5. Procese los datos personales de acuerdo con la Política de privacida
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr "Si partes de los términos se consideran ilegales o no se pueden hacer cumplir, el resto de los términos aún se aplicarán (\"separabilidad\")."
+msgstr "Si parte de los términos fueran considerados ilegales o no se pudieran hacer cumplir, el resto de los términos aún se aplicarán ('separabilidad')."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Sala Multijugador Términos de uso[/font]"
+msgstr "[font=\"sans-bold-18\"]Términos de uso de de la sala multijugador de 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
@@ -1210,7 +1214,7 @@ msgstr "5. No violar la privacidad de otros al revelar información de identific
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid " 6. Not incite violence or promote illegal acts."
-msgstr "6. No incites a la violencia ni promuevas actos ilegales."
+msgstr "6. No incitar a la violencia ni promover actos ilegales."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
@@ -1231,19 +1235,19 @@ msgstr "8. No socavar el juego previsto ni ganar intencionalmente ventajas injus
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
-msgstr "9. No enviar spam al servicio y no publicar grandes cantidades de mensajes repetitivos o no deseados."
+msgstr "9. No enviar spam y no publicar de forma insistente múltiples mensajes repetitivos o no deseados."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
-msgstr "10. No utilizar el servicio para promocionar bienes, servicios o productos específicos a menos que Wildfire Games lo autorice."
+msgstr "10. No utilizar el servicio para promocionar bienes, servicios o productos específicos sin la autorización de Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:17
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
-msgstr "Si un moderador considera que tu comportamiento es contradictorio a estos términos, tu cuenta puede ser restringida, suspendida o eliminada."
+msgstr "Si un moderador considera que tu comportamiento contradice estos términos, tu cuenta puede ser restringida, suspendida o eliminada."
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
