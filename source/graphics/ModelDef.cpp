@@ -338,7 +338,8 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 		mdef->m_NumUVsPerVertex = unpacker.UnpackSize();
 	}
 
-	mdef->m_pVertices=new SModelVertex[mdef->m_NumVertices];
+	mdef->m_pVertices = new SModelVertex[mdef->m_NumVertices];
+	mdef->m_UVCoordinates.reserve(mdef->m_NumVertices * mdef->m_NumUVsPerVertex);
 
 	for (size_t i = 0; i < mdef->m_NumVertices; ++i)
 	{
@@ -349,8 +350,7 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 		{
 			float uv[2];
 			unpacker.UnpackRaw(&uv[0], 8);
-			mdef->m_pVertices[i].m_UVs.push_back(uv[0]);
-			mdef->m_pVertices[i].m_UVs.push_back(uv[1]);
+			mdef->m_UVCoordinates.emplace_back(uv[0], uv[1]);
 		}
 
 		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Blend, sizeof(SVertexBlend));

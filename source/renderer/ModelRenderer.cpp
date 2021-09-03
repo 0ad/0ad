@@ -141,13 +141,14 @@ void ModelRenderer::BuildUV(
 		const VertexArrayIterator<float[2]>& UV,
 		int UVset)
 {
-	size_t numVertices = mdef->GetNumVertices();
-	SModelVertex* vertices = mdef->GetVertices();
+	const size_t numVertices = mdef->GetNumVertices();
+	const size_t numberOfUVPerVertex = mdef->GetNumUVsPerVertex();
 
 	for (size_t j = 0; j < numVertices; ++j)
 	{
-		UV[j][0] = vertices[j].m_UVs[UVset * 2];
-		UV[j][1] = 1.0 - vertices[j].m_UVs[UVset * 2 + 1];
+		const CVector2D& uv = mdef->GetUVCoordinates()[j * numberOfUVPerVertex + UVset];
+		UV[j][0] = uv.X;
+		UV[j][1] = 1.0 - uv.Y;
 	}
 }
 
