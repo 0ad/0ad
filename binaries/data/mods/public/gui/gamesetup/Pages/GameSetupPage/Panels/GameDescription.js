@@ -33,6 +33,7 @@ class GameDescription
 		g_GameSettings.triggerDifficulty.watch(update, ["value"]);
 		g_GameSettings.victoryConditions.watch(update, ["active"]);
 		g_GameSettings.wonder.watch(update, ["duration"]);
+		g_GameSettings.mapSize.watch(update, ["size"]);
 	}
 
 	onTabsResize(settingsTabButtonsFrame)
