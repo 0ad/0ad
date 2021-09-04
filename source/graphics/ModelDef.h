@@ -25,6 +25,7 @@
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
+#include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
@@ -33,6 +34,7 @@
 #include <cstring>
 #include <map>
 #include <unordered_map>
+#include <vector>
 
 class CBoneState;
 class CSkeletonAnimDef;
@@ -108,8 +110,6 @@ struct SModelVertex
 	CVector3D m_Coords;
 	// vertex normal
 	CVector3D m_Norm;
-	// vertex UVs
-	std::vector<float> m_UVs;
 	// vertex blend data
 	SVertexBlend m_Blend;
 };
@@ -172,6 +172,8 @@ public:
 
 	// accessor: get number of UV sets
 	size_t GetNumUVsPerVertex() const { return m_NumUVsPerVertex; }
+
+	const std::vector<CVector2D>& GetUVCoordinates() const { return m_UVCoordinates;  }
 
 	// accessor: get face data
 	size_t GetNumFaces() const { return m_NumFaces; }
@@ -256,6 +258,7 @@ public:
 	// vertex data
 	size_t m_NumVertices;
 	SModelVertex* m_pVertices;
+	std::vector<CVector2D> m_UVCoordinates;
 	size_t m_NumUVsPerVertex; // number of UV pairs per vertex
 	// face data
 	size_t m_NumFaces;

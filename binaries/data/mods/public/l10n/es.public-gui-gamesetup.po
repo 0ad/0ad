@@ -74,8 +74,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-08-29 21:07+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 18:37+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -89,41 +89,41 @@ msgstr ""
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:53
+#: gui/gamesettings/attributes/TeamPlacement.js:57
 msgctxt "team placement"
 msgid "Circle"
 msgstr "Círculo"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:54
+#: gui/gamesettings/attributes/TeamPlacement.js:58
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "Los jugadores aliados se agrupan y se situan sobre el terreno en círculo en oposición al resto."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
 msgid "Line"
 msgstr "Línea"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:59
+#: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
 msgstr "Los jugadores aliados se situan en línea."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "Grupo aleatorio"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:64
+#: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "Los jugadores aliados serán agrupados. Si no es posible se situarán aleatoriamente sobre el terreno."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "Bastión"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:69
+#: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
 msgstr "Los jugadores aliados son agrupados en una ubicación aleatoria del escenario."
 
@@ -181,12 +181,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Jugador"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Tipo de juego"
@@ -222,7 +222,7 @@ msgstr "Aleatorio"
 msgid "Picks one civilization at random when the game starts."
 msgstr "La civilización se escoje al azar al comenzar la partida."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:44
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
 msgstr "Elige un color."
 
@@ -263,6 +263,14 @@ msgstr "Explorar escenarios"
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Pulsa %(hotkey)s para explorar los escenarios disponibles."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
+msgid "Allied View"
+msgstr "Vista aliada"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
+msgid "Toggle allied view (see what your allies see)."
+msgstr "Activa la vista aliada (ver lo que los aliados ven)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -431,11 +439,11 @@ msgstr "Paisaje"
 msgid "Select one of the landscapes of this map."
 msgstr "Selecciona uno de los paisajes de este mapa."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
 msgstr "Filtro de mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
 msgstr "Elige un filtro de escenario."
 
@@ -443,20 +451,20 @@ msgstr "Elige un filtro de escenario."
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:141
 msgid "Select Map"
 msgstr "Elige un mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
 msgstr "Elige un escenario de juego."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al azar"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:151
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
 msgstr "Elige uno de los mapas al azar."
 
@@ -803,20 +811,10 @@ msgstr "Los trucos están activados."
 msgid "Rated game."
 msgstr "Partida clasificatoria."
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
 msgstr "Haz clic para cambiar a la pestaña de ajustes de %(name)s."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
-#, javascript-format
-msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "Pulsa %(hotkey)s para moverte a la siguiente pestaña de ajustes."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
-#, javascript-format
-msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "Pulsa %(hotkey)s para moverte a la pestaña de ajustes anterior. "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -1000,7 +998,7 @@ msgstr "%(percentage)s%%"
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading
 #. screen
-#: gui/loading/TipDisplay.js:52
+#: gui/loading/TipDisplay.js:62
 #, javascript-format
 msgid "• %(tiptext)s"
 msgstr "• %(tiptext)s"
@@ -1032,7 +1030,7 @@ msgstr "«Ella \\[Helena] trajo a Ilium su dote: la destrucción.» \\n— Esqui
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr "«En el corazón de cada tirano se encuentra un mismo veneno, que no puede confiar en un amigo.» \\n— Esquilo («Prometeo encadenado», 224–225)"
+msgstr "«En el corazón de cada tirano brota el mismo veneno: no poder confiar en un amigo.» \\n— Esquilo («Prometeo encadenado», 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -1187,21 +1185,21 @@ msgid ""
 "covetously.” \\n— Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "“Anacharsis”, sec. 5)"
-msgstr "«El ágora es un lugar establecido para que los hombres se engañen los unos a otros y se comporten con codicia.» \\n—  Anacarsis, un filósofo escita que viajó a Grecia (Diógenes Laercio, «Las vidas y opiniones de filósofos eminentes», «Anarquía», sec. 5)"
+msgstr "«El ágora es un lugar establecido para que los hombres se engañen los unos a otros y se comporten con codicia.» \\n— Anacarsis, un filósofo escita que viajó a Grecia (Diógenes Laercio, «Vidas, opiniones y sentencias de los filósofos más ilustres», «Anacarsis», sec. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "“It was not by taking care of the fields, but of ourselves, that we acquired"
 " those fields.” \\n— Anaxandridas II of Sparta (Plutarch, “Moralia”, "
 "“Sayings of Spartans”, 217a)"
-msgstr "«No fue por cuidar los campos, sino de nosotros, aquellos quienes adquirimos esos campos.» \\n— Anaxandridas II de Esparta (Plutarco, «Moralia», «Dichos de Espartanos», 217a)"
+msgstr "«No fue por cuidar los campos, sino de nosotros, los que adquirimos esos campos.» \\n— Anaxandridas II de Esparta (Plutarco, «Moralia», «Dichos de espartanos», 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "“States are doomed when they are unable to distinguish good men from bad.” "
 "\\n— Antisthenes (Diogenes Laertius, “The Lives and Opinions of Eminent "
 "Philosophers”, “Antisthenes”, sec. 5)"
-msgstr "«Los Estados están condenados cuando no son capaces de distinguir a los hombres buenos de los malos.» \\n— Antístenes (Diógenes Laertius, «Las vidas y opiniones de filósofos eminentes», «Antístenes», sec. 5)"
+msgstr "«Los estados están condenados cuando no son capaces de distinguir a los hombres buenos de los malos.» \\n— Antístenes (Diógenes Laercio, «Vidas, opiniones y sentencias de los filósofos más ilustres», «Antístenes», sec. 5)"
 
 #: gui/text/quotes.txt:31
 msgid ""
@@ -1252,7 +1250,7 @@ msgid ""
 "“I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.” \\n— Aristotle (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Aristotle”, sec. 20)"
-msgstr "«Lo conseguí a través de la filosofía: realizo sin ordenes lo que otros hacen solo por miedo a la ley.» \\n— Aristóteles (Diogenes Laertius, «Vidas, opiniones y sentencias de los filósofos más ilustres», «Aristóteles», sec. 20)"
+msgstr "«Lo conseguí a través de la filosofía: realizo sin ordenes lo que otros hacen solo por miedo a la ley.» \\n— Aristóteles (Diógenes Laercio, «Vidas, opiniones y sentencias de los filósofos más ilustres», «Aristóteles», sec. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -1288,14 +1286,14 @@ msgid ""
 "“Let every man remind their descendants that they also are soldiers who must"
 " not desert the ranks of their ancestors, or retreat out of cowardice.” \\n—"
 " Aspasia (Plato, “Menexenus”, 246b)"
-msgstr ""
+msgstr "«Qué todo hombre recuerde a sus descendientes que ellos también son soldados que no deben desertar de las filas de sus antecesores, o caer presas de la cobardía.» \\n— Aspasia (Platón, «Menéxeno», 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "“Quintilius Varus, give me back my legions!” \\n— Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "“Divus Augustus”, sec. 23)"
-msgstr ""
+msgstr "«Quintilio Varo, ¡Devuélveme mis legiones!» \\n— Augusto, tras sufrir la aniquilación de tres legiones en la batalla del bosque de Teutoburgo (Suetonio, «Divus Augustus», sec. 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -1303,7 +1301,7 @@ msgid ""
 " an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.” \\n— Augustus, in his autobiography (“Res Gestae Divi"
 " Augusti”, sec. 1)"
-msgstr ""
+msgstr "«En mi decimonoveno año, bajo mi propia iniciativa y con mis propios medios, levanté un ejercito con el que liberé al estado, el cual estaba oprimido por la tiranía de una parte.» \\n— Augusto, en su autobiografía («Res gestae Divi Augusti», sec. 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -1312,7 +1310,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr ""
+msgstr "«Guerras, civiles y contra extranjeros, he librado por todo el mundo, tanto por mar como por tierra, y en las que resulté victorioso liberé a todos los ciudadanos que pidieron perdón. Preferí salvar antes que destruir a aquellas naciones extranjeras que podían ser perdonadas.»  \\n— Augusto, en su autobiografía («Res gestae Divi Augusti» sec. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1327,7 +1325,7 @@ msgid ""
 "“How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.” \\n— Bion of Borysthenes (Cicero, "
 "“Tusculan Disputations”, III. 26)"
-msgstr ""
+msgstr "«Que estúpido fue para el rey arrancarse su cabello en sufrimiento, como si la calvicie fuera su cura para el dolor.» \\n— Bión de Borístenes (Cicerón, «Disputaciones tusculanas», III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
@@ -1352,7 +1350,7 @@ msgid ""
 "they make a wasteland and call it peace.” \\n— Calgacus, Caledonian "
 "chieftain in a speech before the Battle of Mons Graupius (Tacitus, "
 "“Agricola”, 30)"
-msgstr ""
+msgstr "«Robo, masacre, saqueo, ellos \\[los romanos], que se arrogan el nombre de imperio, dejan las tierras baldías y lo llaman paz.» \\n— Calgaco, cabecilla caledionio en su discurso antes de la batalla del monte Graupius (Tácito, «Agricola», 30)"
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
@@ -1427,7 +1425,7 @@ msgstr ""
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
-msgstr ""
+msgstr "«Deseando poco, un hombre pobre se hace rico.» \\n— Demócrito (fragmento)"
 
 #: gui/text/quotes.txt:62
 msgid ""
@@ -1451,7 +1449,7 @@ msgstr ""
 msgid ""
 "“Delivery, delivery, delivery.” \\n— Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, “De Oratore”, 3.213)"
-msgstr ""
+msgstr "«Entrega, entrega y entrega» \\n— Demóstenes, al ser preguntado sobre cuales eran los tres elementos más importantes de la retórica (Cicerón, «De Oratore», 3.213) "
 
 #: gui/text/quotes.txt:66
 msgid ""
@@ -1480,76 +1478,76 @@ msgid ""
 "there was added to the definition: having broad nails.” \\n— Diogenes "
 "Laertius (“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec."
 " 40)"
-msgstr ""
+msgstr "«Platón había definido al hombre como un animal, bípedo y sin plumas, y fue aplaudido. Diógenes \\[de Sinope] desplumó una gallina y la mostró en la sala de conferencias diciendo: Aquí está el hombre de Platón. En consecuencia se añadió a la definición: y tener uñas anchas.» \\n— Diógenes Laercio («Vidas, opiniones y sentencias de los filósofos más ilustres», «Diógenes», sec. 40)"
 
 #: gui/text/quotes.txt:69
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
-msgstr ""
+msgstr "«Soy un ciudadano del mundo.» \\n— Diógenes de Sinope (Diógenes Laercio, «Vidas, opiniones y sentencias de los filósofos más ilustres», «Diógenes», sec. 63)"
 
 #: gui/text/quotes.txt:70
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
-msgstr ""
+msgstr "«No es que yo esté loco, es que mi cabeza funciona de forma distinta a la tuya.» \\n— Diógenes de Sinope (Estobeo, «Florilegio», 51)"
 
 #: gui/text/quotes.txt:71
 msgid ""
 "“Yes, stand a little out of my sunshine.” \\n— Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "“Parallel Lives”, “Alexander”, sec. 14)"
-msgstr ""
+msgstr "«Sí, apártate un poco de mi luz solar.» \\n— Diógenes de Sinope a Alejadro Magno, que había preguntado si podría ayudar de algún modo (Plutarco, «Vidas Paralelas», «Alejandro», sec. 14)"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "“The victor is not victorious if the vanquished does not consider himself "
 "so.” \\n— Ennius (“Annales”, fragment 31.493)"
-msgstr ""
+msgstr "«El vencedor no es victorioso si el vencido no se considera así.» \\n— Ennio («Annales», fragmento 31.493)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
-msgstr ""
+msgstr "«Forastero, ve y dile a los espartanos que aquí estamos, obedientes a sus leyes.» \\n— Epitafio en las Termópilas de Leónidas y sus hombres (Herodoto, «Las Historias», VII. 228)"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "“A coward turns away, but a brave man's choice is danger.” \\n— Euripides "
 "(“Iphigenia in Tauris”)"
-msgstr ""
+msgstr "«El cobarde se aparta, el valiente elige el peligro.» \\n— Eurípides («Ifigenia entre los tauros»)"
 
 #: gui/text/quotes.txt:75
 msgid ""
 "“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
 "Euripides (“Iphigenia in Tauris”)"
-msgstr ""
+msgstr "«Los hombres valientes se vuelven más audaces con las ordalías, pero los cobardes no consiguen nada.» \\n— Eurípides («Ifigenia entre los tauros»)"
 
 #: gui/text/quotes.txt:76
 msgid ""
 "“Cowards do not count in battle; they are there, but not in it.” \\n— "
 "Euripides (“Meleager”)"
-msgstr ""
+msgstr "«Los cobardes no cuentan en la batalla; están allí, pero no en ella.» \\n— Eurípides («Meleagro»)"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "“Chance fights ever on the side of the prudent.” \\n— Euripides "
 "(“Pirithous”)"
-msgstr ""
+msgstr "«La suerte lucha siempre en el lado de los prudentes.» \\n— Eurípides («Pirítoo»)"
 
 #: gui/text/quotes.txt:78
 msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
-msgstr ""
+msgstr "«Volved con el escudo, o sobre él.» \\n— Adiós de las mujeres espartanas a sus guerreros, lo que implica que los cobardes arrojarían su escudo en la batalla para huir (Plutarco, «Moralia», «Dichos de las mujeres espartanas», 241f)"
 
 #: gui/text/quotes.txt:79
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
-msgstr ""
+msgstr "«Vine, vi, vencí.» \\n— César, tras vencer a Farnaces II de Ponto en el primer asalto (Plutarco, «Vidas Paralelas», «César», sec. 50)"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -1561,7 +1559,7 @@ msgstr "«Los hombres creen fervientemente en lo que desean.» \\n— Caesar (�
 msgid ""
 "“It is not the well-fed long-haired man I fear, but the pale and the hungry "
 "looking.” \\n— Caesar (Plutarch, “Parallel Lives”, “Antony”, sec. 11)"
-msgstr ""
+msgstr "«No es al hombre de cabello largo y bien alimentado al que temo, sino al pálido y hambriento.» \\n— César (Plutarco, “Vidas Paralelas”, “Antonio”, sec. 11)"
 
 #: gui/text/quotes.txt:82
 msgid ""
@@ -1717,7 +1715,7 @@ msgid ""
 "the Athenians!” \\n— Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I, the Persian king (“The "
 "Histories”, V. 105)"
-msgstr ""
+msgstr "«\\[El rey Darío] preguntó donde estaban los atenienses. Al ser informado pidió su arco, y colocando una flecha en la cuerda, disparó hacia el cielo, diciendo mientras soltaba la cuerda: ¡Concédeme, Zeus, mi venganza sobre los atenienses!» \\n— Herodoto, narrando cómo el apoyo de Atenas a la revuelta jónica desató la ira de Darío I, el rey de Persia («Las Historias», V. 105)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1731,7 +1729,7 @@ msgstr ""
 msgid ""
 "“Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
-msgstr ""
+msgstr "«La Grecia conquistada conquistó al bárbaro conquistador e introdujo las artes en el Lacio agreste.» \\n— Horacio («Epístolas», epístola I,  156–157)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -2246,13 +2244,13 @@ msgid ""
 "“The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.” \\n— Thucydides (“History of the Peloponnesian"
 " War”, I. 23.6)"
-msgstr ""
+msgstr "«El crecimiento del poder de Atenas y la alarma que esto causó en Esparta hicieron inevitable la guerra.» \\n— Tucídides («Historia de la guerra del Peloponeso», I. 23.6)"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "“War is a matter not so much of arms as of money.” \\n— Thucydides (“History"
 " of the Peloponnesian War”, I. 83.2)"
-msgstr ""
+msgstr "«La guerra no es tanto una cuestión de armas como de dinero.» \\n— Tucídides («Historia de la guerra del Peloponeso», I. 83.2)"
 
 #: gui/text/quotes.txt:177
 msgid ""
@@ -2324,7 +2322,7 @@ msgid ""
 "“Homer and Hesiod ascribed to their Gods all things that are a disgrace "
 "among mortals: stealing, adultery, deceiving one another.” \\n— Xenophanes "
 "(fragment 11)"
-msgstr ""
+msgstr "«Homero y Hesíodo atribuyen a sus dioses todas las cosas que son una desgracia para los mortales: robos, adulterio, engañarse unos a otros.» \\n— Jenofonte (fragmento 11)"
 
 #: gui/text/quotes.txt:186
 msgid ""
@@ -2332,13 +2330,13 @@ msgid ""
 "of art as men do, horses would paint the forms of the gods like horses, and "
 "oxen like oxen, and make their God's bodies each in their own image.” \\n— "
 "Xenophanes (fragment 15)"
-msgstr ""
+msgstr "«Si bueyes, caballos y leones tuvieran manos, y pudieran pintar, y producir obras de arte como hacen los hombres, los caballos pintarían las siluetas de los dioses como caballos y los bueyes como bueyes, y cada uno plasmaría los cuerpos de los dioses a su propia imagen.» \\n— Jenofonte (fragmento 15)"
 
 #: gui/text/quotes.txt:187
 msgid ""
 "“The Ethiopians make their gods black and snub-nosed, the Thracians say "
 "theirs have blue eyes and red hair.” \\n— Xenophanes (fragment 16)"
-msgstr ""
+msgstr "«Los etíopes hacen a sus dioses negros y con nariz chata, los tracios dicen que tienen ojos azules y el cabello rojo.» \\n— Jenofonte (fragmento 16)"
 
 #: gui/text/quotes.txt:188
 msgid ""
@@ -2346,14 +2344,14 @@ msgid ""
 "are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?” \\n— Xenophanes, likely referring to a punitive "
 "expedition against Greek cities in Ionia (fragment 17)"
-msgstr ""
+msgstr "«He aquí lo que preguntar en invierno alrededor del fuego \\[...]: ¿Quién eres, amigo? ¿Cuál es tu tierra? ¿Y cuántos años tenías cuando los medos \\[persas] vinieron?» \\n— Jenofonte, probablemente refiriéndose a una expedición punitiva contra ciudades griegas en Jonia (fragmento 17)"
 
 #: gui/text/quotes.txt:189
 msgid ""
 "“A prudent commander will never take risks unnecessarily, except when it is "
 "clear beforehand that he will have the advantage.” \\n— Xenophon (“The "
 "Cavalry General”, 4.13)"
-msgstr ""
+msgstr "«Un comandante prudente nunca tomará riesgos innecesarios, excepto cuando de antemano esté claro que tendrá ventaja.» \\n— Jenofonte («El jefe de la caballería», 4.13)"
 
 #: gui/text/quotes.txt:190
 msgid ""
@@ -2368,7 +2366,7 @@ msgid ""
 " force appear large and a large one small, to appear absent when close at "
 "hand, and within striking distance when a long way off.” \\n— Xenophon (“The"
 " Cavalry General”, sec. 5)"
-msgstr ""
+msgstr "«Debe ser creativo, estar preparado para aprovechar todas las circunstancias, hacer que una pequeña fuerza parezca grande y una grande pequeña, parecer distante cuando esté al alcance, y tan cerca como para golpear cuando se encuentre muy lejos.» \\n— Jenofonte («El jefe de la caballería», sec. 5)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2390,7 +2388,7 @@ msgstr ""
 msgid ""
 "“Battles are decided more by the morale of men than their physical "
 "strength.” \\n— Xenophon (“The Education of Cyrus”, 3.3.20)"
-msgstr ""
+msgstr "«Las batallas se deciden más por la moral de los hombres que por su fuerza física.» \\n— Jenofonte («La educación de Ciro», 3.3.20)"
 
 #: gui/text/quotes.txt:195
 msgid ""
@@ -2428,4 +2426,4 @@ msgstr "«¡Mis hombres se han convertido en mujeres y mis mujeres en hombres!»
 msgid ""
 "“For a thinking man is where Wisdom is at home.” \\n— Zoroaster, founder of "
 "the Zoroastrian religion (“Ahunuvaiti Gatha”, yasna 30.9)"
-msgstr ""
+msgstr "«En el hombre racional es donde la sabiduría encuentra su casa.» \\n— Zoroastro (Zaratustra), fundador del zoroastrismo («Ahunuvaiti Gatha», yasna 30.9)"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-08-27 02:05+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-09-02 22:37+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -365,25 +365,29 @@ msgid "Revealed Map"
 msgstr "Mapa reveláu"
 
 #: gui/common/gamedescription.js:400
+msgid "Allied View"
+msgstr "Vista aliada"
+
+#: gui/common/gamedescription.js:405
 msgid "Cheats"
 msgstr "Trampes"
 
-#: gui/common/gamedescription.js:403
+#: gui/common/gamedescription.js:408
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Al ganar daquién l'alcuentru, anuévase'l marcador n'antepar."
 
-#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
 msgid "Rated game"
 msgstr "Partida clasificada"
 
-#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "desactiváronse"
 
-#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -395,20 +399,20 @@ msgstr "desactiváronse"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:425
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "activáronse"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:438
 msgid "Victorious"
 msgstr "Trunfante"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:443
 msgid "Defeated"
 msgstr "Vencíu/-ida"
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:452
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -662,6 +666,26 @@ msgstr "Desconozse"
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
 msgstr "Desconozse la condición de victoria"
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab right."
+msgstr "Desplaza abaxo o usa %(hotkey)s pa mover les llingüetes a mandrecha."
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab left."
+msgstr "Desplaza arriba o usa %(hotkey)s pa mover les llingüetes a manzorga."
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab down."
+msgstr "Desplaza abaxo o usa %(hotkey)s pa mover les llingüetes abaxo."
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab up."
+msgstr "Desplaza arriba o usa %(hotkey)s pa mover les llingüetes arriba."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -2275,6 +2299,18 @@ msgctxt "hotkey metadata"
 msgid "Batch production"
 msgstr "Allistamientu coleutivu"
 
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr "Unviar les unidaes esbillaes a acometer el sitiu señaláu en dexando los sos recursos."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
+msgctxt "hotkey metadata"
+msgid "Call to arms"
+msgstr "Llamar a les armes"
+
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
@@ -2369,12 +2405,12 @@ msgstr "Entrocar en masa"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr "Facer apurrir una montonera de recursos."
+msgstr "Facer tribuyir una montonera de recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr "Apurrir en masa"
+msgstr "Tribuyir en masa"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
@@ -4758,13 +4794,13 @@ msgstr "Amosar un avisu si daquién t'ataca."
 
 #: gui/options/options.json[6].options[5].label
 msgid "Chat notification tribute"
-msgstr "Avisu d'apurrida"
+msgstr "Avisu de tributu"
 
 #: gui/options/options.json[6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Amosar un avisu si dalgún miembru del equipu apurre recursos a otru al tar los equipos fixos y toles apurríes en mou espeutador."
+msgstr "Amosar un avisu si daqué aliáu tribúi recursos a otru al tar los equipos fixos y tolos tributos en mou espeutador."
 
 #: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
@@ -5090,8 +5126,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Yaunā"
-msgstr "Alfa XXV: Yaunā"
+msgid "Alpha XXVI: Z——"
+msgstr "Alfa XXVI: Z——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5755,14 +5791,14 @@ msgstr "Recursos"
 
 #: gui/summary/layout.js:121
 msgid "Tributes"
-msgstr "Apurríes"
+msgstr "Tributos"
 
 #: gui/summary/layout.js:122
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr "Apurríes\n(%(sent)s/%(received)s)"
+msgstr "Tributos\n(%(sent)s/%(received)s)"
 
 #: gui/summary/layout.js:130
 msgid "Treasures collected"
@@ -5981,20 +6017,10 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Alternar el ventanu del antepar."
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:556
 #, javascript-format
-msgid "Toggle the %(name)s summary tab."
-msgstr "Enseña'l resume %(name)s."
-
-#: gui/summary/summary.js:558
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab right."
-msgstr "Usa %(hotkey)s pa mover un resume a mandrecha."
-
-#: gui/summary/summary.js:559
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab left."
-msgstr "Usa %(hotkey)s pa mover un resume a manzorga."
+msgid "Focus the %(name)s summary tab."
+msgstr "Enfocar el resume «%(name)s»."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"

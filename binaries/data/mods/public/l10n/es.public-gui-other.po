@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-08-29 21:24+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-09-01 22:02+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -402,25 +402,29 @@ msgid "Revealed Map"
 msgstr "Escenario revelado"
 
 #: gui/common/gamedescription.js:400
+msgid "Allied View"
+msgstr "Vista aliada"
+
+#: gui/common/gamedescription.js:405
 msgid "Cheats"
 msgstr "Trucos"
 
-#: gui/common/gamedescription.js:403
+#: gui/common/gamedescription.js:408
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Cuando aparezca el ganador de la partida se adaptará la clasificación general de la Sala multijugador."
 
-#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
 msgid "Rated game"
 msgstr "Partida clasificatoria"
 
-#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "no"
 
-#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -432,20 +436,20 @@ msgstr "no"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:425
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "sí"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:438
 msgid "Victorious"
 msgstr "Victoria"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:443
 msgid "Defeated"
 msgstr "Derrotado"
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:452
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -699,6 +703,26 @@ msgstr "Desconocido"
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
 msgstr "Condición de victoria desconocida"
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab right."
+msgstr "Desplázate hacia abajo o utiliza %(hotkey)s para moverte a la pestaña derecha. "
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab left."
+msgstr "Desplázate hacia arriba o utiliza %(hotkey)s para moverte a la pestaña izquierda. "
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab down."
+msgstr "Desplázate hacia abajo o utiliza %(hotkey)s para moverte a la pestaña inferior. "
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab up."
+msgstr "Desplázate hacia arriba o utiliza %(hotkey)s para moverte a la pestaña superior. "
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -1670,7 +1694,7 @@ msgstr "Cámara"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr "Desplazar hacia atrás o gira hacia abajo."
+msgstr "Desplaza hacia atrás o gira hacia abajo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
@@ -1780,7 +1804,7 @@ msgstr "Centrar en la última notificación de ataque"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr "Desplazar o girar a la izquierda."
+msgstr "Desplaza o gira a la izquierda."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
@@ -1820,7 +1844,7 @@ msgstr "Restablecer cámara"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr "Desplazar o rotar a la derecha."
+msgstr "Desplaza o rota a la derecha."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
@@ -2311,6 +2335,18 @@ msgstr "Combinación para reclutar unidades por lotes."
 msgctxt "hotkey metadata"
 msgid "Batch production"
 msgstr "Producción en grupo"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr "Envía las unidades seleccionadas en actitud de combate al lugar especificado tras depositar los recursos recolectados."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
+msgctxt "hotkey metadata"
+msgid "Call to arms"
+msgstr "Llamar a las armas"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -4262,7 +4298,7 @@ msgstr "Medio"
 
 #: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Calidad media y rendimiento medio."
 
 #: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
@@ -4287,7 +4323,7 @@ msgstr "Ninguna"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr ""
+msgstr "Todas las entidades tendrán la misma apariencia."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
@@ -4295,7 +4331,7 @@ msgstr "Limitado"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "Las entidades serán menos diversas."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4303,7 +4339,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Las entidades aparecen con una aleatoriedad normal."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
@@ -4559,7 +4595,7 @@ msgstr "Retardo máximo para observadores"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Cuando se es anfitrión, se pausa el juego si los observadores tienen un retraso mayor que el indicado. Con -1 se ignorará a los observadores."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -4683,7 +4719,7 @@ msgstr "Ajustar a los bordes"
 
 #: gui/options/options.json[6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr "Atajo para habilitar el solapamiento"
+msgstr "Pulsar para acoplar"
 
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
@@ -4692,7 +4728,7 @@ msgstr "Las nuevas estructuras son alineadas con las cercanas presionando la tec
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr "Atajo para deshabilitar el solapamiento"
+msgstr "Pulsar para no acoplar"
 
 #: gui/options/options.json[6].options[19].list[1].tooltip
 msgid ""
@@ -4702,7 +4738,7 @@ msgstr "Las nuevas estructuras son alineadas con las cercanas a menos que se pul
 
 #: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr "Esta opción permite alinear nuevas estructuras con las adyacentes."
+msgstr "Esta opción permite decidir como se alinean las nuevas estructuras con las adyacentes."
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
@@ -4756,7 +4792,7 @@ msgstr "Otras órdenes desharán las formaciones existentes."
 
 #: gui/options/options.json[6].options[21].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Mantener siempre"
 
 #: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -5127,8 +5163,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Yaunā"
-msgstr "Alpha XXV: Yaunā"
+msgid "Alpha XXVI: Z——"
+msgstr "Alpha XXVI: Z——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5154,7 +5190,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Abre el chat IRC de 0 A.D. en tu navegador (#0ad en webchat.quakenet.org). Está gestionado por voluntarios que realizan todo tipo de tareas. Puede llevar un tiempo que tu pregunta sea respondida. Alternativamente puedes acceder al foro (ver página web)."
+msgstr "Abre el chat IRC de 0 A.D. en tu navegador (#0ad en webchat.quakenet.org). Está gestionado por voluntarios que realizan multiples tareas. Puede llevar un tiempo que tu pregunta sea respondida. Alternativamente puedes acceder al foro (ver página web)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5658,7 +5694,7 @@ msgstr "[imgleft=\"iconMap\"]0 A.D. es software libre y puedes participar en su 
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr "Si quieres colaborar con los graficos, sonido, puesta en escena o programación, puedes unirte a nuestro foro oficial. "
+msgstr "Si quieres colaborar con los gráficos, sonido, puesta en escena o la programación, puedes unirte a nuestro foro oficial. "
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -6018,20 +6054,10 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Muestra la sala multijugador en una ventana de diálogo."
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:556
 #, javascript-format
-msgid "Toggle the %(name)s summary tab."
-msgstr "Mostrar la pestaña de resumen %(name)s."
-
-#: gui/summary/summary.js:558
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab right."
-msgstr "Pulsa %(hotkey)s para mover una pestaña de resumen a la izquierda."
-
-#: gui/summary/summary.js:559
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab left."
-msgstr "Pulsa %(hotkey)s para mover una pestaña de resumen a la derecha."
+msgid "Focus the %(name)s summary tab."
+msgstr "Muestra la pestaña de resumen de %(name)s."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6087,7 +6113,7 @@ msgstr "Se puede construir en partes neutrales del mapa. Útil para construir un
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Construye arietes y recluta ciudadanos-soldado."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6105,7 +6131,7 @@ msgstr "Activa la opción de cola automática para el adiestramiento autónomo d
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Funciona mientras tengas recursos suficientes, en caso contrario se cancela."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6115,7 +6141,7 @@ msgstr "CUARTELES"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Recluta todo tipo de ciudadanos-soldado. Algunas civilizaciones pueden desbloquear el reclutamiento de unidades de élite también."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6139,21 +6165,21 @@ msgstr "BIOMAS"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Los biomas pueden utilizarse en algunos escenarios aleatorios y determinan la región del mundo en la que se situarían."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Influyen en la apariencia de los escenarios y también en la cantidad de recursos que hay disponibles."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
-msgstr "MERCENARIO"
+msgstr "PERRO DE COMBATE"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "Un perro que los bretones pueden adiestrar en el establo de la caballería."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6161,7 +6187,7 @@ msgstr "Tiene poca salud, pero es rápido y atacará ferozmente al enemigo."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Utilizalos para acompañar a tu ejercito en incursiones rápidas."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6185,19 +6211,19 @@ msgstr "Usa los Lanceros como infantería pesada contra la Caballería. Usa la C
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr ""
+msgstr "ASTILLERO CARTAGINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Muelle cartaginés especializado en la construcción de buques de guerra."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Guarnece barcos dentro para repararlos lentamente."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Más resistente que otros muelles, pero también más caro."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6224,11 +6250,11 @@ msgstr "ESTABLO"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Recluta unidades de caballería y permite investigar tecnología relacionada."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "Las unidades ganan experiencia mientras están guarnecidas en la estructura."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6256,17 +6282,17 @@ msgstr "MURALLAS"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Fuertes muros de piedra que sirven para proteger tu ciudad."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Cuando las torretas esten ocupadas por tu infantería de tiro, dispondrán de armadura adicional y podrán disparar al enemigo."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Vulnerable a las armas de asedio como catapultas, arietes y elefantes de combate."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6298,17 +6324,17 @@ msgstr "FORMACIÓN PREDETERMINADA"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr ""
+msgstr "Haz clic derecho sobre un icono para seleccionar la formación predeterminada: las unidades que tienen ordenes de caminar o patrullar la utilizarán automáticamente."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr ""
+msgstr "Puede desactivarse eligiendo «sin formación» por defecto."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr ""
+msgstr "La opción «Control de formación» te permite decidir si se mantiene o deshace la formación cuando se reciban ordenes distintas a caminar o patruyar."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -6316,12 +6342,12 @@ msgstr "TORRES DEFENSIVAS"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Fuertes torres de vigilancia que te ayudarán a defender tu posición."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Tienen un amplio campo de visión y dispararán flechas al divisar al enemigo."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
@@ -6519,13 +6545,13 @@ msgstr "Estructuras especiales disponibles para los cusitas."
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "Las pirámides pequeñas mejoran la velocidad de recolección y extracción de los trabajadores a su alrededor."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "Las pirámides grandes incrementan la capacidad militar de los soldados a su alrededor."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6622,13 +6648,13 @@ msgstr "CONTADOR DE RECURSOS"
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "El panel de contabilización de recursos muestra cuantos recursos tienes en cada momento."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr ""
+msgstr "El número inferior muestra cuantos ciudadanos están recolectando."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6777,7 +6803,7 @@ msgstr "TEATRO"
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Estructuras específicas de las civilizaciones helenas que incrementan el tamaño de tu territorio mientras las tengas bajo tu control."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
@@ -6786,13 +6812,13 @@ msgstr "TESOROS"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Cofres recolectables, recursos dispersos sobre el terreno y restos de naufragios en la orilla."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Proporcionan un aumento de recursos, así que estate atento cuando aparezcan mientras exploras."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -6812,7 +6838,7 @@ msgstr "Garrison troops aboard to increase fire power."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr "ELEFANTES DE GUERRA"
+msgstr "ELEFANTES DE COMBATE"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
@@ -6826,7 +6852,7 @@ msgstr "High Food and Metal cost, but very powerful."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and Seleucids."
+msgstr "Disponible para: cartagineses, cusitas, mauryas, persas, ptolomeos, y seleucidas."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

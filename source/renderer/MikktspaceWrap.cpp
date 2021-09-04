@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,11 +81,12 @@ void MikkTSpace::GetTexCoord(const SMikkTSpaceContext* pContext,
 {
 	const MikkTSpace* userData = GetUserDataFromContext(pContext);
 	const SModelFace& face = userData->m_Model->GetFaces()[iFace];
-	const SModelVertex& v = userData->m_Model->GetVertices()[face.m_Verts[iVert]];
+	const size_t numberOfUVPerVertex = userData->m_Model->GetNumUVsPerVertex();
 
 	// The tangents are calculated according to the 'default' UV set
-	fvTexcOut[0] = v.m_UVs[0];
-	fvTexcOut[1] = 1.0 - v.m_UVs[1];
+	const CVector2D& uv = userData->m_Model->GetUVCoordinates()[face.m_Verts[iVert] * numberOfUVPerVertex];
+	fvTexcOut[0] = uv.X;
+	fvTexcOut[1] = 1.0 - uv.Y;
 }
 
 
@@ -121,11 +122,12 @@ void MikkTSpace::SetTSpace(const SMikkTSpaceContext* pContext, const float* fvTa
 		}
 	}
 
-	size_t numUVsPerVertex = userData->m_Model->GetNumUVsPerVertex();
-	for (size_t UVset = 0; UVset < numUVsPerVertex; ++UVset)
+	const size_t numberOfUVPerVertex = userData->m_Model->GetNumUVsPerVertex();
+	for (size_t UVset = 0; UVset < numberOfUVPerVertex; ++UVset)
 	{
-		userData->m_NewVertices.push_back(vertex.m_UVs[UVset * 2]);
-		userData->m_NewVertices.push_back(1.f - vertex.m_UVs[UVset * 2 + 1]);
+		const CVector2D& uv = userData->m_Model->GetUVCoordinates()[face.m_Verts[iVert] * numberOfUVPerVertex + UVset];
+		userData->m_NewVertices.push_back(uv.X);
+		userData->m_NewVertices.push_back(1.f - uv.Y);
 	}
 }
 

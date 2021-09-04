@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 07:26+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -672,7 +672,7 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Siųsti %(resourceAmount)s%(resourceType)s duoklę %(playerName)s. Lyg2+spustelėti, kad nusiųsti %(greaterAmount)s."
 
-#: gui/session/input.js:190
+#: gui/session/input.js:191
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
@@ -681,7 +681,7 @@ msgstr[1] "Bazinis nuotolis: %(range)s m."
 msgstr[2] "Bazinis nuotolis: %(range)s m."
 msgstr[3] "Bazinis nuotolis: %(range)s m."
 
-#: gui/session/input.js:191
+#: gui/session/input.js:192
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
@@ -690,7 +690,7 @@ msgstr[1] "Vidutinis nuotolio priedas: %(range)s m."
 msgstr[2] "Vidutinis nuotolio priedas: %(range)s m."
 msgstr[3] "Vidutinis nuotolio priedas: %(range)s m."
 
-#: gui/session/input.js:701
+#: gui/session/input.js:702
 msgid "Cannot build wall here!"
 msgstr "Čia statyti sienos negalite!"
 
@@ -934,9 +934,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:633
-#: gui/session/unit_actions.js:642 gui/session/unit_actions.js:660
-#: gui/session/unit_actions.js:1133
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:675
+#: gui/session/unit_actions.js:684 gui/session/unit_actions.js:702
+#: gui/session/unit_actions.js:1175
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Padidėjimas: %(gain)s"
@@ -1334,7 +1334,7 @@ msgid ""
 msgstr "Vienas paspaudimas parenka, dvigubas paspaudimas fokusuoja, o dešiniojo mygtuko paspaudimas išformuoja grupę."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXV: Yaunā"
+msgid "Alpha XXVI: Z——"
 msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
@@ -1620,52 +1620,52 @@ msgstr "Nėra prekybinių laivų."
 msgid "Ready"
 msgstr "Paruošta"
 
-#: gui/session/unit_actions.js:572
+#: gui/session/unit_actions.js:614
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Tai pradinis turgus.\nDešiniu-spaudimu atšaukite prekybos kelią."
 
-#: gui/session/unit_actions.js:631
+#: gui/session/unit_actions.js:673
 msgid "Origin trade market."
 msgstr "Pradinė turgavietė."
 
-#: gui/session/unit_actions.js:641
+#: gui/session/unit_actions.js:683
 msgid "Destination trade market."
 msgstr "Kelionės tikslo turgavietė."
 
-#: gui/session/unit_actions.js:648
+#: gui/session/unit_actions.js:690
 msgid "Right-click to set as origin trade market"
 msgstr "Nustatykite pradine turgaviete spustelėję dešinį pelės mygtuką."
 
-#: gui/session/unit_actions.js:655 gui/session/unit_actions.js:1139
+#: gui/session/unit_actions.js:697 gui/session/unit_actions.js:1181
 msgid "This market is too close to the origin market."
 msgstr "Šis turgus yra per arti pradinio turgaus."
 
-#: gui/session/unit_actions.js:659
+#: gui/session/unit_actions.js:701
 msgid "Right-click to set as destination trade market."
 msgstr "Nustatykite kelionės tikslo turgaviete spustelėję dešinį pelės mygtuką."
 
-#: gui/session/unit_actions.js:724 gui/session/unit_actions.js:1071
+#: gui/session/unit_actions.js:766 gui/session/unit_actions.js:1113
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:790 gui/session/unit_actions.js:1054
+#: gui/session/unit_actions.js:832 gui/session/unit_actions.js:1096
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Dabartinė įgula: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1130
+#: gui/session/unit_actions.js:1172
 msgid "Right-click to establish a default route for new traders."
 msgstr "Nustatykite naujų prekeivių numatytąjį kelionės tikslą spustelėję dešinį pelės mygtuką."
 
-#: gui/session/unit_actions.js:1134
+#: gui/session/unit_actions.js:1176
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Laukiamos įplaukos: %(gain)s"
 
-#: gui/session/unit_actions.js:1260
+#: gui/session/unit_actions.js:1302
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Šis dalykas negali būti valdomas."
@@ -1673,110 +1673,116 @@ msgstr[1] "Šie dalykai negali būti valdomi."
 msgstr[2] "Šie dalykai negali būti valdomi."
 msgstr[3] "Šie dalykai negali būti valdomi."
 
-#: gui/session/unit_actions.js:1306
+#: gui/session/unit_actions.js:1348
 msgid "Unload All."
 msgstr "Visus išleisti."
 
-#: gui/session/unit_actions.js:1341
+#: gui/session/unit_actions.js:1383
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1361
+#: gui/session/unit_actions.js:1403
 msgid "Destroy the selected units or structures."
 msgstr "Sunaikinti pasirinktus vienetus ar statinius."
 
-#: gui/session/unit_actions.js:1363
+#: gui/session/unit_actions.js:1405
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Spauskite %(hotkey)s, kad nebūtų rodomas patvirtinimo dialogas."
 
-#: gui/session/unit_actions.js:1413
+#: gui/session/unit_actions.js:1455
 msgid "Abort the current order."
 msgstr "Atšaukti dabartinį įsakymą."
 
-#: gui/session/unit_actions.js:1435
+#: gui/session/unit_actions.js:1476
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr ""
+
+#: gui/session/unit_actions.js:1498
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Įsakyti pažymėtiems vienetams kraustytis į pastatą ar vienetą."
 
-#: gui/session/unit_actions.js:1457
+#: gui/session/unit_actions.js:1520
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1479
+#: gui/session/unit_actions.js:1542
 msgid "Unload"
 msgstr "Išleisti"
 
-#: gui/session/unit_actions.js:1499
+#: gui/session/unit_actions.js:1562
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Įsakyti pažymėtiems vienetams pataisyti pastatą ar apgulties įrenginį."
 
-#: gui/session/unit_actions.js:1520
+#: gui/session/unit_actions.js:1583
 msgid "Focus on Rally Point."
 msgstr "Fokusuoti susitelkimo vietą."
 
-#: gui/session/unit_actions.js:1557
+#: gui/session/unit_actions.js:1620
 msgid "Back to Work"
 msgstr "Grįžti prie darbo"
 
-#: gui/session/unit_actions.js:1578
+#: gui/session/unit_actions.js:1641
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Įsakyti pažymėtiems vienetams saugoti pastatą ar vienetą."
 
-#: gui/session/unit_actions.js:1598
+#: gui/session/unit_actions.js:1661
 msgid "Remove guard"
 msgstr "Pašalinti sargybą"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1617
+#: gui/session/unit_actions.js:1680
 msgid "Barter & Trade"
 msgstr "Mainai ir prekyba"
 
-#: gui/session/unit_actions.js:1637
+#: gui/session/unit_actions.js:1700
 msgid "Patrol"
 msgstr "Patruliuoti"
 
-#: gui/session/unit_actions.js:1638
+#: gui/session/unit_actions.js:1701
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Pulti visus sutiktus priešų vienetus išvengiant statinių."
 
-#: gui/session/unit_actions.js:1666
+#: gui/session/unit_actions.js:1729
 msgid "Press to allow allies to use this dropsite"
 msgstr "Spustelėkite norėdami leisti sąjungininkams naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1671
+#: gui/session/unit_actions.js:1734
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Spustelėkite norėdami neleisti sąjungininkams naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1706
+#: gui/session/unit_actions.js:1769
 msgid "The use of this dropsite is prohibited"
 msgstr "Jums draudžiama naudoti šią aikštelę."
 
-#: gui/session/unit_actions.js:1712
+#: gui/session/unit_actions.js:1775
 msgid "Allies are allowed to use this dropsite."
 msgstr "Sąjungininkams galima naudotis šiuo pakrovimu."
 
-#: gui/session/unit_actions.js:1713
+#: gui/session/unit_actions.js:1776
 msgid "You are allowed to use this dropsite"
 msgstr "Jums leidžiama naudoti šia aikštelę."
 
-#: gui/session/unit_actions.js:1732
+#: gui/session/unit_actions.js:1795
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1752
+#: gui/session/unit_actions.js:1815
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1817
+#: gui/session/unit_actions.js:1880
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Subjektas turi būti užmuštas prieš paimant išteklius."
 
-#: gui/session/unit_actions.js:1820
+#: gui/session/unit_actions.js:1883
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Negalite sunaikinti šio subjekto, nes turite mažiau nei pusę užgrobimo taškų."
 
-#: gui/session/unit_actions.js:1823
+#: gui/session/unit_actions.js:1886
 msgid "This entity is undeletable"
 msgstr "Šis subjektas negali būti panaikintas."

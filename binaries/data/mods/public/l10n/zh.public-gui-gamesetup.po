@@ -51,9 +51,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-07-25 10:16+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,41 +66,41 @@ msgstr ""
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:53
+#: gui/gamesettings/attributes/TeamPlacement.js:57
 msgctxt "team placement"
 msgid "Circle"
 msgstr "圆形"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:54
+#: gui/gamesettings/attributes/TeamPlacement.js:58
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "联盟的玩家被分组，并与对手横跨一个圆圈上。"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
 msgid "Line"
 msgstr "线形"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:59
+#: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
 msgstr "同盟玩家在ㄧ条线上"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "随机聚集"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:64
+#: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "聚集同盟玩家，但位置随机。"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "堡垒"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:69
+#: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
 msgstr "同盟玩家随机聚集出现。"
 
@@ -158,12 +158,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "地图"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "玩家"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "游戏类型"
@@ -199,7 +199,7 @@ msgstr "随机"
 msgid "Picks one civilization at random when the game starts."
 msgstr "当游戏开始时，随机挑选一个文明。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:44
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
 msgstr "选择一种颜色。"
 
@@ -240,6 +240,14 @@ msgstr "浏览地图"
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "按 %(hotkey)s 查看可用地图列表。"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
+msgid "Allied View"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
+msgid "Toggle allied view (see what your allies see)."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -408,11 +416,11 @@ msgstr "景观"
 msgid "Select one of the landscapes of this map."
 msgstr "选择地图的景观"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
 msgstr "地图筛选器"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
 msgstr "选择一个地图筛选器."
 
@@ -420,20 +428,20 @@ msgstr "选择一个地图筛选器."
 msgid "Map"
 msgstr "地图"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:141
 msgid "Select Map"
 msgstr "选择地图"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
 msgstr "选择一张地图，开始游戏。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:151
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
 msgstr "随机选择地图"
 
@@ -776,20 +784,10 @@ msgstr "启用秘籍。"
 msgid "Rated game."
 msgstr "排位赛"
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
 msgstr "点击切换%(name)s设置选项卡。"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
-#, javascript-format
-msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "使用%(hotkey)s移至下一个选项卡。"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
-#, javascript-format
-msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "使用%(hotkey)s移至上一个选项卡。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -973,7 +971,7 @@ msgstr "%(percentage)s%%"
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading
 #. screen
-#: gui/loading/TipDisplay.js:52
+#: gui/loading/TipDisplay.js:62
 #, javascript-format
 msgid "• %(tiptext)s"
 msgstr "%(tiptext)s"

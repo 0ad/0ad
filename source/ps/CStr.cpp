@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,22 +70,28 @@ CStrW CStr8::FromUTF8() const
 #include <sstream>
 
 #ifdef  _UNICODE
- #define tstringstream wstringstream
  #define _istspace iswspace
  #define _totlower towlower
  #define _totupper towupper
 #else
- #define tstringstream stringstream
  #define _istspace isspace
  #define _totlower tolower
  #define _totupper toupper
 #endif
 
-CStr CStr::Repeat(const CStr& String, size_t Reps)
+namespace
+{
+
+template<typename StrBase>
+using tstringstream = std::basic_stringstream<typename StrBase::value_type>;
+
+} // anonymous namespace
+
+CStr CStr::Repeat(const CStr& str, size_t reps)
 {
 	CStr ret;
-	ret.reserve(String.length() * Reps);
-	while (Reps--) ret += String;
+	ret.reserve(str.length() * reps);
+	while (reps--) ret += str;
 	return ret;
 }
 
@@ -93,28 +99,28 @@ CStr CStr::Repeat(const CStr& String, size_t Reps)
 
 CStr CStr::FromInt(int n)
 {
-	std::tstringstream ss;
+	tstringstream<StrBase> ss;
 	ss << n;
 	return ss.str();
 }
 
 CStr CStr::FromUInt(unsigned int n)
 {
-	std::tstringstream ss;
+	tstringstream<StrBase> ss;
 	ss << n;
 	return ss.str();
 }
 
 CStr CStr::FromInt64(i64 n)
 {
-	std::tstringstream ss;
+	tstringstream<StrBase> ss;
 	ss << n;
 	return ss.str();
 }
 
 CStr CStr::FromDouble(double n)
 {
-	std::tstringstream ss;
+	tstringstream<StrBase> ss;
 	ss << n;
 	return ss.str();
 }
@@ -124,7 +130,7 @@ CStr CStr::FromDouble(double n)
 int CStr::ToInt() const
 {
 	int ret = 0;
-	std::tstringstream str(*this);
+	tstringstream<StrBase> str(*this);
 	str >> ret;
 	return ret;
 }
@@ -132,7 +138,7 @@ int CStr::ToInt() const
 unsigned int CStr::ToUInt() const
 {
 	unsigned int ret = 0;
-	std::tstringstream str(*this);
+	tstringstream<StrBase> str(*this);
 	str >> ret;
 	return ret;
 }
@@ -140,7 +146,7 @@ unsigned int CStr::ToUInt() const
 long CStr::ToLong() const
 {
 	long ret = 0;
-	std::tstringstream str(*this);
+	tstringstream<StrBase> str(*this);
 	str >> ret;
 	return ret;
 }
@@ -148,7 +154,7 @@ long CStr::ToLong() const
 unsigned long CStr::ToULong() const
 {
 	unsigned long ret = 0;
-	std::tstringstream str(*this);
+	tstringstream<StrBase> str(*this);
 	str >> ret;
 	return ret;
 }
@@ -170,7 +176,7 @@ CStr ParseableAsNumber(CStr cleaned_copy)
 float CStr::ToFloat() const
 {
 	float ret = 0;
-	std::tstringstream str(ParseableAsNumber(*this));
+	tstringstream<StrBase> str(ParseableAsNumber(*this));
 	str >> ret;
 	return ret;
 }
@@ -178,19 +184,18 @@ float CStr::ToFloat() const
 double CStr::ToDouble() const
 {
 	double ret = 0;
-	std::tstringstream str(ParseableAsNumber(*this));
+	tstringstream<StrBase> str(ParseableAsNumber(*this));
 	str >> ret;
 	return ret;
 }
 
-
 // Search the string for another string
-long CStr::Find(const CStr& Str) const
+long CStr::Find(const CStr& str) const
 {
-	size_t Pos = find(Str, 0);
+	size_t pos = find(str, 0);
 
-	if (Pos != npos)
-		return (long)Pos;
+	if (pos != npos)
+		return static_cast<long>(pos);
 
 	return -1;
 }
@@ -198,10 +203,10 @@ long CStr::Find(const CStr& Str) const
 // Search the string for another string
 long CStr::Find(const tchar chr) const
 {
-	size_t Pos = find(chr, 0);
+	size_t pos = find(chr, 0);
 
-	if (Pos != npos)
-		return (long)Pos;
+	if (pos != npos)
+		return static_cast<long>(pos);
 
 	return -1;
 }
@@ -209,47 +214,45 @@ long CStr::Find(const tchar chr) const
 // Search the string for another string
 long CStr::Find(const int start, const tchar chr) const
 {
-	size_t Pos = find(chr, start);
+	size_t pos = find(chr, start);
 
-	if (Pos != npos)
-		return (long)Pos;
+	if (pos != npos)
+		return static_cast<long>(pos);
 
 	return -1;
 }
 
 long CStr::FindInsensitive(const int start, const tchar chr) const { return LowerCase().Find(start, _totlower(chr)); }
 long CStr::FindInsensitive(const tchar chr) const { return LowerCase().Find(_totlower(chr)); }
-long CStr::FindInsensitive(const CStr& Str) const { return LowerCase().Find(Str.LowerCase()); }
+long CStr::FindInsensitive(const CStr& str) const { return LowerCase().Find(str.LowerCase()); }
 
-
-long CStr::ReverseFind(const CStr& Str) const
+long CStr::ReverseFind(const CStr& str) const
 {
-	size_t Pos = rfind(Str, length() );
+	size_t pos = rfind(str, length() );
 
-	if (Pos != npos)
-		return (long)Pos;
+	if (pos != npos)
+		return static_cast<long>(pos);
 
 	return -1;
-
 }
 
 // Lowercase and uppercase
 CStr CStr::LowerCase() const
 {
-	std::tstring NewString = *this;
+	StrBase newStr = *this;
 	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (tchar)_totlower((*this)[i]);
+		newStr[i] = (tchar)_totlower((*this)[i]);
 
-	return NewString;
+	return newStr;
 }
 
 CStr CStr::UpperCase() const
 {
-	std::tstring NewString = *this;
+	StrBase newStr = *this;
 	for (size_t i = 0; i < length(); i++)
-		NewString[i] = (tchar)_totupper((*this)[i]);
+		newStr[i] = (tchar)_totupper((*this)[i]);
 
-	return NewString;
+	return newStr;
 }
 
 
@@ -269,20 +272,20 @@ CStr CStr::Right(size_t len) const
 
 // Retrieve the substring following the last occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::AfterLast(const CStr& Str, size_t startPos) const
+CStr CStr::AfterLast(const CStr& str, size_t startPos) const
 {
-	size_t pos = rfind(Str, startPos);
+	size_t pos = rfind(str, startPos);
 	if (pos == npos)
 		return *this;
 	else
-		return substr(pos + Str.length());
+		return substr(pos + str.length());
 }
 
 // Retrieve the substring preceding the last occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::BeforeLast(const CStr& Str, size_t startPos) const
+CStr CStr::BeforeLast(const CStr& str, size_t startPos) const
 {
-	size_t pos = rfind(Str, startPos);
+	size_t pos = rfind(str, startPos);
 	if (pos == npos)
 		return *this;
 	else
@@ -291,20 +294,20 @@ CStr CStr::BeforeLast(const CStr& Str, size_t startPos) const
 
 // Retrieve the substring following the first occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::AfterFirst(const CStr& Str, size_t startPos) const
+CStr CStr::AfterFirst(const CStr& str, size_t startPos) const
 {
-	size_t pos = find(Str, startPos);
+	size_t pos = find(str, startPos);
 	if (pos == npos)
 		return *this;
 	else
-		return substr(pos + Str.length());
+		return substr(pos + str.length());
 }
 
 // Retrieve the substring preceding the first occurrence of Str
 // (or the whole string if it doesn't contain Str)
-CStr CStr::BeforeFirst(const CStr& Str, size_t startPos) const
+CStr CStr::BeforeFirst(const CStr& str, size_t startPos) const
 {
-	size_t pos = find(Str, startPos);
+	size_t pos = find(str, startPos);
 	if (pos == npos)
 		return *this;
 	else
@@ -312,92 +315,91 @@ CStr CStr::BeforeFirst(const CStr& Str, size_t startPos) const
 }
 
 // Remove all occurrences of some character or substring
-void CStr::Remove(const CStr& Str)
+void CStr::Remove(const CStr& str)
 {
-	size_t FoundAt = 0;
-	while (FoundAt != npos)
+	size_t foundAt = 0;
+	while (foundAt != npos)
 	{
-		FoundAt = find(Str, 0);
+		foundAt = find(str, 0);
 
-		if (FoundAt != npos)
-			erase(FoundAt, Str.length());
+		if (foundAt != npos)
+			erase(foundAt, str.length());
 	}
 }
 
 // Replace all occurrences of some substring by another
-void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
+void CStr::Replace(const CStr& toReplace, const CStr& replaceWith)
 {
-	size_t Pos = 0;
-
-	while (Pos != npos)
+	size_t pos = 0;
+	while (pos != npos)
 	{
-		Pos = find(ToReplace, Pos);
-		if (Pos != npos)
+		pos = find(toReplace, pos);
+		if (pos != npos)
 		{
-			erase(Pos, ToReplace.length());
-			insert(Pos, ReplaceWith);
-			Pos += ReplaceWith.length();
+			erase(pos, toReplace.length());
+			insert(pos, replaceWith);
+			pos += replaceWith.length();
 		}
 	}
 }
 
 std::string CStr::EscapeToPrintableASCII() const
 {
-	std::string NewString;
+	std::string newStr;
 	for (size_t i = 0; i < length(); i++)
 	{
 		tchar ch = (*this)[i];
 
-		if (ch == '"') NewString += "\\\"";
-		else if (ch == '\\') NewString += "\\\\";
-		else if (ch == '\b') NewString += "\\b";
-		else if (ch == '\f') NewString += "\\f";
-		else if (ch == '\n') NewString += "\\n";
-		else if (ch == '\r') NewString += "\\r";
-		else if (ch == '\t') NewString += "\\t";
+		if (ch == '"') newStr += "\\\"";
+		else if (ch == '\\') newStr += "\\\\";
+		else if (ch == '\b') newStr += "\\b";
+		else if (ch == '\f') newStr += "\\f";
+		else if (ch == '\n') newStr += "\\n";
+		else if (ch == '\r') newStr += "\\r";
+		else if (ch == '\t') newStr += "\\t";
 		else if (ch >= 32 && ch <= 126)
-			NewString += ch;
+			newStr += ch;
 		else
 		{
 			std::stringstream ss;
 			ss << "\\u" << std::hex << std::setfill('0') << std::setw(4) << (int)(unsigned char)ch;
-			NewString += ss.str();
+			newStr += ss.str();
 		}
 	}
-	return NewString;
+	return newStr;
 }
 
 // Returns a trimmed string, removes whitespace from the left/right/both
-CStr CStr::Trim(PS_TRIM_MODE Mode) const
+CStr CStr::Trim(PS_TRIM_MODE mode) const
 {
-	size_t Left = 0, Right = 0;
+	size_t left = 0, right = 0;
 
-	switch (Mode)
+	switch (mode)
 	{
 		case PS_TRIM_LEFT:
 		{
-			for (Left = 0; Left < length(); Left++)
-				if (_istspace((*this)[Left]) == false)
+			for (left = 0; left < length(); left++)
+				if (_istspace((*this)[left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 		} break;
 
 		case PS_TRIM_RIGHT:
 		{
-			Right = length();
-			while (Right--)
-				if (_istspace((*this)[Right]) == false)
+			right = length();
+			while (right--)
+				if (_istspace((*this)[right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
 
 		case PS_TRIM_BOTH:
 		{
-			for (Left = 0; Left < length(); Left++)
-				if (_istspace((*this)[Left]) == false)
+			for (left = 0; left < length(); left++)
+				if (_istspace((*this)[left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 
-			Right = length();
-			while (Right--)
-				if (_istspace((*this)[Right]) == false)
+			right = length();
+			while (right--)
+				if (_istspace((*this)[right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
 
@@ -406,38 +408,38 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 	}
 
 
-	return substr(Left, Right-Left+1);
+	return substr(left, right - left + 1);
 }
 
-CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
+CStr CStr::Pad(PS_TRIM_MODE mode, size_t len) const
 {
-	size_t Left = 0, Right = 0;
+	size_t left = 0, right = 0;
 
-	if (Length <= length())
+	if (len <= length())
 		return *this;
 
 	// From here: Length-length() >= 1
 
-	switch (Mode)
+	switch (mode)
 	{
 	case PS_TRIM_LEFT:
-		Left = Length - length();
+		left = len - length();
 		break;
 
 	case PS_TRIM_RIGHT:
-		Right = Length - length();
+		right = len - length();
 		break;
 
 	case PS_TRIM_BOTH:
-		Left  = (Length - length() + 1)/2;
-		Right = (Length - length() - 1)/2; // cannot be negative
+		left = (len - length() + 1) / 2;
+		right = (len - length() - 1) / 2; // cannot be negative
 		break;
 
 	default:
 		debug_warn(L"CStr::Trim: invalid Mode");
 	}
 
-	return std::tstring(Left, _T(' ')) + *this + std::tstring(Right, _T(' '));
+	return StrBase(left, _T(' ')) + *this + StrBase(right, _T(' '));
 }
 
 size_t CStr::GetHashCode() const
@@ -527,10 +529,6 @@ size_t CStr::GetSerializedLength() const
 #endif // _UNICODE
 
 // Clean up, to keep the second pass through unidoubler happy
-#undef tstringstream
-#undef _tstod
-#undef _ttoi
-#undef _ttol
 #undef _istspace
 #undef _totlower
 #undef _totupper

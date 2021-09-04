@@ -54,9 +54,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-07-25 10:07+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,41 +69,41 @@ msgstr ""
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:53
+#: gui/gamesettings/attributes/TeamPlacement.js:57
 msgctxt "team placement"
 msgid "Circle"
 msgstr "Cerchio"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:54
+#: gui/gamesettings/attributes/TeamPlacement.js:58
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "I giocatori alleati sono raggruppati e posizionati con i giocatori nemici su di un cerchio che attraversa la mappa."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
 msgid "Line"
 msgstr "Linea"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:59
+#: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
 msgstr "I giocatori alleati sono posizionati su di un modello lineare."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "Gruppo casuale"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:64
+#: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "I giocatori alleati sono raggruppati, ma posizionati a caso sulla mappa."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "Roccaforte"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:69
+#: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
 msgstr "Giocatori alleati saranno piazzati randomicamente nella mappa"
 
@@ -161,12 +161,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mappa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Giocatore"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Modalità di Gioco"
@@ -202,7 +202,7 @@ msgstr "Casuale"
 msgid "Picks one civilization at random when the game starts."
 msgstr "Sceglie una civiltà a caso quando inizia il gioco."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:44
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
 msgstr "Scegli un colore."
 
@@ -243,6 +243,14 @@ msgstr "Sfoglia Mappe"
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "Premi %(hotkey)s per vedere la lista delle mappe disponibili."
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
+msgid "Allied View"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
+msgid "Toggle allied view (see what your allies see)."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -411,11 +419,11 @@ msgstr "Panorama"
 msgid "Select one of the landscapes of this map."
 msgstr "Scegli uno dei panorami per questa mappa."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
 msgstr "Filtro Mappa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
 msgstr "Seleziona un filtro di mappe."
 
@@ -423,20 +431,20 @@ msgstr "Seleziona un filtro di mappe."
 msgid "Map"
 msgstr "Mappa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:139
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:141
 msgid "Select Map"
 msgstr "Seleziona Mappa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:142
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
 msgstr "Seleziona una mappa su cui giocare."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:148
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
 msgid "Random"
 msgstr "Casuale"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:151
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
 msgstr "Seleziona una mappa a caso tra quelle disponibili."
 
@@ -783,20 +791,10 @@ msgstr "Trucchi attivati."
 msgid "Rated game."
 msgstr "Partita classificata."
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
 msgstr "Premi per azionare la scheda delle impostazioni %(name)s."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
-#, javascript-format
-msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "Premi %(hotkey)s per spostarti alla prossima scheda delle impostazioni."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
-#, javascript-format
-msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "Premi %(hotkey)s per spostarti alla precedente scheda delle impostazioni."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -980,7 +978,7 @@ msgstr "%(percentage)s%%"
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading
 #. screen
-#: gui/loading/TipDisplay.js:52
+#: gui/loading/TipDisplay.js:62
 #, javascript-format
 msgid "• %(tiptext)s"
 msgstr "• %(tiptext)s"

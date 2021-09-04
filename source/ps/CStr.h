@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,34 +59,33 @@ class CStrW;
 /**
  * The base class of all strings
  **/
-class CStr: public std::tstring
+class CStr : public std::tstring
 {
 public:
-
-	// CONSTRUCTORS
+	using StrBase = std::tstring;
 
 	CStr() {}
-	CStr(const tchar* String) : std::tstring(String) {}
-	CStr(const tchar* String, size_t Length) : std::tstring(String, Length) {}
-	CStr(const std::tstring& String) : std::tstring(String) {}
-	template <class InputIterator>
-	CStr (InputIterator first, InputIterator last) : std::tstring(first, last) {}
+	CStr(const tchar* str) : StrBase(str) {}
+	CStr(const tchar* str, size_t len) : StrBase(str, len) {}
+	CStr(const StrBase& str) : StrBase(str) {}
+	template<class InputIterator>
+	CStr (InputIterator first, InputIterator last) : StrBase(first, last) {}
 
 	/**
 	 * Repeat: Named constructor, to avoid overload overload.
 	 *
-	 * @param const CStr & String reference to another CStr object to be repeated for initialization
+	 * @param const CStr & str reference to another CStr object to be repeated for initialization
 	 * @param size_t Reps number of times to repeat the initialization
 	 * @return CStr new CStr object
 	 **/
-	static CStr Repeat(const CStr& String, size_t Reps);
+	static CStr Repeat(const CStr& str, size_t reps);
 
 	/**
 	 * Construction from utf16strings.
 	 *
 	 * @param utf16string String utf16string to be used for initialization.
 	 **/
-	explicit CStr(const utf16string& String) : std::tstring(String.begin(), String.end()) {}
+	explicit CStr(const utf16string& str) : StrBase(str.begin(), str.end()) {}
 
 	// Conversion to/from UTF-8, encoded in a CStr8.
 	// Invalid bytes/characters (e.g. broken UTF-8, and Unicode characters
@@ -151,11 +150,11 @@ public:
 	 * Search the CStr for another string.
 	 * The search is case-sensitive.
 	 *
-	 * @param const CStr & Str reference to the search string
+	 * @param const CStr & str reference to the search string
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long Find(const CStr& Str) const;
+	long Find(const CStr& str) const;
 	/**
 	 * Search the CStr for another string.
 	 * The search is case-sensitive.
@@ -180,11 +179,11 @@ public:
 	 * Search the CStr for another string.
 	 * The search is case-insensitive.
 	 *
-	 * @param const CStr & Str reference to the search string
+	 * @param const CStr & str reference to the search string
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long FindInsensitive(const CStr& Str) const;
+	long FindInsensitive(const CStr& str) const;
 	/**
 	 * Search the CStr for another string.
 	 * The search is case-insensitive.
@@ -209,11 +208,11 @@ public:
 	 * Search the CStr for another string.
 	 * The search is case-sensitive.
 	 *
-	 * @param const CStr & Str reference to the search string
+	 * @param const CStr & str reference to the search string
 	 * @return long offset into the CStr of the last occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long ReverseFind(const CStr& Str) const;
+	long ReverseFind(const CStr& str) const;
 
 	/**
 	 * Make a copy of the CStr in lower-case.
@@ -248,60 +247,60 @@ public:
 	 * Retrieve substring of the CStr after last occurrence of a string.
 	 * Return substring of the CStr after the last occurrence of the search string.
 	 *
-	 * @param const CStr & Str reference to search string
+	 * @param const CStr & str reference to search string
 	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring remaining after match
 	 *					 the CStr if no match is found
 	 **/
-	CStr AfterLast(const CStr& Str, size_t startPos = npos) const;
+	CStr AfterLast(const CStr& str, size_t startPos = npos) const;
 
 	/**
 	 * Retrieve substring of the CStr preceding last occurrence of a string.
 	 * Return substring of the CStr preceding the last occurrence of the search string.
 	 *
-	 * @param const CStr & Str reference to search string
+	 * @param const CStr & str reference to search string
 	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring preceding before match
 	 *					 the CStr if no match is found
 	 **/
-	CStr BeforeLast(const CStr& Str, size_t startPos = npos) const;
+	CStr BeforeLast(const CStr& str, size_t startPos = npos) const;
 
 	/**
 	 * Retrieve substring of the CStr after first occurrence of a string.
 	 * Return substring of the CStr after the first occurrence of the search string.
 	 *
-	 * @param const CStr & Str reference to search string
+	 * @param const CStr & str reference to search string
 	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring remaining after match
 	 *					 the CStr if no match is found
 	 **/
-	CStr AfterFirst(const CStr& Str, size_t startPos = 0) const;
+	CStr AfterFirst(const CStr& str, size_t startPos = 0) const;
 
 	/**
 	 * Retrieve substring of the CStr preceding first occurrence of a string.
 	 * Return substring of the CStr preceding the first occurrence of the search string.
 	 *
-	 * @param const CStr & Str reference to search string
+	 * @param const CStr & str reference to search string
 	 * @param size_t startPos character position to start searching from
 	 * @return CStr substring preceding before match
 	 *					 the CStr if no match is found
 	 **/
-	CStr BeforeFirst(const CStr& Str, size_t startPos = 0) const;
+	CStr BeforeFirst(const CStr& str, size_t startPos = 0) const;
 
 	/**
 	 * Remove all occurrences of a string from the CStr.
 	 *
-	 * @param const CStr & Str reference to search string to remove.
+	 * @param const CStr & str reference to search string to remove.
 	 **/
-	void Remove(const CStr& Str);
+	void Remove(const CStr& str);
 
 	/**
 	 * Replace all occurrences of one string by another string in the CStr.
 	 *
-	 * @param const CStr & StrToReplace reference to search string.
-	 * @param const CStr & ReplaceWith reference to replace string.
+	 * @param const CStr & strToReplace reference to search string.
+	 * @param const CStr & replaceWith reference to replace string.
 	 **/
-	void Replace(const CStr& StrToReplace, const CStr& ReplaceWith);
+	void Replace(const CStr& toReplace, const CStr& replaceWith);
 
 	/**
 	 * Convert strings to printable ASCII characters with JSON-style escapes.
@@ -314,7 +313,7 @@ public:
 	 * @param PS_TRIM_MODE Mode value from trim mode enumeration.
 	 * @return CStr copy of trimmed CStr.
 	 **/
-	CStr Trim(PS_TRIM_MODE Mode) const;
+	CStr Trim(PS_TRIM_MODE mode) const;
 
 	/**
 	 * Return a space padded copy of the CStr.
@@ -323,7 +322,7 @@ public:
 	 * @param size_t Length number of pad spaces to add
 	 * @return CStr copy of padded CStr.
 	 **/
-	CStr Pad(PS_TRIM_MODE Mode, size_t Length) const;
+	CStr Pad(PS_TRIM_MODE mode, size_t len) const;
 
 	// Conversion to utf16string
 	utf16string utf16() const { return utf16string(begin(), end()); }

@@ -5,13 +5,13 @@
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Asakura, 2015,2017
-# Jung Hee Lee <daemul72@gmail.com>, 2021
+# JungHee Lee <daemul72@gmail.com>, 2021
 # Cheung Hung, 2015
-# Jung Hee Lee <daemul72@gmail.com>, 2019-2020
+# JungHee Lee <daemul72@gmail.com>, 2019-2020
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
-# Jung Hee Lee <daemul72@gmail.com>, 2021
-# Jung Hee Lee <daemul72@gmail.com>, 2021
+# JungHee Lee <daemul72@gmail.com>, 2021
+# JungHee Lee <daemul72@gmail.com>, 2021
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-15 04:25+0000\n"
-"Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"PO-Revision-Date: 2021-08-30 15:10+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -378,25 +378,29 @@ msgid "Revealed Map"
 msgstr "공개된 지도"
 
 #: gui/common/gamedescription.js:400
+msgid "Allied View"
+msgstr "동맹 보기"
+
+#: gui/common/gamedescription.js:405
 msgid "Cheats"
 msgstr "치트"
 
-#: gui/common/gamedescription.js:403
+#: gui/common/gamedescription.js:408
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "이번 게임의 승자가 결정되면, 대기실 점수가 조정됩니다."
 
-#: gui/common/gamedescription.js:408 gui/common/gamedescription.js:413
+#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
 msgid "Rated game"
 msgstr "게임 순위 등급"
 
-#: gui/common/gamedescription.js:414 gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "사용안함"
 
-#: gui/common/gamedescription.js:417 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -408,20 +412,20 @@ msgstr "사용안함"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:420
+#: gui/common/gamedescription.js:425
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "사용함"
 
-#: gui/common/gamedescription.js:433
+#: gui/common/gamedescription.js:438
 msgid "Victorious"
 msgstr "승리"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:443
 msgid "Defeated"
 msgstr "패배"
 
-#: gui/common/gamedescription.js:447
+#: gui/common/gamedescription.js:452
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -675,6 +679,26 @@ msgstr "알 수 없음"
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
 msgstr "알 수 없는 승리 조건"
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab right."
+msgstr "아래로 스크롤하거나 %(hotkey)s를 사용하여 탭을 오른쪽으로 이동합니다."
+
+#: gui/common/tab_buttons.js:65
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab left."
+msgstr "위로 스크롤하거나 %(hotkey)s를 사용하여 탭을 왼쪽으로 이동합니다."
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll down or use %(hotkey)s to move a tab down."
+msgstr "아래로 스크롤하거나 %(hotkey)s를 사용하여 탭을 아래로 이동합니다."
+
+#: gui/common/tab_buttons.js:66
+#, javascript-format
+msgid "Scroll up or use %(hotkey)s to move a tab up."
+msgstr "위로 스크롤하거나 %(hotkey)s를 사용하여 탭을 위로 이동합니다."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -2276,6 +2300,18 @@ msgstr "유닛을 일괄 훈련하게 변경합니다."
 msgctxt "hotkey metadata"
 msgid "Batch production"
 msgstr "일괄 생산"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after "
+"dropping resources."
+msgstr "자원을 드롭한 후 공격 시 선택한 유닛을 지정된 위치로 이동합니다."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
+msgctxt "hotkey metadata"
+msgid "Call to arms"
+msgstr "군대 동원"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -5092,8 +5128,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXV: Yaunā"
-msgstr "알파 XXV: Yaunā"
+msgid "Alpha XXVI: Z——"
+msgstr "알파 XXVI: Z——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5976,20 +6012,10 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: 멀티플레이어 로비를 대화 상자 창으로 켜고 끕니다."
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:556
 #, javascript-format
-msgid "Toggle the %(name)s summary tab."
-msgstr "%(name)s 요약 탭을 전환합니다."
-
-#: gui/summary/summary.js:558
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab right."
-msgstr "%(hotkey)s 키를 사용하여 요약 탭을 오른쪽으로 이동합니다."
-
-#: gui/summary/summary.js:559
-#, javascript-format
-msgid "Use %(hotkey)s to move a summary tab left."
-msgstr "%(hotkey)s 키를 사용하여 요약 탭을 오른쪽으로 이동합니다."
+msgid "Focus the %(name)s summary tab."
+msgstr "%(name)s 요약 탭에 초점을 맞춥니다."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
