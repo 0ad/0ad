@@ -320,8 +320,8 @@ createDecoration(
 		[new SimpleObject(g_Decoratives.lillies, 1, 2, 0, 1)]
 	],
 	[
-		200 * Math.pow(scaleByMapSize(3, 12), 2),
-		100 * Math.pow(scaleByMapSize(3, 12), 2)
+		scaleByMapAreaAbsolute(1800),
+		scaleByMapAreaAbsolute(900)
 	],
 	new HeightConstraint(heightReedsMin, heightShoreline)
 );

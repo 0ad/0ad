@@ -203,8 +203,8 @@ createDecoration(
 		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
 	],
 	[
-		scaleByMapSize(16, 262),
-		scaleByMapSize(8, 131),
+		scaleByMapAreaAbsolute(16),
+		scaleByMapAreaAbsolute(8),
 		scaleByMapSize(bushCount.min, bushCount.max),
 		scaleByMapSize(bushCount.min, bushCount.max),
 		scaleByMapSize(bushCount.min, bushCount.max)

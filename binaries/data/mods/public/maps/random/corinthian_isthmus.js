@@ -253,7 +253,7 @@ createDecoration(
 		]
 	],
 	[
-		scaleByMapSize(16, 262),
+		scaleByMapAreaAbsolute(16),
 		scaleByMapSize(40, 360)
 	],
 	avoidClasses(clWater, 2, clForest, 0, clPlayer, 5, clBaseResource, 6, clHill, 1, clRock, 6, clMetal, 6));

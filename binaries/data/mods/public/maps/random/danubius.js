@@ -554,15 +554,15 @@ for (let i = 0; i < 2; ++i)
 			[new SimpleObject(aFerns, 2, 5, 2, 4)]
 		],
 		[
-			scaleByMapSize(5, 80),
-			scaleByMapSize(5, 80),
-			scaleByMapSize(5, 80),
-			scaleByMapSize(5, 80),
+			scaleByMapAreaAbsolute(5),
+			scaleByMapAreaAbsolute(5),
+			scaleByMapAreaAbsolute(5),
+			scaleByMapAreaAbsolute(5),
 
-			scaleByMapSize(5, 80),
-			scaleByMapSize(5, 80),
-			scaleByMapSize(5, 80),
-			scaleByMapSize(5, 80),
+			scaleByMapAreaAbsolute(5),
+			scaleByMapAreaAbsolute(5),
+			scaleByMapAreaAbsolute(5),
+			scaleByMapAreaAbsolute(5),
 
 			scaleByMapSize(20, 80)
 		],

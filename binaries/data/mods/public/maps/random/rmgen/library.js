@@ -80,6 +80,26 @@ function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 	return min + (max - min) * (g_MapSettings.Size - minMapSize) / (maxMapSize - minMapSize);
 }
 
+/**
+ * Interpolate quadratic between (min, minMapArea) and (max, maxMapArea) with respect to the mapSize.
+ * Default values set on the area of tiny and giant map sizes according to the map shape (square or circular).
+ */
+function scaleByMapArea(min, max, minMapArea = g_Map.getArea(128), maxMapArea = g_Map.getArea(256))
+{
+	return min + (max - min) * (g_Map.getArea() - minMapArea) / (maxMapArea - minMapArea);
+}
+
+/**
+ * Interpolate quadraticly between (0,0) and (base, baseArea) with respect to the map size.
+ * @param base - Value we should attain at baseArea.
+ * @param disallowedArea - Area deducted from the map area.
+ * @param baseArea - Area at which the base value should be attained. Defaults to the map area of a tiny map of current shape (square or circular).
+ */
+function scaleByMapAreaAbsolute(base, disallowedArea = 0, baseArea = g_Map.getArea(128))
+{
+	return scaleByMapArea(0, base, disallowedArea, baseArea + disallowedArea);
+}
+
 function randomPositionOnTile(tilePosition)
 {
 	return Vector2D.add(tilePosition, new Vector2D(randFloat(0, 1), randFloat(0, 1)));

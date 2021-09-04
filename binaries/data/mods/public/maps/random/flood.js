@@ -265,11 +265,11 @@ createDecoration(
 		[new SimpleObject(aBushMedium, 1, 5, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
 	],
 	[
-		scaleByMapSize(16, 262),
-		scaleByMapSize(8, 131),
-		planetm * scaleByMapSize(13, 200),
-		planetm * scaleByMapSize(13, 200),
-		planetm * scaleByMapSize(13, 200)
+		scaleByMapAreaAbsolute(16),
+		scaleByMapAreaAbsolute(8),
+		planetm * scaleByMapAreaAbsolute(13),
+		planetm * scaleByMapAreaAbsolute(13),
+		planetm * scaleByMapAreaAbsolute(13)
 	],
 	avoidClasses(clForest, 2, clPlayer, 20, clMountain, 5, clFood, 1, clBaseResource, 2));
 
