@@ -28,16 +28,18 @@ msgid ""
 "Discover the new maps in Alpha XXVI with a demo campaign, taking you through"
 " all of them."
 msgstr ""
+"Descobriu els nous mapes de l'Alfa XXVI amb una campanya de demostració on "
+"els podreu provar tots."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "Campanya de demostració - mapes nous"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "Apreneu a jugar al 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -48,11 +50,15 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Aquest mapa és una guia bàsica sobre com començar una partida. A l'inici del"
+" joc, el més important és acumular recursos tan ràpid com es pugui per poder"
+" reclutar tropes. Advertència: A l'inici va molt ràpid, prepareu-vos per "
+"repetir el tros inicial moltes vegades."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "Tutorial d'economia"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -77,24 +83,24 @@ msgstr "Completat"
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Error en carregar la campanya %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr ""
+msgstr "Nom de la campanya"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
-msgstr ""
+msgstr "No s'ha seleccionat cap escenari"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "Torna al menú principal"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
@@ -102,16 +108,16 @@ msgstr "Partides desades"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
-msgstr ""
+msgstr "Comença l'escenari"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Continua amb la partida desada"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "Nom de l'escenari"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
@@ -120,12 +126,13 @@ msgstr "Estat"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "no es pot carregar el fitxer"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
+"Segur que voleu esborrar la partida %s? Aquesta acció no es pot desfer."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -142,15 +149,15 @@ msgstr "Sí"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "Carrega la campanya"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "No hi ha campanyes en marxa."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Nom de la partida seleccionada:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -163,11 +170,11 @@ msgstr "Esborra"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Comença una campanya"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "Introduïu el nom de la partida nova:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -176,7 +183,7 @@ msgstr "Comença la campanya"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "No s'ha seleccionat cap campanya."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -184,7 +191,7 @@ msgstr "Campanyes"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "No s'ha seleccionat cap campanya"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
@@ -198,4 +205,4 @@ msgstr "Nom"
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

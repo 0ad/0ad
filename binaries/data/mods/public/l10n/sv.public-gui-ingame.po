@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 07:26+0000\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-03 07:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -885,9 +885,11 @@ msgstr "Okänd Spelare"
 msgid "Send a flare to your allies"
 msgstr ""
 
-#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
-msgid "Find idle worker"
-msgstr "Hitta sysslolös arbetare"
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:43
+msgid ""
+"Find idle worker\n"
+"Number of idle workers."
+msgstr ""
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -947,9 +949,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:675
-#: gui/session/unit_actions.js:684 gui/session/unit_actions.js:702
-#: gui/session/unit_actions.js:1175
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:680
+#: gui/session/unit_actions.js:689 gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:1180
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Vinst: %(gain)s"
@@ -1599,167 +1601,167 @@ msgstr "Det finns inga handelsskepp."
 msgid "Ready"
 msgstr "Redo"
 
-#: gui/session/unit_actions.js:614
+#: gui/session/unit_actions.js:619
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Detta är ursprungsmarknaden.\nHögerklicka för att avbryta handelsvägen."
 
-#: gui/session/unit_actions.js:673
+#: gui/session/unit_actions.js:678
 msgid "Origin trade market."
 msgstr "Ursprungsmarknad."
 
-#: gui/session/unit_actions.js:683
+#: gui/session/unit_actions.js:688
 msgid "Destination trade market."
 msgstr "Målmarknad."
 
-#: gui/session/unit_actions.js:690
+#: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
 msgstr "Högerklicka för att ange som ursprungsmarknad"
 
-#: gui/session/unit_actions.js:697 gui/session/unit_actions.js:1181
+#: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
 msgstr "Denna marknad ligger för nära ursprungsmarknaden."
 
-#: gui/session/unit_actions.js:701
+#: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
 msgstr "Högerklicka för att ange som målmarknad."
 
-#: gui/session/unit_actions.js:766 gui/session/unit_actions.js:1113
+#: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:832 gui/session/unit_actions.js:1096
+#: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nuvarande garnison: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
 msgstr "Högerklicka för att skapa en standardrutt för nya handelsmän."
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1181
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Du förväntas få: %(gain)s"
 
-#: gui/session/unit_actions.js:1302
+#: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Denna entitet kan inte kontrolleras."
 msgstr[1] "Dessa entiteter kan inte kontrolleras."
 
-#: gui/session/unit_actions.js:1348
+#: gui/session/unit_actions.js:1353
 msgid "Unload All."
 msgstr "Lasta av allt."
 
-#: gui/session/unit_actions.js:1383
+#: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
 msgstr "Förstör valda enheter eller byggnader."
 
-#: gui/session/unit_actions.js:1405
+#: gui/session/unit_actions.js:1410
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Använd %(hotkey)s för att undvika bekräftelsedialogen."
 
-#: gui/session/unit_actions.js:1455
+#: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
 msgstr "Avbryt den akutella ordern."
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1481
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr ""
 
-#: gui/session/unit_actions.js:1498
+#: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Skicka valda enheter att garnisonera i en byggnad eller enhet."
 
-#: gui/session/unit_actions.js:1520
+#: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1542
+#: gui/session/unit_actions.js:1547
 msgid "Unload"
 msgstr "Lasta av"
 
-#: gui/session/unit_actions.js:1562
+#: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Skicka valda enheter att reparera en byggnad, ett skepp eller ett belägringsvapen."
 
-#: gui/session/unit_actions.js:1583
+#: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
 msgstr "Fokus på samlingsplats."
 
-#: gui/session/unit_actions.js:1620
+#: gui/session/unit_actions.js:1625
 msgid "Back to Work"
 msgstr "Tillbaka till arbetet"
 
-#: gui/session/unit_actions.js:1641
+#: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Skicka valda enheter att vakta en byggnad eller en enhet."
 
-#: gui/session/unit_actions.js:1661
+#: gui/session/unit_actions.js:1666
 msgid "Remove guard"
 msgstr "Ta bort vakt"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1680
+#: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
 msgstr "Byte & Handel"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1705
 msgid "Patrol"
 msgstr "Patrullera"
 
-#: gui/session/unit_actions.js:1701
+#: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Attackera alla fientliga enheter men undvik byggnader."
 
-#: gui/session/unit_actions.js:1729
+#: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
 msgstr "Tryck för att låta allierade använda detta lager"
 
-#: gui/session/unit_actions.js:1734
+#: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Tryck för att förhindra allierade från att använda detta lager"
 
-#: gui/session/unit_actions.js:1769
+#: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
 msgstr "Det är förbjudet att använda detta lager"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
 msgstr "Allierade får använda det här lagret."
 
-#: gui/session/unit_actions.js:1776
+#: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"
 msgstr "Du får använda det här lagret"
 
-#: gui/session/unit_actions.js:1795
+#: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1815
+#: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1880
+#: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Enheten måste dödas innan det kan samlas från den"
 
-#: gui/session/unit_actions.js:1883
+#: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Du kan inte förstöra denna enhet för att du äger mindre än hälften av enhetens erövringspoäng"
 
-#: gui/session/unit_actions.js:1886
+#: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
 msgstr "Denna enhet kan inte tas bort"

@@ -10,6 +10,7 @@
 # Любомир Василев, 2016
 # Nerwitz Panzerfizt, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
+# Tundzhay Mollov <graculapsone1998@gmail.com>, 2021
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2014
 # 12192b354109d39d9c701ab47471cc99, 2019
 # Любомир Василев, 2016-2019
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-09-04 19:47+0000\n"
+"Last-Translator: Tundzhay Mollov <graculapsone1998@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,31 +37,31 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesettings/attributes/TeamPlacement.js:57
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Кръг"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:58
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Съюзническите играчи са групирани и поставени с противниковите играчи в един кръг, обхващащ картата."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Линия"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Съюзническите играчи са поставени по линеен модел."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Случайна група"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Съюзническите играчи са групирани, но понякога биват поставени на случаен принцип на картата."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
@@ -69,7 +70,7 @@ msgstr "Крепост"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Съюзническите играчи са групирани в едно случайно място в картата."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -85,11 +86,11 @@ msgstr "ИИ ще бъде изключен за този играч."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
-msgstr ""
+msgstr "Поведение на бота"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
-msgstr "Трудност на бота"
+msgstr "Трудност на ИИ"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
@@ -201,20 +202,20 @@ msgstr "Отбор"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
-msgstr ""
+msgstr "Разгледайте Картите"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Натиснете 1%(hotkey)s, за лист с възможните карти."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr ""
+msgstr "Съюзнически изглед"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr ""
+msgstr "Превключване на Съюзнически изглед (вижте това, което виждат вашите съюзници)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -314,7 +315,7 @@ msgstr "Да не се поставят съкровища на картата."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World population"
-msgstr ""
+msgstr "Световната популация"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""
@@ -341,7 +342,7 @@ msgstr "Избиране на случаен биом."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
-msgstr ""
+msgstr "Денем"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."

@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-08-17 23:01+0000\n"
-"Last-Translator: Scael Blu <groteszk@totalcar.hu>\n"
+"PO-Revision-Date: 2021-09-05 09:11+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "Sebzés"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Puszta erővel okozott sebzés, például buzogánnyal vagy taposással."
+msgstr "Puszta erővel – például buzogánnyal vagy taposással – okozott sebzés."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -72,7 +72,7 @@ msgstr "Zúzás"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Égő tárgyakkal okozott sebzés, például fáklyával vagy tüzes nyíllal."
+msgstr "Égő tárgyakkal – például fáklyával vagy tüzes nyíllal – okozott sebzés."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -84,7 +84,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Éles vágóeszközökkel okozott sebzés, például karddal vagy baltával."
+msgstr "Éles vágóeszközökkel – például karddal vagy baltával – okozott sebzés."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -94,7 +94,7 @@ msgstr "Vágás"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Szúrós tárgyakkal okozott sebzés, például nyilakkal vagy lándzsával."
+msgstr "Hegyes tárgyakkal – például nyilakkal vagy lándzsával – okozott sebzés."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -106,7 +106,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Mérgező vagy mérgezett objektumok által okozott sebzés, mint egy kígyó vagy egy mérgezett fegyver."
+msgstr "Mérgező vagy mérgezett dolgokkal – például egy kígyóval vagy mérgezett fegyverrel – okozott sebzés."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -121,7 +121,7 @@ msgstr "Ez az egység tűzsebzést okoz."
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr "Ez az egység ég."
+msgstr "Ez az egység lángol."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
@@ -283,7 +283,7 @@ msgstr "Marha"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:17
 msgid "Sanga Cattle"
-msgstr "Sanga szarvasmarha"
+msgstr "Sanga marha"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"

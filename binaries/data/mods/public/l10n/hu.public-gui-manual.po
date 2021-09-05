@@ -14,13 +14,14 @@
 # Péter Dóbé <dobepeter@gmail.com>, 2017
 # Scael Blu <groteszk@totalcar.hu>, 2021
 # Stew Den <stewden55@hotmail.com>, 2014
+# Szabó Lambert, 2021
 # Tibor Buzási, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-08-19 01:14+0000\n"
-"Last-Translator: Scael Blu <groteszk@totalcar.hu>\n"
+"PO-Revision-Date: 2021-09-05 10:35+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,7 +343,7 @@ msgstr "  hotkey.selection.cancel – Összes egység kijelölésének, épület
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
-msgstr ""
+msgstr "  hotkey.selection.idlebuilder – Tétlen építő kijelölése"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
@@ -352,11 +353,11 @@ msgstr "  hotkey.selection.idlewarrior – Tétlen harcos kijelölése"
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr " hotkey.selection.idleworker – Tétlen munkás kijelölése (a polgári katonákat is beleértve)"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "  hotkey.selection.idleunit – Tétlen egység kijelölése"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
@@ -728,7 +729,7 @@ msgstr ""
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "  hotkey.session.savedgames.delete – Kiválasztott mentés törlése (megerősítés szükséges hozzá)"
 
 #: gui/manual/intro.txt:155
 msgid ""
