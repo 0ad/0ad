@@ -220,11 +220,11 @@ createDecoration(
 		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
 	],
 	[
-		scaleByMapSize(16, 262),
-		scaleByMapSize(8, 131),
-		planetm * scaleByMapSize(13, 200),
-		planetm * scaleByMapSize(13, 200),
-		planetm * scaleByMapSize(13, 200)
+		scaleByMapAreaAbsolute(16),
+		scaleByMapAreaAbsolute(8),
+		planetm * scaleByMapAreaAbsolute(13),
+		planetm * scaleByMapAreaAbsolute(13),
+		planetm * scaleByMapAreaAbsolute(13)
 	],
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 
@@ -234,8 +234,8 @@ createDecoration(
 		[new SimpleObject(aLillies, 1, 2, 0, 1)]
 	],
 	[
-		scaleByMapSize(800, 12800),
-		scaleByMapSize(800, 12800)
+		scaleByMapAreaAbsolute(800),
+		scaleByMapAreaAbsolute(800)
 	],
 	stayClasses(clShallow, 0));
 

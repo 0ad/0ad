@@ -192,8 +192,8 @@ createDecoration(
 		[new SimpleObject(aRock, 1,2, 0,1)]
 	],
 	[
-		scaleByMapSize(8, 131),
-		scaleByMapSize(8, 131)
+		scaleByMapAreaAbsolute(8),
+		scaleByMapAreaAbsolute(8)
 	],
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 Engine.SetProgress(75);

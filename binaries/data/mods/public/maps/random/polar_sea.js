@@ -178,8 +178,8 @@ createDecoration(
 		]
 	],
 	[
-		scaleByMapSize(16, 262),
-		scaleByMapSize(8, 131),
+		scaleByMapAreaAbsolute(16),
+		scaleByMapAreaAbsolute(8),
 	],
 	avoidClasses(clWater, 0, clPlayer, 0));
 
@@ -188,7 +188,7 @@ createDecoration(
 		[new SimpleObject(aIceberg, 1, 1, 1, 1)]
 	],
 	[
-		scaleByMapSize(8, 131)
+		scaleByMapAreaAbsolute(8)
 	],
 	[stayClasses(clWater, 4), avoidClasses(clHill, 2)]);
 Engine.SetProgress(80);

@@ -1620,7 +1620,7 @@ function performGroup(action, groupId)
 
 		if (action == "snap" && toSelect.length)
 		{
-			let entState = GetEntityState(toSelect[0]);
+			let entState = GetEntityState(getEntityOrHolder(toSelect[0]));
 			let position = entState.position;
 			if (position && entState.visibility != "hidden")
 				Engine.CameraMoveTo(position.x, position.z);

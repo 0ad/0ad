@@ -221,8 +221,8 @@ createDecoration(
 		]
 	],
 	[
-		scaleByMapSize(16, 262),
-		scaleByMapSize(8, 131),
+		scaleByMapAreaAbsolute(16),
+		scaleByMapAreaAbsolute(8),
 	],
 	avoidClasses(
 		clWater, 0,

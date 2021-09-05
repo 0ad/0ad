@@ -138,6 +138,11 @@ RandomMap.prototype.getSize = function()
 	return this.size;
 };
 
+RandomMap.prototype.getArea = function(size = this.size)
+{
+	return this.isCircularMap ? diskArea(size / 2) : size * size;
+};
+
 /**
  * Returns the center tile coordinates of the map.
  */

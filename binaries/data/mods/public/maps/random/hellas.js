@@ -445,10 +445,10 @@ for (let biome of ["lowlands", "highlands"])
 			]
 		],
 		[
-			scaleByMapSize(20, 300),
-			scaleByMapSize(13, 200),
-			scaleByMapSize(13, 200),
-			scaleByMapSize(13, 200)
+			scaleByMapAreaAbsolute(20),
+			scaleByMapAreaAbsolute(13),
+			scaleByMapAreaAbsolute(13),
+			scaleByMapAreaAbsolute(13)
 		],
 		[
 			biome == "highlands" ? constraintHighlands : constraintLowlands,
@@ -460,7 +460,7 @@ for (let biome of ["lowlands", "highlands"])
 				biomes[biome].actors.stones.map(template => new SimpleObject(actorTemplate(template), 1, 3, 0, 1))
 			],
 			[
-				biomes[biome].actors.stones.map(template => scaleByMapSize(2, 40) * randIntInclusive(1, 3))
+				biomes[biome].actors.stones.map(template => scaleByMapAreaAbsolute(2) * randIntInclusive(1, 3))
 			],
 			[
 				biome == "highlands" ? constraintHighlands : constraintLowlands,

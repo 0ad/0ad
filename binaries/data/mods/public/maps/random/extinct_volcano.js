@@ -317,9 +317,9 @@ createDecoration(
 			]
 		],
 		[
-			scaleByMapSize(15, 200),
-			scaleByMapSize(15, 200),
-			scaleByMapSize(15, 200)
+			scaleByMapAreaAbsolute(15),
+			scaleByMapAreaAbsolute(15),
+			scaleByMapAreaAbsolute(15)
 		],
 		[
 			stayClasses(clGrass, 0),
