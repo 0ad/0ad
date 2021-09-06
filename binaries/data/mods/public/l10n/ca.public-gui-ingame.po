@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-01 19:38+0000\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-04 16:51+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -881,9 +881,11 @@ msgstr "Jugador desconegut"
 msgid "Send a flare to your allies"
 msgstr ""
 
-#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
-msgid "Find idle worker"
-msgstr "Busca un treballador inactiu"
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:43
+msgid ""
+"Find idle worker\n"
+"Number of idle workers."
+msgstr ""
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -943,9 +945,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:675
-#: gui/session/unit_actions.js:684 gui/session/unit_actions.js:702
-#: gui/session/unit_actions.js:1175
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:680
+#: gui/session/unit_actions.js:689 gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:1180
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Guany: %(gain)s"
@@ -977,7 +979,7 @@ msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr ""
+msgstr "Mida del refugi"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1328,7 +1330,7 @@ msgstr "Feu clic per seleccionar un grup d'unitats, doble clic per enfocar el gr
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Alfa XXVI: Z——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1595,167 +1597,167 @@ msgstr "No hi ha vaixells mercants."
 msgid "Ready"
 msgstr "A punt"
 
-#: gui/session/unit_actions.js:614
+#: gui/session/unit_actions.js:619
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Aquest és el mercat d'origen de la ruta comercial.\nFeu clic dret per cancel·lar la ruta."
 
-#: gui/session/unit_actions.js:673
+#: gui/session/unit_actions.js:678
 msgid "Origin trade market."
 msgstr "Mercat d'origen."
 
-#: gui/session/unit_actions.js:683
+#: gui/session/unit_actions.js:688
 msgid "Destination trade market."
 msgstr "Mercat de destinació."
 
-#: gui/session/unit_actions.js:690
+#: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
 msgstr "Feu clic dret per assignar-lo com a mercat d'origen"
 
-#: gui/session/unit_actions.js:697 gui/session/unit_actions.js:1181
+#: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
 msgstr "Aquest mercat es troba massa a prop del mercat d'origen."
 
-#: gui/session/unit_actions.js:701
+#: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
 msgstr "Feu clic dret per assignar-lo com a mercat de destinació."
 
-#: gui/session/unit_actions.js:766 gui/session/unit_actions.js:1113
+#: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr ""
 
-#: gui/session/unit_actions.js:832 gui/session/unit_actions.js:1096
+#: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Unitats refugiades actuals: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
 msgstr "Feu clic dret per establir una ruta per defecte per als mercaders nous."
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1181
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Guany esperat: %(gain)s"
 
-#: gui/session/unit_actions.js:1302
+#: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "No es pot controlar aquesta entitat."
 msgstr[1] "No es poden controlar aquestes entitats."
 
-#: gui/session/unit_actions.js:1348
+#: gui/session/unit_actions.js:1353
 msgid "Unload All."
 msgstr "Expulsa a tothom."
 
-#: gui/session/unit_actions.js:1383
+#: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
 msgstr "Destrueix les unitats o estructures seleccionades."
 
-#: gui/session/unit_actions.js:1405
+#: gui/session/unit_actions.js:1410
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Utilitzeu %(hotkey)s per evitar el diàleg de confirmació."
 
-#: gui/session/unit_actions.js:1455
+#: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
 msgstr "Cancel·la l'ordre actual."
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1481
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr ""
 
-#: gui/session/unit_actions.js:1498
+#: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Ordena a les unitats seleccionades refugiar-se en una estructura o unitat."
 
-#: gui/session/unit_actions.js:1520
+#: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1542
+#: gui/session/unit_actions.js:1547
 msgid "Unload"
 msgstr "Expulsa"
 
-#: gui/session/unit_actions.js:1562
+#: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Ordena a les unitats seleccionades que reparin una estructura, vaixell o màquina de setge."
 
-#: gui/session/unit_actions.js:1583
+#: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
 msgstr "Vés al punt de reunió."
 
-#: gui/session/unit_actions.js:1620
+#: gui/session/unit_actions.js:1625
 msgid "Back to Work"
 msgstr "Torna a la feina"
 
-#: gui/session/unit_actions.js:1641
+#: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Ordena a les unitats seleccionades que defensin una estructura o unitat."
 
-#: gui/session/unit_actions.js:1661
+#: gui/session/unit_actions.js:1666
 msgid "Remove guard"
 msgstr "Desprotegeix"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1680
+#: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
 msgstr "Intercanvi i comerç"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1705
 msgid "Patrol"
 msgstr "Patrulla"
 
-#: gui/session/unit_actions.js:1701
+#: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Ataca totes les unitats enemigues evitant els edificis."
 
-#: gui/session/unit_actions.js:1729
+#: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
 msgstr "Feu clic per permetre que els aliats utilitzin aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:1734
+#: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Feu clic per evitar que els aliats utilitzin aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:1769
+#: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
 msgstr "No podeu utilitzar aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
 msgstr "Els aliats poden utilitzar aquest punt de descàrrega."
 
-#: gui/session/unit_actions.js:1776
+#: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"
 msgstr "Podeu utilitzar aquest punt de descàrrega"
 
-#: gui/session/unit_actions.js:1795
+#: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1815
+#: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1880
+#: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "S'ha de matar aquesta entitat abans de poder obtenir-ne recursos"
 
-#: gui/session/unit_actions.js:1883
+#: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "No podeu destruir aquesta entitat perquè teniu menys de la meitat dels punts de captura"
 
-#: gui/session/unit_actions.js:1886
+#: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
 msgstr "Aquesta entitat no es pot esborrar"

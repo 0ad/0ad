@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 01:50+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-03 07:24+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -882,9 +882,11 @@ msgstr "未知玩家"
 msgid "Send a flare to your allies"
 msgstr "向你的盟友發送信號彈"
 
-#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
-msgid "Find idle worker"
-msgstr "尋找閒置工人"
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:43
+msgid ""
+"Find idle worker\n"
+"Number of idle workers."
+msgstr ""
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -944,9 +946,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s："
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:675
-#: gui/session/unit_actions.js:684 gui/session/unit_actions.js:702
-#: gui/session/unit_actions.js:1175
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:680
+#: gui/session/unit_actions.js:689 gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:1180
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "收益: %(gain)s"
@@ -1579,166 +1581,166 @@ msgstr "沒有商船。"
 msgid "Ready"
 msgstr "好了"
 
-#: gui/session/unit_actions.js:614
+#: gui/session/unit_actions.js:619
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "這裡是貿易市集的起點。\n右鍵點擊以取消貿易路線。"
 
-#: gui/session/unit_actions.js:673
+#: gui/session/unit_actions.js:678
 msgid "Origin trade market."
 msgstr "貿易市集起點。"
 
-#: gui/session/unit_actions.js:683
+#: gui/session/unit_actions.js:688
 msgid "Destination trade market."
 msgstr "貿易市集目的地。"
 
-#: gui/session/unit_actions.js:690
+#: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
 msgstr "右鍵點擊以設為貿易市集起點。"
 
-#: gui/session/unit_actions.js:697 gui/session/unit_actions.js:1181
+#: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
 msgstr "這個市集和起點市集太過靠近。"
 
-#: gui/session/unit_actions.js:701
+#: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
 msgstr "右鍵點擊以設為貿易市集目的地。"
 
-#: gui/session/unit_actions.js:766 gui/session/unit_actions.js:1113
+#: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr "塔樓：%(occupied)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:832 gui/session/unit_actions.js:1096
+#: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "目前駐軍: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
 msgstr "右鍵單擊以幫商人設定預設貿易路線。"
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1181
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "預期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:1302
+#: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "無法控制這些實體。"
 
-#: gui/session/unit_actions.js:1348
+#: gui/session/unit_actions.js:1353
 msgid "Unload All."
 msgstr "卸載所有。"
 
-#: gui/session/unit_actions.js:1383
+#: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
 msgstr "卸載塔樓。"
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
 msgstr "摧毀選定的單位或建築物。"
 
-#: gui/session/unit_actions.js:1405
+#: gui/session/unit_actions.js:1410
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "使用 %(hotkey)s 以避免確認對話框。"
 
-#: gui/session/unit_actions.js:1455
+#: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
 msgstr "放棄目前的命令。"
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1481
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr "在放回資源後，將選取的單位用移動攻擊送達指定的位置。"
 
-#: gui/session/unit_actions.js:1498
+#: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "命令選定的單位駐守至建築物或單位內。"
 
-#: gui/session/unit_actions.js:1520
+#: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
 msgstr "命令選取的單位據守塔樓。"
 
-#: gui/session/unit_actions.js:1542
+#: gui/session/unit_actions.js:1547
 msgid "Unload"
 msgstr "卸載"
 
-#: gui/session/unit_actions.js:1562
+#: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "命令選定的單位修復建築、船隻或攻城器。"
 
-#: gui/session/unit_actions.js:1583
+#: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
 msgstr "在集合點集中。"
 
-#: gui/session/unit_actions.js:1620
+#: gui/session/unit_actions.js:1625
 msgid "Back to Work"
 msgstr "回去工作"
 
-#: gui/session/unit_actions.js:1641
+#: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
 msgstr "命令選定的單位保護建築物或單位。"
 
-#: gui/session/unit_actions.js:1661
+#: gui/session/unit_actions.js:1666
 msgid "Remove guard"
 msgstr "移除護衛"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1680
+#: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
 msgstr "貿易"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1705
 msgid "Patrol"
 msgstr "巡邏"
 
-#: gui/session/unit_actions.js:1701
+#: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "攻擊所有遭遇到的單位但避開建築物。"
 
-#: gui/session/unit_actions.js:1729
+#: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允許盟友使用這個資源放置點"
 
-#: gui/session/unit_actions.js:1734
+#: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以避免盟友使用此放置點"
 
-#: gui/session/unit_actions.js:1769
+#: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
 msgstr "禁止使用此資源存放點"
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
 msgstr "允許盟友使用此資源放置點。"
 
-#: gui/session/unit_actions.js:1776
+#: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"
 msgstr "您被允許使用此資源放置點"
 
-#: gui/session/unit_actions.js:1795
+#: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
 msgstr "啟用所選建築的自動佇列。"
 
-#: gui/session/unit_actions.js:1815
+#: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
 msgstr "停用所選建築的自動佇列。"
 
-#: gui/session/unit_actions.js:1880
+#: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "在您可以從其採集前，實體就已被殺害"
 
-#: gui/session/unit_actions.js:1883
+#: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "您無法摧毀此實體，因為您的占領值不到一半"
 
-#: gui/session/unit_actions.js:1886
+#: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
 msgstr "此實體無法刪除"

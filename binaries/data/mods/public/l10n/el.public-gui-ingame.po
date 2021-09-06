@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 10:25+0000\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-03 09:36+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -897,9 +897,11 @@ msgstr "Άγνωστος παίκτης"
 msgid "Send a flare to your allies"
 msgstr "Στείλε μία φωτοβολίδα στους συμμάχους σου."
 
-#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
-msgid "Find idle worker"
-msgstr "Εύρεση αδρανούς εργάτη"
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:43
+msgid ""
+"Find idle worker\n"
+"Number of idle workers."
+msgstr "Βρείτε τον ανενεργό εργ'ατη\nΑριθμός ανενεργών εργατών."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -959,9 +961,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:675
-#: gui/session/unit_actions.js:684 gui/session/unit_actions.js:702
-#: gui/session/unit_actions.js:1175
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:680
+#: gui/session/unit_actions.js:689 gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:1180
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Κέρδος: %(gain)s"
@@ -1611,167 +1613,167 @@ msgstr "Δεν υπάρχουν εμπορικά πλοία."
 msgid "Ready"
 msgstr "Έτοιμος"
 
-#: gui/session/unit_actions.js:614
+#: gui/session/unit_actions.js:619
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Αυτή είναι η αρχή της εμπορικής αγοράς\nΠατήστε το Δεξί-κλίκ για να ακυρώσετε τη διαδρομή ανταλλαγής."
 
-#: gui/session/unit_actions.js:673
+#: gui/session/unit_actions.js:678
 msgid "Origin trade market."
 msgstr "Αρχική αγορά εμπορίου"
 
-#: gui/session/unit_actions.js:683
+#: gui/session/unit_actions.js:688
 msgid "Destination trade market."
 msgstr "Προορισμός της αγοράς."
 
-#: gui/session/unit_actions.js:690
+#: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
 msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προέλευσης."
 
-#: gui/session/unit_actions.js:697 gui/session/unit_actions.js:1181
+#: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
 msgstr "Αυτή η αγορά είναι πολύ κοντά στην αρχική αγορά."
 
-#: gui/session/unit_actions.js:701
+#: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
 msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προορισμού."
 
-#: gui/session/unit_actions.js:766 gui/session/unit_actions.js:1113
+#: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr "Τρέχοντες πυργίσκοι: %(occupied)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:832 gui/session/unit_actions.js:1096
+#: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Τρέχουσα οχύρωση: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
 msgstr "Κάντε δεξί κλικ για να καθοριστεί μια προεπιλεγμένη διαδρομή για τους νέους εμπόρους."
 
-#: gui/session/unit_actions.js:1176
+#: gui/session/unit_actions.js:1181
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Αναμενόμενο κέρδος: %(gain)s"
 
-#: gui/session/unit_actions.js:1302
+#: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Αυτή η οντότητα δε μπορεί να ελεγχθεί."
 msgstr[1] "Αυτές οι οντότητες δε μπορούν να ελεγχθούν."
 
-#: gui/session/unit_actions.js:1348
+#: gui/session/unit_actions.js:1353
 msgid "Unload All."
 msgstr "Ξεφόρτωμα όλων"
 
-#: gui/session/unit_actions.js:1383
+#: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
 msgstr "Εκφόρτωση Πυργίσκων."
 
-#: gui/session/unit_actions.js:1403
+#: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
 msgstr "Καταστροφή των επιλεγμένων μονάδων ή κτιρίων."
 
-#: gui/session/unit_actions.js:1405
+#: gui/session/unit_actions.js:1410
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Χηση του %(hotkey)s για αποφυγή διαλόγου επιβεβαίωσης."
 
-#: gui/session/unit_actions.js:1455
+#: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
 msgstr "Ακύρωσε την τρέχουσα παραγγελία."
 
-#: gui/session/unit_actions.js:1476
+#: gui/session/unit_actions.js:1481
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr "Στείλτε τις επιλεγμένες μονάδες σε θ΄λεση επίθεσης στη καθορισμένη περιοχή μετά τη ρίψη πόρων."
 
-#: gui/session/unit_actions.js:1498
+#: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Διάταξε τις επιλεγμένες μονάδες να οχυρωθούν σ' ένα κτίριο ή μία μονάδα."
 
-#: gui/session/unit_actions.js:1520
+#: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
 msgstr "Διατάξτε τις επιλεγμένες μονάδες να κυριεύσουν ενα σημείο πυργίσκου."
 
-#: gui/session/unit_actions.js:1542
+#: gui/session/unit_actions.js:1547
 msgid "Unload"
 msgstr "Ξεφορτώμα"
 
-#: gui/session/unit_actions.js:1562
+#: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Διάταξε τις επιλεγμένες μονάδες να επισκευάσουν ένα κτίριο, ένα πλοίο ή μία πολιορκιτική μηχανή."
 
-#: gui/session/unit_actions.js:1583
+#: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
 msgstr "Συγκέντρωση στο επιλεγμένο σημείο."
 
-#: gui/session/unit_actions.js:1620
+#: gui/session/unit_actions.js:1625
 msgid "Back to Work"
 msgstr "Πίσω στη δουλειά"
 
-#: gui/session/unit_actions.js:1641
+#: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Διάταξε τις επιλεγμένες μονάδες να φρουρήσουν ένα κτίριο ή μία μονάδα."
 
-#: gui/session/unit_actions.js:1661
+#: gui/session/unit_actions.js:1666
 msgid "Remove guard"
 msgstr "Αφαίρεση προφύλαξης"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1680
+#: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
 msgstr "Ανταλλαγή και Εμπόριο"
 
-#: gui/session/unit_actions.js:1700
+#: gui/session/unit_actions.js:1705
 msgid "Patrol"
 msgstr "Περιπολία"
 
-#: gui/session/unit_actions.js:1701
+#: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Η επίθεση σε όλες τις εχθρικές μονάδες που θα συναντήσουν αποφεύγοντας τα κτίρια."
 
-#: gui/session/unit_actions.js:1729
+#: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
 msgstr "Πληκτρολόγησε για να επιτραπεί η χρήση του καθορισμένου σημείου από τους συμμάχους. "
 
-#: gui/session/unit_actions.js:1734
+#: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Πληκτρολόγησε για να αποφύγουν οι σύμμαχοι αυτό το καθορισμένο σημείο "
 
-#: gui/session/unit_actions.js:1769
+#: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
 msgstr "Σου απαγορεύεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1775
+#: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
 msgstr "Σύμμαχοι επιτρέπετε να χρησιμοποιήσουν αυτό το προκαθορισμένο σημείο."
 
-#: gui/session/unit_actions.js:1776
+#: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"
 msgstr "Σου επιτρέπεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1795
+#: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
 msgstr "Ενεργοποίηση αυτόματης εισαγωγής σε σειρά για επιλεγμένες κατασκευές."
 
-#: gui/session/unit_actions.js:1815
+#: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
 msgstr "Απενεργοποίηση  αυτόματης εισαγωγής σε σειρά για επιλεγμένες κατασκευές."
 
-#: gui/session/unit_actions.js:1880
+#: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Η οντότητα πρέπει να εξουδετερωθεί ώστε να συλλεχθεί."
 
-#: gui/session/unit_actions.js:1883
+#: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Δεν μπορείς να καταστρέψεις αυτήν την οντότητα γιατί εχεις λιγότερους απο τους μισούς πόντους κατάκτησης"
 
-#: gui/session/unit_actions.js:1886
+#: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
 msgstr "Η οντότητα δεν διαγράφεται."

@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-08-18 23:56+0000\n"
-"Last-Translator: Scael Blu <groteszk@totalcar.hu>\n"
+"PO-Revision-Date: 2021-09-05 11:46+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -766,7 +766,7 @@ msgid ""
 "High mountains separating the enemies.\n"
 "\n"
 "The Pyrenees is a great mountain range located between modern France and Spain."
-msgstr "Magas hegyek választják el az ellenségeket.\n\nA Pireneusok a modern Franciaország és Spanyolország között található hatalmas hegység."
+msgstr "Magas hegyek választják el egymástól az ellenségeket.\n\nA Pireneusok egy hatalmas hegylánc, mely a mai Franciaország és Spanyolország között található."
 
 #: maps/random/pyrenean_sierra.jsonsettings.Name
 msgid "Pyrenean Sierra"
@@ -1178,7 +1178,7 @@ msgstr "Két mediterrán földrész, melyet egy keskeny földnyelv kapcsol össz
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
-msgstr "Isthmus"
+msgstr "Földszoros"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
 msgid "A small central river."
@@ -2395,7 +2395,7 @@ msgstr ""
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Sikerült az összes ereklyét megszerezned, így %(time)sen belül nyerni is fogsz."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
@@ -2415,39 +2415,39 @@ msgstr[1] ""
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s legyőzetett (az összes kulcsfontosságú egységét és az összes építményét elvesztette)."
 
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all civic centres)."
-msgstr ""
+msgstr "%(player)s legyőzetett (az összes városházáját elvesztette)."
 
 #: maps/scripts/ConquestCivicCentres.js:9
 #, javascript-format
 msgid ""
 "%(player)s has been defeated (lost all civic centres and critical units and "
 "structures)."
-msgstr ""
+msgstr "%(player)s legyőzetett (az összes városházáját, az összes kulcsfontosságú egységét és az összes építményét elvesztette)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr ""
+msgstr "%(player)s legyőzetett (az összes építményét elvesztette)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s legyőzetett (az összes építményét és az összes kulcsfontosságú egységét elvesztette)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr "%(player)s vereséget szenvedett (minden egységét elvesztette)."
+msgstr "%(player)s legyőzetett (az összes egységét elvesztette)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s legyőzetett (az összes egységét és az összes kulcsfontosságú építményét elvesztette)"
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format

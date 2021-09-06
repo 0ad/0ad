@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2020 Wildfire Games.
+# Copyright (C) 2021 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ def main():
                     path = os.path.join(root, folder)
                     os.chdir(path)
                     project = Project(path)
-                    project.pull(fetchall=True, force=True)
+                    project.pull(fetchall=True, force=True, parallel=True)
 
 
 if __name__ == "__main__":

@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 08:25+0000\n"
-"Last-Translator: Martin H <pilino@posteo.de>\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-03 08:24+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,70 +113,72 @@ msgstr "Huvudmeny"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "Kommandot '%(cmd)s' stöds inte."
+msgid ""
+"The command '%(cmd)s' is not supported. Try %(help)s to get more information"
+" about the supported commands."
+msgstr ""
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Kommandot '%(cmd)s' är bara tillgängligt för moderatorer."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
 msgstr "Kommandot '%(cmd)s' kräver minst ett argument."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
 msgstr "Ändra din status till 'Borta'."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
 msgstr "Ändra din status till 'Online'."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
 msgstr "Sparka en användare från lobbyn. Användning: /kick användarnamn anledning"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
 msgstr "Banna en användare från lobbyn: Användning: /ban användarnamn anledning"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
 msgstr "Visa denna hjälpdialog."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
 msgstr "Chattkommandon:"
 
 #. Translation: Chat command help format
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:133
 #, javascript-format
 msgid "%(command)s - %(description)s"
 msgstr "%(command)s - %(description)s"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
 msgstr "Skicka ett chattmeddelande om dig själv. Exempel: /me går och badar."
 
 #. Translation: Chat command
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
 msgstr "/me"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
 msgstr "Skicka text som chattmeddelande (även om den börjar med ett snedstreck). Exempel: /say /help är ett bra kommando."
 
 #. Translation: Chat command
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
 msgstr "/say"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
 msgstr "Rensa all chatthistoria."
 

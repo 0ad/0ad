@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-09-01 19:39+0000\n"
+"PO-Revision-Date: 2021-09-04 20:45+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -867,7 +867,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Subalpine"
-msgstr ""
+msgstr "Subalpí"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
@@ -880,7 +880,7 @@ msgstr "Una regió muntanyosa i nevada. Els vents implacables bufen entre les co
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Arctic"
-msgstr ""
+msgstr "Àrtic"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -894,7 +894,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Rhine Valley (Fall)"
-msgstr ""
+msgstr "Vall del Rin (Tardor)"
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -934,7 +934,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Sahara"
-msgstr ""
+msgstr "Sàhara"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
@@ -961,7 +961,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Eurasian Steppe"
-msgstr ""
+msgstr "Estepa eurasiàtica"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -2393,21 +2393,21 @@ msgstr ""
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha guanyat (Captura la relíquia)."
+msgstr[1] "%(players)s i %(lastPlayer)s han guanyat (Captura la relíquia)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha estat derrotat (Captura la relíquia)."
+msgstr[1] "%(players)s i %(lastPlayer)s han estat derrotats (Captura la relíquia)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s ha estat derrotat (ha perdut totes les estructures i unitats crítiques)."
 
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
@@ -2429,7 +2429,7 @@ msgstr ""
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s ha estat derrotat (ha perdut totes les estructures i unitats crítiques)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
@@ -2461,7 +2461,7 @@ msgstr ""
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s té una meravella i guanyareu en %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
@@ -2477,8 +2477,8 @@ msgstr ""
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha guanyat (victòria per meravella)."
+msgstr[1] "%(players)s i %(lastPlayer)s han guanyat (victòria per meravella)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
@@ -2542,7 +2542,7 @@ msgstr ""
 
 #: maps/skirmishes/bactria_2p.xml:Name:39
 msgid "Bactriana (2)"
-msgstr ""
+msgstr "Bactriana (2)"
 
 #: maps/skirmishes/barcania_3p.xml:Description:26
 msgid ""
@@ -2575,7 +2575,7 @@ msgstr "Al sud del Sàhara i a l'est del Nil hi ha una regió semiàrida avui co
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Island of Meroë (2)"
-msgstr ""
+msgstr "Illa de Meroe (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
@@ -2867,7 +2867,7 @@ msgstr ""
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
 msgid "Macedonian Position"
-msgstr ""
+msgstr "Posició macedònia"
 
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
@@ -3254,19 +3254,19 @@ msgstr "Britons"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
-msgstr ""
+msgstr "Invasor 1"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
 msgid "Invader 2"
-msgstr ""
+msgstr "Invasor 2"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
 msgid "Invader 3"
-msgstr ""
+msgstr "Invasor 3"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
-msgstr ""
+msgstr "Invasor 4"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

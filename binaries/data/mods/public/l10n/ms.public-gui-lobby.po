@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 08:24+0000\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-03 08:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -101,70 +101,72 @@ msgstr "Menu Utama"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "Perintah '%(cmd)s' tidak disokong."
+msgid ""
+"The command '%(cmd)s' is not supported. Try %(help)s to get more information"
+" about the supported commands."
+msgstr ""
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "Perintah '%(cmd)s' hanya dikhususkan untuk moderator."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
 msgstr "Perintah '%(cmd)s' memerlukan sekurang-kurangnya satu argumen."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
 msgstr "Tetapkan keadaan anda menjadi 'Keluar Sekejap'."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
 msgstr "Tetapkan keadaan anda menjadi 'Atas-Talian'."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
 msgstr "Tendang pengguna tertentu keluar dari ruang legar. Penggunaan:  /kick nick reason"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
 msgstr "Sekat pengguna tertentu keluar dari ruang legar. Penggunaan:  /ban nick reason"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
 msgstr "Tunjuk bantuan ini."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
 msgstr "Perintah sembang:"
 
 #. Translation: Chat command help format
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:133
 #, javascript-format
 msgid "%(command)s - %(description)s"
 msgstr "%(command)s - %(description)s"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
 msgstr "Hantar mesej sembang mengenai diri anda. Contoh: /me hendak pergi solat."
 
 #. Translation: Chat command
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
 msgstr "/me"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
 msgstr "Hantar teks sebagai mesej sembang (walaupun ia bermula dengan tanda slash). Contoh: /say /help merupakan perintah yang terbaik."
 
 #. Translation: Chat command
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
 msgstr "/say"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
 msgstr "Kosongkan semua tatal balik sembang."
 

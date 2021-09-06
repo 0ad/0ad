@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 08:25+0000\n"
-"Last-Translator: Estevan Borges Martins <tet3e@hotmail.com>\n"
+"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"PO-Revision-Date: 2021-09-03 08:24+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,70 +120,72 @@ msgstr "Menu Principal"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
-msgid "The command '%(cmd)s' is not supported."
-msgstr "O comando '%(cmd)s' não é suportado"
+msgid ""
+"The command '%(cmd)s' is not supported. Try %(help)s to get more information"
+" about the supported commands."
+msgstr ""
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr "O comando '%(cmd)s' é restrito apenas para moderadores."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
 msgstr "O comando '%(cmd)s' precisa pelo menos um argumento. "
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
 msgstr "Defina seu estado como 'Ausente'"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
 msgstr "Defina seu estado para 'Online'"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
 msgstr "Expulse um usuário específico do lobby. Uso: /kick nick motivo"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
 msgstr "Bana um usuário específico do lobby. Uso: /ban nick motivo"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
 msgstr "Mostre esta ajuda."
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
 msgstr "Comandos do chat:"
 
 #. Translation: Chat command help format
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:133
 #, javascript-format
 msgid "%(command)s - %(description)s"
 msgstr "%(command)s - %(description)s"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
 msgstr "Envie uma mensagem no chat sobre você mesmo. Exemplo: /me vai nadar"
 
 #. Translation: Chat command
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
 msgstr "/Eu"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
 msgstr "Enviar texto como uma mensagem de bate-papo (mesmo se ele começa com barra). Exemplo: /say /help é um ótimo comando."
 
 #. Translation: Chat command
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
 msgstr "/diz"
 
-#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
+#: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
 msgstr "Limpar todo o chat."
 
