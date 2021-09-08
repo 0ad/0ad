@@ -25,8 +25,6 @@ class CNetMessage;
 class CFileTransferResponseMessage;
 class CFileTransferDataMessage;
 class CFileTransferAckMessage;
-class CNetClientSession;
-class CNetServerSession;
 class INetSession;
 
 // Assume this is sufficiently less than MTU that packets won't get

@@ -27,7 +27,6 @@
 #include "scriptinterface/ScriptTypes.h"
 #include "simulation2/system/Entity.h"
 
-class CObjectEntry;
 class CTerrain;
 class WaterManager;
 class SkyManager;

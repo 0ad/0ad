@@ -24,7 +24,6 @@
 class CBoundingBoxAligned;
 class CCamera;
 class CFrustum;
-class CMatrix3D;
 class CVector3D;
 
 struct ShadowMapInternals;

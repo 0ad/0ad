@@ -23,10 +23,8 @@
 #include "ps/CStrIntern.h"
 
 class CActorDef;
-class CModel;
 class CObjectEntry;
 class CObjectManager;
-class CSkeletonAnim;
 class CXeromyces;
 class XMBElement;
 

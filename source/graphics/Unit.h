@@ -28,7 +28,6 @@ class CActorDef;
 class CModelAbstract;
 class CObjectEntry;
 class CObjectManager;
-class CSkeletonAnim;
 class CUnitAnimation;
 
 

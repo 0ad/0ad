@@ -27,7 +27,6 @@
 #ifndef INCLUDED_RENDERINGOPTIONS
 #define INCLUDED_RENDERINGOPTIONS
 
-class CConfigDB;
 class CStr8;
 class CRenderer;
 

@@ -23,7 +23,6 @@ class CSkeletonAnim;
 class CObjectBase;
 class CObjectManager;
 class CSimulation2;
-struct SPropPoint;
 
 #include <map>
 #include <set>

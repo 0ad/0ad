@@ -22,7 +22,6 @@
 #include <string>
 
 typedef struct _ENetHost ENetHost;
-class ScriptInterface;
 class CStr8;
 
 namespace StunClient

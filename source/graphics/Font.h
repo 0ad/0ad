@@ -21,8 +21,6 @@
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
 
-struct UnifontGlyphData;
-
 /**
  * Storage for a bitmap font. Loaded by CFontManager.
  */

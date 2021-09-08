@@ -26,9 +26,7 @@
 #include <set>
 
 class CUnit;
-class CVector3D;
 class CObjectManager;
-class CStr8;
 class CStrW;
 
 ///////////////////////////////////////////////////////////////////////////////
