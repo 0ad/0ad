@@ -814,10 +814,10 @@ m.Entity = m.Class({
 	},
 
 	// violent, aggressive, defensive, passive, standground
-	"setStance": function(stance, queued = false, pushFront = false) {
+	"setStance": function(stance) {
 		if (this.getStance() === undefined)
 			return undefined;
-		Engine.PostCommand(PlayerID, { "type": "stance", "entities": [this.id()], "name": stance, "queued": queued, "pushFront": pushFront });
+		Engine.PostCommand(PlayerID, { "type": "stance", "entities": [this.id()], "name": stance});
 		return this;
 	},
 
