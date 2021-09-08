@@ -63,10 +63,11 @@ class CStr : public std::tstring
 {
 public:
 	using StrBase = std::tstring;
+	using Char = typename std::tstring::value_type;
 
 	CStr() {}
-	CStr(const tchar* str) : StrBase(str) {}
-	CStr(const tchar* str, size_t len) : StrBase(str, len) {}
+	CStr(const Char* str) : StrBase(str) {}
+	CStr(const Char* str, size_t len) : StrBase(str, len) {}
 	CStr(const StrBase& str) : StrBase(str) {}
 	template<class InputIterator>
 	CStr (InputIterator first, InputIterator last) : StrBase(first, last) {}
@@ -163,7 +164,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long Find(const tchar chr) const;
+	long Find(const Char chr) const;
 	/**
 	 * Search the CStr for another string with starting offset.
 	 * The search is case-sensitive.
@@ -173,7 +174,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long Find(const int start, const tchar chr) const;
+	long Find(const int start, const Char chr) const;
 
 	/**
 	 * Search the CStr for another string.
@@ -192,7 +193,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long FindInsensitive(const tchar chr) const;
+	long FindInsensitive(const Char chr) const;
 	/**
 	 * Search the CStr for another string with starting offset.
 	 * The search is case-insensitive.
@@ -202,7 +203,7 @@ public:
 	 * @return long offset into the CStr of the first occurrence of the search string
 	 *				-1 if the search string is not found
 	 **/
-	long FindInsensitive(const int start, const tchar chr) const;
+	long FindInsensitive(const int start, const Char chr) const;
 
 	/**
 	 * Search the CStr for another string.

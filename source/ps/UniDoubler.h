@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,8 +32,6 @@
 #endif
 #define CStr CStrW
 #define tstring wstring
-#define tchar wchar_t
-#define _T(t) L ## t
 
 // Include the unidoubled file
 #include UNIDOUBLER_HEADER
@@ -42,24 +40,16 @@
 #undef _UNICODE
 #undef CStr
 #undef tstring
-#undef tchar
-#undef _T
-
 
 // Now include the 8-bit version under the name CStr8
 #define CStr CStr8
 #define tstring string
-#define tchar char
-#define _T(t) t
 
 #include UNIDOUBLER_HEADER
 
 // Clean up the macros again, to minimise namespace pollution
 #undef CStr
 #undef tstring
-#undef tchar
-#undef _T
-
 
 // To please the file that originally include CStr.h, make CStr an alias for CStr8:
 #define CStr CStr8

@@ -42,7 +42,7 @@ Trigger.prototype.tutorialGoals = [
 			markForTranslation("1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"),
 			markForTranslation("2) Click on one of them and then add additional units to your selection by holding Shift and clicking each additional unit (or also via the above selection rectangle).\n"),
 			markForTranslation("3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"),
-			markForTranslation("You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected.")
+			markForTranslation("You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the berries to the southeast of your Civic Center by right-clicking on the berries when you have all the Female Citizens selected.")
 		],
 		"OnPlayerCommand": function(msg)
 		{
@@ -300,7 +300,7 @@ Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("When the Field is ready, the builders will automatically start gathering it.\n"),
-			markForTranslation("The cavalry unit should have slaughtered all chickens by now. Select it and explore the south-west area: there is a lake with some camels around. Move your cavalry by right-clicking on the point you want to go, and when you see a herd of camels, right-click on one of them to start hunting for food.")
+			markForTranslation("The cavalry unit should have slaughtered all chickens by now. Select it and explore the area to the south of the Civic Center: there is a lake with some camels around. Move your cavalry by right-clicking on the point you want to go, and when you see a herd of camels, right-click on one of them to start hunting for food.")
 		],
 		"OnPlayerCommand": function(msg)
 		{

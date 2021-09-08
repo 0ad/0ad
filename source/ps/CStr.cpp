@@ -15,10 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Description : Controls compilation of CStr class and
- *             : includes some function implementations.
- **/
 #include "precompiled.h"
 
 #ifndef CStr_CPP_FIRST
@@ -30,8 +26,137 @@
 #include "network/Serialization.h"
 
 #include <cctype>
+#include <cwctype>
 #include <iomanip>
 #include <sstream>
+#include <type_traits>
+
+namespace
+{
+	// Use a knowingly false expression, as we can't use
+	// static_assert(false, ...) directly, because it's an ill-formed program
+	// with a value (false) which doesn't depend on any input parameter.
+	// We don't use constexpr bool AlwaysFalse = false, because some compilers
+	// complain about an unused constant.
+	template<typename T>
+	struct AlwaysFalse : std::false_type
+	{};
+
+	template<typename StrBase>
+	using tstringstream = std::basic_stringstream<typename StrBase::value_type>;
+
+	template<typename Char>
+	bool istspace(const Char chr)
+	{
+		if constexpr (std::is_same_v<Char, char>)
+			return static_cast<bool>(std::isspace(chr));
+		else
+			return static_cast<bool>(std::iswspace(chr));
+	}
+
+	template<typename Char>
+	Char totlower(const Char chr)
+	{
+		if constexpr (std::is_same_v<Char, char>)
+			return std::tolower(chr);
+		else
+			return std::towlower(chr);
+	}
+
+	template<typename Char>
+	Char totupper(const Char chr)
+	{
+		if constexpr (std::is_same_v<Char, char>)
+			return std::toupper(chr);
+		else
+			return std::towupper(chr);
+	}
+
+	template<typename StrBase>
+	u8* SerializeImpl(const StrBase& str, u8* buffer)
+	{
+		using Char = typename StrBase::value_type;
+		ENSURE(buffer);
+		if constexpr (std::is_same_v<Char, char>)
+		{
+			// CStr8 is always serialized to / from ASCII(or whatever 8 - bit codepage stored
+			// in the CStr).
+			size_t len = str.length();
+			Serialize_int_4(buffer, (u32)len);
+			size_t i = 0;
+			for (i = 0; i < len; i++)
+				buffer[i] = str[i];
+			return buffer + len;
+		}
+		else if constexpr (std::is_same_v<Char, wchar_t>)
+		{
+			// CStrW is always serialized to / from UTF - 16.
+			size_t len = str.length();
+			size_t i = 0;
+			for (i = 0; i < len; i++)
+			{
+				const u16 bigEndian = to_be16(str[i]);
+				*(u16 *)(buffer + i * 2) = bigEndian;
+			}
+			*(u16 *)(buffer + i * 2) = 0;
+			return buffer + len * 2 + 2;
+		}
+		else
+			static_assert(AlwaysFalse<Char>::value, "Not implemented.");
+	}
+
+	template<typename StrBase>
+	const u8* DeserializeImpl(const u8* buffer, const u8* bufferend, StrBase& str)
+	{
+		using Char = typename StrBase::value_type;
+		ENSURE(buffer);
+		ENSURE(bufferend);
+		if constexpr (std::is_same_v<Char, char>)
+		{
+			u32 len;
+			Deserialize_int_4(buffer, len);
+			if (buffer + len > bufferend)
+				return NULL;
+			str = StrBase(buffer, buffer + len);
+			return buffer + len;
+		}
+		else if constexpr (std::is_same_v<Char, wchar_t>)
+		{
+			const u16 *strend = (const u16 *)buffer;
+			while ((const u8 *)strend < bufferend && *strend)
+				strend++;
+			if ((const u8 *)strend >= bufferend)
+				return nullptr;
+
+			str.resize(strend - (const u16 *)buffer);
+			const u16 *ptr = (const u16 *)buffer;
+
+			typename StrBase::iterator it = str.begin();
+			while (ptr < strend)
+			{
+				const u16 native = to_be16(*(ptr++));	// we want from_be16, but that's the same
+				*(it++) = (Char)native;
+			}
+
+			return (const u8 *)(strend + 1);
+		}
+		else
+			static_assert(AlwaysFalse<Char>::value, "Not implemented.");
+	}
+
+	template<typename StrBase>
+	size_t GetSerializedLengthImpl(const StrBase& str)
+	{
+		using Char = typename StrBase::value_type;
+		if constexpr (std::is_same_v<Char, char>)
+			return str.length() + 4;
+		else if constexpr (std::is_same_v<Char, wchar_t>)
+			return str.length() * 2 + 2;
+		else
+			static_assert(AlwaysFalse<Char>::value, "Not implemented.");
+	}
+
+} // anonymous namespace
 
 #define UNIDOUBLER_HEADER "CStr.cpp"
 #include "UniDoubler.h"
@@ -66,26 +191,6 @@ CStrW CStr8::FromUTF8() const
 // The following code is compiled twice, as CStrW then as CStr8:
 
 #include "CStr.h"
-
-#include <sstream>
-
-#ifdef  _UNICODE
- #define _istspace iswspace
- #define _totlower towlower
- #define _totupper towupper
-#else
- #define _istspace isspace
- #define _totlower tolower
- #define _totupper toupper
-#endif
-
-namespace
-{
-
-template<typename StrBase>
-using tstringstream = std::basic_stringstream<typename StrBase::value_type>;
-
-} // anonymous namespace
 
 CStr CStr::Repeat(const CStr& str, size_t reps)
 {
@@ -166,7 +271,7 @@ unsigned long CStr::ToULong() const
  */
 CStr ParseableAsNumber(CStr cleaned_copy)
 {
-	for (tchar& c : cleaned_copy)
+	for (CStr::Char& c : cleaned_copy)
 		if (!std::isdigit(c) && c != '.' && c != '-' && c != '+')
 			c = ' ';
 
@@ -201,7 +306,7 @@ long CStr::Find(const CStr& str) const
 }
 
 // Search the string for another string
-long CStr::Find(const tchar chr) const
+long CStr::Find(const Char chr) const
 {
 	size_t pos = find(chr, 0);
 
@@ -212,7 +317,7 @@ long CStr::Find(const tchar chr) const
 }
 
 // Search the string for another string
-long CStr::Find(const int start, const tchar chr) const
+long CStr::Find(const int start, const Char chr) const
 {
 	size_t pos = find(chr, start);
 
@@ -222,8 +327,8 @@ long CStr::Find(const int start, const tchar chr) const
 	return -1;
 }
 
-long CStr::FindInsensitive(const int start, const tchar chr) const { return LowerCase().Find(start, _totlower(chr)); }
-long CStr::FindInsensitive(const tchar chr) const { return LowerCase().Find(_totlower(chr)); }
+long CStr::FindInsensitive(const int start, const Char chr) const { return LowerCase().Find(start, totlower(chr)); }
+long CStr::FindInsensitive(const Char chr) const { return LowerCase().Find(totlower(chr)); }
 long CStr::FindInsensitive(const CStr& str) const { return LowerCase().Find(str.LowerCase()); }
 
 long CStr::ReverseFind(const CStr& str) const
@@ -241,7 +346,7 @@ CStr CStr::LowerCase() const
 {
 	StrBase newStr = *this;
 	for (size_t i = 0; i < length(); i++)
-		newStr[i] = (tchar)_totlower((*this)[i]);
+		newStr[i] = (Char)totlower((*this)[i]);
 
 	return newStr;
 }
@@ -250,7 +355,7 @@ CStr CStr::UpperCase() const
 {
 	StrBase newStr = *this;
 	for (size_t i = 0; i < length(); i++)
-		newStr[i] = (tchar)_totupper((*this)[i]);
+		newStr[i] = (Char)totupper((*this)[i]);
 
 	return newStr;
 }
@@ -348,7 +453,7 @@ std::string CStr::EscapeToPrintableASCII() const
 	std::string newStr;
 	for (size_t i = 0; i < length(); i++)
 	{
-		tchar ch = (*this)[i];
+		Char ch = (*this)[i];
 
 		if (ch == '"') newStr += "\\\"";
 		else if (ch == '\\') newStr += "\\\\";
@@ -379,7 +484,7 @@ CStr CStr::Trim(PS_TRIM_MODE mode) const
 		case PS_TRIM_LEFT:
 		{
 			for (left = 0; left < length(); left++)
-				if (_istspace((*this)[left]) == false)
+				if (istspace((*this)[left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 		} break;
 
@@ -387,19 +492,19 @@ CStr CStr::Trim(PS_TRIM_MODE mode) const
 		{
 			right = length();
 			while (right--)
-				if (_istspace((*this)[right]) == false)
+				if (istspace((*this)[right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
 
 		case PS_TRIM_BOTH:
 		{
 			for (left = 0; left < length(); left++)
-				if (_istspace((*this)[left]) == false)
+				if (istspace((*this)[left]) == false)
 					break; // end found, trim 0 to Left-1 inclusive
 
 			right = length();
 			while (right--)
-				if (_istspace((*this)[right]) == false)
+				if (istspace((*this)[right]) == false)
 					break; // end found, trim len-1 to Right+1	inclusive
 		} break;
 
@@ -439,7 +544,7 @@ CStr CStr::Pad(PS_TRIM_MODE mode, size_t len) const
 		debug_warn(L"CStr::Trim: invalid Mode");
 	}
 
-	return StrBase(left, _T(' ')) + *this + StrBase(right, _T(' '));
+	return StrBase(left, ' ') + *this + StrBase(right, ' ');
 }
 
 size_t CStr::GetHashCode() const
@@ -449,88 +554,19 @@ size_t CStr::GetHashCode() const
 		// the result was truncated down to 32 anyway.
 }
 
-#ifdef _UNICODE
-/*
-	CStrW is always serialized to/from UTF-16
-*/
-
-u8* CStrW::Serialize(u8* buffer) const
+u8* CStr::Serialize(u8* buffer) const
 {
-	size_t len = length();
-	size_t i = 0;
-	for (i = 0; i < len; i++)
-	{
-		const u16 bigEndian = to_be16((*this)[i]);
-		*(u16 *)(buffer + i*2) = bigEndian;
-	}
-	*(u16 *)(buffer + i*2) = 0;
-	return buffer + len*2 + 2;
+	return SerializeImpl(*this, buffer);
 }
 
-const u8* CStrW::Deserialize(const u8* buffer, const u8* bufferend)
+const u8* CStr::Deserialize(const u8* buffer, const u8* bufferend)
 {
-	ENSURE(buffer);
-	ENSURE(bufferend);
-	const u16 *strend = (const u16 *)buffer;
-	while ((const u8 *)strend < bufferend && *strend) strend++;
-	if ((const u8 *)strend >= bufferend) return NULL;
-
-	resize(strend - (const u16 *)buffer);
-	const u16 *ptr = (const u16 *)buffer;
-
-	std::wstring::iterator str = begin();
-	while (ptr < strend)
-	{
-		const u16 native = to_be16(*(ptr++));	// we want from_be16, but that's the same
-		*(str++) = (tchar)native;
-	}
-
-	return (const u8 *)(strend+1);
+	return DeserializeImpl(buffer, bufferend, *this);
 }
 
 size_t CStr::GetSerializedLength() const
 {
-	return size_t(length()*2 + 2);
+	return GetSerializedLengthImpl(*this);
 }
-
-#else
-/*
-	CStr8 is always serialized to/from ASCII (or whatever 8-bit codepage stored
-	in the CStr)
-*/
-
-u8* CStr8::Serialize(u8* buffer) const
-{
-	size_t len = length();
-	Serialize_int_4(buffer, (u32)len);
-	size_t i = 0;
-	for (i = 0; i < len; i++)
-		buffer[i] = (*this)[i];
-	return buffer + len;
-}
-
-const u8* CStr8::Deserialize(const u8* buffer, const u8* bufferend)
-{
-	ENSURE(buffer);
-	ENSURE(bufferend);
-	u32 len;
-	Deserialize_int_4(buffer, len);
-	if (buffer + len > bufferend)
-		return NULL;
-	*this = std::string(buffer, buffer + len);
-	return buffer + len;
-}
-
-size_t CStr::GetSerializedLength() const
-{
-	return length() + 4;
-}
-
-#endif // _UNICODE
-
-// Clean up, to keep the second pass through unidoubler happy
-#undef _istspace
-#undef _totlower
-#undef _totupper
 
 #endif // CStr_CPP_FIRST
