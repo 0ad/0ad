@@ -22,6 +22,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/allocators/shared_ptr.h"
+#include "lib/file/file_system.h"
 #include "lib/external_libraries/libsdl.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -108,7 +109,7 @@ void VisualReplay::StoreCacheFile(const ScriptInterface& scriptInterface, JS::Ha
 	cacheStream.close();
 
 	wunlink(GetCacheFilePath());
-	if (wrename(GetTempCacheFilePath(), GetCacheFilePath()))
+	if (RenameFile(GetTempCacheFilePath(), GetCacheFilePath()))
 		LOGERROR("Could not store the replay cache");
 }
 
