@@ -29,7 +29,6 @@
 
 class CColladaManager;
 class CSkeletonAnimDef;
-class CStr8;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager : owner class of all skeleton anims - manages creation,

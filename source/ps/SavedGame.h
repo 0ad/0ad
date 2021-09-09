@@ -22,7 +22,6 @@
 #include "scriptinterface/StructuredClone.h"
 
 class CSimulation2;
-class CGUIManager;
 
 /**
  * @file

@@ -32,7 +32,6 @@
 class CGame;
 class CNetClientSession;
 class CNetClientTurnManager;
-class CNetServer;
 class ScriptInterface;
 
 typedef struct _ENetHost ENetHost;

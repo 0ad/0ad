@@ -25,8 +25,6 @@
 
 #include <vector>
 
-class ScriptInterface;
-
 /**
  * When in focus, returns all currently pressed keys.
  * After a set time without changes, it will trigger a "combination" event.

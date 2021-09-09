@@ -27,7 +27,6 @@
 #include <vector>
 
 class CFrustum;
-class CTerrain;
 class CSimContext;
 class CTexturedLineRData;
 struct SOverlayDescriptor;

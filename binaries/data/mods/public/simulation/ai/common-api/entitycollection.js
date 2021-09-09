@@ -142,42 +142,84 @@ m.EntityCollection.prototype.hasEntities = function()
 	return this._entities.size !== 0;
 };
 
-m.EntityCollection.prototype.move = function(x, z, queued = false)
+m.EntityCollection.prototype.move = function(x, z, queued = false, pushFront = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued });
+	Engine.PostCommand(PlayerID, {
+		"type": "walk",
+		"entities": this.toIdArray(),
+		"x": x,
+		"z": z,
+		"queued": queued,
+		"pushFront": pushFront
+	});
 	return this;
 };
 
-m.EntityCollection.prototype.moveToRange = function(x, z, min, max, queued = false)
+m.EntityCollection.prototype.moveToRange = function(x, z, min, max, queued = false, pushFront = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "walk-to-range", "entities": this.toIdArray(), "x": x, "z": z,
-		"min": min, "max": max, "queued": queued });
+	Engine.PostCommand(PlayerID, {
+		"type": "walk-to-range",
+		"entities": this.toIdArray(),
+		"x": x,
+		"z": z,
+		"min": min,
+		"max": max,
+		"queued": queued,
+		"pushFront": pushFront
+	});
 	return this;
 };
 
-m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, allowCapture = true, queued = false)
+m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, allowCapture = true, queued = false, pushFront = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z,
-		"targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued });
+	Engine.PostCommand(PlayerID, {
+		"type": "attack-walk",
+		"entities": this.toIdArray(),
+		"x": x,
+		"z": z,
+		"targetClasses": targetClasses,
+		"allowCapture": allowCapture,
+		"queued": queued,
+		"pushFront": pushFront
+	});
 	return this;
 };
 
-m.EntityCollection.prototype.moveIndiv = function(x, z, queued = false)
+m.EntityCollection.prototype.moveIndiv = function(x, z, queued = false, pushFront = false)
 {
 	for (let id of this._entities.keys())
-		Engine.PostCommand(PlayerID, { "type": "walk", "entities": [id], "x": x, "z": z, "queued": queued });
+		Engine.PostCommand(PlayerID, {
+			"type": "walk",
+			"entities": [id],
+			"x": x,
+			"z": z,
+			"queued": queued,
+			"pushFront": pushFront
+		});
 	return this;
 };
 
-m.EntityCollection.prototype.garrison = function(target, queued = false)
+m.EntityCollection.prototype.garrison = function(target, queued = false, pushFront = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "garrison", "entities": this.toIdArray(), "target": target.id(), "queued": queued });
+	Engine.PostCommand(PlayerID, {
+		"type": "garrison",
+		"entities": this.toIdArray(),
+		"target": target.id(),
+		"queued": queued,
+		"pushFront": pushFront
+	});
 	return this;
 };
 
-m.EntityCollection.prototype.occupyTurret = function(target, queued = false)
+m.EntityCollection.prototype.occupyTurret = function(target, queued = false, pushFront = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "occupy-turret", "entities": this.toIdArray(), "target": target.id(), "queued": queued });
+	Engine.PostCommand(PlayerID, {
+		"type": "occupy-turret",
+		"entities": this.toIdArray(),
+		"target": target.id(),
+		"queued": queued,
+		"pushFront": pushFront
+	});
 	return this;
 };
 
@@ -187,16 +229,26 @@ m.EntityCollection.prototype.destroy = function()
 	return this;
 };
 
-m.EntityCollection.prototype.attack = function(unitId, queued = false)
+m.EntityCollection.prototype.attack = function(unitId, queued = false, pushFront = false)
 {
-	Engine.PostCommand(PlayerID, { "type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": queued });
+	Engine.PostCommand(PlayerID, {
+		"type": "attack",
+		"entities": this.toIdArray(),
+		"target": unitId,
+		"queued": queued,
+		"pushFront": pushFront
+	});
 	return this;
 };
 
 /** violent, aggressive, defensive, passive, standground */
 m.EntityCollection.prototype.setStance = function(stance)
 {
-	Engine.PostCommand(PlayerID, { "type": "stance", "entities": this.toIdArray(), "name": stance, "queued": false });
+	Engine.PostCommand(PlayerID, {
+		"type": "stance",
+		"entities": this.toIdArray(),
+		"name": stance
+	});
 	return this;
 };
 

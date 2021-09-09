@@ -29,10 +29,8 @@
 #include "maths/Vector2D.h"
 #include "renderer/VertexBufferManager.h"
 
-class CSimulation2;
 class CFrustum;
 
-struct CoastalPoint;
 struct WaveObject;
 
 /**

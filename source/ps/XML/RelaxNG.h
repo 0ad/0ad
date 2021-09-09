@@ -26,8 +26,6 @@ typedef xmlRelaxNG *xmlRelaxNGPtr;
 typedef struct _xmlDoc xmlDoc;
 typedef xmlDoc *xmlDocPtr;
 
-class IRelaxNGGrammar;
-
 class RelaxNGValidator
 {
 public:

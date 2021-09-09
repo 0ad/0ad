@@ -27,9 +27,7 @@
 #include <deque>
 #include <vector>
 
-class CCamera;
 class CMatrix3D;
-class CTerrain;
 
 class CMiniMap : public IGUIObject
 {

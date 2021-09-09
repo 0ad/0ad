@@ -30,13 +30,10 @@ class CTerrain;
 class CCamera;
 class CCinemaManager;
 class CPostprocManager;
-class CTriggerManager;
 class WaterManager;
 class SkyManager;
 class CSimulation2;
 struct MapTrigger;
-struct MapTriggerGroup;
-class XMLWriter_File;
 
 class CMapWriter : public CMapIO
 {

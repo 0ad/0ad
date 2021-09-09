@@ -85,7 +85,6 @@ XMB_Text {
 #include <string>
 #include <string_view>
 
-class CXeromyces;
 class XMBStorage;
 
 class XMBElement;

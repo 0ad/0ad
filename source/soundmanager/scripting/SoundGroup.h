@@ -27,7 +27,6 @@
 #include <vector>
 
 class CVector3D;
-class ISoundItem;
 
 enum eSndGrpFlags
 {

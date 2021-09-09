@@ -20,8 +20,6 @@
 #include "ICmpRallyPointRenderer.h"
 #include "simulation2/system/InterfaceScripted.h"
 
-class CFixedVector2D;
-
 BEGIN_INTERFACE_WRAPPER(RallyPointRenderer)
 DEFINE_INTERFACE_METHOD("SetDisplayed", ICmpRallyPointRenderer, SetDisplayed)
 DEFINE_INTERFACE_METHOD("SetPosition", ICmpRallyPointRenderer, SetPosition)

@@ -33,8 +33,6 @@
 
 #define NUM_ALPHA_MAPS 14
 
-class XMBElement;
-class CXeromyces;
 class CTerrainTextureEntry;
 class CTerrainProperties;
 
