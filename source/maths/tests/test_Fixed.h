@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,11 @@
 
 #include "lib/self_test.h"
 
+#include "lib/sysdep/compiler.h"
+#if MSC_VERSION
+# pragma warning(push, 1)
+# pragma warning(disable: 4724)
+#endif
 #include "maths/Fixed.h"
 #include "maths/MathUtil.h"
 
@@ -219,6 +224,7 @@ public:
 		TS_ASSERT_EQUALS((fixed::FromDouble(5.5) % fixed::FromInt(4)).ToDouble(), 1.5);
 
 		TS_ASSERT_EQUALS((fixed::FromDouble(1.75) % fixed::FromDouble(0.5)).ToDouble(), 0.25);
+		TS_ASSERT_EQUALS((fixed::FromFloat(1.75) % fixed::FromFloat(0.5)).ToFloat(), 0.25f);
 	}
 
 	void test_Sqrt()
@@ -320,3 +326,7 @@ public:
 		TS_ASSERT_LESS_THAN(err, 0.00046);
 	}
 };
+
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
