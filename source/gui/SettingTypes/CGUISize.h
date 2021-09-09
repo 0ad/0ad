@@ -19,9 +19,8 @@
 #define INCLUDED_CGUISIZE
 
 #include "maths/Rect.h"
+#include "ps/CStrForward.h"
 #include "scriptinterface/ScriptForward.h"
-
-class CStr8;
 
 /**
  * This class represents a rectangle relative to a parent rectangle

@@ -24,6 +24,7 @@
 #ifndef INCLUDED_WORLD
 #define INCLUDED_WORLD
 
+#include "ps/CStrForward.h"
 #include "ps/Errors.h"
 
 #ifndef ERROR_GROUP_GAME_DEFINED
@@ -36,7 +37,6 @@ ERROR_TYPE(Game_World, MapLoadFailed);
 class CGame;
 class CUnitManager;
 class CTerrain;
-class CStrW;
 class CMapReader;
 class ScriptContext;
 

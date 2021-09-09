@@ -18,11 +18,12 @@
 #ifndef INCLUDED_IGUISCROLLBAROWNER
 #define INCLUDED_IGUISCROLLBAROWNER
 
+#include "ps/CStrForward.h"
+
 #include <memory>
 #include <vector>
 
 class CCanvas2D;
-class CStr8;
 struct SGUIMessage;
 struct SGUIScrollBarStyle;
 class IGUIScrollBar;

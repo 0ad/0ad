@@ -23,6 +23,7 @@
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
 #include "maths/Rect.h"
+#include "ps/CStrForward.h"
 #include "ps/CStrIntern.h"
 
 #include <map>
@@ -31,7 +32,6 @@
 class CCanvas2D;
 class CGUI;
 class CGUISprite;
-class CStr8;
 struct CGUIColor;
 struct SGUIImage;
 

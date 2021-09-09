@@ -21,10 +21,8 @@
 #include "lib/file/file.h"
 #include "lib/file/io/write_buffer.h"
 #include "lib/file/vfs/vfs_util.h"
-
+#include "ps/CStrForward.h"
 #include "ps/Errors.h"
-
-class CStr8;
 
 extern PIVFS g_VFS;
 

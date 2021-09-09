@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,14 +18,13 @@
 #ifndef INCLUDED_ACTORVIEWER
 #define INCLUDED_ACTORVIEWER
 
+#include "ps/CStrForward.h"
 #include "simulation2/helpers/Player.h"
 #include "simulation2/system/Entity.h"
 
 struct ActorViewerImpl;
 struct SColor4ub;
 class CSimulation2;
-class CStr8;
-class CStrW;
 
 class ActorViewer
 {

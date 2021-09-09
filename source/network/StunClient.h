@@ -19,10 +19,11 @@
 #ifndef STUNCLIENT_H
 #define STUNCLIENT_H
 
+#include "ps/CStrForward.h"
+
 #include <string>
 
 typedef struct _ENetHost ENetHost;
-class CStr8;
 
 namespace StunClient
 {

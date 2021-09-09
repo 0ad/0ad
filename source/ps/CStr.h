@@ -50,11 +50,10 @@ enum PS_TRIM_MODE
 #define CSTR_H_A
 #endif
 
-#include <string>
 #include "ps/utf16string.h"
+#include "ps/CStrForward.h"
 
-class CStr8;
-class CStrW;
+#include <string>
 
 /**
  * The base class of all strings
@@ -351,4 +350,4 @@ struct hash<CStr>
 };
 }
 
-#endif
+#endif // INCLUDED_CSTR

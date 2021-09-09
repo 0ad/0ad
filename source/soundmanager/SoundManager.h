@@ -29,14 +29,13 @@
 
 #include "lib/external_libraries/openal.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
 #include "ps/Profiler2.h"
 #include "simulation2/system/Entity.h"
 
 #include <map>
 #include <mutex>
 #include <vector>
-
-class CStr8;
 
 #define AL_CHECK CSoundManager::al_check(__func__, __LINE__)
 
