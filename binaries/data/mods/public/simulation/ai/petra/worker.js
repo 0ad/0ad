@@ -876,8 +876,7 @@ PETRA.Worker.prototype.startFishing = function(gameState)
 
 	let exhausted = true;
 	let gatherRates = this.ent.resourceGatherRates();
-	resources.forEach(function(supply)
-	{
+	resources.forEach((supply) => {
 		if (!supply.position())
 			return;
 
