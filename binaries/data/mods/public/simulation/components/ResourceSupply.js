@@ -257,6 +257,9 @@ ResourceSupply.prototype.Change = function(change)
  */
 ResourceSupply.prototype.SetAmount = function(newValue)
 {
+	// We currently don't support changing to or fro Infinity.
+	if (this.IsInfinite() || newValue === Infinity)
+		return;
 	this.Change(newValue - this.amount);
 };
 
