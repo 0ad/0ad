@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-09-08 07:07+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +81,7 @@ msgstr "Epäyhteensopivat modit"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "peli on jo alkanut. Haluatko liittyä tarkastelijana?"
+msgstr "Peli on jo alkanut. Haluatko liittyä tarkkailijana?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
@@ -113,7 +113,7 @@ msgstr "Päävalikko"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "Komento '%(cmd)s' ei ole tuettu. Yritä %(help)s saadaksesi lisätietoja tuetuista komennoista."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -243,12 +243,12 @@ msgstr "%(nick)son nyt moderaattori."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
-msgstr "Et ole enää hiljennetty"
+msgstr "Et ole enää hiljennetty."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "hiljennys poistettu pelaajalta%(nick)s"
+msgstr "Hiljennys poistettu pelaajalta %(nick)s."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
@@ -589,7 +589,7 @@ msgstr "Voitto-osuus:"
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "pelaajaa \"%(nick)s\" ei löydy."
+msgstr "Pelaajaa \"%(nick)s\" ei löydy."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
@@ -1085,7 +1085,7 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr "0 A.D. Empires Ascendant moninpeliaula on Wildfire Gamesin tarjoama verkkopalvelu, jonka avulla pelaajat voivat järjestää online-moninpeliotteluita, keskustella pelistä julkisessa keskusteluhuoneessa ja saada taitojaan kuvaavan luokituksen."
+msgstr "0 A.D. Empires Ascendant -moninpeliaula on Wildfire Gamesin tarjoama verkkopalvelu, jonka avulla pelaajat voivat järjestää online-moninpeliotteluita, keskustella pelistä julkisessa keskusteluhuoneessa ja saada taitojaan kuvaavan luokituksen."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
@@ -1269,7 +1269,7 @@ msgstr "Luo uusi tunnus"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
-msgstr "Kirjaudu sisään jo olemassa olevalle tunnukselle"
+msgstr "Kirjaudu sisään olemassa olevalle tunnukselle"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"

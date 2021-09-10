@@ -164,6 +164,11 @@ msgid ""
 "Village Phase structure that you have built, allowing you to advance to the "
 "Town Phase."
 msgstr ""
+"စစ်တန်းလျား တစ်လုံး ကို အနီးအနား တွင် တည်ဆောက် ပါ။ သင်၏ လူဦးရေကန့်သတ်ချက် "
+"ရောက်ရှိ သည့် ဘယ်အချိန်မဆို ရရှိနိုင်သော မည်သည့် တည်ဆောက်သူ အစို့များ မရွေး "
+"ကို အသုံးပြုခြင်း ဖြင့် အပို အိမ် တစ်လုံး ကို တည်ဆောက် ပါ။ ဤဟာ သည် သင် "
+"တည်ဆောက် ပြီးသည့် ပဉ္စမမြောက် ကျေးရွာအဆင့် အဆောက်အအုံ ဖြစ်ကာ သင့်အား "
+"မြို့အဆင့် သို့ တက်လှမ်း ရန် ခွင့်ပြု ပါလိမ့်မည်။"
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -171,29 +176,40 @@ msgid ""
 "II icon (you have to wait for the barracks to be built first). This will "
 "allow Town Phase buildings to be constructed."
 msgstr ""
+"မြို့တော်ဗဟို အား နောက်ထပ် ရွေးချယ် ၍ II သင်္ကေတ ပေါ်တွင် ခလုတ်နှိပ်ခြင်း "
+"ဖြင့်  (သင့် အနေဖြင့် စစ်တန်းလျား ကို ပထမ ဆုံး တည်ဆောက် ပြီးသည် အထိ "
+"စောင့်ဆိုင်း ရပါမယ်) မြို့အဆင့် သို့ တက်လှမ်း ပါ။ ဤဟာသည် မြို့အဆင့် "
+"အဆောက်အအုံများ ကို ဆောက်လုပ် ရန် ခွင့်ပြု ပါလိမ့်မည်။"
 
 #: maps/tutorials/introductory_tutorial.js:205
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
 msgstr ""
+"အဆင့်တက် သည်ကို စောင့်ဆိုင်း နေ စဉ်တွင် သင်၏ အလုပ်မရှိသော အလုပ်သမားများ အား "
+"သင် လိုသော အရင်းအမြစ်များ ကို စုဆောင်း ရန် ပြန်လည်တာဝန်ပေး နိုင်ပါတယ်။"
 
 #: maps/tutorials/introductory_tutorial.js:220
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory."
 msgstr ""
+"အလုပ်မရှိသော စက္ကားမရှားများ ကို အရှေ့မြောက် ဘက်ရှိ သင်၏ နယ်မြေ အဖျား တွင် "
+"ကင်းစခန်း တစ်ခု တည်ဆောက် ရန် အမိန့်ပေး ပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:228
 msgid ""
 "Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
+"မြို့တော်ဗဟို တွင် အမျိုးသမီး ပြည်သူများ တစ်သုတ် ကို ပုံစံသွင်း မှု အစပြု ၍ "
+"၎င်းတို့၏ စုဝေးမှတ် ကို လယ်ယာ ဆီသို့ ချမှတ် (၎င်းပေါ်တွင် ညာဘက် ခလုတ်နှိပ်) "
+"ပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:246
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "အမျိုးသမီး ပြည်သူ သင်္ကေတ ပေါ်တွင် ခလုတ်နှိပ် ပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:266
 msgid ""
@@ -260,7 +276,7 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.xml:Name:38
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "ပဏာမသင်တန်း"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:38
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39

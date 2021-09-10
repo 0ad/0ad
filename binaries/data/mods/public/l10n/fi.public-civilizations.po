@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-06-15 12:26+0000\n"
-"Last-Translator: Matti Tuhola\n"
+"PO-Revision-Date: 2021-09-08 06:26+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +98,7 @@ msgstr "Työntekijöille +10% metallinkeräystahti jokaista vaiheen etenemää k
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Laureionin kaivokset Atticassa tuottivat Ateenalaisille omaisuuden hopeaa josta he löivät kuuluisaa ja erittäin arvokasta rahaansa, Ateenan pöllöä."
+msgstr "Laureionin kaivokset Atticassa tuottivat ateenalaisille omaisuuden hopeaa, josta he löivät kuuluisaa ja erittäin arvokasta rahaansa, Ateenan pöllöä."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -535,7 +535,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Makedonia oli muinainen kreikkalainen kuningaskunta, jonka keskus oli Kreikan niemimaan koillisosassa. Aleksanteri Suuren valtakaudella makedonialaiset joukot liittolaisineen valloittivat suurimman osan tuntemastaan maailmasta, mukaanlukien Egyptin, Persian ja osia Intian niemimaasta, mahdollistaen kreikkalaisten ja itämaisten kulttuurien leviämisen vuosikymmeniksi."
+msgstr "Makedonia oli muinainen kreikkalainen kuningaskunta, jonka keskus oli Kreikan niemimaan koillisosassa. Aleksanteri Suuren valtakaudella makedonialaiset joukot liittolaisineen valloittivat suurimman osan tuntemastaan maailmasta, mukaan lukien Egyptin, Persian ja osia Intian niemimaasta, mahdollistaen kreikkalaisten ja itämaisten kulttuurien leviämisen vuosikymmeniksi."
 
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
@@ -825,7 +825,7 @@ msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
-msgstr "Roomalaiset käyttivät puolustuksessa yleisesti Testudo- eli \"kilpikonnamuodostelmaa\": Legioonalaiset muodostivat onttoja neliöitä, joissa kullakin puolella oli kaksitoista miestä, jotka seisoivat niin lähellä toisiaan, että heidän kilvensä olivat limittäin kuin kalan suomut."
+msgstr "Roomalaiset käyttivät puolustuksessa yleisesti Testudo- eli \"kilpikonnamuodostelmaa\": Legioonalaiset muodostivat onttoja neliöitä, joissa kullakin puolella oli kaksitoista miestä, jotka seisoivat niin lähellä toisiaan, että heidän kilpensä olivat limittäin kuin kalan suomut."
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Name
 msgid "Testudo Formation"
@@ -833,7 +833,7 @@ msgstr "Testudomuodostelma"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr "Muurinsärkijöille +20% hyökkäsyvahinkoa. Kivenheittäjille +10% hyökkäsyvahinkoa."
+msgstr "Muurinsärkijöille +20 % hyökkäysvahinkoa. Kivenheittäjille +10 % hyökkäysvahinkoa."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
@@ -974,7 +974,7 @@ msgstr "Demetrius I Soter"
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "Makedonialais-Kreikkalainen dynastia, joka hallitsi suurta osaa Aleksanteri Suuren entisestä imperiumista."
+msgstr "Makedonialaiskreikkalainen dynastia, joka hallitsi suurta osaa Aleksanteri Suuren entisestä imperiumista."
 
 #: simulation/data/civs/sele.jsonName
 msgid "Seleucids"
@@ -1026,7 +1026,7 @@ msgstr "Eurycrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr "Naispuolisille kansalaisille +40% terveyttä ja +50% lähitaistelun hakkausvahinkoa."
+msgstr "Naispuolisille kansalaisille +40 % terveyttä ja +50 % lähitaistelun hakkausvahinkoa."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
@@ -1040,7 +1040,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Sparta oli merkittävä kaupunkivaltio antiikin Kreikassa ja sen hallitseva sotilasmahti maalla noin vuodesta 650 eaa. alkaen. Spartalaisella kullttuurila oli pakkomielle sotilaalliseen koulutukseen ja huippuosaamiseen, ja pojat saivat tiukkaa koulutusta jo 7-vuotiaina. Sotilaallisen voimansa ansiosta Sparta johti kreikkalaisten joukkojen koalitiota kreikkalais-persialaisten sotien aikana ja voitti Ateenan Peloponnesoksen sodissa, vaikkakin suurella hinnalla."
+msgstr "Sparta oli merkittävä kaupunkivaltio antiikin Kreikassa ja sen hallitseva sotilasmahti maalla noin vuodesta 650 eaa. alkaen. Spartalaisella kulttuurilla oli pakkomielle sotilaalliseen koulutukseen ja huippuosaamiseen, ja pojat saivat tiukkaa koulutusta jo 7-vuotiaina. Sotilaallisen voimansa ansiosta Sparta johti kreikkalaisten joukkojen koalitiota kreikkalaispersialaisten sotien aikana ja voitti Ateenan Peloponnesoksen sodissa, vaikkakin suurella hinnalla."
 
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"
