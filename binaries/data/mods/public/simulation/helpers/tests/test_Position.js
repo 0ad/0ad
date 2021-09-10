@@ -248,54 +248,88 @@ class testPredictTimeToTarget
 		this.uncertainty = 0.0001;
 	}
 
-	testPredictTimeToTarget(targetPosition, targetVelocity)
+	testPredictTimeToTarget(selfPosition, selfSpeed, targetPosition, targetVelocity)
 	{
-		let selfPosition = new Vector3D(0, 0, 0);
-		let selfSpeed = 4;
-
-		let timeToTarget = PositionHelper.PredictTimeToTarget(selfPosition, selfSpeed, targetPosition, targetVelocity);
+		const timeToTarget = PositionHelper.PredictTimeToTarget(selfPosition, selfSpeed, targetPosition, targetVelocity);
 		if (timeToTarget === false)
 			return;
 		// Position of the target after that time.
-		let targetPos = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+		const targetPos = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
 		// Time that the projectile need to reach it.
-		let time = targetPos.horizDistanceTo(selfPosition) / selfSpeed;
+		const time = targetPos.horizDistanceTo(selfPosition) / selfSpeed;
 		TS_ASSERT(Math.abs(timeToTarget - time) < this.uncertainty);
 	}
 
+	/**
+	 * What is at least tested:
+	 * - Moving away from us in a straight line.
+	 * - Moving towards us in a straight line.
+	 * - Moving from us in right angle.
+	 * - Moving in an angle away from us.
+	 * - Moving in an angle towards us.
+	 */
 	test()
 	{
-		this.testPredictTimeToTarget(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(0, 0, 0));
+		// Not able to move at all.
+		this.testPredictTimeToTarget(new Vector3D(0, 0, 0), 0, new Vector3D(1, 0, 0), new Vector3D(0, 0, 0));
 
-		// Moving away from us in a straight line.
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(1, 0, 0));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(4, 0, 0));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(16, 0, 0));
+		const selfPositions = [
+			new Vector3D(0, 0, 0),
+			new Vector3D(1, 0, 0),
+			new Vector3D(4, 0, 0),
+			new Vector3D(-1, 0, 0),
+			new Vector3D(-4, 2, 0),
+			new Vector3D(0, 0, 1),
+			new Vector3D(0, 0, 4),
+			new Vector3D(1, 0, 1),
+			new Vector3D(2, 0, 2),
+			new Vector3D(-1, 3, 1),
+			new Vector3D(-2, 0, 2),
+			new Vector3D(4, 0, 2),
+			new Vector3D(-4, 1, 2)
+		];
+		const selfSpeeds = [1, 2, 3, 4, 5, 6];
+		const targetPositions = [
+			new Vector3D(0, 0, 0),
+			new Vector3D(1, 0, 0),
+			new Vector3D(3, 0, 0),
+			new Vector3D(-1, 0, 0),
+			new Vector3D(-3, 1, 0),
+			new Vector3D(0, 0, 1),
+			new Vector3D(0, 0, 3),
+			new Vector3D(1, 0, 1),
+			new Vector3D(5, 0, 5),
+			new Vector3D(-1, 0, 1),
+			new Vector3D(-3, 0, 2),
+			new Vector3D(4, 0, 2),
+			new Vector3D(-6, 8, 2)
+		];
+		const targetVelocities = [
+			new Vector3D(0, 0, 0),
+			new Vector3D(1, 0, 0),
+			new Vector3D(4, 0, 0),
+			new Vector3D(16, 0, 0),
+			new Vector3D(-1, 0, 0),
+			new Vector3D(-4, 0, 0),
+			new Vector3D(-16, 0, 0),
+			new Vector3D(0, 2, 1),
+			new Vector3D(0, 0, 4),
+			new Vector3D(0, 0, 16),
+			new Vector3D(1, 0, 1),
+			new Vector3D(2, 1, 2),
+			new Vector3D(8, 0, 8),
+			new Vector3D(-1, 0, 1),
+			new Vector3D(-2, 0, 2),
+			new Vector3D(-8, 0, 8),
+			new Vector3D(4, 0, 2),
+			new Vector3D(-4, 0, 2)
+		];
 
-		// Moving towards us in a straight line.
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-1, 0, 0));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-4, 0, 0));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-16, 0, 0));
-
-		// Away from us in right angle.
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(0, 0, 1));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(0, 0, 4));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(0, 0, 16));
-
-		// No straight lines away from us.
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(1, 0, 1));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(2, 0, 2));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(8, 0, 8));
-
-		// No straight lines towards us.
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-1, 0, 1));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-2, 0, 2));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-8, 0, 8));
-
-		// Mixed numbers.
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(4, 0, 2));
-		this.testPredictTimeToTarget(new Vector3D(20, 0, 0), new Vector3D(-4, 0, 2));
+		for (const selfPosition of selfPositions)
+			for (const selfSpeed of selfSpeeds)
+				for (const targetPosition of targetPositions)
+					for (const targetVelocity of targetVelocities)
+						this.testPredictTimeToTarget(selfPosition, selfSpeed, targetPosition, targetVelocity);
 	}
 }
 
