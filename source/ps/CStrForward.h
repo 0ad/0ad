@@ -15,18 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_HASHING
-#define INCLUDED_HASHING
+#ifndef INCLUDED_CSTR_FORWARD
+#define INCLUDED_CSTR_FORWARD
 
-#include "ps/CStr.h"
+class CStr8;
+class CStrW;
 
-/**
- * Hash a string in a cryptographically secure manner.
- * This method is intended to be 'somewhat fast' for password hashing,
- * and should neither be used where a fast real-time hash is wanted,
- * nor for more sensitive passwords.
- * @return a hex-encoded string.
- */
-CStr8 HashCryptographically(const CStr8& password, const CStr8& salt);
-
-#endif
+#endif // INCLUDED_CSTR_FORWARD

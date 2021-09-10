@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "graphics/SColor.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
+#include "ps/CStrForward.h"
 
 // Simple defines for 3 and 4 component floating point colors - just map to
 // corresponding vector types.
@@ -36,8 +37,6 @@ extern SColor4ub (*ConvertRGBColorTo4ub)(const RGBColor& src);
  * Detects CPU caps and activates the best possible codepath.
  */
 extern void ColorActivateFastImpl();
-
-class CStr8;
 
 struct CColor
 {

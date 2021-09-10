@@ -31,11 +31,9 @@
 #define INCLUDED_FILEPACKER
 
 #include "lib/file/vfs/vfs_path.h"
-#include "ps/Filesystem.h"	// WriteBuffer
-
+#include "ps/CStrForward.h"
 #include "ps/Errors.h"
-
-class CStr8;
+#include "ps/Filesystem.h"	// WriteBuffer
 
 ERROR_GROUP(File);
 ERROR_TYPE(File, OpenFailed);

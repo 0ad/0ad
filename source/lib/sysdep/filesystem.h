@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -96,13 +96,6 @@ LIB_API int wtruncate(const OsPath& pathname, off_t length);
 LIB_API int wunlink(const OsPath& pathname);
 
 LIB_API int wrmdir(const OsPath& path);
-
-
-//
-// stdio.h
-//
-
-LIB_API int wrename(const OsPath& pathnameOld, const OsPath& pathnameNew);
 
 
 //

@@ -19,9 +19,8 @@
 #define INCLUDED_VISUAL_REPLAY
 
 #include "lib/os_path.h"
+#include "ps/CStrForward.h"
 #include "scriptinterface/ScriptTypes.h"
-
-class CStrW;
 
 class ScriptInterface;
 

@@ -20,9 +20,7 @@
 
 #include "lib/types.h"
 #include "maths/Sqrt.h"
-
-class CStr8;
-class CStrW;
+#include "ps/CStrForward.h"
 
 #ifndef NDEBUG
 #define USE_FIXED_OVERFLOW_CHECKS

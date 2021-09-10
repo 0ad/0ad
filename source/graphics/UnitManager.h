@@ -22,12 +22,13 @@
 #ifndef INCLUDED_UNITMANAGER
 #define INCLUDED_UNITMANAGER
 
+#include "ps/CStrForward.h"
+
 #include <vector>
 #include <set>
 
 class CUnit;
 class CObjectManager;
-class CStrW;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CUnitManager: simple container class holding all units within the world

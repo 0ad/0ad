@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -300,12 +300,6 @@ int wunlink(const OsPath& pathname)
 int wrmdir(const OsPath& path)
 {
 	return _wrmdir(OsString(path).c_str());
-}
-
-
-int wrename(const OsPath& pathnameOld, const OsPath& pathnameNew)
-{
-	return _wrename(OsString(pathnameOld).c_str(), OsString(pathnameNew).c_str());
 }
 
 

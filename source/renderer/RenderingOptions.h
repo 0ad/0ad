@@ -27,10 +27,12 @@
 #ifndef INCLUDED_RENDERINGOPTIONS
 #define INCLUDED_RENDERINGOPTIONS
 
-class CStr8;
+#include "ps/CStr.h"
+
 class CRenderer;
 
-enum RenderPath {
+enum RenderPath
+{
 	// If no rendering path is configured explicitly, the renderer
 	// will choose the path when Open() is called.
 	DEFAULT,

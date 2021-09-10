@@ -258,7 +258,7 @@ bool CNetClient::TryToConnect(const CStr& hostJID, bool localNetwork)
 	}
 
 	CStr ip;
-	u16 port;
+	u16 port = 0;
 	if (g_XmppClient && m_UseSTUN)
 	{
 		if (!StunClient::FindPublicIP(*enetClient, ip, port))
