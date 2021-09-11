@@ -738,16 +738,15 @@ PETRA.BasesManager.prototype.update = function(gameState, queues, events)
 	this.turnCache = {};
 	this.assignGatherers();
 	let nbBases = this.baseManagers.length;
-	let activeBase;
+	let activeBase = false;
 	this.noBase.update(gameState, queues, events);
-	do
+	while (!activeBase && nbBases != 0)
 	{
 		this.currentBase %= this.baseManagers.length;
 		activeBase = this.baseManagers[this.currentBase++].update(gameState, queues, events);
 		--nbBases;
 		// TODO what to do with this.reassignTerritories(this.baseManagers[this.currentBase]);
 	}
-	while (!activeBase && nbBases != 0);
 
 	Engine.ProfileStop();
 };

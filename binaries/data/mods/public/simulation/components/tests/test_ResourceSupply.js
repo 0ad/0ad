@@ -91,6 +91,23 @@ TS_ASSERT(!cmpResourceSupply.IsAvailableTo(70));
 cmpResourceSupply.RemoveGatherer(71);
 TS_ASSERT_EQUALS(cmpResourceSupply.GetNumGatherers(), 0);
 
+// #6317
+const infiniteTemplate = {
+	"Max": "Infinity",
+	"Type": "food.grain",
+	"KillBeforeGather": "false",
+	"MaxGatherers": "1"
+};
+
+const cmpInfiniteResourceSupply = ConstructComponent(entity, "ResourceSupply", infiniteTemplate);
+cmpResourceSupply.OnOwnershipChanged({ "to": 1 });
+
+TS_ASSERT(cmpInfiniteResourceSupply.IsInfinite());
+TS_ASSERT_UNEVAL_EQUALS(cmpInfiniteResourceSupply.TakeResources(300), { "amount": 300, "exhausted": false });
+
+cmpInfiniteResourceSupply.OnEntityRenamed({ "newentity": entity });
+TS_ASSERT(cmpInfiniteResourceSupply.IsAvailable());
+
 
 // Test Changes.
 

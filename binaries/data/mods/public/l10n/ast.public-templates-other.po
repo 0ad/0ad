@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-29 01:54+0000\n"
+"PO-Revision-Date: 2021-09-10 02:20+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,12 @@ msgstr "Estremaos efeutos (temporales)"
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr "Aplicar estáu"
+msgstr "Estáu d'aplicación"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Amenorga la fideleza del oxetivu."
+msgstr "Amenorga la fideleza d'un oxetivu."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -41,7 +41,7 @@ msgstr "Conquista"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Amenorga los puntos de vida del oxetivu."
+msgstr "Amenorga los puntos de vida d'un oxetivu."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -51,29 +51,29 @@ msgstr "Dañu"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Dañu que fai un impautu, como'l d'una porrada, calcañada."
+msgstr "Dañu estrapallante, como'l que faen les porres, el cocipamientu."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
 msgid "Crush"
-msgstr "Frayadura"
+msgstr "Estrapada"
 
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Dañu que fai'l fueu, como lo d'una antorcha, flecha encesa."
+msgstr "Dañu amburante, como'l que faen los gabuzos, les saetes ardientes."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
 msgid "Fire"
-msgstr "Quemada"
+msgstr "Quema"
 
 #: simulation/data/damage_types/hack.jsondescription
 msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Dañu que fai un filu, como'l d'una espada, bruesa."
+msgstr "Dañu cortante, como'l que faen les espaes, los machaos."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -83,29 +83,29 @@ msgstr "Corte"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Dañu que fai una punta, como la d'una flecha, llanza"
+msgstr "Dañu furador, como'l que faen les saetes, les llancies."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
 msgid "Pierce"
-msgstr "Furadura"
+msgstr "Fura"
 
 #: simulation/data/damage_types/poison.jsondescription
 msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Dañu que fai daqué velenoso o envelenao, como pue ser una culiebra o una arma."
+msgstr "Dañu gafientu, como'l que faen les culuebres, les armes envenenaes."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr "Velenu"
+msgstr "Gafura"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Esta unidá quema."
+msgstr "Esta unidá fai quemar."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
@@ -115,26 +115,26 @@ msgstr "Esta unidá ta quemando."
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr "Quemando"
+msgstr "En llames"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr "Esta unidá envelena."
+msgstr "Esta unidá fai agafar."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "Esta unidá ta envelenada."
+msgstr "Esta unidá ta gafa."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr "Envelenóse"
+msgstr "Con gafura"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
-msgstr "L'exércitu d'Alexandru'l Grande."
+msgstr "Exércitu d'Alexandru'l Grande."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
@@ -144,11 +144,11 @@ msgstr "Exércitu d'Alexandru'l Grande"
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
-msgstr "Asina se vería un exércitu en mapa estratéxicu."
+msgstr "Asina ye un exércitu en mapa estratéxicu."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr "L'exércitu de Macedonia"
+msgstr "Exércitu de Macedonia"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
@@ -156,7 +156,7 @@ msgstr "Exércitu de Macedonia"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
-msgstr "L'exércitu de Leónides I."
+msgstr "Exércitu de Leónides I."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:25
 msgid "Army of Leonidas I"
@@ -174,27 +174,27 @@ msgstr "Asitiamientu"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
-msgstr "Polis griega menor"
+msgstr "Micrópolis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "Esta ye una polis menor."
+msgstr "Esta ye una pequeña ciudá griega."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
-msgstr "Polis griega"
+msgstr "Polis"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
-msgstr "Esta ye una polis mayor."
+msgstr "Esta ye una gran ciudá griega."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr "Santuariu relixosu"
+msgstr "Templu"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Santuariu relixosu griegu"
+msgstr "Templu griegu"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
@@ -234,7 +234,7 @@ msgstr "Ursus maritimus"
 #: simulation/templates/gaia/fauna_walrus.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
-msgstr "Canterada"
+msgstr "Canilada"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
@@ -259,7 +259,7 @@ msgstr "Cornada"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
-msgstr "Güe"
+msgstr "Bue"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:26
 #: simulation/templates/gaia/fauna_cattle_cow.xml:18
@@ -272,7 +272,7 @@ msgstr "Vaca"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:17
 msgid "Sanga Cattle"
-msgstr "Vaca Sanga"
+msgstr "Bue Sanga"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"
@@ -421,7 +421,7 @@ msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
-msgstr "Xirafa nueva"
+msgstr "Cría de Xirafa"
 
 #: simulation/templates/gaia/fauna_goat.xml:17
 msgid "Goat"
@@ -449,7 +449,7 @@ msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_horse_pony.xml:8
 msgid "Pony"
-msgstr "Poni"
+msgstr "Burricu"
 
 #: simulation/templates/gaia/fauna_lion.xml:23
 msgid "Lion"
@@ -465,7 +465,7 @@ msgstr "Lleona"
 
 #: simulation/templates/gaia/fauna_muskox.xml:11
 msgid "Muskox"
-msgstr "Güe almizcleru"
+msgstr "Bue moscáu"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
@@ -489,11 +489,11 @@ msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
-msgstr "Gochu encesu"
+msgstr "Gochu en llames"
 
 #: simulation/templates/gaia/fauna_piglet.xml:11
 msgid "Piglet"
-msgstr "Gochín"
+msgstr "Goín"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"

@@ -4,7 +4,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2013-2014,2016,2018
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
 # Matti Tuhola, 2021
 # Max Ihalempia, 2016
 # Oi Suomi On! <oisuomion@protonmail.com>, 2020
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-22 09:55+0000\n"
-"Last-Translator: Matti Tuhola\n"
+"PO-Revision-Date: 2021-09-08 06:27+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,7 +169,7 @@ msgstr "Tällä systeemillä ei ole tarpeeksi muistia"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Palvelimen sertifikaattia ei voitu todentaa tai TLS-kättely epäonnistui"
+msgstr "Palvelimen varmennetta ei voitu todentaa tai TLS-kättely epäonnistui"
 
 #: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
