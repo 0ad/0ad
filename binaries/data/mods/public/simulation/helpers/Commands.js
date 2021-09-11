@@ -973,9 +973,9 @@ function notifyOrderFailure(entity, player)
 	cmpGUIInterface.PushNotification({
 		"type": "text",
 		"players": [player],
-		"message": sprintf(markForTranslation("%(unit)s can't be controlled."), {
-			"unit": cmpIdentity.GetGenericName()
-		}),
+		"message": markForTranslation("%(unit)s can't be controlled."),
+		"parameters": { "unit": cmpIdentity.GetGenericName() },
+		"translateParameters": ["unit"],
 		"translateMessage": true
 	});
 }
