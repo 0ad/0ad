@@ -126,7 +126,7 @@ class LobbyGameRegistrationController
 		{
 			let pData = { "Name": g_PlayerAssignments[guid].name };
 
-			if (g_PlayerAssignments[guid].player <= g_GameSettings.playerCount.nbPlayers)
+			if (g_PlayerAssignments[guid].player != -1)
 				++connectedPlayers;
 			else
 				pData.Team = "observer";

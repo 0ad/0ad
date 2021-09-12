@@ -79,6 +79,7 @@ that of Atlas depending on commandline parameters.
 #include "rlinterface/RLInterface.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptEngine.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
@@ -665,6 +666,9 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 				installer.Install(modPath, g_ScriptContext, true);
 
 			installedMods = installer.GetInstalledMods();
+
+			ScriptInterface modInterface("Engine", "Mod", g_ScriptContext);
+			g_Mods.UpdateAvailableMods(modInterface);
 		}
 
 		if (isNonVisual)

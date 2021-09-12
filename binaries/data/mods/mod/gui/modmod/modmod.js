@@ -144,7 +144,7 @@ function initGUIFilters()
 function initGUIButtons(data)
 {
 	// Either get back to the previous page or quit if there is no previous page
-	let hasPreviousPage = !data || data.cancelbutton;
+	let hasPreviousPage = !data || data.cancelbutton || false;
 	Engine.GetGUIObjectByName("cancelButton").hidden = !hasPreviousPage;
 	Engine.GetGUIObjectByName("quitButton").hidden = hasPreviousPage;
 	// Turn 'save' off, it will be enabled on any change.

@@ -9,7 +9,7 @@ pipeline {
     options {
         ansiColor('xterm')
         copyArtifactPermission('*');
-	disableConcurrentBuilds()
+	//disableConcurrentBuilds()
     }
 
     environment {
@@ -20,9 +20,9 @@ pipeline {
     
     stages {
 
-        stage('debian-stable') {
+        stage('debian-buster') {
             agent {
-                docker { image 'vitexsoftware/debian:stable' }
+                docker { image 'vitexsoftware/debian:oldstable' }
             }
             steps {
                 dir('build/debian/package') {
@@ -38,12 +38,29 @@ pipeline {
                     copyArtifact()
                 }
             }
-
-
-            
         }
 
-        stage('debian-testing') {
+        stage('debian-bullseye') {
+            agent {
+                docker { image 'vitexsoftware/debian:stable' }
+            }
+            steps {
+                dir('build/debian/package') {
+                    checkout scm
+		            buildPackage()
+		            installPackages()
+                }
+                stash includes: 'dist/**', name: 'dist-bullseye'
+            }
+            post {
+                success {
+                    archiveArtifacts 'dist/debian/'
+                    copyArtifact()
+                }
+            }
+        }
+
+        stage('debian-bookworm') {
             agent {
                 docker { image 'vitexsoftware/debian:testing' }
             }
@@ -53,7 +70,7 @@ pipeline {
 		            buildPackage()
 		            installPackages()
                 }
-                stash includes: 'dist/**', name: 'dist-bullseye'
+                stash includes: 'dist/**', name: 'dist-bookworm'
             }
             post {
                 success {
@@ -156,7 +173,7 @@ def buildPackage() {
     sh 'dch -b -v ' + VER  + ' "' + env.BUILD_TAG  + '"'
     sh 'sudo apt-get update'
     sh 'debuild-pbuilder  -i -us -uc -b'
-    sh 'mkdir -p $WORKSPACE/dist/debian/ ; rm -rf $WORKSPACE/dist/debian/* ; mv ../' + SOURCE + '*_' + VER + '_*.deb ../' + SOURCE + '*_' + VER + '_*.changes ../' + SOURCE + '*_' + VER + '_*.build $WORKSPACE/dist/debian/'
+    sh 'mkdir -p $WORKSPACE/dist/debian/ ; rm -rf $WORKSPACE/dist/debian/* ; for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb" $WORKSPACE/dist/debian/; done'
 }
 
 def installPackages() {

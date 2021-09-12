@@ -866,6 +866,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	if (flags & INIT_MODS)
 	{
 		ScriptInterface modInterface("Engine", "Mod", g_ScriptContext);
+		g_Mods.UpdateAvailableMods(modInterface);
 		std::vector<CStr> mods;
 		if (args.Has("mod"))
 			mods = args.GetMultiple("mod");

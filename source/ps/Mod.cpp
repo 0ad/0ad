@@ -156,8 +156,6 @@ bool Mod::EnableMods(const ScriptInterface& scriptInterface, const std::vector<C
 	if (counts["mod"] == 0)
 		m_EnabledMods.insert(m_EnabledMods.begin(), "mod");
 
-	UpdateAvailableMods(scriptInterface);
-
 	m_IncompatibleMods = CheckForIncompatibleMods(m_EnabledMods);
 
 	for (const CStr& mod : m_IncompatibleMods)
@@ -233,6 +231,7 @@ void Mod::UpdateAvailableMods(const ScriptInterface& scriptInterface)
 {
 	PROFILE2("UpdateAvailableMods");
 
+	m_AvailableMods.clear();
 	const Paths paths(g_CmdLineArgs);
 
 	// loop over all possible paths
