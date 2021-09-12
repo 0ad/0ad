@@ -23,10 +23,18 @@
   </group>
   <group>
     <variant frequency="1" name="metal-a">
-      <textures><texture file="gaia/metal_desert_small_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/metal_desert_small_01.png" name="baseTex"/>
+        <texture file="gaia/metal_desert_small_01_spec.png" name="specTex"/>
+        <texture file="gaia/metal_desert_small_01_norm.png" name="normTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="metal-b">
-      <textures><texture file="gaia/metal_desert_small_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/metal_desert_small_02.png" name="baseTex"/>
+        <texture file="gaia/metal_desert_small_02_spec.png" name="specTex"/>
+        <texture file="gaia/metal_desert_small_02_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -36,5 +44,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
