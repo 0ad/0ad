@@ -19,7 +19,7 @@ const g_ModProperties = {
 	},
 	// example: "0 A.D. - Empires Ascendant"
 	"label": {
-		"require": true,
+		"required": true,
 		"type": "string",
 		"validate": validateLabel
 	},

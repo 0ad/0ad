@@ -459,7 +459,7 @@ Attack.prototype.StartAttacking = function(target, type, callerIID)
 	if (!this.CanAttack(target, [type]))
 		return false;
 
-	let cmpResistance = Engine.QueryInterface(target, IID_Resistance);
+	const cmpResistance = QueryMiragedInterface(target, IID_Resistance);
 	if (!cmpResistance || !cmpResistance.AddAttacker(this.entity))
 		return false;
 
@@ -504,7 +504,7 @@ Attack.prototype.StopAttacking = function(reason)
 	cmpTimer.CancelTimer(this.timer);
 	delete this.timer;
 
-	let cmpResistance = Engine.QueryInterface(this.target, IID_Resistance);
+	const cmpResistance = QueryMiragedInterface(this.target, IID_Resistance);
 	if (cmpResistance)
 		cmpResistance.RemoveAttacker(this.entity);
 

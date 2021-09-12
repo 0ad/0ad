@@ -190,9 +190,12 @@ ResistanceMirage.prototype.Init = function(cmpResistance)
 	this.resistanceOfForm = {};
 	for (const entityForm in cmpResistance.template)
 		this.resistanceOfForm[entityForm] = cmpResistance.GetResistanceOfForm(entityForm);
+	this.attackers = new Set();
 };
 
 ResistanceMirage.prototype.IsInvulnerable = Resistance.prototype.IsInvulnerable;
+ResistanceMirage.prototype.AddAttacker = Resistance.prototype.AddAttacker;
+ResistanceMirage.prototype.RemoveAttacker = Resistance.prototype.RemoveAttacker;
 
 ResistanceMirage.prototype.GetEffectiveResistanceAgainst = function(entityForm)
 {
