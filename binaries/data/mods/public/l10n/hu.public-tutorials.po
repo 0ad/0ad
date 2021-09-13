@@ -5,15 +5,15 @@
 # Translators:
 # Balázs Úr, 2017
 # Tibor Buzási, 2017
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2018
 # Balázs Meskó <meskobalazs@mailbox.org>, 2021
-# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2021
 # Scael Blu <groteszk@totalcar.hu>, 2021
 # Szabó Lambert, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-04-09 07:08+0000\n"
+"POT-Creation-Date: 2021-09-10 07:46+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Szabó Lambert, 2021\n"
 "Language-Team: Hungarian (https://www.transifex.com/wildfire-games/teams/17418/hu/)\n"
@@ -248,7 +248,7 @@ msgstr ""
 "Mihelyt sikerül eleget tenned az összes ehhez szükséges követelménynek, "
 "jelöld ki a városházát, és lépj át a nagyvárosi szakaszba!"
 
-#: maps/tutorials/introductory_tutorial.js:329
+#: maps/tutorials/introductory_tutorial.js:333
 msgid ""
 "While waiting for the phase change, you may train more soldiers at the "
 "Barracks."
@@ -256,7 +256,7 @@ msgstr ""
 "A szakaszváltás ideje alatt érdemes a kaszárnyában további katonákat "
 "kiképezni."
 
-#: maps/tutorials/introductory_tutorial.js:337
+#: maps/tutorials/introductory_tutorial.js:345
 msgid ""
 "Now that you are in City Phase, build the Arsenal nearby and then use it to "
 "construct 2 Battering Rams."
@@ -264,7 +264,7 @@ msgstr ""
 "Most, hogy elérted a nagyvárosi szakaszt, építtess egy ostromgép-műhelyt a "
 "közelben, majd megépültét követően rendeld el 2 faltörő kos elkészítését!"
 
-#: maps/tutorials/introductory_tutorial.js:359
+#: maps/tutorials/introductory_tutorial.js:367
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civic Center on the map. Once the enemy's base has been "
@@ -275,11 +275,11 @@ msgstr ""
 "városháza! Meglelését követően küldd oda ostromgépeidet is, hogy közösen "
 "elpusztíthassák az!"
 
-#: maps/tutorials/introductory_tutorial.js:360
+#: maps/tutorials/introductory_tutorial.js:368
 msgid "Female Citizens should continue to gather resources."
 msgstr "A női polgárok folytassák a nyersanyagok gyűjtését!"
 
-#: maps/tutorials/introductory_tutorial.js:371
+#: maps/tutorials/introductory_tutorial.js:379
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "Az ellenség legyőzetett. Teljesítetted az oktatójáték feladatait."
 
@@ -458,14 +458,9 @@ msgstr ""
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
 "of these methods before tasking all of your Female Citizens to gather the "
-"grapes to the southeast of your Civic Center by right-clicking on the grapes"
-" when you have all the Female Citizens selected."
+"berries to the southeast of your Civic Center by right-clicking on the "
+"berries when you have all the Female Citizens selected."
 msgstr ""
-"A pályán üres területre kattintva törölheted a kijelölést. Próbáld ki ezeket"
-" a módszereket, mielőtt az összes női polgár egységednek feladatul szabod, "
-"hogy a városházától dél-keletre szőlőt gyűjtögessenek. Ha már minden női "
-"polgárodat kijelölted, ezt úgy teheted meg, hogy jobb egérgombbal kattintasz"
-" a szőlőkre."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
@@ -821,15 +816,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
 "The cavalry unit should have slaughtered all chickens by now. Select it and "
-"explore the south-west area: there is a lake with some camels around. Move "
-"your cavalry by right-clicking on the point you want to go, and when you see"
-" a herd of camels, right-click on one of them to start hunting for food."
+"explore the area to the south of the Civic Center: there is a lake with some"
+" camels around. Move your cavalry by right-clicking on the point you want to"
+" go, and when you see a herd of camels, right-click on one of them to start "
+"hunting for food."
 msgstr ""
-"A lovassági egységek mostanra már minden csirkét le kellett vágjanak. Jelöld"
-" ki őket és fedezd fel velük a délnyugati körzetet: van arra egy tó és "
-"körülötte néhány teve. Mozgasd a lovasokat jobb kattintással arra a pontra, "
-"ahová menni szeretnél. Amikor feltűnik a tevecsorda, kattintsunk jobb "
-"egérgombbal az egyikükre, hogy kezdődjék a vadászat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""

@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-10 07:17+0000\n"
+"PO-Revision-Date: 2021-09-10 10:37+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -442,7 +442,7 @@ msgstr "Huono yhteys palvelimeen (%(milliseconds)sms)"
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Huono yhteys %(player)s (%(milliseconds)sms)"
+msgstr "Huono yhteys pelaajaan %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -1435,11 +1435,11 @@ msgstr "Yhteisö ja hallinto"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr "Pledgie kampanja 1"
+msgstr "Pledgie-kampanja 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr "Pledgie kampanja 2"
+msgstr "Pledgie-kampanja 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
@@ -2294,7 +2294,7 @@ msgstr "Yksikkö menee takaisin töihin."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
 msgid "Back to Work"
-msgstr "Takaisin tyohön"
+msgstr "Takaisin töihin"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
@@ -2664,7 +2664,7 @@ msgstr "Pura"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr "Purkka tykkitorniyksiköt."
+msgstr "Pura tykkitorniyksiköt."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
