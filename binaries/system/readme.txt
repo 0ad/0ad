@@ -3,7 +3,7 @@ COMMAND LINE OPTIONS
 Basic gameplay:
 -autostart=...      load a map instead of showing main menu (see below)
 -editor             launch the Atlas scenario editor
--mod=NAME           start the game using NAME mod
+-mod=NAME           start the game using NAME mod (if you provide "mod" as NAME, the game starts into the mod selection screen)
 -quickstart         load faster (disables audio and some system info logging)
 
 Autostart:
