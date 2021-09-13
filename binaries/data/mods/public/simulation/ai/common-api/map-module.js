@@ -52,129 +52,71 @@ m.Map.prototype.point = function(p)
 	return this.map[q[0] + this.width * q[1]];
 };
 
+m.Map.prototype.runLoop = function(x0, x1, y0, y1, cx, cy, maxDist2, func)
+{
+	for (let y = y0; y < y1; ++y)
+	{
+		const dy2 = (y - cy) * (y - cy);
+		const yw = y * this.width;
+		for (let x = x0; x < x1; ++x)
+		{
+			const dx = x - cx;
+			const r2 = dx * dx + dy2;
+			if (r2 >= maxDist2)
+				continue;
+			const w = x + yw;
+			this.set(w, func(w, r2));
+		}
+	}
+};
+
 m.Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type = "linear")
 {
 	strength = strength ? strength : maxDist;
 
-	let x0 = Math.floor(Math.max(0, cx - maxDist));
-	let y0 = Math.floor(Math.max(0, cy - maxDist));
-	let x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
-	let y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
-	let maxDist2 = maxDist * maxDist;
+	const x0 = Math.floor(Math.max(0, cx - maxDist));
+	const y0 = Math.floor(Math.max(0, cy - maxDist));
+	const x1 = Math.floor(Math.min(this.width-1, cx + maxDist));
+	const y1 = Math.floor(Math.min(this.height-1, cy + maxDist));
+	const maxDist2 = maxDist * maxDist;
 
-	// code duplicating for speed
 	if (type == "linear")
 	{
-		let str = strength / maxDist;
-		for (let y = y0; y < y1; ++y)
-		{
-			let dy = y - cy;
-			for (let x = x0; x < x1; ++x)
-			{
-				let dx = x - cx;
-				let r2 = dx*dx + dy*dy;
-				if (r2 >= maxDist2)
-					continue;
-				let w = x + y * this.width;
-				this.set(w, this.map[w] + str * (maxDist - Math.sqrt(r2)));
-			}
-		}
+		const str = strength / maxDist;
+		this.runLoop(x0, x1, y0, y1, cx, cy, maxDist2, (w, r2) => this.map[w] + str * (maxDist - Math.sqrt(r2)));
 	}
 	else if (type == "quadratic")
 	{
-		let str = strength / maxDist2;
-		for (let y = y0; y < y1; ++y)
-		{
-			let dy = y - cy;
-			for (let x = x0; x < x1; ++x)
-			{
-				let dx = x - cx;
-				let r2 = dx*dx + dy*dy;
-				if (r2 >= maxDist2)
-					continue;
-				let w = x + y * this.width;
-				this.set(w, this.map[w] + str * (maxDist2 - r2));
-			}
-		}
+		const str = strength / maxDist2;
+		this.runLoop(x0, x1, y0, y1, cx, cy, maxDist2, (w, r2) => this.map[w] + str * (maxDist2 - r2));
 	}
 	else
-	{
-		for (let y = y0; y < y1; ++y)
-		{
-			let dy = y - cy;
-			for (let x = x0; x < x1; ++x)
-			{
-				let dx = x - cx;
-				let r2 = dx*dx + dy*dy;
-				if (r2 >= maxDist2)
-					continue;
-				let w = x + y * this.width;
-				this.set(w, this.map[w] + strength);
-			}
-		}
-	}
+		this.runLoop(x0, x1, y0, y1, cx, cy, maxDist2, (w, r2) => this.map[w] + strength);
+
 };
 
 m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "constant")
 {
 	strength = strength ? +strength : +maxDist;
 
-	let x0 = Math.max(0, cx - maxDist);
-	let y0 = Math.max(0, cy - maxDist);
-	let x1 = Math.min(this.width, cx + maxDist);
-	let y1 = Math.min(this.height, cy + maxDist);
-	let maxDist2 = maxDist * maxDist;
+	const x0 = Math.max(0, cx - maxDist);
+	const y0 = Math.max(0, cy - maxDist);
+	const x1 = Math.min(this.width, cx + maxDist);
+	const y1 = Math.min(this.height, cy + maxDist);
+	const maxDist2 = maxDist * maxDist;
 
 	if (type == "linear")
 	{
-		let str = strength / maxDist;
-		for (let y = y0; y < y1; ++y)
-		{
-			let dy = y - cy;
-			for (let x = x0; x < x1; ++x)
-			{
-				let dx = x - cx;
-				let r2 = dx*dx + dy*dy;
-				if (r2 >= maxDist2)
-					continue;
-				let w = x + y * this.width;
-				this.set(w, str * (maxDist - Math.sqrt(r2)) * this.map[w]);
-			}
-		}
+		const str = strength / maxDist;
+		this.runLoop(x0, x1, y0, y1, cx, cy, maxDist2, (w, r2) => str * (maxDist - Math.sqrt(r2)) * this.map[w]);
 	}
 	else if (type == "quadratic")
 	{
-		let str = strength / maxDist2;
-		for (let y = y0; y < y1; ++y)
-		{
-			let dy = y - cy;
-			for (let x = x0; x < x1; ++x)
-			{
-				let dx = x - cx;
-				let r2 = dx*dx + dy*dy;
-				if (r2 >= maxDist2)
-					continue;
-				let w = x + y * this.width;
-				this.set(w, str * (maxDist2 - r2) * this.map[w]);
-			}
-		}
+		const str = strength / maxDist2;
+		this.runLoop(x0, x1, y0, y1, cx, cy, maxDist2, (w, r2) => str * (maxDist2 - r2) * this.map[w]);
 	}
 	else
-	{
-		for (let y = y0; y < y1; ++y)
-		{
-			let dy = y - cy;
-			for (let x = x0; x < x1; ++x)
-			{
-				let dx = x - cx;
-				let r2 = dx*dx + dy*dy;
-				if (r2 >= maxDist2)
-					continue;
-				let w = x + y * this.width;
-				this.set(w, this.map[w] * strength);
-			}
-		}
-	}
+		this.runLoop(x0, x1, y0, y1, cx, cy, maxDist2, (w, r2) => this.map[w] * strength);
 };
 
 /** add to current map by the parameter map pixelwise */
