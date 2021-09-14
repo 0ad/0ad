@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-04-30 14:43+0000\n"
+"PO-Revision-Date: 2021-09-13 01:44+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Caballería"
 #: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
-msgstr "Básicu"
+msgstr "Básicu/a"
 
 #: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion.xml:14
@@ -66,7 +66,7 @@ msgstr "Básicu"
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_infantry.xml:36
 msgid "Soldier"
-msgstr "Soldáu"
+msgstr "Soldáu/ada"
 
 #: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_elephant.xml:11
@@ -77,7 +77,7 @@ msgstr "Ciudadanu/a"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
-msgstr "Caballería de choque"
+msgstr "Caballería amarrador"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -106,7 +106,7 @@ msgstr "Caballería de choque"
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
-msgstr "Cuerpu a cuerpu"
+msgstr "Amarrador/ora"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:5
@@ -116,11 +116,11 @@ msgstr "Cuerpu a cuerpu"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Axe"
-msgstr "Bruesa"
+msgstr "Ḥachu"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr "Valtador d'a caballu"
+msgstr "Azáu d'a caballu"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -130,7 +130,7 @@ msgstr "Valtador d'a caballu"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "Valtador"
+msgstr "Azáu"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -163,11 +163,11 @@ msgstr "Maceru"
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Spear"
-msgstr "Llanza"
+msgstr "Llancia"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:28
 msgid "Cavalry Spearman"
-msgstr "Llanceru d'a caballu"
+msgstr "Llancieru d'a caballu"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
@@ -183,7 +183,7 @@ msgstr "Ventaya: 1.75× contra la caballería."
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Spearman"
-msgstr "Llanceru"
+msgstr "Llancieru"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:5
@@ -198,7 +198,7 @@ msgstr "Espada"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 msgid "Cavalry Swordsman"
-msgstr "Espada d'a caballu"
+msgstr "Espadín d'a caballu"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
@@ -208,7 +208,7 @@ msgstr "Espada d'a caballu"
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Swordsman"
-msgstr "Espada"
+msgstr "Espadín"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:7
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -299,11 +299,11 @@ msgstr "Ballesteru"
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Javelin"
-msgstr "Venablu"
+msgstr "Llancia refundiza"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr "Llanzador d'a caballu"
+msgstr "Refundión d'a caballu"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
@@ -312,52 +312,52 @@ msgstr "Llanzador d'a caballu"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr "Llanzador"
+msgstr "Refundión"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
-msgstr "Campeón"
+msgstr "Invictu"
 
 #: simulation/templates/template_unit_champion.xml:15
 msgid "Champion Unit"
-msgstr "Unidá campeona"
+msgstr "Unidá invicta"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
-msgstr "Campeón d'a caballu"
+msgstr "Invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
-msgstr "Arqueru campeón d'a caballu"
+msgstr "Arqueru invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr "Valtador campeón d'a caballu"
+msgstr "Azáu invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr "Ballesteru campeón d'a caballu"
+msgstr "Ballesteru invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr "Llanzador campeón d'a caballu"
+msgstr "Refundión invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
-msgstr "Maceru campeón d'a caballu"
+msgstr "Maceru invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr "Llanceru campeón d'a caballu"
+msgstr "Llancieru invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:20
 msgid "Champion Cavalry Swordsman"
-msgstr "Espada campeón d'a caballu"
+msgstr "Espadín invictu d'a caballu"
 
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_elephant.xml:8
 msgid "War Elephant"
-msgstr "Elefante de guerra"
+msgstr "Elefante bélicu"
 
 #: simulation/templates/template_unit_champion_elephant.xml:20
 #: simulation/templates/template_unit_elephant.xml:11
@@ -383,27 +383,27 @@ msgstr "Infantería"
 
 #: simulation/templates/template_unit_champion_infantry.xml:16
 msgid "Champion Infantry"
-msgstr "Campeón"
+msgstr "Invictu d'a pie"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr "Arqueru campeón"
+msgstr "Arqueru invictu"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
-msgstr "Valtador campeón"
+msgstr "Azáu invictu"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr "Ballesteru campeón d'a pie"
+msgstr "Ballesteru invictu"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr "Llanzador campeón"
+msgstr "Refundión invictu"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
-msgstr "Maceru campeón"
+msgstr "Maceru invictu"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -414,7 +414,7 @@ msgstr "Pica"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
-msgstr "Piqueru campeón"
+msgstr "Piqueru invictu"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:27
@@ -434,11 +434,11 @@ msgstr "Piqueru"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
-msgstr "Llanceru campeón"
+msgstr "Llancieru invictu"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:20
 msgid "Champion Swordsman"
-msgstr "Espada campeón"
+msgstr "Espadín invictu"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
@@ -446,7 +446,7 @@ msgstr "Aturullador"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr "Aturullador campeón"
+msgstr "Aturullador invictu"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -455,11 +455,11 @@ msgstr "Canilada"
 
 #: simulation/templates/template_unit_dog.xml:31
 msgid "War Dog"
-msgstr "Can de guerra"
+msgstr "Can bélicu"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr "Nun pue atacar construcciones, barcos nin máquines."
+msgstr "Nun ye a atacar construcciones, barcos nin máquines."
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -473,11 +473,11 @@ msgstr "Arqueru n'elefante"
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
-msgstr "Mata pa percanciar comida."
+msgstr "Fonte de comida."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
-msgstr "Mata pa percanciar comida."
+msgstr "Fonte de comida."
 
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_hero.xml:26
@@ -509,7 +509,7 @@ msgstr "Arqueru heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr "Valtador heroicu d'a caballu"
+msgstr "Azáu heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
@@ -517,7 +517,7 @@ msgstr "Ballesteru heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
-msgstr "Llanzador heroicu d'a caballu"
+msgstr "Refundión heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
@@ -525,11 +525,11 @@ msgstr "Maceru heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
-msgstr "Llanceru heroicu d'a caballu"
+msgstr "Llancieru heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
-msgstr "Espada heroicu d'a caballu"
+msgstr "Espadín heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:31
 msgid "Hero Elephant"
@@ -539,7 +539,7 @@ msgstr "Elefante heroicu"
 #: simulation/templates/template_unit_support.xml:5
 #: simulation/templates/template_unit_support.xml:6
 msgid "Support"
-msgstr "Encontu"
+msgstr "Auxiliar"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support_healer.xml:26
@@ -553,15 +553,15 @@ msgstr "Arqueru heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
-msgstr "Valtador heroicu"
+msgstr "Azáu heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr "Ballesteru heroicu d'a pie"
+msgstr "Ballesteru heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
-msgstr "Llanzador heroicu"
+msgstr "Refundión heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
@@ -573,11 +573,11 @@ msgstr "Piqueru heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 msgid "Hero Spearman"
-msgstr "Llanceru heroicu"
+msgstr "Llancieru heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:23
 msgid "Hero Swordsman"
-msgstr "Espada heroicu"
+msgstr "Espadín heroicu"
 
 #: simulation/templates/template_unit_infantry.xml:36
 #: simulation/templates/template_unit_support_female_citizen.xml:37
@@ -587,7 +587,7 @@ msgstr "Obreru/a"
 
 #: simulation/templates/template_unit_infantry_melee.xml:7
 msgid "Melee Infantry"
-msgstr "Infantería de choque"
+msgstr "Infantería amarrador"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
@@ -595,11 +595,11 @@ msgstr "Maceru"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
-msgstr "Ballesteru d'a pie"
+msgstr "Ballesteru"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr "Llanzador d'a pie"
+msgstr "Refundión"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -618,7 +618,7 @@ msgstr "Barcu"
 
 #: simulation/templates/template_unit_ship_bireme.xml:44
 msgid "Light Warship"
-msgstr "Barcu de guerra llixeru"
+msgstr "Naviya"
 
 #: simulation/templates/template_unit_ship_bireme.xml:45
 #: simulation/templates/template_unit_ship_quinquereme.xml:51
@@ -632,7 +632,7 @@ msgstr "Guarez unidaes a bordu pa tresportales y amontar l'ataque del barcu."
 #: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/template_unit_ship_trireme.xml:46
 msgid "Warship"
-msgstr "Barcu de guerra"
+msgstr "Nave bélica"
 
 #: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/units/cart/ship_bireme.xml:9
@@ -654,7 +654,7 @@ msgstr "Circular"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
-msgstr "Brulote"
+msgstr "Amburiega"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
@@ -676,7 +676,7 @@ msgstr "Pesqueru"
 
 #: simulation/templates/template_unit_ship_fishing.xml:30
 msgid "Fish the waters for food."
-msgstr "Pesca pa llograr comida."
+msgstr "Saca pexe (comida) de la mar, del ríu."
 
 #: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "FishingBoat"
@@ -690,7 +690,7 @@ msgstr "Mercador"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Comercia ente cais. Guarez un comerciante a bordu pa llograr más ganancies (+20% por caún guarecíu). Recueyi ayalgues de la mar."
+msgstr "Comercia ente cais. Guarez un comerciante a bordu pa llograr más ganancies (+20% por caún guarecíu). Recueye ayalgues acuátiques."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -711,7 +711,7 @@ msgstr "piedra"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:50
 msgid "Heavy Warship"
-msgstr "Barcu de guerra pesáu"
+msgstr "Navíu"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:52
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
@@ -720,7 +720,7 @@ msgstr "Quinquerreme"
 
 #: simulation/templates/template_unit_ship_trireme.xml:44
 msgid "Medium Warship"
-msgstr "Barcu de guerra medianu"
+msgstr "Nave"
 
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/units/cart/ship_trireme.xml:9
@@ -735,7 +735,7 @@ msgstr "Asediu"
 #: simulation/templates/template_unit_siege_boltshooter.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr "Ballesta"
+msgstr "Ballestada"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:27
 msgid "Linear"
@@ -760,7 +760,7 @@ msgstr "Ariete"
 
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
-msgstr "Nun pue atacar eros nin unidaes orgániques."
+msgstr "Nun ye a atacar panales nin unidaes orgániques."
 
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
@@ -807,7 +807,7 @@ msgstr "Esclavu"
 
 #: simulation/templates/template_unit_support_slave.xml:20
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Obreru de vida curtia. Dase-y bien sacar minerales y valtar árboles."
+msgstr "Obreru de vida finita. Dase-y bien sacar minerales y valtar árboles."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
@@ -1054,7 +1054,7 @@ msgstr "Hippeús"
 
 #: simulation/templates/units/athen/champion_infantry.xml:4
 msgid "City Guard"
-msgstr "Guardia civil"
+msgstr "Hoplita seleutu"
 
 #: simulation/templates/units/athen/champion_infantry.xml:5
 msgid "Epílektos"
@@ -1215,7 +1215,7 @@ msgstr "Ateniense"
 #: simulation/templates/units/sele/support_healer_b.xml:6
 #: simulation/templates/units/spart/support_healer_b.xml:6
 msgid "Surgeon"
-msgstr "Cirurxanu"
+msgstr "Ciruxanu"
 
 #: simulation/templates/units/athen/support_healer_b.xml:5
 #: simulation/templates/units/mace/support_healer_b.xml:7
@@ -1280,7 +1280,7 @@ msgstr "Carru"
 
 #: simulation/templates/units/brit/champion_infantry_swordsman.xml:5
 msgid "Brythonic Champion"
-msgstr "Campeón britanu"
+msgstr "Invictu britanu"
 
 #: simulation/templates/units/brit/champion_infantry_swordsman.xml:6
 msgid "Argos"
@@ -1332,7 +1332,7 @@ msgstr "Talmoris"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
-msgstr "Llanceru celta"
+msgstr "Llancieru celta"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:7
 #: simulation/templates/units/gaul/infantry_spearman_b.xml:11
@@ -1428,7 +1428,7 @@ msgstr "Lexón Sagrada d'Astarte"
 
 #: simulation/templates/units/cart/champion_elephant.xml:5
 msgid "North African War Elephant"
-msgstr "Elefante de guerra cartaxinés"
+msgstr "Elefante bélicu cartaxinés"
 
 #: simulation/templates/units/cart/champion_elephant.xml:6
 msgid "Pil Malḥamit"
@@ -1484,7 +1484,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:13
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Refundión íberu"
+msgstr "Quimerista íberu"
 
 #: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:14
 msgid "Sǝḫīr Kidōn"
@@ -1500,7 +1500,7 @@ msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:14
 msgid "Libyan Spearman"
-msgstr "Llanceru libiu"
+msgstr "Llancieru libiu"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:15
 msgid "Sǝḫīr Ḥanīt"
@@ -1509,7 +1509,7 @@ msgstr "Sǝḫīr Ḥanīt"
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:11
 msgid "Gallic Mercenary Swordsman"
-msgstr "Espada galu"
+msgstr "Espadín galu"
 
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:14
 msgid "Seḫīr Ḥerev"
@@ -1536,7 +1536,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Comercia ente cais. Guarez un comerciante a bordu pa llograr más ganancies (+20% por caún guarecíu). Recueyi ayalgues de la mar.  Los cartaxineses tienen una ventaya del +25% nel comerciu marítimu."
+msgstr "Comercia ente cais. Guarez un comerciante a bordu pa llograr más ganancies (+20% por caún guarecíu). Recueye ayalgues acuátiques.  Los cartaxineses gocien d'una ventaya del +25% nel comerciu marítimu."
 
 #: simulation/templates/units/cart/ship_quinquereme.xml:10
 msgid "Ḥameš-Mašōt"
@@ -1688,7 +1688,7 @@ msgstr "Gudontzi"
 
 #: simulation/templates/units/iber/ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr "Tresporta munchos soldaos al traviés de la mar."
+msgstr "Tresporta tropes al traviés de la mar."
 
 #: simulation/templates/units/iber/siege_ram.xml:9
 msgid "Ahariburu"
@@ -1757,7 +1757,7 @@ msgstr "Htr Msʿ n mh-ib"
 
 #: simulation/templates/units/kush/champion_elephant.xml:6
 msgid "Meroitic War Elephant"
-msgstr "Elefante de guerra meroíticu"
+msgstr "Elefante bélicu meroíticu"
 
 #: simulation/templates/units/kush/champion_elephant.xml:7
 msgid "Abore ʿhȝ"
@@ -1765,7 +1765,7 @@ msgstr "Abore ʿhȝ"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
-msgstr "Curiador d'Amón"
+msgstr "Cuerna d'Amón"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
 msgid "rs ʿImn"
@@ -1827,7 +1827,7 @@ msgstr "Pdty Nhsyw"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "Noba Skirmisher"
-msgstr "Refundión noba"
+msgstr "Quimerista noba"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:17
 msgid "nhw ʿhȝw Noba"
@@ -1851,7 +1851,7 @@ msgstr "siȝwrd"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:16
 msgid "Nubian Spearman"
-msgstr "Llanceru nubiu"
+msgstr "Llancieru nubiu"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:17
 msgid "iry-rdwy Nhsyw"
@@ -1859,7 +1859,7 @@ msgstr "iry-rdwy Nhsyw"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:16
 msgid "Meroitic Swordsman"
-msgstr "Espada meroíticu"
+msgstr "Espadín meroíticu"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:17
 msgid "knw hps"
@@ -1926,11 +1926,11 @@ msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr "Igua financiera: Aliáu con Roma, Filipu axeitó les cuentes y asuntos internos del país, dexando como legáu mines reabiertes y una divisa nueva. Gana una bisbera metal."
+msgstr "Igua financiera: Aliáu con Roma, Filipu axeitó los asuntos internos del país, dexando como legáu mines reabiertes al empar d'una divisa nueva. Una bisbera metal va llenando les tos reserves."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Refundión odrisiu d'a caballu"
+msgstr "Quimerista odrisiu d'a caballu"
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:8
 msgid "Hippakontistḕs Odrysós"
@@ -1938,7 +1938,7 @@ msgstr "Hippakontistḕs Odrysós"
 
 #: simulation/templates/units/mace/cavalry_spearman_b.xml:7
 msgid "Thessalian Lancer"
-msgstr "Llanceru tesaliu"
+msgstr "Llancieru tesaliu"
 
 #: simulation/templates/units/mace/cavalry_spearman_b.xml:8
 msgid "Xystophóros Thessalikós"
@@ -2071,7 +2071,7 @@ msgstr "Bindusara"
 
 #: simulation/templates/units/maur/cavalry_javelineer_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr "Xinete llixeru indiu"
+msgstr "Xinete indiu"
 
 #: simulation/templates/units/maur/cavalry_javelineer_b.xml:7
 msgid "Ashwarohi"
@@ -2079,7 +2079,7 @@ msgstr "Ashvarohi"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr "Xinete asaltante indiu"
+msgstr "Acometedor indiu d'a caballu"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -2087,7 +2087,7 @@ msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur/champion_chariot.xml:9
 msgid "War Chariot"
-msgstr "Carru de guerra"
+msgstr "Carru bélicu"
 
 #: simulation/templates/units/maur/champion_chariot.xml:10
 msgid "Rath"
@@ -2096,7 +2096,7 @@ msgstr "Rath"
 #: simulation/templates/units/maur/champion_elephant.xml:5
 #: simulation/templates/units/pers/champion_elephant.xml:6
 msgid "Indian War Elephant"
-msgstr "Elefante de guerra indiu"
+msgstr "Elefante bélicu indiu"
 
 #: simulation/templates/units/maur/champion_elephant.xml:6
 msgid "Gajendra"
@@ -2104,7 +2104,7 @@ msgstr "Gajendra"
 
 #: simulation/templates/units/maur/champion_infantry_maceman.xml:5
 msgid "Warrior"
-msgstr "Guerreru"
+msgstr "Puñador"
 
 #: simulation/templates/units/maur/champion_infantry_maceman.xml:6
 msgid "Yōddha"
@@ -2112,7 +2112,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur/champion_maiden.xml:6
 msgid "Maiden Guard"
-msgstr "Velenosa"
+msgstr "Venenosa"
 
 #: simulation/templates/units/maur/champion_maiden.xml:7
 #: simulation/templates/units/maur/champion_maiden_archer.xml:21
@@ -2121,7 +2121,7 @@ msgstr "Viṣa Kanya"
 
 #: simulation/templates/units/maur/champion_maiden_archer.xml:20
 msgid "Maiden Guard Archer"
-msgstr "Arquera velenosa"
+msgstr "Arquera venenosa"
 
 #: simulation/templates/units/maur/elephant_archer_b.xml:6
 msgid "Vachii Gaja"
@@ -2141,7 +2141,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr "Especial del héroe: «Edictos d'Axoca» - Los pilares d'Axoca puen construyise mentanto viva Axoca."
+msgstr "Especial del héroe: «Edictos d'Axoca» - Puedes llevantar pilares d'Axoca mentanto viva Axoca."
 
 #: simulation/templates/units/maur/hero_chanakya.xml:9
 msgid "Acharya Chanakya"
@@ -2158,7 +2158,7 @@ msgstr "Chandragupta Maurya"
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:12
 msgid "Longbowman"
-msgstr "Arqueru de tiru llargu"
+msgstr "Arqueru de tiru llongu"
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:13
 msgid "Dhanurdhar"
@@ -2166,7 +2166,7 @@ msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur/infantry_spearman_b.xml:12
 msgid "Bamboo Spearman"
-msgstr "Llanza de bambú"
+msgstr "Llancia de bambú"
 
 #: simulation/templates/units/maur/infantry_spearman_b.xml:13
 msgid "Kauntika"
@@ -2174,7 +2174,7 @@ msgstr "Kauntika"
 
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:17
 msgid "Indian Swordsman"
-msgstr "Espada indiu"
+msgstr "Espadín indiu"
 
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:18
 msgid "Khadagdhari"
@@ -2245,7 +2245,7 @@ msgstr "Rhomphaiaphóros"
 
 #: simulation/templates/units/merc_thorakites.xml:12
 msgid "Armored Swordsman"
-msgstr "Espada acorazáu"
+msgstr "Espadín acorazáu"
 
 #: simulation/templates/units/merc_thorakites.xml:13
 msgid "Thōrakitēs"
@@ -2253,7 +2253,7 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/merc_thureophoros.xml:5
 msgid "Heavy Skirmisher"
-msgstr "Refundión pesáu"
+msgstr "Quimerista pesáu"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
 msgid "Thyreophoros"
@@ -2265,7 +2265,7 @@ msgstr "Mankar Cirya"
 
 #: simulation/templates/units/pers/arstibara.xml:13
 msgid "Persian Apple Bearer"
-msgstr "Portador de mazanes persa"
+msgstr "Melóforu persa"
 
 #: simulation/templates/units/pers/arstibara.xml:14
 msgid "Arštibara"
@@ -2293,7 +2293,7 @@ msgstr "Asabāra Varkaniya"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:7
 msgid "Median Light Cavalry"
-msgstr "Xinete llixeru medu"
+msgstr "Xinete medu"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:8
 msgid "Asabāra Māda"
@@ -2309,7 +2309,7 @@ msgstr "Asabāra Katpatuka"
 
 #: simulation/templates/units/pers/champion_cavalry.xml:6
 msgid "Bactrian Heavy Lancer"
-msgstr "Llanceru pesáu bautrianu d'a caballu"
+msgstr "Llancieru pesáu bactriu"
 
 #: simulation/templates/units/pers/champion_cavalry.xml:7
 #: simulation/templates/units/pers/champion_cavalry_archer.xml:7
@@ -2318,7 +2318,7 @@ msgstr "Asabāra Baxtriš"
 
 #: simulation/templates/units/pers/champion_cavalry_archer.xml:6
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "Arqueru pesáu bautrianu d'a caballu"
+msgstr "Arqueru pesáu bactriu d'a caballu"
 
 #: simulation/templates/units/pers/champion_chariot.xml:10
 msgid "Babylonian Scythed Chariot"
@@ -2404,7 +2404,7 @@ msgstr "Hoplites Kárdakes"
 
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:6
 msgid "Cardaces Skirmisher"
-msgstr "Refundión cardaz"
+msgstr "Quimerista cardaz"
 
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:7
 msgid "Peltastes Kardakes"
@@ -2474,7 +2474,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Cambia recursos ente los tos mercaos & los de los tos aliaos. Los perses reciben +25% de bonificación nel comerciu terrestre."
+msgstr "Cambia recursos ente mercaos propios y mercaos aliaos. Los perses gocien d'una ventaya del +25% nel comerciu terrestre."
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
@@ -2519,7 +2519,7 @@ msgstr "Hippeús Makedonikós"
 
 #: simulation/templates/units/ptol/champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr "Guardia real d'a caballu"
+msgstr "Curiador real d'a caballu"
 
 #: simulation/templates/units/ptol/champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
@@ -2527,7 +2527,7 @@ msgstr "Ágēma Basiléōs"
 
 #: simulation/templates/units/ptol/champion_elephant.xml:5
 msgid "Towered War Elephant"
-msgstr "Elefante de guerra entorriáu"
+msgstr "Elefante bélicu entorráu"
 
 #: simulation/templates/units/ptol/champion_elephant.xml:6
 msgid "Polémou Eléphantos"
@@ -2535,7 +2535,7 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol/champion_infantry_pikeman.xml:6
 msgid "Royal Guard Infantry"
-msgstr "Guardia real"
+msgstr "Curiador real"
 
 #: simulation/templates/units/ptol/champion_infantry_pikeman.xml:7
 msgid "Phalangitès Agema"
@@ -2575,7 +2575,7 @@ msgstr "Ptolemaios D' Philopatōr"
 
 #: simulation/templates/units/ptol/infantry_javelineer_b.xml:12
 msgid "Mercenary Thureos Skirmisher"
-msgstr "Refundión tureóforu mercenariu"
+msgstr "Quimerista tureóforu mercenariu"
 
 #: simulation/templates/units/ptol/infantry_javelineer_b.xml:13
 msgid "Thureophóros Akrobolistḗs"
@@ -2599,7 +2599,7 @@ msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:12
 msgid "Mercenary Thureos Spearman"
-msgstr "Llanceru tureóforu mercenariu"
+msgstr "Llancieru tureóforu mercenariu"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
 msgid "Thureophóros Misthophóros"
@@ -2685,7 +2685,7 @@ msgstr "Murmillo"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
 msgid "Italic Heavy Infantry"
-msgstr "Soldáu pesáu itálicu"
+msgstr "Espadín pesáu itálicu"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
 msgid "Extrāōrdinārius"
@@ -2725,7 +2725,7 @@ msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:13
 msgid "Roman Skirmisher"
-msgstr "Refundión romanu"
+msgstr "Quimerista romanu"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
 msgid "Vēles"
@@ -2733,7 +2733,7 @@ msgstr "Vēles"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
-msgstr "Llanceru veteranu"
+msgstr "Llancieru veteranu"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:20
 msgid "Triārius"
@@ -2741,7 +2741,7 @@ msgstr "Triārius"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
-msgstr "Espada romanu"
+msgstr "Espadín romanu"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
 msgid "Hastātus"
@@ -2818,18 +2818,18 @@ msgstr "Mercātor"
 #: simulation/templates/units/samnite_skirmisher.xml:4
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
-msgstr "Refundión samnita"
+msgstr "Quimerista samnita"
 
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr "Llanceru samnita"
+msgstr "Llancieru samnita"
 
 #: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:13
 #: simulation/templates/units/samnite_swordsman.xml:4
 #: simulation/templates/units/samnite_swordsman.xml:5
 msgid "Samnite Swordsman"
-msgstr "Espada samnita"
+msgstr "Espadín samnita"
 
 #: simulation/templates/units/sele/catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
@@ -2837,7 +2837,7 @@ msgstr "Antíocu I Sóter (el Salvador)"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr "Arqueru d'a caballu daha"
+msgstr "Arqueru daha d'a caballu"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
@@ -2857,7 +2857,7 @@ msgstr "Hippos Hetairike"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:6
 msgid "Seleucid Cataphract"
-msgstr "Catafrautu seléucida"
+msgstr "Catafractu seléucida"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:7
 msgid "Seleukidón Kataphraktos"
@@ -2873,7 +2873,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele/champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr "Elefante de guerra blindáu"
+msgstr "Elefante bélicu acorazáu"
 
 #: simulation/templates/units/sele/champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"
@@ -2889,7 +2889,7 @@ msgstr "Argyraspis"
 
 #: simulation/templates/units/sele/champion_infantry_swordsman.xml:6
 msgid "Romanized Heavy Swordsman"
-msgstr "Espada pesáu romanizáu"
+msgstr "Espadín pesáu romanizáu"
 
 #: simulation/templates/units/sele/champion_infantry_swordsman.xml:7
 msgid "Thorakitès Rhomaïkós"
@@ -2929,7 +2929,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:7
 msgid "Arab Javelineer"
-msgstr "Llanzador árabe"
+msgstr "Refundión árabe"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:8
 msgid "Pezakontistès Aravikós"
@@ -2945,7 +2945,7 @@ msgstr "Phalangitēs"
 
 #: simulation/templates/units/sele/infantry_spearman_b.xml:7
 msgid "Militia Thureos Spearman"
-msgstr "Llanceru tureóforu milicianu"
+msgstr "Llancieru tureóforu milicianu"
 
 #: simulation/templates/units/sele/infantry_spearman_b.xml:8
 msgid "Thureophóros Politès"
@@ -2953,7 +2953,7 @@ msgstr "Thureophóros Politès"
 
 #: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:12
 msgid "Thracian Mercenary Swordsman"
-msgstr "Espada mercenariu traciu"
+msgstr "Espadín mercenariu traciu"
 
 #: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:13
 msgid "Rhomphaiaphoros Thrakikós"
@@ -2985,7 +2985,7 @@ msgstr "Lycurgus"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:7
 msgid "Perioikoi Cavalryman"
-msgstr "Home d'a caballu periecu"
+msgstr "Quimerista periecu"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:8
 msgid "Pródromos Perioïkós"
@@ -3046,7 +3046,7 @@ msgstr "Leōnidēs"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:13
 msgid "Helot Skirmisher"
-msgstr "Refundión ilota"
+msgstr "Quimerista ilota"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:14
 msgid "Akontistḗs Heílōs"
@@ -3078,7 +3078,7 @@ msgstr "Émporos Períoikos"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:50
 msgid "Fire Raiser"
-msgstr "Llanzafuéu"
+msgstr "Xeitafuéu"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:51
 msgid "Pyrobolos"
@@ -3086,7 +3086,7 @@ msgstr "Pyrobolos"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
 msgid "Theban Sacred Band Hoplite"
-msgstr "Hoplita del Batallón Sagráu de Tebes"
+msgstr "Hoplita de la Cohorte Sagrada"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Hieroû Thebaíou Lókhou Hoplítai"
@@ -3094,7 +3094,7 @@ msgstr "Hieroû Thebaíou Lókhou Hoplítai"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Champion Spearman."
-msgstr "Llanceru campeón."
+msgstr "Llancieru invictu"
 
 #: simulation/templates/units/thespian_melanochitones.xml:5
 msgid "Thespian Black Cloak"
@@ -3106,4 +3106,4 @@ msgstr "Melanochitones"
 
 #: simulation/templates/units/viking_longship.xml:8
 msgid "Longship"
-msgstr "Barcu llongu"
+msgstr "Drakar"

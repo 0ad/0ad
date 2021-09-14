@@ -90,8 +90,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-09-11 08:12+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -441,7 +441,7 @@ msgstr "显示地图"
 
 #: gui/common/gamedescription.js:400
 msgid "Allied View"
-msgstr ""
+msgstr "同盟视野"
 
 #: gui/common/gamedescription.js:405
 msgid "Cheats"
@@ -745,22 +745,22 @@ msgstr "未知胜利条件"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "下滚鼠标滑轮，或使用 %(hotkey)s 移动至标签右边。"
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "上滚鼠标滑轮，或使用 %(hotkey)s 移动至标签左边。"
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "下滚鼠标滑轮，或使用 %(hotkey)s 移动至标签下边。"
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "上滚鼠标滑轮，或使用 %(hotkey)s 移动至标签上边。"
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -2368,12 +2368,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "放置完资源后，让选取的单位到指定位置攻击。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
 msgid "Call to arms"
-msgstr ""
+msgstr "征兵"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -5191,7 +5191,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "版本 26："
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -6077,7 +6077,7 @@ msgstr "%(hotkey)s:在对话窗口中切换多人游戏大厅。"
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "聚焦 %(name)s 的概要面板。"
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
