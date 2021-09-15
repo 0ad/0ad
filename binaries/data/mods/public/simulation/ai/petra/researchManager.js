@@ -210,7 +210,7 @@ PETRA.ResearchManager.prototype.update = function(gameState, queues)
 			continue;
 		}
 		if (template.modifications && template.modifications.length === 1 &&
-			template.modifications[0].value === "Player/sharedLos" &&
+			this.Config.unusedNoAllyTechs.includes(template.modifications[0].value) &&
 			!gameState.hasAllies())
 		{
 			techs.splice(i--, 1);
