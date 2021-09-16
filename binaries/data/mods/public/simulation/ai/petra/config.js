@@ -159,6 +159,12 @@ PETRA.Config = function(difficulty, behavior)
 	};
 
 	this.garrisonHealthLevel = { "low": 0.4, "medium": 0.55, "high": 0.7 };
+
+	this.unusedNoAllyTechs = [
+		"Player/sharedLos",
+		"Market/InternationalBonus",
+		"Player/sharedDropsites"
+	];
 };
 
 PETRA.Config.prototype.setConfig = function(gameState)

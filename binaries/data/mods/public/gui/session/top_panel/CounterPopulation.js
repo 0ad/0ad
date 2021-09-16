@@ -23,13 +23,13 @@ class CounterPopulation
 		for (let resCode of g_ResourceData.GetCodes())
 			total += playerState.resourceGatherers[resCode];
 
-		this.stats.caption = total ? coloredText(total, this.DefaultTotalGatherersColor) : 0;
+		this.stats.caption = coloredText(total, total ? this.DefaultTotalGatherersColor : this.DefaultTotalGatherersColorZero);
 
 		this.isTrainingBlocked = playerState.trainingBlocked;
 
 		this.panel.tooltip =
 			setStringTags(translate(this.PopulationTooltip), CounterManager.ResourceTitleTags) +
-			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" + this.CurrentGatherersTooltip;
+			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" + coloredText(this.CurrentGatherersTooltip, total ? this.DefaultTotalGatherersColor : this.DefaultTotalGatherersColorZero);
 	}
 
 	getTooltipData(playerState, playername)
@@ -68,10 +68,17 @@ CounterPopulation.prototype.AllyPopulationTooltip = markForTranslation("%(popCou
  * Storing the translated and formatted gatherer string in the prototype.
  */
 CounterPopulation.prototype.CurrentGatherersTooltip = setStringTags(translate("Gatherers: current"), {"font": "sans-bold-16"});
+
 /**
- * Color to highlight the total gatherers.
+ * Color to highlight the total number of gatherers at zero.
+ */
+CounterPopulation.prototype.DefaultTotalGatherersColorZero = "200 200 200";
+
+/**
+ * Color to highlight the total number of gatherers.
  */
 CounterPopulation.prototype.DefaultTotalGatherersColor = "gold";
+
 /**
  * Colors to flash when pop limit reached.
  */
