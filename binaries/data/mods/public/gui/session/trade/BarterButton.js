@@ -49,6 +49,13 @@ class BarterButton
 	 */
 	update(viewedPlayer)
 	{
+		if (viewedPlayer < 1)
+		{
+			this.buyButton.hidden = true;
+			this.sellButton.hidden = true;
+			return;
+		}
+
 		this.amountToSell = this.BarterResourceSellQuantity;
 
 		if (Engine.HotkeyIsPressed("session.massbarter"))

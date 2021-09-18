@@ -112,6 +112,7 @@
 
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Enabled Mods</translatableAttribute>
+				<translatableAttribute id="tooltip">Enabled mods are loaded from top to bottom. Mods loaded later might overwrite settings of mods loaded earlier. It is advisable to have more complex mods loaded last. Use the arrows on the right to change the loading order.</translatableAttribute>
 			</object>
 
 			<object name="modsEnabledList"

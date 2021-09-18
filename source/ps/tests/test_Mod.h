@@ -128,6 +128,10 @@ public:
 		mods.push_back("public");
 		mods.push_back("does_not_exist");
 		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(mods).empty());
+
+		mods.clear();
+		mods.push_back("good2");
+		TS_ASSERT(m_Mods.CheckForIncompatibleMods(mods).size() == 1);
 	}
 
 	void test_play_compatible()

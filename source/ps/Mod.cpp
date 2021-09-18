@@ -324,17 +324,9 @@ std::vector<CStr> Mod::CheckForIncompatibleMods(const std::vector<CStr>& mods) c
 				//0.0.24
 				const CStr versionToCheck = dep.substr(pos + op.size());
 				const std::unordered_map<CStr, CStr>::iterator it = modNameVersions.find(modToCheck);
-				if (it == modNameVersions.end())
-				{
+				// Could not find the mod, or 0.0.25(0ad) , <=, 0.0.24(required version)
+				if (it == modNameVersions.end() || !CompareVersionStrings(it->second, op, versionToCheck))
 					incompatibleMods.push_back(mod);
-					continue;
-				}
-				// 0.0.25(0ad) , <=, 0.0.24(required version)
-				if (!CompareVersionStrings(it->second, op, versionToCheck))
-				{
-					incompatibleMods.push_back(mod);
-					continue;
-				}
 				break;
 			}
 		}
