@@ -20,6 +20,7 @@ class PlayerList
 		this.playersFilter = Engine.GetGUIObjectByName("playersFilter");
 		this.playersFilter.onPress = this.selectPlayer.bind(this);
 		this.playersFilter.onTab = this.autocomplete.bind(this);
+		this.playersFilter.tooltip = colorizeAutocompleteHotkey();
 
 		this.selectionChangeHandlers = new Set();
 		this.mouseLeftDoubleClickItemHandlers = new Set();
