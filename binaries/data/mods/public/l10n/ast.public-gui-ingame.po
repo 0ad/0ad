@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-06 14:39+0000\n"
+"PO-Revision-Date: 2021-09-19 20:29+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -156,12 +156,12 @@ msgstr "Toos"
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Aliaos"
+msgstr "Socios"
 
 #: gui/session/chat/ChatAddressees.js:95
 msgctxt "chat message context"
 msgid "Ally"
-msgstr "Aliaos"
+msgstr "Socios"
 
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
@@ -176,12 +176,12 @@ msgstr "Enemigos"
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "Espeutadores"
+msgstr "Espectadores"
 
 #: gui/session/chat/ChatAddressees.js:117
 msgctxt "chat message context"
 msgid "Observer"
-msgstr "Espeutadores"
+msgstr "Espectadores"
 
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
@@ -220,7 +220,7 @@ msgstr "Mensaxes de xugadores"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Mensaxes d'aliaos"
+msgstr "Mensaxes de socios"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
@@ -230,7 +230,7 @@ msgstr "Mensaxes d'enemigos"
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Mensaxes d'espeutadores"
+msgstr "Mensaxes d'espectadores"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
@@ -260,12 +260,12 @@ msgstr "Primi %(hotkey)s p'abrir la charra pública."
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Primi %(hotkey)s p'abrir la charra d'espeutadores."
+msgstr "Primi %(hotkey)s p'abrir la charra d'espectadores."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Primi %(hotkey)s p'abrir la charra d'aliaos."
+msgstr "Primi %(hotkey)s p'abrir la charra de socios."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
@@ -358,7 +358,7 @@ msgstr "%(player)s entrocó %(amountGiven)s empara de %(amountGained)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Agora tas aliáu con %(player)s."
+msgstr "Agora tas sociáu con %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
@@ -373,7 +373,7 @@ msgstr "Tiéneste vuelto neutral con %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "Agora %(player)s ta aliáu contigo."
+msgstr "Agora %(player)s ta sociáu contigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
@@ -388,7 +388,7 @@ msgstr "%(player)s tiense vuelto neutral contigo."
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "Agora %(player)s ta aliáu con %(player2)s."
+msgstr "Agora %(player)s ta sociáu con %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
@@ -584,7 +584,7 @@ msgstr "Civilización"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
-msgstr "Equipu"
+msgstr "Cuadriella"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
@@ -626,7 +626,7 @@ msgstr "Alternar colores diplomátiques"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pidir a los aliaos qu'ataquen esti enemigu"
+msgstr "Pidir a los socios qu'ataquen esti enemigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -636,7 +636,7 @@ msgstr "Nengún"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr "Aliáu"
+msgstr "Sociu"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
@@ -836,7 +836,7 @@ msgstr "¿De xuru que quies rindite?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
-msgstr "¡Ganesti!"
+msgstr "¡Trunfesti!"
 
 #: gui/session/messages.js:105
 msgid "You have been defeated!"
@@ -864,7 +864,7 @@ msgstr "Xugador desconocíu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Facer una seña a los aliaos"
+msgstr "Facer una seña a los socios"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
@@ -1104,7 +1104,7 @@ msgstr "Nun pue desendolcase demientres la meyora."
 
 #: gui/session/selection_panels.js:1043
 msgid "Cannot train while upgrading."
-msgstr "Nun pue allistase demientres la meyora."
+msgstr "Nun pue conscribir al anovar."
 
 #: gui/session/selection_panels.js:1112
 #, javascript-format
@@ -1137,8 +1137,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] "Nun pue ameyorase de la que ta allistando, desendolcando o ameyorando."
-msgstr[1] "Nun puen ameyorase de la que tán toos allistando, desendolcando o ameyorando."
+msgstr[0] "Nun pue anovase de la que l'ente ta conscribiendo, desendolcando o anovando."
+msgstr[1] "Nun pue anovase de la que tolos entes tán conscribiendo, desendolcando o anovando."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1227,19 +1227,19 @@ msgstr[1] "Pue construyise %(count)s vegaes más."
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] "Namái pudo allistase una vegada."
-msgstr[1] "Namái pudo allistase %(limit)s vegaes."
+msgstr[0] "Namái pudo conscribise una vegada."
+msgstr[1] "Namái pudo conscribise %(limit)s vegaes."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr "Pue allistase namái una vegada."
+msgstr "Pue conscribise una vegada namái."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] "Pue allistase %(count)s vegada más."
-msgstr[1] "Pue allistase %(count)s vegaes más."
+msgstr[0] "Pue conscribise %(count)s vegada más."
+msgstr[1] "Pue conscribise %(count)s vegaes más."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
@@ -1266,17 +1266,17 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:215
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s p'allistar %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s pa conscribir %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s p'allistar %(number)s (%(fullBatch)s)."
+msgstr "%(action)s pa conscribir %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s p'allistar %(number)s."
+msgstr "%(action)s pa conscribir %(number)s."
 
 #: gui/session/selection_panels_helpers.js:224
 msgid "Shift-click"
@@ -1390,11 +1390,11 @@ msgstr "Menú"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr "Espeutador"
+msgstr "Espectador"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr "Mou espeutador"
+msgstr "Mou espectador"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
@@ -1708,11 +1708,11 @@ msgstr "Ataca toles unidaes enemigues alcontraes evitando construcciones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Primi pa dexar que los aliaos aprovechen esti depósitu"
+msgstr "Primi pa dexar que los socios aprovechen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Primi pa quitar que los aliaos aprovechen esti depósitu"
+msgstr "Primi pa quitar que los socios aprovechen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1720,7 +1720,7 @@ msgstr "Nun pues aprovechar esti depósitu"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Los aliaos puen aprovechar esti depósitu."
+msgstr "Los socios pueden aprovechar esti depósitu."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 20:16+0000\n"
+"PO-Revision-Date: 2021-09-19 20:24+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "Hai qu'iguar la compatibilidá desactivando camudos non válidos o activ
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr "Los camudos incompatibles señálense en coloráu na llista de camudos activaos (panel baxeru). Puedes amestar dependencies activándoles en panel cimeru."
+msgstr "Los camudos incompatibles amuésense en coloráu nel índiz de camudos activaos (panel baxeru). Les dependencies puedes amestales activándoles en panel cimeru."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -194,7 +194,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recobrase'l llistáu de camudos.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recobrase l'índiz de camudos.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -248,7 +248,7 @@ msgstr "Camudu non válidu: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
-msgstr "Diendo en cata y anovando'l llistáu de camudos disponibles."
+msgstr "Diendo en cata y anovando'l repertoriu de camudos disponibles."
 
 #: gui/modio/modio.js:247
 msgid "Updating"
@@ -318,7 +318,7 @@ msgstr "Atrás"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
-msgstr "Refrescar llistáu"
+msgstr "Refrescar el repertoriu"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
@@ -382,7 +382,7 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El serviciu de mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Estos sitios na rede falaron de 0 A.D. y otros proxectos indie demientres munchu tiempu! Güei mod.io mos dexa llistar y baxar tolos camudos que verificó l'equipu. ¡Calca «Baxar camudos» pa probalu ya instalar dalgún!"
+msgstr "El serviciu de mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Estos sitios vien falando de 0 A.D. y otros proxectos indie na rede demientres munchu tiempu! Güei mod.io nos permite recoyer y baxar tolos camudos que tien verificaos. ¡Calca «Baxar camudos» pa probalu ya instalar dalgún!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"

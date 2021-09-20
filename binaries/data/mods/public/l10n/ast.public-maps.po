@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-09-10 01:53+0000\n"
+"PO-Revision-Date: 2021-09-19 21:10+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -296,7 +296,7 @@ msgstr "Elefantina"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr "Un vecín de to xuróte llealtá. Agora te toca ganar."
+msgstr "Un vecín de to xuróte llealtá. Agora te toca llograr la victoria."
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -1107,7 +1107,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr "[color=\"red\"]AVISU IMPORTANTE: LA IA NUN FURRULA NESTI MAPA[/color]\n\nProtexi'l puestu de sinfinidá d'enemigos. Fai que les ciudadanes garren les ayalgues metanes del mapa primero qu'otru les lleve y tenta de desenvolver la base. ¡El caberu xugador en pie gana!"
+msgstr "[color=\"red\"]AVISU IMPORTANTE: LA IA NUN FURRULA NESTI MAPA[/color]\n\nProtexi'l puestu de sinfinidá d'enemigos. Fai que les ciudadanes garren les ayalgues metanes del mapa primero qu'otru les lleve y tenta de desenvolver la base. ¡El caberu xugador en pie ye'l vencedor!"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -1720,7 +1720,7 @@ msgid ""
 "Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "Cuatro xugadores faen pica pol delta descomanáu del Nilu. Cada ciudá entama añerada nun tesu, pero resquilen recursos, forciando los xugadores a buscalos na redolada.\n\nLos batedores dicen que los brazos averaos del Nilu son someros ya vadiables en más d'un sitiu, asina que nun supondrán gran entueyu pa faiciones enemigues. "
+msgstr "Cuatro xugadores faen pica pol delta descomanáu del Nilu. Cada ciudá entama añerada nun tesu, pero resquilen recursos, forciando los xugadores a procuralos na redolada.\n\nLos batedores dicen que los brazos averaos del Nilu son someros ya vadiables en más d'un sitiu, asina que nun supondrán gran entueyu pa faiciones enemigues."
 
 #: maps/scenarios/necropolis.xml:Name:38
 msgid "Necropolis"
@@ -1772,11 +1772,11 @@ msgstr "Corintu"
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
 "placed."
-msgstr "Mapa con mar ya dos islles onde se prueba la busca d'unidaes. Los disparadores tán asitiaos."
+msgstr "Mapa con mar ya dos islles u se prueba a recoyer unidaes. Los disparadores tán asitiaos."
 
 #: maps/scenarios/pickup_test_map.xml:Name:39
 msgid "Pickup test map"
-msgstr "Prueba de busca"
+msgstr "Prueba de recoyida"
 
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
@@ -2194,15 +2194,15 @@ msgstr "Perséu de Macedonia"
 
 #: maps/scenarios/third_macedonian_war.xml:PlayerData[2].Name:26
 msgid "Greek Allies"
-msgstr "Aliaos griegos"
+msgstr "Socios griegos"
 
 #: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "¡Garra les ayalgues primero que lo faiga l'enemigu! ¡Que gane'l meyor!"
+msgstr "¡Garra les ayalgues primero que lo faiga l'enemigu! ¡Que venza'l meyor!"
 
 #: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
-msgstr "Endagora nun hai ganador, ¡preparáivos pa la llucha!"
+msgstr "Endagora nun hai vencedor, ¡preparáivos pa la batalla!"
 
 #: maps/scenarios/treasure_islands.js:43
 msgid "Your enemy's treasury is filled to the brim, you lose!"
@@ -2214,12 +2214,12 @@ msgstr "Les arques tán apinaes, ¡trunfesti!"
 
 #: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
-msgstr "¡Entaína! ¡L'enemigu ta cerca de ganar!"
+msgstr "¡Entaína! ¡L'enemigu ta por apoderate!"
 
 #: maps/scenarios/treasure_islands.js:71
 #, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr "Ayalgues que te falten pa ganar: ¡%(remainingTreasures)s!"
+msgstr "Ayalgues que te falten: ¡%(remainingTreasures)s!"
 
 #: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
@@ -2227,14 +2227,14 @@ msgstr "¡Recoyesti una ayalga!"
 
 #: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
-msgstr "¡Venci al enemigu pa ganar!"
+msgstr "¡Apodera al enemigu!"
 
 #: maps/scenarios/treasure_islands.js:100
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(lastPlayer)s ganó (recoyó ayagalges)."
-msgstr[1] "%(players)s ya %(lastPlayer)s ganaron (recoyeron ayagalges)."
+msgstr[0] "%(lastPlayer)s trunfó (recoyendo ayalgues)."
+msgstr[1] "%(players)s y %(lastPlayer)s trunfaron (recoyendo ayalgues)."
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
@@ -2248,7 +2248,7 @@ msgstr[1] "Vencieron a %(players)s ya %(lastPlayer)s (recoyeron ayalgues)."
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
-msgstr "Busca ayalgues nes isllines ya na agua. Garra más ayalgues que l'oponente pa ganar. "
+msgstr "Cata ayalgues nes isllines ya na agua. Quien garra más ayalgues que'l contrariu ye'l vencedor. "
 
 #: maps/scenarios/treasure_islands.xml:Name:38
 msgid "Treasure Islands"
@@ -2354,7 +2354,7 @@ msgstr "PruebaMuries"
 
 #: maps/scenarios/we_are_legion.xml:Description:26
 msgid "A quick battle demo map using Roman legionaries."
-msgstr "Un mapa que demuestra una engarradiella curtia emplegando llexonarios romanos."
+msgstr "Un mapa qu'amuesa una engarradiella usando lexonarios."
 
 #: maps/scenarios/we_are_legion.xml:Name:26
 msgid "We Are Legion"
@@ -2365,29 +2365,29 @@ msgstr "Somos llexón"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr "%(_player_)s y los sos aliaos garraron toles reliquies y van ganar en %(time)s."
+msgstr "%(_player_)s y los sos socios cataron toles reliquies y van vencer en %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr "%(_player_)s garró toles reliquies y va ganar en %(time)s."
+msgstr "%(_player_)s cató toles reliquies y va vencer en %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr "Tu y los tos aliaos garrestis toles reliquies. Vais ganar en %(time)s."
+msgstr "Tu y los tos socios catestis toles reliquies. Vais vencer en %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr "Garresti toles reliquies. Vas ganar en %(time)s."
+msgstr "Catesti toles reliquies. Vas vencer en %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] "%(lastPlayer)s gana (Garrar la reliquia)."
-msgstr[1] "%(players)s y %(lastPlayer)s ganen (Garrar la reliquia)."
+msgstr[0] "%(lastPlayer)s trunfó (catando reliquies)."
+msgstr[1] "%(players)s y %(lastPlayer)s trunfaron (catando reliquies)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2444,34 +2444,34 @@ msgstr "Vencióse a %(player)s (perdió l'héroe)."
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr "%(_player_)s tien maravía. %(_player_)s y los sos aliaos van ganar en %(time)s."
+msgstr "%(_player_)s tien maravía. %(_player_)s y los sos socios van vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr "%(_player_)s tien maravía y va ganar en %(time)s."
+msgstr "%(_player_)s tien maravía y va vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr "%(_player_)s tien maravía. Vas ganar en %(time)s."
+msgstr "%(_player_)s tien maravía. Vas vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr "Tienes maravía. Tu y los tos aliaos vais ganar en %(time)s."
+msgstr "Tienes maravía. Tu y los tos socios vais vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr "Tienes maravía. Vas ganar en %(time)s."
+msgstr "Tienes maravía. Vas vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] "%(lastPlayer)s gana (victoria per maravía)"
-msgstr[1] "%(players)s y %(lastPlayer)s ganen (victoria per maravía)."
+msgstr[0] "%(lastPlayer)s trunfó (por maravía)."
+msgstr[1] "%(players)s y %(lastPlayer)s trunfaron (por maravía)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
@@ -2690,7 +2690,7 @@ msgid ""
 "A foggy alpine landscape becomes a battleground as each team has an ally "
 "squashed precariously between two enemies. Two forest cliffs overlook the "
 "center lake, accessible from the sides of the map."
-msgstr "Un paisax alpín ya borrinosu camuda nun campu de batalla entrín un aliáu de cada equipu ta apertáu ente dos enemigos. Un par de galardeyos forestales domina'l llagu central, algamable dende los estremos del mapa."
+msgstr "Un paisax alpín ya borrinosu camuda nun campu de batalla entrín un sociu de cada equipu ta apertáu ente dos enemigos. Un par de galardeyos forestales domina'l llagu central, algamable dende los estremos del mapa."
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Name:39
 msgid "Dueling Cliffs (3v3)"

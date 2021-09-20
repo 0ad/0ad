@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 15:51+0000\n"
+"PO-Revision-Date: 2021-09-19 21:13+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Círculu"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Los xugadores aliaos asítiense xuntos nun círculu qu'abarca'l mapa."
+msgstr "Los xugadores socios asítiense xuntos nun círculu qu'abarca'l mapa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
@@ -41,7 +41,7 @@ msgstr "Llinia"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
-msgstr "Los xugadores aliaos asítiense en llinia reuta."
+msgstr "Los xugadores socios asítiense en llinia reuta."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
@@ -50,7 +50,7 @@ msgstr "Conxuntos al debalu"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Los xugadores aliaos asítiense xuntos, pero al debalu nel mapa."
+msgstr "Los xugadores socios asítiense xuntos, pero al debalu nel mapa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
@@ -59,7 +59,7 @@ msgstr "Fortaleces"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Los xugadores aliaos axúntense en dalgún llau del mapa."
+msgstr "Los xugadores socios axúntense en dalgún llau del mapa."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -162,7 +162,7 @@ msgstr "Escueyi una color."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Esbilla l'equipu del xugador."
+msgstr "Esbilla la cuadriella del xugador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -187,7 +187,7 @@ msgstr "Civilización"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
-msgstr "Equipu"
+msgstr "Cuadriella"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
@@ -196,15 +196,15 @@ msgstr "Restolar los mapes"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "Primi %(hotkey)s pa ver la llista de mapes disponibles."
+msgstr "Primi %(hotkey)s pa ver los mapes disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr "Vista aliada"
+msgstr "Vista sociada"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Alterna la vista alidada (permite ver lo que ven los tos aliaos)."
+msgstr "Alterna la vista sociada (permite ver lo que ven los socios)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -236,15 +236,15 @@ msgstr "A vida o muerte"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Alterna'l trunfu del caberu xugador vivu o los caberos aliaos vivos."
+msgstr "Alterna'l trunfu del caberu xugador vivu o los caberos socios vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Equipos fixos"
+msgstr "Cuadrielles fixes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "Alterna la fixeza de los equipos."
+msgstr "Alterna la fixeza de les cuadrielles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -466,7 +466,7 @@ msgstr "Por xugador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
-msgstr "Allugamientu de los equipos"
+msgstr "Allugamientu de les cuadrielles"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
@@ -645,7 +645,7 @@ msgstr "Reafita les civilizaciones al valor por defeutu (al debalu)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Reafita los equipos al valor por defeutu."
+msgstr "Reafita les cuadrielles al valor por defeutu."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -756,7 +756,7 @@ msgstr "Nun hai nengún mapa esbilláu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr "Calca pa ver la llista de mapes disponibles."
+msgstr "Calca pa ver los mapes disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -1768,7 +1768,7 @@ msgstr "«L'Estáu ideal enxamás nun entama guerra dala que nun seya en defensa
 msgid ""
 "“The first duty of a man is the seeking after and the investigation of "
 "truth.” \\n— Cicero (“On Duties”, I., 13)"
-msgstr "«El primer menester del home ye buscar y pescudar la verdá.» \\n— Cicerón («De officiis», I, 13)"
+msgstr "«El primer menester del home ye procurar y pescudar la verdá.» \\n— Cicerón («De officiis», I, 13)"
 
 #: gui/text/quotes.txt:121
 msgid ""
@@ -2307,7 +2307,7 @@ msgid ""
 "“People are glad to obey the man whom they believe to be wiser than "
 "themselves in pursuing their interests.” \\n— Xenophon (“The Education of "
 "Cyrus”, 1.6.22)"
-msgstr "«A xente ta contento d'obedecer al home que creye más sobiu qu'ello na busca del so porgüiyu.» \\n— Xenofonte («Ciropedia», 1.6.22)"
+msgstr "«A xente ta contento d'obedecer al home que creye más sobiu qu'ello al procurar el so porgüiyu.» \\n— Xenofonte («Ciropedia», 1.6.22)"
 
 #: gui/text/quotes.txt:193
 msgid ""

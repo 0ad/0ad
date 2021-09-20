@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2021
-# Albert F. <alb.fontquerni@gmail.com>, 2017-2018
+# Albert F. <alb.fontquerni@gmail.com>, 2017-2018,2021
 # Catalanoic <catalanoic@gmail.com>, 2015-2016,2018
 # Guillem Poy <guplem@gmail.com>, 2015
 # Klan Ruiz Martin <rodamit@gmail.com>, 2017
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-09-04 18:12+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"PO-Revision-Date: 2021-09-17 08:02+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr "Impacte"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr ""
+msgstr "Danys causats per objectes en flames, com una torxa o una fletxa encesa."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -101,7 +101,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr ""
+msgstr "Danys causats per objectes verinosos o enverinats, com ara una serp o una arma enverinada."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -646,7 +646,7 @@ msgstr "Ruïnes antigues"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr ""
+msgstr "Imatge de culte a Isis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -677,15 +677,15 @@ msgstr "Recurs de pedra"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr ""
+msgstr "Estàtua de l’ocell cuixita"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
-msgstr ""
+msgstr "Estàtua del lleó d'Apademak"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
-msgstr ""
+msgstr "Estàtua d'Ammon-Ra Ram"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -755,16 +755,16 @@ msgstr "Tresor de pedra"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr ""
+msgstr "Granit tallat"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
-msgstr ""
+msgstr "Pedra tallada"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
 msgid "Cut Sandstone"
-msgstr ""
+msgstr "Gres tallat"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
@@ -772,7 +772,7 @@ msgstr "Tresor de fusta"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:4
 msgid "Milled Lumber"
-msgstr ""
+msgstr "Fusta fresada"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
@@ -999,7 +999,7 @@ msgstr "Santuari"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
-msgstr ""
+msgstr "Lloc comercial"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

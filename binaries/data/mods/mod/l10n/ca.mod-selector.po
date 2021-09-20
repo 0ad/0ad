@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
-# Albert F. <alb.fontquerni@gmail.com>, 2018
+# Albert F. <alb.fontquerni@gmail.com>, 2018,2021
 # Haommin <tfs.msimangu@gmail.com>, 2014
 # juan Aragó <juan_arago@yahoo.es>, 2018
 # Klan Ruiz Martin <rodamit@gmail.com>, 2018
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-09-04 18:14+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"PO-Revision-Date: 2021-09-17 07:56+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +102,7 @@ msgstr "Actius: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]Heu intentat començar una partida amb mods incompatibles o no disponibles![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -112,13 +112,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Resoleu la incidència de compatibilitat desactivant els mods invàlids o habilitant les dependències necessàries. A continuació, podeu desar i començar la partida."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "Els mods incompatibles apareixeran en vermell a la llista de modificacions activades (tauler inferior). Es poden afegir dependències habilitant-les al tauler superior."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -429,7 +429,7 @@ msgstr "No s'ha seleccionat cap mod."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Habiliteu com a mínim el mod 0ad"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -441,7 +441,7 @@ msgstr "Nega"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "Filtreu els compatibles"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
