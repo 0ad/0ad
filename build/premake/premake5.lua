@@ -8,6 +8,7 @@ newoption { trigger = "minimal-flags", description = "Only set compiler/linker f
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "with-system-mozjs", description = "Search standard paths for libmozjs60, instead of using bundled copy" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
+newoption { trigger = "with-valgrind", description = "Enable Valgrind support (non-Windows only)" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
 newoption { trigger = "without-lobby", description = "Disable the use of gloox and the multiplayer lobby" }
 newoption { trigger = "without-miniupnpc", description = "Disable use of miniupnpc for port forwarding" }

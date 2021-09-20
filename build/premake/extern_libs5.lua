@@ -622,7 +622,14 @@ extern_lib_defs = {
 	},
 	valgrind = {
 		compile_settings = function()
-			add_source_include_paths("valgrind")
+			-- Optional dependency
+			--
+			-- valgrind doesn't support windows:
+			--   https://valgrind.org/info/platforms.html
+			if _OPTIONS["with-valgrind"] and not os.istarget("windows") then
+				pkgconfig.add_includes("valgrind")
+				defines { "CONFIG2_VALGRIND=1" }
+			end
 		end,
 	},
 	vorbis = {

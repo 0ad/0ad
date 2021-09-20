@@ -28,6 +28,7 @@
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureManager.h"
+#include "lib/config2.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -35,7 +36,9 @@
 #include "ps/XML/Xeromyces.h"
 #include "simulation2/Simulation2.h"
 
-#include "callgrind.h"
+#if CONFIG2_VALGRIND
+# include "callgrind.h"
+#endif
 
 #include <iostream>
 
@@ -919,14 +922,18 @@ public:
 		}
 
 		double t = timer_Time();
+#if CONFIG2_VALGRIND
 		CALLGRIND_START_INSTRUMENTATION;
+#endif
 		size_t reps = 128;
 		for (size_t i = 0; i < reps; ++i)
 		{
 			std::string hash;
 			sim2.ComputeStateHash(hash, false);
 		}
+#if CONFIG2_VALGRIND
 		CALLGRIND_STOP_INSTRUMENTATION;
+#endif
 		t = timer_Time() - t;
 		debug_printf("# time = %f (%f/%d)\n", t/reps, t, (int)reps);
 

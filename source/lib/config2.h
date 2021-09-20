@@ -86,4 +86,9 @@
 # define CONFIG2_MINIUPNPC 1
 #endif
 
+// default disable valgrind
+#ifndef CONFIG2_VALGRIND
+# define CONFIG2_VALGRIND 0
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG2
