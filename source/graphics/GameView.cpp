@@ -224,7 +224,6 @@ void CGameView::RegisterInit()
 	RegMemFun(this, &CGameView::Initialize, L"CGameView init", 1);
 
 	RegMemFun(g_TexMan.GetSingletonPtr(), &CTerrainTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
-	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 5);
 }
 
 void CGameView::BeginFrame()
@@ -303,7 +302,6 @@ void CGameView::CheckLightEnv()
 void CGameView::UnloadResources()
 {
 	g_TexMan.UnloadTerrainTextures();
-	g_Renderer.UnloadAlphaMaps();
 	g_Renderer.GetWaterManager()->UnloadWaterTextures();
 }
 

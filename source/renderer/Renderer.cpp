@@ -73,7 +73,6 @@
 #include "renderer/WaterManager.h"
 
 #include <algorithm>
-#include <boost/algorithm/string.hpp>
 #include <map>
 #include <set>
 
@@ -418,20 +417,14 @@ CRenderer::CRenderer()
 
 	m_CurrentScene = nullptr;
 
-	m_hCompositeAlphaMap = 0;
-
 	m_Stats.Reset();
-
-	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer destructor
 CRenderer::~CRenderer()
 {
-	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
-
-	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
+	// We no longer UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
 	// them to be loaded (i.e. CGameView).
 	delete m;
@@ -1716,181 +1709,6 @@ void CRenderer::BindTexture(int unit, GLuint tex)
 		glDisable(GL_TEXTURE_2D);
 	}
 #endif
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
-// calculate the coordinate of each alphamap within this packed texture
-// NB: A variant of this function is duplicated in TerrainTextureEntry.cpp, for use with the Shader
-// renderpath. This copy is kept to load the 'standard' maps for the fixed pipeline and should
-// be removed if/when the fixed pipeline goes.
-int CRenderer::LoadAlphaMaps()
-{
-	const wchar_t* const key = L"(alpha map composite)";
-	Handle ht = ogl_tex_find(key);
-	// alpha map texture had already been created and is still in memory:
-	// reuse it, do not load again.
-	if(ht > 0)
-	{
-		m_hCompositeAlphaMap = ht;
-		return 0;
-	}
-
-	//
-	// load all textures and store Handle in array
-	//
-	Handle textures[NumAlphaMaps] = {0};
-	VfsPath path(L"art/textures/terrain/alphamaps/standard");
-	const wchar_t* fnames[NumAlphaMaps] = {
-		L"blendcircle.png",
-		L"blendlshape.png",
-		L"blendedge.png",
-		L"blendedgecorner.png",
-		L"blendedgetwocorners.png",
-		L"blendfourcorners.png",
-		L"blendtwooppositecorners.png",
-		L"blendlshapecorner.png",
-		L"blendtwocorners.png",
-		L"blendcorner.png",
-		L"blendtwoedges.png",
-		L"blendthreecorners.png",
-		L"blendushape.png",
-		L"blendbad.png"
-	};
-	size_t base = 0;	// texture width/height (see below)
-	// for convenience, we require all alpha maps to be of the same BPP
-	// (avoids another ogl_tex_get_size call, and doesn't hurt)
-	size_t bpp = 0;
-	for(size_t i=0;i<NumAlphaMaps;i++)
-	{
-		// note: these individual textures can be discarded afterwards;
-		// we cache the composite.
-		textures[i] = ogl_tex_load(g_VFS, path / fnames[i]);
-		RETURN_STATUS_IF_ERR(textures[i]);
-
-		// get its size and make sure they are all equal.
-		// (the packing algo assumes this)
-		size_t this_width = 0, this_height = 0, this_bpp = 0;	// fail-safe
-		ignore_result(ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp));
-		if(this_width != this_height)
-			DEBUG_DISPLAY_ERROR(L"Alpha maps are not square");
-		// .. first iteration: establish size
-		if(i == 0)
-		{
-			base = this_width;
-			bpp  = this_bpp;
-		}
-		// .. not first: make sure texture size matches
-		else if(base != this_width || bpp != this_bpp)
-			DEBUG_DISPLAY_ERROR(L"Alpha maps are not identically sized (including pixel depth)");
-	}
-
-	//
-	// copy each alpha map (tile) into one buffer, arrayed horizontally.
-	//
-	size_t tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
-	size_t total_w = round_up_to_pow2(tile_w * NumAlphaMaps);
-	size_t total_h = base; ENSURE(is_pow2(total_h));
-	std::shared_ptr<u8> data;
-	AllocateAligned(data, total_w*total_h, maxSectorSize);
-	// for each tile on row
-	for (size_t i = 0; i < NumAlphaMaps; i++)
-	{
-		// get src of copy
-		u8* src = 0;
-		ignore_result(ogl_tex_get_data(textures[i], &src));
-
-		size_t srcstep = bpp/8;
-
-		// get destination of copy
-		u8* dst = data.get() + (i*tile_w);
-
-		// for each row of image
-		for (size_t j = 0; j < base; j++)
-		{
-			// duplicate first pixel
-			*dst++ = *src;
-			*dst++ = *src;
-
-			// copy a row
-			for (size_t k = 0; k < base; k++)
-			{
-				*dst++ = *src;
-				src += srcstep;
-			}
-
-			// duplicate last pixel
-			*dst++ = *(src-srcstep);
-			*dst++ = *(src-srcstep);
-
-			// advance write pointer for next row
-			dst += total_w-tile_w;
-		}
-
-		m_AlphaMapCoords[i].u0 = float(i*tile_w+2) / float(total_w);
-		m_AlphaMapCoords[i].u1 = float((i+1)*tile_w-2) / float(total_w);
-		m_AlphaMapCoords[i].v0 = 0.0f;
-		m_AlphaMapCoords[i].v1 = 1.0f;
-	}
-
-	for (size_t i = 0; i < NumAlphaMaps; i++)
-		ignore_result(ogl_tex_free(textures[i]));
-
-	// upload the composite texture
-	Tex t;
-	ignore_result(t.wrap(total_w, total_h, 8, TEX_GREY, data, 0));
-
-	/*VfsPath filename("blendtex.png");
-
-	DynArray da;
-	RETURN_STATUS_IF_ERR(tex_encode(&t, filename.Extension(), &da));
-
-	// write to disk
-	//Status ret = INFO::OK;
-	{
-		std::shared_ptr<u8> file = DummySharedPtr(da.base);
-		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
-		if(bytes_written > 0)
-			ENSURE(bytes_written == (ssize_t)da.pos);
-		//else
-		//	ret = (Status)bytes_written;
-	}
-
-	ignore_result(da_free(&da));*/
-
-	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
-	ignore_result(ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR));
-	ignore_result(ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE));
-	int ret = ogl_tex_upload(m_hCompositeAlphaMap, GL_ALPHA, 0, 0);
-
-	return ret;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UnloadAlphaMaps: frees the resources allocates by LoadAlphaMaps
-void CRenderer::UnloadAlphaMaps()
-{
-	ogl_tex_free(m_hCompositeAlphaMap);
-	m_hCompositeAlphaMap = 0;
-}
-
-
-
-Status CRenderer::ReloadChangedFileCB(void* param, const VfsPath& path)
-{
-	CRenderer* renderer = static_cast<CRenderer*>(param);
-
-	// If an alpha map changed, and we already loaded them, then reload them
-	if (boost::algorithm::starts_with(path.string(), L"art/textures/terrain/alphamaps/"))
-	{
-		if (renderer->m_hCompositeAlphaMap)
-		{
-			renderer->UnloadAlphaMaps();
-			renderer->LoadAlphaMaps();
-		}
-	}
-
-	return INFO::OK;
 }
 
 void CRenderer::MakeShadersDirty()
