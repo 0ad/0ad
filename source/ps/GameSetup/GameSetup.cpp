@@ -25,7 +25,6 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
-#include "lib/res/graphics/cursor.h"
 
 #include "graphics/CinemaManager.h"
 #include "graphics/Color.h"
@@ -113,7 +112,6 @@ ERROR_TYPE(System, RequiredExtensionsMissing);
 
 bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
-bool g_DoRenderCursor = true;
 
 thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
@@ -283,54 +281,6 @@ void Render()
 	// Profile information
 	g_ProfileViewer.RenderProfile();
 	ogl_WarnIfError();
-
-	// Draw the cursor (or set the Windows cursor, on Windows)
-	if (g_DoRenderCursor)
-	{
-		PROFILE3_GPU("cursor");
-		CStrW cursorName = g_CursorName;
-		if (cursorName.empty())
-		{
-			cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y, g_GuiScale, false);
-		}
-		else
-		{
-			bool forceGL = false;
-			CFG_GET_VAL("nohwcursor", forceGL);
-
-#if CONFIG2_GLES
-#warning TODO: implement cursors for GLES
-#else
-			// set up transform for GL cursor
-			glMatrixMode(GL_PROJECTION);
-			glPushMatrix();
-			glLoadIdentity();
-			glMatrixMode(GL_MODELVIEW);
-			glPushMatrix();
-			glLoadIdentity();
-			CMatrix3D transform;
-			transform.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
-			glLoadMatrixf(&transform._11);
-#endif
-
-#if OS_ANDROID
-#warning TODO: cursors for Android
-#else
-			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, g_GuiScale, forceGL) < 0)
-				LOGWARNING("Failed to draw cursor '%s'", utf8_from_wstring(cursorName));
-#endif
-
-#if CONFIG2_GLES
-#warning TODO: implement cursors for GLES
-#else
-			// restore transform
-			glMatrixMode(GL_PROJECTION);
-			glPopMatrix();
-			glMatrixMode(GL_MODELVIEW);
-			glPopMatrix();
-#endif
-		}
-	}
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -539,9 +489,6 @@ static void ShutdownPs()
 	SAFE_DELETE(g_GUI);
 
 	UnloadHotkeys();
-
-	// disable the special Windows cursor, or free textures for OGL cursors
-	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, 1.0, false);
 }
 
 
@@ -660,9 +607,6 @@ void Shutdown(int flags)
 	g_RenderingOptions.ClearHooks();
 
 	g_Profiler2.ShutdownGPU();
-
-	// Free cursors before shutting down SDL, as they may depend on SDL.
-	cursor_shutdown();
 
 	TIMER_BEGIN(L"shutdown SDL");
 	ShutdownSDL();
@@ -1085,11 +1029,6 @@ void RenderGui(bool RenderingState)
 void RenderLogger(bool RenderingState)
 {
 	g_DoRenderLogger = RenderingState;
-}
-
-void RenderCursor(bool RenderingState)
-{
-	g_DoRenderCursor = RenderingState;
 }
 
 /**

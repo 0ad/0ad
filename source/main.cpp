@@ -159,12 +159,6 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 	case SDL_WINDOWEVENT:
 		switch(ev->ev.window.event)
 		{
-		case SDL_WINDOWEVENT_ENTER:
-			RenderCursor(true);
-			break;
-		case SDL_WINDOWEVENT_LEAVE:
-			RenderCursor(false);
-			break;
 		case SDL_WINDOWEVENT_RESIZED:
 			g_ResizedW = ev->ev.window.data1;
 			g_ResizedH = ev->ev.window.data2;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,9 +28,6 @@ extern float g_GuiScale;
 
 extern bool g_Quickstart;
 extern bool g_DisableAudio;
-
-extern CStrW g_CursorName;
-extern const wchar_t g_DefaultCursor[];
 
 class CmdLineArgs;
 extern void CONFIG_Init(const CmdLineArgs& args);

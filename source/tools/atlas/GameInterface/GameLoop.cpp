@@ -126,10 +126,6 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 	RegisterHandlers();
 
-	// Disable the game's cursor rendering
-	extern CStrW g_CursorName;
-	g_CursorName = L"";
-
 	state.args = args;
 	state.running = true;
 	state.view = AtlasView::GetView_None();

@@ -25,6 +25,7 @@
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
@@ -146,7 +147,7 @@ void CGUIManager::SGUIPage::LoadPage(std::shared_ptr<ScriptContext> scriptContex
 		hotloadData = Script::WriteStructuredClone(rq, hotloadDataVal);
 	}
 
-	g_CursorName = g_DefaultCursor;
+	g_VideoMode.ResetCursor();
 	inputs.clear();
 	gui.reset(new CGUI(scriptContext));
 

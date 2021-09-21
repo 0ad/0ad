@@ -45,6 +45,8 @@ int DEFAULT_WINDOW_H = 768;
 int DEFAULT_FULLSCREEN_W = 1024;
 int DEFAULT_FULLSCREEN_H = 768;
 
+const wchar_t DEFAULT_CURSOR_NAME[] = L"default-arrow";
+
 } // anonymous namespace
 
 #if OS_WIN
@@ -59,10 +61,161 @@ extern void wutil_EnableHiDPIOnWindows();
 
 CVideoMode g_VideoMode;
 
+class CVideoMode::CCursor
+{
+public:
+	enum class CursorBackend
+	{
+		SDL,
+		SYSTEM
+	};
+
+	CCursor();
+	~CCursor();
+
+	void SetCursor(const CStrW& name);
+	void ResetCursor();
+
+private:
+	CursorBackend m_CursorBackend = CursorBackend::SYSTEM;
+	SDL_Surface* m_CursorSurface = nullptr;
+	SDL_Cursor* m_Cursor = nullptr;
+	CStrW m_CursorName;
+};
+
+CVideoMode::CCursor::CCursor()
+{
+	std::string cursorBackend;
+	CFG_GET_VAL("cursorbackend", cursorBackend);
+	if (cursorBackend == "sdl")
+		m_CursorBackend = CursorBackend::SDL;
+	else
+		m_CursorBackend = CursorBackend::SYSTEM;
+
+	ResetCursor();
+}
+
+CVideoMode::CCursor::~CCursor()
+{
+	if (m_Cursor)
+		SDL_FreeCursor(m_Cursor);
+	if (m_CursorSurface)
+		SDL_FreeSurface(m_CursorSurface);
+}
+
+void CVideoMode::CCursor::SetCursor(const CStrW& name)
+{
+	if (m_CursorBackend == CursorBackend::SYSTEM || m_CursorName == name)
+		return;
+	m_CursorName = name;
+
+	if (m_Cursor)
+		SDL_FreeCursor(m_Cursor);
+	if (m_CursorSurface)
+		SDL_FreeSurface(m_CursorSurface);
+
+	if (name.empty())
+	{
+		SDL_ShowCursor(SDL_DISABLE);
+		return;
+	}
+
+	const VfsPath pathBaseName(VfsPath(L"art/textures/cursors") / name);
+
+	// Read pixel offset of the cursor's hotspot [the bit of it that's
+	// drawn at (g_mouse_x,g_mouse_y)] from file.
+	int hotspotX = 0, hotspotY = 0;
+	{
+		const VfsPath pathHotspotName = pathBaseName.ChangeExtension(L".txt");
+		std::shared_ptr<u8> buffer;
+		size_t size;
+		if (g_VFS->LoadFile(pathHotspotName, buffer, size) != INFO::OK)
+		{
+			LOGERROR("Can't load hotspot for cursor: %s", pathHotspotName.string8().c_str());
+			return;
+		}
+		std::wstringstream s(std::wstring(reinterpret_cast<const wchar_t*>(buffer.get()), size));
+		s >> hotspotX >> hotspotY;
+	}
+
+	const VfsPath pathImageName = pathBaseName.ChangeExtension(L".png");
+
+	std::shared_ptr<u8> file;
+	size_t fileSize;
+	if (g_VFS->LoadFile(pathImageName, file, fileSize) != INFO::OK)
+	{
+		LOGERROR("Can't load image for cursor: %s", pathImageName.string8().c_str());
+		return;
+	}
+
+	Tex t;
+	if (t.decode(file, fileSize) != INFO::OK)
+	{
+		LOGERROR("Can't decode image for cursor");
+		return;
+	}
+
+	// Convert to required BGRA format.
+	const size_t flags = (t.m_Flags | TEX_BGR) & ~TEX_DXT;
+	if (t.transform_to(flags) != INFO::OK)
+	{
+		LOGERROR("Can't transform image for cursor");
+		return;
+	}
+	void* imageBGRA = t.get_data();
+	if (!imageBGRA)
+	{
+		LOGERROR("Transformed image is empty for cursor");
+		return;
+	}
+
+	m_CursorSurface = SDL_CreateRGBSurfaceFrom(imageBGRA,
+		static_cast<int>(t.m_Width), static_cast<int>(t.m_Height), 32,
+		static_cast<int>(t.m_Width * 4),
+		0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if (!m_CursorSurface)
+	{
+		LOGERROR("Can't create surface for cursor: %s", SDL_GetError());
+		return;
+	}
+	const float scale = g_GuiScale;
+	if (scale != 1.0)
+	{
+		SDL_Surface* scaledSurface = SDL_CreateRGBSurface(0,
+			m_CursorSurface->w * scale,
+			m_CursorSurface->h * scale, 32,
+			0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+		if (!scaledSurface)
+		{
+			LOGERROR("Can't create scaled surface forcursor: %s", SDL_GetError());
+			return;
+		}
+		if (SDL_BlitScaled(m_CursorSurface, nullptr, scaledSurface, nullptr))
+			return;
+		SDL_FreeSurface(m_CursorSurface);
+		m_CursorSurface = scaledSurface;
+	}
+	m_Cursor = SDL_CreateColorCursor(m_CursorSurface, hotspotX, hotspotY);
+	if (!m_Cursor)
+	{
+		LOGERROR("Can't create cursor: %s", SDL_GetError());
+		return;
+	}
+
+	SDL_SetCursor(m_Cursor);
+}
+
+void CVideoMode::CCursor::ResetCursor()
+{
+	SetCursor(DEFAULT_CURSOR_NAME);
+}
+
 CVideoMode::CVideoMode() :
 	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H), m_WindowedX(0), m_WindowedY(0)
 {
 }
+
+CVideoMode::~CVideoMode() = default;
 
 void CVideoMode::ReadConfig()
 {
@@ -307,6 +460,8 @@ bool CVideoMode::InitSDL()
 
 	SetWindowIcon();
 
+	m_Cursor = std::make_unique<CCursor>();
+
 	return true;
 }
 
@@ -324,6 +479,8 @@ bool CVideoMode::InitNonSDL()
 void CVideoMode::Shutdown()
 {
 	ENSURE(m_IsInitialised);
+
+	m_Cursor.reset();
 
 	m_IsFullscreen = false;
 	m_IsInitialised = false;
@@ -562,4 +719,16 @@ void CVideoMode::SetWindowIcon()
 
 	SDL_SetWindowIcon(m_Window, iconSurface);
 	SDL_FreeSurface(iconSurface);
+}
+
+void CVideoMode::SetCursor(const CStrW& name)
+{
+	if (m_Cursor)
+		m_Cursor->SetCursor(name);
+}
+
+void CVideoMode::ResetCursor()
+{
+	if (m_Cursor)
+		m_Cursor->ResetCursor();
 }
