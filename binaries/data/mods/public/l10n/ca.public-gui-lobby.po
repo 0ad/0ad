@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
-# Albert F. <alb.fontquerni@gmail.com>, 2018-2019
+# Albert F. <alb.fontquerni@gmail.com>, 2018-2019,2021
 # Catalanoic <catalanoic@gmail.com>, 2016,2018
 # Francesc Saló <whitrix@hotmail.es>, 2017
 # Guillem Poy <guplem@gmail.com>, 2015
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 10:16+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"PO-Revision-Date: 2021-09-17 07:51+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +116,7 @@ msgstr "Menú principal"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "La comanda '%(cmd)s'  no s'admet. Proveu %(help)s per obtenir més informació sobre les comandes compatibles."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -368,7 +368,7 @@ msgstr "Teniu alguns mods incompatibles:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr ""
+msgstr "Aquest mod no afecta la compatibilitat MP"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format

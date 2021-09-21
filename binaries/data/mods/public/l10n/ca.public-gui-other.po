@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2021
-# Albert F. <alb.fontquerni@gmail.com>, 2018
+# Albert F. <alb.fontquerni@gmail.com>, 2018,2021
 # Àlvar Farré <alvarkok@hotmail.com>, 2020
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
 # Catalanoic <catalanoic@gmail.com>, 2016
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-06 13:51+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"PO-Revision-Date: 2021-09-17 08:06+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -682,22 +682,22 @@ msgstr "Condició de victòria desconeguda"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "Desplaceu-vos cap avall o utilitzeu %(hotkey)s per moure una pestanya cap a la dreta."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "Desplaceu-vos cap amunt o utilitzeu %(hotkey)s per moure una pestanya cap a l'esquerra."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "Desplaceu-vos avall o utilitzeu %(hotkey)s per moure una pestanya cap avall."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "Desplaceu-vos cap amunt o utilitzeu %(hotkey)s per moure una pestanya cap amunt."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -1017,7 +1017,7 @@ msgstr "Salut"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
@@ -1031,11 +1031,11 @@ msgstr "+ "
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "Posició de les torretes"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1144,7 +1144,7 @@ msgstr "Recompensa:"
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s:"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1531,7 +1531,7 @@ msgstr "Tot i que és prou fàcil per a jugadors experimentats, el nivell per de
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Altres dreceres de teclat"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
@@ -1540,34 +1540,34 @@ msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr "(mantingueu premut per registrar)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Entreu una nova tecla, mantingeu premut per registrar-la."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(no utilitzada)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Podria entrar en conflicte amb:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Totes les dreceres de teclat"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "Totes les dreceres disponibles."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Restablir totes les dreceres als valors per defecte?\nAVÍS: No és reversible."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1576,7 +1576,7 @@ msgstr "Confirmació"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Descripció no disponible."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1597,13 +1597,13 @@ msgstr "Tecla drecera"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Descripció de la drecera"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Feu clic a qualsevol assignació per modificar-la. \\n Podeu tenir fins a 4 tecles de drecera diferents."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1638,23 +1638,23 @@ msgstr "Desa els canvis"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Els canvis no desats es perdran."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Cliqueu per establir la tecla de drecera"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Cliqueu per eliminar la tecla de drecera"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Canviar les tecles de drecera i tancar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Les tecles de drecera no seran modificades"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
@@ -1674,12 +1674,12 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Desplaçar/Rotar cap avall"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Seguir la primera unitat de la selecció"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
@@ -1932,12 +1932,12 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Apropar la càmera."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Apropar"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
@@ -2316,7 +2316,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Envieu les unitats seleccionades en desplaçament d'atac a la localització especificada després de descarregar els recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
@@ -5178,7 +5178,7 @@ msgstr "Feu clic per visitar el Trac del 0 A.D. per informar d'un error o proble
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "Preguntes freqüents"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
@@ -6098,7 +6098,7 @@ msgstr "Refugieu-hi unitats per curar-les lentament, protegir el campament d'ata
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
-msgstr ""
+msgstr "Encuament automàtic"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
@@ -6120,7 +6120,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Les unitats guanyen experiència mentre estan refugiades a l'edifici."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""

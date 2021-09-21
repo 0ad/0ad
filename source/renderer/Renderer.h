@@ -70,9 +70,6 @@ class CRenderer :
 	private SceneCollector
 {
 public:
-	// various enumerations and renderer related constants
-	enum { NumAlphaMaps=14 };
-
 	enum CullGroup
 	{
 		CULL_DEFAULT,
@@ -227,12 +224,6 @@ public:
 	// bind a GL texture object to active unit
 	void BindTexture(int unit, unsigned int tex);
 
-	// load the default set of alphamaps.
-	// return a negative error code if anything along the way fails.
-	// called via delay-load mechanism.
-	int LoadAlphaMaps();
-	void UnloadAlphaMaps();
-
 	// return stats accumulated for current frame
 	Stats& GetStats() { return m_Stats; }
 
@@ -366,9 +357,6 @@ protected:
 	void ReloadShaders();
 	void RecomputeSystemShaderDefines();
 
-	// hotloading
-	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
-
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
 	CRendererInternals* m;
@@ -412,12 +400,6 @@ protected:
 	float m_ClearColor[4];
 	// current lighting setup
 	CLightEnv* m_LightEnv;
-	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
-	Handle m_hCompositeAlphaMap;
-	// coordinates of each (untransformed) alpha map within the packed texture
-	struct {
-		float u0,u1,v0,v1;
-	} m_AlphaMapCoords[NumAlphaMaps];
 	// card capabilities
 	Caps m_Caps;
 	// build card cap bits

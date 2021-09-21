@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
+# Albert F. <alb.fontquerni@gmail.com>, 2021
 # Catalanoic <catalanoic@gmail.com>, 2013
 # Catalanoic <catalanoic@gmail.com>, 2013
 # Esteve Blanch <esteve.blanch@live.com>, 2020
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-05-17 10:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-09-17 07:41+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,32 +29,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "Velocitat de desplaçament incrementada a %.1f"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "Velocitat de desplaçament disminuïda a %.1f"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Velocitat de rotació incrementada a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Velocitat de rotació disminuïda a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "Velocitat de zoom augmentada a %.1f"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "Velocitat de zoom disminuïda a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -203,7 +204,7 @@ msgstr "El nom d'usuari ja existeix"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "No s'ha pogut escriure el mod.json extern per al mod comprimit '%s'. El mod hauria de ser reinstal·lat."
 
 #: ps/ModIo.cpp:263
 #, c-format

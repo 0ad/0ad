@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
-# Albert F. <alb.fontquerni@gmail.com>, 2017,2019
+# Albert F. <alb.fontquerni@gmail.com>, 2017,2019,2021
 # Alex Ruiz García <rgalex2034@hotmail.com>, 2017
 # Àlvar Farré <alvarkok@hotmail.com>, 2020
 # Ambar Gorretas-Aymerich <ambar.gorretas@e-campus.uab.cat>, 2017
@@ -31,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-24 09:33+0000\n"
-"Last-Translator: Klan Ruiz Martin <rodamit@gmail.com>\n"
+"PO-Revision-Date: 2021-09-17 08:15+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,7 +142,7 @@ msgstr "Hel·lenització"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Els soldats en la torreta augmenten en +3 la resistència d'impacte, tall i perforació i en +20 el camp visual."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -160,7 +160,7 @@ msgstr "Expansió gloriosa"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Les unitats guanyen experiència mentre estan refugiades a l'edifici."
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -168,7 +168,7 @@ msgstr "Entrenament dur"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."
-msgstr ""
+msgstr "Els vaixells de guerra es requereixen un -25% de temps de construcció."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -176,7 +176,7 @@ msgstr "Lliga de Delos"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr ""
+msgstr "Els guaridors costen -20% recursos."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -200,7 +200,7 @@ msgstr "Productes de la Gàl·lia"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Els soldats ciutadans amb javelina aliats costen un -10% de recursos."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -208,7 +208,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Els elefants costen -20% de recursos i de temps de reclutament."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -216,7 +216,7 @@ msgstr "Proveïdors d'elefants"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% barter sell prices."
-msgstr ""
+msgstr "+20% en el preu d'intercanvi."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -226,7 +226,7 @@ msgstr "Moneda estandarditzada"
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr ""
+msgstr "Els temples costen -50% en recursos i temps de construcció; les tecnologies del temple també costen -50% en recursos i temps de recerca."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -234,7 +234,7 @@ msgstr "Suport religiós d'Aixoka"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Land Traders +15% trade gain."
-msgstr ""
+msgstr "Els mercaders terrestres tenen un +15% de benefici."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -242,7 +242,7 @@ msgstr "La Ruta Reial"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
-msgstr ""
+msgstr "+1.0 d'increment al flux de menjar."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -250,7 +250,7 @@ msgstr "Graner de la Mediterrània"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr ""
+msgstr "La infanteria ciutadana té un −10% al temps de reclutament."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -258,7 +258,7 @@ msgstr "Servei militar"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Civil Centers −20% resource costs."
-msgstr ""
+msgstr "Centres cívics costen un -20% de recursos."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -266,7 +266,7 @@ msgstr "Tetràpoli siriana"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Els llancers ciutadans tenen +10% de salut."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -518,7 +518,7 @@ msgstr "Pelanors de ferro"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Builders +25% build rate."
-msgstr ""
+msgstr "Els constructors treballen un +25% més ràpid."
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
@@ -544,7 +544,7 @@ msgstr "Reformes dels peltastes"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
-msgstr ""
+msgstr "Els constructors treballen un +15% més ràpid."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -665,7 +665,7 @@ msgstr "Preparació per a la guerra"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "Quan està refugiat a una estructura, aquesta obté una bonificació de +2 a la velocitat de regeneració dels punts de captura."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -881,7 +881,7 @@ msgstr "−10% de salut per als herois enemics."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
-msgstr ""
+msgstr "Els constructors treballen un +10% més ràpid."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"

@@ -43,8 +43,6 @@
 #include <boost/flyweight/no_locking.hpp>
 #include <boost/flyweight/no_tracking.hpp>
 
-#include "valgrind.h"
-
 /**
  * @file
  * Abstractions of various SpiderMonkey features.

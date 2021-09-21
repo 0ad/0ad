@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,25 +20,17 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * wrapper for all OpenGL texturing calls. provides caching, hotloading
- * and lifetime management.
- */
-
 #include "precompiled.h"
 #include "ogl_tex.h"
 
-#include <cstdio>
-
 #include "lib/app_hooks.h"
-#include "lib/ogl.h"
 #include "lib/bits.h"
+#include "lib/ogl.h"
+#include "lib/res/h_mgr.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
 
-#include "lib/res/h_mgr.h"
-#include "lib/fnv_hash.h"
-
+#include <cstdio>
 
 //----------------------------------------------------------------------------
 // OpenGL helper routines
@@ -543,16 +535,6 @@ Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 	Tex* wrapped_tex = 0;	// we're loading from file
 	return h_alloc(H_OglTex, vfs, pathname, flags, wrapped_tex);
 }
-
-
-// return Handle to an existing object, if it has been loaded and
-// is still in memory; otherwise, a negative error code.
-Handle ogl_tex_find(const VfsPath& pathname)
-{
-	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
-	return h_find(H_OglTex, key);
-}
-
 
 // make the given Tex object ready for use as an OpenGL texture
 // and return a handle to it. this will be as if its contents

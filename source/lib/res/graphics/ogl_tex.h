@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -223,15 +223,6 @@ extern void ogl_tex_set_defaults(int q_flags, GLint filter);
 * for a list of supported formats, see tex.h's tex_load.
 */
 extern Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0);
-
-/**
-* Find and return an existing texture object, if it has already been
-* loaded and is still in memory.
-*
-* @param pathname fn VFS filename of texture.
-* @return Handle to texture or negative Status
-*/
-extern Handle ogl_tex_find(const VfsPath& pathname);
 
 /**
 * Make the Tex object ready for use as an OpenGL texture

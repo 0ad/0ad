@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,9 +25,12 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/alignment.h"
 #include "lib/bits.h"
+#include "lib/config2.h"
 #include "lib/module_init.h"
 
-#include "valgrind.h"
+#if CONFIG2_VALGRIND
+# include "valgrind.h"
+#endif
 #include <sys/param.h>
 #include <sys/sysctl.h>
 
@@ -37,12 +40,14 @@ size_t os_cpu_NumProcessors()
 
 	if(numProcessors == 0)
 	{
+#if CONFIG2_VALGRIND
 		// Valgrind reports the number of real CPUs, but only emulates a single CPU.
 		// That causes problems when we expect all those CPUs to be distinct, so
 		// just pretend there's only one CPU
 		if (RUNNING_ON_VALGRIND)
 			numProcessors = 1;
 		else
+#endif
 		{
 			long res = sysconf(_SC_NPROCESSORS_CONF);
 			ENSURE(res != -1);

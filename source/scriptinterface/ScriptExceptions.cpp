@@ -89,10 +89,6 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 	}
 
 	LOGERROR("%s", msg.str().c_str());
-
-	// When running under Valgrind, print more information in the error message
-	//	VALGRIND_PRINTF_BACKTRACE("->");
-
 	return true;
 }
 
