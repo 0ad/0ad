@@ -23,6 +23,7 @@
 #include "gui/GUIManager.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/GameSetup/Config.h"
+#include "ps/VideoMode.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
@@ -52,16 +53,14 @@ void PopGuiPage(const ScriptRequest& rq, JS::HandleValue args)
 	g_GUI->PopPage(Script::WriteStructuredClone(rq, args));
 }
 
-std::wstring SetCursor(const std::wstring& name)
+void SetCursor(const std::wstring& name)
 {
-	std::wstring old = g_CursorName;
-	g_CursorName = name;
-	return old;
+	g_VideoMode.SetCursor(name);
 }
 
 void ResetCursor()
 {
-	g_CursorName = g_DefaultCursor;
+	g_VideoMode.ResetCursor();
 }
 
 bool TemplateExists(const std::string& templateName)

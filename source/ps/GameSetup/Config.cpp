@@ -26,11 +26,6 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 
 // (these variables are documented in the header.)
-
-const wchar_t g_DefaultCursor[] = L"default-arrow";
-
-CStrW g_CursorName = g_DefaultCursor;
-
 bool g_PauseOnFocusLoss = false;
 
 int g_xres, g_yres;

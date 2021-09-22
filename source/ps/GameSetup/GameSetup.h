@@ -74,12 +74,6 @@ enum ShutdownFlags
 extern void RenderGui(bool RenderingState);
 extern void RenderLogger(bool RenderingState);
 
-/**
- * enable/disable rendering of the cursor - this does not hide cursor, but reverts to OS style
- */
-extern void RenderCursor(bool RenderingState);
-
-
 class CmdLineArgs;
 class Paths;
 extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);

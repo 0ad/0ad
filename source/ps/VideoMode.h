@@ -18,12 +18,17 @@
 #ifndef INCLUDED_VIDEOMODE
 #define INCLUDED_VIDEOMODE
 
+#include "ps/CStrForward.h"
+
+#include <memory>
+
 typedef struct SDL_Window SDL_Window;
 
 class CVideoMode
 {
 public:
 	CVideoMode();
+	~CVideoMode();
 
 	/**
 	 * Initialise the video mode, for use in an SDL-using application.
@@ -88,6 +93,9 @@ public:
 
 	void SetWindowIcon();
 
+	void SetCursor(const CStrW& name);
+	void ResetCursor();
+
 private:
 	void ReadConfig();
 	int GetBestBPP();
@@ -135,6 +143,9 @@ private:
 	int m_CurrentW;
 	int m_CurrentH;
 	int m_CurrentBPP;
+
+	class CCursor;
+	std::unique_ptr<CCursor> m_Cursor;
 };
 
 extern CVideoMode g_VideoMode;

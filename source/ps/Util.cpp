@@ -19,34 +19,32 @@
 
 #include "ps/Util.h"
 
-#include "lib/posix/posix_utsname.h"
-#include "lib/ogl.h"
-#include "lib/timer.h"
-#include "lib/bits.h"	// round_up
+#include "graphics/GameView.h"
+#include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
-#include "lib/sysdep/sysdep.h"	// sys_OpenFile
-#include "lib/sysdep/gfx.h"
-#include "lib/sysdep/cpu.h"
-#include "lib/sysdep/os_cpu.h"
+#include "lib/bits.h"	// round_up
+#include "lib/ogl.h"
+#include "lib/posix/posix_utsname.h"
 #if ARCH_X86_X64
 #include "lib/sysdep/arch/x86_x64/topology.h"
 #endif
+#include "lib/sysdep/gfx.h"
+#include "lib/sysdep/cpu.h"
+#include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/smbios.h"
+#include "lib/sysdep/sysdep.h"	// sys_OpenFile
 #include "lib/tex/tex.h"
-
-#include "i18n/L10n.h"
+#include "lib/timer.h"
 #include "lib/utf8.h"
-
-#include "ps/GameSetup/Config.h"
-#include "ps/GameSetup/GameSetup.h"
-#include "ps/Game.h"
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Game.h"
+#include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/GameSetup.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
-#include "maths/MathUtil.h"
-#include "graphics/GameView.h"
 
 #if CONFIG2_AUDIO
 #include "soundmanager/SoundManager.h"
@@ -54,8 +52,6 @@
 
 #include <iomanip>
 #include <sstream>
-
-extern CStrW g_CursorName;
 
 static std::string SplitExts(const char *exts)
 {
@@ -376,10 +372,6 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles, int tileWidth, int 
 	glReadBuffer(GL_FRONT);
 #endif
 
-	// Hide the cursor
-	CStrW oldCursor = g_CursorName;
-	g_CursorName = L"";
-
 	// Render each tile
 	CMatrix3D projection;
 	projection.SetIdentity();
@@ -411,9 +403,6 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles, int tileWidth, int 
 			}
 		}
 	}
-
-	// Restore the old cursor
-	g_CursorName = oldCursor;
 
 #if !CONFIG2_GLES
 	// Restore the buffer settings
