@@ -133,6 +133,13 @@ done
 cd "$(dirname $0)"
 # Now in libraries/osx/ (where we assume this script resides)
 
+# Create a location to create copies of dependencies' *.pc files, so they can be found by pkg-config
+PC_PATH="$(pwd)/pkgconfig/"
+if [[ "$force_rebuild" = "true" ]]; then
+  rm -rf $PC_PATH
+fi
+mkdir -p $PC_PATH
+
 # --------------------------------------------------------------
 echo -e "Building zlib..."
 
@@ -161,7 +168,9 @@ then
       ./configure --prefix="$ZLIB_DIR" \
          --static \
     && make ${JOBS} && make install) || die "zlib build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -218,7 +227,9 @@ then
       --with-zlib="${ZLIB_DIR}" \
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libcurl build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -293,7 +304,9 @@ then
       --with-zlib="${ZLIB_DIR}" \
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libxml2 build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -335,7 +348,9 @@ then
       --enable-video-cocoa \
       --enable-shared=no \
     && make $JOBS && make install) || die "SDL2 build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -475,7 +490,9 @@ then
       --prefix=$INSTALL_DIR \
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libpng build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -483,6 +500,7 @@ fi
 popd > /dev/null
 
 # --------------------------------------------------------------
+# Dependency of vorbis
 echo -e "Building libogg..."
 
 LIB_VERSION="${OGG_VERSION}"
@@ -490,11 +508,7 @@ LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://downloads.xiph.org/releases/ogg/"
 
-# Dependency of vorbis
-# we can install them in the same directory for convenience
 mkdir -p libogg
-mkdir -p vorbis
-
 pushd libogg > /dev/null
 OGG_DIR="$(pwd)"
 
@@ -512,7 +526,9 @@ then
       --prefix=$OGG_DIR \
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libogg build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -527,6 +543,7 @@ LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://downloads.xiph.org/releases/vorbis/"
 
+mkdir -p vorbis
 pushd vorbis > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
@@ -546,7 +563,9 @@ then
       --enable-shared=no \
       --with-ogg="$OGG_DIR" \
     && make ${JOBS} && make install) || die "libvorbis build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -587,7 +606,9 @@ then
       --disable-shared \
       --with-pic \
     && make ${JOBS} && make install) || die "GMP build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -596,6 +617,7 @@ popd > /dev/null
 
 # --------------------------------------------------------------
 echo -e "Building Nettle..."
+# Also builds hogweed
 
 LIB_VERSION="${NETTLE_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
@@ -632,7 +654,9 @@ then
       --disable-openssl \
       --disable-assembler \
     && make ${JOBS} && make install) || die "Nettle build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -688,7 +712,9 @@ then
           --disable-tools \
           --disable-nls \
     && make ${JOBS} LDFLAGS= install) || die "GnuTLS build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -733,7 +759,9 @@ then
       --without-examples \
       --disable-getaddrinfo \
     && make ${JOBS} && make install) || die "gloox build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -748,7 +776,7 @@ LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
 LIB_URL="https://github.com/unicode-org/icu/releases/download/release-67-1/"
 
-mkdir -p $LIB_DIRECTORY
+mkdir -p icu
 pushd icu > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
@@ -775,8 +803,10 @@ then
         --enable-icuio \
         --enable-tools \
     && make ${JOBS} && make install) || die "ICU build failed"
+
   popd
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -810,7 +840,9 @@ then
       --prefix=${INSTALL_DIR} \
       --enable-shared=no \
     && make clean && make ${JOBS} && make install) || die "ENet build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -843,9 +875,11 @@ then
     && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} \
     && INSTALLPREFIX="$INSTALL_DIR" make install \
   ) || die "MiniUPnPc build failed"
+
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -883,7 +917,9 @@ then
     && make check \
     && INSTALLPREFIX="$INSTALL_DIR" make install \
   ) || die "libsodium build failed"
+
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built
 else
   already_built
@@ -925,6 +961,7 @@ then
 
   popd
   popd
+  cp -f lib/pkgconfig/* $PC_PATH
   echo "$FMT_VERSION" > .already-built
 else
   already_built

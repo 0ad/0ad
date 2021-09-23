@@ -1,5 +1,8 @@
 local m = {}
-m._VERSION = "1.1.0-dev"
+m._VERSION = "1.1.1-dev"
+
+m.additional_pc_path = nil
+m.static_link_libs = false
 
 local function os_capture(cmd)
 	return io.popen(cmd, 'r'):read('*a'):gsub("\n", " ")
@@ -8,7 +11,8 @@ end
 function m.add_includes(lib, alternative_cmd, alternative_flags)
 	local result
 	if not alternative_cmd then
-		result = os_capture("pkg-config --cflags "..lib)
+		local pc_path = m.additional_pc_path and "PKG_CONFIG_PATH="..m.additional_pc_path or ""
+		result = os_capture(pc_path.." pkg-config --cflags "..lib)
 	else
 		if not alternative_flags then
 			result = os_capture(alternative_cmd.." --cflags")
@@ -42,9 +46,11 @@ end
 function m.add_links(lib, alternative_cmd, alternative_flags)
 	local result
 	if not alternative_cmd then
-		result = os_capture("pkg-config --libs "..lib)
+		local pc_path = m.additional_pc_path and "PKG_CONFIG_PATH="..m.additional_pc_path or ""
+		local static = m.static_link_libs and " --static " or ""
+		result = os_capture(pc_path.." pkg-config --libs "..static..lib)
 	else
-	if not alternative_flags then
+		if not alternative_flags then
 			result = os_capture(alternative_cmd.." --libs")
 		else
 			result = os_capture(alternative_cmd.." "..alternative_flags)

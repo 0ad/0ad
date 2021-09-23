@@ -70,13 +70,8 @@ if [ "`uname -s`" = "Darwin" ]; then
   # Set minimal SDK version
   export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.12"}
 
-  # Set *_CONFIG variables on OS X, to override the path to e.g. sdl2-config
-  export GLOOX_CONFIG=${GLOOX_CONFIG:="$(pwd)/../../libraries/osx/gloox/bin/gloox-config"}
-  export ICU_CONFIG=${ICU_CONFIG:="$(pwd)/../../libraries/osx/icu/bin/icu-config"}
-  export LIBPNG_CONFIG=${PNG_CONFIG:="$(pwd)/../../libraries/osx/libpng/bin/libpng-config"}
-  export SDL2_CONFIG=${SDL2_CONFIG:="$(pwd)/../../libraries/osx/sdl2/bin/sdl2-config"}
+  # Provide path to wx-config on OS X (as wxwidgets doesn't support pkgconfig)
   export WX_CONFIG=${WX_CONFIG:="$(pwd)/../../libraries/osx/wxwidgets/bin/wx-config"}
-  export XML2_CONFIG=${XML2_CONFIG:="$(pwd)/../../libraries/osx/libxml2/bin/xml2-config"}
 fi
 
 # Don't want to build bundled libs on OS X

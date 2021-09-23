@@ -39,6 +39,11 @@ end
 
 pkgconfig = require "pkgconfig"
 
+-- Configure pkgconfig for MacOSX systems
+if os.istarget("macosx") then
+	pkgconfig.additional_pc_path = libraries_dir .. "pkgconfig/"
+	pkgconfig.static_link_libs = true
+end
 
 local function add_delayload(name, suffix, def)
 
@@ -228,18 +233,21 @@ extern_lib_defs = {
 	},
 	enet = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("enet")
+			else
+				pkgconfig.add_includes("libenet")
 			end
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_lib_paths("enet")
+				add_default_links({
+					win_names  = { "enet" },
+				})
+			else
+				pkgconfig.add_links("libenet")
 			end
-			add_default_links({
-				win_names  = { "enet" },
-				unix_names = { "enet" },
-			})
 		end,
 	},
 	fcollada = {
@@ -265,16 +273,18 @@ extern_lib_defs = {
 	},
 	fmt = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("fmt")
+			elseif os.istarget("macosx") then
+				pkgconfig.add_includes("fmt")
 			end
 
 			-- With Linux & BSD, we assume that fmt is installed in a standard location.
 			--
-			-- It would be nice to not assume, and to instead use pkgconfig: however that
+			-- It would be nice to not assume, and to instead use pkg-config: however that
 			-- requires fmt 5.3.0 or greater.
 			--
-			-- Unfortunately (at the time of writing) only 69 out of 95 (~72.6%) of distros
+			-- Unfortunately (at the time of writing) only 92 out of 114 (~80.7%) of distros
 			-- that provide a fmt package meet this, according to
 			-- https://repology.org/badge/vertical-allrepos/fmt.svg?minversion=5.3
 			--
@@ -284,27 +294,23 @@ extern_lib_defs = {
 			-- Mint).
 			--
 			-- When fmt 5.3 (or better) becomes more widely used, then we can safely use the
-			-- following line:
-			-- pkgconfig.add_includes("fmt")
+			-- same line as we currently use for osx
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
-				add_default_lib_paths("fmt")
-			end
-
 			if os.istarget("windows") then
+				add_default_lib_paths("fmt")
 				add_default_links({
 					win_names = { "fmt" },
 					dbg_suffix = "d",
 					no_delayload = 1,
 				})
+			elseif os.istarget("macosx") then
+				-- See comment above as to why this is not also used on Linux or BSD.
+				pkgconfig.add_links("fmt")
 			else
 				add_default_links({
 					unix_names = { "fmt" },
 				})
-
-				-- See comment above as to why this is commented out.
-				-- pkgconfig.add_links("fmt")
 			end
 		end
 	},
@@ -313,9 +319,7 @@ extern_lib_defs = {
 			if os.istarget("windows") then
 				add_default_include_paths("gloox")
 			else
-				-- Support GLOOX_CONFIG for overriding the default (pkg-config --cflags gloox)
-				-- i.e. on OSX where it gets set in update-workspaces.sh
-				pkgconfig.add_includes("gloox", os.getenv("GLOOX_CONFIG"))
+				pkgconfig.add_includes("gloox")
 			end
 		end,
 		link_settings = function()
@@ -326,17 +330,12 @@ extern_lib_defs = {
 					no_delayload = 1,
 				})
 			else
-				pkgconfig.add_links("gloox", os.getenv("GLOOX_CONFIG"))
+				pkgconfig.add_links("gloox")
 
 				if os.istarget("macosx") then
-					-- Manually add gnutls dependencies, those are not present in gloox's pkg-config
-					add_default_lib_paths("nettle")
-					add_default_lib_paths("gmp")
-					add_default_links({
-						osx_names = { "nettle", "hogweed", "gmp" },
-					})
+					-- gloox depends on gnutls, but doesn't identify this via pkg-config
+					pkgconfig.add_links("gnutls")
 				end
-
 			end
 		end,
 	},
@@ -373,9 +372,7 @@ extern_lib_defs = {
 			if os.istarget("windows") then
 				add_default_include_paths("icu")
 			else
-				-- Support ICU_CONFIG for overriding the default (pkg-config --cflags icu-i18n)
-				-- i.e. on OSX where it gets set in update-workspaces.sh
-				pkgconfig.add_includes("icu-i18n", os.getenv("ICU_CONFIG"), "--cppflags")
+				pkgconfig.add_includes("icu-i18n")
 			end
 		end,
 		link_settings = function()
@@ -387,25 +384,27 @@ extern_lib_defs = {
 					no_delayload = 1,
 				})
 			else
-				pkgconfig.add_links("icu-i18n", os.getenv("ICU_CONFIG"), "--ldflags-searchpath --ldflags-libsonly --ldflags-system")
+				pkgconfig.add_links("icu-i18n")
 			end
 		end,
 	},
 	libcurl = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("libcurl")
+			else
+				pkgconfig.add_includes("libcurl")
 			end
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_lib_paths("libcurl")
+			else
+				pkgconfig.add_links("libcurl")
 			end
 			add_default_links({
 				win_names  = { "libcurl" },
-				unix_names = { "curl" },
-				osx_names = { "curl", "z" },
-				osx_frameworks = { "Security" }
+				osx_frameworks = { "Security" }, -- Not supplied by curl's pkg-config
 			})
 		end,
 	},
@@ -414,9 +413,7 @@ extern_lib_defs = {
 			if os.istarget("windows") then
 				add_default_include_paths("libpng")
 			else
-				-- Support LIBPNG_CONFIG for overriding the default (pkg-config --cflags libpng)
-				-- i.e. on OSX where it gets set in update-workspaces.sh
-				pkgconfig.add_includes("libpng", os.getenv("LIBPNG_CONFIG"))
+				pkgconfig.add_includes("libpng")
 			end
 		end,
 		link_settings = function()
@@ -426,24 +423,27 @@ extern_lib_defs = {
 					win_names  = { "libpng16" },
 				})
 			else
-				pkgconfig.add_links("libpng", os.getenv("LIBPNG_CONFIG"), "--ldflags")
+				pkgconfig.add_links("libpng")
 			end
 		end,
 	},
 	libsodium = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("libsodium")
+			else
+				pkgconfig.add_includes("libsodium")
 			end
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_lib_paths("libsodium")
+				add_default_links({
+					win_names  = { "libsodium" },
+				})
+			else
+				pkgconfig.add_links("libsodium")
 			end
-			add_default_links({
-				win_names  = { "libsodium" },
-				unix_names = { "sodium" },
-			})
 		end,
 	},
 	libxml2 = {
@@ -451,14 +451,13 @@ extern_lib_defs = {
 			if os.istarget("windows") then
 				add_default_include_paths("libxml2")
 			else
-				-- Support XML2_CONFIG for overriding the default (pkg-config --cflags libxml-2.0)
-				-- i.e. on OSX where it gets set in update-workspaces.sh
-				pkgconfig.add_includes("libxml-2.0", os.getenv("XML2_CONFIG"))
-			end
-			if os.istarget("macosx") then
-				-- libxml2 needs _REENTRANT or __MT__ for thread support;
-				-- OS X doesn't get either set by default, so do it manually
-				defines { "_REENTRANT" }
+				pkgconfig.add_includes("libxml-2.0")
+
+				if os.istarget("macosx") then
+					-- libxml2 needs _REENTRANT or __MT__ for thread support;
+					-- OS X doesn't get either set by default, so do it manually
+					defines { "_REENTRANT" }
+				end
 			end
 		end,
 		link_settings = function()
@@ -470,24 +469,48 @@ extern_lib_defs = {
 					links { "libxml2" }
 				filter { }
 			else
-				pkgconfig.add_links("libxml-2.0", os.getenv("XML2_CONFIG"))
+				pkgconfig.add_links("libxml-2.0")
 			end
 		end,
 	},
 	miniupnpc = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("miniupnpc")
+			elseif os.istarget("macosx") then
+				pkgconfig.add_includes("miniupnpc")
 			end
+
+			-- On Linux and BSD systems we assume miniupnpc is installed in a standard location.
+			--
+			-- Support for pkg-config was added in v2.1 of miniupnpc (May 2018). However, the
+			-- implementation was flawed - it provided the wrong path to the project's headers.
+			-- This was corrected in v2.2.1 (December 2020).
+			--
+			-- At the time of writing, of the 123 Linux and BSD package repositories tracked by
+			-- Repology that supply a version of miniupnpc:
+			-- * 88 (~71.54%) have >= v2.1, needed to locate libraries
+			-- * 50 (~40.65%) have >= v2.2.1, needed to (correctly) locate headers
+			--
+			-- Once more recent versions become more widespread, we can safely start to use
+			-- pkg-config to find miniupnpc on Linux and BSD systems.
+			-- https://repology.org/badge/vertical-allrepos/miniupnpc.svg?minversion=2.2.1
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_lib_paths("miniupnpc")
+				add_default_links({
+					win_names  = { "miniupnpc" },
+				})
+			elseif os.istarget("macosx") then
+				pkgconfig.add_links("miniupnpc")
+			else
+				-- Once miniupnpc v2.1 or better becomes near-universal (see above comment),
+				-- we can use pkg-config for Linux and BSD.
+				add_default_links({
+					unix_names = { "miniupnpc" },
+				})
 			end
-			add_default_links({
-				win_names  = { "miniupnpc" },
-				unix_names = { "miniupnpc" },
-			})
 		end,
 	},
 	nvtt = {
@@ -513,44 +536,53 @@ extern_lib_defs = {
 		compile_settings = function()
 			if os.istarget("windows") then
 				add_default_include_paths("openal")
+			elseif not os.istarget("macosx") then
+				pkgconfig.add_includes("openal")
 			end
 		end,
 		link_settings = function()
 			if os.istarget("windows") then
 				add_default_lib_paths("openal")
+				add_default_links({
+					win_names  = { "openal32" },
+					dbg_suffix = "",
+					no_delayload = 1, -- delayload seems to cause errors on startup
+				})
+			elseif os.istarget("macosx") then
+				add_default_links({
+					osx_frameworks = { "OpenAL" },
+				})
+			else
+				pkgconfig.add_links("openal")
 			end
-			add_default_links({
-				win_names  = { "openal32" },
-				unix_names = { "openal" },
-				osx_frameworks = { "OpenAL" },
-				dbg_suffix = "",
-				no_delayload = 1, -- delayload seems to cause errors on startup
-			})
 		end,
 	},
 	opengl = {
 		compile_settings = function()
 			if os.istarget("windows") then
 				add_default_include_paths("opengl")
+			elseif _OPTIONS["gles"] then
+				pkgconfig.add_includes("glesv2")
+			elseif not os.istarget("macosx") then
+				pkgconfig.add_includes("gl")
 			end
 		end,
 		link_settings = function()
 			if os.istarget("windows") then
 				add_default_lib_paths("opengl")
-			end
-			if _OPTIONS["gles"] then
-				add_default_links({
-					unix_names = { "GLESv2" },
-					dbg_suffix = "",
-				})
-			else
 				add_default_links({
 					win_names  = { "opengl32", "gdi32" },
-					unix_names = { "GL" },
-					osx_frameworks = { "OpenGL" },
 					dbg_suffix = "",
 					no_delayload = 1, -- delayload seems to cause errors on startup
 				})
+			elseif os.istarget("macosx") then
+				add_default_links({
+					osx_frameworks = { "OpenGL" },
+				})
+			elseif _OPTIONS["gles"] then
+				pkgconfig.add_links("glesv2")
+			else
+				pkgconfig.add_links("gl")
 			end
 		end,
 	},
@@ -559,16 +591,14 @@ extern_lib_defs = {
 			if os.istarget("windows") then
 				includedirs { libraries_dir .. "sdl2/include/SDL" }
 			elseif not _OPTIONS["android"] then
-				-- Support SDL2_CONFIG for overriding the default (pkg-config sdl2)
-				-- i.e. on OSX where it gets set in update-workspaces.sh
-				pkgconfig.add_includes("sdl2", os.getenv("SDL2_CONFIG"))
+				pkgconfig.add_includes("sdl2")
 			end
 		end,
 		link_settings = function()
 			if os.istarget("windows") then
 				add_default_lib_paths("sdl2")
 			elseif not _OPTIONS["android"] then
-				pkgconfig.add_links("sdl2", os.getenv("SDL2_CONFIG"))
+				pkgconfig.add_links("sdl2")
 			end
 		end,
 	},
@@ -636,31 +666,26 @@ extern_lib_defs = {
 		compile_settings = function()
 			if os.istarget("windows") then
 				add_default_include_paths("vorbis")
-			elseif os.istarget("macosx") then
-				add_default_include_paths("libogg")
-				add_default_include_paths("vorbis")
+			else
+				pkgconfig.add_includes("ogg")
+				pkgconfig.add_includes("vorbisfile")
 			end
 		end,
 		link_settings = function()
 			if os.istarget("windows") then
 				add_default_lib_paths("vorbis")
-			elseif os.istarget("macosx") then
-				add_default_lib_paths("libogg")
-				add_default_lib_paths("vorbis")
-			end
-			-- TODO: We need to force linking with these as currently
-			-- they need to be loaded explicitly on execution
-			if os.getversion().description == "OpenBSD" then
 				add_default_links({
-					unix_names = { "ogg",
-						"vorbis" },
+					win_names  = { "libvorbisfile" },
 				})
+			elseif os.getversion().description == "OpenBSD" then
+				-- TODO: We need to force linking with these as currently
+				-- they need to be loaded explicitly on execution
+				add_default_links({
+					unix_names = { "ogg", "vorbis" },
+				})
+			else
+				pkgconfig.add_links("vorbisfile")
 			end
-			add_default_links({
-				win_names  = { "libvorbisfile" },
-				unix_names = { "vorbisfile" },
-				osx_names = { "vorbis", "vorbisenc", "vorbisfile", "ogg" },
-			})
 		end,
 	},
 	wxwidgets = {
@@ -698,19 +723,22 @@ extern_lib_defs = {
 	},
 	zlib = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("zlib")
+			else
+				pkgconfig.add_includes("zlib")
 			end
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_lib_paths("zlib")
+				add_default_links({
+					win_names  = { "zlib1" },
+					no_delayload = 1,
+				})
+			else
+				pkgconfig.add_links("zlib")
 			end
-			add_default_links({
-				win_names  = { "zlib1" },
-				unix_names = { "z" },
-				no_delayload = 1,
-			})
 		end,
 	},
 }
