@@ -284,9 +284,9 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false)
 	if (firstEntState && firstEntState.player != g_ViewedPlayer && !force)
 		return;
 
-	let added = [];
+	const added = [];
 
-	for (const ent of ents)
+	for (const ent of this.addFormationMembers(ents))
 	{
 		if (this.selected.size >= g_MaxSelectionSize)
 			break;
@@ -324,11 +324,15 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false)
 	this.onChange();
 };
 
-EntitySelection.prototype.removeList = function(ents)
+/**
+ * @param {number[]} ents - The entities to remove.
+ * @param {boolean} dontAddFormationMembers - If true we need to exclude adding formation members.
+ */
+EntitySelection.prototype.removeList = function(ents, dontAddFormationMembers = false)
 {
-	var removed = [];
+	const removed = [];
 
-	for (let ent of ents)
+	for (const ent of dontAddFormationMembers ? ents : this.addFormationMembers(ents))
 		if (this.selected.has(ent))
 		{
 			this.groups.removeEnt(ent);
@@ -407,9 +411,10 @@ EntitySelection.prototype.filter = function(condition)
 	return result;
 };
 
-EntitySelection.prototype.setHighlightList = function(ents)
+EntitySelection.prototype.setHighlightList = function(entities)
 {
 	const highlighted = new Set();
+	const ents = this.addFormationMembers(entities);
 	for (const ent of ents)
 		highlighted.add(ent);
 
@@ -460,6 +465,28 @@ EntitySelection.prototype.selectAndMoveTo = function(entityID)
 
 	Engine.CameraMoveTo(entState.position.x, entState.position.z);
 }
+
+/**
+ * Adds the formation members of a selected entities to the selection.
+ * @param {number[]} entities - The entity IDs of selected entities.
+ * @return {number[]} - Some more entity IDs if part of a formation was selected.
+ */
+EntitySelection.prototype.addFormationMembers = function(entities)
+{
+	if (!entities.length || Engine.HotkeyIsPressed("selection.singleselection"))
+		return entities;
+
+	const result = new Set(entities);
+	for (const entity of entities)
+	{
+		const entState = GetEntityState(+entity);
+		if (entState?.unitAI?.formation)
+			for (const member of GetEntityState(+entState.unitAI.formation).formation.members)
+				result.add(member);
+	}
+
+	return result;
+};
 
 /**
  * Cache some quantities which depends only on selection
