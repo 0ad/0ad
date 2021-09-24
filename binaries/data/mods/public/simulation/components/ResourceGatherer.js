@@ -505,6 +505,12 @@ ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 		this.RemoveFromPlayerCounter(msg.from);
 		return;
 	}
+	if (this.lastGathered && msg.from !== INVALID_PLAYER)
+	{
+		const resource = this.lastGathered;
+		this.RemoveFromPlayerCounter(msg.from);
+		this.AddToPlayerCounter(resource);
+	}
 
 	this.RecalculateGatherRates();
 	this.RecalculateCapacities();
