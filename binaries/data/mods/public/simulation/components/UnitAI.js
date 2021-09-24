@@ -484,8 +484,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		// We were given the order to gather while we were still gathering.
 		// This is needed because we don't re-enter the GATHER-state.
-		let lastGatheredType = cmpResourceGatherer.LastGatheredType();
-		if (lastGatheredType && msg.data.type.generic != lastGatheredType)
+		const taskedResourceType = cmpResourceGatherer.GetTaskedResourceType();
+		if (taskedResourceType && msg.data.type.generic != taskedResourceType)
 			this.UnitFsm.SwitchToNextState(this, "INDIVIDUAL.GATHER");
 
 		if (!this.CanGather(msg.data.target))

@@ -427,9 +427,9 @@ ResourceGatherer.prototype.DropResources = function()
 /**
  * @return {string} - A generic resource type if we were tasked to gather.
  */
-ResourceGatherer.prototype.LastGatheredType = function()
+ResourceGatherer.prototype.GetTaskedResourceType = function()
 {
-	return this.lastGathered;
+	return this.taskedResourceType;
 };
 
 /**
@@ -438,14 +438,14 @@ ResourceGatherer.prototype.LastGatheredType = function()
 ResourceGatherer.prototype.AddToPlayerCounter = function(type)
 {
 	// We need to be removed from the player counter first.
-	if (this.lastGathered)
+	if (this.taskedResourceType)
 		return;
 
 	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	if (cmpPlayer)
 		cmpPlayer.AddResourceGatherer(type);
 
-	this.lastGathered = type;
+	this.taskedResourceType = type;
 };
 
 /**
@@ -453,7 +453,7 @@ ResourceGatherer.prototype.AddToPlayerCounter = function(type)
  */
 ResourceGatherer.prototype.RemoveFromPlayerCounter = function(playerid)
 {
-	if (!this.lastGathered)
+	if (!this.taskedResourceType)
 		return;
 
 	let cmpPlayer = playerid != undefined ?
@@ -461,9 +461,9 @@ ResourceGatherer.prototype.RemoveFromPlayerCounter = function(playerid)
 		QueryOwnerInterface(this.entity, IID_Player);
 
 	if (cmpPlayer)
-		cmpPlayer.RemoveResourceGatherer(this.lastGathered);
+		cmpPlayer.RemoveResourceGatherer(this.taskedResourceType);
 
-	delete this.lastGathered;
+	delete this.taskedResourceType;
 };
 
 /**
@@ -507,7 +507,7 @@ ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 	}
 	if (this.lastGathered && msg.from !== INVALID_PLAYER)
 	{
-		const resource = this.lastGathered;
+		const resource = this.taskedResourceType;
 		this.RemoveFromPlayerCounter(msg.from);
 		this.AddToPlayerCounter(resource);
 	}
