@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-19 21:51+0000\n"
+"PO-Revision-Date: 2021-09-20 19:54+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +175,7 @@ msgstr "Partida infinita"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Nun va determinase'l vencedor, inda cuando tol mundu tea vencíu."
+msgstr "Nun se determina'l vencedor, inda cuando tol mundu ta vencíu."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -199,11 +199,11 @@ msgstr "Númberu de reliquies"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Héroes guarecederos"
+msgstr "Héroes abellugables"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr "Los héroes pueden guarecese."
+msgstr "Los héroes pueden abellugase."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
@@ -211,7 +211,7 @@ msgstr "Héroes espuestos"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Los héroes nun pueden guarecese y son más vulnerables al asaltu."
+msgstr "Los héroes nun pueden abellugase y son más vulnerables al asaltu."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
@@ -227,7 +227,7 @@ msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
-msgstr "Los xugadores pueden sociase, embellase con socios."
+msgstr "Los xugadores pueden acomuñar y embellase contra comuñeros."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
@@ -237,17 +237,17 @@ msgstr "A vida o muerte"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Nun pue haber mas un vencedor. Si tolos xugadores vivos son socios, l'alcuentru sigue hasta quedar solo ún."
+msgstr "Nun pue haber mas un vencedor. Si tolos xugadores vivos son comuñeros, l'alcuentru sigue hasta quedar solo ún."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
-msgstr "Victoria sociada"
+msgstr "Victoria comuñera"
 
 #: gui/common/gamedescription.js:268
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "Los xugadores comparten la victoria colos socios. La última sociedá viva vence."
+msgstr "Les victories compártenles los comuñeros. La última comuña que queda ye la vencedora."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -366,7 +366,7 @@ msgstr "Mapa reveláu"
 
 #: gui/common/gamedescription.js:400
 msgid "Allied View"
-msgstr "Vista sociada"
+msgstr "Vista comuñera"
 
 #: gui/common/gamedescription.js:405
 msgid "Cheats"
@@ -801,7 +801,7 @@ msgstr "Paraes: %(blockPercentage)s%%, Amenorgu na duranza: %(durationReduction)
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr "Guarez pa tirar fleches"
+msgstr "Ocupa pa tirar saetes"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
 msgid "Interval:"
@@ -986,7 +986,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:553
 msgid "Garrison Limit"
-msgstr "Llende de guarecimientu"
+msgstr "Ocupantes máximos"
 
 #: gui/common/tooltips.js:560
 #, javascript-format
@@ -1009,7 +1009,7 @@ msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr "Tamañu'l guarecimientu"
+msgstr "Númberu d'ocupantes"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -1157,7 +1157,7 @@ msgstr "%(resourceIcon)s%(minimum)s a %(resourceIcon)s %(maximum)s"
 #: gui/common/tooltips.js:941
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr "Muralles:  %(costs)s"
+msgstr "Cerques:  %(costs)s"
 
 #: gui/common/tooltips.js:942
 #, javascript-format
@@ -2355,12 +2355,12 @@ msgstr "Afitar el productu al 100%"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr "Facer guarecer al calcar n'edificiu."
+msgstr "Facer ocupar al calcar n'edificiu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
 msgid "Garrison"
-msgstr "Guarecer"
+msgstr "Ocupar"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
@@ -4654,11 +4654,11 @@ msgstr "Color de les unidaes tos cuando colores diplomátiques tán activaes."
 
 #: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
-msgstr "Colores diplomátiques: sociu"
+msgstr "Colores diplomátiques: comuñeru"
 
 #: gui/options/options.json[6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr "Color de los socios cuando les colores diplomátiques tán actives."
+msgstr "Color de los comuñeros cuando les colores diplomátiques tán actives."
 
 #: gui/options/options.json[6].options[17].label
 msgid "Diplomacy colors: neutral"
@@ -4800,7 +4800,7 @@ msgstr "Avisu de tributu"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Amosar un avisu si cualquier sociu tribúi recursos a otru al tar les cuadrielles fixes y tolos tributos en mou espectador."
+msgstr "Amosar un avisu si cualquier comuñeru tribúi recursos a otru al tar les cuadrielles fixes y tolos tributos en mou espectador."
 
 #: gui/options/options.json[6].options[6].label
 msgid "Chat notification barter"
@@ -4831,7 +4831,7 @@ msgstr "Too amosao"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Amosar un avisu si cualquier sociu entama, albuerta o apuerta a nueva fas al tar les fases de tolos xugadores en mou espectador."
+msgstr "Amosar un avisu si cualquier comuñeru entama, albuerta o apuerta a nueva fas al tar les fases de tolos xugadores en mou espectador."
 
 #: gui/options/options.json[6].options[8].label
 msgid "Attack range visualization"
@@ -6082,7 +6082,7 @@ msgstr "Constrúi arietes y conscribe conscritos."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "Guarez unidaes adientro pa sanales adulces, protexer el campamentu y prevenir la disociación."
+msgstr "Ocúpalu d'unidaes pa sanales adulces, protexer el campamentu y prevenir la disociación."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6108,7 +6108,7 @@ msgstr "Conscribe tolos conscritos. Determinaes civilizaciones tamién son a des
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "Les unidaes aduechen guarecíes nel edificiu."
+msgstr "Les unidaes aduechen abellugaes nel edificiu."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6217,7 +6217,7 @@ msgstr "Conscribe unidaes d'a caballu y desendolca téuniques ecuestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr "Les unidaes aduechen guarecíes na corte."
+msgstr "Les unidaes aduechen abellugaes na corte."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6237,15 +6237,15 @@ msgstr "Pue tresportar hasta 40 unidaes."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr "Aumenta la potencia de fueu con infantería guarecío."
+msgstr "Ocupáu d'infantería, l'ataque aumenta."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr "MURALLES"
+msgstr "CERQUES"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr "Muralles macices de piedra que sirven pa protexer la ciudá."
+msgstr "Cerques de piedra que sirven pa protexer la ciudá."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
@@ -6316,7 +6316,7 @@ msgstr "Tienen muncha visión y tiren fleches al enemigu."
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puedes guarecer más infantería nelles pa tirar más fleches."
+msgstr "Puedes ocupales de más infantería pa que tiren más saetes."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6394,7 +6394,7 @@ msgstr "Polo xeneral, ye la mayor fortificación de les civilizaciones y el llug
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Guarez soldaos adientro p'añader más potencia de fueu a la defensa."
+msgstr "Ocúpala de soldaos defensores p'aumentar l'ataque."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6532,7 +6532,7 @@ msgstr "Baratos ya rápidos de llevantar, pero sonces."
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr "Guarez infantería adientro pa vixilar la redolada ya prevenir la disociación del miradoriu."
+msgstr "Ocúpalu d'infantería pa vixilar la redolada ya prevenir la disociación del miradoriu."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6540,7 +6540,7 @@ msgstr "ESTACAES"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "Una muria de madera rápida, barata & disponible a toles faiciones. "
+msgstr "Una cerca de madera rápida, barata y disponible a toles faiciones. "
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
@@ -6601,7 +6601,7 @@ msgstr "Tresporta hasta 50 unidaes."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr "Aumenta la potencia de fueu con catapultes guarecíes."
+msgstr "Ocupada de catapultes, l'ataque aumenta."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -6735,7 +6735,7 @@ msgstr "La so aura cura a unidaes averaes."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "Guarez unidaes mancaes pa curales más rápido."
+msgstr "Ocúpalu d'unidaes mancaes pa curales más rápido."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -6744,13 +6744,13 @@ msgstr "DISOCIACIÓN"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr "Les construcciones disóciense al nun tar venceyaes a una plaza sociada."
+msgstr "Les construcciones disóciense al nun tar venceyaes a una plaza amiga."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "La disociación puedes desacelerala o da-y marcha atrás guareciendo unidaes na construcción."
+msgstr "La disociación puedes desacelerala o revertila abellugando unidaes na construcción."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -6797,7 +6797,7 @@ msgstr "Afechisques pal tresporte o'l combate."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr "Guarez tropes a bordu p'aumentar la potencia de fueu."
+msgstr "Ocúpala de soldaos p'aumentar l'ataque."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

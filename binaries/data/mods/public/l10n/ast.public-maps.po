@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-09-19 21:10+0000\n"
+"PO-Revision-Date: 2021-09-20 19:35+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -1271,11 +1271,11 @@ msgstr "Tierra volcánico"
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Giant map "
 "size is recommended!"
-msgstr "Una demostranza de los métodos/códigos p'allugar muries nos mapes al debalu. ¡Aconséyase'l tamañu xigante!"
+msgstr "Una demostranza de los métodos/códigos p'allugar cerques nos mapes al debalu. ¡Aconséyase'l tamañu xigante!"
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
-msgstr "Demo de muries"
+msgstr "Demo de cerques"
 
 #: maps/random/wild_lake.jsonsettings.Description
 msgid "A lake surrounded by hills."
@@ -2342,15 +2342,15 @@ msgstr "Demo d'unidaes"
 
 #: maps/scenarios/walls.xml:Description:26
 msgid "Walls."
-msgstr "Muries."
+msgstr "Cerques."
 
 #: maps/scenarios/walls.xml:Name:26
 msgid "Walls"
-msgstr "Muries"
+msgstr "Cerques"
 
 #: maps/scenarios/walltest.xml:Name:26
 msgid "WallTest"
-msgstr "PruebaMuries"
+msgstr "PruebaCerques"
 
 #: maps/scenarios/we_are_legion.xml:Description:26
 msgid "A quick battle demo map using Roman legionaries."
@@ -2365,7 +2365,7 @@ msgstr "Somos llexón"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr "%(_player_)s y los sos socios cataron toles reliquies y van vencer en %(time)s."
+msgstr "%(_player_)s y los sos comuñeros cataron toles reliquies y van vencer en %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
@@ -2375,7 +2375,7 @@ msgstr "%(_player_)s cató toles reliquies y va vencer en %(time)s."
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr "Tu y los tos socios catestis toles reliquies. Vais vencer en %(time)s."
+msgstr "Tu y los tos comuñeros catestis toles reliquies. Vais vencer en %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
@@ -2444,7 +2444,7 @@ msgstr "Vencióse a %(player)s (perdió l'héroe)."
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr "%(_player_)s tien maravía. %(_player_)s y los sos socios van vencer en %(time)s."
+msgstr "%(_player_)s tien maravía. %(_player_)s y los sos comuñeros van vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
@@ -2459,7 +2459,7 @@ msgstr "%(_player_)s tien maravía. Vas vencer en %(time)s."
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr "Tienes maravía. Tu y los tos socios vais vencer en %(time)s."
+msgstr "Tienes maravía. Tu y los tos comuñeros vais vencer en %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
@@ -2885,7 +2885,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr "Un clásicu. Un mapa rasu y ermu, salvando en centru, u lu enrama'l verdor d'un oasis.\n\nRepresenta'l desiertu de Libia, una estaya del Sáḥara, al occidente del Nilu n'Exiptu.\n\nEquí los íberos nun empiecen con muralles yá feches. En cuenta d'ello, toles faiciones reciben 4 torrexones."
+msgstr "Un clásicu. Un mapa rasu y ermu, salvando en centru, u lu enrama'l verdor d'un oasis.\n\nRepresenta'l desiertu de Libia, una estaya del Sáḥara, al occidente del Nilu n'Exiptu.\n\nEquí los íberos nun empiecen con cerques. En cuenta d'ello, toles faiciones reciben 4 torrexones."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:38
 msgid "Libyan Oasis (2)"
@@ -3078,7 +3078,7 @@ msgid ""
 "Iberian players do not get full circuit walls, but 5 strategically placed wall towers.\n"
 "\n"
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
-msgstr "Les diverses selves añeraes nel cordel Saḥyadri de la mariña occidental de la India. Sobra dicir qu'hai madera a sotu ya sierra.\n\nLos xugadores íberos nun reciben muralles perifériques completes, sinón 5 torretes estratéxicamente asitiaes.\n\nAVISU: Esti mapa, por ser una selva, utiliza bien d'actores florales. Eso cuesta a la mayoría d'ordenadores de gama media, asina qu'habrá una cayida na tasa de fotogrames."
+msgstr "Les diverses selves añeraes nel cordel Saḥyadri de la mariña occidental de la India. Sobra dicir qu'hai madera a sotu ya sierra.\n\nLos xugadores íberos entamen con cerques, sinón con 5 torretes bien asitiaes.\n\nAVISU: Esti mapa, por ser una selva, utiliza bien d'actores florales. Eso cuesta a la mayoría d'ordenadores de gama media, asina qu'habrá una cayida na tasa de fotogrames."
 
 #: maps/skirmishes/sahyadri_buttes_5p.xml:Name:39
 msgid "Sahyadri Buttes (5)"
@@ -3220,7 +3220,7 @@ msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr "La sabana africana ta implada de vida animal pa caciar ya les xacees minerales qu'hai cerca abonden. La temporada seca ta averándose ya los fontanes van ensugando. \n\nNota: Esti mapa ye perpequeñu ya va «a tou gas». Los íberos nun entamen con muralles perifériques."
+msgstr "La sabana africana ta implada de vida animal pa caciar ya les xacees minerales qu'hai cerca abonden. La temporada seca ta averándose ya los fontanes van ensugando. \n\nNota: Esti mapa ye perpequeñu ya va «a tou gas». Los íberos nun entamen con cerques."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:38
 msgid "Watering Holes (4)"
@@ -3235,7 +3235,7 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr "¡Los foriatos quieren tomar Britania! Los britanos han lluchar contra ensames d'invasores p'asegurar la islla polos albionucos de mañana.\n\nEl xugador 1 ye britanu. Los xugadores 2-5 son invasores, que tán a bordu de los barcos fondiaos cabo los cantiles blancos de Dubres.\n\nLos equipos afítalos el script del mapa, pero los xugadores pueden camudalos na configuración pa personalizar l'escenariu. Nesi casu, l'agospiu de la partida ha establecer un altu'l fueu al envís de dar tiempu a los invasores a alcontrar un llugar apode pa desembarcar y asitiar en paz.\n\nLes civilizaciones predeterminaes nun son namái que suxerencies, y l'agospiu tien qu'afitar los recursos iniciales a 1000 pa que los invasores puedan llevantar places al entamar."
+msgstr "¡Los foriatos quieren tomar Britania! Los britanos han lluchar contra ensames d'invasores p'asegurar la islla polos albionucos de mañana.\n\nEl xugador 1 ye britanu. Los xugadores 2-5 son invasores, embarcaos nes naves fondiaes cabo los cantiles blancos de Dubres.\n\nLos equipos afítalos el script del mapa, pero los xugadores pueden camudalos na configuración pa personalizar l'escenariu. Nesi casu, l'agospiu de la partida ha establecer un altu'l fueu al envís de dar tiempu a los invasores a alcontrar un llugar apode pa desembarcar y asitiar en paz.\n\nLes civilizaciones predeterminaes nun son namái que suxerencies, y l'agospiu tien qu'afitar los recursos iniciales a 1000 pa que los invasores puedan llevantar places al entamar."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"

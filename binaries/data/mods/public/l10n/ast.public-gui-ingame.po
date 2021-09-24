@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-19 20:29+0000\n"
+"PO-Revision-Date: 2021-09-20 19:29+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -156,12 +156,12 @@ msgstr "Toos"
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Socios"
+msgstr "Comuñeros"
 
 #: gui/session/chat/ChatAddressees.js:95
 msgctxt "chat message context"
 msgid "Ally"
-msgstr "Socios"
+msgstr "Comuñeros"
 
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
@@ -220,7 +220,7 @@ msgstr "Mensaxes de xugadores"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Mensaxes de socios"
+msgstr "Mensaxes comuñeros"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
@@ -265,7 +265,7 @@ msgstr "Primi %(hotkey)s p'abrir la charra d'espectadores."
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Primi %(hotkey)s p'abrir la charra de socios."
+msgstr "Primi %(hotkey)s p'abrir la charra comuñera."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
@@ -358,7 +358,7 @@ msgstr "%(player)s entrocó %(amountGiven)s empara de %(amountGained)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Agora tas sociáu con %(player)s."
+msgstr "Acomuñesti con %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
@@ -373,7 +373,7 @@ msgstr "Tiéneste vuelto neutral con %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "Agora %(player)s ta sociáu contigo."
+msgstr "%(player)s acomuñó contigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
@@ -388,7 +388,7 @@ msgstr "%(player)s tiense vuelto neutral contigo."
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "Agora %(player)s ta sociáu con %(player2)s."
+msgstr "%(player)s acomuñó con %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
@@ -626,7 +626,7 @@ msgstr "Alternar colores diplomátiques"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pidir a los socios qu'ataquen esti enemigu"
+msgstr "Pidir a los comuñeros qu'ataquen esti enemigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -636,7 +636,7 @@ msgstr "Nengún"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr "Sociu"
+msgstr "Comuñeru/-a"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
@@ -686,7 +686,7 @@ msgstr[1] "Media del algame de bonificación: %(range)s metros"
 
 #: gui/session/input.js:702
 msgid "Cannot build wall here!"
-msgstr "¡Equí nun pue construyise la muralla!"
+msgstr "¡Equí nun pue llevantase la cerca!"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
@@ -864,7 +864,7 @@ msgstr "Xugador desconocíu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Facer una seña a los socios"
+msgstr "Facer una seña a los comuñeros"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
@@ -964,7 +964,7 @@ msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr "Tamañu'l guarecimientu"
+msgstr "Númberu d'ocupantes"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1494,8 +1494,8 @@ msgstr[1] "%(numberOfLandTraders)s comerciantes terrestres inactivos"
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] "%(numberGarrisoned)s guarecíu nun mercante activu"
-msgstr[1] "%(numberGarrisoned)s guarecíos nun mercante activu"
+msgstr[0] "%(numberGarrisoned)s embarcáu nun mercante activu"
+msgstr[1] "%(numberGarrisoned)s embarcaos nun mercante activu"
 
 #: gui/session/trade/TraderStatusTextLand.js:45
 #, javascript-format
@@ -1505,19 +1505,19 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "Hai %(numberGarrisoned)s comerciante terrestre guarecíu nun mercante activu "
-msgstr[1] "Hai %(numberGarrisoned)s comerciantes terrestres guarecíos nun mercante activu"
+msgstr[0] "Hai %(numberGarrisoned)s comerciante embarcáu nun mercante activu "
+msgstr[1] "Hai %(numberGarrisoned)s comerciantes embarcaos nun mercante activu"
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s & %(garrisonedString)s."
+msgstr "%(openingTradingString)s y %(garrisonedString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:66
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s & %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s y %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:69
 #: gui/session/trade/TraderStatusTextShip.js:47
@@ -1539,7 +1539,7 @@ msgstr "%(openingGarrisonedString)s."
 #: gui/session/trade/TraderStatusTextLand.js:76
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s & %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s y %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:79
 #: gui/session/trade/TraderStatusTextShip.js:50
@@ -1616,7 +1616,7 @@ msgstr "Torrines: %(occupied)s/%(capacity)s"
 #: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr "Guarecimientu actual: %(garrisoned)s/%(capacity)s"
+msgstr "Ocupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
@@ -1662,7 +1662,7 @@ msgstr "Unviar les unidaes esbillaes a acometer el sitiu señaláu en dexando lo
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Ordenar que les unidaes esbillaes se guarezan nuna construcción o unidá."
+msgstr "Ordenar que les unidaes esbillaes s'abelluguen nuna construcción o unidá."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
@@ -1708,11 +1708,11 @@ msgstr "Ataca toles unidaes enemigues alcontraes evitando construcciones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Primi pa dexar que los socios aprovechen esti depósitu"
+msgstr "Primi pa dexar que los comuñeros usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Primi pa quitar que los socios aprovechen esti depósitu"
+msgstr "Primi pa quitar que los comuñeros usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1720,11 +1720,11 @@ msgstr "Nun pues aprovechar esti depósitu"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Los socios pueden aprovechar esti depósitu."
+msgstr "Los comuñeros pueden usar esti depósitu."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"
-msgstr "Pues aprovechar esti depósitu"
+msgstr "Puedes usar esti depósitu"
 
 #: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
