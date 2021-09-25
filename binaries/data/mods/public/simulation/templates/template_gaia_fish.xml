@@ -29,6 +29,13 @@
     <Max>1000</Max>
     <Type>food.fish</Type>
     <MaxGatherers>4</MaxGatherers>
+    <Change>
+      <Spawn>
+        <Value>1</Value>
+        <Interval>2000</Interval>
+        <State>notGathered</State>
+      </Spawn>
+    </Change>
   </ResourceSupply>
   <Selectable>
     <Overlay>

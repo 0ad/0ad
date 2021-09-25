@@ -281,6 +281,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"controllable": cmpIdentity.IsControllable()
 		};
 
+	const cmpFormation = Engine.QueryInterface(ent, IID_Formation);
+	if (cmpFormation)
+		ret.formation = {
+			"members": cmpFormation.GetMembers()
+		};
+
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	if (cmpPosition && cmpPosition.IsInWorld())
 		ret.position = cmpPosition.GetPosition();
@@ -416,7 +422,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"isGuarding": cmpUnitAI.IsGuardOf(),
 			"canPatrol": cmpUnitAI.CanPatrol(),
 			"selectableStances": cmpUnitAI.GetSelectableStances(),
-			"isIdle": cmpUnitAI.IsIdle()
+			"isIdle": cmpUnitAI.IsIdle(),
+			"formation": cmpUnitAI.GetFormationController()
 		};
 
 	let cmpGuard = Engine.QueryInterface(ent, IID_Guard);

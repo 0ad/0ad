@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-26 12:59+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"PO-Revision-Date: 2021-09-20 07:14+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,7 +241,7 @@ msgstr "Ініціалізація інтерфейсу mod.io."
 msgid "Initializing"
 msgstr "Ініціалізація"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -329,17 +329,17 @@ msgid "Download"
 msgstr "Завантажити"
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
-#: gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):131
 msgid "Name"
 msgstr "Ім’я"
 
 #: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):133
+#: gui/modmod/modmod.xml:(heading):134
 msgid "Version"
 msgstr "Версія"
 
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
-#: gui/modmod/modmod.xml:(heading):139
+#: gui/modmod/modmod.xml:(heading):140
 msgid "Mod Label"
 msgstr "Позначка моду"
 
@@ -348,7 +348,7 @@ msgid "File Size"
 msgstr "Розмір Файлу"
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
-#: gui/modmod/modmod.xml:(heading):142
+#: gui/modmod/modmod.xml:(heading):143
 msgid "Dependencies"
 msgstr "Залежності"
 
@@ -450,35 +450,35 @@ msgstr "Опис"
 msgid "Enabled Mods"
 msgstr "Увімкнути модифікації"
 
-#: gui/modmod/modmod.xml:(caption):182
+#: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
 msgstr "Відвідати вебсайт"
 
-#: gui/modmod/modmod.xml:(caption):191
+#: gui/modmod/modmod.xml:(caption):192
 msgid "Quit"
 msgstr "Вийти"
 
-#: gui/modmod/modmod.xml:(caption):201
+#: gui/modmod/modmod.xml:(caption):202
 msgid "Help"
 msgstr "Довідка"
 
-#: gui/modmod/modmod.xml:(caption):206
+#: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
 msgstr "Завантажити Моди"
 
-#: gui/modmod/modmod.xml:(caption):211
+#: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
 msgstr "Зберегти налаштування"
 
-#: gui/modmod/modmod.xml:(caption):216
+#: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
 msgstr "Зберегти та Перезавантажити"
 
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
+#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
 msgstr "(Тека)"
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Website"
 msgstr "Вебсайт"
 
@@ -486,7 +486,15 @@ msgstr "Вебсайт"
 msgid "Filter"
 msgstr "Фільтр"
 
-#: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
+#: gui/modmod/modmod.xml:(tooltip):115
+msgid ""
+"Enabled mods are loaded from top to bottom. Mods loaded later might "
+"overwrite settings of mods loaded earlier. It is advisable to have more "
+"complex mods loaded last. Use the arrows on the right to change the loading "
+"order."
+msgstr ""
+
+#: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

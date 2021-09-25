@@ -10,6 +10,7 @@ Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");
 Engine.LoadComponentScript("interfaces/EndGameManager.js");
 Engine.LoadComponentScript("interfaces/EntityLimits.js");
+Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-04 07:08+0000\n"
-"PO-Revision-Date: 2021-06-04 10:16+0000\n"
+"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"PO-Revision-Date: 2021-09-20 07:14+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,7 @@ msgstr ""
 msgid "Initializing"
 msgstr ""
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
 msgid "Cancel"
 msgstr "रद्द करें"
 
@@ -323,17 +323,17 @@ msgid "Download"
 msgstr ""
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
-#: gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):131
 msgid "Name"
 msgstr "नाम"
 
 #: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):133
+#: gui/modmod/modmod.xml:(heading):134
 msgid "Version"
 msgstr ""
 
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
-#: gui/modmod/modmod.xml:(heading):139
+#: gui/modmod/modmod.xml:(heading):140
 msgid "Mod Label"
 msgstr ""
 
@@ -342,7 +342,7 @@ msgid "File Size"
 msgstr ""
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
-#: gui/modmod/modmod.xml:(heading):142
+#: gui/modmod/modmod.xml:(heading):143
 msgid "Dependencies"
 msgstr ""
 
@@ -444,35 +444,35 @@ msgstr ""
 msgid "Enabled Mods"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):182
+#: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):191
+#: gui/modmod/modmod.xml:(caption):192
 msgid "Quit"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):201
+#: gui/modmod/modmod.xml:(caption):202
 msgid "Help"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):206
+#: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):211
+#: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):216
+#: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
+#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Website"
 msgstr "वेबसाइट"
 
@@ -480,7 +480,15 @@ msgstr "वेबसाइट"
 msgid "Filter"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
+#: gui/modmod/modmod.xml:(tooltip):115
+msgid ""
+"Enabled mods are loaded from top to bottom. Mods loaded later might "
+"overwrite settings of mods loaded earlier. It is advisable to have more "
+"complex mods loaded last. Use the arrows on the right to change the loading "
+"order."
+msgstr ""
+
+#: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
