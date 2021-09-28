@@ -5,13 +5,13 @@
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Asakura, 2015,2017
-# JungHee Lee <daemul72@gmail.com>, 2021
+# 이정희 <daemul72@gmail.com>, 2021
 # Cheung Hung, 2015
-# JungHee Lee <daemul72@gmail.com>, 2019-2020
+# 이정희 <daemul72@gmail.com>, 2019-2021
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2021
-# JungHee Lee <daemul72@gmail.com>, 2021
+# 이정희 <daemul72@gmail.com>, 2021
+# 이정희 <daemul72@gmail.com>, 2021
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 15:10+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-09-24 07:08+0000\n"
+"PO-Revision-Date: 2021-09-24 20:04+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2021,8 +2021,8 @@ msgstr "확인"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
-msgid "Open/close console."
-msgstr "콘솔 열기 / 닫기."
+msgid "Toggle the console."
+msgstr "콘솔을 전환합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
@@ -2073,8 +2073,8 @@ msgstr "클립보드에서 붙여넣기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
-msgid "Pause/unpause game."
-msgstr "게임 일시중지 / 일시중지 해제."
+msgid "Pause/Unpause the game."
+msgstr "게임을 일시중지/일시중지 해제합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
@@ -2093,8 +2093,8 @@ msgstr "프로필 저장"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
-msgid "Enable/disable real-time profiler."
-msgstr "실시간 프로파일러를 활성화/비활성화합니다."
+msgid "Toggle the real-time profiler."
+msgstr "실시간 프로파일러를 전환합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
@@ -2103,8 +2103,8 @@ msgstr "프로파일러 전환"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
-msgid "Enable/disable HTTP/GPU modes for new profiler."
-msgstr "새 프로파일러에 대해 HTTP/GPU 모드를 활성화/비활성화합니다."
+msgid "Toggle HTTP/GPU modes for new profiler."
+msgstr "새 프로파일러에 대한 HTTP/GPU 모드를 전환합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
@@ -2644,7 +2644,7 @@ msgstr "null 기본 대형과 마지막으로 사용된 기본 대형 사이를 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr "기본 형성 전환"
+msgstr "기본 대형 전환"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
@@ -2708,8 +2708,8 @@ msgstr "채팅 전환"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
-msgid "Show civilization info."
-msgstr "문명 정보를 표시합니다."
+msgid "Toggle the civilization info."
+msgstr "문명 정보를 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2936,7 +2936,7 @@ msgstr "선택한 방어 건축물의 공격 범위 오버레이 표시를 전�
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
-msgid "Togge attack ranges"
+msgid "Toggle attack ranges"
 msgstr "공격 범위 전환"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
@@ -2972,8 +2972,8 @@ msgstr "유닛 윤곽 전환"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
-msgid "Show structure tree."
-msgstr "건축물 도감 표시"
+msgid "Toggle the structure tree."
+msgstr "건축물 트리를 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
@@ -3242,7 +3242,7 @@ msgstr "제어 그룹 9 지정"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 0."
+msgid "Change the current selection to Control Group 0."
 msgstr "현재 선택을 제어 그룹 0으로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
@@ -3252,7 +3252,7 @@ msgstr "제어 그룹 0 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 1."
+msgid "Change the current selection to Control Group 1."
 msgstr "현재 선택을 제어 그룹 1로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
@@ -3262,7 +3262,7 @@ msgstr "제어 그룹 1 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 2."
+msgid "Change the current selection to Control Group 2."
 msgstr "현재 선택을 제어 그룹 2로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
@@ -3272,7 +3272,7 @@ msgstr "제어 그룹 2 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 3."
+msgid "Change the current selection to Control Group 3."
 msgstr "현재 선택을 제어 그룹 3으로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
@@ -3282,7 +3282,7 @@ msgstr "제어 그룹 3 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 4."
+msgid "Change the current selection to Control Group 4."
 msgstr "현재 선택을 제어 그룹 4로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
@@ -3292,7 +3292,7 @@ msgstr "제어 그룹 4 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 5."
+msgid "Change the current selection to Control Group 5."
 msgstr "현재 선택을 제어 그룹 5로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
@@ -3302,7 +3302,7 @@ msgstr "제어 그룹 5 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 6."
+msgid "Change the current selection to Control Group 6."
 msgstr "현재 선택을 제어 그룹 6으로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
@@ -3312,7 +3312,7 @@ msgstr "제어 그룹 6 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 7."
+msgid "Change the current selection to Control Group 7."
 msgstr "현재 선택을 제어 그룹 7로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
@@ -3322,7 +3322,7 @@ msgstr "제어 그룹 7 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 8."
+msgid "Change the current selection to Control Group 8."
 msgstr "현재 선택을 제어 그룹 8로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
@@ -3332,7 +3332,7 @@ msgstr "제어 그룹 8 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
-msgid "Change the current selection to control group 9."
+msgid "Change the current selection to Control Group 9."
 msgstr "현재 선택을 제어 그룹 9로 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
@@ -3429,6 +3429,16 @@ msgstr "유닛을 선택에서 제거합니다."
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
 msgstr "선택에서 유닛 제거"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
+msgctxt "hotkey metadata"
+msgid "Select only one entity of a formation."
+msgstr "대형의 개체를 하나만 선택하십시오."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
+msgctxt "hotkey metadata"
+msgid "Single selection"
+msgstr "단일 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
@@ -4745,7 +4755,7 @@ msgstr "유닛이 여러 통제 무리에 속할 수 있는지 여부를 결정�
 
 #: gui/options/options.json[6].options[21].label
 msgid "Formation control"
-msgstr "진형 제어"
+msgstr "대형 제어"
 
 #: gui/options/options.json[6].options[21].list[0].label
 msgid "Walk/Patrol Only"
@@ -4761,7 +4771,7 @@ msgstr "재정의 안함"
 
 #: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr "진형의 유닛은 대형에 남아 있습니다."
+msgstr "대형을 이룬 유닛은 대형을 유지합니다."
 
 #: gui/options/options.json[6].options[21].tooltip
 msgid ""
@@ -6286,7 +6296,7 @@ msgstr "아이콘을 마우스 오른쪽 버튼으로 클릭하여 기본 대형
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr "기본값으로 \"정보 없음\"을 선택하여 비활성화할 수 있습니다."
+msgstr "기본값으로 \"대형 없음\"을 선택하여 비활성화할 수 있습니다."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
@@ -6353,8 +6363,10 @@ msgid "Fishing is faster than gathering food on fields."
 msgstr "밭에서 먹이를 모으는 것보다 낚시가 더 빠릅니다."
 
 #: gui/text/tips/fishing.txt:5
-msgid "Careful! Fish are not an infinite resource!"
-msgstr "물고기는 무한한 자원이 아닙니다! 주의하십시오!"
+msgid ""
+"Careful! Fish are not an infinite resource! Although they do slowly "
+"repopulate when left alone."
+msgstr "조심해야 합니다! 물고기는 무한한 자원이 아닙니다! 그들은 혼자 남겨졌을 때 천천히 다시 번식을 합니다."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"

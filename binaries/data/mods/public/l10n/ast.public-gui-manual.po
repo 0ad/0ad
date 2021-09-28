@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-09-20 19:33+0000\n"
+"PO-Revision-Date: 2021-09-26 20:42+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -159,7 +159,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr "Finalmente determina los axustes. Nos mapes al debalu estos inclúin el númberu de xugadores, el tamañu del mapa, etc. Nos escenarios namái pues escoyer quién remana qué civilización, (y, poro, ú entama). Hai tres opciones: una persona, una intelixencia artificial o nenguna de les dos (la rala queda balera)."
+msgstr "Finalmente determina los axustes. Nos mapes al debalu estos inclúin el númberu de xugadores, el tamañu del mapa, etc. Nos escenarios namái pues escoyer quién manda qué civilización, (y, poro, ú entama). Hai tres opciones: una persona, una intelixencia artificial o nenguna de les dos (la rala queda balera)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -200,12 +200,12 @@ msgstr "  hotkey.fps.toggle – Alternar los cuadros per segundu (CPS)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – Alternar el perfilador en tiempu real (amuesa los informes ún tres otru)"
+msgstr "  hotkey.profile.toggle – Alternar l'analizador simultaneu (amuesa los informes ún tres otru)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr "  hotkey.profile.save – Guardar los datos actuales del perfilador en «logs/profile.txt»"
+msgstr "  hotkey.profile.save – Arquivar los datos actuales del analizador en «logs/profile.txt»"
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -366,19 +366,19 @@ msgstr "  hotkey.session.unload – Sacar les unidaes de lo esbillao"
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.save.1 – Criar un control (por defeutu, 1,2,3 ... respeutivamente) a partir de lo esbillao"
+msgstr "  hotkey.selection.group.save.1 – Criar un conxuntu (por defeutu, 1,2,3 ... respeutivamente) a partir de lo esbillao"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr "  hotkey.selection.group.select.1 – Esbillar les unidaes, construcciones del control 1"
+msgstr "  hotkey.selection.group.select.1 – Esbillar les unidaes, construcciones del conxuntu 1"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.add.1 – Amestar el control 1 (hasta 0) a lo esbillao"
+msgstr "  hotkey.selection.group.add.1 – Amestar el conxuntu 1 (hasta 0) a lo esbillao"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -486,7 +486,7 @@ msgstr "  hotkey.session.orderone + Botón der. del mur – Ordenar facer daqué
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr "  hotkey.session.batchtrain + Botón esq. del mur, al conscribir – Amestar unidaes en garapiellos (de 5, anque pues camudar el tamañu nes opciones)"
+msgstr "  hotkey.session.batchtrain + Botón esq. del mur, al conscribir – Amestar unidaes en cinquenes (anque puedes camudar el tamañu nes opciones)"
 
 #: gui/manual/intro.txt:106
 msgid ""
