@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-26 20:42+0000\n"
+"PO-Revision-Date: 2021-09-30 21:09+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -136,11 +136,11 @@ msgstr "Posólu %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr "Posóse la partida"
+msgstr "Posóse l'alcuentru"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Calca pa siguir cola partida"
+msgstr "Calca pa siguir col alcuentru"
 
 #: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
@@ -276,18 +276,18 @@ msgstr "Primi %(hotkey)s p'abrir la última charra privada esbillada."
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s ta entamando a rexunise a la partida."
+msgstr "%(player)s ta entamando a rexunise al alcuentru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s ta entamando a xunise a la partida."
+msgstr "%(player)s ta entamando a xunise al alcuentru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s coló de la partida."
+msgstr "%(player)s coló del alcuentru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
@@ -303,13 +303,13 @@ msgstr "Espuxóse a %(username)s"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s rexunióse a la partida."
+msgstr "%(player)s rexunióse al alcuentru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s xunióse a la partida."
+msgstr "%(player)s xunióse al alcuentru."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -737,7 +737,7 @@ msgstr "L'estáu del to xuegu ye diferente al estáu del xuegu del agospiu."
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "¡Rexunise a partíes multixugador con IAs inda nun ta sofitao!"
+msgstr "¡Inda nun ta sofitao rexunise a alcuentros multixugador con IAs!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"

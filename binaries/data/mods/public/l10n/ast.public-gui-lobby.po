@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-19 14:54+0000\n"
+"PO-Revision-Date: 2021-09-30 21:03+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,11 @@ msgstr "Nun conseñar como collaciu"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
-msgstr "Agospiar partida"
+msgstr "Agospiar alcuentru"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "Los camudos activos nun concasen colos d'esta partida."
+msgstr "Los camudos activos nun concasen colos d'esti alcuentru."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
@@ -73,12 +73,12 @@ msgstr "Camudos non compatibles"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Yá entamó la partida. ¿Quies xunite como espectador?"
+msgstr "Yá entamó l'alcuentru. ¿Quies xunite como espectador?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
 msgid "Join Game"
-msgstr "Xunise a la partida"
+msgstr "Xunise al alcuentru"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
@@ -346,7 +346,7 @@ msgstr "%(current)s/%(max)s"
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Partida ensin fin"
+msgstr "Alcuentru infinitu"
 
 #: gui/lobby/LobbyPage/GameDetails.js:109
 #, javascript-format
@@ -390,7 +390,7 @@ msgstr "Camudos (incompatibles):"
 #: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "La partida entamó a les %(time)s"
+msgstr "L'alcuentru entamó a les %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
@@ -429,7 +429,7 @@ msgstr "Xugadores"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
 msgid "Show only open games"
-msgstr "Amosar namái partíes abiertes"
+msgstr "Amosar solo alcuentros abiertos"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -561,7 +561,7 @@ msgstr "Valoración más alta:"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):38
 msgid "Total Games:"
-msgstr "Partíes totales:"
+msgstr "Alcuentros totales:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):42
@@ -725,7 +725,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Cuando'l xugador agospia un alcuentru n'antepar, les señes IP del xugador únviense a tolos xugadores que tean na rede, pa qu'otros xugadores puedan xunise a esa partida."
+msgstr "Cuando'l xugador agospia un alcuentru n'antepar, les señes IP del xugador únviense a tolos xugadores que tean na rede, pa qu'otros xugadores puedan xunise a esi alcuentru."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -826,7 +826,7 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr "N'alcuentros clasificaos, los xugadores unvien datos venceyaos cola partida (talos como cuántes unidaes conscribieron, cuántos recursos percanciaron y quién ganó l'alcuentru) a Wildfire Games, pa que Wildfire Games pueda afacer les clasificaciones de los xugadores acordies con eses estadístiques."
+msgstr "N'alcuentros clasificaos, los xugadores unvien datos venceyaos col alcuentru (talos como cuántes unidaes conscribieron, cuántos recursos percanciaron y quién ganó l'alcuentru) a Wildfire Games, pa que Wildfire Games pueda afacer les clasificaciones de los xugadores acordies con eses estadístiques."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
@@ -1204,7 +1204,7 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr " 7. Nun tentar d'axustar artificialmente la clasificación de dal usuariu del serviciu nin dal estadística que la afeute. (Exemplos d'eso son, ente otros: usar trampes en partíes clasificaes, facer inxeniería inversa al serviciu y aprovechase d'otros usuarios del serviciu.)"
+msgstr " 7. Nun tentar d'axustar artificialmente la clasificación de dal usuariu del serviciu nin dal estadística que la afeute. (Exemplos d'eso son, ente otros: usar trampes n'alcuentros clasificaos, facer inxeniería inversa al serviciu y aprovechase d'otros usuarios del serviciu.)"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
