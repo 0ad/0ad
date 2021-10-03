@@ -1358,7 +1358,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"Timer": function(msg) {
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				if (cmpFormation && !cmpFormation.AreAllMembersWaiting())
+				if (cmpFormation && !cmpFormation.AreAllMembersFinished())
 					return;
 
 				if (this.FinishOrder())
@@ -1374,7 +1374,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.StopTimer();
 				// Reform entirely as members might be all over the place now.
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				if (cmpFormation)
+				if (cmpFormation && (cmpFormation.AreAllMembersIdle() || this.orderQueue.length))
 					cmpFormation.MoveMembersIntoFormation(true);
 
 				// Update the held position so entities respond to orders.
@@ -1609,6 +1609,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				if (this.isIdle)
 				{
+					if (this.IsFormationMember())
+						Engine.QueryInterface(this.formationController, IID_Formation).UnsetIdleEntity(this.entity);
 					this.isIdle = false;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
@@ -1677,6 +1679,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						let cmpFormationAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
 						if (!cmpFormationAI || !cmpFormationAI.IsIdle())
 							return;
+						Engine.QueryInterface(this.formationController, IID_Formation).SetIdleEntity(this.entity);
 					}
 
 					this.isIdle = true;
@@ -3895,8 +3898,8 @@ UnitAI.prototype.FinishOrder = function()
 		if (cmpUnitAI)
 		{
 			// Inform the formation controller that we finished this task
-			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-			cmpFormation.SetWaitingOnController(this.entity);
+			Engine.QueryInterface(this.formationController, IID_Formation).
+				SetFinishedEntity(this.entity);
 			// We don't want to carry out the default order
 			// if there are still queued formation orders left
 			if (cmpUnitAI.GetOrders().length > 1)
@@ -6450,20 +6453,20 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 
 /**
  * Call UnitAI.funcname(args) on all formation members.
- * @param resetWaitingEntities - If true, call ResetWaitingEntities first.
+ * @param resetFinishedEntities - If true, call ResetFinishedEntities first.
  *     If the controller wants to wait on its members to finish their order,
  *     this needs to be reset before sending new orders (in case they instafail)
  *     so it makes sense to do it here.
  *     Only set this to false if you're sure it's safe.
  */
-UnitAI.prototype.CallMemberFunction = function(funcname, args, resetWaitingEntities = true)
+UnitAI.prototype.CallMemberFunction = function(funcname, args, resetFinishedEntities = true)
 {
 	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 	if (!cmpFormation)
 		return;
 
-	if (resetWaitingEntities)
-		cmpFormation.ResetWaitingEntities();
+	if (resetFinishedEntities)
+		cmpFormation.ResetFinishedEntities();
 
 	cmpFormation.GetMembers().forEach(ent => {
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);

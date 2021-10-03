@@ -439,7 +439,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 	// let all units be in position
 	for (let ent of unitAIs)
-		controllerFormation.SetWaitingOnController(ent);
+		controllerFormation.SetFinishedEntity(ent);
 
 	for (let ent of unitAIs)
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");

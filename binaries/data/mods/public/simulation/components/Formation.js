@@ -79,7 +79,8 @@ Formation.prototype.variablesToSerialize = [
 	"memberPositions",
 	"maxRowsUsed",
 	"maxColumnsUsed",
-	"waitingOnController",
+	"finishedEntities",
+	"idleEntities",
 	"columnar",
 	"rearrange",
 	"formationMembersWithAura",
@@ -135,8 +136,9 @@ Formation.prototype.Init = function(deserialized = false)
 	this.memberPositions = {};
 	this.maxRowsUsed = 0;
 	this.maxColumnsUsed = [];
-	// Entities that are waiting on the controller.
-	this.waitingOnController = [];
+	// Entities that have finished the original task.
+	this.finishedEntities = new Set();
+	this.idleEntities = new Set();
 	// Whether we're travelling in column (vs box) formation.
 	this.columnar = false;
 	// Whether we should rearrange all formation members.
@@ -284,34 +286,50 @@ Formation.prototype.GetFormationAnimationVariant = function(entity)
 	return undefined;
 };
 
-Formation.prototype.SetWaitingOnController = function(ent)
+Formation.prototype.SetFinishedEntity = function(ent)
 {
-	// Rotate the entity to the right angle.
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	let cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
+	// Rotate the entity to the correct angle.
+	const cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	const cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 	if (cmpEntPosition && cmpEntPosition.IsInWorld() && cmpPosition && cmpPosition.IsInWorld())
 		cmpEntPosition.TurnTo(cmpPosition.GetRotation().y);
 
-	if (this.waitingOnController.indexOf(ent) !== -1)
-		return;
-	this.waitingOnController.push(ent);
+	this.finishedEntities.add(ent);
 };
 
-Formation.prototype.UnsetWaitingOnController = function(ent)
+Formation.prototype.UnsetFinishedEntity = function(ent)
 {
-	let ind = this.waitingOnController.indexOf(ent);
-	if (ind !== -1)
-		this.waitingOnController.splice(ind, 1);
+	this.finishedEntities.delete(ent);
 };
 
-Formation.prototype.ResetWaitingEntities = function()
+Formation.prototype.ResetFinishedEntities = function()
 {
-	this.waitingOnController = [];
+	this.finishedEntities.clear();
 };
 
-Formation.prototype.AreAllMembersWaiting = function()
+Formation.prototype.AreAllMembersFinished = function()
 {
-	return this.waitingOnController.length === this.members.length;
+	return this.finishedEntities.size === this.members.length;
+};
+
+Formation.prototype.SetIdleEntity = function(ent)
+{
+	this.idleEntities.add(ent);
+};
+
+Formation.prototype.UnsetIdleEntity = function(ent)
+{
+	this.idleEntities.delete(ent);
+};
+
+Formation.prototype.ResetIdleEntities = function()
+{
+	this.idleEntities.clear();
+};
+
+Formation.prototype.AreAllMembersIdle = function()
+{
+	return this.idleEntities.size === this.members.length;
 };
 
 /**
@@ -362,10 +380,10 @@ Formation.prototype.RemoveMembers = function(ents, renamed = false)
 {
 	this.offsets = undefined;
 	this.members = this.members.filter(ent => ents.indexOf(ent) === -1);
-	this.waitingOnController = this.waitingOnController.filter(ent => ents.indexOf(ent) === -1);
 
 	for (let ent of ents)
 	{
+		this.finishedEntities.delete(ent);
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.UpdateWorkOrders();
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
@@ -453,7 +471,7 @@ Formation.prototype.Disband = function()
 	}
 
 	this.members = [];
-	this.waitingOnController = [];
+	this.finishedEntities.clear();
 	this.formationMembersWithAura = [];
 	this.offsets = undefined;
 
@@ -525,8 +543,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 	let yMin = 0;
 
 	if (force)
-		// Reset waitingOnController as FormationWalk is called.
-		this.ResetWaitingEntities();
+		// Reset finishedEntities as FormationWalk is called.
+		this.ResetFinishedEntities();
 
 	for (let i = 0; i < this.offsets.length; ++i)
 	{
@@ -965,9 +983,8 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 	if (this.members.indexOf(msg.entity) === -1)
 		return;
 
-	let waitingIndex = this.waitingOnController.indexOf(msg.entity);
-	if (waitingIndex !== -1)
-		this.waitingOnController.splice(waitingIndex, 1, msg.newentity);
+	if (this.finishedEntities.delete(msg.entity))
+		this.finishedEntities.add(msg.newentity);
 
 	// Save rearranging to temporarily set it to false.
 	let temp = this.rearrange;
