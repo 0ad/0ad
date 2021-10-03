@@ -1020,38 +1020,16 @@ Formation.prototype.DeleteTwinFormations = function()
 
 Formation.prototype.LoadFormation = function(newTemplate)
 {
-	// Get the old formation info.
-	let members = this.members.slice();
-	let cmpThisUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	let orders = cmpThisUnitAI.GetOrders().slice();
+	const newFormation = ChangeEntityTemplate(this.entity, newTemplate);
+	return Engine.QueryInterface(newFormation, IID_UnitAI);
+};
 
+
+Formation.prototype.OnEntityRenamed = function(msg)
+{
+	const members = clone(this.members);
 	this.Disband();
-
-	let newFormation = Engine.AddEntity(newTemplate);
-
-	// Apply the info from the old formation to the new one.
-
-	let cmpNewOwnership = Engine.QueryInterface(newFormation, IID_Ownership);
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && cmpNewOwnership)
-		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
-
-	let cmpNewPosition = Engine.QueryInterface(newFormation, IID_Position);
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (cmpPosition && cmpPosition.IsInWorld() && cmpNewPosition)
-		cmpNewPosition.TurnTo(cmpPosition.GetRotation().y);
-
-	let cmpFormation = Engine.QueryInterface(newFormation, IID_Formation);
-	let cmpNewUnitAI = Engine.QueryInterface(newFormation, IID_UnitAI);
-	cmpFormation.SetMembers(members);
-	if (orders.length)
-		cmpNewUnitAI.AddOrders(orders);
-	else
-		cmpNewUnitAI.MoveIntoFormation();
-
-	Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": newFormation });
-
-	return cmpNewUnitAI;
+	Engine.QueryInterface(msg.newentity, IID_Formation).SetMembers(members);
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);
