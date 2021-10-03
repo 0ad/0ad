@@ -4503,7 +4503,7 @@ UnitAI.prototype.FindNearbyFoundation = function(position)
 	// Skip foundations that are already complete. (This matters since
 	// we process the ConstructionFinished message before the foundation
 	// we're working on has been deleted.)
-	return nearby.find(ent => !Engine.QueryInterface(ent, IID_Foundation).IsFinished());
+	return nearby.find(ent => !Engine.QueryInterface(ent, IID_Foundation).IsFinished() && this.CheckTargetVisible(ent));
 };
 
 /**
@@ -4525,7 +4525,7 @@ UnitAI.prototype.FindNearbyTreasure = function(position)
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	// Don't account for entity size, we need to match LOS visibility.
 	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Treasure, false);
-	return nearby.find(ent => cmpTreasureCollector.CanCollect(ent));
+	return nearby.find(ent => cmpTreasureCollector.CanCollect(ent) && this.CheckTargetVisible(ent));
 };
 
 /**
