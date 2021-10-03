@@ -901,8 +901,13 @@ g_SelectionPanels.Selection = {
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
-		data.button.onPress = function() { changePrimarySelectionGroup(data.item.key, false); };
-		data.button.onPressRight = function() { changePrimarySelectionGroup(data.item.key, true); };
+		data.button.onPress = function() {
+			if (Engine.HotkeyIsPressed("session.deselectgroup"))
+				removeFromSelectionGroup(data.item.key);
+			else
+				makePrimarySelectionGroup(data.item.key);
+		};
+		data.button.onPressRight = function() { removeFromSelectionGroup(data.item.key); };
 
 		if (template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + template.icon;
