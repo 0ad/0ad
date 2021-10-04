@@ -178,16 +178,21 @@ function EntitySelection()
 }
 
 /**
- * Deselect everything but entities of the chosen type if inverse is true otherwise deselect just the chosen entity
+ * Deselect everything but entities of the chosen type.
  */
-EntitySelection.prototype.makePrimarySelection = function(key, inverse)
+EntitySelection.prototype.makePrimarySelection = function(key)
 {
-	let ents = inverse ?
-		this.groups.getEntsByKeyInverse(key) :
-		this.groups.getEntsByKey(key);
-
+	const ents = this.groups.getEntsByKey(key);
 	this.reset();
 	this.addList(ents);
+};
+
+/**
+ * Deselect entities of the chosen type.
+ */
+EntitySelection.prototype.removeGroupFromSelection = function(key)
+{
+	this.removeList(this.groups.getEntsByKey(key));
 };
 
 /**

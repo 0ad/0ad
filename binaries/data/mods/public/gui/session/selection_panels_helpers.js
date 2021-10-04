@@ -291,10 +291,14 @@ function removeFromProductionQueue(entity, id)
 /**
  * Called by unit selection buttons.
  */
-function changePrimarySelectionGroup(templateName, deselectGroup)
+function makePrimarySelectionGroup(templateName)
 {
-	g_Selection.makePrimarySelection(templateName,
-		Engine.HotkeyIsPressed("session.deselectgroup") || deselectGroup);
+	g_Selection.makePrimarySelection(templateName);
+}
+
+function removeFromSelectionGroup(templateName)
+{
+	g_Selection.removeGroupFromSelection(templateName);
 }
 
 function performCommand(entStates, commandName)
