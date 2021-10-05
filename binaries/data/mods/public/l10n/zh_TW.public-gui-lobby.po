@@ -11,6 +11,7 @@
 # JerryShen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2021
+# Yuan Chang <daan0014119@gmail.com>, 2021
 # Yuan Chang <daan0014119@gmail.com>, 2020-2021
 # 張峻瑜 <a728728728@gmail.com>, 2018
 # 黃柏諺 <s8321414@gmail.com>, 2021
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-01 11:57+0000\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +115,7 @@ msgstr "主選單"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "指令「%(cmd)s」不支援。嘗試用 %(help)s 來取得有關支援指令的更多資訊。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
