@@ -16,6 +16,7 @@ class DiplomacyColors
 		this.diplomacyColorsChangeHandlers = [];
 
 		registerPlayersInitHandler(this.onPlayersInit.bind(this));
+		registerPlayersFinishedHandler(this.onPlayersFinished.bind(this));
 		registerConfigChangeHandler(this.onConfigChange.bind(this));
 		registerCeasefireEndedHandler(this.onCeasefireEnded.bind(this));
 	}
@@ -28,6 +29,12 @@ class DiplomacyColors
 	onPlayersInit()
 	{
 		this.computeTeamColors();
+	}
+
+	onPlayersFinished()
+	{
+		if (this.enabled)
+			this.updateDisplayedPlayerColors();
 	}
 
 	onDiplomacyChange()
@@ -99,7 +106,7 @@ class DiplomacyColors
 			if (g_ViewedPlayer <= 0)
 			{
 				// Observers and gaia see team colors
-				let team = g_Players[i].team;
+				const team = g_Players[i].state == "active" ? g_Players[i].team : -1;
 				this.displayedPlayerColors[i] = g_Players[teamRepresentatives[team] || i].color;
 				if (team != -1 && !teamRepresentatives[team])
 					teamRepresentatives[team] = i;
