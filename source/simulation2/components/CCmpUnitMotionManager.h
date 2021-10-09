@@ -60,6 +60,8 @@ public:
 		// Accumulated "pushing" from nearby units.
 		CFixedVector2D push;
 
+		fixed speed;
+
 		fixed initialAngle;
 		fixed angle;
 

@@ -895,17 +895,22 @@ Formation.prototype.ComputeMotionParameters = function()
 {
 	let maxRadius = 0;
 	let minSpeed = Infinity;
+	let minAcceleration = Infinity;
 
 	for (let ent of this.members)
 	{
 		let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 		if (cmpUnitMotion)
+		{
 			minSpeed = Math.min(minSpeed, cmpUnitMotion.GetWalkSpeed());
+			minAcceleration = Math.min(minAcceleration, cmpUnitMotion.GetAcceleration());
+		}
 	}
 	minSpeed *= this.GetSpeedMultiplier();
 
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpUnitMotion.SetSpeedMultiplier(minSpeed / cmpUnitMotion.GetWalkSpeed());
+	cmpUnitMotion.SetAcceleration(minAcceleration);
 };
 
 Formation.prototype.ShapeUpdate = function()

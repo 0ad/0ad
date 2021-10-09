@@ -69,8 +69,10 @@
   </UnitAI>
   <UnitMotion>
     <FormationController>true</FormationController>
-    <WalkSpeed>1.0</WalkSpeed>
-    <RunMultiplier>100.0</RunMultiplier> <!-- = Max formation speed -->
+    <WalkSpeed>1</WalkSpeed>
+    <RunMultiplier>100</RunMultiplier> <!-- = Max formation speed -->
+    <InstantTurnAngle>0.1</InstantTurnAngle>
+    <Acceleration>100</Acceleration> <!-- Unused -->
     <PassabilityClass>large</PassabilityClass>
   </UnitMotion>
 </Entity>

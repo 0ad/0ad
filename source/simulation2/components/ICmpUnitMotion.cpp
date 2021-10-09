@@ -37,6 +37,8 @@ DEFINE_INTERFACE_METHOD("GetWalkSpeed", ICmpUnitMotion, GetWalkSpeed)
 DEFINE_INTERFACE_METHOD("GetRunMultiplier", ICmpUnitMotion, GetRunMultiplier)
 DEFINE_INTERFACE_METHOD("EstimateFuturePosition", ICmpUnitMotion, EstimateFuturePosition)
 DEFINE_INTERFACE_METHOD("SetSpeedMultiplier", ICmpUnitMotion, SetSpeedMultiplier)
+DEFINE_INTERFACE_METHOD("GetAcceleration", ICmpUnitMotion, GetAcceleration)
+DEFINE_INTERFACE_METHOD("SetAcceleration", ICmpUnitMotion, SetAcceleration)
 DEFINE_INTERFACE_METHOD("GetPassabilityClassName", ICmpUnitMotion, GetPassabilityClassName)
 DEFINE_INTERFACE_METHOD("GetUnitClearance", ICmpUnitMotion, GetUnitClearance)
 DEFINE_INTERFACE_METHOD("SetFacePointAfterMove", ICmpUnitMotion, SetFacePointAfterMove)
@@ -122,6 +124,16 @@ public:
 	virtual CFixedVector2D EstimateFuturePosition(const fixed dt) const
 	{
 		return m_Script.Call<CFixedVector2D>("EstimateFuturePosition", dt);
+	}
+
+	virtual fixed GetAcceleration() const
+	{
+		return m_Script.Call<fixed>("GetAcceleration");
+	}
+
+	virtual void SetAcceleration(fixed acceleration)
+	{
+		m_Script.CallVoid("SetAcceleration", acceleration);
 	}
 
 	virtual void SetFacePointAfterMove(bool facePointAfterMove)

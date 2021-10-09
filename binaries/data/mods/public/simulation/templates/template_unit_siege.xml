@@ -60,5 +60,7 @@
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <RunMultiplier>1</RunMultiplier>
+    <InstantTurnAngle>0.75</InstantTurnAngle>
+    <Acceleration op="mul">0.25</Acceleration>
   </UnitMotion>
 </Entity>

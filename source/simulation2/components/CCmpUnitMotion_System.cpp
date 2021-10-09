@@ -167,6 +167,7 @@ void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
 		it->second.initialPos = it->second.cmpPosition->GetPosition2D();
 		it->second.initialAngle = it->second.cmpPosition->GetRotation().Y;
 		it->second.pos = it->second.initialPos;
+		it->second.speed = it->second.cmpUnitMotion->GetCurrentSpeed();
 		it->second.angle = it->second.initialAngle;
 		ENSURE(it->second.pos.X.ToInt_RoundToZero() / PUSHING_GRID_SIZE < m_MovingUnits.width() &&
 			   it->second.pos.Y.ToInt_RoundToZero() / PUSHING_GRID_SIZE < m_MovingUnits.height());

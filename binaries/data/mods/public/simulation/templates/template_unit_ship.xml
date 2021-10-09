@@ -73,5 +73,7 @@
   <TreasureCollector disable=""/>
   <UnitMotion>
     <PassabilityClass>ship</PassabilityClass>
+    <InstantTurnAngle>0.5</InstantTurnAngle>
+    <Acceleration op="mul">0.25</Acceleration>
   </UnitMotion>
 </Entity>
