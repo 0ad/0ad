@@ -55,6 +55,7 @@ class ResearchProgressButton
 		this.sprite = Engine.GetGUIObjectByName("researchStartedIcon[" + i + "]");
 		this.progress = Engine.GetGUIObjectByName("researchStartedProgressSlider[" + i + "]");
 		this.timeRemaining = Engine.GetGUIObjectByName("researchStartedTimeRemaining[" + i + "]");
+		this.paused = Engine.GetGUIObjectByName("researchPausedIcon[" + i + "]");
 
 		this.buttonHeight = this.button.size.bottom - this.button.size.top;
 		this.buttonTop = this.Margin + (this.Margin + this.buttonHeight) * i;
@@ -68,13 +69,18 @@ class ResearchProgressButton
 		this.researcher = researchStatus.researcher;
 
 		let template = GetTechnologyData(techName, g_Players[g_ViewedPlayer].civ);
-		this.sprite.sprite = "stretched:" + this.PortraitDirectory + template.icon;
+		let modifier = "stretched:";
+		if (researchStatus.paused)
+			modifier += "color:0 0 0 127:grayscale:";
+		this.sprite.sprite = modifier + this.PortraitDirectory + template.icon;
 
 		let size = this.button.size;
 		size.top = offset + this.buttonTop;
 		size.bottom = size.top + this.buttonHeight;
 		this.button.size = size;
 		this.button.tooltip = getEntityNames(template);
+		if (researchStatus.paused)
+			this.button.tooltip += "\n" + translate(this.PausedResearchString);
 		this.button.hidden = false;
 
 		size = this.progress.size;
@@ -85,6 +91,8 @@ class ResearchProgressButton
 			Engine.FormatMillisecondsIntoDateStringGMT(
 				researchStatus.timeRemaining,
 				translateWithContext("countdown format", this.CountdownFormat));
+
+		this.paused.hidden = !researchStatus.paused;
 	}
 
 	onPress()
@@ -107,3 +115,6 @@ ResearchProgressButton.prototype.PortraitDirectory = "session/portraits/";
  * This format is used when displaying the remaining time of the currently viewed techs in research.
  */
 ResearchProgressButton.prototype.CountdownFormat = markForTranslationWithContext("countdown format", "m:ss");
+
+// Translation: String displayed when the research is paused. E.g. by being garrisoned or when not the first item in the queue.
+ResearchProgressButton.prototype.PausedResearchString = markForTranslation("(This item is paused.)");

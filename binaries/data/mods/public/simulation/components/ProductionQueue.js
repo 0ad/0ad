@@ -47,6 +47,7 @@ ProductionQueue.prototype.Init = function()
 			"productionStarted": false, // true iff production has started (we have reserved population).
 			"timeTotal": 15000, // msecs
 			"timeRemaining": 10000, // msecs
+			"paused": false, // Whether the item is currently paused (e.g. not the first item or parent is garrisoned).
 			"resources": { "wood": 100, ... }, // Total resources of the item when queued.
 			"entity": {
 				"template": "units/example",
@@ -340,10 +341,11 @@ ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
  * @param {string} type - The type of production (i.e. "unit" or "technology").
  * @param {number} count - The amount of units to be produced. Ignored for a tech.
  * @param {any} metadata - Optionally any metadata to be attached to the item.
+ * @param {boolean} pushFront - Whether to push the item to the front of the queue and pause any item(s) currently in progress.
  *
  * @return {boolean} - Whether the addition of the item has succeeded.
  */
-ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata)
+ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata, pushFront = false)
 {
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits).
@@ -382,6 +384,7 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 		"metadata": metadata,
 		"productionStarted": false,
 		"resources": {}, // The total resource costs.
+		"paused": false
 	};
 
 	// ToDo: Still some duplication here, some can might be combined,
@@ -490,7 +493,14 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 		return false;
 
 	item.id = this.nextID++;
-	this.queue.push(item);
+	if (pushFront)
+	{
+		if (this.queue[0])
+			this.queue[0].paused = true;
+		this.queue.unshift(item);
+	}
+	else
+		this.queue.push(item);
 
 	const cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 	if (item.entity)
@@ -618,6 +628,7 @@ ProductionQueue.prototype.GetQueue = function()
 		"neededSlots": item.entity?.neededSlots,
 		"progress": 1 - (item.timeRemaining / (item.timeTotal || 1)),
 		"timeRemaining": item.timeRemaining,
+		"paused": item.paused,
 		"metadata": item.metadata
 	}));
 };
@@ -797,6 +808,8 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 	while (this.queue.length)
 	{
 		let item = this.queue[0];
+		if (item.paused)
+			item.paused = false;
 		if (!item.productionStarted)
 		{
 			if (item.entity)
@@ -924,10 +937,14 @@ ProductionQueue.prototype.PauseProduction = function()
 {
 	this.StopTimer();
 	this.paused = true;
+	if (this.queue[0])
+		this.queue[0].paused = true;
 };
 
 ProductionQueue.prototype.UnpauseProduction = function()
 {
+	if (this.queue[0])
+		this.queue[0].paused = false;
 	delete this.paused;
 	this.StartTimer();
 };

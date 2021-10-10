@@ -692,13 +692,16 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
 		if (cmpProductionQueue)
 		{
-			ret[tech].progress = cmpProductionQueue.GetQueue()[0].progress;
-			ret[tech].timeRemaining = cmpProductionQueue.GetQueue()[0].timeRemaining;
+			const research = cmpProductionQueue.GetQueue().find(item => item.technologyTemplate === tech);
+			ret[tech].progress = research.progress;
+			ret[tech].timeRemaining = research.timeRemaining;
+			ret[tech].paused = research.paused;
 		}
 		else
 		{
 			ret[tech].progress = 0;
 			ret[tech].timeRemaining = 0;
+			ret[tech].paused = true;
 		}
 	}
 	return ret;

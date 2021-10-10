@@ -940,7 +940,7 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"train": function(civ, type, count, metadata, promotedTypes)
+	"train": function(civ, type, count, metadata, promotedTypes, pushFront = false)
 	{
 		let trainable = this.trainableEntities(civ);
 		if (!trainable)
@@ -960,7 +960,8 @@ m.Entity = m.Class({
 			"template": type,
 			"count": count,
 			"metadata": metadata,
-			"promoted": promotedTypes
+			"promoted": promotedTypes,
+			"pushFront": pushFront
 		});
 		return this;
 	},
@@ -985,8 +986,13 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"research": function(template) {
-		Engine.PostCommand(PlayerID, { "type": "research", "entity": this.id(), "template": template });
+	"research": function(template, pushFront = false) {
+		Engine.PostCommand(PlayerID, {
+			"type": "research",
+			"entity": this.id(),
+			"template": template,
+			"pushFront": pushFront
+		});
 		return this;
 	},
 
