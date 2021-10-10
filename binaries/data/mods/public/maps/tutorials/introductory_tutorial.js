@@ -225,7 +225,7 @@ Trigger.prototype.tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("Start training a batch of Female Citizens in the Civic Center and set its rally point to the farm (right click on it)."),
+		"instructions": markForTranslation("Start training a batch of Female Citizens in the Civic Center and set its rally point to the Field (right click on it)."),
 		"Init": function()
 		{
 			this.rallyPointSet = false;
