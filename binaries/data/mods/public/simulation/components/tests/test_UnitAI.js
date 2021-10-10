@@ -94,6 +94,7 @@ TestTargetEntityRenaming(
 			"MoveToTargetRange": () => true,
 			"GetRunMultiplier": () => 1,
 			"SetSpeedMultiplier": () => {},
+			"GetAcceleration": () => 1,
 			"StopMoving": () => {}
 		});
 
@@ -168,6 +169,7 @@ function TestFormationExiting(mode)
 
 	AddMock(unit, IID_UnitMotion, {
 		"GetWalkSpeed": () => 1,
+		"GetAcceleration": () => 1,
 		"MoveToFormationOffset": (target, x, z) => {},
 		"MoveToTargetRange": (target, min, max) => true,
 		"SetMemberOfFormation": () => {},
@@ -243,6 +245,7 @@ function TestFormationExiting(mode)
 		"GetWalkSpeed": () => 1,
 		"StopMoving": () => {},
 		"SetSpeedMultiplier": () => {},
+		"SetAcceleration": (accel) => {},
 		"MoveToPointRange": () => true,
 		"SetFacePointAfterMove": () => {},
 		"GetFacePointAfterMove": () => true,
@@ -348,6 +351,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 		AddMock(unit + i, IID_UnitMotion, {
 			"GetWalkSpeed": () => 1,
+			"GetAcceleration": () => 1,
 			"MoveToFormationOffset": (target, x, z) => {},
 			"MoveToTargetRange": (target, min, max) => true,
 			"SetMemberOfFormation": () => {},
@@ -414,6 +418,7 @@ function TestMoveIntoFormationWhileAttacking()
 	AddMock(controller, IID_UnitMotion, {
 		"GetWalkSpeed": () => 1,
 		"SetSpeedMultiplier": (speed) => {},
+		"SetAcceleration": (accel) => {},
 		"MoveToPointRange": (x, z, minRange, maxRange) => {},
 		"StopMoving": () => {},
 		"SetFacePointAfterMove": () => {},

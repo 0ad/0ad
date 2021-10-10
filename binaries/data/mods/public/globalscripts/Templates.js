@@ -437,10 +437,12 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 
 	if (template.UnitMotion)
 	{
+		const walkSpeed = getEntityValue("UnitMotion/WalkSpeed");
 		ret.speed = {
-			"walk": getEntityValue("UnitMotion/WalkSpeed"),
+			"walk": walkSpeed,
+			"run": walkSpeed,
+			"acceleration": getEntityValue("UnitMotion/Acceleration")
 		};
-		ret.speed.run = getEntityValue("UnitMotion/WalkSpeed");
 		if (template.UnitMotion.RunMultiplier)
 			ret.speed.run *= getEntityValue("UnitMotion/RunMultiplier");
 	}

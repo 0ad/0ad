@@ -345,6 +345,16 @@ UnitMotionFlying.prototype.GetSpeedMultiplier = function()
 	return this.speed / +this.template.MaxSpeed;
 };
 
+UnitMotionFlying.prototype.GetAcceleration = function()
+{
+	return +this.template.AccelRate;
+};
+
+UnitMotionFlying.prototype.SetAcceleration = function()
+{
+	// Acceleration is set by the template. Ignore.
+};
+
 UnitMotionFlying.prototype.GetPassabilityClassName = function()
 {
 	return this.template.PassabilityClass;

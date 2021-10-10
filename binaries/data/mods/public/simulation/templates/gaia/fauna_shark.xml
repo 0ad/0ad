@@ -45,6 +45,7 @@
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
     <WalkSpeed op="mul">0.6</WalkSpeed>
+    <Acceleration op="mul">0.6</Acceleration>
   </UnitMotion>
   <Visibility>
     <RetainInFog>false</RetainInFog>

@@ -153,7 +153,7 @@ public:
 
 	bool m_IsFormationController;
 
-	fixed m_TemplateWalkSpeed, m_TemplateRunMultiplier;
+	fixed m_TemplateWalkSpeed, m_TemplateRunMultiplier, m_TemplateAcceleration;
 	pass_class_t m_PassClass;
 	std::string m_PassClassName;
 
@@ -225,8 +225,12 @@ public:
 	// This caches the resulting speed from m_WalkSpeed * m_SpeedMultiplier for convenience.
 	fixed m_Speed;
 
-	// Current mean speed (over the last turn).
-	fixed m_CurSpeed;
+	// The speed achieved at the end of the current turn.
+	fixed m_CurrentSpeed;
+
+	fixed m_InstantTurnAngle;
+
+	fixed m_Acceleration;
 
 	// Currently active paths (storing waypoints in reverse order).
 	// The last item in each path is the point we're currently heading towards.
@@ -244,15 +248,21 @@ public:
 			"<element name='FormationController'>"
 				"<data type='boolean'/>"
 			"</element>"
-			"<element name='WalkSpeed' a:help='Basic movement speed (in metres per second)'>"
+			"<element name='WalkSpeed' a:help='Basic movement speed (in metres per second).'>"
 				"<ref name='positiveDecimal'/>"
 			"</element>"
 			"<optional>"
-				"<element name='RunMultiplier' a:help='How much faster the unit goes when running (as a multiple of walk speed)'>"
+				"<element name='RunMultiplier' a:help='How much faster the unit goes when running (as a multiple of walk speed).'>"
 					"<ref name='positiveDecimal'/>"
 				"</element>"
 			"</optional>"
-			"<element name='PassabilityClass' a:help='Identifies the terrain passability class (values are defined in special/pathfinder.xml)'>"
+			"<element name='InstantTurnAngle' a:help='Angle we can turn instantly. Any value greater than pi will disable turning times. Avoid zero since it stops the entity every turn.'>"
+				"<ref name='positiveDecimal'/>"
+			"</element>"
+			"<element name='Acceleration' a:help='Acceleration (in metres per second^2).'>"
+				"<ref name='positiveDecimal'/>"
+			"</element>"
+			"<element name='PassabilityClass' a:help='Identifies the terrain passability class (values are defined in special/pathfinder.xml).'>"
 				"<text/>"
 			"</element>"
 			"<optional>"
@@ -270,11 +280,15 @@ public:
 
 		m_WalkSpeed = m_TemplateWalkSpeed = m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_SpeedMultiplier = fixed::FromInt(1);
-		m_CurSpeed = fixed::Zero();
+		m_CurrentSpeed = fixed::Zero();
 
 		m_RunMultiplier = m_TemplateRunMultiplier = fixed::FromInt(1);
 		if (paramNode.GetChild("RunMultiplier").IsOk())
 			m_RunMultiplier = m_TemplateRunMultiplier = paramNode.GetChild("RunMultiplier").ToFixed();
+
+		m_InstantTurnAngle = paramNode.GetChild("InstantTurnAngle").ToFixed();
+
+		m_Acceleration = m_TemplateAcceleration = paramNode.GetChild("Acceleration").ToFixed();
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -322,7 +336,11 @@ public:
 
 		serialize.NumberFixed_Unbounded("speed multiplier", m_SpeedMultiplier);
 
-		serialize.NumberFixed_Unbounded("current speed", m_CurSpeed);
+		serialize.NumberFixed_Unbounded("current speed", m_CurrentSpeed);
+
+		serialize.NumberFixed_Unbounded("instant turn angle", m_InstantTurnAngle);
+
+		serialize.NumberFixed_Unbounded("acceleration", m_Acceleration);
 
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
 		serialize.Bool("pushing", m_Pushing);
@@ -456,13 +474,23 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 		entity_angle_t angle = cmpPosition->GetRotation().Y;
-
+		fixed speed = m_CurrentSpeed;
 		// Copy the path so we don't change it.
 		WaypointPath shortPath = m_ShortPath;
 		WaypointPath longPath = m_LongPath;
 
-		PerformMove(dt, cmpPosition->GetTurnRate(), shortPath, longPath, pos, angle);
+		PerformMove(dt, cmpPosition->GetTurnRate(), shortPath, longPath, pos, speed, angle);
 		return pos;
+	}
+
+	virtual fixed GetAcceleration() const
+	{
+		return m_Acceleration;
+	}
+
+	virtual void SetAcceleration(fixed acceleration)
+	{
+		m_Acceleration = acceleration;
 	}
 
 	virtual pass_class_t GetPassabilityClass() const
@@ -485,7 +513,7 @@ public:
 
 	virtual fixed GetCurrentSpeed() const
 	{
-		return m_CurSpeed;
+		return m_CurrentSpeed;
 	}
 
 	virtual void SetFacePointAfterMove(bool facePointAfterMove)
@@ -721,13 +749,13 @@ private:
 	 * This does not send actually change the position.
 	 * @returns true if the move was obstructed.
 	 */
-	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle) const;
+	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, fixed& speed, entity_angle_t& angle) const;
 
 	/**
 	 * Update other components on our speed.
 	 * (For performance, this should try to avoid sending messages).
 	 */
-	void UpdateMovementState(entity_pos_t speed);
+	void UpdateMovementState(entity_pos_t speed, entity_pos_t meanSpeed);
 
 	/**
 	 * React if our move was obstructed.
@@ -993,7 +1021,7 @@ void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 
 	// If we were idle and will still be, no need for an update.
 	state.needUpdate = state.cmpPosition->IsInWorld() &&
-		(m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
+		(m_CurrentSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
 
 	if (!m_BlockMovement)
 		return;
@@ -1017,7 +1045,7 @@ void CCmpUnitMotion::Move(CCmpUnitMotionManager::MotionState& state, fixed dt)
 	// to it, then throw away our current path and go straight to it.
 	state.wentStraight = TryGoingStraightToTarget(state.initialPos, true);
 
-	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.angle);
+	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.speed, state.angle);
 }
 
 void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed dt)
@@ -1027,7 +1055,7 @@ void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed d
 	{
 		if (state.angle != state.initialAngle)
 			state.cmpPosition->TurnTo(state.angle);
-		UpdateMovementState(fixed::Zero());
+		UpdateMovementState(fixed::Zero(), fixed::Zero());
 	}
 	else
 	{
@@ -1041,7 +1069,7 @@ void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed d
 		state.cmpPosition->MoveAndTurnTo(state.pos.X, state.pos.Y, state.angle);
 
 		// Calculate the mean speed over this past turn.
-		UpdateMovementState(offset.Length() / dt);
+		UpdateMovementState(state.speed, offset.Length() / dt);
 	}
 
 	if (state.wasObstructed && HandleObstructedMove(state.pos != state.initialPos))
@@ -1094,7 +1122,7 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	return false;
 }
 
-bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle) const
+bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, fixed& speed, entity_angle_t& angle) const
 {
 	// If there are no waypoint, behave as though we were obstructed and let HandleObstructedMove handle it.
 	if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
@@ -1151,21 +1179,26 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
 
 		CFixedVector2D offset = target - pos;
-		if (turnRate > zero && !offset.IsZero())
+
+		fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
+		fixed absoluteAngleDiff = angleDiff.Absolute();
+		if (absoluteAngleDiff > entity_angle_t::Pi())
+			absoluteAngleDiff = entity_angle_t::Pi() * 2 - absoluteAngleDiff;
+
+		// We only rotate to the instantTurnAngle angle. The rest we rotate during movement.
+		if (absoluteAngleDiff > m_InstantTurnAngle)
 		{
-			fixed maxRotation = turnRate.Multiply(timeLeft);
-			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
-			if (angleDiff != zero)
+			// Stop moving when rotating this far.
+			speed = zero;
+			if (turnRate > zero && !offset.IsZero())
 			{
-				fixed absoluteAngleDiff = angleDiff.Absolute();
-				if (absoluteAngleDiff > entity_angle_t::Pi())
-					absoluteAngleDiff = entity_angle_t::Pi() * 2 - absoluteAngleDiff;
+				fixed maxRotation = turnRate.Multiply(timeLeft);
 
 				// Figure out whether rotating will increase or decrease the angle, and how far we need to rotate in that direction.
 				int direction = (entity_angle_t::Zero() < angleDiff && angleDiff <= entity_angle_t::Pi()) || angleDiff < -entity_angle_t::Pi() ? -1 : 1;
 
 				// Can't rotate far enough, just rotate in the correct direction.
-				if (absoluteAngleDiff > maxRotation)
+				if (absoluteAngleDiff - m_InstantTurnAngle > maxRotation)
 				{
 					angle += maxRotation * direction;
 					if (angle * direction > entity_angle_t::Pi())
@@ -1174,13 +1207,21 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 				}
 				// Rotate towards the next waypoint and continue moving.
 				angle = atan2_approx(offset.X, offset.Y);
-				// Give some 'free' rotation for angles below 0.5 radians.
-				timeLeft = (std::min(maxRotation, maxRotation - absoluteAngleDiff + fixed::FromInt(1)/2)) / turnRate;
+				timeLeft = std::min(maxRotation, maxRotation - absoluteAngleDiff + m_InstantTurnAngle) / turnRate;
 			}
+		}
+		else
+		{
+			// Modify the speed depending on the angle difference.
+			fixed sin, cos;
+			sincos_approx(angleDiff, sin, cos);
+			speed = speed.Multiply(cos);
 		}
 
 		// Work out how far we can travel in timeLeft.
-		fixed maxdist = maxSpeed.Multiply(timeLeft);
+		fixed accelTime = std::min(timeLeft, (maxSpeed - speed) / m_Acceleration);
+		fixed accelDist = speed.Multiply(accelTime) + accelTime.Square().Multiply(m_Acceleration) / 2;
+		fixed maxdist = accelDist + maxSpeed.Multiply(timeLeft - accelTime);
 
 		// If the target is close, we can move there directly.
 		fixed offsetLength = offset.Length();
@@ -1191,7 +1232,20 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 				pos = target;
 
 				// Spend the rest of the time heading towards the next waypoint.
-				timeLeft = (maxdist - offsetLength) / maxSpeed;
+				// Either we still need to accelerate after, or we have reached maxSpeed.
+ 				// The former is much less likely than the latter: usually we can reach
+				// maxSpeed within one waypoint. So the Sqrt is not too bad.
+				if (offsetLength <= accelDist)
+				{
+					fixed requiredTime = (-speed + (speed.Square() + offsetLength.Multiply(m_Acceleration).Multiply(fixed::FromInt(2))).Sqrt()) / m_Acceleration;
+					timeLeft -= requiredTime;
+					speed += m_Acceleration.Multiply(requiredTime);
+				}
+				else
+				{
+					timeLeft -= accelTime + (offsetLength - accelDist) / maxSpeed;
+					speed = maxSpeed;
+				}
 
 				if (shortPath.m_Waypoints.empty())
 					longPath.m_Waypoints.pop_back();
@@ -1212,6 +1266,8 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			offset.Normalize(maxdist);
 			target = pos + offset;
 
+			speed = std::min(maxSpeed, speed + m_Acceleration.Multiply(timeLeft));
+
 			if (cmpPathfinder->CheckMovement(GetObstructionFilter(specificIgnore), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				pos = target;
 			else
@@ -1223,18 +1279,18 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 	return false;
 }
 
-void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed)
+void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed, entity_pos_t meanSpeed)
 {
 	CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
 	if (cmpVisual)
 	{
-		if (speed == fixed::Zero())
+		if (meanSpeed == fixed::Zero())
 			cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
 		else
-			cmpVisual->SelectMovementAnimation(speed > (m_WalkSpeed / 2).Multiply(m_RunMultiplier + fixed::FromInt(1)) ? "run" : "walk", speed);
+			cmpVisual->SelectMovementAnimation(meanSpeed > (m_WalkSpeed / 2).Multiply(m_RunMultiplier + fixed::FromInt(1)) ? "run" : "walk", meanSpeed);
 	}
 
-	m_CurSpeed = speed;
+	m_CurrentSpeed = speed;
 }
 
 bool CCmpUnitMotion::HandleObstructedMove(bool moved)

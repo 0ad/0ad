@@ -87,7 +87,7 @@ public:
 	virtual void StopMoving() = 0;
 
 	/**
-	 * Get the distance travelled over the last turn.
+	 * Get the speed at the end of the current turn.
 	 */
 	virtual fixed GetCurrentSpeed() const = 0;
 
@@ -128,6 +128,17 @@ public:
 	 * following current paths. This is allowed to 'look into the future'.
 	 */
 	virtual CFixedVector2D EstimateFuturePosition(const fixed dt) const = 0;
+
+	/**
+	 * Get the current acceleration.
+	 */
+	virtual fixed GetAcceleration() const = 0;
+
+	/**
+	 * Set the current acceleration.
+	 * @param acceleration The acceleration.
+	 */
+	virtual void SetAcceleration(fixed acceleration) = 0;
 
 	/**
 	 * Set whether the unit will turn to face the target point after finishing moving.

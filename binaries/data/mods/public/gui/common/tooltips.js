@@ -1005,12 +1005,13 @@ function getSpeedTooltip(template)
 	if (!template.speed)
 		return "";
 
-	let walk = template.speed.walk.toFixed(1);
-	let run = template.speed.run.toFixed(1);
+	const walk = template.speed.walk.toFixed(1);
+	const run = template.speed.run.toFixed(1);
 
 	if (walk == 0 && run == 0)
 		return "";
 
+	const acceleration = template.speed.acceleration.toFixed(1);
 	return sprintf(translate("%(label)s %(speeds)s"), {
 		"label": headerFont(translate("Speed:")),
 		"speeds":
@@ -1022,6 +1023,11 @@ function getSpeedTooltip(template)
 			sprintf(translate("%(speed)s %(movementType)s"), {
 				"speed": run,
 				"movementType": unitFont(translate("Run"))
+			}) +
+			commaFont(translate(", ")) +
+			sprintf(translate("%(speed)s %(movementType)s"), {
+				"speed": acceleration,
+				"movementType": unitFont(translate("Acceleration"))
 			})
 	});
 }

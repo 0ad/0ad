@@ -46,6 +46,7 @@
   </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.7</WalkSpeed>
+    <Acceleration op="mul">0.7</Acceleration>
   </UnitMotion>
   <Visibility>
     <RetainInFog>true</RetainInFog>
