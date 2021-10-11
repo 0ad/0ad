@@ -272,7 +272,8 @@ function addResearchToQueue(entity, researchType)
 	Engine.PostNetworkCommand({
 		"type": "research",
 		"entity": entity,
-		"template": researchType
+		"template": researchType,
+		"pushFront": Engine.HotkeyIsPressed("session.pushorderfront")
 	});
 }
 

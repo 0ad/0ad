@@ -590,10 +590,22 @@ g_SelectionPanels.Queue = {
 			guiObject.size = size;
 
 			data.button.enabled = controlsPlayer(data.player);
+
+			Engine.GetGUIObjectByName("unitQueuePausedIcon[" + data.i + "]").hidden = !queuedItem.paused;
+			if (queuedItem.paused)
+				// Translation: String displayed when the research is paused. E.g. by being garrisoned or when not the first item in the queue.
+				data.button.tooltip += "\n" + translate("(This item is paused.)");
 		}
 
 		if (template.icon)
-			data.icon.sprite = (data.item.ghost ? "grayscale:" : "") + "stretched:session/portraits/" + template.icon;
+		{
+			let modifier = "stretched:";
+			if (queuedItem.paused)
+				modifier += "color:0 0 0 127:grayscale:";
+			else if (data.item.ghost)
+				modifier += "grayscale:";
+			data.icon.sprite = modifier + "session/portraits/" + template.icon;
+		}
 
 
 		const showTemplateFunc = () => { showTemplateDetails(data.item.queuedItem.unitTemplate || data.item.queuedItem.technologyTemplate, data.playerState.civ); };

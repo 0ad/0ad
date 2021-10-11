@@ -12,8 +12,9 @@
 		<repeat count="16">
 			<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="2 2 40 40" tooltip_style="sessionToolTipBottom">
 				<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 35 35"/>
-				<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 35 35" z="20"/>
+				<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 35 35"/>
 				<object name="unitQueueCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
+				<object name="unitQueuePausedIcon[n]" ghost="true" type="image" sprite="stretched:session/icons/stop.png" size="3 3 35 35"/>
 			</object>
 		</repeat>
 	</object>

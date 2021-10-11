@@ -1521,7 +1521,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 			"type": "train",
 			"template": trainEntType,
 			"count": 1,
-			"entities": buildingsForTraining
+			"entities": buildingsForTraining,
+			"pushFront": Engine.HotkeyIsPressed("session.pushorderfront")
 		});
 	}
 }
@@ -1579,7 +1580,8 @@ function flushTrainingBatch()
 			"type": "train",
 			"entities": appropriateBuildings.slice(0, buildingsCountToTrainFullBatch),
 			"template": g_BatchTrainingType,
-			"count": batchedSize
+			"count": batchedSize,
+			"pushFront": Engine.HotkeyIsPressed("session.pushorderfront")
 		});
 
 		// Train remainer in one more structure.
@@ -1589,7 +1591,8 @@ function flushTrainingBatch()
 				"type": "train",
 				"entities": [appropriateBuildings[buildingsCountToTrainFullBatch]],
 				"template": g_BatchTrainingType,
-				"count": remainer
+				"count": remainer,
+				"pushFront": Engine.HotkeyIsPressed("session.pushorderfront")
 			});
 	}
 	else
@@ -1597,7 +1600,8 @@ function flushTrainingBatch()
 			"type": "train",
 			"entities": appropriateBuildings,
 			"template": g_BatchTrainingType,
-			"count": batchedSize
+			"count": batchedSize,
+			"pushFront": Engine.HotkeyIsPressed("session.pushorderfront")
 		});
 }
 

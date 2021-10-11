@@ -101,6 +101,7 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
   hotkey.session.repair + Right Click on structure – Repair
   hotkey.session.patrol + Right Click – Patrol
   hotkey.session.queue + Right Click – Queue the move/build/gather/etc. order
+  hotkey.session.pushorderfront + Right Click – Modifier to push any order in front of the order queue.
   hotkey.session.orderone + Right Click – Order one unit from the current selection to move/build/gather/etc. and unselect it. Used to quickly dispatch units with specific tasks
   hotkey.session.batchtrain + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)
   hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit to selection
@@ -109,6 +110,7 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
   hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only select non-military units
   hotkey.selection.idleonly + Left Drag over units on map – Only select idle units
   hotkey.selection.woundedonly + Left Drag over units on map – Only select wounded units
+  hotkey.selection.singleselection – Modifier to select units individually, opposed to per formation.
   Right Click with a structure(s) selected – Set a rally point for units created/ungarrisoned from that structure
   hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If the cursor is over an own or allied structure)
   hotkey.session.attack + Right Click with unit(s) selected – Attack (instead of capture or gather)

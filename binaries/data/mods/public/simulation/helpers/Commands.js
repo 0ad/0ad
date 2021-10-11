@@ -372,10 +372,7 @@ var g_Commands = {
 				}
 			}
 			if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
-				if ("metadata" in cmd)
-					queue.AddItem(cmd.template, "unit", +cmd.count, cmd.metadata);
-				else
-					queue.AddItem(cmd.template, "unit", +cmd.count);
+				queue.AddItem(cmd.template, "unit", +cmd.count, cmd.metadata, cmd.pushFront);
 		}
 	},
 
@@ -391,7 +388,7 @@ var g_Commands = {
 
 		var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 		if (queue)
-			queue.AddItem(cmd.template, "technology");
+			queue.AddItem(cmd.template, "technology", undefined, cmd.metadata, cmd.pushFront);
 	},
 
 	"stop-production": function(player, cmd, data)

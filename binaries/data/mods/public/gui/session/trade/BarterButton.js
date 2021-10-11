@@ -95,6 +95,7 @@ class BarterButton
 		this.buyButton.hidden = isSelected;
 		this.buyButton.enabled = controlsPlayer(viewedPlayer);
 		this.sellSelection.hidden = !isSelected;
+		this.sellButton.hidden = false;
 	}
 }
 

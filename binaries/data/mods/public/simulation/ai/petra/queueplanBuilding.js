@@ -739,7 +739,7 @@ PETRA.ConstructionPlan.prototype.checkDockPlacement = function(gameState, x, z, 
  * if the (object) wantedLand is given, this nearest land should have one of these accessibility
  * if wantedSea is given, this tile should be inside this sea
  */
-const around = [[ 1.0, 0.0], [ 0.87, 0.50], [ 0.50, 0.87], [ 0.0, 1.0], [-0.50, 0.87], [-0.87, 0.50],
+PETRA.ConstructionPlan.prototype.around = [[ 1.0, 0.0], [ 0.87, 0.50], [ 0.50, 0.87], [ 0.0, 1.0], [-0.50, 0.87], [-0.87, 0.50],
 	        [-1.0, 0.0], [-0.87, -0.50], [-0.50, -0.87], [ 0.0, -1.0], [ 0.50, -0.87], [ 0.87, -0.50]];
 
 PETRA.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimension, wantedLand, wantedSea)
@@ -759,7 +759,7 @@ PETRA.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimensi
 	    landPass < 2 && accessibility.navalPassMap[k] < 2)
 		return false;
 
-	for (let a of around)
+	for (let a of this.around)
 	{
 		pos = accessibility.gamePosToMapPos([x + dimLand*a[0], z + dimLand*a[1]]);
 		if (pos[0] < 0 || pos[0] >= accessibility.width)
@@ -803,7 +803,7 @@ PETRA.ConstructionPlan.prototype.getFrontierProximity = function(gameState, j)
 	let ix = j % width;
 	let iz = Math.floor(j / width);
 	let best = 5;
-	for (let a of around)
+	for (let a of this.around)
 	{
 		for (let i = 1; i < 5; ++i)
 		{
