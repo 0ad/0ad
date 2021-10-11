@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,12 @@
 #include <map>
 
 #include "graphics/Camera.h"
+#include "maths/Rect.h"
 
 #include "Messages.h"
 #include "simulation2/system/Entity.h"
 
+class CCanvas2D;
 class CUnit;
 class CSimulation2;
 
@@ -41,7 +43,7 @@ public:
 	virtual void Update(float UNUSED(realFrameLength)) { };
 	virtual void Render() { };
 	virtual void DrawCinemaPathTool() { };
-	virtual void DrawOverlays() { };
+	virtual void DrawOverlays(CCanvas2D& UNUSED(canvas)) { };
 	virtual CCamera& GetCamera() = 0;
 	virtual CSimulation2* GetSimulation2() { return NULL; }
 	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj) { return (entity_id_t)obj; }
@@ -89,7 +91,7 @@ public:
 	virtual void Update(float realFrameLength);
 	virtual void Render();
 	virtual void DrawCinemaPathTool();
-	virtual void DrawOverlays();
+	virtual void DrawOverlays(CCanvas2D& canvas);
 	virtual CCamera& GetCamera();
 	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
@@ -111,14 +113,7 @@ private:
 	std::map<std::wstring, SimState*> m_SavedStates;
 	std::string m_DisplayPassability;
 
-	typedef struct SBandboxVertex
-	{
-		SBandboxVertex(float x, float y, u8 r, u8 g, u8 b, u8 a) : x(x), y(y), r(r), g(g), b(b), a(a) {}
-		u8 r, g, b, a;
-		float x, y;
-	} SBandboxVertex;
-
-	std::vector<SBandboxVertex> m_BandboxArray;
+	CRect m_Bandbox;
 	bool m_DrawMoveTool;
 	CVector3D m_MoveTool;
 };

@@ -24,10 +24,10 @@
 #include "Messages.h"
 #include "SimState.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/CinemaManager.h"
 #include "graphics/GameView.h"
 #include "graphics/ParticleManager.h"
-#include "graphics/SColor.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -37,10 +37,10 @@
 #include "ps/World.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
-#include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpParticleManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/Simulation2.h"
 #include "soundmanager/ISoundManager.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
@@ -253,47 +253,28 @@ void AtlasViewGame::DrawCinemaPathTool()
 	glEnable(GL_DEPTH_TEST);
 }
 
-void AtlasViewGame::DrawOverlays()
+void AtlasViewGame::DrawOverlays(CCanvas2D& canvas)
 {
-#if CONFIG2_GLES
-#warning TODO: implement Atlas game overlays for GLES
-#else
-	if (m_BandboxArray.empty())
+	if (m_Bandbox.left >= m_Bandbox.right || m_Bandbox.top >= m_Bandbox.bottom)
 		return;
 
-	// Set up transform for overlays
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-	CMatrix3D transform;
-	transform.SetIdentity();
-	transform.Scale(1.0f, -1.f, 1.0f);
-	transform.Translate(0.0f, (float)g_yres, -1000.0f);
-	CMatrix3D proj;
-	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
-	transform = proj * transform;
-	glLoadMatrixf(&transform._11);
+	const std::vector<CVector2D> outerPoints = {
+		m_Bandbox.TopLeft() + CVector2D(-1.0f, -1.0f),
+		m_Bandbox.TopRight() + CVector2D(1.0f, -1.0f),
+		m_Bandbox.BottomRight() + CVector2D(1.0f, 1.0f),
+		m_Bandbox.BottomLeft() + CVector2D(-1.0f, 1.0f),
+		m_Bandbox.TopLeft() + CVector2D(-1.0f, -1.0f)
+	};
+	canvas.DrawLine(outerPoints, 1.5f, CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_VERTEX_ARRAY);
-
-	// Render bandbox as array of lines
-	glVertexPointer(2, GL_FLOAT, sizeof(SBandboxVertex), &m_BandboxArray[0].x);
-	glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(SBandboxVertex), &m_BandboxArray[0].r);
-
-	glDrawArrays(GL_LINES, 0, m_BandboxArray.size());
-
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
-#endif
+	const std::vector<CVector2D> innerPoints = {
+		m_Bandbox.TopLeft(),
+		m_Bandbox.TopRight(),
+		m_Bandbox.BottomRight(),
+		m_Bandbox.BottomLeft(),
+		m_Bandbox.TopLeft()
+	};
+	canvas.DrawLine(innerPoints, 1.5f, CColor(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void AtlasViewGame::SetParam(const std::wstring& name, bool value)
@@ -413,8 +394,6 @@ std::wstring AtlasViewGame::DumpState(bool binary)
 
 void AtlasViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float y1)
 {
-	m_BandboxArray.clear();
-
 	if (visible)
 	{
 		// Make sure corners are arranged in correct order
@@ -423,24 +402,11 @@ void AtlasViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float
 		if (y0 > y1)
 			std::swap(y0, y1);
 
-		// Bandbox is draw as lines comprising two rectangles
-		SBandboxVertex vert[] = {
-			// Black - outer rectangle
-			SBandboxVertex(x0, y0, 0, 0, 0, 255), SBandboxVertex(x1, y0, 0, 0, 0, 255), SBandboxVertex(x1, y1, 0, 0, 0, 255), SBandboxVertex(x0, y1, 0, 0, 0, 255),
-			// White - inner rectangle
-			SBandboxVertex(x0+1.0f, y0+1.0f, 255, 255, 255, 255), SBandboxVertex(x1-1.0f, y0+1.0f, 255, 255, 255, 255), SBandboxVertex(x1-1.0f, y1-1.0f, 255, 255, 255, 255), SBandboxVertex(x0+1.0f, y1-1.0f, 255, 255, 255, 255)
-		};
-
-		for (size_t i = 0; i < 4; ++i)
-		{
-			m_BandboxArray.push_back(vert[i]);
-			m_BandboxArray.push_back(vert[(i+1)%4]);
-		}
-		for (size_t i = 0; i < 4; ++i)
-		{
-			m_BandboxArray.push_back(vert[i+4]);
-			m_BandboxArray.push_back(vert[(i+1)%4+4]);
-		}
+		m_Bandbox = CRect(x0, y0, x1, y1);
+	}
+	else
+	{
+		m_Bandbox = CRect{};
 	}
 }
 
