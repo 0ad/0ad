@@ -177,7 +177,7 @@ void CSoundBase::SetDirection(const CVector3D& direction)
 	if ( m_ALSource )
 	{
 		std::lock_guard<std::mutex> lock(m_ItemMutex);
-		alSourcefv(m_ALSource, AL_DIRECTION, direction.GetFloatArray());
+		alSourcefv(m_ALSource, AL_DIRECTION, direction.AsFloatArray());
 		AL_CHECK;
 	}
 }
@@ -212,7 +212,7 @@ void CSoundBase::SetLocation (const CVector3D& position)
 	if ( m_ALSource != 0 )
 	{
 		std::lock_guard<std::mutex> lock(m_ItemMutex);
-		alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
+		alSourcefv(m_ALSource,AL_POSITION, position.AsFloatArray());
 		AL_CHECK;
 	}
 }
