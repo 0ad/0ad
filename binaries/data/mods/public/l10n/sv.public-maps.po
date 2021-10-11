@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-10-07 22:53+0000\n"
+"PO-Revision-Date: 2021-10-10 22:34+0000\n"
 "Last-Translator: Albin Nilsson <abbin44@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -883,7 +883,7 @@ msgstr "En region i de höga snöiga bergen. Iskalla vindar blåser genom de rik
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Arctic"
-msgstr ""
+msgstr "Arktis"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -897,7 +897,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Rhine Valley (Fall)"
-msgstr ""
+msgstr "Rhendalen (Höst)"
 
 #: maps/random/rmbiome/generic/india.jsonDescription.Description
 msgctxt "biome definition"
@@ -937,7 +937,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Sahara"
-msgstr ""
+msgstr "Sahara"
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Description
 msgctxt "biome definition"
@@ -1161,7 +1161,7 @@ msgstr "Det okända."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
-msgstr ""
+msgstr "Välj ett slumpmässigt landskap"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
@@ -1235,7 +1235,7 @@ msgstr "Slumpmässigt land"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr ""
+msgstr "Välj ett slumpmässigt havs-landskap"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
@@ -2310,7 +2310,7 @@ msgstr ""
 
 #: maps/scenarios/unit_chasing_test.xml:Name:40
 msgid "Unit Chasing test"
-msgstr ""
+msgstr "Jagande Enhetstest"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
@@ -2375,29 +2375,29 @@ msgstr "We Are Legion"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)soch deras allierade har tagit alla reliker och kommer att vinna om %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)shar tagit alla reliker och kommer att vinna om %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Du och dina allierade har tagit alla reliker och kommer att vinna om %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Du har tagit alla reliker och kommer att vinna om %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s har vunnit (Ta reliken)."
+msgstr[1] "%(players)s och %(lastPlayer)s har vunnit (Ta reliken)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2437,7 +2437,7 @@ msgstr ""
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr ""
+msgstr "%(player)s har blivit besegrad (förlorat alla enheter)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
@@ -2447,49 +2447,49 @@ msgstr ""
 #: maps/scripts/Regicide.js:130
 #, javascript-format
 msgid "%(player)s has been defeated (lost hero)."
-msgstr ""
+msgstr "%(player)s har blivit besegrad (förlorat hjälte)."
 
 #: maps/scripts/WonderVictory.js:80
 #, javascript-format
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s äger ett under och %(_player_)s och deras allierade kommer att vinna om %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s äger ett under och kommer att vinna om %(time)s."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s äger ett under och kommer att vinna om %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "Du äger ett under och du och dina allierade kommer att vinna om %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "Du äger ett Under och kommer att vinna om %(time)s."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s har vunnit (under-seger)."
+msgstr[1] "%(players)s och %(lastPlayer)s har vunnit (under-seger)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s har blivit besegrad (under-seger)."
+msgstr[1] "%(players)s och %(lastPlayer)s har blivit besegrade (under-seger)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""
