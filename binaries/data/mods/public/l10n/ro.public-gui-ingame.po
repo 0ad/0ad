@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-10-07 15:47+0000\n"
+"PO-Revision-Date: 2021-10-09 12:39+0000\n"
 "Last-Translator: Simona Iacob <s@zp1.net>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -1497,9 +1497,9 @@ msgstr ""
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Aici este %(numberTrading)s un comerciant de terenuri"
+msgstr[1] "Aici este %(numberTrading)s un comerciant de terenuri"
+msgstr[2] "Aici sunt %(numberTrading)s comercianți de pământ care fac comerț"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1513,9 +1513,9 @@ msgstr[2] "%(numberOfLandTraders)s de inactivi"
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberOfLandTraders)s comerciant de terenuri inactiv"
+msgstr[1] "%(numberOfLandTraders)s comerciant de terenuri inactiv"
+msgstr[2] "%(numberOfLandTraders)s comercianți de pământ inactivi"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1533,9 +1533,9 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Aici este %(numberGarrisoned)s un comerciant terestru în garnizoană pe o navă comercială de comerț"
+msgstr[1] "Aici este %(numberGarrisoned)s un comerciant terestru în garnizoană pe o navă comercială de comerț"
+msgstr[2] "Acolo sunt %(numberGarrisoned)s comercianți de terenuri în garnizoană pe o navă comercială de comerț"
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format

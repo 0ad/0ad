@@ -120,8 +120,19 @@ class CVector3D
 		void Normalize();
 		CVector3D Normalized() const;
 
-		// Returns 3 element array of floats, e.g. for glVertex3fv
-		const float* GetFloatArray() const { return &X; }
+		// Returns 3 element array of floats, e.g. for vec3 uniforms.
+		const float* AsFloatArray() const
+		{
+			// Additional check to prevent a weird compiler has a different
+			// alignement for an array and a class members.
+			static_assert(
+				sizeof(CVector3D) == sizeof(float) * 3u &&
+				offsetof(CVector3D, X) == 0 &&
+				offsetof(CVector3D, Y) == sizeof(float) &&
+				offsetof(CVector3D, Z) == sizeof(float) * 2u,
+				"Vector3D should be properly layouted to use AsFloatArray");
+			return &X;
+		}
 };
 
 extern float MaxComponent(const CVector3D& v);

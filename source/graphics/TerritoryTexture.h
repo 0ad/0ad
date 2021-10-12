@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,14 +52,14 @@ public:
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) texture
-	 * coordinates, in the form expected by glLoadMatrixf.
+	 * coordinates, in the form expected by a matrix uniform.
 	 * This must only be called after BindTexture.
 	 */
 	const float* GetTextureMatrix();
 
 	/**
 	 * Returns a matrix to map (0,0)-(1,1) texture coordinates onto texture
-	 * coordinates, in the form expected by glLoadMatrixf.
+	 * coordinates, in the form expected by a matrix uniform.
 	 * This must only be called after BindTexture.
 	 */
 	const CMatrix3D* GetMinimapTextureMatrix();

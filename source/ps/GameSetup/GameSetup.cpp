@@ -26,6 +26,7 @@
 #include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/CinemaManager.h"
 #include "graphics/Color.h"
 #include "graphics/GameView.h"
@@ -265,7 +266,8 @@ void Render()
 	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
-		g_AtlasGameLoop->view->DrawOverlays();
+		CCanvas2D canvas;
+		g_AtlasGameLoop->view->DrawOverlays(canvas);
 		ogl_WarnIfError();
 	}
 

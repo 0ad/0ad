@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -181,7 +181,7 @@ public:
 	void SetIdentity();
 	// set this matrix to the zero matrix
 	void SetZero();
-	// set this matrix to the orthogonal projection matrix (as with glOrtho)
+	// set this matrix to the orthogonal projection matrix
 	void SetOrtho(float left, float right, float bottom, float top, float near, float far);
 	// set this matrix to the perspective projection matrix
 	void SetPerspective(float fov, float aspect, float near, float far);

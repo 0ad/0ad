@@ -65,8 +65,20 @@ struct CColor
 		return !(*this == color);
 	}
 
-	// For passing to glColor[34]fv:
-	const float* FloatArray() const { return &r; }
+	// For passing to uniform as vec3/vec4.
+	const float* AsFloatArray() const
+	{
+		// Additional check to prevent a weird compiler has a different
+		// alignement for an array and a class members.
+		static_assert(
+			sizeof(CColor) == sizeof(float) * 4u &&
+			offsetof(CColor, r) == 0 &&
+			offsetof(CColor, g) == sizeof(float) &&
+			offsetof(CColor, b) == sizeof(float) * 2u &&
+			offsetof(CColor, a) == sizeof(float) * 3u,
+			"CColor should be properly layouted to use AsFloatArray");
+		return &r;
+	}
 
 	// For passing to CRenderer:
 	SColor4ub AsSColor4ub() const
