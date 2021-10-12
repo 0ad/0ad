@@ -301,11 +301,20 @@ function displaySingle(entState)
 	Engine.GetGUIObjectByName("playerColorBackground").sprite =
 		"color:" + g_DiplomacyColors.getPlayerColor(entState.player, 128);
 
-	Engine.GetGUIObjectByName("primary").caption = primaryName;
-	Engine.GetGUIObjectByName("secondary").caption = !secondaryName || primaryName == secondaryName ? "" :
+	const hideSecondary = !secondaryName || primaryName == secondaryName;
+
+	const primaryObject = Engine.GetGUIObjectByName("primary");
+	primaryObject.caption = primaryName;
+	const primaryObjectSize = primaryObject.size;
+	primaryObjectSize.rbottom = hideSecondary ? 100 : 50;
+	primaryObject.size = primaryObjectSize;
+
+	const secondaryObject = Engine.GetGUIObjectByName("secondary");
+	secondaryObject.caption = hideSecondary ? "" :
 		sprintf(translate("(%(secondaryName)s)"), {
 			"secondaryName": secondaryName
 		});
+	secondaryObject.hidden = hideSecondary;
 
 	let isGaia = playerState.civ == "gaia";
 	Engine.GetGUIObjectByName("playerCivIcon").sprite = isGaia ? "" : "cropped:1.0, 0.15625 center:grayscale:" + civEmblem;
