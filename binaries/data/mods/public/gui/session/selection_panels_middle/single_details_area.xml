@@ -18,9 +18,9 @@
 		</object>
 
 		<!-- Primary and secondary names. -->
-		<object>
-			<object size="0 2 100% 22" name="primary" ghost="true" type="text" style="PrimaryNameCentered"/>
-			<object size="0 17 100% 37" name="secondary" ghost="true" type="text" style="SecondaryNameCentered"/>
+		<object size="0 3 100% 37">
+			<object size="0 0 100% 50%" name="primary" ghost="true" type="text" style="PrimaryNameCentered"/>
+			<object size="0 50%-1 100% 100%" name="secondary" ghost="true" type="text" style="SecondaryNameCentered"/>
 		</object>
 	</object>
 
