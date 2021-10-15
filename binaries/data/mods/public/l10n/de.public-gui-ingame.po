@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Aldicek <aldicek@ewt-net.de>, 2014
-# Alexander Heinsius <elexis1987@gmx.de>, 2016
+# Alexander Heinsius, 2016
 # Wuzzy <almikes@aol.com>, 2015-2018
 # Almin <GermannenMarkus@googlemail.com>, 2013
 # Ankomias, 2014
@@ -81,9 +81,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 09:42+0000\n"
-"Last-Translator: Heraklit of Ephesos\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 07:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,11 +214,18 @@ msgstr "Spiel pausiert"
 msgid "Click to Resume Game"
 msgstr "Klicken zum Fortsetzen"
 
-#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
+#: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
+
+#. Translation: String displayed when the research is paused. E.g. by being
+#. garrisoned or
+#. when not the first item in the queue.
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+msgid "(This item is paused.)"
+msgstr ""
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -1111,7 +1118,7 @@ msgstr "%(name)s ausquartieren"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klicke, um 1 Einheit auszuquartieren. Umschalt+Klick, um alle Einheiten dieses Typs auszuquartieren."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Spieler: %(playername)s"
@@ -1153,56 +1160,56 @@ msgstr "Unzureichendes Bevölkerungslimit:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:759
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s Entität der Klasse %(class)s"
 msgstr[1] "%(number)s Entitäten der Klasse %(class)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:777
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Verbleibend: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:766
+#: gui/session/selection_panels.js:778
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:818
+#: gui/session/selection_panels.js:830
 msgid "Cannot research while upgrading."
 msgstr "Während des Aufrüstens kann nicht geforscht werden."
 
-#: gui/session/selection_panels.js:1043
+#: gui/session/selection_panels.js:1060
 msgid "Cannot train while upgrading."
 msgstr "Während des Aufrüstens kann nicht ausgebildet werden."
 
-#: gui/session/selection_panels.js:1112
+#: gui/session/selection_panels.js:1129
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Aktualisieren zu %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1118
+#: gui/session/selection_panels.js:1135
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Aktualisieren zu %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1126
+#: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Aktualisieren zu %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Aktualisieren zu %(primaryName)s."
 
-#: gui/session/selection_panels.js:1168
+#: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
 msgstr "Aufrüstung Beenden"
 
-#: gui/session/selection_panels.js:1183
+#: gui/session/selection_panels.js:1200
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1472,23 +1479,23 @@ msgstr "Zuschauermodus"
 msgid "Choose player to view"
 msgstr "Spieler zum Zuschauen wählen"
 
-#: gui/session/trade/BarterButton.js:100
+#: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Kaufe %(resource)s"
 
-#: gui/session/trade/BarterButton.js:101
+#: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Verkaufe %(resource)s"
 
-#: gui/session/trade/BarterButton.js:102
+#: gui/session/trade/BarterButton.js:110
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
 msgstr "+%(amount)s"
 
-#: gui/session/trade/BarterButton.js:103
+#: gui/session/trade/BarterButton.js:111
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"

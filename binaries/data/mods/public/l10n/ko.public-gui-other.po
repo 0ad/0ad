@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-24 07:08+0000\n"
-"PO-Revision-Date: 2021-09-24 20:04+0000\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 15:25+0000\n"
 "Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -407,7 +407,7 @@ msgstr "사용안함"
 #: gui/common/tooltips.js:669 gui/common/tooltips.js:675
 #: gui/common/tooltips.js:762 gui/common/tooltips.js:813
 #: gui/common/tooltips.js:834 gui/common/tooltips.js:858
-#: gui/common/tooltips.js:1185
+#: gui/common/tooltips.js:1191
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -550,9 +550,10 @@ msgstr "사용자 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:417 gui/common/tooltips.js:431
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:511
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
-#: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
-#: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
-#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:284
+#: gui/common/tooltips.js:1022 gui/common/tooltips.js:1027
+#: gui/common/tooltips.js:1060 gui/common/tooltips.js:1156
+#: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
+#: gui/replaymenu/replay_menu.js:284
 msgid ", "
 msgstr ", "
 
@@ -717,7 +718,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:103 gui/common/tooltips.js:564
-#: gui/common/tooltips.js:1052
+#: gui/common/tooltips.js:1058
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "초"
@@ -814,7 +815,7 @@ msgstr "차단: %(blockPercentage)s%%, 기간 단축: %(durationReduction)s%%"
 msgid "Garrison to fire arrows"
 msgstr "화살을 퍼붓는 주둔지"
 
-#: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
 msgstr "간격:"
 
@@ -864,7 +865,7 @@ msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:356 gui/common/tooltips.js:1045
+#: gui/common/tooltips.js:356 gui/common/tooltips.js:1051
 msgid "Range:"
 msgstr "범위:"
 
@@ -879,8 +880,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "미터"
 
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:1047
-#: gui/common/tooltips.js:1077
+#: gui/common/tooltips.js:364 gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1083
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "미터"
@@ -1001,7 +1002,7 @@ msgstr "주둔지 제한"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:561 gui/common/tooltips.js:1040
+#: gui/common/tooltips.js:561 gui/common/tooltips.js:1046
 msgid "Heal:"
 msgstr "회복:"
 
@@ -1197,110 +1198,115 @@ msgstr "인구 보너스:"
 msgid "Insufficient resources:"
 msgstr "부족한 자원:"
 
-#: gui/common/tooltips.js:1014
+#: gui/common/tooltips.js:1015
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:1015
+#: gui/common/tooltips.js:1016
 msgid "Speed:"
 msgstr "이동 속도:"
 
-#: gui/common/tooltips.js:1017 gui/common/tooltips.js:1022
+#: gui/common/tooltips.js:1018 gui/common/tooltips.js:1023
+#: gui/common/tooltips.js:1028
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:1019
+#: gui/common/tooltips.js:1020
 msgid "Walk"
 msgstr "걷기"
 
-#: gui/common/tooltips.js:1024
+#: gui/common/tooltips.js:1025
 msgid "Run"
 msgstr "뛰기"
 
-#: gui/common/tooltips.js:1039 gui/common/tooltips.js:1044
-#: gui/common/tooltips.js:1049 gui/common/tooltips.js:1074
+#: gui/common/tooltips.js:1030
+msgid "Acceleration"
+msgstr "가속도"
+
+#: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
 msgstr[0] "체력"
 
-#: gui/common/tooltips.js:1066
+#: gui/common/tooltips.js:1072
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1073
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1075
+#: gui/common/tooltips.js:1081
 msgctxt "aura"
 msgid "Range:"
 msgstr "범위:"
 
-#: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
+#: gui/common/tooltips.js:1104 gui/common/tooltips.js:1132
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s (%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
+#: gui/common/tooltips.js:1108 gui/common/tooltips.js:1125
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1149
+#: gui/common/tooltips.js:1155
 msgid "Classes:"
 msgstr "분류:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1176
+#: gui/common/tooltips.js:1182
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1186
+#: gui/common/tooltips.js:1192
 msgid "Loot:"
 msgstr "이 유닛이 약탈 당했을때 보상:"
 
-#: gui/common/tooltips.js:1196
+#: gui/common/tooltips.js:1202
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1197
+#: gui/common/tooltips.js:1203
 msgid "Dropsite for:"
 msgstr "회수 시설:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1205
+#: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
 msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭하십시오."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1211
+#: gui/common/tooltips.js:1217
 msgid "Click to view more information."
 msgstr "클릭하면 더 많은 정보를 볼 수 있습니다."
 
-#: gui/common/tooltips.js:1220
+#: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
 msgid "M"
 msgstr "M"
 
-#: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
+#: gui/common/tooltips.js:1229 gui/common/tooltips.js:1232
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
 msgstr "k"
@@ -2244,7 +2250,7 @@ msgstr "게임 내"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr "다른 작업 대신 공격하게 변경합니다(예: 포획)."
+msgstr "다른 작업 대신 공격하도록 변경합니다.(예: 포획)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -2317,7 +2323,7 @@ msgstr "군대 동원"
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr "선택하는 대신 그룹 아이콘을 클릭할때 유닛을 선택취소하기 위해  변경합니다."
+msgstr "선택하는 대신 그룹 아이콘을 클릭할때 유닛을 선택취소하도록 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
@@ -2437,7 +2443,7 @@ msgstr "확인 없이 파기"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr "포탑 홀더를 클릭할 때 포탑을 점령하도록 변경했습니다."
+msgstr "포탑 홀더를 클릭할 때 포탑을 점령하도록 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
@@ -2457,7 +2463,7 @@ msgstr "하나의 유닛 명령"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr "유닛을 순찰하게 변경합니다."
+msgstr "유닛을 순찰하도록 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2477,7 +2483,7 @@ msgstr "앞에 순서를 밀어넣기"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr "교체하는 대신 유닛 명령을 대기열에 추가하기 위해 변경합니다."
+msgstr "교체하는 대신 유닛 명령을 대기열에 추가하도록 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
@@ -2669,7 +2675,7 @@ msgstr "포탑 내리기"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr "유형의 모든 유닛을 언로드하기 위해 변경합니다."
+msgstr "특정 유형의 모든 유닛을 보내기 위해 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
@@ -3432,8 +3438,8 @@ msgstr "선택에서 유닛 제거"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
-msgid "Select only one entity of a formation."
-msgstr "대형의 개체를 하나만 선택하십시오."
+msgid "Modifier to select units individually, opposed to per formation."
+msgstr "대형이 아닌 개별적으로 유닛을 선택하도록 변경합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
@@ -6360,7 +6366,7 @@ msgstr "낚시배는 출항 할때마다 많은 양의 식량을 운반합니다
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "밭에서 먹이를 모으는 것보다 낚시가 더 빠릅니다."
+msgstr "낚시는 들판에서 먹이를 모으는 것보다 빠릅니다."
 
 #: gui/text/tips/fishing.txt:5
 msgid ""
@@ -6388,6 +6394,10 @@ msgstr "대형"
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
 msgstr "병사를 대형으로 배치하여 전투 중에 조직을 유지하십시오."
+
+#: gui/text/tips/formations.txt:3
+msgid "Formations are selected as a whole by default."
+msgstr "대형이 기본적으로 전체로서 선택됩니다."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6730,7 +6740,7 @@ msgstr "작은 도시 단계 건축물입니다."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr "전장에서 당신의 군대를 치유할 치료사를 모집합니다."
+msgstr "전장에서 병력을 치료할 치료사를 모집합니다."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -6846,7 +6856,7 @@ msgstr "사냥감의 바다 주위를 돌아다니다가 공격받으면 도망�
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "짐승, 딸기나무, 물고기, 밭에서 거둡니다."
+msgstr "짐승, 딸기 덤불, 물고기 또는 밭에서 수확합니다."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

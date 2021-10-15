@@ -11,6 +11,7 @@
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018,2021
 # omidh <omid_h28@hotmail.com>, 2013
+# saeed fatemi, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 # Aryan Mn <aarmn80@gmail.com>, 2018
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 07:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-14 17:50+0000\n"
+"Last-Translator: saeed fatemi\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgstr "تنظیمات"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "کلید های ترکیبی"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -98,7 +99,7 @@ msgstr "خروج"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "تاخیردر نمایش زنده : %(delay)sها"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -151,11 +152,18 @@ msgstr "بازی متوقف شد"
 msgid "Click to Resume Game"
 msgstr "برای ادامه بازی کلیک کنید"
 
-#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
+#: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
+
+#. Translation: String displayed when the research is paused. E.g. by being
+#. garrisoned or
+#. when not the first item in the queue.
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+msgid "(This item is paused.)"
+msgstr "(این تکه متوقف شده است)"
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -348,21 +356,21 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sاز حیوانات اهلی شما مورد حمله واقع شده اند به وسیله%(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sشما مورد حمله واقه شده است به وسیله%(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "برای تمرکز بر روی واحد مورد حمله واقع شده کلیک کنید."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)sمعامله نموده اند%(amountGiven)sبرای %(amountGained)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -542,7 +550,7 @@ msgstr "فعال کردن تغییر زمان"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "آزمایش برای پیوستن مجدد"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -558,11 +566,11 @@ msgstr "Lock cull camera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr "نمایش دادن دوربین مخروط ناقص"
+msgstr "نمایش ذرات کوچک بوسیله دوربین"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "سایه ها را نشان بده"
+msgstr "نمایش سایه های ذرات کوچک"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -778,7 +786,7 @@ msgstr "Out of Sync"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr "همجمان کرده نشده"
+msgstr "همگام سازی نشده است"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -873,22 +881,22 @@ msgstr "بازیکن ناشناخته"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr ""
+msgstr "فرستادن آتش برای متحدان شما"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "پیدا کردن کارگران بیکار\nتعداد کارگران بیکار"
 
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s— بسته بندی شده"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "بسته بندی شده"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -951,7 +959,7 @@ msgstr "بدست آورد: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -960,7 +968,7 @@ msgstr "جمع کننده های منابع فعلی / بیشترین"
 #: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:452
 msgid "Capture Points:"
@@ -969,11 +977,11 @@ msgstr "امتیاز تسخیر:"
 #: gui/session/selection_details.js:460
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s:%(details)s\n"
 
 #: gui/session/selection_details.js:461
 msgid "Garrison Size"
-msgstr ""
+msgstr "اندازه پادگان"
 
 #: gui/session/selection_details.js:466
 #, javascript-format
@@ -1025,19 +1033,19 @@ msgstr "پایان خطر."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "صف آرایی پیش فرض غیرفعال شده است"
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "برای غیر فعال کردن حالت صف آرایی پیش فرض راست کلیک کنید"
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr " حالت صف آرایی پیش فرض ، برای دستور حرکت استفاده شده  است"
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "برای تنظیم حالت صف آرایی پیش فرض راست کلیک کنید"
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1048,7 +1056,7 @@ msgstr "خارج کردن %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "یک بار کلیک کنید تا 1 نفر خارج شود. هنگام کلیک شیفت را نگه دارید تا همه نیروهای از نوع خارج شوند."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "بازیکن: %(playername)s"
@@ -1079,7 +1087,7 @@ msgstr "لغو بازکردن"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "برای آموزش مجدد این تکه بعداً تلاش کنید"
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1090,56 +1098,56 @@ msgstr "جای کافی موجود نیست:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:759
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s وجود کلاس %(class)s"
 msgstr[1] "%(number)s وجود کلاس %(class)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:777
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "باقی مانده: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:766
+#: gui/session/selection_panels.js:778
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "،"
 
-#: gui/session/selection_panels.js:818
+#: gui/session/selection_panels.js:830
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "در زمان ارتقاء امکان جستجو وجود ندارد"
 
-#: gui/session/selection_panels.js:1043
+#: gui/session/selection_panels.js:1060
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "در زمان ارتقاء نمی توانید آموزش ببینید"
 
-#: gui/session/selection_panels.js:1112
+#: gui/session/selection_panels.js:1129
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "ارتقاء به یک%(primaryName)s(%(secondaryName)s)،%(tooltip)s"
 
-#: gui/session/selection_panels.js:1118
+#: gui/session/selection_panels.js:1135
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "ارتقاء به یک%(primaryName)s(%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1126
+#: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "ارتقاء به یک %(primaryName)s،%(tooltip)s"
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "ارتقاء به یک%(primaryName)s."
 
-#: gui/session/selection_panels.js:1168
+#: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
 msgstr "لغو ارتقا"
 
-#: gui/session/selection_panels.js:1183
+#: gui/session/selection_panels.js:1200
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1409,23 +1417,23 @@ msgstr "مد نظاره گر"
 msgid "Choose player to view"
 msgstr "یک بازیکن را برای مشاهده انتخاب کنید"
 
-#: gui/session/trade/BarterButton.js:100
+#: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "خرید %(resource)s"
 
-#: gui/session/trade/BarterButton.js:101
+#: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "فروش %(resource)s"
 
-#: gui/session/trade/BarterButton.js:102
+#: gui/session/trade/BarterButton.js:110
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
 msgstr "+%(amount)s"
 
-#: gui/session/trade/BarterButton.js:103
+#: gui/session/trade/BarterButton.js:111
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"

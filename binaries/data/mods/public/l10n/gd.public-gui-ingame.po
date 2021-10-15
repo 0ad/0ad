@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 07:24+0000\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 07:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -144,11 +144,18 @@ msgstr "Tha an geama ’na stad"
 msgid "Click to Resume Game"
 msgstr "Briog gus leantainn air adhart leis a’ gheama"
 
-#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
+#: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
+
+#. Translation: String displayed when the research is paused. E.g. by being
+#. garrisoned or
+#. when not the first item in the queue.
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+msgid "(This item is paused.)"
+msgstr ""
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -1045,7 +1052,7 @@ msgstr "A-mach le %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Briog aon turas ach an dig 1 dhiubh a-mach. Shift-bhriog ach an dig gach saighdear dhen t-seòrsa seo a-mach."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Cluicheadair: %(playername)s"
@@ -1087,7 +1094,7 @@ msgstr "Chan fhoghainn an tomhas-sluaigh:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:759
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1096,49 +1103,49 @@ msgstr[1] "%(number)s eintiteas dhen chlas %(class)s"
 msgstr[2] "%(number)s eintiteasan dhen chlas %(class)s"
 msgstr[3] "%(number)s eintiteas dhen chlas %(class)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:777
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Air fhàgail: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:766
+#: gui/session/selection_panels.js:778
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:818
+#: gui/session/selection_panels.js:830
 msgid "Cannot research while upgrading."
 msgstr "Chan urrainn dhut rannsachadh fhad ’s a tha thu ag àrdachadh."
 
-#: gui/session/selection_panels.js:1043
+#: gui/session/selection_panels.js:1060
 msgid "Cannot train while upgrading."
 msgstr "Chan urrainn dhut trèanadh fhad ’s a tha thu ag àrdachadh."
 
-#: gui/session/selection_panels.js:1112
+#: gui/session/selection_panels.js:1129
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Àrdaich gu %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1118
+#: gui/session/selection_panels.js:1135
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Àrdaich gu %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1126
+#: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Àrdaich gu %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Àrdaich gu %(primaryName)s."
 
-#: gui/session/selection_panels.js:1168
+#: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
 msgstr "Sgur dhen àrdachadh"
 
-#: gui/session/selection_panels.js:1183
+#: gui/session/selection_panels.js:1200
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1422,23 +1429,23 @@ msgstr "Modh amhairc"
 msgid "Choose player to view"
 msgstr "Tagh cluicheadair airson a shealltainn"
 
-#: gui/session/trade/BarterButton.js:100
+#: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Ceannaich %(resource)s"
 
-#: gui/session/trade/BarterButton.js:101
+#: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Reic %(resource)s"
 
-#: gui/session/trade/BarterButton.js:102
+#: gui/session/trade/BarterButton.js:110
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
 msgstr "+%(amount)s"
 
-#: gui/session/trade/BarterButton.js:103
+#: gui/session/trade/BarterButton.js:111
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"

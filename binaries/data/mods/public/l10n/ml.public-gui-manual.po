@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 09:17+0000\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 09:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -476,250 +476,262 @@ msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid ""
+"  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
+"in front of the order queue."
+msgstr ""
+
+#: gui/manual/intro.txt:105
+msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr ""
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr ""
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr ""
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr ""
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr ""
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr ""
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr ""
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr ""
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
+msgid ""
+"  hotkey.selection.singleselection – Modifier to select units individually, "
+"opposed to per formation."
+msgstr ""
+
+#: gui/manual/intro.txt:114
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr ""
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr ""
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr ""
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr ""
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:118
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr ""
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:119
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr ""
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
 msgstr ""
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:122
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:123
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr ""
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr ""
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr ""
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr ""
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:127
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr ""
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr ""
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:129
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr ""
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:130
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr ""
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:132
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr ""
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr ""
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr ""
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr ""
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr ""
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:138
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr ""
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr ""
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr ""
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr ""
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:145
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr ""
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr ""
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:147
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr ""
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:150
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr ""
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:151
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr ""
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:152
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr ""
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr ""
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"
 msgstr ""
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:156
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr ""
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:157
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
