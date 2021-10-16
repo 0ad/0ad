@@ -4,21 +4,21 @@
 # project.
 # Translators:
 # CAGD_lulofun滷肉飯 <cagd.lulofun@gmail.com>, 2019
-# Yuan <daan0014119@gmail.com>, 2017
+# Yuan Chang <daan0014119@gmail.com>, 2017
 # 黃柏諺 <s8321414@gmail.com>, 2014-2018
 # JerryShen <jerry82422@gmail.com>, 2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018,2021
 # StarAtt <tea55688@gmail.com>, 2021
 # WY Liu <amberwyliu@icloud.com>, 2020
-# Yuan <daan0014119@gmail.com>, 2020-2021
+# Yuan Chang <daan0014119@gmail.com>, 2020-2021
 # 張峻瑜 <a728728728@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-12 03:40+0000\n"
-"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -485,250 +485,262 @@ msgstr "  hotkey.session.queue + 右鍵 – 排程移動／建造／採集／等
 
 #: gui/manual/intro.txt:104
 msgid ""
+"  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
+"in front of the order queue."
+msgstr ""
+
+#: gui/manual/intro.txt:105
+msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
 msgstr "  hotkey.session.orderone + 右鍵 – 命令選取單位的其中一個移動／建造／採集／等等並取消選取。用以快速派遣單位執行特定任務"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
 msgstr "  訓練單位時按 hotkey.session.batchtrain + 左鍵點擊 – 批量增加訓練數（預設為 5，可在選項中更改）"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
 msgstr "  hotkey.selection.add + 左鍵點擊或框選地圖上的單位 – 將單位加到選取中"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
 msgstr "  hotkey.selection.remove + 左鍵點擊或框選地圖上的單位 – 從選取中移除單位"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
 msgstr "  hotkey.selection.militaryonly + 左鍵框選地圖上的單位 – 只選擇軍事單位"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
 msgstr "  hotkey.selection.nonmilitaryonly + 左鍵框選地圖上的單位 – 只選擇非軍事單位"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
 msgstr "  hotkey.selection.idleonly + 左鍵框選地圖上的單位 – 只選擇閒置單位"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
 msgstr "  hotkey.selection.woundedonly + 左鍵框選地圖上的單位 – 只選擇負傷單位"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
+msgid ""
+"  hotkey.selection.singleselection – Modifier to select units individually, "
+"opposed to per formation."
+msgstr ""
+
+#: gui/manual/intro.txt:114
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "  選取建築時在地圖上按右鍵 – 設定生產／卸載單位的集結點。"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr "  選取單位時按 hotkey.session.garrison + 右鍵 – 駐紮（如果游標在我方或盟友建築上）"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr "  選取單位時按 hotkey.session.attack + 右鍵 – 攻擊（而非佔領或採集）"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr "  選取單位時按 hotkey.session.attackmove + 右鍵 – 攻擊移動（預設情況路徑上的所有敵方單位和建築皆為目標）"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:118
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr "  選取單位時按 hotkey.session.attackmoveUnit + 右鍵 – 攻擊移動，只有單位為目標"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:119
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr "  hotkey.session.snaptoedges + 游標靠近建築 – 將新建築與附近的一個建築對齊"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:120
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
 msgstr "  hotkey.session.flare + 右鍵點擊 – 向你的盟友發送信號彈"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:122
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]介面[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:123
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – 開關圖形介面"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr "  hotkey.session.devcommands.toggle – 開關開發者介面（含開發者選項）"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  hotkey.wireframe – 切換線框模式（按一次使線框層覆蓋材質模型，按兩次只顯示材質上色的線框，按三次以回到一般材質模式）"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr "  hotkey.silhouettes – 開關單位輪廓（可能稍為提升效能）"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:127
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – 開關外交色"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – 開關顯示所選單傡和建築的攻擊範圍"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:129
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – 開關顯示所選單傡和建築的光環範圍"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:130
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – 開關顯示所選單位和建築的治療範圍"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:132
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]鏡頭操作[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – 上移鏡頭"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – 下移鏡頭"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – 左移鏡頭"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – 右移鏡頭"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – 向上旋轉鏡頭"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:138
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – 向下旋轉鏡頭"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.cw – 繞地形順時針旋轉鏡頭"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – 繞地形逆時針旋轉鏡頭"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – 繞地形順時針旋轉鏡頭"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – 繞地形逆時針旋轉鏡頭"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – 跟隨選取的單位（移動鏡頭以停止）"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:144
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – 重置鏡頭縮放與方向"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:145
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – 放大（按住以持續）"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – 縮小（按住以持續）"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:147
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – 按住並移動滑鼠以平移鏡頭"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]放置建築時[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:150
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – 逆時針旋轉建築 15 度"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:151
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – 順時針旋轉建築 15 度"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:152
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  左鍵拖曳 – 用滑鼠旋轉建築（地基會在滑鼠放開時放置）"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]載入遊戲存檔時[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"
 msgstr "  hotkey.cancel – 取消"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:156
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – 刪除選取的遊戲存檔，詢問是否確定"
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:157
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

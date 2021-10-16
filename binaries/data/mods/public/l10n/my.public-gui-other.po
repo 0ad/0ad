@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-24 07:08+0000\n"
-"PO-Revision-Date: 2021-09-24 08:25+0000\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 08:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Burmese (http://www.transifex.com/wildfire-games/0ad/language/my/)\n"
 "MIME-Version: 1.0\n"
@@ -386,7 +386,7 @@ msgstr ""
 #: gui/common/tooltips.js:669 gui/common/tooltips.js:675
 #: gui/common/tooltips.js:762 gui/common/tooltips.js:813
 #: gui/common/tooltips.js:834 gui/common/tooltips.js:858
-#: gui/common/tooltips.js:1185
+#: gui/common/tooltips.js:1191
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -529,9 +529,10 @@ msgstr ""
 #: gui/common/tooltips.js:417 gui/common/tooltips.js:431
 #: gui/common/tooltips.js:506 gui/common/tooltips.js:511
 #: gui/common/tooltips.js:568 gui/common/tooltips.js:629
-#: gui/common/tooltips.js:1021 gui/common/tooltips.js:1054
-#: gui/common/tooltips.js:1150 gui/loadgame/SavegameDetails.js:41
-#: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:284
+#: gui/common/tooltips.js:1022 gui/common/tooltips.js:1027
+#: gui/common/tooltips.js:1060 gui/common/tooltips.js:1156
+#: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
+#: gui/replaymenu/replay_menu.js:284
 msgid ", "
 msgstr ""
 
@@ -696,7 +697,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
 
 #: gui/common/tooltips.js:103 gui/common/tooltips.js:564
-#: gui/common/tooltips.js:1052
+#: gui/common/tooltips.js:1058
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -793,7 +794,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr ""
 
-#: gui/common/tooltips.js:308 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
 msgstr ""
 
@@ -843,7 +844,7 @@ msgstr ""
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:356 gui/common/tooltips.js:1045
+#: gui/common/tooltips.js:356 gui/common/tooltips.js:1051
 msgid "Range:"
 msgstr ""
 
@@ -858,8 +859,8 @@ msgstr ""
 msgid "meters"
 msgstr ""
 
-#: gui/common/tooltips.js:364 gui/common/tooltips.js:1047
-#: gui/common/tooltips.js:1077
+#: gui/common/tooltips.js:364 gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1083
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -980,7 +981,7 @@ msgstr ""
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr ""
 
-#: gui/common/tooltips.js:561 gui/common/tooltips.js:1040
+#: gui/common/tooltips.js:561 gui/common/tooltips.js:1046
 msgid "Heal:"
 msgstr ""
 
@@ -1176,110 +1177,115 @@ msgstr ""
 msgid "Insufficient resources:"
 msgstr ""
 
-#: gui/common/tooltips.js:1014
+#: gui/common/tooltips.js:1015
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1015
+#: gui/common/tooltips.js:1016
 msgid "Speed:"
 msgstr ""
 
-#: gui/common/tooltips.js:1017 gui/common/tooltips.js:1022
+#: gui/common/tooltips.js:1018 gui/common/tooltips.js:1023
+#: gui/common/tooltips.js:1028
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1019
+#: gui/common/tooltips.js:1020
 msgid "Walk"
 msgstr ""
 
-#: gui/common/tooltips.js:1024
+#: gui/common/tooltips.js:1025
 msgid "Run"
 msgstr ""
 
-#: gui/common/tooltips.js:1039 gui/common/tooltips.js:1044
-#: gui/common/tooltips.js:1049 gui/common/tooltips.js:1074
+#: gui/common/tooltips.js:1030
+msgid "Acceleration"
+msgstr ""
+
+#: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
+#: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:1066
+#: gui/common/tooltips.js:1072
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1073
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:1075
+#: gui/common/tooltips.js:1081
 msgctxt "aura"
 msgid "Range:"
 msgstr ""
 
-#: gui/common/tooltips.js:1098 gui/common/tooltips.js:1126
+#: gui/common/tooltips.js:1104 gui/common/tooltips.js:1132
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr ""
 
-#: gui/common/tooltips.js:1102 gui/common/tooltips.js:1119
+#: gui/common/tooltips.js:1108 gui/common/tooltips.js:1125
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1149
+#: gui/common/tooltips.js:1155
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1176
+#: gui/common/tooltips.js:1182
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1186
+#: gui/common/tooltips.js:1192
 msgid "Loot:"
 msgstr ""
 
-#: gui/common/tooltips.js:1196
+#: gui/common/tooltips.js:1202
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1197
+#: gui/common/tooltips.js:1203
 msgid "Dropsite for:"
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1205
+#: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1211
+#: gui/common/tooltips.js:1217
 msgid "Click to view more information."
 msgstr ""
 
-#: gui/common/tooltips.js:1220
+#: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
 msgid "M"
 msgstr ""
 
-#: gui/common/tooltips.js:1223 gui/common/tooltips.js:1226
+#: gui/common/tooltips.js:1229 gui/common/tooltips.js:1232
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
 msgstr ""
@@ -3411,7 +3417,7 @@ msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
-msgid "Select only one entity of a formation."
+msgid "Modifier to select units individually, opposed to per formation."
 msgstr ""
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
@@ -6366,6 +6372,10 @@ msgstr ""
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
+msgstr ""
+
+#: gui/text/tips/formations.txt:3
+msgid "Formations are selected as a whole by default."
 msgstr ""
 
 #: gui/text/tips/fortress.txt:1

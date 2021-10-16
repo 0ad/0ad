@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 07:24+0000\n"
+"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"PO-Revision-Date: 2021-10-11 07:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -153,11 +153,18 @@ msgstr "ゲーム休止"
 msgid "Click to Resume Game"
 msgstr "クリックしてゲームを再開"
 
-#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:272
+#: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
+
+#. Translation: String displayed when the research is paused. E.g. by being
+#. garrisoned or
+#. when not the first item in the queue.
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+msgid "(This item is paused.)"
+msgstr ""
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -1048,7 +1055,7 @@ msgstr "%(name)sを外に出す"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:894
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "プレイヤー：%(playername)s"
@@ -1090,55 +1097,55 @@ msgstr "人口上限の不足:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:759
+#: gui/session/selection_panels.js:771
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:777
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "不足：%(entityCounts)s"
 
-#: gui/session/selection_panels.js:766
+#: gui/session/selection_panels.js:778
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:818
+#: gui/session/selection_panels.js:830
 msgid "Cannot research while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1043
+#: gui/session/selection_panels.js:1060
 msgid "Cannot train while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1112
+#: gui/session/selection_panels.js:1129
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1118
+#: gui/session/selection_panels.js:1135
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1126
+#: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1131
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1168
+#: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
 msgstr "アップグレードをキャンセル"
 
-#: gui/session/selection_panels.js:1183
+#: gui/session/selection_panels.js:1200
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1401,23 +1408,23 @@ msgstr "観戦モード"
 msgid "Choose player to view"
 msgstr "観察するプレイヤーを選択してください"
 
-#: gui/session/trade/BarterButton.js:100
+#: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "%(resource)sを購入"
 
-#: gui/session/trade/BarterButton.js:101
+#: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "%(resource)sを売却"
 
-#: gui/session/trade/BarterButton.js:102
+#: gui/session/trade/BarterButton.js:110
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
 msgstr ""
 
-#: gui/session/trade/BarterButton.js:103
+#: gui/session/trade/BarterButton.js:111
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
