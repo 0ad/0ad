@@ -29,7 +29,6 @@
 bool g_PauseOnFocusLoss = false;
 
 int g_xres, g_yres;
-float g_GuiScale = 1.0f;
 
 bool g_Quickstart = false;
 bool g_DisableAudio = false;
@@ -42,10 +41,7 @@ bool g_DisableAudio = false;
 static void LoadGlobals()
 {
 	CFG_GET_VAL("pauseonfocusloss", g_PauseOnFocusLoss);
-
-	CFG_GET_VAL("gui.scale", g_GuiScale);
 }
-
 
 static void ProcessCommandLineArgs(const CmdLineArgs& args)
 {

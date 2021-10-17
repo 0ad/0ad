@@ -178,7 +178,7 @@ void CVideoMode::CCursor::SetCursor(const CStrW& name)
 		LOGERROR("Can't create surface for cursor: %s", SDL_GetError());
 		return;
 	}
-	const float scale = g_GuiScale;
+	const float scale = g_VideoMode.GetScale();
 	if (scale != 1.0)
 	{
 		SDL_Surface* scaledSurface = SDL_CreateRGBSurface(0,
@@ -222,6 +222,8 @@ void CVideoMode::ReadConfig()
 	bool windowed = !m_ConfigFullscreen;
 	CFG_GET_VAL("windowed", windowed);
 	m_ConfigFullscreen = !windowed;
+
+	CFG_GET_VAL("gui.scale", m_Scale);
 
 	CFG_GET_VAL("xres", m_ConfigW);
 	CFG_GET_VAL("yres", m_ConfigH);
@@ -514,6 +516,18 @@ bool CVideoMode::ResizeWindow(int w, int h)
 	UpdateRenderer(w, h);
 
 	return true;
+}
+
+void CVideoMode::Rescale(float scale)
+{
+	ENSURE(m_IsInitialised);
+	m_Scale = scale;
+	UpdateRenderer(m_CurrentW, m_CurrentH);
+}
+
+float CVideoMode::GetScale() const
+{
+	return m_Scale;
 }
 
 bool CVideoMode::SetFullscreen(bool fullscreen)

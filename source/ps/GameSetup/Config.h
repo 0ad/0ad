@@ -24,7 +24,6 @@
 extern bool g_PauseOnFocusLoss;
 
 extern int g_xres, g_yres;
-extern float g_GuiScale;
 
 extern bool g_Quickstart;
 extern bool g_DisableAudio;

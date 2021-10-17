@@ -21,6 +21,7 @@
 
 #include "ps/ConfigDB.h"
 #include "ps/CLogger.h"
+#include "ps/VideoMode.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptRequest.h"
 
@@ -193,6 +194,11 @@ void PauseOnFocusLoss(bool pause)
 	g_PauseOnFocusLoss = pause;
 }
 
+void SetGUIScale(float scale)
+{
+	g_VideoMode.Rescale(scale);
+}
+
 void RegisterScriptFunctions(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&HasChanges>(rq, "ConfigDB_HasChanges");
@@ -207,5 +213,6 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&SetFile>(rq, "ConfigDB_SetFile");
 	ScriptFunction::Register<&Reload>(rq, "ConfigDB_Reload");
 	ScriptFunction::Register<&PauseOnFocusLoss>(rq, "PauseOnFocusLoss");
+	ScriptFunction::Register<&SetGUIScale>(rq, "SetGUIScale");
 }
 }

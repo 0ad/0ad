@@ -146,6 +146,35 @@ var g_OptionType = {
 			};
 		}
 	},
+	"dropdownNumber":
+	{
+		"configToValue": value => +value,
+		"valueToGui": (value, control) => {
+			control.selected = control.list_data.indexOf("" + value);
+		},
+		"guiToValue": control => +control.list_data[control.selected],
+		"guiSetter": "onSelectionChange",
+		"initGUI": (option, control) => {
+			control.list = option.list.map(e => e.label);
+			control.list_data = option.list.map(e => e.value);
+			control.onHoverChange = () => {
+				const item = option.list[control.hovered];
+				control.tooltip = item && item.tooltip || option.tooltip;
+			};
+		},
+		"timeout": (option, oldValue, hasChanges, newValue) => {
+			if (!option.timeout)
+				return;
+			timedConfirmation(
+				500, 200,
+				translate("Do you want to keep changes?"),
+				500,
+				translate("Warning"),
+				[translate("No"), translate("Yes")],
+				[() => {this.revertChange(option, +oldValue, hasChanges);}, null]
+			);
+		}
+	},
 	"slider":
 	{
 		"configToValue": value => +value,
@@ -242,13 +271,19 @@ function displayOptions()
 			if (optionType.sanitizeValue)
 				optionType.sanitizeValue(value, control, option);
 
+			const oldValue = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.config));
+
 			control.tooltip = option.tooltip + (optionType.tooltip ? "\n" + optionType.tooltip(value, option) : "");
 
+			const hasChanges = Engine.ConfigDB_HasChanges("user");
 			Engine.ConfigDB_CreateValue("user", option.config, String(value));
 			Engine.ConfigDB_SetChanges("user", true);
 
 			g_ChangedKeys.add(option.config);
 			fireConfigChangeHandlers(new Set([option.config]));
+
+			if (option.timeout)
+				optionType.timeout(option, oldValue, hasChanges, value);
 
 			if (option.function)
 				Engine[option.function](value);
@@ -313,6 +348,18 @@ function reallySetDefaults()
 
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	revertChanges();
+}
+
+function revertChange(option, oldValue, hadChanges)
+{
+	if (!hadChanges)
+		Engine.ConfigDB_SetChanges("user", false);
+
+	Engine.ConfigDB_CreateValue("user", option.config, String(oldValue));
+	if (option.function)
+		Engine[option.function](oldValue);
+
+	displayOptions();
 }
 
 function revertChanges()
