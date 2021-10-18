@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/timedconfirmation/"/>
+
+	<!-- Fade out the background because it's non-interactable -->
+	<object sprite="ModernFade" type="image"/>
+	<object name="tmcCancelHotkey" hotkey="cancel" />
+	<object name="tmcMain"
+			style="ModernDialog"
+			type="image"
+	>
+		<action on="Tick">
+			onTick();
+		</action>
+	<object name="tmcTitleBar"
+			style="ModernLabelText"
+			type="text"
+			size="50%-128 -18 50%+128 14"
+	/>
+	<object name="tmcTimerDisplay"
+			type="text"
+			style="ModernLabelText"
+			size="18 28 100%-18 38"
+	/>
+	<object name="tmcText"
+			type="text"
+			style="ModernLabelText"
+			size="18 40 100%-18 100%-64"
+	/>
+	<object name="tmcTimer"
+			type="text"
+			style="ModernLabelText"
+			size="18 18 100%-18 100%-64"
+			hidden="true"
+	/>
+	<!-- The size of the following buttons is set dynamically in timedconfirmation.js -->
+	<object name="tmcButton1"
+			style="ModernButtonRed"
+			type="button"
+			hidden="true"
+	/>
+	<object name="tmcButton2"
+			style="ModernButtonRed"
+			type="button"
+			hidden="true"
+	/>
+	<object name="tmcButton3"
+			style="ModernButtonRed"
+			type="button"
+			hidden="true"
+	/>
+	</object>
+</objects>

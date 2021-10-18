@@ -45,6 +45,7 @@
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/VideoMode.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
 
@@ -116,8 +117,8 @@ void CConsole::UpdateScreenSize(int w, int h)
 	m_fX = 0;
 	m_fY = 0;
 	float height = h * 0.6f;
-	m_fWidth = w / g_GuiScale;
-	m_fHeight = height / g_GuiScale;
+	m_fWidth = w / g_VideoMode.GetScale();
+	m_fHeight = height / g_VideoMode.GetScale();
 }
 
 void CConsole::ToggleVisible()

@@ -42,6 +42,7 @@
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -154,7 +155,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Yes the mouse position is stored as float to avoid
 		//  constant conversions when operating in a
 		//  float-based environment.
-		m_MousePos = CVector2D((float)ev->ev.motion.x / g_GuiScale, (float)ev->ev.motion.y / g_GuiScale);
+		m_MousePos = CVector2D((float)ev->ev.motion.x / g_VideoMode.GetScale(), (float)ev->ev.motion.y / g_VideoMode.GetScale());
 
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
 		m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::HandleMessage, msg);
@@ -179,7 +180,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	CVector2D oldMousePos = m_MousePos;
 	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
 	{
-		m_MousePos = CVector2D((float)ev->ev.button.x / g_GuiScale, (float)ev->ev.button.y / g_GuiScale);
+		m_MousePos = CVector2D((float)ev->ev.button.x / g_VideoMode.GetScale(), (float)ev->ev.button.y / g_VideoMode.GetScale());
 	}
 
 	// Allow the focused object to pre-empt regular GUI events.
@@ -420,7 +421,7 @@ IGUIObject* CGUI::FindObjectUnderMouse()
 
 CSize2D CGUI::GetWindowSize() const
 {
-	return CSize2D{static_cast<float>(g_xres) / g_GuiScale, static_cast<float>(g_yres) / g_GuiScale};
+	return CSize2D{static_cast<float>(g_xres) / g_VideoMode.GetScale(), static_cast<float>(g_yres) / g_VideoMode.GetScale() };
 }
 
 void CGUI::SetFocusedObject(IGUIObject* pObject)

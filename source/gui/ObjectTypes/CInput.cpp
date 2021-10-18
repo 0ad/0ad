@@ -31,6 +31,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 
 #include <sstream>
@@ -1238,12 +1239,13 @@ void CInput::Draw(CCanvas2D& canvas)
 
 	if (cliparea != CRect())
 	{
+		float scale = g_VideoMode.GetScale();
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(
-			cliparea.left * g_GuiScale,
-			g_yres - cliparea.bottom * g_GuiScale,
-			cliparea.GetWidth() * g_GuiScale,
-			cliparea.GetHeight() * g_GuiScale);
+			cliparea.left * scale,
+			g_yres - cliparea.bottom * scale,
+			cliparea.GetWidth() * scale,
+			cliparea.GetHeight() * scale);
 	}
 
 	// These are useful later.

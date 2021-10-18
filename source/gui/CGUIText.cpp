@@ -26,12 +26,12 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/SettingTypes/CGUIString.h"
 #include "ps/CStrInternStatic.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 
 #include <math.h>
 
 extern int g_xres, g_yres;
-extern float g_GuiScale;
 
 // TODO Gee: CRect => CPoint ?
 void SGenerateTextImage::SetupSpriteCall(
@@ -439,12 +439,13 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		clipping.left = std::ceil(clipping.left);
 		clipping.right = std::floor(clipping.right);
 
+		float scale = g_VideoMode.GetScale();
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(
-			std::ceil(clipping.left * g_GuiScale),
-			std::ceil(g_yres - clipping.bottom * g_GuiScale),
-			std::floor(clipping.GetWidth() * g_GuiScale),
-			std::floor(clipping.GetHeight() * g_GuiScale));
+			std::ceil(clipping.left * scale),
+			std::ceil(g_yres - clipping.bottom * scale),
+			std::floor(clipping.GetWidth() * scale),
+			std::floor(clipping.GetHeight() * scale));
 	}
 
 	CTextRenderer textRenderer;

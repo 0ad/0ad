@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,16 +18,15 @@
 #include "precompiled.h"
 
 #include "GUIMatrix.h"
-
+#include "ps/VideoMode.h"
 #include "maths/Matrix3D.h"
 
 extern int g_xres, g_yres;
-extern float g_GuiScale;
 
 CMatrix3D GetDefaultGuiMatrix()
 {
-	float xres = g_xres / g_GuiScale;
-	float yres = g_yres / g_GuiScale;
+	float xres = g_xres / g_VideoMode.GetScale();
+	float yres = g_yres / g_VideoMode.GetScale();
 
 	CMatrix3D m;
 	m.SetIdentity();

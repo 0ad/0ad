@@ -15,6 +15,24 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbB
 		});
 }
 
+function timedConfirmation(width, height, message, timeout, title, buttonCaptions, btnCode, callbackArgs)
+{
+	Engine.PushGuiPage(
+		"page_timedconfirmation.xml",
+		{
+			"width": width,
+			"height": height,
+			"message": message,
+			"timeout": timeout,
+			"title": title,
+			"buttonCaptions": buttonCaptions
+		},
+		button => {
+			if (btnCode !== undefined && btnCode[button])
+				btnCode[button](callbackArgs ? callbackArgs[button] : undefined);
+		});
+}
+
 function openURL(url)
 {
 	Engine.OpenURL(url);

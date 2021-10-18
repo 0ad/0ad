@@ -52,6 +52,11 @@ public:
 	bool ResizeWindow(int w, int h);
 
 	/**
+	 * Set scale and tell dependent compoenent to recompute sizes.
+	 */
+	void Rescale(float scale);
+
+	/**
 	 * Switch to fullscreen or windowed mode.
 	 */
 	bool SetFullscreen(bool fullscreen);
@@ -89,6 +94,8 @@ public:
 	int GetDesktopBPP() const;
 	int GetDesktopFreq() const;
 
+	float GetScale() const;
+
 	SDL_Window* GetWindow();
 
 	void SetWindowIcon();
@@ -116,6 +123,8 @@ private:
 	int m_PreferredH = 0;
 	int m_PreferredBPP = 0;
 	int m_PreferredFreq = 0;
+
+	float m_Scale = 1.0f;
 
 	// Config file settings (0 if unspecified)
 	int m_ConfigW = 0;

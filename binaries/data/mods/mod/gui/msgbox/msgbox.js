@@ -24,37 +24,7 @@ function init(data)
 
 	let captions = data.buttonCaptions || [translate("OK")];
 
-	// Set button captions and visibility
 	let mbButton = [];
-	captions.forEach((caption, i) => {
-		mbButton[i] = Engine.GetGUIObjectByName("mbButton" + (i + 1));
-		mbButton[i].caption = caption;
-		mbButton[i].hidden = false;
-		mbButton[i].onPress = () => {
-			Engine.PopGuiPage(i);
-		};
-
-		// Convention: Cancel is the first button
-		if (i == 0)
-			mbCancelHotkey.onPress = mbButton[i].onPress;
-	});
-
-	// Distribute buttons horizontally
-	let y1 = "100%-46";
-	let y2 = "100%-18";
-	switch (captions.length)
-	{
-	case 1:
-		mbButton[0].size = "18 " + y1 + " 100%-18 " + y2;
-		break;
-	case 2:
-		mbButton[0].size = "18 " + y1 + " 50%-5 " + y2;
-		mbButton[1].size = "50%+5 " + y1 + " 100%-18 " + y2;
-		break;
-	case 3:
-		mbButton[0].size = "18 " + y1 + " 33%-5 " + y2;
-		mbButton[1].size = "33%+5 " + y1 + " 66%-5 " + y2;
-		mbButton[2].size = "66%+5 " + y1 + " 100%-18 " + y2;
-		break;
-	}
+	setButtonCaptionsAndVisibitily(mbButton, captions, mbCancelHotkey, "mbButton");
+	distributeButtonsHorizontally(mbButton, captions);
 }

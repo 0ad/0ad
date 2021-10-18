@@ -150,6 +150,24 @@
 				"config": "adaptivefps.session",
 				"min": 20,
 				"max": 100
+			},
+			{
+				"type": "dropdownNumber",
+				"label": "GUI scale",
+				"timeout": 500,
+				"tooltip": "GUI scale",
+				"config": "gui.scale",
+				"function": "SetGUIScale",
+				"list": [
+					{ "value": 0.75, "label": "75%" },
+					{ "value": 1.00, "label": "100%" },
+					{ "value": 1.25, "label": "125%" },
+					{ "value": 1.50, "label": "150%" },
+					{ "value": 1.75, "label": "175%" },
+					{ "value": 2.00, "label": "200%" },
+					{ "value": 2.25, "label": "225%" },
+					{ "value": 2.50, "label": "250%" }
+				]
 			}
 		]
 	},
