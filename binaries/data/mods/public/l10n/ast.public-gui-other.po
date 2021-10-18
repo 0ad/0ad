@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-14 23:54+0000\n"
+"PO-Revision-Date: 2021-10-18 04:05+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -728,7 +728,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "Fideleza:"
+msgstr "Fidelidá:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -762,12 +762,12 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr "Conquistar:"
+msgstr "Apropiación:"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr "Conquistar"
+msgstr "Captura"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -1211,11 +1211,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1020
 msgid "Walk"
-msgstr "Andar"
+msgstr "Al andar"
 
 #: gui/common/tooltips.js:1025
 msgid "Run"
-msgstr "Correr"
+msgstr "Al correr"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
@@ -2248,7 +2248,7 @@ msgstr "Xuegu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr "Facer atacar en cuenta d'otra aición (p. ex. conquistar)."
+msgstr "Facer atacar en cuenta d'otra aición (p. ex. apropiase)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -5932,7 +5932,7 @@ msgstr "Beneficios"
 
 #: gui/summary/summary.js:64
 msgid "Captured"
-msgstr "Conquistaes"
+msgstr "Apropiaes"
 
 #: gui/summary/summary.js:69
 msgid "Succeeded"
@@ -6521,11 +6521,11 @@ msgstr "Van ver la seña en mapiquín."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
-msgstr "PIRÁMIDES DE MEDEWI"
+msgstr "PIRÁMIDES DE MEDEUGUI"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "Construcciones esclusives de los cuxinos."
+msgstr "Construcciones esclusives de los cuxanos."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6592,20 +6592,20 @@ msgstr "Los perses tamién disponen d'abondes téuniques constructives y defensi
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr "PIQUEROS"
+msgstr "SARISÓFOROS"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr "Bien blindaos & lentos. Pocu ataque. "
+msgstr "Bien armaos y lentos. Pocu ataque. "
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr "Empléguense contra caballería o otra infantería p'atrapalo. "
+msgstr "Valen p'acorripiar équites o otros pédites."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "Disponible a: cuxinos, macedonios, ptolemaicos & seléucides"
+msgstr "Disponibles a los: cuxanos, macedonios, ptolemaicos y seléucides"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -6837,7 +6837,7 @@ msgstr "Costosos en comida y metal, pero perfuertes."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Disponibles a los cartaxineses, cuxinos, maurios, perses, ptolemaicos y seléucides."
+msgstr "Disponibles a los cartaxineses, cuxanos, maurios, perses, ptolemaicos y seléucides."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
