@@ -12,14 +12,15 @@
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019,2021
 # omidh <omid_h28@hotmail.com>, 2013
 # reza latifi <reza.bubba@gmail.com>, 2019
+# saeed fatemi, 2021
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 # سهیل خانعلی‌پور <soheilkhanalipur@tutanota.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-15 14:44+0000\n"
+"Last-Translator: saeed fatemi\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgstr "گروه تصادفی"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "بازیکنان متحد به هم پیوسته اند، اما دیگران به صورت تصادفی در نقشه قرار دارند."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
@@ -68,7 +69,7 @@ msgstr "دژ"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "بازیکنان متحد در یک مکان در نقشه به صورت تصادفی به هم پیوسته اند."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -200,20 +201,20 @@ msgstr "تیم"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
-msgstr ""
+msgstr "جستجو در نقشه"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "کلید%(hotkey)s را برای دیدن لیست نقشه های در دسترس فشار دهید."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr ""
+msgstr "نمای متحدین"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr ""
+msgstr "نمای حلقه متحدان(دیدن چیزی که متحدانتان می بینند)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -319,7 +320,7 @@ msgstr "جمعیت دنیا"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "در زمان کنترل میزان جمعیت ، تمامی بازیکنان حاضر به صورت مساوی تقسیم می شوند."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -372,7 +373,7 @@ msgstr "تصادفی"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr ""
+msgstr "انتخاب تصادفی منظره."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -512,7 +513,7 @@ msgstr "حداکثر جمعیت دنیای بازی را انتخاب کنید"
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "هشدار : ممکن است در هنگامی که جمعیت %(popCap)sبرسد با مشکل کارایی مواجه شوید."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -752,7 +753,7 @@ msgstr "کد تقلب فعال شد."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
-msgstr ""
+msgstr "امتیاز دهی به بازی."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
@@ -761,7 +762,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "نقشه ای انتخاب نشده است."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
