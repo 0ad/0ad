@@ -59,9 +59,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-10-18 07:08+0000\n"
+"PO-Revision-Date: 2021-10-19 16:09+0000\n"
+"Last-Translator: Heraklit of Ephesos\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -954,19 +954,19 @@ msgstr "Beschuss durch eigene Truppen: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Ja"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Nein"
 
@@ -1268,7 +1268,7 @@ msgstr "Rennen"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Beschleunigung"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -1630,7 +1630,7 @@ msgid "Filter:"
 msgstr "Filter:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):43
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -1671,11 +1671,11 @@ msgid "Mapping"
 msgstr "Zuordnung"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):44
 msgid "Resets user settings to their game default"
 msgstr "Setzt Benutzereinstellungen zum Spiel Standard zurück"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
+#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
 msgstr "Speichert Einstellungen"
 
@@ -3486,7 +3486,7 @@ msgstr "Einheiten aus der Auswahl entfernen"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Modifizierer zum individuellen Auswählen von Einheiten, im Gegensatz zur Formation"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
@@ -3568,8 +3568,9 @@ msgstr "Dieser Spielstand benötigt eine andere Folge von Mods."
 msgid "Do you still want to proceed?"
 msgstr "Möchtest du trotzdem fortfahren?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
-#: gui/options/options.js:352 gui/options/options.js:378
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
+#: gui/options/options.js:334 gui/options/options.js:399
+#: gui/options/options.js:425
 msgid "Warning"
 msgstr "Warnung"
 
@@ -3582,7 +3583,7 @@ msgid "Load Game"
 msgstr "Spiel laden"
 
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):55
 msgid "Save"
 msgstr "Speichern"
 
@@ -3796,7 +3797,7 @@ msgstr "%(hotkey)s: Schließe den Kartenbrowser und verwerfe die Auswahl."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
-#: gui/options/options.xml:(caption):60
+#: gui/options/options.xml:(caption):61
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr "Schließen"
@@ -3886,23 +3887,27 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Max: %(max)s"
 
-#: gui/options/options.js:162
+#: gui/options/options.js:170
+msgid "Do you want to keep changes?"
+msgstr "Möchtest du die Änderungen beibehalten?"
+
+#: gui/options/options.js:191
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Wert: %(val)s (min: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:298
+#: gui/options/options.js:333
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Das Zurücksetzen der Optionen wird deine gespeicherten Einstellungen löschen. Willst du fortfahren?"
 
-#: gui/options/options.js:351
+#: gui/options/options.js:398
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "Einige Einstellungen sind ungültig! Bist du sicher, dass du sie speichern willst?"
 
-#: gui/options/options.js:377
+#: gui/options/options.js:424
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Du hast nicht gespeicherte Änderungen, willst du dieses Fenster schließen?"
 
@@ -4109,6 +4114,43 @@ msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigkeit in laufenden Spielen begrenzen. Auf das Maximum setzen, um die Begrenzung zu deaktivieren."
+
+#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[9].tooltip
+msgid "GUI scale"
+msgstr "Skalierung der grafischen Benutzeroberfläche"
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "75%"
+msgstr "75%"
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "100%"
+msgstr "100%"
+
+#: gui/options/options.json[1].options[9].list[2].label
+msgid "125%"
+msgstr "125%"
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "150%"
+msgstr "150%"
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "175%"
+msgstr "175%"
+
+#: gui/options/options.json[1].options[9].list[5].label
+msgid "200%"
+msgstr "200%"
+
+#: gui/options/options.json[1].options[9].list[6].label
+msgid "225%"
+msgstr "225%"
+
+#: gui/options/options.json[1].options[9].list[7].label
+msgid "250%"
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4926,15 +4968,15 @@ msgstr "Einstellungen im Spiel ändern"
 msgid "Game Options"
 msgstr "Spieloptionen"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):49
 msgid "Revert"
 msgstr "Rückgängig"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):50
 msgid "Reverts to previous saved settings"
 msgstr "Zurücksetzen auf letzte gespeicherte Einstellungen"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):62
 msgid "Unsaved changes affect this session only"
 msgstr "Nicht gespeicherte Änderungen betreffen nur diese Sitzung"
 
@@ -5014,7 +5056,7 @@ msgstr "Erlebe die Geschichte durch historische Militärkampagnen."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
-msgstr "Fehler beim Öffnen der Kampagne:"
+msgstr "Fehler beim Öffnen des Durchlaufs der Kampagne:"
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
@@ -6451,7 +6493,7 @@ msgstr "Stelle deine Soldaten in Formationen auf, damit sie in der Schlacht orga
 
 #: gui/text/tips/formations.txt:3
 msgid "Formations are selected as a whole by default."
-msgstr ""
+msgstr "Als Standard werden Formationen als Ganzes ausgewählt."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

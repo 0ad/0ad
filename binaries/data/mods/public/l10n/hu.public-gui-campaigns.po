@@ -8,17 +8,17 @@
 # ricsipontaz <ricsipontaz@googlemail.com>, 2021
 # Nagy András <asd0707@freemail.hu>, 2021
 # Attila Kocsner, 2021
-# Balázs Meskó <meskobalazs@mailbox.org>, 2021
 # János Fehér <feher.janos@mindworks.hu>, 2021
 # Szabó Lambert, 2021
 # Scael Blu <groteszk@totalcar.hu>, 2021
+# Balázs Meskó <meskobalazs@mailbox.org>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Scael Blu <groteszk@totalcar.hu>, 2021\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2021\n"
 "Language-Team: Hungarian (https://www.transifex.com/wildfire-games/teams/17418/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,6 +32,8 @@ msgid ""
 "Discover the new maps in Alpha XXVI with a demo campaign, taking you through"
 " all of them."
 msgstr ""
+"Fedezd fel az új térképeket az Alfa XXVI-ben a demó hadjárattal, mely "
+"átvezet az összesen."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
@@ -92,7 +94,7 @@ msgstr "Elérhető"
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Hiba a(z) %s menet betöltésekor: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
@@ -135,7 +137,7 @@ msgstr "a fájl nem tölthető be"
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
+msgstr "Biztos, hogy törlöd a(z) %s menetet? Ez nem vonható vissza."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -177,7 +179,7 @@ msgstr "Hadjárat megkezdése"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "Add meg az új menet nevét:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55

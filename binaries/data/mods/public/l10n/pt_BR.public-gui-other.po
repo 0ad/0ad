@@ -7,6 +7,7 @@
 # Alison Machado <alison.mbatista@outlook.com>, 2017
 # 8a9afb43fd95d08d43e4b3f29e8e204d_f74a2a3 <e80d5c54c7b023270446a7d748208941_255245>, 2015
 # borg 2k <estevanborg@gmail.com>, 2017-2018
+# Carlos Lira <carlosliracl@gmail.com>, 2021
 # Eryx <claudioporto.ribeiro@gmail.com>, 2021
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # Dalcio Marçal, 2016
@@ -47,9 +48,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-10-18 07:08+0000\n"
+"PO-Revision-Date: 2021-10-19 01:18+0000\n"
+"Last-Translator: Carlos Lira <carlosliracl@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -942,19 +943,19 @@ msgstr "Fogo Amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Sim"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Não"
 
@@ -1618,7 +1619,7 @@ msgid "Filter:"
 msgstr "Filtro:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):43
 msgid "Reset"
 msgstr "Restaurar"
 
@@ -1659,11 +1660,11 @@ msgid "Mapping"
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):44
 msgid "Resets user settings to their game default"
 msgstr "Restaura as configurações do usuário para o padrão"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
+#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
 msgstr "Salva modificações"
 
@@ -3556,8 +3557,9 @@ msgstr "Este jogo salvo precisa de uma sequência diferente de mods:"
 msgid "Do you still want to proceed?"
 msgstr "Ainda quer continuar?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
-#: gui/options/options.js:352 gui/options/options.js:378
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
+#: gui/options/options.js:334 gui/options/options.js:399
+#: gui/options/options.js:425
 msgid "Warning"
 msgstr "Aviso"
 
@@ -3570,7 +3572,7 @@ msgid "Load Game"
 msgstr "Carregar Jogo"
 
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):55
 msgid "Save"
 msgstr "Salvar"
 
@@ -3784,7 +3786,7 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
-#: gui/options/options.xml:(caption):60
+#: gui/options/options.xml:(caption):61
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr "Fechar"
@@ -3874,23 +3876,27 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Máximo:%(max)s"
 
-#: gui/options/options.js:162
+#: gui/options/options.js:170
+msgid "Do you want to keep changes?"
+msgstr "Você quer manter as alterações?"
+
+#: gui/options/options.js:191
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (min: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:298
+#: gui/options/options.js:333
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Restaurar as opções irá apagar suas configurações salvas. Deseja continuar?"
 
-#: gui/options/options.js:351
+#: gui/options/options.js:398
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "Alguns valores de configuração são inválidos! Tem certeza que deseja salvá-los?"
 
-#: gui/options/options.js:377
+#: gui/options/options.js:424
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Você possui modificações não salvas, deseja fechar esta janela?"
 
@@ -4097,6 +4103,43 @@ msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Para salvar a carga de trabalho da CPU, lentidão se torna frequente na execução de jogos. Ajustado ao máximo para desativar Lentidão."
+
+#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[9].tooltip
+msgid "GUI scale"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "75%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "100%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[2].label
+msgid "125%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "150%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "175%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[5].label
+msgid "200%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[6].label
+msgid "225%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[7].label
+msgid "250%"
+msgstr ""
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4605,7 +4648,7 @@ msgstr "Impedir que mais observadores entrem se o limite for atingido."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Lag máximo para observadores"
 
 #: gui/options/options.json[5].options[6].tooltip
 msgid ""
@@ -4914,15 +4957,15 @@ msgstr "Altere as opções relacionadas às configurações do jogo."
 msgid "Game Options"
 msgstr "Opções de Jogo"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):49
 msgid "Revert"
 msgstr "Reverter"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):50
 msgid "Reverts to previous saved settings"
 msgstr "Retorna para as configurações salvas anteriormente"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):62
 msgid "Unsaved changes affect this session only"
 msgstr "Alterações não salvas afetam esta apenas esta sessão"
 
@@ -4993,12 +5036,12 @@ msgstr "Veja os diferentes mapas apresentados em 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Continue a Campanha"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Reviva a história através de campanhas militares históricas."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Error opening campaign run:"
@@ -5692,7 +5735,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Este jogo ainda está em desenvolvimento. Você pode encontrar bugs e algumas funcionalidades não estão tão elaborados quanto gostaríamos."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5704,13 +5747,13 @@ msgstr "[imgleft=\"iconLag\"]O jogo por experienciar problemas de desempenho, es
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. é um Software Livre: você pode participar do seu desenvolvimento."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Se você quer ajudar com arte, som, jogabilidade ou programação, não deixe de se juntar ao nosso fórum oficial."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
