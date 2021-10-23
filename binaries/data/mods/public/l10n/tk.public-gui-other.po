@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 08:25+0000\n"
+"POT-Creation-Date: 2021-10-18 07:08+0000\n"
+"PO-Revision-Date: 2021-10-18 08:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Turkmen (http://www.transifex.com/wildfire-games/0ad/language/tk/)\n"
 "MIME-Version: 1.0\n"
@@ -901,19 +901,19 @@ msgstr ""
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr ""
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr ""
 
@@ -1577,7 +1577,7 @@ msgid "Filter:"
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):43
 msgid "Reset"
 msgstr ""
 
@@ -1618,11 +1618,11 @@ msgid "Mapping"
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):44
 msgid "Resets user settings to their game default"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
+#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
 msgstr ""
 
@@ -3515,8 +3515,9 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr ""
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
-#: gui/options/options.js:352 gui/options/options.js:378
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
+#: gui/options/options.js:334 gui/options/options.js:399
+#: gui/options/options.js:425
 msgid "Warning"
 msgstr ""
 
@@ -3529,7 +3530,7 @@ msgid "Load Game"
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):55
 msgid "Save"
 msgstr ""
 
@@ -3743,7 +3744,7 @@ msgstr ""
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
-#: gui/options/options.xml:(caption):60
+#: gui/options/options.xml:(caption):61
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr ""
@@ -3833,23 +3834,27 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:162
+#: gui/options/options.js:170
+msgid "Do you want to keep changes?"
+msgstr ""
+
+#: gui/options/options.js:191
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:298
+#: gui/options/options.js:333
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:351
+#: gui/options/options.js:398
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr ""
 
-#: gui/options/options.js:377
+#: gui/options/options.js:424
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -4055,6 +4060,43 @@ msgstr ""
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
+msgstr ""
+
+#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[9].tooltip
+msgid "GUI scale"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "75%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "100%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[2].label
+msgid "125%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "150%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "175%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[5].label
+msgid "200%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[6].label
+msgid "225%"
+msgstr ""
+
+#: gui/options/options.json[1].options[9].list[7].label
+msgid "250%"
 msgstr ""
 
 #: gui/options/options.json[1].tooltip
@@ -4873,15 +4915,15 @@ msgstr ""
 msgid "Game Options"
 msgstr ""
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):49
 msgid "Revert"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):50
 msgid "Reverts to previous saved settings"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):62
 msgid "Unsaved changes affect this session only"
 msgstr ""
 

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-18 04:05+0000\n"
+"POT-Creation-Date: 2021-10-18 07:08+0000\n"
+"PO-Revision-Date: 2021-10-21 01:38+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -905,19 +905,19 @@ msgstr "Fueu amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Sí"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
-#: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
-#: gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/options/options.js:335 gui/options/options.js:400
+#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Non"
 
@@ -1581,7 +1581,7 @@ msgid "Filter:"
 msgstr "Peñera:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):43
 msgid "Reset"
 msgstr "Reafitar"
 
@@ -1622,11 +1622,11 @@ msgid "Mapping"
 msgstr "Asignación"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):44
 msgid "Resets user settings to their game default"
 msgstr "Reafita los axustes del usuariu a los valores por defeutu."
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
+#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
 msgstr "Guarda cambeos"
 
@@ -3519,8 +3519,9 @@ msgstr "Esti alcuentru guardáu precisa d'otra riestra de camudos:"
 msgid "Do you still want to proceed?"
 msgstr "¿Entá quies siguir?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
-#: gui/options/options.js:352 gui/options/options.js:378
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
+#: gui/options/options.js:334 gui/options/options.js:399
+#: gui/options/options.js:425
 msgid "Warning"
 msgstr "Avisu"
 
@@ -3533,7 +3534,7 @@ msgid "Load Game"
 msgstr "Cargar alcuentru"
 
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):55
 msgid "Save"
 msgstr "Guardar"
 
@@ -3747,7 +3748,7 @@ msgstr "%(hotkey)s: Zarrar el restolador cartográficu y escartar la esbilla."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
-#: gui/options/options.xml:(caption):60
+#: gui/options/options.xml:(caption):61
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr "Zarrar"
@@ -3837,23 +3838,27 @@ msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr "Máx: %(max)s"
 
-#: gui/options/options.js:162
+#: gui/options/options.js:170
+msgid "Do you want to keep changes?"
+msgstr "¿Quies guardar los cambeos?"
+
+#: gui/options/options.js:191
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (mín: %(min)s, máx: %(max)s)"
 
-#: gui/options/options.js:298
+#: gui/options/options.js:333
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Reafitar les opciones va borrar los axustes guardaos. ¿Quies siguir?"
 
-#: gui/options/options.js:351
+#: gui/options/options.js:398
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "¡Nun son válidos los valores de dellos axustes! ¿De xuru que quies guardalos?"
 
-#: gui/options/options.js:377
+#: gui/options/options.js:424
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tienes cambeos ensin guardar, ¿quies zarrar esta ventana?"
 
@@ -4060,6 +4065,43 @@ msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Tasar la frecuencia gráfica nos alcuentros p'aforrar trabayu al ordenador. Afítala al máximu pa desactivar la tasación."
+
+#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[9].tooltip
+msgid "GUI scale"
+msgstr "Escala de la interfaz gráfica"
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "75%"
+msgstr "75%"
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "100%"
+msgstr "100%"
+
+#: gui/options/options.json[1].options[9].list[2].label
+msgid "125%"
+msgstr "125%"
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "150%"
+msgstr "150%"
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "175%"
+msgstr "175%"
+
+#: gui/options/options.json[1].options[9].list[5].label
+msgid "200%"
+msgstr "200%"
+
+#: gui/options/options.json[1].options[9].list[6].label
+msgid "225%"
+msgstr "225%"
+
+#: gui/options/options.json[1].options[9].list[7].label
+msgid "250%"
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4877,15 +4919,15 @@ msgstr "Cambiar opciones tocántenes a los axustes en xuegu."
 msgid "Game Options"
 msgstr "Opciones del xuegu"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):49
 msgid "Revert"
 msgstr "Revertir"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):50
 msgid "Reverts to previous saved settings"
 msgstr "Vuelve a los axustes guardaos anteriores"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):62
 msgid "Unsaved changes affect this session only"
 msgstr "Los cambeos ensin guardar afeuten esta sesión namái"
 
@@ -6521,11 +6563,11 @@ msgstr "Van ver la seña en mapiquín."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
-msgstr "PIRÁMIDES DE MEDEUGUI"
+msgstr "PIRÁMIDES DE MEDEVI"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "Construcciones esclusives de los cuxanos."
+msgstr "Construcciones esclusives de los qosanos."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6605,7 +6647,7 @@ msgstr "Valen p'acorripiar équites o otros pédites."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "Disponibles a los: cuxanos, macedonios, ptolemaicos y seléucides"
+msgstr "Disponibles a los: qosanos, macedonios, ptolemaicos y seléucides"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -6837,7 +6879,7 @@ msgstr "Costosos en comida y metal, pero perfuertes."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Disponibles a los cartaxineses, cuxanos, maurios, perses, ptolemaicos y seléucides."
+msgstr "Disponibles a los cartaxineses, qosanos, maurios, perses, ptolemaicos y seléucides."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

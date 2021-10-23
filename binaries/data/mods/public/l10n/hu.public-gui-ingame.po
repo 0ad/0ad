@@ -8,7 +8,7 @@
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Attila Kocsner, 2014
 # Balázs Meskó <meskobalazs@mailbox.org>, 2015-2020
-# Balázs Meskó <meskobalazs@mailbox.org>, 2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020-2021
 # Balázs Úr, 2015-2016
 # Levente Krisztián Büte <chris020891@gmail.com>, 2013-2014
 # davesajt, 2014
@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 07:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-19 15:20+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +176,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "(This item is paused.)"
-msgstr ""
+msgstr "(Szüneteltetve.)"
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -894,13 +894,13 @@ msgstr "Ismeretlen játékos"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr ""
+msgstr "Jelző küldése a szövetségeseknek"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "Tétlen munkás keresése\nTétlen munkások száma."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1100,7 +1100,7 @@ msgstr "Kibontás megszakítása"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Az automatikus sor megpróbálja később kiképezni ezt."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1345,7 +1345,7 @@ msgstr "Kattintás a csoportosított egységek kiválasztásához, dupla kattint
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Alfa XXVI: Z——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1384,15 +1384,15 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:65
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "Népesség: jelenlegi/korlát (maximális)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Begyűjtők: jelenleg"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1688,7 +1688,7 @@ msgstr "Jelenlegi utasítás megszakítása."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "A kiválasztott egységek támadási mozgással a megadott helyre küldése, a nyersanyagok eldobása után."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
@@ -1758,11 +1758,11 @@ msgstr "Használhatod ezt a lerakóhelyet"
 
 #: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Automatikus sor aktiválása a kiválasztott épületeknél."
 
 #: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Automatikus sor deaktiválása a kiválasztott épületeknél."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"

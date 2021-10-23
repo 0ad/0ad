@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-10-10 22:34+0000\n"
+"PO-Revision-Date: 2021-10-20 17:00+0000\n"
 "Last-Translator: Albin Nilsson <abbin44@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -2404,13 +2404,13 @@ msgstr[1] "%(players)s och %(lastPlayer)s har vunnit (Ta reliken)."
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s har blivit besegrad (Ta Reliken)."
+msgstr[1] "%(players)s och %(lastPlayer)s har blivit besegrade (Ta reliken)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s har blivit besegrad (förlorat alla kritiska enheter och strukturer)."
 
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
@@ -2427,12 +2427,12 @@ msgstr ""
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr ""
+msgstr "%(player)s har blivit besegrad (förlorat alla strukturer)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s har blivit besegrad (förlorat alla strukturer och kritiska enheter)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
@@ -2442,7 +2442,7 @@ msgstr "%(player)s har blivit besegrad (förlorat alla enheter)."
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s har blivit besegrad (förlorat alla enheter och kritiska strukturer)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
@@ -3245,11 +3245,11 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr ""
+msgstr "Utlänningar invaderar Britannia. De inhemska Britonerna måste slåss emot en massiv fientlig invasion för att säkra deras hemland för den nästa generationen!\n\nSpelare 1 är Britonerna. Spelare 2-5 är invasions-styrkan, garrnisonerade ombord deras stout skepp i kanalen av de vita klipporna av Dover.\n\nLagen är satta av kart-skriptet, men kan bli ändrade av spelarna i starten om de önskar spela kartan på ett annat sätt än scenariot som är definerat av designern. I så fall, borde spelets värd sätta en upphör eld regel så att spelarna i båtarna kan landa fredfullt och försöka hitta en lämplig plats att sätta deras första läger.\n\nTilldelade civilisationer är endast rekommendationer, och värden borde sätta start resurserna till 1000 så att samhälls-center kan byggas i början."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
-msgstr ""
+msgstr "Vita Klipporna av Dover (5)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
 msgid "Britons"

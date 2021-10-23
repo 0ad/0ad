@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-10-18 03:59+0000\n"
+"PO-Revision-Date: 2021-10-20 19:34+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -51,22 +51,22 @@ msgstr "Dañu"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Dañu estrapallante, como'l que faen les porres, el cocipamientu."
+msgstr "Dañu frayante, como'l que faen les porres, el cocipamientu."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
 msgid "Crush"
-msgstr "Estrapu"
+msgstr "Frayura"
 
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Dañu amburante, como'l que faen los gabuzos, les saetes ardientes."
+msgstr "Dañu quemante, como'l que faen los gabuzos, les saetes ardientes."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
 msgid "Fire"
-msgstr "Quema"
+msgstr "Quemura"
 
 #: simulation/data/damage_types/hack.jsondescription
 msgctxt "damage type"
@@ -95,12 +95,12 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Dañu gafientu, como'l que faen les culuebres, les armes envenenaes."
+msgstr "Dañu tóxicu, como'l que faen les culuebres, les armes venenaes."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr "Gafura"
+msgstr "Toxicidá"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -120,17 +120,17 @@ msgstr "En llames"
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr "Esta unidá fai agafar."
+msgstr "Esta unidá envenena."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "Esta unidá ta gafa."
+msgstr "Esta unidá ta venenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr "Con gafura"
+msgstr "Con venenu"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -661,7 +661,7 @@ msgstr "Estatua ptolemaica"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
-msgstr "Estatua cuxana"
+msgstr "Estatua qosana"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
@@ -671,7 +671,7 @@ msgstr "Recursu de piedra"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr "Ibis cuxana"
+msgstr "Ibis qosana"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
