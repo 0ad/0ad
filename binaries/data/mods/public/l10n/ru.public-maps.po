@@ -23,7 +23,9 @@
 # webslavic <webslavic@yahoo.com>, 2014
 # Woratiklis, 2015
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
+# Валерий Кулаев, 2021
 # Виктор Волошко <fantazticplay@gmail.com>, 2020
+# Георгий Морозов <moroz.ger@gmail.com>, 2021
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2021
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
@@ -31,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-08-31 20:32+0000\n"
-"Last-Translator: nwtour <nwtour@mail.ru>\n"
+"PO-Revision-Date: 2021-10-23 23:12+0000\n"
+"Last-Translator: Валерий Кулаев\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -221,7 +223,7 @@ msgid ""
 "Two land masses connected by a narrow spit of land, called an 'Isthmus', "
 "inspired by the eponymous area in Greece. Most of the stone on the map is in"
 " the isthmus itself, making it vital to fight for its control."
-msgstr ""
+msgstr "Два куска суши, соединенные узкой полоской земли, называемой \"перешеек\", вдохновленной одноименной областью в Греции. Большая часть камня на карте находится в самом перешейке, что делает жизненно важным борьбу за его контроль."
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -867,7 +869,7 @@ msgstr "Начните в регионе, благословлённый сре�
 #: maps/random/rmbiome/generic/aegean.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Aegean-Anatolian"
-msgstr ""
+msgstr "Эгейско-Анатолийский"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgctxt "biome definition"
@@ -876,12 +878,12 @@ msgid ""
 " early morning. The ground is full of gravel and rocks, but silver fir and "
 "spruce trees grow between them and provide shelter for deer and mountain "
 "goats."
-msgstr ""
+msgstr "Ранним утром долины между вершинами Альп наполняются туманом. Земля усыпана гравием и камнями, но между ними растут серебристые ели и пихты, служащие убежищем для оленей и горных козлов."
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Subalpine"
-msgstr ""
+msgstr "Субальпийский"
 
 #: maps/random/rmbiome/generic/arctic.jsonDescription.Description
 msgctxt "biome definition"
@@ -957,7 +959,7 @@ msgid ""
 "to the south. The sunlight floods through the open canopy and lights the "
 "grassland between the trees, where herds of zebras, wildebeest, giraffes and"
 " elephants roam."
-msgstr ""
+msgstr "Переход между сухой Сахарой на севере и тропическими лесами на юге. Солнечный свет проникает сквозь открытый навес и освещает луга между деревьями, где бродят стада зебр, антилоп гну, жирафов и слонов."
 
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
@@ -970,7 +972,7 @@ msgid ""
 "Wide grasslands stretching to the horizon, without any trees blocking the "
 "view. The Steppe is home to large herds of wild horses, which graze "
 "peacefully on the empty land, but flee quickly if you try to catch them."
-msgstr ""
+msgstr "Широкие луга, простирающиеся до горизонта, без каких-либо деревьев, загораживающих обзор. В степи обитают большие стада диких лошадей, которые мирно пасутся на пустой земле, но быстро убегают, если вы попытаетесь их поймать."
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -2321,11 +2323,11 @@ msgstr "Тропический Остров"
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
-msgstr ""
+msgstr "Эта карта предназначена для тестирования различных случаев преследования юнитов друг другом. "
 
 #: maps/scenarios/unit_chasing_test.xml:Name:40
 msgid "Unit Chasing test"
-msgstr ""
+msgstr "Тест преследующих юнитов"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
@@ -2351,11 +2353,11 @@ msgstr "Интеграционное тестирование перемещен
 msgid ""
 "This map is designed to test the performance & functionality of unit "
 "pushing."
-msgstr ""
+msgstr "Эта карта предназначена для проверки производительности и работоспособности столкновений юнитов."
 
 #: maps/scenarios/unit_pushing_test.xml:Name:40
 msgid "Unit Pushing test"
-msgstr ""
+msgstr "Тест толкающих юнитов"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."
@@ -2631,7 +2633,7 @@ msgstr "Северную Италию около Альп римляне наз�
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"
-msgstr ""
+msgstr "Цизальпийская зима (2)"
 
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
 msgid "Corinthian Isthmus (2)"
@@ -2657,7 +2659,7 @@ msgid ""
 "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
 "\n"
 "The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
-msgstr ""
+msgstr "Древнее озеро Моерис близ реки Нил в Ливийской пустыне было заселено и использовалось египтянами с доисторических времен.\n\nОкружающие земли усеяны древними и новыми памятниками и храмами, а само озеро изобилует тилапией, готовой к рыбной ловле."
 
 #: maps/skirmishes/crocodilopolis_4p.xml:Name:39
 msgid "Crocodilopolis (4)"
@@ -2803,11 +2805,11 @@ msgstr "Поля Галлов (3)"
 
 #: maps/skirmishes/gallic_highlands_2p.xml:Description:39
 msgid "The Highlands of central Gaul."
-msgstr ""
+msgstr "Высокогорья центральной Галлии."
 
 #: maps/skirmishes/gallic_highlands_2p.xml:Name:39
 msgid "Gallic Highlands (2)"
-msgstr ""
+msgstr "Галльское высокогорье (2)"
 
 #: maps/skirmishes/gambia_river_3p.xml:Description:38
 msgid ""
@@ -2884,7 +2886,7 @@ msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
-msgstr ""
+msgstr "Гидаспес, он же Джелум, река в индийском штате Пенджаб. Здесь произошло великое сражение между македонскими войсками под командованием Александра Македонского и индийскими войсками царя Поруса из Пауравы."
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
@@ -2978,7 +2980,7 @@ msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
-msgstr ""
+msgstr "Каждый игрок начинает матч на вершине большого плоского плато, иначе известного как акрополь.\n\nНа востоке раскинулся большой залив с возможностями для рыбной ловли. На западе находится невостребованный акрополь с видом на Эгейское море."
 
 #: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
 msgid "Miletus Peninsula (2)"
@@ -3083,7 +3085,7 @@ msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
-msgstr ""
+msgstr "В глубине африканской пустыни Сахара находится область скалистых обнажений и небольших оазисов.\n\nВ скалах можно найти большие каменоломни, а рядом с оазисами, усеивающими ландшафт, можно найти древесину и животные ресурсы. Близлежащие плодоносящие финиковые пальмы дают приятное начальное прибавление пищи."
 
 #: maps/skirmishes/saharan_oases_2p.xml:Name:39
 msgid "Saharan Oases (2)"

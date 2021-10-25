@@ -23,6 +23,7 @@
 # Александр Волосников <Volosnikov.aleksandr@bk.ru>, 2018
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017-2018
+# Валерий Кулаев, 2021
 # Георгий Морозов <moroz.ger@gmail.com>, 2020
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Николай Авдеев <nickkolok@mail.ru>, 2016
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-23 22:30+0000\n"
+"Last-Translator: Валерий Кулаев\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,7 +128,7 @@ msgstr "Главное меню"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "Команда '%(cmd)s' не поддерживается. Попробуйте %(help)s чтобы получить больше информации о поддерживаемых командах."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -375,11 +376,11 @@ msgstr "Бесконечная игра"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr ""
+msgstr "У вас есть несколько несовместимых модов:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr ""
+msgstr "Этот мод не влияет на совместимость с совместной игрой"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -406,7 +407,7 @@ msgstr "Модификации:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr ""
+msgstr "Моды (несовместимые):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156

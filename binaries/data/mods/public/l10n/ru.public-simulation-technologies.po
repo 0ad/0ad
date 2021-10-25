@@ -41,8 +41,9 @@
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2018
+# Валерий Кулаев, 2021
 # Виктор Волошко <fantazticplay@gmail.com>, 2020
-# Георгий Морозов <moroz.ger@gmail.com>, 2020
+# Георгий Морозов <moroz.ger@gmail.com>, 2020-2021
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Дмитрий <polsha_d@mail.ru>, 2016
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019,2021
@@ -51,8 +52,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 08:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-23 23:21+0000\n"
+"Last-Translator: Валерий Кулаев\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +127,7 @@ msgstr "Гвардейский пеший копейщик получает на
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr ""
+msgstr "Поощрение солдат к стрельбе из лука повышает их точность."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
@@ -438,7 +439,7 @@ msgstr "Колонизация"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr ""
+msgstr "Гражданские здания -25% к затратам времени и ресурсов на строительство"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -835,7 +836,7 @@ msgstr "Традиция гоплитов"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr ""
+msgstr "Гоплиты -25% к времени на обучение и -50% к опыту для повышения."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -966,7 +967,7 @@ msgstr "Расширьте шумный городок до настоящего
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
-msgstr ""
+msgstr "Требуется 3 здания класса \"Городское\"."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1264,15 +1265,15 @@ msgstr "Железное оружие"
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
-msgstr ""
+msgstr "Добавляя небольшое количество углерода в процессе выплавки чугуна, можно выковать более прочный материал - сталь."
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
-msgstr ""
+msgstr "Цементация стали"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr ""
+msgstr "Воины +20% урона от атаки в ближнем бою."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
@@ -1295,17 +1296,17 @@ msgstr "Булат"
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
-msgstr ""
+msgstr "Воины +20% урона от атаки в ближнем бою. Мечники получают дополнительный бонус +20 %."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr ""
+msgstr "Улучшение оперения стрел увеличивает их устойчивость и скорость, а следовательно, и их проникающую способность."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
-msgstr ""
+msgstr "Улучшенное оперение"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1379,11 +1380,11 @@ msgstr "Нательная броня, сделанная из маленьки�
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr ""
+msgstr "Кольчужный доспех"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr ""
+msgstr "Воины +2 к сопротивлению рубящему урону."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
@@ -1410,15 +1411,15 @@ msgstr "Металлический обод"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr ""
+msgstr "Укрепите щиты более прочными металлическими сплавами."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
-msgstr ""
+msgstr "Улучшенные защитные сплавы"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr ""
+msgstr "Воины +2 к сопротивлению колющему урону."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1724,7 +1725,7 @@ msgstr "Опыт ведения войны"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
-msgstr ""
+msgstr "Наемники начинают с Продвинутого ранга."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

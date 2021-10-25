@@ -73,6 +73,7 @@
 # Yegor <revolver45@inbox.ru>, 2014
 # zake1313 <mihfay@gmail.com>, 2014
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
+# Валерий Кулаев, 2021
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Георгий Морозов <moroz.ger@gmail.com>, 2020
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -88,8 +89,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-23 22:19+0000\n"
+"Last-Translator: Валерий Кулаев\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -279,11 +280,11 @@ msgstr "Нажмите %(hotkey)s, чтобы  посмотреть список
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr ""
+msgstr "Вид от лица союзников"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr ""
+msgstr "Включить вид от лица союзников (видеть то, что видят ваши союзники)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -895,7 +896,7 @@ msgstr "Вас заблокировали."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr ""
+msgstr "Не удалось получить локальный IP-адрес сервера (предполагалось, что он находится в той же сети)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format

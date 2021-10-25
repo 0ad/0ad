@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-21 01:38+0000\n"
+"PO-Revision-Date: 2021-10-23 20:37+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -714,7 +714,7 @@ msgstr[1] "segundos"
 
 #: gui/common/tooltips.js:156 gui/common/tooltips.js:167
 msgid "Health:"
-msgstr "Salú:"
+msgstr "Vitalidá:"
 
 #: gui/common/tooltips.js:166
 #, javascript-format
@@ -1001,7 +1001,7 @@ msgstr "Sanar:"
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr "Vida"
+msgstr "Vitalidá"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1201,7 +1201,7 @@ msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:1016
 msgid "Speed:"
-msgstr "Velocidá:"
+msgstr "Celeridá:"
 
 #: gui/common/tooltips.js:1018 gui/common/tooltips.js:1023
 #: gui/common/tooltips.js:1028
@@ -1232,8 +1232,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] "Vida"
-msgstr[1] "Vida"
+msgstr[0] "Vitalidá"
+msgstr[1] "Vitalidá"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -4638,7 +4638,7 @@ msgstr "Sesión de xuegu"
 
 #: gui/options/options.json[6].options[0].label
 msgid "Wounded unit health"
-msgstr "Salú d'unidaes mancaes"
+msgstr "Vitalidá d'unidaes mancaes"
 
 #: gui/options/options.json[6].options[0].tooltip
 msgid ""
@@ -6620,7 +6620,7 @@ msgstr "La téunica especial de los perses. "
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "Construcciones +25% de salú."
+msgstr "+25% a la vitalidá [de construcciones]."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
