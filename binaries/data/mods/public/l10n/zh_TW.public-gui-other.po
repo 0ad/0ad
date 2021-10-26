@@ -15,18 +15,20 @@
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018,2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # StarAtt <tea55688@gmail.com>, 2021
+# Wood Hong, 2021
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 # Yuan Chang <daan0014119@gmail.com>, 2021
 # Yuan Chang <daan0014119@gmail.com>, 2020-2021
 # 又齊 劉 <bill19981002@gmail.com>, 2018
 # 可邦 陳 <bensoncat99@gmail.com>, 2019
+# 周 桂标 <1799973401@qq.com>, 2021
 # 黃柏諺 <s8321414@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-18 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-24 15:57+0000\n"
+"Last-Translator: 周 桂标 <1799973401@qq.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1220,7 +1222,7 @@ msgstr "奔走"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "加速"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -3436,7 +3438,7 @@ msgstr "從選擇中移除單位"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "單獨選擇單位的修飾符，而不是每個編隊。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
@@ -3839,7 +3841,7 @@ msgstr "最大值：%(max)s"
 
 #: gui/options/options.js:170
 msgid "Do you want to keep changes?"
-msgstr ""
+msgstr "你想要保留修改嗎？"
 
 #: gui/options/options.js:191
 #, javascript-format
@@ -4068,39 +4070,39 @@ msgstr "為了降低 CPU 負載，在遊戲中限制算繪頻率。設定為最�
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "圖形用戶界面"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -6436,7 +6438,7 @@ msgstr "將你的士兵們編成陣型，讓他們在戰鬥中能維持組織。
 
 #: gui/text/tips/formations.txt:3
 msgid "Formations are selected as a whole by default."
-msgstr ""
+msgstr "默認情況下，整體選擇編隊。"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

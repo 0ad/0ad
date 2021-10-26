@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-10-20 18:40+0000\n"
+"PO-Revision-Date: 2021-10-23 21:32+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Despiésllase na «Fas urbana»."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Llancieros invictos: vida +25% tiempu de producción +5%."
+msgstr "Llancieros invictos: vitalidá +25% tiempu de producción +5%."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -155,7 +155,7 @@ msgstr "Arquiteutura monumental"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Construcciones civiles: periodu d'obra +20% vida +20% fideleza +20%."
+msgstr "Construcciones civiles: periodu d'obra +20% vitalidá +20% fidelidá +20%."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -171,7 +171,7 @@ msgstr "Arquiteutura persa"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Construcciones: vida y fideleza +25% periodu d'obra +20%."
+msgstr "Construcciones: vitalidá y fidelidá +25% periodu d'obra +20%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -234,11 +234,11 @@ msgstr "Enrazadura equina"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr "Caballería: vida +10%."
+msgstr "Caballería: vitalidá +10%."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
-msgstr "Ensayar los burros pa que bancien perrápido."
+msgstr "Ensayar los burros pa que cuerran al avance."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
@@ -246,7 +246,7 @@ msgstr "Concursos hípicos"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "Caballería: velocidá +10%."
+msgstr "Caballería: celeridá +10%."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -261,7 +261,7 @@ msgstr "Muralles triples"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Cerques: periodu d'obra +100% costu en piedra +100% vida +200%."
+msgstr "Cerques: periodu d'obra +100% costu en piedra +100% vitalidá +200%."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -273,7 +273,7 @@ msgstr "Construcción en madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Construcciones: periodu d'obra −20% vida −20% fideleza −20%."
+msgstr "Construcciones: periodu d'obra −20% vitalidá −20% fidelidá −20%."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -299,7 +299,7 @@ msgstr "Arquiteutura helénica"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "Construcciones: vida +10% fidelidá +10%."
+msgstr "Construcciones: vitalidá +10% fidelidá +10%."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -352,7 +352,7 @@ msgstr "Cerques de madera"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Cerques: periodu d'obra −20% vida −20%."
+msgstr "Cerques: periodu d'obra −20% vitalidá −20%."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -382,7 +382,7 @@ msgstr "Adobe"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "Cases, construcciones económiques: vida y costu en madera −40%."
+msgstr "Cases, construcciones económiques: vitalidá y costu en madera −40%."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -443,7 +443,7 @@ msgstr "Pesqueros: ritmu de pesca +30%."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr "Les unidaes abellugaes van dir alicando."
+msgstr "Les unidaes aliquen al tar abellugaes."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -754,11 +754,11 @@ msgstr "Telar"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr "Ciudadanes: vida +100%."
+msgstr "Ciudadanes: vitalidá +100%."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Les unidaes humanes y animales aliquen al tar baleres."
+msgstr "Les unidaes orgániques aliquen al tar baleres."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -781,7 +781,7 @@ msgstr "Metrópolis helenista"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Places: vida y fideleza +100% saetes por defeutu ×2."
+msgstr "Places: vitalidá y fidelidá +100% saetes por defeutu ×2."
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
@@ -807,7 +807,7 @@ msgstr "Inmortales"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr "Inmortales: tiempu de producción −50% vida −10%."
+msgstr "Inmortales: tiempu de producción −50% vitalidá −10%."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -870,7 +870,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "Llancieros invictos d'a caballu: vida +20% tiempu de producción +10%."
+msgstr "Llancieros invictos d'a caballu: vitalidá +20% tiempu de producción +10%."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -939,7 +939,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la «Fas urbana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +50%. Construcciones: ritmu de fidelización por unidá abellugada +9. Obreros: ritmu d'estraición del metal +10%."
+msgstr "Avanza a la «Fas urbana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +50%. Construcciones: ritmu de reasociación por unidá abellugada +9. Obreros: ritmu d'estraición del metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -952,7 +952,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la «Fas urbana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +50%. Construcciones: ritmu de fidelización por unidá abellugada +9."
+msgstr "Avanza a la «Fas urbana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +50%. Construcciones: ritmu de reasociación por unidá abellugada +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -991,7 +991,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanzar a la «Fas opidana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +30%. Construcciones: ritmu de fidelización por unidá abellugada +7. Obreros: ritmu d'estraición del metal +10%."
+msgstr "Avanzar a la «Fas opidana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +30%. Construcciones: ritmu de reasociación por unidá abellugada +7. Obreros: ritmu d'estraición del metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1003,7 +1003,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanzar a la «Fas opidana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +30%. Construcciones: ritmu de fidelización por unidá abellugada +7."
+msgstr "Avanzar a la «Fas opidana», que despieslla más entes y téuniques. Places: influencia nes llendes territoriales +30%. Construcciones: ritmu de reasociación por unidá abellugada +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1089,7 +1089,7 @@ msgstr "Cuadernes reforzaes"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
-msgstr "Barcos: vida +25%."
+msgstr "Barcos: vitalidá +25%."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1103,7 +1103,7 @@ msgstr "Tripulaciones aduechaes"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr "Barcos: velocidá +10%."
+msgstr "Barcos: celeridá +10%."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1152,7 +1152,7 @@ msgstr "Blindaxe"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr "Arietes, bastíes: vida +25%."
+msgstr "Arietes, torres móviles: vitalidá +25%."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
@@ -1180,7 +1180,7 @@ msgstr "Cuerpu de los Escudos de Plata"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "Ascendi l'escuderu al escudu de plata, que tien más PV y ataque."
+msgstr "Ascendi l'escuderu al escudu de plata, que tien más vitalidá y ataque."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1424,7 +1424,7 @@ msgstr "Murueques macices"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr "Torres: vida +25%."
+msgstr "Torres: vitalidá +25%."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1514,7 +1514,7 @@ msgstr "Caravana comercial"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr "Comerciantes terrestres: vida +50%."
+msgstr "Comerciantes terrestres: vitalidá +50%."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1534,19 +1534,19 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "Unidaes avanzaes, escoyíes: tiempu de producción +20% vida +25% conquista +0.7 cacida +20% ritmu de llogru −30%; Sanadores: sanamientu +5 algame +3; Combatedores: resistencia +1 dañu +20%; Tiradores: imprecisión −20%."
+msgstr "Unidaes avanzaes, escoyíes: tiempu de producción +20% vitalidá +25% conquista +0.7 cacida +20% velocidá de llogru −30%; Sanadores: sanamientu +5 algame +3; Combatedores: resistencia +1 dañu +20%; Tiradores: imprecisión −20%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr "Elefantes africanos: costu, tiempu de producción, vida, ataque y cacida −10%."
+msgstr "Elefantes africanos: costu, tiempu de producción, vitalidá, ataque y cacida −10%."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr " Elefantes índicos: costu, tiempu de producción, vida, ataque y cacida +10%."
+msgstr " Elefantes índicos: costu, tiempu de producción, vitalidá, ataque y cacida +10%."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1554,7 +1554,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Unidaes escoyíes: tiempu de producción +20% vida +25% conquista +0.8 cacida +20% ritmu de llogru −30%; Sanadores: sanamientu +5 algame +3; Combatedores: resistencia +1 ataque +20%; Tiradores: imprecisión −20%."
+msgstr "Unidaes escoyíes: tiempu de producción +20% vitalidá +25% conquista +0.8 cacida +20% velocidá de llogru −30%; Sanadores: sanamientu +5 algame +3; Combatedores: resistencia +1 ataque +20%; Tiradores: imprecisión −20%."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription

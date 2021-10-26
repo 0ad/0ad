@@ -57,6 +57,7 @@
 # zake1313 <mihfay@gmail.com>, 2014
 # Александр Волосников <Volosnikov.aleksandr@bk.ru>, 2018
 # Антон Сычев, 2021
+# Валерий Кулаев, 2021
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Владимир Бочкарёв <zacharovannyu@gmail.com>, 2016
 # Георгий Морозов <moroz.ger@gmail.com>, 2020
@@ -71,8 +72,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 07:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-23 22:26+0000\n"
+"Last-Translator: Валерий Кулаев\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,7 +215,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "(This item is paused.)"
-msgstr ""
+msgstr "(Этот пункт приостановлен.)"
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -942,7 +943,7 @@ msgstr "Отправить метку вашим союзникам"
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "Найти незанятого работника\nКоличество незанятых работников."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1142,7 +1143,7 @@ msgstr "Отменить разворачивание"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Автоматическая очередь попытается обучить этот элемент позже."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1183,22 +1184,22 @@ msgstr "Невозможно проводить обучение, пока ид�
 #: gui/session/selection_panels.js:1129
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Улучшить до %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1135
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Улучшить до %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Улучшить до %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Улучшить до %(primaryName)s."
 
 #: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
@@ -1403,7 +1404,7 @@ msgstr "Щёлкните, чтобы выбрать отряд, двойной �
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Альфа XXVI: Z——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1450,7 +1451,7 @@ msgstr "Население: текущее/предел (макс.)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
-msgstr ""
+msgstr "Количество сборщиков: текущее"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1766,7 +1767,7 @@ msgstr "Отменить текущий приказ."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Отправьте выбранных юнитов в атаку в указанное место после сброса ресурсов."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
