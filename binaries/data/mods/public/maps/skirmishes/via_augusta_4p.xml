@@ -56,15 +56,13 @@
 ]]></ScriptSettings>
 	<Entities>
 		<Entity uid="17">
-			<Template>structures/bridge_wooden</Template>
-			<Player>0</Player>
+			<Template>actor|props/special/eyecandy/bridge_edge_wooden.xml</Template>
 			<Position x="415.97614" z="473.14173"/>
 			<Orientation y="1.21338"/>
 			<Actor seed="9104"/>
 		</Entity>
 		<Entity uid="18">
-			<Template>structures/bridge_wooden</Template>
-			<Player>0</Player>
+			<Template>actor|props/special/eyecandy/bridge_edge_wooden.xml</Template>
 			<Position x="409.78592" z="463.34095"/>
 			<Orientation y="-1.95751"/>
 			<Actor seed="51006"/>
