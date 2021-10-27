@@ -194,7 +194,7 @@ function displaySingle(entState)
 	{
 		let experienceBar = Engine.GetGUIObjectByName("experienceBar");
 		let experienceSize = experienceBar.size;
-		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
+		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / (+entState.promotion.req || 1))));
 		experienceBar.size = experienceSize;
 
 		if (entState.promotion.curr < entState.promotion.req)
