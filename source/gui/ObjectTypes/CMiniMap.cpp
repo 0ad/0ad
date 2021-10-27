@@ -265,29 +265,23 @@ void CMiniMap::RecreateFlareTextures()
 		LOGERROR("Invalid value for flare texture count. Valid range is 0-99.");
 		return;
 	}
-	const CStr numberingFormat = "%02u";
+	const CStr textureNumberingFormat = "art/textures/animated/minimap-flare/frame%02u.png";
 	m_FlareTextures.clear();
 	m_FlareTextures.reserve(m_FlareTextureCount);
 	for (u32 i = 0; i < m_FlareTextureCount; ++i)
 	{
-		CTextureProperties textureProps(L"art/textures/animated/minimap-flare/frame" + CStr(fmt::sprintf(numberingFormat, i)).FromUTF8() + L".png");
+		const CTextureProperties textureProps(fmt::sprintf(textureNumberingFormat, i).c_str());
 		m_FlareTextures.emplace_back(g_Renderer.GetTextureManager().CreateTexture(textureProps));
 	}
 }
 
 bool CMiniMap::IsMouseOver() const
 {
-	// Get the mouse position.
 	const CVector2D& mousePos = m_pGUI.GetMousePos();
-	// Get the position of the center of the minimap.
-	CVector2D minimapCenter = CVector2D(m_CachedActualSize.left + m_CachedActualSize.GetWidth() / 2.0, m_CachedActualSize.bottom - m_CachedActualSize.GetHeight() / 2.0);
 	// Take the magnitude of the difference of the mouse position and minimap center.
-	double distFromCenter = sqrt(pow((mousePos.X - minimapCenter.X), 2) + pow((mousePos.Y - minimapCenter.Y), 2));
+	const float distanceFromCenter = (mousePos - m_CachedActualSize.CenterPoint()).Length();
 	// If the distance is less then the radius of the minimap (half the width) the mouse is over the minimap.
-	if (distFromCenter < m_CachedActualSize.GetWidth() / 2.0)
-		return true;
-	else
-		return false;
+	return distanceFromCenter < m_CachedActualSize.GetWidth() / 2.0;
 }
 
 void CMiniMap::GetMouseWorldCoordinates(float& x, float& z) const
@@ -321,6 +315,24 @@ float CMiniMap::GetAngle() const
 	return -atan2(cameraIn.X, cameraIn.Z);
 }
 
+CVector2D CMiniMap::WorldSpaceToMiniMapSpace(const CVector3D& worldPosition) const
+{
+	// Coordinates with 0,0 in the middle of the minimap and +-0.5 as max.
+	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
+	const float relativeX = (worldPosition.X * invTileMapSize - 0.5) / m_MapScale;
+	const float relativeY = (worldPosition.Z * invTileMapSize - 0.5) / m_MapScale;
+
+	// Rotate coordinates.
+	const float angle = GetAngle();
+	const float rotatedX = cos(angle) * relativeX + sin(angle) * relativeY;
+	const float rotatedY = -sin(angle) * relativeX + cos(angle) * relativeY;
+
+	// Calculate coordinates in GUI space.
+	return CVector2D(
+		m_CachedActualSize.left + (0.5f + rotatedX) * m_CachedActualSize.GetWidth(),
+		m_CachedActualSize.bottom - (0.5f + rotatedY) * m_CachedActualSize.GetHeight());
+}
+
 bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 {
 	ScriptRequest rq(g_GUI->GetActiveGUI()->GetScriptInterface());
@@ -343,79 +355,45 @@ bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 
 // This sets up and draws the rectangle on the minimap
 //  which represents the view of the camera in the world.
-void CMiniMap::DrawViewRect(const CMatrix3D& transform) const
+void CMiniMap::DrawViewRect(CCanvas2D& canvas) const
 {
 	// Compute the camera frustum intersected with a fixed-height plane.
 	// Use the water height as a fixed base height, which should be the lowest we can go
-	float h = g_Renderer.GetWaterManager()->m_WaterHeight;
-	const float width = m_CachedActualSize.GetWidth();
-	const float height = m_CachedActualSize.GetHeight();
-	const float invTileMapSize = 1.0f / float(TERRAIN_TILE_SIZE * m_MapSize);
+	const float sampleHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
 
 	const CCamera* camera = g_Game->GetView()->GetCamera();
 	const std::array<CVector3D, 4> hitPoints = {
-		camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), h),
-		camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), h),
-		camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, h),
-		camera->GetWorldCoordinates(0, 0, h)
+		camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), sampleHeight),
+		camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), sampleHeight),
+		camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, sampleHeight),
+		camera->GetWorldCoordinates(0, 0, sampleHeight)
 	};
 
-	std::vector<CVector3D> lines;
+	std::vector<CVector3D> worldSpaceLines;
 	// We need to prevent drawing view bounds out of the map.
 	const float halfMapSize = static_cast<float>((m_MapSize - 1) * TERRAIN_TILE_SIZE) * 0.5f;
-	CropPointsByCircle(hitPoints, CVector3D(halfMapSize, 0.0f, halfMapSize), halfMapSize * m_MapScale, &lines);
-	if (lines.empty())
+	CropPointsByCircle(hitPoints, CVector3D(halfMapSize, 0.0f, halfMapSize), halfMapSize * m_MapScale, &worldSpaceLines);
+	if (worldSpaceLines.empty())
 		return;
 
-	std::vector<float> vertices;
-	vertices.reserve(lines.size() * 2);
-	for (const CVector3D& point : lines)
+	for (size_t index = 0; index < worldSpaceLines.size() && index + 1 < worldSpaceLines.size(); index += 2)
 	{
-		// Convert to minimap space.
-		vertices.emplace_back(width * point.X * invTileMapSize);
-		vertices.emplace_back(-(height * point.Z * invTileMapSize));
+		const CVector2D from = WorldSpaceToMiniMapSpace(worldSpaceLines[index]);
+		const CVector2D to = WorldSpaceToMiniMapSpace(worldSpaceLines[index + 1]);
+		canvas.DrawLine({from, to}, 2.0f, CColor(1.0f, 0.3f, 0.3f, 1.0f));
 	}
-
-	glLineWidth(2.0f);
-
-	CShaderDefines lineDefines;
-	lineDefines.Add(str_MINIMAP_LINE, str_1);
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), lineDefines);
-	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
-	shader->Uniform(str_transform, transform);
-	shader->Uniform(str_color, 1.0f, 0.3f, 0.3f, 1.0f);
-
-	shader->VertexPointer(2, GL_FLOAT, 0, vertices.data());
-	shader->AssertPointersBound();
-
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_LINES, 0, vertices.size() / 2);
-
-	tech->EndPass();
-
-	glLineWidth(1.0f);
 }
 
 void CMiniMap::DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double currentTime) const
 {
-	if (!m_FlareTextures.size())
+	if (m_FlareTextures.empty())
 		return;
 
-	// Coordinates with 0,0 in the middle of the minimap and +-0.5 as max.
-	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
-	const float relativeX = (flare.pos.X * invTileMapSize - 0.5) / m_MapScale;
-	const float relativeY = (flare.pos.Y * invTileMapSize - 0.5) / m_MapScale;
+	const CVector2D flareCenter = WorldSpaceToMiniMapSpace(CVector3D(flare.pos.X, 0.0f, flare.pos.Y));
 
-	// Rotate coordinates.
-	const float angle = GetAngle();
-	const float rotatedX = cos(angle) * relativeX + sin(angle) * relativeY;
-	const float rotatedY = -sin(angle) * relativeX + cos(angle) * relativeY;
-	// Calculate coordinates in gui space.
-	const float cx = m_CachedActualSize.left + (0.5f + rotatedX) * m_CachedActualSize.GetWidth();
-	const float cy = m_CachedActualSize.bottom - (0.5f + rotatedY) * m_CachedActualSize.GetHeight();
-
-	const CRect destination(cx-m_FlareRenderSize, cy-m_FlareRenderSize, cx+m_FlareRenderSize, cy+m_FlareRenderSize);
+	const CRect destination(
+		flareCenter.X - m_FlareRenderSize, flareCenter.Y - m_FlareRenderSize,
+		flareCenter.X + m_FlareRenderSize, flareCenter.Y + m_FlareRenderSize);
 
 	const u32 flooredStep = floor((currentTime - flare.time) * m_FlareAnimationSpeed);
 
@@ -701,7 +679,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 
 	tech->EndPass();
 
-	DrawViewRect(unitMatrix);
+	DrawViewRect(canvas);
 
 	while (!m_MapFlares.empty() && m_FlareLifetimeSeconds + m_MapFlares.front().time < cur_time)
 		m_MapFlares.pop_front();
