@@ -5457,15 +5457,13 @@
 			<Actor seed="15236"/>
 		</Entity>
 		<Entity uid="1672">
-			<Template>structures/bridge_wooden</Template>
-			<Player>0</Player>
+			<Template>actor|props/special/eyecandy/bridge_edge_wooden.xml</Template>
 			<Position x="1240.20264" z="677.28711"/>
 			<Orientation y="0.92228"/>
 			<Actor seed="1746"/>
 		</Entity>
 		<Entity uid="1673">
-			<Template>structures/bridge_wooden</Template>
-			<Player>0</Player>
+			<Template>actor|props/special/eyecandy/bridge_edge_wooden.xml</Template>
 			<Position x="1233.19459" z="670.37372"/>
 			<Orientation y="-2.22959"/>
 			<Actor seed="14658"/>
@@ -8513,15 +8511,13 @@
 			<Orientation y="-2.5886"/>
 		</Entity>
 		<Entity uid="3262">
-			<Template>structures/bridge_hele</Template>
-			<Player>0</Player>
+			<Template>actor|props/special/eyecandy/bridge_edge_hele.xml</Template>
 			<Position x="1419.63086" z="1418.98108"/>
 			<Orientation y="-2.35338"/>
 			<Actor seed="56096"/>
 		</Entity>
 		<Entity uid="3263">
-			<Template>structures/bridge_hele</Template>
-			<Player>0</Player>
+			<Template>actor|props/special/eyecandy/bridge_edge_hele.xml</Template>
 			<Position x="1457.13209" z="1454.55921"/>
 			<Orientation y="0.77076"/>
 			<Actor seed="39596"/>
