@@ -92,13 +92,14 @@ private:
 
 	void RecreateFlareTextures();
 
-	void DrawViewRect(const CMatrix3D& transform) const;
+	void DrawViewRect(CCanvas2D& canvas) const;
 
 	void DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double curentTime) const;
 
 	void GetMouseWorldCoordinates(float& x, float& z) const;
 
 	float GetAngle() const;
+	CVector2D WorldSpaceToMiniMapSpace(const CVector3D& worldPosition) const;
 
 	VertexIndexArray m_IndexArray;
 	VertexArray m_VertexArray;
