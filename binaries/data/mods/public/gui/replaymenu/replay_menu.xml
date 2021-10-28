@@ -15,7 +15,7 @@
 		</object>
 
 		<!-- Left Panel: Filters & Replay List -->
-		<object name="leftPanel" size="3% 5% 100%-255 100%-80">
+		<object name="leftPanel" size="3% 5% 100%-255 100%-70">
 
 			<!-- Filters -->
 			<object name="filterPanel" size="0 0 100%-13 24">
@@ -94,12 +94,13 @@
 			</object>
 
 			<!-- Filename -->
-			<object name="replayFilename" type="input" size="0 100%-24 100% 100%" style="ModernInput" readonly="true" font="sans-14" sprite="ReplayMenuFilenameBackground"/>
-
+			<object name="replayFilename" type="input" size="0 100%-25 100% 100%" style="ModernInput" readonly="true" font="sans-14" textcolor="208 174 132" sprite="ReplayMenuFilenameBackground">
+				<translatableAttribute id="tooltip">File path for the currently selected replay.</translatableAttribute>
+			</object>
 		</object>
 
 		<!-- Right Panel: Compatibility Filter & Replay Details -->
-		<object name="rightPanel" size="100%-250 30 100%-20 100%-20" >
+		<object name="rightPanel" size="100%-250 30 100%-20 100%-10" >
 
 			<!-- Compatibility Filter Checkbox -->
 			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 4 20 100%">
@@ -223,32 +224,32 @@
 		<object name="bottomPanel" size="25 100%-55 100%-5 100%-25" >
 
 			<!-- Main Menu Button -->
-			<object type="button" style="StoneButton" size="25 0 17%+25 100%">
+			<object type="button" style="StoneButton" size="0 0 19% 100%">
 				<translatableAttribute id="caption">Main Menu</translatableAttribute>
 				<action on="Press">Engine.SwitchGuiPage("page_pregame.xml");</action>
 			</object>
 
 			<!-- Delete Button -->
-			<object name="deleteReplayButton" type="button" style="StoneButton" size="20%+25 0 37%+25 100%" hotkey="session.savedgames.delete">
+			<object name="deleteReplayButton" type="button" style="StoneButton" size="20% 0 39% 100%" hotkey="session.savedgames.delete">
 				<translatableAttribute id="caption">Delete</translatableAttribute>
 				<action on="Press">deleteReplayButtonPressed();</action>
 			</object>
 
 			<!-- Rebuild Cache Button -->
-			<object type="button" style="StoneButton" size="40%+25 0 57%+25 100%">
+			<object type="button" style="StoneButton" size="40% 0 59% 100%">
 				<translatableAttribute id="caption">Rebuild Cache</translatableAttribute>
 				<translatableAttribute id="tooltip">Rebuild the replay cache from scratch. Potentially slow!</translatableAttribute>
 				<action on="Press">reloadCache(); displayReplayList();</action>
 			</object>
 
 			<!-- Summary Button -->
-			<object name="summaryButton" type="button" style="StoneButton" size="65%-50 0 82%-50 100%" hotkey="summary">
+			<object name="summaryButton" type="button" style="StoneButton" size="60% 0 79% 100%" hotkey="summary">
 				<translatableAttribute id="caption">Summary</translatableAttribute>
 				<action on="Press">showReplaySummary();</action>
 			</object>
 
 			<!-- Start Replay Button -->
-			<object name="startReplayButton" type="button" style="StoneButton" size="83%-25 0 100%-25 100%">
+			<object name="startReplayButton" type="button" style="StoneButton" size="80% 0 99% 100%">
 				<translatableAttribute id="caption">Start Replay</translatableAttribute>
 				<action on="Press">startReplay();</action>
 			</object>
