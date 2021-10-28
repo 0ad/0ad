@@ -293,7 +293,7 @@ std::vector<CStr> Mod::CheckForIncompatibleMods(const std::vector<CStr>& mods) c
 		}
 
 		modNameVersions.emplace(it->m_Name, it->m_Version);
-		modDependencies.emplace(it->m_Name, it->m_Dependencies);
+		modDependencies.emplace(it->m_Pathname, it->m_Dependencies);
 	}
 
 	static const std::vector<CStr> toCheck = { "<=", ">=", "=", "<", ">" };
