@@ -134,6 +134,26 @@ public:
 		TS_ASSERT(m_Mods.CheckForIncompatibleMods(mods).size() == 1);
 	}
 
+	void test_different_name_and_path()
+	{
+		ScriptInterface script("Test", "Test", g_ScriptContext);
+
+		ScriptRequest rq(script);
+		JS::RootedObject obj(rq.cx, JS_NewPlainObject(rq.cx));
+
+		m_Mods.m_AvailableMods = {
+			Mod::ModData{ "public", "0ad", "0.0.25", {}, false, "" },
+			Mod::ModData{ "wrong", "wrong_name", "0.10.0", { "0ad=0.0.24" }, false, ""}
+		};
+
+		std::vector<CStr> mods;
+
+		mods.clear();
+		mods.push_back("public");
+		mods.push_back("wrong");
+		TS_ASSERT(!m_Mods.CheckForIncompatibleMods(mods).empty());
+	}
+
 	void test_play_compatible()
 	{
 		Mod::ModData a1 = { "a", "a", "0.0.1", {}, false, "" };

@@ -513,7 +513,7 @@ function closeOpenDialogs()
 	g_TradeDialog.close();
 }
 
-function endGame()
+function endGame(showSummary)
 {
 	// Before ending the game
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
@@ -554,7 +554,16 @@ function endGame()
 		summaryData.nextPage = menu;
 	}
 
-	Engine.SwitchGuiPage("page_summary.xml", summaryData);
+	if (showSummary)
+		Engine.SwitchGuiPage("page_summary.xml", summaryData);
+	else if (g_InitAttributes.campaignData)
+		Engine.SwitchGuiPage(summaryData.nextPage, summaryData.campaignData);
+	else if (Engine.HasXmppClient())
+		Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });
+	else if (g_IsReplay)
+		Engine.SwitchGuiPage("page_replaymenu.xml");
+	else
+		Engine.SwitchGuiPage("page_pregame.xml");
 }
 
 // Return some data that we'll use when hotloading this file after changes

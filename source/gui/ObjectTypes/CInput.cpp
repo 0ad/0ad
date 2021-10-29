@@ -1469,7 +1469,7 @@ void CInput::Draw(CCanvas2D& canvas)
 				}
 
 				// selecting only one, then we need only to draw a cursor.
-				if (i != (int)it->m_ListOfX.size() && it->m_ListStart + i == m_iBufferPos && m_CursorVisState)
+				if (i != (int)it->m_ListOfX.size() && it->m_ListStart + i == m_iBufferPos && m_CursorVisState && !m_Readonly)
 					textRenderer.Put(0.0f, 0.0f, L"_");
 
 				// Drawing selected area
@@ -1499,7 +1499,7 @@ void CInput::Draw(CCanvas2D& canvas)
 			if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 			{
 				textRenderer.SetCurrentColor(m_TextColor);
-				if (m_CursorVisState)
+				if (m_CursorVisState && !m_Readonly)
 					textRenderer.PutAdvance(L"_");
 
 				if (using_selected_color)

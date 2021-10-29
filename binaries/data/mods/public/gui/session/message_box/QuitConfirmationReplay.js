@@ -14,15 +14,25 @@ QuitConfirmationReplay.prototype.Title =
 	translateWithContext("replayFinished", "Confirmation");
 
 QuitConfirmationReplay.prototype.Caption =
-	translateWithContext("replayFinished", "The replay has finished. Do you want to quit?");
+	translateWithContext("replayFinished", "The replay has finished. What do you want to do?");
 
 QuitConfirmationReplay.prototype.Buttons =
 [
 	{
-		"caption": translateWithContext("replayFinished", "No")
+		// Translation: Shown in the Dialog that shows up when a replay finishes
+		"caption": translate("Stay")
 	},
 	{
-		"caption": translateWithContext("replayFinished", "Yes"),
-		"onPress": endGame
+		// Translation: Shown in the Dialog that shows up when a replay finishes
+		"caption": translate("Quit and View Summary"),
+		"onPress": () => { endGame(true); }
+	},
+	{
+		// Translation: Shown in the Dialog that shows up when a replay finishes
+		"caption": translate("Quit"),
+		"onPress": () => { endGame(false); }
 	}
 ];
+
+QuitConfirmationReplay.prototype.Width = 600;
+QuitConfirmationReplay.prototype.Height = 200;

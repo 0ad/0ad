@@ -4,13 +4,13 @@ Trigger.prototype.tutorialGoals = [
 			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in Village Phase and ultimately, your goal will be to develop and expand your empire, often by evolving to Town Phase and City Phase afterward.\n"),
 			{
 				"text": markForTranslation("\nBefore starting, you can toggle between fullscreen and windowed mode using %(hotkey)s."),
-				"hotkey": ["togglefullscreen"]
+				"hotkey": "togglefullscreen"
 			},
 			markForTranslation("You can change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"),
 			markForTranslation("Adjust the game window to your preferences.\n"),
 			{
 				"text": markForTranslation("\nYou may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"),
-				"hotkey": ["session.gui.tutorial.toggle"]
+				"hotkey": "session.gui.tutorial.toggle"
 			}
 		]
 	},
@@ -41,7 +41,10 @@ Trigger.prototype.tutorialGoals = [
 			markForTranslation("There are primarily three ways to select units:\n"),
 			markForTranslation("1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"),
 			markForTranslation("2) Click on one of them and then add additional units to your selection by holding Shift and clicking each additional unit (or also via the above selection rectangle).\n"),
-			markForTranslation("3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"),
+			{
+				"text": markForTranslation("3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. %(hotkey)s+double-click will select all units of the same type on the entire map.\n"),
+				"hotkey": "selection.offscreen"
+			},
 			markForTranslation("You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the berries to the southeast of your Civic Center by right-clicking on the berries when you have all the Female Citizens selected.")
 		],
 		"OnPlayerCommand": function(msg)
