@@ -5,13 +5,14 @@
 # Translators:
 # Coinneach Donáll Mac Ocslaigh <coinneachoxley@gmail.com>, 2021
 # Gerard Geldenhuys <gerard5680@outlook.com>, 2021
+# Apocalypto Soldier, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Gerard Geldenhuys <gerard5680@outlook.com>, 2021\n"
+"Last-Translator: Apocalypto Soldier, 2021\n"
 "Language-Team: Afrikaans (https://www.transifex.com/wildfire-games/teams/17418/af/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,16 +26,18 @@ msgid ""
 "Discover the new maps in Alpha XXVI with a demo campaign, taking you through"
 " all of them."
 msgstr ""
+"Ontdek die nuwe kaarte in Alpha XXVI met 'n demo veldtog wat jou deur al van"
+" hulle vat"
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "Demo veldtogte - nuwe kaarte"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "Leer hoe om 0 A.D. te speel"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -45,6 +48,11 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Hierdie kaart sal vir jou 'n rowwe gids oor hoe om die spel effektief te "
+"begin. Vroeg in die spel is die belangrikste ding om so vinnig as moontlik "
+"hulpbronne te versamel sodat jy later genoeg troepe kan bou. Waarskuwing: "
+"Hierdie is baie vinnig aan die begin, wees gereed om paar keer deur die "
+"eerste stuk te gaan."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -54,7 +62,7 @@ msgstr ""
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Hierdie is 'n basiese les om jou te leer hoe om 0 A.D. te speel"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -69,12 +77,12 @@ msgstr ""
 #: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "Voltooid"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Beskikbaar"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
@@ -83,7 +91,7 @@ msgstr ""
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr ""
+msgstr "Veldtog Naam"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
@@ -95,7 +103,7 @@ msgstr ""
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
-msgstr ""
+msgstr "Gestoorde Spele"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
@@ -103,7 +111,7 @@ msgstr ""
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Herneem Gestoorde Spel"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
@@ -113,11 +121,11 @@ msgstr ""
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "Lêer kan nie gelaai word nie"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
@@ -139,11 +147,11 @@ msgstr "Ja"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "Laai veldtog"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Geen deurlopende veldtogte."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
@@ -152,36 +160,36 @@ msgstr ""
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselleer"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):35
 msgid "Delete"
-msgstr ""
+msgstr "Verwyder"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Begin 'n veldtog"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "Benoem asseblief jou nuwe veldtog"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "Begin veldtog"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "Geen veldtog geselekteer"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr ""
+msgstr "Veldtogte"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "Geen veldtog geselekteer"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

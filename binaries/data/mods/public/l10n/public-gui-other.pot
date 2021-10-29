@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-18 07:08+0000\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-10-29 07:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3488,7 +3488,7 @@ msgstr ""
 msgid "No saved games found."
 msgstr ""
 
-#: gui/loadgame/load.xml:(caption):54 gui/replaymenu/replay_menu.xml:(caption):233
+#: gui/loadgame/load.xml:(caption):54 gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
 msgstr ""
 
@@ -3506,15 +3506,15 @@ msgstr ""
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
-#: gui/replaymenu/replay_menu.xml:(caption):152
+#: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
 msgstr ""
 
-#: gui/loadgame/load.xml:(caption):86 gui/replaymenu/replay_menu.xml:(caption):167
+#: gui/loadgame/load.xml:(caption):86 gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
 msgstr ""
 
-#: gui/loadgame/load.xml:(caption):90 gui/replaymenu/replay_menu.xml:(caption):182
+#: gui/loadgame/load.xml:(caption):90 gui/replaymenu/replay_menu.xml:(caption):183
 msgid "Victory:"
 msgstr ""
 
@@ -5513,27 +5513,27 @@ msgstr ""
 msgid "Replay Games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):111
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
+#: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Spoiler"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):246 gui/summary/summary.xml:(caption):26
+#: gui/replaymenu/replay_menu.xml:(caption):247 gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):252
+#: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
 msgstr ""
 
@@ -5561,7 +5561,11 @@ msgstr ""
 msgid "Search for Player"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):240
+#: gui/replaymenu/replay_menu.xml:(tooltip):98
+msgid "File path for the currently selected replay."
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
 

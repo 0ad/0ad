@@ -16,6 +16,7 @@
 # Pavel Borecki <pavel.borecki@gmail.com>, 2019
 # fri, 2014-2019,2021
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
+# Peter Stanislav <spawes@gmail.com>, 2021
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Warriog <warrriog@gmail.com>, 2018
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016,2021
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-18 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-28 20:34+0000\n"
+"Last-Translator: Peter Stanislav <spawes@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -391,7 +392,7 @@ msgstr "Odhalená mapa"
 
 #: gui/common/gamedescription.js:400
 msgid "Allied View"
-msgstr ""
+msgstr "Spojenecký pohled"
 
 #: gui/common/gamedescription.js:405
 msgid "Cheats"
@@ -1262,7 +1263,7 @@ msgstr "Běžet"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Zrychlení"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -2073,7 +2074,7 @@ msgstr "Potvrdit"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr ""
+msgstr "Přepni konzoli."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
@@ -2125,7 +2126,7 @@ msgstr "Vložit ze schránky"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Pozastavit/spustit hru."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
@@ -2760,7 +2761,7 @@ msgstr "Přepnout na rozhovor"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Ukázat údaje o civilizaci"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2988,7 +2989,7 @@ msgstr "Přepnout zobrazení překrytí dosahu útoku vybraných obranných stav
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr ""
+msgstr "Přepnout dosahy útoků"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
@@ -3484,7 +3485,7 @@ msgstr "Odebrat jednotky z výběru"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Modifikátor pro výběr jednotlivých jednotek nebo formací."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
@@ -3887,7 +3888,7 @@ msgstr "Nejvíce: %(max)s"
 
 #: gui/options/options.js:170
 msgid "Do you want to keep changes?"
-msgstr ""
+msgstr "Chcete zachovat změny?"
 
 #: gui/options/options.js:191
 #, javascript-format
@@ -4116,39 +4117,39 @@ msgstr "Pro šetření zatížení procesoru, přidusit častost vykreslování 
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "GUI měřítko"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -6480,7 +6481,7 @@ msgstr "Rybolov je rychlejší než získávání jídla na polích."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Opatrně! Ryby nejsou nekonečný zdroj! I když se pomalu znovu množí, když jsou ponecháni sami."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"

@@ -43,6 +43,7 @@
 # Micky Jault <micky037@hotmail.fr>, 2016
 # Moritz FS <momogingins@gmail.com>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2015-2016,2018
+# Natasha Di Berardo, 2021
 # Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2019
 # Nicolas Terray <nicolas.terray@gmail.com>, 2021
@@ -72,8 +73,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-18 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-10-26 16:20+0000\n"
+"Last-Translator: Natasha Di Berardo\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1280,7 +1281,7 @@ msgstr "Course"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Accélération"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -2159,7 +2160,7 @@ msgstr "Sauvegarder le profil"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr ""
+msgstr "Basculer le profilage en temps-réel"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
@@ -2169,7 +2170,7 @@ msgstr "Afficher / masquer le profileur"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Basculer les modes HTTP/GPU pour le nouveau profileur"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
@@ -3498,7 +3499,7 @@ msgstr "Supprimer les unités de la sélection"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Modifier afin de sélectionner les unités individuellement, contrairement par formation."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
@@ -3901,7 +3902,7 @@ msgstr "Max : %(max)s"
 
 #: gui/options/options.js:170
 msgid "Do you want to keep changes?"
-msgstr ""
+msgstr "Voulez-vous sauvegarder vos changements?"
 
 #: gui/options/options.js:191
 #, javascript-format
@@ -4130,39 +4131,39 @@ msgstr "Pour économiser la charge du travail du processeur, limite la fréquenc
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "Échelle de l’interface utilisateur"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -6139,7 +6140,7 @@ msgstr "%(hotkey)s: Basculer le lobby multijoueur dans une fenêtre de dialogue.
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "Mettre en évidence l'onglet sommaire 1%(name)s "
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6480,7 +6481,7 @@ msgstr "Pêcher est plus rapide que de récolter de la nourriture dans les champ
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Attention! Le poisson n'est pas une ressource infinie! Quoiqu'ils se réapprovisionnent tranquillement si on les laisse tranquille. "
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6505,7 +6506,7 @@ msgstr "Disposez vos soldats en formations pour les garder organisés pendant le
 
 #: gui/text/tips/formations.txt:3
 msgid "Formations are selected as a whole by default."
-msgstr ""
+msgstr "Par défaut, les formations sont sélectionnées entièrement.  "
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
