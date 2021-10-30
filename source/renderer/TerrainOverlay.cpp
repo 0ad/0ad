@@ -128,7 +128,6 @@ void TerrainOverlay::RenderBeforeWater()
 	glEnable(GL_POLYGON_OFFSET_FILL);
 
 	pglActiveTextureARB(GL_TEXTURE0);
-	glDisable(GL_TEXTURE_2D);
 
 	StartRender();
 

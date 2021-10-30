@@ -1048,12 +1048,10 @@ Status ogl_tex_bind(Handle ht, size_t unit)
 	// those and ignoring redundant sets isn't feasible.
 	pglActiveTextureARB((int)(GL_TEXTURE0+unit));
 
-	// special case: disable texturing
+	// special case: resets the active texture.
 	if(ht == 0)
 	{
-#if !CONFIG2_GLES
-		glDisable(GL_TEXTURE_2D);
-#endif
+		glBindTexture(GL_TEXTURE_2D, 0);
 		return INFO::OK;
 	}
 
@@ -1068,9 +1066,6 @@ Status ogl_tex_bind(Handle ht, size_t unit)
 	// we therefore complain so this one can be ruled out.
 	ENSURE(ot->id != 0);
 
-#if !CONFIG2_GLES
-	glEnable(GL_TEXTURE_2D);
-#endif
 	glBindTexture(GL_TEXTURE_2D, ot->id);
 	return INFO::OK;
 }
