@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-10-23 22:12+0000\n"
+"PO-Revision-Date: 2021-10-29 02:36+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "+3 al ritmu de reparación \\[de máquines con unidaes adientro]."
+msgstr "+3 al ritmu d'iguadura \\[de máquines enllenes d'unidaes]."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -28,7 +28,7 @@ msgstr "Igües mecániques"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "+10 al ritmu de reparación \\[de barcos con unidaes adientro]."
+msgstr "+10 al ritmu d'iguadura \\[de barcos enllenos d'unidaes]."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -79,7 +79,7 @@ msgstr "Llugar d'estudiu"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "+50% al ritmu de reasociación \\[de construcciones con unidaes adientro]."
+msgstr "+50% al ritmu de reapropriación \\[de construcciones enllenes d'unidaes]."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -124,7 +124,7 @@ msgstr "+3 a la resist. a la frayura, corte ya fura y +20 a la visión \\[de mí
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "Munición"
+msgstr "Muriadura"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
@@ -150,7 +150,7 @@ msgstr "−25% al tiempu de construcción \\[de naves béliques]."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
-msgstr "Colligamientu delio-áticu"
+msgstr "Confederación delio-ática"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -178,7 +178,7 @@ msgstr "Productos de la Galia"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr "−10% a los costos \\[de llanciegos ciudadanos]."
+msgstr "−10% a los costos \\[de llanciegos civiles]."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -228,7 +228,7 @@ msgstr "Panera del Mediterraneu"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr "−10% al tiempu de producción \\[de pédites ciudadanos]."
+msgstr "−10% al tiempu de producción \\[de pédites civiles]."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -244,11 +244,11 @@ msgstr "Tetrápolis"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr "+10% a la vitalidá \\[d'asteros ciudadanos d'a pie]."
+msgstr "+10% a la vitalidá \\[d'asteros civiles pedestres]."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
-msgstr "Colligamientu del Peloponesu"
+msgstr "Confederación peloponesia"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
@@ -266,7 +266,7 @@ msgstr "Solón fezo dixebraes igües económiques que dieron puxu al comerciu y 
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
-msgstr "Reformes de la facienda"
+msgstr "Midíes económiques"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
@@ -303,7 +303,7 @@ msgstr "Aforfugón"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr "cabu de la caballería pesada cartaxinesa nel Trebia y Cannae, u esfarrapó al enemigu con tres cargues.\nÉquites combatedores: resist. a la frayura, corte ya fura +1 vitalidá +10%."
+msgstr "cabu de la caballería pesada cartaxinesa nel Trebia y Cannae, u esfarrapó al enemigu con tres cargues.\nCombatedores ecuestres: resist. a la frayura, corte ya fura +1 vitalidá +10%."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -383,7 +383,7 @@ msgstr "Porthētḗs"
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "Structures +20% territory influence radius."
-msgstr "fíu de Candragupta Maurya, Bindusara perafitó los dominios maurios y dexó al so propiu fíu, Axoca, un imperiu estable.\nConstrucciones: influencia nes llendes territoriales +20%."
+msgstr "fíu de Candragupta Maurya, Bindusara perafitó los dominios maurios y dexó al so propriu fíu, Axoca, un imperiu estable.\nConstrucciones: influencia nes llendes territoriales +20%."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -407,7 +407,7 @@ msgstr "Artaxerxes pasó'l so reináu gastando n'obres públiques. Remocicó'l P
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr "Gran constructor"
+msgstr "Edificador"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -473,16 +473,16 @@ msgstr "Basileús Mégas"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "Citizen Infantry Spearmen −10% resource costs."
-msgstr "Licurgu fezo dixebraes igües militares y al endefechu exixó que la llealtá de la ciudadanía a Esparta fore absoluta sol so gobiernu.\nAsteros ciudadanos d'a pie: costu −10%."
+msgstr "Licurgu fezo dixebraes igües militares y al endefechu exixó que la llealtá de la ciudadanía a Esparta fore absoluta sol so gobiernu.\nAsteros civiles pedestres: costu −10%."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
 msgid "Lycurgan Military Reforms"
-msgstr "Reformes de Licurgu"
+msgstr "Militarismu"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr "−5% al costu \\[d'asteros invictos d'a pie]."
+msgstr "−5% al costu \\[d'asteros invictos pedestres]."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -492,7 +492,7 @@ msgstr "pa promover la igualdá, Licurgu quitó l'usu del oru y la plata ya intr
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
-msgstr "El pélanor"
+msgstr "Pélanoi"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Builders +25% build rate."
@@ -514,11 +514,11 @@ msgstr "Reformes táctiques"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
-msgstr "+15 a la celeridá \\[de llanciegos d'a pie]."
+msgstr "+15 a la celeridá \\[de llanciegos pedestres]."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
-msgstr "Reformes del peltasta"
+msgstr "Ificrátides"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
@@ -540,7 +540,7 @@ msgstr "Templu d'Atena Nike"
 msgid ""
 "When garrisoned, the Ship has −30% batch training time and +50% movement "
 "speed."
-msgstr "−30% al tiempu de producción coleutiva y +50% a la celeridá \\[de barcos con unidaes adientro]."
+msgstr "−30% al tiempu de producción coleutiva y +50% a la celeridá \\[de barcos enllenos d'unidaes]."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -607,11 +607,11 @@ msgstr "+1 a la captura y +20% al dañu de tiru o combate \\[de mílites y máqu
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
-msgstr "Tácticu"
+msgstr "Estrategu"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "Melee Cavalry +30% melee attack damage."
-msgstr "+30% al dañu combatiente \\[d'équites combatedores]."
+msgstr "+30% al dañu combatiente \\[de combatedores ecuestres]."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -643,7 +643,7 @@ msgstr "Preparación marcial"
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
 "rate."
-msgstr "+2 al ritmu de reasociación \\[de construcciones con unidaes adientro]."
+msgstr "+2 al ritmu de reapropriación \\[de construcciones enllenes d'unidaes]."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -651,7 +651,7 @@ msgstr "Defensa inspirada"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
-msgstr "+75% a les saetes \\[de construcciones o torres móviles con unidaes adientro]."
+msgstr "+75% a les saetes \\[de construcciones o torres móviles enllenes d'unidaes]."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
@@ -683,7 +683,7 @@ msgstr "+100% a la cacida \\[de mílites, máquines]."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
-msgstr "Cacida"
+msgstr "Rabina"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 #: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
@@ -721,7 +721,7 @@ msgstr "−50% al sanamientu \\[de sanadores enemigos]."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
-msgstr "Matancia de los fieles"
+msgstr "Sacrificiu de los fieles"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
@@ -749,7 +749,7 @@ msgstr "Imperialismu"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr "−50% al ritmu de reasociación \\[de places enemigues con unidaes adientro]."
+msgstr "−50% al ritmu de reapropriación \\[de places enemigues enllenes d'unidaes]."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
@@ -758,7 +758,7 @@ msgstr "Conquistador"
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
-msgstr "+20% a la captura y +20% al dañu combatiente \\[de sarisóforos]."
+msgstr "+20% a la captura y +20% al dañu combatiente \\[de sarisóforos pedestres]."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -940,11 +940,11 @@ msgstr "Zooiarchos"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr "+1 a la resist. a la frayura, corte ya fura y +25% a la fura \\[de llanciegos ciudadanos d'a pie]."
+msgstr "+1 a la resist. a la frayura, corte ya fura y +25% a la fura \\[de llanciegos civiles pedestres]."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr "Reformes del ilota"
+msgstr "Brasídeos"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
