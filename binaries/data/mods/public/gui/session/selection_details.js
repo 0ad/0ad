@@ -201,7 +201,7 @@ function displaySingle(entState)
 			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s / %(required)s"), {
 				"experience": "[font=\"sans-bold-13\"]" + translate("Experience:") + "[/font]",
 				"current": Math.floor(entState.promotion.curr),
-				"required": entState.promotion.req
+				"required": Math.ceil(entState.promotion.req)
 			});
 		else
 			Engine.GetGUIObjectByName("experience").tooltip = sprintf(translate("%(experience)s %(current)s"), {
