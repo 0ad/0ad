@@ -178,9 +178,7 @@ void CDecalRData::RenderDecals(
 				// TerrainRenderer.
 				// Also, need to mark the decals as dirty when water height changes.
 
-				//	glDisable(GL_TEXTURE_2D);
 				//	m_Decal->GetBounds().Render();
-				//	glEnable(GL_TEXTURE_2D);
 
 				shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
 

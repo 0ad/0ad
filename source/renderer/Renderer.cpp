@@ -753,7 +753,6 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 
 		// setup some renderstate ..
 		pglActiveTextureARB(GL_TEXTURE0);
-		glDisable(GL_TEXTURE_2D);
 		glLineWidth(2.0f);
 
 		// render tiles edges
@@ -797,7 +796,6 @@ void CRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
 		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glDisable(GL_TEXTURE_2D);
 
 		m->CallModelRenderers(contextWireframe, cullGroup, flags);
 
@@ -851,7 +849,6 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, int cullG
 		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glDisable(GL_TEXTURE_2D);
 
 		m->CallTranspModelRenderers(contextWireframe, cullGroup, flags);
 
@@ -1451,7 +1448,6 @@ void CRenderer::DisplayFrustum()
 #else
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
-	glDisable(GL_TEXTURE_2D);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -1702,13 +1698,6 @@ void CRenderer::BindTexture(int unit, GLuint tex)
 	pglActiveTextureARB(GL_TEXTURE0+unit);
 
 	glBindTexture(GL_TEXTURE_2D, tex);
-#if !CONFIG2_GLES
-	if (tex) {
-		glEnable(GL_TEXTURE_2D);
-	} else {
-		glDisable(GL_TEXTURE_2D);
-	}
-#endif
 }
 
 void CRenderer::MakeShadersDirty()

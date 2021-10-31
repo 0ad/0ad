@@ -188,7 +188,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 
-	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(0);
@@ -590,7 +589,6 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	g_Renderer.BindTexture(1, 0);
 
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
-	glDisable(GL_TEXTURE_2D);
 
 	waterSimpleTech->EndPass();
 #endif
