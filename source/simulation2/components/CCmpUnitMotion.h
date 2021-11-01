@@ -225,6 +225,9 @@ public:
 	// This caches the resulting speed from m_WalkSpeed * m_SpeedMultiplier for convenience.
 	fixed m_Speed;
 
+	// Mean speed over the last turn.
+	fixed m_LastTurnSpeed;
+
 	// The speed achieved at the end of the current turn.
 	fixed m_CurrentSpeed;
 
@@ -280,7 +283,7 @@ public:
 
 		m_WalkSpeed = m_TemplateWalkSpeed = m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_SpeedMultiplier = fixed::FromInt(1);
-		m_CurrentSpeed = fixed::Zero();
+		m_LastTurnSpeed = m_CurrentSpeed = fixed::Zero();
 
 		m_RunMultiplier = m_TemplateRunMultiplier = fixed::FromInt(1);
 		if (paramNode.GetChild("RunMultiplier").IsOk())
@@ -336,6 +339,7 @@ public:
 
 		serialize.NumberFixed_Unbounded("speed multiplier", m_SpeedMultiplier);
 
+		serialize.NumberFixed_Unbounded("last turn speed", m_LastTurnSpeed);
 		serialize.NumberFixed_Unbounded("current speed", m_CurrentSpeed);
 
 		serialize.NumberFixed_Unbounded("instant turn angle", m_InstantTurnAngle);
@@ -1021,7 +1025,7 @@ void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 
 	// If we were idle and will still be, no need for an update.
 	state.needUpdate = state.cmpPosition->IsInWorld() &&
-		(m_CurrentSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
+		(m_CurrentSpeed != fixed::Zero() || m_LastTurnSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
 
 	if (!m_BlockMovement)
 		return;
@@ -1290,6 +1294,7 @@ void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed, entity_pos_t meanSp
 			cmpVisual->SelectMovementAnimation(meanSpeed > (m_WalkSpeed / 2).Multiply(m_RunMultiplier + fixed::FromInt(1)) ? "run" : "walk", meanSpeed);
 	}
 
+	m_LastTurnSpeed = meanSpeed;
 	m_CurrentSpeed = speed;
 }
 
