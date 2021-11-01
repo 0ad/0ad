@@ -22,14 +22,15 @@
 # Yuan Chang <daan0014119@gmail.com>, 2021
 # Yuan Chang <daan0014119@gmail.com>, 2020-2021
 # 又齊 劉 <bill19981002@gmail.com>, 2018
+# 周 桂标 <1799973401@qq.com>, 2021
 # StarAtt <tea55688@gmail.com>, 2018
 # 黃柏諺 <s8321414@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-27 14:50+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-10-29 15:05+0000\n"
+"Last-Translator: 周 桂标 <1799973401@qq.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -721,7 +722,6 @@ msgstr "摧毀目前所選的任何事物？"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmation.js:14
 #: gui/session/message_box/QuitConfirmationMenu.js:49
 #: gui/session/message_box/ResignConfirmation.js:9
 msgid "No"
@@ -729,7 +729,6 @@ msgstr "否"
 
 #: gui/session/dialogs/yes_no.xml:(caption):19
 #: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmation.js:17
 #: gui/session/message_box/QuitConfirmationMenu.js:52
 #: gui/session/message_box/ResignConfirmation.js:12
 msgid "Yes"
@@ -801,8 +800,20 @@ msgid "Confirmation"
 msgstr "確認"
 
 #: gui/session/message_box/QuitConfirmation.js:9
-msgid "Are you sure you want to quit?"
-msgstr "您確定要退出？"
+msgid "The game has finished, what do you want to do?"
+msgstr "重播已結束。您想要退出嗎？"
+
+#. Translation: Shown in the Dialog that shows up when the game finishes
+#: gui/session/message_box/QuitConfirmation.js:15
+#: gui/session/message_box/QuitConfirmationReplay.js:23
+msgid "Stay"
+msgstr "停留"
+
+#. Translation: Shown in the Dialog that shows up when the game finishes
+#: gui/session/message_box/QuitConfirmation.js:19
+#: gui/session/message_box/QuitConfirmationReplay.js:27
+msgid "Quit and View Summary"
+msgstr "退出並查看概要"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -840,18 +851,8 @@ msgstr "確認"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
+msgid "The replay has finished. What do you want to do?"
 msgstr "重播已結束。您想要退出嗎？"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:22
-msgctxt "replayFinished"
-msgid "No"
-msgstr "否"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:25
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "是"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -869,6 +870,8 @@ msgstr "您被擊敗！"
 msgid "Click to quit this tutorial."
 msgstr "點選以離開本教學"
 
+#: gui/session/message_box/QuitConfirmation.js:24
+#: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
 msgstr "離開"
@@ -971,60 +974,60 @@ msgstr "(%(number)s)\n%(time)s"
 msgid "Current/max gatherers"
 msgstr "目前/最大採集人數"
 
-#: gui/session/selection_details.js:306
+#: gui/session/selection_details.js:314
 #, javascript-format
 msgid "(%(secondaryName)s)"
 msgstr "（%(secondaryName)s）"
 
-#: gui/session/selection_details.js:452
+#: gui/session/selection_details.js:461
 msgid "Capture Points:"
 msgstr "占領值： "
 
-#: gui/session/selection_details.js:460
+#: gui/session/selection_details.js:469
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s：%(details)s\n"
 
-#: gui/session/selection_details.js:461
+#: gui/session/selection_details.js:470
 msgid "Garrison Size"
 msgstr "駐紮大小"
 
-#: gui/session/selection_details.js:466
+#: gui/session/selection_details.js:475
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:467
+#: gui/session/selection_details.js:476
 msgid "Carrying:"
 msgstr "攜帶："
 
-#: gui/session/selection_details.js:470 gui/session/selection_details.js:479
+#: gui/session/selection_details.js:479 gui/session/selection_details.js:488
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:475
+#: gui/session/selection_details.js:484
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:476
+#: gui/session/selection_details.js:485
 msgid "Loot:"
 msgstr "戰利品："
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:537
+#: gui/session/selection_details.js:546
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:561
+#: gui/session/selection_details.js:570
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:568
+#: gui/session/selection_details.js:577
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "

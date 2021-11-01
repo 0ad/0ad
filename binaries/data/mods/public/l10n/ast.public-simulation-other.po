@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 02:06+0000\n"
+"PO-Revision-Date: 2021-11-01 02:43+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ye la IA por defeutu de 0 A.D. Fai'l favor d'informar de fallos a Wildfire Games (ver l'enllaz en menú principal).\n\nLa rapidez cola que Petra llogra recursos y beneficios comerciales mana na so dificultá, (Xole −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Nes dificultaes menores, tamién baxen los ritmos de desendolcu, de conscripción y de construcción. Na dificultá «Xole», per otru llau, Petra nin s'esparde nin invade."
+msgstr "Petra ye la IA por defectu de 0 A.D. Fai'l favor d'informar de fallos a Wildfire Games (ver l'enllaz en menú principal).\n\nLa rapidez cola que Petra llogra recursos y beneficios comerciales mana na so dificultá, (Xole −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Nes dificultaes menores, tamién baxen los ritmos de desendolcu, de conscripción y de construcción. Na dificultá «Xole», per otru llau, Petra nin s'esparde nin invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -813,11 +813,11 @@ msgstr "Aniquilación"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centres."
-msgstr "Véncese aniquilando toles places contraries en pie."
+msgstr "Véncese aniquilando tolos foros contrarios en pie."
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
 msgid "Conquest Civic Centres"
-msgstr "Aniquilación places"
+msgstr "Aniquilación foros"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
@@ -911,4 +911,4 @@ msgstr "Nun ye posible mandar a %(unit)s."
 
 #: simulation/helpers/Commands.js:1206
 msgid "The building's technology requirements are not met."
-msgstr "Nun se cumplen los requisitos téunicos de la construcción."
+msgstr "Nun se cumplen los requisitos técnicos de la construcción."

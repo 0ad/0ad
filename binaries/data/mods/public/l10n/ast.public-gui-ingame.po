@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 04:08+0000\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-11-01 00:52+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgstr "Colar"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr "Allancia na tresmisión en direuto: %(delay)ss"
+msgstr "Allancia na tresmisión en directo: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -97,7 +97,7 @@ msgstr "Autenticóse la conexón col sirvidor."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr "Coneutóse col sirvidor."
+msgstr "Conectóse col sirvidor."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
@@ -105,7 +105,7 @@ msgstr "Perdióse la conexón col sirvidor."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr "Esperando a que se coneuten los xugadores:"
+msgstr "Esperando a que se conecten los xugadores:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
@@ -346,7 +346,7 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s ta atacando'l ganáu!"
+msgstr "%(icon)s ¡%(attacker)s ta atacando los reses!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
@@ -496,7 +496,7 @@ msgstr "Mandar toles unidaes"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
 msgid "Change perspective"
-msgstr "Cambiar perspeutiva"
+msgstr "Cambiar perspectiva"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
 msgid "Display selection state"
@@ -705,7 +705,6 @@ msgstr "¿Destruyir tolo esbillao?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmation.js:14
 #: gui/session/message_box/QuitConfirmationMenu.js:49
 #: gui/session/message_box/ResignConfirmation.js:9
 msgid "No"
@@ -713,7 +712,6 @@ msgstr "Non"
 
 #: gui/session/dialogs/yes_no.xml:(caption):19
 #: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmation.js:17
 #: gui/session/message_box/QuitConfirmationMenu.js:52
 #: gui/session/message_box/ResignConfirmation.js:12
 msgid "Yes"
@@ -785,8 +783,20 @@ msgid "Confirmation"
 msgstr "Confirmanza"
 
 #: gui/session/message_box/QuitConfirmation.js:9
-msgid "Are you sure you want to quit?"
-msgstr "¿De xuru que quies colar?"
+msgid "The game has finished, what do you want to do?"
+msgstr "Finó l'alcuentru, ¿qué quies facer?"
+
+#. Translation: Shown in the Dialog that shows up when the game finishes
+#: gui/session/message_box/QuitConfirmation.js:15
+#: gui/session/message_box/QuitConfirmationReplay.js:23
+msgid "Stay"
+msgstr "Fincar"
+
+#. Translation: Shown in the Dialog that shows up when the game finishes
+#: gui/session/message_box/QuitConfirmation.js:19
+#: gui/session/message_box/QuitConfirmationReplay.js:27
+msgid "Quit and View Summary"
+msgstr "Colar y ver el resume"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -803,7 +813,7 @@ msgstr "¿Quies colar?"
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "¿De xuru que quies colar? Si sales tolos otros xugadores van desconeutase."
+msgstr "¿De xuru que quies colar? Si sales tolos otros xugadores van desconectase."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:64
 msgid "Do you want to resign or will you return soon?"
@@ -824,18 +834,8 @@ msgstr "Confirmanza"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "Finó la repetición. ¿Quies colar?"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:22
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Non"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:25
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Sí"
+msgid "The replay has finished. What do you want to do?"
+msgstr "Finó la repetición, ¿qué quies facer?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -853,6 +853,8 @@ msgstr "¡Venciéronte!"
 msgid "Click to quit this tutorial."
 msgstr "Calca pa colar d'esti tutorial."
 
+#: gui/session/message_box/QuitConfirmation.js:24
+#: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
 msgstr "Colar"
@@ -955,60 +957,60 @@ msgstr "(%(number)s)\n%(time)s"
 msgid "Current/max gatherers"
 msgstr "Coyedores actuales/máximos"
 
-#: gui/session/selection_details.js:306
+#: gui/session/selection_details.js:314
 #, javascript-format
 msgid "(%(secondaryName)s)"
 msgstr "(%(secondaryName)s)"
 
-#: gui/session/selection_details.js:452
+#: gui/session/selection_details.js:461
 msgid "Capture Points:"
 msgstr "Fidelidá:"
 
-#: gui/session/selection_details.js:460
+#: gui/session/selection_details.js:469
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s: %(details)s\n"
 
-#: gui/session/selection_details.js:461
+#: gui/session/selection_details.js:470
 msgid "Garrison Size"
 msgstr "Númberu d'ocupantes"
 
-#: gui/session/selection_details.js:466
+#: gui/session/selection_details.js:475
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:467
+#: gui/session/selection_details.js:476
 msgid "Carrying:"
 msgstr "Llevando:"
 
-#: gui/session/selection_details.js:470 gui/session/selection_details.js:479
+#: gui/session/selection_details.js:479 gui/session/selection_details.js:488
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:475
+#: gui/session/selection_details.js:484
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:476
+#: gui/session/selection_details.js:485
 msgid "Loot:"
 msgstr "Cacida:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:537
+#: gui/session/selection_details.js:546
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:561
+#: gui/session/selection_details.js:570
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:568
+#: gui/session/selection_details.js:577
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ","
@@ -1593,7 +1595,7 @@ msgstr "Preparáu"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Esti ye'l mercáu d'orixe.\nCalca col botón drechu pa encaboxar la ruta comercial"
+msgstr "Esti ye'l mercáu d'orixe.\nCalca col botón derechu pa encaboxar la vía comercial"
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1627,7 +1629,7 @@ msgstr "Ocupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Calca col botón derechu p'afitar una ruta por defeutu pa comerciantes nuevos."
+msgstr "Calca col botón derechu p'afitar una vía por defectu pa comerciantes nuevos."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format

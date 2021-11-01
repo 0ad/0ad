@@ -10,15 +10,16 @@
 # Ivan Potapov <elsewhere@yandex.ru>, 2020
 # Ivan Levin <spite39169@gmail.com>, 2021
 # Boris Karalnik <eyesucker@gmail.com>, 2021
-# nwtour <nwtour@mail.ru>, 2021
 # Валерий Кулаев, 2021
+# nwtour <nwtour@mail.ru>, 2021
+# nskdmitry, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Валерий Кулаев, 2021\n"
+"Last-Translator: nskdmitry, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/wildfire-games/teams/17418/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "Добро пожаловать в обучение 0 A.D."
+msgstr "Добро пожаловать в пособие по 0 A.D."
 
 #: maps/tutorials/introductory_tutorial.js:6
 msgid ""
@@ -199,11 +200,11 @@ msgid ""
 "Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the Field (right click on it)."
 msgstr ""
-"Начните обучение группы женщин-граждан в Ратуше и установите точку сбора на "
-"Поле (щелкните по нему правой кнопкой мыши)."
+"Начните обучение группы женщин-граждан в Городском Центре и установите точку"
+" сбора на Поле (щелкните по нему правой кнопкой мыши)."
 
 #: maps/tutorials/introductory_tutorial.js:246
-#: maps/tutorials/starting_economy_walkthrough.js:345
+#: maps/tutorials/starting_economy_walkthrough.js:348
 msgid "Click on the Female Citizen icon."
 msgstr "Щёлкните по иконке Горожанки."
 
@@ -437,17 +438,15 @@ msgstr ""
 "выбранному, удерживая Shift и щелкая на каждого дополнительного юнита (или "
 "используя прямоугольник выбора, как описано выше).\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:44
+#: maps/tutorials/starting_economy_walkthrough.js:45
+#, javascript-format
 msgid ""
 "3) Double-click on a unit. This will select every unit of the same type as "
-"the specified unit in your visible window. Triple-click will select all "
-"units of the same type on the entire map.\n"
+"the specified unit in your visible window. %(hotkey)s+double-click will "
+"select all units of the same type on the entire map.\n"
 msgstr ""
-"3) Дважды кликните по юниту. Это позволит выбрать всех юнитов того же типа, "
-"что и выбранный юнит, на видимом участке карты. Тройной клик позволяет "
-"выделить всех юнитов одного типа на всей карте.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:45
+#: maps/tutorials/starting_economy_walkthrough.js:48
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
 "of these methods before tasking all of your Female Citizens to gather the "
@@ -459,7 +458,7 @@ msgstr ""
 "сбор ягод к юго-востоку от городского Центра, щёлкнув правой кнопкой на "
 "винограднике, когда все женщины будут выбраны."
 
-#: maps/tutorials/starting_economy_walkthrough.js:56
+#: maps/tutorials/starting_economy_walkthrough.js:59
 msgid ""
 "Now, let's gather some wood with your Infantry Citizen Soldiers. Select your"
 " Infantry Citizen Soldiers and order them to gather wood by right-clicking "
@@ -469,7 +468,7 @@ msgstr ""
 "граждан. Выберите их и прикажите заняться сбором древесины, щёлкнув правой "
 "кнопкой на ближайшем дереве."
 
-#: maps/tutorials/starting_economy_walkthrough.js:67
+#: maps/tutorials/starting_economy_walkthrough.js:70
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
@@ -477,13 +476,13 @@ msgstr ""
 "Всадники-граждане хорошо охотятся. Выберите всадника и аналогичным образом "
 "прикажите ему охотиться на кур возле вашего городского Центра."
 
-#: maps/tutorials/starting_economy_walkthrough.js:78
+#: maps/tutorials/starting_economy_walkthrough.js:81
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
 "Все ваши юниты заняты сбором ресурсов. Необходимо обучить больше юнитов!\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:79
+#: maps/tutorials/starting_economy_walkthrough.js:82
 msgid ""
 "First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
@@ -498,12 +497,12 @@ msgstr ""
 "сбор древесины к югу от городского Центра. Для этого выберите городской "
 "Центр, щёлкнув на нем и затем щёлкните правой кнопкой на дерево."
 
-#: maps/tutorials/starting_economy_walkthrough.js:80
+#: maps/tutorials/starting_economy_walkthrough.js:83
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr "Точки сбора обозначаются небольшими флажками на конце синей линии."
 
-#: maps/tutorials/starting_economy_walkthrough.js:88
+#: maps/tutorials/starting_economy_walkthrough.js:91
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a wood icon."
@@ -511,7 +510,7 @@ msgstr ""
 "Выберите городской Центр, затем наведите курсор на дерево и щёлкните правой "
 "кнопкой, когда увидите, что курсор сменился на значок древесины."
 
-#: maps/tutorials/starting_economy_walkthrough.js:97
+#: maps/tutorials/starting_economy_walkthrough.js:100
 msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
@@ -519,7 +518,7 @@ msgstr ""
 "Теперь, когда точка сбора установлена, вы можете обучить новых юнитов, и они"
 " автоматически будут выполнять назначенное задание.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:98
+#: maps/tutorials/starting_economy_walkthrough.js:101
 msgid ""
 "Citizen Soldiers gather wood faster than Female Citizens. Select the Civic "
 "Center and, while holding Shift, click on the second unit icon, the Hoplites"
@@ -533,21 +532,21 @@ msgstr ""
 "юнитов). Вы также могли бы обучить эти пять юнитов одного за другим, но "
 "обучение партией займёт меньше времени."
 
-#: maps/tutorials/starting_economy_walkthrough.js:108
+#: maps/tutorials/starting_economy_walkthrough.js:111
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
 "Не забывайте удерживать клавишу Shift при щелчке для обучения партии юнитов."
 
-#: maps/tutorials/starting_economy_walkthrough.js:109
+#: maps/tutorials/starting_economy_walkthrough.js:112
 msgid "Hold Shift and click on the Hoplite icon."
 msgstr "Удерживая клавишу Shift, кликните на иконке Гоплита."
 
-#: maps/tutorials/starting_economy_walkthrough.js:118
-#: maps/tutorials/starting_economy_walkthrough.js:177
+#: maps/tutorials/starting_economy_walkthrough.js:121
+#: maps/tutorials/starting_economy_walkthrough.js:180
 msgid "Let's wait for the units to be trained.\n"
 msgstr "Давайте подождём окончания обучения юнитов.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:119
+#: maps/tutorials/starting_economy_walkthrough.js:122
 msgid ""
 "While waiting, direct your attention to the panel at the top of your screen."
 " On the upper left, you will see your current resource supply (food, wood, "
@@ -561,7 +560,7 @@ msgstr ""
 "(или в другую точку разгрузки, например, склад), как только он это сделает, "
 "вы увидите, что количество соответствующего ресурса возрастёт.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:120
+#: maps/tutorials/starting_economy_walkthrough.js:123
 msgid ""
 "This is a very important concept to keep in mind: gathered resources have to"
 " be brought back to a dropsite to be accounted, and you should always try to"
@@ -573,7 +572,7 @@ msgstr ""
 "минимизировать расстояние между ресурсом и ближайшей точкой разгрузки, чтобы"
 " повысить эффективность сбора."
 
-#: maps/tutorials/starting_economy_walkthrough.js:129
+#: maps/tutorials/starting_economy_walkthrough.js:132
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "wood.\n"
@@ -581,7 +580,7 @@ msgstr ""
 "Новые юниты самостоятельно направляются к деревьям и начинают добывать "
 "древисину.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:130
+#: maps/tutorials/starting_economy_walkthrough.js:133
 msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their "
 "gathering efficiency suffers from the distance. To fix that, we can build a "
@@ -599,7 +598,7 @@ msgstr ""
 "курсор как можно ближе к деревьям, которые вы хотите собрать, и щёлкните по "
 "допустимому месту для строительства склада.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:131
+#: maps/tutorials/starting_economy_walkthrough.js:134
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
@@ -607,7 +606,7 @@ msgstr ""
 "Невозможные (заблокированные) позиции будут показаны красной заливкой "
 "силуэта здания при предварительном просмотре."
 
-#: maps/tutorials/starting_economy_walkthrough.js:141
+#: maps/tutorials/starting_economy_walkthrough.js:144
 msgid ""
 "The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
@@ -615,7 +614,7 @@ msgstr ""
 "Выбранные горожане самостоятельно приступят к постройке здания после того, "
 "как вы его разместите."
 
-#: maps/tutorials/starting_economy_walkthrough.js:152
+#: maps/tutorials/starting_economy_walkthrough.js:155
 msgid ""
 "When construction finishes, the builders default to gathering wood "
 "automatically.\n"
@@ -623,7 +622,7 @@ msgstr ""
 "Когда стройка будет завершена, работники самостоятельно займутся сбором "
 "древесины.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:153
+#: maps/tutorials/starting_economy_walkthrough.js:156
 msgid ""
 "Let's train some Female Citizens to gather more food. Select the Civic "
 "Center, hold Shift and click on the Female Citizen icon to train five Female"
@@ -633,16 +632,16 @@ msgstr ""
 "Городской Центр, нажмите Shift и левую кнопку мыши на значке женщины, чтобы "
 "обучить партию из пяти женщин."
 
-#: maps/tutorials/starting_economy_walkthrough.js:167
+#: maps/tutorials/starting_economy_walkthrough.js:170
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
 "Не забывайте удерживать клавишу Shift при щелчке для обучения партии юнитов."
 
-#: maps/tutorials/starting_economy_walkthrough.js:168
+#: maps/tutorials/starting_economy_walkthrough.js:171
 msgid "Hold shift and click on the Female Citizen icon."
 msgstr "Удерживая клавишу Shift, кликните на иконке горожанки."
 
-#: maps/tutorials/starting_economy_walkthrough.js:178
+#: maps/tutorials/starting_economy_walkthrough.js:181
 msgid ""
 "In the meantime, we seem to have enough workers gathering wood. We should "
 "remove the current rally point of the Civic Center away from gathering wood."
@@ -654,11 +653,11 @@ msgstr ""
 "Для этого щёлкните правой кнопкой мыши на городском Центре, когда он выбран "
 "(значок флага, обозначающий точку сбора, перечёркнут)."
 
-#: maps/tutorials/starting_economy_walkthrough.js:192
+#: maps/tutorials/starting_economy_walkthrough.js:195
 msgid "The units should be ready soon.\n"
 msgstr "Юниты скоро будут готовы.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:193
+#: maps/tutorials/starting_economy_walkthrough.js:196
 msgid ""
 "In the meantime, direct your attention to your population count on the top "
 "panel. It is the fifth item from the left, after the resources. It would be "
@@ -673,7 +672,7 @@ msgstr ""
 "обучаются) и текущий предел населения, который определяется возведенными "
 "постройками."
 
-#: maps/tutorials/starting_economy_walkthrough.js:206
+#: maps/tutorials/starting_economy_walkthrough.js:209
 msgid ""
 "As you have nearly reached the population limit, you must increase it by "
 "building some new structures if you want to train more units. The most cost "
@@ -684,7 +683,7 @@ msgstr ""
 "обучить больше юнитов. Наиболее эффективная по затратам постройка, "
 "увеличивающая предел населения, это дом.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:207
+#: maps/tutorials/starting_economy_walkthrough.js:210
 msgid ""
 "Now that the units are ready, let's see how to build several Houses in a "
 "row."
@@ -692,7 +691,7 @@ msgstr ""
 "Теперь, когда юниты готовы, давайте попробуем построить несколько домов "
 "сразу."
 
-#: maps/tutorials/starting_economy_walkthrough.js:212
+#: maps/tutorials/starting_economy_walkthrough.js:215
 msgid ""
 "Select two of your newly-trained Female Citizens and ask them to build these"
 " Houses in the empty space to the east of the Civic Center. To do so, after "
@@ -715,7 +714,7 @@ msgstr ""
 "текущую). Нажмите Esc, чтобы избавиться от курсора дома, и не застроить "
 "домами всю карту.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:213
+#: maps/tutorials/starting_economy_walkthrough.js:216
 msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
@@ -723,7 +722,7 @@ msgstr ""
 "Напоминание: чтобы выбрать двух горожанок, кликните левой кнопкой мыши по "
 "первой, а затем, удерживая клавишу Shift, по второй."
 
-#: maps/tutorials/starting_economy_walkthrough.js:246
+#: maps/tutorials/starting_economy_walkthrough.js:249
 msgid ""
 "You may notice that berries are a finite supply of food. We will need a more"
 " lasting food source. Fields produce an unlimited food resource, but are "
@@ -734,7 +733,7 @@ msgstr ""
 " времени. Поля обладают неограниченным запасом еды, но сбор урожая "
 "медленней, чем сбор ягод.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:247
+#: maps/tutorials/starting_economy_walkthrough.js:250
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a Farmstead."
@@ -742,7 +741,7 @@ msgstr ""
 "Чтобы уменьшить расстояние между фермой и соответствующей точкой сбора еды, "
 "мы для начала построим усадьбу."
 
-#: maps/tutorials/starting_economy_walkthrough.js:258
+#: maps/tutorials/starting_economy_walkthrough.js:261
 msgid ""
 "Select the three remaining (idle) Female Citizens and order them to build a "
 "Farmstead in the center of the large open area to the west of the Civic "
@@ -751,7 +750,7 @@ msgstr ""
 "Выберите трёх оставшихся (бездействующих) женщин и прикажите им построить "
 "усадьбу в центре большого открытого участка к западу от городского Центра.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:259
+#: maps/tutorials/starting_economy_walkthrough.js:262
 msgid ""
 "We will need a decent chunk of space around the Farmstead to build Fields. "
 "In addition, we can see goats on the west side to further improve our food "
@@ -762,7 +761,7 @@ msgstr ""
 "чтобы еще больше повысить эффективность сбора пищи, если мы когда-нибудь "
 "решим охотиться на них.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:260
+#: maps/tutorials/starting_economy_walkthrough.js:263
 msgid ""
 "If you try to select the three idle Female Citizens by clicking and dragging"
 " a selection rectangle over them, you might accidentally select additional "
@@ -778,7 +777,7 @@ msgstr ""
 "конного отряда на панели выбора в нижней части экрана, удерживая клавишу "
 "Ctrl, чтобы удалить этот отряд из текущего выбора."
 
-#: maps/tutorials/starting_economy_walkthrough.js:275
+#: maps/tutorials/starting_economy_walkthrough.js:278
 msgid ""
 "When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
@@ -787,7 +786,7 @@ msgstr ""
 "будут искать еду, и в нашем случае они пойдут за находящимися неподалёку "
 "козами.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:276
+#: maps/tutorials/starting_economy_walkthrough.js:279
 msgid ""
 "But your House builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the Houses."
@@ -796,7 +795,7 @@ msgstr ""
 "неоконченные стройки, а не найдя ничего, будут бездействовать. Давайте "
 "подождем, пока они закончат строительство."
 
-#: maps/tutorials/starting_economy_walkthrough.js:292
+#: maps/tutorials/starting_economy_walkthrough.js:295
 msgid ""
 "When both Houses are built, select your two Female Citizens and order them "
 "to build a Field as close as possible to the Farmstead, which is a dropsite "
@@ -806,7 +805,7 @@ msgstr ""
 "горожанок и прикажите им построить поле максимально близко к усадьбе, "
 "поскольку она является точкой сбора всех видов еды."
 
-#: maps/tutorials/starting_economy_walkthrough.js:302
+#: maps/tutorials/starting_economy_walkthrough.js:305
 msgid ""
 "When the Field is ready, the builders will automatically start gathering "
 "it.\n"
@@ -814,7 +813,7 @@ msgstr ""
 "Как только постройка поля будет завершена, строители автоматически начнут "
 "собирать с него урожай.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:303
+#: maps/tutorials/starting_economy_walkthrough.js:306
 msgid ""
 "The cavalry unit should have slaughtered all chickens by now. Select it and "
 "explore the area to the south of the Civic Center: there is a lake with some"
@@ -823,12 +822,12 @@ msgid ""
 "hunting for food."
 msgstr ""
 "К этому моменту всадник уже должен был покончить с курами. Выберете его и "
-"исследуйте территорию к югу от Ратуши: здесь расположено озеро и несколько "
-"верблюдов вокруг. Перемещайте всадника при помощи ПКМ, кликая там, куда "
-"хотите его отправить, а когда увидите стадо верблюдов, щелкните ПКМ на них, "
-"чтобы всадник начал охоту."
+"исследуйте территорию к югу от Городского Центра: здесь расположено озеро и "
+"несколько верблюдов вокруг. Перемещайте всадника при помощи ПКМ, кликая там,"
+" куда хотите его отправить, а когда увидите стадо верблюдов, щелкните ПКМ на"
+" них, чтобы всадник начал охоту."
 
-#: maps/tutorials/starting_economy_walkthrough.js:314
+#: maps/tutorials/starting_economy_walkthrough.js:317
 msgid ""
 "Up to five Workers can gather from a Field. To add additional Workers, "
 "select the Civic Center and set a rally point on a Field by right-clicking "
@@ -841,11 +840,11 @@ msgstr ""
 "отправленные на точку сбора, будут помогать его строить, а после они "
 "приступят к сбору урожая."
 
-#: maps/tutorials/starting_economy_walkthrough.js:322
+#: maps/tutorials/starting_economy_walkthrough.js:325
 msgid "Select the Civic Center and right-click on the Field."
 msgstr "Выберите городской Центр и щёлкните правой кнопкой на поле."
 
-#: maps/tutorials/starting_economy_walkthrough.js:330
+#: maps/tutorials/starting_economy_walkthrough.js:333
 msgid ""
 "Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
@@ -853,13 +852,13 @@ msgstr ""
 "Теперь щёлкните трижды на иконке женщины в меню внизу справа, чтобы обучить "
 "трёх дополнительных работниц."
 
-#: maps/tutorials/starting_economy_walkthrough.js:344
+#: maps/tutorials/starting_economy_walkthrough.js:347
 msgid "Click without holding Shift to train a single unit."
 msgstr ""
 "\n"
 "Щёлкайте не зажимая клавишу Shift, чтобы запустить обучение одного юнита."
 
-#: maps/tutorials/starting_economy_walkthrough.js:355
+#: maps/tutorials/starting_economy_walkthrough.js:358
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
@@ -867,7 +866,7 @@ msgstr ""
 "Вы можете увеличить скорость сбора ресурсов у Ваших работников, исследуя "
 "новые технологии, доступные в некоторых постройках.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:356
+#: maps/tutorials/starting_economy_walkthrough.js:359
 msgid ""
 "The farming rate, for example, can be improved with a researchable "
 "technology in the Farmstead. Select the Farmstead and look at its production"
@@ -881,7 +880,7 @@ msgstr ""
 "каждую из них, чтобы узнать её стоимость и эффект от её изучения, после чего"
 " кликните по той, которую хотите исследовать."
 
-#: maps/tutorials/starting_economy_walkthrough.js:371
+#: maps/tutorials/starting_economy_walkthrough.js:374
 msgid ""
 "We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
@@ -891,7 +890,7 @@ msgstr ""
 "откроет много новых юнитов и зданий. Выберите городской Центр и наведите "
 "курсор на значок «фаза города», чтобы увидеть, что ещё необходимо.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:372
+#: maps/tutorials/starting_economy_walkthrough.js:375
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
@@ -901,7 +900,7 @@ msgstr ""
 " Хотя это обучение посвящено экономическим аспектам игры, не помешает быть "
 "готовым защититься в случае нападения, так что давайте построим Казарму.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:373
+#: maps/tutorials/starting_economy_walkthrough.js:376
 msgid ""
 "Select four of your soldiers and ask them to build a Barracks: as before, "
 "start selecting the soldiers, click on the Barracks icon in the production "
@@ -913,7 +912,7 @@ msgstr ""
 "производства, а затем заложите фундамент поблизости от вашего городского "
 "Центра, там, где вы хотите построить."
 
-#: maps/tutorials/starting_economy_walkthrough.js:384
+#: maps/tutorials/starting_economy_walkthrough.js:387
 msgid ""
 "Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
@@ -927,7 +926,7 @@ msgstr ""
 "щёлкнув на нём правой кнопкой (вы должны увидеть значок молотка), а затем "
 "обучите двух строителей, дважды щёлкнув по значку Гоплита."
 
-#: maps/tutorials/starting_economy_walkthrough.js:394
+#: maps/tutorials/starting_economy_walkthrough.js:397
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
@@ -935,7 +934,7 @@ msgstr ""
 "Теперь вы должны иметь возможность исследовать этап небольшого города. "
 "Выберите городской Центр и щёлкните на значок технологии.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:395
+#: maps/tutorials/starting_economy_walkthrough.js:398
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
@@ -943,7 +942,7 @@ msgstr ""
 "Если вам все еще не хватает некоторых ресурсов (значок будет красным), "
 "подождите, пока они будут собраны вашими работниками."
 
-#: maps/tutorials/starting_economy_walkthrough.js:409
+#: maps/tutorials/starting_economy_walkthrough.js:412
 msgid ""
 "In later phases, you need usually stone and metal to build bigger structures"
 " and train better soldiers. Hence, while waiting for the research to be "
@@ -955,7 +954,7 @@ msgstr ""
 "отправьте половину ваших незанятых воинов-граждан (закончивших строительство"
 " казарм) добывать камень, а другую половину — добывать металл.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:410
+#: maps/tutorials/starting_economy_walkthrough.js:413
 msgid ""
 "To do so, we could select three Citizen Soldiers and right-click on the "
 "stone quarry on the west of the Civic Center (the cursor changes when "
@@ -969,7 +968,7 @@ msgstr ""
 "добывали древесину, так что у них всё ещё может быть немного древесины, "
 "которая будет потеряна при переходе к добыче другого ресурса."
 
-#: maps/tutorials/starting_economy_walkthrough.js:415
+#: maps/tutorials/starting_economy_walkthrough.js:418
 msgid ""
 "Thus, we should order them to deposit their wood in the Civic Center along "
 "the way. To do so, we will hold Shift while clicking to queue orders: select"
@@ -984,7 +983,7 @@ msgstr ""
 "чтобы отнести древесину, а затем зажмите Shift и щёлкните правой кнопкой на "
 "каменоломне, чтобы приступить к добыче камня.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:416
+#: maps/tutorials/starting_economy_walkthrough.js:419
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
@@ -992,7 +991,7 @@ msgstr ""
 "Проделайте аналогичную последовательность команд с оставшимися воинами и "
 "рудником на западе."
 
-#: maps/tutorials/starting_economy_walkthrough.js:450
+#: maps/tutorials/starting_economy_walkthrough.js:453
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."

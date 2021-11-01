@@ -52,9 +52,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-23 23:45+0000\n"
-"Last-Translator: Георгий Морозов <moroz.ger@gmail.com>\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-10-31 19:15+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -416,7 +416,7 @@ msgstr "Открытая карта"
 
 #: gui/common/gamedescription.js:400
 msgid "Allied View"
-msgstr "Вид от лица союзников"
+msgstr "Видимость карты союзника"
 
 #: gui/common/gamedescription.js:405
 msgid "Cheats"
@@ -2335,7 +2335,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr "Атака в движении"
+msgstr "Двигаться атакуя"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
@@ -2345,7 +2345,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr "Ход атаки (юнитов)"
+msgstr "Двигаться атакуя (юнитов)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
@@ -2408,17 +2408,17 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "Вспышка (удержание)"
+msgstr "Метка (удержание)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Установите курсор на вспышку. Горячая клавиша может быть отпущена."
+msgstr "Установите курсор на метку. Горячая клавиша может быть отпущена."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr "Вспышка (нажатие)"
+msgstr "Метка (нажатие)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -2428,7 +2428,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "Установить торговлю на 100%"
+msgstr "Установить торговый лот на 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -3623,7 +3623,7 @@ msgid "No saved games found."
 msgstr "Сохранённые игры не обнаружены."
 
 #: gui/loadgame/load.xml:(caption):54
-#: gui/replaymenu/replay_menu.xml:(caption):233
+#: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
 msgstr "Удалить"
 
@@ -3641,17 +3641,17 @@ msgstr "Время игры:"
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
-#: gui/replaymenu/replay_menu.xml:(caption):152
+#: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
 msgstr "Тип карты:"
 
 #: gui/loadgame/load.xml:(caption):86
-#: gui/replaymenu/replay_menu.xml:(caption):167
+#: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
 msgstr "Размер карты:"
 
 #: gui/loadgame/load.xml:(caption):90
-#: gui/replaymenu/replay_menu.xml:(caption):182
+#: gui/replaymenu/replay_menu.xml:(caption):183
 msgid "Victory:"
 msgstr "Победа:"
 
@@ -4215,7 +4215,7 @@ msgstr "Мягкие тени."
 
 #: gui/options/options.json[2].options[12].label
 msgid "Cutoff distance"
-msgstr "Расстояние отключения"
+msgstr "Расстояние отсечения"
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
@@ -4408,7 +4408,7 @@ msgstr "Настройка качества моделей."
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Рандомизация внешности сущностей"
 
 #: gui/options/options.json[2].options[7].list[0].label
 msgid "None"
@@ -4416,7 +4416,7 @@ msgstr "Нет"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr "Сущности будут выглядеть одинаково."
+msgstr "Сущности на карте будут выглядеть одинаково."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
@@ -4424,7 +4424,7 @@ msgstr "Ограничено"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr "Между сущностями будет меньше различий."
+msgstr "Между сущностями на карте будет меньше различий."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4432,13 +4432,13 @@ msgstr "Обычная"
 
 #: gui/options/options.json[2].options[7].list[2].tooltip
 msgid "Entities appearance is randomized normally."
-msgstr "Внешность сущностей будет произвольной."
+msgstr "Внешность сущностей на карте будет произвольной."
 
 #: gui/options/options.json[2].options[7].tooltip
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Поведение случайной генерации внешнего вида сущностей на карте. Отключение дает небольшое улучшение производительности. "
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
@@ -4908,11 +4908,11 @@ msgstr "Количество шагов колёсика мыши для изм�
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Продолжительность отображения метки"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Сколько секунд отображаются метки на миникарте"
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -5717,28 +5717,28 @@ msgstr "yyyy.MM"
 msgid "Replay Games"
 msgstr "Просмотр повтора"
 
-#: gui/replaymenu/replay_menu.xml:(caption):111
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "Скрыть несовместимые повторы"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
+#: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Spoiler"
 msgstr "Спойлер"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
 msgstr "Перестроить кэш"
 
-#: gui/replaymenu/replay_menu.xml:(caption):246
+#: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Итог"
 
-#: gui/replaymenu/replay_menu.xml:(caption):252
+#: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
 msgstr "Начать повтор"
 
@@ -5766,7 +5766,11 @@ msgstr "Продолжительность"
 msgid "Search for Player"
 msgstr "Поиск игрока"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):240
+#: gui/replaymenu/replay_menu.xml:(tooltip):98
+msgid "File path for the currently selected replay."
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Пересоздать кэш повторов. Возможно, это будет долго!"
 
@@ -6645,7 +6649,7 @@ msgstr "Используйте эту функцию, чтобы ваша ком
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr "Они увидят вспышку на своей миникарте."
+msgstr "Они увидят метку на своей миникарте."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"

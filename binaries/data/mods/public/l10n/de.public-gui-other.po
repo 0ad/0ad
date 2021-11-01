@@ -59,9 +59,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-19 16:09+0000\n"
-"Last-Translator: Heraklit of Ephesos\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-10-29 08:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3600,7 +3600,7 @@ msgid "No saved games found."
 msgstr "Keine Spielstände gefunden."
 
 #: gui/loadgame/load.xml:(caption):54
-#: gui/replaymenu/replay_menu.xml:(caption):233
+#: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3618,17 +3618,17 @@ msgstr "Gespielte Zeit:"
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
-#: gui/replaymenu/replay_menu.xml:(caption):152
+#: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
 msgstr "Kartentyp:"
 
 #: gui/loadgame/load.xml:(caption):86
-#: gui/replaymenu/replay_menu.xml:(caption):167
+#: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
 msgstr "Kartengröße:"
 
 #: gui/loadgame/load.xml:(caption):90
-#: gui/replaymenu/replay_menu.xml:(caption):182
+#: gui/replaymenu/replay_menu.xml:(caption):183
 msgid "Victory:"
 msgstr "Sieg:"
 
@@ -5680,28 +5680,28 @@ msgstr "MM yyyy"
 msgid "Replay Games"
 msgstr "Spielwiederholungen"
 
-#: gui/replaymenu/replay_menu.xml:(caption):111
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "Kompatible Wiederholungen filtern"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
+#: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
 msgstr "Cache neu erstellen"
 
-#: gui/replaymenu/replay_menu.xml:(caption):246
+#: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: gui/replaymenu/replay_menu.xml:(caption):252
+#: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
 msgstr "Wiederholung starten"
 
@@ -5729,7 +5729,11 @@ msgstr "Dauer"
 msgid "Search for Player"
 msgstr "Spieler suchen"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):240
+#: gui/replaymenu/replay_menu.xml:(tooltip):98
+msgid "File path for the currently selected replay."
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Erstellt den Cache vollständig neu. Möglicherweise recht langsam!"
 
