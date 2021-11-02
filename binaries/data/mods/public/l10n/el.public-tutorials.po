@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2021\n"
 "Language-Team: Greek (https://www.transifex.com/wildfire-games/teams/17418/el/)\n"
@@ -203,7 +203,7 @@ msgstr ""
 "και ορίστε το σημείο μάζωξης στο χωράφι (δεξί κλίκ πάνω του)"
 
 #: maps/tutorials/introductory_tutorial.js:246
-#: maps/tutorials/starting_economy_walkthrough.js:345
+#: maps/tutorials/starting_economy_walkthrough.js:348
 msgid "Click on the Female Citizen icon."
 msgstr "Κάνε κλικ στο εικονίδιο της Γυναίκας Πολίτη."
 
@@ -454,17 +454,15 @@ msgstr ""
 "στην επιλογή σας κάνοντας shift και κλικ σε κάθε επιπρόσθετη μονάδα (ή και "
 "μέσω του παραπάνω ορθογωνίου επιλογής).\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:44
+#: maps/tutorials/starting_economy_walkthrough.js:45
+#, javascript-format
 msgid ""
 "3) Double-click on a unit. This will select every unit of the same type as "
-"the specified unit in your visible window. Triple-click will select all "
-"units of the same type on the entire map.\n"
+"the specified unit in your visible window. %(hotkey)s+double-click will "
+"select all units of the same type on the entire map.\n"
 msgstr ""
-"3) Κάντε διπλό κλικ σε μια μονάδα. Αυτό θα επιλέξει κάθε μονάδα του ίδιου "
-"τύπου με τη συγκεκριμένη μονάδα στο ορατό παράθυρό σας. Με το τριπλό κλικ θα"
-" επιλέξετε όλες τις μονάδες του ίδιου τύπου σε ολόκληρο το χάρτη.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:45
+#: maps/tutorials/starting_economy_walkthrough.js:48
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
 "of these methods before tasking all of your Female Citizens to gather the "
@@ -472,7 +470,7 @@ msgid ""
 "berries when you have all the Female Citizens selected."
 msgstr ""
 
-#: maps/tutorials/starting_economy_walkthrough.js:56
+#: maps/tutorials/starting_economy_walkthrough.js:59
 msgid ""
 "Now, let's gather some wood with your Infantry Citizen Soldiers. Select your"
 " Infantry Citizen Soldiers and order them to gather wood by right-clicking "
@@ -482,7 +480,7 @@ msgstr ""
 " τους Οπλίτες Πολίτες του Πεζικού σας και παραγγείλετέ τους να μαζέψουν τα "
 "Ξύλα κάνοντας δεξί κλικ στο πιο κοντινό δέντρο."
 
-#: maps/tutorials/starting_economy_walkthrough.js:67
+#: maps/tutorials/starting_economy_walkthrough.js:70
 msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
@@ -490,14 +488,14 @@ msgstr ""
 "Οι Πολίτες Ιππείς είναι καλοί στο κυνήγι. Επέλεξε το Ιππικό σου και διέταξέ "
 "το να κυνηγήσει τα κοτόπουλα γύρω από το Αστικό Κέντρο κατά τον ίδιο τρόπο."
 
-#: maps/tutorials/starting_economy_walkthrough.js:78
+#: maps/tutorials/starting_economy_walkthrough.js:81
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
 "Όλες οι μονάδες σας μαζεύουν τώρα πόρους. Θα πρέπει να εκπαιδεύσουμε "
 "περισσότερες μονάδες!\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:79
+#: maps/tutorials/starting_economy_walkthrough.js:82
 msgid ""
 "First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
@@ -514,14 +512,14 @@ msgstr ""
 "αυτό, επίλεξε το Αστικό Κέντρο κάνοντας κλικ πάνω του και στη συνέχεια κάνε "
 "δεξί κλικ σε ένα από τα δέντρα.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:80
+#: maps/tutorials/starting_economy_walkthrough.js:83
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
 msgstr ""
 "Τα Σημεία Συγκέντρωσης σημειώνονται με μια μικρή σημαία στο τέλος της μπλε "
 "γραμμής.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:88
+#: maps/tutorials/starting_economy_walkthrough.js:91
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
 "when you see the cursor change into a wood icon."
@@ -530,7 +528,7 @@ msgstr ""
 "και κάνε δεξί κλικ όταν δεις τον κέρσορα του ποντικού να αλλάζει σε "
 "εικονίδιο Ξύλου."
 
-#: maps/tutorials/starting_economy_walkthrough.js:97
+#: maps/tutorials/starting_economy_walkthrough.js:100
 msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
@@ -538,7 +536,7 @@ msgstr ""
 "Τώρα που έχει οριστεί το σημείο συγκέντρωσης, μπορούμε να παράγουμε επιπλέον"
 " μονάδες και αυτές θα αναλάβουν αυτόματα την αποστολή τους.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:98
+#: maps/tutorials/starting_economy_walkthrough.js:101
 msgid ""
 "Citizen Soldiers gather wood faster than Female Citizens. Select the Civic "
 "Center and, while holding Shift, click on the second unit icon, the Hoplites"
@@ -553,22 +551,22 @@ msgstr ""
 "εκπαιδεύσεις μονάδες ξεχωριστά κάνοντας απλώς κλικ, αλλά η εκπαίδευση 5 "
 "μονάδων μαζί παίρνει λιγότερο χρόνο από την εκπαίδευση 5 μονάδων ξεχωριστά."
 
-#: maps/tutorials/starting_economy_walkthrough.js:108
+#: maps/tutorials/starting_economy_walkthrough.js:111
 msgid "Do not forget to hold Shift while clicking to train several units."
 msgstr ""
 "Μην ξεχνάς να κρατάς πατημένο το Shift όσο κάνεις κλικ για να παράγεις "
 "πολλές μονάδες. "
 
-#: maps/tutorials/starting_economy_walkthrough.js:109
+#: maps/tutorials/starting_economy_walkthrough.js:112
 msgid "Hold Shift and click on the Hoplite icon."
 msgstr "Με πατημένο το Shift κάνε κλικ στο εικονίδιο του Οπλίτη."
 
-#: maps/tutorials/starting_economy_walkthrough.js:118
-#: maps/tutorials/starting_economy_walkthrough.js:177
+#: maps/tutorials/starting_economy_walkthrough.js:121
+#: maps/tutorials/starting_economy_walkthrough.js:180
 msgid "Let's wait for the units to be trained.\n"
 msgstr "Ας περιμένουμε να εκπαιδευτούν οι μονάδες.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:119
+#: maps/tutorials/starting_economy_walkthrough.js:122
 msgid ""
 "While waiting, direct your attention to the panel at the top of your screen."
 " On the upper left, you will see your current resource supply (food, wood, "
@@ -582,7 +580,7 @@ msgstr ""
 "επιστρέφει πόρους στο Αστικό Κέντρο (ή σε άλλο σημείο εναπόθεσης), θα δείτε "
 "το ποσό της αντίστοιχης αύξησης των πόρων.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:120
+#: maps/tutorials/starting_economy_walkthrough.js:123
 msgid ""
 "This is a very important concept to keep in mind: gathered resources have to"
 " be brought back to a dropsite to be accounted, and you should always try to"
@@ -595,7 +593,7 @@ msgstr ""
 "μεταξύ πόρου και πλησιέστερων σημείων εναπόθεσης για να βελτιώσετε την "
 "αποδοτικότητά σας."
 
-#: maps/tutorials/starting_economy_walkthrough.js:129
+#: maps/tutorials/starting_economy_walkthrough.js:132
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "wood.\n"
@@ -603,7 +601,7 @@ msgstr ""
 "Οι πρόσφατα εκπαιδευμένες μονάδες πηγαίνουν αυτόματα στα δέντρα και αρχίζουν"
 " να μαζεύουν Ξύλο.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:130
+#: maps/tutorials/starting_economy_walkthrough.js:133
 msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their "
 "gathering efficiency suffers from the distance. To fix that, we can build a "
@@ -623,7 +621,7 @@ msgstr ""
 "θέλετε να συλλέξετε και κάντε κλικ σε ένα έγκυρο μέρος για να χτίσετε το "
 "σημείο εναπόθεσης.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:131
+#: maps/tutorials/starting_economy_walkthrough.js:134
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
@@ -631,7 +629,7 @@ msgstr ""
 "Οι μη έγκυρες (εμποδισμένες) θέσεις θα εμφανίζουν την προεπισκόπηση κτιρίου "
 "επικαλυμμένη με κόκκινο χρώμα."
 
-#: maps/tutorials/starting_economy_walkthrough.js:141
+#: maps/tutorials/starting_economy_walkthrough.js:144
 msgid ""
 "The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
@@ -639,7 +637,7 @@ msgstr ""
 "Οι επιλεγμένοι πολίτες θα ξεκινήσουν αυτόματα την κατασκευή του κτιρίου "
 "μόλις τοποθετήσετε τα θεμέλια."
 
-#: maps/tutorials/starting_economy_walkthrough.js:152
+#: maps/tutorials/starting_economy_walkthrough.js:155
 msgid ""
 "When construction finishes, the builders default to gathering wood "
 "automatically.\n"
@@ -647,7 +645,7 @@ msgstr ""
 "Όταν ολοκληρωθεί η κατασκευή, οι κατασκευαστές εξ ορισμού θα αρχίσουν αν "
 "μαζεύουν Ξύλο αυτόματα.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:153
+#: maps/tutorials/starting_economy_walkthrough.js:156
 msgid ""
 "Let's train some Female Citizens to gather more food. Select the Civic "
 "Center, hold Shift and click on the Female Citizen icon to train five Female"
@@ -658,17 +656,17 @@ msgstr ""
 "στο εικονίδιο με τις Γυναίκες  Στρατιώτες  για να εκπαιδεύσετε πέντε "
 "Γυναίκες Πολίτες."
 
-#: maps/tutorials/starting_economy_walkthrough.js:167
+#: maps/tutorials/starting_economy_walkthrough.js:170
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
 "Μην ξεχνάς να κρατάς πατημένο το Shift όσο κάνεις κλικ για να παράγεις "
 "πολλές μονάδες. "
 
-#: maps/tutorials/starting_economy_walkthrough.js:168
+#: maps/tutorials/starting_economy_walkthrough.js:171
 msgid "Hold shift and click on the Female Citizen icon."
 msgstr "Με πατημένο το Shift κάνε κλικ στο εικονίδιο της Γυναίκας Πολίτη."
 
-#: maps/tutorials/starting_economy_walkthrough.js:178
+#: maps/tutorials/starting_economy_walkthrough.js:181
 msgid ""
 "In the meantime, we seem to have enough workers gathering wood. We should "
 "remove the current rally point of the Civic Center away from gathering wood."
@@ -681,11 +679,11 @@ msgstr ""
 "Κέντρο όταν είναι επιλεγμένο (και το εικονίδιο σημαίας που δείχνει το σημείο"
 " συγκέντρωσης διαγράφεται)."
 
-#: maps/tutorials/starting_economy_walkthrough.js:192
+#: maps/tutorials/starting_economy_walkthrough.js:195
 msgid "The units should be ready soon.\n"
 msgstr "Οι μονάδες θα είναι έτοιμες σύντομα.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:193
+#: maps/tutorials/starting_economy_walkthrough.js:196
 msgid ""
 "In the meantime, direct your attention to your population count on the top "
 "panel. It is the fifth item from the left, after the resources. It would be "
@@ -699,7 +697,7 @@ msgstr ""
 "σας (συμπεριλαμβανομένων αυτών που εκπαιδεύονται) και το τρέχον όριο "
 "πληθυσμού, το οποίο καθορίζεται από τα κτήρια σας."
 
-#: maps/tutorials/starting_economy_walkthrough.js:206
+#: maps/tutorials/starting_economy_walkthrough.js:209
 msgid ""
 "As you have nearly reached the population limit, you must increase it by "
 "building some new structures if you want to train more units. The most cost "
@@ -710,7 +708,7 @@ msgstr ""
 "οικονομικότερη κατασκευή για την αύξηση του ορίου του πληθυσμού σας είναι η "
 "οικία.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:207
+#: maps/tutorials/starting_economy_walkthrough.js:210
 msgid ""
 "Now that the units are ready, let's see how to build several Houses in a "
 "row."
@@ -718,7 +716,7 @@ msgstr ""
 "Τώρα που οι μονάδες είναι έτοιμες, ας δούμε πως θα οικοδομήσουμε μερικά "
 "σπίτια σε μία σειρά."
 
-#: maps/tutorials/starting_economy_walkthrough.js:212
+#: maps/tutorials/starting_economy_walkthrough.js:215
 msgid ""
 "Select two of your newly-trained Female Citizens and ask them to build these"
 " Houses in the empty space to the east of the Civic Center. To do so, after "
@@ -742,7 +740,7 @@ msgstr ""
 " τους). Πατήστε Escape για να απαλλαγείτε από τον δρομέα του σπιτιού, ώστε "
 "να μην γεμίσετε σπίτια σε όλο τον χάρτη.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:213
+#: maps/tutorials/starting_economy_walkthrough.js:216
 msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
@@ -750,7 +748,7 @@ msgstr ""
 "Υπενθύμιση: για να επιλέξετε μόνο δύο γυναίκες πολίτες, κάντε κλικ στη πρώτη"
 " και στη συνέχεια με πατημένο το Shift κάντε κλικ στη δεύτερη."
 
-#: maps/tutorials/starting_economy_walkthrough.js:246
+#: maps/tutorials/starting_economy_walkthrough.js:249
 msgid ""
 "You may notice that berries are a finite supply of food. We will need a more"
 " lasting food source. Fields produce an unlimited food resource, but are "
@@ -761,7 +759,7 @@ msgstr ""
 "απεριόριστο πόρο τροφής, αλλά είναι πιο αργά από την συγκομιδή των "
 "φρούτων.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:247
+#: maps/tutorials/starting_economy_walkthrough.js:250
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a Farmstead."
@@ -770,7 +768,7 @@ msgstr ""
 "αντίστοιχου σημείου εναπόθεσης των τροφίμων, θα χτίσουμε αρχικά ένα "
 "αγρόκτημα."
 
-#: maps/tutorials/starting_economy_walkthrough.js:258
+#: maps/tutorials/starting_economy_walkthrough.js:261
 msgid ""
 "Select the three remaining (idle) Female Citizens and order them to build a "
 "Farmstead in the center of the large open area to the west of the Civic "
@@ -780,7 +778,7 @@ msgstr ""
 "παραγγείλετε τους να οικοδομήσουν ένα αγρόκτημα στο κέντρο της μεγάλης "
 "ανοικτής περιοχής δυτικά του Αστικού Κέντρου\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:259
+#: maps/tutorials/starting_economy_walkthrough.js:262
 msgid ""
 "We will need a decent chunk of space around the Farmstead to build Fields. "
 "In addition, we can see goats on the west side to further improve our food "
@@ -791,7 +789,7 @@ msgstr ""
 "πλευρά ώστε να βελτιώσουμε περαιτέρω την αποτελεσματικότητα της συλλογής "
 "τροφίμων, εάν αποφασίσουμε ποτέ να τις κυνηγήσουμε.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:260
+#: maps/tutorials/starting_economy_walkthrough.js:263
 msgid ""
 "If you try to select the three idle Female Citizens by clicking and dragging"
 " a selection rectangle over them, you might accidentally select additional "
@@ -809,7 +807,7 @@ msgstr ""
 "κάτω μέρος της οθόνης για να αφαιρέσεις τη μονάδα ιππικού από την τρέχουσα "
 "επιλογή."
 
-#: maps/tutorials/starting_economy_walkthrough.js:275
+#: maps/tutorials/starting_economy_walkthrough.js:278
 msgid ""
 "When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
@@ -818,7 +816,7 @@ msgstr ""
 "αυτόματα για φαγητό, και σε αυτή την περίπτωση, θα πάνε στις γειτονικές "
 "αίγες.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:276
+#: maps/tutorials/starting_economy_walkthrough.js:279
 msgid ""
 "But your House builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the Houses."
@@ -827,7 +825,7 @@ msgstr ""
 "χτίσουν και, αν δεν βρεθεί τίποτα, θα γίνουν αδρανείς. Ας τους περιμένουμε "
 "να χτίσουν τα σπίτια."
 
-#: maps/tutorials/starting_economy_walkthrough.js:292
+#: maps/tutorials/starting_economy_walkthrough.js:295
 msgid ""
 "When both Houses are built, select your two Female Citizens and order them "
 "to build a Field as close as possible to the Farmstead, which is a dropsite "
@@ -837,7 +835,7 @@ msgstr ""
 "τες να κατασκευάσουν ένα χωράφι όσων το δυνατόν πλησιέστερα στο αγρόκτημα, "
 "το οποίο είναι σημείο εναπόθεσης για όλους τους τύπους φαγητού."
 
-#: maps/tutorials/starting_economy_walkthrough.js:302
+#: maps/tutorials/starting_economy_walkthrough.js:305
 msgid ""
 "When the Field is ready, the builders will automatically start gathering "
 "it.\n"
@@ -845,7 +843,7 @@ msgstr ""
 "Όταν δημιουργηθεί το χωράφι οι κατασκευαστές θα αρχίζουν αυτόματα να το "
 "καλλιεργούν.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:303
+#: maps/tutorials/starting_economy_walkthrough.js:306
 msgid ""
 "The cavalry unit should have slaughtered all chickens by now. Select it and "
 "explore the area to the south of the Civic Center: there is a lake with some"
@@ -854,7 +852,7 @@ msgid ""
 "hunting for food."
 msgstr ""
 
-#: maps/tutorials/starting_economy_walkthrough.js:314
+#: maps/tutorials/starting_economy_walkthrough.js:317
 msgid ""
 "Up to five Workers can gather from a Field. To add additional Workers, "
 "select the Civic Center and set a rally point on a Field by right-clicking "
@@ -868,11 +866,11 @@ msgstr ""
 "εναπόθεσης και θα βοηθήσουν στη κατασκευή του, θα ξεκινήσουν την καλλιέργεια"
 " αυτού μόλις ολοκληρωθεί."
 
-#: maps/tutorials/starting_economy_walkthrough.js:322
+#: maps/tutorials/starting_economy_walkthrough.js:325
 msgid "Select the Civic Center and right-click on the Field."
 msgstr "Επέλεξε το Αστικό Κέντρο και κάνε δεξί κλικ στο χωράφι."
 
-#: maps/tutorials/starting_economy_walkthrough.js:330
+#: maps/tutorials/starting_economy_walkthrough.js:333
 msgid ""
 "Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
@@ -880,12 +878,12 @@ msgstr ""
 "Τώρα κάνε κλικ τρεις φορές στο εικονίδιο της γυναίκας πολίτη στη κάτω δεξιά "
 "γωνία του πίνακα για να εκπαιδεύσεις τρεις επιπλέον αγρότισσες."
 
-#: maps/tutorials/starting_economy_walkthrough.js:344
+#: maps/tutorials/starting_economy_walkthrough.js:347
 msgid "Click without holding Shift to train a single unit."
 msgstr ""
 "Κάνε κλικ χωρίς να κρατάς πατημένο το Shift για να παράγεις μόνο μία μονάδα."
 
-#: maps/tutorials/starting_economy_walkthrough.js:355
+#: maps/tutorials/starting_economy_walkthrough.js:358
 msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
@@ -893,7 +891,7 @@ msgstr ""
 "Μπορείτε να αυξήσετε τα ποσοστά συγκομιδής των εργατών σας με την έρευνα "
 "νέων τεχνολογιών που είναι διαθέσιμες σε ορισμένα κτίρια.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:356
+#: maps/tutorials/starting_economy_walkthrough.js:359
 msgid ""
 "The farming rate, for example, can be improved with a researchable "
 "technology in the Farmstead. Select the Farmstead and look at its production"
@@ -907,7 +905,7 @@ msgstr ""
 "έρευνα. Τοποθετήστε το δείκτη του ποντικιού πάνω τους για να δείτε το κόστος"
 " και τα αποτελέσματά τους και κάντε κλικ σε αυτό που θέλετε να ερευνήσετε."
 
-#: maps/tutorials/starting_economy_walkthrough.js:371
+#: maps/tutorials/starting_economy_walkthrough.js:374
 msgid ""
 "We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
@@ -918,7 +916,7 @@ msgstr ""
 "το Αστικό Κέντρο και τοποθετήστε το δείκτη του ποντικιού πάνω από το "
 "εικονίδιο Φάση Κωμόπολη για να δείτε τι χρειάζεται ακόμα.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:372
+#: maps/tutorials/starting_economy_walkthrough.js:375
 msgid ""
 "We now have enough resources, but one structure is missing. Although this is"
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
@@ -928,7 +926,7 @@ msgstr ""
 " για έναν οικονομικό οδηγό εκμάθησης, είναι χρήσιμο να προετοιμαστείτε για "
 "άμυνα σε περίπτωση επίθεσης, οπότε ας οικοδομήσουμε Στρατώνες.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:373
+#: maps/tutorials/starting_economy_walkthrough.js:376
 msgid ""
 "Select four of your soldiers and ask them to build a Barracks: as before, "
 "start selecting the soldiers, click on the Barracks icon in the production "
@@ -940,7 +938,7 @@ msgstr ""
 "στο εικονίδιο Στρατώνες στον πίνακα παραγωγής και στη συνέχεια τοποθετήστε "
 "τα θεμέλια όπου θέλεις να χτίσεις, όχι πολύ μακριά από το Αστικό Κέντρο."
 
-#: maps/tutorials/starting_economy_walkthrough.js:384
+#: maps/tutorials/starting_economy_walkthrough.js:387
 msgid ""
 "Let's wait for the Barracks to be built. As this construction is lengthy, "
 "you can add two soldiers to build it faster. To do so, select your Civic "
@@ -955,7 +953,7 @@ msgstr ""
 "δείτε ένα εικονίδιο σφυρί). Στη συνέχεια παράγετε δύο ακόμη κατασκευαστές, "
 "κάνοντας δύο φορές κλικ στο εικονίδιο του οπλίτη."
 
-#: maps/tutorials/starting_economy_walkthrough.js:394
+#: maps/tutorials/starting_economy_walkthrough.js:397
 msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
@@ -963,7 +961,7 @@ msgstr ""
 "Θα πρέπει τώρα να ερευνήσετε τη Φάση Κωμόπολης. Επιλέξτε το Αστικό Κέντρο "
 "και κάντε κλικ στο εικονίδιο της τεχνολογίας.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:395
+#: maps/tutorials/starting_economy_walkthrough.js:398
 msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
@@ -971,7 +969,7 @@ msgstr ""
 "Αν εξακολουθούν να σας λείπουν ορισμένοι πόροι (εικονίδιο με κόκκινη "
 "επικάλυψη), περιμένετε να συγκεντρωθούν από τους εργάτες σας."
 
-#: maps/tutorials/starting_economy_walkthrough.js:409
+#: maps/tutorials/starting_economy_walkthrough.js:412
 msgid ""
 "In later phases, you need usually stone and metal to build bigger structures"
 " and train better soldiers. Hence, while waiting for the research to be "
@@ -985,7 +983,7 @@ msgstr ""
 " να συγκεντρώσουν Πέτρες και τους άλλους μισούς για τη συγκέντρωση "
 "Μετάλλου.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:410
+#: maps/tutorials/starting_economy_walkthrough.js:413
 msgid ""
 "To do so, we could select three Citizen Soldiers and right-click on the "
 "stone quarry on the west of the Civic Center (the cursor changes when "
@@ -1000,7 +998,7 @@ msgstr ""
 "Ξύλα, έτσι μπορεί ακόμα να φέρουν κάποια Ξύλα τα οποία θα χαθούν όταν "
 "αρχίζουν να συγκεντρώνουν άλλο πόρο."
 
-#: maps/tutorials/starting_economy_walkthrough.js:415
+#: maps/tutorials/starting_economy_walkthrough.js:418
 msgid ""
 "Thus, we should order them to deposit their wood in the Civic Center along "
 "the way. To do so, we will hold Shift while clicking to queue orders: select"
@@ -1015,7 +1013,7 @@ msgstr ""
 " τους και, στη συνέχεια, κάντε Shift και δεξί κλικ πάνω στο ορυχείο Πέτρας "
 "για να την εξορύξετε.\n"
 
-#: maps/tutorials/starting_economy_walkthrough.js:416
+#: maps/tutorials/starting_economy_walkthrough.js:419
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
@@ -1023,7 +1021,7 @@ msgstr ""
 "Εκτελέστε μια παρόμοια σειρά αναμονής εντολών με τους υπόλοιπους στρατιώτες "
 "και το ορυχείο Μετάλλου στα δυτικά."
 
-#: maps/tutorials/starting_economy_walkthrough.js:450
+#: maps/tutorials/starting_economy_walkthrough.js:453
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."

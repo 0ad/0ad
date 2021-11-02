@@ -29,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-18 07:08+0000\n"
-"PO-Revision-Date: 2021-10-19 15:20+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-10-29 08:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3570,7 +3570,7 @@ msgid "No saved games found."
 msgstr "Nincsenek mentett játékok."
 
 #: gui/loadgame/load.xml:(caption):54
-#: gui/replaymenu/replay_menu.xml:(caption):233
+#: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
 msgstr "Törlés"
 
@@ -3588,17 +3588,17 @@ msgstr "Játékidő:"
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
-#: gui/replaymenu/replay_menu.xml:(caption):152
+#: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
 msgstr "Térkép típusa:"
 
 #: gui/loadgame/load.xml:(caption):86
-#: gui/replaymenu/replay_menu.xml:(caption):167
+#: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
 msgstr "Térkép mérete:"
 
 #: gui/loadgame/load.xml:(caption):90
-#: gui/replaymenu/replay_menu.xml:(caption):182
+#: gui/replaymenu/replay_menu.xml:(caption):183
 msgid "Victory:"
 msgstr "Győzelem:"
 
@@ -5650,28 +5650,28 @@ msgstr "yyyy-MM"
 msgid "Replay Games"
 msgstr "Játékok visszajátszása"
 
-#: gui/replaymenu/replay_menu.xml:(caption):111
+#: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
 msgstr "Kompatibilis visszajátszások szűrése"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
+#: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Spoiler"
 msgstr "Végkifejlet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
 msgstr "Gyorsítótár újraépítése"
 
-#: gui/replaymenu/replay_menu.xml:(caption):246
+#: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Összefoglaló"
 
-#: gui/replaymenu/replay_menu.xml:(caption):252
+#: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
 msgstr "Visszajátszás kezdése"
 
@@ -5699,7 +5699,11 @@ msgstr "Időtartam"
 msgid "Search for Player"
 msgstr "Játékos keresése"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):240
+#: gui/replaymenu/replay_menu.xml:(tooltip):98
+msgid "File path for the currently selected replay."
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "A visszajátszási gyorsítótár újraépítése. Lehet, hogy lassú!"
 

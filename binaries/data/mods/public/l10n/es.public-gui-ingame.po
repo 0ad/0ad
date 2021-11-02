@@ -70,9 +70,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-18 11:23+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"PO-Revision-Date: 2021-10-29 07:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -766,7 +766,6 @@ msgstr "¿Quieres destruir todo lo que está seleccionado?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmation.js:14
 #: gui/session/message_box/QuitConfirmationMenu.js:49
 #: gui/session/message_box/ResignConfirmation.js:9
 msgid "No"
@@ -774,7 +773,6 @@ msgstr "No"
 
 #: gui/session/dialogs/yes_no.xml:(caption):19
 #: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmation.js:17
 #: gui/session/message_box/QuitConfirmationMenu.js:52
 #: gui/session/message_box/ResignConfirmation.js:12
 msgid "Yes"
@@ -846,8 +844,20 @@ msgid "Confirmation"
 msgstr "Confirmar decisión"
 
 #: gui/session/message_box/QuitConfirmation.js:9
-msgid "Are you sure you want to quit?"
-msgstr "¿Seguro que quieres salir?"
+msgid "The game has finished, what do you want to do?"
+msgstr ""
+
+#. Translation: Shown in the Dialog that shows up when the game finishes
+#: gui/session/message_box/QuitConfirmation.js:15
+#: gui/session/message_box/QuitConfirmationReplay.js:23
+msgid "Stay"
+msgstr ""
+
+#. Translation: Shown in the Dialog that shows up when the game finishes
+#: gui/session/message_box/QuitConfirmation.js:19
+#: gui/session/message_box/QuitConfirmationReplay.js:27
+msgid "Quit and View Summary"
+msgstr ""
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -885,18 +895,8 @@ msgstr "Confirmación"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "La repetición ha terminado. ¿Quieres salir?"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:22
-msgctxt "replayFinished"
-msgid "No"
-msgstr "No"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:25
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Sí"
+msgid "The replay has finished. What do you want to do?"
+msgstr ""
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -914,6 +914,8 @@ msgstr "¡Has sido derrotado!"
 msgid "Click to quit this tutorial."
 msgstr "Haz clic para salir del turorial."
 
+#: gui/session/message_box/QuitConfirmation.js:24
+#: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
 msgstr "Salir"
@@ -1016,60 +1018,60 @@ msgstr "(%(number)s)\n%(time)s"
 msgid "Current/max gatherers"
 msgstr "Recolectores actuales/límite"
 
-#: gui/session/selection_details.js:306
+#: gui/session/selection_details.js:314
 #, javascript-format
 msgid "(%(secondaryName)s)"
 msgstr "(%(secondaryName)s)"
 
-#: gui/session/selection_details.js:452
+#: gui/session/selection_details.js:461
 msgid "Capture Points:"
 msgstr "Puntos de captura:"
 
-#: gui/session/selection_details.js:460
+#: gui/session/selection_details.js:469
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s: %(details)s\n"
 
-#: gui/session/selection_details.js:461
+#: gui/session/selection_details.js:470
 msgid "Garrison Size"
 msgstr "Tamaño de la guarnición"
 
-#: gui/session/selection_details.js:466
+#: gui/session/selection_details.js:475
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:467
+#: gui/session/selection_details.js:476
 msgid "Carrying:"
 msgstr "Lleva:"
 
-#: gui/session/selection_details.js:470 gui/session/selection_details.js:479
+#: gui/session/selection_details.js:479 gui/session/selection_details.js:488
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:475
+#: gui/session/selection_details.js:484
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:476
+#: gui/session/selection_details.js:485
 msgid "Loot:"
 msgstr "Saqueo:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:537
+#: gui/session/selection_details.js:546
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:561
+#: gui/session/selection_details.js:570
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:568
+#: gui/session/selection_details.js:577
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "

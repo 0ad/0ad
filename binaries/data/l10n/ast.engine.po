@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-10-14 23:56+0000\n"
+"PO-Revision-Date: 2021-11-01 00:54+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "El certificáu nun ta activu."
 
 #: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificáu nun s'emitió pal par al que tas coneutáu. "
+msgstr "El certificáu nun s'emitió pal par al que tas conectáu. "
 
 #: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
@@ -172,7 +172,7 @@ msgstr "Falló l'autenticación. La clave nun ye correcha o la cuenta nun esiste
 
 #: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
-msgstr "L'usuariu o'l sistema pidió desconeutase"
+msgstr "L'usuariu o'l sistema pidió desconectase"
 
 #: lobby/XmppClient.cpp:1450
 msgid "There is no active connection"
@@ -210,7 +210,7 @@ msgstr "Hebo un fallu al entamar a solicitar los camudos. Fallu: %s; %s."
 #: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo criase'l direutoriu camudos: %s."
+msgstr "Nun pudo criase'l directoriu camudos: %s."
 
 #: ps/ModIo.cpp:344
 #, c-format
