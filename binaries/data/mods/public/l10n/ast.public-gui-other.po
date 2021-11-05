@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-01 02:47+0000\n"
+"PO-Revision-Date: 2021-11-05 03:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -2298,12 +2298,12 @@ msgstr "Volver al llabor"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr "Facer conscribir por cinquenes."
+msgstr "Facer conscribir."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr "Producción colectiva"
+msgstr "Conscripción"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
 msgctxt "hotkey metadata"
@@ -2855,12 +2855,12 @@ msgstr "Alternar l'interfaz del usuariu"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr "Amosar o anubrir el panel del tutorial."
+msgstr "Amosar o anubrir el panel del cursín."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr "Alternar el tutorial"
+msgstr "Alternar el cursín"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
@@ -2977,12 +2977,12 @@ msgstr "Alternar los contornos"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr "Alternar l'árbole de construcciones."
+msgstr "Alternar l'árbore de construcciones."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr "Alternar l'árbole de construcciones"
+msgstr "Alternar l'árbore de construcciones"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
@@ -4679,7 +4679,7 @@ msgstr "Conseyos detallaos"
 #: gui/options/options.json[6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "Amosar conseyos detallaos pa unidaes conscribibles en construcciones que producen unidaes."
+msgstr "Amosar conseyos detallaos pa unidaes exercitables en construcciones productores."
 
 #: gui/options/options.json[6].options[14].label
 msgid "Sort resources and population tooltip"
@@ -4763,11 +4763,11 @@ msgstr "Esta opción permítete alliniar construcciones nueves con construccione
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
-msgstr "Tamañu de producción"
+msgstr "Tamañu de conscripción"
 
 #: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "Númberu d'unidaes conscritu por producción colectiva."
+msgstr "Númberu d'unidaes producíu por conscripción."
 
 #: gui/options/options.json[6].options[20].label
 msgid "Control group membership"
@@ -4832,7 +4832,7 @@ msgstr "Xiros por incrementu productivu"
 #: gui/options/options.json[6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Númberu de veces qu'hai que xirar la rueda'l mure p'aumentar o amenorgar en 1 el tamañu de producción."
+msgstr "Númberu de veces qu'hai que xirar la rueda'l mure p'aumentar o amenorgar en 1 el tamañu de conscripción."
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
@@ -4939,7 +4939,7 @@ msgstr "Deprender a xugar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "Deprender a xugar, entamar el tutorial, descubrir los árboles tecnolóxicos y la historia detrás de les civilizaciones."
+msgstr "Deprender a xugar, entamar el cursín, descubrir los árbores tecnolóxicos y la historia detrás de les civilizaciones."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -4951,17 +4951,17 @@ msgstr "Abrir el manual del xuegu 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr "Tutorial"
+msgstr "Cursín"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the economic tutorial."
-msgstr "Entamar el tutorial económicu."
+msgstr "Entamar el cursín económicu."
 
 #: gui/pregame/MainMenuItems.js:27
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr "Árbole de construcciones"
+msgstr "Árbore de construcciones"
 
 #: gui/pregame/MainMenuItems.js:28
 #, javascript-format
@@ -5401,7 +5401,7 @@ msgstr "%(hotkey)s: Cambiar a «Sinopsis civilizacional»."
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Cambiar a «Árbole de construcciones»."
+msgstr "%(hotkey)s: Cambiar a «Árbore de construcciones»."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
@@ -5429,7 +5429,7 @@ msgstr "Constructores:"
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr "Conscríbese en:"
+msgstr "Exercítase en:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
@@ -5457,7 +5457,7 @@ msgstr "Desendolca:"
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr "Conscribe:"
+msgstr "Exercita:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
@@ -5468,12 +5468,12 @@ msgstr "Ascensiones:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
-msgstr "Unidaes conscritores"
+msgstr "Exercitadores"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Zarrar l'árbole de construcciones."
+msgstr "%(hotkey)s: Zarrar l'árbore de construcciones."
 
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
@@ -5781,7 +5781,7 @@ msgstr "Económiques"
 
 #: gui/summary/layout.js:37
 msgid "Outposts"
-msgstr "Talayes"
+msgstr "Miradorios"
 
 #: gui/summary/layout.js:38
 msgid "Military"
@@ -5789,7 +5789,7 @@ msgstr "Militares"
 
 #: gui/summary/layout.js:39
 msgid "Fortresses"
-msgstr "Fortaleces"
+msgstr "Castiellos"
 
 #: gui/summary/layout.js:40
 msgid "Civ centers"
@@ -5950,7 +5950,7 @@ msgstr "Total de la cuadriella"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "Conscrites"
+msgstr "Exercitaes"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -6138,7 +6138,7 @@ msgstr "Pue montase en terrén neutral o enemigo. Val p'asitiar bases secretes e
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr "Constrúi arietes y conscribe mílites civiles."
+msgstr "Constrúi arietes y exercita mílites civiles."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6152,7 +6152,7 @@ msgstr "ENRIESTRU AUTOMÁTICU"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr "Activar l'enriestu automáticu pa conscribir unidaes de mou automáticu."
+msgstr "Activar l'enriestu automáticu pa exercitar unidaes de mou automáticu."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
@@ -6166,7 +6166,7 @@ msgstr "CASTRU"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "Conscribe tolos mílites civiles. Determinaes civilizaciones tamién pueden despesllar la conscripción d'invictos."
+msgstr "Exercita tolos mílites civiles. Determinaes civilizaciones tamién pueden despesllar la exercitación d'invictos."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6176,7 +6176,7 @@ msgstr "Les unidaes aduechen abellugaes nel edificiu."
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "Llevántalu ceo pa conscribir mílites civiles de la que cambies de fas."
+msgstr "Llevántalu ceo pa exercitar mílites civiles de la que cambies de fas."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6204,7 +6204,7 @@ msgstr "CANES BÉLICOS"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "Perru que los britanos pueden criar na corte."
+msgstr "Can que los britanos pueden criar n'establu."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6226,7 +6226,7 @@ msgstr "Los Asteros invictos y Asteros invictos ecuestres de Cartagu."
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Toos dos conscríbense en templu en cuenta de la fortaleza, a diferencia de la mayoría los invictos."
+msgstr "Toos dos exercítense en templu en vez del castiellu, a diferencia de la mayoría los invictos."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -6270,12 +6270,12 @@ msgstr "Desármales pa movimientu & ¡ármales p'atacar!"
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr "CORTE"
+msgstr "ESTABLU"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "Conscribe unidaes d'a caballu y permite desendolcar técniques ecuestres."
+msgstr "Exercita unidaes d'a caballu y permite desendolcar técniques ecuestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6339,7 +6339,7 @@ msgstr "Pue construyise en territoriu neutral y amigo."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Conscribe cives: cives fémines, pédites civiles y équites civiles."
+msgstr "Exercita cives: cives fémines, pédites civiles y équites civiles."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
@@ -6363,7 +6363,7 @@ msgstr "El mou de formación permítete escoyer si los soldaos han caltenese en 
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr "TORRES DE DEFENSA"
+msgstr "TORRES DE PIEDRA"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
@@ -6382,12 +6382,12 @@ msgstr "Puedes enllenales de más pédites pa que tiren más saetes."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr "CORTE DEL ELEFANTE"
+msgstr "ESTADA ELEFANTINA"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr "Esta corte sirve a delles civilizaciones pa conscribir unidaes elefantines."
+msgstr "Esta construcción sirve a delles civilizaciones pa exercitar unidaes elefantines."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6452,13 +6452,13 @@ msgstr "Por defectu, les formaciones esbíllense en xunto."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr "FORTALEZA"
+msgstr "CASTIELLU"
 
 #: gui/text/tips/fortress.txt:2
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr "Polo xeneral, ye la mayor fortificación de les civilizaciones y el llugar onde se conscribe héroes."
+msgstr "Suel ser la mayor fortificación de les civilizaciones y el sitiu onde s'exerciten héroes."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6507,7 +6507,7 @@ msgstr "Los équites civiles cacien más rápido."
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Cuantu más altu'l grau del mílite civil, (avanzáu, escoyíu), meyor lluchará, anque perderá arremangu pa llograr recursos."
+msgstr "Cuantu más altu'l grau del mílite civil, (provectu, singular), meyor lluchará, anque perderá arremangu pa llograr recursos."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6586,7 +6586,7 @@ msgstr "Les pirámides mayores aumenten la marcialidá de soldaos averaos."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr "TALAYES"
+msgstr "MIRADORIOS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
@@ -6873,7 +6873,7 @@ msgstr "ELEFANTES BÉLICOS"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr "Besties xigantes d'África y India, ensayaes pal combate."
+msgstr "Besties xigantes d'África y India, exercitaes pal combate."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
@@ -7073,7 +7073,7 @@ msgstr "peña"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr "Los árboles y mates apurren madera."
+msgstr "Llógrase de los árbores y mates."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7095,7 +7095,7 @@ msgstr "madera"
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "firstWord"
 msgid "Tree"
-msgstr "Árbole"
+msgstr "Árbore"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7103,4 +7103,4 @@ msgstr "Árbole"
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "árbole"
+msgstr "árbore"

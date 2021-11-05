@@ -8,13 +8,14 @@
 # Hessam Shahpouri, 2021
 # Goudarz Jafari <goudarz.jafari@gmail.com>, 2021
 # Alireza Rahro, 2021
+# ARA2020, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Alireza Rahro, 2021\n"
+"Last-Translator: ARA2020, 2021\n"
 "Language-Team: Persian (https://www.transifex.com/wildfire-games/teams/17418/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,11 +29,13 @@ msgid ""
 "Discover the new maps in Alpha XXVI with a demo campaign, taking you through"
 " all of them."
 msgstr ""
+"نقشه‌های جدید را در Alpha XXVI با یک کمپین نمایشی کشف کنید و همه آنها را به "
+"شما معرفی کند."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "کمپین آزمایشی - نقشه های جدید"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -48,11 +51,15 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"این نقشه یک راهنمای تقریبی برای شروع موثر بازی ارائه می دهد. در اوایل بازی، "
+"مهمترین چیز این است که منابع را با بیشترین سرعت ممکن جمع آوری کنید تا "
+"بتوانید بعداً به اندازه کافی نیرو بسازید. اخطار: این در شروع بسیار سریع است،"
+" آماده باشید که بیت اولیه را چندین بار اجرا کنید."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "بررسی اقتصاد"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -82,7 +89,7 @@ msgstr "در دسترس"
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "خطا در بارگیری اجرای کمپین %s : %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
@@ -126,6 +133,7 @@ msgstr "فایل نمی تواند بارگذاری شود"
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
+"آیا مطمئن هستید که می خواهید اجرا %s را حذف کنید؟ این قابل بازگشت نیست."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -146,11 +154,11 @@ msgstr "بارگذاری بخش داستانی"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "بدون کمپین در حال انجام"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "نام اجرا انتخاب شده:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -167,7 +175,7 @@ msgstr "شروع یک بخش داستانی"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "لطفا نام کمپین جدید خود را وارد کنید:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -176,7 +184,7 @@ msgstr "آغاز کمپین"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "هیچ کمپینی انتخاب نشد."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -184,7 +192,7 @@ msgstr "بخش های داستانی"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "هیچ کمپینی انتخاب نشده است"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

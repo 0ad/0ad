@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Amir Alb <amirmohammad.alb1981@gmail.com>, 2018
+# ARA2020, 2021
 # eulerleibniz <dariush.karamati@gmail.com>, 2014
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-10-15 14:44+0000\n"
-"Last-Translator: saeed fatemi\n"
+"PO-Revision-Date: 2021-11-03 17:26+0000\n"
+"Last-Translator: ARA2020\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -544,8 +545,8 @@ msgstr "تعداد آثار مقدس"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s اثر"
+msgstr[1] "%(number)s آثار"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
@@ -651,7 +652,7 @@ msgstr "مکانی که شما قرار گرفته اید برای بازی آم
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "تمدن هایی که انتخاب شده اند را به حالت پیش فرض (تصادفی) بازنشانی کنید."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
@@ -766,7 +767,7 @@ msgstr "نقشه ای انتخاب نشده است."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "برای مشاهده لیست نقشه های موجود کلیک کنید."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -804,7 +805,7 @@ msgstr "اتصال به سرور..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
-msgstr ""
+msgstr "سرور در حال اجرا نیست"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
@@ -812,13 +813,13 @@ msgstr "گذرواره نادرست است."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
-msgstr ""
+msgstr "تو تحریم شدی"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr ""
+msgstr "IP محلی سرور دریافت نشد (فرض می شود در همان شبکه باشد)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -831,7 +832,7 @@ msgstr "خطا در ارتباط با سرور"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "ارتباط ناموفق بود"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -902,11 +903,11 @@ msgstr "نام سرور:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "رمز سرور:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "از STUN برای کار در اطراف فایروال ها استفاده کنید"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
@@ -922,7 +923,7 @@ msgstr "گذرواژه:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "تایید"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -931,7 +932,7 @@ msgstr "خالی بگذارید تا از پورت پیش فرض استفاده 
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "خالی بگذارید تا نیازی به آن نباشد."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

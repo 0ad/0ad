@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-01 00:52+0000\n"
+"PO-Revision-Date: 2021-11-05 03:46+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -851,7 +851,7 @@ msgstr "¡Venciéronte!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr "Calca pa colar d'esti tutorial."
+msgstr "Calca pa colar d'esti cursín."
 
 #: gui/session/message_box/QuitConfirmation.js:24
 #: gui/session/message_box/QuitConfirmationReplay.js:32
@@ -1113,7 +1113,7 @@ msgstr "Nun pue desendolcase demientres la meyora."
 
 #: gui/session/selection_panels.js:1060
 msgid "Cannot train while upgrading."
-msgstr "Nun pue conscribir al anovar."
+msgstr "Nun pue exercitar al anovar."
 
 #: gui/session/selection_panels.js:1129
 #, javascript-format
@@ -1146,8 +1146,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] "Nun pue anovase de la que l'ente ta conscribiendo, desendolcando o anovando."
-msgstr[1] "Nun pue anovase de la que tolos entes tán conscribiendo, desendolcando o anovando."
+msgstr[0] "Nun pue anovase de la que l'ente ta exercitando, desendolcando o anovando."
+msgstr[1] "Nun pue anovase de la que tolos entes tán exercitando, desendolcando o anovando."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1236,19 +1236,19 @@ msgstr[1] "Pue construyise %(count)s vegaes más."
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] "Namái pudo conscribise una vegada."
-msgstr[1] "Namái pudo conscribise %(limit)s vegaes."
+msgstr[0] "Namái pudo exercitase una vegada."
+msgstr[1] "Namái pudo exercitase %(limit)s vegaes."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr "Pue conscribise una vegada namái."
+msgstr "Pue exercitase una vegada namái."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] "Pue conscribise %(count)s vegada más."
-msgstr[1] "Pue conscribise %(count)s vegaes más."
+msgstr[0] "Pue exercitase %(count)s vegada más."
+msgstr[1] "Pue exercitase %(count)s vegaes más."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
@@ -1275,17 +1275,17 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:215
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s pa conscribir %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s pa exercitar %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s pa conscribir %(number)s (%(fullBatch)s)."
+msgstr "%(action)s pa exercitar %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s pa conscribir %(number)s."
+msgstr "%(action)s pa exercitar %(number)s."
 
 #: gui/session/selection_panels_helpers.js:224
 msgid "Shift-click"
@@ -1332,7 +1332,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Sinopsis civilizacional / Árbole de construcciones\nL'últimu abiertu va reabrise en calcando."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Sinopsis civilizacional / Árbore de construcciones\nL'últimu abiertu va reabrise en calcando."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
