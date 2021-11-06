@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# ARA2020, 2021
 # бахром дуниахо <brandonw041@gmail.com>, 2019
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-11-03 17:32+0000\n"
+"Last-Translator: ARA2020\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "با فشردن ALT + Enter میتوانید حالت صفحه را به تمام صفحه و یا پنجره ای تغییر دهید. در حالت پنجره ای، میتوانید اندازه ی صفحه را تغییر دهید. اگر بازی خیلی کند اجرا میشود، در صفحه ی گزینه ها تنظیمات را تغییر دهید: غیرفعال کردن گزینه های «جلوه های ویژه ی آب» و «سایه ها» را امتحان کنید."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -58,7 +59,7 @@ msgstr "کنترل ها و گیمپلی بازی باید برای کسانی ک
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "کنترل های اصلی (به طور پیش فرض):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -114,7 +115,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "برای راه اندازی یک بازی چند نفره، یک بازیکن باید گزینه \"بازی میزبان\" را انتخاب کند. بازی از پورت UDP 20595 استفاده می کند، بنابراین میزبان باید NAT/firewall/etc خود را پیکربندی کند. تا این اجازه را بدهد. سپس سایر بازیکنان می توانند \"پیوستن به بازی\" را انتخاب کرده و آدرس IP میزبان را وارد کنند."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -153,7 +154,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "سپس نقشه ها را می توان فیلتر کرد. نقشه پیش فرض معمولا از نقشه های قابل بازی است. نقشه های دریایی نقشه هایی هستند که افراد می توانند به دریا دسترسی داشته باشند و نقشه های دمو نقشه هایی هستند که برای تست استفاده می شوند (عموما مناسب بازی نیستند). فیلتر \"تمام نقشه ها\" تمام نقشه ها را در لیست نشان خواهد داد."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -162,11 +163,11 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "در نهایت تغییر تنظیمات. برای یک نقشه تصادفی این شامل تعداد بازیکن ها و اندازه نقشه است و .. . برای سناریوها شما تنها می توانیدانتخاب کنید چه کسی چه بازیکنی را کنترل کند (تصمیم گیری زمانی که نقشه آغاز می شود). تنظیمات یا یک بازیکن انسان ، هوش مصنوعی AI یا هیچ بازیکن (حریف کاری انجام نخواهد داد) است."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "زمانی که آماده بودید، بر روی دکمه \"شروع بازی\" کلیک کنید."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
@@ -230,7 +231,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "hotkey.tab.prev – به تب قبلی بروید"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -286,13 +287,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "hotkey.teamchat – ارسال چت تیمی"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr "hotkey.privatechat – با شریک چت خصوصی انتخاب شده قبلی چت کنید"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
@@ -654,11 +655,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:138
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr "hotkey.camera.rotate.down – دوربین را بچرخانید تا به پایین نگاه کنید"
 
 #: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "hotkey.camera.rotate.cw – دوربین را در جهت عقربه های ساعت در اطراف زمین بچرخانید"
 
 #: gui/manual/intro.txt:140
 msgid ""
@@ -668,13 +669,13 @@ msgstr ""
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "hotkey.camera.rotate.wheel.cw – چرخش دوربین در جهت عقربه های ساعت در اطراف زمین"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "hotkey.camera.rotate.wheel.ccw – چرخش دوربین در خلاف جهت عقربه های ساعت در اطراف زمین"
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -727,13 +728,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "hotkey.cancel – لغو"
 
 #: gui/manual/intro.txt:156
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "hotkey.session.savedgames.delete – بازی ذخیره شده انتخاب شده را حذف کنید، درخواست تأیید کنید"
 
 #: gui/manual/intro.txt:157
 msgid ""

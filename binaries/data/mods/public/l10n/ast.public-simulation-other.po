@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-11-01 02:43+0000\n"
+"PO-Revision-Date: 2021-11-03 04:34+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ye la IA por defectu de 0 A.D. Fai'l favor d'informar de fallos a Wildfire Games (ver l'enllaz en menú principal).\n\nLa rapidez cola que Petra llogra recursos y beneficios comerciales mana na so dificultá, (Xole −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Nes dificultaes menores, tamién baxen los ritmos de desendolcu, de conscripción y de construcción. Na dificultá «Xole», per otru llau, Petra nin s'esparde nin invade."
+msgstr "Petra ye la IA por defectu de 0 A.D. Fai'l favor d'informar de fallos a Wildfire Games (ver l'enllaz en menú principal).\n\nLa rapidez cola que Petra llogra recursos y beneficios comerciales mana na so dificultá, (Xole −58%, Perfácil −44%, Fácil −25%, Normal ±0%, Difícil +25%, Perdifícil +56%). Nes dificultaes menores, tamién baxen los ritmos de desendolcu, d'exercitación y de construcción. Na dificultá «Xole», per otru llau, Petra nin s'esparde nin invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -570,7 +570,7 @@ msgstr "La riestra de producción ta enllena."
 
 #: simulation/components/ProductionQueue.js:860
 msgid "Can't find free space to spawn trained units"
-msgstr "Nun pue atopase batura p'aprucir les unidaes conscrites"
+msgstr "Nun pue atopase batura p'aprucir les unidaes exercitaes"
 
 #: simulation/components/ProductionQueue.js:902
 msgid "Could not auto-queue unit, de-activating."
@@ -862,7 +862,7 @@ msgstr "Vencióse a %(player)s (trampa)."
 
 #: simulation/helpers/Cheat.js:67
 msgid "You need to select a building that trains units."
-msgstr "Precises esbillar una construcción que conscriba unidaes."
+msgstr "Precises esbillar una construcción onde s'exerciten unidaes."
 
 #: simulation/helpers/Commands.js:134
 msgid "(Cheat - control all units)"

@@ -6,6 +6,7 @@
 # aleks a <caspian7@yandex.com>, 2021
 # Alireza Rahro, 2021
 # amirrezaw hosseini <amirrezaw15@yahoo.com>, 2016
+# ARA2020, 2021
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-11-03 17:38+0000\n"
+"Last-Translator: ARA2020\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -443,15 +444,15 @@ msgstr "ارتباط ضعیف با %(player)s (%(milliseconds)s میلی ثان�
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "این مشکل به این دلیل بوجود آمده است که بواسطه فایروال یا آنتی ویروس اطلاعات از طریق پورت UDP به شماره 20595 به سمت میزبان فرستاده نمی شود،"
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "میزبان بازی را پایان داد"
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "نسخه ی پروتوکل شبکه اشتباه است"
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -467,7 +468,7 @@ msgstr "شما بیرون انداخته شدید"
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "تو تحریم شدی"
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -769,7 +770,7 @@ msgstr ""
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "اسیر کردن"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -2023,7 +2024,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
 msgid "Confirm"
-msgstr ""
+msgstr "تایید"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
@@ -5187,7 +5188,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Alpha XXVI: Z——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
