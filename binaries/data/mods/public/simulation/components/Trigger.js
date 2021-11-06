@@ -192,7 +192,7 @@ Trigger.prototype.EnableTrigger = function(event, name)
 		}
 		const cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		triggerData.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
-			triggerData.delay || 0, triggerData.interval, { "name": name });
+			triggerData.delay || 0, triggerData.interval, { "action": name });
 	}
 	else if (event == "OnRange")
 	{
@@ -343,7 +343,7 @@ Trigger.prototype.CallEvent = function(event, eventData)
  */
 Trigger.prototype.CallTrigger = function(event, name, eventData, evenIfDisabled = true)
 {
-	if (!this?.[event]?.[name])
+	if (!this.triggers[event]?.[name])
 	{
 		warn(`Trigger.js: called a trigger '${name}' for event '${event}' that wasn't found`);
 		return;
