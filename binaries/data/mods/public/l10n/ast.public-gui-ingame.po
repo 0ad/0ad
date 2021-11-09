@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-05 03:46+0000\n"
+"PO-Revision-Date: 2021-11-06 18:52+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -262,22 +262,22 @@ msgstr "Teclexa'l mensaxe que quieras unviar."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Primi %(hotkey)s p'abrir la charra pública."
+msgstr "Premi %(hotkey)s p'abrir la charra pública."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Primi %(hotkey)s p'abrir la charra d'espectadores."
+msgstr "Premi %(hotkey)s p'abrir la charra d'espectadores."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Primi %(hotkey)s p'abrir la charra comuñera."
+msgstr "Premi %(hotkey)s p'abrir la charra comuñera."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Primi %(hotkey)s p'abrir la última charra privada esbillada."
+msgstr "Premi %(hotkey)s p'abrir la última charra privada esbillada."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -611,7 +611,7 @@ msgstr "E"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
-msgstr "Tribuyir"
+msgstr "Tribuir"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
@@ -659,7 +659,7 @@ msgstr "Enemigu"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Sobornar una unidá d'esti xugador al debalu & aprovechar la so vista un periodu llendáu."
+msgstr "Sobornar una unidá d'esti xugador al debalu y compartir la so vista un tiempu determináu."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -675,7 +675,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Tribuyir %(resourceAmount)s de %(resourceType)s a %(playerName)s. Con Mayús primida, calca pa tribuyir %(greaterAmount)s."
+msgstr "Tribuir %(resourceAmount)s de %(resourceType)s a %(playerName)s. Con Mayúscules premida, calca pa tribuir %(greaterAmount)s."
 
 #: gui/session/input.js:191
 #, javascript-format
@@ -701,7 +701,7 @@ msgstr "Desaniciar"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
-msgstr "¿Destruyir tolo esbillao?"
+msgstr "¿Destruir tolo esbillao?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
@@ -1046,7 +1046,7 @@ msgstr "Descargar %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Calca una vegada pa descargar 1. Calca con Mayús primida pa descargar tolos d'esti tipu."
+msgstr "Calca una vegada pa descargar 1. Calca con Mayúscules premida pa descargar tolos d'esti tipu."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
@@ -1219,19 +1219,19 @@ msgstr "%(changer)s amenorga la llende con %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] "Namái pudo construyise una vegada."
-msgstr[1] "Namái pudo construyise %(limit)s vegaes."
+msgstr[0] "Namái pudo construise una vegada."
+msgstr[1] "Namái pudo construise %(limit)s vegaes."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr "Pue construyise namái una vegada."
+msgstr "Pue construise namái una vegada."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] "Pue construyise %(count)s vegada más."
-msgstr[1] "Pue construyise %(count)s vegaes más."
+msgstr[0] "Pue construise %(count)s vegada más."
+msgstr[1] "Pue construise %(count)s vegaes más."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
@@ -1332,7 +1332,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Sinopsis civilizacional / Árbore de construcciones\nL'últimu abiertu va reabrise en calcando."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ver Sinopsis civilizacional / Árbole de construcciones\nL'últimu abiertu va reabrise en calcando."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1459,7 +1459,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Esbilla un tipu de bienes que quieras camudar calcando nelli, & llueu emplega les fleches de los otros tipos pa camudar les sos proporciones. Tamién pues primir %(hotkey)s al esbillar un tipu de bienes pa xubir la so proporción al 100 %%."
+msgstr "Esbilla un tipu de bienes que quieras camudar calcando nelli, y llueu emplega les fleches de los otros tipos pa camudar les sos proporciones. Tamién puedes premer %(hotkey)s al esbillar un tipu de bienes pa xubir la so proporción al 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1468,7 +1468,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Entama escoyendo'l recursu que quieras vender de la fila cimera. Cada vegada que se calquen los botones baxeros, %(quantity)s de los recursos arriberos va (van) vendese pola cantidá amosada de los baxeros. Primi & caltén primíu (-ida) %(hotkey)s pa multiplicar temporalmente la cantidá entrocada por %(multiplier)s."
+msgstr "Entama escoyendo'l recursu que quieras vender de la fila cimera. Cada vegada que se calquen los botones baxeros, %(quantity)s de los recursos arriberos va (van) vendese pola cantidá amosada de los baxeros. Premi y caltén premíu/ida %(hotkey)s pa multiplicar temporalmente la cantidá entrocada por %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1538,7 +1538,7 @@ msgstr "%(openingTradingString)s."
 #: gui/session/trade/TraderStatusTextShip.js:46
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s & %(inactiveString)s."
+msgstr "%(openingTradingString)s y %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:75
 #, javascript-format
@@ -1717,11 +1717,11 @@ msgstr "Ataca toles unidaes enemigues alcontraes evitando construcciones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Primi pa dexar que los comuñeros usen esti depósitu"
+msgstr "Premi pa dexar que los comuñeros usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Primi pa quitar que los comuñeros usen esti depósitu"
+msgstr "Premi pa quitar que los comuñeros usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"

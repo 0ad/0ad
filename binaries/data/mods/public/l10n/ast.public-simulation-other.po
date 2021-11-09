@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-11-03 04:34+0000\n"
+"PO-Revision-Date: 2021-11-06 18:50+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr "Como tu me tribúis %(_amount_)s de %(_resource_)s, yo acomuño contigo,
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "%(_player_)s, tienes que me tribuyir %(_amount_)s de %(_resource_)s primero que yo acomuño contigo."
+msgstr "%(_player_)s, tienes que me tribuir %(_amount_)s de %(_resource_)s primero que yo acomuño contigo."
 
 #: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
@@ -309,7 +309,7 @@ msgstr "%(_player_)s, si me mandes %(_amount_)s de %(_resource_)s, acepto'l paut
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "Á %(_player_)s, mentanto nun entaínes a tribuyime %(_amount_)s de %(_resource_)s, nun acepto la propuesta de neutralidá."
+msgstr "Á %(_player_)s, mentanto nun entaínes a tribuime %(_amount_)s de %(_resource_)s, nun acepto la propuesta de neutralidá."
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
@@ -369,22 +369,22 @@ msgstr "El robó Petra"
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "Esto nun pue construyise por cuenta d'un fallu desconocíu"
+msgstr "Esto nun pue construise por cuenta d'un fallu desconocíu"
 
 #: simulation/components/BuildRestrictions.js:115
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "Esto nun pue construyise nuna fastera non esplorada"
+msgstr "Esto nun pue construise nuna fastera non esplorada"
 
 #: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "Esto nun pue construyise enriba d'un recursu o construcción"
+msgstr "Esto nun pue construise enriba d'un recursu o construcción"
 
 #: simulation/components/BuildRestrictions.js:167
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "Esto nun pue construyise en terrén non válido."
+msgstr "Esto nun pue construise en terrén non válido."
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -439,12 +439,12 @@ msgstr "enemigu"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "Esto nun pue construyise en campu %(territoryType)s. Territorios válidos: %(validTerritories)s"
+msgstr "Esto nun pue construise en campu %(territoryType)s. Territorios válidos: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:234
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "Esto ha construyise nuna riba válida."
+msgstr "Esto ha construise nuna riba válida."
 
 #: simulation/components/BuildRestrictions.js:261
 #, javascript-format

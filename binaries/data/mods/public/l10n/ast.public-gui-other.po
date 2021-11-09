@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-05 03:51+0000\n"
+"PO-Revision-Date: 2021-11-06 18:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Atayu ensin asignar: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Primi %(hotkey)s p'autocompletar nomes de xugadores."
+msgstr "Premi %(hotkey)s p'autocompletar nomes de xugadores."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -1444,7 +1444,7 @@ msgstr "Campaña de donacionines 2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campaña Indiegogo 2013\nMás de 1000 donantes (!), incluyíos:"
+msgstr "Campaña Indiegogo 2013\nMás de 1000 donantes (!), incluíos:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -2331,12 +2331,12 @@ msgstr "Omitir el conxuntu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Facer señes col punteru primiendo l'atayu al calcar."
+msgstr "Facer señes col punteru premiendo l'atayu al calcar."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "Aseñar (primiendo)"
+msgstr "Aseñar (premiendo)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
@@ -2411,12 +2411,12 @@ msgstr "Entrocar en masa"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr "Facer tribuyir una montonera de recursos."
+msgstr "Facer tribuir una montonera de recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr "Tribuyir en masa"
+msgstr "Tribuir en masa"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
@@ -2977,12 +2977,12 @@ msgstr "Alternar los contornos"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr "Alternar l'árbore de construcciones."
+msgstr "Alternar l'árbole de construcciones."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr "Alternar l'árbore de construcciones"
+msgstr "Alternar l'árbole de construcciones"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
@@ -3422,7 +3422,7 @@ msgstr "Inxerir na esbilla unidaes que tán fuera de campu."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr "Incluyir el fuera de campu"
+msgstr "Incluir el fuera de campu"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
@@ -3462,7 +3462,7 @@ msgstr "Desanicia l'alcuentru guardáu esbilláu usando %(hotkey)s."
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr "Caltén %(hotkey)s primíu (-ida) pa saltar el diálogu de confirmanza al desaniciar."
+msgstr "Caltén %(hotkey)s premíu/ida pa saltar el diálogu de confirmanza al desaniciar."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -4745,7 +4745,7 @@ msgstr "Atayu p'activar l'alliniadura"
 #: gui/options/options.json[6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Les construcciones nueves allíniense con construcciones cercanes al primir l'atayu de tecláu."
+msgstr "Les construcciones nueves allíniense con construcciones cercanes al premer l'atayu de tecláu."
 
 #: gui/options/options.json[6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
@@ -4755,7 +4755,7 @@ msgstr "Atayu pa desactivar l'alliniadura"
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "Les construcciones nueves allíniense con construcciones cercanes sacante que primas l'atayu de tecláu."
+msgstr "Les construcciones nueves allíniense con construcciones cercanes sacante que premas l'atayu de tecláu."
 
 #: gui/options/options.json[6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
@@ -4939,7 +4939,7 @@ msgstr "Deprender a xugar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "Deprender a xugar, entamar el cursín, descubrir los árbores tecnolóxicos y la historia detrás de les civilizaciones."
+msgstr "Deprender a xugar, entamar el cursín, descubrir los árboles tecnolóxicos y la historia detrás de les civilizaciones."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -4961,7 +4961,7 @@ msgstr "Entamar el cursín económicu."
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr "Árbore de construcciones"
+msgstr "Árbole de construcciones"
 
 #: gui/pregame/MainMenuItems.js:28
 #, javascript-format
@@ -5401,7 +5401,7 @@ msgstr "%(hotkey)s: Cambiar a «Sinopsis civilizacional»."
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Cambiar a «Árbore de construcciones»."
+msgstr "%(hotkey)s: Cambiar a «Árbole de construcciones»."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
@@ -5473,7 +5473,7 @@ msgstr "Exercitadores"
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Zarrar l'árbore de construcciones."
+msgstr "%(hotkey)s: Zarrar l'árbole de construcciones."
 
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
@@ -5645,7 +5645,7 @@ msgstr "Menú principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
-msgstr "Reconstruyir Caxé"
+msgstr "Reconstruir Caxé"
 
 #: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
@@ -5686,7 +5686,7 @@ msgstr "Camín de la repetición qu'agora ta esbillada."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Reconstruyir el caxé de la repetición dende cero. ¡Pue tardar!"
+msgstr "Reconstruir el caxé de la repetición dende cero. ¡Pue entardar!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -5954,7 +5954,7 @@ msgstr "Exercitaes"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr "Construyíes"
+msgstr "Construíes"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
@@ -6333,7 +6333,7 @@ msgstr "Toma posesión de grandes estensiones de tierra."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr "Pue construyise en territoriu neutral y amigo."
+msgstr "Pue construise en territoriu neutral y amigo."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
@@ -6477,7 +6477,7 @@ msgstr "¡Da ventaya a les tos fuercies asitiándoles estratéxicamente!"
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr "Pa ello esbilla delles unidaes y, primiendo'l botón derechu del mure, dibuxa una llinia, ya darréu suelta'l botón."
+msgstr "Pa ello esbilla delles unidaes y, premiendo'l botón derechu del mure, dibuxa una llinia, ya darréu suelta'l botón."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -6571,7 +6571,7 @@ msgstr "PIRÁMIDES DE MEDEVI"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "Construcciones esclusives de los qosanos."
+msgstr "Construcciones esclusives de los qesanos."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6651,7 +6651,7 @@ msgstr "Valen p'acorripiar équites o otros pédites."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "Disponibles a los: qosanos, macedonios, ptolemaicos y seléucides"
+msgstr "Disponibles a los: qesanos, macedonios, ptolemaicos y seléucides"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -6715,7 +6715,7 @@ msgstr "ALLINIADURA"
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr "Puedes alliniar les construcciones primiendo l'atayu d'alliniadura al allugales."
+msgstr "Puedes alliniar les construcciones premiendo l'atayu d'alliniamientu al allugales."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
@@ -6883,7 +6883,7 @@ msgstr "Costosos en comida y metal, pero perfuertes."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Disponibles a los cartaxineses, qosanos, maurios, perses, ptolemaicos y seléucides."
+msgstr "Disponibles a los cartaxineses, qesanos, maurios, perses, ptolemaicos y seléucides."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -7073,7 +7073,7 @@ msgstr "peña"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr "Llógrase de los árbores y mates."
+msgstr "Llógrase de los árboles y mates."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7095,7 +7095,7 @@ msgstr "madera"
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "firstWord"
 msgid "Tree"
-msgstr "Árbore"
+msgstr "Árbole"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7103,4 +7103,4 @@ msgstr "Árbore"
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "árbore"
+msgstr "árbole"
