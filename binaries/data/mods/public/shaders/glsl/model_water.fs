@@ -1,5 +1,6 @@
 #version 120
 
+#include "common/debug_fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
@@ -90,8 +91,9 @@ void main()
 #endif
 
 	vec3 color = mix(refrColor + 0.3*specular, reflColor + specular, fresShadow);
+	color *= getLOS();
 
-	gl_FragColor.rgb = color * getLOS();
+	gl_FragColor.rgb = applyDebugColor(color, 1.0);
 
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 	// become opaque faster at lower view angles so we can't look "underneath" the water plane)

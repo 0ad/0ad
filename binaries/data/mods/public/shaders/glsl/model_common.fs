@@ -1,5 +1,6 @@
 #version 120
 
+#include "common/debug_fragment.h"
 #include "common/fog.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
@@ -153,16 +154,15 @@ void main()
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
 
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadow();
-  vec3 ambColor = texdiffuse * ambient;
-
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
-    vec3 ao = texture2D(aoTex, v_tex2).rrr;
-    ao = mix(vec3(1.0), ao * 2.0, effectSettings.w);
-    ambColor *= ao;
+    float ao = texture2D(aoTex, v_tex2).r;
+    ao = mix(1.0, ao * 2.0, effectSettings.w);
+  #else
+    float ao = 1.0;
   #endif
 
-  color += ambColor;
+  vec3 ambientColor = texdiffuse * ambient * ao;
+  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadow() + ambientColor;
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);
@@ -173,6 +173,8 @@ void main()
   color *= getLOS();
 
   color *= shadingColor;
+
+  color = applyDebugColor(color, ao);
 
   gl_FragColor.rgb = color;
 }

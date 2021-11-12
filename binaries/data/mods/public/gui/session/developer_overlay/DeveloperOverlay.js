@@ -10,9 +10,13 @@ class DeveloperOverlay
 		this.devCommandsOverlay.onPress = this.toggle.bind(this);
 
 		this.checkBoxes = this.getCheckboxNames().map((name, i) =>
-			new DeveloperOverlayCheckbox(
-				new DeveloperOverlayCheckboxes.prototype[name](playerViewControl, selection),
+			new DeveloperOverlayControlCheckbox(
+				new DeveloperOverlayControlCheckboxes.prototype[name](playerViewControl, selection),
 				i));
+		this.dropDowns = this.getDropDownNames().map((name, i) =>
+			new DeveloperOverlayControlDropDown(
+				new DeveloperOverlayControlDrowDowns.prototype[name](playerViewControl, selection),
+				i + this.checkBoxes.length));
 
 		this.resize();
 	}
@@ -22,7 +26,12 @@ class DeveloperOverlay
 	 */
 	getCheckboxNames()
 	{
-		return Object.keys(DeveloperOverlayCheckboxes.prototype);
+		return Object.keys(DeveloperOverlayControlCheckboxes.prototype);
+	}
+
+	getDropDownNames()
+	{
+		return Object.keys(DeveloperOverlayControlDrowDowns.prototype);
 	}
 
 	toggle()
@@ -34,6 +43,9 @@ class DeveloperOverlay
 		this.sendNotification();
 		this.checkBoxes.forEach(checkbox => {
 			checkbox.setHidden(this.devCommandsOverlay.hidden);
+		});
+		this.dropDowns.forEach(dropDown => {
+			dropDown.setHidden(this.devCommandsOverlay.hidden);
 		});
 	}
 
@@ -59,7 +71,8 @@ class DeveloperOverlay
 		let size = this.devCommandsOverlay.size;
 		size.bottom =
 			size.top +
-			this.checkBoxes.reduce((height, checkbox) => height + checkbox.getHeight(), 0);
+			this.checkBoxes.reduce((height, checkbox) => height + checkbox.getHeight(), 0) +
+			this.dropDowns.reduce((height, dropDown) => height + dropDown.getHeight(), 0);
 		this.devCommandsOverlay.size = size;
 	}
 }

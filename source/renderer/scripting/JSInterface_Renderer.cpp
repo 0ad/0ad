@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,16 @@ std::string GetRenderPath()
 	return RenderPathEnum::ToString(g_RenderingOptions.GetRenderPath());
 }
 
+std::string GetRenderDebugMode()
+{
+	return RenderDebugModeEnum::ToString(g_RenderingOptions.GetRenderDebugMode()).c_str();
+}
+
+void SetRenderDebugMode(const std::string& mode)
+{
+	g_RenderingOptions.SetRenderDebugMode(RenderDebugModeEnum::FromString(mode));
+}
+
 bool TextureExists(const std::wstring& filename)
 {
 	return g_Renderer.GetTextureManager().TextureExists(filename);
@@ -60,6 +70,8 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&GetRenderPath>(rq, "Renderer_GetRenderPath");
 	ScriptFunction::Register<&TextureExists>(rq, "TextureExists");
+	ScriptFunction::Register<&GetRenderDebugMode>(rq, "Renderer_GetRenderDebugMode");
+	ScriptFunction::Register<&SetRenderDebugMode>(rq, "Renderer_SetRenderDebugMode");
 	REGISTER_BOOLEAN_SCRIPT_SETTING(DisplayFrustum);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(DisplayShadowsFrustum);
 }
