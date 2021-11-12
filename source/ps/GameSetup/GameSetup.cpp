@@ -929,6 +929,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL) != 0 // ARB
 		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", NULL) != 0) // GLSL
 		|| !ogl_HaveExtension("GL_ARB_vertex_buffer_object") // VBO
+		|| (!ogl_HaveExtension("GL_EXT_framebuffer_object") && !ogl_HaveExtension("GL_ARB_framebuffer_object"))
 		|| RenderPathEnum::FromString(renderPath) == FIXED)
 	{
 		// It doesn't make sense to continue working here, because we're not

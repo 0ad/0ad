@@ -19,6 +19,7 @@
 #define INCLUDED_MINIMAPTEXTURE
 
 #include "lib/ogl.h"
+#include "renderer/VertexArray.h"
 
 class CSimulation2;
 class CTerrain;
@@ -40,9 +41,7 @@ public:
 	 */
 	void Render();
 
-	GLuint GetTerrainTexture() const { return m_TerrainTexture; }
-
-	GLsizei GetTerrainTextureSize() const { return m_TextureSize; }
+	GLuint GetTexture() const { return m_FinalTexture; }
 
 	/**
 	 * @return The maximum height for unit passage in water.
@@ -50,16 +49,22 @@ public:
 	static float GetShallowPassageHeight();
 
 private:
-	void CreateTextures();
+	void CreateTextures(const CTerrain* terrain);
 	void DestroyTextures();
 	void RebuildTerrainTexture(const CTerrain* terrain);
+	void RenderFinalTexture();
 
 	CSimulation2& m_Simulation;
 
-	bool m_Dirty = true;
+	bool m_TerrainTextureDirty = true;
+	bool m_FinalTextureDirty = true;
+	double m_LastFinalTextureUpdate = 0.0;
 
 	// minimap texture handles
 	GLuint m_TerrainTexture = 0;
+	GLuint m_FinalTexture = 0;
+
+	GLuint m_FinalTextureFBO = 0;
 
 	// texture data
 	u32* m_TerrainData = nullptr;
@@ -73,6 +78,18 @@ private:
 	// Maximal water height to allow the passage of a unit (for underwater shallows).
 	float m_ShallowPassageHeight = 0.0f;
 	float m_WaterHeight = 0.0f;
+
+	VertexIndexArray m_IndexArray;
+	VertexArray m_VertexArray;
+	VertexArray::Attribute m_AttributePos;
+	VertexArray::Attribute m_AttributeColor;
+
+	size_t m_EntitiesDrawn = 0;
+
+	double m_PingDuration = 25.0;
+	double m_HalfBlinkDuration = 0.0;
+	double m_NextBlinkTime = 0.0;
+	bool m_BlinkState = false;
 };
 
 #endif // INCLUDED_MINIMAPTEXTURE

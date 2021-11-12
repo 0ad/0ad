@@ -29,7 +29,6 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
-#include "graphics/TerritoryTexture.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
 #include "gui/GUIMatrix.h"
@@ -62,10 +61,6 @@
 namespace
 {
 
-// Set max drawn entities to UINT16_MAX for now, which is more than enough
-// TODO: we should be cleverer about drawing them to reduce clutter
-const u16 MAX_ENTITIES_DRAWN = 65535;
-
 // Adds segments pieces lying inside the circle to lines.
 void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D& center, const float radius, std::vector<CVector3D>* lines)
 {
@@ -97,13 +92,13 @@ void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D&
 	}
 }
 
-void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float mapScale)
+void DrawTexture(CShaderProgramPtr shader, float angle, float x, float y, float x2, float y2, float mapScale)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
 	// Scale square maps to fit in circular minimap area
 	const float s = sin(angle) * mapScale;
 	const float c = cos(angle) * mapScale;
-	const float m = coordMax / 2.f;
+	const float m = 0.5f;
 
 	float quadTex[] = {
 		m*(-c + s + 1.f), m*(-c + -s + 1.f),
@@ -138,62 +133,13 @@ const CStr CMiniMap::EventNameWorldClick = "WorldClick";
 
 CMiniMap::CMiniMap(CGUI& pGUI) :
 	IGUIObject(pGUI),
-	m_MapSize(0), m_MapScale(1.f),
-	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW), m_Mask(this, "mask", false),
-	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false),
+	m_MapSize(0), m_MapScale(1.f), m_Mask(this, "mask", false),
 	m_FlareTextureCount(this, "flare_texture_count", 0), m_FlareRenderSize(this, "flare_render_size", 0),
 	m_FlareInterleave(this, "flare_interleave", false), m_FlareAnimationSpeed(this, "flare_animation_speed", 0.0f),
 	m_FlareLifetimeSeconds(this, "flare_lifetime_seconds", 0.0f)
 {
 	m_Clicking = false;
 	m_MouseHovering = false;
-
-	m_AttributePos.type = GL_FLOAT;
-	m_AttributePos.elems = 2;
-	m_VertexArray.AddAttribute(&m_AttributePos);
-
-	m_AttributeColor.type = GL_UNSIGNED_BYTE;
-	m_AttributeColor.elems = 4;
-	m_VertexArray.AddAttribute(&m_AttributeColor);
-
-	m_VertexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
-	m_VertexArray.Layout();
-
-	m_IndexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
-	m_IndexArray.Layout();
-	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
-	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
-		*index++ = i;
-	m_IndexArray.Upload();
-	m_IndexArray.FreeBackingStore();
-
-	VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
-	VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
-	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
-	{
-		(*attrColor)[0] = 0;
-		(*attrColor)[1] = 0;
-		(*attrColor)[2] = 0;
-		(*attrColor)[3] = 0;
-		++attrColor;
-
-		(*attrPos)[0] = -10000.0f;
-		(*attrPos)[1] = -10000.0f;
-
-		++attrPos;
-
-	}
-	m_VertexArray.Upload();
-
-	double blinkDuration = 1.0;
-
-	// Tests won't have config initialised
-	if (CConfigDB::IsInitialised())
-	{
-		CFG_GET_VAL("gui.session.minimap.pingduration", m_PingDuration);
-		CFG_GET_VAL("gui.session.minimap.blinkduration", blinkDuration);
-	}
-	m_HalfBlinkDuration = blinkDuration/2;
 }
 
 CMiniMap::~CMiniMap() = default;
@@ -410,34 +356,6 @@ void CMiniMap::DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double curren
 	}
 }
 
-struct MinimapUnitVertex
-{
-	// This struct is copyable for convenience and because to move is to copy for primitives.
-	u8 r, g, b, a;
-	float x, y;
-};
-
-// Adds a vertex to the passed VertexArray
-static void inline addVertex(const MinimapUnitVertex& v,
-					  VertexArrayIterator<u8[4]>& attrColor,
-					  VertexArrayIterator<float[2]>& attrPos)
-{
-	(*attrColor)[0] = v.r;
-	(*attrColor)[1] = v.g;
-	(*attrColor)[2] = v.b;
-	(*attrColor)[3] = v.a;
-	++attrColor;
-
-	(*attrPos)[0] = v.x;
-	(*attrPos)[1] = v.y;
-
-	++attrPos;
-}
-
-// TODO: render the minimap in a framebuffer and just draw the frambuffer texture
-//	most of the time, updating the framebuffer twice a frame.
-// Here it updates as ping-pong either texture or vertex array each sec to lower gpu stalling
-// (those operations cause a gpu sync, which slows down the way gpu works)
 void CMiniMap::Draw(CCanvas2D& canvas)
 {
 	PROFILE3("render minimap");
@@ -447,247 +365,66 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	if (!g_Game || !g_Game->IsGameStarted())
 		return;
 
+	if (!m_Mask)
+		canvas.DrawRect(m_CachedActualSize, CColor(0.0f, 0.0f, 0.0f, 1.0f));
+
 	canvas.Flush();
 
 	CSimulation2* sim = g_Game->GetSimulation2();
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
 
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
-	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
-
 	// Set our globals in case they hadn't been set before
 	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	ssize_t width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
-	ssize_t height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = terrain->GetVerticesPerSide();
-	GLsizei textureSize = miniMapTexture.GetTerrainTextureSize();
 	m_MapScale = (cmpRangeManager->GetLosCircular() ? 1.f : 1.414f);
 
-	// only update 2x / second
-	// (note: since units only move a few pixels per second on the minimap,
-	// we can get away with infrequent updates; this is slow)
-	// TODO: Update all but camera at same speed as simulation
-	static double last_time;
-	const double cur_time = timer_Time();
-	const bool doUpdate = cur_time - last_time > 0.5;
-	if (doUpdate)
-		last_time = cur_time;
-
-	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
-	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
-	const float texCoordMax = (float)(m_MapSize - 1) / (float)textureSize;
-	const float angle = GetAngle();
-	const float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
-
-	CShaderProgramPtr shader;
-	CShaderTechniquePtr tech;
-
-	CShaderDefines baseDefines;
-	baseDefines.Add(str_MINIMAP_BASE, str_1);
-	if (m_Mask)
-		baseDefines.Add(str_MINIMAP_MASK, str_1);
-
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), baseDefines);
-	tech->BeginPass();
-	shader = tech->GetShader();
-
 	// Draw the main textured quad
-	if (miniMapTexture.GetTerrainTexture())
-		shader->BindTexture(str_baseTex, miniMapTexture.GetTerrainTexture());
-	if (m_Mask)
+	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
+	if (miniMapTexture.GetTexture())
 	{
-		shader->BindTexture(str_maskTex, losTexture.GetTexture());
-		CMatrix3D maskTextureTransform = *losTexture.GetMinimapTextureMatrix();
-		// We need to have texture coordinates in the same coordinate space.
-		const float scale = 1.0f / texCoordMax;
-		maskTextureTransform.Scale(scale, scale, 1.0f);
-		shader->Uniform(str_maskTextureTransform, maskTextureTransform);
-	}
-	const CMatrix3D baseTransform = GetDefaultGuiMatrix();
-	CMatrix3D baseTextureTransform;
-	baseTextureTransform.SetIdentity();
-	shader->Uniform(str_transform, baseTransform);
-	shader->Uniform(str_textureTransform, baseTextureTransform);
+		CShaderProgramPtr shader;
+		CShaderTechniquePtr tech;
 
-	if (m_Mask)
-	{
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
+		CShaderDefines baseDefines;
+		baseDefines.Add(str_MINIMAP_BASE, str_1);
 
-	if (miniMapTexture.GetTerrainTexture())
-		DrawTexture(shader, texCoordMax, angle, x, y, x2, y2, m_MapScale);
-
-	if (!m_Mask)
-	{
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
-
-	// Draw territory boundaries
-	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
-
-	shader->BindTexture(str_baseTex, territoryTexture.GetTexture());
-	if (m_Mask)
-	{
-		shader->BindTexture(str_maskTex, losTexture.GetTexture());
-		shader->Uniform(str_maskTextureTransform, *losTexture.GetMinimapTextureMatrix());
-	}
-	const CMatrix3D* territoryTransform = territoryTexture.GetMinimapTextureMatrix();
-	shader->Uniform(str_transform, baseTransform);
-	shader->Uniform(str_textureTransform, *territoryTransform);
-
-	DrawTexture(shader, 1.0f, angle, x, y, x2, y2, m_MapScale);
-	tech->EndPass();
-
-	// Draw the LOS quad in black, using alpha values from the LOS texture
-	if (!m_Mask)
-	{
-		CShaderDefines losDefines;
-		losDefines.Add(str_MINIMAP_LOS, str_1);
-		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), losDefines);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), baseDefines);
 		tech->BeginPass();
 		shader = tech->GetShader();
-		shader->BindTexture(str_baseTex, losTexture.GetTexture());
 
-		const CMatrix3D* losTransform = losTexture.GetMinimapTextureMatrix();
+		shader->BindTexture(str_baseTex, miniMapTexture.GetTexture());
+		const CMatrix3D baseTransform = GetDefaultGuiMatrix();
+		CMatrix3D baseTextureTransform;
+		baseTextureTransform.SetIdentity();
 		shader->Uniform(str_transform, baseTransform);
-		shader->Uniform(str_textureTransform, *losTransform);
+		shader->Uniform(str_textureTransform, baseTextureTransform);
 
-		DrawTexture(shader, 1.0f, angle, x, y, x2, y2, m_MapScale);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
+		const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
+		const float angle = GetAngle();
+		DrawTexture(shader, angle, x, y, x2, y2, m_MapScale);
+
 		tech->EndPass();
+
+		glDisable(GL_BLEND);
 	}
 
-	glDisable(GL_BLEND);
-
-	PROFILE_START("minimap units and flares");
-
-	CShaderDefines pointDefines;
-	pointDefines.Add(str_MINIMAP_POINT, str_1);
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), pointDefines);
-	tech->BeginPass();
-	shader = tech->GetShader();
-	shader->Uniform(str_transform, baseTransform);
-	shader->Uniform(str_pointSize, 3.f);
-
-	CMatrix3D unitMatrix;
-	unitMatrix.SetIdentity();
-	// Center the minimap on the origin of the axis of rotation.
-	unitMatrix.Translate(-(x2 - x) / 2.f, -(y2 - y) / 2.f, 0.f);
-	// Rotate the map.
-	unitMatrix.RotateZ(angle);
-	// Scale square maps to fit.
-	unitMatrix.Scale(unitScale, unitScale, 1.f);
-	// Move the minimap back to it's starting position.
-	unitMatrix.Translate((x2 - x) / 2.f, (y2 - y) / 2.f, 0.f);
-	// Move the minimap to it's final location.
-	unitMatrix.Translate(x, y, 0.0f);
-	// Apply the gui matrix.
-	unitMatrix *= GetDefaultGuiMatrix();
-	// Load the transform into the shader.
-	shader->Uniform(str_transform, unitMatrix);
-
-	const float sx = (float)width / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
-	const float sy = (float)height / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
-
-	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
-
-	if (doUpdate)
-	{
-		VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
-		VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
-
-		m_EntitiesDrawn = 0;
-		MinimapUnitVertex v;
-		std::vector<MinimapUnitVertex> pingingVertices;
-		pingingVertices.reserve(MAX_ENTITIES_DRAWN / 2);
-
-		if (cur_time > m_NextBlinkTime)
-		{
-			m_BlinkState = !m_BlinkState;
-			m_NextBlinkTime = cur_time + m_HalfBlinkDuration;
-		}
-
-		entity_pos_t posX, posZ;
-		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
-		{
-			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
-			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
-			{
-				LosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer());
-				if (vis != LosVisibility::HIDDEN)
-				{
-					v.a = 255;
-					v.x = posX.ToFloat() * sx;
-					v.y = -posZ.ToFloat() * sy;
-
-					// Check minimap pinging to indicate something
-					if (m_BlinkState && cmpMinimap->CheckPing(cur_time, m_PingDuration))
-					{
-						v.r = 255; // ping color is white
-						v.g = 255;
-						v.b = 255;
-						pingingVertices.push_back(v);
-					}
-					else
-					{
-						addVertex(v, attrColor, attrPos);
-						++m_EntitiesDrawn;
-					}
-				}
-			}
-		}
-
-		// Add the pinged vertices at the end, so they are drawn on top
-		for (const MinimapUnitVertex& vertex : pingingVertices)
-		{
-			addVertex(vertex, attrColor, attrPos);
-			++m_EntitiesDrawn;
-		}
-
-		ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
-		m_VertexArray.Upload();
-	}
-
-	m_VertexArray.PrepareForRendering();
-
-	if (m_EntitiesDrawn > 0)
-	{
-#if !CONFIG2_GLES
-		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-#endif
-
-		u8* indexBase = m_IndexArray.Bind();
-		u8* base = m_VertexArray.Bind();
-		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
-
-		shader->VertexPointer(2, GL_FLOAT, stride, base + m_AttributePos.offset);
-		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
-		shader->AssertPointersBound();
-
-		if (!g_Renderer.DoSkipSubmit())
-			glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
-
-		g_Renderer.GetStats().m_DrawCalls++;
-		CVertexBuffer::Unbind();
-
-#if !CONFIG2_GLES
-		glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
-#endif
-	}
-
-	tech->EndPass();
+	PROFILE_START("minimap flares");
 
 	DrawViewRect(canvas);
 
-	while (!m_MapFlares.empty() && m_FlareLifetimeSeconds + m_MapFlares.front().time < cur_time)
+	const double currentTime = timer_Time();
+	while (!m_MapFlares.empty() && m_FlareLifetimeSeconds + m_MapFlares.front().time < currentTime)
 		m_MapFlares.pop_front();
 
 	for (const MapFlare& flare : m_MapFlares)
-		DrawFlare(canvas, flare, cur_time);
+		DrawFlare(canvas, flare, currentTime);
 
-	PROFILE_END("minimap units and flares");
+	PROFILE_END("minimap flares");
 }
 
 bool CMiniMap::Flare(const CVector2D& pos, const CStr& colorStr)
