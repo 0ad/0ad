@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-11-01 00:54+0000\n"
+"PO-Revision-Date: 2021-11-10 05:25+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "El certificáu nun ye d'enfotu."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate hasn't got a known issuer."
-msgstr "Nun se sabe quién fexo'l certificáu."
+msgstr "Nun se sabe quién fezo'l certificáu."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate has been revoked."
@@ -73,11 +73,11 @@ msgstr "El certificáu caducó."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate is not yet active."
-msgstr "El certificáu nun ta activu."
+msgstr "El certificáu nun está activu."
 
 #: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificáu nun s'emitió pal par al que tas conectáu. "
+msgstr "El certificáu nun s'emitió pal par al qu'estás conectáu."
 
 #: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
@@ -114,7 +114,7 @@ msgstr "Nun s'autorizó"
 
 #: lobby/XmppClient.cpp:1402
 msgid "Recipient temporarily unavailable"
-msgstr "De momentu nun ta disponible'l destinatariu"
+msgstr "De momentu nun está disponible'l destinatariu"
 
 #: lobby/XmppClient.cpp:1404
 msgid "Registration required"
@@ -122,7 +122,7 @@ msgstr "Ríquese'l rexistru"
 
 #: lobby/XmppClient.cpp:1408
 msgid "Service unavailable"
-msgstr "El serviciu nun ta disponible"
+msgstr "El serviciu nun está disponible"
 
 #: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
 msgid "Unknown error"
@@ -150,7 +150,7 @@ msgstr "La conexón refugóla'l sirvidor"
 
 #: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
-msgstr "Falló la resolución del nome d'agospiu del sirvidor"
+msgstr "Falló la resolución del hostname del sirvidor"
 
 #: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
@@ -160,15 +160,15 @@ msgstr "Acabóse la memoria del sistema"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Nun pudo verificase'l certificáu'l sirvidor o la negociación TLS nun se completó con ésitu"
+msgstr "Nun pudo verificase'l certificáu'l sirvidor o la negociación TLS nun se completó con éxitu"
 
 #: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
-msgstr "El sirvidor nun ufrió'l cifráu TLS riquíu"
+msgstr "El sirvidor nun ufrió'l cifráu TLS requeridu"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falló l'autenticación. La clave nun ye correcha o la cuenta nun esiste"
+msgstr "Falló l'autenticación. La clave nun ye correcha o la cuenta nun existe"
 
 #: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
@@ -180,22 +180,22 @@ msgstr "Nun hai conexones actives"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
-msgstr "La cuenta rexistróse con ésitu"
+msgstr "La cuenta rexistróse con éxitu"
 
 #: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
-msgstr "Nun s'apurrió tola información precisa"
+msgstr "Nun s'apurrió toda la información precisa"
 
 #: lobby/XmppClient.cpp:1473
 msgid "Username already exists"
-msgstr "Yá esiste esi nome d'usuariu"
+msgstr "Yá existe esi nome d'usuariu"
 
 #: ps/Mod.cpp:84
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo escribise un mod.json esternu pal camudu comprimíu «%s». Hai que reinstalar el camudu."
+msgstr "Nun pudo escribise un mod.json externu pal camudu comprimidu «%s». Hai que reinstalar el camudu."
 
 #: ps/ModIo.cpp:263
 #, c-format
@@ -230,7 +230,7 @@ msgstr "Fallu de baxada asíncrona: %s, %s."
 #: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Falló la baxada. Rempuesta del sirvidor: %s; %s."
+msgstr "Falló la baxada. Respuesta del sirvidor: %s; %s."
 
 #: ps/ModIo.cpp:530
 msgid "Mismatched filesize."

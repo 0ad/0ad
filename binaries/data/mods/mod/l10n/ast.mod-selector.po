@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-20 07:08+0000\n"
-"PO-Revision-Date: 2021-10-31 23:21+0000\n"
+"PO-Revision-Date: 2021-11-10 06:12+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "Activóse: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr "[font=\"sans-bold-20\"]¡Tentesti d'entamar un alcuentru con camudos incompatibles o desapaecíos![/font]"
+msgstr "[font=\"sans-bold-20\"]¡Tentesti d'aniciar un alcuentru con camudos incompatibles o desaparecidos![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -107,13 +107,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Hai qu'iguar la compatibilidá desactivando camudos inválidos o activando dependencies precises. Llueu puedes guardar y entamar l'alcuentru."
+msgstr "Hai qu'iguar la compatibilidá desactivando camudos inválidos o activando dependencies precises. Lluego puedes guardar y entamar l'alcuentru."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr "Los camudos incompatibles amuésense en coloráu nel índiz de camudos activaos (panel baxeru). Les dependencies puedes amestales activándoles en panel cimeru."
+msgstr "Los camudos incompatibles amuéstrense en coloráu nel índiz de camudos activaos (panel baxeru). Les dependencies puedes amestales activándoles en panel cimeru."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -137,7 +137,7 @@ msgstr "Data del documentu: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "Tas a piques de conectate col serviciu de mod.io na rede."
+msgstr "Estás a piques de conectate col serviciu de mod.io na rede."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
@@ -155,7 +155,7 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games tien puesto procuru en facer esta conexón segura y buscao nos camudos defectos de seguranza, si bien nun pue garantizar que'l serviciu nun suponga riesgos."
+msgstr "Wildfire Games tien puesto procuru en facer esta conexón segura y buscao nos camudos defectos de seguranza, si bien nun puede garantizar que'l serviciu nun suponga riesgos."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
@@ -286,7 +286,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Tiempu trescurrío: %(elapsed)s\nTiempu que queda: %(remaining)s\nVelocidá media: %(avgSpeed)s"
+msgstr "Tiempu trescurrido: %(elapsed)s\nTiempu que resta: %(remaining)s\nVelocidá media: %(avgSpeed)s"
 
 #: gui/modio/modio.js:349
 msgid "∞"
@@ -357,7 +357,7 @@ msgstr "Peñera"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. ta diseñáu pa ser fácil de camudar. Los camudos repártense en forma de ficheros .pyromod, que puen abrise como ficheros ZIP."
+msgstr "0 A.D. está diseñáu pa ser fácil de camudar. Los camudos repártense en forma de ficheros .pyromod, que pueden abrise como ficheros ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -367,7 +367,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Pa instalar un camudu, namái abri'l ficheru con 0 A.D. (quier calcando dos vegaes en ficheru y escoyendo abrir col xuegu, quier executando «pyrogenesis ficheru.pyromod» nuna terminal). El camudu va tar disponible nel esbillador de camudos. Pues activalu y desactivalu cuando quieras. Pues desaniciar el camudu a mano usando'l restolador de ficheros si lo precises (mira https://trac.wildfiregames.com/wiki/GameDataPaths)"
+msgstr "Pa instalar un camudu, namái abri'l ficheru con 0 A.D. (quier calcando dues vegades en ficheru y escoyendo abrir col xuegu, quier executando «pyrogenesis ficheru.pyromod» nuna terminal). El camudu va estar disponible nel esbillador de camudos. Puedes activallu y desactivallu cuando quieras. Puedes desaniciar el camudu a mano usando'l restolador de ficheros si lo precises (mira https://trac.wildfiregames.com/wiki/GameDataPaths)"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
@@ -382,7 +382,7 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El serviciu de mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Estos sitios vien falando de 0 A.D. y otros proxectos indie na rede demientres munchu tiempu! Güei mod.io nos permite recoyer y baxar tolos camudos que tien verificaos. ¡Calca «Baxar camudos» pa probalu ya instalar dalgún!"
+msgstr "El serviciu de mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Estos sitios vien falando de 0 A.D. y otros proxectos indie na rede demientres munchu tiempu! Güei mod.io nos permite recoyer y baxar tódolos camudos que tien verificaos. ¡Calca «Baxar camudos» pa proballu ya instalar dalgún!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -402,7 +402,7 @@ msgstr "Visitar mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr "Esti camudu nun esiste"
+msgstr "Esti camudu nun existe"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -494,7 +494,7 @@ msgstr "Los camudos activos cárguense de riba p'abaxo.  Los caberos en cargase 
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Cambia l'orde en que se llancen los camudos. Esti ha concasar coles sos dependencies."
+msgstr "Cambia l'orde en que se llancen los camudos. Esti ha concasar coles sues dependencies."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
