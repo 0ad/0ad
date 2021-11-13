@@ -28,6 +28,7 @@
 #define INCLUDED_RENDERINGOPTIONS
 
 #include "ps/CStr.h"
+#include "ps/CStrIntern.h"
 
 class CRenderer;
 
@@ -48,6 +49,18 @@ struct RenderPathEnum
 {
 	static RenderPath FromString(const CStr8& name);
 	static CStr8 ToString(RenderPath);
+};
+
+enum class RenderDebugMode
+{
+	NONE,
+	AO
+};
+
+struct RenderDebugModeEnum
+{
+	static RenderDebugMode FromString(const CStr8& name);
+	static CStrIntern ToString(RenderDebugMode mode);
 };
 
 class CRenderingOptions
@@ -87,6 +100,8 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 	OPTION_WITH_SIDE_EFFECT(Fog, bool);
 
 	OPTION_WITH_SIDE_EFFECT(RenderPath, RenderPath);
+
+	OPTION_WITH_SIDE_EFFECT(RenderDebugMode, RenderDebugMode);
 
 	OPTION(WaterEffects, bool);
 	OPTION(WaterFancyEffects, bool);

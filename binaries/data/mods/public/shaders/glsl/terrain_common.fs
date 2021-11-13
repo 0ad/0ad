@@ -1,5 +1,6 @@
 #version 120
 
+#include "common/debug_fragment.h"
 #include "common/fog.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
@@ -183,7 +184,7 @@ void main()
     color *= shadingColor;
   #endif
 
-  gl_FragColor.rgb = color;
+  gl_FragColor.rgb = applyDebugColor(color, 1.0);
 
   #if USE_GRASS
     gl_FragColor.a = tex.a;

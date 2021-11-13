@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-11-06 18:43+0000\n"
+"PO-Revision-Date: 2021-11-10 06:11+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Dañu cortante, como'l que faen les espaes, los machaos."
+msgstr "Dañu cortante, como'l que faen les espades, los machaos."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -110,7 +110,7 @@ msgstr "Esta unidá fai quemar."
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr "Esta unidá ta quemando."
+msgstr "Esta unidá está quemando."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
@@ -125,7 +125,7 @@ msgstr "Esta unidá envenena."
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "Esta unidá ta venenada."
+msgstr "Esta unidá está venenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
@@ -977,7 +977,7 @@ msgstr "Tuna"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr "Árbole tropical"
+msgstr "Árbore tropical"
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
@@ -1010,7 +1010,7 @@ msgstr "Camuda nuna casa de 5 pers. al compartir la cultura del xugador, otramie
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr "Soldaos amarradores namái, requier pelo menos 16."
+msgstr "Pédites combatedores namái, requier pelo menos 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -1022,7 +1022,7 @@ msgstr "Orde de batalla"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Requier pelo menos 4 Soldaos o Máquines."
+msgstr "Requier pelo menos 4 Mílites o Máquines."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -1030,7 +1030,7 @@ msgstr "Cuadru"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "Orde de marcha"
+msgstr "Orde d'avance"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
@@ -1038,7 +1038,7 @@ msgstr "Columna abierta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Requier pelo menos 8 Soldaos o Máquines."
+msgstr "Requier pelo menos 8 Mílites o Máquines."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1066,11 +1066,11 @@ msgstr "Falanxe"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
-msgstr "Orde espardíu"
+msgstr "Orde espardidu"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr "Soldaos tiradores namái, requier pelo menos 2."
+msgstr "Mílites tiradores namái, requier pelo menos 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -1090,7 +1090,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Soldaos d'a caballu namái, requier pelo menos 6."
+msgstr "Équites namái, requier pelo menos 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -1106,7 +1106,7 @@ msgstr "Especulador"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Requier pelo menos 2 soldaos o máquines."
+msgstr "Requier pelo menos 2 mílites o máquines."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1168,7 +1168,7 @@ msgstr "Fonte de recursos."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
-msgstr "Árbole"
+msgstr "Árbore"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."

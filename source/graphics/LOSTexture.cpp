@@ -70,6 +70,9 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation)
 
 CLOSTexture::~CLOSTexture()
 {
+	if (m_smoothFbo)
+		pglDeleteFramebuffersEXT(1, &m_smoothFbo);
+
 	if (m_Texture)
 		DeleteTexture();
 }

@@ -515,6 +515,9 @@ void CRenderer::ReloadShaders()
 #endif
 	}
 
+	m->globalContext.Add(str_RENDER_DEBUG_MODE,
+		RenderDebugModeEnum::ToString(g_RenderingOptions.GetRenderDebugMode()));
+
 	if (g_RenderingOptions.GetPreferGLSL() && g_RenderingOptions.GetFog())
 		m->globalContext.Add(str_USE_FOG, str_1);
 

@@ -4,11 +4,11 @@
  * If the class has a checked property, then that will be called every simulation update to
  * synchronize the state of the checkbox (only if the developer overaly is opened).
  */
-class DeveloperOverlayCheckboxes
+class DeveloperOverlayControlCheckboxes
 {
 }
 
-DeveloperOverlayCheckboxes.prototype.ControlAll = class
+DeveloperOverlayControlCheckboxes.prototype.ControlAll = class
 {
 	label()
 	{
@@ -30,7 +30,7 @@ DeveloperOverlayCheckboxes.prototype.ControlAll = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.ChangePerspective = class
+DeveloperOverlayControlCheckboxes.prototype.ChangePerspective = class
 {
 	constructor(playerViewControl)
 	{
@@ -48,7 +48,7 @@ DeveloperOverlayCheckboxes.prototype.ChangePerspective = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.SelectionEntityState = class
+DeveloperOverlayControlCheckboxes.prototype.SelectionEntityState = class
 {
 	constructor(playerViewControl, selection)
 	{
@@ -66,7 +66,7 @@ DeveloperOverlayCheckboxes.prototype.SelectionEntityState = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.PathfinderOverlay = class
+DeveloperOverlayControlCheckboxes.prototype.PathfinderOverlay = class
 {
 	label()
 	{
@@ -79,7 +79,7 @@ DeveloperOverlayCheckboxes.prototype.PathfinderOverlay = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.HierarchicalPathfinderOverlay = class
+DeveloperOverlayControlCheckboxes.prototype.HierarchicalPathfinderOverlay = class
 {
 	label()
 	{
@@ -92,7 +92,7 @@ DeveloperOverlayCheckboxes.prototype.HierarchicalPathfinderOverlay = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.ObstructionOverlay = class
+DeveloperOverlayControlCheckboxes.prototype.ObstructionOverlay = class
 {
 	label()
 	{
@@ -105,7 +105,7 @@ DeveloperOverlayCheckboxes.prototype.ObstructionOverlay = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.UnitMotionOverlay = class
+DeveloperOverlayControlCheckboxes.prototype.UnitMotionOverlay = class
 {
 	label()
 	{
@@ -118,7 +118,7 @@ DeveloperOverlayCheckboxes.prototype.UnitMotionOverlay = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.RangeOverlay = class
+DeveloperOverlayControlCheckboxes.prototype.RangeOverlay = class
 {
 	label()
 	{
@@ -131,7 +131,7 @@ DeveloperOverlayCheckboxes.prototype.RangeOverlay = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.BoundingBoxOverlay = class
+DeveloperOverlayControlCheckboxes.prototype.BoundingBoxOverlay = class
 {
 	label()
 	{
@@ -144,7 +144,7 @@ DeveloperOverlayCheckboxes.prototype.BoundingBoxOverlay = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.RestrictCamera = class
+DeveloperOverlayControlCheckboxes.prototype.RestrictCamera = class
 {
 	label()
 	{
@@ -162,7 +162,7 @@ DeveloperOverlayCheckboxes.prototype.RestrictCamera = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.RevealMap = class
+DeveloperOverlayControlCheckboxes.prototype.RevealMap = class
 {
 	label()
 	{
@@ -183,7 +183,7 @@ DeveloperOverlayCheckboxes.prototype.RevealMap = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.EnableTimeWarp = class
+DeveloperOverlayControlCheckboxes.prototype.EnableTimeWarp = class
 {
 	constructor()
 	{
@@ -202,7 +202,7 @@ DeveloperOverlayCheckboxes.prototype.EnableTimeWarp = class
 };
 
 
-DeveloperOverlayCheckboxes.prototype.ActivateRejoinTest = class
+DeveloperOverlayControlCheckboxes.prototype.ActivateRejoinTest = class
 {
 	constructor()
 	{
@@ -241,7 +241,7 @@ DeveloperOverlayCheckboxes.prototype.ActivateRejoinTest = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.PromoteSelectedUnits = class
+DeveloperOverlayControlCheckboxes.prototype.PromoteSelectedUnits = class
 {
 	label()
 	{
@@ -262,7 +262,7 @@ DeveloperOverlayCheckboxes.prototype.PromoteSelectedUnits = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.EnableCulling = class
+DeveloperOverlayControlCheckboxes.prototype.EnableCulling = class
 {
 	label()
 	{
@@ -280,7 +280,7 @@ DeveloperOverlayCheckboxes.prototype.EnableCulling = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.LockCullCamera = class
+DeveloperOverlayControlCheckboxes.prototype.LockCullCamera = class
 {
 	label()
 	{
@@ -298,7 +298,7 @@ DeveloperOverlayCheckboxes.prototype.LockCullCamera = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.DisplayCameraFrustum = class
+DeveloperOverlayControlCheckboxes.prototype.DisplayCameraFrustum = class
 {
 	label()
 	{
@@ -316,7 +316,7 @@ DeveloperOverlayCheckboxes.prototype.DisplayCameraFrustum = class
 	}
 };
 
-DeveloperOverlayCheckboxes.prototype.DisplayShadowsFrustum = class
+DeveloperOverlayControlCheckboxes.prototype.DisplayShadowsFrustum = class
 {
 	label()
 	{

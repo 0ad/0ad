@@ -100,18 +100,6 @@ private:
 
 	float GetAngle() const;
 	CVector2D WorldSpaceToMiniMapSpace(const CVector3D& worldPosition) const;
-
-	VertexIndexArray m_IndexArray;
-	VertexArray m_VertexArray;
-	VertexArray::Attribute m_AttributePos;
-	VertexArray::Attribute m_AttributeColor;
-
-	size_t m_EntitiesDrawn;
-
-	double m_PingDuration;
-	double m_HalfBlinkDuration;
-	double m_NextBlinkTime;
-	bool m_BlinkState;
 };
 
 #endif // INCLUDED_MINIMAP

@@ -22,6 +22,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
+#include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/ShadowMap.h"
@@ -72,6 +73,29 @@ CStr8 RenderPathEnum::ToString(RenderPath path)
 		return "shader";
 	}
 	return "default"; // Silence warning about reaching end of non-void function.
+}
+
+RenderDebugMode RenderDebugModeEnum::FromString(const CStr8& name)
+{
+	if (name == str_RENDER_DEBUG_MODE_NONE.c_str())
+		return RenderDebugMode::NONE;
+	if (name == str_RENDER_DEBUG_MODE_AO.c_str())
+		return RenderDebugMode::AO;
+
+	LOGWARNING("Unknown render debug mode %s", name.c_str());
+	return RenderDebugMode::NONE;
+}
+
+CStrIntern RenderDebugModeEnum::ToString(RenderDebugMode mode)
+{
+	switch (mode)
+	{
+	case RenderDebugMode::AO:
+		return str_RENDER_DEBUG_MODE_AO;
+	default:
+		break;
+	}
+	return str_RENDER_DEBUG_MODE_NONE;
 }
 
 CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
@@ -243,10 +267,16 @@ void CRenderingOptions::SetPreferGLSL(bool value)
 	g_Renderer.RecomputeSystemShaderDefines();
 }
 
-
 void CRenderingOptions::SetRenderPath(RenderPath value)
 {
 	m_RenderPath = value;
 	if (CRenderer::IsInitialised())
 		g_Renderer.SetRenderPath(m_RenderPath);
+}
+
+void CRenderingOptions::SetRenderDebugMode(RenderDebugMode value)
+{
+	m_RenderDebugMode = value;
+	if (CRenderer::IsInitialised())
+		g_Renderer.MakeShadersDirty();
 }
