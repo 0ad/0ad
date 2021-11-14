@@ -43,6 +43,9 @@ QuitConfirmationMenu.prototype.MultiplayerClient = class extends QuitConfirmatio
 	}
 };
 
+QuitConfirmationMenu.prototype.MultiplayerClient.prototype.Caption =
+	translate("Are you sure you want to quit?");
+
 QuitConfirmationMenu.prototype.MultiplayerClient.prototype.Buttons =
 [
 	{
