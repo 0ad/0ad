@@ -20,7 +20,9 @@ DeveloperOverlayControlDrowDowns.prototype.RenderDebugMode = class
 	{
 		return [
 			{ "value": "RENDER_DEBUG_MODE_NONE", "label": translate("Render Debug Mode Disabled") },
-			{ "value": "RENDER_DEBUG_MODE_AO", "label": translate("Render Debug Mode AO") }
+			{ "value": "RENDER_DEBUG_MODE_AO", "label": translate("Render Debug Mode AO") },
+			{ "value": "RENDER_DEBUG_MODE_ALPHA", "label": translate("Render Debug Mode Alpha") },
+			{ "value": "RENDER_DEBUG_MODE_CUSTOM", "label": translate("Render Debug Mode Custom") }
 		];
 	}
 

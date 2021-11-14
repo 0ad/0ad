@@ -54,7 +54,9 @@ struct RenderPathEnum
 enum class RenderDebugMode
 {
 	NONE,
-	AO
+	AO,
+	ALPHA,
+	CUSTOM
 };
 
 struct RenderDebugModeEnum

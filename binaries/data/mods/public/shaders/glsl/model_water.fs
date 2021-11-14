@@ -93,10 +93,10 @@ void main()
 	vec3 color = mix(refrColor + 0.3*specular, reflColor + specular, fresShadow);
 	color *= getLOS();
 
-	gl_FragColor.rgb = applyDebugColor(color, 1.0);
-
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 	// become opaque faster at lower view angles so we can't look "underneath" the water plane)
 	t = 18.0 * max(0.0, 0.7 - v.y);
-	gl_FragColor.a = 0.15 * waterDepth * (1.2 + t + fresnel);
+	float alpha = 0.15 * waterDepth * (1.2 + t + fresnel);
+
+	gl_FragColor = vec4(applyDebugColor(color, 1.0, alpha, 0.0), alpha);
 }

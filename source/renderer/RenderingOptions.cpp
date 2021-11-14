@@ -81,6 +81,10 @@ RenderDebugMode RenderDebugModeEnum::FromString(const CStr8& name)
 		return RenderDebugMode::NONE;
 	if (name == str_RENDER_DEBUG_MODE_AO.c_str())
 		return RenderDebugMode::AO;
+	if (name == str_RENDER_DEBUG_MODE_ALPHA.c_str())
+		return RenderDebugMode::ALPHA;
+	if (name == str_RENDER_DEBUG_MODE_CUSTOM.c_str())
+		return RenderDebugMode::CUSTOM;
 
 	LOGWARNING("Unknown render debug mode %s", name.c_str());
 	return RenderDebugMode::NONE;
@@ -92,6 +96,10 @@ CStrIntern RenderDebugModeEnum::ToString(RenderDebugMode mode)
 	{
 	case RenderDebugMode::AO:
 		return str_RENDER_DEBUG_MODE_AO;
+	case RenderDebugMode::ALPHA:
+		return str_RENDER_DEBUG_MODE_ALPHA;
+	case RenderDebugMode::CUSTOM:
+		return str_RENDER_DEBUG_MODE_CUSTOM;
 	default:
 		break;
 	}
