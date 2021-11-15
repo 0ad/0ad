@@ -1,5 +1,6 @@
 #version 110
 
+#include "common/debug_fragment.h"
 #include "common/fog.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
@@ -305,5 +306,5 @@ void main()
 
 	color = applyFog(color);
 
-	gl_FragColor = vec4(color * getLOS(), refrColor.a);
+	gl_FragColor = vec4(applyDebugColor(color * getLOS(), 1.0, refrColor.a, 0.0), refrColor.a);
 }

@@ -38,6 +38,5 @@ void main()
 
 	color *= getLOS();
 
-	gl_FragColor.rgb = applyDebugColor(color, 1.0);
-	gl_FragColor.a = texdiffuse.a;
+	gl_FragColor = vec4(applyDebugColor(color, 1.0, texdiffuse.a, 0.0), texdiffuse.a);
 }

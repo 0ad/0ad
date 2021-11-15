@@ -30,5 +30,5 @@ void main()
 
     color *= getLOS();
 
-    gl_FragColor = vec4(applyDebugColor(color, 1.0), alpha * base.a);
+    gl_FragColor = vec4(applyDebugColor(color, 1.0, alpha * base.a, 0.0), alpha * base.a);
 }

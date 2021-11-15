@@ -101,16 +101,18 @@ vec4 triplanarNormals(sampler2D sampler, vec3 wpos)
 
 void main()
 {
+  float alpha = 0.0;
+
   #if BLEND
     // Use alpha from blend texture
-    gl_FragColor.a = 1.0 - texture2D(blendTex, v_blend).a;
+    alpha = 1.0 - texture2D(blendTex, v_blend).a;
 
     #if USE_GRASS
-      if (gl_FragColor.a < LAYER / 10.0)
+      if (alpha < LAYER / 10.0)
         discard;
     #endif
   #else
-    gl_FragColor.a = 1.0;
+    alpha = 1.0;
   #endif
 
   #if USE_TRIPLANAR
@@ -126,7 +128,7 @@ void main()
 
   #if DECAL
     // Use alpha from main texture
-    gl_FragColor.a = tex.a;
+    alpha = tex.a;
   #endif
 
   vec3 texdiffuse = tex.rgb;
@@ -184,9 +186,9 @@ void main()
     color *= shadingColor;
   #endif
 
-  gl_FragColor.rgb = applyDebugColor(color, 1.0);
-
   #if USE_GRASS
-    gl_FragColor.a = tex.a;
+    alpha = tex.a;
   #endif
+
+  gl_FragColor = vec4(applyDebugColor(color, 1.0, 1.0, 0.0), alpha);
 }

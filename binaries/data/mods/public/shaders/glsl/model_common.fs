@@ -108,9 +108,9 @@ void main()
   #endif
 
   #if USE_TRANSPARENT
-    gl_FragColor.a = tex.a;
+    float alpha = tex.a;
   #else
-    gl_FragColor.a = 1.0;
+    float alpha = 1.0;
   #endif
 
   vec3 texdiffuse = tex.rgb;
@@ -174,7 +174,7 @@ void main()
 
   color *= shadingColor;
 
-  color = applyDebugColor(color, ao);
+  color = applyDebugColor(color, ao, alpha, 0.0);
 
-  gl_FragColor.rgb = color;
+  gl_FragColor = vec4(color, alpha);
 }
