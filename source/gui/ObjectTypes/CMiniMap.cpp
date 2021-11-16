@@ -36,6 +36,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
@@ -136,7 +137,9 @@ CMiniMap::CMiniMap(CGUI& pGUI) :
 	m_MapSize(0), m_MapScale(1.f), m_Mask(this, "mask", false),
 	m_FlareTextureCount(this, "flare_texture_count", 0), m_FlareRenderSize(this, "flare_render_size", 0),
 	m_FlareInterleave(this, "flare_interleave", false), m_FlareAnimationSpeed(this, "flare_animation_speed", 0.0f),
-	m_FlareLifetimeSeconds(this, "flare_lifetime_seconds", 0.0f)
+	m_FlareLifetimeSeconds(this, "flare_lifetime_seconds", 0.0f),
+	m_FlareStartFadeSeconds(this, "flare_start_fade_seconds", 0.0f),
+	m_FlareStopFadeSeconds(this, "flare_stop_fade_seconds", 0.0f)
 {
 	m_Clicking = false;
 	m_MouseHovering = false;
@@ -341,19 +344,36 @@ void CMiniMap::DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double curren
 		flareCenter.X - m_FlareRenderSize, flareCenter.Y - m_FlareRenderSize,
 		flareCenter.X + m_FlareRenderSize, flareCenter.Y + m_FlareRenderSize);
 
-	const u32 flooredStep = floor((currentTime - flare.time) * m_FlareAnimationSpeed);
+	const double deltaTime = currentTime - flare.time;
+	const double remainingTime = m_FlareLifetimeSeconds - deltaTime;
+	const u32 flooredStep = floor(deltaTime * m_FlareAnimationSpeed);
 
-	CTexturePtr texture = m_FlareTextures[flooredStep % m_FlareTextures.size()];
-	// TODO: Only draw inside the minimap circle.
-	canvas.DrawTexture(texture, destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()), flare.color, CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
+	const float startFadeAlpha = m_FlareStartFadeSeconds > 0.0f ? deltaTime / m_FlareStartFadeSeconds : 1.0f;
+	const float stopFadeAlpha = m_FlareStopFadeSeconds > 0.0f ? remainingTime / m_FlareStopFadeSeconds : 1.0f;
+	const float alpha = Clamp(std::min(
+		SmoothStep(0.0f, 1.0f, startFadeAlpha), SmoothStep(0.0f, 1.0f, stopFadeAlpha)),
+		0.0f, 1.0f);
 
-	// Draw a second circle if the first has reached half of the animation
+	DrawFlareFrame(canvas, flooredStep % m_FlareTextures.size(), destination, flare.color, alpha);
+
+	// Draw a second circle if the first has reached half of the animation.
 	if (m_FlareInterleave && flooredStep >= m_FlareTextures.size() / 2)
 	{
-		texture = m_FlareTextures[(flooredStep - m_FlareTextures.size() / 2) % m_FlareTextures.size()];
-		// TODO: Only draw inside the minimap circle.
-		canvas.DrawTexture(texture, destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()), flare.color, CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
+		DrawFlareFrame(canvas, (flooredStep - m_FlareTextures.size() / 2) % m_FlareTextures.size(),
+			destination, flare.color, alpha);
 	}
+}
+
+void CMiniMap::DrawFlareFrame(CCanvas2D& canvas, const u32 frameIndex,
+	const CRect& destination, const CColor& color, float alpha) const
+{
+	// TODO: Only draw inside the minimap circle.
+	CTexturePtr texture = m_FlareTextures[frameIndex % m_FlareTextures.size()];
+	CColor finalColor = color;
+	finalColor.a *= alpha;
+	canvas.DrawTexture(texture, destination,
+		CRect(0, 0, texture->GetWidth(), texture->GetHeight()), finalColor,
+		CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
 }
 
 void CMiniMap::Draw(CCanvas2D& canvas)
