@@ -26,19 +26,19 @@
   <Obstruction>
     <Static width="48.0" depth="48.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>300</Radius>
+    <Weight>35000</Weight>
+  </TerritoryInfluence>
+  <Trainer>
     <Entities datatype="tokens">
       -units/{civ}/support_female_citizen
       campaigns/army_mace_hero_alexander
       campaigns/army_mace_standard
       units/{civ}/support_trader
     </Entities>
-  </ProductionQueue>
-  <TerritoryInfluence>
-    <Root>true</Root>
-    <Radius>300</Radius>
-    <Weight>35000</Weight>
-  </TerritoryInfluence>
+  </Trainer>
   <VisualActor>
     <Actor>campaigns/structures/hellenes/settlement_curtainwall.xml</Actor>
   </VisualActor>

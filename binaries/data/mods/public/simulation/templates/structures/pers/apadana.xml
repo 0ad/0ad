@@ -37,18 +37,11 @@
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry
-      units/{civ}/hero_cyrus_ii
-      units/{civ}/hero_darius_i
-      units/{civ}/hero_xerxes_i
-    </Entities>
+  <Researcher>
     <Technologies datatype="tokens">
       immortals
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
   <ResourceTrickle>
     <Rates>
       <food>1.0</food>
@@ -69,6 +62,15 @@
     <Radius>48</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry
+      units/{civ}/hero_cyrus_ii
+      units/{civ}/hero_darius_i
+      units/{civ}/hero_xerxes_i
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

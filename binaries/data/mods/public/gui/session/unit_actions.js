@@ -1058,8 +1058,8 @@ var g_UnitActions =
 			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
 			// except if the autorallypoint hotkey is pressed and the target can produce entities.
 			if (targetState && (!Engine.HotkeyIsPressed("session.autorallypoint") ||
-			    !targetState.production ||
-			    !targetState.production.entities.length))
+			    !targetState.trainer ||
+			    !targetState.trainer.entities.length))
 				for (const ent of g_Selection.toList())
 					if (targetState.id == ent)
 						return false;
@@ -1154,9 +1154,9 @@ var g_UnitActions =
 			{
 				// Find a trader (if any) that this structure can train.
 				let trader;
-				if (entState.production && entState.production.entities.length)
-					for (let i = 0; i < entState.production.entities.length; ++i)
-						if ((trader = GetTemplateData(entState.production.entities[i]).trader))
+				if (entState.trainer?.entities?.length)
+					for (let i = 0; i < entState.trainer.entities.length; ++i)
+						if ((trader = GetTemplateData(entState.trainer.entities[i]).trader))
 							break;
 
 				let traderData = {
@@ -1793,7 +1793,7 @@ var g_EntityCommands =
 	"autoqueue-on": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.production || !entState.production.entities.length || entState.production.autoqueue))
+			if (entStates.every(entState => !entState.trainer || !entState.trainer.entities.length || entState.production.autoqueue))
 				return false;
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.queueunit.autoqueueon") +
@@ -1813,7 +1813,7 @@ var g_EntityCommands =
 	"autoqueue-off": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.production || !entState.production.entities.length || !entState.production.autoqueue))
+			if (entStates.every(entState => !entState.trainer || !entState.trainer.entities.length || !entState.production.autoqueue))
 				return false;
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.queueunit.autoqueueoff") +

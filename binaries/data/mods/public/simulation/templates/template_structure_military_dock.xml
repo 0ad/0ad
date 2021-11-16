@@ -41,16 +41,10 @@
     <Floating>true</Floating>
     <FloatDepth>0.0</FloatDepth>
   </Position>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/ship_fishing
-      units/{civ}/ship_merchant
-      units/{civ}/ship_bireme
-      units/{civ}/ship_trireme
-      units/{civ}/ship_quinquereme
-      units/{civ}/ship_fire
-    </Entities>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
+  <Researcher>
     <Technologies datatype="tokens">
       fishing_boat_gather_rate
       fishing_boat_gather_capacity
@@ -59,10 +53,7 @@
       ship_movement_speed
       equine_transports
     </Technologies>
-  </ProductionQueue>
-  <RallyPointRenderer>
-    <LinePassabilityClass>ship</LinePassabilityClass>
-  </RallyPointRenderer>
+  </Researcher>
   <ResourceDropsite>
     <Types>food wood stone metal</Types>
     <Sharable>true</Sharable>
@@ -75,6 +66,17 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/ship_fishing
+      units/{civ}/ship_merchant
+      units/{civ}/ship_bireme
+      units/{civ}/ship_trireme
+      units/{civ}/ship_quinquereme
+      units/{civ}/ship_fire
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

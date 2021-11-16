@@ -65,7 +65,7 @@ class TemplateParser
 
 		parsed.history = template.Identity.History;
 
-		parsed.production = this.TemplateLoader.deriveProductionQueue(template, civCode);
+		parsed.production = this.TemplateLoader.deriveProduction(template, civCode);
 		if (template.Builder)
 			parsed.builder = this.TemplateLoader.deriveBuildQueue(template, civCode);
 

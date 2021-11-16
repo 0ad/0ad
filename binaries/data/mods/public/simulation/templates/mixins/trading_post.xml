@@ -6,16 +6,16 @@
   <Health disable=""/>
   <Identity>
     <GenericName>Trading Post</GenericName>
-	<Undeletable>true</Undeletable>
+    <Undeletable>true</Undeletable>
   </Identity>
-  <ProductionQueue>
+  <Researcher>
     <Technologies datatype="tokens">
       -trader_health
       -trade_gain_01
       -trade_gain_02
       -trade_commercial_treaty
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
   <Resistance replace=""/>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>

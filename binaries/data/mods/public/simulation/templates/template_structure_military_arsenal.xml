@@ -35,7 +35,25 @@
   <Obstruction>
     <Static width="29.0" depth="29.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      siege_attack
+      siege_cost_time
+      siege_health
+      siege_pack_unpack
+      siege_bolt_accuracy
+    </Technologies>
+  </Researcher>
+  <Sound>
+    <SoundGroups>
+      <constructed>interface/complete/building/complete_barracks.xml</constructed>
+      <select>interface/select/building/sel_barracks.xml</select>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Radius>38</Radius>
+  </TerritoryInfluence>
+  <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}/champion_infantry_crossbowman
@@ -47,23 +65,7 @@
       units/{civ}/siege_ram
       units/{civ}/siege_tower
     </Entities>
-    <Technologies datatype="tokens">
-      siege_attack
-      siege_cost_time
-      siege_health
-      siege_pack_unpack
-      siege_bolt_accuracy
-    </Technologies>
-  </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <constructed>interface/complete/building/complete_barracks.xml</constructed>
-      <select>interface/select/building/sel_barracks.xml</select>
-    </SoundGroups>
-  </Sound>
-  <TerritoryInfluence>
-    <Radius>38</Radius>
-  </TerritoryInfluence>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

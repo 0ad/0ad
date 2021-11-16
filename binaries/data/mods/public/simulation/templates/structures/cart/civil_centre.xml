@@ -7,16 +7,18 @@
     <Civ>cart</Civ>
     <SpecificName>Merkāz</SpecificName>
   </Identity>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      colonization
+    </Technologies>
+  </Researcher>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
       units/{civ}/infantry_archer_b
       units/{civ}/cavalry_javelineer_b
     </Entities>
-    <Technologies datatype="tokens">
-      colonization
-    </Technologies>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/carthaginians/civil_centre.xml</Actor>
   </VisualActor>

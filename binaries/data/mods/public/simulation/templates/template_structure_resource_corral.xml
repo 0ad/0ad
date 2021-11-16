@@ -28,18 +28,11 @@
   <Obstruction>
     <Static width="16.0" depth="15.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      gaia/fauna_goat_trainable
-      gaia/fauna_sheep_trainable
-      gaia/fauna_pig_trainable
-      gaia/fauna_cattle_cow_trainable
-    </Entities>
+  <Researcher>
     <Technologies datatype="tokens">
       gather_animals_stockbreeding
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
   <Resistance>
     <Entity>
       <Damage>
@@ -58,6 +51,15 @@
     <Radius>20</Radius>
     <Weight>30000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      gaia/fauna_goat_trainable
+      gaia/fauna_sheep_trainable
+      gaia/fauna_pig_trainable
+      gaia/fauna_cattle_cow_trainable
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>20</Range>
   </Vision>

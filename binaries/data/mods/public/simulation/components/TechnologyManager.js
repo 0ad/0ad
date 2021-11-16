@@ -282,6 +282,17 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 TechnologyManager.prototype.QueuedResearch = function(tech, researcher)
 {
 	this.researchQueued.set(tech, researcher);
+
+	const cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		return;
+	const playerID = cmpPlayer.GetPlayerID();
+
+	Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger).CallEvent("OnResearchQueued", {
+		"playerid": playerID,
+		"technologyTemplate": tech,
+		"researcherEntity": researcher
+	});
 };
 
 // Marks a technology as actively being researched

@@ -39,14 +39,6 @@
   <Obstruction>
     <Static width="23.5" depth="23.5"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/infantry_spearman_merc_b
-      units/{civ}/infantry_swordsman_merc_b
-      units/{civ}/cavalry_spearman_merc_b
-      units/{civ}/cavalry_javelineer_merc_b
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>
@@ -57,6 +49,14 @@
     <DecayRate>1</DecayRate>
   </TerritoryDecay>
   <TerritoryInfluence disable=""/>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_spearman_merc_b
+      units/{civ}/infantry_swordsman_merc_b
+      units/{civ}/cavalry_spearman_merc_b
+      units/{civ}/cavalry_javelineer_merc_b
+    </Entities>
+  </Trainer>
   <VisualActor>
     <Actor>structures/ptolemies/settlement.xml</Actor>
     <FoundationActor>structures/fndn_7x7.xml</FoundationActor>

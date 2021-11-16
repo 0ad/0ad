@@ -340,6 +340,13 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"isUpgrading": cmpUpgrade.IsUpgrading()
 		};
 
+	const cmpResearcher = Engine.QueryInterface(ent, IID_Researcher);
+	if (cmpResearcher)
+		ret.researcher = {
+			"technologies": cmpResearcher.GetTechnologiesList(),
+			"techCostMultiplier": cmpResearcher.GetTechCostMultiplier()
+		};
+
 	let cmpStatusEffects = Engine.QueryInterface(ent, IID_StatusEffectsReceiver);
 	if (cmpStatusEffects)
 		ret.statusEffects = cmpStatusEffects.GetActiveStatuses();
@@ -347,11 +354,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		ret.production = {
-			"entities": cmpProductionQueue.GetEntitiesList(),
-			"technologies": cmpProductionQueue.GetTechnologiesList(),
-			"techCostMultiplier": cmpProductionQueue.GetTechCostMultiplier(),
 			"queue": cmpProductionQueue.GetQueue(),
 			"autoqueue": cmpProductionQueue.IsAutoQueueing()
+		};
+
+	const cmpTrainer = Engine.QueryInterface(ent, IID_Trainer);
+	if (cmpTrainer)
+		ret.trainer = {
+			"entities": cmpTrainer.GetEntitiesList()
 		};
 
 	let cmpTrader = Engine.QueryInterface(ent, IID_Trader);
@@ -689,10 +699,10 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 	for (let tech of cmpTechnologyManager.GetStartedTechs())
 	{
 		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
-		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
-		if (cmpProductionQueue)
+		const cmpResearcher = Engine.QueryInterface(ret[tech].researcher, IID_Researcher);
+		if (cmpResearcher)
 		{
-			const research = cmpProductionQueue.GetQueue().find(item => item.technologyTemplate === tech);
+			const research = cmpResearcher.GetResearchingTechnologyByName(tech);
 			ret[tech].progress = research.progress;
 			ret[tech].timeRemaining = research.timeRemaining;
 			ret[tech].paused = research.paused;
@@ -1978,11 +1988,7 @@ GuiInterface.prototype.CanAttack = function(player, data)
  */
 GuiInterface.prototype.GetBatchTime = function(player, data)
 {
-	let cmpProductionQueue = Engine.QueryInterface(data.entity, IID_ProductionQueue);
-	if (!cmpProductionQueue)
-		return 0;
-
-	return cmpProductionQueue.GetBatchTime(data.batchSize);
+	return Engine.QueryInterface(data.entity, IID_Trainer)?.GetBatchTime(data.batchSize) || 0;
 };
 
 GuiInterface.prototype.IsMapRevealed = function(player)

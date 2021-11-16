@@ -16,11 +16,13 @@
     <Static width="17.5" depth="30.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <TerritoryInfluence>
     <Root>true</Root>
     <Radius>100</Radius>
     <Weight>65535</Weight>
   </TerritoryInfluence>
+  <Trainer disable=""/>
   <VisualActor>
     <Actor>structures/hellenes/temple.xml</Actor>
   </VisualActor>

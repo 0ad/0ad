@@ -37,14 +37,6 @@
   <Obstruction>
     <Static width="29" depth="27"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/support_elephant
-      units/{civ}/elephant_archer_b
-      units/{civ}/champion_elephant
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <constructed>interface/complete/building/complete_elephant_stable.xml</constructed>
@@ -54,6 +46,14 @@
   <TerritoryInfluence>
     <Radius>38</Radius>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/support_elephant
+      units/{civ}/elephant_archer_b
+      units/{civ}/champion_elephant
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

@@ -10,19 +10,13 @@
     <SpecificName>Kuruš</SpecificName>
     <Icon>units/pers_hero_cyrus.png</Icon>
   </Identity>
-  <ProductionQueue>
+  <ProductionQueue/>
+  <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/pers/champion_infantry
     </Entities>
-    <TechCostMultiplier>
-      <food>1.0</food>
-      <wood>1.0</wood>
-      <stone>1.0</stone>
-      <metal>1.0</metal>
-      <time>1.0</time>
-    </TechCostMultiplier>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>units/persians/hero_cavalry_spearman_cyrus_m.xml</Actor>
   </VisualActor>

@@ -38,17 +38,14 @@
   <Population>
     <Bonus>5</Bonus>
   </Population>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/support_female_citizen_house
-    </Entities>
+  <Researcher>
     <Technologies datatype="tokens">
       health_females_01
       pop_house_01
       pop_house_02
       unlock_females_house
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_house.xml</select>
@@ -63,6 +60,11 @@
     <Radius>16</Radius>
     <Weight>65535</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/support_female_citizen_house
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>20</Range>
   </Vision>

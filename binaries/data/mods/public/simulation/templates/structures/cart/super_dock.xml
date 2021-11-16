@@ -54,14 +54,6 @@
     <Floating>true</Floating>
     <FloatDepth>0.0</FloatDepth>
   </Position>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/ship_bireme
-      units/{civ}/ship_trireme
-      units/{civ}/ship_quinquereme
-    </Entities>
-  </ProductionQueue>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
   </RallyPointRenderer>
@@ -84,6 +76,14 @@
     <Radius>200</Radius>
     <Weight>25000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/ship_bireme
+      units/{civ}/ship_trireme
+      units/{civ}/ship_quinquereme
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>100</Range>
   </Vision>

@@ -12,13 +12,13 @@
   <Obstruction>
     <Static width="29" depth="29"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_swordsman_merc_b
       units/{civ}/infantry_archer_merc_b
       units/{civ}/cavalry_spearman_merc_b
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/seleucids/military_colony.xml</Actor>
     <FoundationActor>structures/fndn_9x9.xml</FoundationActor>

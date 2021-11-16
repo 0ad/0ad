@@ -38,15 +38,6 @@
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry_trumpeter
-      units/{civ}/hero_brennus
-      units/{civ}/hero_viridomarus
-      units/{civ}/hero_vercingetorix
-    </Entities>
-  </ProductionQueue>
   <Resistance>
     <Entity>
       <Damage>
@@ -67,6 +58,15 @@
     <Radius>40</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry_trumpeter
+      units/{civ}/hero_brennus
+      units/{civ}/hero_viridomarus
+      units/{civ}/hero_vercingetorix
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

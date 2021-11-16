@@ -24,12 +24,6 @@
       </RangeOverlay>
     </Ranged>
   </Attack>
-  <BuildingAI>
-    <DefaultArrowCount>3</DefaultArrowCount>
-    <MaxArrowCount>15</MaxArrowCount>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
-  </BuildingAI>
   <BuildRestrictions>
     <Territory>neutral enemy</Territory>
     <Category>ArmyCamp</Category>
@@ -38,6 +32,12 @@
       <MinDistance>80</MinDistance>
     </Distance>
   </BuildRestrictions>
+  <BuildingAI>
+    <DefaultArrowCount>3</DefaultArrowCount>
+    <MaxArrowCount>15</MaxArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
+  </BuildingAI>
   <Capturable>
     <CapturePoints op="mul">3</CapturePoints>
     <RegenRate>10.0</RegenRate>
@@ -83,16 +83,6 @@
   <Obstruction>
     <Static width="36.0" depth="36.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/infantry_axeman_a
-      units/{civ}/infantry_swordsman_a
-      units/{civ}/infantry_spearman_a
-      units/{civ}/infantry_pikeman_a
-      units/{civ}/siege_ram
-    </Entities>
-  </ProductionQueue>
   <Resistance>
     <Entity>
       <Damage>
@@ -113,6 +103,16 @@
   <TerritoryDecay>
     <DecayRate op="mul">2</DecayRate>
   </TerritoryDecay>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_axeman_a
+      units/{civ}/infantry_swordsman_a
+      units/{civ}/infantry_spearman_a
+      units/{civ}/infantry_pikeman_a
+      units/{civ}/siege_ram
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>90</Range>
   </Vision>

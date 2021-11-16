@@ -12,16 +12,18 @@
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      silvershields
+    </Technologies>
+  </Researcher>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/hero_philip_ii
       units/{civ}/hero_alexander_iii
       units/{civ}/hero_demetrius_i
     </Entities>
-    <Technologies datatype="tokens">
-      silvershields
-    </Technologies>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/macedonians/fortress.xml</Actor>
   </VisualActor>

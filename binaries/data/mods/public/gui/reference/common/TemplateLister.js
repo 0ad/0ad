@@ -123,7 +123,7 @@ class TemplateLister
 
 		let template = this.TemplateLoader.loadEntityTemplate(templateName, civCode);
 
-		let templateLists = this.TemplateLoader.deriveProductionQueue(template, civCode);
+		const templateLists = this.TemplateLoader.deriveProduction(template, civCode);
 		templateLists.structures = this.TemplateLoader.deriveBuildQueue(template, civCode);
 
 		if (template.WallSet)

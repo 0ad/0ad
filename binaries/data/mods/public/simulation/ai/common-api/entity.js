@@ -119,7 +119,7 @@ m.Template = m.Class({
 	},
 
 	"techCostMultiplier": function(type) {
-		return +(this.get("ProductionQueue/TechCostMultiplier/"+type) || 1);
+		return +(this.get("Researcher/TechCostMultiplier/"+type) || 1);
 	},
 
 	/**
@@ -340,14 +340,14 @@ m.Template = m.Class({
 	},
 
 	"trainableEntities": function(civ) {
-		let templates = this.get("ProductionQueue/Entities/_string");
+		const templates = this.get("Trainer/Entities/_string");
 		if (!templates)
 			return undefined;
 		return templates.replace(/\{native\}/g, this.civ()).replace(/\{civ\}/g, civ).split(/\s+/);
 	},
 
 	"researchableTechs": function(gameState, civ) {
-		let templates = this.get("ProductionQueue/Technologies/_string");
+		const templates = this.get("Researcher/Technologies/_string");
 		if (!templates)
 			return undefined;
 		let techs = templates.split(/\s+/);
@@ -452,10 +452,10 @@ m.Template = m.Class({
 
 	"trainingCategory": function() { return this.get("TrainingRestrictions/Category"); },
 
-	"buildTime": function(productionQueue) {
+	"buildTime": function(researcher) {
 		let time = +this.get("Cost/BuildTime");
-		if (productionQueue)
-			time *= productionQueue.techCostMultiplier("time");
+		if (researcher)
+			time *= researcher.techCostMultiplier("time");
 		return time;
 	},
 
@@ -940,7 +940,7 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"train": function(civ, type, count, metadata, promotedTypes, pushFront = false)
+	"train": function(civ, type, count, metadata, pushFront = false)
 	{
 		let trainable = this.trainableEntities(civ);
 		if (!trainable)
@@ -960,7 +960,6 @@ m.Entity = m.Class({
 			"template": type,
 			"count": count,
 			"metadata": metadata,
-			"promoted": promotedTypes,
 			"pushFront": pushFront
 		});
 		return this;

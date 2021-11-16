@@ -38,6 +38,7 @@
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple_10.xml</select>
@@ -49,6 +50,7 @@
     <Radius>30</Radius>
     <Weight>30000</Weight>
   </TerritoryInfluence>
+  <Trainer disable=""/>
   <Vision>
     <Range>30</Range>
   </Vision>

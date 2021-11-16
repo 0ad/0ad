@@ -10,12 +10,12 @@
   <Obstruction>
     <Static width="14.0" depth="15.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       -gaia/fauna_cattle_cow_trainable
       gaia/fauna_cattle_zebu_trainable
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/mauryas/corral.xml</Actor>
   </VisualActor>

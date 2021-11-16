@@ -27,13 +27,6 @@
   <Obstruction>
     <Static width="62" depth="86"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry_spear_gladiator
-      units/{civ}/champion_infantry_sword_gladiator
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tholos.xml</select>
@@ -45,6 +38,13 @@
     <Radius>100</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry_spear_gladiator
+      units/{civ}/champion_infantry_sword_gladiator
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

@@ -8,16 +8,18 @@
     <GenericName>Provincial Governor</GenericName>
     <SpecificName>Xšaçapāvan</SpecificName>
   </Identity>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      architecture_pers
+    </Technologies>
+  </Researcher>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
       units/{civ}/infantry_archer_b
       units/{civ}/cavalry_javelineer_b
     </Entities>
-    <Technologies datatype="tokens">
-      architecture_pers
-    </Technologies>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/persians/civil_centre.xml</Actor>
   </VisualActor>

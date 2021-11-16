@@ -18,13 +18,13 @@
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{native}/infantry_javelineer_iber_b
       units/{native}/infantry_slinger_iber_b
       units/{native}/cavalry_swordsman_iber_b
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/carthaginians/embassy_iberian.xml</Actor>
   </VisualActor>

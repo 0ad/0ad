@@ -137,36 +137,36 @@ class TemplateLoader
 		};
 	}
 
-	deriveProductionQueue(template, civCode)
+	deriveProduction(template, civCode)
 	{
-		let production = {
+		const production = {
 			"techs": [],
 			"units": []
 		};
 
-		if (!template.ProductionQueue)
+		if (!template.Researcher && !template.Trainer)
 			return production;
 
-		if (template.ProductionQueue.Entities && template.ProductionQueue.Entities._string)
-			for (let templateName of template.ProductionQueue.Entities._string.split(" "))
+		if (template.Trainer?.Entities?._string)
+			for (let templateName of template.Trainer.Entities._string.split(" "))
 			{
 				templateName = templateName.replace(/\{(civ|native)\}/g, civCode);
 				if (Engine.TemplateExists(templateName))
 					production.units.push(templateName);
 			}
 
-		let appendTechnology = (technologyName) => {
-			let technology = this.loadTechnologyTemplate(technologyName, civCode);
+		const appendTechnology = (technologyName) => {
+			const technology = this.loadTechnologyTemplate(technologyName, civCode);
 			if (DeriveTechnologyRequirements(technology, civCode))
 				production.techs.push(technologyName);
 		};
 
-		if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
-			for (let technologyName of template.ProductionQueue.Technologies._string.split(" "))
+		if (template.Researcher?.Technologies?._string)
+			for (let technologyName of template.Researcher.Technologies._string.split(" "))
 			{
 				if (technologyName.indexOf("{civ}") != -1)
 				{
-					let civTechName = technologyName.replace("{civ}", civCode);
+					const civTechName = technologyName.replace("{civ}", civCode);
 					technologyName = TechnologyTemplateExists(civTechName) ? civTechName : technologyName.replace("{civ}", "generic");
 				}
 

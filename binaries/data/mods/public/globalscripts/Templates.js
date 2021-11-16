@@ -471,11 +471,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 		}
 	}
 
-	if (template.ProductionQueue)
+	if (template.Researcher)
 	{
 		ret.techCostMultiplier = {};
-		for (let res in template.ProductionQueue.TechCostMultiplier)
-			ret.techCostMultiplier[res] = getEntityValue("ProductionQueue/TechCostMultiplier/" + res);
+		for (const res in template.Researcher.TechCostMultiplier)
+			ret.techCostMultiplier[res] = getEntityValue("Researcher/TechCostMultiplier/" + res);
 	}
 
 	if (template.Trader)
