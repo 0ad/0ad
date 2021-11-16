@@ -8,6 +8,7 @@
 # Alex Ruiz García <rgalex2034@hotmail.com>, 2017
 # Àlvar Farré <alvarkok@hotmail.com>, 2020
 # Ambar Gorretas-Aymerich <ambar.gorretas@e-campus.uab.cat>, 2017
+# Borja Arias Navarro <borja.arias.upc@gmail.com>, 2021
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Cesc Miralles <xesc87@gmail.com>, 2017
 # 184b84a0b5ddcbfc811b1e381c47763c_47ec5c4 <71241885ecd6b8ae0abdd28ebf36b0e9_548804>, 2017
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-09-17 08:15+0000\n"
-"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
+"PO-Revision-Date: 2021-11-12 11:48+0000\n"
+"Last-Translator: Borja Arias Navarro <borja.arias.upc@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +78,7 @@ msgstr "Patriotisme"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "Augmenta en 1 la resistència d'impacte, tall i perforació i un 10% l'atac cos a cos i a distància dels soldats."
+msgstr "+1 la resistència d'impacte, tall i perforació i +10% l'atac cos a cos i a distància dels soldats."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -93,11 +94,11 @@ msgstr "Sacerdoci poderós"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr "Redueix un 15% el cost i el temps d'investigació de les tecnologies."
+msgstr "-15% al cost i el temps d'investigació de les tecnologies."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr "Centre del saber"
+msgstr "Centre del coneixement"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -152,7 +153,7 @@ msgstr "Protecció de muralla"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr "Augmenta el límit de població màxim un 20% (necessita la tecnologia “Expansió gloriosa”)."
+msgstr "Límit de població màxim +20% (necessita la tecnologia “Expansió gloriosa”)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -184,7 +185,7 @@ msgstr "Druides"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "+10% international trade bonus."
-msgstr "Bonificació del 10% en comerç internacional."
+msgstr "Bonificació de +10% en comerç internacional."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -208,7 +209,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr "Els elefants costen -20% de recursos i de temps de reclutament."
+msgstr "Els elefants costen -20% de recursos i temps de reclutament."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -226,7 +227,7 @@ msgstr "Moneda estandarditzada"
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr "Els temples costen -50% en recursos i temps de construcció; les tecnologies del temple també costen -50% en recursos i temps de recerca."
+msgstr "Els temples costen -50% en recursos i temps de construcció; les tecnologies del temple costen -50% en recursos i temps de recerca."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -274,7 +275,7 @@ msgstr "Lliga del Peloponès"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr "Els soldats enemics perden un 10% d'atac i de poder de captura."
+msgstr "Soldats enemics -10% d'atac i poder de captura."
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
