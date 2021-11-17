@@ -38,16 +38,16 @@
   <Obstruction>
     <Static width="28" depth="56.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <TerritoryInfluence>
+    <Radius op="mul">2</Radius>
+  </TerritoryInfluence>
+  <Trainer>
     <Entities datatype="tokens">
       -units/{civ}/support_healer_b
       units/{civ}/support_healer_e
       units/{civ}/champion_infantry_amun
     </Entities>
-  </ProductionQueue>
-  <TerritoryInfluence>
-    <Radius op="mul">2</Radius>
-  </TerritoryInfluence>
+  </Trainer>
   <VisualActor>
     <Actor>structures/kushites/temple_amun.xml</Actor>
     <FoundationActor>structures/fndn_9x9.xml</FoundationActor>

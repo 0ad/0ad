@@ -15,19 +15,19 @@
   <Obstruction>
     <Static width="29.0" depth="29.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/hero_boudicca
-      units/{civ}/hero_caratacos
-      units/{civ}/hero_cunobelin
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
       <constructed>interface/complete/building/complete_broch.xml</constructed>
     </SoundGroups>
   </Sound>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/hero_boudicca
+      units/{civ}/hero_caratacos
+      units/{civ}/hero_cunobelin
+    </Entities>
+  </Trainer>
   <VisualActor>
     <Actor>structures/britons/fortress.xml</Actor>
     <FoundationActor>structures/fndn_9x9.xml</FoundationActor>

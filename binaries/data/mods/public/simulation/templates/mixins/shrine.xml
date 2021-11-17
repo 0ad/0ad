@@ -12,16 +12,12 @@
     <VisibleClasses datatype="tokens">
       Shrine
     </VisibleClasses>
-	<Undeletable>true</Undeletable>
+    <Undeletable>true</Undeletable>
   </Identity>
   <Obstruction>
     <Static width="20" depth="21"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      -units/{civ}/support_healer_b
-      units/{native}/support_healer_e
-    </Entities>
+  <Researcher>
     <Technologies datatype="tokens">
       -heal_range
       -heal_range_2
@@ -30,13 +26,19 @@
       -garrison_heal
       -health_regen_units
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
+  <Resistance replace=""/>
   <StatusBars>
     <HeightOffset>15.0</HeightOffset>
   </StatusBars>
-  <Resistance replace=""/>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
+  <Trainer>
+    <Entities datatype="tokens">
+      -units/{civ}/support_healer_b
+      units/{native}/support_healer_e
+    </Entities>
+  </Trainer>
   <VisualActor>
     <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>

@@ -35,7 +35,8 @@
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <RallyPoint disable=""/>
+  <Researcher>
     <Technologies datatype="tokens">
       gather_lumbering_ironaxes
       gather_lumbering_strongeraxes
@@ -50,8 +51,7 @@
       gather_capacity_wheelbarrow
       gather_capacity_carts
     </Technologies>
-  </ProductionQueue>
-  <RallyPoint disable=""/>
+  </Researcher>
   <ResourceDropsite>
     <Types>wood stone metal</Types>
     <Sharable>true</Sharable>

@@ -33,12 +33,6 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/hero_leonidas
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tholos.xml</select>
@@ -50,6 +44,12 @@
     <Radius>38</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/hero_leonidas
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

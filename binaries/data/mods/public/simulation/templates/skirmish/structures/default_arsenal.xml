@@ -4,9 +4,11 @@
     <Civ>skirm</Civ>
   </Identity>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <SkirmishReplacer>
     <general>structures/{civ}/arsenal</general>
   </SkirmishReplacer>
+  <Trainer disable=""/>
   <VisualActor>
     <Actor>structures/hellenes/workshop.xml</Actor>
   </VisualActor>

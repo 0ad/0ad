@@ -35,6 +35,7 @@
     <Static width="25.0" depth="30.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_library.xml</select>
@@ -46,6 +47,7 @@
     <Radius>50</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
+  <Trainer disable=""/>
   <Vision>
     <Range>40</Range>
   </Vision>

@@ -37,7 +37,21 @@
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      barracks_batch_training
+      infantry_cost_time
+      unlock_champion_infantry
+      pair_unlock_champions_sele
+    </Technologies>
+  </Researcher>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_barracks.xml</select>
+      <constructed>interface/complete/building/complete_barracks.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <Trainer>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
@@ -57,19 +71,7 @@
       units/{civ}/champion_infantry_slinger
       units/{civ}/champion_infantry_archer
     </Entities>
-    <Technologies datatype="tokens">
-      barracks_batch_training
-      infantry_cost_time
-      unlock_champion_infantry
-      pair_unlock_champions_sele
-    </Technologies>
-  </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_barracks.xml</select>
-      <constructed>interface/complete/building/complete_barracks.xml</constructed>
-    </SoundGroups>
-  </Sound>
+  </Trainer>
   <Vision>
     <Range>32</Range>
   </Vision>

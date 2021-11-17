@@ -32,20 +32,20 @@
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/infantry_javelineer_b
-      units/{civ}/infantry_slinger_b
-      units/{civ}/infantry_archer_b
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <constructed>interface/complete/building/complete_range.xml</constructed>
       <select>interface/select/building/sel_barracks.xml</select>
     </SoundGroups>
   </Sound>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_javelineer_b
+      units/{civ}/infantry_slinger_b
+      units/{civ}/infantry_archer_b
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>32</Range>
   </Vision>

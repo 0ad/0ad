@@ -65,7 +65,7 @@ m.Technology.prototype.pairedWith = function()
 	return this._pairedWith;
 };
 
-m.Technology.prototype.cost = function(productionQueue)
+m.Technology.prototype.cost = function(researcher)
 {
 	if (!this._template.cost)
 		return undefined;
@@ -73,15 +73,15 @@ m.Technology.prototype.cost = function(productionQueue)
 	for (let type in this._template.cost)
 	{
 		cost[type] = +this._template.cost[type];
-		if (productionQueue)
-			cost[type] *= productionQueue.techCostMultiplier(type);
+		if (researcher)
+			cost[type] *= researcher.techCostMultiplier(type);
 	}
 	return cost;
 };
 
-m.Technology.prototype.costSum = function(productionQueue)
+m.Technology.prototype.costSum = function(researcher)
 {
-	let cost = this.cost(productionQueue);
+	const cost = this.cost(researcher);
 	if (!cost)
 		return 0;
 	let ret = 0;

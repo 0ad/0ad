@@ -4,9 +4,11 @@
     <Civ>skirm</Civ>
   </Identity>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <SkirmishReplacer>
     <general>structures/{civ}/fortress</general>
   </SkirmishReplacer>
+  <Trainer disable=""/>
   <VisualActor>
     <Actor>structures/athenians/fortress.xml</Actor>
   </VisualActor>

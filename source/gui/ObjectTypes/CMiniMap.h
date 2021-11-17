@@ -80,6 +80,8 @@ private:
 	CGUISimpleSetting<bool> m_FlareInterleave;
 	CGUISimpleSetting<float> m_FlareAnimationSpeed;
 	CGUISimpleSetting<float> m_FlareLifetimeSeconds;
+	CGUISimpleSetting<float> m_FlareStartFadeSeconds;
+	CGUISimpleSetting<float> m_FlareStopFadeSeconds;
 
 	// Whether to draw a black square around and under the minimap.
 	CGUISimpleSetting<bool> m_Mask;
@@ -94,7 +96,8 @@ private:
 
 	void DrawViewRect(CCanvas2D& canvas) const;
 
-	void DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double curentTime) const;
+	void DrawFlare(CCanvas2D& canvas, const MapFlare& flare, double currentTime) const;
+	void DrawFlareFrame(CCanvas2D& canvas, const u32 frameIndex, const CRect& destination, const CColor& color, float alpha) const;
 
 	void GetMouseWorldCoordinates(float& x, float& z) const;
 

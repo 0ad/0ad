@@ -7,13 +7,13 @@
     <Civ>iber</Civ>
     <SpecificName>Oppidum</SpecificName>
   </Identity>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_swordsman_b
       units/{civ}/infantry_javelineer_b
       units/{civ}/cavalry_javelineer_b
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/iberians/civic_center.xml</Actor>
   </VisualActor>

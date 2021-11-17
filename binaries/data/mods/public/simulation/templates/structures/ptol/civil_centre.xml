@@ -11,7 +11,7 @@
   <Obstruction>
     <Static width="39" depth="31"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_pikeman_b
       units/{civ}/infantry_slinger_b
@@ -20,7 +20,7 @@
       units/{civ}/hero_ptolemy_iv
       units/{civ}/hero_cleopatra_vii
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/ptolemies/civic_centre.xml</Actor>
   </VisualActor>

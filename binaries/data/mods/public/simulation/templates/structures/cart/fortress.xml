@@ -12,13 +12,13 @@
   <Obstruction>
     <Static width="26.0" depth="28.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/hero_hamilcar
       units/{civ}/hero_hannibal
       units/{civ}/hero_maharbal
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <FoundationActor>structures/carthaginians/fndn_fortress.xml</FoundationActor>
     <Actor>structures/carthaginians/fortress.xml</Actor>

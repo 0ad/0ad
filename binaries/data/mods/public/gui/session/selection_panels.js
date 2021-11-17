@@ -627,10 +627,10 @@ g_SelectionPanels.Research = {
 	{
 		let ret = [];
 		if (unitEntStates.length == 1)
-			return !unitEntStates[0].production || !unitEntStates[0].production.technologies ? ret :
-				unitEntStates[0].production.technologies.map(tech => ({
+			return !unitEntStates[0].researcher || !unitEntStates[0].researcher.technologies ? ret :
+				unitEntStates[0].researcher.technologies.map(tech => ({
 					"tech": tech,
-					"techCostMultiplier": unitEntStates[0].production.techCostMultiplier,
+					"techCostMultiplier": unitEntStates[0].researcher.techCostMultiplier,
 					"researchFacilityId": unitEntStates[0].id,
 					"isUpgrading": !!unitEntStates[0].upgrade && unitEntStates[0].upgrade.isUpgrading
 				}));
@@ -642,11 +642,11 @@ g_SelectionPanels.Research = {
 
 		for (let state of sortedEntStates)
 		{
-			if (!state.production || !state.production.technologies)
+			if (!state.researcher || !state.researcher.technologies)
 				continue;
 
 			// Remove the techs we already have in ret (with the same name and techCostMultiplier)
-			let filteredTechs = state.production.technologies.filter(
+			const filteredTechs = state.researcher.technologies.filter(
 				tech => tech != null && !ret.some(
 					item =>
 						(item.tech == tech ||
@@ -655,14 +655,14 @@ g_SelectionPanels.Research = {
 							item.tech.bottom == tech.bottom &&
 							item.tech.top == tech.top) &&
 						Object.keys(item.techCostMultiplier).every(
-							k => item.techCostMultiplier[k] == state.production.techCostMultiplier[k])
+							k => item.techCostMultiplier[k] == state.researcher.techCostMultiplier[k])
 				));
 
 			if (filteredTechs.length + ret.length <= this.getMaxNumberOfItems() &&
 			    getNumberOfRightPanelButtons() <= this.getMaxNumberOfItems() * (filteredTechs.some(tech => !!tech.pair) ? 1 : 2))
 				ret = ret.concat(filteredTechs.map(tech => ({
 					"tech": tech,
-					"techCostMultiplier": state.production.techCostMultiplier,
+					"techCostMultiplier": state.researcher.techCostMultiplier,
 					"researchFacilityId": state.id,
 					"isUpgrading": !!state.upgrade && state.upgrade.isUpgrading
 				})));

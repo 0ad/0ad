@@ -242,7 +242,7 @@
       </optional>
       <optional>
         <attribute name="flare_animation_speed">
-          <data type="nonNegativeInteger"/>
+          <data type="decimal"/>
         </attribute>
       </optional>
       <optional>
@@ -252,7 +252,17 @@
       </optional>
       <optional>
         <attribute name="flare_lifetime_seconds">
-          <data type="nonNegativeInteger"/>
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="flare_start_fade_seconds">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="flare_stop_fade_seconds">
+          <data type="decimal"/>
         </attribute>
       </optional>
       <optional>

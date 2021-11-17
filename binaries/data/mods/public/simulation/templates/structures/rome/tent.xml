@@ -33,6 +33,7 @@
     <Static width="8.0" depth="8.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_universal.xml</select>
@@ -43,6 +44,7 @@
     <DecayRate>1</DecayRate>
   </TerritoryDecay>
   <TerritoryInfluence disable=""/>
+  <Trainer disable=""/>
   <VisualActor>
     <Actor>props/structures/romans/rome_tent.xml</Actor>
   </VisualActor>

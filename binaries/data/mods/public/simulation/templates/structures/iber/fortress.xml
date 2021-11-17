@@ -8,13 +8,13 @@
   <Obstruction>
     <Static width="27.0" depth="27.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/hero_caros
       units/{civ}/hero_indibil
       units/{civ}/hero_viriato
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/iberians/fortress.xml</Actor>
   </VisualActor>

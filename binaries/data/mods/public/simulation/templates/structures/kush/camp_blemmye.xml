@@ -31,15 +31,15 @@
   <Obstruction>
     <Static width="29.0" depth="29.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{native}/cavalry_javelineer_merc_b
-    </Entities>
-  </ProductionQueue>
   <TerritoryDecay>
     <DecayRate>1</DecayRate>
   </TerritoryDecay>
   <TerritoryInfluence disable=""/>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{native}/cavalry_javelineer_merc_b
+    </Entities>
+  </Trainer>
   <VisualActor>
     <Actor>structures/mercenaries/camp_blemmye.xml</Actor>
     <FoundationActor>structures/fndn_8x7.xml</FoundationActor>

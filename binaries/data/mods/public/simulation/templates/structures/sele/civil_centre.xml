@@ -4,7 +4,7 @@
     <Civ>sele</Civ>
     <SpecificName>Agora</SpecificName>
   </Identity>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
       units/{civ}/infantry_javelineer_b
@@ -13,7 +13,7 @@
       units/{civ}/hero_antiochus_iii
       units/{civ}/hero_antiochus_iv
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/seleucids/civic_center.xml</Actor>
   </VisualActor>

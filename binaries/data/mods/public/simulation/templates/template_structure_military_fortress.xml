@@ -24,11 +24,6 @@
       </RangeOverlay>
     </Ranged>
   </Attack>
-  <BuildingAI>
-    <DefaultArrowCount>4</DefaultArrowCount>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
-  </BuildingAI>
   <BuildRestrictions>
     <Category>Fortress</Category>
     <Distance>
@@ -36,6 +31,11 @@
       <MinDistance>80</MinDistance>
     </Distance>
   </BuildRestrictions>
+  <BuildingAI>
+    <DefaultArrowCount>4</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Soldier</GarrisonArrowClasses>
+  </BuildingAI>
   <Capturable>
     <CapturePoints op="mul">8</CapturePoints>
     <RegenRate>10.0</RegenRate>
@@ -77,12 +77,11 @@
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
+  <Researcher>
     <Technologies datatype="tokens">
       attack_soldiers_will
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
@@ -97,6 +96,9 @@
   <TerritoryInfluence>
     <Radius>80</Radius>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+  </Trainer>
   <Vision>
     <Range>90</Range>
   </Vision>

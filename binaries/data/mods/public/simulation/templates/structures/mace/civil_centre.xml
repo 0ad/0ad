@@ -7,13 +7,13 @@
     <Civ>mace</Civ>
     <SpecificName>Agora</SpecificName>
   </Identity>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_pikeman_b
       units/{civ}/infantry_javelineer_b
       units/{civ}/cavalry_spearman_b
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/macedonians/civic_centre.xml</Actor>
   </VisualActor>

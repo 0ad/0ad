@@ -12,13 +12,13 @@
   <Obstruction>
     <Static width="28.0" depth="28.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/hero_nastasen
       units/{civ}/hero_amanirenas
       units/{civ}/hero_arakamani
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/kushites/fortress.xml</Actor>
   </VisualActor>

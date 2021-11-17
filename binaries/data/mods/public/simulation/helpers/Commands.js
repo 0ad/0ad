@@ -353,26 +353,19 @@ var g_Commands = {
 				continue;
 			}
 
-			var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
+			const cmpTrainer = Engine.QueryInterface(ent, IID_Trainer);
+			if (!cmpTrainer)
+				continue;
+
+			let templateName = cmd.template;
 			// Check if the building can train the unit
 			// TODO: the AI API does not take promotion technologies into account for the list
 			// of trainable units (taken directly from the unit template). Here is a temporary fix.
-			if (queue && data.cmpPlayer.IsAI())
-			{
-				var list = queue.GetEntitiesList();
-				if (list.indexOf(cmd.template) === -1 && cmd.promoted)
-				{
-					for (var promoted of cmd.promoted)
-					{
-						if (list.indexOf(promoted) === -1)
-							continue;
-						cmd.template = promoted;
-						break;
-					}
-				}
-			}
-			if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
-				queue.AddItem(cmd.template, "unit", +cmd.count, cmd.metadata, cmd.pushFront);
+			if (data.cmpPlayer.IsAI())
+				templateName = cmpTrainer.GetUpgradedTemplate(cmd.template);
+
+			if (cmpTrainer.CanTrain(templateName))
+				Engine.QueryInterface(ent, IID_ProductionQueue)?.AddItem(templateName, "unit", +cmd.count, cmd.metadata, cmd.pushFront);
 		}
 	},
 

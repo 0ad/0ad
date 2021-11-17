@@ -25,7 +25,16 @@
     <Floating>true</Floating>
     <FloatDepth>0.0</FloatDepth>
   </Position>
-  <ProductionQueue>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -phase_town_{civ}
+      -hellenistic_metropolis
+    </Technologies>
+  </Researcher>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
       units/{civ}/infantry_slinger_b
@@ -35,14 +44,7 @@
       units/{civ}/ship_bireme
       units/{civ}/ship_trireme
     </Entities>
-    <Technologies datatype="tokens">
-      -phase_town_{civ}
-      -hellenistic_metropolis
-    </Technologies>
-  </ProductionQueue>
-  <RallyPointRenderer>
-    <LinePassabilityClass>ship</LinePassabilityClass>
-  </RallyPointRenderer>
+  </Trainer>
   <VisualActor>
     <Actor>structures/britons/crannog.xml</Actor>
     <FoundationActor>structures/fndn_8x8.xml</FoundationActor>

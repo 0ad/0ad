@@ -124,7 +124,7 @@ PETRA.TrainingPlan.prototype.start = function(gameState)
 
 	if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
 		this.metadata.base = this.trainers[0].getMetadata(PlayerID, "base");
-	this.trainers[0].train(gameState.getPlayerCiv(), this.type, this.number, this.metadata, this.promotedTypes(gameState));
+	this.trainers[0].train(gameState.getPlayerCiv(), this.type, this.number, this.metadata);
 
 	this.onStart(gameState);
 };
@@ -132,36 +132,6 @@ PETRA.TrainingPlan.prototype.start = function(gameState)
 PETRA.TrainingPlan.prototype.addItem = function(amount = 1)
 {
 	this.number += amount;
-};
-
-/** Find the promoted types corresponding to this.type */
-PETRA.TrainingPlan.prototype.promotedTypes = function(gameState)
-{
-	let types = [];
-	let promotion = this.template.promotion();
-	let previous;
-	let template;
-	while (promotion)
-	{
-		types.push(promotion);
-		previous = promotion;
-		template = gameState.getTemplate(promotion);
-		if (!template)
-		{
-			if (gameState.ai.Config.debug > 0)
-				API3.warn(" promotion template " + promotion + " is not found");
-			promotion = undefined;
-			break;
-		}
-		promotion = template.promotion();
-		if (previous === promotion)
-		{
-			if (gameState.ai.Config.debug > 0)
-				API3.warn(" unit " + promotion + " is its own promoted unit");
-			promotion = undefined;
-		}
-	}
-	return types;
 };
 
 PETRA.TrainingPlan.prototype.Serialize = function()

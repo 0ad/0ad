@@ -390,6 +390,16 @@ Player.prototype.TrySubtractResources = function(amounts)
 	return true;
 };
 
+Player.prototype.RefundResources = function(amounts)
+{
+	const cmpStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
+		for (const type in amounts)
+			cmpStatisticsTracker.IncreaseResourceUsedCounter(type, -amounts[type]);
+
+	this.AddResources(amounts);
+};
+
 Player.prototype.GetNextTradingGoods = function()
 {
 	let value = randFloat(0, 100);

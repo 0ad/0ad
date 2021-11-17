@@ -22,13 +22,13 @@
 #define RADTODEG(a)					((a) * (180.0f/(float)M_PI))
 #define SQR(x)						((x) * (x))
 
-template <typename T>
+template<typename T>
 inline T Interpolate(const T& a, const T& b, float t)
 {
 	return a + (b - a) * t;
 }
 
-template <typename T>
+template<typename T>
 inline T Clamp(T value, T min, T max)
 {
 	if (value <= min)
@@ -36,6 +36,13 @@ inline T Clamp(T value, T min, T max)
 	else if (value >= max)
 		return max;
 	return value;
+}
+
+template<typename T>
+inline T SmoothStep(T edge0, T edge1, T value)
+{
+	value = Clamp<T>((value - edge0) / (edge1 - edge0), 0, 1); 
+	return value * value * (3 - 2 * value);
 }
 
 inline float sgn(float a)

@@ -12,7 +12,7 @@
   <Obstruction>
     <Static width="32" depth="31"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities replace="" datatype="tokens">
       units/{civ}/support_female_citizen
       units/{civ}/infantry_spearman_merc_b
@@ -20,7 +20,7 @@
       units/{civ}/cavalry_spearman_merc_b
       units/{civ}/cavalry_javelineer_merc_b
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/ptolemies/military_colony.xml</Actor>
     <FoundationActor>structures/fndn_9x9.xml</FoundationActor>

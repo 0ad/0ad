@@ -4,9 +4,11 @@
     <Civ>skirm</Civ>
   </Identity>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <SkirmishReplacer>
     <general>structures/{civ}/dock</general>
   </SkirmishReplacer>
+  <Trainer disable=""/>
   <VisualActor>
     <Actor>structures/athenians/dock.xml</Actor>
   </VisualActor>

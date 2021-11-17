@@ -5,13 +5,13 @@
     <SpecificName>Castellum</SpecificName>
     <Tooltip>Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/hero_marcellus
       units/{civ}/hero_maximus
       units/{civ}/hero_scipio
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/romans/fortress.xml</Actor>
   </VisualActor>

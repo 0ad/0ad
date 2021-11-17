@@ -37,7 +37,24 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      stable_batch_training
+      cavalry_cost_time
+      cavalry_movement_speed
+      cavalry_health
+      nisean_horses
+      unlock_champion_cavalry
+      unlock_champion_chariots
+    </Technologies>
+  </Researcher>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_stable.xml</select>
+      <constructed>interface/complete/building/complete_stable.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <Trainer>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}/cavalry_axeman_b
@@ -49,22 +66,7 @@
       units/{civ}/champion_chariot
       units/{civ}/war_dog
     </Entities>
-    <Technologies datatype="tokens">
-      stable_batch_training
-      cavalry_cost_time
-      cavalry_movement_speed
-      cavalry_health
-      nisean_horses
-      unlock_champion_cavalry
-      unlock_champion_chariots
-    </Technologies>
-  </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_stable.xml</select>
-      <constructed>interface/complete/building/complete_stable.xml</constructed>
-    </SoundGroups>
-  </Sound>
+  </Trainer>
   <Vision>
     <Range>32</Range>
   </Vision>

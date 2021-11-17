@@ -25,12 +25,12 @@
   <Obstruction>
     <Static width="15.0" depth="12.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{native}/infantry_swordsman_gaul_b
       units/{native}/cavalry_swordsman_gaul_b
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/carthaginians/embassy_celtic.xml</Actor>
   </VisualActor>

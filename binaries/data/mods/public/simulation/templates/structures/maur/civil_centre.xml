@@ -14,14 +14,14 @@
   <Obstruction>
     <Static width="36.0" depth="30.0"/>
   </Obstruction>
-  <ProductionQueue>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
       units/{civ}/infantry_archer_b
       units/{civ}/cavalry_javelineer_b
       units/{civ}/support_elephant
     </Entities>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/mauryas/civil_centre.xml</Actor>
   </VisualActor>

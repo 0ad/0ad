@@ -11,16 +11,18 @@
   <Obstruction>
     <Static width="31.0" depth="31"/>
   </Obstruction>
-  <ProductionQueue>
+  <Researcher>
+    <Technologies datatype="tokens">
+      architecture_kush
+    </Technologies>
+  </Researcher>
+  <Trainer>
     <Entities datatype="tokens">
       units/{civ}/infantry_spearman_b
       units/{civ}/infantry_archer_b
       units/{civ}/cavalry_javelineer_b
     </Entities>
-    <Technologies datatype="tokens">
-      architecture_kush
-    </Technologies>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/kushites/civic_centre_kush.xml</Actor>
   </VisualActor>

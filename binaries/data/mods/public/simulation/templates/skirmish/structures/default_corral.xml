@@ -10,9 +10,11 @@
     <Static width="18.0" depth="20.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
+  <Researcher disable=""/>
   <SkirmishReplacer>
     <general>structures/{civ}/corral</general>
   </SkirmishReplacer>
+  <Trainer disable=""/>
   <VisualActor>
     <Actor>structures/hellenes/corral.xml</Actor>
   </VisualActor>

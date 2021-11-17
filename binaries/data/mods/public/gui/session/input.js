@@ -1402,9 +1402,9 @@ function OnTrainMouseWheel(dir)
 function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 {
 	return entitiesToCheck.filter(entity => {
-		let state = GetEntityState(entity);
-		return state && state.production && state.production.entities.length &&
-			state.production.entities.indexOf(trainEntType) != -1 && (!state.upgrade || !state.upgrade.isUpgrading);
+		const state = GetEntityState(entity);
+		return state?.trainer?.entities?.indexOf(trainEntType) != -1 &&
+			(!state.upgrade || !state.upgrade.isUpgrading);
 	});
 }
 

@@ -27,9 +27,6 @@
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-  </ProductionQueue>
   <Resistance>
     <Entity>
       <Damage>
@@ -46,6 +43,9 @@
   <TerritoryInfluence>
     <Radius>25</Radius>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+  </Trainer>
   <Vision>
     <Range>24</Range>
   </Vision>

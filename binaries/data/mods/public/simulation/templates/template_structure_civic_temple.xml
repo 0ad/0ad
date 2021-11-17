@@ -39,11 +39,7 @@
   <Obstruction>
     <Static width="17.5" depth="30.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/support_healer_b
-    </Entities>
+  <Researcher>
     <Technologies datatype="tokens">
       heal_range
       heal_range_2
@@ -52,7 +48,7 @@
       garrison_heal
       health_regen_units
     </Technologies>
-  </ProductionQueue>
+  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>
@@ -64,6 +60,12 @@
     <Radius>40</Radius>
     <Weight>30000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/support_healer_b
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

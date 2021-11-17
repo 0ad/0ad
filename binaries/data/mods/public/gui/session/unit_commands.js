@@ -191,8 +191,8 @@ function getAllTrainableEntities(selection)
 	for (let ent of selection)
 	{
 		let state = GetEntityState(ent);
-		if (state && state.production && state.production.entities.length)
-			trainableEnts = trainableEnts.concat(state.production.entities);
+		if (state?.trainer?.entities?.length)
+			trainableEnts = trainableEnts.concat(state.trainer.entities);
 	}
 
 	// Remove duplicates

@@ -9,20 +9,14 @@
     <GenericName>Athenian Trireme</GenericName>
     <Icon>units/hele_ship_trireme.png</Icon>
   </Identity>
-  <ProductionQueue>
+  <ProductionQueue/>
+  <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
       units/athen/infantry_marine_archer_b
       units/athen/champion_marine
     </Entities>
-    <TechCostMultiplier>
-      <food>1.0</food>
-      <wood>1.0</wood>
-      <stone>1.0</stone>
-      <metal>1.0</metal>
-      <time>1.0</time>
-    </TechCostMultiplier>
-  </ProductionQueue>
+  </Trainer>
   <VisualActor>
     <Actor>structures/athenians/trireme.xml</Actor>
   </VisualActor>

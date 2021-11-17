@@ -30,16 +30,6 @@
   <Obstruction>
     <Static width="36.0" depth="12.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/champion_maiden
-      units/{civ}/champion_maiden_archer
-      units/{civ}/hero_chanakya
-      units/{civ}/hero_chandragupta
-      units/{civ}/hero_ashoka
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
@@ -51,6 +41,16 @@
     <Radius>48</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/champion_maiden
+      units/{civ}/champion_maiden_archer
+      units/{civ}/hero_chanakya
+      units/{civ}/hero_chandragupta
+      units/{civ}/hero_ashoka
+    </Entities>
+  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

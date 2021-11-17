@@ -58,8 +58,9 @@ function Cheat(input)
 			cmpPlayer.SetState("defeated", markForTranslation("%(player)s has been defeated (cheat)."));
 		return;
 	case "createunits":
-		var cmpProductionQueue = input.selected.length && Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
-		if (!cmpProductionQueue)
+	{
+		const cmpTrainer = input.selected.length && Engine.QueryInterface(input.selected[0], IID_Trainer);
+		if (!cmpTrainer)
 		{
 			cmpGuiInterface.PushNotification({
 				"type": "text",
@@ -71,19 +72,18 @@ function Cheat(input)
 		}
 
 		let owner = input.player;
-		let cmpOwnership = Engine.QueryInterface(input.selected[0], IID_Ownership);
+		const cmpOwnership = Engine.QueryInterface(input.selected[0], IID_Ownership);
 		if (cmpOwnership)
 			owner = cmpOwnership.GetOwner();
 		for (let i = 0; i < Math.min(input.parameter, cmpPlayer.GetMaxPopulation() - cmpPlayer.GetPopulationCount()); ++i)
-			cmpProductionQueue.SpawnUnits({
-				"player": owner,
-				"metadata": null,
-				"entity": {
-					"template": input.templates[i % input.templates.length],
-					"count": 1
-				}
-			});
+		{
+			const batch = new cmpTrainer.Item(input.templates[i % input.templates.length], 1, input.selected[0], null);
+			batch.player = owner;
+			batch.Finish();
+			// ToDo: If not able to spawn, cancel the batch.
+		}
 		return;
+	}
 	case "fastactions":
 	{
 		let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
@@ -95,7 +95,7 @@ function Cheat(input)
 				"ResourceGatherer/BaseSpeed": [{ "affects": [["Structure"], ["Unit"]], "multiply": 1000 }],
 				"Pack/Time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }],
 				"Upgrade/Time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }],
-				"ProductionQueue/TechCostMultiplier/time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }]
+				"Researcher/TechCostMultiplier/time": [{ "affects": [["Structure"], ["Unit"]], "multiply": 0.01 }]
 			}, playerEnt);
 		return;
 	}
@@ -121,6 +121,7 @@ function Cheat(input)
 		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": parameter, "selected": input.selected });
 		return;
 	case "researchTechnology":
+	{
 		if (!input.parameter.length)
 			return;
 
@@ -132,8 +133,8 @@ function Cheat(input)
 		// check, if building is selected
 		if (input.selected[0])
 		{
-			var cmpProductionQueue = Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
-			if (cmpProductionQueue)
+			const cmpResearcher = Engine.QueryInterface(input.selected[0], IID_Researcher);
+			if (cmpResearcher)
 			{
 				// try to spilt the input
 				var tmp = input.parameter.split(/\s+/);
@@ -144,7 +145,7 @@ function Cheat(input)
 				if (number || number === 0)
 				{
 					// get name of tech
-					var techs = cmpProductionQueue.GetTechnologiesList();
+					const techs = cmpResearcher.GetTechnologiesList();
 					if (number > 0 && number <= techs.length)
 					{
 						var tech = techs[number-1];
@@ -167,6 +168,7 @@ function Cheat(input)
 		    !cmpTechnologyManager.IsTechnologyResearched(techname))
 			cmpTechnologyManager.ResearchTechnology(techname);
 		return;
+	}
 	case "metaCheat":
 		for (let resource of Resources.GetCodes())
 			Cheat({ "player": input.player, "action": "addresource", "text": resource, "parameter": input.parameter });
