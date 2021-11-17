@@ -6,6 +6,8 @@ TILE_CENTERED_HEIGHT_MAP = true;
 
 setSelectedBiome();
 
+const biomeTweaks = Engine.ReadJSONFile("maps/random/archipelago_biome_tweaks.json");
+
 const tMainTerrain = g_Terrains.mainTerrain;
 const tForestFloor1 = g_Terrains.forestFloor1;
 const tForestFloor2 = g_Terrains.forestFloor2;
@@ -77,7 +79,10 @@ for (let i = 0; i < numPlayers; ++i)
 			playerPosition[i],
 			0,
 			[Math.floor(islandRadius)]),
-		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
+		[
+			new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
+			new TileClassPainter(clLand)
+		]);
 
 g_Map.log("Creating random islands");
 createAreas(
@@ -147,49 +152,53 @@ if (randBool())
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(1, 4) * numPlayers);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+// adjust biomes (especially wood)
+const biomeSpecifics = biomeTweaks[currentBiome()] || biomeTweaks.baseline;
+
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(biomeSpecifics.treeAmount));
 createForests(
- [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
- [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0), stayClasses(clLand, 4)],
- clForest,
- forestTrees);
+	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
+	[avoidClasses(clPlayer, biomeSpecifics.forestPlayerSpacing, clForest, biomeSpecifics.forestForestSpacing, clHill, 0), stayClasses(clLand, 3)],
+	clForest,
+	forestTrees
+);
 Engine.SetProgress(50);
 
 g_Map.log("Creating dirt patches");
 createLayeredPatches(
- [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
- [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
- [1,1],
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)],
- scaleByMapSize(15, 45),
- clDirt);
+	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
+	[[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]],
+	[1, 1],
+	[avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)],
+	scaleByMapSize(15, 45),
+	clDirt
+);
 
 g_Map.log("Creating grass patches");
 createPatches(
- [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
- tTier4Terrain,
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)],
- scaleByMapSize(15, 45),
- clDirt);
+	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
+	tTier4Terrain,
+	[avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)],
+	scaleByMapSize(15, 45),
+	clDirt
+);
 Engine.SetProgress(55);
 
 g_Map.log("Creating stone mines");
 createMines(
- [
-  [new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
-  [new SimpleObject(oStoneSmall, 2,5, 1,3)]
- ],
- [avoidClasses(clForest, 1, clPlayer, 7, clRock, 10, clHill, 1), stayClasses(clLand, 6)],
- clRock
+	[
+		[new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4)],
+		[new SimpleObject(oStoneSmall, 2, 5, 1, 3)]
+	],
+	[avoidClasses(clForest, 1, clPlayer, 7, clRock, 10, clHill, 1), stayClasses(clLand, 6)],
+	clRock
 );
 
 g_Map.log("Creating metal mines");
 createMines(
- [
-  [new SimpleObject(oMetalLarge, 1,1, 0,4)]
- ],
- [avoidClasses(clForest, 1, clPlayer, 7, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 6)],
- clMetal
+	[[new SimpleObject(oMetalLarge, 1, 1, 0, 4)]],
+	[avoidClasses(clForest, 1, clPlayer, 7, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 6)],
+	clMetal
 );
 Engine.SetProgress(65);
 
