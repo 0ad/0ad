@@ -2,11 +2,15 @@
 # Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
+# Translators:
+# Nushan Kodikara, 2021
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
+"Last-Translator: Nushan Kodikara, 2021\n"
 "Language-Team: Sinhala (https://www.transifex.com/wildfire-games/teams/17418/si/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +33,7 @@ msgstr ""
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "0 A. D. සෙල්ලම් කිරීමට ඉගෙනගමු"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -44,41 +48,41 @@ msgstr ""
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "ආර්ථික සංවර්ධන උපදෙස් අදියර"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "මේ 0 A. D. සෙල්ලම් කිරීමට අවශ්‍ය මූලික කරුණු සහිත උපදෙස් අදියර"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "මූලික උපදෙස් අදියර"
 
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr ""
+msgstr "උපදෙස් අදියර"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "සාර්ථකව නිමකරන ලදි"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "අවස්ථාව ඇත"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "මෙම අදියර ලබාගැනීම අසාර්ථකයි, %s:%s"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr ""
+msgstr "ව්‍යාපෘති නාමය"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
@@ -151,43 +155,43 @@ msgstr ""
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):35
 msgid "Delete"
-msgstr ""
+msgstr "මකන්න"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "ව්‍යාපෘතිය අරඹන්න"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "ඔබගේ නව ව්‍යාපෘතිය නම් කරන්න"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "ව්‍යාපෘතියක් අරඹන්න"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "කිසිඳු ව්‍යාපෘතියක් තෝරාගෙන නැත."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr ""
+msgstr "ව්‍යාපෘතිය"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "කිසිඳු ව්‍යාපෘතියක් තෝරාගෙන නැත"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
-msgstr ""
+msgstr "ප්‍රධාන මෙනුව"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
 msgctxt "campaignsetup"
 msgid "Name"
-msgstr ""
+msgstr "නාමය"
 
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

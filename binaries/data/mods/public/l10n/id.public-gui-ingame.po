@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 07:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-11-15 08:08+0000\n"
+"PO-Revision-Date: 2021-11-15 10:25+0000\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -500,85 +500,101 @@ msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Pilih penerima obrolan."
 
-#: gui/session/developer_overlay/DeveloperOverlay.js:67
+#: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
 msgstr "Lapisan Pengembang dibuka"
 
-#: gui/session/developer_overlay/DeveloperOverlay.js:68
+#: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
 msgstr "Lapisan Pengembang ditutup"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
 msgstr "Kendalikan seluruh unit"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
 msgstr "Ubah perspektif"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
 msgstr "Tampilkan kondisi seleksi"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
 msgstr "Lapisan pencari jalur"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
 msgstr "Lapisan pencari jalur hierarkis"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
 msgstr "Lapisan penghalang"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:112
 msgid "Unit motion overlay"
 msgstr "Lapisan gerakan unit"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:125
 msgid "Range overlay"
 msgstr "Lapisan jarak"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:138
 msgid "Bounding box overlay"
 msgstr "Lapisan kotak sentuhan"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:151
 msgid "Restrict camera"
 msgstr "Batasi kamera"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
 msgstr "Tampilkan seluruh peta"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
 msgstr "Hidupkan pelengkungan waktu"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
 msgstr "Aktifkan Uji Gabung Ulang"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Naikkan pangkat unit yang terpilih"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
 msgstr "Hidupkan penyisihan"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr "Kunci kamera penyisihan"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr "Tampilkan frustum kamera"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr "Tampilkan frustum bayangan "
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
+msgid "Render Debug Mode Disabled"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
+msgid "Render Debug Mode AO"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
+msgid "Render Debug Mode Alpha"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
+msgid "Render Debug Mode Custom"
+msgstr ""
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -721,14 +737,14 @@ msgstr "Hancurkan semua yang dipilih sekarang?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/QuitConfirmationMenu.js:52
 #: gui/session/message_box/ResignConfirmation.js:9
 msgid "No"
 msgstr "Tidak"
 
 #: gui/session/dialogs/yes_no.xml:(caption):19
 #: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/QuitConfirmationMenu.js:55
 #: gui/session/message_box/ResignConfirmation.js:12
 msgid "Yes"
 msgstr "Ya"
@@ -793,7 +809,7 @@ msgid "Out-Of-Sync"
 msgstr "Tidak-Sinkron"
 
 #: gui/session/message_box/QuitConfirmation.js:6
-#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/QuitConfirmationMenu.js:66
 #: gui/session/message_box/ResignConfirmation.js:5
 msgid "Confirmation"
 msgstr "Konfirmasi"
@@ -831,15 +847,19 @@ msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Anda yakin ingin keluar? Meninggalkan permainan akan memutuskan pemain lain."
 
-#: gui/session/message_box/QuitConfirmationMenu.js:64
+#: gui/session/message_box/QuitConfirmationMenu.js:47
+msgid "Are you sure you want to quit?"
+msgstr "Apakah Anda yakin ingin keluar?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
 msgstr "Apakah Anda ingin menyerah atau akan segera kembali?"
 
-#: gui/session/message_box/QuitConfirmationMenu.js:67
+#: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
 msgstr "Saya akan kembali"
 
-#: gui/session/message_box/QuitConfirmationMenu.js:71
+#: gui/session/message_box/QuitConfirmationMenu.js:74
 msgid "I resign"
 msgstr "Saya menyerah"
 

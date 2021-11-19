@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # ABDO SEED <abdulkader.saied@gmail.com>, 2020
-# abidin toumi <abidin24@tutanota.com>, 2018
+# abidin toumi <abidin24@tutanota.com>, 2018,2021
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Hamza ESSAD <essadhamza@outlook.fr>, 2017
 # ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2018
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 08:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-11-17 12:57+0000\n"
+"Last-Translator: abidin toumi <abidin24@tutanota.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,11 +222,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "يمكن للأشاوس أن يتحصنوا"
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "أشاوس مكشوفون"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
@@ -314,11 +314,11 @@ msgstr "مقاس الخريطة"
 #: gui/common/gamedescription.js:322
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "حَيَّوم عشوائي"
 
 #: gui/common/gamedescription.js:323
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "اختر الحيوم عشوائيًا من القائمة."
 
 #: gui/common/gamedescription.js:338
 msgid "Nomad Mode"
@@ -326,17 +326,17 @@ msgstr ""
 
 #: gui/common/gamedescription.js:338
 msgid "Civic Centers"
-msgstr ""
+msgstr "مراكز المدينة"
 
 #: gui/common/gamedescription.js:341
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "يبدأ اللعّاب بعدد قليل من الوحدات ويمكنهم اختيار مكان لبناء المدينة."
 
 #: gui/common/gamedescription.js:342
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "يبدأ اللعّاب وبحوزتهم مركز مدينة"
 
 #: gui/common/gamedescription.js:347
 msgid "Starting Resources"
@@ -476,7 +476,7 @@ msgstr "نسخة غير صحيحة من بروتوكول الشبكة."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "اللعبة تحمل،رجاءً حاول لاحقًا."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -516,7 +516,7 @@ msgstr ""
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "كلمة المرور ليست صالحة."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -779,7 +779,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr ""
+msgstr "الضرر:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
@@ -1091,23 +1091,23 @@ msgstr "لكل وحدة"
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
-msgstr ""
+msgstr "عدد المصلحين"
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "وقت التصليح المتبقي"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أضافة عامل لن تقلل من وقت انتهاء البناء"
+msgstr[1] "أضف عاملًا لتقليل ثانية من وقت انتهاء البناء"
+msgstr[2] "أضف عاملًا لتقليل ثانيتين من وقت انتهاء البناء"
+msgstr[3] "أضف عاملًا لتقليل %(second)s ثوانٍ من وقت انتهاء البناء"
+msgstr[4] "أضف عاملًا لتقليل %(second)s ثانية من وقت انتهاء البناء"
+msgstr[5] "أضف عاملًا لتقليل %(second)s ثانية من وقت انتهاء البناء"
 
 #: gui/common/tooltips.js:658
 #, javascript-format
@@ -1122,11 +1122,11 @@ msgstr[5] ""
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
-msgstr ""
+msgstr "عدد البنّائين:"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr ""
+msgstr "الوقت المتبقي لإنهاء البناء:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format

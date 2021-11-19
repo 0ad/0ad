@@ -50,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-04 13:34+0000\n"
-"Last-Translator: Cem Sivil\n"
+"POT-Creation-Date: 2021-11-15 08:08+0000\n"
+"PO-Revision-Date: 2021-11-15 10:25+0000\n"
+"Last-Translator: Emre AYTAÇ <eaytac@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -523,85 +523,101 @@ msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Sohbet adresi seçin."
 
-#: gui/session/developer_overlay/DeveloperOverlay.js:67
+#: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
 msgstr "Bu Geliştirici Kaplaması açıldı."
 
-#: gui/session/developer_overlay/DeveloperOverlay.js:68
+#: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
 msgstr "Bu Geliştirici Kaplaması kapandı."
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
 msgstr "Tüm birimleri yönet"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
 msgstr "Kamera açısı değiştir"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
 msgstr "Ekran seçim durumu"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
 msgstr "Yol Bulucu kaplaması"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
 msgstr "Hiyerarşik Yol Bulucu Kaplaması"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
 msgstr "Tıkama kaplaması"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:112
 msgid "Unit motion overlay"
 msgstr "Birim hareket göstergesi"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:125
 msgid "Range overlay"
 msgstr "Alan kaplaması"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:138
 msgid "Bounding box overlay"
 msgstr "Çerçeveleme kutu kaplaması"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:151
 msgid "Restrict camera"
 msgstr "Kamerayı kısıtla"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
 msgstr "Haritayı göster"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
 msgstr "Zaman atlaması aktif"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
 msgstr "Aktif tekrar katılma testi"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Seçilen birimleri terfi ettir."
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
 msgstr "Toplamayı etkinleştir"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr "Toplama kamerayı sabitle"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr "Kamera alanını göster"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr "Gölge alanını göster"
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
+msgid "Render Debug Mode Disabled"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
+msgid "Render Debug Mode AO"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
+msgid "Render Debug Mode Alpha"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
+msgid "Render Debug Mode Custom"
+msgstr ""
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -746,14 +762,14 @@ msgstr "Seçili olan her şey yok edilsin mi?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/QuitConfirmationMenu.js:52
 #: gui/session/message_box/ResignConfirmation.js:9
 msgid "No"
 msgstr "Hayır"
 
 #: gui/session/dialogs/yes_no.xml:(caption):19
 #: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/QuitConfirmationMenu.js:55
 #: gui/session/message_box/ResignConfirmation.js:12
 msgid "Yes"
 msgstr "Evet"
@@ -818,7 +834,7 @@ msgid "Out-Of-Sync"
 msgstr "Senkronizasyon dışı."
 
 #: gui/session/message_box/QuitConfirmation.js:6
-#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/QuitConfirmationMenu.js:66
 #: gui/session/message_box/ResignConfirmation.js:5
 msgid "Confirmation"
 msgstr "Onay"
@@ -856,15 +872,19 @@ msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Çıkmak istediğine emin misin? Ayrıldığında diğer tüm oyuncuların bağlantıları kesilecek."
 
-#: gui/session/message_box/QuitConfirmationMenu.js:64
+#: gui/session/message_box/QuitConfirmationMenu.js:47
+msgid "Are you sure you want to quit?"
+msgstr "Çıkmak istediğinizden emin misiniz?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
 msgstr "Ayrılmak mı etmek istiyorsun yoksa yakında dönecek misin?"
 
-#: gui/session/message_box/QuitConfirmationMenu.js:67
+#: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
 msgstr "Geri döneceğim"
 
-#: gui/session/message_box/QuitConfirmationMenu.js:71
+#: gui/session/message_box/QuitConfirmationMenu.js:74
 msgid "I resign"
 msgstr "Ayrılacağım"
 
