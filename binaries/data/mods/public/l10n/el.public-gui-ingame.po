@@ -40,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-05 13:20+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-11-15 08:08+0000\n"
+"PO-Revision-Date: 2021-11-15 10:25+0000\n"
+"Last-Translator: George Spere <g.sperelakis@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -513,85 +513,101 @@ msgctxt "chat input"
 msgid "Select chat addressee."
 msgstr "Επέλεξε διεύθυνση συζήτησης."
 
-#: gui/session/developer_overlay/DeveloperOverlay.js:67
+#: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
 msgstr "Η προβολή επικάλυψης προγραμματιστή άνοιξε."
 
-#: gui/session/developer_overlay/DeveloperOverlay.js:68
+#: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
 msgstr "Η προβολή επικάλυψης προγραμματιστή έκλεισε."
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
 msgstr "Έλεγχος όλων των μονάδων"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
 msgstr "Αλλαγή προοπτικής"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
 msgstr "Εμφάνιση κατάστασης επιλογής"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
 msgstr "Επικάλυψη εύρεσης μονοπατιού"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
 msgstr "Ιεραρχική επικάλυψη εύρεσης μονοπατιού"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
 msgstr "Επικάλυψη μπλοκαρίσματος"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:112
 msgid "Unit motion overlay"
 msgstr " Επικάλυψη μονάδα κίνησης"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:125
 msgid "Range overlay"
 msgstr "Επικάλυψη απόστασης"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:138
 msgid "Bounding box overlay"
 msgstr "Πλαίσιο οριοθέτησης της επικάλυψης"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:151
 msgid "Restrict camera"
 msgstr "Περιορισμός της κάμερας"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
 msgstr "Αποκάλυψη χάρτη"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
 msgstr "Ενεργοποίηση χρονική δίνης"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
 msgstr "Ενεργοποίηση  Δοκιμής Επανασύνδεσης."
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Προαγωγή των επιλεγμένων μονάδων"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
 msgstr "Ενεργοποίηση σφαγής"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr "Κλείδωμα κάμερας επιλογής"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr "Εμφάνιση κόλουρου κώνου κάμερας"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
+#: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr "Εμφάνιση κόλουρου κώνου σκιών"
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
+msgid "Render Debug Mode Disabled"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
+msgid "Render Debug Mode AO"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
+msgid "Render Debug Mode Alpha"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
+msgid "Render Debug Mode Custom"
+msgstr ""
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -736,14 +752,14 @@ msgstr "Να κατεστραφεί ό,τι είναι αυτή τη στιγμ�
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/QuitConfirmationMenu.js:52
 #: gui/session/message_box/ResignConfirmation.js:9
 msgid "No"
 msgstr "Όχι"
 
 #: gui/session/dialogs/yes_no.xml:(caption):19
 #: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/QuitConfirmationMenu.js:55
 #: gui/session/message_box/ResignConfirmation.js:12
 msgid "Yes"
 msgstr "Ναι"
@@ -808,7 +824,7 @@ msgid "Out-Of-Sync"
 msgstr "Αποσυγχρονίστηκε"
 
 #: gui/session/message_box/QuitConfirmation.js:6
-#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/QuitConfirmationMenu.js:66
 #: gui/session/message_box/ResignConfirmation.js:5
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
@@ -846,15 +862,19 @@ msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
 msgstr "Είσαστε σίγουροι ότι θέλετε να εγκαταλείψετε; Φεύγοντας θα αποσυνδέθουν όλοι οι άλλοι παίκτες."
 
-#: gui/session/message_box/QuitConfirmationMenu.js:64
+#: gui/session/message_box/QuitConfirmationMenu.js:47
+msgid "Are you sure you want to quit?"
+msgstr "Ειστε σίγουροι οτι θέλετε να πραγματοποιήσετε έξοδο ;"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
 msgstr "Θέλετε να παραιτηθείτε ή θα επιστρέψετε σύντομα;"
 
-#: gui/session/message_box/QuitConfirmationMenu.js:67
+#: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
 msgstr "Θα επιστρέψω"
 
-#: gui/session/message_box/QuitConfirmationMenu.js:71
+#: gui/session/message_box/QuitConfirmationMenu.js:74
 msgid "I resign"
 msgstr "Παραιτούμαι"
 

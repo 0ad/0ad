@@ -28,7 +28,8 @@ namespace JSI_VisualReplay
 {
 CStrW GetReplayDirectoryName(const CStrW& directoryName)
 {
-	return OsPath(VisualReplay::GetDirectoryPath() / directoryName).string();
+	// The string conversion is added to account for non-latin characters.
+	return wstring_from_utf8(OsPath(VisualReplay::GetDirectoryPath() / directoryName).string8());
 }
 
 void RegisterScriptFunctions(const ScriptRequest& rq)
