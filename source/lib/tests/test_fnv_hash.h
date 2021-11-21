@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,5 +39,12 @@ public:
 		const u64 h2 = fnv_hash64("abcdef");
 		TS_ASSERT_EQUALS(h2, 0xD80BDA3FBE244A0Aull);		// verify value for simple string
 		TS_ASSERT_EQUALS(fnv_hash64("abcdef", 6), h2);	// same result if hashing buffer
+	}
+
+	void test_collisions()
+	{
+		TS_ASSERT_EQUALS(fnv_hash("collisions", 10), fnv_hash("silage_formism", 14));
+		TS_ASSERT_EQUALS(fnv_hash("2018-04-13 06:10", 16), fnv_hash("1984-05-01 06:20", 16));
+		TS_ASSERT_EQUALS(fnv_hash("etude", 5), fnv_hash("nonassister", 11));
 	}
 };
