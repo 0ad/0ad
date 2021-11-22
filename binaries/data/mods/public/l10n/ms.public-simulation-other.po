@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 09:25+0000\n"
+"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"PO-Revision-Date: 2021-11-19 09:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -556,20 +556,20 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Sumber tidak mencukupi - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:364
+#: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Entiti sedang ditatarkan. Tidak dapat memulakan pengeluaran."
 
-#: simulation/components/ProductionQueue.js:375
+#: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
 msgstr "Baris gilir pengeluaran telah penuh."
 
-#: simulation/components/ProductionQueue.js:860
-msgid "Can't find free space to spawn trained units"
-msgstr "Tidak dapat cari ruang kosong untuk jelmakan unit terlatih"
-
-#: simulation/components/ProductionQueue.js:902
+#: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
+msgstr ""
+
+#: simulation/components/Trainer.js:321
+msgid "Can't find free space to spawn trained units."
 msgstr ""
 
 #: simulation/components/Upgrade.js:241
@@ -856,7 +856,7 @@ msgstr "Keajaiban"
 msgid "%(player)s has been defeated (cheat)."
 msgstr "%(player)s telah dikalahkan (menipu)."
 
-#: simulation/helpers/Cheat.js:67
+#: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
 msgstr "Anda perlu memilih sebuah bangunan yang melatih unit."
 
@@ -868,43 +868,43 @@ msgstr "(Menipu - kawal semua unit)"
 msgid "(Cheat - reveal map)"
 msgstr "(Menipu - dedah peta)"
 
-#: simulation/helpers/Commands.js:462
+#: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s telah menarik diri."
 
-#: simulation/helpers/Commands.js:640
+#: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
 msgstr "(Menipu - unit dinaik pangkat)"
 
-#: simulation/helpers/Commands.js:761
+#: simulation/helpers/Commands.js:772
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Tidak dapat ditatar kerana jarak diperlukan tidak disahkan atau rupa bumi yang menghalang."
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Serangan terhadap %(_player_)s dipinta."
 
-#: simulation/helpers/Commands.js:845
+#: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"
 msgstr "Tiada unit yang boleh dirasuah"
 
-#: simulation/helpers/Commands.js:922
+#: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
 msgstr ""
 
-#: simulation/helpers/Commands.js:936
+#: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
 msgstr "Sesetengah unit(s) tidak dapat kembali bekerja"
 
-#: simulation/helpers/Commands.js:955
+#: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s tidak boleh dikawal."
 
-#: simulation/helpers/Commands.js:1206
+#: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
 msgstr "Keperluan tekonologi bangunan tidak dipenuhi."

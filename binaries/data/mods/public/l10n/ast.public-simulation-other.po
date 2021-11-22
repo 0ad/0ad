@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-11-10 06:11+0000\n"
+"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"PO-Revision-Date: 2021-11-19 16:17+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -560,21 +560,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Nun hai recursos abondos - %(resourceAmount1)s de %(resourceType1)s, %(resourceAmount2)s de %(resourceType2)s, %(resourceAmount3)s de %(resourceType3)s, %(resourceAmount4)s de %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:364
+#: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "L'ente está anovando. Nun puede aniciase la producción."
 
-#: simulation/components/ProductionQueue.js:375
+#: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
 msgstr "La riestra de producción está enllena."
 
-#: simulation/components/ProductionQueue.js:860
-msgid "Can't find free space to spawn trained units"
-msgstr "Nun puede atopase batura p'aprucir les unidades exercitades"
-
-#: simulation/components/ProductionQueue.js:902
+#: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
 msgstr "Nun pudo enrestrase automáticamente la unidá, desactivando."
+
+#: simulation/components/Trainer.js:321
+msgid "Can't find free space to spawn trained units."
+msgstr "Nun puœde atopase un spacio u produzi’ les unidades exercitades."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -860,7 +860,7 @@ msgstr "Maravíes"
 msgid "%(player)s has been defeated (cheat)."
 msgstr "Vencióse a %(player)s (trampa)."
 
-#: simulation/helpers/Cheat.js:67
+#: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
 msgstr "Precises esbillar una construcción onde s'exerciten unidades."
 
@@ -872,43 +872,43 @@ msgstr "(Trampa - mandar tódeles unidades)"
 msgid "(Cheat - reveal map)"
 msgstr "(Trampa - descubrir mapa)"
 
-#: simulation/helpers/Commands.js:462
+#: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s rindióse."
 
-#: simulation/helpers/Commands.js:640
+#: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
 msgstr "(Trampa - unidades ascendides)"
 
-#: simulation/helpers/Commands.js:761
+#: simulation/helpers/Commands.js:772
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nun puede anovase darréu que los requisitos de distancia nun se verificaron o'l terrén está apexao."
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Pidióse atacar a %(_player_)s."
 
-#: simulation/helpers/Commands.js:845
+#: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"
 msgstr "Nun hai unidades sobornables"
 
-#: simulation/helpers/Commands.js:922
+#: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
 msgstr "Nun ye posible sacar la o les unidades."
 
-#: simulation/helpers/Commands.js:936
+#: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
 msgstr "Una o delles unidades nun pueden volver al llabor"
 
-#: simulation/helpers/Commands.js:955
+#: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "Nun ye posible mandar a %(unit)s."
 
-#: simulation/helpers/Commands.js:1206
+#: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
 msgstr "Nun se cumplen los requisitos técnicos de la construcción."
