@@ -4,18 +4,18 @@
 # project.
 # Translators:
 # ethan lin <ethan@tscc.tp.edu.tw>, 2018
-# Yuan <daan0014119@gmail.com>, 2017
+# Yuan Chang <daan0014119@gmail.com>, 2017
 # 黃柏諺 <s8321414@gmail.com>, 2014-2018
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2021
-# Yuan <daan0014119@gmail.com>, 2020-2021
+# Yuan Chang <daan0014119@gmail.com>, 2020-2021
 # 黃柏諺 <s8321414@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-15 00:51+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"PO-Revision-Date: 2021-11-19 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -562,21 +562,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:364
+#: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "實體已被升級。無法開始生產。"
 
-#: simulation/components/ProductionQueue.js:375
+#: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
 msgstr "生產佇列已滿。"
 
-#: simulation/components/ProductionQueue.js:860
-msgid "Can't find free space to spawn trained units"
-msgstr "找不到空間產出已訓練的單位"
-
-#: simulation/components/ProductionQueue.js:902
+#: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
 msgstr "無法自動佇列單位，取消啟用。"
+
+#: simulation/components/Trainer.js:321
+msgid "Can't find free space to spawn trained units."
+msgstr ""
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -862,7 +862,7 @@ msgstr "奇觀"
 msgid "%(player)s has been defeated (cheat)."
 msgstr "%(player)s 已被擊敗（作弊）。"
 
-#: simulation/helpers/Cheat.js:67
+#: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
 msgstr "您需要選取一棟要訓練單位的建築物。"
 
@@ -874,43 +874,43 @@ msgstr "（作弊 - 控制所有單位）"
 msgid "(Cheat - reveal map)"
 msgstr "（作弊 ─ 揭露地圖）"
 
-#: simulation/helpers/Commands.js:462
+#: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s 已放棄。"
 
-#: simulation/helpers/Commands.js:640
+#: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
 msgstr "（作弊 - 升級所有單位）"
 
-#: simulation/helpers/Commands.js:761
+#: simulation/helpers/Commands.js:772
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "無法升級，因為必須的距離無法被驗證，或是地形有阻礙。"
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "請攻擊 %(_player_)s。"
 
-#: simulation/helpers/Commands.js:845
+#: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"
 msgstr "沒有可賄賂的單位"
 
-#: simulation/helpers/Commands.js:922
+#: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
 msgstr "無法卸載單位。"
 
-#: simulation/helpers/Commands.js:936
+#: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
 msgstr "部份單位無法回到工作崗位"
 
-#: simulation/helpers/Commands.js:955
+#: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "無法控制 %(unit)s。"
 
-#: simulation/helpers/Commands.js:1206
+#: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
 msgstr "建築物的科技需求不符合。"

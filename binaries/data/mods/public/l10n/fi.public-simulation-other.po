@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-09-08 12:26+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"PO-Revision-Date: 2021-11-19 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -569,21 +569,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Liian vähän resursseja - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:364
+#: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Yksikköä päivitetään. Ei voida aloittaa tuotantoa."
 
-#: simulation/components/ProductionQueue.js:375
+#: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
 msgstr "Tuotantojono on täysi."
 
-#: simulation/components/ProductionQueue.js:860
-msgid "Can't find free space to spawn trained units"
-msgstr "Vapaata tilaa uusille yksiköille ei löydy."
-
-#: simulation/components/ProductionQueue.js:902
+#: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
 msgstr "Yksikön lisääminen jonoon automaattisesti ei onnistunut. Automaattinen jonotus poistetaan käytöstä."
+
+#: simulation/components/Trainer.js:321
+msgid "Can't find free space to spawn trained units."
+msgstr ""
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -869,7 +869,7 @@ msgstr "Ihme"
 msgid "%(player)s has been defeated (cheat)."
 msgstr "%(player)s on lyöty (huijaus)."
 
-#: simulation/helpers/Cheat.js:67
+#: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
 msgstr "Valitse rakennus, joka kouluttaa yksiköitä."
 
@@ -881,43 +881,43 @@ msgstr "(Huijaus - kontrolloi kaikkia yksiköitä)"
 msgid "(Cheat - reveal map)"
 msgstr "(Huijaus - paljasta kartta)"
 
-#: simulation/helpers/Commands.js:462
+#: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s on luovuttanut."
 
-#: simulation/helpers/Commands.js:640
+#: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
 msgstr "(Huijaus - ylennä yksiköt)"
 
-#: simulation/helpers/Commands.js:761
+#: simulation/helpers/Commands.js:772
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Ei voi päivittää, koska etäisyysvaatimuksia ei ole todennettu tai maasto on esteen tukkima."
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Hyökkäys pelaajaa %(_player_)s vastaan pyydetty."
 
-#: simulation/helpers/Commands.js:845
+#: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"
 msgstr "Lahjottavissa olevia yksiköitä ei ole."
 
-#: simulation/helpers/Commands.js:922
+#: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
 msgstr "Ei voida purkaa yhtä tai useampaa yksikköä."
 
-#: simulation/helpers/Commands.js:936
+#: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
 msgstr "Jokin yksikkö tai yksiköt eivät voi mennä takaisin töihin"
 
-#: simulation/helpers/Commands.js:955
+#: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s ei voida ohjata."
 
-#: simulation/helpers/Commands.js:1206
+#: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
 msgstr "Rakennuksen teknologiavaatimukset eivät täyty."

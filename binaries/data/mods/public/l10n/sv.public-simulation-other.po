@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-10-07 22:48+0000\n"
-"Last-Translator: Albin Nilsson <abbin44@gmail.com>\n"
+"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"PO-Revision-Date: 2021-11-19 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -573,21 +573,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Otillräckliga resurser - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:364
+#: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Entiteten uppgraderas. Kan inte starta produktion."
 
-#: simulation/components/ProductionQueue.js:375
+#: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
 msgstr "Produktionskön är full"
 
-#: simulation/components/ProductionQueue.js:860
-msgid "Can't find free space to spawn trained units"
-msgstr "Kan inte hitta ledigt utrymme att placera tränade soldater"
-
-#: simulation/components/ProductionQueue.js:902
+#: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
 msgstr "Kunde inte auto-köa enhet, avaktiverar."
+
+#: simulation/components/Trainer.js:321
+msgid "Can't find free space to spawn trained units."
+msgstr ""
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -873,7 +873,7 @@ msgstr "Underverk"
 msgid "%(player)s has been defeated (cheat)."
 msgstr "%(player)s har blivit besegrad (fusk)."
 
-#: simulation/helpers/Cheat.js:67
+#: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
 msgstr "Du måste markera en byggnad som kan träna soldater."
 
@@ -885,43 +885,43 @@ msgstr "(Fusk - kontrollera alla enheter)"
 msgid "(Cheat - reveal map)"
 msgstr "(Fusk - visa karta)"
 
-#: simulation/helpers/Commands.js:462
+#: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s has gett upp."
 
-#: simulation/helpers/Commands.js:640
+#: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
 msgstr "(Fusk - befordrade enheter)"
 
-#: simulation/helpers/Commands.js:761
+#: simulation/helpers/Commands.js:772
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan inte uppgradera eftersom distanskrav inte kan verifieras eller terrängen är skymd."
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Attack mot %(_player_)s begärs."
 
-#: simulation/helpers/Commands.js:845
+#: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"
 msgstr "Det finns inga mutbara enheter"
 
-#: simulation/helpers/Commands.js:922
+#: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
 msgstr "Kunde inte avlasta enhet(er)."
 
-#: simulation/helpers/Commands.js:936
+#: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
 msgstr "Några enhet(er) kan ej gå tillbaka till arbetet"
 
-#: simulation/helpers/Commands.js:955
+#: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s kan inte kontrolleras."
 
-#: simulation/helpers/Commands.js:1206
+#: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
 msgstr "Byggnadens teknologikrav är inte uppfyllda"

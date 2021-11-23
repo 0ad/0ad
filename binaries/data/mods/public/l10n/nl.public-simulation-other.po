@@ -6,7 +6,7 @@
 # Anique van Berne <avanberne@gmail.com>, 2016
 # annihilator solar <incoming@upcmail.nl>, 2019
 # rollieoo, 2020-2021
-# bb <b.jansen5@students.uu.nl>, 2018
+# bb, 2018
 # Charon De Beukelaer <charondb@gmail.com>, 2015
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016,2021
 # Dig Dug <tmf03@hotmail.com>, 2018
@@ -21,15 +21,16 @@
 # niektb <niektb95@gmail.com>, 2014-2016
 # Piers T <pierstitus@gmail.com>, 2019
 # Pim de Graaf <pimdegraaf1997@gmail.com>, 2019
+# rollieoo, 2021
 # Sander Deryckere, 2014-2016
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
 # SuperVipers <camerongeuzinge@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-21 08:01+0000\n"
-"Last-Translator: Freagarach\n"
+"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"PO-Revision-Date: 2021-11-21 20:32+0000\n"
+"Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -579,21 +580,21 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Onvoldoende grondstoffen - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:364
+#: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Entiteit wordt geüpgraded. Kan niet produceren."
 
-#: simulation/components/ProductionQueue.js:375
+#: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
 msgstr "De productierij is vol."
 
-#: simulation/components/ProductionQueue.js:860
-msgid "Can't find free space to spawn trained units"
-msgstr "Kan geen vrije ruimte vinden om gerekruteerde eenheden te plaatsen."
-
-#: simulation/components/ProductionQueue.js:902
+#: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
 msgstr "Kan deze eenheid kan niet in de wachtrij plaatsen, beëindig ‘auto-queue’."
+
+#: simulation/components/Trainer.js:321
+msgid "Can't find free space to spawn trained units."
+msgstr "Kan geen vrije ruimte vinden om gerekruteerde eenheden te plaatsen."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
@@ -879,7 +880,7 @@ msgstr "Wonder"
 msgid "%(player)s has been defeated (cheat)."
 msgstr "%(player)s is verslagen (cheat)."
 
-#: simulation/helpers/Cheat.js:67
+#: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
 msgstr "U moet een gebouw selecteren om eenheden te rekruteren."
 
@@ -891,43 +892,43 @@ msgstr "(Valsspelen - Bestuur alle eenheden)"
 msgid "(Cheat - reveal map)"
 msgstr "(Valsspelen - Toon de volledige kaart)"
 
-#: simulation/helpers/Commands.js:462
+#: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s heeft zich overgegeven."
 
-#: simulation/helpers/Commands.js:640
+#: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
 msgstr "(Valsspelen - promoveer eenheden)"
 
-#: simulation/helpers/Commands.js:761
+#: simulation/helpers/Commands.js:772
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan niet upgraden omdat de afstandsvereiste niet geverifieerd is of het terrein belemmerd is."
 
-#: simulation/helpers/Commands.js:806
+#: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Aanvraag voor een aanval tegen %(_player_)s."
 
-#: simulation/helpers/Commands.js:845
+#: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"
 msgstr "Er zijn geen omkoopbare eenheden"
 
-#: simulation/helpers/Commands.js:922
+#: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
 msgstr "Kan eenheden niet naar buiten laten."
 
-#: simulation/helpers/Commands.js:936
+#: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
 msgstr "Sommige eenheden kunnen niet terug aan het werk"
 
-#: simulation/helpers/Commands.js:955
+#: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s kan niet worden bestuurd."
 
-#: simulation/helpers/Commands.js:1206
+#: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
 msgstr "Er is niet voldaan aan de technologie vereisten voor dit gebouw."
