@@ -25,12 +25,12 @@
 #include "Profiler2GPU.h"
 
 #include "lib/ogl.h"
-#include "lib/allocators/shared_ptr.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profiler2.h"
 
 #include <deque>
 #include <stack>
+#include <vector>
 
 #if !CONFIG2_GLES
 
@@ -605,6 +605,7 @@ private:
 
 	void ProcessFrames()
 	{
+		std::vector<char> buffer;
 		while (!m_Frames.empty())
 		{
 			SFrame& frame = m_Frames.front();
@@ -613,8 +614,8 @@ private:
 			// trying to read the results from any
 			for (size_t j = 0; j < m_QueryTypes.size(); ++j)
 			{
-				size_t size = m_QueryTypes[j].counterBufferSize;
-				std::shared_ptr<char> buf(new char[size], ArrayDeleter());
+				const size_t size = m_QueryTypes[j].counterBufferSize;
+				buffer.resize(size);
 
 				for (size_t i = 0; i < frame.events.size(); ++i)
 				{
@@ -622,7 +623,7 @@ private:
 						continue;
 
 					GLuint length = 0;
-					pglGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_NONBLOCK, size, buf.get(), &length);
+					pglGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_NONBLOCK, size, buffer.data(), &length);
 					ogl_WarnIfError();
 					if (length == 0)
 						return;
@@ -648,8 +649,8 @@ private:
 					for (size_t j = 0; j < m_QueryTypes.size(); ++j)
 					{
 						GLuint length;
-						char* buf = new char[m_QueryTypes[j].counterBufferSize];
-						pglGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_BLOCK, m_QueryTypes[j].counterBufferSize, buf, &length);
+						buffer.resize(m_QueryTypes[j].counterBufferSize);
+						pglGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_BLOCK, m_QueryTypes[j].counterBufferSize, buffer.data(), &length);
 						ogl_WarnIfError();
 						ENSURE(length == m_QueryTypes[j].counterBufferSize);
 
@@ -663,14 +664,14 @@ private:
 							{
 								ENSURE(counter.size == 4);
 								GLuint value = 0;
-								memcpy(&value, buf + counter.offset, counter.size);
+								memcpy(&value, buffer.data() + counter.offset, counter.size);
 								m_Storage.RecordAttributePrintf("%s: %u", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_UNSIGNED_INT64)
 							{
 								ENSURE(counter.size == 8);
 								GLuint64 value = 0;
-								memcpy(&value, buf + counter.offset, counter.size);
+								memcpy(&value, buffer.data() + counter.offset, counter.size);
 								m_Storage.RecordAttributePrintf("%s: %.0f", counter.name.c_str(), (double)value);
 
 								if (counter.name == "TotalTime")
@@ -680,14 +681,14 @@ private:
 							{
 								ENSURE(counter.size == 4);
 								GLfloat value = 0;
-								memcpy(&value, buf + counter.offset, counter.size);
+								memcpy(&value, buffer.data() + counter.offset, counter.size);
 								m_Storage.RecordAttributePrintf("%s: %f", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_BOOL)
 							{
 								ENSURE(counter.size == 4);
 								GLuint value = 0;
-								memcpy(&value, buf + counter.offset, counter.size);
+								memcpy(&value, buffer.data() + counter.offset, counter.size);
 								ENSURE(value == 0 || value == 1);
 								m_Storage.RecordAttributePrintf("%s: %u", counter.name.c_str(), value);
 							}
@@ -696,8 +697,6 @@ private:
 								//debug_warn(L"unrecognised Intel performance counter type");
 							}
 						}
-
-						delete[] buf;
 					}
 
 					endTimes.push(lastTime + elapsed);
