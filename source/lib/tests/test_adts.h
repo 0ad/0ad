@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,7 +23,8 @@
 #include "lib/self_test.h"
 
 #include "lib/adts/ring_buf.h"
-#include "lib/rand.h"
+
+#include <random>
 
 class TestRingbuf : public CxxTest::TestSuite
 {
@@ -61,16 +62,19 @@ public:
 
 	void test_randomized_insert_remove()
 	{
-		srand(1);
+		std::mt19937 engine(42);
+		std::uniform_int_distribution<size_t> distributionProbability(0, 9);
+		std::uniform_int_distribution<int> distributionValue(0);
+
 		RingBuf<int, N> buf;
 		std::deque<int> deq;
 		for(size_t rep = 0; rep < 1000; rep++)
 		{
-			size_t rnd_op = rand(0, 10);
+			const size_t rnd_op = distributionProbability(engine);
 			// 70% - insert
 			if(rnd_op >= 3)
 			{
-				int item = rand();
+				int item = distributionValue(engine);
 				buf.push_back(item);
 
 				deq.push_back(item);

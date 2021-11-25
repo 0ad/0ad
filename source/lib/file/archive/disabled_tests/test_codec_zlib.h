@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,6 +25,8 @@
 #include "lib/self_test.h"
 #include "lib/res/file/archive/codec_zlib.h"
 
+#include <random>
+
 class TestCodecZLib : public CxxTest::TestSuite
 {
 public:
@@ -35,10 +37,12 @@ public:
 
 		// generate random input udata
 		// (limit values to 0..7 so that the udata will actually be compressible)
+		std::mt19937 engine(42);
+		std::uniform_int_distribution<u8> distribution(0x00, 0x07);
 		const size_t usize = 10000;
 		u8 udata[usize];
 		for(size_t i = 0; i < usize; i++)
-			udata[i] = rand() & 0x07;
+			udata[i] = distribution(engine);
 
 		// compress
 		u8* cdata; size_t csize;

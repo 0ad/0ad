@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,23 +17,32 @@
 
 #include "lib/self_test.h"
 
-#include <cstdlib>
-#include <cmath>
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
 
+#include <cmath>
+#include <cstdlib>
+#include <random>
+
 class TestMatrix : public CxxTest::TestSuite
 {
+	std::mt19937 m_Engine;
+
 public:
+	void setUp()
+	{
+		m_Engine = std::mt19937(42);
+	}
+
 	void test_inverse()
 	{
 		CMatrix3D m;
-		srand(0);
+		std::uniform_real_distribution<float> distribution01(0.0f, std::nextafter(1.0f, 2.0f));
 		for (int i = 0; i < 4; ++i)
 		{
 			for (int j = 0; j < 16; ++j)
 			{
-				m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+				m._data[j] = -1.0f + 2.0f * distribution01(m_Engine);
 			}
 			CMatrix3D n;
 			m.GetInverse(n);
@@ -52,14 +61,14 @@ public:
 
 	void test_quats()
 	{
-		srand(0);
+		std::uniform_real_distribution<float> distribution01(0.0f, std::nextafter(1.0f, 2.0f));
 		for (int i = 0; i < 4; ++i)
 		{
 			CQuaternion q;
 			q.FromEulerAngles(
-				-6.28f + 12.56f*(rand()/(float)RAND_MAX),
-				-6.28f + 12.56f*(rand()/(float)RAND_MAX),
-				-6.28f + 12.56f*(rand()/(float)RAND_MAX)
+				-6.28f + 12.56f * distribution01(m_Engine),
+				-6.28f + 12.56f * distribution01(m_Engine),
+				-6.28f + 12.56f * distribution01(m_Engine)
 				);
 			CMatrix3D m;
 			q.ToMatrix(m);
@@ -83,11 +92,11 @@ public:
 
 	void test_rotate()
 	{
-		CMatrix3D m;
-		srand(0);
+		std::uniform_real_distribution<float> distribution01(0.0f, std::nextafter(1.0f, 2.0f));
 
+		CMatrix3D m;
 		for (int j = 0; j < 16; ++j)
-			m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+			m._data[j] = -1.0f + 2.0f * distribution01(m_Engine);
 
 		CMatrix3D r, a, b;
 
@@ -124,8 +133,9 @@ public:
 
 	void test_getRotation()
 	{
+		std::uniform_real_distribution<float> distribution01(0.0f, std::nextafter(1.0f, 2.0f));
+
 		CMatrix3D m;
-		srand(0);
 
 		m.SetZero();
 		TS_ASSERT_EQUALS(m.GetYRotation(), 0.f);
@@ -135,7 +145,7 @@ public:
 
 		for (int j = 0; j < 16; ++j)
 		{
-			float a = 2*M_PI*rand()/(float)RAND_MAX - M_PI;
+			float a = 2 * M_PI * distribution01(m_Engine) - M_PI;
 			m.SetYRotation(a);
 			TS_ASSERT_DELTA(m.GetYRotation(), a, 0.001f);
 		}
@@ -143,11 +153,12 @@ public:
 
 	void test_scale()
 	{
+		std::uniform_real_distribution<float> distribution01(0.0f, std::nextafter(1.0f, 2.0f));
+
 		CMatrix3D m;
-		srand(0);
 
 		for (int j = 0; j < 16; ++j)
-			m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+			m._data[j] = -1.0f + 2.0f * distribution01(m_Engine);
 
 		CMatrix3D s, a, b;
 
