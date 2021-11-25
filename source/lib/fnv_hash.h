@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,10 +46,4 @@ extern u32 fnv_hash(const void* buf, size_t len = 0);
 /// 64-bit version of fnv_hash.
 extern u64 fnv_hash64(const void* buf, size_t len = 0);
 
-/**
- * special version of fnv_hash for strings: first converts to lowercase
- * (useful for comparing mixed-case filenames)
- **/
-extern u32 fnv_lc_hash(const char* str, size_t len = 0);
-
-#endif	// #ifndef INCLUDED_FNV_HASH
+#endif	// INCLUDED_FNV_HASH
