@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,6 +25,8 @@
 #include "lib/self_test.h"
 #include "lib/res/file/archive/compression.h"
 
+#include <random>
+
 class TestCompression : public CxxTest::TestSuite
 {
 public:
@@ -32,10 +34,12 @@ public:
 	{
 		// generate random input data
 		// (limit values to 0..7 so that the data will actually be compressible)
+		std::mt19937 engine(42);
+		std::uniform_int_distribution<u8> distribution(0x00, 0x07);
 		const size_t data_size = 10000;
 		u8 data[data_size];
 		for(size_t i = 0; i < data_size; i++)
-			data[i] = rand() & 0x07;
+			data[i] = distribution(engine);
 
 		u8* cdata; size_t csize;
 		u8 udata[data_size];

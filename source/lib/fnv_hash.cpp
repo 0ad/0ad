@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,12 +20,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * Fowler/Noll/Vo string hash
- */
-
 #include "precompiled.h"
 
+#include "lib/fnv_hash.h"
 
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
@@ -62,7 +59,6 @@ u32 fnv_hash(const void* buf, size_t len)
 	return h;
 }
 
-
 // FNV1-A hash - good for strings.
 // if len = 0 (default), treat buf as a C-string;
 // otherwise, hash <len> bytes of buf.
@@ -90,40 +86,6 @@ u64 fnv_hash64(const void* buf, size_t len)
 		{
 			h ^= *p++;
 			h *= 0x100000001B3ull;
-
-			bytes_left--;
-		}
-	}
-
-	return h;
-}
-
-
-// special version for strings: first converts to lowercase
-// (useful for comparing mixed-case filenames).
-// note: still need <len>, e.g. to support non-0-terminated strings
-u32 fnv_lc_hash(const char* str, size_t len)
-{
-	u32 h = 0x811c9dc5u;
-	// give distinct values for different length 0 buffers.
-	// value taken from FNV; it has no special significance.
-
-	// expected case: string
-	if(!len)
-	{
-		while(*str)
-		{
-			h ^= tolower(*str++);
-			h *= 0x01000193u;
-		}
-	}
-	else
-	{
-		size_t bytes_left = len;
-		while(bytes_left != 0)
-		{
-			h ^= tolower(*str++);
-			h *= 0x01000193u;
 
 			bytes_left--;
 		}

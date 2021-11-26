@@ -32,6 +32,7 @@
 #include "simulation2/Simulation2.h"
 
 #include <fstream>
+#include <random>
 
 class TestCmpPathfinder : public CxxTest::TestSuite
 {
@@ -177,13 +178,15 @@ public:
 
 		double t = timer_Time();
 
-		srand(1234);
+		std::mt19937 engine(42);
+		std::uniform_int_distribution<int> distribution511(0, 511);
+		std::uniform_int_distribution<int> distribution63(0, 63);
 		for (size_t j = 0; j < 1024*2; ++j)
 		{
-			entity_pos_t x0 = entity_pos_t::FromInt(rand() % 512);
-			entity_pos_t z0 = entity_pos_t::FromInt(rand() % 512);
-			entity_pos_t x1 = x0 + entity_pos_t::FromInt(rand() % 64);
-			entity_pos_t z1 = z0 + entity_pos_t::FromInt(rand() % 64);
+			entity_pos_t x0 = entity_pos_t::FromInt(distribution511(engine));
+			entity_pos_t z0 = entity_pos_t::FromInt(distribution511(engine));
+			entity_pos_t x1 = x0 + entity_pos_t::FromInt(distribution63(engine));
+			entity_pos_t z1 = z0 + entity_pos_t::FromInt(distribution63(engine));
 			PathGoal goal = { PathGoal::POINT, x1, z1 };
 
 			WaypointPath path;
@@ -208,11 +211,12 @@ public:
 		CmpPtr<ICmpObstructionManager> cmpObstructionMan(sim2, SYSTEM_ENTITY);
 		CmpPtr<ICmpPathfinder> cmpPathfinder(sim2, SYSTEM_ENTITY);
 
-		srand(0);
+		std::mt19937 engine(42);
+		std::uniform_real_distribution<float> distribution01(0.0f, std::nextafter(1.0f, 2.0f));
 		for (size_t i = 0; i < 200; ++i)
 		{
-			fixed x = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
-			fixed z = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
+			fixed x = fixed::FromFloat(1.5f*range.ToFloat() * distribution01(engine));
+			fixed z = fixed::FromFloat(1.5f*range.ToFloat() * distribution01(engine));
 //			printf("# %f %f\n", x.ToFloat(), z.ToFloat());
 			cmpObstructionMan->AddUnitShape(INVALID_ENTITY, x, z, fixed::FromInt(2), 0, INVALID_ENTITY);
 		}
