@@ -16,9 +16,7 @@
     <VisibleClasses datatype="tokens">Palisade</VisibleClasses>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>
-  <ProductionQueue disable=""/>
   <RallyPoint disable=""/>
-  <Researcher disable=""/>
   <Resistance>
     <Entity>
       <Damage>
@@ -34,5 +32,4 @@
       <constructed>interface/complete/building/complete_wall.xml</constructed>
     </SoundGroups>
   </Sound>
-  <Trainer disable=""/>
 </Entity>

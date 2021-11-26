@@ -386,6 +386,7 @@ Trainer.prototype.Item.prototype.Serialize = function(id)
 		"missingPopSpace": this.missingPopSpace,
 		"paused": this.paused,
 		"player": this.player,
+		"population": this.population,
 		"trainer": this.trainer,
 		"resource": this.resources,
 		"started": this.started,
@@ -403,6 +404,7 @@ Trainer.prototype.Item.prototype.Deserialize = function(data)
 	this.missingPopSpace = data.missingPopSpace;
 	this.paused = data.paused;
 	this.player = data.player;
+	this.population = data.population;
 	this.trainer = data.trainer;
 	this.resources = data.resources;
 	this.started = data.started;
