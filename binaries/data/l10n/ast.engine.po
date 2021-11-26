@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-11-20 05:58+0000\n"
+"PO-Revision-Date: 2021-11-24 18:50+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr "La connexion arrefhugou-la l servidor"
 
 #: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
-msgstr "Houbo un falhu al resolve’l hostname del servidor"
+msgstr "Houbo un fallu al resolve’l hostname del servidor"
 
 #: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
@@ -168,7 +168,7 @@ msgstr "El servidor nun offrecîu l cifradu TLS que se requier"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falhou l’authenticaçon. La clave nun ye correcta ou la cuœnta nun existe"
+msgstr "Fallou l’authenticaçon. La clave nun ye correcta ou la cuœnta nun existe"
 
 #: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
@@ -200,12 +200,12 @@ msgstr "Nun pudo scribise un mod.json externu pal camudu comprimidu “%s”. Ha
 #: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un falhu al iniciar a consultar sobre la identificaçon del xhuœw. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar sobre la identificaçon del xhuœw. Error: %s; %s."
 
 #: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un falhu al iniciar a consultar sobre camudos. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar sobre camudos. Error: %s; %s."
 
 #: ps/ModIo.cpp:319
 #, c-format
@@ -220,17 +220,17 @@ msgstr "Nun pudo abrise l archivo temporal paha baxa’l camudu: %s."
 #: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Houbo un falhu al inicia’ la baxada. Error: %s; %s."
+msgstr "Houbo un fallu al inicia’ la baxada. Error: %s; %s."
 
 #: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Falhu de baxada asýnchrona: %s, %s."
+msgstr "Fallu de baxada asýnchrona: %s, %s."
 
 #: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Falhou la baxada. Respuœsta del servidor: %s; %s."
+msgstr "Fallou la baxada. Respuœsta del servidor: %s; %s."
 
 #: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
@@ -243,11 +243,11 @@ msgstr "Archivo inválido. Anticipaba-se l md5 “%s”, recibîu-se “%s”."
 
 #: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."
-msgstr "Houbo un falhu al calcula’l hash final."
+msgstr "Houbo un fallu al calcula’l hash final."
 
 #: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
-msgstr "Houbo un falhu al verifica’ la roblra."
+msgstr "Houbo un fallu al verifica’ la roblra."
 
 #: ps/SavedGame.cpp:141
 #, c-format
@@ -257,7 +257,7 @@ msgstr "L alcuœntru archivou-se n “%s”"
 #: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "La semeya la pantalha archivou-se n “%s”"
+msgstr "La semeya la pantalla archivou-se n “%s”"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"

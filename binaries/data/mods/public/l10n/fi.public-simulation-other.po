@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2015
+# Jaakko Saarikko <jaakko.saarikko@protonmail.com>, 2021
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
 # Matti Tuhola, 2021
 # Max Ihalempia, 2016
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2021-11-19 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-11-24 06:51+0000\n"
+"Last-Translator: Jaakko Saarikko <jaakko.saarikko@protonmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -583,7 +584,7 @@ msgstr "Yksikön lisääminen jonoon automaattisesti ei onnistunut. Automaattine
 
 #: simulation/components/Trainer.js:321
 msgid "Can't find free space to spawn trained units."
-msgstr ""
+msgstr "Vapaata tilaa uusille yksiköille ei löydy."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
