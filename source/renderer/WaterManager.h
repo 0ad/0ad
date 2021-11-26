@@ -184,7 +184,7 @@ public:
 	 * Returns true if fancy water shaders will be used (i.e. the hardware is capable
 	 * and it hasn't been configured off)
 	 */
-	bool WillRenderFancyWater();
+	bool WillRenderFancyWater() const;
 
 	void RenderWaves(const CFrustum& frustrum);
 };
