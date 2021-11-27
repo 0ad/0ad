@@ -77,7 +77,6 @@
     <FloatDepth>0</FloatDepth>
     <TurnRate>6</TurnRate>
   </Position>
-  <ProductionQueue/>
   <RallyPoint/>
   <RallyPointRenderer>
     <MarkerTemplate>special/rallypoint</MarkerTemplate>
@@ -94,15 +93,6 @@
   <Repairable>
     <RepairTimeRatio>2.0</RepairTimeRatio>
   </Repairable>
-  <Researcher>
-    <TechCostMultiplier>
-      <food>1.0</food>
-      <wood>1.0</wood>
-      <stone>1.0</stone>
-      <metal>1.0</metal>
-      <time>1.0</time>
-    </TechCostMultiplier>
-  </Researcher>
   <Resistance>
     <Entity>
       <ApplyStatus>
@@ -161,9 +151,6 @@
     <DecayRate>20</DecayRate>
     <Territory>neutral enemy</Territory>
   </TerritoryDecay>
-  <Trainer>
-    <BatchTimeModifier>1.0</BatchTimeModifier>
-  </Trainer>
   <Visibility>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>

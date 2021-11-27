@@ -1093,7 +1093,9 @@ void WaterManager::UpdateQuality()
 	}
 }
 
-bool WaterManager::WillRenderFancyWater()
+bool WaterManager::WillRenderFancyWater() const
 {
-	return m_RenderWater && g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
+	return
+		m_RenderWater && g_RenderingOptions.GetPreferGLSL() &&
+		g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
 }

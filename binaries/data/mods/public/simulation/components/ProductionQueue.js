@@ -20,9 +20,32 @@ ProductionQueue.prototype.Item.prototype.Init = function(producer, metadata)
 {
 	this.producer = producer;
 	this.metadata = metadata;
-
 };
 
+/**
+ * @param {string} type - The type of queue to use.
+ * @param {string} templateName - The template to queue.
+ * @param {number} count - The amount of template to queue. Only applicable for type == "unit".
+ *
+ * @return {boolean} - Whether the item could be queued.
+ */
+ProductionQueue.prototype.Item.prototype.Queue = function(type, templateName, count)
+{
+	if (type == "unit")
+		return this.QueueEntity(templateName, count);
+
+	if (type == "technology")
+		return this.QueueTechnology(templateName);
+
+	warn("Tried to add invalid item of type \"" + type + "\" and template \"" + templateName + "\" to a production queue (entity: " + this.producer + ").");
+	return false;
+};
+
+/**
+ * @param {string} templateName - The name of the entity to queue.
+ * @param {number} count - The number of entities that should be produced.
+ * @return {boolean} - Whether the batch was successfully created.
+ */
 ProductionQueue.prototype.Item.prototype.QueueEntity = function(templateName, count)
 {
 	const cmpTrainer = Engine.QueryInterface(this.producer, IID_Trainer);
@@ -40,20 +63,21 @@ ProductionQueue.prototype.Item.prototype.QueueEntity = function(templateName, co
 	return true;
 };
 
+/**
+ * @param {string} templateName - The name of the technology to queue.
+ * @return {boolean} - Whether the technology was successfully queued.
+ */
 ProductionQueue.prototype.Item.prototype.QueueTechnology = function(templateName)
 {
 	const cmpResearcher = Engine.QueryInterface(this.producer, IID_Researcher);
 	if (!cmpResearcher)
 		return false;
 	this.technology = cmpResearcher.QueueTechnology(templateName, this.metadata);
-	if (this.technology == -1)
-		return false;
-
-	return true;
+	return this.technology != -1;
 };
 
 /**
- * @param {number} id - The id of this item.
+ * @param {number} id - The id this item needs to get.
  */
 ProductionQueue.prototype.Item.prototype.SetID = function(id)
 {
@@ -62,19 +86,11 @@ ProductionQueue.prototype.Item.prototype.SetID = function(id)
 
 ProductionQueue.prototype.Item.prototype.Stop = function()
 {
-	if (this.entity)
-	{
-		const cmpTrainer = Engine.QueryInterface(this.producer, IID_Trainer);
-		if (cmpTrainer)
-			cmpTrainer.StopBatch(this.entity);
-	}
+	if (this.entity > 0)
+		Engine.QueryInterface(this.producer, IID_Trainer)?.StopBatch(this.entity);
 
-	if (this.technology)
-	{
-		const cmpResearcher = Engine.QueryInterface(this.producer, IID_Researcher);
-		if (cmpResearcher)
-			cmpResearcher.StopResearching(this.technology);
-	}
+	if (this.technology > 0)
+		Engine.QueryInterface(this.producer, IID_Researcher)?.StopResearching(this.technology);
 };
 
 /**
@@ -85,6 +101,9 @@ ProductionQueue.prototype.Item.prototype.Start = function()
 	this.started = true;
 };
 
+/**
+ * @return {boolean} - Whether there is work done on the item.
+ */
 ProductionQueue.prototype.Item.prototype.IsStarted = function()
 {
 	return !!this.started;
@@ -142,6 +161,9 @@ ProductionQueue.prototype.Item.prototype.Unpause = function()
 		Engine.QueryInterface(this.producer, IID_Researcher).UnpauseTechnology(this.technology);
 };
 
+/**
+ * @return {boolean} - Whether the item is currently paused.
+ */
 ProductionQueue.prototype.Item.prototype.IsPaused = function()
 {
 	return !!this.paused;
@@ -199,7 +221,6 @@ ProductionQueue.prototype.Item.prototype.Deserialize = function(data)
 ProductionQueue.prototype.Init = function()
 {
 	this.nextID = 1;
-
 	this.queue = [];
 };
 
@@ -309,21 +330,8 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 
 	const item = new this.Item();
 	item.Init(this.entity, metadata);
-	if (type == "unit")
-	{
-		if (!item.QueueEntity(templateName, count))
-			return false;
-	}
-	else if (type == "technology")
-	{
-		if (!item.QueueTechnology(templateName))
-			return false;
-	}
-	else
-	{
-		warn("Tried to add invalid item of type \"" + type + "\" and template \"" + templateName + "\" to a production queue");
+	if (!item.Queue(type, templateName, count))
 		return false;
-	}
 
 	item.SetID(this.nextID++);
 	if (pushFront)
@@ -342,7 +350,7 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 };
 
 /*
- * Removes an item from the queue.
+ * @param {number} - The ID of the item to remove from the queue.
  */
 ProductionQueue.prototype.RemoveItem = function(id)
 {
@@ -457,7 +465,6 @@ ProductionQueue.prototype.PauseProduction = function()
 	this.StopTimer();
 	this.paused = true;
 	this.queue[0]?.Pause();
-	this.StopTimer();
 };
 
 ProductionQueue.prototype.UnpauseProduction = function()
@@ -492,6 +499,9 @@ ProductionQueue.prototype.StopTimer = function()
 	delete this.timer;
 };
 
+/**
+ * @return {boolean} - Whether this entity is currently producing.
+ */
 ProductionQueue.prototype.HasQueuedProduction = function()
 {
 	return this.queue.length > 0;

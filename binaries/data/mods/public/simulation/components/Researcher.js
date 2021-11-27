@@ -221,8 +221,7 @@ Researcher.prototype.GetTechnologiesList = function()
 	if (!this.template.Technologies)
 		return [];
 
-	let string = this.template.Technologies._string;
-	string = ApplyValueModificationsToEntity("Researcher/Technologies/_string", string, this.entity);
+	const string = ApplyValueModificationsToEntity("Researcher/Technologies/_string", this.template.Technologies._string, this.entity);
 
 	if (!string)
 		return [];

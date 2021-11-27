@@ -1410,7 +1410,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 	}
 
-	if (m_VBWaterShore &&
+	if (m_VBWaterShore && g_RenderingOptions.GetPreferGLSL() &&
 	    g_Renderer.GetWaterManager()->m_WaterEffects &&
 	    g_Renderer.GetWaterManager()->m_WaterFancyEffects)
 	{
