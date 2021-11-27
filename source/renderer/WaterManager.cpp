@@ -15,10 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Water settings (speed, height) and texture management
- */
-
 #include "precompiled.h"
 
 #include "graphics/Terrain.h"
@@ -50,7 +46,8 @@ struct CoastalPoint
 	CVector2D position;
 };
 
-struct SWavesVertex {
+struct SWavesVertex
+{
 	// vertex position
 	CVector3D m_BasePosition;
 	CVector3D m_ApexPosition;
@@ -864,10 +861,9 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_ALWAYS);
 
-	CShaderDefines none;
-	CShaderProgramPtr shader = g_Renderer.GetShaderManager().LoadProgram("glsl/waves", none);
-
-	shader->Bind();
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
+	tech->BeginPass();
+	CShaderProgramPtr shader = tech->GetShader();
 
 	shader->BindTexture(str_waveTex, m_WaveTex);
 	shader->BindTexture(str_foamTex, m_FoamTex);
@@ -910,7 +906,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 		CVertexBuffer::Unbind();
 	}
-	shader->Unbind();
+	tech->EndPass();
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	glDisable(GL_BLEND);

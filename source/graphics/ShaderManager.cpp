@@ -380,18 +380,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	PROFILE2("loading effect");
 	PROFILE2_ATTR("name: %s", name);
 
-	// Shortcut syntax for effects that just contain a single shader
-	if (strncmp(name, "shader:", 7) == 0)
-	{
-		CShaderProgramPtr program = LoadProgram(name+7, baseDefines);
-		if (!program)
-			return false;
-		CShaderPass pass;
-		pass.SetShader(program);
-		tech->AddPass(pass);
-		return true;
-	}
-
 	VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name) + L".xml";
 
 	CXeromyces XeroFile;
@@ -543,7 +531,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	return true;
 }
 
-size_t CShaderManager::GetNumEffectsLoaded()
+size_t CShaderManager::GetNumEffectsLoaded() const
 {
 	return m_EffectCache.size();
 }

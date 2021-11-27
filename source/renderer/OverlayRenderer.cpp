@@ -47,14 +47,10 @@
 namespace
 {
 
-CShaderProgramPtr GetOverlayLineShader(const CShaderDefines& defines)
+CShaderTechniquePtr GetOverlayLineShaderTechnique(const CShaderDefines& defines)
 {
-	const char* shaderName;
-	if (g_RenderingOptions.GetPreferGLSL())
-		shaderName = "glsl/overlayline";
-	else
-		shaderName = "arb/overlayline";
-	return g_Renderer.GetShaderManager().LoadProgram(shaderName, defines);
+	return g_Renderer.GetShaderManager().LoadEffect(
+		str_overlay_line, g_Renderer.GetSystemShaderDefines(), defines);
 }
 
 } // anonymous namespace
@@ -426,13 +422,15 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 
-	CShaderProgramPtr shaderTexLineNormal = GetOverlayLineShader(m->defsOverlayLineNormal);
-	CShaderProgramPtr shaderTexLineAlwaysVisible = GetOverlayLineShader(m->defsOverlayLineAlwaysVisible);
-
 	// ----------------------------------------------------------------------------------------
 
-	if (shaderTexLineNormal)
+	CShaderTechniquePtr shaderTechTexLineNormal = GetOverlayLineShaderTechnique(m->defsOverlayLineNormal);
+	if (shaderTechTexLineNormal)
 	{
+		shaderTechTexLineNormal->BeginPass();
+
+		CShaderProgramPtr shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
+
 		shaderTexLineNormal->Bind();
 		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
@@ -442,13 +440,18 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 		// batch render only the non-always-visible overlay lines using the normal shader
 		RenderTexturedOverlayLines(shaderTexLineNormal, false);
 
-		shaderTexLineNormal->Unbind();
+		shaderTechTexLineNormal->EndPass();
 	}
 
 	// ----------------------------------------------------------------------------------------
 
-	if (shaderTexLineAlwaysVisible)
+	CShaderTechniquePtr shaderTechTexLineAlwaysVisible = GetOverlayLineShaderTechnique(m->defsOverlayLineAlwaysVisible);
+	if (shaderTechTexLineAlwaysVisible)
 	{
+		shaderTechTexLineAlwaysVisible->BeginPass();
+
+		CShaderProgramPtr shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
+
 		shaderTexLineAlwaysVisible->Bind();
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
 		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
@@ -459,7 +462,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
 		RenderTexturedOverlayLines(shaderTexLineAlwaysVisible, true);
 
-		shaderTexLineAlwaysVisible->Unbind();
+		shaderTechTexLineAlwaysVisible->EndPass();
 	}
 
 	// ----------------------------------------------------------------------------------------
@@ -506,10 +509,14 @@ void OverlayRenderer::RenderQuadOverlays()
 	if (m->quadBatchMap.empty())
 		return;
 
-	CShaderProgramPtr shader = GetOverlayLineShader(m->defsQuadOverlay);
+	CShaderTechniquePtr shaderTech = GetOverlayLineShaderTechnique(m->defsQuadOverlay);
 
-	if (!shader)
+	if (!shaderTech)
 		return;
+
+	shaderTech->BeginPass();
+
+	CShaderProgramPtr shader = shaderTech->GetShader();
 
 #if !CONFIG2_GLES
 	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
@@ -569,7 +576,7 @@ void OverlayRenderer::RenderQuadOverlays()
 		g_Renderer.GetStats().m_OverlayTris += batchNumQuads*2;
 	}
 
-	shader->Unbind();
+	shaderTech->EndPass();
 
 	// TODO: the shader should probably be responsible for unbinding its textures
 	g_Renderer.BindTexture(1, 0);

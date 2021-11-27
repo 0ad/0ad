@@ -39,14 +39,6 @@ public:
 	~CShaderManager();
 
 	/**
-	 * Load a shader program.
-	 * @param name name of shader XML specification (file is loaded from shaders/${name}.xml)
-	 * @param defines key/value set of preprocessor definitions
-	 * @return loaded program, or null pointer on error
-	 */
-	CShaderProgramPtr LoadProgram(const char* name, const CShaderDefines& defines);
-
-	/**
 	 * Load a shader effect.
 	 * Effects can be implemented via many techniques; this returns the best usable technique.
 	 * @param name name of effect XML specification (file is loaded from shaders/effects/${name}.xml)
@@ -63,10 +55,9 @@ public:
 	/**
 	 * Returns the number of shader effects that are currently loaded.
 	 */
-	size_t GetNumEffectsLoaded();
+	size_t GetNumEffectsLoaded() const;
 
 private:
-
 	struct CacheKey
 	{
 		std::string name;
@@ -113,6 +104,14 @@ private:
 	// Store the set of shaders that need to be reloaded when the given file is modified
 	using HotloadFilesMap = std::unordered_map<VfsPath, std::set<std::weak_ptr<CShaderProgram>, std::owner_less<std::weak_ptr<CShaderProgram> > > >;
 	HotloadFilesMap m_HotloadFiles;
+
+	/**
+	 * Load a shader program.
+	 * @param name name of shader XML specification (file is loaded from shaders/${name}.xml)
+	 * @param defines key/value set of preprocessor definitions
+	 * @return loaded program, or null pointer on error
+	 */
+	CShaderProgramPtr LoadProgram(const char* name, const CShaderDefines& defines);
 
 	bool NewProgram(const char* name, const CShaderDefines& defines, CShaderProgramPtr& program);
 	bool NewEffect(const char* name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
