@@ -395,19 +395,22 @@
         <attribute name="sprite_asc"/>
       </optional>
       <optional>
-        <attribute name="sprite_heading"/>
+        <attribute name="sprite_background"/>
       </optional>
       <optional>
         <attribute name="sprite_bar"/>
       </optional>
       <optional>
-        <attribute name="sprite_background"/>
+        <attribute name="sprite_bar_disabled"/>
       </optional>
       <optional>
         <attribute name="sprite_desc"/>
       </optional>
       <optional>
         <attribute name="sprite_disabled"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_heading"/>
       </optional>
       <optional>
         <attribute name="sprite_list"/>

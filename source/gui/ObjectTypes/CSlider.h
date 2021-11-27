@@ -64,8 +64,8 @@ protected:
 	CGUISimpleSetting<float> m_ButtonSide;
 	CGUISimpleSetting<float> m_MinValue;
 	CGUISimpleSetting<float> m_MaxValue;
-	CGUISimpleSetting<CGUISpriteInstance> m_Sprite;
-	CGUISimpleSetting<CGUISpriteInstance> m_SpriteBar;
+	CGUISimpleSetting<CGUISpriteInstance> m_Sprite, m_SpriteDisabled;
+	CGUISimpleSetting<CGUISpriteInstance> m_SpriteBar, m_SpriteBarDisabled;
 	CGUISimpleSetting<float> m_Value;
 
 private:
