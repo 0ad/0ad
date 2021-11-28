@@ -152,7 +152,9 @@
 	/>
 	<style name="ModernSlider"
 		sprite="ModernSliderButton"
+		sprite_disabled="ModernSliderButtonDisabled"
 		sprite_bar="ModernSliderLine"
+		sprite_bar_disabled="ModernSliderLineDisabled"
 		button_width="20"
 		tooltip_style="tooltipInstant"
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"

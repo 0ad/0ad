@@ -51,21 +51,6 @@
 #include "renderer/VertexArray.h"
 #include "renderer/WaterManager.h"
 
-namespace
-{
-
-CShaderProgramPtr GetDummyShader()
-{
-	const char* shaderName;
-	if (g_RenderingOptions.GetPreferGLSL())
-		shaderName = "glsl/dummy";
-	else
-		shaderName = "arb/dummy";
-	return g_Renderer.GetShaderManager().LoadProgram(shaderName, CShaderDefines());
-}
-
-} // anonymous namespace
-
 /**
  * TerrainRenderer keeps track of which phase it is in, to detect
  * when Submit, PrepareForRendering etc. are called in the wrong order.
@@ -91,7 +76,7 @@ struct TerrainRendererInternals
 	std::vector<CDecalRData*> visibleDecals[CRenderer::CULL_MAX];
 
 	/// Fancy water shader
-	CShaderProgramPtr fancyWaterShader;
+	CShaderTechniquePtr fancyWaterTech;
 
 	CSimulation2* simulation;
 };
@@ -320,14 +305,15 @@ void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderPatches for GLES
 #else
-	CShaderProgramPtr dummyShader = GetDummyShader();
-	dummyShader->Bind();
+
+	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_dummy);
+	dummyTech->BeginPass();
+	CShaderProgramPtr dummyShader = dummyTech->GetShader();
 	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, color);
 
 	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS);
-
-	dummyShader->Unbind();
+	dummyTech->EndPass();
 #endif
 }
 
@@ -377,7 +363,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	CShaderDefines defines = context;
 
 	// If we're using fancy water, make sure its shader is loaded
-	if (!m->fancyWaterShader || WaterMgr->m_NeedsReloading)
+	if (!m->fancyWaterTech || WaterMgr->m_NeedsReloading)
 	{
 		if (WaterMgr->m_WaterRealDepth)
 			defines.Add(str_USE_REAL_DEPTH, str_1);
@@ -388,15 +374,12 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		if (WaterMgr->m_WaterReflection)
 			defines.Add(str_USE_REFLECTION, str_1);
 
-		// haven't updated the ARB shader yet so I'll always load the GLSL
-		/*if (!g_RenderingOptions.GetPreferGLSL() && !superFancy)
-			m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("arb/water_high", defines);
-		else*/
-			m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("glsl/water_high", defines);
+		m->fancyWaterTech = g_Renderer.GetShaderManager().LoadEffect(
+			str_water_high, g_Renderer.GetSystemShaderDefines(), defines);
 
-		if (!m->fancyWaterShader)
+		if (!m->fancyWaterTech)
 		{
-			LOGERROR("Failed to load water shader. Falling back to fixed pipeline water.\n");
+			LOGERROR("Failed to load water shader. Falling back to a simple water.\n");
 			WaterMgr->m_RenderWater = false;
 			return false;
 		}
@@ -456,91 +439,92 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
-	m->fancyWaterShader->Bind();
+	m->fancyWaterTech->BeginPass();
+	CShaderProgramPtr fancyWaterShader = m->fancyWaterTech->GetShader();
 
 	const CCamera& camera = g_Renderer.GetViewCamera();
 
-	m->fancyWaterShader->BindTexture(str_normalMap, WaterMgr->m_NormalMap[curTex]);
-	m->fancyWaterShader->BindTexture(str_normalMap2, WaterMgr->m_NormalMap[nexTex]);
+	fancyWaterShader->BindTexture(str_normalMap, WaterMgr->m_NormalMap[curTex]);
+	fancyWaterShader->BindTexture(str_normalMap2, WaterMgr->m_NormalMap[nexTex]);
 
 	if (WaterMgr->m_WaterFancyEffects)
 	{
-		m->fancyWaterShader->BindTexture(str_waterEffectsTex, WaterMgr->m_FancyTexture);
+		fancyWaterShader->BindTexture(str_waterEffectsTex, WaterMgr->m_FancyTexture);
 	}
 
 	if (WaterMgr->m_WaterRefraction && WaterMgr->m_WaterRealDepth)
 	{
-		m->fancyWaterShader->BindTexture(str_depthTex, WaterMgr->m_RefrFboDepthTexture);
-		m->fancyWaterShader->Uniform(str_projInvTransform, WaterMgr->m_RefractionProjInvMatrix);
-		m->fancyWaterShader->Uniform(str_viewInvTransform, WaterMgr->m_RefractionViewInvMatrix);
+		fancyWaterShader->BindTexture(str_depthTex, WaterMgr->m_RefrFboDepthTexture);
+		fancyWaterShader->Uniform(str_projInvTransform, WaterMgr->m_RefractionProjInvMatrix);
+		fancyWaterShader->Uniform(str_viewInvTransform, WaterMgr->m_RefractionViewInvMatrix);
 	}
 
 	if (WaterMgr->m_WaterRefraction)
-		m->fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
+		fancyWaterShader->BindTexture(str_refractionMap, WaterMgr->m_RefractionTexture);
 	if (WaterMgr->m_WaterReflection)
-		m->fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
-	m->fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
+		fancyWaterShader->BindTexture(str_reflectionMap, WaterMgr->m_ReflectionTexture);
+	fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
-	m->fancyWaterShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	fancyWaterShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
-	m->fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
+	fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
 	// TODO: check that this rotates in the right direction.
 	CMatrix3D skyBoxRotation;
 	skyBoxRotation.SetIdentity();
 	skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
-	m->fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
+	fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
 
 	if (WaterMgr->m_WaterRefraction)
-		m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
+		fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
 	if (WaterMgr->m_WaterReflection)
-		m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
+		fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
 
-	m->fancyWaterShader->Uniform(str_ambient, lightEnv.m_AmbientColor);
-	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
-	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
-	m->fancyWaterShader->Uniform(str_color, WaterMgr->m_WaterColor);
-	m->fancyWaterShader->Uniform(str_tint, WaterMgr->m_WaterTint);
-	m->fancyWaterShader->Uniform(str_waviness, WaterMgr->m_Waviness);
-	m->fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);
-	m->fancyWaterShader->Uniform(str_windAngle, WaterMgr->m_WindAngle);
-	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
-	m->fancyWaterShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
+	fancyWaterShader->Uniform(str_ambient, lightEnv.m_AmbientColor);
+	fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
+	fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
+	fancyWaterShader->Uniform(str_color, WaterMgr->m_WaterColor);
+	fancyWaterShader->Uniform(str_tint, WaterMgr->m_WaterTint);
+	fancyWaterShader->Uniform(str_waviness, WaterMgr->m_Waviness);
+	fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);
+	fancyWaterShader->Uniform(str_windAngle, WaterMgr->m_WindAngle);
+	fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
+	fancyWaterShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
 
-	m->fancyWaterShader->Uniform(str_cameraPos, camera.GetOrientation().GetTranslation());
+	fancyWaterShader->Uniform(str_cameraPos, camera.GetOrientation().GetTranslation());
 
-	m->fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
-	m->fancyWaterShader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
-	m->fancyWaterShader->Uniform(str_time, (float)time);
-	m->fancyWaterShader->Uniform(str_screenSize, (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
+	fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
+	fancyWaterShader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
+	fancyWaterShader->Uniform(str_time, (float)time);
+	fancyWaterShader->Uniform(str_screenSize, (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
 
 	if (WaterMgr->m_WaterType == L"clap")
 	{
-		m->fancyWaterShader->Uniform(str_waveParams1, 30.0f,1.5f,20.0f,0.03f);
-		m->fancyWaterShader->Uniform(str_waveParams2, 0.5f,0.0f,0.0f,0.0f);
+		fancyWaterShader->Uniform(str_waveParams1, 30.0f,1.5f,20.0f,0.03f);
+		fancyWaterShader->Uniform(str_waveParams2, 0.5f,0.0f,0.0f,0.0f);
 	}
 	else if (WaterMgr->m_WaterType == L"lake")
 	{
-		m->fancyWaterShader->Uniform(str_waveParams1, 8.5f,1.5f,15.0f,0.03f);
-		m->fancyWaterShader->Uniform(str_waveParams2, 0.2f,0.0f,0.0f,0.07f);
+		fancyWaterShader->Uniform(str_waveParams1, 8.5f,1.5f,15.0f,0.03f);
+		fancyWaterShader->Uniform(str_waveParams2, 0.2f,0.0f,0.0f,0.07f);
 	}
 	else
 	{
-		m->fancyWaterShader->Uniform(str_waveParams1, 15.0f,0.8f,10.0f,0.1f);
-		m->fancyWaterShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.3f);
+		fancyWaterShader->Uniform(str_waveParams1, 15.0f,0.8f,10.0f,0.1f);
+		fancyWaterShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.3f);
 	}
 
 	if (shadow)
-		shadow->BindTo(m->fancyWaterShader);
+		shadow->BindTo(fancyWaterShader);
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWater(m->fancyWaterShader);
+		data->RenderWater(fancyWaterShader);
 	}
-	m->fancyWaterShader->Unbind();
+	m->fancyWaterTech->EndPass();
 
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_BLEND);

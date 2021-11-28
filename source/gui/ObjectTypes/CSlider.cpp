@@ -31,7 +31,9 @@ CSlider::CSlider(CGUI& pGUI)
 	  m_MaxValue(this, "max_value"),
 	  m_MinValue(this, "min_value"),
 	  m_Sprite(this, "sprite"),
+	  m_SpriteDisabled(this, "sprite_disabled"),
 	  m_SpriteBar(this, "sprite_bar"),
+	  m_SpriteBarDisabled(this, "sprite_bar_disabled"),
 	  m_Value(this, "value")
 {
 	m_Value.Set(Clamp<float>(m_Value, m_MinValue, m_MaxValue), false);
@@ -104,11 +106,11 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 
 void CSlider::Draw(CCanvas2D& canvas)
 {
-	CRect slider_line(m_CachedActualSize);
-	slider_line.left += m_ButtonSide / 2.0f;
-	slider_line.right -= m_ButtonSide / 2.0f;
-	m_pGUI.DrawSprite(m_SpriteBar, canvas, slider_line);
-	m_pGUI.DrawSprite(m_Sprite, canvas, GetButtonRect());
+	CRect sliderLine(m_CachedActualSize);
+	sliderLine.left += m_ButtonSide / 2.0f;
+	sliderLine.right -= m_ButtonSide / 2.0f;
+	m_pGUI.DrawSprite(IsEnabled() ? m_SpriteBar : m_SpriteBarDisabled, canvas, sliderLine);
+	m_pGUI.DrawSprite(IsEnabled() ? m_Sprite : m_SpriteDisabled, canvas, GetButtonRect());
 }
 
 void CSlider::UpdateValue()
