@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-11-08 15:02+0000\n"
-"Last-Translator: Csaba Balázs\n"
+"PO-Revision-Date: 2021-11-28 11:01+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +96,7 @@ msgstr "Agogé"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Nagyvárosi szakaszban válik elérhetővé."
+msgstr "A nagyvárosi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
@@ -137,7 +137,7 @@ msgstr "Íjász képzése"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Városi szakaszban válik elérhetővé."
+msgstr "A városi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
@@ -162,11 +162,11 @@ msgstr "Íjászhagyomány"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Falusi szakaszban válik elérhetővé."
+msgstr "A falusi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
-msgstr "+10 hatótávolság az íjászoknak."
+msgstr "+10 hatótávolság az íjászoknak"
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -175,7 +175,7 @@ msgstr "Monumentális építészet"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "+20% építési idő, +20% életerő és +20% foglalási pont a polgári épületeknél."
+msgstr "+20% építési idő, +20% életerő és +20% foglalási pont a polgári építményeknek"
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -213,7 +213,7 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "Katonáknak, ostromgépeknek és hajóknak +25% támadási sebzés."
+msgstr "+25% sebzés a katonáknak, az ostromgépeknek és a hajóknak"
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -228,7 +228,7 @@ msgstr "Sorozás"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
-msgstr "-10% csoportos kiképzési idő a laktanyákban."
+msgstr "–10% csoportos kiképzési idő a laktanyákban"
 
 #: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
@@ -242,7 +242,7 @@ msgstr "Lovasság besorozása"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr "-10% kiképzési idő a lovasságnak."
+msgstr "–10% kiképzési idő a lovasoknak"
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -254,7 +254,7 @@ msgstr "Lótenyésztés"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr "+10% életerő a lovasságnak."
+msgstr "+10% életerő a lovasoknak"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -266,7 +266,7 @@ msgstr "Lóverseny"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "+10% mozgási sebesség a lovasságnak"
+msgstr "+10% mozgási sebesség a lovasoknak"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -281,7 +281,7 @@ msgstr "Hármas falak"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "+100% építési idő, +100% kőigény és +200% életerő a városfalaknak"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -293,7 +293,7 @@ msgstr "Faépületek"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr ""
+msgstr "−20% építési idő, −20% életerő, és −20% foglalási pont az építményeknek"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -307,7 +307,7 @@ msgstr "Kiváló lovasság"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr "+10% közelharci sebzés a lovasságnál."
+msgstr "+10% közelharci sebzés a lovasoknak"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -335,7 +335,7 @@ msgstr "Elefánthagyomány"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr "-30% kiképzési idő az elefántoknál."
+msgstr "–30% kiképzési idő az elefántoknak"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -372,7 +372,7 @@ msgstr "Fa falak"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "-20% építési idő és -20% életerő a városfalaknál."
+msgstr "–20% építési idő és –20% életerő a városfalaknak"
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -402,7 +402,7 @@ msgstr "Napon szárított vályogtéglák"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "Házaknak és gazdasági épületeknek -40% fa és életerő."
+msgstr "–40% faigény és életerő a házaknak és a gazdasági épületeknek"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -416,7 +416,7 @@ msgstr "Gyarmatosítás"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr ""
+msgstr "−25% építési idő és nyersanyagigény a polgári építményeknek"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -447,7 +447,7 @@ msgstr "Hal sózása"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "+20 élelem kapacitás a halászcsónakoknál."
+msgstr "+20 élelemkapacitás a halászcsónakoknak"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
@@ -459,7 +459,7 @@ msgstr "Halászháló"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr "+30% halgyűjtési sebesség a halászcsónakoknak."
+msgstr "+30% halgyűjtési sebesség a halászcsónakoknak"
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -497,7 +497,7 @@ msgstr "Kosarak"
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr "+5 nyersanyag kapacitás a munkásoknál."
+msgstr "+5 nyersanyag-kapacitás a munkásoknak"
 
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 msgid ""
@@ -530,7 +530,7 @@ msgstr "Trágya"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "+20% gabonabegyűjtési sebesség a munkásoknál."
+msgstr "+20% gabonabegyűjtési sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -544,7 +544,7 @@ msgstr "Betakarítógép"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "+10% gabonabegyűjtési sebesség a munkásoknál."
+msgstr "+10% gabonabegyűjtési sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -578,7 +578,7 @@ msgstr "Vas fejszefejek"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr "+25% fagyűjtési sebesség a munkásoknál."
+msgstr "+25% fagyűjtési sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -636,7 +636,7 @@ msgstr "Tárnás bányászat"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "+50% fémgyűjtési sebesség a munkásoknál."
+msgstr "+25% fémgyűjtési sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -695,7 +695,7 @@ msgstr "Vesszőkosarak"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "+50% gyümölcsbegyűjtési sebesség a munkásoknál."
+msgstr "+50% gyümölcsbegyűjtési sebesség a munkásoknak"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -717,7 +717,7 @@ msgstr "Olimpiai panteon"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr "Gyógyítóknak +5 gyógyítási hatótávolság."
+msgstr "+5 gyógyítási hatótávolság a gyógyítóknak"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -747,7 +747,7 @@ msgstr "Sphagia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr "−25% gyógyítási sebesség a gyógyítóknál."
+msgstr "−20% gyógyítási idő a gyógyítóknak"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -774,7 +774,7 @@ msgstr "A szövőszék"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr "Női polgároknak +100% életerő."
+msgstr "+100% életerő a női polgároknak"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -801,7 +801,7 @@ msgstr "Görög metropolisz"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "A Városházáknak +100% életerő és foglalási pont, dupla alapértelmezett nyílvessző."
+msgstr "+100% életerő és foglalási pont a városházáknak, továbbá kétszer annyi nyílvessző alapértelmezetten"
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
@@ -827,7 +827,7 @@ msgstr "Halhatatlanok"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr "-50% kiképzési idő, de -10% életerő a halhatatlanoknak."
+msgstr "–50% kiképzési idő, de –10% életerő a halhatatlanoknak"
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -841,7 +841,7 @@ msgstr "Gyalogság besorozása"
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."
-msgstr "-10% kiképzési idő a gyalogságnak."
+msgstr "–10% kiképzési idő a gyalogosoknak"
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -920,7 +920,7 @@ msgstr "Daphné ünnepe"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "–10% kiképzési idő a bajnokoknál."
+msgstr "–20% kiképzési idő a bajnok egységeknek"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -944,7 +944,7 @@ msgstr "Egy nyüzsgő városból igazi metropolisszá fejlődik a modern technol
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
-msgstr ""
+msgstr "Három városi szintű építményt igényel"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -996,7 +996,7 @@ msgstr "Egy kis faluból nyüzsgő várossá fejlődés, készen állva a gyors 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
-msgstr "Öt falusi épület szükséges."
+msgstr "Öt falusi szintű építményt igényel"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1058,7 +1058,7 @@ msgstr "Peristylium"
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr "Házaknak +20% népesség bónusz."
+msgstr "+20% népesség bónusz a házaknak"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1097,7 +1097,7 @@ msgstr "Hajómérnökök"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr "-20% gyártási idő a hajóknál."
+msgstr "–20% gyártási idő a hajóknak"
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1109,7 +1109,7 @@ msgstr "Megerősített hajótest"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
-msgstr "Hajóknak +25% életerő."
+msgstr "+25% életerő a hajóknak"
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1123,7 +1123,7 @@ msgstr "Tapasztalt legénység"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr ""
+msgstr "+10% mozgási sebesség a hajóknak"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1135,7 +1135,7 @@ msgstr "Fejlett ostrom"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "+25% zúzás sebzés az ostromgépeknél."
+msgstr "+25% zúzósebzés az ostromgépeknek"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1172,7 +1172,7 @@ msgstr "Páncél bádogozás"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr "Faltörő kosoknak és ostromtornyoknak +25% életerő."
+msgstr "+25% életerő a faltörő kosoknak és az ostromtornyoknak"
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
@@ -1184,7 +1184,7 @@ msgstr "Hadmérnökök"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr "Ostromgépeknek -40% kicsomagolási és becsomagolási idő."
+msgstr "–40% kicsomagolási és becsomagolási idő az ostromgépeknek"
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1228,7 +1228,7 @@ msgstr "Pugio"
 #: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
 msgid "Soldiers +15% melee attack damage."
-msgstr "Katonáknak +15% közelharci sebzés."
+msgstr "+15% közelharci sebzés a katonáknak"
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -1246,11 +1246,11 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
-msgstr ""
+msgstr "Cementálás"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr ""
+msgstr "+20% közelharci sebzés a katonáknak"
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
@@ -1288,7 +1288,7 @@ msgstr ""
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr "Katonáknak +15% távolsági támadási sebzés."
+msgstr "+15% távolsági sebzés a katonáknak"
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
@@ -1308,7 +1308,7 @@ msgstr "Háromélű nyílhegyek"
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
 msgid "Soldiers +20% ranged attack damage."
-msgstr ""
+msgstr "+20% távolsági sebzés a katonáknak"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1333,7 +1333,7 @@ msgstr "Spolas"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr "Katonáknak +1 vágási ellenállás."
+msgstr "+1 vágással szembeni ellenállás a katonáknak"
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr ""
+msgstr "+2 vágással szembeni ellenállás a katonáknak"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
@@ -1376,7 +1376,7 @@ msgstr "Fa pajzs"
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
 msgid "Soldiers +1 pierce resistance."
-msgstr ""
+msgstr "+1 szúrással szembeni ellenállás a katonáknak"
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
@@ -1396,7 +1396,7 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr ""
+msgstr "+2 szúrással szembeni ellenállás a katonáknak"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1418,7 +1418,7 @@ msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr "-10% csoportos kiképzési idő az istállóban."
+msgstr "–10% csoportos kiképzési idő az istállókban"
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1444,7 +1444,7 @@ msgstr "Erős alapok"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr "+25% életerő a tornyoknál."
+msgstr "+25% életerő a tornyoknak"
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1504,7 +1504,7 @@ msgstr "Kereskedelmi egyezmény"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr "+10% nemzetközi kereskedelmi bónusz."
+msgstr "+10% nemzetközi kereskedelmi bónusz"
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1534,7 +1534,7 @@ msgstr "Kereskedőkaraván  "
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr "+50% életerő a szárazföldi kereskedőknek."
+msgstr "+50% életerő a szárazföldi kereskedőknek"
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1560,13 +1560,13 @@ msgstr "+20% kiképzési idő, +25% életerő, +0,7 elfoglalási támadási erő
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr "−10% nyersanyagköltség, kiképzési idő, életerő, sebzés és zsákmányolás az afrikai elefántoknál."
+msgstr "−10% nyersanyagigény, kiképzési idő, életerő, sebzés és zsákmány az afrikai elefántoknak"
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr "+10% nyersanyagköltség, kiképzési idő, életerő, sebzés és zsákmányolás az indiai elefántoknál."
+msgstr "+10% nyersanyagigény, kiképzési idő, életerő, sebzés és zsákmány az indiai elefántoknak"
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
