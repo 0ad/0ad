@@ -411,8 +411,8 @@ void CParamNode::ConstructJSVal(const ScriptRequest& rq, JS::MutableHandleValue 
 	// If the node has a string too, add that as an extra property
 	if (!m_Value.empty())
 	{
-		utf16string text(m_Value.begin(), m_Value.end());
-		JS::RootedString str(rq.cx, JS_AtomizeAndPinUCStringN(rq.cx, reinterpret_cast<const char16_t*>(text.data()), text.length()));
+		std::u16string text(m_Value.begin(), m_Value.end());
+		JS::RootedString str(rq.cx, JS_AtomizeAndPinUCStringN(rq.cx, text.c_str(), text.length()));
 		if (!str)
 		{
 			ret.setUndefined();

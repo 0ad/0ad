@@ -27,7 +27,6 @@
 #include "maths/FixedVector3D.h"
 #include "maths/Rect.h"
 #include "ps/CLogger.h"
-#include "ps/utf16string.h"
 #include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/system/IComponent.h"

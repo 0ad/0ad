@@ -20,8 +20,7 @@
 
 #include "IDeserializer.h"
 
-#include "ps/utf16string.h"
-
+#include <string>
 #include <vector>
 
 class CStdDeserializer : public IDeserializer
@@ -48,7 +47,7 @@ protected:
 private:
 	JS::Value ReadScriptVal(const char* name, JS::HandleObject preexistingObject);
 	void ReadStringLatin1(const char* name, std::vector<JS::Latin1Char>& str);
-	void ReadStringUTF16(const char* name, utf16string& str);
+	void ReadStringUTF16(const char* name, std::u16string& str);
 
 	virtual void AddScriptBackref(JS::HandleObject obj);
 	virtual void GetScriptBackref(size_t tag, JS::MutableHandleObject ret);

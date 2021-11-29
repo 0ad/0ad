@@ -50,7 +50,6 @@ enum PS_TRIM_MODE
 #define CSTR_H_A
 #endif
 
-#include "ps/utf16string.h"
 #include "ps/CStrForward.h"
 
 #include <string>
@@ -81,11 +80,11 @@ public:
 	static CStr Repeat(const CStr& str, size_t reps);
 
 	/**
-	 * Construction from utf16strings.
+	 * Construction from u16strings.
 	 *
-	 * @param utf16string String utf16string to be used for initialization.
+	 * @param u16string String u16string to be used for initialization.
 	 **/
-	explicit CStr(const utf16string& str) : StrBase(str.begin(), str.end()) {}
+	explicit CStr(const std::u16string& str) : StrBase(str.begin(), str.end()) {}
 
 	// Conversion to/from UTF-8, encoded in a CStr8.
 	// Invalid bytes/characters (e.g. broken UTF-8, and Unicode characters
@@ -324,8 +323,8 @@ public:
 	 **/
 	CStr Pad(PS_TRIM_MODE mode, size_t len) const;
 
-	// Conversion to utf16string
-	utf16string utf16() const { return utf16string(begin(), end()); }
+	// Conversion to u16string
+	std::u16string utf16() const { return std::u16string(begin(), end()); }
 
 	// Calculates a hash of the string's contents
 	size_t GetHashCode() const;
