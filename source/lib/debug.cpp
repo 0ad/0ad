@@ -339,7 +339,7 @@ fail:
 // implemented via sys_display_msg; see documentation there.
 void debug_DisplayMessage(const wchar_t* caption, const wchar_t* msg)
 {
-	sys_display_msg(ah_translate(caption), ah_translate(msg));
+	sys_display_msg(caption, msg);
 }
 
 
@@ -429,8 +429,6 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 		return ER_CONTINUE;
 
 	// fix up params
-	// .. translate
-	description = ah_translate(description);
 	// .. caller supports a suppress flag; set the corresponding flag so that
 	//    the error display implementation enables the Suppress option.
 	if(suppress)

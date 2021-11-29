@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,11 +20,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * hooks to allow customization / app-specific behavior.
- */
-
 #include "precompiled.h"
+
 #include "lib/app_hooks.h"
 
 #include "lib/sysdep/sysdep.h"
@@ -34,11 +31,6 @@
 //-----------------------------------------------------------------------------
 // default implementations
 //-----------------------------------------------------------------------------
-
-static void def_override_gl_upload_caps()
-{
-}
-
 
 static const OsPath& def_get_log_dir()
 {
@@ -51,31 +43,6 @@ static const OsPath& def_get_log_dir()
 
 static void def_bundle_logs(FILE* UNUSED(f))
 {
-}
-
-
-static const wchar_t* def_translate(const wchar_t* text)
-{
-	return text;
-}
-
-
-static void def_translate_free(const wchar_t* UNUSED(text))
-{
-	// no-op - translate() doesn't own the pointer.
-}
-
-
-static void def_log(const wchar_t* text)
-{
-#if ICC_VERSION
-#pragma warning(push)
-#pragma warning(disable:181)    // "invalid printf conversion" - but wchar_t* and %ls are legit
-#endif
-	printf("%ls", text); // must not use wprintf, since stdout on Unix is byte-oriented
-#if ICC_VERSION
-#pragma warning(pop)
-#endif
 }
 
 
@@ -95,12 +62,8 @@ static ErrorReactionInternal def_display_error(const wchar_t* UNUSED(text), size
 // having to check whether their function pointer is valid.
 static AppHooks ah =
 {
-	def_override_gl_upload_caps,
 	def_get_log_dir,
 	def_bundle_logs,
-	def_translate,
-	def_translate_free,
-	def_log,
 	def_display_error
 };
 
@@ -117,12 +80,8 @@ void app_hooks_update(AppHooks* new_ah)
 	ENSURE(new_ah);
 
 #define OVERRIDE_IF_NONZERO(HOOKNAME) if(new_ah->HOOKNAME) ah.HOOKNAME = new_ah->HOOKNAME;
-	OVERRIDE_IF_NONZERO(override_gl_upload_caps)
 	OVERRIDE_IF_NONZERO(get_log_dir)
 	OVERRIDE_IF_NONZERO(bundle_logs)
-	OVERRIDE_IF_NONZERO(translate)
-	OVERRIDE_IF_NONZERO(translate_free)
-	OVERRIDE_IF_NONZERO(log)
 	OVERRIDE_IF_NONZERO(display_error)
 #undef OVERRIDE_IF_NONZERO
 }
@@ -143,12 +102,6 @@ bool app_hook_was_redefined(size_t offset_in_struct)
 // (boilerplate code; hides details of how to call the app hook)
 //-----------------------------------------------------------------------------
 
-void ah_override_gl_upload_caps()
-{
-	if(ah.override_gl_upload_caps)
-		ah.override_gl_upload_caps();
-}
-
 const OsPath& ah_get_log_dir()
 {
 	return ah.get_log_dir();
@@ -157,21 +110,6 @@ const OsPath& ah_get_log_dir()
 void ah_bundle_logs(FILE* f)
 {
 	ah.bundle_logs(f);
-}
-
-const wchar_t* ah_translate(const wchar_t* text)
-{
-	return ah.translate(text);
-}
-
-void ah_translate_free(const wchar_t* text)
-{
-	ah.translate_free(text);
-}
-
-void ah_log(const wchar_t* text)
-{
-	ah.log(text);
 }
 
 ErrorReactionInternal ah_display_error(const wchar_t* text, size_t flags)

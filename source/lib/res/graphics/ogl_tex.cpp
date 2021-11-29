@@ -688,7 +688,7 @@ static int have_s3tc = -1;
 static int have_anistropy = -1;
 
 // override the default decision and force/disallow use of the
-// given feature. should be called from ah_override_gl_upload_caps.
+// given feature.
 void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 {
 	ENSURE(allow == OGL_TEX_ENABLE || allow == OGL_TEX_DISABLE);
@@ -743,21 +743,12 @@ static void detect_gl_upload_caps()
 		have_anistropy = ogl_HaveExtension("GL_EXT_texture_filter_anisotropic");
 	}
 
-	// allow app hook to make ogl_tex_override calls
-	if(AH_IS_DEFINED(override_gl_upload_caps))
-	{
-		ah_override_gl_upload_caps();
-	}
-	// no app hook defined - have our own crack at blacklisting some hardware.
-	else
-	{
-		const std::wstring cardName = gfx::CardName();
-		// rationale: janwas's laptop's S3 card blows up if S3TC is used
-		// (oh, the irony). it'd be annoying to have to share this between all
-		// projects, hence this default implementation here.
-		if(cardName == L"S3 SuperSavage/IXC 1014")
-			ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
-	}
+	const std::wstring cardName = gfx::CardName();
+	// rationale: janwas's laptop's S3 card blows up if S3TC is used
+	// (oh, the irony). it'd be annoying to have to share this between all
+	// projects, hence this default implementation here.
+	if(cardName == L"S3 SuperSavage/IXC 1014")
+		ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
 }
 
 
