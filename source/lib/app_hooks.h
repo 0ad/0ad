@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -97,19 +97,6 @@ extern const wchar_t*, translate, (const wchar_t* text), (text), return)
 // the details of how exactly to do this.
 
 /**
- * override default decision on using OpenGL extensions relating to
- * texture upload.
- *
- * this should call ogl_tex_override to disable/force their use if the
- * current card/driver combo respectively crashes or
- * supports it even though the extension isn't advertised.
- *
- * the default implementation works but is hardwired in code and therefore
- * not expandable.
- **/
-extern void ah_override_gl_upload_caps();
-
-/**
  * return path to directory into which crash dumps should be written.
  *
  * must be callable at any time - in particular, before VFS init.
@@ -132,34 +119,6 @@ extern const OsPath& ah_get_log_dir();
 extern void ah_bundle_logs(FILE* f);
 
 /**
- * translate text to the current locale.
- *
- * @param text to translate.
- * @return pointer to localized text; must be freed via translate_free.
- *
- * the default implementation just returns the pointer unchanged.
- **/
-extern const wchar_t* ah_translate(const wchar_t* text);
-
-/**
- * free text that was returned by translate.
- *
- * @param text to free.
- *
- * the default implementation does nothing.
- **/
-extern void ah_translate_free(const wchar_t* text);
-
-/**
- * write text to the app's log.
- *
- * @param text to write.
- *
- * the default implementation uses stdout.
- **/
-extern void ah_log(const wchar_t* text);
-
-/**
  * display an error dialog, thus overriding sys_display_error.
  *
  * @param text error message.
@@ -178,12 +137,8 @@ extern ErrorReactionInternal ah_display_error(const wchar_t* text, size_t flags)
  **/
 struct AppHooks
 {
-	void (*override_gl_upload_caps)();
 	const OsPath& (*get_log_dir)();
 	void (*bundle_logs)(FILE* f);
-	const wchar_t* (*translate)(const wchar_t* text);
-	void (*translate_free)(const wchar_t* text);
-	void (*log)(const wchar_t* text);
 	ErrorReactionInternal (*display_error)(const wchar_t* text, size_t flags);
 };
 
@@ -206,4 +161,4 @@ extern bool app_hook_was_redefined(size_t offset_in_struct);
 // name is identifier of the function pointer within AppHooks to test.
 #define AH_IS_DEFINED(name) app_hook_was_redefined(offsetof(AppHooks, name))
 
-#endif	// #ifndef INCLUDED_APP_HOOKS
+#endif	// INCLUDED_APP_HOOKS

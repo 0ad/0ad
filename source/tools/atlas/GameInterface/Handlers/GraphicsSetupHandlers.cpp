@@ -56,7 +56,7 @@ InputProcessor g_Input;
 double last_user_activity;
 
 // see comment in GameLoop.cpp about ah_display_error before using INIT_HAVE_DISPLAY_ERROR
-const int g_InitFlags = INIT_HAVE_VMODE|INIT_NO_GUI;
+const int g_InitFlags = INIT_HAVE_VMODE | INIT_NO_GUI;
 
 MESSAGEHANDLER(Init)
 {
@@ -65,7 +65,7 @@ MESSAGEHANDLER(Init)
 	g_Quickstart = true;
 
 	// Mount mods if there are any specified as command line parameters
-	if (!Init(g_AtlasGameLoop->args, g_InitFlags | INIT_MODS|INIT_MODS_PUBLIC))
+	if (!Init(g_AtlasGameLoop->args, g_InitFlags | INIT_MODS| INIT_MODS_PUBLIC))
 	{
 		// There are no mods specified on the command line,
 		// but there are in the config file, so mount those.

@@ -320,7 +320,7 @@ enum OglTexAllow
 
 /**
 * Override the default decision and force/disallow use of the
-* given feature. Typically called from ah_override_gl_upload_caps.
+* given feature.
 *
 * @param what Feature to influence.
 * @param allow Disable/enable flag.

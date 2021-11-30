@@ -21,11 +21,12 @@
 
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
-#include "ps/utf16string.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptExceptions.h"
 #include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/ScriptTypes.h"
+
+#include <string>
 
 // Ignore warnings in SM headers.
 #if GCC_VERSION || CLANG_VERSION
@@ -47,8 +48,8 @@
 bool Script::ParseJSON(const ScriptRequest& rq, const std::string& string_utf8, JS::MutableHandleValue out)
 {
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
-	utf16string string(attrsW.begin(), attrsW.end());
-	if (JS_ParseJSON(rq.cx, reinterpret_cast<const char16_t*>(string.c_str()), (u32)string.size(), out))
+	std::u16string string(attrsW.begin(), attrsW.end());
+	if (JS_ParseJSON(rq.cx, string.c_str(), (u32)string.size(), out))
 		return true;
 
 	ScriptException::CatchPending(rq);
@@ -85,7 +86,7 @@ struct Stringifier
 {
 	static bool callback(const char16_t* buf, u32 len, void* data)
 	{
-		utf16string str(buf, buf+len);
+		std::u16string str(buf, buf+len);
 		std::wstring strw(str.begin(), str.end());
 
 		Status err; // ignore Unicode errors

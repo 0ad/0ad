@@ -214,14 +214,14 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 				ReadStringLatin1("prop name", propname);
 				JS::RootedValue propval(rq.cx, ReadScriptVal("prop value", nullptr));
 
-				utf16string prp(propname.begin(), propname.end());;
+				std::u16string prp(propname.begin(), propname.end());;
 // TODO: Should ask upstream about getting a variant of JS_SetProperty with a length param.
 				if (!JS_SetUCProperty(rq.cx, obj, (const char16_t*)prp.data(), prp.length(), propval))
 					throw PSERROR_Deserialize_ScriptError();
 			}
 			else
 			{
-				utf16string propname;
+				std::u16string propname;
 				ReadStringUTF16("prop name", propname);
 				JS::RootedValue propval(rq.cx, ReadScriptVal("prop value", nullptr));
 
@@ -441,7 +441,7 @@ void CStdDeserializer::ReadStringLatin1(const char* name, std::vector<JS::Latin1
 	Get(name, (u8*)str.data(), len);
 }
 
-void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
+void CStdDeserializer::ReadStringUTF16(const char* name, std::u16string& str)
 {
 	uint32_t len;
 	NumberU32_Unbounded("string length", len);
@@ -471,7 +471,7 @@ void CStdDeserializer::ScriptString(const char* name, JS::MutableHandleString ou
 	}
 	else
 	{
-		utf16string str;
+		std::u16string str;
 		ReadStringUTF16(name, str);
 
 		out.set(JS_NewUCStringCopyN(rq.cx, (const char16_t*)str.data(), str.length()));

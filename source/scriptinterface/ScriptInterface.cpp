@@ -29,7 +29,6 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
-#include "ps/utf16string.h"
 
 #include <map>
 #include <string>

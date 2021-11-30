@@ -24,9 +24,10 @@
 #include "graphics/Entity.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/Vector2D.h"
-#include "ps/utf16string.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+
+#include <string>
 
 // Catch the raised exception right away to ensure the stack trace gets printed.
 #define FAIL(msg) STMT(ScriptException::Raise(rq, msg); ScriptException::CatchPending(rq); return false)
@@ -222,8 +223,8 @@ template<> void Script::ToJSVal<u32>(const ScriptRequest& UNUSED(rq), JS::Mutabl
 
 template<> void Script::ToJSVal<std::wstring>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const std::wstring& val)
 {
-	utf16string utf16(val.begin(), val.end());
-	JS::RootedString str(rq.cx, JS_NewUCStringCopyN(rq.cx, reinterpret_cast<const char16_t*> (utf16.c_str()), utf16.length()));
+	std::u16string utf16(val.begin(), val.end());
+	JS::RootedString str(rq.cx, JS_NewUCStringCopyN(rq.cx, utf16.c_str(), utf16.length()));
 	if (str)
 		ret.setString(str);
 	else

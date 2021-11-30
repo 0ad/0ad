@@ -52,6 +52,10 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Denna karta kommer ge dig en grundläggande genomgång för att starta spelet "
+"effektivt. Tidigast i spelet är det viktigaste att samla resurser så snabbt "
+"som möjligt för att senare kunna skapa trupper. Varning: Detta går väldigt "
+"snabbt i början. Var beredd på att köra genomgången flera gånger."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -87,7 +91,7 @@ msgstr "Tillgänglig"
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Felmeddelande vid laddning av kampanj %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
@@ -131,6 +135,7 @@ msgstr "Filen kan ej laddas"
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
+"Är du säker på att du vill radera sparning %s? Denna åtgärd kan ej ångras."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -155,7 +160,7 @@ msgstr "Inga pågående kampanjer."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Namn på sparat spel:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23

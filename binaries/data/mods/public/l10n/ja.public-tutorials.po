@@ -8,13 +8,14 @@
 # Takaki IEKURA <tacostea@gmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # Jun Furukawa <junnik@icloud.com>, 2021
+# Neil Gordon, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Jun Furukawa <junnik@icloud.com>, 2021\n"
+"Last-Translator: Neil Gordon, 2021\n"
 "Language-Team: Japanese (https://www.transifex.com/wildfire-games/teams/17418/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,20 +33,22 @@ msgid ""
 "that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"まず女性市民を左クリックしてから、彼女に食料を採集させるよう、ベリーの茂みを右クリックしてください。女性市民は他のユニットより速く青果を採集できます。"
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
 "Select the Citizen Soldier, right-click on a tree near the Civic Center to "
 "begin gathering wood. Citizen Soldiers gather wood faster than Female "
 "Citizens."
-msgstr ""
+msgstr "民兵を選択してから、町の中心の近くにある木を右クリックして木材を採集しましょう。民兵は女性市民より速く木材を採集できます。"
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
 msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
-msgstr "町の中心の建物を選択し、%(hotkey)sを押しながら重装歩兵のアイコンを１回クリックすることで、重装歩兵をまとめて訓練します。"
+msgstr ""
+"町の中心の建物を選択してから、%(hotkey)sを押しながら重装歩兵のアイコンを一度クリックすることで、重装歩兵をまとめて訓練してください。"
 
 #: maps/tutorials/introductory_tutorial.js:37
 #: maps/tutorials/introductory_tutorial.js:79
@@ -54,18 +57,18 @@ msgstr "町の中心の建物を選択し、%(hotkey)sを押しながら重装�
 msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
-msgstr "複数のユニットを生産する時はクリックするときに一括トレーニングホットキーを押すことを忘れないでください。"
+msgstr "複数のユニットを作る際、一括訓練のホットキーを押しながらクリックすることを覚えておくといいです。"
 
 #: maps/tutorials/introductory_tutorial.js:38
 #: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr " 重装歩兵アイコンをクリックしてください。 "
+msgstr " 重装歩兵のアイコンをクリックしてください。 "
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle Female Citizens and build a House nearby by selecting "
 "the House icon. Place the House by left-clicking on a piece of land."
-msgstr ""
+msgstr "2人の手の空いた女性市民を選択し、家のアイコンを選択して近くで家を建てさせてください。家の配置は、地面を左クリックすることで行います。"
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
@@ -73,13 +76,14 @@ msgid ""
 "build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
 msgstr ""
+"訓練が終わる次第、新たな重装歩兵を選択し、近場の木が何本も生えている傍らに倉庫を建てさせてください。完成すると彼らは伐採を始めることになります。"
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
 msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
-msgstr "%(hotkey)sを押しながら町の中心の散兵アイコンをクリックすると散兵を一括で訓練することが出来ます。"
+msgstr "%(hotkey)sを押しながら町の中心の散兵アイコンをクリックして、散兵を一括訓練してください。"
 
 #: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
