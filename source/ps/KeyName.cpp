@@ -24,6 +24,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CStr.h"
 
+#include <algorithm>
 #include <unordered_map>
 #include <vector>
 
