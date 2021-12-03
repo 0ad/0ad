@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-24 19:00+0000\n"
+"PO-Revision-Date: 2021-12-03 04:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: gui/common/OverlayCounterFPS.js:28
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr "C/s: %(fps)4s"
+msgstr "Q/s: %(fps)4s"
 
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
@@ -34,12 +34,12 @@ msgstr "%(userDesc)s - %(templateName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Atayu ensin asignar: %(hotkeyName)s"
+msgstr "Atayu sin assignar: %(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Premi %(hotkey)s p'autocompletar nomes de xugadores."
+msgstr "Premi %(hotkey)s p’auto-completar nomes de jogadores."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -48,7 +48,7 @@ msgstr "Tabulador"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr "Abortóse la carga"
+msgstr "Abortóu-se la carga"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -92,14 +92,14 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (ENSIN CONEXÓN)"
+msgstr "%(playerName)s (SIN CONNEXIÓN)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (ENSIN CONEXÓN, %(state)s)"
+msgstr "%(playerName)s (SIN CONNEXIÓN, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -131,26 +131,26 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr "Civilización desconocida"
+msgstr "Civilización disconhocida"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr "apoderóse"
+msgstr "vincéu-se"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "trunfó"
+msgstr "triumphóu"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Ensin cuadriella"
+msgstr "Sin quadriella"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Cuadriella %(team)s"
+msgstr "Quadriella %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -165,25 +165,25 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:171
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] "Espectador"
-msgstr[1] "Espectadores"
+msgstr[0] "Spectador"
+msgstr[1] "Spectadores"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Alcuentru infinitu"
+msgstr "Incœntru infinitu"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "L'alcuentru va siguir ensin vencedor, inda que todos estean vencidos."
+msgstr "L incœntru vai seguir in sin vincedor, magar que todos stean vincidos."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] "Maravía (%(min)s minutu)"
-msgstr[1] "Maravía (%(min)s minutos)"
+msgstr[0] "Marabiya (%(min)s minutu)"
+msgstr[1] "Marabiya (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
@@ -195,31 +195,31 @@ msgstr[1] "Reliquia (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
-msgstr "Númberu de reliquies"
+msgstr "Númeru de reliquies"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Héroes abellugables"
+msgstr "Héroes ablogables"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr "Los héroes pueden abellugase."
+msgstr "Los héroes pœden ablogá-se."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "Héroes expuestos"
+msgstr "Héroes expœstos"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Los héroes nun pueden abellugase y son más mancatibles."
+msgstr "Los héroes nun pœden ablogá-se & son mas vulnerables."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "Cuadrielles fixes"
+msgstr "Quadrielles fixes"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Los xugadores nun pueden cambiar de cuadriella."
+msgstr "Los jogadores nun pœden cambiar de quadriella."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -227,11 +227,11 @@ msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
-msgstr "Los xugadores pueden asociase y embellase contra cuadrelleros."
+msgstr "Los jogadores pœden associá-se & imbellá-se contra quadrelleros."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
-msgstr "A vida o muerte"
+msgstr "A vida ou mœrte"
 
 #: gui/common/gamedescription.js:263
 msgid ""
@@ -552,12 +552,12 @@ msgstr "Xole"
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr "Perfácil"
+msgstr "Per-fácile"
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr "Fácil"
+msgstr "Fácile"
 
 #: gui/common/settings.js:128
 msgctxt "aiDiff"
@@ -567,22 +567,22 @@ msgstr "Normal"
 #: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr "Difícil"
+msgstr "Difícile"
 
 #: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "Perdifícil"
+msgstr "Per-difícile"
 
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
 msgid "Random"
-msgstr "Al debalu"
+msgstr "Aleatoriu"
 
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr "Equilibráu"
+msgstr "Equilibradu"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
@@ -592,12 +592,12 @@ msgstr "Defensivu"
 #: gui/common/settings.js:160
 msgctxt "aiBehavior"
 msgid "Aggressive"
-msgstr "Agresivu"
+msgstr "Aggressivu"
 
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Esfriega"
+msgstr "Confrontación"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -608,7 +608,7 @@ msgstr "Un mapa col rodiu y númberu de xugadores predefinidos. Los demás axust
 #: gui/common/settings.js:183
 msgctxt "map"
 msgid "Random"
-msgstr "Al debalu"
+msgstr "Aleatorio"
 
 #: gui/common/settings.js:184
 msgid ""
@@ -619,7 +619,7 @@ msgstr "Cría un mapa únicu con una distribución aleatoria de recursos. Esbill
 #: gui/common/settings.js:192
 msgctxt "map"
 msgid "Scenario"
-msgstr "Escenariu"
+msgstr "Scenario"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."

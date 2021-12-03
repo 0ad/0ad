@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-28 16:12+0000\n"
+"PO-Revision-Date: 2021-12-02 15:12+0000\n"
 "Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -2015,7 +2015,7 @@ msgstr "Általános"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr "Készíts nagy BMP képernyőképet!"
+msgstr "Nagyméretű, BMP formátumú képernyőkép készítése."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
@@ -2065,7 +2065,7 @@ msgstr "Másolás vágólapra"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Kivágja és vágólapra másolja a kijelölt szöveget."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
@@ -2097,12 +2097,12 @@ msgstr "Beillesztés vágólapról"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Megállítja vagy újból elindítja a játékot."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr "Szünet/újraindítás"
+msgstr "Szüneteltetés / Folytatás"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
@@ -2117,12 +2117,12 @@ msgstr "Profil mentése"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr ""
+msgstr "Megjeleníti vagy elrejti a valós idejű profilozót."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr "Profilkészítő megjelenítése / elrejtése"
+msgstr "Profilozó megjelenítése / elrejtése"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
@@ -2132,7 +2132,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr "2. profilkészítő megjelenítése / elrejtése"
+msgstr "2. profilozó megjelenítése / elrejtése"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2142,12 +2142,12 @@ msgstr "PNG formátumú képernyőkép készítése."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr "Képernyőfotó"
+msgstr "Képernyőkép"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr "Termék vagy cég vízjelének megjelenítése / elrejtése hivatalos képernyőfotók készítéséhez."
+msgstr "Termék vagy cég vízjelének megjelenítése / elrejtése hivatalos képernyőképek készítéséhez."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
@@ -2334,7 +2334,7 @@ msgstr "A kiválasztott egységek támadási mozgással a megadott helyre küld�
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
 msgid "Call to arms"
-msgstr ""
+msgstr "Egységek fegyverbe szólítása"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -3066,102 +3066,102 @@ msgstr "Kijelölés visszavonása"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 0. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 0"
-msgstr ""
+msgstr "0. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr ""
+msgstr "Hozzáadja az 1. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr ""
+msgstr "1. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 2. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr ""
+msgstr "2. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 3. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr ""
+msgstr "3. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 4. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr ""
+msgstr "4. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr ""
+msgstr "Hozzáadja az 5. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr ""
+msgstr "5. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 6. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr ""
+msgstr "6. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 7. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr ""
+msgstr "7. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 8. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr ""
+msgstr "8. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr ""
+msgstr "Hozzáadja a 9. egységcsoportot az aktuális kijelöléshez."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr ""
+msgstr "9. egységcsoport hozzáadása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
@@ -3171,7 +3171,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 0"
-msgstr ""
+msgstr "0. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
@@ -3181,7 +3181,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr ""
+msgstr "1. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
@@ -3191,7 +3191,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr ""
+msgstr "2. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
@@ -3201,7 +3201,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr ""
+msgstr "3. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
@@ -3211,7 +3211,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr ""
+msgstr "4. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
@@ -3221,7 +3221,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr ""
+msgstr "5. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
@@ -3231,7 +3231,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr ""
+msgstr "6. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
@@ -3241,7 +3241,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr ""
+msgstr "7. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
@@ -3251,7 +3251,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr ""
+msgstr "8. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
@@ -3261,7 +3261,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr ""
+msgstr "9. egységcsoport létrehozása"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
@@ -3366,7 +3366,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr "Jelöld ki a következő tétlen építőt!"
+msgstr "Kijelöli a következő tétlen építőt."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
@@ -3386,7 +3386,7 @@ msgstr "Tétlen egységek kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr "Következő tétlen egység kijelölése"
+msgstr "Kijelöli a következő tétlen egységet."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
@@ -3396,7 +3396,7 @@ msgstr "Következő tétlen egység kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr "Következő tétlen harcos kijelölése"
+msgstr "Kijelöli a következő tétlen harcost."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
@@ -3406,7 +3406,7 @@ msgstr "Következő tétlen harcos kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr "Következő tétlen munkás kijelölése"
+msgstr "Kijelöli a következő tétlen munkást."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
@@ -3416,7 +3416,7 @@ msgstr "Következő tétlen munkás kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr "Csak a katonai egységek kerüljenek kijelölésre"
+msgstr "Csak a katonai egységek kerülnek kijelölésre."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
@@ -3426,7 +3426,7 @@ msgstr "Katonák kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr "Csak a fegyvertelen egységek kerüljenek kijelölésre"
+msgstr "Csak a fegyvertelen egységek kerülnek kijelölésre."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
@@ -3436,7 +3436,7 @@ msgstr "Fegyvertelenek kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr "Legyenek kijelölve a képernyőn kívüli egységek is"
+msgstr "Kijelöli a képernyőn kívüli egységeket is."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
@@ -3466,7 +3466,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr "Csak a sebesült egységek kerüljenek kijelölésre"
+msgstr "Csak a sebesült egységek kerülnek kijelölésre."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
@@ -3714,7 +3714,7 @@ msgstr "Tengeri térképek"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Térképek, ahol hajókra van szükség az ellenség eléréséhez."
+msgstr "Olyan térképek, amelyeknél hajókra van szükség az ellenség eléréséhez."
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
@@ -3832,7 +3832,7 @@ msgstr "Oldal: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Véletlenszerűen kiválasztott térkép"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3887,7 +3887,7 @@ msgstr "Általános"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr "Játékosnév (egyjátékos)"
+msgstr "Játékosnév (egyjátékos módban)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3895,7 +3895,7 @@ msgstr "Hogyan legyél megnevezve az egyjátékos meccsekben."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr "Játékosnév (többjátékos)"
+msgstr "Játékosnév (többjátékos módban)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -4001,7 +4001,7 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Grafikai beállítások (általános)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -4043,7 +4043,7 @@ msgstr "Árnyékok engedélyezése."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
-msgstr "Egység sziluettek"
+msgstr "Egységek körvonalai"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
@@ -4128,7 +4128,7 @@ msgstr "Az egyensúly beállítása a teljesítmény és a vizuális megjelenés
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Grafikai beállítások (haladó)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Prefer GLSL"
@@ -4363,7 +4363,7 @@ msgstr "Nincs"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr "Minden entitás ugyanúgy fog kinézni"
+msgstr "Minden entitás ugyanúgy fog kinézni."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
@@ -4371,7 +4371,7 @@ msgstr "Korlátolt"
 
 #: gui/options/options.json[2].options[7].list[1].tooltip
 msgid "Entities will be less diverse."
-msgstr "Kevésbé lesznek változatosak az entitások"
+msgstr "Kevésbé lesznek változatosak az entitások."
 
 #: gui/options/options.json[2].options[7].list[2].label
 msgid "Normal"
@@ -4851,15 +4851,15 @@ msgstr "Csoportméret növelési sebessége görgetéskor"
 #: gui/options/options.json[6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Hányszor kell görgetni a csoportméret 1-el csökkentéséhez/növeléséhez."
+msgstr "Ennyiszer kell görgetned a csoportméret 1-el való csökkentéséhez / növeléséhez."
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Jelzőfény megjelenítésének időtartama"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Ennyi másodpercig lesz a jelzőfény megjelenítve a kistérképen."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -5441,21 +5441,21 @@ msgstr "%(listHeader)s %(listOfValues)s"
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr "Építette:"
+msgstr "Felépítheti:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr "Kiképezte:"
+msgstr "Kiképezhető itt:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr "Kutatta:"
+msgstr "Kutatható itt:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
@@ -5469,21 +5469,21 @@ msgstr "Épít:"
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "Kutat:"
+msgstr "Kutatható technológiák:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr "Kiképez:"
+msgstr "Kiképezhető egységek:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr "Fejleszthető erre:"
+msgstr "Továbbfejleszthető erre:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
@@ -6279,7 +6279,7 @@ msgstr "Távolsági ostromgépek, melyek kiválóak épületek ellen."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr "Drága és lassú."
+msgstr "Drágák és lassúak."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -6572,7 +6572,7 @@ msgstr ""
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "JELZŐFÉNY"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
@@ -6613,7 +6613,7 @@ msgstr "Semleges vagy saját területre építhető."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr "Olcsóak, hamar felépülnek, de gyengék."
+msgstr "Olcsóak, hamar megépülnek, de gyengék."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
@@ -6643,11 +6643,11 @@ msgstr "Különleges fejlesztés a perzsáknak."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "+25% életerő az épületeknél."
+msgstr "+25% életerő minden építménynek."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr "Ennek következtében az építési idő +20%-kal meghosszabbodik."
+msgstr "Az építési idő viszont 20%-kal megnő ennek következtében."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -6910,15 +6910,15 @@ msgstr "BÁLNÁK"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr "Óceánokban megtalálható élelemforrás"
+msgstr "Óceánokban fellelhető élelemforrás."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr "2000 élelem."
+msgstr "2000 élelem nyerhető ki belőle."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr "Halászhajókból gyűjthető be a bálna megölése után."
+msgstr "Halászhajók segítségével gyűjthető be, a bálna megölését követően."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
@@ -6926,7 +6926,7 @@ msgstr "Az óceánban kóborol és támadás esetén menekül."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Az állatok, a gyümölcsbokrok, a halak, és a mezők ennek forrásai."
+msgstr "Az állatok, a gyümölcsbokrok, a halak és a mezők ennek forrásai."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
