@@ -136,7 +136,7 @@ PETRA.chatLaunchAttack = function(gameState, player, type)
 {
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
-		"message": "/allies " + pickRandom(this.launchAttackMessages[type === "HugeAttack" ? "hugeAttack" : "other"]),
+		"message": "/allies " + pickRandom(this.launchAttackMessages[type === PETRA.AttackPlan.TYPE_HUGE_ATTACK ? "hugeAttack" : "other"]),
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": { "_player_": player }

@@ -13,6 +13,12 @@ PETRA.GarrisonManager = function(Config)
 	this.decayingStructures = new Map();
 };
 
+PETRA.GarrisonManager.TYPE_FORCE = "force";
+PETRA.GarrisonManager.TYPE_TRADE = "trade";
+PETRA.GarrisonManager.TYPE_PROTECTION = "protection";
+PETRA.GarrisonManager.TYPE_DECAY = "decay";
+PETRA.GarrisonManager.TYPE_EMERGENCY = "emergency";
+
 PETRA.GarrisonManager.prototype.update = function(gameState, events)
 {
 	// First check for possible upgrade of a structure
@@ -194,7 +200,7 @@ PETRA.GarrisonManager.prototype.update = function(gameState, events)
 		if (!ent || ent.owner() !== PlayerID)
 			this.decayingStructures.delete(id);
 		else if (this.numberOfGarrisonedSlots(ent) < gmin)
-			gameState.ai.HQ.defenseManager.garrisonUnitsInside(gameState, ent, { "min": gmin, "type": "decay" });
+			gameState.ai.HQ.defenseManager.garrisonUnitsInside(gameState, ent, { "min": gmin, "type": PETRA.GarrisonManager.TYPE_DECAY });
 	}
 };
 
@@ -284,11 +290,11 @@ PETRA.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 {
 	switch (ent.getMetadata(PlayerID, "garrisonType"))
 	{
-	case 'force':           // force the ungarrisoning
+	case PETRA.GarrisonManager.TYPE_FORCE:           // force the ungarrisoning
 		return false;
-	case 'trade':		// trader garrisoned in ship
+	case PETRA.GarrisonManager.TYPE_TRADE:		// trader garrisoned in ship
 		return true;
-	case 'protection':	// hurt unit for healing or infantry for defense
+	case PETRA.GarrisonManager.TYPE_PROTECTION:	// hurt unit for healing or infantry for defense
 		if (holder.buffHeal() && ent.isHealable() && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
 			return true;
 		let capture = ent.capturePoints();
@@ -309,9 +315,9 @@ PETRA.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 		if (PETRA.isSiegeUnit(ent))
 			return around.meleeSiege;
 		return holder.buffHeal() && ent.needsHeal();
-	case 'decay':
+	case PETRA.GarrisonManager.TYPE_DECAY:
 		return this.decayingStructures.has(holder.id());
-	case 'emergency': // f.e. hero in regicide mode
+	case PETRA.GarrisonManager.TYPE_EMERGENCY: // f.e. hero in regicide mode
 		if (holder.buffHeal() && ent.isHealable() && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
 			return true;
 		if (around.unit || around.defenseStructure || around.meleeSiege ||
@@ -324,7 +330,7 @@ PETRA.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 		API3.warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType") +
 		          " for " + ent.genericName() + " id " + ent.id() +
 		          " inside " + holder.genericName() + " id " + holder.id());
-		ent.setMetadata(PlayerID, "garrisonType", "protection");
+		ent.setMetadata(PlayerID, "garrisonType", PETRA.GarrisonManager.TYPE_PROTECTION);
 		return true;
 	}
 };

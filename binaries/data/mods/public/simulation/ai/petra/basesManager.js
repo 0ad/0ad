@@ -25,14 +25,14 @@ PETRA.BasesManager.prototype.init = function(gameState)
 	this.basesMap = new API3.Map(gameState.sharedScript, "territory");
 
 	this.noBase = new PETRA.BaseManager(gameState, this);
-	this.noBase.init(gameState);
+	this.noBase.init(gameState, PETRA.BaseManager.STATE_WITH_ANCHOR);
 	this.noBase.accessIndex = 0;
 
 	for (const cc of gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).values())
 		if (cc.foundationProgress() === undefined)
-			this.createBase(gameState, cc);
+			this.createBase(gameState, cc, PETRA.BaseManager.STATE_WITH_ANCHOR);
 		else
-			this.createBase(gameState, cc, "unconstructed");
+			this.createBase(gameState, cc, PETRA.BaseManager.STATE_UNCONSTRUCTED);
 };
 
 /**
@@ -65,12 +65,8 @@ PETRA.BasesManager.prototype.postinit = function(gameState)
  * If an existing one without anchor already exist, use it.
  * Otherwise create a new one.
  * TODO when buildings, criteria should depend on distance
- * allowedType: undefined       => new base with an anchor
- *              "unconstructed" => new base with a foundation anchor
- *              "captured"      => captured base with an anchor
- *              "anchorless"    => anchorless base, currently with dock
  */
-PETRA.BasesManager.prototype.createBase = function(gameState, ent, type)
+PETRA.BasesManager.prototype.createBase = function(gameState, ent, type = PETRA.BaseManager.STATE_WITH_ANCHOR)
 {
 	const access = PETRA.getLandAccess(gameState, ent);
 	let newbase;
@@ -78,9 +74,9 @@ PETRA.BasesManager.prototype.createBase = function(gameState, ent, type)
 	{
 		if (base.accessIndex != access)
 			continue;
-		if (type != "anchorless" && base.anchor)
+		if (type !== PETRA.BaseManager.STATE_ANCHORLESS && base.anchor)
 			continue;
-		if (type != "anchorless")
+		if (type !== PETRA.BaseManager.STATE_ANCHORLESS)
 		{
 			// TODO we keep the first one, we should rather use the nearest if buildings
 			// and possibly also cut on distance
@@ -116,7 +112,7 @@ PETRA.BasesManager.prototype.createBase = function(gameState, ent, type)
 	else
 		newbase.reset(type);
 
-	if (type != "anchorless")
+	if (type !== PETRA.BaseManager.STATE_ANCHORLESS)
 		newbase.setAnchor(gameState, ent);
 	else
 		newbase.setAnchorlessEntity(gameState, ent);
@@ -172,7 +168,7 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 		if (ent.getMetadata(PlayerID, "base") == -1)	// Standard base around a cc
 		{
 			// Okay so let's try to create a new base around this.
-			const newbase = this.createBase(gameState, ent, "unconstructed");
+			const newbase = this.createBase(gameState, ent, PETRA.BaseManager.STATE_UNCONSTRUCTED);
 			// Let's get a few units from other bases there to build this.
 			const builders = this.bulkPickWorkers(gameState, newbase, 10);
 			if (builders !== false)
@@ -186,7 +182,7 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 		}
 		else if (ent.getMetadata(PlayerID, "base") == -2)	// anchorless base around a dock
 		{
-			const newbase = this.createBase(gameState, ent, "anchorless");
+			const newbase = this.createBase(gameState, ent, PETRA.BaseManager.STATE_ANCHORLESS);
 			// Let's get a few units from other bases there to build this.
 			const builders = this.bulkPickWorkers(gameState, newbase, 4);
 			if (builders != false)
@@ -250,10 +246,10 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 		{
 			let newbase;
 			if (ent.foundationProgress() !== undefined)
-				newbase = this.createBase(gameState, ent, "unconstructed");
+				newbase = this.createBase(gameState, ent, PETRA.BaseManager.STATE_UNCONSTRUCTED);
 			else
 			{
-				newbase = this.createBase(gameState, ent, "captured");
+				newbase = this.createBase(gameState, ent, PETRA.BaseManager.STATE_CAPTURED);
 				addBase = true;
 			}
 			newbase.assignEntity(gameState, ent);
@@ -263,7 +259,7 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 			let base;
 			// If dropsite on new island, create a base around it
 			if (!ent.decaying() && ent.resourceDropsiteTypes())
-				base = this.createBase(gameState, ent, "anchorless");
+				base = this.createBase(gameState, ent, PETRA.BaseManager.STATE_ANCHORLESS);
 			else
 				base = PETRA.getBestBase(gameState, ent) || this.noBase;
 			base.assignEntity(gameState, ent);
@@ -582,7 +578,7 @@ PETRA.BasesManager.prototype.assignEntity = function(gameState, ent, territoryIn
 	if (!bestbase)	// entity outside our territory
 	{
 		if (ent.hasClass("Structure") && !ent.decaying() && ent.resourceDropsiteTypes())
-			bestbase = this.createBase(gameState, ent, "anchorless");
+			bestbase = this.createBase(gameState, ent, PETRA.BaseManager.STATE_ANCHORLESS);
 		else
 			bestbase = PETRA.getBestBase(gameState, ent) || this.noBase;
 		bestbase.assignEntity(gameState, ent);
@@ -775,7 +771,7 @@ PETRA.BasesManager.prototype.Deserialize = function(gameState, data)
 
 	this.noBase = new PETRA.BaseManager(gameState, this);
 	this.noBase.Deserialize(gameState, data.noBase);
-	this.noBase.init(gameState);
+	this.noBase.init(gameState, PETRA.BaseManager.STATE_WITH_ANCHOR);
 	this.noBase.Deserialize(gameState, data.noBase);
 
 	this.baseManagers = [];
@@ -784,7 +780,7 @@ PETRA.BasesManager.prototype.Deserialize = function(gameState, data)
 		// The first call to deserialize set the ID base needed by entitycollections.
 		const newbase = new PETRA.BaseManager(gameState, this);
 		newbase.Deserialize(gameState, basedata);
-		newbase.init(gameState);
+		newbase.init(gameState, PETRA.BaseManager.STATE_WITH_ANCHOR);
 		newbase.Deserialize(gameState, basedata);
 		this.baseManagers.push(newbase);
 	}

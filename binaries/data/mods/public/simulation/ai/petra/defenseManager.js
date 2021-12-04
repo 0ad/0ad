@@ -606,7 +606,7 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (plan !== undefined && plan >= 0)
 		{
 			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
-			if (attack && attack.state != "unexecuted")
+			if (attack && attack.state != PETRA.AttackPlan.STATE_UNEXECUTED)
 				continue;
 		}
 
@@ -752,7 +752,7 @@ PETRA.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target,
 	let access = PETRA.getLandAccess(gameState, target);
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	let garrisonArrowClasses = target.getGarrisonArrowClasses();
-	let typeGarrison = data.type || "protection";
+	const typeGarrison = data.type || PETRA.GarrisonManager.TYPE_PROTECTION;
 	let allowMelee = gameState.ai.HQ.garrisonManager.allowMelee(target);
 	if (allowMelee === undefined)
 	{
@@ -767,7 +767,7 @@ PETRA.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target,
 			return false;
 		if (!ent.hasClasses(garrisonArrowClasses))
 			return false;
-		if (typeGarrison != "decay" && !allowMelee && ent.attackTypes().indexOf("Melee") != -1)
+		if (typeGarrison !== PETRA.GarrisonManager.TYPE_DECAY && !allowMelee && ent.attackTypes().indexOf("Melee") != -1)
 			return false;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
 			return false;
@@ -778,7 +778,7 @@ PETRA.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target,
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
 			// When structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan.
-			if (typeGarrison != "decay" && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
+			if (typeGarrison !== PETRA.GarrisonManager.TYPE_DECAY && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
 				return false;
 		}
 		if (PETRA.getLandAccess(gameState, ent) != access)
@@ -832,7 +832,7 @@ PETRA.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 		nearest = ent;
 	}
 	if (nearest)
-		garrisonManager.garrison(gameState, unit, nearest, "protection");
+		garrisonManager.garrison(gameState, unit, nearest, PETRA.GarrisonManager.TYPE_PROTECTION);
 	return nearest !== undefined;
 };
 
@@ -873,13 +873,13 @@ PETRA.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, 
 
 	if (!emergency)
 	{
-		garrisonManager.garrison(gameState, unit, nearest, "protection");
+		garrisonManager.garrison(gameState, unit, nearest, PETRA.GarrisonManager.TYPE_PROTECTION);
 		return true;
 	}
 	if (garrisonManager.numberOfGarrisonedSlots(nearest) >= nearest.garrisonMax()) // make room for this ent
 		nearest.unload(nearest.garrisoned()[0]);
 
-	garrisonManager.garrison(gameState, unit, nearest, nearest.buffHeal() ? "protection" : "emergency");
+	garrisonManager.garrison(gameState, unit, nearest, nearest.buffHeal() ? PETRA.GarrisonManager.TYPE_PROTECTION : PETRA.GarrisonManager.TYPE_EMERGENCY);
 	return true;
 };
 
