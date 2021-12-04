@@ -279,8 +279,8 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			return false;
 		}
 
-		SDL_GLContext context = SDL_GL_CreateContext(m_Window);
-		if (!context)
+		m_Context = SDL_GL_CreateContext(m_Window);
+		if (!m_Context)
 		{
 			LOGERROR("SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%s\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
@@ -385,16 +385,10 @@ bool CVideoMode::InitSDL()
 
 	int bpp = GetBestBPP();
 
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-#if CONFIG2_GLES
-	// Require GLES 2.0
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-#endif
 
 	bool forceGLVersion = false;
 	CFG_GET_VAL("forceglversion", forceGLVersion);
@@ -425,6 +419,19 @@ bool CVideoMode::InitSDL()
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, forceGLMajorVersion);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, forceGLMinorVersion);
 		}
+	}
+	else
+	{
+#if CONFIG2_GLES
+		// Require GLES 2.0
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+#else
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+#endif
 	}
 
 	if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
@@ -486,10 +493,15 @@ void CVideoMode::Shutdown()
 
 	m_IsFullscreen = false;
 	m_IsInitialised = false;
+	if (m_Context)
+	{
+		SDL_GL_DeleteContext(m_Context);
+		m_Context = nullptr;
+	}
 	if (m_Window)
 	{
 		SDL_DestroyWindow(m_Window);
-		m_Window = NULL;
+		m_Window = nullptr;
 	}
 }
 

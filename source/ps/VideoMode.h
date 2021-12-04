@@ -23,6 +23,7 @@
 #include <memory>
 
 typedef struct SDL_Window SDL_Window;
+typedef void* SDL_GLContext;
 
 class CVideoMode
 {
@@ -116,6 +117,7 @@ private:
 	bool m_IsInitialised = false;
 
 	SDL_Window* m_Window = nullptr;
+	SDL_GLContext m_Context = nullptr;
 
 	// Initial desktop settings.
 	// Frequency is in Hz, and BPP means bits per pixels (not bytes per pixels).
