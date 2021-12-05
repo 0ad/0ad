@@ -225,7 +225,7 @@
 				"type": "slider",
 				"label": "Sharpness factor",
 				"tooltip": "The sharpness of the choosen pass.",
-				"dependencies": ["postproc", "preferglsl"],
+				"dependencies": ["postproc", "preferglsl", { "config": "sharpening", "op": "!=", "value": "disabled" }],
 				"config": "sharpness",
 				"min": 0,
 				"max": 1

@@ -679,7 +679,7 @@ PETRA.VictoryManager.prototype.captureGaiaRelic = function(gameState, relic)
 		if (plan !== undefined && plan >= 0)
 		{
 			let attack = gameState.ai.HQ.attackManager.getPlan(plan);
-			if (attack && (attack.state != "unexecuted" || attack.type == "Raid"))
+			if (attack && (attack.state !== PETRA.AttackPlan.STATE_UNEXECUTED || attack.type === PETRA.AttackPlan.TYPE_RAID))
 				return false;
 		}
 		if (PETRA.getLandAccess(gameState, ent) != access)

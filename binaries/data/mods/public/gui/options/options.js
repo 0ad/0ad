@@ -312,16 +312,29 @@ function displayOptions()
 function enableButtons()
 {
 	g_Options[g_TabCategorySelected].options.forEach((option, i) => {
+		const isDependencyMet = dependency => {
+			if (typeof dependency === "string")
+				return Engine.ConfigDB_GetValue("user", dependency) == "true";
+			else if (typeof dependency === "object")
+			{
+				const availableOps = {
+					"==": (config, value) => config == value,
+					"!=": (config, value) => config != value
+				};
+				const op = availableOps[dependency.op] || availableOps["=="];
+				return op(Engine.ConfigDB_GetValue("user", dependency.config), dependency.value);
+			}
+			error("Unsupported dependency: " + uneval(dependency));
+			return false;
+		};
 
-		let enabled =
-			!option.dependencies ||
-			option.dependencies.every(config => Engine.ConfigDB_GetValue("user", config) == "true");
+		const enabled = !option.dependencies || option.dependencies.every(isDependencyMet);
 
 		Engine.GetGUIObjectByName("option_label[" + i + "]").enabled = enabled;
 		Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]").enabled = enabled;
 	});
 
-	let hasChanges = Engine.ConfigDB_HasChanges("user");
+	const hasChanges = Engine.ConfigDB_HasChanges("user");
 	Engine.GetGUIObjectByName("revertChanges").enabled = hasChanges;
 	Engine.GetGUIObjectByName("saveChanges").enabled = hasChanges;
 }
