@@ -80,7 +80,9 @@ CConsole::CConsole()
 	m_bCursorVisState = true;
 	m_cursorBlinkRate = 0.5;
 
-	InsertMessage("[ 0 A.D. Console v0.14 ]");
+	m_QuitHotkeyWasShown = false;
+
+	InsertMessage("[ 0 A.D. Console v0.15 ]");
 	InsertMessage("");
 }
 
@@ -121,6 +123,22 @@ void CConsole::UpdateScreenSize(int w, int h)
 	m_fHeight = height / g_VideoMode.GetScale();
 }
 
+void CConsole::ShowQuitHotkeys()
+{
+	if (m_QuitHotkeyWasShown)
+		return;
+
+	std::string str;
+	for (const std::pair<const SDL_Scancode_, KeyMapping>& key : g_HotkeyMap)
+		if (key.second.front().name == "console.toggle")
+			str += (str.empty() ? "Press " : " / ") + FindScancodeName(static_cast<SDL_Scancode>(key.first));
+
+	if (!str.empty())
+		InsertMessage(str + " to quit.");
+
+	m_QuitHotkeyWasShown = true;
+}
+
 void CConsole::ToggleVisible()
 {
 	m_bToggle = true;
@@ -128,9 +146,12 @@ void CConsole::ToggleVisible()
 
 	// TODO: this should be based on input focus, not visibility
 	if (m_bVisible)
+	{
+		ShowQuitHotkeys();
 		SDL_StartTextInput();
-	else
-		SDL_StopTextInput();
+		return;
+	}
+	SDL_StopTextInput();
 }
 
 void CConsole::SetVisible(bool visible)

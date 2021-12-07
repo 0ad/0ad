@@ -110,6 +110,7 @@ private:
 	bool m_bToggle;		// show/hide animation is currently active
 	double m_prevTime;	// the previous time the cursor draw state changed (used for blinking cursor)
 	bool m_bCursorVisState;	// if the cursor should be drawn or not
+	bool m_QuitHotkeyWasShown;	// show console.toggle hotkey values at first time
 	double m_cursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
 
 	void DrawWindow(CCanvas2D& canvas);
@@ -128,6 +129,7 @@ private:
 
 	void LoadHistory();
 	void SaveHistory();
+	void ShowQuitHotkeys();
 };
 
 extern CConsole* g_Console;
