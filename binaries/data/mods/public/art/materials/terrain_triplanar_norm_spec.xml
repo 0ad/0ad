@@ -6,5 +6,5 @@
   <required_texture name="normTex" define="USE_NORMAL_MAP"/>
   <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
   <shader effect="terrain_base"/>
-  <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
+  <uniform name="effectSettings" value="1.0 15.0 0.0"/>
 </material>

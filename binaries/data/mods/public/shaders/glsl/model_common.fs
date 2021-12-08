@@ -156,7 +156,6 @@ void main()
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
     float ao = texture2D(aoTex, v_tex2).r;
-    ao = mix(1.0, ao * 2.0, effectSettings.w);
   #else
     float ao = 1.0;
   #endif

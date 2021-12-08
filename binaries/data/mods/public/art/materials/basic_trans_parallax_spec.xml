@@ -9,5 +9,5 @@
   <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
   <required_texture name="normTex" define="USE_NORMAL_MAP"/>
   <shader effect="model_transparent"/>
-  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075"/>
 </material>
