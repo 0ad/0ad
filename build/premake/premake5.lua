@@ -757,6 +757,7 @@ function setup_all_libs ()
 		"iconv",
 		"libsodium",
 		"fmt",
+		"freetype",
 	}
 
 	if not _OPTIONS["without-audio"] then
@@ -781,6 +782,7 @@ function setup_all_libs ()
 		"spidermonkey",	-- for graphics/scripting
 		"boost",
 		"fmt",
+		"freetype",
 		"icu",
 	}
 	if not _OPTIONS["without-nvtt"] then
@@ -964,6 +966,7 @@ used_extern_libs = {
 	"iconv",
 	"libsodium",
 	"fmt",
+	"freetype",
 
 	"valgrind",
 }
