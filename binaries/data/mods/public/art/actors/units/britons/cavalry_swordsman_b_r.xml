@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -6,6 +6,7 @@
       <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
@@ -55,7 +56,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_swordsman_relax_shield.xml" name="Swordsman-Relax-Shield" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_swordsman_relax_shield.xml" frequency="1" name="Swordsman-Relax-Shield"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

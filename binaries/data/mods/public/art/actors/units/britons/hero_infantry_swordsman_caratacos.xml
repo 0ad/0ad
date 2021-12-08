@@ -1,25 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_swordsman_shield_fast.xml">
-      <mesh>skeletal/new/m_hero_tunic.dae</mesh>
+    <variant file="biped/base_swordsman_shield_relax_celt.xml">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_caradoc.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/brit_shield_spear_sq_d_03.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_R"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="skeletal/celt_caradoc.dds" name="baseTex"/>
+        <texture file="skeletal/brit_linothorax_caratacos_01_01.png" name="baseTex"/>
+        <texture file="skeletal/brit_linothorax_caratacos_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle"/>
+    <variant file="biped/base_swordsman_shield_relax_celt.xml" frequency="1" name="Swordsman-Shield-Relax"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/death_cape_gaul.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
