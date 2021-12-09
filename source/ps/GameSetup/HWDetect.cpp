@@ -48,6 +48,10 @@
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
 
+// FreeType headers might have an include order.
+#include <ft2build.h>
+#include <freetype/freetype.h>
+
 #if OS_LINUX
 #include <fstream>
 #endif
@@ -81,9 +85,11 @@
 #include <SDL_vulkan.h>
 #endif
 
+#include <sstream>
 #include <string>
 
 static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings);
+static void ReportFreeType(const ScriptRequest& rq, JS::HandleValue settings);
 static void ReportVulkan(const ScriptRequest& rq, JS::HandleValue settings);
 static void ReportGLLimits(const ScriptRequest& rq, JS::HandleValue settings);
 
@@ -165,6 +171,8 @@ void RunHardwareDetection()
 #endif
 	ReportSDL(rq, settings);
 
+	ReportFreeType(rq, settings);
+
 	ReportVulkan(rq, settings);
 
 	ReportGLLimits(rq, settings);
@@ -226,7 +234,7 @@ void RunHardwareDetection()
 	Script::SetProperty(rq, settings, "timer_resolution", timer_Resolution());
 
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 16;
+	const int reportVersion = 17;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
@@ -256,6 +264,26 @@ static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings)
 	// This is null in atlas (and further the call triggers an assertion).
 	const char* backend = g_VideoMode.GetWindow() ? GetSDLSubsystem(g_VideoMode.GetWindow()) : "none";
 	Script::SetProperty(rq, settings, "sdl_video_backend", backend ? backend : "unknown");
+}
+
+static void ReportFreeType(const ScriptRequest& rq, JS::HandleValue settings)
+{
+	FT_Library FTLibrary;
+	std::string FTSupport = "unsupported";
+	if (!FT_Init_FreeType(&FTLibrary))
+	{
+		FT_Int major, minor, patch;
+		FT_Library_Version(FTLibrary, &major, &minor, &patch);
+		FT_Done_FreeType(FTLibrary);
+		std::stringstream version;
+		version << major << "." << minor << "." << patch;
+		FTSupport = version.str();
+	}
+	else
+	{
+		FTSupport = "cantload";
+	}
+	Script::SetProperty(rq, settings, "freetype", FTSupport);
 }
 
 static void ReportVulkan(const ScriptRequest& rq, JS::HandleValue settings)

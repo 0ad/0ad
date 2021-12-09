@@ -1,24 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"  ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_hero_pants_tunic.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_cunobelin.xml" attachpoint="head"/>
         <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/brit_shield_spear_oval_a_03.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
-        <prop actor="props/temp/l_sheath.xml" attachpoint="sheath_L"/>
+        <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="cunobelin-druid">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/celt_cunobelin.dds" name="baseTex"/>
+        <texture file="skeletal/celt_druid_2.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_ready.xml" name="Swordsman-Shield-Ready" frequency="1"/>
+    <variant file="biped/base_swordsman_shield_ready.xml" frequency="1" name="Swordsman-Shield-Ready"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/death_cape_long.xml"/>

@@ -32,6 +32,7 @@ WXWIDGETS_VERSION="wxWidgets-3.1.4"
 # libpng was included as part of X11 but that's removed from Mountain Lion
 # (also the Snow Leopard version was ancient 1.2)
 PNG_VERSION="libpng-1.6.36"
+FREETYPE_VERSION="freetype-2.10.4"
 OGG_VERSION="libogg-1.3.3"
 VORBIS_VERSION="libvorbis-1.3.7"
 # gloox requires GnuTLS, GnuTLS requires Nettle and GMP
@@ -491,6 +492,42 @@ then
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libpng build failed"
 
+  popd
+  cp -f lib/pkgconfig/* $PC_PATH
+  echo "$LIB_VERSION" > .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building freetype..."
+
+LIB_VERSION="${FREETYPE_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="https://download.savannah.gnu.org/releases/freetype/"
+
+mkdir -p freetype
+pushd freetype > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib share
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
+      --prefix=$INSTALL_DIR \
+      --enable-shared=no \
+       --with-bzip2=no \
+       --with-brotli=no \
+    && make ${JOBS} && make install) || die "freetype build failed"
   popd
   cp -f lib/pkgconfig/* $PC_PATH
   echo "$LIB_VERSION" > .already-built

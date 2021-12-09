@@ -314,6 +314,25 @@ extern_lib_defs = {
 			end
 		end
 	},
+	freetype = {
+		compile_settings = function()
+			if os.istarget("windows") then
+				add_default_include_paths("freetype")
+			else
+				pkgconfig.add_includes("freetype2")
+			end
+		end,
+		link_settings = function()
+			if os.istarget("windows") then
+				add_default_lib_paths("freetype")
+			else
+				pkgconfig.add_links("freetype2")
+			end
+			add_default_links({
+				win_names = { "freetype" },
+			})
+		end,
+	},
 	gloox = {
 		compile_settings = function()
 			if os.istarget("windows") then
