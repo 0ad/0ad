@@ -496,8 +496,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		if (this.MustKillGatherTarget(msg.data.target))
 		{
+			const bestAttack = Engine.QueryInterface(this.entity, IID_Attack)?.GetBestAttackAgainst(msg.data.target, false);
 			// Make sure we can attack the target, else we'll get very stuck
-			if (!this.GetBestAttackAgainst(msg.data.target, false))
+			if (!bestAttack)
 			{
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
@@ -522,6 +523,9 @@ UnitAI.prototype.UnitFsmSpec = {
 					});
 				return ACCEPT_ORDER;
 			}
+
+			if (!this.AbleToMove() && !this.CheckTargetRange(msg.data.target, IID_Attack, bestAttack))
+				return this.FinishOrder();
 
 			this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
 			return ACCEPT_ORDER;
@@ -3449,11 +3453,14 @@ UnitAI.prototype.Init = function()
 	this.SetStance(this.template.DefaultStance);
 };
 
-UnitAI.prototype.IsTurret = function()
+/**
+ * @param {cmpTurretable} cmpTurretable - Optionally the component to save a query here.
+ * @return {boolean} - Whether we are occupying a turret point.
+ */
+UnitAI.prototype.IsTurret = function(cmpTurretable)
 {
-	if (!this.isGarrisoned)
-		return false;
-	let cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
+	if (!cmpTurretable)
+		cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
 	return cmpTurretable && cmpTurretable.HolderID() != INVALID_ENTITY;
 };
 
@@ -3555,7 +3562,7 @@ UnitAI.prototype.SetMobile = function()
  */
 UnitAI.prototype.AbleToMove = function(cmpUnitMotion)
 {
-	if (this.isImmobile || this.IsTurret())
+	if (this.isImmobile)
 		return false;
 
 	if (!cmpUnitMotion)
@@ -3868,9 +3875,8 @@ UnitAI.prototype.FinishOrder = function()
 	this.orderQueue.shift();
 	this.order = this.orderQueue[0];
 
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (this.orderQueue.length && (this.isGarrisoned || this.IsFormationController() ||
-	        cmpPosition && cmpPosition.IsInWorld()))
+	        Engine.QueryInterface(this.entity, IID_Position)?.IsInWorld()))
 	{
 		let ret = this.UnitFsm.ProcessMessage(this, {
 			"type": "Order."+this.order.type,
@@ -4157,18 +4163,12 @@ UnitAI.prototype.BackToWork = function()
 	if (this.workOrders.length == 0)
 		return false;
 
-	if (this.isGarrisoned)
-	{
-		if (this.IsTurret())
-		{
-			let cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
-			if (!cmpTurretable || !cmpTurretable.LeaveTurret())
-				return false;
-		}
-		let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
-		if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(false))
-			return false;
-	}
+	if (this.isGarrisoned && !Engine.QueryInterface(this.entity, IID_Garrisonable)?.UnGarrison(false))
+		return false;
+
+	const cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
+	if (this.IsTurret(cmpTurretable) && !cmpTurretable.LeaveTurret())
+		return false;
 
 	this.orderQueue = [];
 
@@ -4870,16 +4870,19 @@ UnitAI.prototype.CheckFormationTargetAttackRange = function(target)
  */
 UnitAI.prototype.CheckTargetVisible = function(target)
 {
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (this.isGarrisoned)
+		return false;
+
+	const cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership)
 		return false;
 
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	const cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (!cmpRangeManager)
 		return false;
 
 	// Entities that are hidden and miraged are considered visible
-	var cmpFogging = Engine.QueryInterface(target, IID_Fogging);
+	const cmpFogging = Engine.QueryInterface(target, IID_Fogging);
 	if (cmpFogging && cmpFogging.IsMiraged(cmpOwnership.GetOwner()))
 		return true;
 
@@ -5540,7 +5543,7 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false, 
 UnitAI.prototype.Garrison = function(target, queued, pushFront)
 {
 	// Not allowed to garrison when occupying a turret, at the moment.
-	if (this.isGarrisoned)
+	if (this.isGarrisoned || this.IsTurret())
 		return;
 	if (target == this.entity)
 		return;
@@ -5557,7 +5560,7 @@ UnitAI.prototype.Garrison = function(target, queued, pushFront)
  */
 UnitAI.prototype.Ungarrison = function()
 {
-	if (!this.isGarrisoned)
+	if (!this.isGarrisoned && !this.IsTurret())
 		return;
 	this.AddOrder("Ungarrison", null, false);
 };
@@ -5927,6 +5930,7 @@ UnitAI.prototype.SwitchToStance = function(stance)
 
 UnitAI.prototype.SetTurretStance = function()
 {
+	this.SetImmobile();
 	this.previousStance = undefined;
 	if (this.GetStance().respondStandGround)
 		return;
@@ -5942,6 +5946,7 @@ UnitAI.prototype.SetTurretStance = function()
 
 UnitAI.prototype.ResetTurretStance = function()
 {
+	this.SetMobile();
 	if (!this.previousStance)
 		return;
 	this.SwitchToStance(this.previousStance);
