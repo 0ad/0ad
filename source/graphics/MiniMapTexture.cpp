@@ -351,8 +351,7 @@ void CMiniMapTexture::RenderFinalTexture()
 	const SViewPort viewPort = { 0, 0, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE };
 	g_Renderer.SetViewport(viewPort);
 
-	CSimulation2* sim = g_Game->GetSimulation2();
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
+	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
@@ -431,7 +430,7 @@ void CMiniMapTexture::RenderFinalTexture()
 	unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
 	shader->Uniform(str_transform, unitMatrix);
 
-	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
+	CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
 
 	if (doUpdate)
 	{
@@ -455,7 +454,7 @@ void CMiniMapTexture::RenderFinalTexture()
 			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
 			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
 			{
-				LosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer());
+				LosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, m_Simulation.GetSimContext().GetCurrentDisplayedPlayer());
 				if (vis != LosVisibility::HIDDEN)
 				{
 					v.a = 255;
