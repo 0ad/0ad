@@ -299,3 +299,12 @@ TS_ASSERT_UNEVAL_EQUALS(
 TS_ASSERT_EQUALS(cmpTrainer.queue.size, 1);
 TS_ASSERT_EQUALS(cmpTrainer.GetBatch(id1), undefined);
 TS_ASSERT_EQUALS(cmpTrainer.GetBatch(id2).unitTemplate, "units/iber/c");
+
+
+// Test that we can affect an empty trainer.
+const emptyTrainer = ConstructComponent(entityID, "Trainer", null);
+emptyTrainer.OnValueModification({ "component": "Trainer", "entities": [entityID], "valueNames": ["Trainer/Entities/"] });
+TS_ASSERT_UNEVAL_EQUALS(
+	emptyTrainer.GetEntitiesList(),
+	["units/iber/d"]
+);
