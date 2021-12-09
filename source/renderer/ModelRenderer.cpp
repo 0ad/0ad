@@ -723,13 +723,10 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							}
 							else if (rq.first == RQUERY_WATER_TEX)
 							{
-								WaterManager* WaterMgr = g_Renderer.GetWaterManager();
-								double time = WaterMgr->m_WaterTexTimer;
-								double period = 1.6;
-								int curTex = static_cast<int>(time * 60.0 / period) % 60;
-
-								if (WaterMgr->m_RenderWater && WaterMgr->WillRenderFancyWater())
-									shader->BindTexture(str_waterTex, WaterMgr->m_NormalMap[curTex]);
+								const double period = 1.6;
+								WaterManager* waterManager = g_Renderer.GetWaterManager();
+								if (waterManager->m_RenderWater && waterManager->WillRenderFancyWater())
+									shader->BindTexture(str_waterTex, waterManager->m_NormalMap[waterManager->GetCurrentTextureIndex(period)]);
 								else
 									shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture());
 							}

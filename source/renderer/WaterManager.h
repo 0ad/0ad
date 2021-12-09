@@ -70,7 +70,6 @@ public:
 	u32 m_updatei1;
 	u32 m_updatej1;
 
-	int m_WaterCurrentTex;
 	bool m_RenderWater;
 
 	// If disabled, force the use of the fixed function for rendering.
@@ -187,6 +186,13 @@ public:
 	bool WillRenderFancyWater() const;
 
 	void RenderWaves(const CFrustum& frustrum);
+
+	/**
+	 * Returns an index of the current texture that should be used for rendering
+	 * water.
+	 */
+	size_t GetCurrentTextureIndex(const double& period) const;
+	size_t GetNextTextureIndex(const double& period) const;
 };
 
 
