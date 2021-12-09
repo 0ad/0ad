@@ -351,10 +351,10 @@ PETRA.AttackManager.prototype.update = function(gameState, queues, events)
 			this.rushNumber++;
 		}
 	}
-	else if (unexecutedAttacks[PETRA.AttackPlan.TYPE_DEFAULT] == 0 && unexecutedAttacks[PETRA.AttackManager.TYPE_HUGE_ATTACK] == 0 &&
-		this.startedAttacks[PETRA.AttackPlan.TYPE_DEFAULT].length + this.startedAttacks[PETRA.AttackManager.TYPE_HUGE_ATTACK].length <
+	else if (unexecutedAttacks[PETRA.AttackPlan.TYPE_DEFAULT] == 0 && unexecutedAttacks[PETRA.AttackPlan.TYPE_HUGE_ATTACK] == 0 &&
+		this.startedAttacks[PETRA.AttackPlan.TYPE_DEFAULT].length + this.startedAttacks[PETRA.AttackPlan.TYPE_HUGE_ATTACK].length <
 			Math.min(2, 1 + Math.round(gameState.getPopulationMax() / 100)) &&
-		(this.startedAttacks[PETRA.AttackPlan.TYPE_DEFAULT].length + this.startedAttacks[PETRA.AttackManager.TYPE_HUGE_ATTACK].length == 0 ||
+		(this.startedAttacks[PETRA.AttackPlan.TYPE_DEFAULT].length + this.startedAttacks[PETRA.AttackPlan.TYPE_HUGE_ATTACK].length == 0 ||
 		gameState.getPopulationMax() - gameState.getPopulation() > 12))
 	{
 		if (barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.getPhaseName(2))) ||
