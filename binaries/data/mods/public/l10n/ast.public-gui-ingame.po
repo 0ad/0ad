@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-11-15 15:43+0000\n"
+"PO-Revision-Date: 2021-12-09 04:16+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,16 +21,16 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Afita la velocidá del xuegu"
+msgstr "Afhita la velocidade del jœgu"
 
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Calca %(hotkey)s p'alternar esti menú."
+msgstr "Calca %(hotkey)s p’alternar esti menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "Charrar"
+msgstr "Conversar"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -43,7 +43,7 @@ msgstr "Resume"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Calca %(hotkey)s p'abrir la ventana «Resume»."
+msgstr "Calca %(hotkey)s p’abri’l quadro “Resume”."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
@@ -54,7 +54,7 @@ msgstr "Antepar"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Calca %(hotkey)s p'abrir la páxina «Antepar» ensin colar del xuegu."
+msgstr "Calca %(hotkey)s p’abri’ la página “Antepar” in sin colar del jœgu."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -66,20 +66,20 @@ msgstr "Atayos"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
-msgstr "Siguir"
+msgstr "Continuar"
 
 #: gui/session/MenuButtons.js:220
 msgid "Pause"
-msgstr "Posar"
+msgstr "Pousar"
 
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Calca %(hotkey)s pa parar o reentamar el xuegu."
+msgstr "Calca %(hotkey)s para pousar ou continua’l jœgu."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
-msgstr "Rindise"
+msgstr "Rendí-se"
 
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
@@ -89,27 +89,27 @@ msgstr "Colar"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr "Allancia na tresmisión en directo: %(delay)ss"
+msgstr "Atrasu na transmissión in directo: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr "Autenticóse la conexón col sirvidor."
+msgstr "Authenticóu-se la connexión cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr "Conectóse col sirvidor."
+msgstr "Connectóu-se cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr "Perdióse la conexón col sirvidor."
+msgstr "Perdéu-se la connexión cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr "Esperando a que se conecten los xugadores:"
+msgstr "Sperando a que se connecten los jogadores:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "Sincronizando colos otros xugadores..."
+msgstr "Synchronizando cun los outros jogadores..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -132,15 +132,15 @@ msgstr ","
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr "Posólu %(players)s"
+msgstr "Pousóu-lu %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr "Posóse l'alcuentru"
+msgstr "Pousóu-se l incœntru"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Calca pa siguir col alcuentru"
+msgstr "Calca para continua’l incœntru"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
@@ -173,27 +173,27 @@ msgstr "Sociu/a"
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr "Enemigos"
+msgstr "Inimigos"
 
 #: gui/session/chat/ChatAddressees.js:106
 msgctxt "chat message context"
 msgid "Enemy"
-msgstr "Enemigos"
+msgstr "Inimigos"
 
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "Espectadores"
+msgstr "Spectadores"
 
 #: gui/session/chat/ChatAddressees.js:117
 msgctxt "chat message context"
 msgid "Observer"
-msgstr "Espectadores"
+msgstr "Spectadores"
 
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
 msgid "Private"
-msgstr "Privao"
+msgstr "Privado"
 
 #: gui/session/chat/ChatHistory.js:49
 #, javascript-format
@@ -212,42 +212,42 @@ msgstr "HH:mm"
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Mensaxes y avisos"
+msgstr "Recados & avisos"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr "Mensaxes"
+msgstr "Recados"
 
 #: gui/session/chat/ChatHistory.js:92
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "Mensaxes de xugadores"
+msgstr "Recados de jogadores"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Mensaxes de socios"
+msgstr "Recados de socios"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Mensaxes d'enemigos"
+msgstr "Recados d’inimigos"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Mensaxes d'espectadores"
+msgstr "Recados de spectadores"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr "Mensaxes privaos"
+msgstr "Recados privados"
 
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Avisos del xuegu"
+msgstr "Avisos del jœgu"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
@@ -257,66 +257,66 @@ msgstr "Avisos de la rede"
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Teclexa'l mensaxe que quieras unviar."
+msgstr "Teclexa l recadu qu’inviar."
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Premi %(hotkey)s p'abrir la charra pública."
+msgstr "Premi %(hotkey)s p’abri’ la conversa pública."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Premi %(hotkey)s p'abrir la charra d'espectadores."
+msgstr "Premi %(hotkey)s p’abri’ la conversa spectadora."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Premi %(hotkey)s p'abrir la charra de socios."
+msgstr "Premi %(hotkey)s p’abri’ la conversa de socios."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Premi %(hotkey)s p'abrir la última charra privada esbillada."
+msgstr "Premi %(hotkey)s p’abri’ la última conversa privada seleccionada."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s está entamando a rexunise al alcuentru."
+msgstr "%(player)s sta intamando rejunctá-se al incœntru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s está entamando a xunise al alcuentru."
+msgstr "%(player)s sta intamando ajunctá-se al incœntru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s coló del alcuentru."
+msgstr "%(player)s colóu del incœntru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "Torgóse a %(username)s"
+msgstr "Torgóu-se a %(username)s"
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "Espuxóse a %(username)s"
+msgstr "Expulsóu-se a %(username)s"
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s rexunióse al alcuentru."
+msgstr "%(player)s rejunctóu-se al incœntru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s xunióse al alcuentru."
+msgstr "%(player)s ajunctóu-se al incœntru."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -346,81 +346,81 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s está atacando los reses!"
+msgstr "%(icon)s ¡%(attacker)s sta aggrediendo los reses!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s está atacándote!"
+msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Calca pa enfocar escontra la unidá atacada."
+msgstr "Calca para infocar ex contra la unidade aggredida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s entrocó %(amountGiven)s empara de %(amountGained)s."
+msgstr "%(player)s introcóu %(amountGiven)s in para de %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Asociéstite con %(player)s."
+msgstr "Associasti-te cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Embelléstite con %(player)s."
+msgstr "Imbellasti-te cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Declaresti la neutralidá con %(player)s."
+msgstr "Declarasti la neutralidade para cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s asocióse contigo."
+msgstr "%(player)s associóu-se cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s embellóse contigo."
+msgstr "%(player)s imbellóu-se cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s declaró la neutralidá contigo."
+msgstr "%(player)s declarou la neutralidade para cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s asocióse con %(player2)s."
+msgstr "%(player)s associóu-se cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s embellóse con %(player2)s."
+msgstr "%(player)s imbellóu-se cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s declaró la neutralidá con %(player2)s."
+msgstr "%(player)s declarou la neutralidade para cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s está avanzando a la %(phaseName)s."
+msgstr "%(player)s sta abançando a la %(phaseName)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "Abortóse la %(phaseName)s de %(player)s."
+msgstr "Abortóu-se la %(phaseName)s de %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s aportó a la %(phaseName)s."
+msgstr "%(player)s aportóu a la %(phaseName)s."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
@@ -432,36 +432,36 @@ msgstr ", "
 #: gui/session/chat/ChatMessageFormatSimulation.js:159
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s unvióte %(amounts)s."
+msgstr "%(player)s invióu-te %(amounts)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "Unviesti %(amounts)s a %(player2)s."
+msgstr "Inviasti %(amounts)s a %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s unvió %(amounts)s a %(player2)s."
+msgstr "%(player)s invióu %(amounts)s a %(player2)s."
 
 #: gui/session/chat/chat_window.xml:(caption):19
 msgctxt "chat input"
 msgid "Filter:"
-msgstr "Peñera:"
+msgstr "Pen.:"
 
 #: gui/session/chat/chat_window.xml:(caption):46
 msgctxt "chat input"
 msgid "To:"
-msgstr "Pa:"
+msgstr "Para:"
 
 #: gui/session/chat/chat_window.xml:(caption):60
 msgctxt "chat input"
 msgid "Text:"
-msgstr "Textu:"
+msgstr "Txt.:"
 
 #: gui/session/chat/chat_window.xml:(caption):72
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr "Cancellar"
 
 #: gui/session/chat/chat_window.xml:(caption):86
 msgctxt "chat"
@@ -470,25 +470,25 @@ msgstr "Historia"
 
 #: gui/session/chat/chat_window.xml:(caption):91
 msgid "Send"
-msgstr "Unviar"
+msgstr "Inviar"
 
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Peñerar la historia de charres."
+msgstr "Penheira’ la historia de les converses."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "Esbillar el destinatariu de la charra."
+msgstr "Selecciona’l destinatariu de la conversa."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
-msgstr "Abrióse la sobrecapa de desendolcu."
+msgstr "Abríu-se la Sobrecapa disindolrcadora."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
-msgstr "Zarróse la sobrecapa de desendolcu."
+msgstr "Cerróu-se la Sobrecapa disindolrcadora."
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
@@ -500,15 +500,15 @@ msgstr "Cambiar perspectiva"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
-msgstr "Amostrar l'estáu de la esbilla"
+msgstr "Amostra’l stadu de la selección"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
-msgstr "Sobrecapa d'aldadorios"
+msgstr "Sobrecapa del aldadoriu"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
-msgstr "Sobrecapa del aldadoriu xerárquicu"
+msgstr "Sobrecapa del aldadoriu hierárchicu"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
@@ -607,7 +607,7 @@ msgstr "Civilización"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
-msgstr "Cuadriella"
+msgstr "Quadriella"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"

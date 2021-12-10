@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-11-10 06:07+0000\n"
+"PO-Revision-Date: 2021-12-09 04:06+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Círculu"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Los cuadrelleros axúntense al par d'enemigos nun círculu qu'abraca'l mapa."
+msgstr "Los socios axúntense al par d'enemigos nun círculu qu'abraca'l mapa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
@@ -41,7 +41,7 @@ msgstr "Llinia"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
-msgstr "Los cuadrelleros asítiense en retafila."
+msgstr "Los socios asítiense en retafila."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
@@ -50,7 +50,7 @@ msgstr "Conxuntos al debalu"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Los cuadrelleros axúntense ayuri nel mapa."
+msgstr "Los socios axúntense ayuri nel mapa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
@@ -59,7 +59,7 @@ msgstr "Fortaleces"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Los cuadrelleros axúntense n'algún requexu del mapa."
+msgstr "Los socios axúntense n'algún requexu del mapa."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -162,7 +162,7 @@ msgstr "Escueyi una color."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Esbilla la cuadriella del xugador."
+msgstr "Selecciona’ la quadriella l jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -187,7 +187,7 @@ msgstr "Civilización"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
-msgstr "Cuadriella"
+msgstr "Quadriella"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
@@ -240,11 +240,11 @@ msgstr "Alterna'l trunfu del caberu xugador vivu o los caberos socios vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Cuadrielles fixes"
+msgstr "Quadrielles fixes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "Alterna la fixeza de les cuadrielles."
+msgstr "Alterna’ la fixeza de les quadrielles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -462,15 +462,15 @@ msgstr "Cantidá inicial de cada recursu: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "Por xugador"
+msgstr "Per jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
-msgstr "Allugamientu de les cuadrielles"
+msgstr "Collocación de quadrielles"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
-msgstr "Esbilla un modelu d'allugamientu inicial."
+msgstr "Selecciona un modello de situación inicial pal mappa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
@@ -480,7 +480,7 @@ msgstr "Al debalu"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "Esbilla un modelu d'allugamientu inicial al debalu."
+msgstr "Seleccionar un modello de collocación inicial pales quadrielles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
@@ -645,7 +645,7 @@ msgstr "Reafita les civilizaciones al valor por defectu (al debalu)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Reafita les cuadrielles al valor por defectu."
+msgstr "Reafhitar tódeles quadrielles al valor por defeitu."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -900,7 +900,7 @@ msgstr "Emplegar STUN pa evitar tornafueos"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
-msgstr "Siguir"
+msgstr "Seguir"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
