@@ -26,8 +26,6 @@
  */
 class CFont
 {
-	friend class CFontManager;
-	CFont() {}
 public:
 	struct GlyphData
 	{
@@ -80,6 +78,10 @@ public:
 	CTexturePtr GetTexture() const { return m_Texture; }
 
 private:
+	friend class CFontManager;
+
+	CFont() = default;
+
 	CTexturePtr m_Texture;
 
 	bool m_HasRGB; // true if RGBA, false if ALPHA

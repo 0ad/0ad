@@ -27,7 +27,7 @@
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 
-#include <cfloat>
+#include <limits>
 
 std::shared_ptr<CFont> CFontManager::LoadFont(CStrIntern fontName)
 {
@@ -55,77 +55,91 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	const VfsPath path(L"fonts/");
 
 	// Read font definition file into a stringstream
-	std::shared_ptr<u8> buf;
+	std::shared_ptr<u8> buffer;
 	size_t size;
 	const VfsPath fntName(fontName.string() + ".fnt");
-	if (g_VFS->LoadFile(path / fntName, buf, size) < 0)
+	if (g_VFS->LoadFile(path / fntName, buffer, size) < 0)
 	{
 		LOGERROR("Failed to open font file %s", (path / fntName).string8());
 		return false;
 	}
-	std::istringstream FNTStream(std::string((const char*)buf.get(), size));
+	std::istringstream fontStream(
+		std::string(reinterpret_cast<const char*>(buffer.get()), size));
 
-	int Version;
-	FNTStream >> Version;
-	if (Version != 101) // Make sure this is from a recent version of the font builder
+	int version;
+	fontStream >> version;
+	// Make sure this is from a recent version of the font builder.
+	if (version != 101)
 	{
 		LOGERROR("Font %s has invalid version", fontName.c_str());
-		return 0;
+		return false;
 	}
 
-	int TextureWidth, TextureHeight;
-	FNTStream >> TextureWidth >> TextureHeight;
+	int textureWidth, textureHeight;
+	fontStream >> textureWidth >> textureHeight;
 
-	std::string Format;
-	FNTStream >> Format;
-	if (Format == "rgba")
+	std::string format;
+	fontStream >> format;
+	if (format == "rgba")
 		font->m_HasRGB = true;
-	else if (Format == "a")
+	else if (format == "a")
 		font->m_HasRGB = false;
 	else
-		debug_warn(L"Invalid .fnt format string");
-
-	int NumGlyphs;
-	FNTStream >> NumGlyphs;
-
-	FNTStream >> font->m_LineSpacing;
-	FNTStream >> font->m_Height;
-
-	font->m_BoundsX0 = FLT_MAX;
-	font->m_BoundsY0 = FLT_MAX;
-	font->m_BoundsX1 = -FLT_MAX;
-	font->m_BoundsY1 = -FLT_MAX;
-
-	for (int i = 0; i < NumGlyphs; ++i)
 	{
-		int          Codepoint, TextureX, TextureY, Width, Height, OffsetX, OffsetY, Advance;
-		FNTStream >> Codepoint>>TextureX>>TextureY>>Width>>Height>>OffsetX>>OffsetY>>Advance;
+		LOGWARNING("Invalid .fnt format string");
+		return false;
+	}
 
-		if (Codepoint < 0 || Codepoint > 0xFFFF)
+	int mumberOfGlyphs;
+	fontStream >> mumberOfGlyphs;
+
+	fontStream >> font->m_LineSpacing;
+	fontStream >> font->m_Height;
+
+	font->m_BoundsX0 = std::numeric_limits<float>::max();
+	font->m_BoundsY0 = std::numeric_limits<float>::max();
+	font->m_BoundsX1 = -std::numeric_limits<float>::max();
+	font->m_BoundsY1 = -std::numeric_limits<float>::max();
+
+	for (int i = 0; i < mumberOfGlyphs; ++i)
+	{
+		int codepoint, textureX, textureY, width, height, offsetX, offsetY, advance;
+		fontStream >> codepoint
+			>> textureX >> textureY >> width >> height
+			>> offsetX >> offsetY >> advance;
+
+		if (codepoint < 0 || codepoint > 0xFFFF)
 		{
-			LOGWARNING("Font %s has invalid codepoint 0x%x", fontName.c_str(), Codepoint);
+			LOGWARNING("Font %s has invalid codepoint 0x%x", fontName.c_str(), codepoint);
 			continue;
 		}
 
-		float u = (float)TextureX / (float)TextureWidth;
-		float v = (float)TextureY / (float)TextureHeight;
-		float w = (float)Width  / (float)TextureWidth;
-		float h = (float)Height / (float)TextureHeight;
+		const float u = static_cast<float>(textureX) / textureWidth;
+		const float v = static_cast<float>(textureY) / textureHeight;
+		const float w = static_cast<float>(width) / textureWidth;
+		const float h = static_cast<float>(height) / textureHeight;
 
-		CFont::GlyphData g = { u, -v, u+w, -v+h, (i16)OffsetX, (i16)-OffsetY, (i16)(OffsetX+Width), (i16)(-OffsetY+Height), (i16)Advance };
-		font->m_Glyphs.set((u16)Codepoint, g);
+		CFont::GlyphData g =
+		{
+			u, -v, u + w, -v + h,
+			static_cast<i16>(offsetX), static_cast<i16>(-offsetY),
+			static_cast<i16>(offsetX + width), static_cast<i16>(-offsetY + height),
+			static_cast<i16>(advance)
+		};
+		font->m_Glyphs.set(static_cast<u16>(codepoint), g);
 
-		font->m_BoundsX0 = std::min(font->m_BoundsX0, (float)g.x0);
-		font->m_BoundsY0 = std::min(font->m_BoundsY0, (float)g.y0);
-		font->m_BoundsX1 = std::max(font->m_BoundsX1, (float)g.x1);
-		font->m_BoundsY1 = std::max(font->m_BoundsY1, (float)g.y1);
+		font->m_BoundsX0 = std::min(font->m_BoundsX0, static_cast<float>(g.x0));
+		font->m_BoundsY0 = std::min(font->m_BoundsY0, static_cast<float>(g.y0));
+		font->m_BoundsX1 = std::max(font->m_BoundsX1, static_cast<float>(g.x1));
+		font->m_BoundsY1 = std::max(font->m_BoundsY1, static_cast<float>(g.y1));
 	}
 
-	ENSURE(font->m_Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
+	// Ensure the height has been found (which should always happen if the font includes an 'I').
+	ENSURE(font->m_Height);
 
 	// Load glyph texture
-	const VfsPath imgName(fontName.string() + ".png");
-	CTextureProperties textureProps(path / imgName);
+	const VfsPath imageName(fontName.string() + ".png");
+	CTextureProperties textureProps(path / imageName);
 	textureProps.SetFilter(GL_LINEAR);
 	if (!font->m_HasRGB)
 		textureProps.SetFormatOverride(GL_ALPHA);
