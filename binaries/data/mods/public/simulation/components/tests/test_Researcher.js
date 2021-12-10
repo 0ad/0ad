@@ -151,3 +151,11 @@ spyTechManager = new Spy(techManager, "ResearchTechnology");
 TS_ASSERT_EQUALS(cmpResearcher.Progress(id, 1000), 500);
 TS_ASSERT_EQUALS(spyTechManager._called, 1);
 TS_ASSERT_EQUALS(cmpResearcher.queue.size, 0);
+
+
+// Test that we can affect an empty researcher.
+Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, value) => value + "some_test");
+TS_ASSERT_UNEVAL_EQUALS(
+	ConstructComponent(entityID, "Researcher", null).GetTechnologiesList(),
+	["some_test"]
+);

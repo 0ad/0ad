@@ -14,6 +14,7 @@ Engine.LoadComponentScript("interfaces/Pack.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/Turretable.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Formation.js");
 Engine.LoadComponentScript("UnitAI.js");

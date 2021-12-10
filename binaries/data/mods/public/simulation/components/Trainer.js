@@ -461,10 +461,8 @@ Trainer.prototype.CalculateEntitiesMap = function()
 	// Don't reset the map, it's used below to update entities.
 	if (!this.entitiesMap)
 		this.entitiesMap = new Map();
-	if (!this.template.Entities)
-		return;
 
-	const string = this.template.Entities._string;
+	const string = this.template?.Entities?._string || "";
 	// Tokens can be added -> process an empty list to get them.
 	let addedTokens = ApplyValueModificationsToEntity("Trainer/Entities/_string", "", this.entity);
 	if (!addedTokens && !string)
@@ -577,7 +575,7 @@ Trainer.prototype.GetUpgradedTemplate = function(templateName)
 Trainer.prototype.GetTrainCostMultiplier = function()
 {
 	const trainCostMultiplier = {};
-	for (const res in this.template.TrainCostMultiplier)
+	for (const res in this.template?.TrainCostMultiplier)
 		trainCostMultiplier[res] = ApplyValueModificationsToEntity(
 		    "Trainer/TrainCostMultiplier/" + res,
 		    +this.template.TrainCostMultiplier[res],
@@ -594,7 +592,7 @@ Trainer.prototype.GetBatchTime = function(batchSize)
 	// TODO: work out what equation we should use here.
 	return Math.pow(batchSize, ApplyValueModificationsToEntity(
 	    "Trainer/BatchTimeModifier",
-	    +(this.template.BatchTimeModifier || 1),
+	    +(this.template?.BatchTimeModifier || 1),
 	    this.entity));
 };
 

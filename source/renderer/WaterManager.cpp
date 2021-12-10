@@ -76,8 +76,6 @@ WaterManager::WaterManager()
 	m_RenderWater = false; // disabled until textures are successfully loaded
 	m_WaterHeight = 5.0f;
 
-	m_WaterCurrentTex = 0;
-
 	m_ReflectionTexture = 0;
 	m_RefractionTexture = 0;
 	m_RefTextureSize = 0;
@@ -1094,4 +1092,16 @@ bool WaterManager::WillRenderFancyWater() const
 	return
 		m_RenderWater && g_RenderingOptions.GetPreferGLSL() &&
 		g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
+}
+
+size_t WaterManager::GetCurrentTextureIndex(const double& period) const
+{
+	ENSURE(period > 0.0);
+	return static_cast<size_t>(m_WaterTexTimer * ARRAY_SIZE(m_WaterTexture) / period) % ARRAY_SIZE(m_WaterTexture);
+}
+
+size_t WaterManager::GetNextTextureIndex(const double& period) const
+{
+	ENSURE(period > 0.0);
+	return (GetCurrentTextureIndex(period) + 1) % ARRAY_SIZE(m_WaterTexture);
 }

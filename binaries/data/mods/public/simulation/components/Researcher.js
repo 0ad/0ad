@@ -218,11 +218,7 @@ Researcher.prototype.Deserialize = function(data)
  */
 Researcher.prototype.GetTechnologiesList = function()
 {
-	if (!this.template.Technologies)
-		return [];
-
-	const string = ApplyValueModificationsToEntity("Researcher/Technologies/_string", this.template.Technologies._string, this.entity);
-
+	const string = ApplyValueModificationsToEntity("Researcher/Technologies/_string", this.template?.Technologies?._string || "", this.entity);
 	if (!string)
 		return [];
 
@@ -309,7 +305,7 @@ Researcher.prototype.GetTechnologiesList = function()
 Researcher.prototype.GetTechCostMultiplier = function()
 {
 	const techCostMultiplier = {};
-	for (const res in this.template.TechCostMultiplier)
+	for (const res in this.template?.TechCostMultiplier)
 		techCostMultiplier[res] = ApplyValueModificationsToEntity(
 		    "Researcher/TechCostMultiplier/" + res,
 		    +this.template.TechCostMultiplier[res],

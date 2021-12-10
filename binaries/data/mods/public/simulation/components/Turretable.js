@@ -76,10 +76,7 @@ Turretable.prototype.OccupyTurret = function(target, turretPointName = "", eject
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
-	{
-		cmpUnitAI.SetGarrisoned();
 		cmpUnitAI.SetTurretStance();
-	}
 
 	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (cmpUnitMotion)
@@ -138,7 +135,6 @@ Turretable.prototype.LeaveTurret = function(forced = false)
 	if (cmpUnitAI)
 	{
 		cmpUnitAI.Ungarrison();
-		cmpUnitAI.UnsetGarrisoned();
 		cmpUnitAI.ResetTurretStance();
 	}
 
