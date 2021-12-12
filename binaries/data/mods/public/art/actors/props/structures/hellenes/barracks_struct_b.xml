@@ -2,10 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="barracks struct b">
+    <variant frequency="1" name="Hele Barracks Struct">
       <mesh>structural/helle_barracks_structb.dae</mesh>
-      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_struct_b.png" name="baseTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
