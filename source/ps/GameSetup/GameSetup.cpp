@@ -551,6 +551,14 @@ static void InitSDL()
 	SDL_SetHint(SDL_HINT_MOUSE_DOUBLE_CLICK_RADIUS, "1");
 #endif
 
+#if SDL_VERSION_ATLEAST(2, 0, 14) && OS_WIN
+	// SDL2 >= 2.0.14 Before SDL 2.0.14, this defaulted to true. In 2.0.14 they switched to false
+	// breaking the behavior on Windows.
+	// https://github.com/libsdl-org/SDL/commit/1947ca7028ab165cc3e6cbdb0b4b7c4db68d1710
+	// https://github.com/libsdl-org/SDL/issues/5033
+	SDL_SetHint(SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS, "1");
+#endif
+
 #if OS_MACOSX
 	// Some Mac mice only have one button, so they can't right-click
 	// but SDL2 can emulate that with Ctrl+Click
