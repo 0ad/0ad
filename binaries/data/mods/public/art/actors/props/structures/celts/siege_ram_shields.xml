@@ -4,12 +4,12 @@
   <group>
     <variant frequency="100" name="shield mesh">
       <mesh>props/celt_siege_ram_shields.dae</mesh>
+      <textures>
+        <texture file="props/celt_prop_1.png" name="baseTex"/>
+        <texture file="props/celt_prop_1_norm.png" name="normTex"/>
+        <texture file="props/celt_prop_1_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="sheild textures">
-      <textures><texture file="props/celt_prop_1.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <material>player_trans.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
