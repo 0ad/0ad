@@ -408,7 +408,10 @@ PETRA.AttackPlan.prototype.addSiegeUnits = function(gameState)
 		}
 	}
 	if (hasTrainer.every(e => !e))
+	{
+		this.siegeState = PETRA.AttackPlan.SIEGE_NO_TRAINER;
 		return false;
+	}
 	let i = this.name % classes.length;
 	for (let k = 0; k < classes.length; ++k)
 	{
