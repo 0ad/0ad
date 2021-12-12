@@ -19,6 +19,12 @@
         <texture file="skeletal/mace_bronzeshield_pikeman_a.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="armor long 02">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/mace_bronzeshield_pikeman_a_02.png" name="baseTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="armor short">
       <textures>
         <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
