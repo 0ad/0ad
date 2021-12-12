@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="beard-large">
-      <color>255 255 255</color>
+    <variant frequency="1" name="Caradoc's Head">
       <mesh>props/head_longhair.dae</mesh>
-      <textures><texture file="props/head/celt_caratacos.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_caratacos.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>default.xml</material>
 </actor>
