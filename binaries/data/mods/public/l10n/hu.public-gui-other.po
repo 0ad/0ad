@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-12-08 17:31+0000\n"
+"PO-Revision-Date: 2021-12-11 14:44+0000\n"
 "Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1747,7 +1747,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "1-es kamera elhelyezése"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
@@ -1757,7 +1757,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "2-es kamera elhelyezése"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
@@ -1767,7 +1767,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "3-as kamera elhelyezése"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
@@ -1777,7 +1777,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "4-es kamera elhelyezése"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
@@ -2450,7 +2450,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr "Ne kérj megerősítést épületek vagy egységek megsemmisítésekor!"
+msgstr "Nem fog megerősítést kérni építmények vagy egységek megsemmisítésekor."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
@@ -4980,7 +4980,7 @@ msgstr "A gazdasági oktatójáték elkezdése."
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr "Struktúrafa"
+msgstr "Építményfa"
 
 #: gui/pregame/MainMenuItems.js:28
 #, javascript-format
@@ -5380,7 +5380,7 @@ msgstr "%(civilization)s játékmenet"
 #: gui/reference/civinfo/Sections/HistorySection.js:23
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr "A(z) %(civilization)s történelme"
+msgstr "A(z) %(civilization)s története"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
@@ -5462,14 +5462,14 @@ msgstr "Kutatható itt:"
 #. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
-msgstr "Épít:"
+msgstr "Amit fel tud építeni:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "Kutatható technológiák:"
+msgstr "Kutatható fejlesztések:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
@@ -5784,7 +5784,7 @@ msgstr "Felfedezési pontok"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr "Épületek"
+msgstr "Építmények"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -5835,7 +5835,7 @@ msgstr "Gyalogos"
 
 #: gui/summary/layout.js:74
 msgid "Worker"
-msgstr "Dolgozó"
+msgstr "Munkás"
 
 #: gui/summary/layout.js:75
 msgid "Cavalry"
@@ -6643,7 +6643,7 @@ msgstr "Különleges fejlesztés a perzsáknak."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "+25% életerő minden építménynek."
+msgstr "+25% életerő minden építménynek"
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -6784,7 +6784,7 @@ msgstr "A megfelelő vágó támadás jó első vonalbeli harcossá teszi őket.
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "Képesek ellensúlyozni a távolsági egységeket és a kardforgatókat, ezért érdemes a lándzsásokat parittyásokkal vagy lovassággal támogatni."
+msgstr "A kardforgatók és a távolsági egységek egyaránt hatékonyak a lándzsásokkal szemben, érdemes hát őket parittyásokkal vagy lovasokkal támogatni."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

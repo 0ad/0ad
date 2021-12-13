@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-12-09 04:16+0000\n"
+"PO-Revision-Date: 2021-12-13 01:17+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Afhita la velocidade del jœgu"
+msgstr "Afhita la velocidade del juögu"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -54,7 +54,7 @@ msgstr "Antepar"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Calca %(hotkey)s p’abri’ la página “Antepar” in sin colar del jœgu."
+msgstr "Calca %(hotkey)s p’abri’ la página “Antepar” in sin colar del juögu."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -75,7 +75,7 @@ msgstr "Pousar"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Calca %(hotkey)s para pousar ou continua’l jœgu."
+msgstr "Calca %(hotkey)s para pousar ou continua’l juögu."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -136,11 +136,11 @@ msgstr "Pousóu-lu %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr "Pousóu-se l incœntru"
+msgstr "Pousóu-se l incuöntru"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Calca para continua’l incœntru"
+msgstr "Calca para continua’l incuöntru"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
@@ -163,12 +163,12 @@ msgstr "Todos"
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Socios"
+msgstr "Colligados"
 
 #: gui/session/chat/ChatAddressees.js:95
 msgctxt "chat message context"
 msgid "Ally"
-msgstr "Sociu/a"
+msgstr "Colligadu/a"
 
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
@@ -227,7 +227,7 @@ msgstr "Recados de jogadores"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Recados de socios"
+msgstr "Recados de colligados"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
@@ -247,7 +247,7 @@ msgstr "Recados privados"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Avisos del jœgu"
+msgstr "Avisos del juögu"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
@@ -257,7 +257,7 @@ msgstr "Avisos de la rede"
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Teclexa l recadu qu’inviar."
+msgstr "Teclexa l recadu q’inviar."
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
@@ -272,7 +272,7 @@ msgstr "Premi %(hotkey)s p’abri’ la conversa spectadora."
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Premi %(hotkey)s p’abri’ la conversa de socios."
+msgstr "Premi %(hotkey)s p’abri’ la conversa de colligados."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
@@ -283,18 +283,18 @@ msgstr "Premi %(hotkey)s p’abri’ la última conversa privada seleccionada."
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s sta intamando rejunctá-se al incœntru."
+msgstr "%(player)s sta intamando rejunctá-se al incuöntru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s sta intamando ajunctá-se al incœntru."
+msgstr "%(player)s sta intamando ajunctá-se al incuöntru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s colóu del incœntru."
+msgstr "%(player)s colóu del incuöntru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
@@ -310,13 +310,13 @@ msgstr "Expulsóu-se a %(username)s"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s rejunctóu-se al incœntru."
+msgstr "%(player)s rejunctóu-se al incuöntru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s ajunctóu-se al incœntru."
+msgstr "%(player)s ajunctóu-se al incuöntru."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -475,7 +475,7 @@ msgstr "Inviar"
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Penheira’ la historia de les converses."
+msgstr "Penheira’ la historia de las conversas."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
@@ -484,15 +484,15 @@ msgstr "Selecciona’l destinatariu de la conversa."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
-msgstr "Abríu-se la Sobrecapa disindolrcadora."
+msgstr "Abríu-se la Sobrecapa disindolcadora."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
-msgstr "Cerróu-se la Sobrecapa disindolrcadora."
+msgstr "Cerróu-se la Sobrecapa disindolcadora."
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
-msgstr "Mandar tódeles unidades"
+msgstr "Mandar tódalas unidades"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
@@ -649,7 +649,7 @@ msgstr "Alternar colores diplomátiques"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pidir a los socios qu'ataquen esti enemigu"
+msgstr "Pedir a los colligados q’aggredan esti inimigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -659,7 +659,7 @@ msgstr "Nengún"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr "Sociu/a"
+msgstr "Colligadu/a"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
@@ -893,7 +893,7 @@ msgstr "Xugador desconocidu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Facer una seña a los socios"
+msgstr "Fhazer una signa a los colligados"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
@@ -1707,7 +1707,7 @@ msgstr "Manda que les unidades esbillades igüen una construcción, barcu o máq
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
-msgstr "Enfocar escontra'l puntu d'alcuentru."
+msgstr "Infocar ex contra l puncto d’incuöntru."
 
 #: gui/session/unit_actions.js:1625
 msgid "Back to Work"
@@ -1737,11 +1737,11 @@ msgstr "Ataca tódeles unidades enemigues alcontrades evitando construcciones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Premi pa dexar que los socios usen esti depósitu"
+msgstr "Premi para deixar que los colligados usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi pa quitar que los socios usen esti depósitu"
+msgstr "Premi para quitar que los colligados usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1749,7 +1749,7 @@ msgstr "Nun puedes usar esti depósitu"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Los socios pueden usar esti depósitu."
+msgstr "Los colligados puöden usar esti depósitu."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"

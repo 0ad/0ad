@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-12-09 04:06+0000\n"
+"PO-Revision-Date: 2021-12-13 03:45+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,34 +32,34 @@ msgstr "Círculu"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Los socios axúntense al par d'enemigos nun círculu qu'abraca'l mapa."
+msgstr "Los jogadores colligados ajunctan-se al par d’inimigos nun círculu q’invuölve l mappa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
 msgid "Line"
-msgstr "Llinia"
+msgstr "Lhinya"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:63
 msgid "Allied players are placed in a linear pattern."
-msgstr "Los socios asítiense en retafila."
+msgstr "Los jogadores colligados sitúan-se n rectafhila."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:67
 msgctxt "team placement"
 msgid "Random Group"
-msgstr "Conxuntos al debalu"
+msgstr "Grea aleatoria"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Los socios axúntense ayuri nel mapa."
+msgstr "Los jogadores colligados ajunctan-se, mas sitúan-se aleatoriamente nel mappa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
 msgid "Stronghold"
-msgstr "Fortaleces"
+msgstr "Fortalezas"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Los socios axúntense n'algún requexu del mapa."
+msgstr "Los jogadores colligados ajunctan-se ayuri nel mappa."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -67,28 +67,28 @@ msgstr "Configuración de la IA"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr "Aceptar"
+msgstr "Acceitar"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
-msgstr "La intelixencia artificial d'esti xugador va estar desactivada."
+msgstr "La intelligencia artificial d’esti jogador vai quedar inactiva."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
-msgstr "Actitú de la intelixencia artificial"
+msgstr "Actitude de la intelligencia artificial"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
-msgstr "Dificultá de la intelixencia artificial"
+msgstr "Difficultade de la intelligencia artificial"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
 msgid "None"
-msgstr "Nengún"
+msgstr "Nenguna"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:44
 msgid "AI Player"
-msgstr "Xugador d'intelixencia artificial"
+msgstr "Jogador d’intelligencia artificial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
@@ -108,70 +108,70 @@ msgstr "Non"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:84
 msgctxt "settings value"
 msgid "Unknown"
-msgstr "Desconozse"
+msgstr "Disconhoz-se"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr "Mapa"
+msgstr "Mappa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr "Xugador"
+msgstr "Jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "Tipu d'alcuentru"
+msgstr "Typu d’incuöntru"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "Configuración de la intelixencia artificial: %(description)s."
+msgstr "Configuración de la intelligencia artificial: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
-msgstr "Esbilla un xugador."
+msgstr "Selecciona jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "Intelixencia artificial: %(ai)s"
+msgstr "Intelligencia artificial: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
-msgstr "Ensin afitar"
+msgstr "Sin afhitar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
 msgid "Choose the civilization for this player."
-msgstr "Escueyi la civilización d'esti xugador."
+msgstr "Excoye’ la civilización d’esti jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
 msgctxt "civilization"
 msgid "Random"
-msgstr "Al debalu"
+msgstr "Aleatoria"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
 msgid "Picks one civilization at random when the game starts."
-msgstr "Escueye una civilización al debalu al aniciar l'alcuentru."
+msgstr "Excuöye una civilización aleatoria al inicia’l incuöntru."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
-msgstr "Escueyi una color."
+msgstr "Excoyer un color."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Selecciona’ la quadriella l jogador."
+msgstr "Selecciona’ la quadriella del jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
 msgid "None"
-msgstr "Nengún"
+msgstr "Nenguna"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
-msgstr "Nome del xugador"
+msgstr "Nome del jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
@@ -179,7 +179,7 @@ msgstr "Color"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr "Allugamientu del xugador"
+msgstr "Posición del jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
@@ -196,15 +196,15 @@ msgstr "Restolar los mapes"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "Premi %(hotkey)s pa ver los mapes disponibles."
+msgstr "Premi %(hotkey)s para ve’ los mappas disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr "Vista comuñera"
+msgstr "Vista colligada"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Alterna la vista comuñera (permite ver lo que ven los socios)."
+msgstr "Alterna la vista colligada (permitte ve’ lo que ven los colligados)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -219,32 +219,32 @@ msgstr "Alterna l'usu de trampes."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr "Mapa exploráu"
+msgstr "Mappa exploradu"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr "Alterna'l mapa exploráu (ver el mapa inicial)."
+msgstr "Alterna’l mappa exploradu (ve’l mappa inicial)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr "A vida o muerte"
+msgstr "A vida ou muörte"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Alterna'l trunfu del caberu xugador vivu o los caberos socios vivos."
+msgstr "Alterna l triumphu del postreiru jogador vivu ou los postreiros colligados vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Quadrielles fixes"
+msgstr "Quadriellas fixas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "Alterna’ la fixeza de les quadrielles."
+msgstr "Alterna’ la fixeza de las quadriellas."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -573,7 +573,7 @@ msgstr "Temporizador del inchente"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
-msgstr "Afita'l tiempu hasta l'entamu del inchente."
+msgstr "Afhita l tiempu ta l intamu del intyente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
@@ -641,11 +641,11 @@ msgstr "Señala que nun estás preparáu pa xugar."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Reafita les civilizaciones al valor por defectu (al debalu)."
+msgstr "Reafhita’ las civilizaciones al valor por defeitu (aleatoriu)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Reafhitar tódeles quadrielles al valor por defeitu."
+msgstr "Reafhitar tódalas quadriellas al valor por defeitu."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -875,7 +875,7 @@ msgstr "Nome del xugador:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr "Nome del anfitrión o IP del sirividor:"
+msgstr "Nome del amphitryón ou IP del serividor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
@@ -896,7 +896,7 @@ msgstr "Clave del sirvidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr "Emplegar STUN pa evitar tornafueos"
+msgstr "Usar STUN para evitar torna-fhuögos"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
@@ -917,7 +917,7 @@ msgstr "Confimar"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "Déxalo en blanco pa usar el puertu por defectu."
+msgstr "Deiẍa-lo n blanco para usa’l puörtu por defeitu."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
@@ -952,7 +952,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "«Mas algamará toda sapiencia quien provea grayar de victoria a Zeus, qu'induz los mortales a razonare, qu'ordena oficialmente que pola pasión la sapiencia hebia. Sí qu'así, nel suonu, ante'l cuore, cáye-lly la llaceriosa memoria del trabayu; ya asina, a remolera, se vien a moderare. Miánica ye violenta la gracia de los démones en reverida sede sentados.» \\n— Esquilu («Agamenón», 176–183)"
+msgstr "“Mas agalmar-ha toda sapiencia quien proveya grayare de victoria a Zeus, \\[…] q’ordena officialmente que pela passión la sapiencia s’obtenga. Sí q’assí, nel suönhu, \\[…] cade-lli la lhaceriosa memoria del trabayu; & ansí, a remoleira, se vien a temprare. Lo violenta que ye la gracia de los démones \\[…].” \\n— Eschylu (“Agamemnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""

@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-12-06 13:16+0000\n"
+"PO-Revision-Date: 2021-12-11 17:50+0000\n"
 "Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Erős papság"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr "–15% nyersanyagigény és kutatási idő az építményeknél kutatható fejlesztéseknek"
+msgstr "−15% nyersanyagigény és kutatási idő minden fejlesztésnek"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
@@ -160,7 +160,7 @@ msgstr "Szigorú kiképzés"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."
-msgstr "–25% elkészítési idő a hadihajóknak"
+msgstr "−25% elkészítési idő a hadihajóknak"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -168,7 +168,7 @@ msgstr "Déloszi szövetség"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr "–20% nyersanyagigény a gyógyítóknak"
+msgstr "−20% nyersanyagigény a gyógyítóknak"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -184,7 +184,7 @@ msgstr "Kereskedőmesterek"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr "–15% nyersanyagigény és kutatási idő a kovácsműhelyekben kutatható fejlesztéseknek"
+msgstr "−15% nyersanyagigény és kutatási idő a kovácsműhelyekben kutatható fejlesztéseknek"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
@@ -192,7 +192,7 @@ msgstr "Gall termékek"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr "–10% nyersanyagigény a polgári gerelyeseknek"
+msgstr "−10% nyersanyagigény a polgári gerelyeseknek"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -200,7 +200,7 @@ msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr "–20% nyersanyagigény és képzési idő az elefántoknak"
+msgstr "−20% nyersanyagigény és képzési idő az elefántoknak"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -218,7 +218,7 @@ msgstr "Egységes váltó"
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr "–50% nyersanyagigény és építési idő a templomoknak, –50% nyersanyagigény és fejlesztési idő a templomokban kutatható fejlesztéseknek"
+msgstr "−50% nyersanyagigény és építési idő a templomoknak, −50% nyersanyagigény és fejlesztési idő a templomokban kutatható fejlesztéseknek"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -242,7 +242,7 @@ msgstr "A Földközi-tenger kenyereskosara"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr "–10% kiképzési idő a polgári gyalogosoknak"
+msgstr "−10% kiképzési idő a polgári gyalogosoknak"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -250,7 +250,7 @@ msgstr "Sorozás"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Civil Centers −20% resource costs."
-msgstr "–20% nyersanyagigény a városházáknak"
+msgstr "−20% nyersanyagigény a városházáknak"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -266,7 +266,7 @@ msgstr "Peloponnészoszi szövetség"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr "Ellenséges katonák -10% támadás sebzés és elfoglalási hatékonyság."
+msgstr "−10% sebzés és foglalóerő az ellenséges katonáknak"
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
@@ -286,7 +286,7 @@ msgstr "Gazdasági reformok"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr "Szolón új súly- és mértékrendszert vezetett be, az apákat pedig arra ösztönözte, hogy fiaiknak szakmát találjanak.\n–10% nyersanyagigény a gazdasági fejlesztéseknek"
+msgstr "Szolón új súly- és mértékrendszert vezetett be, az apákat pedig arra ösztönözte, hogy fiaiknak szakmát találjanak.\n−10% nyersanyagigény a gazdasági fejlesztéseknek"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -347,7 +347,7 @@ msgstr "Sarc Rómának"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "Allied Citizen Mercenaries −25% metal cost."
-msgstr "Mandonius testvérével, Indibilisszel együtt vezette azokat az ibériai rekrutákat és zsoldosokat, akik részt vettek a II. pun háborúban.\n–25% fémigény a szövetséges polgári zsoldosoknak"
+msgstr "Mandonius testvérével, Indibilisszel együtt vezette azokat az ibériai rekrutákat és zsoldosokat, akik részt vettek a második pun háborúban.\n−25% fémigény a szövetséges polgári zsoldosoknak"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -417,7 +417,7 @@ msgstr "Vamba Moriar"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr "Uralkodása alatt Artakhsaszjá vagyonának nagy részét építkezésekre fordította: helyreállíttatta I. Dárajavaus szuszai palotáját és Ekbatana ősi városát is.\n–10% nyersanyagigény és +5% életerő minden építménynek"
+msgstr "Uralkodása alatt Artakhsaszjá vagyonának nagy részét építkezésekre fordította: helyreállíttatta I. Dárajavaus szuszai palotáját és Ekbatana ősi városát is.\n−10% nyersanyagigény és +5% életerő minden építménynek"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -457,7 +457,7 @@ msgstr "A köztársaság alapítója és védelmezője"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "Temples −10% resource costs; Temple technologies −10% resource costs."
-msgstr "I. Antiokhosz rakatta le a borszippai Ezida templom alapjait.\n–10% nyersanyagigény a templomoknak és a templomokban kutatható fejlesztéseknek"
+msgstr "I. Antiokhosz rakatta le a borszippai Ezida templom alapjait.\n−10% nyersanyagigény a templomoknak és a templomokban kutatható fejlesztéseknek"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -572,7 +572,7 @@ msgstr "Hajómérnök"
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage, "
 "+10% movement speed."
-msgstr "+2 elfoglalási támadási erő, +20% közelharci és távolsági sebzés, +10% mozgási sebesség a bajnokoknál."
+msgstr "+2 foglalóerő, +20% közelharci és távolsági sebzés, illetve +10% mozgási sebesség a bajnok egységeknek"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -681,7 +681,7 @@ msgstr "Harci szellem"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr "–15% nyersanyagigény és –20% kiképzési idő a katonáknak"
+msgstr "−15% nyersanyagigény és −20% kiképzési idő a katonáknak"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -869,7 +869,7 @@ msgstr "Hitvestárs"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr "–10% életerő az ellenséges hősöknek"
+msgstr "−10% életerő az ellenséges hősöknek"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
@@ -906,7 +906,7 @@ msgstr "Róma kardja"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr "−10% közelharci és távolsági sebzés az ellenséges gyalogságnál."
+msgstr "−10% közelharci és távolsági sebzés az ellenséges gyalogságnak"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."

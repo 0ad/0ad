@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-12-08 01:34+0000\n"
+"PO-Revision-Date: 2021-12-13 01:28+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "La velocidade d’approximación diminuíu a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
-msgstr "Cadenes lhongues"
+msgstr "Cadenas lhongas"
 
 #: lobby/XmppClient.cpp:1026
 msgid "unknown subtype (see logs)"
@@ -81,7 +81,7 @@ msgstr "El certificado nun se diou pal par al que stas connectadu."
 
 #: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
-msgstr "Quien roblróu l certificado nun tenía authorización."
+msgstr "Quien robróu l certificado nun tenía authorización."
 
 #: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
 #: lobby/XmppClient.cpp:1468
@@ -168,7 +168,7 @@ msgstr "El servidor nun offríu l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Fallóu l’authenticación. La clave nun ye correcta ou la cœnta nun existe"
+msgstr "Fallóu l’authenticación. La clave nun ye correcta ou la cuönta nun existe"
 
 #: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
@@ -176,11 +176,11 @@ msgstr "L usuariu ou l systema pidíu disconnectá-se"
 
 #: lobby/XmppClient.cpp:1450
 msgid "There is no active connection"
-msgstr "Nun ha hi connexiones actives"
+msgstr "Nun ha hi connexiones activas"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Your account has been successfully registered"
-msgstr "Registróu-se cun éxitu la tua cœnta"
+msgstr "Registróu-se cun éxitu la tua cuönta"
 
 #: lobby/XmppClient.cpp:1472
 msgid "Not all necessary information provided"
@@ -195,42 +195,42 @@ msgstr "Ya existe l nome d’usuariu"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribí-se un mod.json externu pal camudu comprimidu “%s”. Ha hi que reinstalla’l camudu."
+msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi que reinstalla’l commudu."
 
 #: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar sobre la identificación del jœgu. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar sobre la identificación del juögu. Error: %s; %s."
 
 #: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar sobre camudos. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar sobre commudos. Error: %s; %s."
 
 #: ps/ModIo.cpp:319
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo creá-se l directorio l camudu: %s."
+msgstr "Nun pudo creá-se l directorio l commudu: %s."
 
 #: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrí-se l archivo temporal para baxa’l camudu: %s."
+msgstr "Nun pudo abrí-se l archivo temporal p’abaẍa’l commudu: %s."
 
 #: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Houbo un fallu al inicia’ la baxada. Error: %s; %s."
+msgstr "Houbo un fallu al inicia’ la baẍada. Error: %s; %s."
 
 #: ps/ModIo.cpp:399
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Fallu de baxada asýnchrona: %s, %s."
+msgstr "Fallu de baẍada asýnchrona: %s, %s."
 
 #: ps/ModIo.cpp:427
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Fallóu la baxada. Respœsta del servidor: %s; %s."
+msgstr "Fallóu la baẍada. Respuösta del servidor: %s; %s."
 
 #: ps/ModIo.cpp:530
 msgid "Mismatched filesize."
@@ -247,12 +247,12 @@ msgstr "Houbo un fallu al calcula’l hash final."
 
 #: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
-msgstr "Houbo un fallu al verifica’ la roblra."
+msgstr "Houbo un fallu al verifica’ la robra."
 
 #: ps/SavedGame.cpp:141
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "L incœntru archivóu-se n “%s”"
+msgstr "L incuöntru archivóu-se n “%s”"
 
 #: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
