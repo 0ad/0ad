@@ -78,6 +78,13 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 
 	if (gpuSkinning)
 	{
+		// We can't use a lot of bones because it costs uniform memory. Recommended
+		// number of bones per model is 32.
+		// Add 1 to NumBones because of the special 'root' bone.
+		if (mdef->GetNumBones() + 1 > 64)
+			LOGERROR("Model '%s' has too many bones %zu/64", mdef->GetName().string8().c_str(), mdef->GetNumBones() + 1);
+		ENSURE(mdef->GetNumBones() + 1 <= 64);
+
 		m_BlendJoints.type = GL_UNSIGNED_BYTE;
 		m_BlendJoints.elems = 4;
 		m_Array.AddAttribute(&m_BlendJoints);
