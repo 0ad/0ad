@@ -27,7 +27,7 @@ PETRA.HQ.prototype.gameAnalysis = function(gameState)
 
 
 	// Sandbox difficulty should not try to expand
-	this.canExpand = this.Config.difficulty != 0;
+	this.canExpand = this.Config.difficulty != PETRA.DIFFICULTY_SANDBOX;
 	// If no base yet, check if we can construct one. If not, dispatch our units to possible tasks/attacks
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).hasEntities())

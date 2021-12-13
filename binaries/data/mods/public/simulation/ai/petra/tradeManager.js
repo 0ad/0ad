@@ -13,7 +13,7 @@ PETRA.TradeManager = function(Config)
 
 PETRA.TradeManager.prototype.init = function(gameState)
 {
-	this.traders = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "role", "trader"));
+	this.traders = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "role", PETRA.Worker.ROLE_TRADER));
 	this.traders.registerUpdates();
 	this.minimalGain = gameState.ai.HQ.navalMap ? 3 : 5;
 };
@@ -25,7 +25,7 @@ PETRA.TradeManager.prototype.hasTradeRoute = function()
 
 PETRA.TradeManager.prototype.assignTrader = function(ent)
 {
-	ent.setMetadata(PlayerID, "role", "trader");
+	ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_TRADER);
 	this.traders.updateEnt(ent);
 };
 
@@ -41,7 +41,7 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 	gameState.getOwnTrainingFacilities().forEach(function(ent) {
 		for (let item of ent.trainingQueue())
 		{
-			if (!item.metadata || !item.metadata.role || item.metadata.role != "trader")
+			if (!item.metadata || !item.metadata.role || item.metadata.role !== PETRA.Worker.ROLE_TRADER)
 				continue;
 			numTraders += item.count;
 			if (item.metadata.sea !== undefined)
@@ -56,7 +56,7 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 		return;
 
 	let template;
-	let metadata = { "role": "trader" };
+	const metadata = { "role": PETRA.Worker.ROLE_TRADER };
 	if (this.tradeRoute.sea)
 	{
 		// if we have some merchand ships assigned to transport, try first to reassign them
@@ -67,7 +67,7 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 		gameState.ai.HQ.navalManager.seaTransportShips[this.tradeRoute.sea].forEach(function(ship) {
 			if (already || !ship.hasClass("Trader"))
 				return;
-			if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
+			if (ship.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_SWITCH_TO_TRADER)
 			{
 				already = true;
 				return;
@@ -79,9 +79,9 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 		if (shipToSwitch)
 		{
 			if (shipToSwitch.getMetadata(PlayerID, "transporter") === undefined)
-				shipToSwitch.setMetadata(PlayerID, "role", "trader");
+				shipToSwitch.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_TRADER);
 			else
-				shipToSwitch.setMetadata(PlayerID, "role", "switchToTrader");
+				shipToSwitch.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_SWITCH_TO_TRADER);
 			return;
 		}
 
@@ -645,7 +645,7 @@ PETRA.TradeManager.prototype.update = function(gameState, events, queues)
 	if (gameState.ai.HQ.canBarter && Resources.GetBarterableCodes().length)
 		this.performBarter(gameState);
 
-	if (this.Config.difficulty <= 1)
+	if (this.Config.difficulty <= PETRA.DIFFICULTY_VERY_EASY)
 		return;
 
 	if (this.checkEvents(gameState, events))  // true if one market was built or destroyed

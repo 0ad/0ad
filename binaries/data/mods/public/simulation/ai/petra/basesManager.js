@@ -175,7 +175,7 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 			{
 				builders.forEach(worker => {
 					worker.setMetadata(PlayerID, "base", newbase.ID);
-					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_BUILDER);
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
 				});
 			}
@@ -189,7 +189,7 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 			{
 				builders.forEach(worker => {
 					worker.setMetadata(PlayerID, "base", newbase.ID);
-					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_BUILDER);
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
 				});
 			}
@@ -275,7 +275,7 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 				continue;
 
 			// Assign it immediately to something useful to do.
-			if (ent.getMetadata(PlayerID, "role") == "worker")
+			if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_WORKER)
 			{
 				let base;
 				if (ent.getMetadata(PlayerID, "base") === undefined)
@@ -591,7 +591,7 @@ PETRA.BasesManager.prototype.assignEntity = function(gameState, ent, territoryIn
 	if (ent.position() && bestbase.ID !== this.noBase.ID)
 	{
 		bestbase.assignRolelessUnits(gameState, [ent]);
-		if (ent.getMetadata(PlayerID, "role") === "worker")
+		if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_WORKER)
 		{
 			bestbase.reassignIdleWorkers(gameState, [ent]);
 			bestbase.workerObject.update(gameState, ent);

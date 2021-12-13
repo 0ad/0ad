@@ -250,7 +250,7 @@ PETRA.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type
 		ent.setMetadata(PlayerID, "plan", -2);
 	else
 		ent.setMetadata(PlayerID, "plan", -3);
-	ent.setMetadata(PlayerID, "subrole", "garrisoning");
+	ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_GARRISONING);
 	ent.setMetadata(PlayerID, "garrisonHolder", holder.id());
 	ent.setMetadata(PlayerID, "garrisonType", type);
 	ent.garrison(holder);

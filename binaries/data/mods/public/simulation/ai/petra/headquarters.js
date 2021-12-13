@@ -151,13 +151,13 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 		ent.setMetadata(PlayerID, "PartOfArmy", undefined);
 		if (ent.hasClass("Trader"))
 		{
-			ent.setMetadata(PlayerID, "role", "trader");
+			ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_TRADER);
 			ent.setMetadata(PlayerID, "route", undefined);
 		}
 		if (ent.hasClass("Worker"))
 		{
-			ent.setMetadata(PlayerID, "role", "worker");
-			ent.setMetadata(PlayerID, "subrole", "idle");
+			ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_WORKER);
+			ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_IDLE);
 		}
 		if (ent.hasClass("Ship"))
 			PETRA.setSeaAccess(gameState, ent);
@@ -233,7 +233,7 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 	}
 
 	// Then deals with decaying structures: destroy them if being lost to enemy (except in easier difficulties)
-	if (this.Config.difficulty < 2)
+	if (this.Config.difficulty < PETRA.DIFFICULTY_EASY)
 		return;
 	for (let entId of this.decayingStructures)
 	{
@@ -378,7 +378,7 @@ PETRA.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	let numberOfWorkers = 0;   // all workers
 	let numberOfSupports = 0;  // only support workers (i.e. non fighting)
 	gameState.getOwnUnits().forEach(ent => {
-		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
+		if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_WORKER && ent.getMetadata(PlayerID, "plan") === undefined)
 		{
 			++numberOfWorkers;
 			if (ent.hasClass("Support"))
@@ -390,7 +390,7 @@ PETRA.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		for (let item of ent.trainingQueue())
 		{
 			numberInTraining += item.count;
-			if (item.metadata && item.metadata.role && item.metadata.role == "worker" &&
+			if (item.metadata && item.metadata.role && item.metadata.role === PETRA.Worker.ROLE_WORKER &&
 			    item.metadata.plan === undefined)
 			{
 				numberOfWorkers += item.count;
@@ -467,9 +467,9 @@ PETRA.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	// If the template variable is empty, the default unit (Support unit) will be used
 	// base "0" means automatic choice of base
 	if (!template && templateDef)
-		queues.villager.addPlan(new PETRA.TrainingPlan(gameState, templateDef, { "role": "worker", "base": 0, "support": true }, size, size));
+		queues.villager.addPlan(new PETRA.TrainingPlan(gameState, templateDef, { "role": PETRA.Worker.ROLE_WORKER, "base": 0, "support": true }, size, size));
 	else if (template)
-		queues.citizenSoldier.addPlan(new PETRA.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
+		queues.citizenSoldier.addPlan(new PETRA.TrainingPlan(gameState, template, { "role": PETRA.Worker.ROLE_WORKER, "base": 0 }, size, size));
 };
 
 /** picks the best template based on parameters and classes */
@@ -1867,7 +1867,7 @@ PETRA.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				break;
 		}
 	}
-	let metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "plan": -1, "trainer": nearestAnchor.id() };
+	const metadata = { "role": PETRA.Worker.ROLE_WORKER, "base": nearestAnchor.getMetadata(PlayerID, "base"), "plan": -1, "trainer": nearestAnchor.id() };
 	if (autogarrison)
 		metadata.garrisonType = PETRA.GarrisonManager.TYPE_PROTECTION;
 	gameState.ai.queues.emergency.addPlan(new PETRA.TrainingPlan(gameState, templateFound[0], metadata, 1, 1));
@@ -2154,12 +2154,12 @@ PETRA.HQ.prototype.getAccountedWorkers = function(gameState)
 {
 	if (this.turnCache.accountedWorkers == undefined)
 	{
-		let workers = gameState.getOwnEntitiesByRole("worker", true).length;
+		let workers = gameState.getOwnEntitiesByRole(PETRA.Worker.ROLE_WORKER, true).length;
 		for (let ent of gameState.getOwnTrainingFacilities().values())
 		{
 			for (let item of ent.trainingQueue())
 			{
-				if (!item.metadata || !item.metadata.role || item.metadata.role != "worker")
+				if (!item.metadata || !item.metadata.role || item.metadata.role !== PETRA.Worker.ROLE_WORKER)
 					continue;
 				workers += item.count;
 			}
@@ -2273,7 +2273,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 	if (gameState.ai.playedTurn % 3 == 0)
 	{
 		this.constructTrainingBuildings(gameState, queues);
-		if (this.Config.difficulty > 0)
+		if (this.Config.difficulty > PETRA.DIFFICULTY_SANDBOX)
 			this.buildDefenses(gameState, queues);
 	}
 
@@ -2281,7 +2281,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 
 	this.navalManager.update(gameState, queues, events);
 
-	if (this.Config.difficulty > 0 && (this.hasActiveBase() || !this.canBuildUnits))
+	if (this.Config.difficulty > PETRA.DIFFICULTY_SANDBOX && (this.hasActiveBase() || !this.canBuildUnits))
 		this.attackManager.update(gameState, queues, events);
 
 	this.diplomacyManager.update(gameState, events);

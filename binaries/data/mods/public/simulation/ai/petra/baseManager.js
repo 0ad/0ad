@@ -27,7 +27,7 @@ PETRA.BaseManager = function(gameState, basesManager)
 
 	this.constructing = false;
 	// Defenders to train in this cc when its construction is finished
-	this.neededDefenders = this.Config.difficulty > 2 ? 3 + 2*(this.Config.difficulty - 3) : 0;
+	this.neededDefenders = this.Config.difficulty > PETRA.DIFFICULTY_EASY ? 3 + 2*(this.Config.difficulty - 3) : 0;
 
 	// vector for iterating, to check one use the HQ map.
 	this.territoryIndices = [];
@@ -62,7 +62,7 @@ PETRA.BaseManager.prototype.init = function(gameState, state)
 	this.workerObject = new PETRA.Worker(this);
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
-	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID, "role", "worker"));
+	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID, "role", PETRA.Worker.ROLE_WORKER));
 	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 	this.mobileDropsites = this.units.filter(API3.Filters.isDropsite());
 
@@ -88,8 +88,7 @@ PETRA.BaseManager.prototype.reset = function(gameState, state)
 		this.constructing = true;
 	else
 		this.constructing = false;
-
-	if (state !== PETRA.BaseManager.STATE_CAPTURED || this.Config.difficulty < 3)
+	if (state !== PETRA.BaseManager.STATE_CAPTURED || this.Config.difficulty < PETRA.DIFFICULTY_MEDIUM)
 		this.neededDefenders = 0;
 	else
 		this.neededDefenders = 3 + 2 * (this.Config.difficulty - 3);
@@ -510,14 +509,14 @@ PETRA.BaseManager.prototype.addGatherRates = function(gameState, currentRates)
 		});
 		if (res == "food")
 		{
-			this.workersBySubrole(gameState, "hunter").forEach(ent => {
+			this.workersBySubrole(gameState, PETRA.Worker.SUBROLE_HUNTER).forEach(ent => {
 				if (ent.isIdle() || !ent.position())
 					return;
 				let gRate = ent.currentGatherRate();
 				if (gRate)
 					currentRates[res] += Math.log(1+gRate)/1.1;
 			});
-			this.workersBySubrole(gameState, "fisher").forEach(ent => {
+			this.workersBySubrole(gameState, PETRA.Worker.SUBROLE_FISHER).forEach(ent => {
 				if (ent.isIdle() || !ent.position())
 					return;
 				let gRate = ent.currentGatherRate();
@@ -536,7 +535,7 @@ PETRA.BaseManager.prototype.assignRolelessUnits = function(gameState, roleless)
 	for (let ent of roleless)
 	{
 		if (ent.hasClasses(["Worker", "CitizenSoldier", "FishingBoat"]))
-			ent.setMetadata(PlayerID, "role", "worker");
+			ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_WORKER);
 	}
 };
 
@@ -632,7 +631,7 @@ PETRA.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorker
 	// Search for idle workers, and tell them to gather resources based on demand
 	if (!idleWorkers)
 	{
-		let filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
+		const filter = API3.Filters.byMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_IDLE);
 		idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers).values();
 	}
 
@@ -660,7 +659,7 @@ PETRA.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorker
 						continue;
 					if (needed.type != "food" && this.basesManager.isResourceExhausted(needed.type))
 						continue;
-					ent.setMetadata(PlayerID, "subrole", "gatherer");
+					ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_GATHERER);
 					ent.setMetadata(PlayerID, "gather-type", needed.type);
 					this.basesManager.AddTCResGatherer(needed.type);
 					break;
@@ -668,9 +667,9 @@ PETRA.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorker
 			}
 		}
 		else if (PETRA.isFastMoving(ent) && ent.canGather("food") && ent.canAttackClass("Animal"))
-			ent.setMetadata(PlayerID, "subrole", "hunter");
+			ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_HUNTER);
 		else if (ent.hasClass("FishingBoat"))
-			ent.setMetadata(PlayerID, "subrole", "fisher");
+			ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_FISHER);
 	}
 };
 
@@ -681,7 +680,7 @@ PETRA.BaseManager.prototype.workersBySubrole = function(gameState, subrole)
 
 PETRA.BaseManager.prototype.gatherersByType = function(gameState, type)
 {
-	return gameState.updatingCollection("workers-gathering-" + type +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "gather-type", type), this.workersBySubrole(gameState, "gatherer"));
+	return gameState.updatingCollection("workers-gathering-" + type +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "gather-type", type), this.workersBySubrole(gameState, PETRA.Worker.SUBROLE_GATHERER));
 };
 
 /**
@@ -702,13 +701,13 @@ PETRA.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 	availableWorkers.sort((a, b) => {
 		let vala = 0;
 		let valb = 0;
-		if (a.getMetadata(PlayerID, "subrole") == "builder")
+		if (a.getMetadata(PlayerID, "subrole") === PETRA.Worker.SUBROLE_BUILDER)
 			vala = 100;
-		if (b.getMetadata(PlayerID, "subrole") == "builder")
+		if (b.getMetadata(PlayerID, "subrole") === PETRA.Worker.SUBROLE_BUILDER)
 			valb = 100;
-		if (a.getMetadata(PlayerID, "subrole") == "idle")
+		if (a.getMetadata(PlayerID, "subrole") === PETRA.Worker.SUBROLE_IDLE)
 			vala = -50;
-		if (b.getMetadata(PlayerID, "subrole") == "idle")
+		if (b.getMetadata(PlayerID, "subrole") === PETRA.Worker.SUBROLE_IDLE)
 			valb = -50;
 		if (a.getMetadata(PlayerID, "plan") === undefined)
 			vala = -20;
@@ -720,7 +719,7 @@ PETRA.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 	for (let i = 0; i < needed; ++i)
 	{
 		availableWorkers[i].stopMoving();
-		availableWorkers[i].setMetadata(PlayerID, "subrole", "idle");
+		availableWorkers[i].setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_IDLE);
 		workers.addEnt(availableWorkers[i]);
 	}
 	return;
@@ -742,7 +741,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		return;
 
 	let workers = this.workers.filter(ent => ent.isBuilder());
-	let builderWorkers = this.workersBySubrole(gameState, "builder");
+	const builderWorkers = this.workersBySubrole(gameState, PETRA.Worker.SUBROLE_BUILDER);
 	let idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
 
 	// if we're constructing and we have the foundations to our base anchor, only try building that.
@@ -768,7 +767,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			let baseID = this.ID;
 			fromOtherBase.forEach(worker => {
 				worker.setMetadata(PlayerID, "base", baseID);
-				worker.setMetadata(PlayerID, "subrole", "builder");
+				worker.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_BUILDER);
 				workers.updateEnt(worker);
 				builderWorkers.updateEnt(worker);
 				idleBuilderWorkers.updateEnt(worker);
@@ -850,7 +849,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (assigned >= targetNB || builderTot >= maxTotalBuilders)
 			continue;
 		let nonBuilderWorkers = workers.filter(function(ent) {
-			if (ent.getMetadata(PlayerID, "subrole") == "builder")
+			if (ent.getMetadata(PlayerID, "subrole") === PETRA.Worker.SUBROLE_BUILDER)
 				return false;
 			if (!ent.position())
 				return false;
@@ -878,7 +877,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			++builderTot;
 			let ent = nonBuilderWorkers[current++];
 			ent.stopMoving();
-			ent.setMetadata(PlayerID, "subrole", "builder");
+			ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_BUILDER);
 			ent.setMetadata(PlayerID, "target-foundation", target.id());
 		}
 	}
@@ -933,7 +932,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (assigned >= targetNB || builderTot >= maxTotalBuilders)
 			continue;
 		let nonBuilderWorkers = workers.filter(function(ent) {
-			if (ent.getMetadata(PlayerID, "subrole") == "builder")
+			if (ent.getMetadata(PlayerID, "subrole") === PETRA.Worker.SUBROLE_BUILDER)
 				return false;
 			if (!ent.position())
 				return false;
@@ -950,7 +949,7 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			++assigned;
 			++builderTot;
 			ent.stopMoving();
-			ent.setMetadata(PlayerID, "subrole", "builder");
+			ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_BUILDER);
 			ent.setMetadata(PlayerID, "target-foundation", target.id());
 		});
 	}
