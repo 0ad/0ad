@@ -9,11 +9,11 @@
         <prop actor="props/structures/iberians/dock_boat.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="structural/iber_struct.dds" name="baseTex"/>
+        <texture file="structural/iber_struct.png" name="baseTex"/>
         <texture file="structural/iber_struct_norm.png" name="normTex"/>
         <texture file="structural/iber_struct_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

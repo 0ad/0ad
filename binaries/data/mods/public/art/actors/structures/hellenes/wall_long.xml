@@ -5,7 +5,7 @@
     <variant name="Wall long">
       <mesh>structural/hele_wall_long.dae</mesh>
       <textures>
-        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_b.png" name="baseTex"/>
         <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
         <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
         <texture file="structural/ao/hele_wall_long.png" name="aoTex"/>
@@ -25,5 +25,5 @@
     <variant name="alive" frequency="1"/>
     <variant file="structures/destruction_medium.xml"/>
   </group>
-  <material>player_trans_ao_parallax_spec.xml</material>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>

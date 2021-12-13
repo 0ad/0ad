@@ -4,8 +4,10 @@
   <group>
     <variant frequency="100" name="mesh">
       <mesh>props/iber_fishship_sail.dae</mesh>
-      <textures><texture file="props/iber_sail_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/iber_sail_b.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>default.xml</material>
 </actor>

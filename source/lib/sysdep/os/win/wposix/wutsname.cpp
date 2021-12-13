@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -47,7 +47,13 @@ int uname(struct utsname* un)
 	// OS Implementation name
 	if (osInfo.dwMajorVersion >= 10)
 	{
-		stream << "Win" << osInfo.dwMajorVersion;
+		// Microsoft kept the 10.0.* version for Windows 11.
+		// https://stackoverflow.com/questions/69836878/detecting-windows-11-properly
+		// https://stackoverflow.com/questions/68510685/how-to-detect-windows-11-using-delphi-10-3-3/68517744#68517744
+		if (osInfo.dwMajorVersion == 10 && osInfo.dwBuildNumber >= 22000)
+			stream << "Win11";
+		else
+			stream << "Win" << osInfo.dwMajorVersion;
 	}
 	else
 		stream << wversion_Family() << "\0";

@@ -5,10 +5,9 @@
     <variant>
       <mesh>structural/spart_cc_trees.dae</mesh>
       <textures>
-        <texture file="gaia/tree_cypress_a.dds" name="baseTex"/>
-<texture file="structural/ao/spart_civic_centre.png" name="aoTex"/>
+        <texture file="gaia/tree_cypress_f.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>default.xml</material>
 </actor>

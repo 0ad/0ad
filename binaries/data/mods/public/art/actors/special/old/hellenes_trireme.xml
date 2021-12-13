@@ -10,16 +10,10 @@
         <prop actor="props/structures/hellenes/hele_tri2.xml" attachpoint="mast"/>
         <prop actor="props/structures/hellenes/hele_tri3.xml" attachpoint="oars"/>
         <prop actor="props/units/weapons/bolt.xml" attachpoint="projectile"/>
-        <prop actor="" attachpoint="12"/>
-        <prop actor="" attachpoint="16"/>
-        <prop actor="" attachpoint="17"/>
-        <prop actor="" attachpoint="19"/>
-        <prop actor="" attachpoint="20"/>
-        <prop actor="" attachpoint="22"/>
-        <prop actor="" attachpoint="23"/>
-        <prop actor="" attachpoint="24"/>
       </props>
-      <textures><texture file="structural/hele_trireme.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_trireme_02.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

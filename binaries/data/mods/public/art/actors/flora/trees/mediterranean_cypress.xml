@@ -13,7 +13,7 @@
     </variant>
     <variant frequency="2" name="Cypress Tree (Medium)">
       <mesh>gaia/tree_cypress_med.dae</mesh>
-            <props>
+      <props>
         <prop actor="flora/trees/cypress_med_branches.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -22,7 +22,7 @@
     </variant>
     <variant frequency="2" name="Cypress Tree (Large)">
       <mesh>gaia/tree_cypress_large.dae</mesh>
-            <props>
+      <props>
         <prop actor="flora/trees/cypress_large_branches.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -31,7 +31,7 @@
     </variant>
     <variant frequency="1" name="Cypress Tree (XLarge)">
       <mesh>gaia/tree_cypress_xlarge.dae</mesh>
-            <props>
+      <props>
         <prop actor="flora/trees/cypress_xlarge_branches.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -40,23 +40,22 @@
     </variant>
     <variant frequency="2" name="Cypress Tree (Skinny)">
       <mesh>gaia/tree_cypress_skinny.dae</mesh>
-            <props>
+      <props>
         <prop actor="flora/trees/cypress_skinny_branches.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="gaia/tree_cypress_a.dds" name="baseTex"/>
+        <texture file="gaia/tree_cypress_f.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Cypress Tree (Tall)">
       <mesh>gaia/tree_cypress_tall.dae</mesh>
-            <props>
+      <props>
         <prop actor="flora/trees/cypress_tall_branches.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="gaia/tree_cypress_a.dds" name="baseTex"/>
+        <texture file="gaia/tree_cypress_f.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  
   <material>basic_trans_wind.xml</material>
 </actor>
