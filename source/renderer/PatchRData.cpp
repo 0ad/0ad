@@ -36,6 +36,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "renderer/AlphaMapCalculator.h"
 #include "renderer/DebugRenderer.h"
@@ -717,8 +718,10 @@ void CPatchRData::RenderBases(
 				LOGERROR("Terrain renderer failed to load shader effect.\n");
 				continue;
 			}
+			CShaderDefines defines = context;
+			defines.SetMany(material.GetShaderDefines(0));
 			CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
-				material.GetShaderEffect(), context, material.GetShaderDefines(0));
+				material.GetShaderEffect(), defines);
 
 			BatchElements& batch = PooledPairGet(
 				PooledMapGet(
@@ -926,8 +929,10 @@ void CPatchRData::RenderBlends(
 		layer.m_Texture = bestTex;
 		if (!bestTex->GetMaterial().GetSamplers().empty())
 		{
+			CShaderDefines defines = contextBlend;
+			defines.SetMany(bestTex->GetMaterial().GetShaderDefines(0));
 			layer.m_ShaderTech = g_Renderer.GetShaderManager().LoadEffect(
-				bestTex->GetMaterial().GetShaderEffect(), contextBlend, bestTex->GetMaterial().GetShaderDefines(0));
+				bestTex->GetMaterial().GetShaderEffect(), defines);
 		}
 		batches.push_back(layer);
 	}
@@ -1410,7 +1415,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 	}
 
-	if (m_VBWaterShore && g_RenderingOptions.GetPreferGLSL() &&
+	if (m_VBWaterShore && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
 	    g_Renderer.GetWaterManager()->m_WaterEffects &&
 	    g_Renderer.GetWaterManager()->m_WaterFancyEffects)
 	{

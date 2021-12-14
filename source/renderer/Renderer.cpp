@@ -54,6 +54,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/Texture.h"
 #include "graphics/TextureManager.h"
+#include "ps/VideoMode.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
@@ -477,27 +478,11 @@ void CRenderer::EnumCaps()
 #endif
 }
 
-void CRenderer::RecomputeSystemShaderDefines()
-{
-	CShaderDefines defines;
-
-	if (m_Caps.m_ARBProgram)
-		defines.Add(str_SYS_HAS_ARB, str_1);
-
-	if (m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
-		defines.Add(str_SYS_HAS_GLSL, str_1);
-
-	if (g_RenderingOptions.GetPreferGLSL())
-		defines.Add(str_SYS_PREFER_GLSL, str_1);
-
-	m_SystemShaderDefines = defines;
-}
-
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-	m->globalContext = m_SystemShaderDefines;
+	m->globalContext = CShaderDefines();
 
 	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows())
 	{
@@ -518,18 +503,18 @@ void CRenderer::ReloadShaders()
 	m->globalContext.Add(str_RENDER_DEBUG_MODE,
 		RenderDebugModeEnum::ToString(g_RenderingOptions.GetRenderDebugMode()));
 
-	if (g_RenderingOptions.GetPreferGLSL() && g_RenderingOptions.GetFog())
+	if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB && g_RenderingOptions.GetFog())
 		m->globalContext.Add(str_USE_FOG, str_1);
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
 	ENSURE(g_RenderingOptions.GetRenderPath() != RenderPath::FIXED);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer());
-	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, g_RenderingOptions.GetPreferGLSL()));
+	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB));
 
 	if (g_RenderingOptions.GetGPUSkinning()) // TODO: should check caps and GLSL etc too
 	{
-		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, g_RenderingOptions.GetPreferGLSL()));
+		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB));
 		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 	}
@@ -580,8 +565,6 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
 
-	RecomputeSystemShaderDefines();
-
 	// Let component renderers perform one-time initialization after graphics capabilities and
 	// the shader path have been determined.
 	m->overlayRenderer.Initialize();
@@ -621,7 +604,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	// Renderer has been opened, so validate the selected renderpath
 	if (rp == RenderPath::DEFAULT)
 	{
-		if (m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && g_RenderingOptions.GetPreferGLSL()))
+		if (m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB))
 			rp = RenderPath::SHADER;
 		else
 			rp = RenderPath::FIXED;
@@ -629,7 +612,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 
 	if (rp == RenderPath::SHADER)
 	{
-		if (!(m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && g_RenderingOptions.GetPreferGLSL())))
+		if (!(m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB)))
 		{
 			LOGWARNING("Falling back to fixed function\n");
 			rp = RenderPath::FIXED;
@@ -640,7 +623,6 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	g_RenderingOptions.m_RenderPath = rp;
 
 	MakeShadersDirty();
-	RecomputeSystemShaderDefines();
 
 	// We might need to regenerate some render data after changing path
 	if (g_Game)

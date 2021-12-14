@@ -369,8 +369,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		if (waterManager->m_WaterReflection)
 			defines.Add(str_USE_REFLECTION, str_1);
 
-		m->fancyWaterTech = g_Renderer.GetShaderManager().LoadEffect(
-			str_water_high, g_Renderer.GetSystemShaderDefines(), defines);
+		m->fancyWaterTech = g_Renderer.GetShaderManager().LoadEffect(str_water_high, defines);
 
 		if (!m->fancyWaterTech)
 		{

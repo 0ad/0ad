@@ -88,8 +88,8 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 	// renderer initialisation is complete, so load it the first time through here
 	if (!m->shader)
 	{
-		m->shader = g_Renderer.GetShaderManager().LoadEffect(str_particle, context, CShaderDefines());
-		m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context, CShaderDefines());
+		m->shader = g_Renderer.GetShaderManager().LoadEffect(str_particle, context);
+		m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context);
 	}
 
 	++m->frameNumber;

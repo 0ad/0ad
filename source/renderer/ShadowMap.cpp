@@ -34,6 +34,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
+#include "ps/VideoMode.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
@@ -127,7 +128,7 @@ void ShadowMapInternals::UpdateCascadesParameters()
 	CascadeCount = 1;
 	CFG_GET_VAL("shadowscascadecount", CascadeCount);
 
-	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || !g_RenderingOptions.GetPreferGLSL())
+	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB)
 		CascadeCount = 1;
 
 	ShadowsCoverMap = false;

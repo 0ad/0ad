@@ -409,7 +409,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		CShaderDefines baseDefines;
 		baseDefines.Add(str_MINIMAP_BASE, str_1);
 
-		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), baseDefines);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
 		tech->BeginPass();
 		shader = tech->GetShader();
 

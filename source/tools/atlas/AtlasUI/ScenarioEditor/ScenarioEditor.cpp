@@ -343,8 +343,6 @@ enum
 	ID_BigScreenshot,
 	ID_JavaScript,
 	ID_CameraReset,
-	ID_RenderPathShaderARB,
-	ID_RenderPathShaderGLSL,
 	ID_DumpState,
 	ID_DumpBinaryState,
 
@@ -379,8 +377,6 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_CameraReset, ScenarioEditor::OnCameraReset)
 	EVT_MENU(ID_DumpState, ScenarioEditor::OnDumpState)
 	EVT_MENU(ID_DumpBinaryState, ScenarioEditor::OnDumpState)
-	EVT_MENU(ID_RenderPathShaderARB, ScenarioEditor::OnRenderPath)
-	EVT_MENU(ID_RenderPathShaderGLSL, ScenarioEditor::OnRenderPath)
 
 	EVT_MENU(ID_Manual, ScenarioEditor::OnHelp)
 	EVT_MENU(ID_ReportBug, ScenarioEditor::OnHelp)
@@ -499,11 +495,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->AppendSubMenu(menuSS, _("Si&mulation state"));
 		menuSS->Append(ID_DumpState, _("&Dump to disk"));
 		menuSS->Append(ID_DumpBinaryState, _("Dump &binary to disk"));
-
-		wxMenu *menuRP = new wxMenu;
-		menuMisc->AppendSubMenu(menuRP, _("Render &path"));
-		menuRP->Append(ID_RenderPathShaderARB, _("Shader &ARB"));
-		menuRP->Append(ID_RenderPathShaderGLSL, _("&Shader GLSL (default)"));
 	}
 
 	wxMenu *menuHelp = new wxMenu;
@@ -956,21 +947,6 @@ void ScenarioEditor::OnJavaScript(wxCommandEvent& WXUNUSED(event))
 void ScenarioEditor::OnCameraReset(wxCommandEvent& WXUNUSED(event))
 {
 	POST_MESSAGE(CameraReset, ());
-}
-
-void ScenarioEditor::OnRenderPath(wxCommandEvent& event)
-{
-	switch (event.GetId())
-	{
-	case ID_RenderPathShaderARB:
-		POST_MESSAGE(SetViewParamS, (eRenderView::GAME, L"renderpath", L"shader"));
-		POST_MESSAGE(SetViewParamB, (eRenderView::GAME, L"preferGLSL", false));
-		break;
-	case ID_RenderPathShaderGLSL:
-		POST_MESSAGE(SetViewParamS, (eRenderView::GAME, L"renderpath", L"shader"));
-		POST_MESSAGE(SetViewParamB, (eRenderView::GAME, L"preferGLSL", true));
-		break;
-	}
 }
 
 void ScenarioEditor::OnDumpState(wxCommandEvent& event)

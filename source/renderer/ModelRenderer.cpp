@@ -489,7 +489,9 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		PROFILE3("processing material buckets");
 		for (MaterialBuckets_t::iterator it = materialBuckets.begin(); it != materialBuckets.end(); ++it)
 		{
-			CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, context, it->first.defines);
+			CShaderDefines defines = context;
+			defines.SetMany(it->first.defines);
+			CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, defines);
 
 			// Skip invalid techniques (e.g. from data file errors)
 			if (!tech)

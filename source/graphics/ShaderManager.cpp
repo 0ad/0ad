@@ -31,6 +31,7 @@
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 
@@ -158,7 +159,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	XMBElement Root = XeroFile.GetRoot();
 
 	const bool isGLSL = (Root.GetAttributes().GetNamedItem(at_type) == "glsl");
-	if (!isGLSL && g_RenderingOptions.GetPreferGLSL())
+	if (!isGLSL && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB)
 		LOGWARNING("CShaderManager::NewProgram: '%s': trying to load a non-GLSL program with enabled GLSL", name);
 
 	VfsPath vertexFile;
@@ -335,35 +336,29 @@ size_t CShaderManager::EffectCacheKeyHash::operator()(const EffectCacheKey& key)
 {
 	size_t hash = 0;
 	hash_combine(hash, key.name.GetHash());
-	hash_combine(hash, key.defines1.GetHash());
-	hash_combine(hash, key.defines2.GetHash());
+	hash_combine(hash, key.defines.GetHash());
 	return hash;
 }
 
 bool CShaderManager::EffectCacheKey::operator==(const EffectCacheKey& b) const
 {
-	return (name == b.name && defines1 == b.defines1 && defines2 == b.defines2);
+	return name == b.name && defines == b.defines;
 }
 
 CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name)
 {
-	return LoadEffect(name, g_Renderer.GetSystemShaderDefines(), CShaderDefines());
+	return LoadEffect(name, CShaderDefines());
 }
 
-CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2)
+CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDefines& defines)
 {
 	// Return the cached effect, if there is one
-	EffectCacheKey key = { name, defines1, defines2 };
+	EffectCacheKey key = { name, defines };
 	EffectCacheMap::iterator it = m_EffectCache.find(key);
 	if (it != m_EffectCache.end())
 		return it->second;
 
 	// First time we've seen this key, so construct a new effect:
-
-	// Merge the two sets of defines, so NewEffect doesn't have to care about the split
-	CShaderDefines defines(defines1);
-	defines.SetMany(defines2);
-
 	CShaderTechniquePtr tech(new CShaderTechnique());
 	if (!NewEffect(name.c_str(), defines, tech))
 	{
@@ -411,9 +406,10 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 #undef EL
 
 	// Read some defines that influence how we pick techniques
-	bool hasARB = (baseDefines.GetInt("SYS_HAS_ARB") != 0);
-	bool hasGLSL = (baseDefines.GetInt("SYS_HAS_GLSL") != 0);
-	bool preferGLSL = (baseDefines.GetInt("SYS_PREFER_GLSL") != 0);
+	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
+	const bool hasARB = capabilities.m_ARBProgram;
+	const bool hasGLSL = capabilities.m_FragmentShader && capabilities.m_VertexShader;
+	const bool preferGLSL = g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB;
 
 	// Prepare the preprocessor for conditional tests
 	CPreprocessorWrapper preprocessor;
@@ -423,7 +419,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 
 	// Find all the techniques that we can use, and their preference
 
-	std::vector<std::pair<XMBElement, int> > usableTechs;
+	std::vector<std::pair<XMBElement, int>> usableTechs;
 
 	XERO_ITER_EL(Root, Technique)
 	{

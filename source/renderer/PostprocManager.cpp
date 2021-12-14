@@ -30,6 +30,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
@@ -227,8 +228,7 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
 	defines.Add(str_BLOOM_NOP, str_1);
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
-			g_Renderer.GetSystemShaderDefines(), defines);
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines);
 
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
@@ -286,8 +286,7 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
 	defines2.Add(str_BLOOM_PASS_H, str_1);
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
-			g_Renderer.GetSystemShaderDefines(), defines2);
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines2);
 
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
@@ -332,8 +331,7 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
 	defines3.Add(str_BLOOM_PASS_V, str_1);
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom,
-			g_Renderer.GetSystemShaderDefines(), defines3);
+	tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines3);
 
 	tech->BeginPass();
 	shader = tech->GetShader();
@@ -500,8 +498,9 @@ void CPostprocManager::ApplyPostproc()
 
 	// Don't do anything if we are using the default effect and no AA.
 	const bool hasEffects = m_PostProcEffect != L"default";
-	const bool hasAA = m_AATech && g_RenderingOptions.GetPreferGLSL();
-	const bool hasSharp = m_SharpTech && g_RenderingOptions.GetPreferGLSL();
+	const bool hasARB = g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB;
+	const bool hasAA = m_AATech && !hasARB;
+	const bool hasSharp = m_SharpTech && !hasARB;
 	if (!hasEffects && !hasAA && !hasSharp)
 		return;
 
@@ -590,7 +589,7 @@ void CPostprocManager::SetPostEffect(const CStrW& name)
 
 void CPostprocManager::UpdateAntiAliasingTechnique()
 {
-	if (!g_RenderingOptions.GetPreferGLSL() || !m_IsInitialized)
+	if (g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB || !m_IsInitialized)
 		return;
 
 	CStr newAAName;
@@ -624,8 +623,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 			ogl_HaveVersion("3.3") &&
 			ogl_HaveExtension("GL_ARB_multisample") &&
 			ogl_HaveExtension("GL_ARB_texture_multisample") &&
-			!m_AllowedSampleCounts.empty() &&
-			g_RenderingOptions.GetPreferGLSL();
+			!m_AllowedSampleCounts.empty();
 		if (!is_msaa_supported)
 		{
 			LOGWARNING("MSAA is unsupported.");
@@ -650,7 +648,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 
 void CPostprocManager::UpdateSharpeningTechnique()
 {
-	if (!g_RenderingOptions.GetPreferGLSL() || !m_IsInitialized)
+	if (g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB || !m_IsInitialized)
 		return;
 
 	CStr newSharpName;

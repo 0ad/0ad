@@ -177,16 +177,20 @@
 		"options":
 		[
 			{
-				"type": "boolean",
-				"label": "Prefer GLSL",
-				"tooltip": "Use OpenGL 2.0 shaders (recommended).",
-				"config": "preferglsl"
+				"type": "dropdown",
+				"label": "Renderer backend",
+				"tooltip": "Choose the renderer's backend. REQUIRES GAME RESTART",
+				"config": "rendererbackend",
+				"list": [
+					{ "value": "gl", "label": "OpenGL", "tooltip": "Default OpenGL backend with GLSL. REQUIRES GAME RESTART" },
+					{ "value": "glarb", "label": "OpenGL ARB", "tooltip": "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART" }
+				]
 			},
 			{
 				"type": "boolean",
 				"label": "Fog",
 				"tooltip": "Enable fog.",
-				"dependencies": ["preferglsl"],
+				"dependencies": [{ "config": "rendererbackend", "op": "!=", "value": "glarb" }],
 				"config": "fog"
 			},
 			{
@@ -199,7 +203,7 @@
 				"type": "dropdown",
 				"label": "Antialiasing",
 				"tooltip": "Reduce aliasing effect on edges.",
-				"dependencies": ["postproc", "preferglsl"],
+				"dependencies": ["postproc", { "config": "rendererbackend", "op": "!=", "value": "glarb" }],
 				"config": "antialiasing",
 				"list": [
 					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use antialiasing." },
@@ -214,7 +218,7 @@
 				"type": "dropdown",
 				"label": "Sharpening",
 				"tooltip": "Reduce blurry effects.",
-				"dependencies": ["postproc", "preferglsl"],
+				"dependencies": ["postproc", { "config": "rendererbackend", "op": "!=", "value": "glarb" }],
 				"config": "sharpening",
 				"list": [
 					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use sharpening." },
@@ -225,7 +229,11 @@
 				"type": "slider",
 				"label": "Sharpness factor",
 				"tooltip": "The sharpness of the choosen pass.",
-				"dependencies": ["postproc", "preferglsl", { "config": "sharpening", "op": "!=", "value": "disabled" }],
+				"dependencies": [
+					"postproc",
+					{ "config": "rendererbackend", "op": "!=", "value": "glarb" },
+					{ "config": "sharpening", "op": "!=", "value": "disabled" }
+				],
 				"config": "sharpness",
 				"min": 0,
 				"max": 1

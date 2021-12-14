@@ -42,10 +42,10 @@ public:
 	 * Load a shader effect.
 	 * Effects can be implemented via many techniques; this returns the best usable technique.
 	 * @param name name of effect XML specification (file is loaded from shaders/effects/${name}.xml)
-	 * @param defines1,defines2 key/value set of preprocessor definitions; defines2 has higher precedence
+	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded technique, or empty technique on error
 	 */
-	CShaderTechniquePtr LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2);
+	CShaderTechniquePtr LoadEffect(CStrIntern name, const CShaderDefines& defines);
 
 	/**
 	 * Load a shader effect, with default system defines (from CRenderer::GetSystemShaderDefines).
@@ -87,8 +87,7 @@ private:
 	struct EffectCacheKey
 	{
 		CStrIntern name;
-		CShaderDefines defines1;
-		CShaderDefines defines2;
+		CShaderDefines defines;
 
 		bool operator==(const EffectCacheKey& b) const;
 	};
