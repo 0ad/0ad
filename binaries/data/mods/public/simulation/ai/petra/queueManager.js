@@ -158,7 +158,7 @@ PETRA.QueueManager.prototype.printQueues = function(gameState)
 {
 	let numWorkers = 0;
 	gameState.getOwnUnits().forEach(ent => {
-		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") === undefined)
+		if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_WORKER && ent.getMetadata(PlayerID, "plan") === undefined)
 			numWorkers++;
 	});
 	API3.warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
@@ -414,7 +414,7 @@ PETRA.QueueManager.prototype.update = function(gameState)
 // Recovery system: if short of workers after an attack, pause (and reset) some queues to favor worker training
 PETRA.QueueManager.prototype.checkPausedQueues = function(gameState)
 {
-	let numWorkers = gameState.countOwnEntitiesAndQueuedWithRole("worker");
+	const numWorkers = gameState.countOwnEntitiesAndQueuedWithRole(PETRA.Worker.ROLE_WORKER);
 	let workersMin = Math.min(Math.max(12, 24 * this.Config.popScaling), this.Config.Economy.popPhase2);
 	for (let q in this.queues)
 	{

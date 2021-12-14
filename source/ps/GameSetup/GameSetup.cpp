@@ -934,9 +934,10 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	// (must come after SetVideoMode, since it calls ogl_Init)
 	CStr8 renderPath = "default";
 	CFG_GET_VAL("renderpath", renderPath);
-	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL) != 0 // ARB
-		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", NULL) != 0) // GLSL
+	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr) // ARB
+		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", nullptr)) // GLSL
 		|| !ogl_HaveExtension("GL_ARB_vertex_buffer_object") // VBO
+		|| ogl_HaveExtensions(0, "GL_ARB_multitexture", "GL_EXT_draw_range_elements", nullptr)
 		|| (!ogl_HaveExtension("GL_EXT_framebuffer_object") && !ogl_HaveExtension("GL_ARB_framebuffer_object"))
 		|| RenderPathEnum::FromString(renderPath) == FIXED)
 	{
@@ -948,34 +949,6 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 			L" You are advised to try installing newer drivers and/or upgrade your graphics card."
 			L" For more information, please see http://www.wildfiregames.com/forum/index.php?showtopic=16734"
 		);
-	}
-
-	const char* missing = ogl_HaveExtensions(0,
-		"GL_ARB_multitexture",
-		"GL_EXT_draw_range_elements",
-		"GL_ARB_texture_env_combine",
-		"GL_ARB_texture_env_dot3",
-		NULL);
-	if(missing)
-	{
-		wchar_t buf[500];
-		swprintf_s(buf, ARRAY_SIZE(buf),
-			L"The %hs extension doesn't appear to be available on your computer."
-			L" The game may still work, though - you are welcome to try at your own risk."
-			L" If not or it doesn't look right, upgrade your graphics card.",
-			missing
-		);
-		DEBUG_DISPLAY_ERROR(buf);
-		// TODO: i18n
-	}
-
-	if (!ogl_HaveExtension("GL_ARB_texture_env_crossbar"))
-	{
-		DEBUG_DISPLAY_ERROR(
-			L"The GL_ARB_texture_env_crossbar extension doesn't appear to be available on your computer."
-			L" Shadows are not available and overall graphics quality might suffer."
-			L" You are advised to try installing newer drivers and/or upgrade your graphics card.");
-		g_ConfigDB.SetValueBool(CFG_HWDETECT, "shadows", false);
 	}
 
 	ogl_WarnIfError();

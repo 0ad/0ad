@@ -38,7 +38,7 @@ PETRA.NavalManager.prototype.init = function(gameState, deserializing)
 	this.docks = gameState.getOwnStructures().filter(API3.Filters.byClasses(["Dock", "Shipyard"]));
 	this.docks.registerUpdates();
 
-	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", "trader"))));
+	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", PETRA.Worker.ROLE_TRADER))));
 	// note: those two can overlap (some transport ships are warships too and vice-versa).
 	this.transportShips = this.ships.filter(API3.Filters.and(API3.Filters.byCanGarrison(), API3.Filters.not(API3.Filters.byClass("FishingBoat"))));
 	this.warShips = this.ships.filter(API3.Filters.byClass("Warship"));
@@ -285,7 +285,7 @@ PETRA.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		let shipId = evt.entityObj.id();
 		if (this.Config.debug > 1)
 			API3.warn("one ship " + shipId + " from plan " + plan.ID + " destroyed during " + plan.state);
-		if (plan.state == "boarding")
+		if (plan.state === PETRA.TransportPlan.BOARDING)
 		{
 			// just reset the units onBoard metadata and wait for a new ship to be assigned to this plan
 			plan.units.forEach(ent => {
@@ -295,7 +295,7 @@ PETRA.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			});
 			plan.needTransportShips = !plan.transportShips.hasEntities();
 		}
-		else if (plan.state == "sailing")
+		else if (plan.state === PETRA.TransportPlan.SAILING)
 		{
 			let endIndex = plan.endIndex;
 			for (let ent of plan.units.values())
@@ -361,7 +361,7 @@ PETRA.NavalManager.prototype.requireTransport = function(gameState, ent, startIn
 	let plans = [];
 	for (let plan of this.transportPlans)
 	{
-		if (plan.startIndex != startIndex || plan.endIndex != endIndex || plan.state != "boarding")
+		if (plan.startIndex != startIndex || plan.endIndex != endIndex || plan.state !== PETRA.TransportPlan.BOARDING)
 			continue;
 		// Limit the number of siege units per transport to avoid problems when ungarrisoning
 		if (PETRA.isSiegeUnit(ent) && plan.units.filter(unit => PETRA.isSiegeUnit(unit)).length > 3)
@@ -514,7 +514,7 @@ PETRA.NavalManager.prototype.maintainFleet = function(gameState, queues)
 			let template = this.getBestShip(gameState, sea, "fishing");
 			if (template)
 			{
-				queues.ships.addPlan(new PETRA.TrainingPlan(gameState, template, { "base": 0, "role": "worker", "sea": sea }, 1, 1));
+				queues.ships.addPlan(new PETRA.TrainingPlan(gameState, template, { "base": 0, "role": PETRA.Worker.ROLE_WORKER, "sea": sea }, 1, 1));
 				continue;
 			}
 		}
@@ -613,7 +613,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 		if (!shipPosition)
 			continue;
 		let role = ship.getMetadata(PlayerID, "role");
-		if (!role || role != "trader")	// already accounted before
+		if (role === undefined || role !== PETRA.Worker.ROLE_TRADER)	// already accounted before
 			continue;
 
 		let unitAIState = ship.unitAIState();
@@ -691,7 +691,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 			if (blockedIds.indexOf(blockingShip.id()) != -1 || !blockingShip.position())
 				continue;
 			let role = blockingShip.getMetadata(PlayerID, "role");
-			if (!role || role != "trader")	// already accounted before
+			if (role === undefined || role !== PETRA.Worker.ROLE_TRADER)	// already accounted before
 				continue;
 			let distSquare = API3.SquareVectorDistance(shipPosition, blockingShip.position());
 			let unitAIState = blockingShip.unitAIState();

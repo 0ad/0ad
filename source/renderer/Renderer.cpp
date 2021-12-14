@@ -1132,13 +1132,6 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	// inverted depth test so any behind an occluder will get drawn in a constant
 	// color.
 
-	float silhouetteAlpha = 0.75f;
-
-	// Silhouette blending requires an almost-universally-supported extension;
-	// fall back to non-blended if unavailable
-	if (!ogl_HaveExtension("GL_EXT_blend_color"))
-		silhouetteAlpha = 1.f;
-
 	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	glColorMask(0, 0, 0, 0);
@@ -1169,27 +1162,16 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	glDepthFunc(GL_GEQUAL);
 	glColorMask(1, 1, 1, 1);
 
-	// Render more efficiently if alpha == 1
-	if (silhouetteAlpha == 1.f)
-	{
-		// Ideally we'd render objects back-to-front so nearer silhouettes would
-		// appear on top, but sorting has non-zero cost. So we'll keep the depth
-		// write enabled, to do the opposite - far objects will consistently appear
-		// on top.
-		glDepthMask(0);
-	}
-	else
-	{
-		// Since we can't sort, we'll use the stencil buffer to ensure we only draw
-		// a pixel once (using the color of whatever model happens to be drawn first).
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-		pglBlendColorEXT(0, 0, 0, silhouetteAlpha);
+	// Since we can't sort, we'll use the stencil buffer to ensure we only draw
+	// a pixel once (using the color of whatever model happens to be drawn first).
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
+	const float silhouetteAlpha = 0.75f;
+	pglBlendColorEXT(0, 0, 0, silhouetteAlpha);
 
-		glEnable(GL_STENCIL_TEST);
-		glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
-		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-	}
+	glEnable(GL_STENCIL_TEST);
+	glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
+	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
 	{
 		PROFILE("render model casters");
@@ -1203,17 +1185,10 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 
 	// Restore state
 	glDepthFunc(GL_LEQUAL);
-	if (silhouetteAlpha == 1.f)
-	{
-		glDepthMask(1);
-	}
-	else
-	{
-		glDisable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		pglBlendColorEXT(0, 0, 0, 0);
-		glDisable(GL_STENCIL_TEST);
-	}
+	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	pglBlendColorEXT(0, 0, 0, 0);
+	glDisable(GL_STENCIL_TEST);
 }
 
 void CRenderer::RenderParticles(int cullGroup)

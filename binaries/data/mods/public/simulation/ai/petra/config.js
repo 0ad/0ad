@@ -1,7 +1,14 @@
-PETRA.Config = function(difficulty, behavior)
+// These integers must be sequential
+PETRA.DIFFICULTY_SANDBOX = 0;
+PETRA.DIFFICULTY_VERY_EASY = 1;
+PETRA.DIFFICULTY_EASY = 2;
+PETRA.DIFFICULTY_MEDIUM = 3;
+PETRA.DIFFICULTY_HARD = 4;
+PETRA.DIFFICULTY_VERY_HARD = 5;
+
+PETRA.Config = function(difficulty = PETRA.DIFFICULTY_MEDIUM, behavior)
 {
-	// 0 is sandbox, 1 is very easy, 2 is easy, 3 is medium, 4 is hard and 5 is very hard.
-	this.difficulty = difficulty !== undefined ? difficulty : 3;
+	this.difficulty = difficulty;
 
 	// for instance "balanced", "aggressive" or "defensive"
 	this.behavior = behavior || "random";
@@ -169,7 +176,7 @@ PETRA.Config = function(difficulty, behavior)
 
 PETRA.Config.prototype.setConfig = function(gameState)
 {
-	if (this.difficulty > 0)
+	if (this.difficulty > PETRA.DIFFICULTY_SANDBOX)
 	{
 		// Setup personality traits according to the user choice:
 		// The parameter used to define the personality is basically the aggressivity or (1-defensiveness)
@@ -212,14 +219,14 @@ PETRA.Config.prototype.setConfig = function(gameState)
 	this.Military.fortressLapseTime = Math.round(this.Military.fortressLapseTime * (1.1 - 0.2 * this.personality.defensive));
 	this.priorities.defenseBuilding = Math.round(this.priorities.defenseBuilding * (0.9 + 0.2 * this.personality.defensive));
 
-	if (this.difficulty < 2)
+	if (this.difficulty < PETRA.DIFFICULTY_EASY)
 	{
 		this.popScaling = 0.5;
 		this.Economy.supportRatio = 0.5;
 		this.Economy.provisionFields = 1;
 		this.Military.numSentryTowers = this.personality.defensive > this.personalityCut.strong ? 1 : 0;
 	}
-	else if (this.difficulty < 3)
+	else if (this.difficulty < PETRA.DIFFICULTY_MEDIUM)
 	{
 		this.popScaling = 0.7;
 		this.Economy.supportRatio = 0.4;
@@ -228,7 +235,7 @@ PETRA.Config.prototype.setConfig = function(gameState)
 	}
 	else
 	{
-		if (this.difficulty == 3)
+		if (this.difficulty == PETRA.DIFFICULTY_MEDIUM)
 			this.Military.numSentryTowers = 1;
 		else
 			this.Military.numSentryTowers = 2;
@@ -246,9 +253,9 @@ PETRA.Config.prototype.setConfig = function(gameState)
 	}
 
 	let maxPop = gameState.getPopulationMax();
-	if (this.difficulty < 2)
+	if (this.difficulty < PETRA.DIFFICULTY_EASY)
 		this.Economy.targetNumWorkers = Math.max(1, Math.min(40, maxPop));
-	else if (this.difficulty < 3)
+	else if (this.difficulty < PETRA.DIFFICULTY_MEDIUM)
 		this.Economy.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(maxPop/2)));
 	else
 		this.Economy.targetNumWorkers = Math.max(1, Math.min(120, Math.floor(maxPop/3)));
@@ -274,7 +281,7 @@ PETRA.Config.prototype.setConfig = function(gameState)
 	this.Economy.targetNumWorkers = Math.max(this.Economy.targetNumWorkers, this.Economy.popPhase2);
 	this.Economy.workPhase3 = Math.min(this.Economy.workPhase3, this.Economy.targetNumWorkers);
 	this.Economy.workPhase4 = Math.min(this.Economy.workPhase4, this.Economy.targetNumWorkers);
-	if (this.difficulty < 2)
+	if (this.difficulty < PETRA.DIFFICULTY_EASY)
 		this.Economy.workPhase3 = Infinity;	// prevent the phasing to city phase
 
 	if (this.debug < 2)

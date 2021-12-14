@@ -119,9 +119,9 @@ PETRA.DefenseArmy.prototype.addOwn = function(gameState, id, force)
 	else
 		ent.setMetadata(PlayerID, "plan", -3);
 	let subrole = ent.getMetadata(PlayerID, "subrole");
-	if (subrole === undefined || subrole !== "defender")
+	if (subrole === undefined || subrole !== PETRA.Worker.SUBROLE_DEFENDER)
 		ent.setMetadata(PlayerID, "formerSubrole", subrole);
-	ent.setMetadata(PlayerID, "subrole", "defender");
+	ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_DEFENDER);
 	return true;
 };
 
@@ -159,11 +159,11 @@ PETRA.DefenseArmy.prototype.removeOwn = function(gameState, id, Entity)
 		ent.setMetadata(PlayerID, "subrole", undefined);
 	ent.setMetadata(PlayerID, "formerSubrole", undefined);
 
-	// Remove from tranport plan if not yet on Board
+	// Remove from transport plan if not yet on Board
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 	{
 		let plan = gameState.ai.HQ.navalManager.getPlan(ent.getMetadata(PlayerID, "transport"));
-		if (plan && plan.state == "boarding" && ent.position())
+		if (plan && plan.state === PETRA.TransportPlan.BOARDING && ent.position())
 			plan.removeUnit(gameState, ent);
 	}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,9 @@ public:
 			REQUIRE(frameCount > 0, "animation must have frames");
 			// (TODO: sort out the timing/looping problems)
 
-			size_t boneCount = skeleton.GetBoneCount();
+			const size_t boneCount = skeleton.GetBoneCount();
+			if (boneCount > 64)
+				Log(LOG_ERROR, "Skeleton has too many bones %zu/64", boneCount);
 
 			std::vector<BoneTransform> boneTransforms;
 
@@ -99,7 +101,7 @@ public:
 				float time = timeStart + frameLength * frame;
 
 				BoneTransform boneDefault  = { { 0, 0, 0 }, { 0, 0, 0, 1 } };
-				std::vector<BoneTransform> frameBoneTransforms (boneCount, boneDefault);
+				std::vector<BoneTransform> frameBoneTransforms(boneCount, boneDefault);
 
 				// Move the model into the new animated pose
 				// (We can't tell exactly which nodes should be animated, so

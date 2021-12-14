@@ -79,7 +79,7 @@ PETRA.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 {
 	let phase1 = gameState.currentPhase() === 1;
 	let available = phase1 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
-	let numWorkers = phase1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
+	const numWorkers = phase1 ? gameState.getOwnEntitiesByRole(PETRA.Worker.ROLE_WORKER, true).length : 0;
 	for (let tech of techs)
 	{
 		if (tech[0].indexOf("unlock_champion") == 0)
@@ -123,7 +123,7 @@ PETRA.ResearchManager.prototype.researchPreferredTechs = function(gameState, tec
 {
 	let phase2 = gameState.currentPhase() === 2;
 	let available = phase2 ? gameState.ai.queueManager.getAvailableResources(gameState) : null;
-	let numWorkers = phase2 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
+	const numWorkers = phase2 ? gameState.getOwnEntitiesByRole(PETRA.Worker.ROLE_WORKER, true).length : 0;
 	for (let tech of techs)
 	{
 		if (!tech[1]._template.modifications)

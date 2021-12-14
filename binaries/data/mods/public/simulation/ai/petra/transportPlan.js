@@ -67,12 +67,21 @@ PETRA.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, s
 		API3.warn("Starting a new transport plan with ID " + this.ID +
 			" to index " + endIndex + " with units length " + units.length);
 
-	this.state = "boarding";
+	this.state = PETRA.TransportPlan.BOARDING;
 	this.boardingPos = {};
 	this.needTransportShips = ship === undefined;
 	this.nTry = {};
 	return true;
 };
+
+/**
+ * We're trying to board units onto our ships.
+ */
+PETRA.TransportPlan.BOARDING = "boarding";
+/**
+ * We're moving ships and eventually unload units.
+ */
+PETRA.TransportPlan.SAILING = "sailing";
 
 PETRA.TransportPlan.prototype.init = function(gameState)
 {
@@ -117,7 +126,7 @@ PETRA.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 		ent.setMetadata(PlayerID, "onBoard", ship.id());
 		if (this.debug > 1)
 		{
-			if (ent.getMetadata(PlayerID, "role") == "attack")
+			if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_ATTACK)
 				Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [2, 0, 0] });
 			else
 				Engine.PostCommand(PlayerID, { "type": "set-shading-color", "entities": [ent.id()], "rgb": [0, 2, 0] });
@@ -223,8 +232,8 @@ PETRA.TransportPlan.prototype.releaseShip = function(ship)
 		ship.setStance(defaultStance);
 
 	ship.setMetadata(PlayerID, "transporter", undefined);
-	if (ship.getMetadata(PlayerID, "role") == "switchToTrader")
-		ship.setMetadata(PlayerID, "role", "trader");
+	if (ship.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_SWITCH_TO_TRADER)
+		ship.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_TRADER);
 };
 
 PETRA.TransportPlan.prototype.releaseAll = function()
@@ -273,17 +282,13 @@ PETRA.TransportPlan.prototype.cancelTransport = function(gameState)
 
 
 /**
- * try to move on. There are two states:
- * - "boarding" means we're trying to board units onto our ships
- * - "sailing" means we're moving ships and eventually unload units
- * - then the plan is cleared
+ * Try to move on and then clear the plan.
  */
-
 PETRA.TransportPlan.prototype.update = function(gameState)
 {
-	if (this.state == "boarding")
+	if (this.state === PETRA.TransportPlan.BOARDING)
 		this.onBoarding(gameState);
-	else if (this.state == "sailing")
+	else if (this.state === PETRA.TransportPlan.SAILING)
 		this.onSailing(gameState);
 
 	return this.units.length;
@@ -422,7 +427,7 @@ PETRA.TransportPlan.prototype.onBoarding = function(gameState)
 		this.boardingPos[ship.id()] = this.getBoardingPos(gameState, ship, this.endIndex, this.sea, this.endPos, true);
 		ship.move(this.boardingPos[ship.id()][0], this.boardingPos[ship.id()][1]);
 	}
-	this.state = "sailing";
+	this.state = PETRA.TransportPlan.SAILING;
 	this.nTry = {};
 	this.unloaded = [];
 	this.recovered = [];

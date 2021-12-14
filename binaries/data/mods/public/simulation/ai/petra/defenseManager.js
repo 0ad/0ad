@@ -429,7 +429,8 @@ PETRA.DefenseManager.prototype.assignDefenders = function(gameState)
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") != -1)
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
-			if (subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
+			if (subrole &&
+				(subrole === PETRA.Worker.SUBROLE_COMPLETING || subrole === PETRA.Worker.SUBROLE_WALKING || subrole === PETRA.Worker.SUBROLE_ATTACKING))
 				return;
 		}
 		potentialDefenders.push(ent.id());
@@ -778,7 +779,8 @@ PETRA.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target,
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
 			// When structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan.
-			if (typeGarrison !== PETRA.GarrisonManager.TYPE_DECAY && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
+			if (typeGarrison !== PETRA.GarrisonManager.TYPE_DECAY && subrole &&
+				(subrole === PETRA.Worker.SUBROLE_COMPLETING || subrole === PETRA.Worker.SUBROLE_WALKING || subrole === PETRA.Worker.SUBROLE_ATTACKING))
 				return false;
 		}
 		if (PETRA.getLandAccess(gameState, ent) != access)

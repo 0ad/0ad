@@ -171,7 +171,7 @@ PETRA.AttackManager.prototype.assignBombers = function(gameState)
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") != -1)
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
-			if (subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
+			if (subrole && (subrole === PETRA.Worker.SUBROLE_COMPLETING || subrole === PETRA.Worker.SUBROLE_WALKING || subrole === PETRA.Worker.SUBROLE_ATTACKING))
 				continue;
 		}
 		let alreadyBombing = false;
@@ -393,7 +393,7 @@ PETRA.AttackManager.prototype.update = function(gameState, queues, events)
 	}
 
 	// Check if we have some unused ranged siege unit which could do something useful while waiting
-	if (this.Config.difficulty > 1 && gameState.ai.playedTurn % 5 == 0)
+	if (this.Config.difficulty > PETRA.DIFFICULTY_VERY_EASY && gameState.ai.playedTurn % 5 == 0)
 		this.assignBombers(gameState);
 };
 
@@ -734,7 +734,7 @@ PETRA.AttackManager.prototype.switchDefenseToAttack = function(gameState, target
 			if (unit && accessOk && attackPlan.isAvailableUnit(gameState, unit))
 			{
 				unit.setMetadata(PlayerID, "plan", attackPlan.name);
-				unit.setMetadata(PlayerID, "role", "attack");
+				unit.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_ATTACK);
 				attackPlan.unitCollection.updateEnt(unit);
 			}
 		}
@@ -745,7 +745,7 @@ PETRA.AttackManager.prototype.switchDefenseToAttack = function(gameState, target
 		return false;
 	}
 	for (let unit of attackPlan.unitCollection.values())
-		unit.setMetadata(PlayerID, "role", "attack");
+		unit.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_ATTACK);
 	attackPlan.targetPlayer = target.owner();
 	attackPlan.targetPos = pos;
 	attackPlan.target = target;

@@ -78,7 +78,7 @@ PETRA.VictoryManager.prototype.checkEvents = function(gameState, events)
 				for (let worker of builders.values())
 				{
 					worker.setMetadata(PlayerID, "base", base.ID);
-					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_BUILDER);
 					worker.setMetadata(PlayerID, "target-foundation", ent.id());
 				}
 		}
@@ -141,7 +141,7 @@ PETRA.VictoryManager.prototype.checkEvents = function(gameState, events)
 			for (let entId of evt.entities)
 			{
 				let ent = gameState.getEntityById(entId);
-				if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "role") == "criticalEntHealer")
+				if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_CRITICAL_ENT_HEALER)
 					this.assignGuardToCriticalEnt(gameState, ent);
 			}
 
@@ -253,8 +253,8 @@ PETRA.VictoryManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		// If this ent travelled to a criticalEnt's accessValue, try again to assign as a guard
-		if ((ent.getMetadata(PlayerID, "role") == "criticalEntHealer" ||
-		     ent.getMetadata(PlayerID, "role") == "criticalEntGuard") && !this.guardEnts.get(evt.entity))
+		if ((ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_CRITICAL_ENT_HEALER ||
+		     ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_CRITICAL_ENT_GUARD) && !this.guardEnts.get(evt.entity))
 		{
 			this.assignGuardToCriticalEnt(gameState, ent, ent.getMetadata(PlayerID, "guardedEnt"));
 			continue;
@@ -342,7 +342,7 @@ PETRA.VictoryManager.prototype.manageCriticalEntHealers = function(gameState, qu
 		if (data.healersAssigned === undefined || data.healersAssigned >= this.healersPerCriticalEnt)
 			continue;
 		let template = gameState.applyCiv("units/{civ}/support_healer_b");
-		queues.healer.addPlan(new PETRA.TrainingPlan(gameState, template, { "role": "criticalEntHealer", "base": 0 }, 1, 1));
+		queues.healer.addPlan(new PETRA.TrainingPlan(gameState, template, { "role": PETRA.Worker.ROLE_CRITICAL_ENT_HEALER, "base": 0 }, 1, 1));
 		return;
 	}
 };
@@ -354,7 +354,7 @@ PETRA.VictoryManager.prototype.manageCriticalEntHealers = function(gameState, qu
  */
 PETRA.VictoryManager.prototype.manageCriticalEntGuards = function(gameState)
 {
-	let numWorkers = gameState.getOwnEntitiesByRole("worker", true).length;
+	let numWorkers = gameState.getOwnEntitiesByRole(PETRA.Worker.ROLE_WORKER, true).length;
 	if (numWorkers < 20)
 	{
 		for (let data of this.criticalEnts.values())
@@ -363,7 +363,7 @@ PETRA.VictoryManager.prototype.manageCriticalEntGuards = function(gameState)
 			{
 				let guardEnt = gameState.getEntityById(guardId);
 				if (!guardEnt || !guardEnt.hasClass("CitizenSoldier") ||
-				    guardEnt.getMetadata(PlayerID, "role") != "criticalEntGuard")
+				    guardEnt.getMetadata(PlayerID, "role") !== PETRA.Worker.ROLE_CRITICAL_ENT_GUARD)
 					continue;
 
 				guardEnt.removeGuard();
@@ -451,7 +451,7 @@ PETRA.VictoryManager.prototype.tryAssignMilitaryGuard = function(gameState, guar
 		return false;
 
 	guardEnt.setMetadata(PlayerID, "plan", -2);
-	guardEnt.setMetadata(PlayerID, "role", "criticalEntGuard");
+	guardEnt.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_CRITICAL_ENT_GUARD);
 	return true;
 };
 
@@ -547,7 +547,7 @@ PETRA.VictoryManager.prototype.assignGuardToCriticalEnt = function(gameState, gu
 	{
 		let queued = PETRA.returnResources(gameState, guardEnt);
 		guardEnt.guard(criticalEnt, queued);
-		let guardRole = guardEnt.getMetadata(PlayerID, "role") == "criticalEntHealer" ? "healer" : "guard";
+		const guardRole = guardEnt.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_CRITICAL_ENT_HEALER ? "healer" : "guard";
 		this.criticalEnts.get(criticalEntId).guards.set(guardEnt.id(), guardRole);
 
 		// Switch this guard ent to the criticalEnt's base

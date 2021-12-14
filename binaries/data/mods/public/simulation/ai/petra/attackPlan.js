@@ -170,18 +170,18 @@ PETRA.AttackPlan = function(gameState, Config, uniqueID, type = PETRA.AttackPlan
 	// Put some randomness on the attack size
 	let variation = randFloat(0.8, 1.2);
 	// and lower priority and smaller sizes for easier difficulty levels
-	if (this.Config.difficulty < 2)
+	if (this.Config.difficulty < PETRA.DIFFICULTY_EASY)
 	{
 		priority *= 0.4;
 		variation *= 0.2;
 	}
-	else if (this.Config.difficulty < 3)
+	else if (this.Config.difficulty < PETRA.DIFFICULTY_MEDIUM)
 	{
 		priority *= 0.8;
 		variation *= 0.6;
 	}
 
-	if (this.Config.difficulty < 2)
+	if (this.Config.difficulty < PETRA.DIFFICULTY_EASY)
 	{
 		for (const cat in this.unitStat)
 		{
@@ -422,7 +422,7 @@ PETRA.AttackPlan.prototype.addSiegeUnits = function(gameState)
 
 	this.siegeState = PETRA.AttackPlan.SIEGE_ADDED;
 	let targetSize;
-	if (this.Config.difficulty < 3)
+	if (this.Config.difficulty < PETRA.DIFFICULTY_MEDIUM)
 		targetSize = this.type === PETRA.AttackPlan.TYPE_HUGE_ATTACK ? Math.max(this.Config.difficulty, 1) : Math.max(this.Config.difficulty - 1, 0);
 	else
 		targetSize = this.type === PETRA.AttackPlan.TYPE_HUGE_ATTACK ? this.Config.difficulty + 1 : this.Config.difficulty - 1;
@@ -586,8 +586,8 @@ PETRA.AttackPlan.prototype.updatePreparation = function(gameState)
 			ent.setMetadata(PlayerID, "plan", -1);
 			continue;
 		}
-		ent.setMetadata(PlayerID, "role", "attack");
-		ent.setMetadata(PlayerID, "subrole", "completing");
+		ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_ATTACK);
+		ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_COMPLETING);
 		let queued = false;
 		if (ent.resourceCarrying() && ent.resourceCarrying().length)
 			queued = PETRA.returnResources(gameState, ent);
@@ -675,7 +675,7 @@ PETRA.AttackPlan.prototype.trainMoreUnits = function(gameState)
 				let max = firstOrder[3].batchSize;
 				let specialData = "Plan_" + this.name + "_" + firstOrder[4];
 				let data = { "plan": this.name, "special": specialData, "base": 0 };
-				data.role = gameState.getTemplate(template).hasClass("CitizenSoldier") ? "worker" : "attack";
+				data.role = gameState.getTemplate(template).hasClass("CitizenSoldier") ? PETRA.Worker.ROLE_WORKER : PETRA.Worker.ROLE_ATTACK;
 				let trainingPlan = new PETRA.TrainingPlan(gameState, template, data, max, max);
 				if (trainingPlan.template)
 					queue.addPlan(trainingPlan);
@@ -746,7 +746,7 @@ PETRA.AttackPlan.prototype.assignUnits = function(gameState)
 	// Finally add also some workers for the higher difficulties,
 	// If Rush, assign all kind of workers, keeping only a minimum number of defenders
 	// Otherwise, assign only some idle workers if too much of them
-	if (this.Config.difficulty <= 2)
+	if (this.Config.difficulty <= PETRA.DIFFICULTY_EASY)
 		return added;
 
 	let num = 0;
@@ -754,7 +754,7 @@ PETRA.AttackPlan.prototype.assignUnits = function(gameState)
 	let keep = this.type !== PETRA.AttackPlan.TYPE_RUSH ?
 		6 + 4 * gameState.getNumPlayerEnemies() + 8 * this.Config.personality.defensive : 8;
 	keep = Math.round(this.Config.popScaling * keep);
-	for (const ent of gameState.getOwnEntitiesByRole("worker", true).values())
+	for (const ent of gameState.getOwnEntitiesByRole(PETRA.Worker.ROLE_WORKER, true).values())
 	{
 		if (!ent.hasClass("CitizenSoldier") || !this.isAvailableUnit(gameState, ent))
 			continue;
@@ -769,7 +769,7 @@ PETRA.AttackPlan.prototype.assignUnits = function(gameState)
 		}
 		if (num++ < keep || numbase[baseID] < 5)
 			continue;
-		if (this.type !== PETRA.AttackPlan.TYPE_RUSH && ent.getMetadata(PlayerID, "subrole") != "idle")
+		if (this.type !== PETRA.AttackPlan.TYPE_RUSH && ent.getMetadata(PlayerID, "subrole") !== PETRA.Worker.SUBROLE_IDLE)
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
 		this.unitCollection.updateEnt(ent);
@@ -1256,7 +1256,7 @@ PETRA.AttackPlan.prototype.StartAttack = function(gameState)
 
 	for (let ent of this.unitCollection.values())
 	{
-		ent.setMetadata(PlayerID, "subrole", "walking");
+		ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_WALKING);
 		let stance = ent.isPackable() ? "standground" : "aggressive";
 		if (ent.getStance() != stance)
 			ent.setStance(stance);
@@ -1316,7 +1316,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 		this.startingAttack = true;
 		this.unitCollection.forEach(ent => {
 			ent.stopMoving();
-			ent.setMetadata(PlayerID, "subrole", "attacking");
+			ent.setMetadata(PlayerID, "subrole", PETRA.Worker.SUBROLE_ATTACKING);
 		});
 		if (this.type === PETRA.AttackPlan.TYPE_RUSH)   // try to find a better target for rush
 		{
@@ -2041,7 +2041,7 @@ PETRA.AttackPlan.prototype.Abort = function(gameState)
 
 		for (let ent of this.unitCollection.values())
 		{
-			if (ent.getMetadata(PlayerID, "role") == "attack")
+			if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_ATTACK)
 				ent.stopMoving();
 			if (rallyPoint)
 				ent.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15);
@@ -2057,10 +2057,10 @@ PETRA.AttackPlan.prototype.Abort = function(gameState)
 
 PETRA.AttackPlan.prototype.removeUnit = function(ent, update)
 {
-	if (ent.getMetadata(PlayerID, "role") == "attack")
+	if (ent.getMetadata(PlayerID, "role") === PETRA.Worker.ROLE_ATTACK)
 	{
 		if (ent.hasClass("CitizenSoldier"))
-			ent.setMetadata(PlayerID, "role", "worker");
+			ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_WORKER);
 		else
 			ent.setMetadata(PlayerID, "role", undefined);
 		ent.setMetadata(PlayerID, "subrole", undefined);
