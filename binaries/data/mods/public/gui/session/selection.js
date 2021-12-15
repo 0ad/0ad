@@ -184,7 +184,7 @@ EntitySelection.prototype.makePrimarySelection = function(key)
 {
 	const ents = this.groups.getEntsByKey(key);
 	this.reset();
-	this.addList(ents);
+	this.addList(ents, false, false, false);
 };
 
 /**
@@ -282,7 +282,7 @@ EntitySelection.prototype.checkRenamedEntities = function()
 /**
  * Add entities to selection. Play selection sound unless quiet is true
  */
-EntitySelection.prototype.addList = function(ents, quiet, force = false)
+EntitySelection.prototype.addList = function(ents, quiet, force = false, addFormationMembers = true)
 {
 	// If someone else's player is the sole selected unit, don't allow adding to the selection.
 	const firstEntState = this.selected.size == 1 && GetEntityState(this.getFirstSelected());
@@ -291,7 +291,7 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false)
 
 	const added = [];
 
-	for (const ent of this.addFormationMembers(ents))
+	for (const ent of addFormationMembers ? this.addFormationMembers(ents) : ents)
 	{
 		if (this.selected.size >= g_MaxSelectionSize)
 			break;
