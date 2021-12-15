@@ -58,7 +58,7 @@ class GameSettingsPanel
 		if (previousTime === undefined)
 			return;
 
-		let distance = this.slideSpeed * tickLength;
+		const distance = this.slideSpeed * (tickLength || 1);
 		let rightBorder = this.settingTabButtonsFrame.size.left;
 		let offset = 0;
 		if (g_TabCategorySelected === undefined)
