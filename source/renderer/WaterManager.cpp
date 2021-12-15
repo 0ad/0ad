@@ -30,6 +30,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "renderer/WaterManager.h"
 #include "renderer/Renderer.h"
@@ -1090,7 +1091,7 @@ void WaterManager::UpdateQuality()
 bool WaterManager::WillRenderFancyWater() const
 {
 	return
-		m_RenderWater && g_RenderingOptions.GetPreferGLSL() &&
+		m_RenderWater && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
 		g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
 }
 

@@ -114,8 +114,10 @@ void CDecalRData::RenderDecals(
 			continue;
 		}
 
+		CShaderDefines defines = contextDecal;
+		defines.SetMany(material.GetShaderDefines(0));
 		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
-			material.GetShaderEffect(), contextDecal, material.GetShaderDefines(0));
+			material.GetShaderEffect(), defines);
 		if (!techBase)
 		{
 			LOGERROR("Terrain renderer failed to load shader effect (%s)\n",

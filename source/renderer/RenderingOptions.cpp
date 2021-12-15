@@ -23,6 +23,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
 #include "ps/CStrInternStatic.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/ShadowMap.h"
@@ -120,7 +121,6 @@ CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 	m_ShadowPCF = false;
 	m_Particles = false;
 	m_Silhouettes = false;
-	m_PreferGLSL = false;
 	m_Fog = false;
 	m_ForceAlphaTest = false;
 	m_GPUSkinning = false;
@@ -142,14 +142,6 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 		CStr renderPath;
 		CFG_GET_VAL("renderpath", renderPath);
 		SetRenderPath(RenderPathEnum::FromString(renderPath));
-	});
-
-	m_ConfigHooks->Setup("preferglsl", [this]() {
-		bool enabled;
-		CFG_GET_VAL("preferglsl", enabled);
-		SetPreferGLSL(enabled);
-		if (CRenderer::IsInitialised())
-			g_Renderer.GetShadowMap().RecreateTexture();
 	});
 
 	m_ConfigHooks->Setup("shadowquality", []() {
@@ -223,8 +215,8 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 	m_ConfigHooks->Setup("gpuskinning", [this]() {
 		bool enabled;
 		CFG_GET_VAL("gpuskinning", enabled);
-		if (enabled && !m_PreferGLSL)
-			LOGWARNING("GPUSkinning has been disabled, because it is not supported with PreferGLSL disabled.");
+		if (enabled && g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB)
+			LOGWARNING("GPUSkinning has been disabled, because it is not supported with ARB shaders.");
 		else if (enabled)
 			m_GPUSkinning = true;
 	});
@@ -256,23 +248,6 @@ void CRenderingOptions::SetFog(bool value)
 	m_Fog = value;
 	if (CRenderer::IsInitialised())
 		g_Renderer.MakeShadersDirty();
-}
-
-void CRenderingOptions::SetPreferGLSL(bool value)
-{
-	if (m_GPUSkinning && !value)
-	{
-		LOGWARNING("GPUSkinning have been disabled, because it is not supported with PreferGLSL disabled.");
-		m_GPUSkinning = false;
-	}
-	else if (!m_GPUSkinning && value)
-		CFG_GET_VAL("gpuskinning", m_GPUSkinning);
-
-	m_PreferGLSL = value;
-	if (!CRenderer::IsInitialised())
-		return;
-	g_Renderer.MakeShadersDirty();
-	g_Renderer.RecomputeSystemShaderDefines();
 }
 
 void CRenderingOptions::SetRenderPath(RenderPath value)

@@ -76,8 +76,7 @@ public:
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		CShaderDefines defines;
-		Tech = g_Renderer.GetShaderManager().LoadEffect(
-			str_canvas2d, g_Renderer.GetSystemShaderDefines(), defines);
+		Tech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d, defines);
 		ENSURE(Tech);
 		Tech->BeginPass();
 	}

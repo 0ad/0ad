@@ -231,6 +231,13 @@ void CVideoMode::ReadConfig()
 	CFG_GET_VAL("display", m_ConfigDisplay);
 	CFG_GET_VAL("hidpi", m_ConfigEnableHiDPI);
 	CFG_GET_VAL("vsync", m_ConfigVSync);
+
+	CStr rendererBackend;
+	CFG_GET_VAL("rendererbackend", rendererBackend);
+	if (rendererBackend == "glarb")
+		m_Backend = Backend::GL_ARB;
+	else
+		m_Backend = Backend::GL;
 }
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)

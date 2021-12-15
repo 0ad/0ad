@@ -28,6 +28,12 @@ typedef void* SDL_GLContext;
 class CVideoMode
 {
 public:
+	enum class Backend
+	{
+		GL,
+		GL_ARB
+	};
+
 	CVideoMode();
 	~CVideoMode();
 
@@ -104,6 +110,8 @@ public:
 	void SetCursor(const CStrW& name);
 	void ResetCursor();
 
+	Backend GetBackend() const { return m_Backend; }
+
 private:
 	void ReadConfig();
 	int GetBestBPP();
@@ -157,6 +165,8 @@ private:
 
 	class CCursor;
 	std::unique_ptr<CCursor> m_Cursor;
+
+	Backend m_Backend = Backend::GL;
 };
 
 extern CVideoMode g_VideoMode;

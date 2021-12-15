@@ -364,7 +364,7 @@ void CMiniMapTexture::RenderFinalTexture()
 	CShaderDefines baseDefines;
 	baseDefines.Add(str_MINIMAP_BASE, str_1);
 
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), baseDefines);
+	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
 	tech->BeginPass();
 	shader = tech->GetShader();
 
@@ -415,7 +415,7 @@ void CMiniMapTexture::RenderFinalTexture()
 
 	CShaderDefines pointDefines;
 	pointDefines.Add(str_MINIMAP_POINT, str_1);
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, g_Renderer.GetSystemShaderDefines(), pointDefines);
+	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
 	tech->BeginPass();
 	shader = tech->GetShader();
 	shader->Uniform(str_transform, baseTransform);

@@ -264,8 +264,6 @@ public:
 
 	CFontManager& GetFontManager();
 
-	CShaderDefines GetSystemShaderDefines() { return m_SystemShaderDefines; }
-
 	CTimeManager& GetTimeManager();
 
 	CPostprocManager& GetPostprocManager();
@@ -355,7 +353,6 @@ protected:
 	void SetRenderPath(RenderPath rp);
 
 	void ReloadShaders();
-	void RecomputeSystemShaderDefines();
 
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
@@ -373,8 +370,6 @@ protected:
 	ERenderMode m_ModelRenderMode;
 	// Current overlay rendering mode.
 	ERenderMode m_OverlayRenderMode;
-
-	CShaderDefines m_SystemShaderDefines;
 
 	SViewPort m_Viewport;
 

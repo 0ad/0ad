@@ -49,8 +49,7 @@ namespace
 
 CShaderTechniquePtr GetOverlayLineShaderTechnique(const CShaderDefines& defines)
 {
-	return g_Renderer.GetShaderManager().LoadEffect(
-		str_overlay_line, g_Renderer.GetSystemShaderDefines(), defines);
+	return g_Renderer.GetShaderManager().LoadEffect(str_overlay_line, defines);
 }
 
 } // anonymous namespace

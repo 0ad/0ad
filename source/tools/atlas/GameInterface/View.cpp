@@ -283,8 +283,6 @@ void AtlasViewGame::SetParam(const std::wstring& name, bool value)
 		g_Renderer.SetDisplayTerrainPriorities(value);
 	else if (name == L"movetool")
 		m_DrawMoveTool = value;
-	else if (name == L"preferGLSL")
-		g_RenderingOptions.SetPreferGLSL(value);
 }
 
 void AtlasViewGame::SetParam(const std::wstring& name, float value)
@@ -311,10 +309,6 @@ void AtlasViewGame::SetParam(const std::wstring& name, const std::wstring& value
 			else
 				cmpPathfinder->SetAtlasOverlay(false);
 		}
-	}
-	else if (name == L"renderpath")
-	{
-		g_RenderingOptions.SetRenderPath(RenderPathEnum::FromString(CStrW(value).ToUTF8()));
 	}
 }
 

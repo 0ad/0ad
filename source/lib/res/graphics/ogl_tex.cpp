@@ -27,7 +27,6 @@
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "lib/res/h_mgr.h"
-#include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
 
 #include <cstdio>
@@ -742,13 +741,6 @@ static void detect_gl_upload_caps()
 	{
 		have_anistropy = ogl_HaveExtension("GL_EXT_texture_filter_anisotropic");
 	}
-
-	const std::wstring cardName = gfx::CardName();
-	// rationale: janwas's laptop's S3 card blows up if S3TC is used
-	// (oh, the irony). it'd be annoying to have to share this between all
-	// projects, hence this default implementation here.
-	if(cardName == L"S3 SuperSavage/IXC 1014")
-		ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
 }
 
 
