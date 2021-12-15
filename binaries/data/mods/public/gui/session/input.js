@@ -180,14 +180,14 @@ function updateBuildingPlacementPreview()
 
 			if (placementSupport.attack && placementSupport.attack.Ranged)
 			{
-				let cmd = {
+				const cmd = {
 					"x": placementSupport.position.x,
 					"z": placementSupport.position.z,
 					"range": placementSupport.attack.Ranged.maxRange,
-					"elevationBonus": placementSupport.attack.Ranged.elevationBonus
+					"yOrigin": placementSupport.attack.Ranged.yOrigin
 				};
-				let averageRange = Math.round(Engine.GuiInterfaceCall("GetAverageRangeForBuildings", cmd) - cmd.range);
-				let range = Math.round(cmd.range);
+				const averageRange = Math.round(Engine.GuiInterfaceCall("GetAverageRangeForBuildings", cmd) - cmd.range);
+				const range = Math.round(cmd.range);
 				placementSupport.tooltipMessage = sprintf(translatePlural("Basic range: %(range)s meter", "Basic range: %(range)s meters", range), { "range": range }) + "\n" +
 					sprintf(translatePlural("Average bonus range: %(range)s meter", "Average bonus range: %(range)s meters", averageRange), { "range": averageRange });
 			}

@@ -220,11 +220,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 				},
 				"minRange": getAttackStat("MinRange"),
 				"maxRange": getAttackStat("MaxRange"),
-				"elevationBonus": getAttackStat("ElevationBonus")
+				"yOrigin": getAttackStat("Origin/Y")
 			};
 
 			ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
-				(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
+				(2 * ret.attack[type].yOrigin + ret.attack[type].maxRange));
 
 			ret.attack[type].repeatTime = getAttackStat("RepeatTime");
 			if (template.Attack[type].Projectile)

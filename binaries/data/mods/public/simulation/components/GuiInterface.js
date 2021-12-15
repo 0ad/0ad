@@ -484,6 +484,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			let range = cmpAttack.GetRange(type);
 			ret.attack[type].minRange = range.min;
 			ret.attack[type].maxRange = range.max;
+			ret.attack[type].yOrigin = cmpAttack.GetAttackYOrigin(type);
 
 			let timers = cmpAttack.GetTimers(type);
 			ret.attack[type].prepareTime = timers.prepare;
@@ -491,18 +492,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 			if (type != "Ranged")
 			{
-				// Not a ranged attack, set some defaults.
-				ret.attack[type].elevationBonus = 0;
 				ret.attack[type].elevationAdaptedRange = ret.attack.maxRange;
 				continue;
 			}
 
-			ret.attack[type].elevationBonus = range.elevationBonus;
-
 			if (cmpPosition && cmpPosition.IsInWorld())
 				// For units, take the range in front of it, no spread, so angle = 0,
 				// else, take the average elevation around it: angle = 2 * pi.
-				ret.attack[type].elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, cmpUnitAI ? 0 : 2 * Math.PI);
+				ret.attack[type].elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, ret.attack[type].yOrigin, cmpUnitAI ? 0 : 2 * Math.PI);
 			else
 				// Not in world, set a default?
 				ret.attack[type].elevationAdaptedRange = ret.attack.maxRange;
@@ -626,10 +623,10 @@ GuiInterface.prototype.GetAverageRangeForBuildings = function(player, cmd)
 		"z": cmd.z
 	};
 
-	let elevationBonus = cmd.elevationBonus || 0;
+	const yOrigin = cmd.yOrigin || 0;
 	let range = cmd.range;
 
-	return cmpRangeManager.GetElevationAdaptedRange(pos, rot, range, elevationBonus, 2 * Math.PI);
+	return cmpRangeManager.GetElevationAdaptedRange(pos, rot, range, yOrigin, 2 * Math.PI);
 };
 
 GuiInterface.prototype.GetTemplateData = function(player, data)

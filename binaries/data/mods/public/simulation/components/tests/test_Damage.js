@@ -44,7 +44,7 @@ function Test_Generic()
 				},
 				"MaxRange": 50,
 				"MinRange": 0,
-				"Delay": 0,
+				"EffectDelay": 0,
 				"Projectile": {
 					"Speed": 75.0,
 					"Spread": 0.5,

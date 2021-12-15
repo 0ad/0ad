@@ -4712,9 +4712,10 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (!this.CheckTargetVisible(target))
 		return false;
 
-	let range = this.GetRange(IID_Attack, type, target);
-	if (!range)
+	const cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
 		return false;
+	const range = cmpAttack.GetRange(type);
 
 	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!thisCmpPosition.IsInWorld())
@@ -4728,7 +4729,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	// Parabolic range compuation is the same as in BuildingAI's FireArrows.
 	let t = targetCmpPosition.GetPosition();
 	// h is positive when I'm higher than the target
-	let h = s.y - t.y + range.elevationBonus;
+	const h = s.y - t.y + cmpAttack.GetAttackYOrigin(type);
 
 	let parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
 	// No negative roots please
@@ -6220,7 +6221,6 @@ UnitAI.prototype.WalkToHeldPosition = function()
  * @param {string} type - [Optional]
  * @return {Object | undefined} - The range in the form
  *	{ "min": number, "max": number }
- *	Object."elevationBonus": number may be present when iid == IID_Attack.
  *	Returns undefined when the entity does not have the requested component.
  */
 UnitAI.prototype.GetRange = function(iid, type, target)
