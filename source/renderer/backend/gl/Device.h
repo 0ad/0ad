@@ -18,11 +18,12 @@
 #ifndef INCLUDED_RENDERER_BACKEND_GL_DEVICE
 #define INCLUDED_RENDERER_BACKEND_GL_DEVICE
 
-#include "lib/external_libraries/libsdl.h"
-
 #include <memory>
 #include <string>
 #include <vector>
+
+typedef struct SDL_Window SDL_Window;
+typedef void* SDL_GLContext;
 
 namespace Renderer
 {
