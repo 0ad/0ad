@@ -118,7 +118,7 @@ var g_UnitActions =
 			DrawTargetMarker(target);
 
 			Engine.GuiInterfaceCall("PlaySound", {
-				"name": "order_walk",
+				"name": "order_attack_move",
 				"entity": action.firstAbleEntity
 			});
 
