@@ -25,7 +25,6 @@
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/posix/posix_utsname.h"
 #include "lib/sysdep/cpu.h"
-#include "lib/sysdep/gfx.h"
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/os_cpu.h"
 #if ARCH_X86_X64
@@ -43,6 +42,7 @@
 #include "ps/scripting/JSInterface_Debug.h"
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
@@ -160,8 +160,8 @@ void RunHardwareDetection()
 	Script::SetProperty(rq, settings, "build_gcc", (int)GCC_VERSION);
 	Script::SetProperty(rq, settings, "build_clang", (int)CLANG_VERSION);
 
-	Script::SetProperty(rq, settings, "gfx_card", gfx::CardName());
-	Script::SetProperty(rq, settings, "gfx_drv_ver", gfx::DriverInfo());
+	Script::SetProperty(rq, settings, "gfx_card", g_VideoMode.GetBackendDevice()->GetName());
+	Script::SetProperty(rq, settings, "gfx_drv_ver", g_VideoMode.GetBackendDevice()->GetDriverInformation());
 #if CONFIG2_AUDIO
 	if (g_SoundManager)
 	{

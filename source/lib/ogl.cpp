@@ -33,7 +33,6 @@
 
 #include "lib/external_libraries/libsdl.h"
 #include "lib/debug.h"
-#include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"
 
 #if MSC_VERSION

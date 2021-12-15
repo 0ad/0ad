@@ -24,7 +24,6 @@
 #include "lib/config2.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
-#include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -34,6 +33,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Pyrogenesis.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 
 namespace
@@ -286,11 +286,15 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			return false;
 		}
 
-		m_Context = SDL_GL_CreateContext(m_Window);
-		if (!m_Context)
+#if OS_WIN
+		// We need to set the window for an error dialog.
+		wutil_SetAppWindow(m_Window);
+#endif
+
+		if (!CreateBackendDevice(true))
 		{
-			LOGERROR("SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%s\")",
-				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+			LOGERROR("SetVideoMode failed in backend device creation: %dx%d:%d %d",
+				w, h, bpp, fullscreen ? 1 : 0);
 			return false;
 		}
 	}
@@ -329,11 +333,6 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		SDL_SetWindowGrab(m_Window, SDL_TRUE);
 	else
 		SDL_SetWindowGrab(m_Window, SDL_FALSE);
-
-#if OS_WIN
-	// We need to set the window for an error dialog.
-	wutil_SetAppWindow(m_Window);
-#endif
 
 	m_IsFullscreen = fullscreen;
 
@@ -468,9 +467,6 @@ bool CVideoMode::InitSDL()
 	atexit(SDL_Quit);
 	// End work around.
 
-	ogl_Init(); // required after each mode change
-	// (TODO: does that mean we need to call this when toggling fullscreen later?)
-
 	m_IsInitialised = true;
 
 	if (!m_ConfigFullscreen)
@@ -505,16 +501,18 @@ void CVideoMode::Shutdown()
 
 	m_IsFullscreen = false;
 	m_IsInitialised = false;
-	if (m_Context)
-	{
-		SDL_GL_DeleteContext(m_Context);
-		m_Context = nullptr;
-	}
+	m_BackendDevice.reset();
 	if (m_Window)
 	{
 		SDL_DestroyWindow(m_Window);
 		m_Window = nullptr;
 	}
+}
+
+bool CVideoMode::CreateBackendDevice(const bool createSDLContext)
+{
+	m_BackendDevice = Renderer::Backend::GL::CDevice::Create(createSDLContext ? m_Window : nullptr);
+	return !!m_BackendDevice;
 }
 
 bool CVideoMode::ResizeWindow(int w, int h)

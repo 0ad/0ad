@@ -28,7 +28,6 @@
 #if ARCH_X86_X64
 #include "lib/sysdep/arch/x86_x64/topology.h"
 #endif
-#include "lib/sysdep/gfx.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/smbios.h"
@@ -44,6 +43,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 
 #if CONFIG2_AUDIO
@@ -52,29 +52,6 @@
 
 #include <iomanip>
 #include <sstream>
-
-static std::string SplitExts(const char *exts)
-{
-	std::string str = exts;
-	std::string ret = "";
-	size_t idx = str.find_first_of(" ");
-	while(idx != std::string::npos)
-	{
-		if(idx >= str.length() - 1)
-		{
-			ret += str;
-			break;
-		}
-
-		ret += str.substr(0, idx);
-		ret += "\n";
-		str = str.substr(idx + 1);
-		idx = str.find_first_of(" ");
-	}
-
-	return ret;
-}
-
 
 void WriteSystemInfo()
 {
@@ -126,10 +103,8 @@ void WriteSystemInfo()
 	fprintf(f, "Memory         : %u MiB; %u MiB free\n", (unsigned)os_cpu_MemorySize(), (unsigned)os_cpu_MemoryAvailable());
 
 	// graphics
-	const std::wstring cardName = gfx::CardName();
-	const std::wstring driverInfo = gfx::DriverInfo();
-	fprintf(f, "Graphics Card  : %ls\n", cardName.c_str());
-	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), driverInfo.c_str());
+	fprintf(f, "Video Card     : %s\n", g_VideoMode.GetBackendDevice()->GetName().c_str());
+	fprintf(f, "Video Driver   : %s\n", g_VideoMode.GetBackendDevice()->GetDriverInformation().c_str());
 	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
 #if CONFIG2_AUDIO
@@ -147,9 +122,12 @@ void WriteSystemInfo()
 #endif
 
 	// OpenGL extensions (write them last, since it's a lot of text)
-	const char* exts = ogl_ExtensionString();
-	if (!exts) exts = "{unknown}";
-	fprintf(f, "\nOpenGL Extensions: \n%s\n", SplitExts(exts).c_str());
+	fprintf(f, "\nBackend Extensions:\n");
+	if (g_VideoMode.GetBackendDevice()->GetExtensions().empty())
+		fprintf(f, "{unknown}\n");
+	else
+		for (const std::string& extension : g_VideoMode.GetBackendDevice()->GetExtensions())
+			fprintf(f, "%s\n", extension.c_str());
 
 	// System Management BIOS (even more text than OpenGL extensions)
 	std::string smbios = SMBIOS::StringizeStructures(SMBIOS::GetStructures());

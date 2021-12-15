@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 /**
  * Runs hardware-detection script to adjust default config settings
  * and/or emit warnings depending on the user's system configuration.
- * This must only be called after ogl_Init.
+ * This must only be called after backend device creation.
  */
 void RunHardwareDetection();
 

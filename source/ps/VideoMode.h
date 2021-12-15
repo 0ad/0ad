@@ -25,6 +25,17 @@
 typedef struct SDL_Window SDL_Window;
 typedef void* SDL_GLContext;
 
+namespace Renderer
+{
+namespace Backend
+{
+namespace GL
+{
+class CDevice;
+}
+}
+}
+
 class CVideoMode
 {
 public:
@@ -52,6 +63,12 @@ public:
 	 * Shut down after InitSDL/InitNonSDL, so that they can be used again.
 	 */
 	void Shutdown();
+
+	/**
+	 * Creates a backend device. Also we use wxWidgets in Atlas so we don't need
+	 * to create one for that case.
+	 */
+	bool CreateBackendDevice(const bool createSDLContext);
 
 	/**
 	 * Resize the SDL window and associated graphics stuff to the new size.
@@ -112,6 +129,8 @@ public:
 
 	Backend GetBackend() const { return m_Backend; }
 
+	Renderer::Backend::GL::CDevice* GetBackendDevice() { return m_BackendDevice.get(); }
+
 private:
 	void ReadConfig();
 	int GetBestBPP();
@@ -125,7 +144,6 @@ private:
 	bool m_IsInitialised = false;
 
 	SDL_Window* m_Window = nullptr;
-	SDL_GLContext m_Context = nullptr;
 
 	// Initial desktop settings.
 	// Frequency is in Hz, and BPP means bits per pixels (not bytes per pixels).
@@ -167,6 +185,7 @@ private:
 	std::unique_ptr<CCursor> m_Cursor;
 
 	Backend m_Backend = Backend::GL;
+	std::unique_ptr<Renderer::Backend::GL::CDevice> m_BackendDevice;
 };
 
 extern CVideoMode g_VideoMode;

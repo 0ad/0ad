@@ -1388,8 +1388,10 @@ void CRenderer::OnSwapBuffers()
 {
 	bool checkGLErrorAfterSwap = false;
 	CFG_GET_VAL("gl.checkerrorafterswap", checkGLErrorAfterSwap);
+#if defined(NDEBUG)
 	if (!checkGLErrorAfterSwap)
 		return;
+#endif
 	PROFILE3("error check");
 	// We have to check GL errors after SwapBuffer to avoid possible
 	// synchronizations during rendering.
