@@ -1170,7 +1170,7 @@ function popOneFromSelection(action)
 		));
 	if (unit)
 	{
-		g_Selection.removeList([unit], true);
+		g_Selection.removeList([unit], false);
 		return [unit];
 	}
 	return null;

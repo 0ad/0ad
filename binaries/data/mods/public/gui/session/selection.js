@@ -175,6 +175,17 @@ function EntitySelection()
 	// Public properties:
 	this.dirty = false; // set whenever the selection has changed
 	this.groups = new EntityGroups();
+
+	this.UpdateFormationSelectionBehaviour();
+	registerConfigChangeHandler(changes => {
+		if (changes.has("gui.session.selectformationasone"))
+			this.UpdateFormationSelectionBehaviour();
+	});
+}
+
+EntitySelection.prototype.UpdateFormationSelectionBehaviour = function()
+{
+	this.SelectFormationAsOne = Engine.ConfigDB_GetValue("user", "gui.session.selectformationasone") == "true";
 }
 
 /**
@@ -331,13 +342,13 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false, addForm
 
 /**
  * @param {number[]} ents - The entities to remove.
- * @param {boolean} dontAddFormationMembers - If true we need to exclude adding formation members.
+ * @param {boolean} addFormationMembers - If true we need to add formation members.
  */
-EntitySelection.prototype.removeList = function(ents, dontAddFormationMembers = false)
+EntitySelection.prototype.removeList = function(ents, addFormationMembers = true)
 {
 	const removed = [];
 
-	for (const ent of dontAddFormationMembers ? ents : this.addFormationMembers(ents))
+	for (const ent of addFormationMembers ? this.addFormationMembers(ents) : ents)
 		if (this.selected.has(ent))
 		{
 			this.groups.removeEnt(ent);
@@ -478,7 +489,7 @@ EntitySelection.prototype.selectAndMoveTo = function(entityID)
  */
 EntitySelection.prototype.addFormationMembers = function(entities)
 {
-	if (!entities.length || Engine.HotkeyIsPressed("selection.singleselection"))
+	if (!entities.length || !this.SelectFormationAsOne || Engine.HotkeyIsPressed("selection.singleselection"))
 		return entities;
 
 	const result = new Set(entities);
