@@ -18,6 +18,8 @@
 #ifndef INCLUDED_RENDERER_BACKEND_GL_DEVICE
 #define INCLUDED_RENDERER_BACKEND_GL_DEVICE
 
+#include "scriptinterface/ScriptForward.h"
+
 #include <memory>
 #include <string>
 #include <vector>
@@ -49,9 +51,12 @@ public:
 	const std::string& GetDriverInformation() const { return m_DriverInformation; }
 	const std::vector<std::string>& GetExtensions() const { return m_Extensions; }
 
+	void Report(const ScriptRequest& rq, JS::HandleValue settings);
+
 private:
 	CDevice();
 
+	SDL_Window* m_Window = nullptr;
 	SDL_GLContext m_Context = nullptr;
 
 	std::string m_Name;
