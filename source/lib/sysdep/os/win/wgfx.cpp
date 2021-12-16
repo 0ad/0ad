@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wgfx.h"
 
-#include "lib/sysdep/gfx.h"
 #include "lib/sysdep/os/win/wdll_ver.h"
 #include "lib/sysdep/os/win/wutil.h"
 

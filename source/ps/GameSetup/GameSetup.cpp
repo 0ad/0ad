@@ -931,15 +931,9 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 
 	g_GUI = new CGUIManager();
 
-	// (must come after SetVideoMode, since it calls ogl_Init)
 	CStr8 renderPath = "default";
 	CFG_GET_VAL("renderpath", renderPath);
-	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr) // ARB
-		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", nullptr)) // GLSL
-		|| !ogl_HaveExtension("GL_ARB_vertex_buffer_object") // VBO
-		|| ogl_HaveExtensions(0, "GL_ARB_multitexture", "GL_EXT_draw_range_elements", nullptr)
-		|| (!ogl_HaveExtension("GL_EXT_framebuffer_object") && !ogl_HaveExtension("GL_ARB_framebuffer_object"))
-		|| RenderPathEnum::FromString(renderPath) == FIXED)
+	if (RenderPathEnum::FromString(renderPath) == FIXED)
 	{
 		// It doesn't make sense to continue working here, because we're not
 		// able to display anything.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,7 +24,6 @@
 
 #include "lib/lib.h"
 #include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/gfx.h"
 #include "lib/utf8.h"
 #include "osx_bundle.h"
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,7 +32,7 @@
 
 /**
  * initialization: import extension function pointers and do feature detect.
- * call before using any other function, and after each video mode change.
+ * call before using any other function.
  * fails if OpenGL not ready for use.
  **/
 extern void ogl_Init();

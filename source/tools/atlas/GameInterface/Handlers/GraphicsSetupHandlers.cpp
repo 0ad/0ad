@@ -111,7 +111,7 @@ MESSAGEHANDLER(InitGraphics)
 {
 	UNUSED2(msg);
 
-	ogl_Init();
+	g_VideoMode.CreateBackendDevice(false);
 
 	InitGraphics(g_AtlasGameLoop->args, g_InitFlags, {});
 

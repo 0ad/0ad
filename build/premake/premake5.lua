@@ -772,6 +772,8 @@ function setup_all_libs ()
 		"graphics",
 		"graphics/scripting",
 		"renderer",
+		"renderer/backend",
+		"renderer/backend/gl",
 		"renderer/scripting",
 		"third_party/mikktspace",
 		"third_party/ogre3d_preprocessor"

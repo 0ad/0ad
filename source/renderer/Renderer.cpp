@@ -554,14 +554,6 @@ bool CRenderer::Open(int width, int height)
 	glFrontFace(GL_CCW);
 	glEnable(GL_CULL_FACE);
 
-	GLint bits;
-	glGetIntegerv(GL_DEPTH_BITS,&bits);
-	LOGMESSAGE("CRenderer::Open: depth bits %d",bits);
-	glGetIntegerv(GL_STENCIL_BITS,&bits);
-	LOGMESSAGE("CRenderer::Open: stencil bits %d",bits);
-	glGetIntegerv(GL_ALPHA_BITS,&bits);
-	LOGMESSAGE("CRenderer::Open: alpha bits %d",bits);
-
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
 
@@ -1388,8 +1380,10 @@ void CRenderer::OnSwapBuffers()
 {
 	bool checkGLErrorAfterSwap = false;
 	CFG_GET_VAL("gl.checkerrorafterswap", checkGLErrorAfterSwap);
+#if defined(NDEBUG)
 	if (!checkGLErrorAfterSwap)
 		return;
+#endif
 	PROFILE3("error check");
 	// We have to check GL errors after SwapBuffer to avoid possible
 	// synchronizations during rendering.

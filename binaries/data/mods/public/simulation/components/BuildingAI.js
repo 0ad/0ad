@@ -123,10 +123,11 @@ BuildingAI.prototype.SetupRangeQuery = function()
 	if (!enemies.length)
 		return;
 
-	var range = cmpAttack.GetRange(attackType);
+	const range = cmpAttack.GetRange(attackType);
+	const yOrigin = cmpAttack.GetAttackYOrigin(attackType);
 	// This takes entity sizes into accounts, so no need to compensate for structure size.
 	this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
-		this.entity, range.min, range.max, range.elevationBonus,
+		this.entity, range.min, range.max, yOrigin,
 		enemies, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
@@ -151,12 +152,13 @@ BuildingAI.prototype.SetupGaiaRangeQuery = function()
 	if (!cmpPlayer || !cmpPlayer.IsEnemy(0))
 		return;
 
-	var range = cmpAttack.GetRange(attackType);
+	const range = cmpAttack.GetRange(attackType);
+	const yOrigin = cmpAttack.GetAttackYOrigin(attackType);
 
 	// This query is only interested in Gaia entities that can attack.
 	// This takes entity sizes into accounts, so no need to compensate for structure size.
 	this.gaiaUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
-		this.entity, range.min, range.max, range.elevationBonus,
+		this.entity, range.min, range.max, yOrigin,
 		[0], IID_Attack, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	cmpRangeManager.EnableActiveQuery(this.gaiaUnitsQuery);
@@ -331,12 +333,12 @@ BuildingAI.prototype.FireArrows = function()
 	// so we need to verify them here.
 	// TODO: perhaps an optional 'precise' mode to range queries would be more performant.
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	let range = cmpAttack.GetRange(attackType);
+	const range = cmpAttack.GetRange(attackType);
 
 	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!thisCmpPosition.IsInWorld())
 		return;
-	let s = thisCmpPosition.GetPosition();
+	const y = thisCmpPosition.GetPosition().y + cmpAttack.GetAttackYOrigin(attackType);
 
 	let firedArrows = 0;
 	while (firedArrows < arrowsToFire && targets.length())
@@ -348,7 +350,7 @@ BuildingAI.prototype.FireArrows = function()
 		{
 			// Parabolic range compuation is the same as in UnitAI's MoveToTargetAttackRange.
 			// h is positive when I'm higher than the target.
-			let h = s.y - targetCmpPosition.GetPosition().y + range.elevationBonus;
+			const h = y - targetCmpPosition.GetPosition().y;
 			if (h > -range.max / 2 && cmpObstructionManager.IsInTargetRange(
 				this.entity,
 				selectedTarget,

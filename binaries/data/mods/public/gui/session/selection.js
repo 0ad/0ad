@@ -175,6 +175,17 @@ function EntitySelection()
 	// Public properties:
 	this.dirty = false; // set whenever the selection has changed
 	this.groups = new EntityGroups();
+
+	this.UpdateFormationSelectionBehaviour();
+	registerConfigChangeHandler(changes => {
+		if (changes.has("gui.session.selectformationasone"))
+			this.UpdateFormationSelectionBehaviour();
+	});
+}
+
+EntitySelection.prototype.UpdateFormationSelectionBehaviour = function()
+{
+	this.SelectFormationAsOne = Engine.ConfigDB_GetValue("user", "gui.session.selectformationasone") == "true";
 }
 
 /**
@@ -184,7 +195,7 @@ EntitySelection.prototype.makePrimarySelection = function(key)
 {
 	const ents = this.groups.getEntsByKey(key);
 	this.reset();
-	this.addList(ents);
+	this.addList(ents, false, false, false);
 };
 
 /**
@@ -282,7 +293,7 @@ EntitySelection.prototype.checkRenamedEntities = function()
 /**
  * Add entities to selection. Play selection sound unless quiet is true
  */
-EntitySelection.prototype.addList = function(ents, quiet, force = false)
+EntitySelection.prototype.addList = function(ents, quiet, force = false, addFormationMembers = true)
 {
 	// If someone else's player is the sole selected unit, don't allow adding to the selection.
 	const firstEntState = this.selected.size == 1 && GetEntityState(this.getFirstSelected());
@@ -291,7 +302,7 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false)
 
 	const added = [];
 
-	for (const ent of this.addFormationMembers(ents))
+	for (const ent of addFormationMembers ? this.addFormationMembers(ents) : ents)
 	{
 		if (this.selected.size >= g_MaxSelectionSize)
 			break;
@@ -331,13 +342,13 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false)
 
 /**
  * @param {number[]} ents - The entities to remove.
- * @param {boolean} dontAddFormationMembers - If true we need to exclude adding formation members.
+ * @param {boolean} addFormationMembers - If true we need to add formation members.
  */
-EntitySelection.prototype.removeList = function(ents, dontAddFormationMembers = false)
+EntitySelection.prototype.removeList = function(ents, addFormationMembers = true)
 {
 	const removed = [];
 
-	for (const ent of dontAddFormationMembers ? ents : this.addFormationMembers(ents))
+	for (const ent of addFormationMembers ? this.addFormationMembers(ents) : ents)
 		if (this.selected.has(ent))
 		{
 			this.groups.removeEnt(ent);
@@ -478,7 +489,7 @@ EntitySelection.prototype.selectAndMoveTo = function(entityID)
  */
 EntitySelection.prototype.addFormationMembers = function(entities)
 {
-	if (!entities.length || Engine.HotkeyIsPressed("selection.singleselection"))
+	if (!entities.length || !this.SelectFormationAsOne || Engine.HotkeyIsPressed("selection.singleselection"))
 		return entities;
 
 	const result = new Set(entities);

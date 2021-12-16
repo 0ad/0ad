@@ -737,6 +737,12 @@
 						"tooltip": "Units in formations stay in formations."
 					}
 				]
+			},
+			{
+				"type": "boolean",
+				"label": "Battalion-style formations",
+				"tooltip": "Whether formations are selected as a whole.",
+				"config": "gui.session.selectformationasone"
 			}
 		]
 	}

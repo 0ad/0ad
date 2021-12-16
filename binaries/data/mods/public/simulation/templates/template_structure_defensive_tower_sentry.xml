@@ -2,7 +2,11 @@
 <Entity parent="template_structure_defensive_tower">
   <Attack>
     <Ranged>
-      <ElevationBonus>9</ElevationBonus>
+      <Origin>
+        <X>0</X>
+        <Y>9</Y>
+        <Z>0</Z>
+      </Origin>
     </Ranged>
   </Attack>
   <BuildingAI>
