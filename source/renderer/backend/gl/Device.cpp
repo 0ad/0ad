@@ -22,6 +22,10 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/JSON.h"
+#include "scriptinterface/Object.h"
+#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRequest.h"
 
 #if OS_WIN
 #include "lib/sysdep/os/win/wgfx.h"
@@ -30,6 +34,31 @@
 #include <algorithm>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
+
+// TODO: Support OpenGL platforms which don't use GLX as well.
+#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+#include <GL/glx.h>
+#include <SDL_syswm.h>
+
+// Define the GLX_MESA_query_renderer macros if built with
+// an old Mesa (<10.0) that doesn't provide them
+#ifndef GLX_MESA_query_renderer
+#define GLX_MESA_query_renderer 1
+#define GLX_RENDERER_VENDOR_ID_MESA                      0x8183
+#define GLX_RENDERER_DEVICE_ID_MESA                      0x8184
+#define GLX_RENDERER_VERSION_MESA                        0x8185
+#define GLX_RENDERER_ACCELERATED_MESA                    0x8186
+#define GLX_RENDERER_VIDEO_MEMORY_MESA                   0x8187
+#define GLX_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA    0x8188
+#define GLX_RENDERER_PREFERRED_PROFILE_MESA              0x8189
+#define GLX_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA    0x818A
+#define GLX_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA    0x818B
+#define GLX_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA      0x818C
+#define GLX_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA     0x818D
+#define GLX_RENDERER_ID_MESA                             0x818E
+#endif /* GLX_MESA_query_renderer */
+
+#endif
 
 namespace Renderer
 {
@@ -117,7 +146,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 
 	if (window)
 	{
-		device->m_Context = SDL_GL_CreateContext(window);
+		device->m_Window = window;
+		device->m_Context = SDL_GL_CreateContext(device->m_Window);
 		if (!device->m_Context)
 		{
 			LOGERROR("SDL_GL_CreateContext failed: '%s'", SDL_GetError());
@@ -157,6 +187,393 @@ CDevice::~CDevice()
 {
 	if (m_Context)
 		SDL_GL_DeleteContext(m_Context);
+}
+
+void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
+{
+	const char* errstr = "(error)";
+
+#define INTEGER(id) do { \
+	GLint i = -1; \
+	glGetIntegerv(GL_##id, &i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		Script::SetProperty(rq, settings, "GL_" #id, errstr); \
+	else \
+		Script::SetProperty(rq, settings, "GL_" #id, i); \
+	} while (false)
+
+#define INTEGER2(id) do { \
+	GLint i[2] = { -1, -1 }; \
+	glGetIntegerv(GL_##id, i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) { \
+		Script::SetProperty(rq, settings, "GL_" #id "[0]", errstr); \
+		Script::SetProperty(rq, settings, "GL_" #id "[1]", errstr); \
+	} else { \
+		Script::SetProperty(rq, settings, "GL_" #id "[0]", i[0]); \
+		Script::SetProperty(rq, settings, "GL_" #id "[1]", i[1]); \
+	} \
+	} while (false)
+
+#define FLOAT(id) do { \
+	GLfloat f = std::numeric_limits<GLfloat>::quiet_NaN(); \
+	glGetFloatv(GL_##id, &f); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		Script::SetProperty(rq, settings, "GL_" #id, errstr); \
+	else \
+		Script::SetProperty(rq, settings, "GL_" #id, f); \
+	} while (false)
+
+#define FLOAT2(id) do { \
+	GLfloat f[2] = { std::numeric_limits<GLfloat>::quiet_NaN(), std::numeric_limits<GLfloat>::quiet_NaN() }; \
+	glGetFloatv(GL_##id, f); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) { \
+		Script::SetProperty(rq, settings, "GL_" #id "[0]", errstr); \
+		Script::SetProperty(rq, settings, "GL_" #id "[1]", errstr); \
+	} else { \
+		Script::SetProperty(rq, settings, "GL_" #id "[0]", f[0]); \
+		Script::SetProperty(rq, settings, "GL_" #id "[1]", f[1]); \
+	} \
+	} while (false)
+
+#define STRING(id) do { \
+	const char* c = (const char*)glGetString(GL_##id); \
+	if (!c) c = ""; \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) c = errstr; \
+	Script::SetProperty(rq, settings, "GL_" #id, std::string(c)); \
+	}  while (false)
+
+#define QUERY(target, pname) do { \
+	GLint i = -1; \
+	pglGetQueryivARB(GL_##target, GL_##pname, &i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		Script::SetProperty(rq, settings, "GL_" #target ".GL_" #pname, errstr); \
+	else \
+		Script::SetProperty(rq, settings, "GL_" #target ".GL_" #pname, i); \
+	} while (false)
+
+#define VERTEXPROGRAM(id) do { \
+	GLint i = -1; \
+	pglGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		Script::SetProperty(rq, settings, "GL_VERTEX_PROGRAM_ARB.GL_" #id, errstr); \
+	else \
+		Script::SetProperty(rq, settings, "GL_VERTEX_PROGRAM_ARB.GL_" #id, i); \
+	} while (false)
+
+#define FRAGMENTPROGRAM(id) do { \
+	GLint i = -1; \
+	pglGetProgramivARB(GL_FRAGMENT_PROGRAM_ARB, GL_##id, &i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		Script::SetProperty(rq, settings, "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, errstr); \
+	else \
+		Script::SetProperty(rq, settings, "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, i); \
+	} while (false)
+
+#define BOOL(id) INTEGER(id)
+
+	ogl_WarnIfError();
+
+	// Core OpenGL 1.3:
+	// (We don't bother checking extension strings for anything older than 1.3;
+	// it'll just produce harmless warnings)
+	STRING(VERSION);
+	STRING(VENDOR);
+	STRING(RENDERER);
+	STRING(EXTENSIONS);
+
+#if !CONFIG2_GLES
+	INTEGER(MAX_CLIP_PLANES);
+#endif
+	INTEGER(SUBPIXEL_BITS);
+#if !CONFIG2_GLES
+	INTEGER(MAX_3D_TEXTURE_SIZE);
+#endif
+	INTEGER(MAX_TEXTURE_SIZE);
+	INTEGER(MAX_CUBE_MAP_TEXTURE_SIZE);
+	INTEGER2(MAX_VIEWPORT_DIMS);
+
+#if !CONFIG2_GLES
+	BOOL(RGBA_MODE);
+	BOOL(INDEX_MODE);
+	BOOL(DOUBLEBUFFER);
+	BOOL(STEREO);
+#endif
+
+	FLOAT2(ALIASED_POINT_SIZE_RANGE);
+	FLOAT2(ALIASED_LINE_WIDTH_RANGE);
+#if !CONFIG2_GLES
+	INTEGER(MAX_ELEMENTS_INDICES);
+	INTEGER(MAX_ELEMENTS_VERTICES);
+	INTEGER(MAX_TEXTURE_UNITS);
+#endif
+	INTEGER(SAMPLE_BUFFERS);
+	INTEGER(SAMPLES);
+	// TODO: compressed texture formats
+	INTEGER(RED_BITS);
+	INTEGER(GREEN_BITS);
+	INTEGER(BLUE_BITS);
+	INTEGER(ALPHA_BITS);
+#if !CONFIG2_GLES
+	INTEGER(INDEX_BITS);
+#endif
+	INTEGER(DEPTH_BITS);
+	INTEGER(STENCIL_BITS);
+
+#if !CONFIG2_GLES
+
+	// Core OpenGL 2.0 (treated as extensions):
+
+	if (ogl_HaveExtension("GL_EXT_texture_lod_bias"))
+	{
+		FLOAT(MAX_TEXTURE_LOD_BIAS_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_occlusion_query"))
+	{
+		QUERY(SAMPLES_PASSED, QUERY_COUNTER_BITS);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_shading_language_100"))
+	{
+		STRING(SHADING_LANGUAGE_VERSION_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_vertex_shader"))
+	{
+		INTEGER(MAX_VERTEX_ATTRIBS_ARB);
+		INTEGER(MAX_VERTEX_UNIFORM_COMPONENTS_ARB);
+		INTEGER(MAX_VARYING_FLOATS_ARB);
+		INTEGER(MAX_COMBINED_TEXTURE_IMAGE_UNITS_ARB);
+		INTEGER(MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_fragment_shader"))
+	{
+		INTEGER(MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_vertex_shader") || ogl_HaveExtension("GL_ARB_fragment_shader") ||
+		ogl_HaveExtension("GL_ARB_vertex_program") || ogl_HaveExtension("GL_ARB_fragment_program"))
+	{
+		INTEGER(MAX_TEXTURE_IMAGE_UNITS_ARB);
+		INTEGER(MAX_TEXTURE_COORDS_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_draw_buffers"))
+	{
+		INTEGER(MAX_DRAW_BUFFERS_ARB);
+	}
+
+	// Core OpenGL 3.0:
+
+	if (ogl_HaveExtension("GL_EXT_gpu_shader4"))
+	{
+		INTEGER(MIN_PROGRAM_TEXEL_OFFSET); // no _EXT version of these in glext.h
+		INTEGER(MAX_PROGRAM_TEXEL_OFFSET);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_framebuffer_object"))
+	{
+		INTEGER(MAX_COLOR_ATTACHMENTS_EXT);
+		INTEGER(MAX_RENDERBUFFER_SIZE_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_framebuffer_multisample"))
+	{
+		INTEGER(MAX_SAMPLES_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_texture_array"))
+	{
+		INTEGER(MAX_ARRAY_TEXTURE_LAYERS_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_transform_feedback"))
+	{
+		INTEGER(MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT);
+		INTEGER(MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT);
+		INTEGER(MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT);
+	}
+
+
+	// Other interesting extensions:
+
+	if (ogl_HaveExtension("GL_EXT_timer_query") || ogl_HaveExtension("GL_ARB_timer_query"))
+	{
+		QUERY(TIME_ELAPSED, QUERY_COUNTER_BITS);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_timer_query"))
+	{
+		QUERY(TIMESTAMP, QUERY_COUNTER_BITS);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_texture_filter_anisotropic"))
+	{
+		FLOAT(MAX_TEXTURE_MAX_ANISOTROPY_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_texture_rectangle"))
+	{
+		INTEGER(MAX_RECTANGLE_TEXTURE_SIZE_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_vertex_program") || ogl_HaveExtension("GL_ARB_fragment_program"))
+	{
+		INTEGER(MAX_PROGRAM_MATRICES_ARB);
+		INTEGER(MAX_PROGRAM_MATRIX_STACK_DEPTH_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_vertex_program"))
+	{
+		VERTEXPROGRAM(MAX_PROGRAM_ENV_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_LOCAL_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_INSTRUCTIONS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_TEMPORARIES_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_ATTRIBS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_ADDRESS_REGISTERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_TEMPORARIES_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_ATTRIBS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB);
+
+		if (ogl_HaveExtension("GL_ARB_fragment_program"))
+		{
+			// The spec seems to say these should be supported, but
+			// Mesa complains about them so let's not bother
+			/*
+			VERTEXPROGRAM(MAX_PROGRAM_ALU_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_TEX_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_TEX_INDIRECTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB);
+			*/
+		}
+	}
+
+	if (ogl_HaveExtension("GL_ARB_fragment_program"))
+	{
+		FRAGMENTPROGRAM(MAX_PROGRAM_ENV_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_LOCAL_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_ALU_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_TEX_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_TEX_INDIRECTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_TEMPORARIES_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_ATTRIBS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_TEMPORARIES_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ATTRIBS_ARB);
+
+		if (ogl_HaveExtension("GL_ARB_vertex_program"))
+		{
+			// The spec seems to say these should be supported, but
+			// Intel drivers on Windows complain about them so let's not bother
+			/*
+			FRAGMENTPROGRAM(MAX_PROGRAM_ADDRESS_REGISTERS_ARB);
+			FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB);
+			*/
+		}
+	}
+
+	if (ogl_HaveExtension("GL_ARB_geometry_shader4"))
+	{
+		INTEGER(MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB);
+		INTEGER(MAX_GEOMETRY_OUTPUT_VERTICES_ARB);
+		INTEGER(MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB);
+		INTEGER(MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB);
+		INTEGER(MAX_GEOMETRY_VARYING_COMPONENTS_ARB);
+		INTEGER(MAX_VERTEX_VARYING_COMPONENTS_ARB);
+	}
+
+#else // CONFIG2_GLES
+
+	// Core OpenGL ES 2.0:
+
+	STRING(SHADING_LANGUAGE_VERSION);
+	INTEGER(MAX_VERTEX_ATTRIBS);
+	INTEGER(MAX_VERTEX_UNIFORM_VECTORS);
+	INTEGER(MAX_VARYING_VECTORS);
+	INTEGER(MAX_COMBINED_TEXTURE_IMAGE_UNITS);
+	INTEGER(MAX_VERTEX_TEXTURE_IMAGE_UNITS);
+	INTEGER(MAX_FRAGMENT_UNIFORM_VECTORS);
+	INTEGER(MAX_TEXTURE_IMAGE_UNITS);
+	INTEGER(MAX_RENDERBUFFER_SIZE);
+
+#endif // CONFIG2_GLES
+
+
+// TODO: Support OpenGL platforms which don't use GLX as well.
+#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+
+#define GLXQCR_INTEGER(id) do { \
+	unsigned int i = UINT_MAX; \
+	if (pglXQueryCurrentRendererIntegerMESA(id, &i)) \
+		Script::SetProperty(rq, settings, #id, i); \
+	} while (false)
+
+#define GLXQCR_INTEGER2(id) do { \
+	unsigned int i[2] = { UINT_MAX, UINT_MAX }; \
+	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
+		Script::SetProperty(rq, settings, #id "[0]", i[0]); \
+		Script::SetProperty(rq, settings, #id "[1]", i[1]); \
+	} \
+	} while (false)
+
+#define GLXQCR_INTEGER3(id) do { \
+	unsigned int i[3] = { UINT_MAX, UINT_MAX, UINT_MAX }; \
+	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
+		Script::SetProperty(rq, settings, #id "[0]", i[0]); \
+		Script::SetProperty(rq, settings, #id "[1]", i[1]); \
+		Script::SetProperty(rq, settings, #id "[2]", i[2]); \
+	} \
+	} while (false)
+
+#define GLXQCR_STRING(id) do { \
+	const char* str = pglXQueryCurrentRendererStringMESA(id); \
+	if (str) \
+		Script::SetProperty(rq, settings, #id ".string", str); \
+	} while (false)
+
+
+	SDL_SysWMinfo wminfo;
+	SDL_VERSION(&wminfo.version);
+	const int ret = SDL_GetWindowWMInfo(m_Window, &wminfo);
+	if (ret && wminfo.subsystem == SDL_SYSWM_X11)
+	{
+		Display* dpy = wminfo.info.x11.display;
+		int scrnum = DefaultScreen(dpy);
+
+		const char* glxexts = glXQueryExtensionsString(dpy, scrnum);
+
+		Script::SetProperty(rq, settings, "glx_extensions", glxexts);
+
+		if (strstr(glxexts, "GLX_MESA_query_renderer") && pglXQueryCurrentRendererIntegerMESA && pglXQueryCurrentRendererStringMESA)
+		{
+			GLXQCR_INTEGER(GLX_RENDERER_VENDOR_ID_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_DEVICE_ID_MESA);
+			GLXQCR_INTEGER3(GLX_RENDERER_VERSION_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_ACCELERATED_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_VIDEO_MEMORY_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA);
+			GLXQCR_INTEGER(GLX_RENDERER_PREFERRED_PROFILE_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA);
+			GLXQCR_INTEGER2(GLX_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA);
+			GLXQCR_STRING(GLX_RENDERER_VENDOR_ID_MESA);
+			GLXQCR_STRING(GLX_RENDERER_DEVICE_ID_MESA);
+		}
+	}
+#endif // SDL_VIDEO_DRIVER_X11
 }
 
 } // namespace GL
