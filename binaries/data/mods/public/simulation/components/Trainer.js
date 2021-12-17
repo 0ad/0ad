@@ -24,16 +24,12 @@ Trainer.prototype.Schema =
 
 /**
  * This object represents a batch of entities being trained.
- */
-Trainer.prototype.Item = function() {};
-
-/**
  * @param {string} templateName - The name of the template we ought to train.
  * @param {number} count - The size of the batch to train.
  * @param {number} trainer - The entity ID of our trainer.
  * @param {string} metadata - Optionally any metadata to attach to us.
  */
-Trainer.prototype.Item.prototype.Init = function(templateName, count, trainer, metadata)
+Trainer.prototype.Item = function(templateName, count, trainer, metadata)
 {
 	this.count = count;
 	this.templateName = templateName;
@@ -376,40 +372,36 @@ Trainer.prototype.Item.prototype.GetBasicInfo = function()
 	};
 };
 
+Trainer.prototype.Item.prototype.SerializableAttributes = [
+	"count",
+	"entities",
+	"metadata",
+	"missingPopSpace",
+	"paused",
+	"player",
+	"population",
+	"trainer",
+	"resources",
+	"started",
+	"templateName",
+	"timeRemaining",
+	"timeTotal"
+];
+
 Trainer.prototype.Item.prototype.Serialize = function(id)
 {
-	return {
-		"id": id,
-		"count": this.count,
-		"entities": this.entities,
-		"metadata": this.metadata,
-		"missingPopSpace": this.missingPopSpace,
-		"paused": this.paused,
-		"player": this.player,
-		"population": this.population,
-		"trainer": this.trainer,
-		"resource": this.resources,
-		"started": this.started,
-		"templateName": this.templateName,
-		"timeRemaining": this.timeRemaining,
-		"timeTotal": this.timeTotal,
+	const result = {
+		"id": id
 	};
+	for (const att of this.SerializableAttributes)
+		result[att] = this[att];
+	return result;
 };
 
 Trainer.prototype.Item.prototype.Deserialize = function(data)
 {
-	this.Init(data.templateName, data.count, data.trainer, data.metadata);
-
-	this.entities = data.entities;
-	this.missingPopSpace = data.missingPopSpace;
-	this.paused = data.paused;
-	this.player = data.player;
-	this.population = data.population;
-	this.trainer = data.trainer;
-	this.resources = data.resources;
-	this.started = data.started;
-	this.timeRemaining = data.timeRemaining;
-	this.timeTotal = data.timeTotal;
+	for (const att of this.SerializableAttributes)
+		this[att] = data[att];
 };
 
 Trainer.prototype.Init = function()
@@ -614,8 +606,7 @@ Trainer.prototype.CanTrain = function(templateName)
  */
 Trainer.prototype.QueueBatch = function(templateName, count, metadata)
 {
-	const item = new this.Item();
-	item.Init(templateName, count, this.entity, metadata);
+	const item = new this.Item(templateName, count, this.entity, metadata);
 
 	const trainCostMultiplier = this.GetTrainCostMultiplier();
 	const batchTimeMultiplier = this.GetBatchTime(count);
