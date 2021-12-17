@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-09-01 22:02+0000\n"
+"PO-Revision-Date: 2021-12-15 12:32+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -2429,14 +2429,14 @@ msgstr "%(player)s ha sido derrotado (perdió todas sus unidades y estructuras).
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all civic centres)."
-msgstr "%(player)sha sido derrotado (perdió todos sus centros cívicos)."
+msgstr "%(player)s ha sido derrotado (perdió todos sus centros cívicos)."
 
 #: maps/scripts/ConquestCivicCentres.js:9
 #, javascript-format
 msgid ""
 "%(player)s has been defeated (lost all civic centres and critical units and "
 "structures)."
-msgstr "%(player)sha sido derrotado (perdió todos sus centros cívicos, unidades críticas y estructuras)."
+msgstr "%(player)s ha sido derrotado (perdió todos sus centros cívicos, unidades críticas y estructuras)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
@@ -3259,7 +3259,7 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr "Los extranjeros están invadiendo Britania. ¡Los nativos británicos deben luchar contra una fuerza de invasión enemiga masiva para asegurar la próxima generación de su patria!\n\nEl jugador 1 lleva a los britanos. Los jugadores 2-5 son la fuerza de invasión, guarnecidos a bordo de sus robustos barcos en el canal de los Acantilados Blancos de Dover. \n\nLos equipos son establecidos por el guión del mapa, pero pueden ser alterados por los jugadores en la configuración si desean jugar el mapa en forma contraria al escenario definido por el diseñador. En ese caso, el anfitrión de la partida debe establecer un alto el fuego para que los jugadores en los barcos puedan desembarcar pacíficamente e intentar encontrar un lugar adecuado para establecer sus primeros asentamientos.\n\nLas civilizaciones asignadas son meras sugerencias, y el anfitrión debería fijar los recursos iniciales en 1000 para que los Centros Cívicos puedan ser construidos al principio."
+msgstr "Los extranjeros están invadiendo Britania. ¡Los nativos britanos deben luchar contra una fuerza de invasión enemiga masiva para asegurar su patria a la siguiente generación!\n\nEl jugador 1 conduce a los britanos. Los jugadores 2-5 son la fuerza de invasión, guarnecidos a bordo de sus robustos barcos en el canal de los acantilados de Dover. \n\nLos equipos vienen prestablecidos en el escenario, pero pueden ser modificados por los jugadores en la configuración si desean jugarlo en forma distinta a la prediseñada. En ese caso, el anfitrión de la partida debe marcar un alto el fuego para que los jugadores en los barcos puedan desembarcar pacíficamente e intentar encontrar un lugar adecuado para establecer sus primeros asentamientos.\n\nLas civilizaciones asignadas son meras sugerencias, y el anfitrión debería fijar unos recursos mínimos iniciales de 1000 para que los centros cívicos puedan ser construidos al principio."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"

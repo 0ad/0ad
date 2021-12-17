@@ -23,6 +23,7 @@
 # J. P. Lacerda <jp-lacerda@msn.com>, 2016
 # Leonardo, 2015
 # Lourenço Gaiteiro <loredal@gmail.com>, 2017
+# Lucas Veridovis, 2021
 # Lukas Haselmann <lukas.haselmann@outlook.com.br>, 2020
 # Marcelo Augusto Kniss <marcelo.kniss@outlook.com>, 2016
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
@@ -49,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-12-12 20:28+0000\n"
-"Last-Translator: Luis Santos\n"
+"PO-Revision-Date: 2021-12-15 01:15+0000\n"
+"Last-Translator: Lucas Veridovis\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1271,7 +1272,7 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgid "Health"
 msgid_plural "Health"
 msgstr[0] "Saúde"
-msgstr[1] "Saúdes"
+msgstr[1] "Saúde"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -1831,7 +1832,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "Focalize a câmera no ponto de encontro do edifício selecionado."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
@@ -1841,7 +1842,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "Redefina a rotação da câmera para o padrão."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
@@ -2838,7 +2839,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Alternar cores de diplomacia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
@@ -3410,7 +3411,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Selecione a próxima unidade ociosa"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
@@ -3420,7 +3421,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Selecione o próximo guerreiro ocioso"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
@@ -4008,7 +4009,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Apenas nomes genéricos"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
@@ -5941,7 +5942,7 @@ msgstr "Outros"
 
 #: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
-msgstr "Proporção Matar / Mortos"
+msgstr "Razão Matou / Morreu"
 
 #: gui/summary/layout.js:196 gui/summary/summary.js:99
 msgid "Population"
@@ -6194,7 +6195,7 @@ msgstr ""
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Funciona desde que você tenha recursos suficientes, então ele irá parar."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6234,7 +6235,7 @@ msgstr ""
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Eles influenciam a aparência dos mapas e também a quantidade de recursos disponíveis."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6351,7 +6352,7 @@ msgstr ""
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Quando suas unidades de infantaria de ataque à distância estiverem ocupando as torres, elas têm armadura adicional e podem atirar no inimigo."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
@@ -6410,7 +6411,7 @@ msgstr ""
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Eles têm um amplo alcance de visão e atirarão flechas no inimigo à vista."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
@@ -6433,7 +6434,7 @@ msgstr "EMBAIXADAS E ACAMPAMENTOS DE MERCENÁRIOS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Estruturas especiais que permitem a você contratar mercenários para seu exército."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
@@ -6461,7 +6462,7 @@ msgstr "Pescar é mais rápido do que coletar comida nos campos agrícolas."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Cuidadoso! Os peixes não são um recurso infinito! Embora eles se repovoem lentamente quando deixados sozinhos."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6496,7 +6497,7 @@ msgstr "FORTALEZA"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Normalmente a estrutura mais forte de uma civilização e o local onde você pode treinar heróis."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6717,7 +6718,7 @@ msgstr ""
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "O painel do contador de recursos mostra quanto de cada recurso você possui no momento."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
@@ -6881,13 +6882,13 @@ msgstr "TESOUROS"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Baús colecionáveis, recursos básicos em terra e naufrágios na costa."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Fornece um aumento de recursos, portanto, fique de olho neles enquanto você explora."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
