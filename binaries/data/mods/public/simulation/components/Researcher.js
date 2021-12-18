@@ -30,15 +30,11 @@ Researcher.prototype.Schema =
 
 /**
  * This object represents a technology being researched.
- */
-Researcher.prototype.Item = function() {};
-
-/**
  * @param {string} templateName - The name of the template we ought to research.
  * @param {number} researcher - The entity ID of our researcher.
  * @param {string} metadata - Optionally any metadata to attach to us.
  */
-Researcher.prototype.Item.prototype.Init = function(templateName, researcher, metadata)
+Researcher.prototype.Item = function(templateName, researcher, metadata)
 {
 	this.templateName = templateName;
 	this.researcher = researcher;
@@ -154,33 +150,32 @@ Researcher.prototype.Item.prototype.GetBasicInfo = function()
 	};
 };
 
+Researcher.prototype.Item.prototype.SerializableAttributes = [
+	"metadata",
+	"paused",
+	"player",
+	"researcher",
+	"resources",
+	"started",
+	"templateName",
+	"timeRemaining",
+	"timeTotal"
+];
+
 Researcher.prototype.Item.prototype.Serialize = function(id)
 {
-	return {
-		"id": id,
-		"metadata": this.metadata,
-		"paused": this.paused,
-		"player": this.player,
-		"researcher": this.researcher,
-		"resource": this.resources,
-		"started": this.started,
-		"templateName": this.templateName,
-		"timeRemaining": this.timeRemaining,
-		"timeTotal": this.timeTotal,
+	const result = {
+		"id": id
 	};
+	for (const att in this.SerializableAttributes)
+		result[att] = this[att];
+	return result;
 };
 
 Researcher.prototype.Item.prototype.Deserialize = function(data)
 {
-	this.Init(data.templateName, data.researcher, data.metadata);
-
-	this.paused = data.paused;
-	this.player = data.player;
-	this.researcher = data.researcher;
-	this.resources = data.resources;
-	this.started = data.started;
-	this.timeRemaining = data.timeRemaining;
-	this.timeTotal = data.timeTotal;
+	for (const att of this.SerializableAttributes)
+		this[att] = data[att];
 };
 
 Researcher.prototype.Init = function()
@@ -351,8 +346,7 @@ Researcher.prototype.QueueTechnology = function(templateName, metadata)
 		return -1;
 	}
 
-	const item = new this.Item();
-	item.Init(templateName, this.entity, metadata);
+	const item = new this.Item(templateName, this.entity, metadata);
 
 	const techCostMultiplier = this.GetTechCostMultiplier();
 	if (!item.Queue(techCostMultiplier))

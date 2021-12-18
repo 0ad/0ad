@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-12-13 01:14+0000\n"
+"PO-Revision-Date: 2021-12-17 00:19+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +175,7 @@ msgstr "Incuöntru infinitu"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "L incuöntru vai seguir in sin vincedor, magar que todos stean vincidos."
+msgstr "L incuöntru vai seguir sin vincedor, magar qui todos stean vincidos."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -247,11 +247,11 @@ msgstr "Victoria colligada"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "La victoria compártela la sociedá'l vencedor. Trunfa la última sociedá que quede."
+msgstr "La victoria comparten-la los colligados del vincedor. Triumpha la última colligación qui fhinque."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
-msgstr "Enducia"
+msgstr "Inducia"
 
 #: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
@@ -358,7 +358,7 @@ msgstr "Como les define'l mapa"
 
 #: gui/common/gamedescription.js:390
 msgid "Explored Map"
-msgstr "Mapa exploráu"
+msgstr "Mappa exploradu"
 
 #: gui/common/gamedescription.js:395
 msgid "Revealed Map"
@@ -366,7 +366,7 @@ msgstr "Mapa reveláu"
 
 #: gui/common/gamedescription.js:400
 msgid "Allied View"
-msgstr "Vista comuñera"
+msgstr "Vista colligada"
 
 #: gui/common/gamedescription.js:405
 msgid "Cheats"
@@ -771,7 +771,7 @@ msgstr "Captura"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
-msgstr "Efectos nel estáu:"
+msgstr "Effeitos nel stadu:"
 
 #: gui/common/tooltips.js:267
 #, javascript-format
@@ -802,7 +802,7 @@ msgstr "Parades: %(blockPercentage)s%%, Amenorgu na duranza: %(durationReduction
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr "Ocupa pa tirar saetes"
+msgstr "Occupa para tirar saiettas"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
@@ -1324,15 +1324,15 @@ msgstr "Director artísticu"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "2D Art"
-msgstr "Gráficos 2D"
+msgstr "Gráphicos 2D"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
-msgstr "Gráficos 3D"
+msgstr "Gráphicos 3D"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr "Gráficos"
+msgstr "Gráphicos"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
 msgid "Sound Manager"
@@ -2278,7 +2278,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Camudador p'afitar el puntu d'alcuentru nun mesmu edificiu."
+msgstr "Commudador p’afhita’l puncto d’incuöntru nun mësmu edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -2331,22 +2331,22 @@ msgstr "Omitir el conxuntu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Facer señes col punteru premiendo l'atayu al calcar."
+msgstr "Fhazer signas cul cursor premiendo l atayu al calcar."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "Aseñar (premiendo)"
+msgstr "Signar (premiendo)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Facer señes col punteru. L'atayu puede soltase."
+msgstr "Fhazer signas cul cursor. L atayu puöde soltá-se."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr "Aseñar (alternancia)"
+msgstr "Signar (alternancia)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -3711,7 +3711,7 @@ msgstr "Mapes nuevos"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
-msgstr "Mapes que salen per vegada primera nesti llanzamientu del xuegu."
+msgstr "Mappas qui salen per vegada primeira n esti lhanciamiento del juögu."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
@@ -4344,7 +4344,7 @@ msgstr "Nengún"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr "Tódolos entes van tener el mesmu aspectu."
+msgstr "Tódolos entes van tene’l mësmu aspectu."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
@@ -4836,11 +4836,11 @@ msgstr "Númberu de veces qu'hai que xirar la rueda'l mure p'aumentar o amenorga
 
 #: gui/options/options.json[6].options[3].label
 msgid "Flare display duration"
-msgstr "Duranza les señes"
+msgstr "Duración de las signas"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr "El tiempu en segundos que les señes amuéstrense en mapiquín."
+msgstr "El tiempu n segundos que las signas s’amuöstran in mappiquín."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -5083,7 +5083,7 @@ msgstr "%(hotkey)s: Llanzar l'antepar p'agospedar o xunise a alcuentros público
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Llanzar l'antepar. \\[DESACTIVAO NESTA COMPILACIÓN]"
+msgstr "Lhancia’l antepar. \\[DISACTIVADO N ESTA COMPILACIÓN]"
 
 #: gui/pregame/MainMenuItems.js:199
 msgid "Settings"
@@ -6156,7 +6156,7 @@ msgstr "Activar l'enriestu automáticu pa exercitar unidades de modu automáticu
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr "Funciona mentanto tengas recursos abondos, entós dexa de fucionar."
+msgstr "Funcciona mëntanto tëngas recursos abondos, intós lheiẍa de funccionare."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6378,7 +6378,7 @@ msgstr "Tienen muncha visión y tiren fleches al enemigu."
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puedes enllenalles de más pédites pa que tiren más saetes."
+msgstr "Puödes intyená-llas de mas pédites para que tiren mas sayettas."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6553,17 +6553,17 @@ msgstr "Construcción ptolemaica que vixila les orielles y muncha de la redolada
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr "SEÑES"
+msgstr "SIGNAS"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fai señes p'avisar a la cuadriella d'ónde asoceden acontecimientos importantes."
+msgstr "Fhaz signas p’avisar a la quadriella d’acontecimientos importantes nel mappa."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr "Van ver la seña en mapiquín."
+msgstr "Van ve’ la signa n mappiquín."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
