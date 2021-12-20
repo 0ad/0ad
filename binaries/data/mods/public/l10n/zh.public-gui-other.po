@@ -89,9 +89,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-22 23:54+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2021-12-17 08:08+0000\n"
+"PO-Revision-Date: 2021-12-17 08:24+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -976,8 +976,8 @@ msgstr "友方伤害：%(enabled)s"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "是"
@@ -985,8 +985,8 @@ msgstr "是"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "否"
@@ -3584,8 +3584,8 @@ msgid "Do you still want to proceed?"
 msgstr "继续吗？"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:334 gui/options/options.js:399
-#: gui/options/options.js:425
+#: gui/options/options.js:347 gui/options/options.js:412
+#: gui/options/options.js:438
 msgid "Warning"
 msgstr "警告"
 
@@ -3912,17 +3912,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "值: %(val)s(最小: %(min)s, 最大: %(max)s)"
 
-#: gui/options/options.js:333
+#: gui/options/options.js:346
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置选项会清除你已保存的设置。是否要继续?"
 
-#: gui/options/options.js:398
+#: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "有无效的设定值！真的要保存设置吗？"
 
-#: gui/options/options.js:424
+#: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "有未保存的更改，是否要关闭窗口?"
 
@@ -4176,12 +4176,28 @@ msgid "Graphics (advanced)"
 msgstr "图形（高级）"
 
 #: gui/options/options.json[2].options[0].label
-msgid "Prefer GLSL"
-msgstr "偏好高级渲染"
+msgid "Renderer backend"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].label
+msgid "OpenGL"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].tooltip
+msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].label
+msgid "OpenGL ARB"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].tooltip
+msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
+msgstr ""
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "使用OpenGL 2.0 着色器（推荐）"
+msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
+msgstr ""
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4888,6 +4904,14 @@ msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "是否对所有命令启用编队，还是仅对“步行”和“巡逻”启用。"
+
+#: gui/options/options.json[6].options[22].label
+msgid "Battalion-style formations"
+msgstr ""
+
+#: gui/options/options.json[6].options[22].tooltip
+msgid "Whether formations are selected as a whole."
+msgstr ""
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -6504,8 +6528,10 @@ msgid ""
 msgstr "将士兵编队，让他们在战斗中井然有序。"
 
 #: gui/text/tips/formations.txt:3
-msgid "Formations are selected as a whole by default."
-msgstr "队列默认选择为全体队列。"
+msgid ""
+"Formations are selected as a whole by default, but that can be changed in "
+"the game settings."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-12-17 00:19+0000\n"
+"POT-Creation-Date: 2021-12-17 08:08+0000\n"
+"PO-Revision-Date: 2021-12-18 22:46+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +175,7 @@ msgstr "Incuöntru infinitu"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "L incuöntru vai seguir sin vincedor, magar qui todos stean vincidos."
+msgstr "L incuöntru vai seguir sin vincedor, magar que todos stean vincidos."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -247,7 +247,7 @@ msgstr "Victoria colligada"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "La victoria comparten-la los colligados del vincedor. Triumpha la última colligación qui fhinque."
+msgstr "La victoria comparten-la los colligados del vincedor. Triumpha la última colligación que fhinque."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -547,7 +547,7 @@ msgstr ","
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Xole"
+msgstr "Ẍole"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
@@ -567,12 +567,12 @@ msgstr "Normal"
 #: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr "Difícile"
+msgstr "Diffícile"
 
 #: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "Per-difícile"
+msgstr "Per-diffícile"
 
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
@@ -906,8 +906,8 @@ msgstr "Fuegu amigo: %(enabled)s"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Sí"
@@ -915,8 +915,8 @@ msgstr "Sí"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Non"
@@ -1521,7 +1521,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar que fácil pal xugador veteranu, al novatu la dificultá por defectu de la intelixencia artificial puede resulta-lly enforma lluendia. A esti aconséyase-lly practicar con una intelixencia artificial de menos dificultá (Xole o Perfácil). Pa cambiar la dificultá de la intelixencia artificial, calca nel iconu del engrane cabo'l xugador del panel superior que quieras camudar."
+msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultá predefinida de la intelligencia artificial puöde supponé-lli un rëptu. A esti aconseya-se-lli practicar cun una IA de menus difficultá (Ẍole ou Per-fácile). Para cambia’ la difficultá de la intelligencia artificial, calca na ícone de la ruöda dentada cabo l jogador del quadro superior que quieras commudare."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -2278,7 +2278,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Commudador p’afhita’l puncto d’incuöntru nun mësmu edificio."
+msgstr "Commudador p’afhita’l punto d’incuöntru nun mësmu edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -3520,8 +3520,8 @@ msgid "Do you still want to proceed?"
 msgstr "¿Entá quieres siguir?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:334 gui/options/options.js:399
-#: gui/options/options.js:425
+#: gui/options/options.js:347 gui/options/options.js:412
+#: gui/options/options.js:438
 msgid "Warning"
 msgstr "Avisu"
 
@@ -3848,17 +3848,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (mín: %(min)s, máx: %(max)s)"
 
-#: gui/options/options.js:333
+#: gui/options/options.js:346
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Al reafita’ las opciones vas elimina’ los ajustes guardados. ¿Quieres seguir?"
 
-#: gui/options/options.js:398
+#: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "¡Nun son válidos los valores de dellos axustes! ¿De xuru que quieres guardallos?"
 
-#: gui/options/options.js:424
+#: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tienes cambeos ensin guardar, ¿quieres zarrar esta ventana?"
 
@@ -4112,12 +4112,28 @@ msgid "Graphics (advanced)"
 msgstr "Gráficos (particulares)"
 
 #: gui/options/options.json[2].options[0].label
-msgid "Prefer GLSL"
-msgstr "Preferir GLSL"
+msgid "Renderer backend"
+msgstr "Motor gráphicu"
+
+#: gui/options/options.json[2].options[0].list[0].label
+msgid "OpenGL"
+msgstr "OpenGL"
+
+#: gui/options/options.json[2].options[0].list[0].tooltip
+msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
+msgstr "Motor d’OpenGL por defeitu cun GLSL. REQUIER EL RE-INICIO DEL JUÖGU"
+
+#: gui/options/options.json[2].options[0].list[1].label
+msgid "OpenGL ARB"
+msgstr "OpenGL ARB"
+
+#: gui/options/options.json[2].options[0].list[1].tooltip
+msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
+msgstr "Motor d’OpenGL vieyu cun assolombradores ARB. REQUIER EL RE-INICIO DEL JUÖGU"
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Usar los asolombradores d'OpenGL 2.0 (aconséyase)."
+msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
+msgstr "Scuöyi l motor del synthetizador gráphicu. REQUIER EL RE-INICIO DEL JUÖGU"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4471,7 +4487,7 @@ msgstr "Dificultá por defectu de la IA"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
-msgstr "Xole"
+msgstr "Ẍole"
 
 #: gui/options/options.json[4].options[3].list[1].label
 msgid "Very Easy"
@@ -4483,11 +4499,11 @@ msgstr "Fácil"
 
 #: gui/options/options.json[4].options[3].list[4].label
 msgid "Hard"
-msgstr "Difícil"
+msgstr "Diffícile"
 
 #: gui/options/options.json[4].options[3].list[5].label
 msgid "Very Hard"
-msgstr "Perdifícil"
+msgstr "Per-diffícile"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
@@ -4825,6 +4841,14 @@ msgid ""
 "'Patrol'."
 msgstr "Determina si los mílites han siguir en formación o namái formase al «andar» o «rondar»."
 
+#: gui/options/options.json[6].options[22].label
+msgid "Battalion-style formations"
+msgstr "Formaciones coniunctes"
+
+#: gui/options/options.json[6].options[22].tooltip
+msgid "Whether formations are selected as a whole."
+msgstr "Si las formaciones se seleccionan in junto."
+
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "Xiros por incrementu productivu"
@@ -4998,7 +5022,7 @@ msgstr "Ver los mapes qu'aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
-msgstr "Continuar campanya"
+msgstr "Continuar campania"
 
 #: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
 #: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
@@ -6447,8 +6471,10 @@ msgid ""
 msgstr "Usa formaciones pa caltener l'orde entre les tues files al batallar."
 
 #: gui/text/tips/formations.txt:3
-msgid "Formations are selected as a whole by default."
-msgstr "Por defectu, les formaciones esbíllense en xunto."
+msgid ""
+"Formations are selected as a whole by default, but that can be changed in "
+"the game settings."
+msgstr "Las formaciones seleccionan-se n junto por defeitu, pero esso puöde cambiá-se nos ajustes del incuöntru."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 08:25+0000\n"
+"POT-Creation-Date: 2021-12-17 08:08+0000\n"
+"PO-Revision-Date: 2021-12-17 08:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Kannada (http://www.transifex.com/wildfire-games/0ad/language/kn/)\n"
 "MIME-Version: 1.0\n"
@@ -902,8 +902,8 @@ msgstr ""
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr ""
@@ -911,8 +911,8 @@ msgstr ""
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr ""
@@ -3516,8 +3516,8 @@ msgid "Do you still want to proceed?"
 msgstr ""
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:334 gui/options/options.js:399
-#: gui/options/options.js:425
+#: gui/options/options.js:347 gui/options/options.js:412
+#: gui/options/options.js:438
 msgid "Warning"
 msgstr ""
 
@@ -3844,17 +3844,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:333
+#: gui/options/options.js:346
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:398
+#: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr ""
 
-#: gui/options/options.js:424
+#: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -4108,11 +4108,27 @@ msgid "Graphics (advanced)"
 msgstr ""
 
 #: gui/options/options.json[2].options[0].label
-msgid "Prefer GLSL"
+msgid "Renderer backend"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].label
+msgid "OpenGL"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].tooltip
+msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].label
+msgid "OpenGL ARB"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].tooltip
+msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
 msgstr ""
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
+msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
 msgstr ""
 
 #: gui/options/options.json[2].options[10].label
@@ -4819,6 +4835,14 @@ msgstr ""
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
+msgstr ""
+
+#: gui/options/options.json[6].options[22].label
+msgid "Battalion-style formations"
+msgstr ""
+
+#: gui/options/options.json[6].options[22].tooltip
+msgid "Whether formations are selected as a whole."
 msgstr ""
 
 #: gui/options/options.json[6].options[2].label
@@ -6443,7 +6467,9 @@ msgid ""
 msgstr ""
 
 #: gui/text/tips/formations.txt:3
-msgid "Formations are selected as a whole by default."
+msgid ""
+"Formations are selected as a whole by default, but that can be changed in "
+"the game settings."
 msgstr ""
 
 #: gui/text/tips/fortress.txt:1
