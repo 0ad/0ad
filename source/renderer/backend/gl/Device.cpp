@@ -22,6 +22,8 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
+#include "ps/Profile.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -574,6 +576,28 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 		}
 	}
 #endif // SDL_VIDEO_DRIVER_X11
+}
+
+void CDevice::Present()
+{
+	if (m_Window)
+	{
+		PROFILE3("swap buffers");
+		SDL_GL_SwapWindow(m_Window);
+		ogl_WarnIfError();
+	}
+
+	bool checkGLErrorAfterSwap = false;
+	CFG_GET_VAL("gl.checkerrorafterswap", checkGLErrorAfterSwap);
+#if defined(NDEBUG)
+	if (!checkGLErrorAfterSwap)
+		return;
+#endif
+	PROFILE3("error check");
+	// We have to check GL errors after SwapBuffer to avoid possible
+	// synchronizations during rendering.
+	if (GLenum err = glGetError())
+		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
 }
 
 } // namespace GL

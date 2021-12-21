@@ -53,6 +53,8 @@ public:
 
 	void Report(const ScriptRequest& rq, JS::HandleValue settings);
 
+	void Present();
+
 private:
 	CDevice();
 

@@ -34,7 +34,9 @@
 #include "maths/MathUtil.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -232,7 +234,9 @@ void AtlasViewGame::Render()
 
 	::Render();
 	Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
-	g_Renderer.OnSwapBuffers();
+	// In case of atlas the device's present will do only internal stuff
+	// without calling a real backbuffer swap.
+	g_VideoMode.GetBackendDevice()->Present();
 }
 
 void AtlasViewGame::DrawCinemaPathTool()

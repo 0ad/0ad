@@ -1376,21 +1376,6 @@ void CRenderer::EndFrame()
 	ogl_tex_bind(0, 0);
 }
 
-void CRenderer::OnSwapBuffers()
-{
-	bool checkGLErrorAfterSwap = false;
-	CFG_GET_VAL("gl.checkerrorafterswap", checkGLErrorAfterSwap);
-#if defined(NDEBUG)
-	if (!checkGLErrorAfterSwap)
-		return;
-#endif
-	PROFILE3("error check");
-	// We have to check GL errors after SwapBuffer to avoid possible
-	// synchronizations during rendering.
-	if (GLenum err = glGetError())
-		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // DisplayFrustum: debug displays
 //  - white: cull camera frustum
