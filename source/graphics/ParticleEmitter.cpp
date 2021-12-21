@@ -189,7 +189,7 @@ void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 
 	shader->BindTexture(str_baseTex, m_Type->m_Texture);
-	pglBlendEquationEXT(m_Type->m_BlendEquation);
+	glBlendEquationEXT(m_Type->m_BlendEquation);
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
 

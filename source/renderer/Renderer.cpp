@@ -729,7 +729,7 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		// setup some renderstate ..
-		pglActiveTextureARB(GL_TEXTURE0);
+		glActiveTextureARB(GL_TEXTURE0);
 		glLineWidth(2.0f);
 
 		// render tiles edges
@@ -987,7 +987,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
 	// try binding the framebuffer
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
 
 	glClearColor(0.5f, 0.5f, 1.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1025,7 +1025,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 	m_ViewCamera = normalCamera;
 	SetViewport(m_ViewCamera.GetViewPort());
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 
@@ -1067,7 +1067,7 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
 	// try binding the framebuffer
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
 
 	glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1086,7 +1086,7 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 	m_ViewCamera = normalCamera;
 	SetViewport(m_ViewCamera.GetViewPort());
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 void CRenderer::RenderSilhouettes(const CShaderDefines& context)
@@ -1141,7 +1141,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
 	const float silhouetteAlpha = 0.75f;
-	pglBlendColorEXT(0, 0, 0, silhouetteAlpha);
+	glBlendColorEXT(0, 0, 0, silhouetteAlpha);
 
 	glEnable(GL_STENCIL_TEST);
 	glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
@@ -1161,7 +1161,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	pglBlendColorEXT(0, 0, 0, 0);
+	glBlendColorEXT(0, 0, 0, 0);
 	glDisable(GL_STENCIL_TEST);
 }
 
@@ -1634,7 +1634,7 @@ Scene& CRenderer::GetScene()
 // BindTexture: bind a GL texture object to current active unit
 void CRenderer::BindTexture(int unit, GLuint tex)
 {
-	pglActiveTextureARB(GL_TEXTURE0+unit);
+	glActiveTextureARB(GL_TEXTURE0+unit);
 
 	glBindTexture(GL_TEXTURE_2D, tex);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,6 +27,21 @@
 #include "lib/debug.h"
 
 #include <SDL_syswm.h>
+
+
+#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+void* GetX11Display(SDL_Window* window)
+{
+	SDL_SysWMinfo wminfo;
+	SDL_VERSION(&wminfo.version);
+	const int ret = SDL_GetWindowWMInfo(window, &wminfo);
+	if (ret && wminfo.subsystem == SDL_SYSWM_X11)
+	{
+		return reinterpret_cast<void*>(wminfo.info.x11.display);
+	}
+	return nullptr;
+}
+#endif
 
 const char* GetSDLSubsystem(SDL_Window* window)
 {

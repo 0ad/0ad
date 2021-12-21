@@ -414,6 +414,11 @@ void wutil_SetAppWindow(SDL_Window* window)
 		hAppWindow = wmInfo.info.win.window;
 }
 
+void* wutil_GetAppHDC()
+{
+	return GetDC(hAppWindow);
+}
+
 void wutil_SetAppWindow(void* hwnd)
 {
 	hAppWindow = reinterpret_cast<HWND>(hwnd);

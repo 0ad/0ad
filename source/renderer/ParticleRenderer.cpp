@@ -142,7 +142,7 @@ void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
 
 	CVertexBuffer::Unbind();
 
-	pglBlendEquationEXT(GL_FUNC_ADD);
+	glBlendEquationEXT(GL_FUNC_ADD);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glDisable(GL_BLEND);

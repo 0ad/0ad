@@ -218,7 +218,7 @@ ShadowMap::~ShadowMap()
 	if (m->DummyTexture)
 		glDeleteTextures(1, &m->DummyTexture);
 	if (m->Framebuffer)
-		pglDeleteFramebuffersEXT(1, &m->Framebuffer);
+		glDeleteFramebuffersEXT(1, &m->Framebuffer);
 
 	delete m;
 }
@@ -232,7 +232,7 @@ void ShadowMap::RecreateTexture()
 	if (m->DummyTexture)
 		glDeleteTextures(1, &m->DummyTexture);
 	if (m->Framebuffer)
-		pglDeleteFramebuffersEXT(1, &m->Framebuffer);
+		glDeleteFramebuffersEXT(1, &m->Framebuffer);
 
 	m->Texture = 0;
 	m->DummyTexture = 0;
@@ -495,14 +495,14 @@ void ShadowMapInternals::CreateTexture()
 	}
 	if (Framebuffer)
 	{
-		pglDeleteFramebuffersEXT(1, &Framebuffer);
+		glDeleteFramebuffersEXT(1, &Framebuffer);
 		Framebuffer = 0;
 	}
 
 	// save the caller's FBO
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &SavedViewFBO);
 
-	pglGenFramebuffersEXT(1, &Framebuffer);
+	glGenFramebuffersEXT(1, &Framebuffer);
 
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
@@ -597,13 +597,13 @@ void ShadowMapInternals::CreateTexture()
 
 	// bind to framebuffer object
 	glBindTexture(GL_TEXTURE_2D, 0);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
 	}
 	else
 	{
@@ -620,9 +620,9 @@ void ShadowMapInternals::CreateTexture()
 
 	ogl_WarnIfError();
 
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, SavedViewFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, SavedViewFBO);
 
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
@@ -639,7 +639,7 @@ void ShadowMap::BeginRender()
 	{
 		PROFILE("bind framebuffer");
 		glBindTexture(GL_TEXTURE_2D, 0);
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->Framebuffer);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->Framebuffer);
 	}
 
 	// clear buffers
@@ -689,7 +689,7 @@ void ShadowMap::EndRender()
 
 	{
 		PROFILE("unbind framebuffer");
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	}
 
 	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };

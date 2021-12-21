@@ -399,7 +399,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		GLint fbo;
 		glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
 
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager->m_FancyEffectsFBO);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager->m_FancyEffectsFBO);
 
 		glDisable(GL_BLEND);
 		glEnable(GL_DEPTH_TEST);
@@ -422,7 +422,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		dummyTech->EndPass();
 
 		glEnable(GL_CULL_FACE);
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
 	}
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -563,7 +563,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	waterSimpleShader->Unbind();
 	g_Renderer.BindTexture(1, 0);
 
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
+	glActiveTextureARB(GL_TEXTURE0_ARB);
 
 	waterSimpleTech->EndPass();
 #endif

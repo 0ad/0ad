@@ -58,9 +58,9 @@ void CPostprocManager::Cleanup()
 	if (!m_IsInitialized) // Only cleanup if previously used
 		return;
 
-	if (m_PingFbo) pglDeleteFramebuffersEXT(1, &m_PingFbo);
-	if (m_PongFbo) pglDeleteFramebuffersEXT(1, &m_PongFbo);
-	if (m_BloomFbo) pglDeleteFramebuffersEXT(1, &m_BloomFbo);
+	if (m_PingFbo) glDeleteFramebuffersEXT(1, &m_PingFbo);
+	if (m_PongFbo) glDeleteFramebuffersEXT(1, &m_PongFbo);
+	if (m_BloomFbo) glDeleteFramebuffersEXT(1, &m_BloomFbo);
 	m_PingFbo = m_PongFbo = m_BloomFbo = 0;
 
 	if (m_ColorTex1) glDeleteTextures(1, &m_ColorTex1);
@@ -165,44 +165,44 @@ void CPostprocManager::RecreateBuffers()
 
 	// Set up the framebuffers with some initial textures.
 
-	pglGenFramebuffersEXT(1, &m_PingFbo);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	glGenFramebuffersEXT(1, &m_PingFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
 							   GL_TEXTURE_2D, m_ColorTex1, 0);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 							   GL_TEXTURE_2D, m_DepthTex, 0);
 
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Framebuffer object incomplete (A): 0x%04X", status);
 	}
 
-	pglGenFramebuffersEXT(1, &m_PongFbo);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+	glGenFramebuffersEXT(1, &m_PongFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
 							   GL_TEXTURE_2D, m_ColorTex2, 0);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 							   GL_TEXTURE_2D, m_DepthTex, 0);
 
-	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
 	}
 
-	pglGenFramebuffersEXT(1, &m_BloomFbo);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
+	glGenFramebuffersEXT(1, &m_BloomFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
 
 	/*
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
 							   GL_TEXTURE_2D, m_BloomTex1, 0);
 
-	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
@@ -215,15 +215,15 @@ void CPostprocManager::RecreateBuffers()
 		CreateMultisampleBuffer();
 	}
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 
 void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inWidth, int inHeight)
 {
 	// Bind inTex to framebuffer for rendering.
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, outTex, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, outTex, 0);
 
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
@@ -238,7 +238,7 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	// Cheat by creating high quality mipmaps for inTex, so the copying operation actually
 	// produces good scaling due to hardware filtering.
 	glBindTexture(GL_TEXTURE_2D, renderedTex);
-	pglGenerateMipmapEXT(GL_TEXTURE_2D);
+	glGenerateMipmapEXT(GL_TEXTURE_2D);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -280,8 +280,8 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWidth, int inHeight)
 {
 	// Set tempTex as our rendering target.
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, tempTex, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, tempTex, 0);
 
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
@@ -325,8 +325,8 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	tech->EndPass();
 
 	// Set result texture as our render target.
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, inOutTex, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, inOutTex, 0);
 
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
@@ -378,20 +378,20 @@ void CPostprocManager::CaptureRenderOutput()
 	ENSURE(m_IsInitialized);
 
 	// Leaves m_PingFbo selected for rendering; m_WhichBuffer stays true at this point.
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
 	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
-	pglDrawBuffers(1, buffers);
+	glDrawBuffers(1, buffers);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	pglDrawBuffers(1, buffers);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	glDrawBuffers(1, buffers);
 
 	m_WhichBuffer = true;
 
 	if (m_UsingMultisampleBuffer)
 	{
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
-		pglDrawBuffers(1, buffers);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
+		glDrawBuffers(1, buffers);
 	}
 }
 
@@ -400,30 +400,30 @@ void CPostprocManager::ReleaseRenderOutput()
 {
 	ENSURE(m_IsInitialized);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	// we blit to screen from the previous active buffer
 	if (m_WhichBuffer)
-		pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PingFbo);
+		glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PingFbo);
 	else
-		pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PongFbo);
+		glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PongFbo);
 
-	pglBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
-	pglBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
+	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
+	glBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
 			      GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
-	pglBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, 0);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 {
 	// select the other FBO for rendering
 	if (!m_WhichBuffer)
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 	else
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
 	glDisable(GL_DEPTH_TEST);
 	glDepthMask(GL_FALSE);
@@ -504,28 +504,28 @@ void CPostprocManager::ApplyPostproc()
 	if (!hasEffects && !hasAA && !hasSharp)
 		return;
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
 
 	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT };
-	pglDrawBuffers(1, buffers);
+	glDrawBuffers(1, buffers);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
-	pglDrawBuffers(1, buffers);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
+	glDrawBuffers(1, buffers);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
 
 	if (hasEffects)
 	{
 		// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
 		// (This may need to change depending on future usage, however that will have a fps hit)
 		ApplyBlur();
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 		for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
 			ApplyEffect(m_PostProcTech, pass);
 	}
@@ -542,11 +542,11 @@ void CPostprocManager::ApplyPostproc()
 			ApplyEffect(m_SharpTech, pass);
 	}
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
 }
 
 
@@ -620,7 +620,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		if (g_AtlasGameLoop && g_AtlasGameLoop->running)
 			return;
 		const bool is_msaa_supported =
-			ogl_HaveVersion("3.3") &&
+			ogl_HaveVersion(3, 3) &&
 			ogl_HaveExtension("GL_ARB_multisample") &&
 			ogl_HaveExtension("GL_ARB_texture_multisample") &&
 			!m_AllowedSampleCounts.empty();
@@ -681,28 +681,28 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	glGenTextures(1, &m_MultisampleColorTex);
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex);
-	pglTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_RGBA, m_Width, m_Height, GL_TRUE);
+	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_RGBA, m_Width, m_Height, GL_TRUE);
 
 	// Allocate the Depth/Stencil texture.
 	glGenTextures(1, &m_MultisampleDepthTex);
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex);
-	pglTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height, GL_TRUE);
+	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height, GL_TRUE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 
 	ogl_WarnIfError();
 
 	// Set up the framebuffers with some initial textures.
-	pglGenFramebuffersEXT(1, &m_MultisampleFBO);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
+	glGenFramebuffersEXT(1, &m_MultisampleFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
 		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex, 0);
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
 		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex, 0);
 
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Multisample framebuffer object incomplete (A): 0x%04X", status);
@@ -710,7 +710,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 		DestroyMultisampleBuffer();
 	}
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -721,7 +721,7 @@ void CPostprocManager::DestroyMultisampleBuffer()
 	if (m_UsingMultisampleBuffer)
 		return;
 	if (m_MultisampleFBO)
-		pglDeleteFramebuffersEXT(1, &m_MultisampleFBO);
+		glDeleteFramebuffersEXT(1, &m_MultisampleFBO);
 	if (m_MultisampleColorTex)
 		glDeleteTextures(1, &m_MultisampleColorTex);
 	if (m_MultisampleDepthTex)
@@ -739,11 +739,11 @@ void CPostprocManager::ResolveMultisampleFramebuffer()
 	if (!m_UsingMultisampleBuffer)
 		return;
 
-	pglBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, m_PingFbo);
-	pglBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
+	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, m_PingFbo);
+	glBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
 		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 }
 
 #else

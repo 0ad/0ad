@@ -150,9 +150,9 @@ WaterManager::~WaterManager()
 	glDeleteTextures(1, &m_ReflFboDepthTexture);
 	glDeleteTextures(1, &m_RefrFboDepthTexture);
 
-	pglDeleteFramebuffersEXT(1, &m_FancyEffectsFBO);
-	pglDeleteFramebuffersEXT(1, &m_RefractionFbo);
-	pglDeleteFramebuffersEXT(1, &m_ReflectionFbo);
+	glDeleteFramebuffersEXT(1, &m_FancyEffectsFBO);
+	glDeleteFramebuffersEXT(1, &m_RefractionFbo);
+	glDeleteFramebuffersEXT(1, &m_ReflectionFbo);
 }
 
 
@@ -273,14 +273,14 @@ int WaterManager::LoadWaterTextures()
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &currentFbo);
 
 	m_ReflectionFbo = 0;
-	pglGenFramebuffersEXT(1, &m_ReflectionFbo);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_ReflFboDepthTexture, 0);
+	glGenFramebuffersEXT(1, &m_ReflectionFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_ReflFboDepthTexture, 0);
 
 	ogl_WarnIfError();
 
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Reflection framebuffer object incomplete: 0x%04X", status);
@@ -289,14 +289,14 @@ int WaterManager::LoadWaterTextures()
 	}
 
 	m_RefractionFbo = 0;
-	pglGenFramebuffersEXT(1, &m_RefractionFbo);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_RefractionFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_RefrFboDepthTexture, 0);
+	glGenFramebuffersEXT(1, &m_RefractionFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_RefractionFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_RefrFboDepthTexture, 0);
 
 	ogl_WarnIfError();
 
-	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Refraction framebuffer object incomplete: 0x%04X", status);
@@ -304,14 +304,14 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	pglGenFramebuffersEXT(1, &m_FancyEffectsFBO);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTexture, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FancyTextureDepth, 0);
+	glGenFramebuffersEXT(1, &m_FancyEffectsFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTexture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FancyTextureDepth, 0);
 
 	ogl_WarnIfError();
 
-	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("Fancy Effects framebuffer object incomplete: 0x%04X", status);
@@ -319,7 +319,7 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, currentFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, currentFbo);
 
 	// Enable rendering, now that we've succeeded this far
 	m_RenderWater = true;
@@ -372,8 +372,8 @@ void WaterManager::UnloadWaterTextures()
 
 	glDeleteTextures(1, &m_ReflectionTexture);
 	glDeleteTextures(1, &m_RefractionTexture);
-	pglDeleteFramebuffersEXT(1, &m_RefractionFbo);
-	pglDeleteFramebuffersEXT(1, &m_ReflectionFbo);
+	glDeleteFramebuffersEXT(1, &m_RefractionFbo);
+	glDeleteFramebuffersEXT(1, &m_ReflectionFbo);
 }
 
 template<bool Transpose>
@@ -847,10 +847,10 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	if (g_Renderer.DoSkipSubmit() || !m_WaterFancyEffects)
 		return;
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
 
 	GLuint attachments[1] = { GL_COLOR_ATTACHMENT0_EXT };
-	pglDrawBuffers(1, attachments);
+	glDrawBuffers(1, attachments);
 
 	glClearColor(0.0f,0.0f, 0.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -883,7 +883,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 		shader->VertexPointer(3, GL_FLOAT, stride, &base[VBchunk->m_Index].m_BasePosition);
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_UNSIGNED_BYTE, stride, &base[VBchunk->m_Index].m_UV);
 		//	NormalPointer(gl_FLOAT, stride, &base[m_VBWater->m_Index].m_UV)
-		pglVertexAttribPointerARB(2, 2, GL_FLOAT, GL_FALSE, stride, &base[VBchunk->m_Index].m_PerpVect);	// replaces commented above because my normal is vec2
+		glVertexAttribPointerARB(2, 2, GL_FLOAT, GL_FALSE, stride, &base[VBchunk->m_Index].m_PerpVect);	// replaces commented above because my normal is vec2
 		shader->VertexAttribPointer(str_a_apexPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_ApexPosition);
 		shader->VertexAttribPointer(str_a_splashPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_SplashPosition);
 		shader->VertexAttribPointer(str_a_retreatPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
@@ -906,7 +906,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 		CVertexBuffer::Unbind();
 	}
 	tech->EndPass();
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	glDisable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -55,5 +55,9 @@ struct SDL_Event_
 
 // Returns a windowing subsystem used for the window.
 const char* GetSDLSubsystem(SDL_Window* window);
+
+#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+void* GetX11Display(SDL_Window* window);
+#endif
 
 #endif // INCLUDED_SDL

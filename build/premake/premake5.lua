@@ -917,6 +917,21 @@ function setup_all_libs ()
 	setup_static_lib_project("lowlevel", source_dirs, extern_libs, extra_params)
 
 
+	setup_static_lib_project("gladwrapper", {}, { "opengl", "glad" }, { no_pch = 1 })
+	glad_path = libraries_source_dir.."glad/"
+	sysincludedirs { glad_path.."include" }
+	if _OPTIONS["gles"] then
+		files { glad_path.."src/gles2.cpp" }
+	else
+		files { glad_path.."src/gl.cpp" }
+		if os.istarget("windows") then
+			files { glad_path.."src/wgl.cpp" }
+		elseif os.istarget("linux") or os.istarget("bsd") then
+			files { glad_path.."src/glx.cpp" }
+		end
+	end
+
+
 	-- Third-party libraries that are built as part of the main project,
 	-- not built externally and then linked
 	source_dirs = {

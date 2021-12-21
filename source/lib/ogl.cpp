@@ -27,13 +27,24 @@
 #include "precompiled.h"
 #include "lib/ogl.h"
 
+#include "lib/code_annotation.h"
+#include "lib/config2.h"
+#include "lib/debug.h"
+#include "lib/external_libraries/libsdl.h"
+#include "lib/res/h_mgr.h"
+#include "ps/CLogger.h"
+
+#if !CONFIG2_GLES
+# if OS_WIN
+#  include <glad/wgl.h>
+# elif !OS_MACOSX && !OS_MAC
+#  include <glad/glx.h>
+# endif
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-
-#include "lib/external_libraries/libsdl.h"
-#include "lib/debug.h"
-#include "lib/res/h_mgr.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "opengl32.lib")
@@ -44,21 +55,15 @@
 // extensions
 //----------------------------------------------------------------------------
 
-// define extension function pointers
-extern "C"
-{
-#define FUNC(ret, name, params) ret (GL_CALL_CONV *p##name) params;
-#define FUNC2(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameARB) params;
-#define FUNC3(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameCore) params;
-#include "lib/external_libraries/glext_funcs.h"
-#undef FUNC3
-#undef FUNC2
-#undef FUNC
-}
+static const char* exts = nullptr;
 
-
-static const char* exts = NULL;
-static bool have_30, have_21, have_20, have_15, have_14, have_13, have_12;
+static bool have_30 = false;
+static bool have_21 = false;
+static bool have_20 = false;
+static bool have_15 = false;
+static bool have_14 = false;
+static bool have_13 = false;
+static bool have_12 = false;
 
 
 // return a C string of unspecified length containing a space-separated
@@ -212,35 +217,16 @@ bool ogl_HaveExtension(const char* ext)
 	}
 }
 
+static int GLVersion;
+#if OS_WIN
+static int WGLVersion;
+#elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
+static int GLXVersion;
+#endif
 
-// check if the OpenGL implementation is at least at <version>.
-// (format: "%d.%d" major minor)
-bool ogl_HaveVersion(const char* desired_version)
+bool ogl_HaveVersion(int major, int minor)
 {
-	int desired_major, desired_minor;
-	if(sscanf_s(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid version string
-		return false;
-	}
-
-	// guaranteed to be of the form "major.minor[.release][ vendor-specific]"
-	// or "OpenGL ES major.minor[.release][ vendor-specific]".
-	// we won't distinguish GLES 2.0 from GL 2.0, but that's okay since
-	// they're close enough.
-	const char* version = (const char*)glGetString(GL_VERSION);
-	int major, minor;
-	if(!version ||
-	    (sscanf_s(version, "%d.%d", &major, &minor) != 2 &&
-		 sscanf_s(version, "OpenGL ES %d.%d", &major, &minor) != 2))
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);	// GL_VERSION invalid
-		return false;
-	}
-
-	// note: don't just compare characters - major and minor may be >= 10.
-	return (major > desired_major) ||
-	       (major == desired_major && minor >= desired_minor);
+	return GLAD_MAKE_VERSION(major, minor) <= GLVersion;
 }
 
 
@@ -298,25 +284,25 @@ static void enableDummyFunctions()
 
 #else
 
-static void GL_CALL_CONV dummy_glDrawRangeElementsEXT(GLenum mode, GLuint, GLuint, GLsizei count, GLenum type, GLvoid* indices)
+static void GLAD_API_PTR dummy_glDrawRangeElementsEXT(GLenum mode, GLuint, GLuint, GLsizei count, GLenum type, GLvoid* indices)
 {
 	glDrawElements(mode, count, type, indices);
 }
 
-static void GL_CALL_CONV dummy_glActiveTextureARB(int)
+static void GLAD_API_PTR dummy_glActiveTextureARB(GLenum UNUSED(texture))
 {
 }
 
-static void GL_CALL_CONV dummy_glClientActiveTextureARB(int)
+static void GLAD_API_PTR dummy_glClientActiveTextureARB(GLenum UNUSED(texture))
 {
 }
 
-static void GL_CALL_CONV dummy_glMultiTexCoord2fARB(int, float s, float t)
+static void GLAD_API_PTR dummy_glMultiTexCoord2fARB(GLenum UNUSED(target), GLfloat s, GLfloat t)
 {
 	glTexCoord2f(s, t);
 }
 
-static void GL_CALL_CONV dummy_glMultiTexCoord3fARB(int, float s, float t, float r)
+static void GLAD_API_PTR dummy_glMultiTexCoord3fARB(GLenum UNUSED(target), GLfloat s, GLfloat t, GLfloat r)
 {
 	glTexCoord3f(s, t, r);
 }
@@ -327,48 +313,19 @@ static void enableDummyFunctions()
 
 	if(!ogl_HaveExtension("GL_EXT_draw_range_elements"))
 	{
-		pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
+		glDrawRangeElementsEXT = reinterpret_cast<PFNGLDRAWRANGEELEMENTSEXTPROC>(&dummy_glDrawRangeElementsEXT);
 	}
 
 	if(!ogl_HaveExtension("GL_ARB_multitexture"))
 	{
-		pglActiveTextureARB = &dummy_glActiveTextureARB;
-		pglClientActiveTextureARB = &dummy_glClientActiveTextureARB;
-		pglMultiTexCoord2fARB = &dummy_glMultiTexCoord2fARB;
-		pglMultiTexCoord3fARB = &dummy_glMultiTexCoord3fARB;
+		glActiveTextureARB = reinterpret_cast<PFNGLACTIVETEXTUREARBPROC>(&dummy_glActiveTextureARB);
+		glClientActiveTextureARB = reinterpret_cast<PFNGLACTIVETEXTUREARBPROC>(&dummy_glClientActiveTextureARB);
+		glMultiTexCoord2fARB = reinterpret_cast<PFNGLMULTITEXCOORD2FARBPROC>(&dummy_glMultiTexCoord2fARB);
+		glMultiTexCoord3fARB = reinterpret_cast<PFNGLMULTITEXCOORD3FARBPROC>(&dummy_glMultiTexCoord3fARB);
 	}
 }
 
 #endif	// #if CONFIG2_GLES
-
-static void importExtensionFunctions()
-{
-	// It should be safe to load the ARB function pointers even if the
-	// extension isn't advertised, since we won't actually use them without
-	// checking for the extension.
-	// (TODO: this calls ogl_HaveVersion far more times than is necessary -
-	// we should probably use the have_* variables instead)
-	// Note: the xorg-x11 implementation of glXGetProcAddress doesn't return NULL
-	//   if the function is unsupported (i.e. the rare case of a driver not reporting
-	//   its supported version correctly, see http://trac.wildfiregames.com/ticket/171)
-#define FUNC(ret, name, params) p##name = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#name);
-#define FUNC23(pname, ret, nameARB, nameCore, version, params) \
-	pname = NULL; \
-	if(ogl_HaveVersion(version)) \
-		pname = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameCore); \
-	if(!pname) /* use the ARB name if the driver lied about what version it supports */ \
-		pname = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameARB);
-#define FUNC2(ret, nameARB, nameCore, version, params) FUNC23(p##nameARB, ret, nameARB, nameCore, version, params)
-#define FUNC3(ret, nameARB, nameCore, version, params) FUNC23(p##nameCore, ret, nameARB, nameCore, version, params)
-#include "lib/external_libraries/glext_funcs.h"
-#undef FUNC3
-#undef FUNC2
-#undef FUNC23
-#undef FUNC
-
-	enableDummyFunctions();
-}
-
 
 //----------------------------------------------------------------------------
 
@@ -468,24 +425,70 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 GLint ogl_max_tex_size = -1;				// [pixels]
 GLint ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
 
-// call after each video mode change, since thereafter extension functions
-// may have changed [address].
-void ogl_Init()
+#if OS_WIN
+bool ogl_Init(void* (load)(const char*), void* hdc)
+#elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
+bool ogl_Init(void* (load)(const char*), void* display)
+#else
+bool ogl_Init(void* (load)(const char*))
+#endif
 {
+	GLADloadfunc loadFunc = reinterpret_cast<GLADloadfunc>(load);
+	if (!loadFunc)
+		return false;
+
+#define LOAD_ERROR(ERROR_STRING) \
+	if (g_Logger) \
+		LOGERROR(ERROR_STRING); \
+	else \
+		debug_printf(ERROR_STRING); \
+
+#if !CONFIG2_GLES
+	GLVersion = gladLoadGL(loadFunc);
+	if (!GLVersion)
+	{
+		LOAD_ERROR("Failed to load OpenGL functions.");
+		return false;
+	}
+# if OS_WIN
+	WGLVersion = gladLoadWGL(reinterpret_cast<HDC>(hdc), loadFunc);
+	if (!WGLVersion)
+	{
+		LOAD_ERROR("Failed to load WGL functions.");
+		return false;
+	}
+# elif !OS_MACOSX && !OS_MAC
+	GLXVersion = gladLoadGLX(reinterpret_cast<Display*>(display), DefaultScreen(display), loadFunc);
+	if (!GLXVersion)
+	{
+		LOAD_ERROR("Failed to load GLX functions.");
+		return false;
+	}
+# endif
+#else
+	GLVersion = gladLoadGLES2(loadFunc);
+	if (!GLVersion)
+	{
+		LOAD_ERROR("Failed to load GLES2 functions.");
+		return false;
+	}
+#endif
+#undef LOAD_ERROR
+
 	// cache extension list and versions for oglHave*.
 	// note: this is less about performance (since the above are not
 	// time-critical) than centralizing the 'OpenGL is ready' check.
-	exts = (const char*)glGetString(GL_EXTENSIONS);
+	exts = reinterpret_cast<const char*>(glGetString(GL_EXTENSIONS));
 	ENSURE(exts);	// else: called before OpenGL is ready for use
-	have_12 = ogl_HaveVersion("1.2");
-	have_13 = ogl_HaveVersion("1.3");
-	have_14 = ogl_HaveVersion("1.4");
-	have_15 = ogl_HaveVersion("1.5");
-	have_20 = ogl_HaveVersion("2.0");
-	have_21 = ogl_HaveVersion("2.1");
-	have_30 = ogl_HaveVersion("3.0");
+	have_12 = ogl_HaveVersion(1, 2);
+	have_13 = ogl_HaveVersion(1, 3);
+	have_14 = ogl_HaveVersion(1, 4);
+	have_15 = ogl_HaveVersion(1, 5);
+	have_20 = ogl_HaveVersion(2, 0);
+	have_21 = ogl_HaveVersion(2, 1);
+	have_30 = ogl_HaveVersion(3, 0);
 
-	importExtensionFunctions();
+	enableDummyFunctions();
 
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &ogl_max_tex_size);
 #if !CONFIG2_GLES
@@ -493,4 +496,22 @@ void ogl_Init()
 #endif
 
 	glEnable(GL_TEXTURE_2D);
+
+	return true;
+}
+
+
+void ogl_SetVsyncEnabled(bool enabled)
+{
+#if !CONFIG2_GLES && OS_WIN
+	int interval = enabled ? 1 : 0;
+	if (ogl_HaveExtension("WGL_EXT_swap_control"))
+		wglSwapIntervalEXT(interval);
+#elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
+	int interval = enabled ? 1 : 0;
+	if (ogl_HaveExtension("GLX_SGI_swap_control"))
+		glXSwapIntervalSGI(interval);
+#else
+	UNUSED2(enabled);
+#endif
 }

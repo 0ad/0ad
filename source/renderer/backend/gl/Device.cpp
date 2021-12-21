@@ -31,6 +31,10 @@
 
 #if OS_WIN
 #include "lib/sysdep/os/win/wgfx.h"
+
+// We can't include wutil directly because GL headers conflict with Windows
+// until we use a proper GL loader.
+extern void* wutil_GetAppHDC();
 #endif
 
 #include <algorithm>
@@ -39,27 +43,8 @@
 
 // TODO: Support OpenGL platforms which don't use GLX as well.
 #if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
-#include <GL/glx.h>
+#include <glad/glx.h>
 #include <SDL_syswm.h>
-
-// Define the GLX_MESA_query_renderer macros if built with
-// an old Mesa (<10.0) that doesn't provide them
-#ifndef GLX_MESA_query_renderer
-#define GLX_MESA_query_renderer 1
-#define GLX_RENDERER_VENDOR_ID_MESA                      0x8183
-#define GLX_RENDERER_DEVICE_ID_MESA                      0x8184
-#define GLX_RENDERER_VERSION_MESA                        0x8185
-#define GLX_RENDERER_ACCELERATED_MESA                    0x8186
-#define GLX_RENDERER_VIDEO_MEMORY_MESA                   0x8187
-#define GLX_RENDERER_UNIFIED_MEMORY_ARCHITECTURE_MESA    0x8188
-#define GLX_RENDERER_PREFERRED_PROFILE_MESA              0x8189
-#define GLX_RENDERER_OPENGL_CORE_PROFILE_VERSION_MESA    0x818A
-#define GLX_RENDERER_OPENGL_COMPATIBILITY_PROFILE_VERSION_MESA    0x818B
-#define GLX_RENDERER_OPENGL_ES_PROFILE_VERSION_MESA      0x818C
-#define GLX_RENDERER_OPENGL_ES2_PROFILE_VERSION_MESA     0x818D
-#define GLX_RENDERER_ID_MESA                             0x818E
-#endif /* GLX_MESA_query_renderer */
-
 #endif
 
 namespace Renderer
@@ -155,9 +140,30 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 			LOGERROR("SDL_GL_CreateContext failed: '%s'", SDL_GetError());
 			return nullptr;
 		}
+#if OS_WIN
+		ogl_Init(SDL_GL_GetProcAddress, wutil_GetAppHDC());
+#elif defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+		ogl_Init(SDL_GL_GetProcAddress, GetX11Display(device->m_Window));
+#else
+		ogl_Init(SDL_GL_GetProcAddress);
+#endif
 	}
+	else
+	{
+		// SDL_GL_GetProcAddress is available because we called SDL_GL_LoadLibrary.
+#if OS_WIN
+		ogl_Init(SDL_GL_GetProcAddress, wutil_GetAppHDC());
+#elif defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+		ogl_Init(SDL_GL_GetProcAddress, XOpenDisplay(NULL));
+#else
+		ogl_Init(SDL_GL_GetProcAddress);
+#endif
 
-	ogl_Init();
+#if OS_WIN || defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+		// Hack to stop things looking very ugly when scrolling in Atlas.
+		ogl_SetVsyncEnabled(true);
+#endif
+	}
 
 	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr) // ARB
 		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", nullptr)) // GLSL
@@ -246,7 +252,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 #define QUERY(target, pname) do { \
 	GLint i = -1; \
-	pglGetQueryivARB(GL_##target, GL_##pname, &i); \
+	glGetQueryivARB(GL_##target, GL_##pname, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
 		Script::SetProperty(rq, settings, "GL_" #target ".GL_" #pname, errstr); \
 	else \
@@ -255,7 +261,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 #define VERTEXPROGRAM(id) do { \
 	GLint i = -1; \
-	pglGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
+	glGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
 		Script::SetProperty(rq, settings, "GL_VERTEX_PROGRAM_ARB.GL_" #id, errstr); \
 	else \
@@ -264,7 +270,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 #define FRAGMENTPROGRAM(id) do { \
 	GLint i = -1; \
-	pglGetProgramivARB(GL_FRAGMENT_PROGRAM_ARB, GL_##id, &i); \
+	glGetProgramivARB(GL_FRAGMENT_PROGRAM_ARB, GL_##id, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
 		Script::SetProperty(rq, settings, "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, errstr); \
 	else \
@@ -370,8 +376,8 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 	if (ogl_HaveExtension("GL_EXT_gpu_shader4"))
 	{
-		INTEGER(MIN_PROGRAM_TEXEL_OFFSET); // no _EXT version of these in glext.h
-		INTEGER(MAX_PROGRAM_TEXEL_OFFSET);
+		INTEGER(MIN_PROGRAM_TEXEL_OFFSET_EXT); // no _EXT version of these in glext.h
+		INTEGER(MAX_PROGRAM_TEXEL_OFFSET_EXT);
 	}
 
 	if (ogl_HaveExtension("GL_EXT_framebuffer_object"))
@@ -518,13 +524,13 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 #define GLXQCR_INTEGER(id) do { \
 	unsigned int i = UINT_MAX; \
-	if (pglXQueryCurrentRendererIntegerMESA(id, &i)) \
+	if (glXQueryCurrentRendererIntegerMESA(id, &i)) \
 		Script::SetProperty(rq, settings, #id, i); \
 	} while (false)
 
 #define GLXQCR_INTEGER2(id) do { \
 	unsigned int i[2] = { UINT_MAX, UINT_MAX }; \
-	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
+	if (glXQueryCurrentRendererIntegerMESA(id, i)) { \
 		Script::SetProperty(rq, settings, #id "[0]", i[0]); \
 		Script::SetProperty(rq, settings, #id "[1]", i[1]); \
 	} \
@@ -532,7 +538,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 #define GLXQCR_INTEGER3(id) do { \
 	unsigned int i[3] = { UINT_MAX, UINT_MAX, UINT_MAX }; \
-	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
+	if (glXQueryCurrentRendererIntegerMESA(id, i)) { \
 		Script::SetProperty(rq, settings, #id "[0]", i[0]); \
 		Script::SetProperty(rq, settings, #id "[1]", i[1]); \
 		Script::SetProperty(rq, settings, #id "[2]", i[2]); \
@@ -540,7 +546,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 	} while (false)
 
 #define GLXQCR_STRING(id) do { \
-	const char* str = pglXQueryCurrentRendererStringMESA(id); \
+	const char* str = glXQueryCurrentRendererStringMESA(id); \
 	if (str) \
 		Script::SetProperty(rq, settings, #id ".string", str); \
 	} while (false)
@@ -558,7 +564,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 		Script::SetProperty(rq, settings, "glx_extensions", glxexts);
 
-		if (strstr(glxexts, "GLX_MESA_query_renderer") && pglXQueryCurrentRendererIntegerMESA && pglXQueryCurrentRendererStringMESA)
+		if (strstr(glxexts, "GLX_MESA_query_renderer") && glXQueryCurrentRendererIntegerMESA && glXQueryCurrentRendererStringMESA)
 		{
 			GLXQCR_INTEGER(GLX_RENDERER_VENDOR_ID_MESA);
 			GLXQCR_INTEGER(GLX_RENDERER_DEVICE_ID_MESA);

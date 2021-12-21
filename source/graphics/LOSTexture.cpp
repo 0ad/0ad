@@ -71,7 +71,7 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation)
 CLOSTexture::~CLOSTexture()
 {
 	if (m_smoothFbo)
-		pglDeleteFramebuffersEXT(1, &m_smoothFbo);
+		glDeleteFramebuffersEXT(1, &m_smoothFbo);
 
 	if (m_Texture)
 		DeleteTexture();
@@ -92,7 +92,7 @@ bool CLOSTexture::CreateShader()
 		return false;
 	}
 
-	pglGenFramebuffersEXT(1, &m_smoothFbo);
+	glGenFramebuffersEXT(1, &m_smoothFbo);
 	return true;
 }
 
@@ -158,11 +158,11 @@ void CLOSTexture::InterpolateLOS()
 		m_Dirty = false;
 	}
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
-				   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
+			   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
 
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("LOS framebuffer object incomplete: 0x%04X", status);
@@ -212,9 +212,9 @@ void CLOSTexture::InterpolateLOS()
 	shader->Unbind();
 	m_smoothShader->EndPass();
 
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 0, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 0, 0);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	whichTex = !whichTex;
 }

@@ -58,8 +58,8 @@ static bool wrap_valid(GLint wrap)
 	{
 #if !CONFIG2_GLES
 	case GL_CLAMP:
-	case GL_CLAMP_TO_BORDER:
 #endif
+	case GL_CLAMP_TO_BORDER:
 	case GL_CLAMP_TO_EDGE:
 	case GL_REPEAT:
 	case GL_MIRRORED_REPEAT:
@@ -844,7 +844,7 @@ static void upload_level(size_t level, size_t level_w, size_t level_h, const u8*
 static void upload_compressed_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
-	pglCompressedTexImage2DARB(GL_TEXTURE_2D, (GLint)level, up->fmt, (GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
+	glCompressedTexImage2DARB(GL_TEXTURE_2D, (GLint)level, up->fmt, (GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
 	*up->uploaded_size += (u32)level_data_size;
 }
 
@@ -1029,7 +1029,7 @@ Status ogl_tex_bind(Handle ht, size_t unit)
 {
 	// note: there are many call sites of glActiveTextureARB, so caching
 	// those and ignoring redundant sets isn't feasible.
-	pglActiveTextureARB((int)(GL_TEXTURE0+unit));
+	glActiveTextureARB((int)(GL_TEXTURE0+unit));
 
 	// special case: resets the active texture.
 	if(ht == 0)

@@ -127,7 +127,7 @@ void TerrainOverlay::RenderBeforeWater()
 	//glEnable(GL_POLYGON_OFFSET_LINE);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 
-	pglActiveTextureARB(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 
 	StartRender();
 
@@ -320,7 +320,7 @@ void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 	ssize_t w = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
 	ssize_t h = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
 
-	pglActiveTextureARB(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 
 	// Recreate the texture with new size if necessary
 	if (round_up_to_pow2(w) != m_TextureW || round_up_to_pow2(h) != m_TextureH)
