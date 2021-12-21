@@ -365,7 +365,7 @@ Trainer.prototype.Item.prototype.GetBasicInfo = function()
 		"unitTemplate": this.templateName,
 		"count": this.count,
 		"neededSlots": this.missingPopSpace,
-		"progress": 1 - (this.timeRemaining / this.timeTotal),
+		"progress": 1 - (this.timeRemaining / (this.timeTotal || 1)),
 		"timeRemaining": this.timeRemaining,
 		"paused": this.paused,
 		"metadata": this.metadata
