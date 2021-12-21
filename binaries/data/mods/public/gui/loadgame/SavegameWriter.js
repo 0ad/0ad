@@ -19,11 +19,17 @@ class SavegameWriter
 		this.saveGameDesc = Engine.GetGUIObjectByName("saveGameDesc");
 		this.saveGameDesc.hidden = false;
 		this.saveGameDesc.onPress = saveNew;
+		this.descriptionChanged = false;
+		this.saveGameDesc.onTextEdit = () => {
+			this.descriptionChanged = true;
+		};
 	}
 
 	onSelectionChange(gameID, metadata, label)
 	{
 		this.confirmButton.enabled = !!metadata || Engine.IsGameStarted();
+		if (!this.descriptionChanged && typeof metadata.description === "string")
+			this.saveGameDesc.caption = metadata.description;
 		this.confirmButton.onPress = () => {
 			this.saveGame(gameID, label);
 		};
