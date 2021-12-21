@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-12-16 23:31+0000\n"
+"PO-Revision-Date: 2021-12-18 18:26+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -20,32 +20,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "La velocidade de dislocamiento augmentóu a %.1f"
+msgstr "La velocidá de dislocamiento augmentóu a %.1f"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "La velocidade de dislocamiento diminuíu a %.1f"
+msgstr "La velocidá de dislocamiento diminuíu a %.1f"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "La velocidade de gyru augmentóu a X=%.3f, Y=%.3f"
+msgstr "La velocidá de gyru augmentóu a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "La velocidade de gyru diminuíu a X=%.3f, Y=%.3f"
+msgstr "La velocidá de gyru diminuíu a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "La velocidade d’approximación augmentóu a %.1f"
+msgstr "La velocidá d’approximación augmentóu a %.1f"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "La velocidade d’approximación diminuíu a %.1f"
+msgstr "La velocidá d’approximación diminuíu a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -57,7 +57,7 @@ msgstr "disconhoz-se l subtypu (veia-se los registros)"
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate is not trusted."
-msgstr "El certificado nun yë d’infhoutu."
+msgstr "El certificado nun ië d’infhoutu."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate hasn't got a known issuer."
@@ -77,7 +77,7 @@ msgstr "El certificado sigue inactivo."
 
 #: lobby/XmppClient.cpp:1362
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificado nun se diou pal par al qui stas connectadu."
+msgstr "El certificado nun se diou pal par al que stas connectadu."
 
 #: lobby/XmppClient.cpp:1363
 msgid "The certificate signer is not a certificate authority."
@@ -94,7 +94,7 @@ msgstr "Nun ha hi errores"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Player already logged in"
-msgstr "El jogador ya inicióu sessión"
+msgstr "El jogador ia inicióu sessión"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Forbidden"
@@ -146,7 +146,7 @@ msgstr "Houbo un error d’intrada/salida"
 
 #: lobby/XmppClient.cpp:1441
 msgid "The connection was refused by the server"
-msgstr "La connexión refhugóu-lla l servidor"
+msgstr "La connexión recusóu-lla l servidor"
 
 #: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
@@ -164,11 +164,11 @@ msgstr "Ou nun pudo verificá-se l certificado del servidor ou la negociación T
 
 #: lobby/XmppClient.cpp:1446
 msgid "The server did not offer required TLS encryption"
-msgstr "El servidor nun offríu l cifrado TLS qui se requier"
+msgstr "El servidor nun offríu l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1448
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Fallóu l’authenticación. La clave nun yë correcta ou la cuönta nun existe"
+msgstr "Fallóu l’authenticación. La clave nun ië correcta ou la cuönta nun existe"
 
 #: lobby/XmppClient.cpp:1449
 msgid "The user or system requested a disconnect"
@@ -188,14 +188,14 @@ msgstr "Nun s’aporríu toda la información precisa"
 
 #: lobby/XmppClient.cpp:1473
 msgid "Username already exists"
-msgstr "Ya existe l nome d’usuariu"
+msgstr "Ia existe l nome d’usuariu"
 
 #: ps/Mod.cpp:84
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi qui reinstalla’l commudu."
+msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi que reinstalla’l commudu."
 
 #: ps/ModIo.cpp:263
 #, c-format

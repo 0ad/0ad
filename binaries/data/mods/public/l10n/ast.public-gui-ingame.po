@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-12-17 00:21+0000\n"
+"PO-Revision-Date: 2021-12-19 00:23+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Afhita la velocidade del juögu"
+msgstr "Afhita la velocidá del juögu"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -105,7 +105,7 @@ msgstr "Perdéu-se la connexión cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr "Sperando a qui se connecten los jogadores:"
+msgstr "Sperando a que se connecten los jogadores:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
@@ -283,13 +283,13 @@ msgstr "Premi %(hotkey)s p’abri’ la última conversa privada seleccionada."
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s sta intamando rejunctá-se al incuöntru."
+msgstr "%(player)s sta intamando rejuntá-se al incuöntru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s sta intamando ajunctá-se al incuöntru."
+msgstr "%(player)s sta intamando ajuntá-se al incuöntru."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
@@ -310,13 +310,13 @@ msgstr "Expulsóu-se a %(username)s"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s rejunctóu-se al incuöntru."
+msgstr "%(player)s rejuntóu-se al incuöntru."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s ajunctóu-se al incuöntru."
+msgstr "%(player)s ajuntóu-se al incuöntru."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -355,7 +355,7 @@ msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Calca para infocar ex contra la unidade aggredida."
+msgstr "Calca para infocar ex contra la unidá aggredida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -375,7 +375,7 @@ msgstr "Imbellästi-te cun %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Declarästi la neutralidade para cun %(player)s."
+msgstr "Declarästi la neutralidá para cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
@@ -390,7 +390,7 @@ msgstr "%(player)s imbellóu-se cun tigo."
 #: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s declarou la neutralidade para cun tigo."
+msgstr "%(player)s declarou la neutralidá para cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
@@ -405,7 +405,7 @@ msgstr "%(player)s imbellóu-se cun %(player2)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s declarou la neutralidade para cun %(player2)s."
+msgstr "%(player)s declarou la neutralidá para cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
@@ -420,7 +420,7 @@ msgstr "Abortóu-se la %(phaseName)s de %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s aportóu a la %(phaseName)s."
+msgstr "%(player)s aportóu a %(phaseName)s."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
@@ -540,7 +540,7 @@ msgstr "Activa’ l alteración temporal"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr "Activa’ la pruöba de rejunctura"
+msgstr "Activa’ la pruöba de rejuntura"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
@@ -639,7 +639,7 @@ msgstr "Cerrar"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr "Tiempu qui queda d’inducia: %(time)s."
+msgstr "Tiempu que queda d’inducia: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
@@ -675,7 +675,7 @@ msgstr "Inimigu"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Subornar una unidade aleatoria d’esti jogador & comparti’ la sua vista per ciertu tiempu."
+msgstr "Subornar una unidá aleatoria d’esti jogador & comparti’ la sua vista per ciertu tiempu."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -748,12 +748,12 @@ msgstr "Jogadores: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "L'estáu del to xuegu ye igual al estáu del xuegu del anfitrión."
+msgstr "El stadu del tou juögu eguala al stadu del juögu del amphitryón."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "L'estáu del to xuegu ye diferente al estáu del xuegu del anfitrión."
+msgstr "El stadu del tou juögu diffier del stadu del juögu del amphitryón."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
@@ -763,7 +763,7 @@ msgstr "¡Endagora nun está sofitao rexunise a alcuentros entre dellos xugadore
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "Assegurade-vos de qui tódolos jogadores usen los mësmos commudos."
+msgstr "Assegurade-vos de que tódolos jogadores usen los mësmos commudos."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
@@ -829,11 +829,11 @@ msgstr "¿Quieres colar?"
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "¿Stas ciertu qui quieres colar? Si sales tódolos outros jogadores van disconnectá-se."
+msgstr "¿Stas ciertu que quieres colar? Si sales tódolos outros jogadores van disconnectá-se."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
-msgstr "¿Stas ciertu qui quieres colar?"
+msgstr "¿Stas ciertu que quieres colar?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
@@ -859,7 +859,7 @@ msgstr "Acabóu la repetición, ¿qué quieres fhazer?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr "¿Stas ciertu qui quieres rendí-te?"
+msgstr "¿Stas ciertu que quieres rendí-te?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
@@ -984,7 +984,7 @@ msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:461
 msgid "Capture Points:"
-msgstr "Fidelidade:"
+msgstr "Fidelidá:"
 
 #: gui/session/selection_details.js:469
 #, javascript-format
@@ -1166,8 +1166,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] "Nun puöde innová-se de la qui l ente sta exercitando, disinvolviendo ou innovando."
-msgstr[1] "Nun puöde innová-se de la qui tódolos entes stan exercitando, disinvolviendo ou innovando."
+msgstr[0] "Nun puöde innová-se de la que l ente sta exercitando, disinvolviendo ou innovando."
+msgstr[1] "Nun puöde innová-se de la que tódolos entes stan exercitando, disinvolviendo ou innovando."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1406,7 +1406,7 @@ msgstr "Diplomacia"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr "Velocidade del juögu"
+msgstr "Velocidá del juögu"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
@@ -1427,7 +1427,7 @@ msgstr "Modu espectador"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
-msgstr "Excoyer un jogador qui ver"
+msgstr "Excoyer un jogador que ver"
 
 #: gui/session/trade/BarterButton.js:108
 #, javascript-format
@@ -1691,7 +1691,7 @@ msgstr "Inviar las unidades seleccionadas a acommitte’l sitiu signaladu n lhei
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Mandar qui las unidades seleccionadas s’abloguen n una construcción ou unidade."
+msgstr "Mandar que las unidades seleccionadas s’abloguen n una construcción ou unidá."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
@@ -1707,7 +1707,7 @@ msgstr "Manda que les unidades esbillades igüen una construcción, barcu o máq
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
-msgstr "Infocar ex contra l puncto d’incuöntru."
+msgstr "Infocar ex contra l punto d’incuöntru."
 
 #: gui/session/unit_actions.js:1625
 msgid "Back to Work"
@@ -1737,11 +1737,11 @@ msgstr "Ataca tódeles unidades enemigues alcontrades evitando construcciones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Premi para lheiẍar qui los colligados usen esti depósitu"
+msgstr "Premi para lheiẍar que los colligados usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi para quitar qui los colligados usen esti depósitu"
+msgstr "Premi para quitar que los colligados usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1765,12 +1765,12 @@ msgstr "Desactivar l'enriestru automáticu nes construcciones esbillades."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "Eso ha hi qui lo mattar para explotá-llo"
+msgstr "Eso ha hi que lo mattar para explotá-llo"
 
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun puödes eliminar esti ente, d’ex qui te correspuönde menus de la metade de la sua fidelidade"
+msgstr "Nun puödes eliminar esti ente, d’ex que te correspuönde menus de la metade de la sua fidelidá"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"

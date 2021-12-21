@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-13 15:54+0000\n"
-"Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-12-17 08:08+0000\n"
+"PO-Revision-Date: 2021-12-17 08:24+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -914,8 +914,8 @@ msgstr "아군의 포격: %(enabled)s"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "예"
@@ -923,8 +923,8 @@ msgstr "예"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "아니오"
@@ -3522,8 +3522,8 @@ msgid "Do you still want to proceed?"
 msgstr "계속 진행하시겠습니까?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:334 gui/options/options.js:399
-#: gui/options/options.js:425
+#: gui/options/options.js:347 gui/options/options.js:412
+#: gui/options/options.js:438
 msgid "Warning"
 msgstr "경고"
 
@@ -3850,17 +3850,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 
-#: gui/options/options.js:333
+#: gui/options/options.js:346
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "선택사항을 다시 설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
 
-#: gui/options/options.js:398
+#: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "일부 설정 값은 유효하지 않습니다! 저장하시겠습니까?"
 
-#: gui/options/options.js:424
+#: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "바뀐 내용을 저장하지 않으셨습니다. 이 창을 닫으시겠습니까?"
 
@@ -4114,12 +4114,28 @@ msgid "Graphics (advanced)"
 msgstr "그래픽 (고급)"
 
 #: gui/options/options.json[2].options[0].label
-msgid "Prefer GLSL"
-msgstr "GLSL 선호"
+msgid "Renderer backend"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].label
+msgid "OpenGL"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].tooltip
+msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].label
+msgid "OpenGL ARB"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].tooltip
+msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
+msgstr ""
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "OpenGL 2.0 그림자를 사용합니다(권장)."
+msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
+msgstr ""
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4826,6 +4842,14 @@ msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "모든 명령에 대해 대형을 사용할지, 아니면 '걷기'와 '순찰'만 사용할지 결정합니다."
+
+#: gui/options/options.json[6].options[22].label
+msgid "Battalion-style formations"
+msgstr ""
+
+#: gui/options/options.json[6].options[22].tooltip
+msgid "Whether formations are selected as a whole."
+msgstr ""
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -6442,8 +6466,10 @@ msgid ""
 msgstr "병사를 대형으로 배치하여 전투 중에 조직을 유지하십시오."
 
 #: gui/text/tips/formations.txt:3
-msgid "Formations are selected as a whole by default."
-msgstr "대형이 기본적으로 전체로서 선택됩니다."
+msgid ""
+"Formations are selected as a whole by default, but that can be changed in "
+"the game settings."
+msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

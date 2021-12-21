@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-12-17 00:33+0000\n"
+"PO-Revision-Date: 2021-12-19 22:43+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Círculu"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Los jogadores colligados ajunctan-se al par d’inimigos n un círculu q’invuölve l mappa."
+msgstr "Los jogadores colligados ajuntan-se al par d’inimigos n un círculu q’invuölve l mappa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:62
 msgctxt "team placement"
@@ -50,7 +50,7 @@ msgstr "Grea aleatoria"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Los jogadores colligados ajunctan-se, mas sitúan-se aleatoriamente nel mappa."
+msgstr "Los jogadores colligados ajuntan-se, mas sitúan-se aleatoriamente nel mappa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
@@ -59,7 +59,7 @@ msgstr "Fortalezas"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Los jogadores colligados ajunctan-se ayuri nel mappa."
+msgstr "Los jogadores colligados ajuntan-se ayuri nel mappa."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -79,7 +79,7 @@ msgstr "Actitude de la intelligencia artificial"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
-msgstr "Difficultade de la intelligencia artificial"
+msgstr "Difficultá de la intelligencia artificial"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
@@ -204,7 +204,7 @@ msgstr "Vista colligada"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Alterna la vista colligada (permitte ve’ lo qui ven los colligados)."
+msgstr "Alterna la vista colligada (permitte ve’ lo que ven los colligados)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -349,11 +349,11 @@ msgstr "Excoyer una hora del díe ou nuöithe aleatoriamente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
-msgstr "Velocidade del juögu"
+msgstr "Velocidá del juögu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
-msgstr "Selecciona’ la velocidade del juögu."
+msgstr "Selecciona’ la velocidá del juögu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
@@ -391,7 +391,7 @@ msgstr "Esbillar mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
-msgstr "Seleccionar un mappa n qui jogare."
+msgstr "Seleccionar un mappa n que jogare."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
@@ -511,7 +511,7 @@ msgstr "Inducia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr "Spacio de tiempu n qui nun se puöde attacare."
+msgstr "Spacio de tiempu n que nun se puöde attacare."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
@@ -528,7 +528,7 @@ msgstr[1] "%(minutes)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr "Númberu de reliquies"
+msgstr "Númeru de reliquias"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
@@ -628,15 +628,15 @@ msgstr "¡Nun sto preparadu/a!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Signalar qui stas preparadu para jogare."
+msgstr "Signalar que stas preparadu para jogare."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Seguir preparadu, inda qui cambien los ajustes del incuöntru."
+msgstr "Seguir preparadu, inda que cambien los ajustes del incuöntru."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "Signalar qui nun stas preparadu para jogare."
+msgstr "Signalar que nun stas preparadu para jogare."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
@@ -798,7 +798,7 @@ msgstr "El servidor nun sta funccionando."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
-msgstr "Esa clave nun yë válida."
+msgstr "Esa clave nun ië válida."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
@@ -808,7 +808,7 @@ msgstr "Estás torgáu."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Fallu al obtene’l IP local del servidor (suppuẍo-se qui s’atopaba na mësma rede)."
+msgstr "Fallu al obtene’l IP local del servidor (suppuẍo-se que s’atopaba na mësma rede)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -834,11 +834,11 @@ msgstr "Registrando-se n servidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
-msgstr "Ya s’inicióu l incuöntru, rejunctando-se..."
+msgstr "Ia s’inicióu l incuöntru, rejuntando-se..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
-msgstr "Esi nomatu yá está n'usu."
+msgstr "Essi nomatu ia sta n usu."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
@@ -848,12 +848,12 @@ msgstr "Nun puöde ahospedá-se l incuöntru: %(message)s."
 #: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
 #: gui/gamesetup_mp/gamesetup_mp.js:435 gui/gamesetup_mp/gamesetup_mp.js:450
 msgid "Error"
-msgstr "Fallu"
+msgstr "Error"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:405 gui/gamesetup_mp/gamesetup_mp.js:449
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr "Nun puöde ajunctá-se al incuöntru: %(message)s."
+msgstr "Nun puöde ajuntá-se al incuöntru: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
@@ -866,7 +866,7 @@ msgstr "Dellos jogadores"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr "Ajunctando-se a un incuöntru existente."
+msgstr "Ajuntando-se a un incuöntru existente."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
@@ -952,7 +952,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "“Mas agalmará toda sapiencia quien proveia grayar de victoria a Zeus, \\[…] q’ordena officialmente qui pela passión la sapiencia s’obtënga. Sí q’assí, nel suönhu, \\[…] cade-lli la lhaceriosa memoria del trabayu; & ansí, a remoleira, se vien a temprare. Lo violenta qui yë la gracia de los démones \\[…].” \\n— Eschylu (“Agamemnon”, 176–183)"
+msgstr "“Mas agalmará toda sapiencia quien proveia grayar de victoria a Zeus, \\[…] q’ordena officialmente que pela passión la sapiencia s’obtënga. Sí q’assí, nel suönhu, \\[…] cade-lli la lhaceriosa memoria del trabayu; & assí, a remoleira, se vien a temprare. Lo violenta que ië la gracia de los démones \\[…].” \\n— Eschylu (“Agamemnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""

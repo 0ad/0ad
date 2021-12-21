@@ -48,8 +48,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-16 09:53+0000\n"
+"POT-Creation-Date: 2021-12-17 08:08+0000\n"
+"PO-Revision-Date: 2021-12-17 18:26+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -944,8 +944,8 @@ msgstr "Fuego amigo: %(enabled)s"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Sí"
@@ -953,8 +953,8 @@ msgstr "Sí"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "No"
@@ -3558,8 +3558,8 @@ msgid "Do you still want to proceed?"
 msgstr "¿Deseas continuar de todos modos?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:334 gui/options/options.js:399
-#: gui/options/options.js:425
+#: gui/options/options.js:347 gui/options/options.js:412
+#: gui/options/options.js:438
 msgid "Warning"
 msgstr "Atención"
 
@@ -3886,17 +3886,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (mín: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:333
+#: gui/options/options.js:346
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Restaurar los valores originales borrará tus ajustes. ¿Quieres continuar?"
 
-#: gui/options/options.js:398
+#: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "¡Algunos valores de configuración no son válidos! ¿Estás seguro de que quieres guardarlos?"
 
-#: gui/options/options.js:424
+#: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tienes cambios sin guardar. ¿Quieres cerrar la ventana?"
 
@@ -4150,12 +4150,28 @@ msgid "Graphics (advanced)"
 msgstr "Gráficos (avanzado)"
 
 #: gui/options/options.json[2].options[0].label
-msgid "Prefer GLSL"
-msgstr "Utilizar GLSL"
+msgid "Renderer backend"
+msgstr "Renderizador"
+
+#: gui/options/options.json[2].options[0].list[0].label
+msgid "OpenGL"
+msgstr "OpenGL"
+
+#: gui/options/options.json[2].options[0].list[0].tooltip
+msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
+msgstr "OpenGL con GLSL (predeterminado). REQUIERE REINICIAR EL JUEGO"
+
+#: gui/options/options.json[2].options[0].list[1].label
+msgid "OpenGL ARB"
+msgstr "OpenGL ARB"
+
+#: gui/options/options.json[2].options[0].list[1].tooltip
+msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
+msgstr "OpenGL tradicional con sombreado ARB. REQUIERE REINICIAR EL JUEGO"
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Utilizar sombreadores OpenGL 2.0 (recomendado)."
+msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
+msgstr "Elige el sistema de renderizado. REQUIERE REINICIAR EL JUEGO"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4862,6 +4878,14 @@ msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Decide si las formaciones tienen permitidas todas las órdenes o solamente 'caminar' y 'patrullar'."
+
+#: gui/options/options.json[6].options[22].label
+msgid "Battalion-style formations"
+msgstr "Formaciones en batallón"
+
+#: gui/options/options.json[6].options[22].tooltip
+msgid "Whether formations are selected as a whole."
+msgstr "Permite seleccionar las formaciones en grupo."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -6485,8 +6509,10 @@ msgid ""
 msgstr "Ordena a tus soldados en formaciones para mantenerlos organizados durante la batalla."
 
 #: gui/text/tips/formations.txt:3
-msgid "Formations are selected as a whole by default."
-msgstr "Se seleccionan formaciones completas por defecto."
+msgid ""
+"Formations are selected as a whole by default, but that can be changed in "
+"the game settings."
+msgstr "Las formaciones se seleccionan en grupo de forma predeterminada. Se puede cambiar en las opciones del juego."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

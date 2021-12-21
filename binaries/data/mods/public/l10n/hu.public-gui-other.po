@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-12-11 14:44+0000\n"
+"POT-Creation-Date: 2021-12-17 08:08+0000\n"
+"PO-Revision-Date: 2021-12-18 15:15+0000\n"
 "Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -925,8 +925,8 @@ msgstr "Baráti tűz: %(enabled)s"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Igen"
@@ -934,8 +934,8 @@ msgstr "Igen"
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
-#: gui/options/options.js:335 gui/options/options.js:400
-#: gui/options/options.js:426 gui/pregame/MainMenuItems.js:251
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Nem"
@@ -3539,8 +3539,8 @@ msgid "Do you still want to proceed?"
 msgstr "Biztosan folytatni akarod?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:334 gui/options/options.js:399
-#: gui/options/options.js:425
+#: gui/options/options.js:347 gui/options/options.js:412
+#: gui/options/options.js:438
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
@@ -3867,17 +3867,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Érték: %(val)s (legalább: %(min)s, legfeljebb: %(max)s)"
 
-#: gui/options/options.js:333
+#: gui/options/options.js:346
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "A beállítások helyreállítása törli a mentett beállításaid. Folytatni szeretnéd?"
 
-#: gui/options/options.js:398
+#: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "Néhány beállítási érték érvénytelen! Biztosan menthetőek?"
 
-#: gui/options/options.js:424
+#: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Mentetlen módosításaid vannak, szeretnéd bezárni ezt az ablakot?"
 
@@ -4131,12 +4131,28 @@ msgid "Graphics (advanced)"
 msgstr "Grafika (haladó)"
 
 #: gui/options/options.json[2].options[0].label
-msgid "Prefer GLSL"
-msgstr "GLSL előnyben részesítése"
+msgid "Renderer backend"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].label
+msgid "OpenGL"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[0].tooltip
+msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].label
+msgid "OpenGL ARB"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].list[1].tooltip
+msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
+msgstr ""
 
 #: gui/options/options.json[2].options[0].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "OpenGL 2.0 árnyalók használata (ajánlott)."
+msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
+msgstr ""
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4543,7 +4559,7 @@ msgstr "Játékosok beosztása"
 #: gui/options/options.json[4].options[5].list[0].label
 #: gui/options/options.json[5].options[4].list[0].label
 msgid "Everyone"
-msgstr "Mindenk"
+msgstr "Mindenkit"
 
 #: gui/options/options.json[4].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -4552,7 +4568,7 @@ msgstr "A meccshez csatlakozó játékosok beosztásra kerülnek, ha van szabad 
 #: gui/options/options.json[4].options[5].list[1].label
 #: gui/options/options.json[5].options[4].list[1].label
 msgid "Buddies"
-msgstr "Haverok"
+msgstr "Csak a haverokat"
 
 #: gui/options/options.json[4].options[5].list[1].tooltip
 msgid ""
@@ -4843,6 +4859,14 @@ msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Eldönti, hogy a formációk minden egység számára engedélyezve legyenek, vagy csak a sétáló és őrjáratozó egységek számára."
+
+#: gui/options/options.json[6].options[22].label
+msgid "Battalion-style formations"
+msgstr ""
+
+#: gui/options/options.json[6].options[22].tooltip
+msgid "Whether formations are selected as a whole."
+msgstr ""
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -6466,7 +6490,9 @@ msgid ""
 msgstr ""
 
 #: gui/text/tips/formations.txt:3
-msgid "Formations are selected as a whole by default."
+msgid ""
+"Formations are selected as a whole by default, but that can be changed in "
+"the game settings."
 msgstr ""
 
 #: gui/text/tips/fortress.txt:1
