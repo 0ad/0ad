@@ -1628,7 +1628,10 @@ typedef char GLchar;
 typedef char GLcharARB;
 
 #ifdef __APPLE__
-typedef void *GLhandleARB;
+// See https://bugs.freedesktop.org/show_bug.cgi?id=66346
+// macOS considers those to be different.
+// typedef void *GLhandleARB;
+typedef GLuint GLhandleARB;
 #else
 typedef unsigned int GLhandleARB;
 #endif
