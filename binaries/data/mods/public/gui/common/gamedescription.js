@@ -274,11 +274,13 @@ function getGameDescription(initAttributes, mapCache)
 		"value":
 			!ceasefire ?
 				translate("disabled") :
-				sprintf(translatePlural(
-					"For the first minute, other players will stay neutral.",
-					"For the first %(min)s minutes, other players will stay neutral.",
-					ceasefire),
-				{ "min": ceasefire })
+				ceasefire == 1 ?
+					translate("For the first minute, other players will stay neutral.") :
+					sprintf(translatePlural(
+						"For the first %(min)s minute, other players will stay neutral.",
+						"For the first %(min)s minutes, other players will stay neutral.",
+						ceasefire),
+					{ "min": ceasefire })
 	});
 
 	if (initAttributes.map == "random")
