@@ -143,7 +143,7 @@ Researcher.prototype.Item.prototype.GetBasicInfo = function()
 {
 	return {
 		"technologyTemplate": this.templateName,
-		"progress": 1 - (this.timeRemaining / this.timeTotal),
+		"progress": 1 - (this.timeRemaining / (this.timeTotal || 1)),
 		"timeRemaining": this.timeRemaining,
 		"paused": this.paused,
 		"metadata": this.metadata

@@ -232,7 +232,7 @@ void ShaderModelVertexRenderer::RenderModel(const CShaderProgramPtr& shader, int
 #if CONFIG2_GLES
 		glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
 #else
-		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
+		glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
 			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
 #endif
 	}

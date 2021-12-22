@@ -27,25 +27,41 @@
 #ifndef INCLUDED_OGL
 #define INCLUDED_OGL
 
-#include "lib/external_libraries/opengl.h"
+#include "lib/config2.h" // CONFIG2_GLES
+#include "lib/sysdep/os.h" // OS_WIN
 
+
+#if CONFIG2_GLES
+# include "external_libraries/opengles2_wrapper.h"
+#else
+# include <glad/gl.h>
+#endif
 
 /**
  * initialization: import extension function pointers and do feature detect.
  * call before using any other function.
  * fails if OpenGL not ready for use.
  **/
-extern void ogl_Init();
+#if OS_WIN
+extern bool ogl_Init(void* (load)(const char*), void* hdc);
+#elif !OS_MACOSX && !OS_MAC && !CONFIG2_GLES
+extern bool ogl_Init(void* (load)(const char*), void* display);
+#else
+extern bool ogl_Init(void* (load)(const char*));
+#endif
 
+/**
+ * Change vsync state.
+ **/
+extern void ogl_SetVsyncEnabled(bool enabled);
 
 //-----------------------------------------------------------------------------
 // extensions
 
 /**
- * check if an extension is supported by the OpenGL implementation.
- *
- * takes subsequently added core support for some extensions into account
- * (in case drivers forget to advertise extensions).
+ * Check whether the given OpenGL extension is supported.
+ * NOTE: this does not check whether the extensions is *loaded*.
+ * for that, check whether GLAD_<extension name> is not null.
  *
  * @param ext extension string; exact case.
  * @return bool.
@@ -55,12 +71,8 @@ extern bool ogl_HaveExtension(const char* ext);
 /**
  * make sure the OpenGL implementation version matches or is newer than
  * the given version.
- *
- * @param version version string; format: ("%d.%d", major, minor).
- * example: "1.2".
- **/
-extern bool ogl_HaveVersion(const char* version);
-
+ */
+extern bool ogl_HaveVersion(int major, int minor);
 /**
  * check if a list of extensions are all supported (as determined by
  * ogl_HaveExtension).
@@ -82,59 +94,6 @@ extern const char* ogl_HaveExtensions(int dummy, ...) SENTINEL_ARG;
  * advertised extension names, separated by space.
  **/
 extern const char* ogl_ExtensionString();
-
-// The game wants to use some extension constants that aren't provided by
-// glext.h on some old systems.
-// Manually define all the necessary ones that are missing from
-// GL_GLEXT_VERSION 39 (Mesa 7.0) since that's probably an old enough baseline:
-#ifndef GL_VERSION_3_0
-# define GL_MIN_PROGRAM_TEXEL_OFFSET 0x8904
-# define GL_MAX_PROGRAM_TEXEL_OFFSET 0x8905
-#endif
-#ifndef GL_EXT_transform_feedback
-# define GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT 0x8C8A
-# define GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT 0x8C8B
-# define GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT 0x8C80
-#endif
-#ifndef GL_ARB_geometry_shader4
-# define GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB 0x8C29
-# define GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB 0x8DDD
-# define GL_MAX_VERTEX_VARYING_COMPONENTS_ARB 0x8DDE
-# define GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB 0x8DDF
-# define GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB 0x8DE0
-# define GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB 0x8DE1
-#endif
-#ifndef GL_ARB_timer_query
-# define GL_TIME_ELAPSED 0x88BF
-# define GL_TIMESTAMP 0x8E28
-#endif
-#ifndef GL_ARB_framebuffer_object
-# define GL_INVALID_FRAMEBUFFER_OPERATION 0x0506
-#endif
-// Also need some more for OS X 10.5:
-#ifndef GL_EXT_texture_array
-# define GL_MAX_ARRAY_TEXTURE_LAYERS_EXT 0x88FF
-#endif
-// Also need some types not in old glext.h:
-#ifndef GL_ARB_sync
- typedef int64_t GLint64;
- typedef uint64_t GLuint64;
-#endif
-
-// declare extension function pointers
-#if OS_WIN
-# define GL_CALL_CONV __stdcall
-#else
-# define GL_CALL_CONV
-#endif
-#define FUNC(ret, name, params) EXTERN_C ret (GL_CALL_CONV *p##name) params;
-#define FUNC2(ret, nameARB, nameCore, version, params) EXTERN_C ret (GL_CALL_CONV *p##nameARB) params;
-#define FUNC3(ret, nameARB, nameCore, version, params) EXTERN_C ret (GL_CALL_CONV *p##nameCore) params;
-#include "lib/external_libraries/glext_funcs.h"
-#undef FUNC3
-#undef FUNC2
-#undef FUNC
-// leave GL_CALL_CONV defined for ogl.cpp
 
 
 //-----------------------------------------------------------------------------

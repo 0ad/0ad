@@ -56,10 +56,10 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, siz
 	m_MaxVertices = m_FreeVertices = size / vertexSize;
 
 	// allocate raw buffer
-	pglGenBuffersARB(1, &m_Handle);
-	pglBindBufferARB(m_Target, m_Handle);
-	pglBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, 0, m_Usage);
-	pglBindBufferARB(m_Target, 0);
+	glGenBuffersARB(1, &m_Handle);
+	glBindBufferARB(m_Target, m_Handle);
+	glBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, 0, m_Usage);
+	glBindBufferARB(m_Target, 0);
 
 	// create sole free chunk
 	VBChunk* chunk = new VBChunk;
@@ -75,7 +75,7 @@ CVertexBuffer::~CVertexBuffer()
 	ENSURE(m_AllocList.empty());
 
 	if (m_Handle)
-		pglDeleteBuffersARB(1, &m_Handle);
+		glDeleteBuffersARB(1, &m_Handle);
 
 	for (VBChunk* const& chunk : m_FreeList)
 		delete chunk;
@@ -207,9 +207,9 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 	}
 	else
 	{
-		pglBindBufferARB(m_Target, m_Handle);
-		pglBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
-		pglBindBufferARB(m_Target, 0);
+		glBindBufferARB(m_Target, m_Handle);
+		glBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
+		glBindBufferARB(m_Target, 0);
 	}
 }
 
@@ -218,7 +218,7 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 // to glVertexPointer ( + etc) calls
 u8* CVertexBuffer::Bind()
 {
-	pglBindBufferARB(m_Target, m_Handle);
+	glBindBufferARB(m_Target, m_Handle);
 
 	if (UseStreaming(m_Usage))
 	{
@@ -240,7 +240,7 @@ u8* CVertexBuffer::Bind()
 		if (needUpload)
 		{
 			// Tell the driver that it can reallocate the whole VBO
-			pglBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, NULL, m_Usage);
+			glBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, NULL, m_Usage);
 
 			// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
 			// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
@@ -249,7 +249,7 @@ u8* CVertexBuffer::Bind()
 
 			while (true)
 			{
-				void* p = pglMapBufferARB(m_Target, GL_WRITE_ONLY);
+				void* p = glMapBufferARB(m_Target, GL_WRITE_ONLY);
 				if (p == NULL)
 				{
 					// This shouldn't happen unless we run out of virtual address space
@@ -272,7 +272,7 @@ u8* CVertexBuffer::Bind()
 					if (chunk->m_Needed)
 						memcpy((u8 *)p + chunk->m_Index * m_VertexSize, chunk->m_BackingStore, chunk->m_Count * m_VertexSize);
 
-				if (pglUnmapBufferARB(m_Target) == GL_TRUE)
+				if (glUnmapBufferARB(m_Target) == GL_TRUE)
 					break;
 
 				// Unmap might fail on e.g. resolution switches, so just try again
@@ -308,8 +308,8 @@ u8* CVertexBuffer::Bind()
 
 void CVertexBuffer::Unbind()
 {
-	pglBindBufferARB(GL_ARRAY_BUFFER, 0);
-	pglBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBufferARB(GL_ARRAY_BUFFER, 0);
+	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 size_t CVertexBuffer::GetBytesReserved() const

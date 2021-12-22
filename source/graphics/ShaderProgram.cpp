@@ -30,6 +30,8 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
+#include <algorithm>
+
 #if !CONFIG2_GLES
 
 class CShaderProgramARB : public CShaderProgram
@@ -44,27 +46,27 @@ public:
 		m_Defines(defines),
 		m_VertexIndexes(vertexIndexes), m_FragmentIndexes(fragmentIndexes)
 	{
-		pglGenProgramsARB(1, &m_VertexProgram);
-		pglGenProgramsARB(1, &m_FragmentProgram);
+		glGenProgramsARB(1, &m_VertexProgram);
+		glGenProgramsARB(1, &m_FragmentProgram);
 	}
 
 	~CShaderProgramARB()
 	{
 		Unload();
 
-		pglDeleteProgramsARB(1, &m_VertexProgram);
-		pglDeleteProgramsARB(1, &m_FragmentProgram);
+		glDeleteProgramsARB(1, &m_VertexProgram);
+		glDeleteProgramsARB(1, &m_FragmentProgram);
 	}
 
 	bool Compile(GLuint target, const char* targetName, GLuint program, const VfsPath& file, const CStr& code)
 	{
 		ogl_WarnIfError();
 
-		pglBindProgramARB(target, program);
+		glBindProgramARB(target, program);
 
 		ogl_WarnIfError();
 
-		pglProgramStringARB(target, GL_PROGRAM_FORMAT_ASCII_ARB, (GLsizei)code.length(), code.c_str());
+		glProgramStringARB(target, GL_PROGRAM_FORMAT_ASCII_ARB, (GLsizei)code.length(), code.c_str());
 
 		if (ogl_SquelchError(GL_INVALID_OPERATION))
 		{
@@ -76,7 +78,7 @@ public:
 			return false;
 		}
 
-		pglBindProgramARB(target, 0);
+		glBindProgramARB(target, 0);
 
 		ogl_WarnIfError();
 
@@ -119,8 +121,8 @@ public:
 	{
 		glEnable(GL_VERTEX_PROGRAM_ARB);
 		glEnable(GL_FRAGMENT_PROGRAM_ARB);
-		pglBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
-		pglBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
+		glBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
+		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
 
 		BindClientStates();
 	}
@@ -129,8 +131,8 @@ public:
 	{
 		glDisable(GL_VERTEX_PROGRAM_ARB);
 		glDisable(GL_FRAGMENT_PROGRAM_ARB);
-		pglBindProgramARB(GL_VERTEX_PROGRAM_ARB, 0);
-		pglBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, 0);
+		glBindProgramARB(GL_VERTEX_PROGRAM_ARB, 0);
+		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, 0);
 
 		UnbindClientStates();
 
@@ -171,7 +173,7 @@ public:
 		{
 			GLuint h;
 			ogl_tex_get_texture_id(tex, &h);
-			pglActiveTextureARB(GL_TEXTURE0+index);
+			glActiveTextureARB(GL_TEXTURE0+index);
 			glBindTexture(fPair.second, h);
 		}
 	}
@@ -182,7 +184,7 @@ public:
 		int index = fPair.first;
 		if (index != -1)
 		{
-			pglActiveTextureARB(GL_TEXTURE0+index);
+			glActiveTextureARB(GL_TEXTURE0+index);
 			glBindTexture(fPair.second, tex);
 		}
 	}
@@ -202,28 +204,28 @@ public:
 	void Uniform(Binding id, float v0, float v1, float v2, float v3) override
 	{
 		if (id.first != -1)
-			pglProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first, v0, v1, v2, v3);
+			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first, v0, v1, v2, v3);
 
 		if (id.second != -1)
-			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second, v0, v1, v2, v3);
+			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second, v0, v1, v2, v3);
 	}
 
 	void Uniform(Binding id, const CMatrix3D& v) override
 	{
 		if (id.first != -1)
 		{
-			pglProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+0, v._11, v._12, v._13, v._14);
-			pglProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+1, v._21, v._22, v._23, v._24);
-			pglProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+2, v._31, v._32, v._33, v._34);
-			pglProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+3, v._41, v._42, v._43, v._44);
+			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+0, v._11, v._12, v._13, v._14);
+			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+1, v._21, v._22, v._23, v._24);
+			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+2, v._31, v._32, v._33, v._34);
+			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+3, v._41, v._42, v._43, v._44);
 		}
 
 		if (id.second != -1)
 		{
-			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+0, v._11, v._12, v._13, v._14);
-			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+1, v._21, v._22, v._23, v._24);
-			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+2, v._31, v._32, v._33, v._34);
-			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+3, v._41, v._42, v._43, v._44);
+			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+0, v._11, v._12, v._13, v._14);
+			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+1, v._21, v._22, v._23, v._24);
+			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+2, v._31, v._32, v._33, v._34);
+			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+3, v._41, v._42, v._43, v._44);
 		}
 	}
 
@@ -278,8 +280,8 @@ public:
 		m_VertexAttribs(vertexAttribs)
 	{
 		m_Program = 0;
-		m_VertexShader = pglCreateShaderObjectARB(GL_VERTEX_SHADER);
-		m_FragmentShader = pglCreateShaderObjectARB(GL_FRAGMENT_SHADER);
+		m_VertexShader = glCreateShaderObjectARB(GL_VERTEX_SHADER);
+		m_FragmentShader = glCreateShaderObjectARB(GL_FRAGMENT_SHADER);
 		m_FileDependencies = {m_VertexFile, m_FragmentFile};
 	}
 
@@ -287,8 +289,8 @@ public:
 	{
 		Unload();
 
-		pglDeleteShader(m_VertexShader);
-		pglDeleteShader(m_FragmentShader);
+		glDeleteShader(m_VertexShader);
+		glDeleteShader(m_FragmentShader);
 	}
 
 	bool Compile(GLhandleARB shader, const VfsPath& file, const CStr& code)
@@ -299,15 +301,15 @@ public:
 
 		const char* code_string = code.c_str();
 		GLint code_length = code.length();
-		pglShaderSourceARB(shader, 1, &code_string, &code_length);
+		glShaderSourceARB(shader, 1, &code_string, &code_length);
 
-		pglCompileShaderARB(shader);
+		glCompileShaderARB(shader);
 
 		GLint ok = 0;
-		pglGetShaderiv(shader, GL_COMPILE_STATUS, &ok);
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &ok);
 
 		GLint length = 0;
-		pglGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
 
 		// Apparently sometimes GL_INFO_LOG_LENGTH is incorrectly reported as 0
 		// (http://code.google.com/p/android/issues/detail?id=9953)
@@ -317,7 +319,7 @@ public:
 		if (length > 1)
 		{
 			char* infolog = new char[length];
-			pglGetShaderInfoLog(shader, length, NULL, infolog);
+			glGetShaderInfoLog(shader, length, NULL, infolog);
 
 			if (ok)
 				LOGMESSAGE("Info when compiling shader '%s':\n%s", file.string8(), infolog);
@@ -337,26 +339,26 @@ public:
 		TIMER_ACCRUE(tc_ShaderGLSLLink);
 
 		ENSURE(!m_Program);
-		m_Program = pglCreateProgramObjectARB();
+		m_Program = glCreateProgramObjectARB();
 
-		pglAttachObjectARB(m_Program, m_VertexShader);
+		glAttachObjectARB(m_Program, m_VertexShader);
 		ogl_WarnIfError();
-		pglAttachObjectARB(m_Program, m_FragmentShader);
+		glAttachObjectARB(m_Program, m_FragmentShader);
 		ogl_WarnIfError();
 
 		// Set up the attribute bindings explicitly, since apparently drivers
 		// don't always pick the most efficient bindings automatically,
 		// and also this lets us hardcode indexes into VertexPointer etc
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
-			pglBindAttribLocationARB(m_Program, it->second, it->first.c_str());
+			glBindAttribLocationARB(m_Program, it->second, it->first.c_str());
 
-		pglLinkProgramARB(m_Program);
+		glLinkProgramARB(m_Program);
 
 		GLint ok = 0;
-		pglGetProgramiv(m_Program, GL_LINK_STATUS, &ok);
+		glGetProgramiv(m_Program, GL_LINK_STATUS, &ok);
 
 		GLint length = 0;
-		pglGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &length);
+		glGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &length);
 
 		if (!ok && length == 0)
 			length = 4096;
@@ -364,7 +366,7 @@ public:
 		if (length > 1)
 		{
 			char* infolog = new char[length];
-			pglGetProgramInfoLog(m_Program, length, NULL, infolog);
+			glGetProgramInfoLog(m_Program, length, NULL, infolog);
 
 			if (ok)
 				LOGMESSAGE("Info when linking program '%s'+'%s':\n%s", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
@@ -387,7 +389,7 @@ public:
 		ogl_WarnIfError();
 
 		GLint numUniforms = 0;
-		pglGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &numUniforms);
+		glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &numUniforms);
 		ogl_WarnIfError();
 		for (GLint i = 0; i < numUniforms; ++i)
 		{
@@ -395,10 +397,10 @@ public:
 			GLsizei nameLength = 0;
 			GLint size = 0;
 			GLenum type = 0;
-			pglGetActiveUniformARB(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
+			glGetActiveUniformARB(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
 			ogl_WarnIfError();
 
-			GLint loc = pglGetUniformLocationARB(m_Program, name);
+			GLint loc = glGetUniformLocationARB(m_Program, name);
 
 			CStrIntern nameIntern(name);
 			m_Uniforms[nameIntern] = std::make_pair(loc, type);
@@ -414,7 +416,7 @@ public:
 				int unit = (int)m_Samplers.size();
 				m_Samplers[nameIntern].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 				m_Samplers[nameIntern].second = unit;
-				pglUniform1iARB(loc, unit); // link uniform to unit
+				glUniform1iARB(loc, unit); // link uniform to unit
 				ogl_WarnIfError();
 			}
 		}
@@ -502,7 +504,7 @@ public:
 		m_IsValid = false;
 
 		if (m_Program)
-			pglDeleteProgram(m_Program);
+			glDeleteProgram(m_Program);
 		m_Program = 0;
 
 		// The shader objects can be reused and don't need to be deleted here
@@ -510,18 +512,18 @@ public:
 
 	void Bind() override
 	{
-		pglUseProgramObjectARB(m_Program);
+		glUseProgramObjectARB(m_Program);
 
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
-			pglEnableVertexAttribArrayARB(it->second);
+			glEnableVertexAttribArrayARB(it->second);
 	}
 
 	void Unbind() override
 	{
-		pglUseProgramObjectARB(0);
+		glUseProgramObjectARB(0);
 
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
-			pglDisableVertexAttribArrayARB(it->second);
+			glDisableVertexAttribArrayARB(it->second);
 
 		// TODO: should unbind textures, probably
 	}
@@ -543,7 +545,7 @@ public:
 
 		GLuint h;
 		ogl_tex_get_texture_id(tex, &h);
-		pglActiveTextureARB(GL_TEXTURE0 + it->second.second);
+		glActiveTextureARB(GL_TEXTURE0 + it->second.second);
 		glBindTexture(it->second.first, h);
 	}
 
@@ -553,7 +555,7 @@ public:
 		if (it == m_Samplers.end())
 			return;
 
-		pglActiveTextureARB(GL_TEXTURE0 + it->second.second);
+		glActiveTextureARB(GL_TEXTURE0 + it->second.second);
 		glBindTexture(it->second.first, tex);
 	}
 
@@ -564,7 +566,7 @@ public:
 
 		GLuint h;
 		ogl_tex_get_texture_id(tex, &h);
-		pglActiveTextureARB(GL_TEXTURE0 + id.second);
+		glActiveTextureARB(GL_TEXTURE0 + id.second);
 		glBindTexture(id.first, h);
 	}
 
@@ -582,13 +584,13 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT)
-				pglUniform1fARB(id.first, v0);
+				glUniform1fARB(id.first, v0);
 			else if (id.second == GL_FLOAT_VEC2)
-				pglUniform2fARB(id.first, v0, v1);
+				glUniform2fARB(id.first, v0, v1);
 			else if (id.second == GL_FLOAT_VEC3)
-				pglUniform3fARB(id.first, v0, v1, v2);
+				glUniform3fARB(id.first, v0, v1, v2);
 			else if (id.second == GL_FLOAT_VEC4)
-				pglUniform4fARB(id.first, v0, v1, v2, v3);
+				glUniform4fARB(id.first, v0, v1, v2, v3);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float, vec2, vec3, vec4)");
 		}
@@ -599,7 +601,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT_MAT4)
-				pglUniformMatrix4fvARB(id.first, 1, GL_FALSE, &v._11);
+				glUniformMatrix4fvARB(id.first, 1, GL_FALSE, &v._11);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}
@@ -610,7 +612,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT_MAT4)
-				pglUniformMatrix4fvARB(id.first, count, GL_FALSE, &v->_11);
+				glUniformMatrix4fvARB(id.first, count, GL_FALSE, &v->_11);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}
@@ -621,7 +623,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT)
-				pglUniform1fvARB(id.first, count, v);
+				glUniform1fvARB(id.first, count, v);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float)");
 		}
@@ -632,25 +634,25 @@ public:
 
 	void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
-		pglVertexAttribPointerARB(0, size, type, GL_FALSE, stride, pointer);
+		glVertexAttribPointerARB(0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_POS;
 	}
 
 	void NormalPointer(GLenum type, GLsizei stride, const void* pointer) override
 	{
-		pglVertexAttribPointerARB(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		glVertexAttribPointerARB(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
 	void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
-		pglVertexAttribPointerARB(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		glVertexAttribPointerARB(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 
 	void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
-		pglVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
+		glVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
@@ -659,7 +661,7 @@ public:
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
 		{
-			pglVertexAttribPointerARB(it->second, size, type, normalized, stride, pointer);
+			glVertexAttribPointerARB(it->second, size, type, normalized, stride, pointer);
 		}
 	}
 
@@ -671,7 +673,7 @@ public:
 #if CONFIG2_GLES
 			debug_warn(L"glVertexAttribIPointer not supported on GLES");
 #else
-			pglVertexAttribIPointerEXT(it->second, size, type, stride, pointer);
+			glVertexAttribIPointerEXT(it->second, size, type, stride, pointer);
 #endif
 		}
 	}
@@ -880,9 +882,9 @@ void CShaderProgram::ColorPointer(GLint size, GLenum type, GLsizei stride, const
 
 void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer)
 {
-	pglClientActiveTextureARB(texture);
+	glClientActiveTextureARB(texture);
 	glTexCoordPointer(size, type, stride, pointer);
-	pglClientActiveTextureARB(GL_TEXTURE0);
+	glClientActiveTextureARB(GL_TEXTURE0);
 	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 }
 
@@ -898,15 +900,15 @@ void CShaderProgram::BindClientStates()
 
 	if (m_StreamFlags & STREAM_UV0)
 	{
-		pglClientActiveTextureARB(GL_TEXTURE0);
+		glClientActiveTextureARB(GL_TEXTURE0);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
 
 	if (m_StreamFlags & STREAM_UV1)
 	{
-		pglClientActiveTextureARB(GL_TEXTURE1);
+		glClientActiveTextureARB(GL_TEXTURE1);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		pglClientActiveTextureARB(GL_TEXTURE0);
+		glClientActiveTextureARB(GL_TEXTURE0);
 	}
 
 	// Rendering code must subsequently call VertexPointer etc for all of the streams
@@ -923,15 +925,15 @@ void CShaderProgram::UnbindClientStates()
 
 	if (m_StreamFlags & STREAM_UV0)
 	{
-		pglClientActiveTextureARB(GL_TEXTURE0);
+		glClientActiveTextureARB(GL_TEXTURE0);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
 
 	if (m_StreamFlags & STREAM_UV1)
 	{
-		pglClientActiveTextureARB(GL_TEXTURE1);
+		glClientActiveTextureARB(GL_TEXTURE1);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		pglClientActiveTextureARB(GL_TEXTURE0);
+		glClientActiveTextureARB(GL_TEXTURE0);
 	}
 }
 

@@ -139,11 +139,6 @@ public:
 	void EndFrame();
 
 	/**
-	 * Should be called after each SwapBuffers call.
-	 */
-	void OnSwapBuffers();
-
-	/**
 	 * Set simulation context for rendering purposes.
 	 * Must be called at least once when the game has started and before
 	 * frames are rendered.

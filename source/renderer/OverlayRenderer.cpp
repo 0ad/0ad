@@ -415,7 +415,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 	ogl_WarnIfError();
 
-	pglActiveTextureARB(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
@@ -522,7 +522,7 @@ void OverlayRenderer::RenderQuadOverlays()
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 
-	pglActiveTextureARB(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
@@ -602,7 +602,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	pglActiveTextureARB(GL_TEXTURE0);
+	glActiveTextureARB(GL_TEXTURE0);
 	glEnable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
 

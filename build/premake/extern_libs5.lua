@@ -333,6 +333,9 @@ extern_lib_defs = {
 			})
 		end,
 	},
+	glad = {
+		add_source_include_paths("glad")
+	},
 	gloox = {
 		compile_settings = function()
 			if os.istarget("windows") then

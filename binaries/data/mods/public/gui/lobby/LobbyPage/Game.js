@@ -154,6 +154,7 @@ class Game
 			Engine.ProfileStop();
 		}
 
+		sortValues.private = newStanza.hasPassword;
 		displayData.private = newStanza.hasPassword ? '[icon="icon_private"]' : '';
 
 		this.stanza = newStanza;

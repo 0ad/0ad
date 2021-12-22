@@ -114,13 +114,6 @@ MESSAGEHANDLER(InitGraphics)
 	g_VideoMode.CreateBackendDevice(false);
 
 	InitGraphics(g_AtlasGameLoop->args, g_InitFlags, {});
-
-#if OS_WIN
-	// HACK (to stop things looking very ugly when scrolling) - should
-	// use proper config system.
-	if(ogl_HaveExtension("WGL_EXT_swap_control"))
-		pwglSwapIntervalEXT(1);
-#endif
 }
 
 

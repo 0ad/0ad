@@ -237,17 +237,17 @@ void CMiniMapTexture::CreateTextures(const CTerrain* terrain)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	pglGenFramebuffersEXT(1, &m_FinalTextureFBO);
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FinalTexture, 0);
+	glGenFramebuffersEXT(1, &m_FinalTextureFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FinalTexture, 0);
 
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING("MiniMapTexture Framebuffer object incomplete (A): 0x%04X", status);
 	}
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 void CMiniMapTexture::DestroyTextures()
@@ -345,7 +345,7 @@ void CMiniMapTexture::RenderFinalTexture()
 		return;
 	m_FinalTextureDirty = false;
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
 
 	const SViewPort oldViewPort = g_Renderer.GetViewport();
 	const SViewPort viewPort = { 0, 0, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE };
@@ -521,7 +521,7 @@ void CMiniMapTexture::RenderFinalTexture()
 
 	tech->EndPass();
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	g_Renderer.SetViewport(oldViewPort);
 }
 

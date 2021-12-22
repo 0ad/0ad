@@ -71,7 +71,7 @@ protected:
 	~CProfiler2GPU_timer_query()
 	{
 		if (!m_FreeQueries.empty())
-			pglDeleteQueriesARB(m_FreeQueries.size(), &m_FreeQueries[0]);
+			glDeleteQueriesARB(m_FreeQueries.size(), &m_FreeQueries[0]);
 		ogl_WarnIfError();
 	}
 
@@ -82,7 +82,7 @@ protected:
 		{
 			// Generate a batch of new queries
 			m_FreeQueries.resize(8);
-			pglGenQueriesARB(m_FreeQueries.size(), &m_FreeQueries[0]);
+			glGenQueriesARB(m_FreeQueries.size(), &m_FreeQueries[0]);
 			ogl_WarnIfError();
 		}
 
@@ -169,7 +169,7 @@ public:
 		{
 			PROFILE2("profile timestamp resync");
 
-			pglGetInteger64v(GL_TIMESTAMP, &frame.syncTimestampStart);
+			glGetInteger64v(GL_TIMESTAMP, &frame.syncTimestampStart);
 			ogl_WarnIfError();
 
 			frame.syncTimeStart = m_Profiler.GetTime();
@@ -203,7 +203,7 @@ public:
 		event.query = NewQuery();
 		event.isEnter = isEnter;
 
-		pglQueryCounter(event.query, GL_TIMESTAMP);
+		glQueryCounter(event.query, GL_TIMESTAMP);
 		ogl_WarnIfError();
 
 		frame.events.push_back(event);
@@ -229,7 +229,7 @@ private:
 
 			// Queries become available in order so we only need to check the last one
 			GLint available = 0;
-			pglGetQueryObjectivARB(frame.events.back().query, GL_QUERY_RESULT_AVAILABLE, &available);
+			glGetQueryObjectivARB(frame.events.back().query, GL_QUERY_RESULT_AVAILABLE, &available);
 			ogl_WarnIfError();
 			if (!available)
 				break;
@@ -239,7 +239,7 @@ private:
 			for (size_t i = 0; i < frame.events.size(); ++i)
 			{
 				GLuint64 queryTimestamp = 0;
-				pglGetQueryObjectui64v(frame.events[i].query, GL_QUERY_RESULT, &queryTimestamp);
+				glGetQueryObjectui64v(frame.events[i].query, GL_QUERY_RESULT, &queryTimestamp);
 					// (use the non-suffixed function here, as defined by GL_ARB_timer_query)
 				ogl_WarnIfError();
 
@@ -339,7 +339,7 @@ public:
 	{
 		RegionLeave("frame");
 
-		pglEndQueryARB(GL_TIME_ELAPSED);
+		glEndQueryARB(GL_TIME_ELAPSED);
 		ogl_WarnIfError();
 	}
 
@@ -356,7 +356,7 @@ public:
 
 		if (!frame.events.empty())
 		{
-			pglEndQueryARB(GL_TIME_ELAPSED);
+			glEndQueryARB(GL_TIME_ELAPSED);
 			ogl_WarnIfError();
 		}
 
@@ -365,7 +365,7 @@ public:
 		event.query = NewQuery();
 		event.isEnter = isEnter;
 
-		pglBeginQueryARB(GL_TIME_ELAPSED, event.query);
+		glBeginQueryARB(GL_TIME_ELAPSED, event.query);
 		ogl_WarnIfError();
 
 		frame.events.push_back(event);
@@ -390,7 +390,7 @@ private:
 
 			// Queries become available in order so we only need to check the last one
 			GLint available = 0;
-			pglGetQueryObjectivARB(frame.events.back().query, GL_QUERY_RESULT_AVAILABLE, &available);
+			glGetQueryObjectivARB(frame.events.back().query, GL_QUERY_RESULT_AVAILABLE, &available);
 			ogl_WarnIfError();
 			if (!available)
 				break;
@@ -413,7 +413,7 @@ private:
 
 				// Advance by the elapsed time to the next event
 				GLuint64 queryElapsed = 0;
-				pglGetQueryObjectui64vEXT(frame.events[i].query, GL_QUERY_RESULT, &queryElapsed);
+				glGetQueryObjectui64vEXT(frame.events[i].query, GL_QUERY_RESULT, &queryElapsed);
 					// (use the EXT-suffixed function here, as defined by GL_EXT_timer_query)
 				ogl_WarnIfError();
 				t += (double)queryElapsed / 1e9;
@@ -518,7 +518,7 @@ public:
 
 		for (size_t i = 0; i < m_QueryTypes.size(); ++i)
 			for (size_t j = 0; j < m_QueryTypes[i].freeQueries.size(); ++j)
-				pglDeletePerfQueryINTEL(m_QueryTypes[i].freeQueries[j]);
+				glDeletePerfQueryINTEL(m_QueryTypes[i].freeQueries[j]);
 
 		ogl_WarnIfError();
 	}
@@ -553,7 +553,7 @@ public:
 		for (size_t i = 0; i < m_QueryTypes.size(); ++i)
 		{
 			GLuint local_id = NewQuery(i);
-			pglBeginPerfQueryINTEL(local_id);
+			glBeginPerfQueryINTEL(local_id);
 			ogl_WarnIfError();
 			event.queries.push_back(local_id);
 		}
@@ -573,7 +573,7 @@ public:
 
 		for (size_t i = 0; i < m_QueryTypes.size(); ++i)
 		{
-			pglEndPerfQueryINTEL(activeEvent.queries[i]);
+			glEndPerfQueryINTEL(activeEvent.queries[i]);
 			ogl_WarnIfError();
 		}
 
@@ -593,7 +593,7 @@ private:
 		if (m_QueryTypes[queryIdx].freeQueries.empty())
 		{
 			GLuint id;
-			pglCreatePerfQueryINTEL(m_QueryTypes[queryIdx].queryTypeId, &id);
+			glCreatePerfQueryINTEL(m_QueryTypes[queryIdx].queryTypeId, &id);
 			ogl_WarnIfError();
 			return id;
 		}
@@ -623,7 +623,7 @@ private:
 						continue;
 
 					GLuint length = 0;
-					pglGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_NONBLOCK, size, buffer.data(), &length);
+					glGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_NONBLOCK, size, buffer.data(), &length);
 					ogl_WarnIfError();
 					if (length == 0)
 						return;
@@ -650,7 +650,7 @@ private:
 					{
 						GLuint length;
 						buffer.resize(m_QueryTypes[j].counterBufferSize);
-						pglGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_BLOCK, m_QueryTypes[j].counterBufferSize, buffer.data(), &length);
+						glGetPerfQueryDataINTEL(frame.events[i].queries[j], INTEL_PERFQUERIES_BLOCK, m_QueryTypes[j].counterBufferSize, buffer.data(), &length);
 						ogl_WarnIfError();
 						ENSURE(length == m_QueryTypes[j].counterBufferSize);
 
@@ -727,13 +727,13 @@ private:
 	void LoadPerfCounters()
 	{
 		GLuint queryTypeId;
-		pglGetFirstPerfQueryIdINTEL(&queryTypeId);
+		glGetFirstPerfQueryIdINTEL(&queryTypeId);
 		ogl_WarnIfError();
 		do
 		{
 			char queryName[256];
 			GLuint counterBufferSize, numCounters, maxQueries, unknown;
-			pglGetPerfQueryInfoINTEL(queryTypeId, ARRAY_SIZE(queryName), queryName, &counterBufferSize, &numCounters, &maxQueries, &unknown);
+			glGetPerfQueryInfoINTEL(queryTypeId, ARRAY_SIZE(queryName), queryName, &counterBufferSize, &numCounters, &maxQueries, &unknown);
 			ogl_WarnIfError();
 			ENSURE(unknown == 1);
 
@@ -748,7 +748,7 @@ private:
 				char counterDesc[2048];
 				GLuint counterOffset, counterSize, counterUsage, counterType;
 				GLuint64 unknown2;
-				pglGetPerfCounterInfoINTEL(queryTypeId, counterId, ARRAY_SIZE(counterName), counterName, ARRAY_SIZE(counterDesc), counterDesc, &counterOffset, &counterSize, &counterUsage, &counterType, &unknown2);
+				glGetPerfCounterInfoINTEL(queryTypeId, counterId, ARRAY_SIZE(counterName), counterName, ARRAY_SIZE(counterDesc), counterDesc, &counterOffset, &counterSize, &counterUsage, &counterType, &unknown2);
 				ogl_WarnIfError();
 				ENSURE(unknown2 == 0 || unknown2 == 1);
 
@@ -763,7 +763,7 @@ private:
 
 			m_QueryTypes.push_back(query);
 
-			pglGetNextPerfQueryIdINTEL(queryTypeId, &queryTypeId);
+			glGetNextPerfQueryIdINTEL(queryTypeId, &queryTypeId);
 			ogl_WarnIfError();
 
 		} while (queryTypeId);

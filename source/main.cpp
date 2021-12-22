@@ -75,6 +75,7 @@ that of Atlas depending on commandline parameters.
 #include "graphics/GameView.h"
 #include "graphics/TextureManager.h"
 #include "gui/GUIManager.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "rlinterface/RLInterface.h"
 #include "scriptinterface/ScriptContext.h"
@@ -441,13 +442,7 @@ static void Frame()
 	{
 		Render();
 
-		{
-			PROFILE3("swap buffers");
-			SDL_GL_SwapWindow(g_VideoMode.GetWindow());
-			ogl_WarnIfError();
-		}
-
-		g_Renderer.OnSwapBuffers();
+		g_VideoMode.GetBackendDevice()->Present();
 	}
 
 	g_Profiler.Frame();
