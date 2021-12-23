@@ -18,6 +18,13 @@
 // This pipeline is used to build patches on MSVC 15.0 (Visual Studio 2017).
 
 def jobs = "2"
+def visualStudioPath = "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\""
+def cleanFiles() {
+	bat 'powershell.exe "svn st -q | ForEach-Object { Remove-Item -ErrorAction Ignore -Recurse -Force -Verbose -LiteralPath $_.substring(8) } " '
+	bat 'powershell.exe "svn st binaries/data | ForEach-Object { Remove-Item -ErrorAction Ignore -Recurse -Verbose -Force -LiteralPath $_.substring(8) } " '
+	bat 'powershell.exe "svn st source/ | ForEach-Object { Remove-Item -ErrorAction Ignore -Recurse -Force -Verbose -LiteralPath $_.substring(8) } " '
+	bat 'svn revert -R .'
+}
 pipeline {
 	agent { label 'WindowsSlave' }
 	options {
@@ -51,10 +58,9 @@ pipeline {
 			steps {
 				script {
 					try {
-					 bat "arc patch --diff ${params.DIFF_ID} --force"
+						bat "arc patch --diff ${params.DIFF_ID} --force"
 					} catch (e) {
-						bat 'svn revert -R .'
-						bat 'powershell.exe "svn st --no-ignore | %% {$_.substring(8)} | del -r" '
+						cleanFiles()
 						bat "arc patch --diff ${params.DIFF_ID} --force"
 					}
 				}
@@ -62,15 +68,15 @@ pipeline {
 		}
 		stage ('Update-Workspace') {
 			steps {
-				bat "(robocopy /MIR C:\\wxwidgets3.0.4\\lib libraries\\win32\\wxwidgets\\lib) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
-				bat "(robocopy /MIR C:\\wxwidgets3.0.4\\include libraries\\win32\\wxwidgets\\include) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
+				bat "(robocopy /MIR /NDL /NJH /NJS /NP /NS /NC C:\\wxwidgets3.0.4\\lib libraries\\win32\\wxwidgets\\lib) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
+				bat "(robocopy /MIR /NDL /NJH /NJS /NP /NS /NC C:\\wxwidgets3.0.4\\include libraries\\win32\\wxwidgets\\include) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
 				bat "cd build\\workspaces && update-workspaces.bat --atlas --build-shared-glooxwrapper --jenkins-tests"
 			}
 		}
 		stage ('Debug: Build') {
 			steps {
 				dir('build\\workspaces\\vs2017'){
-					bat("\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Debug -clp:Warningsonly -clp:ErrorsOnly > ..\\..\\..\\build-errors-debug.txt 2>&1")
+					bat("${visualStudioPath} pyrogenesis.sln /nologo /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Debug -clp:Warningsonly -clp:ErrorsOnly > ..\\..\\..\\build-errors-debug.txt 2>&1")
 				}
 			}
 			post {
@@ -106,7 +112,7 @@ pipeline {
 		stage ('Release: Build') {
 			steps {
 				dir('build\\workspaces\\vs2017'){
-					bat("\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Release -clp:Warningsonly -clp:ErrorsOnly > ..\\..\\..\\build-errors-release.txt 2>&1")
+					bat("${visualStudioPath} pyrogenesis.sln /nologo /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Release -clp:Warningsonly -clp:ErrorsOnly > ..\\..\\..\\build-errors-release.txt 2>&1")
 				}
 			}
 			post {
@@ -136,9 +142,9 @@ pipeline {
 		always {
 			script {
 					catchError {
-						bat "if exist build-errors-debug.txt echo Debug: >> .phabricator-comment"
+						bat 'powershell.exe "if (![String]::IsNullOrWhiteSpace((Get-Content -ErrorAction Ignore -Path build-errors-debug.txt))) { Add-Content .phabricator-comment Debug: }" '
 						bat "if exist build-errors-debug.txt type build-errors-debug.txt >> .phabricator-comment"
-						bat "if exist build-errors-release.txt echo Release: >> .phabricator-comment"
+						bat 'powershell.exe "if (![String]::IsNullOrWhiteSpace((Get-Content -ErrorAction Ignore -Path build-errors-release.txt))) { Add-Content .phabricator-comment Release: }" '
 						bat "if exist build-errors-release.txt type build-errors-release.txt >> .phabricator-comment"
 					}
 					try {
@@ -153,9 +159,7 @@ pipeline {
 						bat 'del build-errors-debug.txt'
 						bat 'del build-errors-release.txt'
 						bat 'del cxxtest_*.xml'
-						bat 'svn revert -R .'
-						bat 'powershell.exe "svn st binaries/data | %% {$_.substring(8)} | del -r " '
-						bat 'powershell.exe "svn st source/ | %% {$_.substring(8)} | del -r " '
+						cleanFiles()
 					}
 			}
 		}

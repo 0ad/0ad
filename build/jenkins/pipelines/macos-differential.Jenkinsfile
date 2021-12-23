@@ -35,7 +35,7 @@ pipeline {
 			steps {
 				script {
 					try {
-						svn "https://svn.wildfiregames.com/public/ps/trunk"
+						sh "svn update"
 					} catch(e) {
 						sh "svn cleanup"
 						sleep 300
@@ -51,8 +51,10 @@ pipeline {
 					try {
 						sh "arc patch --diff ${params.DIFF_ID} --force"
 					} catch (e) {
+						sh "svn st binaries/data/ | cut -c 9- | xargs rm -rfv"
+						sh "svn st source/ | cut -c 9- | xargs rm -rfv"
+						sh "svn st -q | cut -c 9- | xargs rm -rfv"
 						sh "svn revert -R ."
-						sh "svn st | cut -c 9- | xargs rm -rf"
 						sh "arc patch --diff ${params.DIFF_ID} --force"
 					}
 				}
@@ -112,10 +114,10 @@ pipeline {
 				catchError {
 					sh '''
 					for file in builderr-*.txt ; do
-					  if [ -s "$file" ]; then
-						echo "$file" >> .phabricator-comment
-						cat "$file" >> .phabricator-comment
-					  fi
+						if [ -s "$file" ]; then
+							echo "$file" >> .phabricator-comment
+							cat "$file" >> .phabricator-comment
+						fi
 					done
 					'''
 				}
@@ -130,9 +132,10 @@ pipeline {
 					throw e
 				} finally {
 					sh "rm -f .phabricator-comment builderr-*.txt cxxtest-*.xml"
+					sh "svn st binaries/data/ | cut -c 9- | xargs rm -rfv"
+					sh "svn st source/ | cut -c 9- | xargs rm -rfv"
+					sh "svn st -q | cut -c 9- | xargs rm -rfv"
 					sh "svn revert -R ."
-					sh "svn st binaries/data/ | cut -c 9- | xargs rm -rf"
-					sh "svn st source/ | cut -c 9- | xargs rm -rf"
 				}
 			}
 		}
