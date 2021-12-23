@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,9 +24,11 @@ pipeline {
 	}
 
 	parameters {
-		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.24dev', description: 'Bundle Version')
+		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.26dev', description: 'Bundle Version')
 		string(name: 'SVN_REV', defaultValue: 'HEAD', description: 'For instance 21000')
 		booleanParam(name: 'ONLY_MOD', defaultValue: true, description: 'Only archive the mod mod.')
+		booleanParam(name: 'DO_GZIP', defaultValue: true, description: 'Create .gz unix tarballs as well as .xz')
+		booleanParam(name: 'FULL_REBUILD', defaultValue: true, description: 'Do a full rebuild (safer for release, slower).')
 	}
 
 	stages {
@@ -37,45 +39,59 @@ pipeline {
 			steps {
 				script {
 					try {
-						svn "https://svn.wildfiregames.com/public/ps/trunk@${params.SVN_REV}"
+						sh "svn co https://svn.wildfiregames.com/public/ps/trunk@${params.SVN_REV} ."
 					} catch(e) {
 						sh "svn cleanup"
 						sleep 300
 						throw e
 					}
+					sh "svn cleanup"
+					// Delete unknown files everywhere except libraries/
+					sh "svn st --no-ignore . --depth immediates | cut -c 9- | xargs rm -rfv"
+					sh "svn st --no-ignore {binaries/,build/,source/} | cut -c 9- | xargs rm -rfv"
+					if (params.FULL_REBUILD) {
+						// Also delete libraries/
+						sh "svn st --no-ignore | cut -c 9- | xargs rm -rfv"
+					}
+					sh "svn revert . -R"
 				}
-				sh "svn cleanup"
-				sh "svn revert . -R"
-				sh "svn st --no-ignore | cut -c 9- | xargs rm -rfv"
 			}
 		}
 		stage("Compile Mac Executable") {
 			steps {
-				sh "source/tools/dist/build-osx-executable.sh"
+				sh "FULL_REBUILD=${params.FULL_REBUILD} source/tools/dist/build-osx-executable.sh"
 			}
 		}
 		stage("Create archive data") {
 			steps {
-				sh "ONLY_MOD=${ONLY_MOD} source/tools/dist/build-archives.sh"
+				sh "ONLY_MOD=${params.ONLY_MOD} source/tools/dist/build-archives.sh"
 			}
 		}
 		stage("Create Mac Bundle") {
 			steps {
-				sh "python3 source/tools/dist/build-osx-bundle.py ${BUNDLE_VERSION}"
+				sh "python3 source/tools/dist/build-osx-bundle.py ${params.BUNDLE_VERSION}"
 			}
 		}
 		stage("Create Windows installer & *nix files") {
 			steps {
 				// The files created by the mac compilation need to be deleted
-				sh "svn st binaries/ --no-ignore | cut -c 9- | xargs rm -rf"
-				sh "svn st build/ --no-ignore | cut -c 9- | xargs rm -rf"
-				sh "svn st libraries/ --no-ignore | cut -c 9- | xargs rm -rf"
+				sh "svn st {binaries/,build/} --no-ignore | cut -c 9- | xargs rm -rfv"
+				// Hide the libraries folder.
+				sh "mv libraries/ temp_libraries/"
+				sh "svn revert libraries/ -R"
 				// The generated tests use hardcoded paths so they must be deleted as well.
 				sh 'python3 -c \"import glob; print(\\\" \\\".join(glob.glob(\\\"source/**/tests/**.cpp\\\", recursive=True)));\" | xargs rm -v'
 				sh "svn revert build/ -R"
-
-				// Then run the core object.
-				sh "BUNDLE_VERSION=${BUNDLE_VERSION} source/tools/dist/build-unix-win32.sh"
+				script {
+					try {
+						// Then run the core object.
+						sh "BUNDLE_VERSION=${params.BUNDLE_VERSION} DO_GZIP=${params.DO_GZIP} source/tools/dist/build-unix-win32.sh"
+					} finally {
+						// Un-hide the libraries.
+						sh "rm -rfv libraries/"
+						sh "mv temp_libraries/ libraries/"
+					}
+				}
 			}
 		}
 	}

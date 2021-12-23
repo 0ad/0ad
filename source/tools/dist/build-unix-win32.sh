@@ -29,8 +29,11 @@ tar cf $PREFIX-unix-data.tar \
 # Compress
 xz -kv ${XZOPTS} $PREFIX-unix-build.tar
 xz -kv ${XZOPTS} $PREFIX-unix-data.tar
-7z a ${GZIP7ZOPTS} $PREFIX-unix-build.tar.gz $PREFIX-unix-build.tar
-7z a ${GZIP7ZOPTS} $PREFIX-unix-data.tar.gz $PREFIX-unix-data.tar
+DO_GZIP=${DO_GZIP:=true}
+if $DO_GZIP = true; then
+	7z a ${GZIP7ZOPTS} $PREFIX-unix-build.tar.gz $PREFIX-unix-build.tar
+	7z a ${GZIP7ZOPTS} $PREFIX-unix-data.tar.gz $PREFIX-unix-data.tar
+fi
 
 # Create Windows installer
 # This needs nsisbi for files > 2GB
@@ -42,7 +45,12 @@ makensis -V4 -nocd \
 	source/tools/dist/0ad.nsi
 
 # Fix permissions
-chmod -f 644 ${PREFIX}-{unix-{build,data}.tar.{xz,gz},win32.exe}
+chmod -f 644 ${PREFIX}-{unix-{build,data}.tar.xz,win32.exe}
 
 # Print digests for copying into wiki page
-shasum -a 1 ${PREFIX}-{unix-{build,data}.tar.{xz,gz},win32.exe}
+shasum -a 1 ${PREFIX}-{unix-{build,data}.tar.xz,win32.exe}
+
+if $DO_GZIP = true; then
+	chmod -f 644 ${PREFIX}-unix-{build,data}.tar.gz
+	shasum -a 1 ${PREFIX}-unix-{build,data}.tar.gz
+fi
