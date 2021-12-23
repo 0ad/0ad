@@ -133,31 +133,12 @@ class CTextureManagerImpl
 public:
 	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL) :
 		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL),
-		m_TextureConverter(vfs, highQuality), m_DefaultHandle(0),
+		m_TextureConverter(vfs, highQuality),
+		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), vfs, L"(default texture)", disableGL, this),
 		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), vfs, L"(error texture)", disableGL, this),
 		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), vfs, L"(white texture)", disableGL, this),
 		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), vfs, L"(transparent texture)", disableGL, this)
 	{
-		// Initialise some textures that will always be available,
-		// without needing to load any files
-
-		// Default placeholder texture (grey)
-		if (!m_DisableGL)
-		{
-			// Construct 1x1 24-bit texture
-			std::shared_ptr<u8> data(new u8[3], ArrayDeleter());
-			data.get()[0] = 64;
-			data.get()[1] = 64;
-			data.get()[2] = 64;
-			Tex t;
-			ignore_result(t.wrap(1, 1, 24, 0, data, 0));
-
-			m_DefaultHandle = ogl_tex_wrap(&t, m_VFS, L"(default texture)");
-			ignore_result(ogl_tex_set_filter(m_DefaultHandle, GL_LINEAR));
-			if (!m_DisableGL)
-				ignore_result(ogl_tex_upload(m_DefaultHandle));
-		}
-
 		// Allow hotloading of textures
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
@@ -165,8 +146,6 @@ public:
 	~CTextureManagerImpl()
 	{
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
-
-		ignore_result(ogl_tex_free(m_DefaultHandle));
 	}
 
 	CTexturePtr GetErrorTexture()
@@ -190,7 +169,7 @@ public:
 	CTexturePtr CreateTexture(const CTextureProperties& props)
 	{
 		// Construct a new default texture with the given properties to use as the search key
-		CTexturePtr texture(new CTexture(m_DefaultHandle, props, this));
+		CTexturePtr texture(new CTexture(m_DefaultTexture.GetHandle(), props, this));
 
 		// Try to find an existing texture with the given properties
 		TextureCache::iterator it = m_TextureCache.find(texture);
@@ -521,7 +500,7 @@ public:
 				if (std::shared_ptr<CTexture> texture = it->lock())
 				{
 					texture->m_State = CTexture::UNLOADED;
-					texture->SetHandle(m_DefaultHandle);
+					texture->SetHandle(m_DefaultTexture.GetHandle());
 				}
 			}
 		}
@@ -543,7 +522,7 @@ private:
 	bool m_DisableGL;
 	CTextureConverter m_TextureConverter;
 
-	Handle m_DefaultHandle;
+	SingleColorTexture m_DefaultTexture;
 	SingleColorTexture m_ErrorTexture;
 	SingleColorTexture m_WhiteTexture;
 	SingleColorTexture m_TransparentTexture;
