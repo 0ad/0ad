@@ -136,12 +136,14 @@ function formatMatchLimitString(matchEntLimit, matchEntCount, type)
 	let text;
 	if (type == "build")
 	{
-		if (passedLimit)
-			text = sprintf(translatePlural("Could only be constructed once.", "Could only be constructed %(limit)s times.", matchEntLimit), {
-				"limit": matchEntLimit
-			});
-		else if (matchEntLimit == 1)
+		if (matchEntLimit == 1)
 			text = translate("Can be constructed only once.");
+		else if (passedLimit)
+			text = sprintf(translatePlural(
+				"Could only be constructed %(limit)s time.",
+				"Could only be constructed %(limit)s times.",
+				matchEntLimit),
+			{ "limit": matchEntLimit });
 		else
 			text = sprintf(translatePlural("Can be constructed %(count)s more time.", "Can be constructed %(count)s more times.", count), {
 				"count": count
