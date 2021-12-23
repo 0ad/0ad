@@ -15,12 +15,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Implements the in-game console with scripting support.
- */
-
 #include "precompiled.h"
-#include <wctype.h>
 
 #include "CConsole.h"
 
@@ -29,13 +24,10 @@
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
-#include "gui/GUIMatrix.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "maths/MathUtil.h"
-#include "network/NetClient.h"
-#include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
@@ -50,6 +42,7 @@
 #include "scriptinterface/JSON.h"
 
 #include <vector>
+#include <wctype.h>
 
 namespace
 {
@@ -65,20 +58,20 @@ CConsole* g_Console = 0;
 
 CConsole::CConsole()
 {
-	m_bToggle = false;
-	m_bVisible = false;
+	m_Toggle = false;
+	m_Visible = false;
 
-	m_fVisibleFrac = 0.0f;
+	m_VisibleFrac = 0.0f;
 
-	m_szBuffer = new wchar_t[CONSOLE_BUFFER_SIZE];
+	m_Buffer = std::make_unique<wchar_t[]>(CONSOLE_BUFFER_SIZE);
 	FlushBuffer();
 
-	m_iMsgHistPos = 1;
-	m_charsPerPage = 0;
+	m_MsgHistPos = 1;
+	m_CharsPerPage = 0;
 
-	m_prevTime = 0.0;
-	m_bCursorVisState = true;
-	m_cursorBlinkRate = 0.5;
+	m_PrevTime = 0.0;
+	m_CursorVisState = true;
+	m_CursorBlinkRate = 0.5;
 
 	m_QuitHotkeyWasShown = false;
 
@@ -86,10 +79,7 @@ CConsole::CConsole()
 	InsertMessage("");
 }
 
-CConsole::~CConsole()
-{
-	delete[] m_szBuffer;
-}
+CConsole::~CConsole() = default;
 
 void CConsole::Init()
 {
@@ -97,30 +87,30 @@ void CConsole::Init()
 	m_MaxHistoryLines = 200;
 	CFG_GET_VAL("console.history.size", m_MaxHistoryLines);
 
-	m_sHistoryFile = L"config/console.txt";
+	m_HistoryFile = L"config/console.txt";
 	LoadHistory();
 
 	UpdateScreenSize(g_xres, g_yres);
 
 	// Calculate and store the line spacing
 	const CFontMetrics font{CStrIntern(CONSOLE_FONT)};
-	m_iFontHeight = font.GetLineSpacing();
-	m_iFontWidth = font.GetCharacterWidth(L'C');
-	m_charsPerPage = static_cast<size_t>(g_xres / m_iFontWidth);
+	m_FontHeight = font.GetLineSpacing();
+	m_FontWidth = font.GetCharacterWidth(L'C');
+	m_CharsPerPage = static_cast<size_t>(g_xres / m_FontWidth);
 	// Offset by an arbitrary amount, to make it fit more nicely
-	m_iFontOffset = 7;
+	m_FontOffset = 7;
 
-	m_cursorBlinkRate = 0.5;
-	CFG_GET_VAL("gui.cursorblinkrate", m_cursorBlinkRate);
+	m_CursorBlinkRate = 0.5;
+	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 }
 
 void CConsole::UpdateScreenSize(int w, int h)
 {
-	m_fX = 0;
-	m_fY = 0;
+	m_X = 0;
+	m_Y = 0;
 	float height = h * 0.6f;
-	m_fWidth = w / g_VideoMode.GetScale();
-	m_fHeight = height / g_VideoMode.GetScale();
+	m_Width = w / g_VideoMode.GetScale();
+	m_Height = height / g_VideoMode.GetScale();
 }
 
 void CConsole::ShowQuitHotkeys()
@@ -141,11 +131,11 @@ void CConsole::ShowQuitHotkeys()
 
 void CConsole::ToggleVisible()
 {
-	m_bToggle = true;
-	m_bVisible = !m_bVisible;
+	m_Toggle = true;
+	m_Visible = !m_Visible;
 
 	// TODO: this should be based on input focus, not visibility
-	if (m_bVisible)
+	if (m_Visible)
 	{
 		ShowQuitHotkeys();
 		SDL_StartTextInput();
@@ -156,45 +146,45 @@ void CConsole::ToggleVisible()
 
 void CConsole::SetVisible(bool visible)
 {
-	if (visible != m_bVisible)
-		m_bToggle = true;
-	m_bVisible = visible;
+	if (visible != m_Visible)
+		m_Toggle = true;
+	m_Visible = visible;
 	if (visible)
 	{
-		m_prevTime = 0.0;
-		m_bCursorVisState = false;
+		m_PrevTime = 0.0;
+		m_CursorVisState = false;
 	}
 }
 
 void CConsole::FlushBuffer()
 {
 	// Clear the buffer and set the cursor and length to 0
-	memset(m_szBuffer, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
-	m_iBufferPos = m_iBufferLength = 0;
+	memset(m_Buffer.get(), '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
+	m_BufferPos = m_BufferLength = 0;
 }
 
 void CConsole::Update(const float deltaRealTime)
 {
-	if(m_bToggle)
+	if (m_Toggle)
 	{
 		const float AnimateTime = .30f;
 		const float Delta = deltaRealTime / AnimateTime;
-		if(m_bVisible)
+		if (m_Visible)
 		{
-			m_fVisibleFrac += Delta;
-			if(m_fVisibleFrac > 1.0f)
+			m_VisibleFrac += Delta;
+			if (m_VisibleFrac > 1.0f)
 			{
-				m_fVisibleFrac = 1.0f;
-				m_bToggle = false;
+				m_VisibleFrac = 1.0f;
+				m_Toggle = false;
 			}
 		}
 		else
 		{
-			m_fVisibleFrac -= Delta;
-			if(m_fVisibleFrac < 0.0f)
+			m_VisibleFrac -= Delta;
+			if (m_VisibleFrac < 0.0f)
 			{
-				m_fVisibleFrac = 0.0f;
-				m_bToggle = false;
+				m_VisibleFrac = 0.0f;
+				m_Toggle = false;
 			}
 		}
 	}
@@ -202,7 +192,8 @@ void CConsole::Update(const float deltaRealTime)
 
 void CConsole::Render()
 {
-	if (! (m_bVisible || m_bToggle) ) return;
+	if (!(m_Visible || m_Toggle))
+		return;
 
 	PROFILE3_GPU("console");
 
@@ -213,8 +204,8 @@ void CConsole::Render()
 	CTextRenderer textRenderer;
 	textRenderer.SetCurrentFont(CStrIntern(CONSOLE_FONT));
 	// Animation: slide in from top of screen.
-	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
-	textRenderer.Translate(m_fX, m_fY - DeltaY);
+	const float deltaY = (1.0f - m_VisibleFrac) * m_Height;
+	textRenderer.Translate(m_X, m_Y - deltaY);
 
 	DrawHistory(textRenderer);
 	DrawBuffer(textRenderer);
@@ -224,27 +215,28 @@ void CConsole::Render()
 
 void CConsole::DrawWindow(CCanvas2D& canvas)
 {
-	std::vector<CVector2D> points = {
-		CVector2D{m_fWidth, 0.0f},
+	std::vector<CVector2D> points =
+	{
+		CVector2D{m_Width, 0.0f},
 		CVector2D{1.0f, 0.0f},
-		CVector2D{1.0f, m_fHeight - 1.0f},
-		CVector2D{m_fWidth, m_fHeight - 1.0f},
-		CVector2D{m_fWidth, 0.0f}
+		CVector2D{1.0f, m_Height - 1.0f},
+		CVector2D{m_Width, m_Height - 1.0f},
+		CVector2D{m_Width, 0.0f}
 	};
 	for (CVector2D& point : points)
-		point += CVector2D{m_fX, m_fY - (1.0f - m_fVisibleFrac) * m_fHeight};
+		point += CVector2D{m_X, m_Y - (1.0f - m_VisibleFrac) * m_Height};
 
 	canvas.DrawRect(CRect(points[1], points[3]), CColor(0.0f, 0.0f, 0.5f, 0.6f));
 	canvas.DrawLine(points, 1.0f, CColor(0.5f, 0.5f, 0.0f, 0.6f));
 
-	if (m_fHeight > m_iFontHeight + 4)
+	if (m_Height > m_FontHeight + 4)
 	{
 		points = {
-			CVector2D{0.0f, m_fHeight - static_cast<float>(m_iFontHeight) - 4.0f},
-			CVector2D{m_fWidth, m_fHeight - static_cast<float>(m_iFontHeight) - 4.0f}
+			CVector2D{0.0f, m_Height - static_cast<float>(m_FontHeight) - 4.0f},
+			CVector2D{m_Width, m_Height - static_cast<float>(m_FontHeight) - 4.0f}
 		};
 		for (CVector2D& point : points)
-			point += CVector2D{m_fX, m_fY - (1.0f - m_fVisibleFrac) * m_fHeight};
+			point += CVector2D{m_X, m_Y - (1.0f - m_VisibleFrac) * m_Height};
 		canvas.DrawLine(points, 1.0f, CColor(0.5f, 0.5f, 0.0f, 0.6f));
 	}
 }
@@ -253,19 +245,24 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 {
 	int i = 1;
 
-	std::deque<std::wstring>::iterator Iter; //History iterator
+	std::deque<std::wstring>::iterator it; //History iterator
 
 	std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
-	for (Iter = m_deqMsgHistory.begin();
-			Iter != m_deqMsgHistory.end()
-				&& (((i - m_iMsgHistPos + 1) * m_iFontHeight) < m_fHeight);
-			++Iter)
+	for (it = m_MsgHistory.begin();
+			it != m_MsgHistory.end()
+				&& (((i - m_MsgHistPos + 1) * m_FontHeight) < m_Height);
+			++it)
 	{
-		if (i >= m_iMsgHistPos)
-			textRenderer.Put(9.0f, m_fHeight - (float)m_iFontOffset - (float)m_iFontHeight * (i - m_iMsgHistPos + 1), Iter->c_str());
+		if (i >= m_MsgHistPos)
+		{
+			textRenderer.Put(
+				9.0f,
+				m_Height - static_cast<float>(m_FontOffset) - static_cast<float>(m_FontHeight) * (i - m_MsgHistPos + 1),
+				it->c_str());
+		}
 
 		i++;
 	}
@@ -274,25 +271,25 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 // Renders the buffer to the screen.
 void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 {
-	if (m_fHeight < m_iFontHeight)
+	if (m_Height < m_FontHeight)
 		return;
 
 	const CVector2D savedTranslate = textRenderer.GetTranslate();
 
-	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f);
+	textRenderer.Translate(2.0f, m_Height - static_cast<float>(m_FontOffset) + 1.0f);
 
 	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 1.0f));
 	textRenderer.PutAdvance(L"]");
 
 	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
-	if (m_iBufferPos == 0)
+	if (m_BufferPos == 0)
 		DrawCursor(textRenderer);
 
-	for (int i = 0; i < m_iBufferLength; i++)
+	for (int i = 0; i < m_BufferLength; ++i)
 	{
-		textRenderer.PrintfAdvance(L"%lc", m_szBuffer[i]);
-		if (m_iBufferPos-1 == i)
+		textRenderer.PrintfAdvance(L"%lc", m_Buffer[i]);
+		if (m_BufferPos - 1 == i)
 			DrawCursor(textRenderer);
 	}
 
@@ -301,23 +298,23 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 
 void CConsole::DrawCursor(CTextRenderer& textRenderer)
 {
-	if (m_cursorBlinkRate > 0.0)
+	if (m_CursorBlinkRate > 0.0)
 	{
 		// check if the cursor visibility state needs to be changed
 		double currTime = timer_Time();
-		if ((currTime - m_prevTime) >= m_cursorBlinkRate)
+		if ((currTime - m_PrevTime) >= m_CursorBlinkRate)
 		{
-			m_bCursorVisState = !m_bCursorVisState;
-			m_prevTime = currTime;
+			m_CursorVisState = !m_CursorVisState;
+			m_PrevTime = currTime;
 		}
 	}
 	else
 	{
 		// Should always be visible
-		m_bCursorVisState = true;
+		m_CursorVisState = true;
 	}
 
-	if(m_bCursorVisState)
+	if(m_CursorVisState)
 	{
 		// Slightly translucent yellow
 		textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 0.8f));
@@ -332,37 +329,37 @@ void CConsole::DrawCursor(CTextRenderer& textRenderer)
 
 bool CConsole::IsEOB() const
 {
-	return m_iBufferPos == m_iBufferLength;
+	return m_BufferPos == m_BufferLength;
 }
 
 bool CConsole::IsBOB() const
 {
-	return m_iBufferPos == 0;
+	return m_BufferPos == 0;
 }
 
 bool CConsole::IsFull() const
 {
-	return m_iBufferLength == CONSOLE_BUFFER_SIZE;
+	return m_BufferLength == CONSOLE_BUFFER_SIZE;
 }
 
 bool CConsole::IsEmpty() const
 {
-	return m_iBufferLength == 0;
+	return m_BufferLength == 0;
 }
 
 //Inserts a character into the buffer.
 void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 {
-	static int iHistoryPos = -1;
+	static int historyPos = -1;
 
-	if (!m_bVisible) return;
+	if (!m_Visible) return;
 
 	switch (szChar)
 	{
 	case SDLK_RETURN:
-		iHistoryPos = -1;
-		m_iMsgHistPos = 1;
-		ProcessBuffer(m_szBuffer);
+		historyPos = -1;
+		m_MsgHistPos = 1;
+		ProcessBuffer(m_Buffer.get());
 		FlushBuffer();
 		return;
 
@@ -373,42 +370,43 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 	case SDLK_BACKSPACE:
 		if (IsEmpty() || IsBOB()) return;
 
-		if (m_iBufferPos == m_iBufferLength)
-			m_szBuffer[m_iBufferPos - 1] = '\0';
+		if (m_BufferPos == m_BufferLength)
+			m_Buffer[m_BufferPos - 1] = '\0';
 		else
 		{
-			for (int j = m_iBufferPos-1; j < m_iBufferLength-1; j++)
-				m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
-			m_szBuffer[m_iBufferLength-1] = '\0';
+			for (int j = m_BufferPos-1; j < m_BufferLength - 1; ++j)
+				m_Buffer[j] = m_Buffer[j + 1]; // move chars to left
+			m_Buffer[m_BufferLength-1] = '\0';
 		}
 
-		m_iBufferPos--;
-		m_iBufferLength--;
+		m_BufferPos--;
+		m_BufferLength--;
 		return;
 
 	case SDLK_DELETE:
-		if (IsEmpty() || IsEOB()) return;
+		if (IsEmpty() || IsEOB())
+			return;
 
-		if (m_iBufferPos == m_iBufferLength-1)
+		if (m_BufferPos == m_BufferLength - 1)
 		{
-			m_szBuffer[m_iBufferPos] = '\0';
-			m_iBufferLength--;
+			m_Buffer[m_BufferPos] = '\0';
+			m_BufferLength--;
 		}
 		else
 		{
 			if (g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_RCTRL])
 			{
 				// Make Ctrl-Delete delete up to end of line
-				m_szBuffer[m_iBufferPos] = '\0';
-				m_iBufferLength = m_iBufferPos;
+				m_Buffer[m_BufferPos] = '\0';
+				m_BufferLength = m_BufferPos;
 			}
 			else
 			{
 				// Delete just one char and move the others left
-				for(int j=m_iBufferPos; j<m_iBufferLength-1; j++)
-					m_szBuffer[j] = m_szBuffer[j+1];
-				m_szBuffer[m_iBufferLength-1] = '\0';
-				m_iBufferLength--;
+				for(int j = m_BufferPos; j < m_BufferLength - 1; ++j)
+					m_Buffer[j] = m_Buffer[j + 1];
+				m_Buffer[m_BufferLength - 1] = '\0';
+				m_BufferLength--;
 			}
 		}
 
@@ -419,56 +417,58 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 		{
 			std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
-			int linesShown = (int)m_fHeight/m_iFontHeight - 4;
-			m_iMsgHistPos = Clamp(static_cast<int>(m_deqMsgHistory.size()) - linesShown, 1, static_cast<int>(m_deqMsgHistory.size()));
+			const int linesShown = static_cast<int>(m_Height / m_FontHeight) - 4;
+			m_MsgHistPos = Clamp(static_cast<int>(m_MsgHistory.size()) - linesShown, 1, static_cast<int>(m_MsgHistory.size()));
 		}
 		else
 		{
-			m_iBufferPos = 0;
+			m_BufferPos = 0;
 		}
 		return;
 
 	case SDLK_END:
 		if (g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_RCTRL])
 		{
-			m_iMsgHistPos = 1;
+			m_MsgHistPos = 1;
 		}
 		else
 		{
-			m_iBufferPos = m_iBufferLength;
+			m_BufferPos = m_BufferLength;
 		}
 		return;
 
 	case SDLK_LEFT:
-		if (m_iBufferPos) m_iBufferPos--;
+		if (m_BufferPos)
+			m_BufferPos--;
 		return;
 
 	case SDLK_RIGHT:
-		if (m_iBufferPos != m_iBufferLength) m_iBufferPos++;
+		if (m_BufferPos != m_BufferLength)
+			m_BufferPos++;
 		return;
 
 	// BEGIN: Buffer History Lookup
 	case SDLK_UP:
-		if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
+		if (m_BufHistory.size() && historyPos != static_cast<int>(m_BufHistory.size()) - 1)
 		{
-			iHistoryPos++;
-			SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
-			m_iBufferPos = m_iBufferLength;
+			historyPos++;
+			SetBuffer(m_BufHistory.at(historyPos).c_str());
+			m_BufferPos = m_BufferLength;
 		}
 		return;
 
 	case SDLK_DOWN:
-		if (m_deqBufHistory.size())
+		if (m_BufHistory.size())
 		{
-			if (iHistoryPos > 0)
+			if (historyPos > 0)
 			{
-				iHistoryPos--;
-				SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
-				m_iBufferPos = m_iBufferLength;
+				historyPos--;
+				SetBuffer(m_BufHistory.at(historyPos).c_str());
+				m_BufferPos = m_BufferLength;
 			}
-			else if (iHistoryPos == 0)
+			else if (historyPos == 0)
 			{
-				iHistoryPos--;
+				historyPos--;
 				FlushBuffer();
 			}
 		}
@@ -480,31 +480,33 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 	{
 		std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
-		if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
+		if (m_MsgHistPos != static_cast<int>(m_MsgHistory.size()))
+			m_MsgHistPos++;
 		return;
 	}
 
 	case SDLK_PAGEDOWN:
-		if (m_iMsgHistPos != 1) m_iMsgHistPos--;
+		if (m_MsgHistPos != 1)
+			m_MsgHistPos--;
 		return;
 	// END: Message History Lookup
 
 	default: //Insert a character
-		if (IsFull()) return;
-		if (cooked == 0) return;
+		if (IsFull() || cooked == 0)
+			return;
 
 		if (IsEOB()) //are we at the end of the buffer?
-			m_szBuffer[m_iBufferPos] = cooked; //cat char onto end
+			m_Buffer[m_BufferPos] = cooked; //cat char onto end
 		else
 		{ //we need to insert
 			int i;
-			for(i=m_iBufferLength; i>m_iBufferPos; i--)
-				m_szBuffer[i] = m_szBuffer[i-1]; // move chars to right
-			m_szBuffer[i] = cooked;
+			for (i = m_BufferLength; i > m_BufferPos; --i)
+				m_Buffer[i] = m_Buffer[i - 1]; // move chars to right
+			m_Buffer[i] = cooked;
 		}
 
-		m_iBufferPos++;
-		m_iBufferLength++;
+		m_BufferPos++;
+		m_BufferLength++;
 
 		return;
 	}
@@ -522,15 +524,15 @@ void CConsole::InsertMessage(const std::string& message)
 	size_t distance;
 
 	//make sure everything has been initialized
-	if ( m_charsPerPage != 0 )
+	if (m_CharsPerPage != 0)
 	{
-		while ( oldNewline+m_charsPerPage < wrapAround.length() )
+		while (oldNewline + m_CharsPerPage < wrapAround.length())
 		{
 			distance = wrapAround.find(newline, oldNewline) - oldNewline;
-			if ( distance > m_charsPerPage )
+			if (distance > m_CharsPerPage)
 			{
-				oldNewline += m_charsPerPage;
-				wrapAround.insert( oldNewline++, newline );
+				oldNewline += m_CharsPerPage;
+				wrapAround.insert(oldNewline++, newline);
 			}
 			else
 				oldNewline += distance+1;
@@ -545,29 +547,29 @@ void CConsole::InsertMessage(const std::string& message)
 		while ( (distance = wrapAround.find(newline, oldNewline)) != wrapAround.npos)
 		{
 			distance -= oldNewline;
-			m_deqMsgHistory.push_front(wrapAround.substr(oldNewline, distance));
+			m_MsgHistory.push_front(wrapAround.substr(oldNewline, distance));
 			oldNewline += distance+1;
 		}
-		m_deqMsgHistory.push_front(wrapAround.substr(oldNewline));
+		m_MsgHistory.push_front(wrapAround.substr(oldNewline));
 	}
 }
 
 const wchar_t* CConsole::GetBuffer()
 {
-	m_szBuffer[m_iBufferLength] = 0;
-	return( m_szBuffer );
+	m_Buffer[m_BufferLength] = 0;
+	return m_Buffer.get();
 }
 
 void CConsole::SetBuffer(const wchar_t* szMessage)
 {
-	int oldBufferPos = m_iBufferPos;	// remember since FlushBuffer will set it to 0
+	int oldBufferPos = m_BufferPos;	// remember since FlushBuffer will set it to 0
 
 	FlushBuffer();
 
-	wcsncpy(m_szBuffer, szMessage, CONSOLE_BUFFER_SIZE);
-	m_szBuffer[CONSOLE_BUFFER_SIZE-1] = 0;
-	m_iBufferLength = static_cast<int>(wcslen(m_szBuffer));
-	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
+	wcsncpy(m_Buffer.get(), szMessage, CONSOLE_BUFFER_SIZE);
+	m_Buffer[CONSOLE_BUFFER_SIZE-1] = 0;
+	m_BufferLength = static_cast<int>(wcslen(m_Buffer.get()));
+	m_BufferPos = std::min(oldBufferPos, m_BufferLength);
 }
 
 void CConsole::ProcessBuffer(const wchar_t* szLine)
@@ -577,7 +579,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 
 	ENSURE(wcslen(szLine) < CONSOLE_BUFFER_SIZE);
 
-	m_deqBufHistory.push_front(szLine);
+	m_BufHistory.push_front(szLine);
 	SaveHistory(); // Do this each line for the moment; if a script causes
 	               // a crash it's a useful record.
 
@@ -597,11 +599,11 @@ void CConsole::LoadHistory()
 	// just don't load anything in that case.
 
 	// do this before LoadFile to avoid an error message if file not found.
-	if (!VfsFileExists(m_sHistoryFile))
+	if (!VfsFileExists(m_HistoryFile))
 		return;
 
 	std::shared_ptr<u8> buf; size_t buflen;
-	if (g_VFS->LoadFile(m_sHistoryFile, buf, buflen) < 0)
+	if (g_VFS->LoadFile(m_HistoryFile, buf, buflen) < 0)
 		return;
 
 	CStr bytes ((char*)buf.get(), buflen);
@@ -614,29 +616,29 @@ void CConsole::LoadHistory()
 		if (pos != CStrW::npos)
 		{
 			if (pos > 0)
-				m_deqBufHistory.push_front(str.Left(str[pos-1] == '\r' ? pos - 1 : pos));
+				m_BufHistory.push_front(str.Left(str[pos-1] == '\r' ? pos - 1 : pos));
 			str = str.substr(pos + 1);
 		}
 		else if (str.length() > 0)
-			m_deqBufHistory.push_front(str);
+			m_BufHistory.push_front(str);
 	}
 }
 
 void CConsole::SaveHistory()
 {
 	WriteBuffer buffer;
-	const int linesToSkip = (int)m_deqBufHistory.size() - m_MaxHistoryLines;
-	std::deque<std::wstring>::reverse_iterator it = m_deqBufHistory.rbegin();
+	const int linesToSkip = static_cast<int>(m_BufHistory.size()) - m_MaxHistoryLines;
+	std::deque<std::wstring>::reverse_iterator it = m_BufHistory.rbegin();
 	if(linesToSkip > 0)
 		std::advance(it, linesToSkip);
-	for (; it != m_deqBufHistory.rend(); ++it)
+	for (; it != m_BufHistory.rend(); ++it)
 	{
 		CStr8 line = CStrW(*it).ToUTF8();
 		buffer.Append(line.data(), line.length());
 		static const char newline = '\n';
 		buffer.Append(&newline, 1);
 	}
-	g_VFS->CreateFile(m_sHistoryFile, buffer.Data(), buffer.Size());
+	g_VFS->CreateFile(m_HistoryFile, buffer.Data(), buffer.Size());
 }
 
 static bool isUnprintableChar(SDL_Keysym key)

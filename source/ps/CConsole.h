@@ -22,13 +22,12 @@
 #ifndef INCLUDED_CCONSOLE
 #define INCLUDED_CCONSOLE
 
-#include "graphics/ShaderProgramPtr.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/input.h"
 
 #include <deque>
+#include <memory>
 #include <mutex>
-#include <stdarg.h>
 #include <string>
 
 class CCanvas2D;
@@ -73,45 +72,44 @@ public:
 	const wchar_t* GetBuffer();
 	void FlushBuffer();
 
-	bool IsActive() const { return m_bVisible; }
+	bool IsActive() const { return m_Visible; }
 
 private:
 	// Lock for all state modified by InsertMessage
 	std::mutex m_Mutex;
 
-	int m_iFontHeight;
-	int m_iFontWidth;
-	int m_iFontOffset; // distance to move up before drawing
-	size_t m_charsPerPage;
+	int m_FontHeight;
+	int m_FontWidth;
+	int m_FontOffset; // distance to move up before drawing
+	size_t m_CharsPerPage;
 
-	float m_fX;
-	float m_fY;
-
-	float m_fHeight;
-	float m_fWidth;
+	float m_X;
+	float m_Y;
+	float m_Height;
+	float m_Width;
 
 	// "position" in show/hide animation, how visible the console is (0..1).
 	// allows implementing other animations than sliding, e.g. fading in/out.
-	float m_fVisibleFrac;
+	float m_VisibleFrac;
 
-	std::deque<std::wstring> m_deqMsgHistory; // protected by m_Mutex
-	std::deque<std::wstring> m_deqBufHistory;
+	std::deque<std::wstring> m_MsgHistory; // protected by m_Mutex
+	std::deque<std::wstring> m_BufHistory;
 
-	int m_iMsgHistPos;
+	int m_MsgHistPos;
 
-	wchar_t* m_szBuffer;
-	int	m_iBufferPos;
-	int	m_iBufferLength;
+	std::unique_ptr<wchar_t[]> m_Buffer;
+	int m_BufferPos;
+	int m_BufferLength;
 
-	VfsPath m_sHistoryFile;
+	VfsPath m_HistoryFile;
 	int m_MaxHistoryLines;
 
-	bool m_bVisible;	// console is to be drawn
-	bool m_bToggle;		// show/hide animation is currently active
-	double m_prevTime;	// the previous time the cursor draw state changed (used for blinking cursor)
-	bool m_bCursorVisState;	// if the cursor should be drawn or not
+	bool m_Visible;	// console is to be drawn
+	bool m_Toggle;		// show/hide animation is currently active
+	double m_PrevTime;	// the previous time the cursor draw state changed (used for blinking cursor)
+	bool m_CursorVisState;	// if the cursor should be drawn or not
 	bool m_QuitHotkeyWasShown;	// show console.toggle hotkey values at first time
-	double m_cursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
+	double m_CursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
 
 	void DrawWindow(CCanvas2D& canvas);
 	void DrawHistory(CTextRenderer& textRenderer);
