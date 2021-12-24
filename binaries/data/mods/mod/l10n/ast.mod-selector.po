@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-20 07:08+0000\n"
-"PO-Revision-Date: 2021-11-10 06:12+0000\n"
+"PO-Revision-Date: 2021-12-23 19:32+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "Abriendo %(url)s\n nel restolador por defectu. Espera por favor…"
+msgstr "Abriendo %(url)s\n nel navegador por defeitu. Spera por favor…"
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
-msgstr "Abriendo páxina"
+msgstr "Abriendo página"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -85,19 +85,19 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr "Ríquese: %(mods)s"
+msgstr "Requisitos: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr "Activóse: %(mods)s"
+msgstr "Activos: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr "[font=\"sans-bold-20\"]¡Tentesti d'aniciar un alcuentru con camudos incompatibles o desaparecidos![/font]"
+msgstr "[font=\"sans-bold-20\"]¡Intentästi iniciar un incuöntru cun commudos incompatibles ou disapparecidos![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -107,13 +107,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Hai qu'iguar la compatibilidá desactivando camudos inválidos o activando dependencies precises. Lluego puedes guardar y entamar l'alcuentru."
+msgstr "Egua l problema de compatibilidade disactivando commudos inválidos ou activando dependencias precisas. Lhuögo puödes guardar & iniciar l incuöntru."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr "Los camudos incompatibles amuéstrense en coloráu nel índiz de camudos activaos (panel baxeru). Les dependencies puedes amestales activándoles en panel cimeru."
+msgstr "Los commudos incompatibles amuöstran-se n colorado nel índiz de commudos activos (quadro inferior). Las dependencias puödes addicioná-las activando-las in quadro superior."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -121,48 +121,48 @@ msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
-msgstr "Camudos non compatibles"
+msgstr "Commudos non compatibles"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
-msgstr "Aceptar"
+msgstr "Acceitare"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "Descargu de responsabilidá de mod.io de 0 A.D. Empires Ascendant"
+msgstr "Discargu de responsabilidade del mod.io de 0 A.D. Empires Ascendant"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr "Data del documentu: 2018-10-12"
+msgstr "Data del documento: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr "Estás a piques de conectate col serviciu de mod.io na rede."
+msgstr "Stas a piques de connectá-te cul servicio na rede de mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Esti seriviciu apurre un mou senciellu de baxar ya instalar camudos fechos pola comunidá. Fórnelu DBolical Pty Ltd, la compaña darrera d'IndieDb y ModDB."
+msgstr "Esti serivicio apurre un modu sinziellu de baẍar & installar commudos fheithos pola communidade & ye provisto por DBolical Pty Ltd, la compania de tras d’IndieDb & ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr "El serviciu ye pa usuarios de 13 años p'arriba. "
+msgstr "El servicio ië para usuarios de 13 anhos d’edade para riba."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games tien puesto procuru en facer esta conexón segura y buscao nos camudos defectos de seguranza, si bien nun puede garantizar que'l serviciu nun suponga riesgos."
+msgstr "Wildfire Games tien puösto procuru n fhazer esta connexión segura & examinado los commudos para detectar fallos de segurancia, magar que nun puöde garantir q’ello nun supponga riesgos."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Al usar esti serviciu, entiendes que los Términos d'usu y la Política de privacidá de mod.io s'apliquen y que Wildfire Games nun se fai responsable de cualquier perda que resulte d'esti serviciu."
+msgstr "Al usar esti servicio, intiendes que los Términos d’usu & la Política de privacidade de mod.io s’aplican & que Wildfire Games nun se fhaz responsable de qualquiera perda que resulte d’esti servicio."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -171,21 +171,21 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recobrase la identificación del xuegu.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recubrá-se la identificación del juögu.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Fallu d'aniciación"
+msgstr "Error d’iniciación"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr "Volver tentar"
+msgstr "Volver intentare"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
 msgid "Abort"
-msgstr "Abortar"
+msgstr "Abortare"
 
 #: gui/modio/modio.js:91
 #, javascript-format
@@ -194,12 +194,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recobrase l'índiz de camudos.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recubrá-se l índiz de commudos.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Fallu nel recobramientu"
+msgstr "Error de recuperación"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -208,12 +208,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo baxase'l ficheru.\n\n%(technicalDetails)s"
+msgstr "Nun pudo baẍá-se l archivo.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "Fallu na baxada"
+msgstr "Error de baẍada"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -222,33 +222,33 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Fallu na verificación de ficheros.\n\n%(technicalDetails)s"
+msgstr "Error de verificación d’archivos.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Fallu na verificación"
+msgstr "Error de verificación"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "Aniciando la interfaz de mod.io."
+msgstr "Iniciando la interficie de mod.io."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "Aniciando"
+msgstr "Iniciando"
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr "Cancellare"
 
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr "Camudu non válidu: %(error)s"
+msgstr "Commudu inválidu: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
-msgstr "Diendo en cata y anovando'l repertoriu de camudos disponibles."
+msgstr "Recubrando & anovando l repertorio de commudos disponibles."
 
 #: gui/modio/modio.js:247
 msgid "Updating"
@@ -256,20 +256,20 @@ msgstr "Anovando"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "Encaboxar l'anovamientu"
+msgstr "Cancellar l’anovación"
 
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Baxando «%(modname)s»"
+msgstr "Baẍando “%(modname)s”"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr "Baxando"
+msgstr "Baẍando"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Encaboxar la baxada"
+msgstr "Cancellar la baẍada"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -286,7 +286,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Tiempu trescurrido: %(elapsed)s\nTiempu que resta: %(remaining)s\nVelocidá media: %(avgSpeed)s"
+msgstr "Tiempu transcurrido: %(elapsed)s\nTiempu restante: %(remaining)s\nVelocidade media: %(avgSpeed)s"
 
 #: gui/modio/modio.js:349
 msgid "∞"
@@ -302,27 +302,27 @@ msgstr "%(number)s %(unit)s/s"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "Camudos de mod.io"
+msgstr "Commudos del mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr "Camudos disponibles"
+msgstr "Commudos disponibles"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr "Peñerar los camudos válidos"
+msgstr "Penheirar los commudos válidos"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
-msgstr "Atrás"
+msgstr "A tras"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
-msgstr "Refrescar el repertoriu"
+msgstr "Actualizar el repertorio"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
-msgstr "Baxar"
+msgstr "Baẍare"
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):131
@@ -337,27 +337,27 @@ msgstr "Versión"
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):140
 msgid "Mod Label"
-msgstr "Etiqueta"
+msgstr "Etiquetta"
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
-msgstr "Tamañu del ficheru"
+msgstr "Magnitude"
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):143
 msgid "Dependencies"
-msgstr "Dependencies"
+msgstr "Dependencias"
 
 #: gui/modio/modio.xml:(placeholder_text):35
 msgctxt "placeholder text for input field to filter mods"
 msgid "Filter"
-msgstr "Peñera"
+msgstr "Penheira"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. está diseñáu pa ser fácil de camudar. Los camudos repártense en forma de ficheros .pyromod, que pueden abrise como ficheros ZIP."
+msgstr "0 A.D. sta disegnadu para ser fácile de commudare. Los commudos reparten-se n fhorma d’archivos .pyromod, que puöden abrí-se cumo archivos ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -367,13 +367,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Pa instalar un camudu, namái abri'l ficheru con 0 A.D. (quier calcando dues vegades en ficheru y escoyendo abrir col xuegu, quier executando «pyrogenesis ficheru.pyromod» nuna terminal). El camudu va estar disponible nel esbillador de camudos. Puedes activallu y desactivallu cuando quieras. Puedes desaniciar el camudu a mano usando'l restolador de ficheros si lo precises (mira https://trac.wildfiregames.com/wiki/GameDataPaths)"
+msgstr "Para installar commudos, simplemente abri l archivo cun 0 A.D. (ou calcando duas vezes n archivo & excoyendo abrí-lo cul juögu ou executando “pyrogenesis file.pyromod” in terminal). Intós el commudu vai star disponible nel selector de commudos. Puödes activá-llu ou disactivá-llu cumo quieras. Si se precisa, tamién puödes eliminar el commudu manualmente usando l gestor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Pa más información tocántenes al camudamientu del xuegu, mira la Guía de camudos na rede (calca nel botón embaxo)."
+msgstr "Para mas información tocántenes a la commudancia del juögu, ve la Guía de commudancia na rede (calca nel bottón “Guía de commudancia” in baẍo)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -382,19 +382,19 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El serviciu de mod.io desendólcalu DBolical, la compaña darrera d'IndieDB y ModDB. ¡Estos sitios vien falando de 0 A.D. y otros proxectos indie na rede demientres munchu tiempu! Güei mod.io nos permite recoyer y baxar tódolos camudos que tien verificaos. ¡Calca «Baxar camudos» pa proballu ya instalar dalgún!"
+msgstr "El servicio de mod.io disindolca-lo DBolical, la compania de tras d’IndieDB & ModDB. ¡Essos sitios vienen fhalando de 0 A.D. & outros proiectos indie d’inde per onnia! Huöi mod.io nos permitte recoyer & baẍar tódolos commudos que la quadriella tien verificado. ¡Calca “Baẍar commudos” para probá-llo & installar dellos!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Esbillador de camudos Pyrogenesis"
+msgstr "Selector de commudos Pyrogenesis"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
-msgstr "Zarrar"
+msgstr "Cerrare"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Guía de camudos"
+msgstr "Guía de commudancia"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -402,25 +402,25 @@ msgstr "Visitar mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr "Esti camudu nun existe"
+msgstr "Esti commudu nun existe"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Enable"
-msgstr "Activar"
+msgstr "Activare"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr "Nun se cumplen les dependencies"
+msgstr "Nun se cumplen las dependencias"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
 msgid "Disable"
-msgstr "Desactivar"
+msgstr "Disactivare"
 
 #: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
-msgstr "Nun s'esbilló camudu dalu."
+msgstr "Nun se seleccionóu commudu dalu."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
@@ -428,15 +428,15 @@ msgstr "Activar pelo menos 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "Camudancies"
+msgstr "Commudancias"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
-msgstr "Anular"
+msgstr "Annullare"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr "Peñerar les compatibles"
+msgstr "Penheirar por compatibilidade"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -444,7 +444,7 @@ msgstr "Descripción"
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
-msgstr "Camudos activaos"
+msgstr "Commudos activos"
 
 #: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
@@ -452,15 +452,15 @@ msgstr "Visitar el sitiu na rede"
 
 #: gui/modmod/modmod.xml:(caption):192
 msgid "Quit"
-msgstr "Colar"
+msgstr "Salire"
 
 #: gui/modmod/modmod.xml:(caption):202
 msgid "Help"
-msgstr "Aida"
+msgstr "Ajuda"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr "Baxar camudos"
+msgstr "Baẍar commudos"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
@@ -468,11 +468,11 @@ msgstr "Guardar configuración"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
-msgstr "Guardar y volver a entamar"
+msgstr "Guardar & volver intamare"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
-msgstr "(Carpeta)"
+msgstr "(Subdirectoriu)"
 
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Website"
@@ -480,7 +480,7 @@ msgstr "Sitiu na rede"
 
 #: gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
-msgstr "Peñera"
+msgstr "Penheira"
 
 #: gui/modmod/modmod.xml:(tooltip):115
 msgid ""
@@ -488,17 +488,17 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr "Los camudos activos cárguense de riba p'abaxo.  Los caberos en cargase pueden sobreescribir los axustes de los primeros. Aconséyase, pos, cargar los camudos más complexos a la fin. Usa les fleches a mandrecha pa cambiar l'orde los camudos."
+msgstr "Los commudos activos cargan-se de riba a baẍo. Los postreiros in cargá-se puöden subrescribir los ajustes de los primeiros. Aconseya-se, pös, cargar los camudos mas complexos al final. Usa las fletsas a la direitha para cambiar l orde de los commudos."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Cambia l'orde en que se llancen los camudos. Esti ha concasar coles sues dependencies."
+msgstr "Cambiar l orde n que se lhancian los commudos. Esti ha concasar cun las suas dependencias."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr "Descargu de responsabilidá"
+msgstr "Discargu de responsabilidade"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
@@ -506,11 +506,11 @@ msgstr "Términos de mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "Política de privacidá de mod.io"
+msgstr "Política de privacidade de mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
-msgstr "Aceptar"
+msgstr "Acceitare"
 
 #. Translation: Label of a button that when pressed opens the Terms and
 #. Conditions in the
@@ -522,16 +522,16 @@ msgstr "Ver na rede"
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr "Abrir %(url)s en restolador."
+msgstr "Abrir %(url)s in navegador."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
-msgstr "Llingua"
+msgstr "Lhingua"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr "Refugar"
+msgstr "Declinare"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
-msgstr "Aceptar"
+msgstr "Acceitare"

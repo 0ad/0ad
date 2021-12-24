@@ -40,6 +40,7 @@
 # webslavic <webslavic@yahoo.com>, 2014-2015
 # Woratiklis, 2015,2020
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
+# Артём Дадашьянц, 2021
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017-2018
 # Валерий Кулаев, 2021
 # Vitaly Orekhov <7opex0@mail.ru>, 2016
@@ -53,8 +54,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-17 08:08+0000\n"
-"PO-Revision-Date: 2021-12-17 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-12-22 07:59+0000\n"
+"Last-Translator: Артём Дадашьянц\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2330,7 +2331,7 @@ msgstr "Принудительно атаковать"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Модификатор движения атаки при нажатии на точку."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
@@ -2340,7 +2341,7 @@ msgstr "Двигаться атакуя"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Модификатор для атаки: в движении атакует только юнитов при нажатии на точку."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
@@ -2433,7 +2434,7 @@ msgstr "Установить торговый лот на 100%"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Модификатор гарнизона при нажатии на постройку."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2443,7 +2444,7 @@ msgstr "Оборонять"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Модификатор сопровождения/охраны при нажатии на объект/здание."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2488,7 +2489,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Массовая дань"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"

@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-12-11 16:11+0000\n"
-"Last-Translator: Szabó Lambert\n"
+"PO-Revision-Date: 2021-12-23 13:10+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -299,7 +299,7 @@ msgstr "−20% építési idő, −20% életerő, és −20% foglalási pont az 
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr ""
+msgstr "A gallok a hatásos lovasságukról voltak híresek. A kelta zsoldosokra nagy volt az igény a Földközi-tenger térségében."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
@@ -435,7 +435,7 @@ msgstr "Lószállító hajók"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
-msgstr ""
+msgstr "A föníciai triérészek megkapják a lovasság kiképzésének egyedi képességet."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -786,7 +786,7 @@ msgstr "Csatatéri gyógyszer"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr ""
+msgstr "+0,5 életerő regenerációs sebesség a tétlen élő egységeknél."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -805,15 +805,15 @@ msgstr "+100% életerő és foglalási pont a városházáknak, továbbá kétsz
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr ""
+msgstr "A görög hadseregek nagy részét a hoplita katonák alkották."
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
-msgstr ""
+msgstr "Hoplita hagyomány"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr ""
+msgstr "–25% képzési idő és –50% előléptetési tapasztalat a hoplitáknál."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -855,7 +855,7 @@ msgstr "Iphikratészi reformok"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Az athéni triérészek tengerészeket és krétai zsoldos íjászokat képezhetnek ki."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1089,7 +1089,7 @@ msgstr "Kardforgató bajnok gyalogság elérhetővé tétele."
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
 "construction."
-msgstr ""
+msgstr "Különleges szerszámokkal ellátott, képzett hajóácsok alkalmazása a hajógyártás felgyorsítása érdekében. "
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1115,7 +1115,7 @@ msgstr "+25% életerő a hajóknak"
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr ""
+msgstr "Az evezősök és tengerészek kiképzése, hogy a hajók hatékonyabban és gyorsabban mozogjanak."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
@@ -1151,7 +1151,7 @@ msgstr "−20% szórás a nyílvetőknek"
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr ""
+msgstr "Az ostromok kivitelezésének tudománya."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
@@ -1164,7 +1164,7 @@ msgstr "−20% elkészítési idő az ostromgépeknek"
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr ""
+msgstr "A külseje vaslemezekkel borítása, hogy megvédje a tűz és a lövedékekkel szemben."
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
@@ -1207,7 +1207,7 @@ msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr ""
+msgstr "Gyakran előfordul, hogy egy katona az elsődleges fegyvere mellett egy másodlagos fegyvert is visel, amelyet akkor vesz elő, ha az elsődleges fegyver meghibásodott vagy eltört."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1242,7 +1242,7 @@ msgstr "Vasfegyverek"
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
-msgstr ""
+msgstr "A vasolvasztási folyamat során, kis mennyiségű szén hozzáadásával egy erősebb anyag, acél kovácsolható."
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
@@ -1292,7 +1292,7 @@ msgstr "+15% távolsági sebzés a katonáknak"
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr ""
+msgstr "Vasból készült lövedékhegyek, hogy mélyebbre hatoljanak."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Iron Arrowheads"
@@ -1316,7 +1316,7 @@ msgstr "+25% előléptetési tapasztalat a távolsági katonáknál."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr ""
+msgstr "Steppelt gyapjúból, lenvászonból, pamutból vagy bőrből készült testpáncél."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -1337,7 +1337,7 @@ msgstr "+1 vágással szembeni ellenállás a katonáknak"
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
-msgstr ""
+msgstr "Laminált lenvászonból készült testpáncél."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
@@ -1353,11 +1353,11 @@ msgstr "Linothōrax"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
 msgid "Body armor made of small metal rings linked together."
-msgstr ""
+msgstr "Kis fémgyűrűk összekapcsolásával készülő testpáncél."
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr ""
+msgstr "Láncos testpáncél"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
@@ -1388,11 +1388,11 @@ msgstr "Fém perem"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr ""
+msgstr "Pajzsok további erősítése ellenállóbb fémötvözetekkel."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
-msgstr ""
+msgstr "Fejlesztett pajzsötvözetek"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
@@ -1574,7 +1574,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr ""
+msgstr "+20% kiképzési idő, +25% életerő, +0,8 elfoglalási támadási erősség, +20% zsákmányolás és −30% begyűjtési sebesség az elit egységeknél; +5 gyógyítási erősség és +3 gyógyítási távolság a gyógyítóknál; +20% sebzés a közelharci egységeknél; −20% szórás a távolsági egységeknél."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1702,7 +1702,7 @@ msgstr "Hadi tapasztalat"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
-msgstr ""
+msgstr "A zsoldosok fejlett rangról kezdenek."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1724,4 +1724,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "A „Dicsőséges hódítás” aura engedélyezése: +20% népességkorlát minden birtokolt csoda után."
