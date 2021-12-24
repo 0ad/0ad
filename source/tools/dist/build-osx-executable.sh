@@ -24,8 +24,8 @@ if [ "`uname -s`" != "Darwin" ]; then
 fi
 
 # Check SDK exists
-if [ ! -d "$SYSROOT" ]; then
-  die "$SYSROOT does not exist! You probably need to install Xcode"
+if [ ! -d "${SYSROOT}" ]; then
+  die "${SYSROOT} does not exist! You probably need to install Xcode"
 fi
 
 # Assume this is called from trunk/
@@ -36,21 +36,32 @@ cd "build/workspaces/"
 
 JOBS=${JOBS:="-j5"}
 
-# TODO: Do we really want to regenerate everything? (consider if one task fails)
+# Toggle whether this is a full rebuild, including libraries (takes much longer).
+FULL_REBUILD=${FULL_REBUILD:=false}
 
-./clean-workspaces.sh
+if $FULL_REBUILD = true; then
+	CLEAN_WORKSPACE_ARGS=""
+	BUILD_LIBS_ARGS="--force-rebuild"
+else
+	CLEAN_WORKSPACE_ARGS="--preserve-libs"
+	BUILD_LIBS_ARGS=""
+fi
+
+./clean-workspaces.sh "${CLEAN_WORKSPACE_ARGS}"
 
 # Build libraries against SDK
 echo "\nBuilding libraries\n"
 pushd ../../libraries/osx > /dev/null
-./build-osx-libs.sh $JOBS --force-rebuild || die "Libraries build script failed"
+SYSROOT="${SYSROOT}" MIN_OSX_VERSION="${MIN_OSX_VERSION}" \
+	./build-osx-libs.sh $JOBS "${BUILD_LIBS_ARGS}" || die "Libraries build script failed"
 popd > /dev/null
 
 # Update workspaces
 echo "\nGenerating workspaces\n"
 
 # Pass OS X options through to Premake
-(SYSROOT="$SYSROOT" MIN_OSX_VERSION="$MIN_OSX_VERSION" ./update-workspaces.sh --sysroot="$SYSROOT" --macosx-version-min="$MIN_OSX_VERSION") || die "update-workspaces.sh failed!"
+(SYSROOT="${SYSROOT}" MIN_OSX_VERSION="${MIN_OSX_VERSION}" \
+	./update-workspaces.sh --sysroot="${SYSROOT}" --macosx-version-min="${MIN_OSX_VERSION}") || die "update-workspaces.sh failed!"
 
 pushd gcc > /dev/null
 echo "\nBuilding game\n"
