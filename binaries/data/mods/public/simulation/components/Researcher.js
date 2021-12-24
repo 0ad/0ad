@@ -167,15 +167,17 @@ Researcher.prototype.Item.prototype.Serialize = function(id)
 	const result = {
 		"id": id
 	};
-	for (const att in this.SerializableAttributes)
-		result[att] = this[att];
+	for (const att of this.SerializableAttributes)
+		if (this.hasOwnProperty(att))
+			result[att] = this[att];
 	return result;
 };
 
 Researcher.prototype.Item.prototype.Deserialize = function(data)
 {
-	for (const att of this.SerializableAttributes)
-		this[att] = data[att];
+	for (const att in data)
+		if (this.SerializableAttributes.includes(att))
+			this[att] = data[att];
 };
 
 Researcher.prototype.Init = function()

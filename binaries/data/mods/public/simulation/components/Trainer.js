@@ -394,14 +394,16 @@ Trainer.prototype.Item.prototype.Serialize = function(id)
 		"id": id
 	};
 	for (const att of this.SerializableAttributes)
-		result[att] = this[att];
+		if (this.hasOwnProperty(att))
+			result[att] = this[att];
 	return result;
 };
 
 Trainer.prototype.Item.prototype.Deserialize = function(data)
 {
-	for (const att of this.SerializableAttributes)
-		this[att] = data[att];
+	for (const att in data)
+		if (this.SerializableAttributes.includes(att))
+			this[att] = data[att];
 };
 
 Trainer.prototype.Init = function()
