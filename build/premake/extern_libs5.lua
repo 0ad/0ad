@@ -579,35 +579,6 @@ extern_lib_defs = {
 			end
 		end,
 	},
-	opengl = {
-		compile_settings = function()
-			if os.istarget("windows") then
-				add_default_include_paths("opengl")
-			elseif _OPTIONS["gles"] then
-				pkgconfig.add_includes("glesv2")
-			elseif not os.istarget("macosx") then
-				pkgconfig.add_includes("gl")
-			end
-		end,
-		link_settings = function()
-			if os.istarget("windows") then
-				add_default_lib_paths("opengl")
-				add_default_links({
-					win_names  = { "opengl32", "gdi32" },
-					dbg_suffix = "",
-					no_delayload = 1, -- delayload seems to cause errors on startup
-				})
-			elseif os.istarget("macosx") then
-				add_default_links({
-					osx_frameworks = { "OpenGL" },
-				})
-			elseif _OPTIONS["gles"] then
-				pkgconfig.add_links("glesv2")
-			else
-				pkgconfig.add_links("gl")
-			end
-		end,
-	},
 	sdl = {
 		compile_settings = function()
 			if os.istarget("windows") then

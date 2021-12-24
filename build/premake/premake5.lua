@@ -706,7 +706,6 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"boost",
-		"opengl",
 		"spidermonkey",
 		"fmt",
 	}
@@ -747,7 +746,6 @@ function setup_all_libs ()
 		"spidermonkey",
 		"sdl",	-- key definitions
 		"libxml2",
-		"opengl",
 		"zlib",
 		"boost",
 		"enet",
@@ -779,7 +777,6 @@ function setup_all_libs ()
 		"third_party/ogre3d_preprocessor"
 	}
 	extern_libs = {
-		"opengl",
 		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
 		"boost",
@@ -800,7 +797,6 @@ function setup_all_libs ()
 	extern_libs = {
 		"boost",
 		"sdl",	-- key definitions
-		"opengl",
 		"spidermonkey",
 		"fmt",
 	}
@@ -818,7 +814,6 @@ function setup_all_libs ()
 	extern_libs = {
 		"spidermonkey",
 		"sdl",	-- key definitions
-		"opengl",
 		"boost",
 		"enet",
 		"tinygettext",
@@ -853,7 +848,6 @@ function setup_all_libs ()
 		"boost",
 		"sdl",
 		"openal",
-		"opengl",
 		"libpng",
 		"zlib",
 		"valgrind",
@@ -917,7 +911,7 @@ function setup_all_libs ()
 	setup_static_lib_project("lowlevel", source_dirs, extern_libs, extra_params)
 
 
-	setup_static_lib_project("gladwrapper", {}, { "opengl", "glad" }, { no_pch = 1 })
+	setup_static_lib_project("gladwrapper", {}, { "glad" }, { no_pch = 1 })
 	glad_path = libraries_source_dir.."glad/"
 	sysincludedirs { glad_path.."include" }
 	if _OPTIONS["gles"] then
@@ -964,7 +958,6 @@ end
 
 -- used for main EXE as well as test
 used_extern_libs = {
-	"opengl",
 	"sdl",
 
 	"libpng",

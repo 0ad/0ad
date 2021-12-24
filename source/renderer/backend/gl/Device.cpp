@@ -133,6 +133,9 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 
 	if (window)
 	{
+		// According to https://wiki.libsdl.org/SDL_CreateWindow we don't need to
+		// call SDL_GL_LoadLibrary if we have a window with SDL_WINDOW_OPENGL,
+		// because it'll be called internally for the first created window.
 		device->m_Window = window;
 		device->m_Context = SDL_GL_CreateContext(device->m_Window);
 		if (!device->m_Context)
@@ -150,7 +153,6 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 	}
 	else
 	{
-		// SDL_GL_GetProcAddress is available because we called SDL_GL_LoadLibrary.
 #if OS_WIN
 		ogl_Init(SDL_GL_GetProcAddress, wutil_GetAppHDC());
 #elif defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
