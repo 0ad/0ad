@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2020 Wildfire Games.
+# Copyright (C) 2021 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,10 +60,10 @@ def check_diff(diff : io.StringIO, verbose = False) -> List[str]:
         if l[0] != '-' and l[0] != '+':
             l = diff.readline()
             continue
-        if l[1] == '\n' or l[1] == '#':
+        if l[1] == '\n' or (l[1] == '#' and l[2] == ":"):
             l = diff.readline()
             continue
-        if "POT-Creation-Date:" in l or "PO-Revision-Date" in l or "Last-Translator" in l:
+        if "# Copyright (C)" in l or "POT-Creation-Date:" in l or "PO-Revision-Date" in l or "Last-Translator" in l:
             l = diff.readline()
             continue
         # We've hit a real line
