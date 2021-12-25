@@ -61,8 +61,7 @@ static const size_t g_SubTextureAlignment = 4;
 
 CLOSTexture::CLOSTexture(CSimulation2& simulation)
 	: m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false),
-	m_Texture(0), m_TextureSmooth1(0), m_TextureSmooth2(0),  m_smoothFbo(0),
-	m_MapSize(0), m_TextureSize(0), whichTex(true)
+	m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 		CreateShader();
@@ -98,17 +97,9 @@ bool CLOSTexture::CreateShader()
 
 void CLOSTexture::DeleteTexture()
 {
-	glDeleteTextures(1, &m_Texture);
-
-	if (m_TextureSmooth1)
-		glDeleteTextures(1, &m_TextureSmooth1);
-
-	if (m_TextureSmooth2)
-		glDeleteTextures(1, &m_TextureSmooth2);
-
-	m_Texture = 0;
-	m_TextureSmooth1 = 0;
-	m_TextureSmooth2 = 0;
+	m_Texture.reset();
+	m_TextureSmooth1.reset();
+	m_TextureSmooth2.reset();
 }
 
 void CLOSTexture::MakeDirty()
@@ -116,23 +107,12 @@ void CLOSTexture::MakeDirty()
 	m_Dirty = true;
 }
 
-void CLOSTexture::BindTexture(int unit)
-{
-	if (m_Dirty)
-	{
-		RecomputeTexture(unit);
-		m_Dirty = false;
-	}
-
-	g_Renderer.BindTexture(unit, m_Texture);
-}
-
 GLuint CLOSTexture::GetTextureSmooth()
 {
 	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return GetTexture();
 	else
-		return whichTex ? m_TextureSmooth1 : m_TextureSmooth2;
+		return (whichTex ? m_TextureSmooth1 : m_TextureSmooth2)->GetHandle();
 }
 
 void CLOSTexture::InterpolateLOS()
@@ -148,19 +128,19 @@ void CLOSTexture::InterpolateLOS()
 		// RecomputeTexture(0) will not cause the ConstructTexture to run.
 		// Force the textures to be created.
 		DeleteTexture();
-		ConstructTexture(0);
+		ConstructTexture();
 		m_Dirty = true;
 	}
 
 	if (m_Dirty)
 	{
-		RecomputeTexture(0);
+		RecomputeTexture();
 		m_Dirty = false;
 	}
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
-			   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
+			   (whichTex ? m_TextureSmooth2 : m_TextureSmooth1)->GetHandle(), 0);
 
 	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -175,8 +155,8 @@ void CLOSTexture::InterpolateLOS()
 
 	shader->Bind();
 
-	shader->BindTexture(str_losTex1, m_Texture);
-	shader->BindTexture(str_losTex2, whichTex ? m_TextureSmooth1 : m_TextureSmooth2);
+	shader->BindTexture(str_losTex1, m_Texture->GetHandle());
+	shader->BindTexture(str_losTex2, (whichTex ? m_TextureSmooth1 : m_TextureSmooth2)->GetHandle());
 
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 
@@ -224,11 +204,11 @@ GLuint CLOSTexture::GetTexture()
 {
 	if (m_Dirty)
 	{
-		RecomputeTexture(0);
+		RecomputeTexture();
 		m_Dirty = false;
 	}
 
-	return m_Texture;
+	return m_Texture->GetHandle();
 }
 
 const CMatrix3D& CLOSTexture::GetTextureMatrix()
@@ -243,7 +223,7 @@ const CMatrix3D* CLOSTexture::GetMinimapTextureMatrix()
 	return &m_MinimapTextureMatrix;
 }
 
-void CLOSTexture::ConstructTexture(int unit)
+void CLOSTexture::ConstructTexture()
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpRangeManager)
@@ -253,7 +233,13 @@ void CLOSTexture::ConstructTexture(int unit)
 
 	m_TextureSize = (GLsizei)round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
 
-	glGenTextures(1, &m_Texture);
+	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+
+	m_Texture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
 	// overwrite with glTexSubImage2D later
@@ -262,30 +248,20 @@ void CLOSTexture::ConstructTexture(int unit)
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
-		glGenTextures(1, &m_TextureSmooth1);
-		glGenTextures(1, &m_TextureSmooth2);
+		m_TextureSmooth1 = Renderer::Backend::GL::CTexture::Create2D(
+			Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
+		m_TextureSmooth2 = Renderer::Backend::GL::CTexture::Create2D(
+			Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
 
-		g_Renderer.BindTexture(unit, m_TextureSmooth1);
+		g_Renderer.BindTexture(0, m_TextureSmooth1->GetHandle());
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		g_Renderer.BindTexture(unit, m_TextureSmooth2);
+		g_Renderer.BindTexture(0, m_TextureSmooth2->GetHandle());
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	}
 
-	g_Renderer.BindTexture(unit, m_Texture);
+	g_Renderer.BindTexture(0, m_Texture->GetHandle());
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	delete[] texData;
 
@@ -317,7 +293,7 @@ void CLOSTexture::ConstructTexture(int unit)
 	}
 }
 
-void CLOSTexture::RecomputeTexture(int unit)
+void CLOSTexture::RecomputeTexture()
 {
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)
@@ -330,7 +306,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	bool recreated = false;
 	if (!m_Texture)
 	{
-		ConstructTexture(unit);
+		ConstructTexture();
 		recreated = true;
 	}
 
@@ -350,13 +326,13 @@ void CLOSTexture::RecomputeTexture(int unit)
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS() && recreated)
 	{
-		g_Renderer.BindTexture(unit, m_TextureSmooth1);
+		g_Renderer.BindTexture(0, m_TextureSmooth1->GetHandle());
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
-		g_Renderer.BindTexture(unit, m_TextureSmooth2);
+		g_Renderer.BindTexture(0, m_TextureSmooth2->GetHandle());
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
 	}
 
-	g_Renderer.BindTexture(unit, m_Texture);
+	g_Renderer.BindTexture(0, m_Texture->GetHandle());
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
 }
 

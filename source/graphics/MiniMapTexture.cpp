@@ -210,36 +210,35 @@ void CMiniMapTexture::CreateTextures(const CTerrain* terrain)
 	m_MapSize = terrain->GetVerticesPerSide();
 	m_TextureSize = static_cast<GLsizei>(round_up_to_pow2(static_cast<size_t>(m_MapSize)));
 
+	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+
 	// Create terrain texture
-	glGenTextures(1, &m_TerrainTexture);
-	g_Renderer.BindTexture(0, m_TerrainTexture);
+	m_TerrainTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
 	// overwrite with glTexSubImage2D later
 	u32* texData = new u32[m_TextureSize * m_TextureSize];
 	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
 		texData[i] = 0xFF000000;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+	g_Renderer.BindTexture(0, m_TerrainTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
 
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	glGenTextures(1, &m_FinalTexture);
-	g_Renderer.BindTexture(0, m_FinalTexture);
+	m_FinalTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	g_Renderer.BindTexture(0, m_FinalTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	glGenFramebuffersEXT(1, &m_FinalTextureFBO);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FinalTexture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FinalTexture->GetHandle(), 0);
 
 	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -252,17 +251,8 @@ void CMiniMapTexture::CreateTextures(const CTerrain* terrain)
 
 void CMiniMapTexture::DestroyTextures()
 {
-	if (m_TerrainTexture)
-	{
-		glDeleteTextures(1, &m_TerrainTexture);
-		m_TerrainTexture = 0;
-	}
-
-	if (m_FinalTexture)
-	{
-		glDeleteTextures(1, &m_FinalTexture);
-		m_FinalTexture = 0;
-	}
+	m_TerrainTexture.reset();
+	m_FinalTexture.reset();
 
 	SAFE_ARRAY_DELETE(m_TerrainData);
 }
@@ -326,7 +316,7 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 	}
 
 	// Upload the texture
-	g_Renderer.BindTexture(0, m_TerrainTexture);
+	g_Renderer.BindTexture(0, m_TerrainTexture->GetHandle());
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
 	g_Renderer.BindTexture(0, 0);
 }
@@ -369,7 +359,7 @@ void CMiniMapTexture::RenderFinalTexture()
 	shader = tech->GetShader();
 
 	if (m_TerrainTexture)
-		shader->BindTexture(str_baseTex, m_TerrainTexture);
+		shader->BindTexture(str_baseTex, m_TerrainTexture->GetHandle());
 
 	CMatrix3D baseTransform;
 	baseTransform.SetIdentity();

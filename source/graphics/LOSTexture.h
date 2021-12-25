@@ -22,6 +22,7 @@
 
 #include "graphics/ShaderTechniquePtr.h"
 #include "maths/Matrix3D.h"
+#include "renderer/backend/gl/Texture.h"
 
 class CLosQuerier;
 class CSimulation2;
@@ -44,14 +45,6 @@ public:
 	 * simulation update, to ensure responsive updates.
 	 */
 	void MakeDirty();
-
-	/**
-	 * Recomputes the LOS texture if necessary, and binds it to the requested
-	 * texture unit.
-	 * Also switches the current active texture unit, and enables texturing on it.
-	 * The texture is in 8-bit ALPHA format.
-	 */
-	void BindTexture(int unit);
 
 	/**
 	 * Recomputes the LOS texture if necessary, and returns the texture handle.
@@ -80,8 +73,8 @@ public:
 private:
 	void DeleteTexture();
 	bool CreateShader();
-	void ConstructTexture(int unit);
-	void RecomputeTexture(int unit);
+	void ConstructTexture();
+	void RecomputeTexture();
 
 	size_t GetBitmapSize(size_t w, size_t h, size_t* pitch);
 	void GenerateBitmap(const CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch);
@@ -92,8 +85,8 @@ private:
 
 	bool m_ShaderInitialized;
 
-	GLuint m_Texture;
-	GLuint m_TextureSmooth1, m_TextureSmooth2;
+	std::unique_ptr<Renderer::Backend::GL::CTexture>
+		m_Texture, m_TextureSmooth1, m_TextureSmooth2;
 
 	bool whichTex;
 
