@@ -72,7 +72,7 @@ class ProfilePanel
 		if (!playerName)
 			return;
 
-		this.playernameText.caption = playerName;
+		this.playernameText.caption = PlayerColor.ColorPlayerName(escapeText(playerName));
 		this.updatePlayerRoleText(playerName);
 
 		this.rankText.caption = this.NotAvailable;
@@ -91,7 +91,7 @@ class ProfilePanel
 		if (attributes.rating == "-2" || attributes.player != this.requestedPlayer)
 			return;
 
-		this.playernameText.caption = attributes.player;
+		this.playernameText.caption = PlayerColor.ColorPlayerName(escapeText(attributes.player), attributes.rating);
 		this.updatePlayerRoleText(attributes.player);
 
 		this.rankText.caption = attributes.rank;

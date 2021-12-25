@@ -40,7 +40,9 @@ function continueButton()
 
 	Engine.ConnectXmppClient();
 }
-
+/**
+ * The data from Engine.SendGetBoardList() is used for the leaderboard, but also for autocompletion in the profile player search field.
+ */
 function onLogin(message)
 {
 	saveCredentials();
@@ -48,4 +50,5 @@ function onLogin(message)
 	Engine.SwitchGuiPage("page_lobby.xml", {
 		"dialog": false
 	});
+	Engine.SendGetBoardList();
 }
