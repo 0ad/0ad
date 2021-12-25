@@ -853,7 +853,7 @@ bool ModIo::ParseSignature(const std::vector<std::string>& minisigs, SigStruct& 
 		return true;
 	}
 
-	return false;
+	FAIL("Invalid signature.");
 #undef CLEANUP
 }
 
