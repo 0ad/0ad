@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-12-20 04:27+0000\n"
+"PO-Revision-Date: 2021-12-23 16:52+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Stadu d’applicación"
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Reduz la fidelidá del obiectivu."
+msgstr "Reduz la fidelidade del obiectivu."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -41,7 +41,7 @@ msgstr "Captura"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Reduz la vitalidá del obiectivu."
+msgstr "Reduz la vitalidade del obiectivu."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -100,17 +100,17 @@ msgstr "Danho tóxico, cumo l que fhazen las coluöbras, las armas venenadas."
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr "Toxicidá"
+msgstr "Toxicidade"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Esta unidá fhaz queimar."
+msgstr "Esta unidade fhaz queimar."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr "Esta unidá sta queimando."
+msgstr "Esta unidade sta queimando."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
@@ -120,12 +120,12 @@ msgstr "In tyamas"
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr "Esta unidá invenena."
+msgstr "Esta unidade invenena."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "Esta unidá sta venenada."
+msgstr "Esta unidade sta venenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
@@ -144,7 +144,7 @@ msgstr "Exércitu d’Alexandre Magnu"
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
-msgstr "Assina ië un exércitu n mappa stratégicu."
+msgstr "Assí ië un exércitu n mappa stratégicu."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -822,13 +822,13 @@ msgstr "Algarroba"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr "Pollascu de Cedru l Atlas"
+msgstr "Pollascu de Cedru del Atlas"
 
 #: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
-msgstr "Cedru l Atlas"
+msgstr "Cedru del Atlas"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
@@ -999,13 +999,13 @@ msgstr "Factoría"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Commuda-se n una casa de 10 pers. al comparti’ la cultura del jogador, outramënte s’elimina"
+msgstr "Commuda-se n una casa de 10 pers. al compartir la cultura del jogador, outramënte s’elimina"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Commuda-se n una casa de 5 pers. al comparti’ la cultura del jogador, otramënte s’elimina"
+msgstr "Commuda-se n una casa de 5 pers. al compartir la cultura del jogador, outramënte s’elimina"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1018,7 +1018,7 @@ msgstr "Anticaballeiría"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "Orde de battaya"
+msgstr "Acie"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1026,11 +1026,11 @@ msgstr "Requier pelo menos 4 Mílites ou Máchinas."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "Quadro"
+msgstr "Quadrado"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "Orde d’abance"
+msgstr "Processión"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
@@ -1038,15 +1038,15 @@ msgstr "Columna abierta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Requier pelo menos 8 Mílites o Máquines."
+msgstr "Requier pelo menos 8 Mílites ou Máchinas."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "Orde dixebráu"
+msgstr "Orde xebradu"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "Orde zarráu"
+msgstr "Orde cerradu"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
@@ -1058,31 +1058,31 @@ msgstr "Nenguno"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Hoplites namái, requier pelo menos 10."
+msgstr "Solo Hoplitas combattientes, requier pelo menos 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "Falanxe"
+msgstr "Phalange"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
-msgstr "Orde espardidu"
+msgstr "Orde spardidu"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr "Mílites tiradores namái, requier pelo menos 2."
+msgstr "Solo Mílites emittientes, requier pelo menos 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Orde d'esfriega"
+msgstr "Reincuöntru"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Piqueros namái, requier pelo menos 16."
+msgstr "Solo Sarissóphoros, requier pelo menos 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
-msgstr "Sintagma"
+msgstr "Syntagma"
 
 #: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
@@ -1090,23 +1090,23 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Équites namái, requier pelo menos 6."
+msgstr "Solo éqüites, requier pelo menos 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
-msgstr "Cuñu"
+msgstr "Cuniu"
 
 #: simulation/templates/special/player/player.xml:58
 msgid "Player"
-msgstr "Xugador"
+msgstr "Jogador"
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
-msgstr "Especulador"
+msgstr "Speculador"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Requier pelo menos 2 mílites o máquines."
+msgstr "Requier pelo menos 2 mílites ou máchinas."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1115,19 +1115,19 @@ msgstr "Gaia"
 #: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8
 msgid "Fish"
-msgstr "Pexe"
+msgstr "Peẍe"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "Fonte de comida."
+msgstr "Fhönte de comida."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
-msgstr "Fruta"
+msgstr "Fruita"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "Fonte de comida."
+msgstr "Fhönte de comida."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
@@ -1135,7 +1135,7 @@ msgstr "Mina"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
-msgstr "Fonte de metal."
+msgstr "Fhönte de metal."
 
 #: simulation/templates/gaia/rock/aegean_cut.xml:8
 #: simulation/templates/gaia/rock/india_cut.xml:8
@@ -1144,27 +1144,27 @@ msgstr "Fonte de metal."
 #: simulation/templates/gaia/rock/temperate_cut.xml:8
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
-msgstr "Cantera"
+msgstr "Canteira"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr "Fonte de piedra."
+msgstr "Fhönte de piedra."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
-msgstr "Ruines"
+msgstr "Ruinas"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "Fonte de piedra."
+msgstr "Fhönte de piedra."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
-msgstr "Ayalga"
+msgstr "Atyalga"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Fonte de recursos."
+msgstr "Fhönte de recursos."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
@@ -1172,7 +1172,7 @@ msgstr "Árbore"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
-msgstr "Fonte de madera."
+msgstr "Fhönte de madeira."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
@@ -1180,7 +1180,7 @@ msgstr "Construcción"
 
 #: simulation/templates/template_unit.xml:39
 msgid "Unit"
-msgstr "Unidá"
+msgstr "Unidade"
 
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
@@ -1189,4 +1189,4 @@ msgstr "Cerca"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr "Cerca un terrén."
+msgstr "Cerca terrenos."

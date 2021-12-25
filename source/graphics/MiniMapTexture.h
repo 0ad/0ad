@@ -19,6 +19,7 @@
 #define INCLUDED_MINIMAPTEXTURE
 
 #include "lib/ogl.h"
+#include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexArray.h"
 
 class CSimulation2;
@@ -41,7 +42,7 @@ public:
 	 */
 	void Render();
 
-	GLuint GetTexture() const { return m_FinalTexture; }
+	GLuint GetTexture() const { return m_FinalTexture->GetHandle(); }
 
 	/**
 	 * @return The maximum height for unit passage in water.
@@ -61,8 +62,8 @@ private:
 	double m_LastFinalTextureUpdate = 0.0;
 
 	// minimap texture handles
-	GLuint m_TerrainTexture = 0;
-	GLuint m_FinalTexture = 0;
+	std::unique_ptr<Renderer::Backend::GL::CTexture>
+		m_TerrainTexture, m_FinalTexture;
 
 	GLuint m_FinalTextureFBO = 0;
 

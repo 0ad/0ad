@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-17 07:08+0000\n"
-"PO-Revision-Date: 2021-12-18 18:26+0000\n"
+"PO-Revision-Date: 2021-12-23 19:30+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -20,32 +20,32 @@ msgstr ""
 #: graphics/CameraController.cpp:656
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "La velocidá de dislocamiento augmentóu a %.1f"
+msgstr "La velocidade de dislocación augmentóu a %.1f"
 
 #: graphics/CameraController.cpp:662
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "La velocidá de dislocamiento diminuíu a %.1f"
+msgstr "La velocidade de dislocación diminuíu a %.1f"
 
 #: graphics/CameraController.cpp:669
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "La velocidá de gyru augmentóu a X=%.3f, Y=%.3f"
+msgstr "La velocidade gyratoria augmentóu a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:676
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "La velocidá de gyru diminuíu a X=%.3f, Y=%.3f"
+msgstr "La velocidade gyratoria diminuíu a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:682
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "La velocidá d’approximación augmentóu a %.1f"
+msgstr "La velocidade d’approximación augmentóu a %.1f"
 
 #: graphics/CameraController.cpp:688
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "La velocidá d’approximación diminuíu a %.1f"
+msgstr "La velocidade d’approximación diminuíu a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -150,7 +150,7 @@ msgstr "La connexión recusóu-lla l servidor"
 
 #: lobby/XmppClient.cpp:1442
 msgid "Resolving the server's hostname failed"
-msgstr "Houbo un fallu al resolve’l hostname del servidor"
+msgstr "Houbo un fallu al resolver el hostname del servidor"
 
 #: lobby/XmppClient.cpp:1443
 msgid "This system is out of memory"
@@ -195,17 +195,17 @@ msgstr "Ia existe l nome d’usuariu"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi que reinstalla’l commudu."
+msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi que reinstallar el commudu."
 
 #: ps/ModIo.cpp:263
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar sobre la identificación del juögu. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar subre la identificación del juögu. Error: %s; %s."
 
 #: ps/ModIo.cpp:293
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar sobre commudos. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar subre commudos. Error: %s; %s."
 
 #: ps/ModIo.cpp:319
 #, c-format
@@ -215,12 +215,12 @@ msgstr "Nun pudo creá-se l directorio l commudu: %s."
 #: ps/ModIo.cpp:344
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrí-se l archivo temporal p’abaẍa’l commudu: %s."
+msgstr "Nun pudo abrí-se l archivo temporal p’abaẍar el commudu: %s."
 
 #: ps/ModIo.cpp:354
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Houbo un fallu al inicia’ la baẍada. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar la baẍada. Error: %s; %s."
 
 #: ps/ModIo.cpp:399
 #, c-format
@@ -243,11 +243,11 @@ msgstr "Archivo inválido. Anticipaba-se l md5 “%s”, recibíu-se “%s”."
 
 #: ps/ModIo.cpp:563
 msgid "Failed to compute final hash."
-msgstr "Houbo un fallu al calcula’l hash final."
+msgstr "Houbo un fallu al calcular el hash final."
 
 #: ps/ModIo.cpp:569
 msgid "Failed to verify signature."
-msgstr "Houbo un fallu al verifica’ la robra."
+msgstr "Houbo un fallu al verificar la robra."
 
 #: ps/SavedGame.cpp:141
 #, c-format

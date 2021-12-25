@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-17 08:08+0000\n"
-"PO-Revision-Date: 2021-12-18 22:46+0000\n"
+"PO-Revision-Date: 2021-12-23 17:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "%(userDesc)s - %(templateName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Atayu sin assignar: %(hotkeyName)s"
+msgstr "Atayu sin assignare: %(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
@@ -714,7 +714,7 @@ msgstr[1] "segundos"
 
 #: gui/common/tooltips.js:156 gui/common/tooltips.js:167
 msgid "Health:"
-msgstr "Vitalidá:"
+msgstr "Vitalidade:"
 
 #: gui/common/tooltips.js:166
 #, javascript-format
@@ -728,7 +728,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "Fidelidá:"
+msgstr "Fidelidade:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -1001,7 +1001,7 @@ msgstr "Sanar:"
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr "Vitalidá"
+msgstr "Vitalidade"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1044,7 +1044,7 @@ msgstr "Por defectu"
 #: gui/common/tooltips.js:626
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr "Per unidá"
+msgstr "Per unidade"
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
@@ -1201,7 +1201,7 @@ msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:1016
 msgid "Speed:"
-msgstr "Celeridá:"
+msgstr "Celeridade:"
 
 #: gui/common/tooltips.js:1018 gui/common/tooltips.js:1023
 #: gui/common/tooltips.js:1028
@@ -1232,8 +1232,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] "Vitalidá"
-msgstr[1] "Vitalidá"
+msgstr[0] "Vitalidade"
+msgstr[1] "Vitalidade"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -1430,7 +1430,7 @@ msgstr "Balancéu"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
-msgstr "Comunidá y xestión"
+msgstr "Communidade & gestión"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1444,7 +1444,7 @@ msgstr "Campaña de donacionines 2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campaña Indiegogo 2013\nMás de 1000 donantes (!), incluídos:"
+msgstr "Campania Indiegogo 2013\nMas de 1000 donantes (!), inclusos:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -1500,7 +1500,7 @@ msgstr "Gracies especiales a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "Y gracies a toda la comunidá por facer posible 0 A.D."
+msgstr "& gracias a la communidade toda por fhazer possible 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -1521,7 +1521,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultá predefinida de la intelligencia artificial puöde supponé-lli un rëptu. A esti aconseya-se-lli practicar cun una IA de menus difficultá (Ẍole ou Per-fácile). Para cambia’ la difficultá de la intelligencia artificial, calca na ícone de la ruöda dentada cabo l jogador del quadro superior que quieras commudare."
+msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultade predefinida de la intelligencia artificial puöde supponé-lli un rëptu. A esti aconseya-se-lli practicar cun una IA de menus difficultade (Ẍole ou Per-fácile). Para cambiar la difficultade de la intelligencia artificial, calca na ícone de la ruöda dentada cabo l jogador del quadro superior que quieras commudare."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1673,12 +1673,12 @@ msgstr "Desplazar/xirar abaxo"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr "Siguir la primer unidá de la esbilla."
+msgstr "Seguir la primeira unidade de la selección."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr "Siguir unidá"
+msgstr "Seguir unidade"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
@@ -1855,22 +1855,22 @@ msgstr "Xirar abaxo"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr "Baxar la velocidá de xiru de la cámara."
+msgstr "Baẍar la velocidade gyratoria de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr "Baxar la velocidá de xiru"
+msgstr "Baẍar la velocidade gyratoria"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr "Xubir la velocidá de xiru de la cámara."
+msgstr "Subir la velocidade gyratoria de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr "Xubir la velocidá de xiru"
+msgstr "Subir la velocidade gyratoria"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
@@ -1896,22 +1896,22 @@ msgstr "Xirar la cámara en sen horariu sobre'l terrén - l'efectu mana na frecu
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr "Baxar la velocidá de desplazamientu de la cámara."
+msgstr "Baẍar la velocidade de dislocación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr "Baxar la velocidá de desplazamientu"
+msgstr "Baẍar la velocidade de dislocación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr "Xubir la velocidá de desplazamientu de la cámara."
+msgstr "Subir la velocidade de dislocación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr "Xubir la velocidá de desplazamientu"
+msgstr "Subir la velocidade de dislocación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
@@ -1946,22 +1946,22 @@ msgstr "Alloñar"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr "Baxar la velocidá d'averamientu o alloñamientu de la cámara."
+msgstr "Baẍar la velocidade d’approximación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr "Baxar la velocidá d'averamientu"
+msgstr "Baẍar la velocidade d’approximación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr "Xubir la velocidá d'averamientu o alloñamientu de la cámara."
+msgstr "Subir la velocidade d’approximación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr "Xubir la velocidá d'averamientu"
+msgstr "Subir la velocidade d’approximación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
@@ -2278,7 +2278,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Commudador p’afhita’l punto d’incuöntru nun mësmu edificio."
+msgstr "Commudador p’afhitar el punto d’incuöntru nun mësmu edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -2288,7 +2288,7 @@ msgstr "Xuntase equí mesmo"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr "La unidá va volver al llabor."
+msgstr "La unidade vai volver al lhabor."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2431,7 +2431,7 @@ msgstr "Fociar a movese"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr "Nun pidir confirmanza al desaniciar un edificiu o unidá."
+msgstr "Nun pedir confirmación al eliminar edificios ou unidades."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
@@ -2456,12 +2456,12 @@ msgstr "Camudador pa mandar a namái un ente de la esbilla."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr "Mandar a una unidá"
+msgstr "Mandar a una unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr "Camudador pa rondar a una unidá."
+msgstr "Commudador para velar a una unidade."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2471,7 +2471,7 @@ msgstr "Rondar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr "Camudador pa executar esti mandáu y lluego volver al mandáu actual."
+msgstr "Commudador para executar esti mandado & lhuögo volver al mandado actual."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
@@ -3422,7 +3422,7 @@ msgstr "Inxerir na esbilla unidades qu'están fora de campu."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr "Incluir el fora de campu"
+msgstr "Includir el föra de campu"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
@@ -3852,7 +3852,7 @@ msgstr "Valor: %(val)s (mín: %(min)s, máx: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "Al reafita’ las opciones vas elimina’ los ajustes guardados. ¿Quieres seguir?"
+msgstr "Al reafitar las opciones vas eliminar los ajustes guardados. ¿Quieres seguir?"
 
 #: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
@@ -4360,7 +4360,7 @@ msgstr "Nengún"
 
 #: gui/options/options.json[2].options[7].list[0].tooltip
 msgid "Entities will all look the same."
-msgstr "Tódolos entes van tene’l mësmu aspectu."
+msgstr "Tódolos entes van tener el mësmu aspectu."
 
 #: gui/options/options.json[2].options[7].list[1].label
 msgid "Limited"
@@ -4483,7 +4483,7 @@ msgstr "Guardar y restaurar esta configuración pa tenella preparada al agospeda
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Dificultá por defectu de la IA"
+msgstr "Dificultade predefinida de la IA"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4507,7 +4507,7 @@ msgstr "Per-diffícile"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "La dificultá por defectu de la intelixencia artificial."
+msgstr "La dificultade predefinida de la intelligencia artificial."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
@@ -4674,7 +4674,7 @@ msgstr "Amostrar l'algame curatible de les unidades esbillades. (Tamién puedes 
 
 #: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
-msgstr "Iconos de grau enriba l'estáu"
+msgstr "Ícones de gradu n riba l stadu"
 
 #: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
@@ -5107,7 +5107,7 @@ msgstr "%(hotkey)s: Llanzar l'antepar p'agospedar o xunise a alcuentros público
 
 #: gui/pregame/MainMenuItems.js:175
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Lhancia’l antepar. \\[DISACTIVADO N ESTA COMPILACIÓN]"
+msgstr "Lhanciar l antepar. \\[DISACTIVADO N ESTA COMPILACIÓN]"
 
 #: gui/pregame/MainMenuItems.js:199
 msgid "Settings"
@@ -5193,11 +5193,11 @@ msgstr "Amostrar los créditos de 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:268
 msgid "Exit"
-msgstr "Colar"
+msgstr "Salire"
 
 #: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
-msgstr "Colar del xuegu."
+msgstr "Salir del juögu."
 
 #: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -6264,7 +6264,7 @@ msgstr "COTÓN CARTAXINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr "Puertu militar que ye exclusivu de los cartaxineses."
+msgstr "Puörtu militar que ië exclusivu de los carthagineses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
@@ -6585,11 +6585,11 @@ msgstr "SIGNAS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fhaz signas p’avisar a la quadriella d’acontecimientos importantes nel mappa."
+msgstr "Fhaz signas p’avisar a la quadriella d’acontecemientos importantes nel mappa."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr "Van ve’ la signa n mappiquín."
+msgstr "Van ver la signa n mappiquín."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6597,7 +6597,7 @@ msgstr "PIRÁMIDES DE MEDEVI"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "Construcciones exclusives de los qesanos."
+msgstr "Construcciones exclusivas de los qesanos."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""

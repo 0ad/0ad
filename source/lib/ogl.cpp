@@ -46,10 +46,6 @@
 #include <string.h>
 #include <stdarg.h>
 
-#if MSC_VERSION
-#pragma comment(lib, "opengl32.lib")
-#endif
-
 
 //----------------------------------------------------------------------------
 // extensions

@@ -13,6 +13,7 @@
 # llen_llen, 2013
 # llen_llen, 2014,2016
 # Mephisto Books <martin.route66.blues+transifex@gmail.com>, 2014
+# Photon man, 2021
 # red hare <www3@hotmail.co.jp>, 2017
 # sgensum, 2014
 # UNJIRO <beer_nondakure@yahoo.co.jp>, 2013
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"PO-Revision-Date: 2021-12-21 07:59+0000\n"
+"Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +92,7 @@ msgstr "ミルティアデス"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr ""
+msgstr "段階が進む毎に労働者の金属採取率+10%"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -165,7 +166,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "ブリトンはブリテン諸島に住むケルトの一族です。戦車を用いるほか、 ロングソード兵と強力な殴打兵があり、彼らはローマに対して幾度も恐るべき反乱を行い、自らの風習と財産を守りました。また、彼らは丘上の砦やクラノグという水上の建物、brochという石の塔など、沢山の独自の建物を立てました。"
+msgstr "ブリトンはブリテン(イギリス)諸島のケルト民族です。戦車、長剣兵、強力な近接兵を駆使し、ローマに対して恐るべき反乱を起こし、自分たちの習慣と利益を守ろうとしました。また、彼らは丘上の砦やクラノグと呼ばれる水上建物、ブロッホと呼ばれる石の塔など、多くの独自建物を立てました。"
 
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
@@ -237,19 +238,19 @@ msgstr "ヒミルコ"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr ""
+msgstr "交易船の貿易効果+25%"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr ""
+msgstr "商業の洞察力"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
-msgstr ""
+msgstr "港と市場での貿易ボーナス+10%"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr ""
+msgstr "好ましい商品"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -259,7 +260,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "カルタゴは、現代のチュニジアにあった都市国家で、西地中海の恐るべき勢力であり、ついには北アフリカの大半と現代のスペインを紀元前3世紀に支配しました。カルタゴの船乗りは最も猛烈な海での競争者であり、海上貿易の達人でした。カルタゴが配備したそびえ立つ戦象は戦場で恐怖をもたらし、防御の壁は頑丈で、決して崩されませんでした。"
+msgstr "カルタゴは、現代のチュニジアにあった都市国家で、西地中海の恐るべき勢力であり、ついには北アフリカの大半と現代のスペインを紀元前3世紀に支配しました。カルタゴの船乗りは最も猛烈な海での競争者であり、海上貿易の達人でした。また、戦場には巨大なそびえ立つ戦象を配備して恐怖をもたらし、決して破られることのない強固な防壁を築きました。"
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -349,7 +350,7 @@ msgstr "タウタルス"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr ""
+msgstr "イベリア人は、ほとんどのマップで拠点の周りに街の壁を設置してスタートします。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -360,17 +361,17 @@ msgstr "沖積平野や河谷を除き、イベリア半島では石材が豊富
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr ""
+msgstr "始まりの壁"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr ""
+msgstr "石の塔 木材コスト-50％、石材コスト+150％、建設時間+33％、HP+60％、駐留量+3、矢の数+1"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr ""
+msgstr "巨大な塔"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -388,69 +389,69 @@ msgstr "イベリア"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
-msgstr ""
+msgstr "カシュタ"
 
 #: simulation/data/civs/kush.jsonAINames[10]
 msgid "Malewiebamani"
-msgstr ""
+msgstr "マルウィエバマニ"
 
 #: simulation/data/civs/kush.jsonAINames[11]
 msgid "Harsiotef"
-msgstr ""
+msgstr "ハルショテフ"
 
 #: simulation/data/civs/kush.jsonAINames[12]
 msgid "Shanakdakhete"
-msgstr ""
+msgstr "シャナクダケテ女王"
 
 #: simulation/data/civs/kush.jsonAINames[13]
 msgid "Amanishakheto"
-msgstr ""
+msgstr "アマニシャケト女王"
 
 #: simulation/data/civs/kush.jsonAINames[1]
 msgid "Alara"
-msgstr ""
+msgstr "アララ"
 
 #: simulation/data/civs/kush.jsonAINames[2]
 msgid "Pebatjma"
-msgstr ""
+msgstr "ペバトマ"
 
 #: simulation/data/civs/kush.jsonAINames[3]
 msgid "Shabaka"
-msgstr ""
+msgstr "シャバカ"
 
 #: simulation/data/civs/kush.jsonAINames[4]
 msgid "Shebitku"
-msgstr ""
+msgstr "シャバタカ"
 
 #: simulation/data/civs/kush.jsonAINames[5]
 msgid "Qalhata"
-msgstr ""
+msgstr "カルハタ"
 
 #: simulation/data/civs/kush.jsonAINames[6]
 msgid "Takahatenamun"
-msgstr ""
+msgstr "タカハテナムン"
 
 #: simulation/data/civs/kush.jsonAINames[7]
 msgid "Tantamani"
-msgstr ""
+msgstr "タヌトアメン"
 
 #: simulation/data/civs/kush.jsonAINames[8]
 msgid "Atlanersa"
-msgstr ""
+msgstr "アトラネルサ"
 
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
-msgstr ""
+msgstr "ナサルサ"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr ""
+msgstr "破城槌の攻撃力+20% 駐留許容+2"
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr ""
+msgstr "巨大な衝角"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -468,7 +469,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr ""
+msgstr "クシュ王国は、現在のスーダン共和国の青ナイル川、白ナイル川、アトバラ川の合流点に位置する古代アフリカの王国です。青銅器時代のエジプト新王国崩壊後、この地域にクシュ人の支配時代が成立。その初期にはナパタを中心にしていたといいます。紀元前8世紀にエジプトへ侵入し、クシュ皇帝はエジプト第25王朝のファラオとして、アッシリアに追放されるまで1世紀にわたって支配していました。文化はエジプト人の影響を強く受けており、クシュのピラミッド建築や記念碑的な寺院建築は今でもその名残があります。クシュはアメンをはじめとする多くのエジプトの神々を崇拝していました。古代において、クシュの首都はメロエにあったとされます。初期のギリシャの地理学では、メロエ王国はエチオピアとして知られていました。紀元後4世紀まで存続していたものの、内部の反乱により崩壊し、最終的にはアクスムの台頭に屈したとされています。"
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -554,7 +555,7 @@ msgstr "アショーカ大王"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Dasharatha Maurya"
-msgstr ""
+msgstr "ダシャラタ・マウリヤ"
 
 #: simulation/data/civs/maur.jsonAINames[4]
 msgid "Samprati Maurya"
@@ -562,7 +563,7 @@ msgstr "サムプラティ・マウリヤ"
 
 #: simulation/data/civs/maur.jsonAINames[5]
 msgid "Shalishuka Maurya"
-msgstr ""
+msgstr "シャリシュカ・マウリヤ"
 
 #: simulation/data/civs/maur.jsonAINames[6]
 msgid "Devavarman Maurya"
@@ -570,7 +571,7 @@ msgstr "デーヴァダルマン・マウリヤ"
 
 #: simulation/data/civs/maur.jsonAINames[7]
 msgid "Shatadhanvan Maurya"
-msgstr ""
+msgstr "シャッダンワン・マウリヤ"
 
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
@@ -590,7 +591,7 @@ msgstr "紀元前322年にチャンドラグプタ・マウリヤによって設
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
-msgstr ""
+msgstr "マウリヤ朝"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -642,11 +643,11 @@ msgstr "アルタクシャサ3世"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr ""
+msgstr "商人での交易効果+25%"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
-msgstr ""
+msgstr "ダレイオス金貨"
 
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
@@ -657,7 +658,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "ペルシア帝国は、アケネメス朝の時、古代最大の帝国の一つで、最盛期には東はインダス渓谷から西はギリシアまでひろがっていました。ペルシアは古代世界の帝国建設の先駆者であり、中央集権を、異なる習慣や法、宗教、言語を持つ多様な人々に巧み課し、また、こうした各国の選抜者からなる全世界軍を創設しました。"
+msgstr "ペルシア帝国は、アケメネス朝が支配していた時代、東はインダス川流域から、西はギリシャまで広がる古代最大の帝国の一つでした。ペルシャ人は古代世界の帝国建設の先駆者であり、習慣、法律、宗教、言語の異なる様々な民族に中央集権的な支配を課し、それぞれの民族の部隊からなる国際的な軍隊を築くことに成功していました。"
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
@@ -741,11 +742,11 @@ msgstr "プトレマイオス新酒神王"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr ""
+msgstr "弩砲の攻撃力と攻撃間隔-33%"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
-msgstr "Polybolos"
+msgstr "ギリシャ式弩砲"
 
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
@@ -832,11 +833,11 @@ msgstr "テストゥド陣形"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr ""
+msgstr "破城槌の攻撃力+20%。投石器の攻撃力+10%"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
-msgstr ""
+msgstr "ローマ攻城技術"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -855,20 +856,20 @@ msgstr "ローマ"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
-msgstr "セレウコス1世勝利王"
+msgstr "セレウコス I世 ニカトール"
 
 #: simulation/data/civs/sele.jsonAINames[10]
 msgid "Alexander I Balas"
-msgstr "アレクサンドロス1世バラス"
+msgstr "アレクサンドロス I世 バラス"
 
 #: simulation/data/civs/sele.jsonAINames[11]
 #: simulation/data/civs/sele.jsonAINames[15]
 msgid "Demetrius II Nicator"
-msgstr "デメトリオス2世勝利王"
+msgstr "デメトリオス II世 ニカトール"
 
 #: simulation/data/civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr "アンティオコス6世酒神王"
+msgstr "アンティオコス VI世 ディオニュソス"
 
 #: simulation/data/civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
@@ -876,11 +877,11 @@ msgstr "ディオドトス・トリュポン"
 
 #: simulation/data/civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
-msgstr "アンティオコス7世シデテス"
+msgstr "アンティオコス VII世 シデテス"
 
 #: simulation/data/civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
-msgstr "アレクサンドロス2世ザビナス"
+msgstr "アレクサンドロス II世 ザビナス"
 
 #: simulation/data/civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
@@ -888,87 +889,87 @@ msgstr "クレオパトラ・テア"
 
 #: simulation/data/civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
-msgstr "セレウコス5世愛母王"
+msgstr "セレウコス V世 フィロメトル"
 
 #: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
-msgstr "アンティオコス8世鷲鼻王"
+msgstr "アンティオコス VIII世 グリュプス"
 
 #: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
-msgstr "アンティオコス1世救済王"
+msgstr "アンティオコス I世 ソテル"
 
 #: simulation/data/civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr "アンティオコス9世キュジケヌス"
+msgstr "アンティオコス IX世 キュジケヌス"
 
 #: simulation/data/civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
-msgstr "セレウコス6世顕神王"
+msgstr "セレウコス VI世 エピファネス"
 
 #: simulation/data/civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr "アンティオコス10世信義王"
+msgstr "アンティオコス X世 エウセベス"
 
 #: simulation/data/civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
-msgstr "デメトリオス3世吉時王"
+msgstr "デメトリオス III世 エウカエルス"
 
 #: simulation/data/civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr "アンティオコス11世顕神王"
+msgstr "アンティオコス XI世 エピファネス"
 
 #: simulation/data/civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
-msgstr "ピリッポス1世愛兄王"
+msgstr "ピリッポス I世 フィラデルフス"
 
 #: simulation/data/civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
-msgstr "アンティオコス12世酒神王"
+msgstr "アンティオコス XII世 ディオニュソス"
 
 #: simulation/data/civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
-msgstr "セレウコス7世鮪切王"
+msgstr "セレウコス VII世 キビオサクテス"
 
 #: simulation/data/civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
-msgstr "アンティオコス13世アシアティコス"
+msgstr "アンティオコス XIII世 アシアティコス"
 
 #: simulation/data/civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
-msgstr "ピリッポス2世親羅王"
+msgstr "ピリッポス II世 フィロロマイオス"
 
 #: simulation/data/civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
-msgstr "アンティオコス2世ミレトス神王"
+msgstr "アンティオコス II世 ミレトス"
 
 #: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
-msgstr "セレウコス2世カリニコス王"
+msgstr "セレウコス II世 カリニコス"
 
 #: simulation/data/civs/sele.jsonAINames[4]
 msgid "Seleucus III Ceraunus"
-msgstr "セレウコス3世電光王"
+msgstr "セレウコス III世 ケラウノス"
 
 #: simulation/data/civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
-msgstr "アンティオコス3世大王"
+msgstr "アンティオコス III世 メガス"
 
 #: simulation/data/civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
-msgstr "セレウコス4世愛父王"
+msgstr "セレウコス IV世 フィロパトル"
 
 #: simulation/data/civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
-msgstr "アンティオコス4世顕神王"
+msgstr "アンティオコス IV世 エピファネス"
 
 #: simulation/data/civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
-msgstr "アンティオコス5世良父王"
+msgstr "アンティオコス V世 エウパトル"
 
 #: simulation/data/civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
-msgstr "デメトリオス1世救済王"
+msgstr "デメトリオス I世 ソテル"
 
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
@@ -1025,11 +1026,11 @@ msgstr "エウリュクラテス"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr ""
+msgstr "女性市民のHP+40％、近接斬撃+50％"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr ""
+msgstr "スパルタ女性"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

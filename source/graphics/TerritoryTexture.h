@@ -16,8 +16,8 @@
  */
 
 #include "lib/ogl.h"
-
 #include "maths/Matrix3D.h"
+#include "renderer/backend/gl/Texture.h"
 
 class CSimulation2;
 template<typename T>
@@ -34,14 +34,6 @@ class CTerritoryTexture
 public:
 	CTerritoryTexture(CSimulation2& simulation);
 	~CTerritoryTexture();
-
-	/**
-	 * Recomputes the territory texture if necessary, and binds it to the requested
-	 * texture unit.
-	 * Also switches the current active texture unit, and enables texturing on it.
-	 * The texture is in 32-bit BGRA format.
-	 */
-	void BindTexture(int unit);
 
 	/**
 	 * Recomputes the territory texture if necessary, and returns the texture handle.
@@ -71,8 +63,8 @@ private:
 	bool UpdateDirty();
 
 	void DeleteTexture();
-	void ConstructTexture(int unit);
-	void RecomputeTexture(int unit);
+	void ConstructTexture();
+	void RecomputeTexture();
 
 	void GenerateBitmap(const Grid<u8>& territories, u8* bitmap, ssize_t w, ssize_t h);
 
@@ -80,7 +72,7 @@ private:
 
 	size_t m_DirtyID;
 
-	GLuint m_Texture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_Texture;
 
 	ssize_t m_MapSize; // tiles per side
 	GLsizei m_TextureSize; // texels per side

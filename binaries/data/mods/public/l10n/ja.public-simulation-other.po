@@ -8,13 +8,14 @@
 # karubabu <karubabu@protonmail.com>, 2018
 # llen_llen, 2016
 # naoki yoshida <oimotanaka1122@gmail.com>, 2015
+# Photon man, 2021
 # red hare <www3@hotmail.co.jp>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2021-11-19 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-12-22 13:57+0000\n"
+"Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,12 +81,12 @@ msgstr "今%(_player_2)sに攻撃しようとしているため、あなたと%(
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "%(_player_)sへの贈り物です。お役立てください。"
+msgstr "%(_player_)sへお贈りします。お役立てください。"
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "%(_player_)sと険悪な状況とお見受けします。これがお役に立てば幸いです。"
+msgstr "%(_player_)s、険悪な状況とお見受けします。これがお役に立てば幸いです。"
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
@@ -163,14 +164,14 @@ msgstr "%(_player_)s、あなたとの同盟は却下しますが、中立なら
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s、私には中立協定しか考えられません。"
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "以前の同盟はうまくいかなかった、%(_player_)s。私はあなたの申し出をお断りします"
 
 #: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
@@ -180,41 +181,41 @@ msgstr "再び%(_player_)sと同盟することはないでしょう！"
 #: simulation/ai/petra/chatHelper.js:68
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)sとの間にはもう同盟はありえません!"
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "あなたの平和への願いは、もう私には何の意味もありません、%(_player_)s！"
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "あなたの度重なる平和提案に対する私の答えは闘いだけです、%(_player_)s！"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "私はあなたの同盟国になるための申し出を受け入れます、%(_player_)s。このパートナーシップからお互いに利益を得ることができるでしょう。"
 
 #: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "私たちの間での同盟は良い考えだと思います、%(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "両者が平和な関係で繁栄するように、%(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "我々は共通の認識を得た、%(_player_)s。同盟を受け入れます。"
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
@@ -226,42 +227,42 @@ msgstr "%(_player_)s、私達との同盟を今から考えてみてください
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s、あなたが私に%(_amount_)s%(_resource_)sの貢ぎ物を送るならば私はあなたと同盟を結びます。"
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s、同盟を受け入れる前に、%(_amount_)s%(_resource_)sの貢ぎ物を私に送ってもらいたい。"
 
 #: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr ""
+msgstr "私に%(_amount_)s%(_resource_)sを送らない限り、同盟は成立はない。%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s、私の申し出はまだ有効です。あなたが%(_amount_)s%(_resource_)sの貢ぎ物を送ってくれるならば、私はあなたと同盟を結ぼう。"
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "同盟を受け入れるために、私はまだ %(_amount_)s%(_resource_)s送ってもらうのを待っています。%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:87 simulation/ai/petra/chatHelper.js:108
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s、あなたがすぐに%(_amount_)s%(_resource_)sの貢ぎ物を送ってくれないならば交渉を打ち切ります。"
 
 #: simulation/ai/petra/chatHelper.js:92
 #, javascript-format
@@ -278,93 +279,93 @@ msgstr "%(_player_)sとの中立協定の申請を辞退しなければなりま
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "前回の中立協定は失敗に終わりました、%(_player_)s；次の協定は考えません。"
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr ""
+msgstr "私たちの文明の間の平和のためならば%(_player_)s、要求を歓迎します。"
 
 #: simulation/ai/petra/chatHelper.js:100
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)s、私はあなたの中立の提案を受け入れましょう。双方の文明に利益がもたらされますように。"
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "貢物の%(_amount_)s%(_resource_)sを送ってくれれば、%(_player_)sの中立提案を受け入れましょう。"
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)s、 私に%(_amount_)s%(_resource_)sを送ってくれれば、中立条約を受け入れます。"
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s、私に%(_amount_)s%(_resource_)sを送って貰えない場合私はあなたの中立の要求は受け入れません。"
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s、同盟を結べば、お互いの文明の助けになるでしょう。あなたが私と同盟を結ぶならば、それに応えましょう。"
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s、私の同盟の申し出は失効しました。"
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s、私たちの間で同盟を結ぶという前回の申し出を撤回しました。"
 
 #: simulation/ai/petra/chatHelper.js:125
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s、中立条約を提案します。あなたが私と中立になれば、それに応じましょう。"
 
 #: simulation/ai/petra/chatHelper.js:126
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s、私は中立条約を結んだ方がお互いのためになると思います。中立にしてもらえれば、それに応えましょう。"
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s、中立協定の申し出を撤回することにしました。"
 
 #: simulation/ai/petra/chatHelper.js:130
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s、あなたは私の和平の要求に応えてくれなかったので、私は申し出を破棄します。"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petraはデフォルトの0 A.D.のAIボットです。問題点をWildfire Gamesに報告してください（メインメニューのリンクを参照）。\n\nAIの資源収集率と交易獲得量は難易度によって異なります（練習 -58%、とても簡単 -44%、簡単 -25%、普通 ±0%、難しい +25%、とても難しい +56%）。また、最も簡単なレベルでは、研究、養成、建築の速度が遅くなります。練習レベルでは、拡張も攻撃もしません。"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -507,13 +508,13 @@ msgstr "%(time)sで攻撃可能です"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "現在攻撃可能です！"
+msgstr "攻撃できます！"
 
 #: simulation/components/EndGameManager.js:174
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
+msgstr[0] "%(players)sと%(lastPlayer)sの勝利です(最後の生存者)"
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -522,17 +523,17 @@ msgstr "最後に残ったプレイヤーが勝利します。"
 #: simulation/components/EntityLimits.js:192
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr "%(category)sは建造数量リミットの%(limit)sに達しました"
+msgstr "%(category)sは建造数量上限%(limit)sに達しました"
 
 #: simulation/components/EntityLimits.js:194
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr "%(category)sは訓練リミットの%(limit)sに達しました"
+msgstr "%(category)sは養成上限%(limit)sに達しました"
 
 #: simulation/components/EntityLimits.js:198
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr "%(category)sリミットの%(limit)sに達しました"
+msgstr "%(category)s上限%(limit)sに達しました"
 
 #: simulation/components/Player.js:347
 #, javascript-format
@@ -563,7 +564,7 @@ msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 
 #: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "エンティティがアップグレード中です。生産を開始できません。"
 
 #: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
@@ -571,59 +572,59 @@ msgstr "生産キューが満杯です。"
 
 #: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
-msgstr ""
+msgstr "ユニットを自動でキューに入れられなかったので、解除します。"
 
 #: simulation/components/Trainer.js:321
 msgid "Can't find free space to spawn trained units."
-msgstr ""
+msgstr "養成したユニットを配置する場所がありません"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "エンティティは生産中です。アップグレードを開始できません。"
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "Turtle (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "Fast Forward (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "Slow (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Leisurely (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Relaxed (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "Normal (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "Fast (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "Very Fast (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "Insane (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Fast Forward (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "Fast Forward (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -651,7 +652,7 @@ msgstr "標準"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "このマップサイズは、2人でプレイしても十分な広さがありますが、8人までのプレイも可能です。"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -756,7 +757,7 @@ msgstr "とても簡単"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "0 A.D.を初めてプレイする場合は、この難易度を選択しましょう。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -764,7 +765,7 @@ msgstr "簡単"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "倒されるのが嫌な人はこの難易度を選んでください。"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
@@ -774,7 +775,7 @@ msgstr "中"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "0 A.D.に慣れてきた方は、この難易度を選んでください。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -782,7 +783,7 @@ msgstr "難しい"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "本格的に挑戦したい方は、この難易度を選んでください。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -790,23 +791,23 @@ msgstr "とても難しい"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "振り回されてもいいならば、この難易度を選んでください。"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "マップ上に散らばっているすべての遺跡を占領し、一定の時間それらを確保すると勝利。"
+msgstr "マップ上に散らばっているすべての棺台を占領し、一定の時間それらを確保すると勝利します。"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "聖遺物の確保"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "相手のユニットをすべて倒し、構造物をすべて破壊して相手を倒すと勝利します。"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -814,15 +815,15 @@ msgstr "征服"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centres."
-msgstr ""
+msgstr "町の中心をすべて破壊して相手を倒すと勝利です。"
 
 #: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
 msgid "Conquest Civic Centres"
-msgstr ""
+msgstr "町の中心の征服"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "敵の建造物を全て破壊して倒すと勝利します。"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -830,7 +831,7 @@ msgstr "建造物の征服"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "相手のユニットを倒し、全滅させると勝利します。"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -838,7 +839,7 @@ msgstr "ユニットの征服"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "敵の英雄を倒して、敵を倒すと勝利します。"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
@@ -850,37 +851,37 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "象徴を最初に作るか確保して、一定時間キープすると勝利します。\n象徴が破壊または確保されると、タイマーはリセットされます。\n味方の勝利モードを有効にしている場合、象徴を確保している同盟が変わるとタイマーもリセットされます。"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr "奇観"
+msgstr "象徴"
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)sは敗北しました (チート)"
 
 #: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "ユニットを養成する建物を選ぶ必要があります。"
 
 #: simulation/helpers/Commands.js:134
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Cheat - control all units)"
 
 #: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(Cheat - reveal map)"
 
 #: simulation/helpers/Commands.js:473
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)sは降伏しました"
 
 #: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Cheat - promoted units)"
 
 #: simulation/helpers/Commands.js:772
 msgid ""
@@ -899,16 +900,16 @@ msgstr "買収できるユニットがいません。"
 
 #: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
-msgstr ""
+msgstr "ユニットをアンロードできません。"
 
 #: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "このユニットは仕事に復帰できません"
 
 #: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr ""
+msgstr "%(unit)sは操作できません"
 
 #: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."

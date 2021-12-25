@@ -32,6 +32,7 @@
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/Profiler2.h"
@@ -97,14 +98,18 @@ MESSAGEHANDLER(InitSDL)
 	// When running in Atlas, we skip the SDL video initialisation code
 	// which loads the library, and so SDL_GL_GetProcAddress fails (in
 	// ogl.cpp importExtensionFunctions).
-	// (TODO: I think this is meant to be context-independent, i.e. it
-	// doesn't matter that we're getting extensions from SDL-initialised
-	// GL stuff instead of from the wxWidgets-initialised GL stuff, but that
-	// should be checked.)
 	// So, make sure it's loaded:
 	SDL_InitSubSystem(SDL_INIT_VIDEO);
-	SDL_GL_LoadLibrary(NULL); // NULL = use default
-	// (it shouldn't hurt if this is called multiple times, I think)
+	// wxWidgets doesn't use a proper approach to dynamically load functions and
+	// doesn't provide GetProcAddr-like function. Technically we need to call
+	// SDL_GL_LoadLibrary inside GL device creation, but that might lead to a
+	// crash on Windows because of a wrong order of initialization between SDL
+	// and wxWidgets context management. So leave the call as is while it works.
+	// Refs:
+	//   http://trac.wxwidgets.org/ticket/9213
+	//   http://trac.wxwidgets.org/ticket/9215
+	if (SDL_GL_LoadLibrary(nullptr) && g_Logger)
+		LOGERROR("SDL failed to load GL library: '%s'", SDL_GetError());
 }
 
 MESSAGEHANDLER(InitGraphics)

@@ -35,20 +35,18 @@
 // TODO: There's a lot of duplication with CLOSTexture - might be nice to refactor a bit
 
 CTerritoryTexture::CTerritoryTexture(CSimulation2& simulation) :
-	m_Simulation(simulation), m_DirtyID(0), m_Texture(0), m_MapSize(0), m_TextureSize(0)
+	m_Simulation(simulation), m_DirtyID(0), m_MapSize(0), m_TextureSize(0)
 {
 }
 
 CTerritoryTexture::~CTerritoryTexture()
 {
-	if (m_Texture)
-		DeleteTexture();
+	DeleteTexture();
 }
 
 void CTerritoryTexture::DeleteTexture()
 {
-	glDeleteTextures(1, &m_Texture);
-	m_Texture = 0;
+	m_Texture.reset();
 }
 
 bool CTerritoryTexture::UpdateDirty()
@@ -57,20 +55,12 @@ bool CTerritoryTexture::UpdateDirty()
 	return cmpTerritoryManager && cmpTerritoryManager->NeedUpdateTexture(&m_DirtyID);
 }
 
-void CTerritoryTexture::BindTexture(int unit)
-{
-	if (UpdateDirty())
-		RecomputeTexture(unit);
-
-	g_Renderer.BindTexture(unit, m_Texture);
-}
-
 GLuint CTerritoryTexture::GetTexture()
 {
 	if (UpdateDirty())
-		RecomputeTexture(0);
+		RecomputeTexture();
 
-	return m_Texture;
+	return m_Texture->GetHandle();
 }
 
 const float* CTerritoryTexture::GetTextureMatrix()
@@ -85,7 +75,7 @@ const CMatrix3D* CTerritoryTexture::GetMinimapTextureMatrix()
 	return &m_MinimapTextureMatrix;
 }
 
-void CTerritoryTexture::ConstructTexture(int unit)
+void CTerritoryTexture::ConstructTexture()
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpTerrain)
@@ -96,20 +86,19 @@ void CTerritoryTexture::ConstructTexture(int unit)
 
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
 
-	glGenTextures(1, &m_Texture);
-	g_Renderer.BindTexture(unit, m_Texture);
+	m_Texture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
 	// Initialise texture with transparency, for the areas we don't
 	// overwrite with glTexSubImage2D later
 	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
 	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+	g_Renderer.BindTexture(0, m_Texture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	{
 		// Texture matrix: We want to map
@@ -139,7 +128,7 @@ void CTerritoryTexture::ConstructTexture(int unit)
 	}
 }
 
-void CTerritoryTexture::RecomputeTexture(int unit)
+void CTerritoryTexture::RecomputeTexture()
 {
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)
@@ -150,7 +139,7 @@ void CTerritoryTexture::RecomputeTexture(int unit)
 	}
 
 	if (!m_Texture)
-		ConstructTexture(unit);
+		ConstructTexture();
 
 	PROFILE("recompute territory texture");
 
@@ -161,7 +150,7 @@ void CTerritoryTexture::RecomputeTexture(int unit)
 	std::vector<u8> bitmap(m_MapSize * m_MapSize * 4);
 	GenerateBitmap(cmpTerritoryManager->GetTerritoryGrid(), &bitmap[0], m_MapSize, m_MapSize);
 
-	g_Renderer.BindTexture(unit, m_Texture);
+	g_Renderer.BindTexture(0, m_Texture->GetHandle());
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_RGBA, GL_UNSIGNED_BYTE, &bitmap[0]);
 }
 
