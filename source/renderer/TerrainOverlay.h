@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 #ifndef INCLUDED_TERRAINOVERLAY
 #define INCLUDED_TERRAINOVERLAY
 
-#include "lib/ogl.h"
+#include "renderer/backend/gl/Texture.h"
 
 struct CColor;
 struct SColor4ub;
@@ -197,8 +197,7 @@ private:
 	void RenderAfterWater(int cullGroup);
 
 	float m_TexelsPerTile;
-	GLuint m_Texture;
-	GLsizei m_TextureW, m_TextureH;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_Texture;
 };
 
 #endif // INCLUDED_TERRAINOVERLAY

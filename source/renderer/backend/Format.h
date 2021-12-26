@@ -29,6 +29,9 @@ enum class Format
 	UNDEFINED,
 	R8G8B8A8,
 	A8,
+	D16,
+	D24,
+	D32
 };
 
 } // namespace Backend

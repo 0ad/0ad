@@ -35,6 +35,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/Texture.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
@@ -59,7 +60,7 @@ struct ShadowMapInternals
 	// the EXT_framebuffer_object framebuffer
 	GLuint Framebuffer;
 	// handle of shadow map
-	GLuint Texture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> Texture;
 
 	// bit depth for the depth texture
 	int DepthTextureBits;
@@ -109,7 +110,7 @@ struct ShadowMapInternals
 	// incorrectly when the FBO has only a depth attachment.
 	// When m_ShadowAlphaFix is true, we use DummyTexture to store a useless
 	// alpha texture which is attached to the FBO as a workaround.
-	GLuint DummyTexture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> DummyTexture;
 
 	// Copy of renderer's standard view camera, saved between
 	// BeginRender and EndRender while we replace it with the shadow camera
@@ -213,10 +214,9 @@ ShadowMap::ShadowMap()
 
 ShadowMap::~ShadowMap()
 {
-	if (m->Texture)
-		glDeleteTextures(1, &m->Texture);
-	if (m->DummyTexture)
-		glDeleteTextures(1, &m->DummyTexture);
+	m->Texture.reset();
+	m->DummyTexture.reset();
+
 	if (m->Framebuffer)
 		glDeleteFramebuffersEXT(1, &m->Framebuffer);
 
@@ -227,10 +227,9 @@ ShadowMap::~ShadowMap()
 // size has changed
 void ShadowMap::RecreateTexture()
 {
-	if (m->Texture)
-		glDeleteTextures(1, &m->Texture);
-	if (m->DummyTexture)
-		glDeleteTextures(1, &m->DummyTexture);
+	m->Texture.reset();
+	m->DummyTexture.reset();
+
 	if (m->Framebuffer)
 		glDeleteFramebuffersEXT(1, &m->Framebuffer);
 
@@ -483,16 +482,9 @@ void ShadowMapInternals::CalculateShadowMatrices(const int cascade)
 void ShadowMapInternals::CreateTexture()
 {
 	// Cleanup
-	if (Texture)
-	{
-		glDeleteTextures(1, &Texture);
-		Texture = 0;
-	}
-	if (DummyTexture)
-	{
-		glDeleteTextures(1, &DummyTexture);
-		DummyTexture = 0;
-	}
+	Texture.reset();
+	DummyTexture.reset();
+
 	if (Framebuffer)
 	{
 		glDeleteFramebuffersEXT(1, &Framebuffer);
@@ -539,16 +531,18 @@ void ShadowMapInternals::CreateTexture()
 
 	GLenum format;
 	const char* formatName;
+	Renderer::Backend::Format backendFormat = Renderer::Backend::Format::UNDEFINED;
 #if CONFIG2_GLES
 	format = GL_DEPTH_COMPONENT;
 	formatName = "DEPTH_COMPONENT";
+	backendFormat = Renderer::Backend::Format::D24;
 #else
 	switch (DepthTextureBits)
 	{
-	case 16: format = GL_DEPTH_COMPONENT16; formatName = "DEPTH_COMPONENT16"; break;
-	case 24: format = GL_DEPTH_COMPONENT24; formatName = "DEPTH_COMPONENT24"; break;
-	case 32: format = GL_DEPTH_COMPONENT32; formatName = "DEPTH_COMPONENT32"; break;
-	default: format = GL_DEPTH_COMPONENT; formatName = "DEPTH_COMPONENT"; break;
+	case 16: format = GL_DEPTH_COMPONENT16; formatName = "DEPTH_COMPONENT16"; backendFormat = Renderer::Backend::Format::D16; break;
+	case 24: format = GL_DEPTH_COMPONENT24; formatName = "DEPTH_COMPONENT24"; backendFormat = Renderer::Backend::Format::D24; break;
+	case 32: format = GL_DEPTH_COMPONENT32; formatName = "DEPTH_COMPONENT32"; backendFormat = Renderer::Backend::Format::D32;  break;
+	default: format = GL_DEPTH_COMPONENT; formatName = "DEPTH_COMPONENT"; backendFormat = Renderer::Backend::Format::D24; break;
 	}
 #endif
 	ENSURE(formatName);
@@ -558,39 +552,38 @@ void ShadowMapInternals::CreateTexture()
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		glGenTextures(1, &DummyTexture);
-		g_Renderer.BindTexture(0, DummyTexture);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		DummyTexture = Renderer::Backend::GL::CTexture::Create2D(
+			Renderer::Backend::Format::R8G8B8A8, Width, Height,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::NEAREST,
+				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
+
+		g_Renderer.BindTexture(0, DummyTexture->GetHandle());
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
 
-	glGenTextures(1, &Texture);
-	g_Renderer.BindTexture(0, Texture);
+	Texture = Renderer::Backend::GL::CTexture::Create2D(
+		backendFormat, Width, Height,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+#if CONFIG2_GLES
+			// GLES doesn't do depth comparisons, so treat it as a
+			// basic unfiltered depth texture
+			Renderer::Backend::Sampler::Filter::NEAREST,
+#else
+			// Use GL_LINEAR to trigger automatic PCF on some devices
+			Renderer::Backend::Sampler::Filter::LINEAR,
+#endif
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
+	g_Renderer.BindTexture(0, Texture->GetHandle());
 	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 	// GLES requires type == UNSIGNED_SHORT or UNSIGNED_INT
 
-	// set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-#if CONFIG2_GLES
-	// GLES doesn't do depth comparisons, so treat it as a
-	// basic unfiltered depth texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-#else
+#if !CONFIG2_GLES
 	// Enable automatic depth comparisons
 	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-
-	// Use GL_LINEAR to trigger automatic PCF on some devices
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 #endif
 
 	ogl_WarnIfError();
@@ -599,11 +592,11 @@ void ShadowMapInternals::CreateTexture()
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
 
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture->GetHandle(), 0);
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture->GetHandle(), 0);
 	}
 	else
 	{
@@ -704,7 +697,7 @@ void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 	if (!shader->GetTextureBinding(str_shadowTex).Active())
 		return;
 
-	shader->BindTexture(str_shadowTex, m->Texture);
+	shader->BindTexture(str_shadowTex, m->Texture->GetHandle());
 	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
 	const CVector3D cameraForward = g_Renderer.GetCullCamera().GetOrientation().GetIn();
 	shader->Uniform(str_cameraForward, cameraForward.X, cameraForward.Y, cameraForward.Z,
@@ -740,11 +733,7 @@ void ShadowMap::SetDepthTextureBits(int bits)
 {
 	if (bits != m->DepthTextureBits)
 	{
-		if (m->Texture)
-		{
-			glDeleteTextures(1, &m->Texture);
-			m->Texture = 0;
-		}
+		m->Texture.reset();
 		m->Width = m->Height = 0;
 
 		m->DepthTextureBits = bits;
@@ -801,7 +790,7 @@ void ShadowMap::RenderDebugTexture()
 	glDisable(GL_DEPTH_TEST);
 
 #if !CONFIG2_GLES
-	g_Renderer.BindTexture(0, m->Texture);
+	g_Renderer.BindTexture(0, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 #endif
 
@@ -810,7 +799,7 @@ void ShadowMap::RenderDebugTexture()
 	CShaderProgramPtr texShader = texTech->GetShader();
 
 	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
-	texShader->BindTexture(str_tex, m->Texture);
+	texShader->BindTexture(str_tex, m->Texture->GetHandle());
 	texShader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 1.0f));
 	texShader->Uniform(str_colorMul, CColor(1.0f, 1.0f, 1.0f, 0.0f));
 	texShader->Uniform(str_grayscaleFactor, 0.0f);
@@ -833,7 +822,7 @@ void ShadowMap::RenderDebugTexture()
 	texTech->EndPass();
 
 #if !CONFIG2_GLES
-	g_Renderer.BindTexture(0, m->Texture);
+	g_Renderer.BindTexture(0, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 #endif
 
