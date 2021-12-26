@@ -12,6 +12,8 @@ class ProfilePage
 
 		this.fetchInput = Engine.GetGUIObjectByName("fetchInput");
 		this.fetchInput.onPress = this.onPressLookup.bind(this);
+		this.fetchInput.onTab = this.autocomplete.bind(this);
+		this.fetchInput.tooltip = colorizeAutocompleteHotkey();
 
 		Engine.GetGUIObjectByName("viewProfileButton").onPress = this.onPressLookup.bind(this);
 		Engine.GetGUIObjectByName("profileBackButton").onPress = this.onPressClose.bind(this, true);
@@ -46,6 +48,20 @@ class ProfilePage
 		Engine.SendGetProfile(this.requestedPlayer);
 	}
 
+	autocomplete()
+	{
+		const listPlayerNames = Engine.GetPlayerList().map(player => escapeText(player.name));
+		// Remove duplicates with the board list. The board list has lower case names.
+		const listPlayerNamesLower = listPlayerNames.map(playerName => playerName.toLowerCase());
+		for (const entry of Engine.GetBoardList())
+		{
+			const escapedName = escapeText(entry.name);
+			if (!listPlayerNamesLower.includes(escapedName))
+				listPlayerNames.push(escapedName);
+		}
+		autoCompleteText(this.fetchInput, listPlayerNames);
+	}
+
 	onPressClose()
 	{
 		this.profilePage.hidden = true;
@@ -73,7 +89,7 @@ class ProfilePage
 			return;
 		}
 
-		this.profilePlayernameText.caption = escapeText(attributes.player);
+		this.profilePlayernameText.caption = PlayerColor.ColorPlayerName(escapeText(attributes.player), attributes.rating);
 		this.profileRankText.caption = attributes.rank;
 		this.profileHighestRatingText.caption = attributes.highestRating;
 		this.profileTotalGamesText.caption = attributes.totalGamesPlayed;

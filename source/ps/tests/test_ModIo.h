@@ -209,17 +209,6 @@ public:
 		if (sodium_base642bin((unsigned char*)&pk, sizeof pk, pk_str.c_str(), pk_str.size(), NULL, &bin_len, NULL, sodium_base64_VARIANT_ORIGINAL) != 0 || bin_len != sizeof pk)
 			LOGERROR("failed to decode base64 public key");
 
-
-		// No invalid signature at all (silent failure)
-#define TS_ASSERT_PARSE_SILENT_FAILURE(input) \
-	{ \
-		TestLogger logger; \
-		SigStruct sig; \
-		std::string err; \
-		TS_ASSERT(!ModIo::ParseSignature(input, sig, pk, err)); \
-		TS_ASSERT(err.empty()); \
-	}
-
 #define TS_ASSERT_PARSE(input, expected_error) \
 	{ \
 		TestLogger logger; \
@@ -229,7 +218,7 @@ public:
 		TS_ASSERT_STR_EQUALS(err, expected_error); \
 	}
 
-		TS_ASSERT_PARSE_SILENT_FAILURE({});
+		TS_ASSERT_PARSE({}, "Invalid (too short) sig.");
 
 		TS_ASSERT_PARSE("", "Invalid (too short) sig.");
 
@@ -242,8 +231,7 @@ public:
 		TS_ASSERT_PARSE("untrusted comment: \nZm9vYmFyCg==\ntrusted comment: \n", "Failed to decode base64 sig.");
 		TS_ASSERT_PARSE("untrusted comment: \nRWTA6VIoth2Q1HUg5bwwbCUZPcqbQ/reLXqxiaWARH5PNcwxX5vBv/mLPLgdxGsIrOyK90763+rCVTmjeYx5BDz8C0CIbGZTNQs=\ntrusted comment: \n", "Only hashed minisign signatures are supported.");
 
-		// Silent failure again this one has the wrong keynum
-		TS_ASSERT_PARSE_SILENT_FAILURE({"untrusted comment: \nRUTA5VIoth2Q1HUg5bwwbCUZPcqbQ/reLXqxiaWARH5PNcwxX5vBv/mLPLgdxGsIrOyK90763+rCVTmjeYx5BDz8C0CIbGZTNQs=\ntrusted comment: \n"});
+		TS_ASSERT_PARSE({"untrusted comment: \nRUTA5VIoth2Q1HUg5bwwbCUZPcqbQ/reLXqxiaWARH5PNcwxX5vBv/mLPLgdxGsIrOyK90763+rCVTmjeYx5BDz8C0CIbGZTNQs=\ntrusted comment: \n"}, "Invalid signature.");
 
 		TS_ASSERT_PARSE("untrusted comment: \nRUTA6VIoth2Q1HUg5bwwbCUZPcqbQ/reLXqxiaWARH5PNcwxX5vBv/mLPLgdxGsIrOyK90763+rCVTmjeYx5BDz8C0CIbGZTNQs=\ntrusted comment: \n", "Failed to decode base64 global_sig.");
 
@@ -258,7 +246,6 @@ public:
 			TS_ASSERT(err.empty());
 		}
 
-#undef TS_ASSERT_PARSE_SILENT_FAILURE
 #undef TS_ASSERT_PARSE
 	}
 };
