@@ -19,21 +19,19 @@
 
 #include "TerrainTextureEntry.h"
 
-#include "lib/utf8.h"
-#include "lib/ogl.h"
+#include "graphics/MaterialManager.h"
+#include "graphics/Terrain.h"
+#include "graphics/TerrainProperties.h"
+#include "graphics/TerrainTextureManager.h"
+#include "graphics/Texture.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/io/io.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
-
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
-
-#include "graphics/MaterialManager.h"
-#include "graphics/Terrain.h"
-#include "graphics/TerrainTextureManager.h"
-#include "graphics/TerrainProperties.h"
-#include "graphics/Texture.h"
 #include "renderer/Renderer.h"
 
 #include <map>
@@ -202,11 +200,11 @@ const float* CTerrainTextureEntry::GetTextureMatrix() const
 
 // LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
 // calculate the coordinate of each alphamap within this packed texture
-void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
+void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 {
-	std::wstring key = L"(alpha map composite" + amtype.string() + L")";
+	const std::wstring key = L"(alpha map composite" + alphaMapType.string() + L")";
 
-	CTerrainTextureManager::TerrainAlphaMap::iterator it = g_TexMan.m_TerrainAlphas.find(amtype);
+	CTerrainTextureManager::TerrainAlphaMap::iterator it = g_TexMan.m_TerrainAlphas.find(alphaMapType);
 
 	if (it != g_TexMan.m_TerrainAlphas.end())
 	{
@@ -214,8 +212,8 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		return;
 	}
 
-	g_TexMan.m_TerrainAlphas[amtype] = TerrainAlpha();
-	it = g_TexMan.m_TerrainAlphas.find(amtype);
+	g_TexMan.m_TerrainAlphas[alphaMapType] = TerrainAlpha();
+	it = g_TexMan.m_TerrainAlphas.find(alphaMapType);
 
 	TerrainAlpha &result = it->second;
 
@@ -224,9 +222,10 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	//
 	Handle textures[NUM_ALPHA_MAPS] = {0};
 	VfsPath path(L"art/textures/terrain/alphamaps");
-	path = path / amtype;
+	path = path / alphaMapType;
 
-	const wchar_t* fnames[NUM_ALPHA_MAPS] = {
+	const wchar_t* fnames[NUM_ALPHA_MAPS] =
+	{
 		L"blendcircle.png",
 		L"blendlshape.png",
 		L"blendedge.png",
@@ -246,7 +245,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	// for convenience, we require all alpha maps to be of the same BPP
 	// (avoids another ogl_tex_get_size call, and doesn't hurt)
 	size_t bpp = 0;
-	for(size_t i=0;i<NUM_ALPHA_MAPS;i++)
+	for (size_t i = 0; i < NUM_ALPHA_MAPS; ++i)
 	{
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
@@ -254,7 +253,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		if (textures[i] < 0)
 		{
 			g_TexMan.m_TerrainAlphas.erase(it);
-			LOGERROR("Failed to load alphamap: %s", amtype.string8());
+			LOGERROR("Failed to load alphamap: %s", alphaMapType.string8());
 
 			VfsPath standard("standard");
 			if (path != standard)
@@ -266,65 +265,65 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
-		size_t this_width = 0, this_height = 0, this_bpp = 0;	// fail-safe
-		ignore_result(ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp));
-		if(this_width != this_height)
+		size_t thisWidth = 0, thisHeight = 0, thisBPP = 0;	// fail-safe
+		ignore_result(ogl_tex_get_size(textures[i], &thisWidth, &thisHeight, &thisBPP));
+		if (thisWidth != thisHeight)
 			DEBUG_DISPLAY_ERROR(L"Alpha maps are not square");
 		// .. first iteration: establish size
-		if(i == 0)
+		if (i == 0)
 		{
-			base = this_width;
-			bpp  = this_bpp;
+			base = thisWidth;
+			bpp = thisBPP;
 		}
 		// .. not first: make sure texture size matches
-		else if(base != this_width || bpp != this_bpp)
+		else if (base != thisWidth || bpp != thisBPP)
 			DEBUG_DISPLAY_ERROR(L"Alpha maps are not identically sized (including pixel depth)");
 	}
 
 	//
 	// copy each alpha map (tile) into one buffer, arrayed horizontally.
 	//
-	size_t tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
-	size_t total_w = round_up_to_pow2(tile_w * NUM_ALPHA_MAPS);
-	size_t total_h = base; ENSURE(is_pow2(total_h));
+	const size_t tileWidth = 2 + base + 2;	// 2 pixel border (avoids bilinear filtering artifacts)
+	const size_t totalWidth = round_up_to_pow2(tileWidth * NUM_ALPHA_MAPS);
+	const size_t totalHeight = base; ENSURE(is_pow2(totalHeight));
 	std::shared_ptr<u8> data;
-	AllocateAligned(data, total_w*total_h, maxSectorSize);
+	AllocateAligned(data, totalWidth * totalHeight, maxSectorSize);
 	// for each tile on row
-	for (size_t i = 0; i < NUM_ALPHA_MAPS; i++)
+	for (size_t i = 0; i < NUM_ALPHA_MAPS; ++i)
 	{
 		// get src of copy
 		u8* src = 0;
 		ignore_result(ogl_tex_get_data(textures[i], &src));
 
-		size_t srcstep = bpp/8;
+		const size_t srcStep = bpp / 8;
 
 		// get destination of copy
-		u8* dst = data.get() + (i*tile_w);
+		u8* dst = data.get() + (i * tileWidth);
 
 		// for each row of image
-		for (size_t j = 0; j < base; j++)
+		for (size_t j = 0; j < base; ++j)
 		{
 			// duplicate first pixel
 			*dst++ = *src;
 			*dst++ = *src;
 
 			// copy a row
-			for (size_t k = 0; k < base; k++)
+			for (size_t k = 0; k < base; ++k)
 			{
 				*dst++ = *src;
-				src += srcstep;
+				src += srcStep;
 			}
 
 			// duplicate last pixel
-			*dst++ = *(src-srcstep);
-			*dst++ = *(src-srcstep);
+			*dst++ = *(src - srcStep);
+			*dst++ = *(src - srcStep);
 
 			// advance write pointer for next row
-			dst += total_w-tile_w;
+			dst += totalWidth - tileWidth;
 		}
 
-		result.m_AlphaMapCoords[i].u0 = float(i*tile_w+2) / float(total_w);
-		result.m_AlphaMapCoords[i].u1 = float((i+1)*tile_w-2) / float(total_w);
+		result.m_AlphaMapCoords[i].u0 = static_cast<float>(i * tileWidth + 2) / totalWidth;
+		result.m_AlphaMapCoords[i].u1 = static_cast<float>((i + 1) * tileWidth - 2) / totalWidth;
 		result.m_AlphaMapCoords[i].v0 = 0.0f;
 		result.m_AlphaMapCoords[i].v1 = 1.0f;
 	}
@@ -334,7 +333,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 
 	// upload the composite texture
 	Tex t;
-	ignore_result(t.wrap(total_w, total_h, 8, TEX_GREY, data, 0));
+	ignore_result(t.wrap(totalWidth, totalHeight, 8, TEX_GREY, data, 0));
 
 	// uncomment the following to save a png of the generated texture
 	// in the public/ directory, for debugging

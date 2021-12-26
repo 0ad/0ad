@@ -18,51 +18,23 @@
 #ifndef INCLUDED_TERRAINTEXTUREENTRY
 #define INCLUDED_TERRAINTEXTUREENTRY
 
-#include "TerrainTextureManager.h"
-#include "TextureManager.h"
-#include "Material.h"
-
-#include "lib/res/handle.h"
+#include "graphics/Material.h"
+#include "graphics/TerrainTextureManager.h"
+#include "graphics/TextureManager.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/res/handle.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStr.h"
 
 #include <vector>
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CTerrainTextureEntry: class wrapping a terrain texture object; contains various other required
 // elements - color of minimap, terrain "group" it belongs to, etc
 class CTerrainTextureEntry
 {
 public:
-	typedef std::vector<CTerrainGroup *> GroupVector;
+	using GroupVector = std::vector<CTerrainGroup*>;
 
-private:
-	// Tag = file name stripped of path and extension (grass_dark_1)
-	CStr m_Tag;
-
-	// The property sheet used by this texture
-	CTerrainPropertiesPtr m_pProperties;
-
-	CMaterial m_Material;
-
-	CMatrix3D m_TextureMatrix;
-
-	// BGRA color of topmost mipmap level, for coloring minimap, or a color
-	// specified by the terrain properties
-	u32 m_BaseColor;
-	// ..Valid is true if the base color has been cached
-	bool m_BaseColorValid;
-
-	// All terrain type groups we're a member of
-	GroupVector m_Groups;
-
-	// calculate the root color of the texture, used for coloring minimap
-	void BuildBaseColor();
-
-	void LoadAlphaMaps(VfsPath &amtype);
-
-public:
 	// Most of the texture's data is delay-loaded, so after the constructor has
 	// been called, the texture entry is ready to be used.
 	CTerrainTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path);
@@ -88,8 +60,32 @@ public:
 		return m_BaseColor;
 	}
 
-	//TerrainAlpha *m_TerrainAlpha;
 	CTerrainTextureManager::TerrainAlphaMap::iterator m_TerrainAlpha;
+
+private:
+	// Tag = file name stripped of path and extension (grass_dark_1)
+	CStr m_Tag;
+
+	// The property sheet used by this texture
+	CTerrainPropertiesPtr m_pProperties;
+
+	CMaterial m_Material;
+
+	CMatrix3D m_TextureMatrix;
+
+	// BGRA color of topmost mipmap level, for coloring minimap, or a color
+	// specified by the terrain properties
+	u32 m_BaseColor;
+	// ..Valid is true if the base color has been cached
+	bool m_BaseColorValid;
+
+	// All terrain type groups we're a member of
+	GroupVector m_Groups;
+
+	// calculate the root color of the texture, used for coloring minimap
+	void BuildBaseColor();
+
+	void LoadAlphaMaps(const VfsPath& alphaMapType);
 };
 
 #endif
