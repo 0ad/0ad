@@ -23,6 +23,7 @@
 #define INCLUDED_SKYMANAGER
 
 #include "graphics/Texture.h"
+#include "renderer/backend/gl/Texture.h"
 
 #include <vector>
 
@@ -49,7 +50,7 @@ public:
 
 	GLuint GetSkyCube()
 	{
-		return m_SkyCubeMap;
+		return m_SkyCubeMap->GetHandle();
 	}
 
 	/**
@@ -95,7 +96,7 @@ private:
 	// Sky textures
 	CTexturePtr m_SkyTexture[NUMBER_OF_TEXTURES];
 
-	GLuint m_SkyCubeMap;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_SkyCubeMap;
 };
 
 

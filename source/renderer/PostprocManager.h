@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "graphics/ShaderTechniquePtr.h"
 #include "lib/ogl.h"
 #include "ps/CStr.h"
+#include "renderer/backend/gl/Texture.h"
 
 #include <vector>
 
@@ -85,14 +86,16 @@ private:
 	GLuint m_PingFbo, m_PongFbo;
 
 	// Unique color textures for the framebuffers.
-	GLuint m_ColorTex1, m_ColorTex2;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ColorTex1, m_ColorTex2;
 
 	// The framebuffers share a depth/stencil texture.
-	GLuint m_DepthTex;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_DepthTex;
 	float m_NearPlane, m_FarPlane;
 
 	// A framebuffer and textures x2 for each blur level we render.
-	GLuint m_BloomFbo, m_BlurTex2a, m_BlurTex2b, m_BlurTex4a, m_BlurTex4b, m_BlurTex8a, m_BlurTex8b;
+	GLuint m_BloomFbo;
+	std::unique_ptr<Renderer::Backend::GL::CTexture>
+		m_BlurTex2a, m_BlurTex2b, m_BlurTex4a, m_BlurTex4b, m_BlurTex8a, m_BlurTex8b;
 
 	// Indicates which of the ping-pong buffers is used for reading and which for drawing.
 	bool m_WhichBuffer;
@@ -110,7 +113,8 @@ private:
 	CShaderTechniquePtr m_AATech;
 	bool m_UsingMultisampleBuffer;
 	GLuint m_MultisampleFBO;
-	GLuint m_MultisampleColorTex, m_MultisampleDepthTex;
+	std::unique_ptr<Renderer::Backend::GL::CTexture>
+		m_MultisampleColorTex, m_MultisampleDepthTex;
 	GLsizei m_MultisampleCount;
 	std::vector<GLsizei> m_AllowedSampleCounts;
 

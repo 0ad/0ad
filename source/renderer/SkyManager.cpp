@@ -27,6 +27,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
+#include "lib/bits.h"
 #include "lib/ogl.h"
 #include "lib/tex/tex.h"
 #include "lib/timer.h"
@@ -45,7 +46,7 @@
 #include <algorithm>
 
 SkyManager::SkyManager()
-	: m_RenderSky(true), m_SkyCubeMap(0)
+	: m_RenderSky(true)
 {
 	CFG_GET_VAL("showsky", m_RenderSky);
 }
@@ -62,6 +63,7 @@ void SkyManager::LoadSkyTextures()
 		L"top",
 		L"top"
 	};
+
 	/*for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); ++i)
 	{
 		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(s_imageNames[i])+L".dds");
@@ -77,10 +79,50 @@ void SkyManager::LoadSkyTextures()
 	// HACK: THE HORRIBLENESS HERE IS OVER 9000. The following code is a HUGE hack and will be removed completely
 	// as soon as all the hardcoded GL_TEXTURE_2D references are corrected in the TextureManager/OGL/tex libs.
 
-	glGenTextures(1, &m_SkyCubeMap);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
+	Tex textures[NUMBER_OF_TEXTURES + 1];
 
-	static const int types[] = {
+	for (size_t i = 0; i < NUMBER_OF_TEXTURES + 1; ++i)
+	{
+		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i]) + L".dds");
+
+		std::shared_ptr<u8> file;
+		size_t fileSize;
+		if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
+		{
+			path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i]) + L".dds.cached.dds");
+			if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
+			{
+				LOGERROR("Error creating sky cubemap '%s', can't load file: '%s'.", m_SkySet.ToUTF8().c_str(), path.string8().c_str());
+				return;
+			}
+		}
+
+		textures[i].decode(file, fileSize);
+		textures[i].transform_to((textures[i].m_Flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
+
+		if (!is_pow2(textures[i].m_Width) || !is_pow2(textures[i].m_Height))
+		{
+			LOGERROR("Error creating sky cubemap '%s', cube textures should have power of 2 sizes.", m_SkySet.ToUTF8().c_str());
+			return;
+		}
+
+		if (textures[i].m_Width != textures[0].m_Width || textures[i].m_Height != textures[0].m_Height)
+		{
+			LOGERROR("Error creating sky cubemap '%s', cube textures have different sizes.", m_SkySet.ToUTF8().c_str());
+			return;
+		}
+	}
+
+	m_SkyCubeMap = Renderer::Backend::GL::CTexture::Create(Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
+		Renderer::Backend::Format::R8G8B8A8, textures[0].m_Width, textures[0].m_Height,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1);
+
+	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap->GetHandle());
+
+	static const int types[] =
+	{
 		GL_TEXTURE_CUBE_MAP_POSITIVE_X,
 		GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
 		GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
@@ -89,64 +131,37 @@ void SkyManager::LoadSkyTextures()
 		GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
 	};
 
+	std::vector<u8> rotated;
 	for (size_t i = 0; i < NUMBER_OF_TEXTURES + 1; ++i)
 	{
-		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds");
-
-		std::shared_ptr<u8> file;
-		size_t fileSize;
-		if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
-		{
-			path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds.cached.dds");
-			if (g_VFS->LoadFile(path, file, fileSize) != INFO::OK)
-			{
-				glDeleteTextures(1, &m_SkyCubeMap);
-				LOGERROR("Error creating sky cubemap.");
-				return;
-			}
-		}
-
-		Tex tex;
-		tex.decode(file, fileSize);
-
-		tex.transform_to((tex.m_Flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
-
-		u8* data = tex.get_data();
+		u8* data = textures[i].get_data();
 
 		if (types[i] == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y || types[i] == GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
 		{
-			std::vector<u8> rotated(tex.m_DataSize);
+			rotated.reserve(textures[i].m_DataSize);
 
-			for (size_t y = 0; y < tex.m_Height; ++y)
+			for (size_t y = 0; y < textures[i].m_Height; ++y)
 			{
-				for (size_t x = 0; x < tex.m_Width; ++x)
+				for (size_t x = 0; x < textures[i].m_Width; ++x)
 				{
-					size_t invx = y, invy = tex.m_Width-x-1;
+					const size_t invX = y;
+					const size_t invY = textures[i].m_Width - x - 1;
 
-					rotated[(y*tex.m_Width + x) * 4 + 0] = data[(invy*tex.m_Width + invx) * 4 + 0];
-					rotated[(y*tex.m_Width + x) * 4 + 1] = data[(invy*tex.m_Width + invx) * 4 + 1];
-					rotated[(y*tex.m_Width + x) * 4 + 2] = data[(invy*tex.m_Width + invx) * 4 + 2];
-					rotated[(y*tex.m_Width + x) * 4 + 3] = data[(invy*tex.m_Width + invx) * 4 + 3];
+					rotated[(y * textures[i].m_Width + x) * 4 + 0] = data[(invY * textures[i].m_Width + invX) * 4 + 0];
+					rotated[(y * textures[i].m_Width + x) * 4 + 1] = data[(invY * textures[i].m_Width + invX) * 4 + 1];
+					rotated[(y * textures[i].m_Width + x) * 4 + 2] = data[(invY * textures[i].m_Width + invX) * 4 + 2];
+					rotated[(y * textures[i].m_Width + x) * 4 + 3] = data[(invY * textures[i].m_Width + invX) * 4 + 3];
 				}
 			}
 
-			glTexImage2D(types[i], 0, GL_RGBA, tex.m_Width, tex.m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
+			glTexImage2D(types[i], 0, GL_RGBA, textures[i].m_Width, textures[i].m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
 		}
 		else
 		{
-			glTexImage2D(types[i], 0, GL_RGBA, tex.m_Width, tex.m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(types[i], 0, GL_RGBA, textures[i].m_Width, textures[i].m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		}
 	}
 
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-#if CONFIG2_GLES
-#warning TODO: fix SkyManager::LoadSkyTextures for GLES
-#else
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-#endif
 	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 	///////////////////////////////////////////////////////////////////////////
 }
@@ -159,11 +174,7 @@ void SkyManager::SetSkySet(const CStrW& newSet)
 	if (newSet == m_SkySet)
 		return;
 
-	if (m_SkyCubeMap)
-	{
-		glDeleteTextures(1, &m_SkyCubeMap);
-		m_SkyCubeMap = 0;
-	}
+	m_SkyCubeMap.reset();
 
 	m_SkySet = newSet;
 
@@ -208,7 +219,7 @@ void SkyManager::RenderSky()
 	// everything else.
 
 	// Do nothing unless SetSkySet was called
-	if (m_SkySet.empty())
+	if (m_SkySet.empty() || !m_SkyCubeMap)
 		return;
 
 	glDepthMask(GL_FALSE);
@@ -219,7 +230,7 @@ void SkyManager::RenderSky()
 		g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 	skytech->BeginPass();
 	CShaderProgramPtr shader = skytech->GetShader();
-	shader->BindTexture(str_baseTex, m_SkyCubeMap);
+	shader->BindTexture(str_baseTex, m_SkyCubeMap->GetHandle());
 
 	// Translate so the sky center is at the camera space origin.
 	CMatrix3D translate;

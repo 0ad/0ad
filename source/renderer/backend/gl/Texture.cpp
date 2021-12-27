@@ -58,10 +58,40 @@ GLint AddressModeToGLEnum(Sampler::AddressMode addressMode)
 	return GL_REPEAT;
 }
 
+GLenum TypeToGLEnum(CTexture::Type type)
+{
+	GLenum target = GL_TEXTURE_2D;
+	switch (type)
+	{
+	case CTexture::Type::TEXTURE_2D:
+		target = GL_TEXTURE_2D;
+		break;
+	case CTexture::Type::TEXTURE_2D_MULTISAMPLE:
+#if CONFIG2_GLES
+		ENSURE(false && "Multisample textures are unsupported on GLES");
+#else
+		target = GL_TEXTURE_2D_MULTISAMPLE;
+#endif
+		break;
+	case CTexture::Type::TEXTURE_CUBE:
+		target = GL_TEXTURE_CUBE_MAP;
+		break;
+	}
+	return target;
+}
+
 } // anonymous namespace
 
 // static
 std::unique_ptr<CTexture> CTexture::Create2D(const Format format,
+	const uint32_t width, const uint32_t height,
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount)
+{
+	return Create(Type::TEXTURE_2D, format, width, height, defaultSamplerDesc, mipCount);
+}
+
+// static
+std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 	const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount)
 {
@@ -77,34 +107,50 @@ std::unique_ptr<CTexture> CTexture::Create2D(const Format format,
 
 	glGenTextures(1, &texture->m_Handle);
 
+	ogl_WarnIfError();
+
 	glActiveTextureARB(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture->m_Handle);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, CalculateMinFilter(defaultSamplerDesc, mipCount));
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, defaultSamplerDesc.magFilter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST);
+	const GLenum target = TypeToGLEnum(type);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, AddressModeToGLEnum(defaultSamplerDesc.addressModeU));
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, AddressModeToGLEnum(defaultSamplerDesc.addressModeV));
+	glBindTexture(target, texture->m_Handle);
+
+	glTexParameteri(target, GL_TEXTURE_MIN_FILTER, CalculateMinFilter(defaultSamplerDesc, mipCount));
+	glTexParameteri(target, GL_TEXTURE_MAG_FILTER, defaultSamplerDesc.magFilter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST);
+
+	ogl_WarnIfError();
+
+	glTexParameteri(target, GL_TEXTURE_WRAP_S, AddressModeToGLEnum(defaultSamplerDesc.addressModeU));
+	glTexParameteri(target, GL_TEXTURE_WRAP_T, AddressModeToGLEnum(defaultSamplerDesc.addressModeV));
 
 #if !CONFIG2_GLES
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, mipCount - 1);
+	if (type == Type::TEXTURE_CUBE)
+		glTexParameteri(target, GL_TEXTURE_WRAP_R, AddressModeToGLEnum(defaultSamplerDesc.addressModeW));
+#endif
+
+	ogl_WarnIfError();
+
+#if !CONFIG2_GLES
+	glTexParameteri(target, GL_TEXTURE_BASE_LEVEL, 0);
+	glTexParameteri(target, GL_TEXTURE_MAX_LEVEL, mipCount - 1);
 
 	if (defaultSamplerDesc.mipLODBias != 0.0f)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_LOD_BIAS, defaultSamplerDesc.mipLODBias);
+		glTexParameteri(target, GL_TEXTURE_LOD_BIAS, defaultSamplerDesc.mipLODBias);
 #endif // !CONFIG2_GLES
 
-	if (defaultSamplerDesc.anisotropyEnabled && ogl_tex_has_anisotropy())
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, defaultSamplerDesc.maxAnisotropy);
+	if (type == Type::TEXTURE_2D && defaultSamplerDesc.anisotropyEnabled && ogl_tex_has_anisotropy())
+		glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, defaultSamplerDesc.maxAnisotropy);
 
 	if (defaultSamplerDesc.addressModeU == Sampler::AddressMode::CLAMP_TO_BORDER ||
 		defaultSamplerDesc.addressModeV == Sampler::AddressMode::CLAMP_TO_BORDER ||
 		defaultSamplerDesc.addressModeW == Sampler::AddressMode::CLAMP_TO_BORDER)
 	{
-		glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, defaultSamplerDesc.borderColor.AsFloatArray());
+		glTexParameterfv(target, GL_TEXTURE_BORDER_COLOR, defaultSamplerDesc.borderColor.AsFloatArray());
 	}
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+	ogl_WarnIfError();
+
+	glBindTexture(target, 0);
 
 	return texture;
 }

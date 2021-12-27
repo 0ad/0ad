@@ -39,16 +39,29 @@ namespace GL
 class CTexture
 {
 public:
+	enum class Type
+	{
+		TEXTURE_2D,
+		TEXTURE_2D_MULTISAMPLE,
+		TEXTURE_CUBE
+	};
+
 	~CTexture();
 
 	// GL before 3.3 doesn't support sampler objects, so each texture should have
 	// an own default sampler.
+	static std::unique_ptr<CTexture> Create(const Type type, const Format format,
+		const uint32_t width, const uint32_t height,
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount);
+
+	// Shorthands for particular types.
 	static std::unique_ptr<CTexture> Create2D(const Format format,
 		const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount = 1);
 
 	GLuint GetHandle() const { return m_Handle; }
 
+	Type GetType() const { return m_Type; }
 	Format GetFormat() const { return m_Format; }
 	uint32_t GetWidth() const { return m_Width; }
 	uint32_t GetHeight() const { return m_Height; }
@@ -59,6 +72,7 @@ private:
 
 	GLuint m_Handle = 0;
 
+	Type m_Type = Type::TEXTURE_2D;
 	Format m_Format = Format::UNDEFINED;
 	uint32_t m_Width = 0;
 	uint32_t m_Height = 0;

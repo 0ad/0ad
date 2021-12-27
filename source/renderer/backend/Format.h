@@ -31,6 +31,7 @@ enum class Format
 	A8,
 	D16,
 	D24,
+	D24_S8,
 	D32
 };
 
