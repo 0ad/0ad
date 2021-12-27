@@ -102,6 +102,7 @@ const char* GetSDLSubsystem(SDL_Window* window)
 #if SDL_VERSION_ATLEAST(2, 0, 12)
 	case SDL_SYSWM_HAIKU:
 		subsystem = "Haiku";
+		break;
 #endif
 #if SDL_VERSION_ATLEAST(2, 0, 11)
 	default:
