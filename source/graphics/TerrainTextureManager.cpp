@@ -21,9 +21,7 @@
 
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainProperties.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"

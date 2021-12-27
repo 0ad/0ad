@@ -15,33 +15,28 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Mesh object with texture and skinning information
- */
-
 #include "precompiled.h"
 
 #include "Model.h"
 
-#include "Decal.h"
-#include "ModelDef.h"
-#include "maths/Quaternion.h"
+#include "graphics/Decal.h"
+#include "graphics/MeshManager.h"
+#include "graphics/ModelDef.h"
+#include "graphics/ObjectEntry.h"
+#include "graphics/SkeletonAnim.h"
+#include "graphics/SkeletonAnimDef.h"
+#include "graphics/SkeletonAnimManager.h"
 #include "maths/BoundingBoxAligned.h"
-#include "SkeletonAnim.h"
-#include "SkeletonAnimDef.h"
-#include "SkeletonAnimManager.h"
-#include "MeshManager.h"
-#include "ObjectEntry.h"
-#include "lib/res/graphics/ogl_tex.h"
+#include "maths/Quaternion.h"
 #include "lib/res/h_mgr.h"
 #include "lib/sysdep/rtl.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/RenderingOptions.h"
-#include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/Simulation2.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -22,7 +22,7 @@
 #ifndef INCLUDED_VERTEXBUFFER
 #define INCLUDED_VERTEXBUFFER
 
-#include "lib/res/graphics/ogl_tex.h"
+#include "lib/ogl.h"
 
 #include <vector>
 

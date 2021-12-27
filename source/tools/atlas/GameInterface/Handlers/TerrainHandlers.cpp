@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -40,7 +39,8 @@
 
 #include <queue>
 
-namespace AtlasMessage {
+namespace AtlasMessage
+{
 
 QUERYHANDLER(GetTerrainGroups)
 {
@@ -546,4 +546,4 @@ BEGIN_COMMAND(FillTerrain)
 };
 END_COMMAND(FillTerrain)
 
-}
+} // namespace AtlasMessage

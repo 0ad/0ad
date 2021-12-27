@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,12 +32,12 @@
 #include "maths/Quaternion.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCinemaManager.h"
 
 
-namespace AtlasMessage {
+namespace AtlasMessage
+{
 
 const float MINIMAL_SCREEN_DISTANCE = 5.f;
 
@@ -541,4 +541,4 @@ MESSAGEHANDLER(ClearPathNodePreview)
 	g_AtlasGameLoop->view->SetParam(L"movetool", false);
 }
 
-}
+} // namespace AtlasMessage

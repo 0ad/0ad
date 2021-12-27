@@ -18,16 +18,15 @@
 #ifndef INCLUDED_TERRAINTEXTUREMANAGER
 #define INCLUDED_TERRAINTEXTUREMANAGER
 
-#include <map>
-#include <memory>
-#include <vector>
-
-#include "lib/res/graphics/ogl_tex.h"
-#include "lib/res/handle.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 #include "renderer/backend/gl/Texture.h"
+
+#include <map>
+#include <memory>
+#include <vector>
 
 // access to sole CTerrainTextureManager object
 #define g_TexMan CTerrainTextureManager::GetSingleton()
@@ -72,9 +71,9 @@ public:
 
 struct TerrainAlpha
 {
-	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
+	// Composite alpha map (all the alpha maps packed into one texture).
 	std::unique_ptr<Renderer::Backend::GL::CTexture> m_CompositeAlphaMap;
-	// coordinates of each (untransformed) alpha map within the packed texture
+	// Coordinates of each (untransformed) alpha map within the packed texture.
 	struct
 	{
 		float u0, u1, v0, v1;

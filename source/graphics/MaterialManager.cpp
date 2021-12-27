@@ -20,7 +20,6 @@
 #include "MaterialManager.h"
 
 #include "graphics/PreprocessorWrapper.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector4D.h"
 #include "ps/CLogger.h"

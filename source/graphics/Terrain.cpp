@@ -15,28 +15,22 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Describes ground via heightmap and array of CPatch.
- */
-
 #include "precompiled.h"
 
-#include "lib/res/graphics/ogl_tex.h"
+#include "graphics/Terrain.h"
+
+#include "graphics/Patch.h"
+#include "graphics/TerrainProperties.h"
+#include "graphics/TerrainTextureEntry.h"
+#include "graphics/TerrainTextureManager.h"
 #include "lib/sysdep/cpu.h"
-
-#include "renderer/Renderer.h"
-
-#include "TerrainProperties.h"
-#include "TerrainTextureEntry.h"
-#include "TerrainTextureManager.h"
-
-#include <string.h>
-#include "Terrain.h"
-#include "Patch.h"
 #include "maths/FixedVector3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "renderer/Renderer.h"
 #include "simulation2/helpers/Pathfinding.h"
+
+#include <string.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain constructor

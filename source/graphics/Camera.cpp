@@ -26,7 +26,6 @@
 
 #include "graphics/HFTracer.h"
 #include "graphics/Terrain.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector4D.h"
