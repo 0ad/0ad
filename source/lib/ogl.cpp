@@ -31,7 +31,6 @@
 #include "lib/config2.h"
 #include "lib/debug.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/res/h_mgr.h"
 #include "ps/CLogger.h"
 
 #if !CONFIG2_GLES

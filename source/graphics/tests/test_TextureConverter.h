@@ -20,7 +20,6 @@
 #include "graphics/TextureConverter.h"
 
 #include "lib/file/vfs/vfs.h"
-#include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "ps/XML/Xeromyces.h"
 

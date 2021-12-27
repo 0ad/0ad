@@ -28,7 +28,6 @@
 #include "graphics/SkeletonAnimManager.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Quaternion.h"
-#include "lib/res/h_mgr.h"
 #include "lib/sysdep/rtl.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
