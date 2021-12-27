@@ -128,8 +128,7 @@ newJSONData = {'Title': 'Translators', 'Content': []}
 # Now go through the list of languages and search the .po files for people
 
 # Prepare some regexes
-commentMatch = re.compile('#.*')
-translatorMatch = re.compile('# ([^,<]*)(?: <.*>)?, [0-9,-]{4,9}')
+translatorMatch = re.compile('# (.*)')
 deletedUsernameMatch = re.compile('[0-9a-f]{32}')
 
 # Search
@@ -144,13 +143,13 @@ for lang in langs.keys():
             reached = False
             for line in poFile:
                 if reached:
-                    if not commentMatch.match(line):
-                        break
                     m = translatorMatch.match(line)
-                    if m:
-                        username = m.group(1)
-                        if not deletedUsernameMatch.match(username):
-                            langsLists[lang].append(m.group(1))
+                    if not m:
+                        break
+
+                    username = m.group(1)
+                    if not deletedUsernameMatch.match(username):
+                        langsLists[lang].append(username)
                 if line.strip() == '# Translators:':
                     reached = True
             poFile.close()
