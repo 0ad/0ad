@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-12-06 20:57+0000\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-24 10:25+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -1252,77 +1252,78 @@ msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s laskee rajaa %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
-msgid "Could only be constructed once."
-msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] "Voidaan rakentaa vain kerran."
-msgstr[1] "Voidaan rakentaa vain %(limit)s kertaa."
-
-#: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
 msgstr "Voidaan rakentaa vain kerran."
 
-#: gui/session/selection_panels_helpers.js:146
+#: gui/session/selection_panels_helpers.js:142
+#, javascript-format
+msgid "Could only be constructed %(limit)s time."
+msgid_plural "Could only be constructed %(limit)s times."
+msgstr[0] ""
+msgstr[1] "Voidaan rakentaa vain %(limit)s kertaa."
+
+#: gui/session/selection_panels_helpers.js:148
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
 msgstr[0] "Voidaan rakentaa vielä %(count)s kerran."
 msgstr[1] "Voidaan rakentaa vielä %(count)s kertaa."
 
-#: gui/session/selection_panels_helpers.js:153
+#: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Voitiin kouluttaa vain kerran."
 msgstr[1] "Voitiin kouluttaa vain %(limit)s kertaa."
 
-#: gui/session/selection_panels_helpers.js:157
+#: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
 msgstr "Voidaan kouluttaa vain kerran."
 
-#: gui/session/selection_panels_helpers.js:159
+#: gui/session/selection_panels_helpers.js:161
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
 msgstr[0] "Voidaan kouluttaa vielä %(count)s kerran."
 msgstr[1] "Voidaan kouluttaa vielä %(count)s kertaa."
 
-#: gui/session/selection_panels_helpers.js:166
+#: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
 msgstr[0] "Voitiin luoda vain kerran."
 msgstr[1] "Voitiin luoda vain%(limit)s kertaa."
 
-#: gui/session/selection_panels_helpers.js:170
+#: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
 msgstr "Voidaan luoda vain kerran."
 
-#: gui/session/selection_panels_helpers.js:172
+#: gui/session/selection_panels_helpers.js:174
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
 msgstr[0] "Voidaan luoda vielä %(count)s kerran."
 msgstr[1] "Voidaan luoda vielä %(count)s kertaa."
 
-#: gui/session/selection_panels_helpers.js:201
+#: gui/session/selection_panels_helpers.js:203
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:215
+#: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s kouluttaaksesi %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:217
+#: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s kouluttaaksesi %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:219
+#: gui/session/selection_panels_helpers.js:221
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s kouluttaaksesi %(number)s."
 
-#: gui/session/selection_panels_helpers.js:224
+#: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
 msgstr "Shift-klikkaa"
 

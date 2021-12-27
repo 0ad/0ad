@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2021-12-23 19:32+0000\n"
+"PO-Revision-Date: 2021-12-27 00:06+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "Ië que mi fhaltan soldados; mas lhuögo vou aggredir a %(_player_)s."
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Ië que preciso supplir las mias fhilas; mas d’a reo vou aggredir a %(_player_)s."
+msgstr "Ië que preciso de refhörcios; mas d’a reo vou aggredir a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
@@ -81,7 +81,7 @@ msgstr "Esto ië pa ti, %(_player_)s. Gasta-lo bien."
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "Ello parez que te ves enas del gatu, %(_player_)s. Q’esto te fhaiga avíu."
+msgstr "Ello parez que te ves ennes del gatu, %(_player_)s. Q’esto te fhaiga avíu."
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
@@ -187,7 +187,7 @@ msgstr "¡Nun mi da mas que quieras fhazer las pazes, %(_player_)s!"
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr "¡Por muitho que pidas la paz, %(_player_)s, la respuösta sigue siendo la spada!"
+msgstr "¡Por muĩtho que pidas la paz, %(_player_)s, la respuösta sigue siendo la spada!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ië la IA predefinida de 0 A.D. Fhaz el favor d’informar de fallos a Wildfire Games (ve l vínculo in menú principal).\n\nLa rapidez cun la que Petra obtién recursos & beneficios commerciales depende de la sua difficultade, (Ẍole −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nas difficultades minores, tamién baẍan los rhythmos de disinvolvimiento, d’exercitación & de construcción. D’arriendas, na difficultade “Ẍole” Petra nin se sparde nin invade."
+msgstr "Petra ië la IA predefinida de 0 A.D. Fhaz el favor d’informar de fallos a Wildfire Games (ve l vínculo in menú principal).\n\nLa rapidez cun la que Petra obtién recursos & beneficios commerciales depende de la sua difficultade, (Ẍole −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades minores, tamién baẍan los rhythmos de disinvolvimiento, d’exercitación & de construcción. D’arriendas, nela difficultade “Ẍole” Petra nin se sparde nin invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -505,14 +505,14 @@ msgstr "Puödes attacar in %(time)s"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "¡Haghora puödes attacare!"
+msgstr "¡Haghora puödes attacar!"
 
 #: simulation/components/EndGameManager.js:174
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(lastPlayer)s triumphóu (por subrevivire)."
-msgstr[1] "%(players)s & %(lastPlayer)s triumpharun (por subrevivire)."
+msgstr[0] "%(lastPlayer)s triumphóu (por subrevivir)."
+msgstr[1] "%(players)s & %(lastPlayer)s triumpharun (por subrevivir)."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -630,7 +630,7 @@ msgstr "Nanu"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "Nos mappas d’esta magnitude mal caben a penas los recursos mas básicos."
+msgstr "Nelos mappas d’esta magnitude mal caben a penas los recursos mas básicos."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -650,7 +650,7 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr "Nos mappas d’esta magnitude puöden caber guapamente dous jogadores, inclusive ha hi spacio para uöitho."
+msgstr "Nelos mappas d’esta magnitude puöden caber guapamente dous jogadores, inclusive ha hi spacio para uöitho."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -677,7 +677,7 @@ msgstr "Per-grande"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Nun s’aconseyan los mappas per-grandes d’ex que te sitúan muitho lhönge del inimigu & puöden reduzir el rendimiento del juögu."
+msgstr "Nun s’aconseyan los mappas per-grandes d’ex que te sitúan muĩtho lhönge del inimigu & puöden reduzir el rendimiento del juögu."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"

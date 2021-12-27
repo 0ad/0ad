@@ -24,6 +24,7 @@
 # Javier Rojas <hekeine@gmail.com>, 2017
 # Jesús Asenjo <jasenjot@gmail.com>, 2017
 # Jesús Asenjo <jasenjot@gmail.com>, 2021
+# Jorge Díaz, 2021
 # jorgman1 . <jorgman1@protonmail.com>, 2021
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
@@ -48,9 +49,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-17 08:08+0000\n"
-"PO-Revision-Date: 2021-12-17 18:26+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-26 20:55+0000\n"
+"Last-Translator: Jorge Díaz\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -295,137 +296,142 @@ msgstr "Alto el fuego"
 msgid "disabled"
 msgstr "desactivado"
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
+msgstr "Durante el primer minuto, los otros jugadores se mantendrán neutrales."
+
+#: gui/common/gamedescription.js:279
+#, javascript-format
+msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "Durante el primer minuto, otros jugadores serán neutrales."
+msgstr[0] ""
 msgstr[1] "Durante los primeros %(min)s minutos, los otros jugadores serán neutrales."
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Escenario al azar"
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
 msgstr "Selecciona aleatoriamente un escenario de la lista."
 
-#: gui/common/gamedescription.js:292
+#: gui/common/gamedescription.js:294
 msgid "Map Name"
 msgstr "Nombre del escenario"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:300
 msgid "Map Description"
 msgstr "Descripción del escenario"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:306
 msgid "Map Type"
 msgstr "Tipo de escenario"
 
-#: gui/common/gamedescription.js:313
+#: gui/common/gamedescription.js:315
 msgid "Map Size"
 msgstr "Tamaño del escenario"
 
-#: gui/common/gamedescription.js:322
+#: gui/common/gamedescription.js:324
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Bioma al azar"
 
-#: gui/common/gamedescription.js:323
+#: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
 msgstr "Selecciona aleatoriamente un bioma de la lista."
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
 msgstr "Modo Nómada"
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Civic Centers"
 msgstr "Centros cívicos"
 
-#: gui/common/gamedescription.js:341
+#: gui/common/gamedescription.js:343
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Los jugadores comienzan con unas pocas unidades y tienen que encontrar un lugar adecuado para construir su ciudad."
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
 msgstr "Los jugadores comienzan con un centro cívico."
 
-#: gui/common/gamedescription.js:347
+#: gui/common/gamedescription.js:349
 msgid "Starting Resources"
 msgstr "Recursos iniciales"
 
-#: gui/common/gamedescription.js:351
+#: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Por jugador"
 
-#: gui/common/gamedescription.js:352
+#: gui/common/gamedescription.js:354
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr "Límite de población"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Por jugador"
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:377
 msgid "World Population Cap"
 msgstr "Límite de población mundial"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:385
 msgid "Treasures"
 msgstr "Tesoros"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: gui/common/gamedescription.js:386
+#: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Según lo definido en el escenario."
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:392
 msgid "Explored Map"
 msgstr "Escenario explorado"
 
-#: gui/common/gamedescription.js:395
+#: gui/common/gamedescription.js:397
 msgid "Revealed Map"
 msgstr "Escenario revelado"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:402
 msgid "Allied View"
 msgstr "Vista aliada"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:407
 msgid "Cheats"
 msgstr "Trucos"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:410
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Cuando aparezca el ganador de la partida se adaptará la clasificación general de la Sala multijugador."
 
-#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
 msgstr "Partida clasificatoria"
 
-#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
+#: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "no"
 
-#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:424 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -437,20 +443,20 @@ msgstr "no"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:427
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "sí"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:440
 msgid "Victorious"
 msgstr "Victoria"
 
-#: gui/common/gamedescription.js:443
+#: gui/common/gamedescription.js:445
 msgid "Defeated"
 msgstr "Derrotado"
 
-#: gui/common/gamedescription.js:452
+#: gui/common/gamedescription.js:454
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -943,7 +949,7 @@ msgstr "Fuego amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -952,7 +958,7 @@ msgstr "Sí"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -3502,7 +3508,7 @@ msgstr "Elimina el archivo de guardado presionando %(hotkey)s."
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Mantén %(hotkey)spara saltar el diálogo de confirmación mientras se elimina."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
+#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "«%(label)s»"
@@ -3576,11 +3582,11 @@ msgstr "Cargar partida"
 msgid "Save"
 msgstr "Guardar"
 
-#: gui/loadgame/SavegameWriter.js:46
+#: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "La partida se sobrescribirá. ¿Estás seguro?"
 
-#: gui/loadgame/SavegameWriter.js:47
+#: gui/loadgame/SavegameWriter.js:53
 msgid "OVERWRITE SAVE"
 msgstr "SOBREESCRIBIR PARTIDA"
 

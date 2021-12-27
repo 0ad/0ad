@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-12-23 17:19+0000\n"
+"PO-Revision-Date: 2021-12-27 00:11+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Configuración de la IA"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr "Acceitare"
+msgstr "Acceitar"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
@@ -141,7 +141,7 @@ msgstr "Intelligencia artificial: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
-msgstr "Sin afhitare"
+msgstr "Sin afhitar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
 msgid "Choose the civilization for this player."
@@ -254,7 +254,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "In modu nómada, los jogadores intaman cun un pugnadu d’unidades & tienen q’atopar un lhogar afhayadiçu u s’assentare. Aconseya-se la inducia."
+msgstr "In modu nómada, los jogadores intaman cun un pugnadu d’unidades & tienen q’atopar un lhogar afhayadiçu u s’assentar. Aconseya-se la inducia."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -391,7 +391,7 @@ msgstr "Seleccionar mappa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
-msgstr "Seleccionar un mappa n que jogare."
+msgstr "Seleccionar un mappa n que jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
@@ -511,7 +511,7 @@ msgstr "Inducia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr "Spacio de tiempu n que nun se puöde attacare."
+msgstr "Spacio de tiempu n que nun se puöde attacar."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
@@ -628,7 +628,7 @@ msgstr "¡Nun sto preparadu/a!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Signalar que stas preparadu para jogare."
+msgstr "Signalar que stas preparadu para jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
@@ -636,7 +636,7 @@ msgstr "Seguir preparadu, inda que cambien los ajustes del incuöntru."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "Signalar que nun stas preparadu para jogare."
+msgstr "Signalar que nun stas preparadu para jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
@@ -716,7 +716,7 @@ msgstr "Los ajustes del incuöntru cambiarun"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
-msgstr "Inviare"
+msgstr "Inviar"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
@@ -808,7 +808,7 @@ msgstr "Stas torgadu."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Fallu al obtener el IP local del servidor (suppuẍo-se que s’atopaba na mësma rede)."
+msgstr "Fallu al obtener el IP local del servidor (suppuẍo-se que s’atopaba nela mësma rede)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -884,7 +884,7 @@ msgstr "Puörtu del servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "Configurar el servidor p’ahospedare."
+msgstr "Configurar el servidor p’ahospedar."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
@@ -900,11 +900,11 @@ msgstr "Usar STUN para evitar torna-fhuögos"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
-msgstr "Seguire"
+msgstr "Seguir"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
-msgstr "Cancellare"
+msgstr "Cancellar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
 msgid "Password:"
@@ -912,7 +912,7 @@ msgstr "Clave:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr "Confimare"
+msgstr "Confimar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -921,7 +921,7 @@ msgstr "Lheiẍa-lo n blanco para usar el puörtu por defeitu."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr "Lheiẍa-lo n blanco para nun la pedire."
+msgstr "Lheiẍa-lo n blanco para nun la pedir."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

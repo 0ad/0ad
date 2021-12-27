@@ -19,8 +19,8 @@
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Rudolf Tisoň <rudotison5@gmail.com>, 2021
-# Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2018,2020-2021
-# Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
+# Slavomír Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2018,2020-2021
+# Slavomír Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tom Hanax, 2019
 # Tom Hanax, 2019
@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-11-15 10:25+0000\n"
-"Last-Translator: MiroslavR <miroslavr256@gmail.com>\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-24 10:25+0000\n"
+"Last-Translator: Rudolf Tisoň <rudotison5@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1264,18 +1264,19 @@ msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s zníži limit o %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
-msgid "Could only be constructed once."
-msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] "Môže byť postavené raz."
-msgstr[1] "Môže byť postavené %(limit)s-krát."
-msgstr[2] "Môže byť postavené %(limit)s-krát."
-msgstr[3] "Môže byť postavené %(limit)s-krát."
-
-#: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
 msgstr "Môže byť postavené len raz."
 
-#: gui/session/selection_panels_helpers.js:146
+#: gui/session/selection_panels_helpers.js:142
+#, javascript-format
+msgid "Could only be constructed %(limit)s time."
+msgid_plural "Could only be constructed %(limit)s times."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] "Môže byť postavené %(limit)s-krát."
+
+#: gui/session/selection_panels_helpers.js:148
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
@@ -1284,7 +1285,7 @@ msgstr[1] "Môže byť postavené ešte %(count)s-krát."
 msgstr[2] "Môže byť postavené ešte %(count)s-krát."
 msgstr[3] "Môže byť postavené ešte %(count)s-krát."
 
-#: gui/session/selection_panels_helpers.js:153
+#: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Mohlo byť trénované len raz."
@@ -1292,11 +1293,11 @@ msgstr[1] "Mohlo byť trénované %(limit)s-krát."
 msgstr[2] "Mohlo byť trénované %(limit)s-krát."
 msgstr[3] "Mohlo byť trénované %(limit)s-krát."
 
-#: gui/session/selection_panels_helpers.js:157
+#: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
 msgstr "Mohlo byť trénované len raz."
 
-#: gui/session/selection_panels_helpers.js:159
+#: gui/session/selection_panels_helpers.js:161
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
@@ -1305,7 +1306,7 @@ msgstr[1] "Môže byť postavené ešte %(count)s-krát."
 msgstr[2] "Môže byť trénované ešte %(count)s-krát."
 msgstr[3] "Môže byť trénované ešte %(count)s-krát."
 
-#: gui/session/selection_panels_helpers.js:166
+#: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
 msgstr[0] "Mohlo byť vytvorené len raz."
@@ -1313,11 +1314,11 @@ msgstr[1] "Mohlo byť vytvorené len %(limit)s-krát."
 msgstr[2] "Mohlo byť vytvorené %(limit)s-krát."
 msgstr[3] "Mohlo byť vytvorené %(limit)s-krát."
 
-#: gui/session/selection_panels_helpers.js:170
+#: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
 msgstr "Mohlo byť vytvorené len raz."
 
-#: gui/session/selection_panels_helpers.js:172
+#: gui/session/selection_panels_helpers.js:174
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
@@ -1326,27 +1327,27 @@ msgstr[1] "Môže byť vytvorené %(count)s-krát."
 msgstr[2] "Môže byť vytvorené %(count)s-krát."
 msgstr[3] "Môže byť vytvorené %(count)s-krát."
 
-#: gui/session/selection_panels_helpers.js:201
+#: gui/session/selection_panels_helpers.js:203
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:215
+#: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s vytrénujete %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:217
+#: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s vytrénujete %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:219
+#: gui/session/selection_panels_helpers.js:221
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s vytrénujete %(number)s."
 
-#: gui/session/selection_panels_helpers.js:224
+#: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
 msgstr "Podržaním klávesu Shift a kliknutím"
 
