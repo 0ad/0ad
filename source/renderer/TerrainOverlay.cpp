@@ -303,15 +303,11 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 //////////////////////////////////////////////////////////////////////////
 
 TerrainTextureOverlay::TerrainTextureOverlay(float texelsPerTile, int priority) :
-	ITerrainOverlay(priority), m_TexelsPerTile(texelsPerTile), m_Texture(0), m_TextureW(0), m_TextureH(0)
+	ITerrainOverlay(priority), m_TexelsPerTile(texelsPerTile)
 {
-	glGenTextures(1, &m_Texture);
 }
 
-TerrainTextureOverlay::~TerrainTextureOverlay()
-{
-	glDeleteTextures(1, &m_Texture);
-}
+TerrainTextureOverlay::~TerrainTextureOverlay() = default;
 
 void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 {
@@ -320,38 +316,39 @@ void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 	ssize_t w = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
 	ssize_t h = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
 
+	const uint32_t requiredWidth = round_up_to_pow2(w);
+	const uint32_t requiredHeight = round_up_to_pow2(h);
+
 	glActiveTextureARB(GL_TEXTURE0);
 
 	// Recreate the texture with new size if necessary
-	if (round_up_to_pow2(w) != m_TextureW || round_up_to_pow2(h) != m_TextureH)
+	if (!m_Texture || m_Texture->GetWidth() != requiredWidth || m_Texture->GetHeight() != requiredHeight)
 	{
-		m_TextureW = round_up_to_pow2(w);
-		m_TextureH = round_up_to_pow2(h);
+		m_Texture = Renderer::Backend::GL::CTexture::Create2D(
+			Renderer::Backend::Format::R8G8B8A8, requiredWidth, requiredHeight,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::NEAREST,
+				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
-		glBindTexture(GL_TEXTURE_2D, m_Texture);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureW, m_TextureH, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glBindTexture(GL_TEXTURE_2D, m_Texture->GetHandle());
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_Texture->GetWidth(), m_Texture->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
 
 	u8* data = (u8*)calloc(w * h, 4);
 	BuildTextureRGBA(data, w, h);
 
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	glBindTexture(GL_TEXTURE_2D, m_Texture->GetHandle());
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
 	free(data);
 
 	CMatrix3D matrix;
 	matrix.SetZero();
-	matrix._11 = m_TexelsPerTile / (m_TextureW * TERRAIN_TILE_SIZE);
-	matrix._23 = m_TexelsPerTile / (m_TextureH * TERRAIN_TILE_SIZE);
+	matrix._11 = m_TexelsPerTile / (m_Texture->GetWidth() * TERRAIN_TILE_SIZE);
+	matrix._23 = m_TexelsPerTile / (m_Texture->GetHeight() * TERRAIN_TILE_SIZE);
 	matrix._44 = 1;
 
-	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture);
+	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture->GetHandle());
 }
 
 SColor4ub TerrainTextureOverlay::GetColor(size_t idx, u8 alpha) const
