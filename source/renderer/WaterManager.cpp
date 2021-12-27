@@ -23,8 +23,8 @@
 #include "graphics/ShaderProgram.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "lib/ogl.h"
 #include "lib/tex/tex.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"
@@ -77,8 +77,6 @@ WaterManager::WaterManager()
 	m_RenderWater = false; // disabled until textures are successfully loaded
 	m_WaterHeight = 5.0f;
 
-	m_ReflectionTexture = 0;
-	m_RefractionTexture = 0;
 	m_RefTextureSize = 0;
 
 	m_ReflectionFbo = 0;
@@ -110,11 +108,6 @@ WaterManager::WaterManager()
 	m_NeedsReloading = false;
 	m_NeedInfoUpdate = true;
 
-	m_FancyTexture = 0;
-	m_FancyTextureDepth = 0;
-	m_ReflFboDepthTexture = 0;
-	m_RefrFboDepthTexture = 0;
-
 	m_MapSize = 0;
 
 	m_updatei0 = 0;
@@ -145,10 +138,10 @@ WaterManager::~WaterManager()
 	if (!g_Renderer.GetCapabilities().m_PrettyWater)
 		return;
 
-	glDeleteTextures(1, &m_FancyTexture);
-	glDeleteTextures(1, &m_FancyTextureDepth);
-	glDeleteTextures(1, &m_ReflFboDepthTexture);
-	glDeleteTextures(1, &m_RefrFboDepthTexture);
+	m_FancyTexture.reset();
+	m_FancyTextureDepth.reset();
+	m_ReflFboDepthTexture.reset();
+	m_RefrFboDepthTexture.reset();
 
 	glDeleteFramebuffersEXT(1, &m_FancyEffectsFBO);
 	glDeleteFramebuffersEXT(1, &m_RefractionFbo);
@@ -214,54 +207,43 @@ int WaterManager::LoadWaterTextures()
 	m_RefTextureSize = round_up_to_pow2(m_RefTextureSize);
 
 	// Create reflection texture
-	glGenTextures(1, &m_ReflectionTexture);
-	glBindTexture(GL_TEXTURE_2D, m_ReflectionTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	m_ReflectionTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
+
+	glBindTexture(GL_TEXTURE_2D, m_ReflectionTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
 	// Create refraction texture
-	glGenTextures(1, &m_RefractionTexture);
-	glBindTexture(GL_TEXTURE_2D, m_RefractionTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	m_RefractionTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
+
+	glBindTexture(GL_TEXTURE_2D, m_RefractionTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
 	// Create depth textures
-	glGenTextures(1, &m_ReflFboDepthTexture);
-	glBindTexture(GL_TEXTURE_2D, m_ReflFboDepthTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	m_ReflFboDepthTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::NEAREST,
+			Renderer::Backend::Sampler::AddressMode::REPEAT));
 
-	glGenTextures(1, &m_RefrFboDepthTexture);
-	glBindTexture(GL_TEXTURE_2D, m_RefrFboDepthTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glBindTexture(GL_TEXTURE_2D, m_ReflFboDepthTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
-	// Create the Fancy Effects texture
-	glGenTextures(1, &m_FancyTexture);
-	glBindTexture(GL_TEXTURE_2D, m_FancyTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	m_RefrFboDepthTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::NEAREST,
+			Renderer::Backend::Sampler::AddressMode::REPEAT));
 
-	glGenTextures(1, &m_FancyTextureDepth);
-	glBindTexture(GL_TEXTURE_2D, m_FancyTextureDepth);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glBindTexture(GL_TEXTURE_2D, m_RefrFboDepthTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefTextureSize, (GLsizei)m_RefTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -275,8 +257,8 @@ int WaterManager::LoadWaterTextures()
 	m_ReflectionFbo = 0;
 	glGenFramebuffersEXT(1, &m_ReflectionFbo);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture, 0);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_ReflFboDepthTexture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture->GetHandle(), 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_ReflFboDepthTexture->GetHandle(), 0);
 
 	ogl_WarnIfError();
 
@@ -291,8 +273,8 @@ int WaterManager::LoadWaterTextures()
 	m_RefractionFbo = 0;
 	glGenFramebuffersEXT(1, &m_RefractionFbo);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_RefractionFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture, 0);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_RefrFboDepthTexture, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture->GetHandle(), 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_RefrFboDepthTexture->GetHandle(), 0);
 
 	ogl_WarnIfError();
 
@@ -306,8 +288,8 @@ int WaterManager::LoadWaterTextures()
 
 	glGenFramebuffersEXT(1, &m_FancyEffectsFBO);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTexture, 0);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FancyTextureDepth, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTexture->GetHandle(), 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FancyTextureDepth->GetHandle(), 0);
 
 	ogl_WarnIfError();
 
@@ -332,11 +314,24 @@ int WaterManager::LoadWaterTextures()
 // Resize: Updates the fancy water textures.
 void WaterManager::Resize()
 {
-	glBindTexture(GL_TEXTURE_2D, m_FancyTexture);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
+	// Create the Fancy Effects texture
+	m_FancyTexture = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::R8G8B8A8, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::REPEAT));
 
-	glBindTexture(GL_TEXTURE_2D, m_FancyTextureDepth);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glBindTexture(GL_TEXTURE_2D, m_FancyTexture->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
+
+	m_FancyTextureDepth = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::D32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::REPEAT));
+
+	glBindTexture(GL_TEXTURE_2D, m_FancyTextureDepth->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
@@ -361,17 +356,17 @@ void WaterManager::ReloadWaterNormalTextures()
 // Unload water textures
 void WaterManager::UnloadWaterTextures()
 {
-	for(size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		m_WaterTexture[i].reset();
 
 	if (!g_Renderer.GetCapabilities().m_PrettyWater)
 		return;
 
-	for(size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
+	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 		m_NormalMap[i].reset();
 
-	glDeleteTextures(1, &m_ReflectionTexture);
-	glDeleteTextures(1, &m_RefractionTexture);
+	m_ReflectionTexture.reset();
+	m_RefractionTexture.reset();
 	glDeleteFramebuffersEXT(1, &m_RefractionFbo);
 	glDeleteFramebuffersEXT(1, &m_ReflectionFbo);
 }

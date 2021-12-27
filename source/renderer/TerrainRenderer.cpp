@@ -440,20 +440,20 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	if (waterManager->m_WaterFancyEffects)
 	{
-		fancyWaterShader->BindTexture(str_waterEffectsTex, waterManager->m_FancyTexture);
+		fancyWaterShader->BindTexture(str_waterEffectsTex, waterManager->m_FancyTexture->GetHandle());
 	}
 
 	if (waterManager->m_WaterRefraction && waterManager->m_WaterRealDepth)
 	{
-		fancyWaterShader->BindTexture(str_depthTex, waterManager->m_RefrFboDepthTexture);
+		fancyWaterShader->BindTexture(str_depthTex, waterManager->m_RefrFboDepthTexture->GetHandle());
 		fancyWaterShader->Uniform(str_projInvTransform, waterManager->m_RefractionProjInvMatrix);
 		fancyWaterShader->Uniform(str_viewInvTransform, waterManager->m_RefractionViewInvMatrix);
 	}
 
 	if (waterManager->m_WaterRefraction)
-		fancyWaterShader->BindTexture(str_refractionMap, waterManager->m_RefractionTexture);
+		fancyWaterShader->BindTexture(str_refractionMap, waterManager->m_RefractionTexture->GetHandle());
 	if (waterManager->m_WaterReflection)
-		fancyWaterShader->BindTexture(str_reflectionMap, waterManager->m_ReflectionTexture);
+		fancyWaterShader->BindTexture(str_reflectionMap, waterManager->m_ReflectionTexture->GetHandle());
 	fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,23 +17,20 @@
 
 #include "precompiled.h"
 
-#include <algorithm>
-#include <vector>
-
 #include "TerrainTextureManager.h"
-#include "TerrainTextureEntry.h"
-#include "TerrainProperties.h"
 
-#include "lib/res/graphics/ogl_tex.h"
+#include "graphics/TerrainTextureEntry.h"
+#include "graphics/TerrainProperties.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-
+#include "lib/res/graphics/ogl_tex.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 
+#include <algorithm>
 #include <boost/algorithm/string.hpp>
-
+#include <vector>
 
 CTerrainTextureManager::CTerrainTextureManager()
 	: m_LastGroupIndex(0)
@@ -51,10 +48,7 @@ CTerrainTextureManager::~CTerrainTextureManager()
 	UnloadTerrainTextures();
 
 	for (std::pair<const VfsPath, TerrainAlpha>& ta : m_TerrainAlphas)
-	{
-		ogl_tex_free(ta.second.m_hCompositeAlphaMap);
-		ta.second.m_hCompositeAlphaMap = 0;
-	}
+		ta.second.m_CompositeAlphaMap.reset();
 }
 
 void CTerrainTextureManager::UnloadTerrainTextures()

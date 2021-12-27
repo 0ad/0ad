@@ -20,6 +20,7 @@
 #include "Texture.h"
 
 #include "lib/config2.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "renderer/backend/gl/Device.h"
 
 namespace Renderer
@@ -86,11 +87,14 @@ std::unique_ptr<CTexture> CTexture::Create2D(const Format format,
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, AddressModeToGLEnum(defaultSamplerDesc.addressModeV));
 
 #if !CONFIG2_GLES
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, mipCount - 1);
+
 	if (defaultSamplerDesc.mipLODBias != 0.0f)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_LOD_BIAS, defaultSamplerDesc.mipLODBias);
-#endif
+#endif // !CONFIG2_GLES
 
-	if (defaultSamplerDesc.anisotropyEnabled)
+	if (defaultSamplerDesc.anisotropyEnabled && ogl_tex_has_anisotropy())
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, defaultSamplerDesc.maxAnisotropy);
 
 	if (defaultSamplerDesc.addressModeU == Sampler::AddressMode::CLAMP_TO_BORDER ||

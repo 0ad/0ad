@@ -957,7 +957,7 @@ void CPatchRData::RenderBlends(
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
-			Handle lastBlendTex = 0;
+			Renderer::Backend::GL::CTexture* lastBlendTex = nullptr;
 
 			for (BatchesStack::iterator itt = itTechBegin; itt != itTechEnd; ++itt)
 			{
@@ -970,10 +970,10 @@ void CPatchRData::RenderBlends(
 					for (const CMaterial::TextureSampler& samp : samplers)
 						shader->BindTexture(samp.Name, samp.Sampler);
 
-					Handle currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap;
+					Renderer::Backend::GL::CTexture* currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_CompositeAlphaMap.get();
 					if (currentBlendTex != lastBlendTex)
 					{
-						shader->BindTexture(str_blendTex, currentBlendTex);
+						shader->BindTexture(str_blendTex, currentBlendTex->GetHandle());
 						lastBlendTex = currentBlendTex;
 					}
 
