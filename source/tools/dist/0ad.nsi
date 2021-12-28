@@ -85,7 +85,7 @@
 
 ;--------------------------------
 ;Languages
-; Keep in sync with remove-incomplete-translations.sh
+;Keep in sync with build-archives.sh.
 
   !insertmacro MUI_LANGUAGE "English" ; The first language is the default language
   !insertmacro MUI_LANGUAGE "Asturian"

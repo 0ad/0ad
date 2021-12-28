@@ -14,6 +14,7 @@
 # Oleg Adept <adeptoleg@gmail.com>, 2016,2020
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
+# Serhii Petriuk, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
@@ -27,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-11-15 10:25+0000\n"
-"Last-Translator: 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-25 21:27+0000\n"
+"Last-Translator: Serhii Petriuk\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,7 +374,7 @@ msgstr "%(icon)sВи були атаковані %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Натисніть, щоб зосередитися на атакованому підрозділі."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -1263,18 +1264,19 @@ msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s зменшує ліміт за допомогою %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
-msgid "Could only be constructed once."
-msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] "Може бути споруджено одноразово."
-msgstr[1] "Може бути споруджено %(limit)s рази."
-msgstr[2] "Може бути споруджено %(limit)s разів."
-msgstr[3] "Може бути споруджено %(limit)s разів."
-
-#: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
 msgstr "Може бути споруджено тільки один раз."
 
-#: gui/session/selection_panels_helpers.js:146
+#: gui/session/selection_panels_helpers.js:142
+#, javascript-format
+msgid "Could only be constructed %(limit)s time."
+msgid_plural "Could only be constructed %(limit)s times."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] "Може бути споруджено %(limit)s разів."
+
+#: gui/session/selection_panels_helpers.js:148
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
@@ -1283,7 +1285,7 @@ msgstr[1] "Може бути споруджено ще %(count)s рази."
 msgstr[2] "Може бути споруджено ще %(count)s разів."
 msgstr[3] "Може бути споруджено ще %(count)s разів."
 
-#: gui/session/selection_panels_helpers.js:153
+#: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Може бути треновано одноразово."
@@ -1291,11 +1293,11 @@ msgstr[1] "Може бути треновано %(limit)s рази."
 msgstr[2] "Може бути треновано %(limit)s разів."
 msgstr[3] "Може бути треновано %(limit)s разів."
 
-#: gui/session/selection_panels_helpers.js:157
+#: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
 msgstr "Може бути треновано тільки один раз."
 
-#: gui/session/selection_panels_helpers.js:159
+#: gui/session/selection_panels_helpers.js:161
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
@@ -1304,7 +1306,7 @@ msgstr[1] "Може бути треновано ще %(count)s рази."
 msgstr[2] "Може бути треновано ще %(count)s разів."
 msgstr[3] "Може бути треновано ще %(count)s разів."
 
-#: gui/session/selection_panels_helpers.js:166
+#: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
 msgstr[0] "Може бути створено одноразово."
@@ -1312,11 +1314,11 @@ msgstr[1] "Може бути створено %(limit)s рази."
 msgstr[2] "Може бути створено %(limit)s разів."
 msgstr[3] "Може бути створено %(limit)s разів."
 
-#: gui/session/selection_panels_helpers.js:170
+#: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
 msgstr "Може бути створено тільки один раз."
 
-#: gui/session/selection_panels_helpers.js:172
+#: gui/session/selection_panels_helpers.js:174
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
@@ -1325,27 +1327,27 @@ msgstr[1] "Може бути створено ще %(count)s рази."
 msgstr[2] "Може бути створено ще %(count)s разів."
 msgstr[3] "Може бути створено ще %(count)s разів."
 
-#: gui/session/selection_panels_helpers.js:201
+#: gui/session/selection_panels_helpers.js:203
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:215
+#: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s, щоб тренувати %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:217
+#: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s, щоб тренувати %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:219
+#: gui/session/selection_panels_helpers.js:221
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s, щоб тренувати %(number)s."
 
-#: gui/session/selection_panels_helpers.js:224
+#: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
 msgstr "Клацнути з утриманням Shift"
 
@@ -1815,11 +1817,11 @@ msgstr "Вам дозволено використовувати це місце
 
 #: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
-msgstr ""
+msgstr "Активувати автоматичну чергу для вибраних споруд."
 
 #: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
-msgstr ""
+msgstr "Вимкнути автоматичну чергу для вибраних споруд."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"

@@ -18,6 +18,13 @@
 #ifndef INCLUDED_GAMESETUP
 #define INCLUDED_GAMESETUP
 
+#include "ps/CStr.h"
+
+#include <vector>
+
+class CmdLineArgs;
+class Paths;
+
 //
 // GUI integration
 //
@@ -74,8 +81,6 @@ enum ShutdownFlags
 extern void RenderGui(bool RenderingState);
 extern void RenderLogger(bool RenderingState);
 
-class CmdLineArgs;
-class Paths;
 extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
 
 /**

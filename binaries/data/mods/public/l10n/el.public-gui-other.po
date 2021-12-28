@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-17 08:08+0000\n"
-"PO-Revision-Date: 2021-12-21 08:20+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-24 11:24+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -269,137 +269,142 @@ msgstr "Παύση Πυρός"
 msgid "disabled"
 msgstr "απενεργοπ."
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
+msgstr ""
+
+#: gui/common/gamedescription.js:279
+#, javascript-format
+msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "Για το πρώτο λεπτό, οι άλλοι παίχτες παραμένουν ουδέτεροι."
+msgstr[0] ""
 msgstr[1] "Για τα πρώτα %(min)s λεπτά, οι άλλοι παίχτες παραμένουν ουδέτεροι."
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Τυχαίος Χάρτης"
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
 msgstr "Επιλέγει ένα τυχαίο χάρτη από τη λίστα."
 
-#: gui/common/gamedescription.js:292
+#: gui/common/gamedescription.js:294
 msgid "Map Name"
 msgstr "Όνομα Χάρτη"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:300
 msgid "Map Description"
 msgstr "Περιγραφή Χάρτη"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:306
 msgid "Map Type"
 msgstr "Τύπος Χάρτη"
 
-#: gui/common/gamedescription.js:313
+#: gui/common/gamedescription.js:315
 msgid "Map Size"
 msgstr "Μέγεθος Χάρτη"
 
-#: gui/common/gamedescription.js:322
+#: gui/common/gamedescription.js:324
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Τυχαίο Οικοσύστημα"
 
-#: gui/common/gamedescription.js:323
+#: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
 msgstr "Επιλέγει ένα τυχαίο οικοσύστημα από τη λίστα."
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
 msgstr "Λειτουργία Νομάδες"
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Civic Centers"
 msgstr "Αστικά Κέντρα"
 
-#: gui/common/gamedescription.js:341
+#: gui/common/gamedescription.js:343
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Οι παίκτες ξεκινούν με λίγες μόνο μονάδες και πρέπει να βρουν ένα κατάλληλο μέρος για να χτίσουν την πόλη τους."
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
 msgstr "Οι παίχτες ξεκινούν με ένα Αστικό Κέντρο."
 
-#: gui/common/gamedescription.js:347
+#: gui/common/gamedescription.js:349
 msgid "Starting Resources"
 msgstr "Πόροι Κατά Την Έναρξη"
 
-#: gui/common/gamedescription.js:351
+#: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Ανά Παίχτη"
 
-#: gui/common/gamedescription.js:352
+#: gui/common/gamedescription.js:354
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr "Όριο Πληθυσμού"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Ανά Παίχτη"
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:377
 msgid "World Population Cap"
 msgstr "Ανώτατο Όριο Πληθυσμού Κόσμου"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:385
 msgid "Treasures"
 msgstr "Θησαυροί"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Απενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:386
+#: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Όπως ορίζεται από το χάρτη."
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:392
 msgid "Explored Map"
 msgstr "Εξερευνημένος Χάρτης"
 
-#: gui/common/gamedescription.js:395
+#: gui/common/gamedescription.js:397
 msgid "Revealed Map"
 msgstr "Αποκαλυμμένος Χάρτης"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:402
 msgid "Allied View"
 msgstr "Οπτική Συμμάχων"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:407
 msgid "Cheats"
 msgstr "Ζαβολιές"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:410
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Όταν καθοριστεί ο νικητής αυτού του αγώνα, η βαθμολογία του λόμπι θα αναπροσαρμοστεί."
 
-#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
 msgstr "Βαθμολογημένο παιχνίδι"
 
-#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
+#: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "απενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:424 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -411,20 +416,20 @@ msgstr "απενεργοποιήθηκε"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:427
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "ενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:440
 msgid "Victorious"
 msgstr "Νικηφόρος"
 
-#: gui/common/gamedescription.js:443
+#: gui/common/gamedescription.js:445
 msgid "Defeated"
 msgstr "Ηττήθηκε"
 
-#: gui/common/gamedescription.js:452
+#: gui/common/gamedescription.js:454
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -917,7 +922,7 @@ msgstr "Φίλια Πυρά: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -926,7 +931,7 @@ msgstr "Ναι"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -3476,7 +3481,7 @@ msgstr "Διαγραφή της επιλεγμένης αποθήκευσης π
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Κράτα πατημένο το πλήκτρο %(hotkey)s για να παρακάμψεις το διάλογο επιβεβαίωσης κατά τη διαγραφή."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
+#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -3550,11 +3555,11 @@ msgstr "Φόρτωση παιχνιδιού"
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gui/loadgame/SavegameWriter.js:46
+#: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Το σωσμένο παιχνίδι θα αντικατασταθεί μόνιμα, είστε σίγουρος;"
 
-#: gui/loadgame/SavegameWriter.js:47
+#: gui/loadgame/SavegameWriter.js:53
 msgid "OVERWRITE SAVE"
 msgstr "ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΣΩΣΜΕΝΟΥ ΠΑΙΧΝΙΔΙΟΥ"
 

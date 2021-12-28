@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-11-15 08:08+0000\n"
-"PO-Revision-Date: 2021-12-23 19:30+0000\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-27 00:10+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "Calca %(hotkey)s p’alternar esti menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "Conversare"
+msgstr "Conversar"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
-msgstr "Guardare"
+msgstr "Guardar"
 
 #: gui/session/MenuButtons.js:77
 msgid "Summary"
@@ -66,11 +66,11 @@ msgstr "Atayos"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
-msgstr "Continuare"
+msgstr "Continuar"
 
 #: gui/session/MenuButtons.js:220
 msgid "Pause"
-msgstr "Pousare"
+msgstr "Pousar"
 
 #: gui/session/MenuButtons.js:221
 #, javascript-format
@@ -84,12 +84,12 @@ msgstr "Rendí-se"
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
-msgstr "Salire"
+msgstr "Salir"
 
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr "Atrasu na transmissión in directo: %(delay)ss"
+msgstr "Atrasu nela transmissión in directo: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -257,7 +257,7 @@ msgstr "Avisos de la rede"
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Tecleja l recadu q’inviare."
+msgstr "Tecleja l recadu q’inviar."
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
@@ -461,7 +461,7 @@ msgstr "Txt.:"
 
 #: gui/session/chat/chat_window.xml:(caption):72
 msgid "Cancel"
-msgstr "Cancellare"
+msgstr "Cancellar"
 
 #: gui/session/chat/chat_window.xml:(caption):86
 msgctxt "chat"
@@ -470,7 +470,7 @@ msgstr "Historia"
 
 #: gui/session/chat/chat_window.xml:(caption):91
 msgid "Send"
-msgstr "Inviare"
+msgstr "Inviar"
 
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
@@ -627,13 +627,13 @@ msgstr "I"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
-msgstr "Tribuire"
+msgstr "Tribuir"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
 #: gui/session/trade/TradeDialog.xml:(caption):22
 msgid "Close"
-msgstr "Cerrare"
+msgstr "Cerrar"
 
 #: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
 #, javascript-format
@@ -713,7 +713,7 @@ msgstr "¡Eiquí nun puöde lhevantá-se una cerca!"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
-msgstr "Eliminare"
+msgstr "Eliminar"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
@@ -737,7 +737,7 @@ msgstr "Sí"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Fallu de sincronización na riola %(turn)s."
+msgstr "Error de synchronización nel turnu %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -806,7 +806,7 @@ msgstr "Acabóu l incuöntru, ¿que quieres fhazer?"
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr "Fhincare"
+msgstr "Fhincar"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
@@ -824,16 +824,16 @@ msgstr "¡DERROTA!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr "¿Quieres salire?"
+msgstr "¿Quieres salir?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "¿Stas ciertu que quieres salire? Si sales tódolos outros jogadores van disconnectá-se."
+msgstr "¿Stas ciertu que quieres salir? Si sales tódolos outros jogadores van disconnectá-se."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
-msgstr "¿Stas ciertu que quieres salire?"
+msgstr "¿Stas ciertu que quieres salir?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
@@ -841,7 +841,7 @@ msgstr "¿Quieres rendí-te ou vas tornar de breve?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
-msgstr "Vou tornare"
+msgstr "Vou tornar"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:74
 msgid "I resign"
@@ -877,7 +877,7 @@ msgstr "Calca para salir d’esti cursín."
 #: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
-msgstr "Salire"
+msgstr "Salir"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
@@ -1066,7 +1066,7 @@ msgstr "Descargar %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Calca una vegada pa descargar 1. Calca con Mayúscules premida pa descargar tódolos d'esti tipu."
+msgstr "Calca una vez para discargar 1. Calca cun Maiúsculas premida para discargar tódolos d’esti typu."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
@@ -1075,19 +1075,19 @@ msgstr "Jogador: %(playername)s"
 
 #: gui/session/selection_panels.js:377
 msgid "Lock Gate"
-msgstr "Pëslhare"
+msgstr "Pëslhar"
 
 #: gui/session/selection_panels.js:383
 msgid "Unlock Gate"
-msgstr "Abrire"
+msgstr "Abrir"
 
 #: gui/session/selection_panels.js:434
 msgid "Pack"
-msgstr "Disarmare"
+msgstr "Disarmar"
 
 #: gui/session/selection_panels.js:442
 msgid "Unpack"
-msgstr "Armare"
+msgstr "Armar"
 
 #: gui/session/selection_panels.js:450
 msgid "Cancel Packing"
@@ -1133,7 +1133,7 @@ msgstr "Nun puede desendolcase demientres la meyora."
 
 #: gui/session/selection_panels.js:1060
 msgid "Cannot train while upgrading."
-msgstr "Nun puöde exercitar al anovare."
+msgstr "Nun puöde exercitar al anovar."
 
 #: gui/session/selection_panels.js:1129
 #, javascript-format
@@ -1237,77 +1237,78 @@ msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s amenorga la llende con %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
-msgid "Could only be constructed once."
-msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] "Namái pudo construise una vegada."
-msgstr[1] "Namái pudo construise %(limit)s vegades."
-
-#: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr "Puede construise namái una vegada."
+msgstr "Puöde construí-se una sola vez."
 
-#: gui/session/selection_panels_helpers.js:146
+#: gui/session/selection_panels_helpers.js:142
+#, javascript-format
+msgid "Could only be constructed %(limit)s time."
+msgid_plural "Could only be constructed %(limit)s times."
+msgstr[0] "Mal pudo construí-se a penas %(limit)s vez."
+msgstr[1] "Mal pudo construí-se a penas %(limit)s vezes."
+
+#: gui/session/selection_panels_helpers.js:148
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] "Puede construise %(count)s vegada más."
-msgstr[1] "Puede construise %(count)s vegades más."
+msgstr[0] "Puöde construí-se %(count)s vez mas."
+msgstr[1] "Puöde construí-se %(count)s vezes mas."
 
-#: gui/session/selection_panels_helpers.js:153
+#: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] "Mal pudo exercitá-se a penas una vegada."
-msgstr[1] "Mal pudo exercitá-se a penas %(limit)s vegadas."
-
-#: gui/session/selection_panels_helpers.js:157
-msgid "Can be trained only once."
-msgstr "Puöde exercitá-se una sola vegada."
+msgstr[0] "Mal pudo exercitá-se a penas una vez."
+msgstr[1] "Mal pudo exercitá-se a penas %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:159
+msgid "Can be trained only once."
+msgstr "Puöde exercitá-se una sola vez."
+
+#: gui/session/selection_panels_helpers.js:161
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] "Puöde exercitá-se %(count)s vegada mas."
-msgstr[1] "Puöde exercitá-se %(count)s vegadas mas."
+msgstr[0] "Puöde exercitá-se %(count)s vez mas."
+msgstr[1] "Puöde exercitá-se %(count)s vezes mas."
 
-#: gui/session/selection_panels_helpers.js:166
+#: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] "Mal pudo creá-se a penas una vegada."
-msgstr[1] "Mal pudo creá-se a penas %(limit)s vegadas."
-
-#: gui/session/selection_panels_helpers.js:170
-msgid "Can be created only once."
-msgstr "Puöde creá-se una sola vegada."
+msgstr[0] "Mal pudo creá-se a penas una vez."
+msgstr[1] "Mal pudo creá-se a penas %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:172
+msgid "Can be created only once."
+msgstr "Puöde creá-se una sola vez."
+
+#: gui/session/selection_panels_helpers.js:174
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] "Puöde creá-se %(count)s vegada mas."
-msgstr[1] "Puöde creá-se %(count)s vegadas mas."
+msgstr[0] "Puöde creá-se %(count)s vez mas."
+msgstr[1] "Puöde creá-se %(count)s vezes mas."
 
-#: gui/session/selection_panels_helpers.js:201
+#: gui/session/selection_panels_helpers.js:203
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:215
+#: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s para exercitar %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:217
+#: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s para exercitar %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:219
+#: gui/session/selection_panels_helpers.js:221
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s para exercitar %(number)s."
 
-#: gui/session/selection_panels_helpers.js:224
+#: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
 msgstr "Mayúscules-clic"
 
@@ -1340,7 +1341,7 @@ msgstr "Riestra de producción"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Calca pa esbillar un conxuntu d'unidades, calca dues vegades pa enfocar escontra elli y calca col botón derechu pa desfacellu."
+msgstr "Calca para seleccionar un coniunctu d’unidades, calca duas vezes para infocar ex contra elli & calca cul bottón direithu para disfhazé-llu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
@@ -1361,7 +1362,7 @@ msgstr "%(order)s: %(hotkey)s para commudar l orde."
 
 #: gui/session/top_panel/CounterManager.js:105
 msgid "Unordered"
-msgstr "Sin ordenare"
+msgstr "Sin ordenar"
 
 #: gui/session/top_panel/CounterManager.js:107
 msgid "Descending"
@@ -1427,7 +1428,7 @@ msgstr "Modu espectador"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
-msgstr "Excoyer un jogador que vere"
+msgstr "Excoyer un jogador que ver"
 
 #: gui/session/trade/BarterButton.js:108
 #, javascript-format
@@ -1457,11 +1458,11 @@ msgstr "Troquéu"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr "Vendere:"
+msgstr "Vender:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr "Mercare:"
+msgstr "Mercar:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
@@ -1659,8 +1660,8 @@ msgstr "Ganancia sperada: %(gain)s"
 #: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] "A esi ente nun lli puödes mandare."
-msgstr[1] "A esos entes nun llis puödes mandare."
+msgstr[0] "A esi ente nun lli puödes mandar."
+msgstr[1] "A esos entes nun llis puödes mandar."
 
 #: gui/session/unit_actions.js:1353
 msgid "Unload All."
@@ -1699,7 +1700,7 @@ msgstr "Mandar que les unidades esbillades ocupen una torreta."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"
-msgstr "Discargare"
+msgstr "Discargar"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
@@ -1729,7 +1730,7 @@ msgstr "Comerciu"
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"
-msgstr "Velare"
+msgstr "Velar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."

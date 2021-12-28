@@ -53,9 +53,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-17 08:08+0000\n"
-"PO-Revision-Date: 2021-12-22 07:59+0000\n"
-"Last-Translator: Артём Дадашьянц\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-25 15:37+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -306,139 +306,144 @@ msgstr "Стартовое перемирие"
 msgid "disabled"
 msgstr "отключено"
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
+msgstr "Первую минуту другие игроки остаются нейтральными."
+
+#: gui/common/gamedescription.js:279
+#, javascript-format
+msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "Первую минуту другие игроки остаются нейтральными."
-msgstr[1] "Первые %(min)s минут другие игроки остаются нейтральными."
-msgstr[2] "Первые %(min)s минут другие игроки остаются нейтральными."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 msgstr[3] "Первые %(min)s минут другие игроки остаются нейтральными."
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Случайная карта"
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
 msgstr "Случайный выбор карты из списка."
 
-#: gui/common/gamedescription.js:292
+#: gui/common/gamedescription.js:294
 msgid "Map Name"
 msgstr "Название карты"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:300
 msgid "Map Description"
 msgstr "Описание карты"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:306
 msgid "Map Type"
 msgstr "Тип карты"
 
-#: gui/common/gamedescription.js:313
+#: gui/common/gamedescription.js:315
 msgid "Map Size"
 msgstr "Размер карты"
 
-#: gui/common/gamedescription.js:322
+#: gui/common/gamedescription.js:324
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Случайный биом"
 
-#: gui/common/gamedescription.js:323
+#: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
 msgstr "Выбрать биом из списка случайным образом."
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
 msgstr "Кочевой режим"
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Civic Centers"
 msgstr "Городские центры"
 
-#: gui/common/gamedescription.js:341
+#: gui/common/gamedescription.js:343
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Игроки получают на старте всего нескольких юнитов и должны подыскать себе подходящее место для основания города."
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
 msgstr "Игроки начинают игру с городскими Центрами."
 
-#: gui/common/gamedescription.js:347
+#: gui/common/gamedescription.js:349
 msgid "Starting Resources"
 msgstr "Начальные ресурсы"
 
-#: gui/common/gamedescription.js:351
+#: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "На игрока"
 
-#: gui/common/gamedescription.js:352
+#: gui/common/gamedescription.js:354
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr "Предельная численность населения"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "На игрока"
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:377
 msgid "World Population Cap"
 msgstr "Предел мирового населения"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:385
 msgid "Treasures"
 msgstr "Сокровища"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Отключено"
 
-#: gui/common/gamedescription.js:386
+#: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Определяется картой."
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:392
 msgid "Explored Map"
 msgstr "Исследованная карта"
 
-#: gui/common/gamedescription.js:395
+#: gui/common/gamedescription.js:397
 msgid "Revealed Map"
 msgstr "Открытая карта"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:402
 msgid "Allied View"
 msgstr "Видимость карты союзника"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:407
 msgid "Cheats"
 msgstr "Читы"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:410
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Рейтинг будет обновлён после определения победителя."
 
-#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
 msgstr "Рейтинговая игра"
 
-#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
+#: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "отключено"
 
-#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:424 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -450,20 +455,20 @@ msgstr "отключено"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:427
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "включено"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:440
 msgid "Victorious"
 msgstr "Победивший"
 
-#: gui/common/gamedescription.js:443
+#: gui/common/gamedescription.js:445
 msgid "Defeated"
 msgstr "Поражение"
 
-#: gui/common/gamedescription.js:452
+#: gui/common/gamedescription.js:454
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -966,7 +971,7 @@ msgstr "Огонь по своим: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -975,7 +980,7 @@ msgstr "Да"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -3537,7 +3542,7 @@ msgstr "Удалить выбранную запись используя %(hotk
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Используйте %(hotkey)s, чтобы избежать диалога подтверждения при удалении."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
+#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "«%(label)s»"
@@ -3611,11 +3616,11 @@ msgstr "Загрузить игру"
 msgid "Save"
 msgstr "Сохранить"
 
-#: gui/loadgame/SavegameWriter.js:46
+#: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Сохраненная игра будет перезаписана. Уверены?"
 
-#: gui/loadgame/SavegameWriter.js:47
+#: gui/loadgame/SavegameWriter.js:53
 msgid "OVERWRITE SAVE"
 msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
 

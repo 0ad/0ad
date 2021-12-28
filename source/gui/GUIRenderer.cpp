@@ -28,7 +28,6 @@
 #include "i18n/L10n.h"
 #include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
-#include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"

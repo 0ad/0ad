@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-17 08:08+0000\n"
-"PO-Revision-Date: 2021-12-17 08:24+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-12-24 08:35+0000\n"
+"PO-Revision-Date: 2021-12-24 11:24+0000\n"
+"Last-Translator: Jung Hee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,136 +271,141 @@ msgstr "휴전"
 msgid "disabled"
 msgstr "비활성화"
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
+msgstr ""
+
+#: gui/common/gamedescription.js:279
+#, javascript-format
+msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "처음 %(min)s 분 동안은 다른 플레이어들이 중립을 지킬것입니다."
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "무작위 지도"
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
 msgstr "목록에서 지도를 무작위  선택하십시오."
 
-#: gui/common/gamedescription.js:292
+#: gui/common/gamedescription.js:294
 msgid "Map Name"
 msgstr "지도 이름"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:300
 msgid "Map Description"
 msgstr "지도 설명"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:306
 msgid "Map Type"
 msgstr "지도 유형"
 
-#: gui/common/gamedescription.js:313
+#: gui/common/gamedescription.js:315
 msgid "Map Size"
 msgstr "지도 크기"
 
-#: gui/common/gamedescription.js:322
+#: gui/common/gamedescription.js:324
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "무작위 생물군계"
 
-#: gui/common/gamedescription.js:323
+#: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
 msgstr "목록에서 무작위 생물군이나 선택하십시오."
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
 msgstr "유목민 모드"
 
-#: gui/common/gamedescription.js:338
+#: gui/common/gamedescription.js:340
 msgid "Civic Centers"
 msgstr "시민 회관"
 
-#: gui/common/gamedescription.js:341
+#: gui/common/gamedescription.js:343
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "플레이어는 단 몇 기의 유닛으로 시작하며 도시를 건설하기에 적합한 장소를 찾아야 합니다."
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
 msgstr "플레이어는 시민 회관으로 시작합니다."
 
-#: gui/common/gamedescription.js:347
+#: gui/common/gamedescription.js:349
 msgid "Starting Resources"
 msgstr "기본 자원"
 
-#: gui/common/gamedescription.js:351
+#: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "/ 플레이어"
 
-#: gui/common/gamedescription.js:352
+#: gui/common/gamedescription.js:354
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr "인구 제한"
 
-#: gui/common/gamedescription.js:367
+#: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "/ 플레이어"
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:377
 msgid "World Population Cap"
 msgstr "세계 인구 상한"
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:385
 msgid "Treasures"
 msgstr "보물"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "사용안함"
 
-#: gui/common/gamedescription.js:386
+#: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "지도에서 정의한 대로."
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:392
 msgid "Explored Map"
 msgstr "탐색된 지도"
 
-#: gui/common/gamedescription.js:395
+#: gui/common/gamedescription.js:397
 msgid "Revealed Map"
 msgstr "공개된 지도"
 
-#: gui/common/gamedescription.js:400
+#: gui/common/gamedescription.js:402
 msgid "Allied View"
 msgstr "동맹 보기"
 
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:407
 msgid "Cheats"
 msgstr "치트"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:410
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "이번 게임의 승자가 결정되면, 대기실 점수가 조정됩니다."
 
-#: gui/common/gamedescription.js:413 gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
 msgstr "게임 순위 등급"
 
-#: gui/common/gamedescription.js:419 gui/common/gamedescription.js:426
+#: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "사용안함"
 
-#: gui/common/gamedescription.js:422 gui/common/tooltips.js:155
+#: gui/common/gamedescription.js:424 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:324
 #: gui/common/tooltips.js:635 gui/common/tooltips.js:641
@@ -412,20 +417,20 @@ msgstr "사용안함"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:427
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "사용함"
 
-#: gui/common/gamedescription.js:438
+#: gui/common/gamedescription.js:440
 msgid "Victorious"
 msgstr "승리"
 
-#: gui/common/gamedescription.js:443
+#: gui/common/gamedescription.js:445
 msgid "Defeated"
 msgstr "패배"
 
-#: gui/common/gamedescription.js:452
+#: gui/common/gamedescription.js:454
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -913,7 +918,7 @@ msgstr "아군의 포격: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -922,7 +927,7 @@ msgstr "예"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:173
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
 #: gui/options/options.js:348 gui/options/options.js:413
 #: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
@@ -3466,7 +3471,7 @@ msgstr "%(hotkey)s을(를) 사용하여 선택한 저장 게임을 삭제하십�
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "삭제하는 동안 확인 대화상자를 건너뛰려면 %(hotkey)s 을(를) 유지하십시오."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
+#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -3540,11 +3545,11 @@ msgstr "게임 불러오기"
 msgid "Save"
 msgstr "저장하기"
 
-#: gui/loadgame/SavegameWriter.js:46
+#: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "저장된 게임을 영구적으로 덮어 씁니다. 확실합니까?"
 
-#: gui/loadgame/SavegameWriter.js:47
+#: gui/loadgame/SavegameWriter.js:53
 msgid "OVERWRITE SAVE"
 msgstr "저장파일 덮어쓰기"
 

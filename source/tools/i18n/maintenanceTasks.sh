@@ -20,6 +20,9 @@ python3 "${SCRIPT_PATH}/pullTranslations.py"
 
 # Pre-Commit Cleanup  #########################################################
 
+echo ":: Removing unneeded data from the .po files…"
+python3 "${SCRIPT_PATH}/cleanTranslationFiles.py"
+
 echo ":: Reverting unnecessary changes…"
 python3 "${SCRIPT_PATH}/checkDiff.py"
 

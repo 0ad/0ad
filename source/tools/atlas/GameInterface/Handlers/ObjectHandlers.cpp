@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/Unit.h"
-#include "lib/ogl.h"
 #include "lib/utf8.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
@@ -53,7 +52,8 @@
 #include "simulation2/helpers/Selection.h"
 #include "ps/XML/XMLWriter.h"
 
-namespace AtlasMessage {
+namespace AtlasMessage
+{
 
 namespace
 {
@@ -61,7 +61,7 @@ namespace
 	{
 		return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
 	}
-}
+} // anonymous namespace
 
 // Helpers for object constraints
 bool CheckEntityObstruction(entity_id_t ent)
@@ -1128,4 +1128,5 @@ QUERYHANDLER(GetSelectedObjectsTemplateNames)
 	std::sort(names.begin(), names.end());
 	msg->names = names;
 }
-}
+
+} // namespace AtlasMessage

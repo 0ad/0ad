@@ -27,6 +27,7 @@
 #include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
+#include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexBufferManager.h"
 
 class CFrustum;
@@ -59,10 +60,10 @@ public:
 	CTexturePtr m_WaveTex;
 	CTexturePtr m_FoamTex;
 
-	GLuint m_FancyTexture;
-	GLuint m_FancyTextureDepth;
-	GLuint m_ReflFboDepthTexture;
-	GLuint m_RefrFboDepthTexture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_FancyTexture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_FancyTextureDepth;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ReflFboDepthTexture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_RefrFboDepthTexture;
 
 	// used to know what to update when updating parts of the terrain only.
 	u32 m_updatei0;
@@ -94,8 +95,8 @@ public:
 	float m_RepeatPeriod;
 
 	// Reflection and refraction textures for fancy water
-	GLuint m_ReflectionTexture;
-	GLuint m_RefractionTexture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ReflectionTexture;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_RefractionTexture;
 	size_t m_RefTextureSize;
 
 	// framebuffer objects

@@ -16,7 +16,7 @@ echo "Filtering languages"
 # Included languages
 # CJK languages are excluded, as they are in mods.
 # Note: Needs to be edited manually at each release.
-# Keep in sync with source/tools/i18n/creditTranslators.py and with the installer languages in 0ad.nsi
+# Keep in sync with the installer languages in 0ad.nsi.
 LANGS=("ast" "ca" "cs" "de" "el" "en_GB" "es" "eu" "fi" "fr" "gd" "hu" "id" "it" "nl" "pl" "pt_BR" "ru" "sk" "sv" "tr" "uk")
 
 REGEX=$(printf "\|%s" "${LANGS[@]}")

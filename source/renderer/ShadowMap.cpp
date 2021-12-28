@@ -192,8 +192,6 @@ ShadowMap::ShadowMap()
 {
 	m = new ShadowMapInternals;
 	m->Framebuffer = 0;
-	m->Texture = 0;
-	m->DummyTexture = 0;
 	m->Width = 0;
 	m->Height = 0;
 	m->QualityLevel = 0;
@@ -233,8 +231,6 @@ void ShadowMap::RecreateTexture()
 	if (m->Framebuffer)
 		glDeleteFramebuffersEXT(1, &m->Framebuffer);
 
-	m->Texture = 0;
-	m->DummyTexture = 0;
 	m->Framebuffer = 0;
 
 	m->UpdateCascadesParameters();
@@ -694,7 +690,7 @@ void ShadowMap::EndRender()
 
 void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 {
-	if (!shader->GetTextureBinding(str_shadowTex).Active())
+	if (!shader->GetTextureBinding(str_shadowTex).Active() || !m->Texture)
 		return;
 
 	shader->BindTexture(str_shadowTex, m->Texture->GetHandle());

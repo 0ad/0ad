@@ -331,13 +331,13 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 	for (size_t i = 0; i < NUM_ALPHA_MAPS; i++)
 		ignore_result(ogl_tex_free(textures[i]));
 
-	// upload the composite texture
+	// Enable the following to save a png of the generated texture
+	// in the public/ directory, for debugging.
+#if 0
 	Tex t;
 	ignore_result(t.wrap(totalWidth, totalHeight, 8, TEX_GREY, data, 0));
 
-	// uncomment the following to save a png of the generated texture
-	// in the public/ directory, for debugging
-	/*VfsPath filename("blendtex.png");
+	const VfsPath filename("blendtex.png");
 
 	DynArray da;
 	RETURN_STATUS_IF_ERR(tex_encode(&t, filename.Extension(), &da));
@@ -353,13 +353,19 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 		//	ret = (Status)bytes_written;
 	}
 
-	ignore_result(da_free(&da));*/
+	ignore_result(da_free(&da));
+#endif
 
-	Handle hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
-	ignore_result(ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR));
-	ignore_result(ogl_tex_set_wrap  (hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE));
-	ogl_tex_upload(hCompositeAlphaMap, GL_ALPHA, 0, 0);
-	result.m_hCompositeAlphaMap = hCompositeAlphaMap;
+	result.m_CompositeAlphaMap = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::A8, totalWidth, totalHeight,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
+
+	// Upload the composite texture.
+	g_Renderer.BindTexture(0, result.m_CompositeAlphaMap->GetHandle());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, totalWidth, totalHeight, 0, GL_ALPHA, GL_UNSIGNED_BYTE, data.get());
+	g_Renderer.BindTexture(0, 0);
 
 	m_TerrainAlpha = it;
 }

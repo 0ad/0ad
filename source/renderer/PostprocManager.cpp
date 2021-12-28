@@ -40,11 +40,8 @@
 
 CPostprocManager::CPostprocManager()
 	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"),
-	  m_ColorTex1(0), m_ColorTex2(0), m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0),
-	  m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0), m_BlurTex8a(0), m_BlurTex8b(0),
-	  m_WhichBuffer(true), m_Sharpness(0.3f), m_UsingMultisampleBuffer(false),
-	  m_MultisampleFBO(0), m_MultisampleColorTex(0), m_MultisampleDepthTex(0),
-	  m_MultisampleCount(0)
+	  m_BloomFbo(0), m_WhichBuffer(true), m_Sharpness(0.3f), m_UsingMultisampleBuffer(false),
+	  m_MultisampleFBO(0), m_MultisampleCount(0)
 {
 }
 
@@ -63,18 +60,16 @@ void CPostprocManager::Cleanup()
 	if (m_BloomFbo) glDeleteFramebuffersEXT(1, &m_BloomFbo);
 	m_PingFbo = m_PongFbo = m_BloomFbo = 0;
 
-	if (m_ColorTex1) glDeleteTextures(1, &m_ColorTex1);
-	if (m_ColorTex2) glDeleteTextures(1, &m_ColorTex2);
-	if (m_DepthTex) glDeleteTextures(1, &m_DepthTex);
-	m_ColorTex1 = m_ColorTex2 = m_DepthTex = 0;
+	m_ColorTex1.reset();
+	m_ColorTex2.reset();
+	m_DepthTex.reset();
 
-	if (m_BlurTex2a) glDeleteTextures(1, &m_BlurTex2a);
-	if (m_BlurTex2b) glDeleteTextures(1, &m_BlurTex2b);
-	if (m_BlurTex4a) glDeleteTextures(1, &m_BlurTex4a);
-	if (m_BlurTex4b) glDeleteTextures(1, &m_BlurTex4b);
-	if (m_BlurTex8a) glDeleteTextures(1, &m_BlurTex8a);
-	if (m_BlurTex8b) glDeleteTextures(1, &m_BlurTex8b);
-	m_BlurTex2a = m_BlurTex2b = m_BlurTex4a = m_BlurTex4b = m_BlurTex8a = m_BlurTex8b = 0;
+	m_BlurTex2a.reset();
+	m_BlurTex2b.reset();
+	m_BlurTex4a.reset();
+	m_BlurTex4b.reset();
+	m_BlurTex8a.reset();
+	m_BlurTex8b.reset();
 }
 
 void CPostprocManager::Initialize()
@@ -121,13 +116,13 @@ void CPostprocManager::RecreateBuffers()
 	Cleanup();
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
-		glGenTextures(1, (GLuint*)&name); \
-		glBindTexture(GL_TEXTURE_2D, name); \
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0); \
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); \
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); \
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); \
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		name = Renderer::Backend::GL::CTexture::Create2D( \
+			Renderer::Backend::Format::R8G8B8A8, w, h, \
+			Renderer::Backend::Sampler::MakeDefaultSampler( \
+				Renderer::Backend::Sampler::Filter::LINEAR, \
+				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE)); \
+		glBindTexture(GL_TEXTURE_2D, name->GetHandle()); \
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
 	// Two fullscreen ping-pong textures.
 	GEN_BUFFER_RGBA(m_ColorTex1, m_Width, m_Height);
@@ -149,17 +144,16 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	glGenTextures(1, (GLuint*)&m_DepthTex);
-	glBindTexture(GL_TEXTURE_2D, m_DepthTex);
+	m_DepthTex = Renderer::Backend::GL::CTexture::Create2D(
+		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
+	glBindTexture(GL_TEXTURE_2D, m_DepthTex->GetHandle());
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height,
 				 0, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, 0);
-
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -169,10 +163,10 @@ void CPostprocManager::RecreateBuffers()
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_ColorTex1, 0);
+							   GL_TEXTURE_2D, m_ColorTex1->GetHandle(), 0);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
-							   GL_TEXTURE_2D, m_DepthTex, 0);
+							   GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
 
 	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -184,10 +178,10 @@ void CPostprocManager::RecreateBuffers()
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_ColorTex2, 0);
+							   GL_TEXTURE_2D, m_ColorTex2->GetHandle(), 0);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
-							   GL_TEXTURE_2D, m_DepthTex, 0);
+							   GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
 
 	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -359,10 +353,10 @@ void CPostprocManager::ApplyBlur()
 	int width = m_Width, height = m_Height;
 
 	#define SCALE_AND_BLUR(tex1, tex2, temptex) \
-		ApplyBlurDownscale2x(tex1, tex2, width, height); \
+		ApplyBlurDownscale2x((tex1)->GetHandle(), (tex2)->GetHandle(), width, height); \
 		width /= 2; \
 		height /= 2; \
-		ApplyBlurGauss(tex2, temptex, width, height);
+		ApplyBlurGauss((tex2)->GetHandle(), (temptex)->GetHandle(), width, height);
 
 	// We do the same thing for each scale, incrementally adding more and more blur.
 	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
@@ -437,15 +431,15 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
 	if (m_WhichBuffer)
-		shader->BindTexture(str_renderedTex, m_ColorTex1);
+		shader->BindTexture(str_renderedTex, m_ColorTex1->GetHandle());
 	else
-		shader->BindTexture(str_renderedTex, m_ColorTex2);
+		shader->BindTexture(str_renderedTex, m_ColorTex2->GetHandle());
 
-	shader->BindTexture(str_depthTex, m_DepthTex);
+	shader->BindTexture(str_depthTex, m_DepthTex->GetHandle());
 
-	shader->BindTexture(str_blurTex2, m_BlurTex2a);
-	shader->BindTexture(str_blurTex4, m_BlurTex4a);
-	shader->BindTexture(str_blurTex8, m_BlurTex8a);
+	shader->BindTexture(str_blurTex2, m_BlurTex2a->GetHandle());
+	shader->BindTexture(str_blurTex4, m_BlurTex4a->GetHandle());
+	shader->BindTexture(str_blurTex8, m_BlurTex8a->GetHandle());
 
 	shader->Uniform(str_width, m_Width);
 	shader->Uniform(str_height, m_Height);
@@ -543,10 +537,10 @@ void CPostprocManager::ApplyPostproc()
 	}
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
 }
 
 
@@ -679,15 +673,28 @@ void CPostprocManager::CreateMultisampleBuffer()
 {
 	glEnable(GL_MULTISAMPLE);
 
-	glGenTextures(1, &m_MultisampleColorTex);
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex);
+	m_MultisampleColorTex = Renderer::Backend::GL::CTexture::Create(
+		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::Format::R8G8B8A8, m_Width, m_Height,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1);
+
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex->GetHandle());
 	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_RGBA, m_Width, m_Height, GL_TRUE);
 
 	// Allocate the Depth/Stencil texture.
-	glGenTextures(1, &m_MultisampleDepthTex);
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex);
+	m_MultisampleDepthTex = Renderer::Backend::GL::CTexture::Create(
+		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
+		Renderer::Backend::Sampler::MakeDefaultSampler(
+			Renderer::Backend::Sampler::Filter::LINEAR,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1);
+
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex->GetHandle());
 	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height, GL_TRUE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 
 	ogl_WarnIfError();
@@ -697,10 +704,10 @@ void CPostprocManager::CreateMultisampleBuffer()
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex, 0);
+		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex->GetHandle(), 0);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
-		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex, 0);
+		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex->GetHandle(), 0);
 
 	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -722,10 +729,8 @@ void CPostprocManager::DestroyMultisampleBuffer()
 		return;
 	if (m_MultisampleFBO)
 		glDeleteFramebuffersEXT(1, &m_MultisampleFBO);
-	if (m_MultisampleColorTex)
-		glDeleteTextures(1, &m_MultisampleColorTex);
-	if (m_MultisampleDepthTex)
-		glDeleteTextures(1, &m_MultisampleDepthTex);
+	m_MultisampleColorTex.reset();
+	m_MultisampleDepthTex.reset();
 	glDisable(GL_MULTISAMPLE);
 }
 
