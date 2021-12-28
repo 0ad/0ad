@@ -214,7 +214,7 @@ ModifiersManager.prototype.OnGlobalPlayerEntityChanged = function(msg)
  */
 ModifiersManager.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	if (msg.from == INVALID_PLAYER || msg.to == INVALID_PLAYER)
+	if (msg.to == INVALID_PLAYER)
 		return;
 
 	// Invalidate all caches.
