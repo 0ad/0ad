@@ -27,7 +27,7 @@
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/io/io.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/ogl_tex.h"
+#include "lib/tex/tex.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -64,7 +64,6 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	#undef AT
 	#undef EL
 
-
 	XMBElement root = XeroFile.GetRoot();
 
 	if (root.GetNodeName() != el_terrain)
@@ -73,11 +72,9 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 		return;
 	}
 
-
 	std::vector<std::pair<CStr, VfsPath> > samplers;
 	VfsPath alphamap("standard");
 	m_Tag = utf8_from_wstring(path.Basename().string());
-
 
 	XERO_ITER_EL(root, child)
 	{
@@ -123,7 +120,6 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 			m_Tag = child.GetText();
 		}
 	}
-
 
 	for (size_t i = 0; i < samplers.size(); ++i)
 	{
@@ -220,9 +216,8 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 	//
 	// load all textures and store Handle in array
 	//
-	Handle textures[NUM_ALPHA_MAPS] = {0};
-	VfsPath path(L"art/textures/terrain/alphamaps");
-	path = path / alphaMapType;
+	Tex textures[NUM_ALPHA_MAPS] = {0};
+	const VfsPath path = VfsPath("art/textures/terrain/alphamaps") / alphaMapType;
 
 	const wchar_t* fnames[NUM_ALPHA_MAPS] =
 	{
@@ -249,34 +244,32 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 	{
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
-		textures[i] = ogl_tex_load(g_VFS, path / fnames[i]);
-		if (textures[i] < 0)
+		std::shared_ptr<u8> fileData;
+		size_t fileSize;
+		if (g_VFS->LoadFile(path / fnames[i], fileData, fileSize) != INFO::OK ||
+			textures[i].decode(fileData, fileSize) != INFO::OK)
 		{
 			g_TexMan.m_TerrainAlphas.erase(it);
 			LOGERROR("Failed to load alphamap: %s", alphaMapType.string8());
 
-			VfsPath standard("standard");
+			const VfsPath standard("standard");
 			if (path != standard)
-			{
 				LoadAlphaMaps(standard);
-			}
 			return;
 		}
 
-		// get its size and make sure they are all equal.
-		// (the packing algo assumes this)
-		size_t thisWidth = 0, thisHeight = 0, thisBPP = 0;	// fail-safe
-		ignore_result(ogl_tex_get_size(textures[i], &thisWidth, &thisHeight, &thisBPP));
-		if (thisWidth != thisHeight)
+		// Get its size and make sure they are all equal.
+		// (the packing algo assumes this).
+		if (textures[i].m_Width != textures[i].m_Height)
 			DEBUG_DISPLAY_ERROR(L"Alpha maps are not square");
 		// .. first iteration: establish size
 		if (i == 0)
 		{
-			base = thisWidth;
-			bpp = thisBPP;
+			base = textures[i].m_Width;
+			bpp = textures[i].m_Bpp;
 		}
 		// .. not first: make sure texture size matches
-		else if (base != thisWidth || bpp != thisBPP)
+		else if (base != textures[i].m_Width || bpp != textures[i].m_Bpp)
 			DEBUG_DISPLAY_ERROR(L"Alpha maps are not identically sized (including pixel depth)");
 	}
 
@@ -292,8 +285,8 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 	for (size_t i = 0; i < NUM_ALPHA_MAPS; ++i)
 	{
 		// get src of copy
-		u8* src = 0;
-		ignore_result(ogl_tex_get_data(textures[i], &src));
+		u8* src = textures[i].get_data();
+		ENSURE(src);
 
 		const size_t srcStep = bpp / 8;
 
@@ -328,8 +321,8 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 		result.m_AlphaMapCoords[i].v1 = 1.0f;
 	}
 
-	for (size_t i = 0; i < NUM_ALPHA_MAPS; i++)
-		ignore_result(ogl_tex_free(textures[i]));
+	for (size_t i = 0; i < NUM_ALPHA_MAPS; ++i)
+		textures[i].free();
 
 	// Enable the following to save a png of the generated texture
 	// in the public/ directory, for debugging.
