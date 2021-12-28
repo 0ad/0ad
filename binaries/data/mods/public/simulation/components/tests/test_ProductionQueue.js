@@ -81,3 +81,11 @@ TS_ASSERT(cmpProdQueue.GetQueue()[1].paused);
 
 cmpProdQueue.ProgressTimeout(null, 0);
 TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 0);
+
+
+// Simple deserialisation test.
+cmpProdQueue.AddItem("some_template", "unit", 2);
+const deserialisedCmp = SerializationCycle(cmpProdQueue);
+TS_ASSERT_EQUALS(deserialisedCmp.GetQueue().length, 1);
+deserialisedCmp.ProgressTimeout(null, 0);
+TS_ASSERT_EQUALS(deserialisedCmp.GetQueue().length, 0);

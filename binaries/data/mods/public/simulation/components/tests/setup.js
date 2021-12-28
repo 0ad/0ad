@@ -100,6 +100,12 @@ global.ConstructComponent = function(ent, name, template)
 			"configurable": false,
 			"enumerable": false,
 			"writable": false
+		},
+		"_cmpName": {
+			"value": name,
+			"configurable": false,
+			"enumerable": false,
+			"writable": false
 		}
 	});
 
@@ -134,4 +140,27 @@ global.Spy = function(obj, func)
 	};
 
 	return this;
+};
+
+global.SerializationCycle = function(cmp)
+{
+	let data;
+	if (typeof cmp.Serialize === "function")
+		data = cmp.Serialize();
+	else
+	{
+		data = {};
+		for (const att of cmp)
+			if (cmp.hasOwnProperty(att))
+				data[att] = cmp[att];
+	}
+
+	const newCmp = ConstructComponent(cmp.entity, cmp._cmpName, cmp.template);
+	if (typeof newCmp.Deserialize === "function")
+		newCmp.Deserialize(data);
+	else
+		for (const att in data)
+			newCmp[att] = data[att];
+
+	return newCmp;
 };

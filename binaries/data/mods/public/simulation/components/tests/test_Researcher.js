@@ -40,7 +40,7 @@ AddMock(entityID, IID_Identity, {
 	"GetCiv": () => "iber"
 });
 
-const cmpResearcher = ConstructComponent(entityID, "Researcher", {
+let cmpResearcher = ConstructComponent(entityID, "Researcher", {
 	"Technologies": { "_string": "gather_fishing_net " +
 	                             "phase_town_{civ} " +
 	                             "phase_city_{civ}" }
@@ -146,6 +146,8 @@ id = cmpResearcher.QueueTechnology(queuedTech);
 TS_ASSERT_EQUALS(cmpResearcher.GetResearchingTechnology(id).progress, 0);
 TS_ASSERT_EQUALS(cmpResearcher.Progress(id, 500), 500);
 TS_ASSERT_EQUALS(cmpResearcher.GetResearchingTechnology(id).progress, 0.5);
+
+cmpResearcher = SerializationCycle(cmpResearcher);
 
 spyTechManager = new Spy(techManager, "ResearchTechnology");
 TS_ASSERT_EQUALS(cmpResearcher.Progress(id, 1000), 500);
