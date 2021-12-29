@@ -9,14 +9,11 @@ ProductionQueue.prototype.MaxQueueSize = 16;
 
 /**
  * This object represents an item in the queue.
- */
-ProductionQueue.prototype.Item = function() {};
-
-/**
+ *
  * @param {number} producer - The entity ID of our producer.
  * @param {string} metadata - Optionally any metadata attached to us.
  */
-ProductionQueue.prototype.Item.prototype.Init = function(producer, metadata)
+ProductionQueue.prototype.Item = function(producer, metadata)
 {
 	this.producer = producer;
 	this.metadata = metadata;
@@ -192,30 +189,31 @@ ProductionQueue.prototype.Item.prototype.OriginalItem = function()
 	return this.originalItem;
 };
 
+ProductionQueue.prototype.Item.prototype.SerializableAttributes = [
+	"entity",
+	"id",
+	"metadata",
+	"originalItem",
+	"paused",
+	"producer",
+	"started",
+	"technology"
+];
+
 ProductionQueue.prototype.Item.prototype.Serialize = function()
 {
-	return {
-		"id": this.id,
-		"metadata": this.metadata,
-		"paused": this.paused,
-		"producer": this.producer,
-		"entity": this.entity,
-		"technology": this.technology,
-		"started": this.started,
-		"originalItem": this.originalItem
-	};
+	const result = {};
+	for (const att of this.SerializableAttributes)
+		if (this.hasOwnProperty(att))
+			result[att] = this[att];
+	return result;
 };
 
 ProductionQueue.prototype.Item.prototype.Deserialize = function(data)
 {
-	this.Init(data.producer, data.metadata);
-
-	this.id = data.id;
-	this.paused = data.paused;
-	this.entity = data.entity;
-	this.technology = data.technology;
-	this.started = data.started;
-	this.originalItem = data.originalItem;
+	for (const att of this.SerializableAttributes)
+		if (att in data)
+			this[att] = data[att];
 };
 
 ProductionQueue.prototype.Init = function()
@@ -224,29 +222,35 @@ ProductionQueue.prototype.Init = function()
 	this.queue = [];
 };
 
+ProductionQueue.prototype.SerializableAttributes = [
+	"autoqueuing",
+	"nextID",
+	"paused",
+	"timer"
+];
+
 ProductionQueue.prototype.Serialize = function()
 {
-	const queue = [];
-	for (const item of this.queue)
-		queue.push(item.Serialize());
-
-	return {
-		"autoqueuing": this.autoqueuing,
-		"nextID": this.nextID,
-		"paused": this.paused,
-		"timer": this.timer,
-		"queue": queue
+	const result = {
+		"queue": []
 	};
+	for (const item of this.queue)
+		result.queue.push(item.Serialize());
+
+	for (const att of this.SerializableAttributes)
+		if (this.hasOwnProperty(att))
+			result[att] = this[att];
+
+	return result;
 };
 
 ProductionQueue.prototype.Deserialize = function(data)
 {
-	this.Init();
+	for (const att of this.SerializableAttributes)
+		if (att in data)
+			this[att] = data[att];
 
-	this.autoqueuing = data.autoqueuing;
-	this.nextID = data.nextID;
-	this.paused = data.paused;
-	this.timer = data.timer;
+	this.queue = [];
 
 	for (const item of data.queue)
 	{
@@ -328,8 +332,7 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 		return false;
 	}
 
-	const item = new this.Item();
-	item.Init(this.entity, metadata);
+	const item = new this.Item(this.entity, metadata);
 	if (!item.Queue(type, templateName, count))
 		return false;
 

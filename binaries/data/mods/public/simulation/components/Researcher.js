@@ -175,8 +175,8 @@ Researcher.prototype.Item.prototype.Serialize = function(id)
 
 Researcher.prototype.Item.prototype.Deserialize = function(data)
 {
-	for (const att in data)
-		if (this.SerializableAttributes.includes(att))
+	for (const att of this.SerializableAttributes)
+		if (att in data)
 			this[att] = data[att];
 };
 

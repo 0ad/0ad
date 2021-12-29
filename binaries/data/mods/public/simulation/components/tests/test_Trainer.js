@@ -26,7 +26,7 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	"GetTemplate": name => ({})
 });
 
-const cmpTrainer = ConstructComponent(entityID, "Trainer", {
+let cmpTrainer = ConstructComponent(entityID, "Trainer", {
 	"Entities": { "_string": "units/{civ}/cavalry_javelineer_b " +
 	                         "units/{civ}/infantry_swordsman_b " +
 	                         "units/{native}/support_female_citizen" }
@@ -246,6 +246,8 @@ AddMock(entityID, IID_Footprint, {
 	"PickSpawnPoint": () => ({ "x": 0, "y": 1, "z": 0 })
 });
 
+cmpTrainer = SerializationCycle(cmpTrainer);
+
 TS_ASSERT_EQUALS(cmpTrainer.Progress(id, 1000), 500);
 TS_ASSERT(!cmpTrainer.HasBatch(id));
 TS_ASSERT(!cmpEntLimits.AllowedToTrain("some_limit", 5));
@@ -267,6 +269,8 @@ TS_ASSERT(cmpTrainer.HasBatch(id));
 
 TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
 TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts()["units/iber/infantry_swordsman_b"], 3);
+
+cmpTrainer = SerializationCycle(cmpTrainer);
 
 // Check that when the batch is removed the counts are subtracted again.
 cmpTrainer.StopBatch(id);

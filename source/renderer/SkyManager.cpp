@@ -138,7 +138,7 @@ void SkyManager::LoadSkyTextures()
 
 		if (types[i] == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y || types[i] == GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
 		{
-			rotated.reserve(textures[i].m_DataSize);
+			rotated.resize(textures[i].m_DataSize);
 
 			for (size_t y = 0; y < textures[i].m_Height; ++y)
 			{

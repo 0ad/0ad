@@ -45,7 +45,7 @@ PETRA.HQ.prototype.gameAnalysis = function(gameState)
 	}
 
 	// configure our first base strategy
-	if (!this.hasPotentialBase())
+	if (this.hasPotentialBase())
 		this.configFirstBase(gameState);
 };
 

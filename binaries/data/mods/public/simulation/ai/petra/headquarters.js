@@ -2327,7 +2327,7 @@ PETRA.HQ.prototype.Serialize = function()
 	{
 		API3.warn(" HQ serialization ---------------------");
 		API3.warn(" properties " + uneval(properties));
-		API3.warn(" baseManagers " + uneval(this.basesManager.Serialize()));
+		API3.warn(" basesManager " + uneval(this.basesManager.Serialize()));
 		API3.warn(" attackManager " + uneval(this.attackManager.Serialize()));
 		API3.warn(" buildManager " + uneval(this.buildManager.Serialize()));
 		API3.warn(" defenseManager " + uneval(this.defenseManager.Serialize()));

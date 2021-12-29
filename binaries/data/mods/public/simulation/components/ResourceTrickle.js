@@ -63,6 +63,12 @@ ResourceTrickle.prototype.OnValueModification = function(msg)
 	this.CheckTimer();
 };
 
+ResourceTrickle.prototype.OnOwnershipChanged = function(msg)
+{
+	if (msg.to != INVALID_PLAYER)
+		this.CheckTimer();
+};
+
 ResourceTrickle.prototype.CheckTimer = function()
 {
 	if (!this.ComputeRates())
