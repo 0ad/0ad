@@ -551,8 +551,8 @@ void OverlayRenderer::RenderQuadOverlays()
 
 		const QuadBatchKey& maskPair = it->first;
 
-		shader->BindTexture(str_baseTex, maskPair.m_Texture->GetHandle());
-		shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetHandle());
+		shader->BindTexture(str_baseTex, maskPair.m_Texture);
+		shader->BindTexture(str_maskTex, maskPair.m_TextureMask);
 
 		int streamflags = shader->GetStreamFlags();
 

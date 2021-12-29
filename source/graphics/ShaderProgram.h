@@ -22,7 +22,6 @@
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
-#include "lib/res/handle.h"
 
 #include <map>
 #include <vector>
@@ -143,10 +142,10 @@ public:
 	virtual Binding GetTextureBinding(texture_id_t id) = 0;
 
 	// Variants of texture binding:
-	void BindTexture(texture_id_t id, CTexturePtr tex);
-	virtual void BindTexture(texture_id_t id, Handle tex) = 0;
+	void BindTexture(texture_id_t id, const CTexturePtr& tex);
+	void BindTexture(Binding id, const CTexturePtr& tex);
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
-	virtual void BindTexture(Binding id, Handle tex) = 0;
+	virtual void BindTexture(Binding id, GLuint tex) = 0;
 
 
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;

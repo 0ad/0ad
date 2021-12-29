@@ -165,35 +165,25 @@ public:
 			return Binding((int)fPair.second, index);
 	}
 
-	void BindTexture(texture_id_t id, Handle tex) override
-	{
-		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
-		int index = fPair.first;
-		if (index != -1)
-		{
-			GLuint h;
-			ogl_tex_get_texture_id(tex, &h);
-			glActiveTextureARB(GL_TEXTURE0+index);
-			glBindTexture(fPair.second, h);
-		}
-	}
-
 	void BindTexture(texture_id_t id, GLuint tex) override
 	{
 		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
 		int index = fPair.first;
 		if (index != -1)
 		{
-			glActiveTextureARB(GL_TEXTURE0+index);
+			glActiveTextureARB(GL_TEXTURE0 + index);
 			glBindTexture(fPair.second, tex);
 		}
 	}
 
-	void BindTexture(Binding id, Handle tex) override
+	void BindTexture(Binding id, GLuint tex) override
 	{
 		int index = id.second;
 		if (index != -1)
-			ogl_tex_bind(tex, index);
+		{
+			glActiveTextureARB(GL_TEXTURE0 + index);
+			glBindTexture(id.first, tex);
+		}
 	}
 
 	Binding GetUniformBinding(uniform_id_t id) override
@@ -537,18 +527,6 @@ public:
 			return Binding((int)it->second.first, it->second.second);
 	}
 
-	void BindTexture(texture_id_t id, Handle tex) override
-	{
-		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
-		if (it == m_Samplers.end())
-			return;
-
-		GLuint h;
-		ogl_tex_get_texture_id(tex, &h);
-		glActiveTextureARB(GL_TEXTURE0 + it->second.second);
-		glBindTexture(it->second.first, h);
-	}
-
 	void BindTexture(texture_id_t id, GLuint tex) override
 	{
 		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
@@ -559,15 +537,13 @@ public:
 		glBindTexture(it->second.first, tex);
 	}
 
-	void BindTexture(Binding id, Handle tex) override
+	void BindTexture(Binding id, GLuint tex) override
 	{
 		if (id.second == -1)
 			return;
 
-		GLuint h;
-		ogl_tex_get_texture_id(tex, &h);
 		glActiveTextureARB(GL_TEXTURE0 + id.second);
-		glBindTexture(id.first, h);
+		glBindTexture(id.first, tex);
 	}
 
 	Binding GetUniformBinding(uniform_id_t id) override
@@ -743,9 +719,18 @@ int CShaderProgram::GetStreamFlags() const
 	return m_StreamFlags;
 }
 
-void CShaderProgram::BindTexture(texture_id_t id, CTexturePtr tex)
+void CShaderProgram::BindTexture(texture_id_t id, const CTexturePtr& tex)
 {
-	BindTexture(id, tex->GetHandle());
+	GLuint h;
+	ogl_tex_get_texture_id(tex->GetHandle(), &h);
+	BindTexture(id, h);
+}
+
+void CShaderProgram::BindTexture(Binding id, const CTexturePtr& tex)
+{
+	GLuint h;
+	ogl_tex_get_texture_id(tex->GetHandle(), &h);
+	BindTexture(id, h);
 }
 
 void CShaderProgram::Uniform(Binding id, int v)
