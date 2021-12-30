@@ -129,12 +129,12 @@ private:
 
 	// High quality GPU image scaling to half size. outTex must have exactly half the size
 	// of inTex. inWidth and inHeight are the dimensions of inTex in texels.
-	void ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inWidth, int inHeight);
+	void ApplyBlurDownscale2x(Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight);
 
 	// GPU-based Gaussian blur in two passes. inOutTex contains the input image and will be filled
 	// with the blurred image. tempTex must have the same size as inOutTex.
 	// inWidth and inHeight are the dimensions of the images in texels.
-	void ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWidth, int inHeight);
+	void ApplyBlurGauss(Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight);
 
 	// Applies a pass of a given effect to the entire current framebuffer. The shader is
 	// provided with a number of general-purpose variables, including the rendered screen so far,

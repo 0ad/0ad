@@ -693,7 +693,7 @@ void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 	if (!shader->GetTextureBinding(str_shadowTex).Active() || !m->Texture)
 		return;
 
-	shader->BindTexture(str_shadowTex, m->Texture->GetHandle());
+	shader->BindTexture(str_shadowTex, m->Texture.get());
 	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
 	const CVector3D cameraForward = g_Renderer.GetCullCamera().GetOrientation().GetIn();
 	shader->Uniform(str_cameraForward, cameraForward.X, cameraForward.Y, cameraForward.Z,
@@ -795,7 +795,7 @@ void ShadowMap::RenderDebugTexture()
 	CShaderProgramPtr texShader = texTech->GetShader();
 
 	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
-	texShader->BindTexture(str_tex, m->Texture->GetHandle());
+	texShader->BindTexture(str_tex, m->Texture.get());
 	texShader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 1.0f));
 	texShader->Uniform(str_colorMul, CColor(1.0f, 1.0f, 1.0f, 0.0f));
 	texShader->Uniform(str_grayscaleFactor, 0.0f);

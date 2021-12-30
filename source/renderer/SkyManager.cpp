@@ -232,7 +232,7 @@ void SkyManager::RenderSky()
 		g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 	skytech->BeginPass();
 	CShaderProgramPtr shader = skytech->GetShader();
-	shader->BindTexture(str_baseTex, m_SkyCubeMap->GetHandle());
+	shader->BindTexture(str_baseTex, m_SkyCubeMap.get());
 
 	// Translate so the sky center is at the camera space origin.
 	CMatrix3D translate;

@@ -348,12 +348,13 @@ void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 	matrix._23 = m_TexelsPerTile / (m_Texture->GetHeight() * TERRAIN_TILE_SIZE);
 	matrix._44 = 1;
 
-	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture->GetHandle());
+	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture.get());
 }
 
 SColor4ub TerrainTextureOverlay::GetColor(size_t idx, u8 alpha) const
 {
-	static u8 colors[][3] = {
+	static u8 colors[][3] =
+	{
 		{ 255, 0, 0 },
 		{ 0, 255, 0 },
 		{ 0, 0, 255 },

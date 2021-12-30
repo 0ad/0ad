@@ -213,11 +213,12 @@ void CPostprocManager::RecreateBuffers()
 }
 
 
-void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inWidth, int inHeight)
+void CPostprocManager::ApplyBlurDownscale2x(
+	Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight)
 {
 	// Bind inTex to framebuffer for rendering.
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, outTex, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, outTex->GetHandle(), 0);
 
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
@@ -227,23 +228,22 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 
-	GLuint renderedTex = inTex;
-
 	// Cheat by creating high quality mipmaps for inTex, so the copying operation actually
 	// produces good scaling due to hardware filtering.
-	glBindTexture(GL_TEXTURE_2D, renderedTex);
+	glBindTexture(GL_TEXTURE_2D, inTex->GetHandle());
 	glGenerateMipmapEXT(GL_TEXTURE_2D);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	shader->BindTexture(str_renderedTex, renderedTex);
+	shader->BindTexture(str_renderedTex, inTex);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp = { 0, 0, inWidth / 2, inHeight / 2 };
 	g_Renderer.SetViewport(vp);
 
-	float quadVerts[] = {
+	float quadVerts[] =
+	{
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
 		-1.0f, -1.0f,
@@ -252,7 +252,8 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 		1.0f, -1.0f,
 		1.0f, 1.0f
 	};
-	float quadTex[] = {
+	float quadTex[] =
+	{
 		1.0f, 1.0f,
 		0.0f, 1.0f,
 		0.0f, 0.0f,
@@ -271,11 +272,12 @@ void CPostprocManager::ApplyBlurDownscale2x(GLuint inTex, GLuint outTex, int inW
 	tech->EndPass();
 }
 
-void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWidth, int inHeight)
+void CPostprocManager::ApplyBlurGauss(
+	Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight)
 {
 	// Set tempTex as our rendering target.
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, tempTex, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, tempTex->GetHandle(), 0);
 
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
@@ -291,7 +293,8 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 	const SViewPort vp = { 0, 0, inWidth, inHeight };
 	g_Renderer.SetViewport(vp);
 
-	float quadVerts[] = {
+	float quadVerts[] =
+	{
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
 		-1.0f, -1.0f,
@@ -300,7 +303,8 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 		1.0f, -1.0f,
 		1.0f, 1.0f
 	};
-	float quadTex[] = {
+	float quadTex[] =
+	{
 		1.0f, 1.0f,
 		0.0f, 1.0f,
 		0.0f, 0.0f,
@@ -320,7 +324,7 @@ void CPostprocManager::ApplyBlurGauss(GLuint inOutTex, GLuint tempTex, int inWid
 
 	// Set result texture as our render target.
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, inOutTex, 0);
+	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, inOutTex->GetHandle(), 0);
 
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
@@ -353,10 +357,10 @@ void CPostprocManager::ApplyBlur()
 	int width = m_Width, height = m_Height;
 
 	#define SCALE_AND_BLUR(tex1, tex2, temptex) \
-		ApplyBlurDownscale2x((tex1)->GetHandle(), (tex2)->GetHandle(), width, height); \
+		ApplyBlurDownscale2x((tex1).get(), (tex2).get(), width, height); \
 		width /= 2; \
 		height /= 2; \
-		ApplyBlurGauss((tex2)->GetHandle(), (temptex)->GetHandle(), width, height);
+		ApplyBlurGauss((tex2).get(), (temptex).get(), width, height);
 
 	// We do the same thing for each scale, incrementally adding more and more blur.
 	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
@@ -431,15 +435,15 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
 	if (m_WhichBuffer)
-		shader->BindTexture(str_renderedTex, m_ColorTex1->GetHandle());
+		shader->BindTexture(str_renderedTex, m_ColorTex1.get());
 	else
-		shader->BindTexture(str_renderedTex, m_ColorTex2->GetHandle());
+		shader->BindTexture(str_renderedTex, m_ColorTex2.get());
 
-	shader->BindTexture(str_depthTex, m_DepthTex->GetHandle());
+	shader->BindTexture(str_depthTex, m_DepthTex.get());
 
-	shader->BindTexture(str_blurTex2, m_BlurTex2a->GetHandle());
-	shader->BindTexture(str_blurTex4, m_BlurTex4a->GetHandle());
-	shader->BindTexture(str_blurTex8, m_BlurTex8a->GetHandle());
+	shader->BindTexture(str_blurTex2, m_BlurTex2a.get());
+	shader->BindTexture(str_blurTex4, m_BlurTex4a.get());
+	shader->BindTexture(str_blurTex8, m_BlurTex8a.get());
 
 	shader->Uniform(str_width, m_Width);
 	shader->Uniform(str_height, m_Height);

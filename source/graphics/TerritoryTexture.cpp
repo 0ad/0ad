@@ -35,7 +35,7 @@
 // TODO: There's a lot of duplication with CLOSTexture - might be nice to refactor a bit
 
 CTerritoryTexture::CTerritoryTexture(CSimulation2& simulation) :
-	m_Simulation(simulation), m_DirtyID(0), m_MapSize(0), m_TextureSize(0)
+	m_Simulation(simulation), m_DirtyID(0), m_MapSize(0)
 {
 }
 
@@ -55,12 +55,12 @@ bool CTerritoryTexture::UpdateDirty()
 	return cmpTerritoryManager && cmpTerritoryManager->NeedUpdateTexture(&m_DirtyID);
 }
 
-GLuint CTerritoryTexture::GetTexture()
+Renderer::Backend::GL::CTexture* CTerritoryTexture::GetTexture()
 {
 	if (UpdateDirty())
 		RecomputeTexture();
 
-	return m_Texture->GetHandle();
+	return m_Texture.get();
 }
 
 const float* CTerritoryTexture::GetTextureMatrix()
@@ -84,20 +84,20 @@ void CTerritoryTexture::ConstructTexture()
 	// Convert size from terrain tiles to territory tiles
 	m_MapSize = cmpTerrain->GetMapSize() * Pathfinding::NAVCELL_SIZE_INT / ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE;
 
-	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
+	const uint32_t textureSize = round_up_to_pow2(static_cast<uint32_t>(m_MapSize));
 
 	m_Texture = Renderer::Backend::GL::CTexture::Create2D(
-		Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize,
+		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
 	// Initialise texture with transparency, for the areas we don't
 	// overwrite with glTexSubImage2D later
-	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
-	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
+	u8* texData = new u8[textureSize * textureSize * 4];
+	memset(texData, 0x00, textureSize * textureSize * 4);
 	g_Renderer.BindTexture(0, m_Texture->GetHandle());
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textureSize, textureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
 
 	{
@@ -107,7 +107,7 @@ void CTerritoryTexture::ConstructTexture()
 		//   world pos (mapsize*cellsize, y, mapsize*cellsize)  (i.e. top-right of last tile)
 		//     onto texcoord (mapsize / texsize, mapsize / texsize)  (i.e. top-right of last texel)
 
-		float s = 1.f / (float)(m_TextureSize * TERRAIN_TILE_SIZE);
+		float s = 1.f / static_cast<float>(textureSize * TERRAIN_TILE_SIZE);
 		float t = 0.f;
 		m_TextureMatrix.SetZero();
 		m_TextureMatrix._11 = s;
@@ -120,7 +120,7 @@ void CTerritoryTexture::ConstructTexture()
 	{
 		// Minimap matrix: We want to map UV (0,0)-(1,1) onto (0,0)-(mapsize/texsize, mapsize/texsize)
 
-		float s = m_MapSize / (float)m_TextureSize;
+		float s = m_MapSize / static_cast<float>(textureSize);
 		m_MinimapTextureMatrix.SetZero();
 		m_MinimapTextureMatrix._11 = s;
 		m_MinimapTextureMatrix._22 = s;

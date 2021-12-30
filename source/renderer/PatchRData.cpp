@@ -973,7 +973,7 @@ void CPatchRData::RenderBlends(
 					Renderer::Backend::GL::CTexture* currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_CompositeAlphaMap.get();
 					if (currentBlendTex != lastBlendTex)
 					{
-						shader->BindTexture(str_blendTex, currentBlendTex->GetHandle());
+						shader->BindTexture(str_blendTex, currentBlendTex);
 						lastBlendTex = currentBlendTex;
 					}
 

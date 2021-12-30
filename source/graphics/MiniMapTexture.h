@@ -42,7 +42,7 @@ public:
 	 */
 	void Render();
 
-	GLuint GetTexture() const { return m_FinalTexture->GetHandle(); }
+	Renderer::Backend::GL::CTexture* GetTexture() const { return m_FinalTexture.get(); }
 
 	/**
 	 * @return The maximum height for unit passage in water.

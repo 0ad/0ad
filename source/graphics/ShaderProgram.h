@@ -22,6 +22,7 @@
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "renderer/backend/gl/Texture.h"
 
 #include <map>
 #include <vector>
@@ -144,9 +145,8 @@ public:
 	// Variants of texture binding:
 	void BindTexture(texture_id_t id, const CTexturePtr& tex);
 	void BindTexture(Binding id, const CTexturePtr& tex);
-	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
-	virtual void BindTexture(Binding id, GLuint tex) = 0;
-
+	void BindTexture(texture_id_t id, const Renderer::Backend::GL::CTexture* tex);
+	void BindTexture(Binding id, const Renderer::Backend::GL::CTexture* tex);
 
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;
 
@@ -193,6 +193,9 @@ public:
 
 protected:
 	CShaderProgram(int streamflags);
+
+	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
+	virtual void BindTexture(Binding id, GLuint tex) = 0;
 
 	bool m_IsValid;
 	int m_StreamFlags;
