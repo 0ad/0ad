@@ -115,13 +115,17 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 
 	glBindTexture(target, texture->m_Handle);
 
-	glTexParameteri(target, GL_TEXTURE_MIN_FILTER, CalculateMinFilter(defaultSamplerDesc, mipCount));
-	glTexParameteri(target, GL_TEXTURE_MAG_FILTER, defaultSamplerDesc.magFilter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST);
+	// It's forbidden to set sampler state for multisample textures.
+	if (type != Type::TEXTURE_2D_MULTISAMPLE)
+	{
+		glTexParameteri(target, GL_TEXTURE_MIN_FILTER, CalculateMinFilter(defaultSamplerDesc, mipCount));
+		glTexParameteri(target, GL_TEXTURE_MAG_FILTER, defaultSamplerDesc.magFilter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST);
 
-	ogl_WarnIfError();
+		ogl_WarnIfError();
 
-	glTexParameteri(target, GL_TEXTURE_WRAP_S, AddressModeToGLEnum(defaultSamplerDesc.addressModeU));
-	glTexParameteri(target, GL_TEXTURE_WRAP_T, AddressModeToGLEnum(defaultSamplerDesc.addressModeV));
+		glTexParameteri(target, GL_TEXTURE_WRAP_S, AddressModeToGLEnum(defaultSamplerDesc.addressModeU));
+		glTexParameteri(target, GL_TEXTURE_WRAP_T, AddressModeToGLEnum(defaultSamplerDesc.addressModeV));
+	}
 
 #if !CONFIG2_GLES
 	if (type == Type::TEXTURE_CUBE)
