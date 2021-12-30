@@ -100,6 +100,24 @@ that of Atlas depending on commandline parameters.
 #define getpid _getpid // Use the non-deprecated function name
 #endif
 
+#if OS_WIN
+// We don't want to include Windows.h as it might mess up the rest
+// of the file so we just define DWORD as done in Windef.h.
+#ifndef DWORD
+typedef unsigned long DWORD;
+#endif // !DWORD
+// Request the high performance GPU on Windows by default if no system override is specified.
+// See:
+// - https://github.com/supertuxkart/stk-code/pull/4693/commits/0a99c667ef513b2ce0f5755729a6e05df8aac48a
+// - https://docs.nvidia.com/gameworks/content/technologies/desktop/optimus.htm 
+// - https://gpuopen.com/learn/amdpowerxpressrequesthighperformance/ 
+extern "C"
+{
+	__declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+	__declspec(dllexport) DWORD AmdPowerXpressRequestHighPerformance = 0x00000001;
+}
+#endif
+
 #include <chrono>
 
 extern CStrW g_UniqueLogPostfix;
