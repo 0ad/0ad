@@ -88,6 +88,10 @@
 // GL_OES_depth32
 #define GL_DEPTH_COMPONENT32 GL_DEPTH_COMPONENT32_OES
 
+// GL_KHR_debug
+#define glPopDebugGroupKHR glPopDebugGroup
+#define glPushDebugGroupKHR glPushDebugGroup
+
 #endif // CONFIG2_GLES
 
 #endif // !INCLUDED_GLES2_WRAPPER

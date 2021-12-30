@@ -256,6 +256,7 @@ void Render()
 
 	if (g_DoRenderGui)
 	{
+		OGL_SCOPED_DEBUG_GROUP("Draw GUI");
 		// All GUI elements are drawn in Z order to render semi-transparent
 		// objects correctly.
 		g_GUI->Draw();

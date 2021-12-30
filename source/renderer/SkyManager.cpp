@@ -55,6 +55,7 @@ SkyManager::SkyManager()
 // Load all sky textures
 void SkyManager::LoadSkyTextures()
 {
+	OGL_SCOPED_DEBUG_GROUP("Load Sky Textures");
 	static const CStrW images[NUMBER_OF_TEXTURES + 1] = {
 		L"front",
 		L"back",
@@ -208,6 +209,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 // Render sky
 void SkyManager::RenderSky()
 {
+	OGL_SCOPED_DEBUG_GROUP("Render Sky");
 #if CONFIG2_GLES
 #warning TODO: implement SkyManager::RenderSky for GLES
 #else

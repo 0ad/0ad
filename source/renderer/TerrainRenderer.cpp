@@ -353,6 +353,7 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& 
 bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
+	OGL_SCOPED_DEBUG_GROUP("Render Fancy Water");
 
 	WaterManager* waterManager = g_Renderer.GetWaterManager();
 	CShaderDefines defines = context;
@@ -529,6 +530,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	UNUSED2(cullGroup);
 #else
 	PROFILE3_GPU("simple water");
+	OGL_SCOPED_DEBUG_GROUP("Render Simple Water");
 
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();

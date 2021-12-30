@@ -22,6 +22,7 @@
 #include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/TextRenderer.h"
+#include "lib/ogl.h"
 #include "lib/os_path.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -205,6 +206,7 @@ void CLogger::WriteWarning(const char* message)
 void CLogger::Render()
 {
 	PROFILE3_GPU("logger");
+	OGL_SCOPED_DEBUG_GROUP("Draw CLogger messages");
 
 	CleanupRenderQueue();
 
