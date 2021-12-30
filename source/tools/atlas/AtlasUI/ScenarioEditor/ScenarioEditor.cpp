@@ -663,6 +663,10 @@ void ScenarioEditor::OnClose(wxCloseEvent& event)
 
 	m_FileHistory.SaveToSubDir(*wxConfigBase::Get());
 
+	// We notify all clients that might interact with the game after its
+	// shutdown to prevent accessing invalid state.
+	m_SectionLayout.OnShutdown();
+
 	POST_MESSAGE(Shutdown, ());
 
 	qExit().Post();

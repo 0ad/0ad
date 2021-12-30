@@ -27,7 +27,8 @@
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
 #include "ps/World.h"
-#include "lib/ogl.h"
+#include "lib/tex/tex.h"
+#include "ps/Filesystem.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -42,6 +43,93 @@
 namespace AtlasMessage
 {
 
+namespace
+{
+
+sTerrainTexturePreview MakeEmptyTerrainTexturePreview()
+{
+	sTerrainTexturePreview preview{};
+	preview.name = std::wstring();
+	preview.loaded = false;
+	preview.imageHeight = 0;
+	preview.imageWidth = 0;
+	preview.imageData = {};
+	return preview;
+}
+
+bool CompareTerrain(const sTerrainTexturePreview& a, const sTerrainTexturePreview& b)
+{
+	return (wcscmp(a.name.c_str(), b.name.c_str()) < 0);
+}
+
+sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, size_t width, size_t height)
+{
+	sTerrainTexturePreview preview;
+	preview.name = tex->GetTag().FromUTF8();
+
+	const size_t previewBPP = 3;
+	std::vector<u8> buffer(width * height * previewBPP);
+
+	// It's not good to shrink the entire texture to fit the small preview
+	// window, since it's the fine details in the texture that are
+	// interesting; so just go down one mipmap level, then crop a chunk
+	// out of the middle.
+
+	std::shared_ptr<u8> fileData;
+	size_t fileSize;
+	Tex texture;
+	const bool canUsePreview =
+		!tex->GetDiffuseTexturePath().empty() &&
+		g_VFS->LoadFile(tex->GetDiffuseTexturePath(), fileData, fileSize) == INFO::OK &&
+		texture.decode(fileData, fileSize) == INFO::OK &&
+		// Check that we can fit the texture into the preview size before any transform.
+		texture.m_Width >= width && texture.m_Height >= height &&
+		// Transform to a single format that we can process.
+		texture.transform_to((texture.m_Flags) & ~(TEX_DXT | TEX_MIPMAPS | TEX_GREY | TEX_BGR)) == INFO::OK &&
+		(texture.m_Bpp == 24 || texture.m_Bpp == 32);
+	if (canUsePreview)
+	{
+		size_t level = 0;
+		while ((texture.m_Width >> (level + 1)) >= width && (texture.m_Height >> (level + 1)) >= height)
+			++level;
+		// Extract the middle section (as a representative preview),
+		// and copy into buffer.
+		u8* data = texture.get_data();
+		const size_t dataShiftX = ((texture.m_Width - width) / 2) >> level;
+		const size_t dataShiftY = ((texture.m_Height - height) / 2) >> level;
+		for (size_t y = 0; y < height; ++y)
+			for (size_t x = 0; x < width; ++x)
+			{
+				const size_t bufferOffset = (y * width + x) * previewBPP;
+				const size_t dataOffset = (((y << level) + dataShiftY) * texture.m_Width + (x << level) + dataShiftX) * texture.m_Bpp / 8;
+				buffer[bufferOffset + 0] = data[dataOffset + 0];
+				buffer[bufferOffset + 1] = data[dataOffset + 1];
+				buffer[bufferOffset + 2] = data[dataOffset + 2];
+			}
+		preview.loaded = true;
+	}
+	else
+	{
+		// Too small to preview. Just use a flat color instead.
+		const u32 baseColor = tex->GetBaseColor();
+		for (size_t i = 0; i < width * height; ++i)
+		{
+			buffer[i * previewBPP + 0] = (baseColor >> 16) & 0xff;
+			buffer[i * previewBPP + 1] = (baseColor >> 8) & 0xff;
+			buffer[i * previewBPP + 2] = (baseColor >> 0) & 0xff;
+		}
+		preview.loaded = tex->GetTexture()->IsLoaded();
+	}
+
+	preview.imageWidth = width;
+	preview.imageHeight = height;
+	preview.imageData = buffer;
+
+	return preview;
+}
+
+} // anonymous namespace
+
 QUERYHANDLER(GetTerrainGroups)
 {
 	const CTerrainTextureManager::TerrainGroupMap &groups = g_TexMan.GetGroups();
@@ -51,70 +139,18 @@ QUERYHANDLER(GetTerrainGroups)
 	msg->groupNames = groupNames;
 }
 
-static bool CompareTerrain(const sTerrainTexturePreview& a, const sTerrainTexturePreview& b)
+QUERYHANDLER(GetTerrainGroupTextures)
 {
-	return (wcscmp(a.name.c_str(), b.name.c_str()) < 0);
-}
+	std::vector<std::wstring> names;
 
-static sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, int width, int height)
-{
-	sTerrainTexturePreview preview;
-	preview.name = tex->GetTag().FromUTF8();
-
-	std::vector<unsigned char> buf (width*height*3);
-
-#if !CONFIG2_GLES
-	// It's not good to shrink the entire texture to fit the small preview
-	// window, since it's the fine details in the texture that are
-	// interesting; so just go down one mipmap level, then crop a chunk
-	// out of the middle.
-
-	// Read the size of the texture. (Usually loads the texture from
-	// disk, which is slow.)
-	tex->GetTexture()->Bind();
-	int level = 1; // level 0 is the original size
-	int w = std::max(1, (int)tex->GetTexture()->GetWidth() >> level);
-	int h = std::max(1, (int)tex->GetTexture()->GetHeight() >> level);
-
-	if (w >= width && h >= height)
+	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupName).ToUTF8());
+	if (group)
 	{
-		// Read the whole texture into a new buffer
-		unsigned char* texdata = new unsigned char[w*h*3];
-		glGetTexImage(GL_TEXTURE_2D, level, GL_RGB, GL_UNSIGNED_BYTE, texdata);
-
-		// Extract the middle section (as a representative preview),
-		// and copy into buf
-		unsigned char* texdata_ptr = texdata + (w*(h - height)/2 + (w - width)/2) * 3;
-		unsigned char* buf_ptr = &buf[0];
-		for (ssize_t y = 0; y < height; ++y)
-		{
-			memcpy(buf_ptr, texdata_ptr, width*3);
-			buf_ptr += width*3;
-			texdata_ptr += w*3;
-		}
-
-		delete[] texdata;
+		for (std::vector<CTerrainTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
+			names.emplace_back((*it)->GetTag().FromUTF8());
 	}
-	else
-#endif
-	{
-		// Too small to preview, or glGetTexImage not supported (on GLES)
-		// Just use a flat color instead
-		u32 c = tex->GetBaseColor();
-		for (ssize_t i = 0; i < width*height; ++i)
-		{
-			buf[i*3+0] = (c>>16) & 0xff;
-			buf[i*3+1] = (c>>8) & 0xff;
-			buf[i*3+2] = (c>>0) & 0xff;
-		}
-	}
-
-	preview.loaded = tex->GetTexture()->IsLoaded();
-	preview.imageWidth = width;
-	preview.imageHeight = height;
-	preview.imageData = buf;
-
-	return preview;
+	std::sort(names.begin(), names.end());
+	msg->names = names;
 }
 
 QUERYHANDLER(GetTerrainGroupPreviews)
@@ -170,23 +206,15 @@ QUERYHANDLER(GetTerrainTexturePreview)
 {
 	CTerrainTextureEntry* tex = g_TexMan.FindTexture(CStrW(*msg->name).ToUTF8());
 	if (tex)
-	{
 		msg->preview = GetPreview(tex, msg->imageWidth, msg->imageHeight);
-	}
 	else
-	{
-		sTerrainTexturePreview noPreview{};
-		noPreview.name = std::wstring();
-		noPreview.loaded = false;
-		noPreview.imageHeight = 0;
-		noPreview.imageWidth = 0;
-		msg->preview = noPreview;
-	}
+		msg->preview = MakeEmptyTerrainTexturePreview();
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-namespace {
+namespace
+{
 
 struct TerrainTile
 {

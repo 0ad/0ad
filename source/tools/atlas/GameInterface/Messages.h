@@ -315,6 +315,11 @@ QUERY(GetTerrainGroups,
 	  ((std::vector<std::wstring>, groupNames))
 	  );
 
+QUERY(GetTerrainGroupTextures,
+	  ((std::wstring, groupName)),
+	  ((std::vector<std::wstring>, names))
+	  );
+
 #ifndef MESSAGES_SKIP_STRUCTS
 struct sTerrainTexturePreview
 {
@@ -322,7 +327,7 @@ struct sTerrainTexturePreview
 	Shareable<bool> loaded;
 	Shareable<int> imageWidth;
 	Shareable<int> imageHeight;
-	Shareable<std::vector<unsigned char> > imageData; // RGB*width*height
+	Shareable<std::vector<unsigned char>> imageData; // RGB*width*height
 };
 SHAREABLE_STRUCT(sTerrainTexturePreview);
 #endif
