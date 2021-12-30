@@ -688,7 +688,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							CTexture* newTex = samp.Sampler.get();
 							if (texBindings[s].Active() && newTex != currentTexs[s])
 							{
-								shader->BindTexture(texBindings[s], newTex->GetHandle());
+								shader->BindTexture(texBindings[s], samp.Sampler);
 								currentTexs[s] = newTex;
 							}
 						}

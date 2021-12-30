@@ -216,7 +216,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(const VfsPath& alphaMapType)
 	//
 	// load all textures and store Handle in array
 	//
-	Tex textures[NUM_ALPHA_MAPS] = {0};
+	Tex textures[NUM_ALPHA_MAPS] = {};
 	const VfsPath path = VfsPath("art/textures/terrain/alphamaps") / alphaMapType;
 
 	const wchar_t* fnames[NUM_ALPHA_MAPS] =

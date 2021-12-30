@@ -44,8 +44,8 @@ void CTexturedLineRData::Render(const SOverlayTexturedLine& line, const CShaderP
 
 	const int streamFlags = shader->GetStreamFlags();
 
-	shader->BindTexture(str_baseTex, line.m_TextureBase->GetHandle());
-	shader->BindTexture(str_maskTex, line.m_TextureMask->GetHandle());
+	shader->BindTexture(str_baseTex, line.m_TextureBase);
+	shader->BindTexture(str_maskTex, line.m_TextureMask);
 	shader->Uniform(str_objectColor, line.m_Color);
 
 	GLsizei stride = sizeof(CTexturedLineRData::SVertex);
