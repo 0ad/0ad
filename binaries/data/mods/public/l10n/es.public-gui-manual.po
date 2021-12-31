@@ -3,42 +3,40 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Albert, 2017
-# Alexis Arcos <alexrodark@live.cl>, 2014
-# 6ebce0d9decbb848fa06ff0fa90179f2_2c0bb33 <6881a040f58c7fa3128d2478bf041d4f_391228>, 2016
-# Álvaro Mondéjar <mondejar1994@gmail.com>, 2019
-# Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
-# Antonio Vazquez <antoniovavazquez@gmail.com>, 2020
-# Camilo Zuluaga <czuluagaz@gmail.com>, 2017
-# Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
-# Emilio Romero <milioe25@yahoo.es>, 2017
-# Fernando Mendez <nandito104@gmail.com>, 2019
-# ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
-# Javier Rojas <hekeine@gmail.com>, 2017
-# Jesús Asenjo <jasenjot@gmail.com>, 2017
-# jhonny fernando montoya giraldo <jhonny.antares@gmail.com>, 2018
-# jorellaf, 2021
-# Joseba Uranga <shadowjosebau@gmail.com>, 2019
-# Juan Almoravid Elcarte, 2021
-# Juan Campos <juan.camposzambrana@gmail.com>, 2021
-# Juan Jaramillo <juanda097@protonmail.ch>, 2014
-# Juan Jaramillo <juanda097@protonmail.ch>, 2019
-# juan pablo Ferraro <ferrarojuanpablo@yahoo.es>, 2020
-# Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
-# Miguel Magdaleno Santamaría, 2020
-# Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
-# Nicolas Auvray <na.itms76@gmail.com>, 2018
-# Rafael López Reyes <rafalopezreyes@gmail.com>, 2018
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
-# soloooy0 fg <juanjo.fg@hotmail.com>, 2017,2021
-# Swyter <Swyterzone@gmail.com>, 2014-2018
-# Swyter <Swyterzone@gmail.com>, 2020
+# Albert
+# Alexis Arcos
+# 6ebce0d9decbb848fa06ff0fa90179f2_2c0bb33
+# Álvaro Mondéjar
+# Antonio Martín
+# Antonio Vazquez
+# Camilo Zuluaga
+# Diego Bruschetti
+# Emilio Romero
+# Fernando Mendez
+# ninovolador
+# Javier Rojas
+# Jesús Asenjo
+# jhonny fernando montoya giraldo
+# jorellaf
+# Joseba Uranga
+# Juan Almoravid Elcarte
+# Juan Campos
+# Juan Jaramillo
+# juan pablo Ferraro
+# Luis Torrecilla
+# Miguel Magdaleno Santamaría
+# Mihai Pantazi
+# Nicolas Auvray
+# Rafael López Reyes
+# Rodrigo Vegas Sánchez-Ferrero
+# soloooy0 fg
+# Swyter
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-12-07 18:11+0000\n"
-"Last-Translator: Juan Almoravid Elcarte\n"
+"PO-Revision-Date: 2021-12-28 11:10+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +53,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "¡Gracias por instalar 0 A.D.! Esta página te dará una breve explicación de las características disponibles en esta versión alfa, en desarrollo, del juego."
+msgstr "¡Gracias por instalar 0 A.D.! Esta página resume brevemente las características disponibles en esta versión alfa, en desarrollo, del juego."
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
@@ -339,7 +337,7 @@ msgstr "    • Con hotkey.session.noconfirmation – Elimina al instante las un
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr "  hotkey.selection.add – Modificador – añade a la selección (funciona mediante clic y teclas, por ejemplo con los atajos para unidades inactivas)"
+msgstr "  hotkey.selection.add – Modificador – añade a la selección (haciendo clic o con otras teclas, por ejemplo con los atajos para unidades inactivas)"
 
 #: gui/manual/intro.txt:71
 msgid ""
@@ -351,7 +349,7 @@ msgstr "  hotkey.selection.remove – Modificador – quita de la selección (fu
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr "  hotkey.selection.offscreen – Modificador – Añade todas las unidades a la selección, incluidas aquellas que se encuentran fuera de la pantalla."
+msgstr "  hotkey.selection.offscreen – Modificador – añade todas las unidades a la selección, incluidas aquellas que se encuentran fuera de la pantalla."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -507,7 +505,7 @@ msgstr "  hotkey.session.queue + Clic derecho – Encadena acciones ir/construir
 msgid ""
 "  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
 "in front of the order queue."
-msgstr "  hotkey.session.pushorderfront + clic derecho – Modificador para situar una orden al principio de la cola."
+msgstr "  hotkey.session.pushorderfront + clic derecho – Combinación para situar una orden al principio de la cola."
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -562,7 +560,7 @@ msgstr "  hotkey.selection.woundedonly + Clic izquierdo y arrastrar sobre las un
 msgid ""
 "  hotkey.selection.singleselection – Modifier to select units individually, "
 "opposed to per formation."
-msgstr "  hotkey.selection.singleselection – Modificador para seleccionar unidades individualmente, fuera de la formación."
+msgstr "  hotkey.selection.singleselection – Combinación para seleccionar unidades individualmente, fuera de la formación."
 
 #: gui/manual/intro.txt:114
 msgid ""

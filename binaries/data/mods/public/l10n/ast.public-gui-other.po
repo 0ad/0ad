@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2021
-# enolp <enolp@softastur.org>, 2017
-# Nicolas Auvray <na.itms76@gmail.com>, 2018
-# Stanislas Dolcini <stan@wildfiregames.com>, 2021
+# David Sowa
+# enolp
+# Nicolas Auvray
+# Stanislas Dolcini
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2021-12-27 00:08+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
+"PO-Revision-Date: 2021-12-31 05:24+0000\n"
+"Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgstr "Tabulador"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr "Abortóu-se la carga"
+msgstr "Abortou-se la carga"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -57,7 +57,7 @@ msgstr "Gaia"
 #: gui/common/functions_utility.js:236
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Compilación: %(buildDate)s (%(revision)s)"
+msgstr "Compilacion: %(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -92,14 +92,14 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (SIN CONNEXIÓN)"
+msgstr "%(playerName)s (SIN CONNEXION)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (SIN CONNEXIÓN, %(state)s)"
+msgstr "%(playerName)s (SIN CONNEXION, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -131,17 +131,17 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr "Civilización disconhocida"
+msgstr "Civilizacion disconhocida"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr "vincéu-se"
+msgstr "vinceu-se"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "triumphóu"
+msgstr "triumphou"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
@@ -182,8 +182,8 @@ msgstr "L incuöntru vai seguir sin vincedor, magar que todos stean vincidos."
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] "Marabiya (%(min)s minutu)"
-msgstr[1] "Marabiya (%(min)s minutos)"
+msgstr[0] "Miráculo (%(min)s minutu)"
+msgstr[1] "Miráculo (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
@@ -247,7 +247,7 @@ msgstr "Victoria colligada"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "La victoria comparten-la los colligados del vincedor. Triumpha la última colligación que fhinque."
+msgstr "La victoria comparten-la los colligados del vincedor. Triumpha la última colligacion que finque."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -283,7 +283,7 @@ msgstr "Nome del mappa"
 
 #: gui/common/gamedescription.js:300
 msgid "Map Description"
-msgstr "Descripción del mappa"
+msgstr "Descripcion del mappa"
 
 #: gui/common/gamedescription.js:306
 msgid "Map Type"
@@ -314,7 +314,7 @@ msgstr "Foros"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Los jogadores intaman cun un pugnadu d’unidades & tienen q’atopar un lhogar afhayadiçu u s’assentar."
+msgstr "Los jogadores intaman cun un pugnadu d’unidades & tienen q’atopar un lhogar afayadiçu u s’assentar."
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
@@ -719,7 +719,7 @@ msgstr[1] "segundos"
 
 #: gui/common/tooltips.js:156 gui/common/tooltips.js:167
 msgid "Health:"
-msgstr "Vitalidade:"
+msgstr "Vitalidá:"
 
 #: gui/common/tooltips.js:166
 #, javascript-format
@@ -733,7 +733,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "Fidelidade:"
+msgstr "Fidelidá:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -1006,7 +1006,7 @@ msgstr "Sanar:"
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr "Vitalidade"
+msgstr "Vitalidá"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1049,7 +1049,7 @@ msgstr "Por defectu"
 #: gui/common/tooltips.js:626
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr "Per unidade"
+msgstr "Per unidá"
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
@@ -1193,11 +1193,11 @@ msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
-msgstr "Bonificación de población:"
+msgstr "Bonu poblacional:"
 
 #: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
-msgstr "Nun hai recursos abondos:"
+msgstr "Recursos insufficientes:"
 
 #: gui/common/tooltips.js:1015
 #, javascript-format
@@ -1206,7 +1206,7 @@ msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:1016
 msgid "Speed:"
-msgstr "Celeridade:"
+msgstr "Celeridá:"
 
 #: gui/common/tooltips.js:1018 gui/common/tooltips.js:1023
 #: gui/common/tooltips.js:1028
@@ -1237,8 +1237,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] "Vitalidade"
-msgstr[1] "Vitalidade"
+msgstr[0] "Vitalidá"
+msgstr[1] "Vitalidá"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -1435,7 +1435,7 @@ msgstr "Balancéu"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
-msgstr "Communidade & gestión"
+msgstr "Communidá & gestión"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1505,7 +1505,7 @@ msgstr "Gracies especiales a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "& gracias a la communidade toda por fhazer possible 0 A.D."
+msgstr "& gracias a la communidat toda por fazer possible 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -1526,7 +1526,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultade predefinida de la intelligencia artificial puöde supponé-lli un rëptu. A esti aconseya-se-lli practicar cun una IA de menus difficultade (Ẍole ou Per-fácile). Para cambiar la difficultade de la intelligencia artificial, calca na ícone de la ruöda dentada cabo l jogador del quadro superior que quieras commudar."
+msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultá predefinida de la intelligencia artificial puöde supponé-lli un rëptu. A esti aconseya-se-lli practicar cun una IA de menus difficultá (Ẍole ou Per-fácile). Para cambiar la difficultá de la intelligencia artificial, calca na ícone de la ruöda dentada cabo l jogador del quadro superior que quieras commudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1678,12 +1678,12 @@ msgstr "Desplazar/xirar abaxo"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr "Seguir la primeira unidade de la selección."
+msgstr "Seguir la primeira unidá de la selección."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr "Seguir unidade"
+msgstr "Seguir unidá"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
@@ -1860,22 +1860,22 @@ msgstr "Xirar abaxo"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr "Baẍar la velocidade gyratoria de la cámara."
+msgstr "Baẍar la velocidá gyratoria de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr "Baẍar la velocidade gyratoria"
+msgstr "Baẍar la velocidá gyratoria"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr "Subir la velocidade gyratoria de la cámara."
+msgstr "Subir la velocidá gyratoria de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr "Subir la velocidade gyratoria"
+msgstr "Subir la velocidá gyratoria"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
@@ -1901,22 +1901,22 @@ msgstr "Xirar la cámara en sen horariu sobre'l terrén - l'efectu mana na frecu
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr "Baẍar la velocidade de dislocación de la cámara."
+msgstr "Baẍar la velocidá de dislocación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr "Baẍar la velocidade de dislocación"
+msgstr "Baẍar la velocidá de dislocación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr "Subir la velocidade de dislocación de la cámara."
+msgstr "Subir la velocidá de dislocación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr "Subir la velocidade de dislocación"
+msgstr "Subir la velocidá de dislocación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
@@ -1951,22 +1951,22 @@ msgstr "Alloñar"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr "Baẍar la velocidade d’approximación de la cámara."
+msgstr "Baẍar la velocidá d’approximación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr "Baẍar la velocidade d’approximación"
+msgstr "Baẍar la velocidá d’approximación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr "Subir la velocidade d’approximación de la cámara."
+msgstr "Subir la velocidá d’approximación de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr "Subir la velocidade d’approximación"
+msgstr "Subir la velocidá d’approximación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
@@ -2283,7 +2283,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Commudador p’afhitar el punto d’incuöntru nun mësmu edificio."
+msgstr "Commudador p’afitar el punto d’incuöntru nun mësmu edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -2293,7 +2293,7 @@ msgstr "Xuntase equí mesmo"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr "La unidade vai volver al lhabor."
+msgstr "La unidá vai volver al lhabor."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2303,7 +2303,7 @@ msgstr "Volver al llabor"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr "Camudador pa conscribir unidades."
+msgstr "Commudador para concrear unidades."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
@@ -2336,7 +2336,7 @@ msgstr "Omitir el conxuntu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Fhazer signas cul cursor premiendo l atayu al calcar."
+msgstr "Fazer signas cul cursor premiendo l atayu al calcar."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
@@ -2346,7 +2346,7 @@ msgstr "Signar (premiendo)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Fhazer signas cul cursor. L atayu puöde soltá-se."
+msgstr "Fazer signas cul cursor. L atayu puöde soltá-se."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
@@ -2461,12 +2461,12 @@ msgstr "Camudador pa mandar a namái un ente de la esbilla."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr "Mandar a una unidade"
+msgstr "Mandar a una unidá"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr "Commudador para velar a una unidade."
+msgstr "Commudador para velar a una unidá."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -4488,7 +4488,7 @@ msgstr "Guardar y restaurar esta configuración pa tenella preparada al agospeda
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Dificultade predefinida de la IA"
+msgstr "Dificultá predefinida de la IA"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4512,7 +4512,7 @@ msgstr "Per-diffícile"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "La dificultade predefinida de la intelligencia artificial."
+msgstr "La dificultá predefinida de la intelligencia artificial."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
@@ -4784,11 +4784,11 @@ msgstr "Esta opción permítete alliniar construcciones nueves con construccione
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
-msgstr "Tamañu de conscripción"
+msgstr "Tammagnu de concreación"
 
 #: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "Númberu d'unidades producidu por conscripción."
+msgstr "Númeru d’unidades produzidu per concreación por defeitu."
 
 #: gui/options/options.json[6].options[20].label
 msgid "Control group membership"
@@ -5395,14 +5395,14 @@ msgstr "Historia de los %(civilization)s"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "Bonificación cultural"
-msgstr[1] "Bonificaciones culturales"
+msgstr[0] "Bonu cultural"
+msgstr[1] "Bonos culturales"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Bonificación de cuadriella"
-msgstr[1] "Bonificaciones de cuadriella"
+msgstr[0] "Bonu quadrelleiru"
+msgstr[1] "Bonos quadrelleiros"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -5458,7 +5458,7 @@ msgstr "Constructores:"
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr "Exercítase en:"
+msgstr "Cría-se n:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
@@ -5486,7 +5486,7 @@ msgstr "Desendolca:"
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr "Exercita:"
+msgstr "Cría:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
@@ -5497,7 +5497,7 @@ msgstr "Ascensiones:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
-msgstr "Exercitadores"
+msgstr "Creadores"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
@@ -5874,7 +5874,7 @@ msgstr "Comerciantes"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr "Estadístiques d'unidades (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
+msgstr "Statísticas d’unidades (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -5979,7 +5979,7 @@ msgstr "Total de la cuadriella"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "Exercitades"
+msgstr "Creadas"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
@@ -6167,7 +6167,7 @@ msgstr "Puede montase en terrén neutral o enemigo. Val p'asitiar bases secretes
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr "Constrúi arietes y exercita mílites civiles."
+msgstr "Constrúi arietes & cría mílites civiles."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6181,7 +6181,7 @@ msgstr "ENRIESTRU AUTOMÁTICU"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr "Activar l'enriestu automáticu pa exercitar unidades de modu automáticu."
+msgstr "Activar l inriestru automáticu para crear unidades de modu automáticu."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
@@ -6195,7 +6195,7 @@ msgstr "CASTRU"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "Exercita tódolos mílites civiles. Determinadas civilizaciones tamién puöden dispëslhar la exercitación d’invictos."
+msgstr "Cría tódolos mílites civiles. Determinadas civilizaciones tamién puöden dispëslhar la creación d’invictos."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6205,7 +6205,7 @@ msgstr "Les unidades aduechen abellugades nel edificiu."
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "Llevántalu ceo pa exercitar mílites civiles de la que cambies de fas."
+msgstr "Llevanta-lu cedo para crear mílites civiles de la que cambias de phase."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6233,7 +6233,7 @@ msgstr "CANES BÉLICOS"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "Can que los britanos pueden criar n'establu."
+msgstr "Can que los britannos puöden crear in stablo."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6255,7 +6255,7 @@ msgstr "Los Asteros invictos y Asteros invictos ecuestres de Cartagu."
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Todos dos exercítense en templu en vez del castiellu, a diferencia de la mayoría los invictos."
+msgstr "Todos dous se crían in Templo n vez del Castiello, a differencia de la maioría de los invictos."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -6269,7 +6269,7 @@ msgstr "COTÓN CARTAXINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr "Puörtu militar que ië exclusivu de los carthagineses."
+msgstr "Puörtu militar que ë exclusivu de los carthagineses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
@@ -6304,7 +6304,7 @@ msgstr "ESTABLU"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "Exercita unidades d'a caballu y permite desendolcar técniques ecuestres."
+msgstr "Cría unidades eqüestres & permitte-ti disinvolver téchnicas eqüestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6368,7 +6368,7 @@ msgstr "Puede construise en territoriu neutral y amigo."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Exercita cives: cives fémines, pédites civiles y équites civiles."
+msgstr "Cría cives: cives féminas, pédites civiles & éqüites civiles."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
@@ -6407,7 +6407,7 @@ msgstr "Tienen muncha visión y tiren fleches al enemigu."
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puödes intyená-llas de mas pédites para que tiren mas sayettas."
+msgstr "Puödes intsé-llas de mas pédites para que tiren mas saiettas."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6416,7 +6416,7 @@ msgstr "ESTADA ELEFANTINA"
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr "Esta construcción sirve a delles civilizaciones pa exercitar unidades elefantines."
+msgstr "Esta construcción tienen-la varias civilizaciones para crear unidades elephantinas."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6489,7 +6489,7 @@ msgstr "CASTIELLU"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr "Suel ser la mayor fortificación de les civilizaciones y el sitiu onde s'exerciten héroes."
+msgstr "Suöl ser la construcción mas fortificada de las civilizaciones & el sitiu unde se crían héroes."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6590,7 +6590,7 @@ msgstr "SIGNAS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fhaz signas p’avisar a la quadriella d’acontecemientos importantes nel mappa."
+msgstr "Faz signas p’avisar a la quadriella d’acontecemientos importantes nel mappa."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -6786,7 +6786,7 @@ msgstr "El pédite común a tódeles facciones del xuegu."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr "Son especialmente mortales pa los équites."
+msgstr "Son specialmente mortales para los éqüites."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
@@ -6904,7 +6904,7 @@ msgstr "ELEFANTES BÉLICOS"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr "Besties xigantes d'África y India, exercitades pal combate."
+msgstr "Bestias gigantes de l’África & India, exercitadas pal combatte."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."

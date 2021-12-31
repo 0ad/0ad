@@ -3,22 +3,21 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# linux_eki <ekiuusi@gmail.com>, 2015-2016,2018
-# Järvi Eduardo <hammondemain@gmail.com>, 2018
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
-# Kalle Mantyla <kalle.mantyla@gmail.com>, 2016
-# Matti Tuhola, 2021
-# Max Ihalempia, 2016
-# Max Ihalempia, 2015
-# Olavi Tuomaala <olatuo1955@gmail.com>, 2015
-# Pauli Kaikkonen <p.kaikkon@gmail.com>, 2016
-# Riku Viitanen <riisseli4@gmail.com>, 2015
-# Saku Tiihonen <zackyistic@gmail.com>, 2016
+# linux_eki
+# Järvi Eduardo
+# Jiri Grönroos
+# Kalle Mantyla
+# Matti Tuhola
+# Max Ihalempia
+# Olavi Tuomaala
+# Pauli Kaikkonen
+# Riku Viitanen
+# Saku Tiihonen
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2021-12-24 11:24+0000\n"
+"PO-Revision-Date: 2021-12-27 14:53+0000\n"
 "Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -266,7 +265,7 @@ msgstr "pois käytöstä"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Ensimmäisen minuutin ajan muut pelaajat pysyvät puolueettomina."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -4125,27 +4124,27 @@ msgstr "Grafiikka (edistynyt)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Renderöijän taustaohjelma"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Oletus OpenGL-taustaohjelma GLSL:llä. VAATII PELIN UUDELLEEN KÄYNNISTÄMISEN"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Vanha OpenGL-taustaohjelma ARB-varjostimilla. VAATII PELIN UUDELLEEN KÄYNNISTÄMISEN"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Valitse renderöijän taustaohjelma. VAATII PELIN UUDELLEEN KÄYNNISTÄMISEN"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4855,11 +4854,11 @@ msgstr "Päätä, otetaanko muodostelmat käyttöön kaikille käskyille vai vai
 
 #: gui/options/options.json[6].options[22].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Pataljoonan kaltaiset muodostelmat"
 
 #: gui/options/options.json[6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Valitaanko muodostelmat kokonaisina vai ei."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -6486,7 +6485,7 @@ msgstr "Järjestä sotilaasi kokoonpanoihin, jotta ne pysyvät järjestyksessä 
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr ""
+msgstr "Muodostelmat valitaan oletusarvoisesti kokonaisina, mutta tämän voi muuttaa pelin asetuksista."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
