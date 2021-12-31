@@ -25,6 +25,7 @@
 
 #include "graphics/Color.h"
 #include "maths/BoundingBoxAligned.h"
+#include "renderer/backend/gl/Texture.h"
 
 class CCamera;
 class CMatrix3D;
@@ -144,7 +145,7 @@ public:
 	 * by the given texture matrix.
 	 * Intended for use by TerrainTextureOverlay.
 	 */
-	void RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix, GLuint texture);
+	void RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix, Renderer::Backend::GL::CTexture* texture);
 
 private:
 	TerrainRendererInternals* m;

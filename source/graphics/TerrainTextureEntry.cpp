@@ -30,6 +30,7 @@
 #include "lib/tex/tex.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
@@ -96,6 +97,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 						name = relativePath.Value;
 				}
 				samplers.emplace_back(name, terrainTexturePath);
+				if (name == str_baseTex.string())
+					m_DiffuseTexturePath = terrainTexturePath;
 			}
 
 		}

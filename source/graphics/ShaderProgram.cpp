@@ -733,6 +733,16 @@ void CShaderProgram::BindTexture(Binding id, const CTexturePtr& tex)
 	BindTexture(id, h);
 }
 
+void CShaderProgram::BindTexture(texture_id_t id, const Renderer::Backend::GL::CTexture* tex)
+{
+	BindTexture(id, tex->GetHandle());
+}
+
+void CShaderProgram::BindTexture(Binding id, const Renderer::Backend::GL::CTexture* tex)
+{
+	BindTexture(id, tex->GetHandle());
+}
+
 void CShaderProgram::Uniform(Binding id, int v)
 {
 	Uniform(id, (float)v, (float)v, (float)v, (float)v);

@@ -156,7 +156,8 @@ void TerrainRenderer::EndFrame()
 	m->phase = Phase_Submit;
 }
 
-void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix, GLuint texture)
+void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix,
+	Renderer::Backend::GL::CTexture* texture)
 {
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderTerrainOverlayTexture for GLES
@@ -353,6 +354,7 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& 
 bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
+	OGL_SCOPED_DEBUG_GROUP("Render Fancy Water");
 
 	WaterManager* waterManager = g_Renderer.GetWaterManager();
 	CShaderDefines defines = context;
@@ -440,20 +442,20 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	if (waterManager->m_WaterFancyEffects)
 	{
-		fancyWaterShader->BindTexture(str_waterEffectsTex, waterManager->m_FancyTexture->GetHandle());
+		fancyWaterShader->BindTexture(str_waterEffectsTex, waterManager->m_FancyTexture.get());
 	}
 
 	if (waterManager->m_WaterRefraction && waterManager->m_WaterRealDepth)
 	{
-		fancyWaterShader->BindTexture(str_depthTex, waterManager->m_RefrFboDepthTexture->GetHandle());
+		fancyWaterShader->BindTexture(str_depthTex, waterManager->m_RefrFboDepthTexture.get());
 		fancyWaterShader->Uniform(str_projInvTransform, waterManager->m_RefractionProjInvMatrix);
 		fancyWaterShader->Uniform(str_viewInvTransform, waterManager->m_RefractionViewInvMatrix);
 	}
 
 	if (waterManager->m_WaterRefraction)
-		fancyWaterShader->BindTexture(str_refractionMap, waterManager->m_RefractionTexture->GetHandle());
+		fancyWaterShader->BindTexture(str_refractionMap, waterManager->m_RefractionTexture.get());
 	if (waterManager->m_WaterReflection)
-		fancyWaterShader->BindTexture(str_reflectionMap, waterManager->m_ReflectionTexture->GetHandle());
+		fancyWaterShader->BindTexture(str_reflectionMap, waterManager->m_ReflectionTexture.get());
 	fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
@@ -529,6 +531,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	UNUSED2(cullGroup);
 #else
 	PROFILE3_GPU("simple water");
+	OGL_SCOPED_DEBUG_GROUP("Render Simple Water");
 
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();

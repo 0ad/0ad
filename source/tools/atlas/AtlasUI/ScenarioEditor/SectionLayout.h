@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@ public:
 	void SelectPage(const wxString& classname);
 
 	void OnMapReload();
+	void OnShutdown();
 
 private:
 	SidebarBook* m_SidebarBook;

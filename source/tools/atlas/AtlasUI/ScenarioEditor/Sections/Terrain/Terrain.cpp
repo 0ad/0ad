@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,12 +26,23 @@
 
 #include "GameInterface/Messages.h"
 
+#include <chrono>
+#include <unordered_map>
 #include <wx/spinctrl.h>
 #include <wx/listctrl.h>
 #include <wx/image.h>
 #include <wx/imaglist.h>
 #include <wx/busyinfo.h>
 #include <wx/notebook.h>
+
+namespace
+{
+
+const int PREVIEW_RELOAD_DELAY_MILLISECONDS = 2000;
+const int PREVIEW_RELOAD_TIMEOUT_DELAY_MILLISECONDS = 200;
+const float PREVIEW_RELOAD_TIMEOUT_THRESHOLD_SECONDS = 0.1f;
+
+} // anonymous namespace
 
 class TextureNotebook;
 
@@ -40,6 +51,7 @@ class TerrainBottomBar : public wxPanel
 public:
 	TerrainBottomBar(ScenarioEditor& scenarioEditor, wxWindow* parent);
 	void LoadTerrain();
+	void OnShutdown();
 private:
 	TextureNotebook* m_Textures;
 };
@@ -130,7 +142,7 @@ public:
 			}
 			else if (!preview.loaded && !m_Timer.IsRunning())
 			{
-				m_Timer.Start(2000);
+				m_Timer.Start(PREVIEW_RELOAD_DELAY_MILLISECONDS);
 			}
 		}
 
@@ -249,6 +261,11 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 	m_BottomBar = new TerrainBottomBar(scenarioEditor, bottomBarContainer);
 }
 
+void TerrainSidebar::OnShutdown()
+{
+	static_cast<TerrainBottomBar*>(m_BottomBar)->OnShutdown();
+}
+
 void TerrainSidebar::OnFirstDisplay()
 {
 	AtlasMessage::qGetTerrainPassabilityClasses qry;
@@ -314,66 +331,114 @@ public:
 
 		wxBusyInfo busy (_("Loading terrain previews"));
 
+		AtlasMessage::qGetTerrainGroupTextures query((std::wstring)m_Name.wc_str());
+		query.Post();
+		m_Textures = *query.names;
+
+		LayoutButtons();
 		ReloadPreviews();
 	}
 
-	void ReloadPreviews()
+	void LayoutButtons()
 	{
 		Freeze();
 
 		m_ScrolledPanel->DestroyChildren();
 		m_ItemSizer->Clear();
 
-		m_LastTerrainSelection = NULL; // clear any reference to deleted button
+		m_LastTerrainSelection = nullptr; // clear any reference to deleted button
 
-		AtlasMessage::qGetTerrainGroupPreviews qry((std::wstring)m_Name.wc_str(), imageWidth, imageHeight);
-		qry.Post();
-
-		std::vector<AtlasMessage::sTerrainTexturePreview> previews = *qry.previews;
-
-		bool allLoaded = true;
-
-		for (size_t i = 0; i < previews.size(); ++i)
+		for (const std::wstring& textureName : m_Textures)
 		{
-			if (!previews[i].loaded)
-				allLoaded = false;
-
-			wxString name = previews[i].name.c_str();
-
 			// Construct the wrapped-text label
-			wxStaticText* label = new wxStaticText(m_ScrolledPanel, wxID_ANY, FormatTextureName(name), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
+			wxStaticText* label = new wxStaticText(m_ScrolledPanel, wxID_ANY, FormatTextureName(textureName), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
 			label->Wrap(imageWidth);
 
-			unsigned char* buf = (unsigned char*)(malloc(previews[i].imageData.GetSize()));
-			// imagedata.GetBuffer() gives a Shareable<unsigned char>*, which
-			// is stored the same as a unsigned char*, so we can just copy it.
-			memcpy(buf, previews[i].imageData.GetBuffer(), previews[i].imageData.GetSize());
-			wxImage img (imageWidth, imageHeight, buf);
+			wxImage image(imageWidth, imageHeight);
+			wxBitmapButton* button = new wxBitmapButton(m_ScrolledPanel, wxID_ANY, wxBitmap(image));
 
-			wxButton* button = new wxBitmapButton(m_ScrolledPanel, wxID_ANY, wxBitmap(img));
 			// Store the texture name in the clientdata slot
-			button->SetClientObject(new wxStringClientData(name));
+			button->SetClientObject(new wxStringClientData(textureName));
 
 			wxSizer* imageSizer = new wxBoxSizer(wxVERTICAL);
 			imageSizer->Add(button, wxSizerFlags().Center());
 			imageSizer->Add(label, wxSizerFlags().Proportion(1).Center());
 			m_ItemSizer->Add(imageSizer, wxSizerFlags().Expand());
+
+			m_PreviewButtons.emplace(textureName, PreviewButton{button, false});
 		}
 
 		m_ScrolledPanel->Fit();
 		Layout();
 
 		Thaw();
+	}
+
+	void ReloadPreviews()
+	{
+		bool allLoaded = true;
+		bool timeout = false;
+		const std::chrono::high_resolution_clock::time_point reloadingStart =
+			std::chrono::high_resolution_clock::now();
+		for (const std::wstring& textureName : m_Textures)
+		{
+			const auto it = m_PreviewButtons.find(textureName);
+			if (it == m_PreviewButtons.end() || it->second.loaded)
+				continue;
+
+			if (timeout)
+			{
+				// Mark allLoaded only in case we have a real not loaded texture, and not
+				// because we have an exceeded timeout.
+				allLoaded = false;
+				continue;
+			}
+
+			AtlasMessage::qGetTerrainTexturePreview previewQuery(textureName, imageWidth, imageHeight);
+			previewQuery.Post();
+			AtlasMessage::sTerrainTexturePreview preview = previewQuery.preview;
+
+			if (!preview.loaded)
+				allLoaded = false;
+			else
+				it->second.loaded = true;
+
+			if (preview.imageData.GetSize())
+			{
+				unsigned char* buffer = reinterpret_cast<unsigned char*>(malloc(preview.imageData.GetSize()));
+				// imagedata.GetBuffer() gives a Shareable<unsigned char>*, which
+				// is stored the same as a unsigned char*, so we can just copy it.
+				memcpy(buffer, preview.imageData.GetBuffer(), preview.imageData.GetSize());
+				wxImage image(imageWidth, imageHeight, buffer);
+				it->second.button->SetBitmap(wxBitmap(image));
+			}
+
+			// We need to load at least one preview so check for timeout inside real
+			// loading.
+			const std::chrono::high_resolution_clock::time_point now =
+				std::chrono::high_resolution_clock::now();
+			const std::chrono::duration<float> delta = now - reloadingStart;
+			if (delta.count() > PREVIEW_RELOAD_TIMEOUT_THRESHOLD_SECONDS)
+				timeout = true;
+		}
 
 		// If not all textures were loaded yet, run a timer to reload the previews
-		// every so often until they've all finished
+		// every so often until they've all finished.
 		if (allLoaded && m_Timer.IsRunning())
 		{
 			m_Timer.Stop();
+			m_PreviewButtons.clear();
 		}
-		else if (!allLoaded && !m_Timer.IsRunning())
+		else if (!allLoaded)
 		{
-			m_Timer.Start(2000);
+			if (timeout)
+			{
+				// In case we didn't have enough time to load all previews
+				// start after a minimum delay to not freeze the whole UI.
+				m_Timer.Start(PREVIEW_RELOAD_TIMEOUT_DELAY_MILLISECONDS);
+			}
+			else
+				m_Timer.Start(PREVIEW_RELOAD_DELAY_MILLISECONDS);
 		}
 	}
 
@@ -409,6 +474,12 @@ public:
 		ReloadPreviews();
 	}
 
+	void OnShutdown()
+	{
+		if (m_Timer.IsRunning())
+			m_Timer.Stop();
+	}
+
 private:
 	ScenarioEditor& m_ScenarioEditor;
 	bool m_Loaded;
@@ -417,6 +488,14 @@ private:
 	wxScrolledWindow* m_ScrolledPanel;
 	wxGridSizer* m_ItemSizer;
 	wxButton* m_LastTerrainSelection; // button that was last selected, so we can undo its coloring
+
+	std::vector<std::wstring> m_Textures;
+	struct PreviewButton
+	{
+		wxBitmapButton* button;
+		bool loaded;
+	};
+	std::unordered_map<std::wstring, PreviewButton> m_PreviewButtons;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -466,6 +545,12 @@ public:
 		}
 	}
 
+	void OnShutdown()
+	{
+		for (size_t index = 0; index < GetPageCount(); ++index)
+			static_cast<TextureNotebookPage*>(GetPage(index))->OnShutdown();
+	}
+
 protected:
 	void OnPageChanged(wxNotebookEvent& event)
 	{
@@ -501,4 +586,9 @@ TerrainBottomBar::TerrainBottomBar(ScenarioEditor& scenarioEditor, wxWindow* par
 void TerrainBottomBar::LoadTerrain()
 {
 	m_Textures->LoadTerrain();
+}
+
+void TerrainBottomBar::OnShutdown()
+{
+	m_Textures->OnShutdown();
 }

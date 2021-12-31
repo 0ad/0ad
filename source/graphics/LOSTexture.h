@@ -51,10 +51,10 @@ public:
 	 * Also potentially switches the current active texture unit, and enables texturing on it.
 	 * The texture is in 8-bit ALPHA format.
 	 */
-	GLuint GetTexture();
+	Renderer::Backend::GL::CTexture* GetTexture();
 
 	void InterpolateLOS();
-	GLuint GetTextureSmooth();
+	Renderer::Backend::GL::CTexture* GetTextureSmooth();
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) LOS texture

@@ -53,6 +53,11 @@ public:
 	// mapping world-space (x,y,z,1) coordinates onto (u,v,0,1) texcoords
 	const float* GetTextureMatrix() const;
 
+	// Used in Atlas to retrieve a texture for previews. Can't use textures
+	// directly because they're required on CPU side. Another solution is to
+	// retrieve path from diffuse texture from material.
+	const VfsPath& GetDiffuseTexturePath() const { return m_DiffuseTexturePath; }
+
 	// Get mipmap color in BGRA format
 	u32 GetBaseColor()
 	{
@@ -65,6 +70,8 @@ public:
 private:
 	// Tag = file name stripped of path and extension (grass_dark_1)
 	CStr m_Tag;
+
+	VfsPath m_DiffuseTexturePath;
 
 	// The property sheet used by this texture
 	CTerrainPropertiesPtr m_pProperties;

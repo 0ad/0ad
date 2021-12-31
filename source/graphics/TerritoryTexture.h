@@ -15,7 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "renderer/backend/gl/Texture.h"
 
@@ -40,7 +39,7 @@ public:
 	 * Also potentially switches the current active texture unit, and enables texturing on it.
 	 * The texture is in 32-bit BGRA format.
 	 */
-	GLuint GetTexture();
+	Renderer::Backend::GL::CTexture* GetTexture();
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) texture
@@ -75,7 +74,6 @@ private:
 	std::unique_ptr<Renderer::Backend::GL::CTexture> m_Texture;
 
 	ssize_t m_MapSize; // tiles per side
-	GLsizei m_TextureSize; // texels per side
 
 	CMatrix3D m_TextureMatrix;
 	CMatrix3D m_MinimapTextureMatrix;

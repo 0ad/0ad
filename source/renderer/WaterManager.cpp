@@ -447,6 +447,8 @@ void WaterManager::RecomputeDistanceHeightmap()
 // This requires m_DistanceHeightmap to be defined properly.
 void WaterManager::CreateWaveMeshes()
 {
+	OGL_SCOPED_DEBUG_GROUP("Create Wave Meshes");
+
 	if (m_MapSize == 0)
 		return;
 
@@ -836,6 +838,7 @@ void WaterManager::CreateWaveMeshes()
 
 void WaterManager::RenderWaves(const CFrustum& frustrum)
 {
+	OGL_SCOPED_DEBUG_GROUP("Render Waves");
 #if CONFIG2_GLES
 #warning Fix WaterManager::RenderWaves on GLES
 #else

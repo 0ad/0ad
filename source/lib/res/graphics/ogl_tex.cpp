@@ -471,6 +471,13 @@ static Status OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathnam
 	if(ot->flags & OT_NEED_AUTO_UPLOAD)
 		(void)ogl_tex_upload(h);
 
+#if KHR_DEBUG_ENABLED
+	const std::string name = pathname.string8();
+	glBindTexture(GL_TEXTURE_2D, ot->id);
+	glObjectLabel(GL_TEXTURE, ot->id, name.size(), name.c_str());
+#endif
+
+
 	return INFO::OK;
 }
 

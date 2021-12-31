@@ -658,6 +658,7 @@ void CRenderer::SetClearColor(SColor4ub color)
 void CRenderer::RenderShadowMap(const CShaderDefines& context)
 {
 	PROFILE3_GPU("shadow map");
+	OGL_SCOPED_DEBUG_GROUP("Render shadow map");
 
 	CShaderDefines contextCast = context;
 	contextCast.Add(str_MODE_SHADOWCAST, str_1);
@@ -701,6 +702,7 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("patches");
+	OGL_SCOPED_DEBUG_GROUP("Render patches");
 
 #if CONFIG2_GLES
 #warning TODO: implement wireface/edged rendering mode GLES
@@ -750,6 +752,7 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 void CRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("models");
+	OGL_SCOPED_DEBUG_GROUP("Render models");
 
 	int flags = 0;
 
@@ -784,6 +787,7 @@ void CRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
 void CRenderer::RenderTransparentModels(const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling)
 {
 	PROFILE3_GPU("transparent models");
+	OGL_SCOPED_DEBUG_GROUP("Render transparent models");
 
 	int flags = 0;
 
@@ -959,6 +963,7 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 void CRenderer::RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor)
 {
 	PROFILE3_GPU("water reflections");
+	OGL_SCOPED_DEBUG_GROUP("Render water reflections");
 
 	WaterManager& wm = m->waterManager;
 
@@ -1034,6 +1039,7 @@ void CRenderer::RenderReflections(const CShaderDefines& context, const CBounding
 void CRenderer::RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
+	OGL_SCOPED_DEBUG_GROUP("Render water refractions");
 
 	WaterManager& wm = m->waterManager;
 
@@ -1092,6 +1098,7 @@ void CRenderer::RenderRefractions(const CShaderDefines& context, const CBounding
 void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 {
 	PROFILE3_GPU("silhouettes");
+	OGL_SCOPED_DEBUG_GROUP("Render water silhouettes");
 
 	CShaderDefines contextOccluder = context;
 	contextOccluder.Add(str_MODE_SILHOUETTEOCCLUDER, str_1);
@@ -1168,6 +1175,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 void CRenderer::RenderParticles(int cullGroup)
 {
 	PROFILE3_GPU("particles");
+	OGL_SCOPED_DEBUG_GROUP("Render particles");
 
 	m->particleRenderer.RenderParticles(cullGroup);
 
@@ -1189,6 +1197,7 @@ void CRenderer::RenderParticles(int cullGroup)
 void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 {
 	PROFILE3("render submissions");
+	OGL_SCOPED_DEBUG_GROUP("Render submissions");
 
 	GetScene().GetLOSTexture().InterpolateLOS();
 

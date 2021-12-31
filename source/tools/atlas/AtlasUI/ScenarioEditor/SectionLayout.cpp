@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -184,6 +184,12 @@ public:
 			m_Pages[i].bar->OnMapReload();
 	}
 
+	void OnShutdown()
+	{
+		for (size_t i = 0; i < m_Pages.size(); ++i)
+			m_Pages[i].bar->OnShutdown();
+	}
+
 protected:
 
 	void OnPageChanged(SidebarPage oldPage, SidebarPage newPage)
@@ -311,4 +317,9 @@ void SectionLayout::SelectPage(const wxString& classname)
 void SectionLayout::OnMapReload()
 {
 	m_SidebarBook->OnMapReload();
+}
+
+void SectionLayout::OnShutdown()
+{
+	m_SidebarBook->OnShutdown();
 }

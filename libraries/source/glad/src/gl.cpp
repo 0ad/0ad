@@ -63,6 +63,7 @@ int GLAD_GL_EXT_timer_query = 0;
 int GLAD_GL_EXT_transform_feedback = 0;
 int GLAD_GL_GREMEDY_string_marker = 0;
 int GLAD_GL_INTEL_performance_query = 0;
+int GLAD_GL_KHR_debug = 0;
 int GLAD_GL_NV_vertex_program4 = 0;
 int GLAD_GL_SGIS_generate_mipmap = 0;
 
@@ -184,6 +185,9 @@ PFNGLCREATEPROGRAMOBJECTARBPROC glad_glCreateProgramObjectARB = NULL;
 PFNGLCREATESHADERPROC glad_glCreateShader = NULL;
 PFNGLCREATESHADEROBJECTARBPROC glad_glCreateShaderObjectARB = NULL;
 PFNGLCULLFACEPROC glad_glCullFace = NULL;
+PFNGLDEBUGMESSAGECALLBACKPROC glad_glDebugMessageCallback = NULL;
+PFNGLDEBUGMESSAGECONTROLPROC glad_glDebugMessageControl = NULL;
+PFNGLDEBUGMESSAGEINSERTPROC glad_glDebugMessageInsert = NULL;
 PFNGLDELETEBUFFERSPROC glad_glDeleteBuffers = NULL;
 PFNGLDELETEBUFFERSARBPROC glad_glDeleteBuffersARB = NULL;
 PFNGLDELETEFRAMEBUFFERSPROC glad_glDeleteFramebuffers = NULL;
@@ -302,6 +306,7 @@ PFNGLGETBUFFERSUBDATAARBPROC glad_glGetBufferSubDataARB = NULL;
 PFNGLGETCLIPPLANEPROC glad_glGetClipPlane = NULL;
 PFNGLGETCOMPRESSEDTEXIMAGEPROC glad_glGetCompressedTexImage = NULL;
 PFNGLGETCOMPRESSEDTEXIMAGEARBPROC glad_glGetCompressedTexImageARB = NULL;
+PFNGLGETDEBUGMESSAGELOGPROC glad_glGetDebugMessageLog = NULL;
 PFNGLGETDOUBLEVPROC glad_glGetDoublev = NULL;
 PFNGLGETERRORPROC glad_glGetError = NULL;
 PFNGLGETFIRSTPERFQUERYIDINTELPROC glad_glGetFirstPerfQueryIdINTEL = NULL;
@@ -322,8 +327,10 @@ PFNGLGETMATERIALFVPROC glad_glGetMaterialfv = NULL;
 PFNGLGETMATERIALIVPROC glad_glGetMaterialiv = NULL;
 PFNGLGETMULTISAMPLEFVPROC glad_glGetMultisamplefv = NULL;
 PFNGLGETNEXTPERFQUERYIDINTELPROC glad_glGetNextPerfQueryIdINTEL = NULL;
+PFNGLGETOBJECTLABELPROC glad_glGetObjectLabel = NULL;
 PFNGLGETOBJECTPARAMETERFVARBPROC glad_glGetObjectParameterfvARB = NULL;
 PFNGLGETOBJECTPARAMETERIVARBPROC glad_glGetObjectParameterivARB = NULL;
+PFNGLGETOBJECTPTRLABELPROC glad_glGetObjectPtrLabel = NULL;
 PFNGLGETPERFCOUNTERINFOINTELPROC glad_glGetPerfCounterInfoINTEL = NULL;
 PFNGLGETPERFQUERYDATAINTELPROC glad_glGetPerfQueryDataINTEL = NULL;
 PFNGLGETPERFQUERYIDBYNAMEINTELPROC glad_glGetPerfQueryIdByNameINTEL = NULL;
@@ -535,6 +542,8 @@ PFNGLNORMAL3IVPROC glad_glNormal3iv = NULL;
 PFNGLNORMAL3SPROC glad_glNormal3s = NULL;
 PFNGLNORMAL3SVPROC glad_glNormal3sv = NULL;
 PFNGLNORMALPOINTERPROC glad_glNormalPointer = NULL;
+PFNGLOBJECTLABELPROC glad_glObjectLabel = NULL;
+PFNGLOBJECTPTRLABELPROC glad_glObjectPtrLabel = NULL;
 PFNGLORTHOPROC glad_glOrtho = NULL;
 PFNGLPASSTHROUGHPROC glad_glPassThrough = NULL;
 PFNGLPIXELMAPFVPROC glad_glPixelMapfv = NULL;
@@ -555,6 +564,7 @@ PFNGLPOLYGONOFFSETPROC glad_glPolygonOffset = NULL;
 PFNGLPOLYGONSTIPPLEPROC glad_glPolygonStipple = NULL;
 PFNGLPOPATTRIBPROC glad_glPopAttrib = NULL;
 PFNGLPOPCLIENTATTRIBPROC glad_glPopClientAttrib = NULL;
+PFNGLPOPDEBUGGROUPPROC glad_glPopDebugGroup = NULL;
 PFNGLPOPMATRIXPROC glad_glPopMatrix = NULL;
 PFNGLPOPNAMEPROC glad_glPopName = NULL;
 PFNGLPRIORITIZETEXTURESPROC glad_glPrioritizeTextures = NULL;
@@ -570,6 +580,7 @@ PFNGLPROGRAMPARAMETERIARBPROC glad_glProgramParameteriARB = NULL;
 PFNGLPROGRAMSTRINGARBPROC glad_glProgramStringARB = NULL;
 PFNGLPUSHATTRIBPROC glad_glPushAttrib = NULL;
 PFNGLPUSHCLIENTATTRIBPROC glad_glPushClientAttrib = NULL;
+PFNGLPUSHDEBUGGROUPPROC glad_glPushDebugGroup = NULL;
 PFNGLPUSHMATRIXPROC glad_glPushMatrix = NULL;
 PFNGLPUSHNAMEPROC glad_glPushName = NULL;
 PFNGLQUERYCOUNTERPROC glad_glQueryCounter = NULL;
@@ -1903,6 +1914,20 @@ static void glad_gl_load_GL_INTEL_performance_query( GLADuserptrloadfunc load, v
     glad_glGetPerfQueryIdByNameINTEL = (PFNGLGETPERFQUERYIDBYNAMEINTELPROC) load(userptr, "glGetPerfQueryIdByNameINTEL");
     glad_glGetPerfQueryInfoINTEL = (PFNGLGETPERFQUERYINFOINTELPROC) load(userptr, "glGetPerfQueryInfoINTEL");
 }
+static void glad_gl_load_GL_KHR_debug( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GL_KHR_debug) return;
+    glad_glDebugMessageCallback = (PFNGLDEBUGMESSAGECALLBACKPROC) load(userptr, "glDebugMessageCallback");
+    glad_glDebugMessageControl = (PFNGLDEBUGMESSAGECONTROLPROC) load(userptr, "glDebugMessageControl");
+    glad_glDebugMessageInsert = (PFNGLDEBUGMESSAGEINSERTPROC) load(userptr, "glDebugMessageInsert");
+    glad_glGetDebugMessageLog = (PFNGLGETDEBUGMESSAGELOGPROC) load(userptr, "glGetDebugMessageLog");
+    glad_glGetObjectLabel = (PFNGLGETOBJECTLABELPROC) load(userptr, "glGetObjectLabel");
+    glad_glGetObjectPtrLabel = (PFNGLGETOBJECTPTRLABELPROC) load(userptr, "glGetObjectPtrLabel");
+    glad_glGetPointerv = (PFNGLGETPOINTERVPROC) load(userptr, "glGetPointerv");
+    glad_glObjectLabel = (PFNGLOBJECTLABELPROC) load(userptr, "glObjectLabel");
+    glad_glObjectPtrLabel = (PFNGLOBJECTPTRLABELPROC) load(userptr, "glObjectPtrLabel");
+    glad_glPopDebugGroup = (PFNGLPOPDEBUGGROUPPROC) load(userptr, "glPopDebugGroup");
+    glad_glPushDebugGroup = (PFNGLPUSHDEBUGGROUPPROC) load(userptr, "glPushDebugGroup");
+}
 static void glad_gl_load_GL_NV_vertex_program4( GLADuserptrloadfunc load, void* userptr) {
     if(!GLAD_GL_NV_vertex_program4) return;
     glad_glGetVertexAttribIivEXT = (PFNGLGETVERTEXATTRIBIIVEXTPROC) load(userptr, "glGetVertexAttribIivEXT");
@@ -2071,6 +2096,7 @@ static int glad_gl_find_extensions_gl( int version) {
     GLAD_GL_EXT_transform_feedback = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_transform_feedback");
     GLAD_GL_GREMEDY_string_marker = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_GREMEDY_string_marker");
     GLAD_GL_INTEL_performance_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_INTEL_performance_query");
+    GLAD_GL_KHR_debug = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_KHR_debug");
     GLAD_GL_NV_vertex_program4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_vertex_program4");
     GLAD_GL_SGIS_generate_mipmap = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_SGIS_generate_mipmap");
 
@@ -2160,6 +2186,7 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_EXT_transform_feedback(load, userptr);
     glad_gl_load_GL_GREMEDY_string_marker(load, userptr);
     glad_gl_load_GL_INTEL_performance_query(load, userptr);
+    glad_gl_load_GL_KHR_debug(load, userptr);
     glad_gl_load_GL_NV_vertex_program4(load, userptr);
 
 

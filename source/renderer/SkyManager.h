@@ -48,9 +48,9 @@ public:
 		return m_SkySet;
 	}
 
-	GLuint GetSkyCube()
+	Renderer::Backend::GL::CTexture* GetSkyCube()
 	{
-		return m_SkyCubeMap->GetHandle();
+		return m_SkyCubeMap.get();
 	}
 
 	/**

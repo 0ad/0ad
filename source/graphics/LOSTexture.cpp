@@ -107,12 +107,12 @@ void CLOSTexture::MakeDirty()
 	m_Dirty = true;
 }
 
-GLuint CLOSTexture::GetTextureSmooth()
+Renderer::Backend::GL::CTexture* CLOSTexture::GetTextureSmooth()
 {
 	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return GetTexture();
 	else
-		return (whichTex ? m_TextureSmooth1 : m_TextureSmooth2)->GetHandle();
+		return (whichTex ? m_TextureSmooth1 : m_TextureSmooth2).get();
 }
 
 void CLOSTexture::InterpolateLOS()
@@ -155,8 +155,8 @@ void CLOSTexture::InterpolateLOS()
 
 	shader->Bind();
 
-	shader->BindTexture(str_losTex1, m_Texture->GetHandle());
-	shader->BindTexture(str_losTex2, (whichTex ? m_TextureSmooth1 : m_TextureSmooth2)->GetHandle());
+	shader->BindTexture(str_losTex1, m_Texture.get());
+	shader->BindTexture(str_losTex2, (whichTex ? m_TextureSmooth1 : m_TextureSmooth2).get());
 
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 
@@ -200,7 +200,7 @@ void CLOSTexture::InterpolateLOS()
 }
 
 
-GLuint CLOSTexture::GetTexture()
+Renderer::Backend::GL::CTexture* CLOSTexture::GetTexture()
 {
 	if (m_Dirty)
 	{
@@ -208,7 +208,7 @@ GLuint CLOSTexture::GetTexture()
 		m_Dirty = false;
 	}
 
-	return m_Texture->GetHandle();
+	return m_Texture.get();
 }
 
 const CMatrix3D& CLOSTexture::GetTextureMatrix()

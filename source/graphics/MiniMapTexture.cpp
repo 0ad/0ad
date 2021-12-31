@@ -359,7 +359,7 @@ void CMiniMapTexture::RenderFinalTexture()
 	shader = tech->GetShader();
 
 	if (m_TerrainTexture)
-		shader->BindTexture(str_baseTex, m_TerrainTexture->GetHandle());
+		shader->BindTexture(str_baseTex, m_TerrainTexture.get());
 
 	CMatrix3D baseTransform;
 	baseTransform.SetIdentity();
