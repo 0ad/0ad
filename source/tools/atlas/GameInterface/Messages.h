@@ -276,24 +276,6 @@ MESSAGE(Screenshot,
 		((int, tiles)) // For big screenshots: the final image will be (640*tiles)x(480*tiles)
 		);
 
-#ifndef MESSAGES_SKIP_STRUCTS
-struct sCinemaRecordCB
-{
-	unsigned char* buffer;
-};
-SHAREABLE_STRUCT(sCinemaRecordCB);
-#endif
-
-QUERY(CinemaRecord,
-	  ((std::wstring, path))
-	  ((int, framerate))
-	  ((float, duration))
-	  ((int, width))
-	  ((int, height))
-	  ((Callback<sCinemaRecordCB>, cb))
-	  ,
-	  );
-
 //////////////////////////////////////////////////////////////////////////
 
 MESSAGE(Brush,
