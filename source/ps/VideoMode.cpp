@@ -244,7 +244,18 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
 	Uint32 flags = 0;
 	if (fullscreen)
-		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+	{
+		bool borderlessFullscreen = true;
+		CFG_GET_VAL("borderless.fullscreen", borderlessFullscreen);
+		flags |= borderlessFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_FULLSCREEN;
+	}
+	else
+	{
+		bool borderlessWindow = false;
+		CFG_GET_VAL("borderless.window", borderlessWindow);
+		if (borderlessWindow)
+			flags |= SDL_WINDOW_BORDERLESS;
+	}
 
 	if (!m_Window)
 	{
