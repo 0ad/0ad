@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2021
-# enolp <enolp@softastur.org>, 2017-2018
+# David Sowa
+# enolp
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-20 07:08+0000\n"
-"PO-Revision-Date: 2021-12-27 00:05+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
+"PO-Revision-Date: 2021-12-31 03:39+0000\n"
+"Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +107,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Egua l problema de compatibilidade disactivando commudos inválidos ou activando dependencias precisas. Lhuögo puödes guardar & iniciar l incuöntru."
+msgstr "Egua l problema de compatibilidat disactivando commudos inválidos ou activando dependencias precisas. Lhuögo puödes guardar & iniciar l incuöntru."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
@@ -129,7 +129,7 @@ msgstr "Acceitar"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "Discargu de responsabilidade del mod.io de 0 A.D. Empires Ascendant"
+msgstr "Discargu de responsabilidat del mod.io de 0 A.D. Empires Ascendant"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
@@ -144,25 +144,25 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Esti serivicio apurre un modu sinziellu de baẍar & installar commudos fheithos pola communidade & ye provisto por DBolical Pty Ltd, la compania de tras d’IndieDb & ModDB."
+msgstr "Esti serivicio apurre un modu sinziellu de baẍar & installar commudos feithos pola communidat & ë provisto por DBolical Pty Ltd, la compania de tras d’IndieDb & ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr "El servicio ië para usuarios de 13 anhos d’edade para riba."
+msgstr "El servicio ë para usuarios de 13 anhos d’edade para riba."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games tien puösto procuru n fhazer esta connexión segura & examinado los commudos para detectar fallos de segurancia, magar que nun puöde garantir q’ello nun supponga riesgos."
+msgstr "Wildfire Games tien puösto procuru n fazer esta connexion segura & examinado los commudos para detectar fallos de segurancia, magar que nun puöde garantir q’ello nun supponga riesgos."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Al usar esti servicio, intiendes que los Términos d’usu & la Política de privacidade de mod.io s’aplican & que Wildfire Games nun se fhaz responsable de qualquiera perda que resulte d’esti servicio."
+msgstr "Al usar esti servicio, intiendes que los Términos d’usu & la Política de privacidat de mod.io s’aplican & que Wildfire Games nun se faz responsable de qualquiera perda que resulte d’esti servicio."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -171,12 +171,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recubrá-se la identificación del juögu.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recubrá-se la identificacion del juögu.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Error d’iniciación"
+msgstr "Error d’iniciacion"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -199,7 +199,7 @@ msgstr "Nun pudo recubrá-se l índiz de commudos.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Error de recuperación"
+msgstr "Error de recuperacion"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -222,12 +222,12 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Error de verificación d’archivos.\n\n%(technicalDetails)s"
+msgstr "Error de verificacion d’archivos.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Error de verificación"
+msgstr "Error de verificacion"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
@@ -256,7 +256,7 @@ msgstr "Anovando"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "Cancellar l’anovación"
+msgstr "Cancellar l’anovacion"
 
 #: gui/modio/modio.js:265
 #, javascript-format
@@ -286,7 +286,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Tiempu transcurrido: %(elapsed)s\nTiempu restante: %(remaining)s\nVelocidade media: %(avgSpeed)s"
+msgstr "Tiempu transcurrido: %(elapsed)s\nTiempu restante: %(remaining)s\nVelocidat media: %(avgSpeed)s"
 
 #: gui/modio/modio.js:349
 msgid "∞"
@@ -332,7 +332,7 @@ msgstr "Nome"
 #: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):134
 msgid "Version"
-msgstr "Versión"
+msgstr "Version"
 
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):140
@@ -357,7 +357,7 @@ msgstr "Penheira"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. sta disegnadu para ser fácile de commudar. Los commudos reparten-se n fhorma d’archivos .pyromod, que puöden abrí-se cumo archivos ZIP."
+msgstr "0 A.D. sta disegnadu para ser fácile de commudar. Los commudos reparten-se n forma d’archivos .pyromod, que puöden abrí-se cumo archivos ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -367,13 +367,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Para installar commudos, simplemente abri l archivo cun 0 A.D. (ou calcando duas vezes n archivo & excoyendo abrí-lo cul juögu ou executando “pyrogenesis file.pyromod” in terminal). Intós el commudu vai star disponible nel selector de commudos. Puödes activá-llu ou disactivá-llu cumo quieras. Si se precisa, tamién puödes eliminar el commudu manualmente usando l gestor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Para installar commudos, simplemente abri l archivo cun 0 A.D. (ou calcando duas vezes n archivo & excoyendo abrí-lo cul juögu ou executando “pyrogenesis file.pyromod” in terminal). Intos el commudu vai star disponible nel selector de commudos. Puödes activá-llu ou disactivá-llu cumo quieras. Si se precisa, tamien puödes eliminar el commudu manualmente usando l gestor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Para mas información tocántenes a la commudancia del juögu, ve la Guía de commudancia nela rede (calca nel bottón “Guía de commudancia” in baẍo)."
+msgstr "Para mas informacion tocántenes a la commudancia del juögu, ve la Guía de commudancia nela rede (calca nel botton “Guía de commudancia” in baẍo)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -382,7 +382,7 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El servicio de mod.io disindolca-lo DBolical, la compania de tras d’IndieDB & ModDB. ¡Essos sitios vienen fhalando de 0 A.D. & outros proiectos indie d’inde per onnia! Huöi mod.io nos permitte recoyer & baẍar tódolos commudos que la quadriella tien verificado. ¡Calca “Baẍar commudos” para probá-llo & installar dellos!"
+msgstr "El servicio de mod.io disindolca-lo DBolical, la compania de tras d’IndieDB & ModDB. ¡Essos sitios vienen falando de 0 A.D. & outros proiectos indie d’inde per onnia! Höi mod.io nos permitte recoyer & baẍar tódolos commudos que la quadriella tien verificado. ¡Calca “Baẍar commudos” para probá-llo & installar dellos!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -420,7 +420,7 @@ msgstr "Disactivar"
 
 #: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
-msgstr "Nun se seleccionóu commudu dalu."
+msgstr "Nun se seleccionou commudu dalu."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
@@ -436,11 +436,11 @@ msgstr "Annullar"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr "Penheirar por compatibilidade"
+msgstr "Penheirar por compatibilidat"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descripcion"
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
@@ -464,7 +464,7 @@ msgstr "Baẍar commudos"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
-msgstr "Guardar configuración"
+msgstr "Guardar configuracion"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
@@ -498,7 +498,7 @@ msgstr "Cambiar l orde n que se lhancian los commudos. Esti ha concasar cun las 
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr "Discargu de responsabilidade"
+msgstr "Discargu de responsabilidat"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
@@ -506,7 +506,7 @@ msgstr "Términos de mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "Política de privacidade de mod.io"
+msgstr "Política de privacidat de mod.io"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
