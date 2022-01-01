@@ -2,11 +2,15 @@ GameSettings.prototype.Attributes.MapExploration = class MapExploration extends 
 {
 	init()
 	{
+		this.resetAll();
+		this.settings.map.watch(() => this.onMapChange(), ["map"]);
+	}
+
+	resetAll()
+	{
 		this.explored = false;
 		this.revealed = false;
 		this.allied = false;
-
-		this.settings.map.watch(() => this.onMapChange(), ["map"]);
 	}
 
 	toInitAttributes(attribs)
@@ -27,6 +31,7 @@ GameSettings.prototype.Attributes.MapExploration = class MapExploration extends 
 	{
 		if (this.settings.map.type != "scenario")
 			return;
+		this.resetAll();
 		this.setExplored(this.getMapSetting("ExploreMap"));
 		this.setRevealed(this.getMapSetting("RevealMap"));
 		this.setAllied(this.getMapSetting("AllyView"));
@@ -34,20 +39,24 @@ GameSettings.prototype.Attributes.MapExploration = class MapExploration extends 
 
 	setExplored(enabled)
 	{
+		if (enabled === undefined)
+			return;
 		this.explored = enabled;
 		this.revealed = this.revealed && this.explored;
 	}
 
 	setRevealed(enabled)
 	{
-		this.explored = this.explored || enabled;
+		if (enabled === undefined)
+			return;
 		this.revealed = enabled;
-		this.allied = this.allied || enabled;
+		this.explored = this.explored || this.revealed;
 	}
 
 	setAllied(enabled)
 	{
+		if (enabled === undefined)
+			return;
 		this.allied = enabled;
-		this.revealed = this.revealed && this.allied;
 	}
 };
