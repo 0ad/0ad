@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,10 +32,15 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
 
+namespace
+{
+
+const CStr EVENT_NAME_GAME_LOAD_PROGRESS = "GameLoadProgress";
+const CStr EVENT_NAME_WINDOW_RESIZED = "WindowResized";
+
+} // anonymous namespace
+
 CGUIManager* g_GUI = nullptr;
-
-const CStr CGUIManager::EventNameWindowResized = "WindowResized";
-
 
 // General TODOs:
 //
@@ -383,7 +388,7 @@ void CGUIManager::UpdateResolution()
 	for (const SGUIPage& p : pageStack)
 	{
 		p.gui->UpdateResolution();
-		p.gui->SendEventToAll(EventNameWindowResized);
+		p.gui->SendEventToAll(EVENT_NAME_WINDOW_RESIZED);
 	}
 }
 
@@ -399,6 +404,22 @@ const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 
 	return templateRoot;
+}
+
+void CGUIManager::DisplayLoadProgress(int percent, const wchar_t* pending_task)
+{
+	const ScriptInterface& scriptInterface = *(GetActiveGUI()->GetScriptInterface());
+	ScriptRequest rq(scriptInterface);
+
+	JS::RootedValueVector paramData(rq.cx);
+
+	ignore_result(paramData.append(JS::NumberValue(percent)));
+
+	JS::RootedValue valPendingTask(rq.cx);
+	Script::ToJSVal(rq, &valPendingTask, pending_task);
+	ignore_result(paramData.append(valPendingTask));
+
+	SendEventToAll(EVENT_NAME_GAME_LOAD_PROGRESS, paramData);
 }
 
 // This returns a shared_ptr to make sure the CGUI doesn't get deallocated
