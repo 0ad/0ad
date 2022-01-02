@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@
 #include "ScenarioEditor/Tools/Common/Tools.h"
 
 #include <algorithm>
+#include <ctime>
+#include <random>
 #include <wx/busyinfo.h>
 #include <wx/filename.h>
 
@@ -669,9 +671,12 @@ void MapSidebar::OnSimReset(wxCommandEvent& WXUNUSED(event))
 
 void MapSidebar::OnRandomReseed(wxCommandEvent& WXUNUSED(evt))
 {
+	std::mt19937 engine(std::time(nullptr));
+	std::uniform_int_distribution<int> distribution(0, 10000);
+
 	// Pick a shortish randomish value
 	wxString seed;
-	seed << (int)floor((rand() / (float)RAND_MAX) * 10000.f);
+	seed << distribution(engine);
 	wxDynamicCast(FindWindow(ID_RandomSeed), wxTextCtrl)->SetValue(seed);
 }
 
