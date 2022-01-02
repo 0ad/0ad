@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,8 +117,6 @@ thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
-static const CStr g_EventNameGameLoadProgress = "GameLoadProgress";
-
 bool g_InDevelopmentCopy;
 bool g_CheckedIfInDevelopmentCopy = false;
 
@@ -183,23 +181,6 @@ retry:
 //----------------------------------------------------------------------------
 // GUI integration
 //----------------------------------------------------------------------------
-
-// display progress / description in loading screen
-void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
-{
-	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
-	ScriptRequest rq(scriptInterface);
-
-	JS::RootedValueVector paramData(rq.cx);
-
-	ignore_result(paramData.append(JS::NumberValue(percent)));
-
-	JS::RootedValue valPendingTask(rq.cx);
-	Script::ToJSVal(rq, &valPendingTask, pending_task);
-	ignore_result(paramData.append(valPendingTask));
-
-	g_GUI->SendEventToAll(g_EventNameGameLoadProgress, paramData);
-}
 
 bool ShouldRender()
 {

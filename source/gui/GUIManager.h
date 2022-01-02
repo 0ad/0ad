@@ -123,6 +123,11 @@ public:
 	 */
 	const CParamNode& GetTemplate(const std::string& templateName);
 
+	/**
+	 * Display progress / description in loading screen.
+	 */
+	void DisplayLoadProgress(int percent, const wchar_t* pending_task);
+
 private:
 	struct SGUIPage
 	{
@@ -160,8 +165,6 @@ private:
 		 */
 		std::shared_ptr<JS::PersistentRootedValue> callbackFunction;
 	};
-
-	const static CStr EventNameWindowResized;
 
 	std::shared_ptr<CGUI> top() const;
 
