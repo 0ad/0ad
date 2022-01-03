@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,6 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/os_cpu.h"
-#if ARCH_X86_X64
-# include "lib/sysdep/arch/x86_x64/topology.h"
-#endif
 #if CONFIG2_AUDIO
 #include "soundmanager/SoundManager.h"
 #endif
@@ -177,11 +174,6 @@ void RunHardwareDetection()
 	Script::SetProperty(rq, settings, "cpu_pagesize", (u32)os_cpu_PageSize());
 	Script::SetProperty(rq, settings, "cpu_largepagesize", (u32)os_cpu_LargePageSize());
 	Script::SetProperty(rq, settings, "cpu_numprocs", (u32)os_cpu_NumProcessors());
-#if ARCH_X86_X64
-	Script::SetProperty(rq, settings, "cpu_numpackages", (u32)topology::NumPackages());
-	Script::SetProperty(rq, settings, "cpu_coresperpackage", (u32)topology::CoresPerPackage());
-	Script::SetProperty(rq, settings, "cpu_logicalpercore", (u32)topology::LogicalPerCore());
-#endif
 
 	Script::SetProperty(rq, settings, "numa_numnodes", (u32)numa_NumNodes());
 	Script::SetProperty(rq, settings, "numa_factor", numa_Factor());

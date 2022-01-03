@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,6 @@
 #include "lib/bits.h"	// round_up
 #include "lib/ogl.h"
 #include "lib/posix/posix_utsname.h"
-#if ARCH_X86_X64
-#include "lib/sysdep/arch/x86_x64/topology.h"
-#endif
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/smbios.h"
@@ -81,9 +78,6 @@ void WriteSystemInfo()
 
 	// CPU
 	fprintf(f, "CPU            : %s, %s", un.machine, cpu_IdentifierString());
-#if ARCH_X86_X64
-	fprintf(f, " (%dx%dx%d)", (int)topology::NumPackages(), (int)topology::CoresPerPackage(), (int)topology::LogicalPerCore());
-#endif
 	double cpuClock = os_cpu_ClockFrequency();	// query OS (may fail)
 #if ARCH_X86_X64
 	if(cpuClock <= 0.0)
