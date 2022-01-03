@@ -89,8 +89,7 @@ void DrawTexture(CShaderProgramPtr shader)
 	shader->VertexPointer(3, GL_FLOAT, 0, quadVertices);
 	shader->AssertPointersBound();
 
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 struct MinimapUnitVertex
@@ -497,8 +496,7 @@ void CMiniMapTexture::RenderFinalTexture()
 		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
-		if (!g_Renderer.DoSkipSubmit())
-			glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
+		glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		CVertexBuffer::Unbind();

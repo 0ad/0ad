@@ -404,7 +404,6 @@ CRenderer::CRenderer()
 	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 
 	m_DisplayTerrainPriorities = false;
-	m_SkipSubmit = false;
 
 	CStr skystring = "0 0 0";
 	CColor skycolor;

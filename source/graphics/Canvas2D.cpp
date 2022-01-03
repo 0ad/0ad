@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,8 +58,7 @@ inline void DrawTextureImpl(const CShaderProgramPtr& shader, CTexturePtr texture
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
 	shader->AssertPointersBound();
 
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 2);
 }
 
 } // anonymous namespace
@@ -132,8 +131,7 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 	glEnable(GL_LINE_SMOOTH);
 #endif
 	glLineWidth(width);
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 2);
+	glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 2);
 	glLineWidth(1.0f);
 #if !CONFIG2_GLES
 	glDisable(GL_LINE_SMOOTH);

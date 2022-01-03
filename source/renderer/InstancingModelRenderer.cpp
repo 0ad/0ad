@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -374,16 +374,13 @@ void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& shader, int U
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
 
-	if (!g_Renderer.m_SkipSubmit)
-	{
-		// Draw with DrawRangeElements where available, since it might be more efficient
+	// Draw with DrawRangeElements where available, since it might be more efficient
 #if CONFIG2_GLES
-		glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
+	glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
 #else
-		glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)m->imodeldef->m_Array.GetNumVertices()-1,
-				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
+	glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)m->imodeldef->m_Array.GetNumVertices()-1,
+			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
 #endif
-	}
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;

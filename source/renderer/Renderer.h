@@ -271,22 +271,12 @@ public:
 	 */
 	void ResetState();
 
-	/**
-	 * m_SkipSubmit: Disable the actual submission of rendering commands to OpenGL.
-	 * All state setup is still performed as usual.
-	 */
-	bool DoSkipSubmit() const { return m_SkipSubmit; }
-
 protected:
-	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class CDecalRData;
-	friend class ModelRenderer;
 	friend class HWLightingModelRenderer;
 	friend class ShaderModelVertexRenderer;
 	friend class InstancingModelRenderer;
-	friend class TerrainRenderer;
-	friend class WaterRenderer;
 	friend class CRenderingOptions;
 
 	//BEGIN: Implementation of SceneCollector
@@ -388,8 +378,6 @@ protected:
 	 * Enable rendering of terrain tile priority text overlay, for debugging.
 	 */
 	bool m_DisplayTerrainPriorities;
-
-	bool m_SkipSubmit;
 };
 
 #endif // INCLUDED_RENDERER

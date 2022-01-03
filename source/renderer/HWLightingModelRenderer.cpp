@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -226,16 +226,13 @@ void ShaderModelVertexRenderer::RenderModel(const CShaderProgramPtr& shader, int
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
 
-	if (!g_Renderer.m_SkipSubmit)
-	{
-		// Draw with DrawRangeElements where available, since it might be more efficient
+	// Draw with DrawRangeElements where available, since it might be more efficient
 #if CONFIG2_GLES
-		glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
+	glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
 #else
-		glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
+	glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
+		(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
 #endif
-	}
 
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
