@@ -235,14 +235,14 @@ public:
 	 *
 	 * @return the WaterManager object used by the renderer
 	 */
-	WaterManager* GetWaterManager() { return m_WaterManager; }
+	WaterManager& GetWaterManager();
 
 	/**
 	 * GetSkyManager: Return the renderer's sky manager.
 	 *
 	 * @return the SkyManager object used by the renderer
 	 */
-	SkyManager* GetSkyManager() { return m_SkyManager; }
+	SkyManager& GetSkyManager();
 
 	CTextureManager& GetTextureManager();
 
@@ -393,17 +393,6 @@ protected:
 	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
-
-	/**
-	 * m_WaterManager: the WaterManager object used for water textures and settings
-	 * (e.g. water color, water height)
-	 */
-	WaterManager* m_WaterManager;
-
-	/**
-	 * m_SkyManager: the SkyManager object used for sky textures and settings
-	 */
-	SkyManager* m_SkyManager;
 
 	/**
 	 * Enable rendering of terrain tile priority text overlay, for debugging.

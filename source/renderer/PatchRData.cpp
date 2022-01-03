@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1232,7 +1232,7 @@ void CPatchRData::BuildWater()
 	u16 water_shore_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_shore_index_map, 0xFF, sizeof(water_shore_index_map));
 
-	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+	const WaterManager& waterManager = g_Renderer.GetWaterManager();
 
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
@@ -1303,7 +1303,7 @@ void CPatchRData::BuildWater()
 
 				m_WaterBounds += vertex.m_Position;
 
-				vertex.m_WaterData = CVector2D(WaterMgr->m_WindStrength[xx + zz*mapSize], depth);
+				vertex.m_WaterData = CVector2D(waterManager.m_WindStrength[xx + zz*mapSize], depth);
 
 				water_index_map[z+moves[i][1]][x+moves[i][0]] = static_cast<u16>(water_vertex_data.size());
 				water_vertex_data.push_back(vertex);
@@ -1416,8 +1416,8 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	}
 
 	if (m_VBWaterShore && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-	    g_Renderer.GetWaterManager()->m_WaterEffects &&
-	    g_Renderer.GetWaterManager()->m_WaterFancyEffects)
+	    g_Renderer.GetWaterManager().m_WaterEffects &&
+	    g_Renderer.GetWaterManager().m_WaterFancyEffects)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
 

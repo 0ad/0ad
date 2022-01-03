@@ -392,8 +392,6 @@ public:
 CRenderer::CRenderer()
 {
 	m = new CRendererInternals;
-	m_WaterManager = &m->waterManager;
-	m_SkyManager = &m->skyManager;
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
@@ -583,7 +581,7 @@ void CRenderer::Resize(int width, int height)
 
 	m->postprocManager.Resize();
 
-	m_WaterManager->Resize();
+	m->waterManager.Resize();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1232,9 +1230,9 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 
 	ogl_WarnIfError();
 
-	if (m_WaterManager->m_RenderWater)
+	if (m->waterManager.m_RenderWater)
 	{
-		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
+		if (waterScissor.GetVolume() > 0 && m->waterManager.WillRenderFancyWater())
 		{
 			PROFILE3_GPU("water scissor");
 			RenderReflections(context, waterScissor);
@@ -1279,9 +1277,9 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	ogl_WarnIfError();
 
 	// render water
-	if (m_WaterManager->m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
+	if (m->waterManager.m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
 	{
-		if (m_WaterManager->WillRenderFancyWater())
+		if (m->waterManager.WillRenderFancyWater())
 		{
 			// Render transparent stuff, but only the solid parts that can occlude block water.
 			RenderTransparentModels(context, cullGroup, TRANSPARENT_OPAQUE, false);
@@ -1589,11 +1587,11 @@ void CRenderer::RenderScene(Scene& scene)
 	}
 
 	CBoundingBoxAligned waterScissor;
-	if (m_WaterManager->m_RenderWater)
+	if (m->waterManager.m_RenderWater)
 	{
 		waterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
 
-		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
+		if (waterScissor.GetVolume() > 0 && m->waterManager.WillRenderFancyWater())
 		{
 			if (g_RenderingOptions.GetWaterReflection())
 			{
@@ -1616,7 +1614,7 @@ void CRenderer::RenderScene(Scene& scene)
 			}
 
 			// Render the waves to the Fancy effects texture
-			m_WaterManager->RenderWaves(frustum);
+			m->waterManager.RenderWaves(frustum);
 		}
 	}
 
@@ -1647,7 +1645,17 @@ void CRenderer::BindTexture(int unit, GLuint tex)
 void CRenderer::MakeShadersDirty()
 {
 	m->ShadersDirty = true;
-	m_WaterManager->m_NeedsReloading = true;
+	m->waterManager.m_NeedsReloading = true;
+}
+
+WaterManager& CRenderer::GetWaterManager()
+{
+	return m->waterManager;
+}
+
+SkyManager& CRenderer::GetSkyManager()
+{
+	return m->skyManager;
 }
 
 CTextureManager& CRenderer::GetTextureManager()

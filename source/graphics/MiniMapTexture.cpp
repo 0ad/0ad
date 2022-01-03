@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -181,7 +181,7 @@ CMiniMapTexture::~CMiniMapTexture()
 
 void CMiniMapTexture::Update(const float UNUSED(deltaRealTime))
 {
-	if (m_WaterHeight != g_Renderer.GetWaterManager()->m_WaterHeight)
+	if (m_WaterHeight != g_Renderer.GetWaterManager().m_WaterHeight)
 	{
 		m_TerrainTextureDirty = true;
 		m_FinalTextureDirty = true;
@@ -264,7 +264,7 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 	const u32 width = m_MapSize - 1;
 	const u32 height = m_MapSize - 1;
 
-	m_WaterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+	m_WaterHeight = g_Renderer.GetWaterManager().m_WaterHeight;
 	m_TerrainTextureDirty = false;
 
 	for (u32 j = 0; j < height; ++j)

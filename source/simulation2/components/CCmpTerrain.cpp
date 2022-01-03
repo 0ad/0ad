@@ -144,8 +144,8 @@ public:
 
 		if (ReloadWater && CRenderer::IsInitialised())
 		{
-			g_Renderer.GetWaterManager()->SetMapSize(vertices);
-			g_Renderer.GetWaterManager()->RecomputeWaterData();
+			g_Renderer.GetWaterManager().SetMapSize(vertices);
+			g_Renderer.GetWaterManager().RecomputeWaterData();
 		}
 		MakeDirty(0, 0, tiles+1, tiles+1);
 	}

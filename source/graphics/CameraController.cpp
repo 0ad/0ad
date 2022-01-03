@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -578,7 +578,7 @@ void CCameraController::FocusHeight(bool smooth)
 
 	const float ground = std::max(
 		g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(nearPoint.X, nearPoint.Z),
-		g_Renderer.GetWaterManager()->m_WaterHeight);
+		g_Renderer.GetWaterManager().m_WaterHeight);
 
 	// filter ground levels for smooth camera movement
 	const float filtered_near_ground = g_Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(nearPoint.X, nearPoint.Z, near_radius);
@@ -587,7 +587,7 @@ void CCameraController::FocusHeight(bool smooth)
 	// filtered maximum visible ground level in view
 	const float filtered_ground = std::max(
 		std::max(filtered_near_ground, filtered_pivot_ground),
-		g_Renderer.GetWaterManager()->m_WaterHeight);
+		g_Renderer.GetWaterManager().m_WaterHeight);
 
 	// target camera height above pivot point
 	const float pivot_height = -forwards.Y * (m_Zoom.GetSmoothedValue() - m_ViewNear);

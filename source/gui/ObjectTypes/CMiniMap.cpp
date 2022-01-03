@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -308,7 +308,7 @@ void CMiniMap::DrawViewRect(CCanvas2D& canvas) const
 {
 	// Compute the camera frustum intersected with a fixed-height plane.
 	// Use the water height as a fixed base height, which should be the lowest we can go
-	const float sampleHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+	const float sampleHeight = g_Renderer.GetWaterManager().m_WaterHeight;
 
 	const CCamera* camera = g_Game->GetView()->GetCamera();
 	const std::array<CVector3D, 4> hitPoints = {
