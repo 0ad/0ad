@@ -24,11 +24,8 @@
 #define INCLUDED_RENDERER
 
 #include "graphics/Camera.h"
-#include "graphics/SColor.h"
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
-#include "lib/file/vfs/vfs_path.h"
-#include "lib/res/handle.h"
 #include "ps/Singleton.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
