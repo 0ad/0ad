@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -144,9 +144,6 @@ public:
 	 * frames are rendered.
 	 */
 	void SetSimulation(CSimulation2* simulation);
-
-	// set color used to clear screen in BeginFrame()
-	void SetClearColor(SColor4ub color);
 
 	// trigger a reload of shaders (when parameters they depend on have changed)
 	void MakeShadersDirty();

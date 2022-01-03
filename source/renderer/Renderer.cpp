@@ -412,7 +412,12 @@ CRenderer::CRenderer()
 	CColor skycolor;
 	CFG_GET_VAL("skycolor", skystring);
 	if (skycolor.ParseString(skystring, 255.f))
-		SetClearColor(skycolor.AsSColor4ub());
+	{
+		m_ClearColor[0] = skycolor.r;
+		m_ClearColor[1] = skycolor.g;
+		m_ClearColor[2] = skycolor.b;
+		m_ClearColor[3] = skycolor.a;
+	}
 
 	m_LightEnv = nullptr;
 
@@ -644,15 +649,6 @@ void CRenderer::SetSimulation(CSimulation2* simulation)
 {
 	// set current simulation context for terrain renderer
 	m->terrainRenderer.SetSimulation(simulation);
-}
-
-// SetClearColor: set color used to clear screen in BeginFrame()
-void CRenderer::SetClearColor(SColor4ub color)
-{
-	m_ClearColor[0] = float(color.R) / 255.0f;
-	m_ClearColor[1] = float(color.G) / 255.0f;
-	m_ClearColor[2] = float(color.B) / 255.0f;
-	m_ClearColor[3] = float(color.A) / 255.0f;
 }
 
 void CRenderer::RenderShadowMap(const CShaderDefines& context)
