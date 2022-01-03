@@ -278,19 +278,13 @@ public:
 	bool DoSkipSubmit() const { return m_SkipSubmit; }
 
 protected:
-	friend struct CRendererInternals;
 	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class CDecalRData;
-	friend class FixedFunctionModelRenderer;
 	friend class ModelRenderer;
-	friend class PolygonSortModelRenderer;
-	friend class SortModelRenderer;
-	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
 	friend class ShaderModelVertexRenderer;
 	friend class InstancingModelRenderer;
-	friend class ShaderInstancingModelRenderer;
 	friend class TerrainRenderer;
 	friend class WaterRenderer;
 	friend class CRenderingOptions;
