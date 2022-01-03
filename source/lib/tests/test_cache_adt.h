@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,7 +23,8 @@
 #include "lib/self_test.h"
 
 #include "lib/adts/cache_adt.h"
-#include "lib/rand.h"
+
+#include <random>
 
 class TestCache: public CxxTest::TestSuite
 {
@@ -47,19 +48,21 @@ public:
 
 #define MEASURE(c, desc)\
 	{\
-		srand(1);\
+		std::mt19937 engine(42);\
+		std::uniform_int_distribution<int> distribution9(0, 9);\
+		std::uniform_int_distribution<size_t> distribution99(1, 99);\
 		int cnt = 1;\
 		TIMER_BEGIN(desc);\
 		for(int i = 0; i < 30000; i++)\
 		{\
 			/* 70% add (random objects) */\
-			bool add = rand(1,10) < 7;\
+			const bool add = distribution9(engine) < 7;\
 			if(add)\
 			{\
 				int key = cnt++;\
 				int val = cnt++;\
-				size_t size = (size_t)rand(1,100);\
-				size_t cost = (size_t)rand(1,100);\
+				size_t size = distribution(engine);\
+				size_t cost = distribution(engine);\
 				c.add(key, val, size, cost);\
 			}\
 			else\
@@ -88,22 +91,25 @@ public:
 	// [PT: disabled because it's far too slow]
 	void DISABLED_test_cache_policies()
 	{
-		Cache<int, int, Landlord_Naive > c1;
-		Cache<int, int, Landlord_Cached> c2;
-		Cache<int, int, Landlord_Lazy  > c3;
+		std::mt19937 engine(42);
+		std::uniform_int_distribution<int> distribution9(0, 9);
+		std::uniform_int_distribution<size_t> distribution99(1, 99);
 
-		srand(1);
+		Cache<int, int, Landlord_Naive> c1;
+		Cache<int, int, Landlord_Cached> c2;
+		Cache<int, int, Landlord_Lazy> c3;
+
 		int cnt = 1;
 		for(int i = 0; i < 1000; i++)
 		{
 			// 70% add (random objects)
-			bool add = rand(1,10) < 7;
+			const bool add = distribution9(engine) < 7;
 			if(add)
 			{
 				int key = cnt++;
 				int val = cnt++;
-				size_t size = (size_t)rand(1,100);
-				size_t cost = (size_t)rand(1,100);
+				size_t size = distribution99(engine);
+				size_t cost = distribution99(engine);
 				c1.add(key, val, size, cost);
 				c2.add(key, val, size, cost);
 				c3.add(key, val, size, cost);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,9 @@
 #include "Common/MiscState.h"
 #include "Common/ObjectSettings.h"
 #include "GameInterface/Messages.h"
+
+#include <ctime>
+#include <random>
 
 using AtlasMessage::Position;
 
@@ -145,7 +148,9 @@ public:
 
 	void RandomizeActorSeed()
 	{
-		m_ActorSeed = (unsigned int)floor((rand() / (float)RAND_MAX) * 65535.f);
+		std::mt19937 engine(std::time(nullptr));
+		std::uniform_int_distribution<unsigned int> distribution(0, 65535);
+		m_ActorSeed = distribution(engine);
 	}
 
 	struct sWaiting : public State
