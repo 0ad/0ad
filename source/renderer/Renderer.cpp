@@ -250,9 +250,9 @@ AbstractProfileTable* CRendererStatsTable::GetChild(size_t UNUSED(row))
  * Struct CRendererInternals: Truly hide data that is supposed to be hidden
  * in this structure so it won't even appear in header files.
  */
-struct CRendererInternals
+class CRenderer::Internals
 {
-	NONCOPYABLE(CRendererInternals);
+	NONCOPYABLE(Internals);
 public:
 	/// true if CRenderer::Open has been called
 	bool IsOpen;
@@ -339,7 +339,7 @@ public:
 
 	CShaderDefines globalContext;
 
-	CRendererInternals() :
+	Internals() :
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
 	{
 	}
@@ -391,7 +391,7 @@ public:
 // CRenderer constructor
 CRenderer::CRenderer()
 {
-	m = new CRendererInternals;
+	m = std::make_unique<Internals>();
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
@@ -431,7 +431,7 @@ CRenderer::~CRenderer()
 	// We no longer UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
 	// them to be loaded (i.e. CGameView).
-	delete m;
+	m.reset();
 }
 
 

@@ -30,6 +30,8 @@
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
+#include <memory>
+
 class CDebugRenderer;
 class CFontManager;
 class CLightEnv;
@@ -57,10 +59,6 @@ enum ETransparentMode { TRANSPARENT, TRANSPARENT_OPAQUE, TRANSPARENT_BLEND };
 
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
-
-///////////////////////////////////////////////////////////////////////////////////////////
-// CRenderer: base renderer class - primary interface to the rendering engine
-struct CRendererInternals;
 
 class CRenderer :
 	public Singleton<CRenderer>,
@@ -345,7 +343,8 @@ protected:
 
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
-	CRendererInternals* m;
+	class Internals;
+	std::unique_ptr<Internals> m;
 	// view width
 	int m_Width;
 	// view height
