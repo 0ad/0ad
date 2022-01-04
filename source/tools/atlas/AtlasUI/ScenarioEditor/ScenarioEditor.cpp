@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -932,10 +932,10 @@ void ScenarioEditor::OnScreenshot(wxCommandEvent& event)
 	switch (event.GetId())
 	{
 	case ID_BigScreenshot:
-		POST_MESSAGE(Screenshot, (true, 10));
+		POST_MESSAGE(Screenshot, (true));
 		break;
 	case ID_Screenshot:
-		POST_MESSAGE(Screenshot, (false, 0));
+		POST_MESSAGE(Screenshot, (false));
 		break;
 	}
 }

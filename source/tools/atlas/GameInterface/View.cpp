@@ -229,7 +229,7 @@ void AtlasViewGame::Render()
 	camera.SetProjectionFromCamera(*g_Game->GetView()->GetCamera());
 	camera.UpdateFrustum();
 
-	::Render();
+	g_Renderer.RenderFrame(false);
 	Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 	// In case of atlas the device's present will do only internal stuff
 	// without calling a real backbuffer swap.

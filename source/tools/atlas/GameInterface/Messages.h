@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -273,7 +273,6 @@ MESSAGE(MessageTrace,
 
 MESSAGE(Screenshot,
 		((bool, big))
-		((int, tiles)) // For big screenshots: the final image will be (640*tiles)x(480*tiles)
 		);
 
 //////////////////////////////////////////////////////////////////////////

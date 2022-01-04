@@ -15,24 +15,33 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * higher level interface on top of OpenGL to render basic objects:
- * terrain, models, sprites, particles etc.
- */
-
 #include "precompiled.h"
 
 #include "Renderer.h"
 
+#include "graphics/Canvas2D.h"
+#include "graphics/CinemaManager.h"
+#include "graphics/GameView.h"
+#include "graphics/LightEnv.h"
+#include "graphics/ModelDef.h"
+#include "graphics/TerrainTextureManager.h"
+#include "i18n/L10n.h"
+#include "lib/allocators/shared_ptr.h"
+#include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "gui/GUIManager.h"
+#include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
+#include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/Globals.h"
+#include "ps/Loader.h"
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"
 #include "ps/World.h"
-#include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 #include "graphics/Camera.h"
 #include "graphics/FontManager.h"
@@ -40,7 +49,9 @@
 #include "graphics/Terrain.h"
 #include "graphics/Texture.h"
 #include "graphics/TextureManager.h"
+#include "ps/Util.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/RenderingOptions.h"
@@ -48,8 +59,15 @@
 #include "renderer/SceneRenderer.h"
 #include "renderer/TimeManager.h"
 #include "renderer/VertexBufferManager.h"
+#include "tools/atlas/GameInterface/GameLoop.h"
+#include "tools/atlas/GameInterface/View.h"
 
 #include <algorithm>
+
+namespace
+{
+
+size_t g_NextScreenShotNumber = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRendererStatsTable - Profile display of rendering stats
@@ -212,6 +230,8 @@ AbstractProfileTable* CRendererStatsTable::GetChild(size_t UNUSED(row))
 	return 0;
 }
 
+} // anonymous namespace
+
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer implementation
 
@@ -258,6 +278,8 @@ public:
 
 CRenderer::CRenderer()
 {
+	TIMER(L"InitRenderer");
+
 	m = std::make_unique<Internals>();
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
@@ -266,6 +288,28 @@ CRenderer::CRenderer()
 	m_Height = 0;
 
 	m_Stats.Reset();
+
+	// Create terrain related stuff.
+	new CTerrainTextureManager;
+
+	Open(g_xres, g_yres);
+
+	// Setup lighting environment. Since the Renderer accesses the
+	// lighting environment through a pointer, this has to be done before
+	// the first Frame.
+	GetSceneRenderer().SetLightEnv(&g_LightEnv);
+
+	// I haven't seen the camera affecting GUI rendering and such, but the
+	// viewport has to be updated according to the video mode
+	SViewPort vp;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	vp.m_Width = g_xres;
+	vp.m_Height = g_yres;
+	SetViewport(vp);
+	ModelDefActivateFastImpl();
+	ColorActivateFastImpl();
+	ModelRenderer::Init();
 }
 
 CRenderer::~CRenderer()
@@ -408,6 +452,317 @@ void CRenderer::SetRenderPath(RenderPath rp)
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_COLOR);
 }
 
+bool CRenderer::ShouldRender() const
+{
+	return !g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen());
+}
+
+void CRenderer::RenderFrame(bool needsPresent)
+{
+	// Do not render if not focused while in fullscreen or minimised,
+	// as that triggers a difficult-to-reproduce crash on some graphic cards.
+	if (!ShouldRender())
+		return;
+
+	if (m_ShouldPreloadResourcesBeforeNextFrame)
+	{
+		m_ShouldPreloadResourcesBeforeNextFrame = false;
+		// We don't meed to render logger for the preload.
+		RenderFrameImpl(true, false);
+	}
+
+	if (m_ScreenShotType == ScreenShotType::BIG)
+	{
+		RenderBigScreenShot();
+	}
+	else
+	{
+		if (m_ScreenShotType == ScreenShotType::DEFAULT)
+			RenderScreenShot();
+		else
+			RenderFrameImpl(true, true);
+
+		if (needsPresent)
+			g_VideoMode.GetBackendDevice()->Present();
+	}
+}
+
+void CRenderer::RenderFrameImpl(bool renderGUI, bool renderLogger)
+{
+	PROFILE3("render");
+
+	g_Profiler2.RecordGPUFrameStart();
+	ogl_WarnIfError();
+
+	// prepare before starting the renderer frame
+	if (g_Game && g_Game->IsGameStarted())
+		g_Game->GetView()->BeginFrame();
+
+	if (g_Game)
+		m->sceneRenderer.SetSimulation(g_Game->GetSimulation2());
+
+	// start new frame
+	BeginFrame();
+
+	ogl_WarnIfError();
+
+	if (g_Game && g_Game->IsGameStarted())
+	{
+		g_Game->GetView()->Render();
+		ogl_WarnIfError();
+	}
+
+	m->sceneRenderer.RenderTextOverlays();
+
+	// If we're in Atlas game view, render special tools
+	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
+	{
+		g_AtlasGameLoop->view->DrawCinemaPathTool();
+		ogl_WarnIfError();
+	}
+
+	if (g_Game && g_Game->IsGameStarted())
+	{
+		g_Game->GetView()->GetCinema()->Render();
+		ogl_WarnIfError();
+	}
+
+	glDisable(GL_DEPTH_TEST);
+
+	if (renderGUI)
+	{
+		OGL_SCOPED_DEBUG_GROUP("Draw GUI");
+		// All GUI elements are drawn in Z order to render semi-transparent
+		// objects correctly.
+		g_GUI->Draw();
+		ogl_WarnIfError();
+	}
+
+	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
+	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
+	{
+		CCanvas2D canvas;
+		g_AtlasGameLoop->view->DrawOverlays(canvas);
+		ogl_WarnIfError();
+	}
+
+	g_Console->Render();
+	ogl_WarnIfError();
+
+	if (renderLogger)
+	{
+		g_Logger->Render();
+		ogl_WarnIfError();
+	}
+
+	// Profile information
+	g_ProfileViewer.RenderProfile();
+	ogl_WarnIfError();
+
+	glEnable(GL_DEPTH_TEST);
+
+	EndFrame();
+
+	const Stats& stats = GetStats();
+	PROFILE2_ATTR("draw calls: %zu", stats.m_DrawCalls);
+	PROFILE2_ATTR("terrain tris: %zu", stats.m_TerrainTris);
+	PROFILE2_ATTR("water tris: %zu", stats.m_WaterTris);
+	PROFILE2_ATTR("model tris: %zu", stats.m_ModelTris);
+	PROFILE2_ATTR("overlay tris: %zu", stats.m_OverlayTris);
+	PROFILE2_ATTR("blend splats: %zu", stats.m_BlendSplats);
+	PROFILE2_ATTR("particles: %zu", stats.m_Particles);
+
+	ogl_WarnIfError();
+
+	g_Profiler2.RecordGPUFrameEnd();
+	ogl_WarnIfError();
+}
+
+void CRenderer::RenderScreenShot()
+{
+	m_ScreenShotType = ScreenShotType::NONE;
+
+	// get next available numbered filename
+	// note: %04d -> always 4 digits, so sorting by filename works correctly.
+	const VfsPath filenameFormat(L"screenshots/screenshot%04d.png");
+	VfsPath filename;
+	vfs::NextNumberedFilename(g_VFS, filenameFormat, g_NextScreenShotNumber, filename);
+
+	const size_t w = (size_t)g_xres, h = (size_t)g_yres;
+	const size_t bpp = 24;
+	GLenum fmt = GL_RGB;
+	int flags = TEX_BOTTOM_UP;
+
+	// Hide log messages and re-render
+	RenderFrameImpl(true, false);
+
+	const size_t img_size = w * h * bpp / 8;
+	const size_t hdr_size = tex_hdr_size(filename);
+	std::shared_ptr<u8> buf;
+	AllocateAligned(buf, hdr_size + img_size, maxSectorSize);
+	GLvoid* img = buf.get() + hdr_size;
+	Tex t;
+	if (t.wrap(w, h, bpp, flags, buf, hdr_size) < 0)
+		return;
+	glReadPixels(0, 0, (GLsizei)w, (GLsizei)h, fmt, GL_UNSIGNED_BYTE, img);
+
+	if (tex_write(&t, filename) == INFO::OK)
+	{
+		OsPath realPath;
+		g_VFS->GetRealPath(filename, realPath);
+
+		LOGMESSAGERENDER(g_L10n.Translate("Screenshot written to '%s'"), realPath.string8());
+
+		debug_printf(
+			CStr(g_L10n.Translate("Screenshot written to '%s'") + "\n").c_str(),
+			realPath.string8().c_str());
+	}
+	else
+		LOGERROR("Error writing screenshot to '%s'", filename.string8());
+}
+
+void CRenderer::RenderBigScreenShot()
+{
+	m_ScreenShotType = ScreenShotType::NONE;
+
+	// If the game hasn't started yet then use WriteScreenshot to generate the image.
+	if (!g_Game)
+		return RenderScreenShot();
+
+	int tiles = 4, tileWidth = 256, tileHeight = 256;
+	CFG_GET_VAL("screenshot.tiles", tiles);
+	CFG_GET_VAL("screenshot.tilewidth", tileWidth);
+	CFG_GET_VAL("screenshot.tileheight", tileHeight);
+	if (tiles <= 0 || tileWidth <= 0 || tileHeight <= 0 || tileWidth * tiles % 4 != 0 || tileHeight * tiles % 4 != 0)
+	{
+		LOGWARNING("Invalid big screenshot size: tiles=%d tileWidth=%d tileHeight=%d", tiles, tileWidth, tileHeight);
+		return;
+	}
+
+	// get next available numbered filename
+	// note: %04d -> always 4 digits, so sorting by filename works correctly.
+	const VfsPath filenameFormat(L"screenshots/screenshot%04d.bmp");
+	VfsPath filename;
+	vfs::NextNumberedFilename(g_VFS, filenameFormat, g_NextScreenShotNumber, filename);
+
+	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
+	// hope the screen is actually large enough for that.
+	ENSURE(g_xres >= tileWidth && g_yres >= tileHeight);
+
+	const int img_w = tileWidth * tiles, img_h = tileHeight * tiles;
+	const int bpp = 24;
+	// we want writing BMP to be as fast as possible,
+	// so read data from OpenGL in BMP format to obviate conversion.
+#if CONFIG2_GLES // GLES doesn't support BGR
+	const GLenum fmt = GL_RGB;
+	const int flags = TEX_BOTTOM_UP;
+#else
+	const GLenum fmt = GL_BGR;
+	const int flags = TEX_BOTTOM_UP | TEX_BGR;
+#endif
+
+	const size_t img_size = img_w * img_h * bpp / 8;
+	const size_t tile_size = tileWidth * tileHeight * bpp / 8;
+	const size_t hdr_size = tex_hdr_size(filename);
+	void* tile_data = malloc(tile_size);
+	if (!tile_data)
+	{
+		WARN_IF_ERR(ERR::NO_MEM);
+		return;
+	}
+	std::shared_ptr<u8> img_buf;
+	AllocateAligned(img_buf, hdr_size + img_size, maxSectorSize);
+
+	Tex t;
+	GLvoid* img = img_buf.get() + hdr_size;
+	if (t.wrap(img_w, img_h, bpp, flags, img_buf, hdr_size) < 0)
+	{
+		free(tile_data);
+		return;
+	}
+
+	ogl_WarnIfError();
+
+	CCamera oldCamera = *g_Game->GetView()->GetCamera();
+
+	// Resize various things so that the sizes and aspect ratios are correct
+	{
+		g_Renderer.Resize(tileWidth, tileHeight);
+		SViewPort vp = { 0, 0, tileWidth, tileHeight };
+		g_Game->GetView()->SetViewport(vp);
+	}
+
+#if !CONFIG2_GLES
+	// Temporarily move everything onto the front buffer, so the user can
+	// see the exciting progress as it renders (and can tell when it's finished).
+	// (It doesn't just use SwapBuffers, because it doesn't know whether to
+	// call the SDL version or the Atlas version.)
+	GLint oldReadBuffer, oldDrawBuffer;
+	glGetIntegerv(GL_READ_BUFFER, &oldReadBuffer);
+	glGetIntegerv(GL_DRAW_BUFFER, &oldDrawBuffer);
+	glDrawBuffer(GL_FRONT);
+	glReadBuffer(GL_FRONT);
+#endif
+
+	// Render each tile
+	CMatrix3D projection;
+	projection.SetIdentity();
+	const float aspectRatio = 1.0f * tileWidth / tileHeight;
+	for (int tile_y = 0; tile_y < tiles; ++tile_y)
+	{
+		for (int tile_x = 0; tile_x < tiles; ++tile_x)
+		{
+			// Adjust the camera to render the appropriate region
+			if (oldCamera.GetProjectionType() == CCamera::ProjectionType::PERSPECTIVE)
+			{
+				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tile_x, tile_y);
+			}
+			g_Game->GetView()->GetCamera()->SetProjection(projection);
+
+			RenderFrameImpl(false, false);
+
+			// Copy the tile pixels into the main image
+			glReadPixels(0, 0, tileWidth, tileHeight, fmt, GL_UNSIGNED_BYTE, tile_data);
+			for (int y = 0; y < tileHeight; ++y)
+			{
+				void* dest = static_cast<char*>(img) + ((tile_y * tileHeight + y) * img_w + (tile_x * tileWidth)) * bpp / 8;
+				void* src = static_cast<char*>(tile_data) + y * tileWidth * bpp / 8;
+				memcpy(dest, src, tileWidth * bpp / 8);
+			}
+		}
+	}
+
+#if !CONFIG2_GLES
+	// Restore the buffer settings
+	glDrawBuffer(oldDrawBuffer);
+	glReadBuffer(oldReadBuffer);
+#endif
+
+	// Restore the viewport settings
+	{
+		g_Renderer.Resize(g_xres, g_yres);
+		SViewPort vp = { 0, 0, g_xres, g_yres };
+		g_Game->GetView()->SetViewport(vp);
+		g_Game->GetView()->GetCamera()->SetProjectionFromCamera(oldCamera);
+	}
+
+	if (tex_write(&t, filename) == INFO::OK)
+	{
+		OsPath realPath;
+		g_VFS->GetRealPath(filename, realPath);
+
+		LOGMESSAGERENDER(g_L10n.Translate("Screenshot written to '%s'"), realPath.string8());
+
+		debug_printf(
+			CStr(g_L10n.Translate("Screenshot written to '%s'") + "\n").c_str(),
+			realPath.string8().c_str());
+	}
+	else
+		LOGERROR("Error writing screenshot to '%s'", filename.string8());
+
+	free(tile_data);
+}
+
 void CRenderer::BeginFrame()
 {
 	PROFILE("begin frame");
@@ -487,4 +842,14 @@ CDebugRenderer& CRenderer::GetDebugRenderer()
 CFontManager& CRenderer::GetFontManager()
 {
 	return m->fontManager;
+}
+
+void CRenderer::PreloadResourcesBeforeNextFrame()
+{
+	m_ShouldPreloadResourcesBeforeNextFrame = true;
+}
+
+void CRenderer::MakeScreenShotOnNextFrame(ScreenShotType screenShotType)
+{
+	m_ScreenShotType = screenShotType;
 }

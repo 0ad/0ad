@@ -317,11 +317,11 @@ PSRETURN CGame::ReallyStartGame()
 	// all be invisible)
 	Interpolate(0, 0);
 
-	m_GameStarted=true;
+	m_GameStarted = true;
 
-	// Render a frame to begin loading assets
+	// Preload resources to avoid blinking on a first game frame.
 	if (CRenderer::IsInitialised())
-		Render();
+		g_Renderer.PreloadResourcesBeforeNextFrame();
 
 	if (g_NetClient)
 		g_NetClient->LoadFinished();

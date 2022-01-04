@@ -499,6 +499,7 @@ float ActorViewer::GetRepeatTimeByAttackType(const std::string& type) const
 
 void ActorViewer::Render()
 {
+	// TODO: ActorViewer should reuse CRenderer code and not duplicate it.
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
 
 	// Set simulation context for rendering purposes

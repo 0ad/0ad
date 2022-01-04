@@ -76,6 +76,13 @@ public:
 		bool m_PrettyWater;
 	};
 
+	enum class ScreenShotType
+	{
+		NONE,
+		DEFAULT,
+		BIG
+	};
+
 public:
 	CRenderer();
 	~CRenderer();
@@ -90,6 +97,8 @@ public:
 	int GetWidth() const { return m_Width; }
 	// return view height
 	int GetHeight() const { return m_Height; }
+
+	void RenderFrame(bool needsPresent);
 
 	// signal frame start
 	void BeginFrame();
@@ -132,6 +141,20 @@ public:
 	 */
 	const Caps& GetCapabilities() const { return m_Caps; }
 
+	/**
+	 * Performs a complete frame without presenting to force loading all needed
+	 * resources. It's used for the first frame on a game start.
+	 * TODO: It might be better to preload resources without a complete frame
+	 * rendering.
+	 */
+	void PreloadResourcesBeforeNextFrame();
+
+	/**
+	 * Makes a screenshot on the next RenderFrame according of the given
+	 * screenshot type.
+	 */
+	void MakeScreenShotOnNextFrame(ScreenShotType screenShotType);
+
 protected:
 	friend class CPatchRData;
 	friend class CDecalRData;
@@ -139,6 +162,12 @@ protected:
 	friend class ShaderModelVertexRenderer;
 	friend class InstancingModelRenderer;
 	friend class CRenderingOptions;
+
+	bool ShouldRender() const;
+
+	void RenderFrameImpl(bool renderGUI, bool renderLogger);
+	void RenderScreenShot();
+	void RenderBigScreenShot();
 
 	// SetRenderPath: Select the preferred render path.
 	// This may only be called before Open(), because the layout of vertex arrays and other
@@ -151,9 +180,9 @@ protected:
 	class Internals;
 	std::unique_ptr<Internals> m;
 	// view width
-	int m_Width;
+	int m_Width = 0;
 	// view height
-	int m_Height;
+	int m_Height = 0;
 
 	SViewPort m_Viewport;
 
@@ -163,6 +192,10 @@ protected:
 	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
+
+	bool m_ShouldPreloadResourcesBeforeNextFrame = false;
+
+	ScreenShotType m_ScreenShotType = ScreenShotType::NONE;
 };
 
 #endif // INCLUDED_RENDERER

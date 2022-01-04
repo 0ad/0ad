@@ -19,14 +19,8 @@
 
 #include "ps/GameSetup/GameSetup.h"
 
-#include "graphics/Canvas2D.h"
-#include "graphics/CinemaManager.h"
-#include "graphics/Color.h"
 #include "graphics/GameView.h"
-#include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"
-#include "graphics/MaterialManager.h"
-#include "graphics/ModelDef.h"
 #include "graphics/TerrainTextureManager.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
@@ -41,7 +35,6 @@
 #include "lib/res/h_mgr.h"
 #include "lib/timer.h"
 #include "lobby/IXmppClient.h"
-#include "maths/MathUtil.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
@@ -74,7 +67,6 @@
 #include "ps/VideoMode.h"
 #include "ps/VisualReplay.h"
 #include "ps/World.h"
-#include "renderer/ModelRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/VertexBufferManager.h"
@@ -88,7 +80,6 @@
 #include "soundmanager/scripting/JSInterface_Sound.h"
 #include "soundmanager/ISoundManager.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
-#include "tools/atlas/GameInterface/View.h"
 
 #if !(OS_WIN || OS_MACOSX || OS_ANDROID) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
@@ -110,9 +101,6 @@ ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
-
-bool g_DoRenderGui = true;
-bool g_DoRenderLogger = true;
 
 thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
@@ -176,112 +164,6 @@ retry:
 	}
 
 	ogl_tex_set_defaults(q_flags, filter);
-}
-
-
-//----------------------------------------------------------------------------
-// GUI integration
-//----------------------------------------------------------------------------
-
-bool ShouldRender()
-{
-	return !g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen());
-}
-
-
-void Render()
-{
-	// Do not render if not focused while in fullscreen or minimised,
-	// as that triggers a difficult-to-reproduce crash on some graphic cards.
-	if (!ShouldRender())
-		return;
-
-	PROFILE3("render");
-
-	g_Profiler2.RecordGPUFrameStart();
-	ogl_WarnIfError();
-
-	// prepare before starting the renderer frame
-	if (g_Game && g_Game->IsGameStarted())
-		g_Game->GetView()->BeginFrame();
-
-	if (g_Game)
-		g_Renderer.GetSceneRenderer().SetSimulation(g_Game->GetSimulation2());
-
-	// start new frame
-	g_Renderer.BeginFrame();
-
-	ogl_WarnIfError();
-
-	if (g_Game && g_Game->IsGameStarted())
-	{
-		g_Game->GetView()->Render();
-		ogl_WarnIfError();
-	}
-
-	g_Renderer.GetSceneRenderer().RenderTextOverlays();
-
-	// If we're in Atlas game view, render special tools
-	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
-	{
-		g_AtlasGameLoop->view->DrawCinemaPathTool();
-		ogl_WarnIfError();
-	}
-
-	if (g_Game && g_Game->IsGameStarted())
-	{
-		g_Game->GetView()->GetCinema()->Render();
-		ogl_WarnIfError();
-	}
-
-	glDisable(GL_DEPTH_TEST);
-
-	if (g_DoRenderGui)
-	{
-		OGL_SCOPED_DEBUG_GROUP("Draw GUI");
-		// All GUI elements are drawn in Z order to render semi-transparent
-		// objects correctly.
-		g_GUI->Draw();
-		ogl_WarnIfError();
-	}
-
-	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
-	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
-	{
-		CCanvas2D canvas;
-		g_AtlasGameLoop->view->DrawOverlays(canvas);
-		ogl_WarnIfError();
-	}
-
-	g_Console->Render();
-	ogl_WarnIfError();
-
-	if (g_DoRenderLogger)
-	{
-		g_Logger->Render();
-		ogl_WarnIfError();
-	}
-
-	// Profile information
-	g_ProfileViewer.RenderProfile();
-	ogl_WarnIfError();
-
-	glEnable(GL_DEPTH_TEST);
-
-	g_Renderer.EndFrame();
-
-	PROFILE2_ATTR("draw calls: %d", (int)g_Renderer.GetStats().m_DrawCalls);
-	PROFILE2_ATTR("terrain tris: %d", (int)g_Renderer.GetStats().m_TerrainTris);
-	PROFILE2_ATTR("water tris: %d", (int)g_Renderer.GetStats().m_WaterTris);
-	PROFILE2_ATTR("model tris: %d", (int)g_Renderer.GetStats().m_ModelTris);
-	PROFILE2_ATTR("overlay tris: %d", (int)g_Renderer.GetStats().m_OverlayTris);
-	PROFILE2_ATTR("blend splats: %d", (int)g_Renderer.GetStats().m_BlendSplats);
-	PROFILE2_ATTR("particles: %d", (int)g_Renderer.GetStats().m_Particles);
-
-	ogl_WarnIfError();
-
-	g_Profiler2.RecordGPUFrameEnd();
-	ogl_WarnIfError();
 }
 
 ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
@@ -473,37 +355,6 @@ static void ShutdownPs()
 	SAFE_DELETE(g_GUI);
 
 	UnloadHotkeys();
-}
-
-
-static void InitRenderer()
-{
-	TIMER(L"InitRenderer");
-
-	// create renderer
-	new CRenderer;
-
-	// create terrain related stuff
-	new CTerrainTextureManager;
-
-	g_Renderer.Open(g_xres, g_yres);
-
-	// Setup lighting environment. Since the Renderer accesses the
-	// lighting environment through a pointer, this has to be done before
-	// the first Frame.
-	g_Renderer.GetSceneRenderer().SetLightEnv(&g_LightEnv);
-
-	// I haven't seen the camera affecting GUI rendering and such, but the
-	// viewport has to be updated according to the video mode
-	SViewPort vp;
-	vp.m_X = 0;
-	vp.m_Y = 0;
-	vp.m_Width = g_xres;
-	vp.m_Height = g_yres;
-	g_Renderer.SetViewport(vp);
-	ModelDefActivateFastImpl();
-	ColorActivateFastImpl();
-	ModelRenderer::Init();
 }
 
 static void InitSDL()
@@ -931,7 +782,8 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 
 	g_RenderingOptions.ReadConfigAndSetupHooks();
 
-	InitRenderer();
+	// create renderer
+	new CRenderer;
 
 	InitInput();
 
@@ -979,16 +831,6 @@ void InitNonVisual(const CmdLineArgs& args)
 	new CTerrainTextureManager;
 	g_TexMan.LoadTerrainTextures();
 	Autostart(args);
-}
-
-void RenderGui(bool RenderingState)
-{
-	g_DoRenderGui = RenderingState;
-}
-
-void RenderLogger(bool RenderingState)
-{
-	g_DoRenderLogger = RenderingState;
 }
 
 /**

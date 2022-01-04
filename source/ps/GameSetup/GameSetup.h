@@ -25,14 +25,6 @@
 class CmdLineArgs;
 class Paths;
 
-//
-// GUI integration
-//
-
-extern void Render();
-
-extern bool ShouldRender();
-
 /**
  * initialize global modules that are be needed before Init.
  * must be called from the very beginning of main.
@@ -71,12 +63,6 @@ enum ShutdownFlags
 	// without having to go through a full init-shutdown cycle
 	SHUTDOWN_FROM_CONFIG = 1
 };
-
-/**
- * enable/disable rendering of the GUI (intended mainly for screenshots)
- */
-extern void RenderGui(bool RenderingState);
-extern void RenderLogger(bool RenderingState);
 
 extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
 
