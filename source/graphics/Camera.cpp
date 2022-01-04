@@ -15,11 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * CCamera holds a view and a projection matrix. It also has a frustum
- * which can be used to cull objects for rendering.
- */
-
 #include "precompiled.h"
 
 #include "Camera.h"
@@ -32,6 +27,7 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 
 CCamera::CCamera()
@@ -275,7 +271,7 @@ CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const
 
 	CPlane plane;
 	plane.Set(CVector3D(0.f, 1.f, 0.f),										// upwards normal
-		CVector3D(0.f, g_Renderer.GetWaterManager().m_WaterHeight, 0.f));	// passes through water plane
+		CVector3D(0.f, g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight, 0.f));	// passes through water plane
 
 	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
 
@@ -353,7 +349,7 @@ CVector3D CCamera::GetFocus() const
 
 	CPlane plane;
 	plane.Set(CVector3D(0.f, 1.f, 0.f),										// upwards normal
-		CVector3D(0.f, g_Renderer.GetWaterManager().m_WaterHeight, 0.f));	// passes through water plane
+		CVector3D(0.f, g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight, 0.f));	// passes through water plane
 
 	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
 

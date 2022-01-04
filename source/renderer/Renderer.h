@@ -15,11 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * higher level interface on top of OpenGL to render basic objects:
- * terrain, models, sprites, particles etc.
- */
-
 #ifndef INCLUDED_RENDERER
 #define INCLUDED_RENDERER
 
@@ -34,51 +29,22 @@
 
 class CDebugRenderer;
 class CFontManager;
-class CLightEnv;
-class CMaterial;
-class CMaterialManager;
-class CModel;
-class CParticleManager;
-class CPatch;
 class CPostprocManager;
+class CSceneRenderer;
 class CShaderManager;
-class CSimulation2;
 class CTextureManager;
 class CTimeManager;
-class RenderPathVertexShader;
-class ShadowMap;
-class SkyManager;
-class TerrainRenderer;
-class WaterManager;
 
-// rendering modes
-enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
-
-// transparency modes
-enum ETransparentMode { TRANSPARENT, TRANSPARENT_OPAQUE, TRANSPARENT_BLEND };
-
-// access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
 
-class CRenderer :
-	public Singleton<CRenderer>,
-	private SceneCollector
+/**
+ * Higher level interface on top of the whole frame rendering. It does know
+ * what should be rendered and via which renderer but shouldn't know how to
+ * render a particular area, like UI or scene.
+ */
+class CRenderer : public Singleton<CRenderer>
 {
 public:
-	enum CullGroup
-	{
-		CULL_DEFAULT,
-		CULL_SHADOWS_CASCADE_0,
-		CULL_SHADOWS_CASCADE_1,
-		CULL_SHADOWS_CASCADE_2,
-		CULL_SHADOWS_CASCADE_3,
-		CULL_REFLECTIONS,
-		CULL_REFRACTIONS,
-		CULL_SILHOUETTE_OCCLUDER,
-		CULL_SILHOUETTE_CASTER,
-		CULL_MAX
-	};
-
 	// stats class - per frame counts of number of draw calls, poly counts etc
 	struct Stats
 	{
@@ -111,47 +77,27 @@ public:
 	};
 
 public:
-	// constructor, destructor
 	CRenderer();
 	~CRenderer();
 
 	// open up the renderer: performs any necessary initialisation
-	bool Open(int width,int height);
+	bool Open(int width, int height);
 
 	// resize renderer view
-	void Resize(int width,int height);
+	void Resize(int width, int height);
 
 	// return view width
 	int GetWidth() const { return m_Width; }
 	// return view height
 	int GetHeight() const { return m_Height; }
-	// return view aspect ratio
-	float GetAspect() const { return float(m_Width)/float(m_Height); }
 
 	// signal frame start
 	void BeginFrame();
 	// signal frame end
 	void EndFrame();
 
-	/**
-	 * Set simulation context for rendering purposes.
-	 * Must be called at least once when the game has started and before
-	 * frames are rendered.
-	 */
-	void SetSimulation(CSimulation2* simulation);
-
 	// trigger a reload of shaders (when parameters they depend on have changed)
 	void MakeShadersDirty();
-
-	/**
-	 * Set up the camera used for rendering the next scene; this includes
-	 * setting OpenGL state like viewport, projection and modelview matrices.
-	 *
-	 * @param viewCamera this camera determines the eye position for rendering
-	 * @param cullCamera this camera determines the frustum for culling in the renderer and
-	 * for shadow calculations
-	 */
-	void SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCamera);
 
 	// set the viewport
 	void SetViewport(const SViewPort &);
@@ -159,101 +105,23 @@ public:
 	// get the last viewport
 	SViewPort GetViewport();
 
-	/**
-	 * Render the given scene immediately.
-	 * @param scene a Scene object describing what should be rendered.
-	 */
-	void RenderScene(Scene& scene);
-
-	/**
-	 * Return the scene that is currently being rendered.
-	 * Only valid when the renderer is in a RenderScene call.
-	 */
-	Scene& GetScene();
-
-	/**
-	 * Render text overlays on top of the scene.
-	 * Assumes the caller has set up the GL environment for orthographic rendering
-	 * with texturing and blending.
-	 */
-	void RenderTextOverlays();
-
-	// set the current lighting environment; (note: the passed pointer is just copied to a variable within the renderer,
-	// so the lightenv passed must be scoped such that it is not destructed until after the renderer is no longer rendering)
-	void SetLightEnv(CLightEnv* lightenv)
-	{
-		m_LightEnv = lightenv;
-	}
-
-	// set the mode to render subsequent terrain patches
-	void SetTerrainRenderMode(ERenderMode mode) { m_TerrainRenderMode = mode; }
-	// get the mode to render subsequent terrain patches
-	ERenderMode GetTerrainRenderMode() const { return m_TerrainRenderMode; }
-
-	// set the mode to render subsequent water patches
-	void SetWaterRenderMode(ERenderMode mode) { m_WaterRenderMode = mode; }
-	// get the mode to render subsequent water patches
-	ERenderMode GetWaterRenderMode() const { return m_WaterRenderMode; }
-
-	// set the mode to render subsequent models
-	void SetModelRenderMode(ERenderMode mode) { m_ModelRenderMode = mode; }
-	// get the mode to render subsequent models
-	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
-
-	// Get the mode to render subsequent overlays.
-	ERenderMode GetOverlayRenderMode() const { return m_OverlayRenderMode; }
-	// Set the mode to render subsequent overlays.
-	void SetOverlayRenderMode(ERenderMode mode) { m_OverlayRenderMode = mode; }
-
-	// debugging
-	void SetDisplayTerrainPriorities(bool enabled) { m_DisplayTerrainPriorities = enabled; }
-
 	// bind a GL texture object to active unit
 	void BindTexture(int unit, unsigned int tex);
 
 	// return stats accumulated for current frame
 	Stats& GetStats() { return m_Stats; }
 
-	// return the current light environment
-	const CLightEnv &GetLightEnv() { return *m_LightEnv; }
-
-	// return the current view camera
-	const CCamera& GetViewCamera() const { return m_ViewCamera; }
-	// replace the current view camera
-	void SetViewCamera(const CCamera& camera) { m_ViewCamera = camera; }
-
-	// return the current cull camera
-	const CCamera& GetCullCamera() const { return m_CullCamera; }
-
-	/**
-	 * GetWaterManager: Return the renderer's water manager.
-	 *
-	 * @return the WaterManager object used by the renderer
-	 */
-	WaterManager& GetWaterManager();
-
-	/**
-	 * GetSkyManager: Return the renderer's sky manager.
-	 *
-	 * @return the SkyManager object used by the renderer
-	 */
-	SkyManager& GetSkyManager();
-
 	CTextureManager& GetTextureManager();
 
 	CShaderManager& GetShaderManager();
-
-	CParticleManager& GetParticleManager();
-
-	TerrainRenderer& GetTerrainRenderer();
-
-	CMaterialManager& GetMaterialManager();
 
 	CFontManager& GetFontManager();
 
 	CTimeManager& GetTimeManager();
 
 	CPostprocManager& GetPostprocManager();
+
+	CSceneRenderer& GetSceneRenderer();
 
 	CDebugRenderer& GetDebugRenderer();
 
@@ -264,13 +132,6 @@ public:
 	 */
 	const Caps& GetCapabilities() const { return m_Caps; }
 
-	ShadowMap& GetShadowMap();
-
-	/**
-	 * Resets the render state to default, that was before a game started
-	 */
-	void ResetState();
-
 protected:
 	friend class CPatchRData;
 	friend class CDecalRData;
@@ -279,54 +140,14 @@ protected:
 	friend class InstancingModelRenderer;
 	friend class CRenderingOptions;
 
-	//BEGIN: Implementation of SceneCollector
-	void Submit(CPatch* patch);
-	void Submit(SOverlayLine* overlay);
-	void Submit(SOverlayTexturedLine* overlay);
-	void Submit(SOverlaySprite* overlay);
-	void Submit(SOverlayQuad* overlay);
-	void Submit(CModelDecal* decal);
-	void Submit(CParticleEmitter* emitter);
-	void Submit(SOverlaySphere* overlay);
-	void SubmitNonRecursive(CModel* model);
-	//END: Implementation of SceneCollector
-
-	// render any batched objects
-	void RenderSubmissions(const CBoundingBoxAligned& waterScissor);
-
-	// patch rendering stuff
-	void RenderPatches(const CShaderDefines& context, int cullGroup);
-
-	// model rendering stuff
-	void RenderModels(const CShaderDefines& context, int cullGroup);
-	void RenderTransparentModels(const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling);
-
-	void RenderSilhouettes(const CShaderDefines& context);
-
-	void RenderParticles(int cullGroup);
-
-	// shadow rendering stuff
-	void RenderShadowMap(const CShaderDefines& context);
-
-	// render water reflection and refraction textures
-	void RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
-	void RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
-
-	void ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;
-	void ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;
-
-	// debugging
-	void DisplayFrustum();
-
-	// enable oblique frustum clipping with the given clip plane
-	void SetObliqueFrustumClipping(CCamera& camera, const CVector4D& clipPlane) const;
-
+	// SetRenderPath: Select the preferred render path.
+	// This may only be called before Open(), because the layout of vertex arrays and other
+	// data may depend on the chosen render path.
 	void SetRenderPath(RenderPath rp);
 
 	void ReloadShaders();
 
-	// RENDERER DATA:
-	/// Private data that is not needed by inline functions
+	// Private data that is not needed by inline functions.
 	class Internals;
 	std::unique_ptr<Internals> m;
 	// view width
@@ -334,50 +155,14 @@ protected:
 	// view height
 	int m_Height;
 
-	// Current terrain rendering mode.
-	ERenderMode m_TerrainRenderMode;
-	// Current water rendering mode.
-	ERenderMode m_WaterRenderMode;
-	// Current model rendering mode.
-	ERenderMode m_ModelRenderMode;
-	// Current overlay rendering mode.
-	ERenderMode m_OverlayRenderMode;
-
 	SViewPort m_Viewport;
 
-	/**
-	 * m_ViewCamera: determines the eye position for rendering
-	 *
-	 * @see CGameView::m_ViewCamera
-	 */
-	CCamera m_ViewCamera;
-
-	/**
-	 * m_CullCamera: determines the frustum for culling and shadowmap calculations
-	 *
-	 * @see CGameView::m_ViewCamera
-	 */
-	CCamera m_CullCamera;
-
-	// only valid inside a call to RenderScene
-	Scene* m_CurrentScene;
-	int m_CurrentCullGroup;
-
-	// color used to clear screen in BeginFrame
-	float m_ClearColor[4];
-	// current lighting setup
-	CLightEnv* m_LightEnv;
 	// card capabilities
 	Caps m_Caps;
 	// build card cap bits
 	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
-
-	/**
-	 * Enable rendering of terrain tile priority text overlay, for debugging.
-	 */
-	bool m_DisplayTerrainPriorities;
 };
 
 #endif // INCLUDED_RENDERER

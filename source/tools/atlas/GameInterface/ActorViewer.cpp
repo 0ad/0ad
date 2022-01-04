@@ -45,6 +45,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptContext.h"
@@ -353,7 +354,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStr& animation, player_id_t
 		}
 
 		// Clear particles associated with deleted entity
-		g_Renderer.GetParticleManager().ClearUnattachedEmitters();
+		g_Renderer.GetSceneRenderer().GetParticleManager().ClearUnattachedEmitters();
 
 		// If there's no actor to display, return with nothing loaded
 		if (id.empty())
@@ -445,18 +446,18 @@ void ActorViewer::SetEnabled(bool enabled)
 		m.OldShadows = g_RenderingOptions.GetShadows();
 		SetShadowsEnabled(m.ShadowsEnabled);
 
-		m.OldSky = g_Renderer.GetSkyManager().GetRenderSky();
-		g_Renderer.GetSkyManager().SetRenderSky(false);
+		m.OldSky = g_Renderer.GetSceneRenderer().GetSkyManager().GetRenderSky();
+		g_Renderer.GetSceneRenderer().GetSkyManager().SetRenderSky(false);
 
-		m.OldWater = g_Renderer.GetWaterManager().m_RenderWater;
-		g_Renderer.GetWaterManager().m_RenderWater = m.WaterEnabled;
+		m.OldWater = g_Renderer.GetSceneRenderer().GetWaterManager().m_RenderWater;
+		g_Renderer.GetSceneRenderer().GetWaterManager().m_RenderWater = m.WaterEnabled;
 	}
 	else
 	{
 		// Restore the old renderer state
 		SetShadowsEnabled(m.OldShadows);
-		g_Renderer.GetSkyManager().SetRenderSky(m.OldSky);
-		g_Renderer.GetWaterManager().m_RenderWater = m.OldWater;
+		g_Renderer.GetSceneRenderer().GetSkyManager().SetRenderSky(m.OldSky);
+		g_Renderer.GetSceneRenderer().GetWaterManager().m_RenderWater = m.OldWater;
 	}
 }
 
@@ -501,7 +502,7 @@ void ActorViewer::Render()
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
 
 	// Set simulation context for rendering purposes
-	g_Renderer.SetSimulation(&m.Simulation2);
+	g_Renderer.GetSceneRenderer().SetSimulation(&m.Simulation2);
 
 	g_Renderer.BeginFrame();
 
@@ -519,9 +520,9 @@ void ActorViewer::Render()
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
 	camera.UpdateFrustum();
 
-	g_Renderer.SetSceneCamera(camera, camera);
+	g_Renderer.GetSceneRenderer().SetSceneCamera(camera, camera);
 
-	g_Renderer.RenderScene(m);
+	g_Renderer.GetSceneRenderer().RenderScene(m);
 
 	glDisable(GL_DEPTH_TEST);
 	g_Logger->Render();

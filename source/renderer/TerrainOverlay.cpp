@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@
 #include "ps/Profile.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/TerrainRenderer.h"
 #include "simulation2/system/SimContext.h"
 
@@ -223,7 +224,7 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
 	overlayShader->Bind();
-	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
@@ -284,7 +285,7 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
 	overlayShader->Bind();
-	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
@@ -348,7 +349,7 @@ void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 	matrix._23 = m_TexelsPerTile / (m_Texture->GetHeight() * TERRAIN_TILE_SIZE);
 	matrix._44 = 1;
 
-	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture.get());
+	g_Renderer.GetSceneRenderer().GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture.get());
 }
 
 SColor4ub TerrainTextureOverlay::GetColor(size_t idx, u8 alpha) const

@@ -23,9 +23,9 @@
 #include "graphics/RenderableObject.h"
 #include "graphics/Terrain.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/MessageTypes.h"
-
 #include "tools/atlas/GameInterface/GameLoop.h"
 
 class CCmpWaterManager : public ICmpWaterManager
@@ -57,7 +57,7 @@ public:
 	{
 		// Clear the map size & data.
 		if (CRenderer::IsInitialised())
-			g_Renderer.GetWaterManager().SetMapSize(0);
+			g_Renderer.GetSceneRenderer().GetWaterManager().SetMapSize(0);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -72,7 +72,7 @@ public:
 		deserialize.NumberFixed_Unbounded("height", m_WaterHeight);
 
 		if (CRenderer::IsInitialised())
-			g_Renderer.GetWaterManager().SetMapSize(GetSimContext().GetTerrain().GetVerticesPerSide());
+			g_Renderer.GetSceneRenderer().GetWaterManager().SetMapSize(GetSimContext().GetTerrain().GetVerticesPerSide());
 
 		RecomputeWaterData();
 	}
@@ -85,7 +85,7 @@ public:
 			{
 				const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 				if (CRenderer::IsInitialised())
-					g_Renderer.GetWaterManager().m_WaterTexTimer += msgData.deltaSimTime;
+					g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterTexTimer += msgData.deltaSimTime;
 				break;
 			}
 			case MT_TerrainChanged:
@@ -105,8 +105,8 @@ public:
 	{
 		if (CRenderer::IsInitialised())
 		{
-			g_Renderer.GetWaterManager().RecomputeWaterData();
-			g_Renderer.GetWaterManager().m_WaterHeight = m_WaterHeight.ToFloat();
+			g_Renderer.GetSceneRenderer().GetWaterManager().RecomputeWaterData();
+			g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight = m_WaterHeight.ToFloat();
 		}
 
 		// Tell the terrain it'll need to recompute its cached render data

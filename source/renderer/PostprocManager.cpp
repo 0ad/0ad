@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -759,11 +759,17 @@ void CPostprocManager::ResolveMultisampleFramebuffer()
 
 #warning TODO: implement PostprocManager for GLES
 
-void ApplyBlurDownscale2x(GLuint UNUSED(inTex), GLuint UNUSED(outTex), int UNUSED(inWidth), int UNUSED(inHeight))
+void ApplyBlurDownscale2x(
+	Renderer::Backend::GL::CTexture* UNUSED(inTex),
+	Renderer::Backend::GL::CTexture* UNUSED(outTex),
+	int UNUSED(inWidth), int UNUSED(inHeight))
 {
 }
 
-void CPostprocManager::ApplyBlurGauss(GLuint UNUSED(inOutTex), GLuint UNUSED(tempTex), int UNUSED(inWidth), int UNUSED(inHeight))
+void CPostprocManager::ApplyBlurGauss(
+	Renderer::Backend::GL::CTexture* UNUSED(inOutTex),
+	Renderer::Backend::GL::CTexture* UNUSED(tempTex),
+	int UNUSED(inWidth), int UNUSED(inHeight))
 {
 }
 

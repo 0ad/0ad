@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,8 @@
 #include "graphics/ShaderProgram.h"
 #include "graphics/TextureManager.h"
 #include "ps/CStrInternStatic.h"
-
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
@@ -179,11 +179,11 @@ void CParticleEmitter::PrepareForRendering()
 
 void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 {
-	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 	shader->BindTexture(str_losTex, los.GetTextureSmooth());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	const CLightEnv& lightEnv = g_Renderer.GetSceneRenderer().GetLightEnv();
 	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
 	shader->Uniform(str_fogColor, lightEnv.m_FogColor);
 	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);

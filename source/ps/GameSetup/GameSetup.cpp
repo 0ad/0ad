@@ -76,6 +76,7 @@
 #include "ps/World.h"
 #include "renderer/ModelRenderer.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/VertexBufferManager.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/JSON.h"
@@ -205,7 +206,7 @@ void Render()
 		g_Game->GetView()->BeginFrame();
 
 	if (g_Game)
-		g_Renderer.SetSimulation(g_Game->GetSimulation2());
+		g_Renderer.GetSceneRenderer().SetSimulation(g_Game->GetSimulation2());
 
 	// start new frame
 	g_Renderer.BeginFrame();
@@ -218,7 +219,7 @@ void Render()
 		ogl_WarnIfError();
 	}
 
-	g_Renderer.RenderTextOverlays();
+	g_Renderer.GetSceneRenderer().RenderTextOverlays();
 
 	// If we're in Atlas game view, render special tools
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
@@ -490,7 +491,7 @@ static void InitRenderer()
 	// Setup lighting environment. Since the Renderer accesses the
 	// lighting environment through a pointer, this has to be done before
 	// the first Frame.
-	g_Renderer.SetLightEnv(&g_LightEnv);
+	g_Renderer.GetSceneRenderer().SetLightEnv(&g_LightEnv);
 
 	// I haven't seen the camera affecting GUI rendering and such, but the
 	// viewport has to be updated according to the video mode
@@ -564,7 +565,7 @@ void EndGame()
 	if (CRenderer::IsInitialised())
 	{
 		ISoundManager::CloseGame();
-		g_Renderer.ResetState();
+		g_Renderer.GetSceneRenderer().ResetState();
 	}
 }
 

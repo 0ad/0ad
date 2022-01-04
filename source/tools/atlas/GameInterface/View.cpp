@@ -39,6 +39,7 @@
 #include "renderer/backend/gl/Device.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpParticleManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
@@ -137,7 +138,7 @@ ActorViewer& AtlasViewActor::GetActorViewer()
 void AtlasViewActor::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"wireframe")
-		g_Renderer.SetModelRenderMode(value ? WIREFRAME : SOLID);
+		g_Renderer.GetSceneRenderer().SetModelRenderMode(value ? WIREFRAME : SOLID);
 	else if (name == L"walk")
 		m_ActorViewer->SetWalkEnabled(value);
 	else if (name == L"ground")
@@ -280,7 +281,7 @@ void AtlasViewGame::DrawOverlays(CCanvas2D& canvas)
 void AtlasViewGame::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"priorities")
-		g_Renderer.SetDisplayTerrainPriorities(value);
+		g_Renderer.GetSceneRenderer().SetDisplayTerrainPriorities(value);
 	else if (name == L"movetool")
 		m_DrawMoveTool = value;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "ps/Profile.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/TexturedLineRData.h"
 #include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"
@@ -419,7 +420,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
-	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	// ----------------------------------------------------------------------------------------
 
@@ -434,7 +435,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-		shaderTexLineNormal->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+		shaderTexLineNormal->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 		// batch render only the non-always-visible overlay lines using the normal shader
 		RenderTexturedOverlayLines(shaderTexLineNormal, false);
@@ -456,7 +457,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineAlwaysVisible->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-		shaderTexLineAlwaysVisible->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+		shaderTexLineAlwaysVisible->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
 		RenderTexturedOverlayLines(shaderTexLineAlwaysVisible, true);
@@ -479,7 +480,7 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool alwaysVisible)
 {
 #if !CONFIG2_GLES
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 	for (size_t i = 0; i < m->texlines.size(); ++i)
@@ -494,7 +495,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool 
 		line->m_RenderData->Render(*line, shader);
 	}
 #if !CONFIG2_GLES
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
@@ -518,7 +519,7 @@ void OverlayRenderer::RenderQuadOverlays()
 	CShaderProgramPtr shader = shaderTech->GetShader();
 
 #if !CONFIG2_GLES
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 
@@ -526,13 +527,13 @@ void OverlayRenderer::RenderQuadOverlays()
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
-	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	shader->Bind();
 	shader->BindTexture(str_losTex, los.GetTexture());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	// Base offsets (in bytes) of the two backing stores relative to their owner VBO
 	u8* indexBase = m->quadIndices.Bind();
@@ -587,7 +588,7 @@ void OverlayRenderer::RenderQuadOverlays()
 	glDisable(GL_BLEND);
 
 #if !CONFIG2_GLES
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
@@ -599,7 +600,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
 #else
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	glActiveTextureARB(GL_TEXTURE0);
@@ -613,7 +614,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
 
@@ -647,7 +648,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 
-	if (g_Renderer.GetOverlayRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
@@ -746,7 +747,7 @@ void OverlayRenderer::RenderSphereOverlays()
 		transform.Scale(sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
 		transform.Translate(sphere->m_Center);
 
-		shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+		shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 		shader->Uniform(str_instancingTransform, transform);
 
 		shader->Uniform(str_color, sphere->m_Color);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,13 +27,14 @@
 #include "ps/Profile.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 
 struct ParticleRendererInternals
 {
 	int frameNumber;
 	CShaderTechniquePtr shader;
 	CShaderTechniquePtr shaderSolid;
-	std::vector<CParticleEmitter*> emitters[CRenderer::CULL_MAX];
+	std::vector<CParticleEmitter*> emitters[CSceneRenderer::CULL_MAX];
 };
 
 ParticleRenderer::ParticleRenderer()
@@ -54,7 +55,7 @@ void ParticleRenderer::Submit(int cullGroup, CParticleEmitter* emitter)
 
 void ParticleRenderer::EndFrame()
 {
-	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
 		m->emitters[cullGroup].clear();
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
@@ -94,7 +95,7 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 	++m->frameNumber;
 
-	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
 	{
 		PROFILE("update emitters");
 		for (size_t i = 0; i < m->emitters[cullGroup].size(); ++i)
@@ -105,12 +106,12 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 		}
 	}
 
-	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
 	{
 		// Sort back-to-front by distance from camera
 		PROFILE("sort emitters");
 		CMatrix3D worldToCam;
-		g_Renderer.GetViewCamera().GetOrientation().GetInverse(worldToCam);
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse(worldToCam);
 		std::stable_sort(m->emitters[cullGroup].begin(), m->emitters[cullGroup].end(), SortEmitterDistance(worldToCam));
 	}
 
@@ -125,8 +126,8 @@ void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
 
 	shader->BeginPass();
 
-	shader->GetShader()->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
-	shader->GetShader()->Uniform(str_modelViewMatrix, g_Renderer.GetViewCamera().GetOrientation().GetInverse());
+	shader->GetShader()->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	shader->GetShader()->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
 
 	if (!solidColor)
 		glEnable(GL_BLEND);

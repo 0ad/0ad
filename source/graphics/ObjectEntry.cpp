@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "simulation2/Simulation2.h"
 
 #include <sstream>
@@ -80,7 +81,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 
 	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
 	{
-		CMaterial material = g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material);
+		CMaterial material = g_Renderer.GetSceneRenderer().GetMaterialManager().LoadMaterial(m_Base->m_Material);
 
 		for (const CObjectBase::Samp& samp : m_Samplers)
 		{
@@ -103,7 +104,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 
 	if (!variation.particles.empty())
 	{
-		m_Model = new CModelParticleEmitter(g_Renderer.GetParticleManager().LoadEmitterType(variation.particles));
+		m_Model = new CModelParticleEmitter(g_Renderer.GetSceneRenderer().GetParticleManager().LoadEmitterType(variation.particles));
 		return true;
 	}
 
@@ -132,7 +133,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 	CModel* model = new CModel(objectManager.GetSkeletonAnimManager(), m_Simulation);
 	delete m_Model;
 	m_Model = model;
-	model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material));
+	model->SetMaterial(g_Renderer.GetSceneRenderer().GetMaterialManager().LoadMaterial(m_Base->m_Material));
 	model->GetMaterial().AddStaticUniform("objectColor", CVector4D(m_Color.r, m_Color.g, m_Color.b, m_Color.a));
 	model->InitModel(modeldef);
 

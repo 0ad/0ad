@@ -39,6 +39,7 @@
 #include "ps/World.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/TimeManager.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/FunctionWrapper.h"
@@ -49,7 +50,6 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/system/ReplayTurnManager.h"
 #include "soundmanager/ISoundManager.h"
-
 #include "tools/atlas/GameInterface/GameLoop.h"
 
 #include <fstream>
@@ -262,7 +262,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		m_World->RegisterInit(mapFile, *scriptInterface.GetContext(), settings, m_PlayerID);
 	}
 	if (m_GameView)
-		RegMemFun(&g_Renderer.GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
+		RegMemFun(&g_Renderer.GetSceneRenderer().GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
 
 	if (m_IsSavedGame)
 		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);

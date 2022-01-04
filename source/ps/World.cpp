@@ -33,6 +33,7 @@
 #include "ps/LoaderThunks.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "simulation2/Simulation2.h"
 
 /**
@@ -70,8 +71,8 @@ void CWorld::RegisterInit(const CStrW& mapFile, const ScriptContext& cx, JS::Han
 		{
 			CTriggerManager* pTriggerManager = NULL;
 			m_MapReader->LoadMap(mapfilename, cx, settings, m_Terrain,
-				CRenderer::IsInitialised() ? &g_Renderer.GetWaterManager() : NULL,
-				CRenderer::IsInitialised() ? &g_Renderer.GetSkyManager() : NULL,
+				CRenderer::IsInitialised() ? &g_Renderer.GetSceneRenderer().GetWaterManager() : NULL,
+				CRenderer::IsInitialised() ? &g_Renderer.GetSceneRenderer().GetSkyManager() : NULL,
 				&g_LightEnv, m_pGame->GetView(),
 				m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
 				pTriggerManager, CRenderer::IsInitialised() ? &g_Renderer.GetPostprocManager() : NULL,
@@ -93,8 +94,8 @@ void CWorld::RegisterInitRMS(const CStrW& scriptFile, const ScriptContext& cx, J
 	// If scriptFile is empty, a blank map will be generated using settings (no RMS run)
 	CTriggerManager* pTriggerManager = NULL;
 	m_MapReader->LoadRandomMap(scriptFile, cx, settings, m_Terrain,
-		CRenderer::IsInitialised() ? &g_Renderer.GetWaterManager() : NULL,
-		CRenderer::IsInitialised() ? &g_Renderer.GetSkyManager() : NULL,
+		CRenderer::IsInitialised() ? &g_Renderer.GetSceneRenderer().GetWaterManager() : NULL,
+		CRenderer::IsInitialised() ? &g_Renderer.GetSceneRenderer().GetSkyManager() : NULL,
 		&g_LightEnv, m_pGame->GetView(),
 		m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
 		pTriggerManager, CRenderer::IsInitialised() ? &g_Renderer.GetPostprocManager() : NULL,

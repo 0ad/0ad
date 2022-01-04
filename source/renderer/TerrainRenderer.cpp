@@ -41,6 +41,7 @@
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/ShadowMap.h"
 #include "renderer/SkyManager.h"
 #include "renderer/VertexArray.h"
@@ -65,10 +66,10 @@ struct TerrainRendererInternals
 	Phase phase;
 
 	/// Patches that were submitted for this frame
-	std::vector<CPatchRData*> visiblePatches[CRenderer::CULL_MAX];
+	std::vector<CPatchRData*> visiblePatches[CSceneRenderer::CULL_MAX];
 
 	/// Decals that were submitted for this frame
-	std::vector<CDecalRData*> visibleDecals[CRenderer::CULL_MAX];
+	std::vector<CDecalRData*> visibleDecals[CSceneRenderer::CULL_MAX];
 
 	/// Fancy water shader
 	CShaderTechniquePtr fancyWaterTech;
@@ -147,7 +148,7 @@ void TerrainRenderer::EndFrame()
 {
 	ENSURE(m->phase == Phase_Render || m->phase == Phase_Submit);
 
-	for (int i = 0; i < CRenderer::CULL_MAX; ++i)
+	for (int i = 0; i < CSceneRenderer::CULL_MAX; ++i)
 	{
 		m->visiblePatches[i].clear();
 		m->visibleDecals[i].clear();
@@ -181,7 +182,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 
 	debugOverlayShader->Bind();
 	debugOverlayShader->BindTexture(str_baseTex, texture);
-	debugOverlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
 	CPatchRData::RenderStreams(visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
 
@@ -195,7 +196,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 	if (!waterBounds.IsEmpty())
 	{
 		// Add a delta to avoid z-fighting.
-		const float height = g_Renderer.GetWaterManager().m_WaterHeight + 0.05f;
+		const float height = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight + 0.05f;
 		const float waterPos[] = {
 			waterBounds[0].X, height, waterBounds[0].Z,
 			waterBounds[1].X, height, waterBounds[0].Z,
@@ -227,15 +228,17 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
  */
 void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow)
 {
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
-	shader->Uniform(str_cameraPos, g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
+	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	shader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_cameraPos, sceneRenderer.GetViewCamera().GetOrientation().GetTranslation());
+
+	const CLightEnv& lightEnv = sceneRenderer.GetLightEnv();
 
 	if (shadow)
 		shadow->BindTo(shader);
 
-	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+	CLOSTexture& los = sceneRenderer.GetScene().GetLOSTexture();
 	shader->BindTexture(str_losTex, los.GetTextureSmooth());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
@@ -260,7 +263,7 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	techSolid->BeginPass();
 	CShaderProgramPtr shaderSolid = techSolid->GetShader();
-	shaderSolid->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
 	CPatchRData::RenderSides(visiblePatches, shaderSolid);
@@ -305,7 +308,7 @@ void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_dummy);
 	dummyTech->BeginPass();
 	CShaderProgramPtr dummyShader = dummyTech->GetShader();
-	dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	dummyShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, color);
 
 	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS);
@@ -356,7 +359,9 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	PROFILE3_GPU("fancy water");
 	OGL_SCOPED_DEBUG_GROUP("Render Fancy Water");
 
-	WaterManager& waterManager = g_Renderer.GetWaterManager();
+	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
+
+	WaterManager& waterManager = sceneRenderer.GetWaterManager();
 	CShaderDefines defines = context;
 
 	// If we're using fancy water, make sure its shader is loaded
@@ -382,7 +387,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		waterManager.m_NeedsReloading = false;
 	}
 
-	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
+	CLOSTexture& losTexture = sceneRenderer.GetScene().GetLOSTexture();
 
 	// Calculating the advanced informations about Foam and all if the quality calls for it.
 	/*if (WaterMgr->m_NeedInfoUpdate && (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves))
@@ -413,7 +418,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		dummyTech->BeginPass();
 		CShaderProgramPtr dummyShader = dummyTech->GetShader();
 
-		dummyShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+		dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 		dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
 		std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 		for (size_t i = 0; i < visiblePatches.size(); ++i)
@@ -434,7 +439,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterTech->BeginPass();
 	CShaderProgramPtr fancyWaterShader = m->fancyWaterTech->GetShader();
 
-	const CCamera& camera = g_Renderer.GetViewCamera();
+	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
 	const double period = 8.0;
 	fancyWaterShader->BindTexture(str_normalMap, waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)]);
@@ -458,11 +463,11 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		fancyWaterShader->BindTexture(str_reflectionMap, waterManager.m_ReflectionTexture.get());
 	fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	const CLightEnv& lightEnv = sceneRenderer.GetLightEnv();
 
-	fancyWaterShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	fancyWaterShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 
-	fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager().GetSkyCube());
+	fancyWaterShader->BindTexture(str_skyCube, sceneRenderer.GetSkyManager().GetSkyCube());
 	// TODO: check that this rotates in the right direction.
 	CMatrix3D skyBoxRotation;
 	skyBoxRotation.SetIdentity();
@@ -533,7 +538,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	PROFILE3_GPU("simple water");
 	OGL_SCOPED_DEBUG_GROUP("Render Simple Water");
 
-	const WaterManager& waterManager = g_Renderer.GetWaterManager();
+	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
 	glEnable(GL_DEPTH_TEST);
@@ -549,7 +554,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	waterSimpleShader->Bind();
 	waterSimpleShader->BindTexture(str_baseTex, waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)]);
 	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
-	waterSimpleShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	waterSimpleShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	waterSimpleShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
 	waterSimpleShader->Uniform(str_time, static_cast<float>(time));
 	waterSimpleShader->Uniform(str_color, waterManager.m_WaterColor);
@@ -574,7 +579,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 // Render water that is part of the terrain
 void TerrainRenderer::RenderWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
-	WaterManager& waterManager = g_Renderer.GetWaterManager();
+	WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 
 	waterManager.UpdateQuality();
 

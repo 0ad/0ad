@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 
 #if OS_WIN
 // We don't include wutil header directly to prevent including Windows headers.
@@ -261,10 +262,10 @@ QUERYHANDLER(RenderLoop)
 
 MESSAGEHANDLER(RenderStyle)
 {
-	g_Renderer.SetTerrainRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
-	g_Renderer.SetWaterRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
-	g_Renderer.SetModelRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
-	g_Renderer.SetOverlayRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.GetSceneRenderer().SetTerrainRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.GetSceneRenderer().SetWaterRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.GetSceneRenderer().SetModelRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.GetSceneRenderer().SetOverlayRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
 }
 
 } // namespace AtlasMessage

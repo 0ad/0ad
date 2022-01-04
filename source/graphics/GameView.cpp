@@ -55,6 +55,7 @@
 #include "ps/TouchInput.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -167,7 +168,7 @@ CGameView::CGameView(CGame *pGame):
 	m(new CGameViewImpl(pGame))
 {
 	m->CullCamera = m->ViewCamera;
-	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
+	g_Renderer.GetSceneRenderer().SetSceneCamera(m->ViewCamera, m->CullCamera);
 }
 
 CGameView::~CGameView()
@@ -233,7 +234,7 @@ void CGameView::BeginFrame()
 		// Set up cull camera
 		m->CullCamera = m->ViewCamera;
 	}
-	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
+	g_Renderer.GetSceneRenderer().SetSceneCamera(m->ViewCamera, m->CullCamera);
 
 	CheckLightEnv();
 
@@ -242,7 +243,7 @@ void CGameView::BeginFrame()
 
 void CGameView::Render()
 {
-	g_Renderer.RenderScene(*this);
+	g_Renderer.GetSceneRenderer().RenderScene(*this);
 }
 
 ///////////////////////////////////////////////////////////
@@ -254,7 +255,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	PROFILE3("submit terrain");
 
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-	float waterHeight = g_Renderer.GetWaterManager().m_WaterHeight + 0.001f;
+	float waterHeight = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight + 0.001f;
 	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
 
 	// find out which patches will be drawn
@@ -302,7 +303,7 @@ void CGameView::CheckLightEnv()
 void CGameView::UnloadResources()
 {
 	g_TexMan.UnloadTerrainTextures();
-	g_Renderer.GetWaterManager().UnloadWaterTextures();
+	g_Renderer.GetSceneRenderer().GetWaterManager().UnloadWaterTextures();
 }
 
 void CGameView::Update(const float deltaRealTime)
@@ -387,30 +388,31 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 	case SDL_HOTKEYPRESS:
 	{
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+		CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 		if (hotkey == "wireframe")
 		{
 			if (g_XmppClient && g_rankedGame == true)
 				break;
-			else if (g_Renderer.GetModelRenderMode() == SOLID)
+			else if (sceneRenderer.GetModelRenderMode() == SOLID)
 			{
-				g_Renderer.SetTerrainRenderMode(EDGED_FACES);
-				g_Renderer.SetWaterRenderMode(EDGED_FACES);
-				g_Renderer.SetModelRenderMode(EDGED_FACES);
-				g_Renderer.SetOverlayRenderMode(EDGED_FACES);
+				sceneRenderer.SetTerrainRenderMode(EDGED_FACES);
+				sceneRenderer.SetWaterRenderMode(EDGED_FACES);
+				sceneRenderer.SetModelRenderMode(EDGED_FACES);
+				sceneRenderer.SetOverlayRenderMode(EDGED_FACES);
 			}
-			else if (g_Renderer.GetModelRenderMode() == EDGED_FACES)
+			else if (sceneRenderer.GetModelRenderMode() == EDGED_FACES)
 			{
-				g_Renderer.SetTerrainRenderMode(WIREFRAME);
-				g_Renderer.SetWaterRenderMode(WIREFRAME);
-				g_Renderer.SetModelRenderMode(WIREFRAME);
-				g_Renderer.SetOverlayRenderMode(WIREFRAME);
+				sceneRenderer.SetTerrainRenderMode(WIREFRAME);
+				sceneRenderer.SetWaterRenderMode(WIREFRAME);
+				sceneRenderer.SetModelRenderMode(WIREFRAME);
+				sceneRenderer.SetOverlayRenderMode(WIREFRAME);
 			}
 			else
 			{
-				g_Renderer.SetTerrainRenderMode(SOLID);
-				g_Renderer.SetWaterRenderMode(SOLID);
-				g_Renderer.SetModelRenderMode(SOLID);
-				g_Renderer.SetOverlayRenderMode(SOLID);
+				sceneRenderer.SetTerrainRenderMode(SOLID);
+				sceneRenderer.SetWaterRenderMode(SOLID);
+				sceneRenderer.SetModelRenderMode(SOLID);
+				sceneRenderer.SetOverlayRenderMode(SOLID);
 			}
 			return IN_HANDLED;
 		}

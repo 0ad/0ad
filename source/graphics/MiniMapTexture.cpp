@@ -38,6 +38,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
 #include "simulation2/Simulation2.h"
@@ -180,7 +181,7 @@ CMiniMapTexture::~CMiniMapTexture()
 
 void CMiniMapTexture::Update(const float UNUSED(deltaRealTime))
 {
-	if (m_WaterHeight != g_Renderer.GetWaterManager().m_WaterHeight)
+	if (m_WaterHeight != g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight)
 	{
 		m_TerrainTextureDirty = true;
 		m_FinalTextureDirty = true;
@@ -263,7 +264,7 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 	const u32 width = m_MapSize - 1;
 	const u32 height = m_MapSize - 1;
 
-	m_WaterHeight = g_Renderer.GetWaterManager().m_WaterHeight;
+	m_WaterHeight = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight;
 	m_TerrainTextureDirty = false;
 
 	for (u32 j = 0; j < height; ++j)

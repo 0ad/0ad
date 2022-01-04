@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,14 +20,14 @@
 #include "simulation2/system/Component.h"
 #include "ICmpTerrain.h"
 
-#include "ICmpObstructionManager.h"
-#include "ICmpRangeManager.h"
-#include "simulation2/MessageTypes.h"
-
 #include "graphics/Terrain.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "maths/Vector3D.h"
+#include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/MessageTypes.h"
 
 class CCmpTerrain : public ICmpTerrain
 {
@@ -144,8 +144,8 @@ public:
 
 		if (ReloadWater && CRenderer::IsInitialised())
 		{
-			g_Renderer.GetWaterManager().SetMapSize(vertices);
-			g_Renderer.GetWaterManager().RecomputeWaterData();
+			g_Renderer.GetSceneRenderer().GetWaterManager().SetMapSize(vertices);
+			g_Renderer.GetSceneRenderer().GetWaterManager().RecomputeWaterData();
 		}
 		MakeDirty(0, 0, tiles+1, tiles+1);
 	}

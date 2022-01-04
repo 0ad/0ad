@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,7 @@
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+#include "renderer/SceneRenderer.h"
 
 #include <array>
 
@@ -646,7 +647,7 @@ void ShadowMap::BeginRender()
 			glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
-	m->SavedViewCamera = g_Renderer.GetViewCamera();
+	m->SavedViewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
 	glEnable(GL_SCISSOR_TEST);
 }
@@ -661,7 +662,7 @@ void ShadowMap::PrepareCamera(const int cascade)
 	CCamera camera = m->SavedViewCamera;
 	camera.SetProjection(m->Cascades[cascade].LightProjection);
 	camera.GetOrientation() = m->InvLightTransform;
-	g_Renderer.SetViewCamera(camera);
+	g_Renderer.GetSceneRenderer().SetViewCamera(camera);
 
 	const SViewPort& cascadeViewPort = m->Cascades[cascade].ViewPort;
 	glScissor(
@@ -674,7 +675,7 @@ void ShadowMap::EndRender()
 {
 	glDisable(GL_SCISSOR_TEST);
 
-	g_Renderer.SetViewCamera(m->SavedViewCamera);
+	g_Renderer.GetSceneRenderer().SetViewCamera(m->SavedViewCamera);
 
 	{
 		PROFILE("unbind framebuffer");
@@ -695,9 +696,9 @@ void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 
 	shader->BindTexture(str_shadowTex, m->Texture.get());
 	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
-	const CVector3D cameraForward = g_Renderer.GetCullCamera().GetOrientation().GetIn();
+	const CVector3D cameraForward = g_Renderer.GetSceneRenderer().GetCullCamera().GetOrientation().GetIn();
 	shader->Uniform(str_cameraForward, cameraForward.X, cameraForward.Y, cameraForward.Z,
-		cameraForward.Dot(g_Renderer.GetCullCamera().GetOrientation().GetTranslation()));
+		cameraForward.Dot(g_Renderer.GetSceneRenderer().GetCullCamera().GetOrientation().GetTranslation()));
 	if (GetCascadeCount() == 1)
 	{
 		shader->Uniform(str_shadowTransform, m->Cascades[0].TextureMatrix);
@@ -746,7 +747,7 @@ void ShadowMap::RenderDebugBounds()
 	//  Red = culling frustum used to find potential shadow casters
 	//  Blue = frustum used for rendering the shadow map
 
-	const CMatrix3D transform = g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform;
+	const CMatrix3D transform = g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection() * m->InvLightTransform;
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

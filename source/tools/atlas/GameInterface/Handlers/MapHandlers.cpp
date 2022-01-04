@@ -42,6 +42,7 @@
 #include "ps/Loader.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/JSON.h"
@@ -225,7 +226,7 @@ MESSAGEHANDLER(SaveMap)
 	VfsPath pathname = VfsPath(*msg->filename).ChangeExtension(L".pmp");
 	writer.SaveMap(pathname,
 		g_Game->GetWorld()->GetTerrain(),
-		&g_Renderer.GetWaterManager(), &g_Renderer.GetSkyManager(),
+		&g_Renderer.GetSceneRenderer().GetWaterManager(), &g_Renderer.GetSceneRenderer().GetSkyManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema(),
 		&g_Renderer.GetPostprocManager(),
 		g_Game->GetSimulation2());
@@ -297,7 +298,7 @@ QUERYHANDLER(RasterizeMinimap)
 
 	ssize_t w = dimension;
 	ssize_t h = dimension;
-	const float waterHeight = g_Renderer.GetWaterManager().m_WaterHeight;
+	const float waterHeight = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight;
 
 	for (ssize_t j = 0; j < h; ++j)
 	{
