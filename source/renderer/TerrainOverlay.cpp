@@ -182,7 +182,8 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 	}
 
 #if CONFIG2_GLES
-#warning TODO: implement TerrainOverlay::RenderTile for GLES
+	UNUSED2(color); UNUSED2(i); UNUSED2(j);
+	#warning TODO: implement TerrainOverlay::RenderTile for GLES
 #else
 
 	CVector3D pos[2][2];
@@ -257,7 +258,8 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 	}
 
 #if CONFIG2_GLES
-#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
+	UNUSED2(color); UNUSED2(line_width); UNUSED2(i);  UNUSED2(j);
+	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
 #else
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

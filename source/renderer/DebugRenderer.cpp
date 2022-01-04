@@ -45,6 +45,7 @@ void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const 
 void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width)
 {
 #if CONFIG2_GLES
+	UNUSED2(line); UNUSED2(color); UNUSED2(width);
 	#warning TODO: implement drawing line for GLES
 #else
 	CShaderTechniquePtr debugLineTech =
@@ -97,6 +98,7 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, const CColor& color)
 {
 #if CONFIG2_GLES
+	UNUSED2(origin); UNUSED2(radius); UNUSED2(color);
 	#warning TODO: implement drawing circle for GLES
 #else
 	CShaderTechniquePtr debugCircleTech =
@@ -141,7 +143,8 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates)
 {
 #if CONFIG2_GLES
-#warning TODO: implement camera frustum for GLES
+	UNUSED2(camera); UNUSED2(color); UNUSED2(intermediates);
+	#warning TODO: implement camera frustum for GLES
 #else
 	CCamera::Quad nearPoints;
 	CCamera::Quad farPoints;

@@ -841,7 +841,8 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 {
 	OGL_SCOPED_DEBUG_GROUP("Render Waves");
 #if CONFIG2_GLES
-#warning Fix WaterManager::RenderWaves on GLES
+	UNUSED2(frustrum);
+	#warning Fix WaterManager::RenderWaves on GLES
 #else
 	if (!m_WaterFancyEffects)
 		return;

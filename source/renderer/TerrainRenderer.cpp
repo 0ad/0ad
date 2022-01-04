@@ -302,7 +302,8 @@ void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
 		return;
 
 #if CONFIG2_GLES
-#warning TODO: implement TerrainRenderer::RenderPatches for GLES
+	UNUSED2(color);
+	#warning TODO: implement TerrainRenderer::RenderPatches for GLES
 #else
 
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_dummy);

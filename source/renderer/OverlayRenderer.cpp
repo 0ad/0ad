@@ -598,7 +598,8 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	PROFILE3_GPU("overlays (fg)");
 
 #if CONFIG2_GLES
-#warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
+	UNUSED2(viewCamera);
+	#warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
 #else
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
