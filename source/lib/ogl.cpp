@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -375,6 +375,7 @@ void ogl_WarnIfErrorLoc(const char *file, int line)
 		debug_printf("%s:%d: OpenGL error(s) occurred: %s (%04x)\n", file, line, ogl_GetErrorName(first_error), (unsigned int)first_error);
 }
 
+#if KHR_DEBUG_ENABLED
 void GLAD_API_PTR ogl_OnDebugMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei UNUSED(length), const GLchar* message, const void* UNUSED(user_param))
 {
 	std::string debugSource = "unknown";
@@ -452,6 +453,7 @@ void GLAD_API_PTR ogl_OnDebugMessage(GLenum source, GLenum type, GLuint id, GLen
 
 	debug_printf("OpenGL | %s: %s source: %s id %u: %s\n", debugSeverity.c_str(), debugType.c_str(), debugSource.c_str(), id, message);
 }
+#endif
 
 
 // ignore and reset the specified error (as returned by glGetError).
