@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -163,12 +163,8 @@ void AtlasViewActor::SetParam(const std::wstring& name, int value)
 		m_ActorViewer->SetPropPointsMode(value);
 }
 
-void AtlasViewActor::SetParam(const std::wstring& name, const AtlasMessage::Color& value)
+void AtlasViewActor::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Color& UNUSED(value))
 {
-	if (name == L"background")
-	{
-		m_ActorViewer->SetBackgroundColor(SColor4ub(value.r, value.g, value.b, 255));
-	}
 }
 
 

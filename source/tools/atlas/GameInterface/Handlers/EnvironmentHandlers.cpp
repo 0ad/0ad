@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,16 +45,16 @@ sEnvironmentSettings GetSettings()
 
 	s.waterheight = cmpWaterManager->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
 
-	WaterManager* wm = g_Renderer.GetWaterManager();
-	s.watertype = wm->m_WaterType;
-	s.waterwaviness = wm->m_Waviness;
-	s.watermurkiness = wm->m_Murkiness;
-	s.windangle = wm->m_WindAngle;
+	const WaterManager& waterManager = g_Renderer.GetWaterManager();
+	s.watertype = waterManager.m_WaterType;
+	s.waterwaviness = waterManager.m_Waviness;
+	s.watermurkiness = waterManager.m_Murkiness;
+	s.windangle = waterManager.m_WindAngle;
 
 	// CColor colors
 #define COLOR(A, B) A = Color((int)(B.r*255), (int)(B.g*255), (int)(B.b*255))
-	COLOR(s.watercolor, wm->m_WaterColor);
-	COLOR(s.watertint, wm->m_WaterTint);
+	COLOR(s.watercolor, waterManager.m_WaterColor);
+	COLOR(s.watertint, waterManager.m_WaterTint);
 #undef COLOR
 
 	float sunrotation = g_LightEnv.GetRotation();
@@ -65,7 +65,7 @@ sEnvironmentSettings GetSettings()
 
 	s.posteffect = g_Renderer.GetPostprocManager().GetPostEffect();
 
-	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();
+	s.skyset = g_Renderer.GetSkyManager().GetSkySet();
 
 	s.fogfactor = g_LightEnv.m_FogFactor;
 	s.fogmax = g_LightEnv.m_FogMax;
@@ -99,19 +99,19 @@ void SetSettings(const sEnvironmentSettings& s)
 
 	cmpWaterManager->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
 
-	WaterManager* wm = g_Renderer.GetWaterManager();
-	wm->m_Waviness = s.waterwaviness;
-	wm->m_Murkiness = s.watermurkiness;
-	wm->m_WindAngle = s.windangle;
-	if (wm->m_WaterType != *s.watertype)
+	WaterManager& waterManager = g_Renderer.GetWaterManager();
+	waterManager.m_Waviness = s.waterwaviness;
+	waterManager.m_Murkiness = s.watermurkiness;
+	waterManager.m_WindAngle = s.windangle;
+	if (waterManager.m_WaterType != *s.watertype)
 	{
-		wm->m_WaterType = *s.watertype;
-		wm->ReloadWaterNormalTextures();
+		waterManager.m_WaterType = *s.watertype;
+		waterManager.ReloadWaterNormalTextures();
 	}
 
 #define COLOR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
-	COLOR(s.watercolor, wm->m_WaterColor);
-	COLOR(s.watertint, wm->m_WaterTint);
+	COLOR(s.watercolor, waterManager.m_WaterColor);
+	COLOR(s.watertint, waterManager.m_WaterTint);
 #undef COLOR
 
 	g_LightEnv.SetRotation(s.sunrotation);
@@ -125,7 +125,7 @@ void SetSettings(const sEnvironmentSettings& s)
 	CStrW skySet = *s.skyset;
 	if (skySet.length() == 0)
 		skySet = L"default";
-	g_Renderer.GetSkyManager()->SetSkySet(skySet);
+	g_Renderer.GetSkyManager().SetSkySet(skySet);
 
 	g_LightEnv.m_FogFactor = s.fogfactor;
 	g_LightEnv.m_FogMax = s.fogmax;
@@ -241,7 +241,7 @@ QUERYHANDLER(GetEnvironmentSettings)
 
 QUERYHANDLER(GetSkySets)
 {
-	std::vector<CStrW> skies = g_Renderer.GetSkyManager()->GetSkySets();
+	std::vector<CStrW> skies = g_Renderer.GetSkyManager().GetSkySets();
 	msg->skysets = std::vector<std::wstring>(skies.begin(), skies.end());
 }
 

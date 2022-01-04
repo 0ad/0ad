@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -96,8 +96,6 @@ public:
 	bool SelectionBoxEnabled;
 	bool AxesMarkerEnabled;
 	int PropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
-
-	SColor4ub Background;
 
 	CTerrain Terrain;
 
@@ -267,7 +265,6 @@ ActorViewer::ActorViewer()
 	m.SelectionBoxEnabled = false;
 	m.AxesMarkerEnabled = false;
 	m.PropPointsMode = 0;
-	m.Background = SColor4ub(0, 0, 0, 255);
 
 	// Create a tiny empty piece of terrain, just so we can put shadows
 	// on it without having to think too hard
@@ -448,25 +445,19 @@ void ActorViewer::SetEnabled(bool enabled)
 		m.OldShadows = g_RenderingOptions.GetShadows();
 		SetShadowsEnabled(m.ShadowsEnabled);
 
-		m.OldSky = g_Renderer.GetSkyManager()->GetRenderSky();
-		g_Renderer.GetSkyManager()->SetRenderSky(false);
+		m.OldSky = g_Renderer.GetSkyManager().GetRenderSky();
+		g_Renderer.GetSkyManager().SetRenderSky(false);
 
-		m.OldWater = g_Renderer.GetWaterManager()->m_RenderWater;
-		g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
+		m.OldWater = g_Renderer.GetWaterManager().m_RenderWater;
+		g_Renderer.GetWaterManager().m_RenderWater = m.WaterEnabled;
 	}
 	else
 	{
 		// Restore the old renderer state
 		SetShadowsEnabled(m.OldShadows);
-		g_Renderer.GetSkyManager()->SetRenderSky(m.OldSky);
-		g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
+		g_Renderer.GetSkyManager().SetRenderSky(m.OldSky);
+		g_Renderer.GetWaterManager().m_RenderWater = m.OldWater;
 	}
-}
-
-void ActorViewer::SetBackgroundColor(const SColor4ub& color)
-{
-	m.Background = color;
-	m.Terrain.SetBaseColor(color);
 }
 
 void ActorViewer::SetWalkEnabled(bool enabled)    { m.WalkEnabled = enabled; }
@@ -508,8 +499,6 @@ float ActorViewer::GetRepeatTimeByAttackType(const std::string& type) const
 void ActorViewer::Render()
 {
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
-
-	g_Renderer.SetClearColor(m.Background);
 
 	// Set simulation context for rendering purposes
 	g_Renderer.SetSimulation(&m.Simulation2);

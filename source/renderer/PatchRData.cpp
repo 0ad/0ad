@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -790,14 +790,11 @@ void CPatchRData::RenderBases(
 
 						BatchElements& batch = it->second;
 
-						if (!g_Renderer.m_SkipSubmit)
-						{
-							// Don't use glMultiDrawElements here since it doesn't have a significant
-							// performance impact and it suffers from various driver bugs (e.g. it breaks
-							// in Mesa 7.10 swrast with index VBOs)
-							for (size_t i = 0; i < batch.first.size(); ++i)
-								glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
-						}
+						// Don't use glMultiDrawElements here since it doesn't have a significant
+						// performance impact and it suffers from various driver bugs (e.g. it breaks
+						// in Mesa 7.10 swrast with index VBOs)
+						for (size_t i = 0; i < batch.first.size(); ++i)
+							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
 
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
@@ -1012,11 +1009,8 @@ void CPatchRData::RenderBlends(
 
 						BatchElements& batch = it->second;
 
-						if (!g_Renderer.m_SkipSubmit)
-						{
-							for (size_t i = 0; i < batch.first.size(); ++i)
-								glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
-						}
+						for (size_t i = 0; i < batch.first.size(); ++i)
+							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
 
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_BlendSplats++;
@@ -1085,11 +1079,8 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 
 			const StreamBatchElements& batch = batchIndexBuffer.second;
 
-			if (!g_Renderer.m_SkipSubmit)
-			{
-				for (size_t i = 0; i < batch.first.size(); ++i)
-					glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
-			}
+			for (size_t i = 0; i < batch.first.size(); ++i)
+				glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
 
 			g_Renderer.m_Stats.m_DrawCalls++;
 			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
@@ -1155,8 +1146,7 @@ void CPatchRData::RenderSides(const std::vector<CPatchRData*>& patches, const CS
 
 		shader->AssertPointersBound();
 
-		if (!g_Renderer.m_SkipSubmit)
-			glDrawArrays(GL_TRIANGLE_STRIP, patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
+		glDrawArrays(GL_TRIANGLE_STRIP, patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
 
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;
@@ -1232,7 +1222,7 @@ void CPatchRData::BuildWater()
 	u16 water_shore_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_shore_index_map, 0xFF, sizeof(water_shore_index_map));
 
-	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+	const WaterManager& waterManager = g_Renderer.GetWaterManager();
 
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
@@ -1303,7 +1293,7 @@ void CPatchRData::BuildWater()
 
 				m_WaterBounds += vertex.m_Position;
 
-				vertex.m_WaterData = CVector2D(WaterMgr->m_WindStrength[xx + zz*mapSize], depth);
+				vertex.m_WaterData = CVector2D(waterManager.m_WindStrength[xx + zz*mapSize], depth);
 
 				water_index_map[z+moves[i][1]][x+moves[i][0]] = static_cast<u16>(water_vertex_data.size());
 				water_vertex_data.push_back(vertex);
@@ -1387,7 +1377,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 {
 	ASSERT(m_UpdateFlags==0);
 
-	if (g_Renderer.m_SkipSubmit || (!m_VBWater && !m_VBWaterShore))
+	if (!m_VBWater && !m_VBWaterShore)
 		return;
 
 #if !CONFIG2_GLES
@@ -1416,8 +1406,8 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	}
 
 	if (m_VBWaterShore && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-	    g_Renderer.GetWaterManager()->m_WaterEffects &&
-	    g_Renderer.GetWaterManager()->m_WaterFancyEffects)
+	    g_Renderer.GetWaterManager().m_WaterEffects &&
+	    g_Renderer.GetWaterManager().m_WaterFancyEffects)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
 

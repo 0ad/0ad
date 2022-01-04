@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -275,7 +275,7 @@ CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const
 
 	CPlane plane;
 	plane.Set(CVector3D(0.f, 1.f, 0.f),										// upwards normal
-		CVector3D(0.f, g_Renderer.GetWaterManager()->m_WaterHeight, 0.f));	// passes through water plane
+		CVector3D(0.f, g_Renderer.GetWaterManager().m_WaterHeight, 0.f));	// passes through water plane
 
 	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
 
@@ -353,7 +353,7 @@ CVector3D CCamera::GetFocus() const
 
 	CPlane plane;
 	plane.Set(CVector3D(0.f, 1.f, 0.f),										// upwards normal
-		CVector3D(0.f, g_Renderer.GetWaterManager()->m_WaterHeight, 0.f));	// passes through water plane
+		CVector3D(0.f, g_Renderer.GetWaterManager().m_WaterHeight, 0.f));	// passes through water plane
 
 	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
 

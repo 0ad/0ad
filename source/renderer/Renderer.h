@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,14 +24,13 @@
 #define INCLUDED_RENDERER
 
 #include "graphics/Camera.h"
-#include "graphics/SColor.h"
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
-#include "lib/file/vfs/vfs_path.h"
-#include "lib/res/handle.h"
 #include "ps/Singleton.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
+
+#include <memory>
 
 class CDebugRenderer;
 class CFontManager;
@@ -60,10 +59,6 @@ enum ETransparentMode { TRANSPARENT, TRANSPARENT_OPAQUE, TRANSPARENT_BLEND };
 
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
-
-///////////////////////////////////////////////////////////////////////////////////////////
-// CRenderer: base renderer class - primary interface to the rendering engine
-struct CRendererInternals;
 
 class CRenderer :
 	public Singleton<CRenderer>,
@@ -144,9 +139,6 @@ public:
 	 * frames are rendered.
 	 */
 	void SetSimulation(CSimulation2* simulation);
-
-	// set color used to clear screen in BeginFrame()
-	void SetClearColor(SColor4ub color);
 
 	// trigger a reload of shaders (when parameters they depend on have changed)
 	void MakeShadersDirty();
@@ -238,14 +230,14 @@ public:
 	 *
 	 * @return the WaterManager object used by the renderer
 	 */
-	WaterManager* GetWaterManager() { return m_WaterManager; }
+	WaterManager& GetWaterManager();
 
 	/**
 	 * GetSkyManager: Return the renderer's sky manager.
 	 *
 	 * @return the SkyManager object used by the renderer
 	 */
-	SkyManager* GetSkyManager() { return m_SkyManager; }
+	SkyManager& GetSkyManager();
 
 	CTextureManager& GetTextureManager();
 
@@ -279,28 +271,12 @@ public:
 	 */
 	void ResetState();
 
-	/**
-	 * m_SkipSubmit: Disable the actual submission of rendering commands to OpenGL.
-	 * All state setup is still performed as usual.
-	 */
-	bool DoSkipSubmit() const { return m_SkipSubmit; }
-
 protected:
-	friend struct CRendererInternals;
-	friend class CVertexBuffer;
 	friend class CPatchRData;
 	friend class CDecalRData;
-	friend class FixedFunctionModelRenderer;
-	friend class ModelRenderer;
-	friend class PolygonSortModelRenderer;
-	friend class SortModelRenderer;
-	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
 	friend class ShaderModelVertexRenderer;
 	friend class InstancingModelRenderer;
-	friend class ShaderInstancingModelRenderer;
-	friend class TerrainRenderer;
-	friend class WaterRenderer;
 	friend class CRenderingOptions;
 
 	//BEGIN: Implementation of SceneCollector
@@ -351,7 +327,8 @@ protected:
 
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
-	CRendererInternals* m;
+	class Internals;
+	std::unique_ptr<Internals> m;
 	// view width
 	int m_Width;
 	// view height
@@ -398,22 +375,9 @@ protected:
 	Stats m_Stats;
 
 	/**
-	 * m_WaterManager: the WaterManager object used for water textures and settings
-	 * (e.g. water color, water height)
-	 */
-	WaterManager* m_WaterManager;
-
-	/**
-	 * m_SkyManager: the SkyManager object used for sky textures and settings
-	 */
-	SkyManager* m_SkyManager;
-
-	/**
 	 * Enable rendering of terrain tile priority text overlay, for debugging.
 	 */
 	bool m_DisplayTerrainPriorities;
-
-	bool m_SkipSubmit;
 };
 
 #endif // INCLUDED_RENDERER

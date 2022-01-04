@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2021-12-31 07:55+0000\n"
+"POT-Creation-Date: 2021-12-31 08:08+0000\n"
+"PO-Revision-Date: 2021-12-31 09:23+0000\n"
 "Last-Translator: Eekain\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1588,7 +1588,7 @@ msgstr "Megerősítés"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Gőzünk sincs mi ez."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1662,7 +1662,7 @@ msgstr "Kattints a gyorsbillentyű törléséhez"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Gyorsbillentyűváltások mentése és bezárás"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
@@ -2922,8 +2922,10 @@ msgstr "Megerősítés nélküli törlés"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
-msgid "Toggle display of status bars."
-msgstr "Megjeleníti vagy elrejti az állapotsávokat."
+msgid ""
+"Toggle display of status bars e.g. health indicator for all your "
+"buildings/units on the map (including unselected)."
+msgstr ""
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"

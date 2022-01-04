@@ -250,9 +250,9 @@ AbstractProfileTable* CRendererStatsTable::GetChild(size_t UNUSED(row))
  * Struct CRendererInternals: Truly hide data that is supposed to be hidden
  * in this structure so it won't even appear in header files.
  */
-struct CRendererInternals
+class CRenderer::Internals
 {
-	NONCOPYABLE(CRendererInternals);
+	NONCOPYABLE(Internals);
 public:
 	/// true if CRenderer::Open has been called
 	bool IsOpen;
@@ -339,7 +339,7 @@ public:
 
 	CShaderDefines globalContext;
 
-	CRendererInternals() :
+	Internals() :
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
 	{
 	}
@@ -391,9 +391,7 @@ public:
 // CRenderer constructor
 CRenderer::CRenderer()
 {
-	m = new CRendererInternals;
-	m_WaterManager = &m->waterManager;
-	m_SkyManager = &m->skyManager;
+	m = std::make_unique<Internals>();
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
@@ -406,13 +404,17 @@ CRenderer::CRenderer()
 	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 
 	m_DisplayTerrainPriorities = false;
-	m_SkipSubmit = false;
 
 	CStr skystring = "0 0 0";
 	CColor skycolor;
 	CFG_GET_VAL("skycolor", skystring);
 	if (skycolor.ParseString(skystring, 255.f))
-		SetClearColor(skycolor.AsSColor4ub());
+	{
+		m_ClearColor[0] = skycolor.r;
+		m_ClearColor[1] = skycolor.g;
+		m_ClearColor[2] = skycolor.b;
+		m_ClearColor[3] = skycolor.a;
+	}
 
 	m_LightEnv = nullptr;
 
@@ -428,7 +430,7 @@ CRenderer::~CRenderer()
 	// We no longer UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
 	// them to be loaded (i.e. CGameView).
-	delete m;
+	m.reset();
 }
 
 
@@ -578,7 +580,7 @@ void CRenderer::Resize(int width, int height)
 
 	m->postprocManager.Resize();
 
-	m_WaterManager->Resize();
+	m->waterManager.Resize();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -644,15 +646,6 @@ void CRenderer::SetSimulation(CSimulation2* simulation)
 {
 	// set current simulation context for terrain renderer
 	m->terrainRenderer.SetSimulation(simulation);
-}
-
-// SetClearColor: set color used to clear screen in BeginFrame()
-void CRenderer::SetClearColor(SColor4ub color)
-{
-	m_ClearColor[0] = float(color.R) / 255.0f;
-	m_ClearColor[1] = float(color.G) / 255.0f;
-	m_ClearColor[2] = float(color.B) / 255.0f;
-	m_ClearColor[3] = float(color.A) / 255.0f;
 }
 
 void CRenderer::RenderShadowMap(const CShaderDefines& context)
@@ -1236,9 +1229,9 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 
 	ogl_WarnIfError();
 
-	if (m_WaterManager->m_RenderWater)
+	if (m->waterManager.m_RenderWater)
 	{
-		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
+		if (waterScissor.GetVolume() > 0 && m->waterManager.WillRenderFancyWater())
 		{
 			PROFILE3_GPU("water scissor");
 			RenderReflections(context, waterScissor);
@@ -1283,9 +1276,9 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	ogl_WarnIfError();
 
 	// render water
-	if (m_WaterManager->m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
+	if (m->waterManager.m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
 	{
-		if (m_WaterManager->WillRenderFancyWater())
+		if (m->waterManager.WillRenderFancyWater())
 		{
 			// Render transparent stuff, but only the solid parts that can occlude block water.
 			RenderTransparentModels(context, cullGroup, TRANSPARENT_OPAQUE, false);
@@ -1593,11 +1586,11 @@ void CRenderer::RenderScene(Scene& scene)
 	}
 
 	CBoundingBoxAligned waterScissor;
-	if (m_WaterManager->m_RenderWater)
+	if (m->waterManager.m_RenderWater)
 	{
 		waterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
 
-		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
+		if (waterScissor.GetVolume() > 0 && m->waterManager.WillRenderFancyWater())
 		{
 			if (g_RenderingOptions.GetWaterReflection())
 			{
@@ -1620,7 +1613,7 @@ void CRenderer::RenderScene(Scene& scene)
 			}
 
 			// Render the waves to the Fancy effects texture
-			m_WaterManager->RenderWaves(frustum);
+			m->waterManager.RenderWaves(frustum);
 		}
 	}
 
@@ -1651,7 +1644,17 @@ void CRenderer::BindTexture(int unit, GLuint tex)
 void CRenderer::MakeShadersDirty()
 {
 	m->ShadersDirty = true;
-	m_WaterManager->m_NeedsReloading = true;
+	m->waterManager.m_NeedsReloading = true;
+}
+
+WaterManager& CRenderer::GetWaterManager()
+{
+	return m->waterManager;
+}
+
+SkyManager& CRenderer::GetSkyManager()
+{
+	return m->skyManager;
 }
 
 CTextureManager& CRenderer::GetTextureManager()

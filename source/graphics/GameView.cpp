@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -254,7 +254,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	PROFILE3("submit terrain");
 
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
+	float waterHeight = g_Renderer.GetWaterManager().m_WaterHeight + 0.001f;
 	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
 
 	// find out which patches will be drawn
@@ -302,7 +302,7 @@ void CGameView::CheckLightEnv()
 void CGameView::UnloadResources()
 {
 	g_TexMan.UnloadTerrainTextures();
-	g_Renderer.GetWaterManager()->UnloadWaterTextures();
+	g_Renderer.GetWaterManager().UnloadWaterTextures();
 }
 
 void CGameView::Update(const float deltaRealTime)

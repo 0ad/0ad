@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -204,8 +204,7 @@ void CDecalRData::RenderDecals(
 				}
 
 				u8* indexBase = nullptr;
-				if (!g_Renderer.m_SkipSubmit)
-					glDrawElements(GL_TRIANGLES, batch.indices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16) * (batch.indices->m_Index));
+				glDrawElements(GL_TRIANGLES, batch.indices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16) * (batch.indices->m_Index));
 
 				// bump stats
 				g_Renderer.m_Stats.m_DrawCalls++;

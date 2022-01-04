@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,8 +89,7 @@ void DrawTexture(CShaderProgramPtr shader)
 	shader->VertexPointer(3, GL_FLOAT, 0, quadVertices);
 	shader->AssertPointersBound();
 
-	if (!g_Renderer.DoSkipSubmit())
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 struct MinimapUnitVertex
@@ -181,7 +180,7 @@ CMiniMapTexture::~CMiniMapTexture()
 
 void CMiniMapTexture::Update(const float UNUSED(deltaRealTime))
 {
-	if (m_WaterHeight != g_Renderer.GetWaterManager()->m_WaterHeight)
+	if (m_WaterHeight != g_Renderer.GetWaterManager().m_WaterHeight)
 	{
 		m_TerrainTextureDirty = true;
 		m_FinalTextureDirty = true;
@@ -264,7 +263,7 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 	const u32 width = m_MapSize - 1;
 	const u32 height = m_MapSize - 1;
 
-	m_WaterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+	m_WaterHeight = g_Renderer.GetWaterManager().m_WaterHeight;
 	m_TerrainTextureDirty = false;
 
 	for (u32 j = 0; j < height; ++j)
@@ -497,8 +496,7 @@ void CMiniMapTexture::RenderFinalTexture()
 		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
-		if (!g_Renderer.DoSkipSubmit())
-			glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
+		glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		CVertexBuffer::Unbind();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -726,15 +726,15 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							else if (rq.first == RQUERY_WATER_TEX)
 							{
 								const double period = 1.6;
-								WaterManager* waterManager = g_Renderer.GetWaterManager();
-								if (waterManager->m_RenderWater && waterManager->WillRenderFancyWater())
-									shader->BindTexture(str_waterTex, waterManager->m_NormalMap[waterManager->GetCurrentTextureIndex(period)]);
+								const WaterManager& waterManager = g_Renderer.GetWaterManager();
+								if (waterManager.m_RenderWater && waterManager.WillRenderFancyWater())
+									shader->BindTexture(str_waterTex, waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)]);
 								else
 									shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture());
 							}
 							else if (rq.first == RQUERY_SKY_CUBE)
 							{
-								shader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
+								shader->BindTexture(str_skyCube, g_Renderer.GetSkyManager().GetSkyCube());
 							}
 						}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -225,7 +225,7 @@ MESSAGEHANDLER(SaveMap)
 	VfsPath pathname = VfsPath(*msg->filename).ChangeExtension(L".pmp");
 	writer.SaveMap(pathname,
 		g_Game->GetWorld()->GetTerrain(),
-		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
+		&g_Renderer.GetWaterManager(), &g_Renderer.GetSkyManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema(),
 		&g_Renderer.GetPostprocManager(),
 		g_Game->GetSimulation2());
@@ -297,7 +297,7 @@ QUERYHANDLER(RasterizeMinimap)
 
 	ssize_t w = dimension;
 	ssize_t h = dimension;
-	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+	const float waterHeight = g_Renderer.GetWaterManager().m_WaterHeight;
 
 	for (ssize_t j = 0; j < h; ++j)
 	{
