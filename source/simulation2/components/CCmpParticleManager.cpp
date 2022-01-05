@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,10 +20,10 @@
 #include "simulation2/system/Component.h"
 #include "ICmpParticleManager.h"
 
-#include "simulation2/MessageTypes.h"
-
 #include "graphics/ParticleManager.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
+#include "simulation2/MessageTypes.h"
 
 class CCmpParticleManager : public ICmpParticleManager
 {
@@ -70,7 +70,7 @@ public:
 			if (CRenderer::IsInitialised())
 			{
 				float time = useSimTime ? msgData.deltaSimTime : msgData.deltaRealTime;
-				g_Renderer.GetParticleManager().Interpolate(time);
+				g_Renderer.GetSceneRenderer().GetParticleManager().Interpolate(time);
 			}
 			break;
 		}

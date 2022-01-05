@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 
 #include <map>
 
@@ -106,7 +107,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 		{
 			VfsPath mat = VfsPath("art/materials") / child.GetText().FromUTF8();
 			if (CRenderer::IsInitialised())
-				m_Material = g_Renderer.GetMaterialManager().LoadMaterial(mat);
+				m_Material = g_Renderer.GetSceneRenderer().GetMaterialManager().LoadMaterial(mat);
 		}
 		else if (child_name == el_alphamap)
 		{

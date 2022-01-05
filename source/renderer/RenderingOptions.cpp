@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "renderer/PostprocManager.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/ShadowMap.h"
 
 CRenderingOptions g_RenderingOptions;
@@ -146,25 +147,25 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 
 	m_ConfigHooks->Setup("shadowquality", []() {
 		if (CRenderer::IsInitialised())
-			g_Renderer.GetShadowMap().RecreateTexture();
+			g_Renderer.GetSceneRenderer().GetShadowMap().RecreateTexture();
 	});
 	m_ConfigHooks->Setup("shadowscascadecount", []() {
 		if (CRenderer::IsInitialised())
 		{
-			g_Renderer.GetShadowMap().RecreateTexture();
+			g_Renderer.GetSceneRenderer().GetShadowMap().RecreateTexture();
 			g_Renderer.MakeShadersDirty();
 		}
 	});
 	m_ConfigHooks->Setup("shadowscovermap", []() {
 		if (CRenderer::IsInitialised())
 		{
-			g_Renderer.GetShadowMap().RecreateTexture();
+			g_Renderer.GetSceneRenderer().GetShadowMap().RecreateTexture();
 			g_Renderer.MakeShadersDirty();
 		}
 	});
 	m_ConfigHooks->Setup("shadowscutoffdistance", []() {
 		if (CRenderer::IsInitialised())
-			g_Renderer.GetShadowMap().RecreateTexture();
+			g_Renderer.GetSceneRenderer().GetShadowMap().RecreateTexture();
 	});
 
 	m_ConfigHooks->Setup("shadows", [this]() {

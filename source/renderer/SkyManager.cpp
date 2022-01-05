@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -13,10 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Sky settings, texture management and rendering.
  */
 
 #include "precompiled.h"
@@ -41,6 +37,7 @@
 #include "ps/Loader.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/RenderingOptions.h"
 
 #include <algorithm>
@@ -226,7 +223,7 @@ void SkyManager::RenderSky()
 
 	glDepthMask(GL_FALSE);
 
-	const CCamera& camera = g_Renderer.GetViewCamera();
+	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
 	CShaderTechniquePtr skytech =
 		g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
@@ -246,7 +243,7 @@ void SkyManager::RenderSky()
 	// each skymap, is in the direction of the sun from our light
 	// environment.
 	CMatrix3D rotate;
-	rotate.SetYRotation(M_PI + g_Renderer.GetLightEnv().GetRotation());
+	rotate.SetYRotation(M_PI + g_Renderer.GetSceneRenderer().GetLightEnv().GetRotation());
 
 	shader->Uniform(
 		str_transform,

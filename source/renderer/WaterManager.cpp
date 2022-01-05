@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@
 #include "renderer/WaterManager.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+#include "renderer/SceneRenderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -840,7 +841,8 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 {
 	OGL_SCOPED_DEBUG_GROUP("Render Waves");
 #if CONFIG2_GLES
-#warning Fix WaterManager::RenderWaves on GLES
+	UNUSED2(frustrum);
+	#warning Fix WaterManager::RenderWaves on GLES
 #else
 	if (!m_WaterFancyEffects)
 		return;
@@ -866,7 +868,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	shader->BindTexture(str_foamTex, m_FoamTex);
 
 	shader->Uniform(str_time, (float)m_WaterTexTimer);
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	for (size_t a = 0; a < m_ShoreWaves.size(); ++a)
 	{

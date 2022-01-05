@@ -647,6 +647,7 @@ public:
 		if (it != m_VertexAttribs.end())
 		{
 #if CONFIG2_GLES
+			UNUSED2(size); UNUSED2(type); UNUSED2(stride); UNUSED2(pointer);
 			debug_warn(L"glVertexAttribIPointer not supported on GLES");
 #else
 			glVertexAttribIPointerEXT(it->second, size, type, stride, pointer);

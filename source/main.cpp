@@ -219,19 +219,12 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		else if (hotkey == "screenshot")
 		{
-			WriteScreenshot(L".png");
+			g_Renderer.MakeScreenShotOnNextFrame(CRenderer::ScreenShotType::DEFAULT);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "bigscreenshot")
 		{
-			int tiles = 4, tileWidth = 256, tileHeight = 256;
-			CFG_GET_VAL("screenshot.tiles", tiles);
-			CFG_GET_VAL("screenshot.tilewidth", tileWidth);
-			CFG_GET_VAL("screenshot.tileheight", tileHeight);
-			if (tiles > 0 && tileWidth > 0 && tileHeight > 0)
-				WriteBigScreenshot(L".bmp", tiles, tileWidth, tileHeight);
-			else
-				LOGWARNING("Invalid big screenshot size: tiles=%d tileWidth=%d tileHeight=%d", tiles, tileWidth, tileHeight);
+			g_Renderer.MakeScreenShotOnNextFrame(CRenderer::ScreenShotType::BIG);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "togglefullscreen")
@@ -456,12 +449,7 @@ static void Frame()
 	if (g_SoundManager)
 		g_SoundManager->IdleTask();
 
-	if (ShouldRender())
-	{
-		Render();
-
-		g_VideoMode.GetBackendDevice()->Present();
-	}
+	g_Renderer.RenderFrame(true);
 
 	g_Profiler.Frame();
 

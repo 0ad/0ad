@@ -38,6 +38,7 @@
 #include "renderer/ModelVertexRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/TimeManager.h"
 #include "renderer/WaterManager.h"
@@ -114,7 +115,7 @@ void ModelRenderer::BuildColor4ub(
 
 	CModelDefPtr mdef = model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
-	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	const CLightEnv& lightEnv = g_Renderer.GetSceneRenderer().GetLightEnv();
 	CColor shadingColor = model->GetShadingColor();
 
 	for (size_t j = 0; j < numVertices; ++j)
@@ -193,7 +194,7 @@ struct ShaderModelRenderer::ShaderModelRendererInternals
 	ModelVertexRendererPtr vertexRenderer;
 
 	/// List of submitted models for rendering in this frame
-	std::vector<CModel*> submissions[CRenderer::CULL_MAX];
+	std::vector<CModel*> submissions[CSceneRenderer::CULL_MAX];
 };
 
 
@@ -230,7 +231,7 @@ void ShaderModelRenderer::Submit(int cullGroup, CModel* model)
 // Call update for all submitted models and enter the rendering phase
 void ShaderModelRenderer::PrepareModels()
 {
-	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
 	{
 		for (size_t i = 0; i < m->submissions[cullGroup].size(); ++i)
 		{
@@ -251,7 +252,7 @@ void ShaderModelRenderer::PrepareModels()
 // Clear the submissions list
 void ShaderModelRenderer::EndFrame()
 {
-	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
 		m->submissions[cullGroup].clear();
 }
 
@@ -350,7 +351,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		return;
 
 	CMatrix3D worldToCam;
-	g_Renderer.GetViewCamera().GetOrientation().GetInverse(worldToCam);
+	g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse(worldToCam);
 
 	/*
 	 * Rendering approach:
@@ -726,7 +727,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							else if (rq.first == RQUERY_WATER_TEX)
 							{
 								const double period = 1.6;
-								const WaterManager& waterManager = g_Renderer.GetWaterManager();
+								const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 								if (waterManager.m_RenderWater && waterManager.WillRenderFancyWater())
 									shader->BindTexture(str_waterTex, waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)]);
 								else
@@ -734,7 +735,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							}
 							else if (rq.first == RQUERY_SKY_CUBE)
 							{
-								shader->BindTexture(str_skyCube, g_Renderer.GetSkyManager().GetSkyCube());
+								shader->BindTexture(str_skyCube, g_Renderer.GetSceneRenderer().GetSkyManager().GetSkyCube());
 							}
 						}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #include "maths/Vector3D.h"
 #include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 
 #include <cmath>
 
@@ -44,17 +45,20 @@ void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const 
 void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width)
 {
 #if CONFIG2_GLES
+	UNUSED2(line); UNUSED2(color); UNUSED2(width);
 	#warning TODO: implement drawing line for GLES
 #else
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugLineTech->BeginPass();
 
+	const CCamera& viewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
+
 	CShaderProgramPtr debugLineShader = debugLineTech->GetShader();
-	debugLineShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	debugLineShader->Uniform(str_transform, viewCamera.GetViewProjection());
 	debugLineShader->Uniform(str_color, color);
 
-	const CVector3D cameraIn = g_Renderer.GetViewCamera().GetOrientation().GetIn();
+	const CVector3D cameraIn = viewCamera.GetOrientation().GetIn();
 
 	std::vector<float> vertices;
 	vertices.reserve(line.size() * 6 * 3);
@@ -94,13 +98,14 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, const CColor& color)
 {
 #if CONFIG2_GLES
+	UNUSED2(origin); UNUSED2(radius); UNUSED2(color);
 	#warning TODO: implement drawing circle for GLES
 #else
 	CShaderTechniquePtr debugCircleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugCircleTech->BeginPass();
 
-	const CCamera& camera = g_Renderer.GetViewCamera();
+	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
 	CShaderProgramPtr debugCircleShader = debugCircleTech->GetShader();
 	debugCircleShader->Uniform(str_transform, camera.GetViewProjection());
@@ -138,7 +143,8 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates)
 {
 #if CONFIG2_GLES
-#warning TODO: implement camera frustum for GLES
+	UNUSED2(camera); UNUSED2(color); UNUSED2(intermediates);
+	#warning TODO: implement camera frustum for GLES
 #else
 	CCamera::Quad nearPoints;
 	CCamera::Quad farPoints;
@@ -156,7 +162,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	overlayTech->BeginPass();
 
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
-	overlayShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
 	std::vector<float> vertices;
@@ -221,7 +227,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color)
 {
-	DrawBoundingBox(boundingBox, color, g_Renderer.GetViewCamera().GetViewProjection());
+	DrawBoundingBox(boundingBox, color, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 }
 
 void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
@@ -267,7 +273,7 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 
 void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color)
 {
-	DrawBoundingBoxOutline(boundingBox, color, g_Renderer.GetViewCamera().GetViewProjection());
+	DrawBoundingBoxOutline(boundingBox, color, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 }
 
 void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
@@ -320,7 +326,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	std::vector<float> data;
 
@@ -367,7 +373,7 @@ void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CColor& color)
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	std::vector<float> data;
 

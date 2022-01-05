@@ -41,6 +41,7 @@
 #include "renderer/AlphaMapCalculator.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/components/ICmpWaterManager.h"
@@ -1222,7 +1223,7 @@ void CPatchRData::BuildWater()
 	u16 water_shore_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_shore_index_map, 0xFF, sizeof(water_shore_index_map));
 
-	const WaterManager& waterManager = g_Renderer.GetWaterManager();
+	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
@@ -1381,7 +1382,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		return;
 
 #if !CONFIG2_GLES
-	if (g_Renderer.GetWaterRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 
@@ -1406,8 +1407,8 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	}
 
 	if (m_VBWaterShore && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-	    g_Renderer.GetWaterManager().m_WaterEffects &&
-	    g_Renderer.GetWaterManager().m_WaterFancyEffects)
+	    g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterEffects &&
+	    g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterFancyEffects)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
 
@@ -1429,7 +1430,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	CVertexBuffer::Unbind();
 
 #if !CONFIG2_GLES
-	if (g_Renderer.GetWaterRenderMode() == WIREFRAME)
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }

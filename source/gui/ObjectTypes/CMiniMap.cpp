@@ -47,6 +47,7 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
 #include "simulation2/Simulation2.h"
@@ -307,7 +308,7 @@ void CMiniMap::DrawViewRect(CCanvas2D& canvas) const
 {
 	// Compute the camera frustum intersected with a fixed-height plane.
 	// Use the water height as a fixed base height, which should be the lowest we can go
-	const float sampleHeight = g_Renderer.GetWaterManager().m_WaterHeight;
+	const float sampleHeight = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight;
 
 	const CCamera* camera = g_Game->GetView()->GetCamera();
 	const std::array<CVector3D, 4> hitPoints = {

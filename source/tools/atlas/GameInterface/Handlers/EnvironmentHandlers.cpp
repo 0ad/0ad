@@ -29,6 +29,7 @@
 #include "ps/World.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
@@ -45,7 +46,7 @@ sEnvironmentSettings GetSettings()
 
 	s.waterheight = cmpWaterManager->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
 
-	const WaterManager& waterManager = g_Renderer.GetWaterManager();
+	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	s.watertype = waterManager.m_WaterType;
 	s.waterwaviness = waterManager.m_Waviness;
 	s.watermurkiness = waterManager.m_Murkiness;
@@ -65,7 +66,7 @@ sEnvironmentSettings GetSettings()
 
 	s.posteffect = g_Renderer.GetPostprocManager().GetPostEffect();
 
-	s.skyset = g_Renderer.GetSkyManager().GetSkySet();
+	s.skyset = g_Renderer.GetSceneRenderer().GetSkyManager().GetSkySet();
 
 	s.fogfactor = g_LightEnv.m_FogFactor;
 	s.fogmax = g_LightEnv.m_FogMax;
@@ -99,7 +100,7 @@ void SetSettings(const sEnvironmentSettings& s)
 
 	cmpWaterManager->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
 
-	WaterManager& waterManager = g_Renderer.GetWaterManager();
+	WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	waterManager.m_Waviness = s.waterwaviness;
 	waterManager.m_Murkiness = s.watermurkiness;
 	waterManager.m_WindAngle = s.windangle;
@@ -125,7 +126,7 @@ void SetSettings(const sEnvironmentSettings& s)
 	CStrW skySet = *s.skyset;
 	if (skySet.length() == 0)
 		skySet = L"default";
-	g_Renderer.GetSkyManager().SetSkySet(skySet);
+	g_Renderer.GetSceneRenderer().GetSkyManager().SetSkySet(skySet);
 
 	g_LightEnv.m_FogFactor = s.fogfactor;
 	g_LightEnv.m_FogMax = s.fogmax;
@@ -241,7 +242,7 @@ QUERYHANDLER(GetEnvironmentSettings)
 
 QUERYHANDLER(GetSkySets)
 {
-	std::vector<CStrW> skies = g_Renderer.GetSkyManager().GetSkySets();
+	std::vector<CStrW> skies = g_Renderer.GetSceneRenderer().GetSkyManager().GetSkySets();
 	msg->skysets = std::vector<std::wstring>(skies.begin(), skies.end());
 }
 

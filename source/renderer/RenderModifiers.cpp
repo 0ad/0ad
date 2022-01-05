@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,28 +15,23 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Implementation of common RenderModifiers
- */
-
 #include "precompiled.h"
 
-#include "lib/ogl.h"
-#include "maths/Vector3D.h"
-#include "maths/Vector4D.h"
-#include "maths/Matrix3D.h"
-
-#include "ps/CStrInternStatic.h"
-#include "ps/Game.h"
+#include "renderer/RenderModifiers.h"
 
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/Model.h"
 #include "graphics/TextureManager.h"
-
-#include "renderer/RenderModifiers.h"
+#include "lib/ogl.h"
+#include "maths/Vector3D.h"
+#include "maths/Vector4D.h"
+#include "maths/Matrix3D.h"
+#include "ps/CStrInternStatic.h"
+#include "ps/Game.h"
 #include "renderer/Renderer.h"
+#include "renderer/SceneRenderer.h"
 #include "renderer/ShadowMap.h"
 
 #include <boost/algorithm/string.hpp>
@@ -74,8 +69,8 @@ ShaderRenderModifier::ShaderRenderModifier()
 
 void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 {
-	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
-	shader->Uniform(str_cameraPos, g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	shader->Uniform(str_cameraPos, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetTranslation());
 
 	if (GetShadowMap())
 		GetShadowMap()->BindTo(shader);
@@ -92,7 +87,7 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 
 	if (shader->GetTextureBinding(str_losTex).Active())
 	{
-		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+		CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 		shader->BindTexture(str_losTex, los.GetTextureSmooth());
 		// Don't bother sending the whole matrix, we just need two floats (scale and translation)
 		shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
