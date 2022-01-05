@@ -61,7 +61,7 @@ static const size_t g_SubTextureAlignment = 4;
 
 CLOSTexture::CLOSTexture(CSimulation2& simulation)
 	: m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false),
-	m_smoothFbo(0), m_MapSize(0), m_WhichTex(true)
+	m_SmoothFBO(0), m_MapSize(0), m_WhichTex(true)
 {
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 		CreateShader();
@@ -69,8 +69,8 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation)
 
 CLOSTexture::~CLOSTexture()
 {
-	if (m_smoothFbo)
-		glDeleteFramebuffersEXT(1, &m_smoothFbo);
+	if (m_SmoothFBO)
+		glDeleteFramebuffersEXT(1, &m_SmoothFBO);
 
 	if (m_Texture)
 		DeleteTexture();
@@ -91,7 +91,7 @@ bool CLOSTexture::CreateShader()
 		return false;
 	}
 
-	glGenFramebuffersEXT(1, &m_smoothFbo);
+	glGenFramebuffersEXT(1, &m_SmoothFBO);
 	return true;
 }
 
@@ -139,7 +139,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	if (skipSmoothLOS)
 		return;
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_SmoothFBO);
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
 			   (m_WhichTex ? m_TextureSmooth2 : m_TextureSmooth1)->GetHandle(), 0);
 

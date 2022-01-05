@@ -93,7 +93,7 @@ private:
 
 	bool m_WhichTex;
 
-	GLuint m_smoothFbo;
+	GLuint m_SmoothFBO;
 	CShaderTechniquePtr m_smoothShader;
 
 	size_t m_MapSize; // vertexes per side
