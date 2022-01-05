@@ -115,7 +115,7 @@ void SkyManager::LoadSkyTextures()
 		Renderer::Backend::Format::R8G8B8A8, textures[0].m_Width, textures[0].m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1);
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
 
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap->GetHandle());
 

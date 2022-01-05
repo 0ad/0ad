@@ -19,14 +19,6 @@
 
 #include "SceneRenderer.h"
 
-#include "maths/Matrix3D.h"
-#include "maths/MathUtil.h"
-#include "ps/CLogger.h"
-#include "ps/ConfigDB.h"
-#include "ps/CStrInternStatic.h"
-#include "ps/Game.h"
-#include "ps/Profile.h"
-#include "ps/World.h"
 #include "graphics/Camera.h"
 #include "graphics/Decal.h"
 #include "graphics/GameView.h"
@@ -39,10 +31,19 @@
 #include "graphics/ParticleManager.h"
 #include "graphics/Patch.h"
 #include "graphics/ShaderManager.h"
+#include "graphics/TerritoryTexture.h"
 #include "graphics/Terrain.h"
 #include "graphics/Texture.h"
 #include "graphics/TextureManager.h"
+#include "maths/Matrix3D.h"
+#include "maths/MathUtil.h"
+#include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
+#include "ps/CStrInternStatic.h"
+#include "ps/Game.h"
+#include "ps/Profile.h"
 #include "ps/VideoMode.h"
+#include "ps/World.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
@@ -830,14 +831,16 @@ void CSceneRenderer::RenderParticles(int cullGroup)
 }
 
 // RenderSubmissions: force rendering of any batched objects
-void CSceneRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
+void CSceneRenderer::RenderSubmissions(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CBoundingBoxAligned& waterScissor)
 {
 	PROFILE3("render submissions");
 	OGL_SCOPED_DEBUG_GROUP("Render submissions");
 
-	GetScene().GetLOSTexture().InterpolateLOS();
-
-	GetScene().GetMiniMapTexture().Render();
+	GetScene().GetLOSTexture().InterpolateLOS(deviceCommandContext);
+	GetScene().GetTerritoryTexture().UpdateIfNeeded(deviceCommandContext);
+	GetScene().GetMiniMapTexture().Render(deviceCommandContext);
 
 	CShaderDefines context = m->globalContext;
 
@@ -954,7 +957,7 @@ void CSceneRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	}
 
 	// render debug-related terrain overlays
-	ITerrainOverlay::RenderOverlaysAfterWater(cullGroup);
+	ITerrainOverlay::RenderOverlaysAfterWater(deviceCommandContext, cullGroup);
 	ogl_WarnIfError();
 
 	// render some other overlays after water (so they can be displayed on top of water)
@@ -1172,7 +1175,8 @@ void CSceneRenderer::SubmitNonRecursive(CModel* model)
 }
 
 // Render the given scene
-void CSceneRenderer::RenderScene(Scene& scene)
+void CSceneRenderer::RenderScene(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, Scene& scene)
 {
 	m_CurrentScene = &scene;
 
@@ -1245,7 +1249,7 @@ void CSceneRenderer::RenderScene(Scene& scene)
 
 	ogl_WarnIfError();
 
-	RenderSubmissions(waterScissor);
+	RenderSubmissions(deviceCommandContext, waterScissor);
 
 	m_CurrentScene = NULL;
 }

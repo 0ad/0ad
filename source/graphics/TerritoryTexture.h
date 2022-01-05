@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 
 #include "maths/Matrix3D.h"
 #include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 class CSimulation2;
 template<typename T>
@@ -53,7 +54,13 @@ public:
 	 * coordinates, in the form expected by a matrix uniform.
 	 * This must only be called after BindTexture.
 	 */
-	const CMatrix3D* GetMinimapTextureMatrix();
+	const CMatrix3D& GetMinimapTextureMatrix();
+
+	/**
+	 * Updates the texture if needed (territory was changed or the texture
+	 * wasn't created).
+	 */
+	void UpdateIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 private:
 	/**
@@ -62,8 +69,8 @@ private:
 	bool UpdateDirty();
 
 	void DeleteTexture();
-	void ConstructTexture();
-	void RecomputeTexture();
+	void ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	void GenerateBitmap(const Grid<u8>& territories, u8* bitmap, ssize_t w, ssize_t h);
 

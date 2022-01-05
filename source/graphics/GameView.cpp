@@ -243,7 +243,7 @@ void CGameView::BeginFrame()
 
 void CGameView::Render()
 {
-	g_Renderer.GetSceneRenderer().RenderScene(*this);
+	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), *this);
 }
 
 ///////////////////////////////////////////////////////////

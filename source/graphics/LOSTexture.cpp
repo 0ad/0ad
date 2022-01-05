@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 // Keep it in relation to the number of impassable tiles in MAP_EDGE_TILES.
 static const size_t g_BlurSize = 7;
 
-// Alignment (in bytes) of the pixel data passed into glTexSubImage2D.
+// Alignment (in bytes) of the pixel data passed into texture uploading.
 // This must be a multiple of GL_UNPACK_ALIGNMENT, which ought to be 1 (since
 // that's what we set it to) but in some weird cases appears to have a different
 // value. (See Trac #2594). Multiples of 4 are possibly good for performance anyway.
@@ -61,7 +61,7 @@ static const size_t g_SubTextureAlignment = 4;
 
 CLOSTexture::CLOSTexture(CSimulation2& simulation)
 	: m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false),
-	m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
+	m_smoothFbo(0), m_MapSize(0), m_WhichTex(true)
 {
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 		CreateShader();
@@ -112,35 +112,36 @@ Renderer::Backend::GL::CTexture* CLOSTexture::GetTextureSmooth()
 	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return GetTexture();
 	else
-		return (whichTex ? m_TextureSmooth1 : m_TextureSmooth2).get();
+		return (m_WhichTex ? m_TextureSmooth1 : m_TextureSmooth2).get();
 }
 
-void CLOSTexture::InterpolateLOS()
+void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
-		return;
-
-	if (!m_ShaderInitialized)
+	const bool skipSmoothLOS = CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS();
+	if (!skipSmoothLOS && !m_ShaderInitialized)
 	{
 		if (!CreateShader())
 			return;
 
-		// RecomputeTexture(0) will not cause the ConstructTexture to run.
+		// RecomputeTexture will not cause the ConstructTexture to run.
 		// Force the textures to be created.
 		DeleteTexture();
-		ConstructTexture();
+		ConstructTexture(deviceCommandContext);
 		m_Dirty = true;
 	}
 
 	if (m_Dirty)
 	{
-		RecomputeTexture();
+		RecomputeTexture(deviceCommandContext);
 		m_Dirty = false;
 	}
 
+	if (skipSmoothLOS)
+		return;
+
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
-			   (whichTex ? m_TextureSmooth2 : m_TextureSmooth1)->GetHandle(), 0);
+			   (m_WhichTex ? m_TextureSmooth2 : m_TextureSmooth1)->GetHandle(), 0);
 
 	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -156,15 +157,21 @@ void CLOSTexture::InterpolateLOS()
 	shader->Bind();
 
 	shader->BindTexture(str_losTex1, m_Texture.get());
-	shader->BindTexture(str_losTex2, (whichTex ? m_TextureSmooth1 : m_TextureSmooth2).get());
+	shader->BindTexture(str_losTex2, (m_WhichTex ? m_TextureSmooth1 : m_TextureSmooth2).get());
 
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
-	const SViewPort vp = { 0, 0, m_TextureSize, m_TextureSize };
+	const SViewPort vp =
+	{
+		0, 0,
+		static_cast<int>(m_Texture->GetWidth()),
+		static_cast<int>(m_Texture->GetHeight())
+	};
 	g_Renderer.SetViewport(vp);
 
-	float quadVerts[] = {
+	float quadVerts[] =
+	{
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
 		-1.0f, -1.0f,
@@ -173,7 +180,8 @@ void CLOSTexture::InterpolateLOS()
 		1.0f, -1.0f,
 		1.0f, 1.0f
 	};
-	float quadTex[] = {
+	float quadTex[] =
+	{
 		1.0f, 1.0f,
 		0.0f, 1.0f,
 		0.0f, 0.0f,
@@ -196,18 +204,13 @@ void CLOSTexture::InterpolateLOS()
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
-	whichTex = !whichTex;
+	m_WhichTex = !m_WhichTex;
 }
 
 
 Renderer::Backend::GL::CTexture* CLOSTexture::GetTexture()
 {
-	if (m_Dirty)
-	{
-		RecomputeTexture();
-		m_Dirty = false;
-	}
-
+	ENSURE(!m_Dirty);
 	return m_Texture.get();
 }
 
@@ -217,13 +220,13 @@ const CMatrix3D& CLOSTexture::GetTextureMatrix()
 	return m_TextureMatrix;
 }
 
-const CMatrix3D* CLOSTexture::GetMinimapTextureMatrix()
+const CMatrix3D& CLOSTexture::GetMinimapTextureMatrix()
 {
 	ENSURE(!m_Dirty);
-	return &m_MinimapTextureMatrix;
+	return m_MinimapTextureMatrix;
 }
 
-void CLOSTexture::ConstructTexture()
+void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpRangeManager)
@@ -231,7 +234,7 @@ void CLOSTexture::ConstructTexture()
 
 	m_MapSize = cmpRangeManager->GetVerticesPerSide();
 
-	m_TextureSize = (GLsizei)round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
+	const size_t textureSize = round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
 
 	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -239,31 +242,27 @@ void CLOSTexture::ConstructTexture()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
 	m_Texture = Renderer::Backend::GL::CTexture::Create2D(
-		Renderer::Backend::Format::A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
+		Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
-	// overwrite with glTexSubImage2D later
-	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
-	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
+	// overwrite with uploading later.
+	std::unique_ptr<u8[]> texData = std::make_unique<u8[]>(textureSize * textureSize);
+	memset(texData.get(), 0x00, textureSize * textureSize);
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
 		m_TextureSmooth1 = Renderer::Backend::GL::CTexture::Create2D(
-			Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
+			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 		m_TextureSmooth2 = Renderer::Backend::GL::CTexture::Create2D(
-			Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
+			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
-		g_Renderer.BindTexture(0, m_TextureSmooth1->GetHandle());
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
-
-		g_Renderer.BindTexture(0, m_TextureSmooth2->GetHandle());
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
+		deviceCommandContext->UploadTexture(m_TextureSmooth1.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
+		deviceCommandContext->UploadTexture(m_TextureSmooth2.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
 	}
 
-	g_Renderer.BindTexture(0, m_Texture->GetHandle());
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
+	deviceCommandContext->UploadTexture(m_Texture.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
 
-	delete[] texData;
+	texData.reset();
 
 	{
 		// Texture matrix: We want to map
@@ -272,8 +271,8 @@ void CLOSTexture::ConstructTexture()
 		//   world pos ((mapsize-1)*cellsize, y, (mapsize-1)*cellsize)  (i.e. last vertex)
 		//     onto texcoord ((mapsize-0.5) / texsize, (mapsize-0.5) / texsize)  (i.e. middle of last texel)
 
-		float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * LOS_TILE_SIZE);
-		float t = 0.5f / m_TextureSize;
+		float s = (m_MapSize-1) / static_cast<float>(textureSize * (m_MapSize-1) * LOS_TILE_SIZE);
+		float t = 0.5f / textureSize;
 		m_TextureMatrix.SetZero();
 		m_TextureMatrix._11 = s;
 		m_TextureMatrix._23 = s;
@@ -285,7 +284,7 @@ void CLOSTexture::ConstructTexture()
 	{
 		// Minimap matrix: We want to map UV (0,0)-(1,1) onto (0,0)-(mapsize/texsize, mapsize/texsize)
 
-		float s = m_MapSize / (float)m_TextureSize;
+		float s = m_MapSize / (float)textureSize;
 		m_MinimapTextureMatrix.SetZero();
 		m_MinimapTextureMatrix._11 = s;
 		m_MinimapTextureMatrix._22 = s;
@@ -293,7 +292,7 @@ void CLOSTexture::ConstructTexture()
 	}
 }
 
-void CLOSTexture::RecomputeTexture()
+void CLOSTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)
@@ -306,15 +305,16 @@ void CLOSTexture::RecomputeTexture()
 	bool recreated = false;
 	if (!m_Texture)
 	{
-		ConstructTexture();
+		ConstructTexture(deviceCommandContext);
 		recreated = true;
 	}
 
 	PROFILE("recompute LOS texture");
 
-	std::vector<u8> losData;
 	size_t pitch;
-	losData.resize(GetBitmapSize(m_MapSize, m_MapSize, &pitch));
+	const size_t dataSize = GetBitmapSize(m_MapSize, m_MapSize, &pitch);
+	ENSURE(pitch * m_MapSize <= dataSize);
+	std::unique_ptr<u8[]> losData = std::make_unique<u8[]>(dataSize);
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpRangeManager)
@@ -326,14 +326,17 @@ void CLOSTexture::RecomputeTexture()
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS() && recreated)
 	{
-		g_Renderer.BindTexture(0, m_TextureSmooth1->GetHandle());
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
-		g_Renderer.BindTexture(0, m_TextureSmooth2->GetHandle());
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+		deviceCommandContext->UploadTextureRegion(
+			m_TextureSmooth1.get(), Renderer::Backend::Format::A8, losData.get(),
+			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
+		deviceCommandContext->UploadTextureRegion(
+			m_TextureSmooth2.get(), Renderer::Backend::Format::A8, losData.get(),
+			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 	}
 
-	g_Renderer.BindTexture(0, m_Texture->GetHandle());
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+	deviceCommandContext->UploadTextureRegion(
+		m_Texture.get(), Renderer::Backend::Format::A8, losData.get(),
+		pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 }
 
 size_t CLOSTexture::GetBitmapSize(size_t w, size_t h, size_t* pitch)

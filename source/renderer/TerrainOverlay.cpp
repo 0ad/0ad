@@ -74,7 +74,8 @@ void ITerrainOverlay::RenderOverlaysBeforeWater()
 		g_TerrainOverlayList[i].first->RenderBeforeWater();
 }
 
-void ITerrainOverlay::RenderOverlaysAfterWater(int cullGroup)
+void ITerrainOverlay::RenderOverlaysAfterWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup)
 {
 	if (g_TerrainOverlayList.empty())
 		return;
@@ -82,7 +83,7 @@ void ITerrainOverlay::RenderOverlaysAfterWater(int cullGroup)
 	PROFILE3_GPU("terrain overlays (after)");
 
 	for (size_t i = 0; i < g_TerrainOverlayList.size(); ++i)
-		g_TerrainOverlayList[i].first->RenderAfterWater(cullGroup);
+		g_TerrainOverlayList[i].first->RenderAfterWater(deviceCommandContext, cullGroup);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -312,7 +313,8 @@ TerrainTextureOverlay::TerrainTextureOverlay(float texelsPerTile, int priority) 
 
 TerrainTextureOverlay::~TerrainTextureOverlay() = default;
 
-void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
+void TerrainTextureOverlay::RenderAfterWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup)
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
@@ -332,16 +334,13 @@ void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
-
-		glBindTexture(GL_TEXTURE_2D, m_Texture->GetHandle());
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_Texture->GetWidth(), m_Texture->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
 
 	u8* data = (u8*)calloc(w * h, 4);
 	BuildTextureRGBA(data, w, h);
 
-	glBindTexture(GL_TEXTURE_2D, m_Texture->GetHandle());
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	deviceCommandContext->UploadTexture(
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, data, w * h * 4);
 
 	free(data);
 

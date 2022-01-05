@@ -526,20 +526,18 @@ void ShadowMapInternals::CreateTexture()
 	EffectiveWidth = Width;
 	EffectiveHeight = Height;
 
-	GLenum format;
 	const char* formatName;
 	Renderer::Backend::Format backendFormat = Renderer::Backend::Format::UNDEFINED;
 #if CONFIG2_GLES
-	format = GL_DEPTH_COMPONENT;
 	formatName = "DEPTH_COMPONENT";
 	backendFormat = Renderer::Backend::Format::D24;
 #else
 	switch (DepthTextureBits)
 	{
-	case 16: format = GL_DEPTH_COMPONENT16; formatName = "DEPTH_COMPONENT16"; backendFormat = Renderer::Backend::Format::D16; break;
-	case 24: format = GL_DEPTH_COMPONENT24; formatName = "DEPTH_COMPONENT24"; backendFormat = Renderer::Backend::Format::D24; break;
-	case 32: format = GL_DEPTH_COMPONENT32; formatName = "DEPTH_COMPONENT32"; backendFormat = Renderer::Backend::Format::D32;  break;
-	default: format = GL_DEPTH_COMPONENT; formatName = "DEPTH_COMPONENT"; backendFormat = Renderer::Backend::Format::D24; break;
+	case 16: formatName = "Format::D16"; backendFormat = Renderer::Backend::Format::D16; break;
+	case 24: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
+	case 32: formatName = "Format::D32"; backendFormat = Renderer::Backend::Format::D32;  break;
+	default: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
 	}
 #endif
 	ENSURE(formatName);
@@ -554,9 +552,6 @@ void ShadowMapInternals::CreateTexture()
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
-
-		g_Renderer.BindTexture(0, DummyTexture->GetHandle());
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
 
 	Texture = Renderer::Backend::GL::CTexture::Create2D(
@@ -572,21 +567,19 @@ void ShadowMapInternals::CreateTexture()
 #endif
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
-	g_Renderer.BindTexture(0, Texture->GetHandle());
-	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
-	// GLES requires type == UNSIGNED_SHORT or UNSIGNED_INT
 
 #if !CONFIG2_GLES
+	g_Renderer.BindTexture(0, Texture->GetHandle());
 	// Enable automatic depth comparisons
 	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 #endif
 
 	ogl_WarnIfError();
 
 	// bind to framebuffer object
-	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
 
 	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture->GetHandle(), 0);

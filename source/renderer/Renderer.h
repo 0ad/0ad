@@ -22,6 +22,7 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "ps/Singleton.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
@@ -154,6 +155,8 @@ public:
 	 * screenshot type.
 	 */
 	void MakeScreenShotOnNextFrame(ScreenShotType screenShotType);
+
+	Renderer::Backend::GL::CDeviceCommandContext* GetDeviceCommandContext();
 
 protected:
 	friend class CPatchRData;

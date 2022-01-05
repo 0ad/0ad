@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,10 @@
 
 #include "graphics/ShaderTechniquePtr.h"
 #include "maths/Matrix3D.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
+
+#include <memory>
 
 class CLosQuerier;
 class CSimulation2;
@@ -52,9 +55,9 @@ public:
 	 * The texture is in 8-bit ALPHA format.
 	 */
 	Renderer::Backend::GL::CTexture* GetTexture();
-
-	void InterpolateLOS();
 	Renderer::Backend::GL::CTexture* GetTextureSmooth();
+
+	void InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) LOS texture
@@ -68,13 +71,13 @@ public:
 	 * coordinates, in the form expected by a matrix uniform.
 	 * This must only be called after BindTexture.
 	 */
-	const CMatrix3D* GetMinimapTextureMatrix();
+	const CMatrix3D& GetMinimapTextureMatrix();
 
 private:
 	void DeleteTexture();
 	bool CreateShader();
-	void ConstructTexture();
-	void RecomputeTexture();
+	void ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	size_t GetBitmapSize(size_t w, size_t h, size_t* pitch);
 	void GenerateBitmap(const CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch);
@@ -88,13 +91,12 @@ private:
 	std::unique_ptr<Renderer::Backend::GL::CTexture>
 		m_Texture, m_TextureSmooth1, m_TextureSmooth2;
 
-	bool whichTex;
+	bool m_WhichTex;
 
 	GLuint m_smoothFbo;
 	CShaderTechniquePtr m_smoothShader;
 
 	size_t m_MapSize; // vertexes per side
-	GLsizei m_TextureSize; // texels per side
 
 	CMatrix3D m_TextureMatrix;
 	CMatrix3D m_MinimapTextureMatrix;

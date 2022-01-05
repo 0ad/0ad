@@ -120,9 +120,7 @@ void CPostprocManager::RecreateBuffers()
 			Renderer::Backend::Format::R8G8B8A8, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
-				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE)); \
-		glBindTexture(GL_TEXTURE_2D, name->GetHandle()); \
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
 	// Two fullscreen ping-pong textures.
 	GEN_BUFFER_RGBA(m_ColorTex1, m_Width, m_Height);
@@ -149,12 +147,9 @@ void CPostprocManager::RecreateBuffers()
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
+
 	glBindTexture(GL_TEXTURE_2D, m_DepthTex->GetHandle());
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height,
-				 0, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Set up the framebuffers with some initial textures.
@@ -682,10 +677,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 		Renderer::Backend::Format::R8G8B8A8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1);
-
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex->GetHandle());
-	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_RGBA, m_Width, m_Height, GL_TRUE);
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Allocate the Depth/Stencil texture.
 	m_MultisampleDepthTex = Renderer::Backend::GL::CTexture::Create(
@@ -693,15 +685,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1);
-
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex->GetHandle());
-	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleCount, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height, GL_TRUE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
-
-	ogl_WarnIfError();
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Set up the framebuffers with some initial textures.
 	glGenFramebuffersEXT(1, &m_MultisampleFBO);
