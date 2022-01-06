@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,9 +57,7 @@ bool CTerritoryTexture::UpdateDirty()
 
 Renderer::Backend::GL::CTexture* CTerritoryTexture::GetTexture()
 {
-	if (UpdateDirty())
-		RecomputeTexture();
-
+	ENSURE(!UpdateDirty());
 	return m_Texture.get();
 }
 
@@ -69,13 +67,13 @@ const float* CTerritoryTexture::GetTextureMatrix()
 	return &m_TextureMatrix._11;
 }
 
-const CMatrix3D* CTerritoryTexture::GetMinimapTextureMatrix()
+const CMatrix3D& CTerritoryTexture::GetMinimapTextureMatrix()
 {
 	ENSURE(!UpdateDirty());
-	return &m_MinimapTextureMatrix;
+	return m_MinimapTextureMatrix;
 }
 
-void CTerritoryTexture::ConstructTexture()
+void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpTerrain)
@@ -93,12 +91,12 @@ void CTerritoryTexture::ConstructTexture()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
 	// Initialise texture with transparency, for the areas we don't
-	// overwrite with glTexSubImage2D later
-	u8* texData = new u8[textureSize * textureSize * 4];
-	memset(texData, 0x00, textureSize * textureSize * 4);
-	g_Renderer.BindTexture(0, m_Texture->GetHandle());
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, textureSize, textureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
-	delete[] texData;
+	// overwrite with uploading later.
+	std::unique_ptr<u8[]> texData = std::make_unique<u8[]>(textureSize * textureSize * 4);
+	memset(texData.get(), 0x00, textureSize * textureSize * 4);
+	deviceCommandContext->UploadTexture(
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, texData.get(), textureSize * textureSize * 4);
+	texData.reset();
 
 	{
 		// Texture matrix: We want to map
@@ -128,7 +126,7 @@ void CTerritoryTexture::ConstructTexture()
 	}
 }
 
-void CTerritoryTexture::RecomputeTexture()
+void CTerritoryTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)
@@ -139,7 +137,7 @@ void CTerritoryTexture::RecomputeTexture()
 	}
 
 	if (!m_Texture)
-		ConstructTexture();
+		ConstructTexture(deviceCommandContext);
 
 	PROFILE("recompute territory texture");
 
@@ -147,11 +145,12 @@ void CTerritoryTexture::RecomputeTexture()
 	if (!cmpTerritoryManager)
 		return;
 
-	std::vector<u8> bitmap(m_MapSize * m_MapSize * 4);
-	GenerateBitmap(cmpTerritoryManager->GetTerritoryGrid(), &bitmap[0], m_MapSize, m_MapSize);
+	std::unique_ptr<u8[]> bitmap = std::make_unique<u8[]>(m_MapSize * m_MapSize * 4);
+	GenerateBitmap(cmpTerritoryManager->GetTerritoryGrid(), bitmap.get(), m_MapSize, m_MapSize);
 
-	g_Renderer.BindTexture(0, m_Texture->GetHandle());
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_RGBA, GL_UNSIGNED_BYTE, &bitmap[0]);
+	deviceCommandContext->UploadTextureRegion(
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, bitmap.get(), m_MapSize * m_MapSize * 4,
+		0, 0, m_MapSize, m_MapSize);
 }
 
 void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, ssize_t w, ssize_t h)
@@ -242,4 +241,10 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 		for (ssize_t i = 0; i < w; ++i)
 			if (bitmap[(j*w+i)*4 + 3] == alphaMax)
 				bitmap[(j*w+i)*4 + 3] = 0;
+}
+
+void CTerritoryTexture::UpdateIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+{
+	if (UpdateDirty())
+		RecomputeTexture(deviceCommandContext);
 }

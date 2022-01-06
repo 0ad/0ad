@@ -188,27 +188,28 @@ void CMiniMapTexture::Update(const float UNUSED(deltaRealTime))
 	}
 }
 
-void CMiniMapTexture::Render()
+void CMiniMapTexture::Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	if (!terrain)
 		return;
 
 	if (!m_TerrainTexture)
-		CreateTextures(terrain);
+		CreateTextures(deviceCommandContext, terrain);
 
 	if (m_TerrainTextureDirty)
-		RebuildTerrainTexture(terrain);
+		RebuildTerrainTexture(deviceCommandContext, terrain);
 
 	RenderFinalTexture();
 }
 
-void CMiniMapTexture::CreateTextures(const CTerrain* terrain)
+void CMiniMapTexture::CreateTextures(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, const CTerrain* terrain)
 {
 	DestroyTextures();
 
 	m_MapSize = terrain->GetVerticesPerSide();
-	m_TextureSize = static_cast<GLsizei>(round_up_to_pow2(static_cast<size_t>(m_MapSize)));
+	const size_t textureSize = round_up_to_pow2(static_cast<size_t>(m_MapSize));
 
 	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -217,24 +218,22 @@ void CMiniMapTexture::CreateTextures(const CTerrain* terrain)
 
 	// Create terrain texture
 	m_TerrainTexture = Renderer::Backend::GL::CTexture::Create2D(
-		Renderer::Backend::Format::R8G8B8A8, m_TextureSize, m_TextureSize, defaultSamplerDesc);
+		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
-	// overwrite with glTexSubImage2D later
-	u32* texData = new u32[m_TextureSize * m_TextureSize];
-	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
+	// overwrite with uploading later.
+	std::unique_ptr<u32[]> texData = std::make_unique<u32[]>(textureSize * textureSize);
+	for (size_t i = 0; i < textureSize * textureSize; ++i)
 		texData[i] = 0xFF000000;
-	g_Renderer.BindTexture(0, m_TerrainTexture->GetHandle());
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
-	delete[] texData;
+	deviceCommandContext->UploadTexture(
+		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8,
+		texData.get(), textureSize * textureSize * 4);
+	texData.reset();
 
-	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
+	m_TerrainData = std::make_unique<u32[]>((m_MapSize - 1) * (m_MapSize - 1));
 
 	m_FinalTexture = Renderer::Backend::GL::CTexture::Create2D(
 		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
-
-	g_Renderer.BindTexture(0, m_FinalTexture->GetHandle());
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	glGenFramebuffersEXT(1, &m_FinalTextureFBO);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
@@ -253,11 +252,12 @@ void CMiniMapTexture::DestroyTextures()
 {
 	m_TerrainTexture.reset();
 	m_FinalTexture.reset();
-
-	SAFE_ARRAY_DELETE(m_TerrainData);
+	m_TerrainData.reset();
 }
 
-void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
+void CMiniMapTexture::RebuildTerrainTexture(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CTerrain* terrain)
 {
 	const u32 x = 0;
 	const u32 y = 0;
@@ -269,7 +269,7 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 
 	for (u32 j = 0; j < height; ++j)
 	{
-		u32* dataPtr = m_TerrainData + ((y + j) * width) + x;
+		u32* dataPtr = m_TerrainData.get() + ((y + j) * width) + x;
 		for (u32 i = 0; i < width; ++i)
 		{
 			const float avgHeight = ( terrain->GetVertexGroundLevel((int)i, (int)j)
@@ -316,9 +316,9 @@ void CMiniMapTexture::RebuildTerrainTexture(const CTerrain* terrain)
 	}
 
 	// Upload the texture
-	g_Renderer.BindTexture(0, m_TerrainTexture->GetHandle());
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, m_TerrainData);
-	g_Renderer.BindTexture(0, 0);
+	deviceCommandContext->UploadTextureRegion(
+		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8,
+		m_TerrainData.get(), width * height * 4, 0, 0, width, height);
 }
 
 void CMiniMapTexture::RenderFinalTexture()
@@ -346,7 +346,7 @@ void CMiniMapTexture::RenderFinalTexture()
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
 	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
-	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
+	const float texCoordMax = m_TerrainTexture ? static_cast<float>(m_MapSize - 1) / m_TerrainTexture->GetWidth() : 1.0f;
 
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
@@ -384,8 +384,7 @@ void CMiniMapTexture::RenderFinalTexture()
 
 	shader->BindTexture(str_baseTex, territoryTexture.GetTexture());
 	shader->Uniform(str_transform, baseTransform);
-	CMatrix3D territoryTransform = *territoryTexture.GetMinimapTextureMatrix();
-	shader->Uniform(str_textureTransform, territoryTransform);
+	shader->Uniform(str_textureTransform, territoryTexture.GetMinimapTextureMatrix());
 
 	DrawTexture(shader);
 
@@ -393,9 +392,8 @@ void CMiniMapTexture::RenderFinalTexture()
 	glColorMask(0, 0, 0, 1);
 
 	shader->BindTexture(str_baseTex, losTexture.GetTexture());
-	CMatrix3D losTransform = *losTexture.GetMinimapTextureMatrix();
 	shader->Uniform(str_transform, baseTransform);
-	shader->Uniform(str_textureTransform, losTransform);
+	shader->Uniform(str_textureTransform, losTexture.GetMinimapTextureMatrix());
 
 	DrawTexture(shader);
 

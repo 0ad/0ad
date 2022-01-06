@@ -270,6 +270,8 @@ public:
 
 	CFontManager fontManager;
 
+	std::unique_ptr<Renderer::Backend::GL::CDeviceCommandContext> deviceCommandContext;
+
 	Internals() :
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
 	{
@@ -397,6 +399,8 @@ bool CRenderer::Open(int width, int height)
 
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
+
+	m->deviceCommandContext = Renderer::Backend::GL::CDeviceCommandContext::Create();
 
 	if (g_RenderingOptions.GetPostProc())
 		m->postprocManager.Initialize();
@@ -852,4 +856,9 @@ void CRenderer::PreloadResourcesBeforeNextFrame()
 void CRenderer::MakeScreenShotOnNextFrame(ScreenShotType screenShotType)
 {
 	m_ScreenShotType = screenShotType;
+}
+
+Renderer::Backend::GL::CDeviceCommandContext* CRenderer::GetDeviceCommandContext()
+{
+	return m->deviceCommandContext.get();
 }

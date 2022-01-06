@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,12 +52,12 @@ public:
 	// an own default sampler.
 	static std::unique_ptr<CTexture> Create(const Type type, const Format format,
 		const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount);
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount, const uint32_t sampleCount);
 
 	// Shorthands for particular types.
 	static std::unique_ptr<CTexture> Create2D(const Format format,
 		const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount = 1);
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount = 1, const uint32_t sampleCount = 1);
 
 	GLuint GetHandle() const { return m_Handle; }
 

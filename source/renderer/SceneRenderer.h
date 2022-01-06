@@ -22,6 +22,7 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "ps/Singleton.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
@@ -95,7 +96,7 @@ public:
 	 * Render the given scene immediately.
 	 * @param scene a Scene object describing what should be rendered.
 	 */
-	void RenderScene(Scene& scene);
+	void RenderScene(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, Scene& scene);
 
 	/**
 	 * Return the scene that is currently being rendered.
@@ -192,7 +193,9 @@ protected:
 	void SubmitNonRecursive(CModel* model) override;
 
 	// render any batched objects
-	void RenderSubmissions(const CBoundingBoxAligned& waterScissor);
+	void RenderSubmissions(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CBoundingBoxAligned& waterScissor);
 
 	// patch rendering stuff
 	void RenderPatches(const CShaderDefines& context, int cullGroup);

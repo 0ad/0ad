@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,11 @@
 #define INCLUDED_MINIMAPTEXTURE
 
 #include "lib/ogl.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexArray.h"
+
+#include <memory>
 
 class CSimulation2;
 class CTerrain;
@@ -40,7 +43,7 @@ public:
 	/**
 	 * Redraws the texture if it's dirty.
 	 */
-	void Render();
+	void Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	Renderer::Backend::GL::CTexture* GetTexture() const { return m_FinalTexture.get(); }
 
@@ -50,9 +53,13 @@ public:
 	static float GetShallowPassageHeight();
 
 private:
-	void CreateTextures(const CTerrain* terrain);
+	void CreateTextures(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CTerrain* terrain);
 	void DestroyTextures();
-	void RebuildTerrainTexture(const CTerrain* terrain);
+	void RebuildTerrainTexture(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CTerrain* terrain);
 	void RenderFinalTexture();
 
 	CSimulation2& m_Simulation;
@@ -68,13 +75,10 @@ private:
 	GLuint m_FinalTextureFBO = 0;
 
 	// texture data
-	u32* m_TerrainData = nullptr;
+	std::unique_ptr<u32[]> m_TerrainData;
 
 	// map size
 	ssize_t m_MapSize = 0;
-
-	// texture size
-	GLsizei m_TextureSize = 0;
 
 	// Maximal water height to allow the passage of a unit (for underwater shallows).
 	float m_ShallowPassageHeight = 0.0f;

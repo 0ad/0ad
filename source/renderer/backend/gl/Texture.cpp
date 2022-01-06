@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "Texture.h"
 
+#include "lib/code_annotation.h"
 #include "lib/config2.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "renderer/backend/gl/Device.h"
@@ -85,20 +86,21 @@ GLenum TypeToGLEnum(CTexture::Type type)
 // static
 std::unique_ptr<CTexture> CTexture::Create2D(const Format format,
 	const uint32_t width, const uint32_t height,
-	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount)
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount, const uint32_t sampleCount)
 {
-	return Create(Type::TEXTURE_2D, format, width, height, defaultSamplerDesc, mipCount);
+	return Create(Type::TEXTURE_2D, format, width, height, defaultSamplerDesc, mipCount, sampleCount);
 }
 
 // static
 std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 	const uint32_t width, const uint32_t height,
-	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount)
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount, const uint32_t sampleCount)
 {
 	std::unique_ptr<CTexture> texture(new CTexture());
 
 	ENSURE(format != Format::UNDEFINED);
 	ENSURE(width > 0 && height > 0 && mipCount > 0);
+	ENSURE((type == Type::TEXTURE_2D_MULTISAMPLE && sampleCount > 1) || sampleCount == 1);
 
 	texture->m_Format = format;
 	texture->m_Width = width;
@@ -150,6 +152,85 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 		defaultSamplerDesc.addressModeW == Sampler::AddressMode::CLAMP_TO_BORDER)
 	{
 		glTexParameterfv(target, GL_TEXTURE_BORDER_COLOR, defaultSamplerDesc.borderColor.AsFloatArray());
+	}
+
+	ogl_WarnIfError();
+
+	ENSURE(mipCount == 1);
+
+	if (type == CTexture::Type::TEXTURE_2D)
+	{
+		GLint internalFormat = GL_RGBA;
+		// Actually pixel data is nullptr so it doesn't make sense to account
+		// it, but in theory some buggy drivers might complain about invalid
+		// pixel format.
+		GLenum pixelFormat = GL_RGBA;
+		GLenum pixelType = GL_UNSIGNED_BYTE;
+		switch (format)
+		{
+		case Format::UNDEFINED:
+			debug_warn("Texture should defined format");
+			break;
+		case Format::R8G8B8A8:
+			break;
+		case Format::A8:
+			internalFormat = GL_ALPHA;
+			pixelFormat = GL_ALPHA;
+			pixelType = GL_UNSIGNED_BYTE;
+			break;
+#if CONFIG2_GLES
+		// GLES requires pixel type == UNSIGNED_SHORT or UNSIGNED_INT for depth.
+		case Format::D16: FALLTHROUGH;
+		case Format::D24: FALLTHROUGH;
+		case Format::D32:
+			internalFormat = GL_DEPTH_COMPONENT;
+			pixelFormat = GL_DEPTH_COMPONENT;
+			pixelType = GL_UNSIGNED_SHORT;
+			break;
+		case Format::D24_S8:
+			debug_warn("Unsupported format");
+			break;
+#else
+		case Format::D16:
+			internalFormat = GL_DEPTH_COMPONENT16;
+			pixelFormat = GL_DEPTH_COMPONENT;
+			pixelType = GL_UNSIGNED_SHORT;
+			break;
+		case Format::D24:
+			internalFormat = GL_DEPTH_COMPONENT24;
+			pixelFormat = GL_DEPTH_COMPONENT;
+			pixelType = GL_UNSIGNED_SHORT;
+			break;
+		case Format::D32:
+			internalFormat = GL_DEPTH_COMPONENT32;
+			pixelFormat = GL_DEPTH_COMPONENT;
+			pixelType = GL_UNSIGNED_SHORT;
+			break;
+		case Format::D24_S8:
+			internalFormat = GL_DEPTH24_STENCIL8_EXT;
+			pixelFormat = GL_DEPTH_STENCIL_EXT;
+			pixelType = GL_UNSIGNED_INT_24_8_EXT;
+			break;
+#endif
+		}
+		glTexImage2D(target, 0, internalFormat, width, height, 0, pixelFormat, pixelType, nullptr);
+	}
+	else if (type == CTexture::Type::TEXTURE_2D_MULTISAMPLE)
+	{
+#if !CONFIG2_GLES
+		if (format == Format::R8G8B8A8)
+		{
+			glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, sampleCount, GL_RGBA8, width, height, GL_TRUE);
+		}
+		else if (format == Format::D24_S8)
+		{
+			glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, sampleCount, GL_DEPTH24_STENCIL8_EXT, width, height, GL_TRUE);
+		}
+		else
+#endif // !CONFIG2_GLES
+		{
+			debug_warn("Unsupported format");
+		}
 	}
 
 	ogl_WarnIfError();

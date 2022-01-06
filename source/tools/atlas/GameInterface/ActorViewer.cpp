@@ -523,7 +523,7 @@ void ActorViewer::Render()
 
 	g_Renderer.GetSceneRenderer().SetSceneCamera(camera, camera);
 
-	g_Renderer.GetSceneRenderer().RenderScene(m);
+	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), m);
 
 	glDisable(GL_DEPTH_TEST);
 	g_Logger->Render();

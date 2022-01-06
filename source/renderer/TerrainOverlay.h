@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #ifndef INCLUDED_TERRAINOVERLAY
 #define INCLUDED_TERRAINOVERLAY
 
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 
 struct CColor;
@@ -45,7 +46,8 @@ public:
 
 	virtual void RenderBeforeWater() { }
 
-	virtual void RenderAfterWater(int UNUSED(cullGroup)) { }
+	virtual void RenderAfterWater(
+		Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext), int UNUSED(cullGroup)) { }
 
 	/**
 	 * Draw all ITerrainOverlay objects that exist
@@ -57,7 +59,8 @@ public:
 	 * Draw all ITerrainOverlay objects that exist
 	 * and that should be drawn after water.
 	 */
-	static void RenderOverlaysAfterWater(int cullGroup);
+	static void RenderOverlaysAfterWater(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup);
 
 protected:
 	ITerrainOverlay(int priority);
@@ -176,7 +179,7 @@ class TerrainTextureOverlay : public ITerrainOverlay
 public:
 	TerrainTextureOverlay(float texelsPerTile, int priority = 100);
 
-	virtual ~TerrainTextureOverlay();
+	~TerrainTextureOverlay() override;
 
 protected:
 	/**
@@ -194,7 +197,8 @@ protected:
 	SColor4ub GetColor(size_t idx, u8 alpha) const;
 
 private:
-	void RenderAfterWater(int cullGroup);
+	void RenderAfterWater(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup) override;
 
 	float m_TexelsPerTile;
 	std::unique_ptr<Renderer::Backend::GL::CTexture> m_Texture;
