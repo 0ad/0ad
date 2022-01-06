@@ -339,8 +339,8 @@ void TerrainTextureOverlay::RenderAfterWater(
 	u8* data = (u8*)calloc(w * h, 4);
 	BuildTextureRGBA(data, w, h);
 
-	deviceCommandContext->UploadTexture(
-		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, data, w * h * 4);
+	deviceCommandContext->UploadTextureRegion(
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, data, w * h * 4, 0, 0, w, h);
 
 	free(data);
 
