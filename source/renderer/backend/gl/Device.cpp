@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,7 +127,7 @@ std::vector<std::string> GetExtensionsImpl()
 } // anonymous namespace
 
 // static
-std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
+std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 {
 	std::unique_ptr<CDevice> device(new CDevice());
 
@@ -167,8 +167,12 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 #endif
 	}
 
+	// If we don't have GL2.0 then we don't have GLSL in core.
+	if (!arb && !ogl_HaveVersion(2, 0))
+		return nullptr;
+
 	if ((ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr) // ARB
-		&& ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", nullptr)) // GLSL
+		&& !ogl_HaveVersion(2, 0)) // GLSL
 		|| !ogl_HaveExtension("GL_ARB_vertex_buffer_object") // VBO
 		|| ogl_HaveExtensions(0, "GL_ARB_multitexture", "GL_EXT_draw_range_elements", nullptr)
 		|| (!ogl_HaveExtension("GL_EXT_framebuffer_object") && !ogl_HaveExtension("GL_ARB_framebuffer_object")))

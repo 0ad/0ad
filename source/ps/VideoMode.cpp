@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -522,7 +522,13 @@ void CVideoMode::Shutdown()
 
 bool CVideoMode::CreateBackendDevice(const bool createSDLContext)
 {
-	m_BackendDevice = Renderer::Backend::GL::CDevice::Create(createSDLContext ? m_Window : nullptr);
+	m_BackendDevice = Renderer::Backend::GL::CDevice::Create(createSDLContext ? m_Window : nullptr, m_Backend == Backend::GL_ARB);
+	if (!m_BackendDevice && m_Backend == Backend::GL)
+	{
+		LOGERROR("Unable to create device for GL backend, switching to ARB.", static_cast<int>(m_Backend));
+		m_Backend = Backend::GL_ARB;
+		return CreateBackendDevice(createSDLContext);
+	}
 	return !!m_BackendDevice;
 }
 
