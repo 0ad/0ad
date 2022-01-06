@@ -7,6 +7,8 @@ Terminal=false
 MimeType=application/x-pyromod+zip;
 Type=Application
 Categories=Game;StrategyGame;
+# Use the most powerful GPU available by default (i.e. a dedicated Nvidia or AMD card instead of the integrated Intel card)
+PrefersNonDefaultGPU=true
 Comment=A real-time strategy game of ancient warfare
 Comment[de]=Ein Echtzeitstrategiespiel, das die Kriegsführung der Antike behandelt
 Comment[es]=Un juego de estrategia en tiempo real de guerra antigua
@@ -16,7 +18,7 @@ Comment[nl]=Een real-time strategie spel over oorlog van de oudheid
 Comment[pl]=Gra strategiczna czasu rzeczywistego  o wojnach starożytnych
 Comment[pt_BR]=Um jogo em tempo real de guerra antiga
 Comment[ru]=Игра в жанре исторической стратегии в реальном времени
-Keywords=RTS;Realtime Strategy;Economic Simulation Game;History;Warfare;Infantry;Cavalry;Siege Engines;Fortress;Celtics;Hellenes;Athenians;Britons;Carthaginians;Gauls;Iberians;Macedonians;Mauryans;Persians;Ptolemies;Romans;Seleucids;Spartans;
+Keywords=RTS;Real-Time Strategy;Economic Simulation Game;History;Warfare;Infantry;Cavalry;Siege Engines;Fortress;Celtics;Hellenes;Athenians;Britons;Carthaginians;Gauls;Iberians;Macedonians;Mauryas;Persians;Ptolemies;Romans;Seleucids;Spartans;
 Actions=Atlas;
 
 [Desktop Action Atlas]
