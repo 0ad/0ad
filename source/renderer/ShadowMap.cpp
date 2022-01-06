@@ -775,6 +775,9 @@ void ShadowMap::RenderDebugBounds()
 
 void ShadowMap::RenderDebugTexture()
 {
+	if (!m->Texture)
+		return;
+
 	glDepthMask(0);
 
 	glDisable(GL_DEPTH_TEST);
