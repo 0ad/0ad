@@ -28,7 +28,7 @@
 #include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/ogl_tex.h"
+#include "lib/tex/tex.h"
 #include "gui/GUIManager.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -782,7 +782,7 @@ void CRenderer::EndFrame()
 
 	m->sceneRenderer.EndFrame();
 
-	ogl_tex_bind(0, 0);
+	BindTexture(0, 0);
 }
 
 void CRenderer::SetViewport(const SViewPort &vp)
