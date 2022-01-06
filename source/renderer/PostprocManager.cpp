@@ -223,14 +223,6 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 
-	// Cheat by creating high quality mipmaps for inTex, so the copying operation actually
-	// produces good scaling due to hardware filtering.
-	glBindTexture(GL_TEXTURE_2D, inTex->GetHandle());
-	glGenerateMipmapEXT(GL_TEXTURE_2D);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
 	shader->BindTexture(str_renderedTex, inTex);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
