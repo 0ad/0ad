@@ -84,19 +84,22 @@ private:
 
 	CSimulation2& m_Simulation;
 
-	bool m_Dirty;
+	bool m_Dirty = true;
 
-	bool m_ShaderInitialized;
+	bool m_ShaderInitialized = false;
 
 	std::unique_ptr<Renderer::Backend::GL::CTexture>
 		m_Texture, m_TextureSmooth1, m_TextureSmooth2;
 
-	bool m_WhichTex;
+	bool m_WhichTex = true;
 
-	GLuint m_SmoothFBO;
-	CShaderTechniquePtr m_smoothShader;
+	// We update textures once a frame, so we change a FBO once a frame. That
+	// allows us to use two ping-pong FBOs instead of checking completeness of
+	// FBO each frame.
+	GLuint m_SmoothFBO1 = 0, m_SmoothFBO2 = 0;
+	CShaderTechniquePtr m_SmoothTech;
 
-	size_t m_MapSize; // vertexes per side
+	size_t m_MapSize = 0; // vertexes per side
 
 	CMatrix3D m_TextureMatrix;
 	CMatrix3D m_MinimapTextureMatrix;

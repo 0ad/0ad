@@ -51,7 +51,8 @@
  * TerrainRenderer keeps track of which phase it is in, to detect
  * when Submit, PrepareForRendering etc. are called in the wrong order.
  */
-enum Phase {
+enum Phase
+{
 	Phase_Submit,
 	Phase_Render
 };
@@ -400,38 +401,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	const double time = waterManager.m_WaterTexTimer;
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
 
-	// Render normals and foam to a framebuffer if we're in fancy effects
-	if (waterManager.m_WaterFancyEffects)
-	{
-		// Save the post-processing framebuffer.
-		GLint fbo;
-		glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
-
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager.m_FancyEffectsFBO);
-
-		glDisable(GL_BLEND);
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-
-		glDisable(GL_CULL_FACE);
-		// Overwrite waves that would be behind the ground.
-		CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-		dummyTech->BeginPass();
-		CShaderProgramPtr dummyShader = dummyTech->GetShader();
-
-		dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
-		dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
-		std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
-		for (size_t i = 0; i < visiblePatches.size(); ++i)
-		{
-			CPatchRData* data = visiblePatches[i];
-			data->RenderWater(dummyShader, true, true);
-		}
-		dummyTech->EndPass();
-
-		glEnable(GL_CULL_FACE);
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
-	}
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
@@ -580,14 +549,42 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 // Render water that is part of the terrain
 void TerrainRenderer::RenderWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
-	WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
-
-	waterManager.UpdateQuality();
+	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 
 	if (!waterManager.WillRenderFancyWater())
 		RenderSimpleWater(cullGroup);
 	else
 		RenderFancyWater(context, cullGroup, shadow);
+}
+
+void TerrainRenderer::RenderWaterFoamOccluders(int cullGroup)
+{
+	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
+	const WaterManager& waterManager = sceneRenderer.GetWaterManager();
+	if (!waterManager.WillRenderFancyWater())
+		return;
+
+	// Render normals and foam to a framebuffer if we're using fancy effects.
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager.m_FancyEffectsFBO);
+
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
+	glDisable(GL_CULL_FACE);
+	// Overwrite waves that would be behind the ground.
+	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
+	dummyTech->BeginPass();
+	CShaderProgramPtr dummyShader = dummyTech->GetShader();
+
+	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
+	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
+	for (CPatchRData* data : m->visiblePatches[cullGroup])
+		data->RenderWater(dummyShader, true, true);
+	dummyTech->EndPass();
+
+	glEnable(GL_CULL_FACE);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 void TerrainRenderer::RenderPriorities(int cullGroup)
