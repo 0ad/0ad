@@ -457,7 +457,7 @@ bool CRenderer::ShouldRender() const
 	return !g_app_minimized && (g_app_has_focus || !g_VideoMode.IsInFullscreen());
 }
 
-void CRenderer::RenderFrame(bool needsPresent)
+void CRenderer::RenderFrame(const bool needsPresent)
 {
 	// Do not render if not focused while in fullscreen or minimised,
 	// as that triggers a difficult-to-reproduce crash on some graphic cards.
@@ -473,7 +473,7 @@ void CRenderer::RenderFrame(bool needsPresent)
 
 	if (m_ScreenShotType == ScreenShotType::BIG)
 	{
-		RenderBigScreenShot();
+		RenderBigScreenShot(needsPresent);
 	}
 	else
 	{
@@ -487,7 +487,7 @@ void CRenderer::RenderFrame(bool needsPresent)
 	}
 }
 
-void CRenderer::RenderFrameImpl(bool renderGUI, bool renderLogger)
+void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 {
 	PROFILE3("render");
 
@@ -623,7 +623,7 @@ void CRenderer::RenderScreenShot()
 		LOGERROR("Error writing screenshot to '%s'", filename.string8());
 }
 
-void CRenderer::RenderBigScreenShot()
+void CRenderer::RenderBigScreenShot(const bool needsPresent)
 {
 	m_ScreenShotType = ScreenShotType::NONE;
 
@@ -651,7 +651,7 @@ void CRenderer::RenderBigScreenShot()
 	// hope the screen is actually large enough for that.
 	ENSURE(g_xres >= tileWidth && g_yres >= tileHeight);
 
-	const int img_w = tileWidth * tiles, img_h = tileHeight * tiles;
+	const int imageWidth = tileWidth * tiles, imageHeight = tileHeight * tiles;
 	const int bpp = 24;
 	// we want writing BMP to be as fast as possible,
 	// so read data from OpenGL in BMP format to obviate conversion.
@@ -663,23 +663,23 @@ void CRenderer::RenderBigScreenShot()
 	const int flags = TEX_BOTTOM_UP | TEX_BGR;
 #endif
 
-	const size_t img_size = img_w * img_h * bpp / 8;
-	const size_t tile_size = tileWidth * tileHeight * bpp / 8;
-	const size_t hdr_size = tex_hdr_size(filename);
-	void* tile_data = malloc(tile_size);
-	if (!tile_data)
+	const size_t imageSize = imageWidth * imageHeight * bpp / 8;
+	const size_t tileSize = tileWidth * tileHeight * bpp / 8;
+	const size_t headerSize = tex_hdr_size(filename);
+	void* tileData = malloc(tileSize);
+	if (!tileData)
 	{
 		WARN_IF_ERR(ERR::NO_MEM);
 		return;
 	}
-	std::shared_ptr<u8> img_buf;
-	AllocateAligned(img_buf, hdr_size + img_size, maxSectorSize);
+	std::shared_ptr<u8> imageBuffer;
+	AllocateAligned(imageBuffer, headerSize + imageSize, maxSectorSize);
 
 	Tex t;
-	GLvoid* img = img_buf.get() + hdr_size;
-	if (t.wrap(img_w, img_h, bpp, flags, img_buf, hdr_size) < 0)
+	GLvoid* img = imageBuffer.get() + headerSize;
+	if (t.wrap(imageWidth, imageHeight, bpp, flags, imageBuffer, headerSize) < 0)
 	{
-		free(tile_data);
+		free(tileData);
 		return;
 	}
 
@@ -694,51 +694,35 @@ void CRenderer::RenderBigScreenShot()
 		g_Game->GetView()->SetViewport(vp);
 	}
 
-#if !CONFIG2_GLES
-	// Temporarily move everything onto the front buffer, so the user can
-	// see the exciting progress as it renders (and can tell when it's finished).
-	// (It doesn't just use SwapBuffers, because it doesn't know whether to
-	// call the SDL version or the Atlas version.)
-	GLint oldReadBuffer, oldDrawBuffer;
-	glGetIntegerv(GL_READ_BUFFER, &oldReadBuffer);
-	glGetIntegerv(GL_DRAW_BUFFER, &oldDrawBuffer);
-	glDrawBuffer(GL_FRONT);
-	glReadBuffer(GL_FRONT);
-#endif
-
 	// Render each tile
 	CMatrix3D projection;
 	projection.SetIdentity();
 	const float aspectRatio = 1.0f * tileWidth / tileHeight;
-	for (int tile_y = 0; tile_y < tiles; ++tile_y)
+	for (int tileY = 0; tileY < tiles; ++tileY)
 	{
-		for (int tile_x = 0; tile_x < tiles; ++tile_x)
+		for (int tileX = 0; tileX < tiles; ++tileX)
 		{
 			// Adjust the camera to render the appropriate region
 			if (oldCamera.GetProjectionType() == CCamera::ProjectionType::PERSPECTIVE)
 			{
-				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tile_x, tile_y);
+				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tileX, tileY);
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
 
 			RenderFrameImpl(false, false);
 
 			// Copy the tile pixels into the main image
-			glReadPixels(0, 0, tileWidth, tileHeight, fmt, GL_UNSIGNED_BYTE, tile_data);
+			glReadPixels(0, 0, tileWidth, tileHeight, fmt, GL_UNSIGNED_BYTE, tileData);
 			for (int y = 0; y < tileHeight; ++y)
 			{
-				void* dest = static_cast<char*>(img) + ((tile_y * tileHeight + y) * img_w + (tile_x * tileWidth)) * bpp / 8;
-				void* src = static_cast<char*>(tile_data) + y * tileWidth * bpp / 8;
+				void* dest = static_cast<char*>(img) + ((tileY * tileHeight + y) * imageWidth + (tileX * tileWidth)) * bpp / 8;
+				void* src = static_cast<char*>(tileData) + y * tileWidth * bpp / 8;
 				memcpy(dest, src, tileWidth * bpp / 8);
 			}
+			if (needsPresent)
+				g_VideoMode.GetBackendDevice()->Present();
 		}
 	}
-
-#if !CONFIG2_GLES
-	// Restore the buffer settings
-	glDrawBuffer(oldDrawBuffer);
-	glReadBuffer(oldReadBuffer);
-#endif
 
 	// Restore the viewport settings
 	{
@@ -762,7 +746,7 @@ void CRenderer::RenderBigScreenShot()
 	else
 		LOGERROR("Error writing screenshot to '%s'", filename.string8());
 
-	free(tile_data);
+	free(tileData);
 }
 
 void CRenderer::BeginFrame()
