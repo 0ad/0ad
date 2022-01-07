@@ -382,17 +382,6 @@ bool CRenderer::Open(int width, int height)
 	m_Width = width;
 	m_Height = height;
 
-	// set packing parameters
-	glPixelStorei(GL_PACK_ALIGNMENT,1);
-	glPixelStorei(GL_UNPACK_ALIGNMENT,1);
-
-	// setup default state
-	glDepthFunc(GL_LEQUAL);
-	glEnable(GL_DEPTH_TEST);
-	glCullFace(GL_BACK);
-	glFrontFace(GL_CCW);
-	glEnable(GL_CULL_FACE);
-
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
 
