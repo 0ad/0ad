@@ -9,6 +9,7 @@
 # Balázs Meskó
 # Balázs Úr
 # 12dde84ca529f511e7ad8b70de73f71c_b688a04
+# Eekain
 # Boross Péter
 # Levente Krisztián Büte
 # Csokán András
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-12-06 15:33+0000\n"
-"Last-Translator: Szabó Lambert\n"
+"PO-Revision-Date: 2022-01-05 14:06+0000\n"
+"Last-Translator: Eekain\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -229,7 +230,7 @@ msgstr "Szövetséges nézet"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr ""
+msgstr "Mutasd (vagy ne mutasd), hogy mit látnak a szövetségeseid."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -833,7 +834,7 @@ msgstr "Kitiltottak."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr ""
+msgstr "Nem sikerült a szerver helyi IP címét lekérni (már amennyiben helyi hálózatról van szó)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -1102,7 +1103,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.” \\n— Alexander the Great, addressing his troops "
 "(Arrian, “The Anabasis of Alexander”, 5.26)"
-msgstr ""
+msgstr "“Dicsőek azok tettei, kik veszélyben is végzik dolguk; nincs csodásabb, mint bátor élet után örök dicsőségben hunyni.” \\n— Nagy Sándor, a hadaihoz (Arrianus, “Anabaszisz Alexandru”, 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -1110,7 +1111,7 @@ msgid ""
 "labors themselves, provided they lead to glorious achievements.” \\n— "
 "Alexander the Great, addressing his troops (Arrian, “The Anabasis of "
 "Alexander”, 5.26)"
-msgstr ""
+msgstr "“Úgy vélem, a bátrak dolga sosem ér véget, kivéve, ha a munka végét meglátják, és ott dicső cél várja őket.” \\n— Nagy Sándor, a hadaihoz  (Arrianus, “Anabaszisz Alexandru”, 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""
@@ -1313,7 +1314,7 @@ msgstr "„Elhurcolni, gyilkolni, rabolni – hazug névvel ezt mondják birodal
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
-msgstr ""
+msgstr "\"Hogy elkapj egy tolvajt, válj tolvajjá\"\\n - Kallimakhosz( Epigrammák, 44. )"
 
 #: gui/text/quotes.txt:52
 msgid ""
@@ -1345,7 +1346,7 @@ msgid ""
 "“We did not flinch but gave our lives to save Greece when her fate hung on a"
 " razor's edge.” \\n— Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, “Moralia”, “On the Malice of Herodotus”, 870e)"
-msgstr ""
+msgstr "„Nem hátráltunk meg, hanem az életünket adtuk Görögország megmentéséért, amikor sorsa pengeélen táncolt.”\\n - korinthoszi sírfelirat a perzsa háborúk elesettjeihez (Plutarkhosz, „Moralia”, XI. „Hérodotosz rosszindulata”, 870e)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1384,18 +1385,18 @@ msgstr "„Fravartišt elfogták, hozzám vezették. Én neki mind az orrát, mi
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
-msgstr ""
+msgstr "“Kevesebbre vágyó szegény ember elégedettebb lesz.” \\n— Demokritosz (részlet)"
 
 #: gui/text/quotes.txt:62
 msgid ""
 "“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
-msgstr ""
+msgstr "“Fájó, ha náladnál gyengébb ural.” \\n— Demokritosz (részlet)"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "“Physical strength is only noble in cattle, it is strength of character that"
 " is noble in men.” \\n— Democritus (fragment)"
-msgstr ""
+msgstr "“Az izomerő pusztán barmok között számít, a szellem ereje, mellyel az ember kimagaslik.” \\n— Demokritosz (részlet)"
 
 #: gui/text/quotes.txt:64
 msgid ""
@@ -1449,7 +1450,7 @@ msgstr "\"A kozmosz polgára vagyok.\" \\n— Szinópéi Diogenész (Diogenész 
 msgid ""
 "“It is not that I am mad, it is only that my head is different from yours.” "
 "\\n— Diogenes of Sinope (Stobaeus, “Florilegium”, 51)"
-msgstr ""
+msgstr "„Nem vagyok őrült, csak más a fejem mint a tiéd.” \\n – Szinópéi Diogenész (Ióannész Sztobaiosz, „Florilegium”, 51.)"
 
 #: gui/text/quotes.txt:71
 msgid ""
@@ -1481,19 +1482,19 @@ msgstr "„A bátor szembenéz a vésszel, míg a gyáva semmi mindenütt.” \\
 msgid ""
 "“Brave men are made bolder by ordeals, but cowards achieve nothing.” \\n— "
 "Euripides (“Iphigenia in Tauris”)"
-msgstr ""
+msgstr "“A bátrak minden kihívással vakmerőbbé válnak, de ki gyáva, mit sem nyerhet.” \\n— Euripidész („Iphigenia a tauruszok között”)"
 
 #: gui/text/quotes.txt:76
 msgid ""
 "“Cowards do not count in battle; they are there, but not in it.” \\n— "
 "Euripides (“Meleager”)"
-msgstr ""
+msgstr "„A gyávák nem számítanak a csatában; ott vannak, de nem benne.” \\n - Euripidész („Meleagrosz”)"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "“Chance fights ever on the side of the prudent.” \\n— Euripides "
 "(“Pirithous”)"
-msgstr ""
+msgstr "„Az esély mindig a körültekintők oldalán harcol.” \\n – Euripidész („Peirithoosz”)"
 
 #: gui/text/quotes.txt:78
 msgid ""
@@ -1700,7 +1701,7 @@ msgstr ""
 msgid ""
 "“It is your concern when your neighbor's wall is on fire.” \\n— Horace "
 "(“Epistles”, epistle XVIII., 84)"
-msgstr ""
+msgstr "„A te problémád is, ha a szomszédod fala lángokban áll” \\n – Horatius („Episztolák”, XVIII. episztola, 84.)"
 
 #: gui/text/quotes.txt:107
 msgid ""
@@ -1730,7 +1731,7 @@ msgstr ""
 msgid ""
 "“If a king is energetic, his subjects will be equally energetic.”\\n— "
 "Kauṭilya (“Arthashastra” I.19.1)"
-msgstr ""
+msgstr "„Ha a király erőteljes, akkor az alattvalói ugyanolyan erőteljesek lesznek.”  \\n  — Csánakja (“Artasasztra” I.19.1)"
 
 #: gui/text/quotes.txt:112
 msgid ""
@@ -1843,7 +1844,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:128
 msgid "“The man who runs may fight again.” \\n— Menander (“Monosticha”)"
-msgstr ""
+msgstr "“Az ember aki elfut, újra harcolhat.” \\n — Menandrosz („Monosticha”)"
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -2068,7 +2069,7 @@ msgstr "„Ha még egy csatában győzünk a rómaiakon, végképp elveszünk.�
 msgid ""
 "“None can be free who is a slave to, and ruled by, his passions.” \\n— "
 "Pythagoras (Stobaeus, “Florilegium”, 18)"
-msgstr ""
+msgstr "„Senki sem lehet szabad, aki a szenvedélyei rabszolgája.” \\n – Püthagorasz (Stobaeus, „Florilegium”, 18.)"
 
 #: gui/text/quotes.txt:157
 msgid ""

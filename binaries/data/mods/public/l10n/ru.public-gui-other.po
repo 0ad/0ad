@@ -49,8 +49,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-02 20:31+0000\n"
-"Last-Translator: Дмитрий Ошкало\n"
+"PO-Revision-Date: 2022-01-03 23:33+0000\n"
+"Last-Translator: nwtour\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -309,9 +309,9 @@ msgstr "Первую минуту другие игроки остаются н�
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Первую %(min)s минуту другие игроки остаются нейтральными."
+msgstr[1] "Первые %(min)s минут другие игроки остаются нейтральными."
+msgstr[2] "Первые %(min)s минуты другие игроки остаются нейтральными."
 msgstr[3] "Первые %(min)s минут другие игроки остаются нейтральными."
 
 #: gui/common/gamedescription.js:288
@@ -2980,12 +2980,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "Включить/выключить отображение строк состояния, к примеру индикатор здоровья, для всех построек и юнитов на карте (включая не выбранных)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr "Показать/скрыть строки статуса"
+msgstr "Показать/скрыть строки состояния"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
