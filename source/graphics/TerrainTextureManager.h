@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 
 #include <map>
@@ -73,6 +74,8 @@ struct TerrainAlpha
 {
 	// Composite alpha map (all the alpha maps packed into one texture).
 	std::unique_ptr<Renderer::Backend::GL::CTexture> m_CompositeAlphaMap;
+	// Data is used to separate file loading and uploading to GPU.
+	std::shared_ptr<u8> m_CompositeDataToUpload;
 	// Coordinates of each (untransformed) alpha map within the packed texture.
 	struct
 	{
@@ -88,21 +91,9 @@ class CTerrainTextureManager : public Singleton<CTerrainTextureManager>
 	friend class CTerrainTextureEntry;
 
 public:
-	typedef std::map<CStr, CTerrainGroup*> TerrainGroupMap;
-	typedef std::map<VfsPath, TerrainAlpha> TerrainAlphaMap;
+	using TerrainGroupMap = std::map<CStr, CTerrainGroup*>;
+	using TerrainAlphaMap = std::map<VfsPath, TerrainAlpha>;
 
-private:
-	// All texture entries created by this class, for easy freeing now that
-	// textures may be in several STextureType's
-	std::vector<CTerrainTextureEntry*> m_TextureEntries;
-
-	TerrainGroupMap m_TerrainGroups;
-
-	TerrainAlphaMap m_TerrainAlphas;
-
-	size_t m_LastGroupIndex;
-
-public:
 	// constructor, destructor
 	CTerrainTextureManager();
 	~CTerrainTextureManager();
@@ -128,7 +119,25 @@ public:
 
 	const TerrainGroupMap& GetGroups() const
 	{ return m_TerrainGroups; }
+
+	CTerrainTextureManager::TerrainAlphaMap::iterator LoadAlphaMap(const VfsPath& alphaMapType);
+
+	void UploadResourcesIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+
+private:
+	// All texture entries created by this class, for easy freeing now that
+	// textures may be in several STextureType's
+	std::vector<CTerrainTextureEntry*> m_TextureEntries;
+
+	TerrainGroupMap m_TerrainGroups;
+
+	TerrainAlphaMap m_TerrainAlphas;
+
+	size_t m_LastGroupIndex;
+
+	// A way to separate file loading and uploading to GPU to not stall uploading.
+	// Once we get a properly threaded loading we might optimize that.
+	std::vector<CTerrainTextureManager::TerrainAlphaMap::iterator> m_AlphaMapsToUpload;
 };
 
-
-#endif
+#endif // INCLUDED_TERRAINTEXTUREMANAGER

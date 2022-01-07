@@ -28,6 +28,7 @@
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
+#include "graphics/TextureManager.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "ps/ConfigDB.h"

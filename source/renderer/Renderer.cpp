@@ -494,6 +494,8 @@ void CRenderer::RenderFrameImpl(bool renderGUI, bool renderLogger)
 	g_Profiler2.RecordGPUFrameStart();
 	ogl_WarnIfError();
 
+	g_TexMan.UploadResourcesIfNeeded(m->deviceCommandContext.get());
+
 	// prepare before starting the renderer frame
 	if (g_Game && g_Game->IsGameStarted())
 		g_Game->GetView()->BeginFrame();

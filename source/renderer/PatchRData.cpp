@@ -27,6 +27,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TextRenderer.h"
+#include "graphics/TextureManager.h"
 #include "lib/allocators/DynamicArena.h"
 #include "lib/allocators/STLAllocators.h"
 #include "maths/MathUtil.h"

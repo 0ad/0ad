@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "lib/tex/tex.h"
