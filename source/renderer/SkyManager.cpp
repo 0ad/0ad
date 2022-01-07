@@ -24,7 +24,6 @@
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
 #include "lib/bits.h"
-#include "lib/ogl.h"
 #include "lib/tex/tex.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
@@ -43,23 +42,24 @@
 #include <algorithm>
 
 SkyManager::SkyManager()
-	: m_RenderSky(true)
 {
 	CFG_GET_VAL("showsky", m_RenderSky);
 }
 
-///////////////////////////////////////////////////////////////////
-// Load all sky textures
-void SkyManager::LoadSkyTextures()
+void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
+	if (m_SkyCubeMap)
+		return;
+
 	OGL_SCOPED_DEBUG_GROUP("Load Sky Textures");
 	static const CStrW images[NUMBER_OF_TEXTURES + 1] = {
 		L"front",
 		L"back",
-		L"right",
-		L"left",
 		L"top",
-		L"top"
+		L"top",
+		L"right",
+		L"left"
 	};
 
 	/*for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); ++i)
@@ -111,30 +111,21 @@ void SkyManager::LoadSkyTextures()
 		}
 	}
 
-	m_SkyCubeMap = Renderer::Backend::GL::CTexture::Create(Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
+	m_SkyCubeMap = Renderer::Backend::GL::CTexture::Create(
+		Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
 		Renderer::Backend::Format::R8G8B8A8, textures[0].m_Width, textures[0].m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
-
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap->GetHandle());
-
-	static const int types[] =
-	{
-		GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-		GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
-		GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
-		GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
-		GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
-		GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-	};
 
 	std::vector<u8> rotated;
 	for (size_t i = 0; i < NUMBER_OF_TEXTURES + 1; ++i)
 	{
 		u8* data = textures[i].get_data();
 
-		if (types[i] == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y || types[i] == GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
+		// We need to rotate the side if it's looking up or down.
+		// TODO: maybe it should be done during texture conversion.
+		if (i == 2 || i == 3)
 		{
 			rotated.resize(textures[i].m_DataSize);
 
@@ -152,21 +143,20 @@ void SkyManager::LoadSkyTextures()
 				}
 			}
 
-			glTexImage2D(types[i], 0, GL_RGBA, textures[i].m_Width, textures[i].m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
+			deviceCommandContext->UploadTexture(
+				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8,
+				&rotated[0], textures[i].m_DataSize, 0, i);
 		}
 		else
 		{
-			glTexImage2D(types[i], 0, GL_RGBA, textures[i].m_Width, textures[i].m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			deviceCommandContext->UploadTexture(
+				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8,
+				data, textures[i].m_DataSize, 0, i);
 		}
 	}
-
-	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 	///////////////////////////////////////////////////////////////////////////
 }
 
-
-///////////////////////////////////////////////////////////////////
-// Switch to a different sky set (while the game is running)
 void SkyManager::SetSkySet(const CStrW& newSet)
 {
 	if (newSet == m_SkySet)
@@ -175,12 +165,8 @@ void SkyManager::SetSkySet(const CStrW& newSet)
 	m_SkyCubeMap.reset();
 
 	m_SkySet = newSet;
-
-	LoadSkyTextures();
 }
 
-///////////////////////////////////////////////////////////////////
-// Generate list of available skies
 std::vector<CStrW> SkyManager::GetSkySets() const
 {
 	std::vector<CStrW> skies;
@@ -202,8 +188,6 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	return skies;
 }
 
-///////////////////////////////////////////////////////////////////
-// Render sky
 void SkyManager::RenderSky()
 {
 	OGL_SCOPED_DEBUG_GROUP("Render Sky");

@@ -43,16 +43,24 @@ CDeviceCommandContext::CDeviceCommandContext() = default;
 CDeviceCommandContext::~CDeviceCommandContext() = default;
 
 void CDeviceCommandContext::UploadTexture(
-	CTexture* texture, const Format format, const void* data, const size_t dataSize)
+	CTexture* texture, const Format format,
+	const void* data, const size_t dataSize,
+	const uint32_t level, const uint32_t layer)
 {
-	UploadTextureRegion(texture, format, data, dataSize, 0, 0, texture->GetWidth(), texture->GetHeight());
+	UploadTextureRegion(texture, format, data, dataSize,
+		0, 0, texture->GetWidth(), texture->GetHeight(), level, layer);
 }
 
-void CDeviceCommandContext::UploadTextureRegion(CTexture* texture, const Format format, const void* data, const size_t dataSize,
-	const uint32_t xOffset, const uint32_t yOffset, const uint32_t width, const uint32_t height)
+void CDeviceCommandContext::UploadTextureRegion(
+	CTexture* texture, const Format format,
+	const void* data, const size_t dataSize,
+	const uint32_t xOffset, const uint32_t yOffset,
+	const uint32_t width, const uint32_t height,
+	const uint32_t level, const uint32_t layer)
 {
 	if (texture->GetType() == CTexture::Type::TEXTURE_2D)
 	{
+		ENSURE(level == 0 && layer == 0);
 		if (texture->GetFormat() == Format::R8G8B8A8 || texture->GetFormat() == Format::A8)
 		{
 			ENSURE(width > 0 && height > 0);
@@ -63,10 +71,41 @@ void CDeviceCommandContext::UploadTextureRegion(CTexture* texture, const Format 
 			ENSURE(yOffset + height <= texture->GetHeight());
 
 			glBindTexture(GL_TEXTURE_2D, texture->GetHandle());
-			glTexSubImage2D(GL_TEXTURE_2D, 0,
+			glTexSubImage2D(GL_TEXTURE_2D, level,
 				xOffset, yOffset, width, height,
 				format == Format::R8G8B8A8 ? GL_RGBA : GL_ALPHA, GL_UNSIGNED_BYTE, data);
 			glBindTexture(GL_TEXTURE_2D, 0);
+
+			ogl_WarnIfError();
+		}
+		else
+			debug_warn("Unsupported format");
+	}
+	else if (texture->GetType() == CTexture::Type::TEXTURE_CUBE)
+	{
+		if (texture->GetFormat() == Format::R8G8B8A8)
+		{
+			ENSURE(texture->GetFormat() == format);
+			ENSURE(level == 0 && 0 <= layer && layer < 6);
+			ENSURE(xOffset == 0 && yOffset == 0 && texture->GetWidth() == width && texture->GetHeight() == height);
+			const size_t bpp = 4;
+			ENSURE(dataSize == width * height * bpp);
+
+			// The order of layers should be the following:
+			//   front, back, top, bottom, right, left
+			static const GLenum targets[6] =
+			{
+				GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+				GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+				GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+				GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
+				GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+				GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+			};
+
+			glBindTexture(GL_TEXTURE_CUBE_MAP, texture->GetHandle());
+			glTexImage2D(targets[layer], level, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
 			ogl_WarnIfError();
 		}

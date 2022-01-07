@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,8 +23,10 @@
 #define INCLUDED_SKYMANAGER
 
 #include "graphics/Texture.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 
+#include <memory>
 #include <vector>
 
 /**
@@ -54,7 +56,7 @@ public:
 	}
 
 	/**
-	 * Set the sky set name, potentially loading the textures.
+	 * Set the sky set name.
 	 */
 	void SetSkySet(const CStrW& name);
 
@@ -74,10 +76,14 @@ public:
 		m_RenderSky = value;
 	}
 
-private:
-	void LoadSkyTextures();
+	/**
+	 * Load all sky textures from files and upload to GPU.
+	 */
+	void LoadAndUploadSkyTexturesIfNeeded(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
-	bool m_RenderSky;
+private:
+	bool m_RenderSky = true;
 
 	/// Name of current skyset (a directory within art/textures/skies)
 	CStrW m_SkySet;

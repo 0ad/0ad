@@ -103,6 +103,7 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 	ENSURE((type == Type::TEXTURE_2D_MULTISAMPLE && sampleCount > 1) || sampleCount == 1);
 
 	texture->m_Format = format;
+	texture->m_Type = type;
 	texture->m_Width = width;
 	texture->m_Height = height;
 	texture->m_MipCount = mipCount;
