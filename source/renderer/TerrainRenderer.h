@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -129,6 +129,11 @@ public:
 	 * frame before calling RenderWater.
 	 */
 	void RenderWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
+
+	/**
+	 * Renders terrain to a framebuffer to occlude shore foams.
+	 */
+	void RenderWaterFoamOccluders(int cullGroup);
 
 	/**
 	 * Calculate a scissor rectangle for the visible water patches.

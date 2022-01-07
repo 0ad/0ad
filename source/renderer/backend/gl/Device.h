@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ public:
 	/**
 	 * Creates the GL device and the GL context for the window if it presents.
 	 */
-	static std::unique_ptr<CDevice> Create(SDL_Window* window);
+	static std::unique_ptr<CDevice> Create(SDL_Window* window, const bool arb);
 
 	const std::string& GetName() const { return m_Name; }
 	const std::string& GetVersion() const { return m_Version; }

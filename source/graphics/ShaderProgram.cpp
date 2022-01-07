@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -270,8 +270,8 @@ public:
 		m_VertexAttribs(vertexAttribs)
 	{
 		m_Program = 0;
-		m_VertexShader = glCreateShaderObjectARB(GL_VERTEX_SHADER);
-		m_FragmentShader = glCreateShaderObjectARB(GL_FRAGMENT_SHADER);
+		m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
+		m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 		m_FileDependencies = {m_VertexFile, m_FragmentFile};
 	}
 
@@ -291,9 +291,9 @@ public:
 
 		const char* code_string = code.c_str();
 		GLint code_length = code.length();
-		glShaderSourceARB(shader, 1, &code_string, &code_length);
+		glShaderSource(shader, 1, &code_string, &code_length);
 
-		glCompileShaderARB(shader);
+		glCompileShader(shader);
 
 		GLint ok = 0;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &ok);
@@ -329,20 +329,20 @@ public:
 		TIMER_ACCRUE(tc_ShaderGLSLLink);
 
 		ENSURE(!m_Program);
-		m_Program = glCreateProgramObjectARB();
+		m_Program = glCreateProgram();
 
-		glAttachObjectARB(m_Program, m_VertexShader);
+		glAttachShader(m_Program, m_VertexShader);
 		ogl_WarnIfError();
-		glAttachObjectARB(m_Program, m_FragmentShader);
+		glAttachShader(m_Program, m_FragmentShader);
 		ogl_WarnIfError();
 
 		// Set up the attribute bindings explicitly, since apparently drivers
 		// don't always pick the most efficient bindings automatically,
 		// and also this lets us hardcode indexes into VertexPointer etc
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
-			glBindAttribLocationARB(m_Program, it->second, it->first.c_str());
+			glBindAttribLocation(m_Program, it->second, it->first.c_str());
 
-		glLinkProgramARB(m_Program);
+		glLinkProgram(m_Program);
 
 		GLint ok = 0;
 		glGetProgramiv(m_Program, GL_LINK_STATUS, &ok);
@@ -387,10 +387,10 @@ public:
 			GLsizei nameLength = 0;
 			GLint size = 0;
 			GLenum type = 0;
-			glGetActiveUniformARB(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
+			glGetActiveUniform(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
 			ogl_WarnIfError();
 
-			GLint loc = glGetUniformLocationARB(m_Program, name);
+			GLint loc = glGetUniformLocation(m_Program, name);
 
 			CStrIntern nameIntern(name);
 			m_Uniforms[nameIntern] = std::make_pair(loc, type);
@@ -406,7 +406,7 @@ public:
 				int unit = (int)m_Samplers.size();
 				m_Samplers[nameIntern].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 				m_Samplers[nameIntern].second = unit;
-				glUniform1iARB(loc, unit); // link uniform to unit
+				glUniform1i(loc, unit); // link uniform to unit
 				ogl_WarnIfError();
 			}
 		}
@@ -502,18 +502,18 @@ public:
 
 	void Bind() override
 	{
-		glUseProgramObjectARB(m_Program);
+		glUseProgram(m_Program);
 
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
-			glEnableVertexAttribArrayARB(it->second);
+			glEnableVertexAttribArray(it->second);
 	}
 
 	void Unbind() override
 	{
-		glUseProgramObjectARB(0);
+		glUseProgram(0);
 
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
-			glDisableVertexAttribArrayARB(it->second);
+			glDisableVertexAttribArray(it->second);
 
 		// TODO: should unbind textures, probably
 	}
@@ -533,7 +533,7 @@ public:
 		if (it == m_Samplers.end())
 			return;
 
-		glActiveTextureARB(GL_TEXTURE0 + it->second.second);
+		glActiveTexture(GL_TEXTURE0 + it->second.second);
 		glBindTexture(it->second.first, tex);
 	}
 
@@ -542,7 +542,7 @@ public:
 		if (id.second == -1)
 			return;
 
-		glActiveTextureARB(GL_TEXTURE0 + id.second);
+		glActiveTexture(GL_TEXTURE0 + id.second);
 		glBindTexture(id.first, tex);
 	}
 
@@ -560,13 +560,13 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT)
-				glUniform1fARB(id.first, v0);
+				glUniform1f(id.first, v0);
 			else if (id.second == GL_FLOAT_VEC2)
-				glUniform2fARB(id.first, v0, v1);
+				glUniform2f(id.first, v0, v1);
 			else if (id.second == GL_FLOAT_VEC3)
-				glUniform3fARB(id.first, v0, v1, v2);
+				glUniform3f(id.first, v0, v1, v2);
 			else if (id.second == GL_FLOAT_VEC4)
-				glUniform4fARB(id.first, v0, v1, v2, v3);
+				glUniform4f(id.first, v0, v1, v2, v3);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float, vec2, vec3, vec4)");
 		}
@@ -577,7 +577,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT_MAT4)
-				glUniformMatrix4fvARB(id.first, 1, GL_FALSE, &v._11);
+				glUniformMatrix4fv(id.first, 1, GL_FALSE, &v._11);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}
@@ -588,7 +588,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT_MAT4)
-				glUniformMatrix4fvARB(id.first, count, GL_FALSE, &v->_11);
+				glUniformMatrix4fv(id.first, count, GL_FALSE, &v->_11);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}
@@ -599,7 +599,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT)
-				glUniform1fvARB(id.first, count, v);
+				glUniform1fv(id.first, count, v);
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float)");
 		}
@@ -610,25 +610,25 @@ public:
 
 	void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
-		glVertexAttribPointerARB(0, size, type, GL_FALSE, stride, pointer);
+		glVertexAttribPointer(0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_POS;
 	}
 
 	void NormalPointer(GLenum type, GLsizei stride, const void* pointer) override
 	{
-		glVertexAttribPointerARB(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		glVertexAttribPointer(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
 	void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
-		glVertexAttribPointerARB(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		glVertexAttribPointer(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 
 	void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer) override
 	{
-		glVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
+		glVertexAttribPointer(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
@@ -637,7 +637,7 @@ public:
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
 		{
-			glVertexAttribPointerARB(it->second, size, type, normalized, stride, pointer);
+			glVertexAttribPointer(it->second, size, type, normalized, stride, pointer);
 		}
 	}
 

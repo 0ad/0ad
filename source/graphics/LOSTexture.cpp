@@ -60,8 +60,7 @@ static const size_t g_BlurSize = 7;
 static const size_t g_SubTextureAlignment = 4;
 
 CLOSTexture::CLOSTexture(CSimulation2& simulation)
-	: m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false),
-	m_SmoothFBO(0), m_MapSize(0), m_WhichTex(true)
+	: m_Simulation(simulation)
 {
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 		CreateShader();
@@ -69,8 +68,10 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation)
 
 CLOSTexture::~CLOSTexture()
 {
-	if (m_SmoothFBO)
-		glDeleteFramebuffersEXT(1, &m_SmoothFBO);
+	if (m_SmoothFBO1)
+		glDeleteFramebuffersEXT(1, &m_SmoothFBO1);
+	if (m_SmoothFBO2)
+		glDeleteFramebuffersEXT(1, &m_SmoothFBO2);
 
 	if (m_Texture)
 		DeleteTexture();
@@ -79,10 +80,10 @@ CLOSTexture::~CLOSTexture()
 // Create the LOS texture engine. Should be ran only once.
 bool CLOSTexture::CreateShader()
 {
-	m_smoothShader = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
-	CShaderProgramPtr shader = m_smoothShader->GetShader();
+	m_SmoothTech = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
+	CShaderProgramPtr shader = m_SmoothTech->GetShader();
 
-	m_ShaderInitialized = m_smoothShader && shader;
+	m_ShaderInitialized = m_SmoothTech && shader;
 
 	if (!m_ShaderInitialized)
 	{
@@ -91,7 +92,8 @@ bool CLOSTexture::CreateShader()
 		return false;
 	}
 
-	glGenFramebuffersEXT(1, &m_SmoothFBO);
+	glGenFramebuffersEXT(1, &m_SmoothFBO1);
+	glGenFramebuffersEXT(1, &m_SmoothFBO2);
 	return true;
 }
 
@@ -139,18 +141,10 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	if (skipSmoothLOS)
 		return;
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_SmoothFBO);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
-			   (m_WhichTex ? m_TextureSmooth2 : m_TextureSmooth1)->GetHandle(), 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, (m_WhichTex ? m_SmoothFBO2 : m_SmoothFBO1));
 
-	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-	{
-		LOGWARNING("LOS framebuffer object incomplete: 0x%04X", status);
-	}
-
-	m_smoothShader->BeginPass();
-	CShaderProgramPtr shader = m_smoothShader->GetShader();
+	m_SmoothTech->BeginPass();
+	CShaderProgramPtr shader = m_SmoothTech->GetShader();
 
 	glDisable(GL_BLEND);
 
@@ -198,9 +192,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	g_Renderer.SetViewport(oldVp);
 
 	shader->Unbind();
-	m_smoothShader->EndPass();
-
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 0, 0);
+	m_SmoothTech->EndPass();
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
@@ -255,6 +247,20 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 		m_TextureSmooth2 = Renderer::Backend::GL::CTexture::Create2D(
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
+
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_SmoothFBO1);
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
+			m_TextureSmooth1->GetHandle(), 0);
+		GLenum status1 = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_SmoothFBO2);
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
+			m_TextureSmooth2->GetHandle(), 0);
+		GLenum status2 = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+		if (status1 != GL_FRAMEBUFFER_COMPLETE_EXT || status2 != GL_FRAMEBUFFER_COMPLETE_EXT)
+		{
+			LOGWARNING("LOS framebuffer object incomplete: 0x%04X 0x%04X", status1, status2);
+		}
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 		deviceCommandContext->UploadTexture(m_TextureSmooth1.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
 		deviceCommandContext->UploadTexture(m_TextureSmooth2.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);

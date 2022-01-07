@@ -28,7 +28,7 @@
 #include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/ogl_tex.h"
+#include "lib/tex/tex.h"
 #include "gui/GUIManager.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -340,18 +340,14 @@ void CRenderer::EnumCaps()
 			m_Caps.m_ARBProgramShadow = true;
 	}
 
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", NULL))
-	{
-		if (ogl_HaveExtension("GL_ARB_vertex_shader"))
-			m_Caps.m_VertexShader = true;
-		if (ogl_HaveExtension("GL_ARB_fragment_shader"))
-			m_Caps.m_FragmentShader = true;
-	}
+	// GLSL shaders are in core since GL2.0.
+	if (ogl_HaveVersion(2, 0))
+		m_Caps.m_VertexShader = m_Caps.m_FragmentShader = true;
 
 #if CONFIG2_GLES
 	m_Caps.m_Shadows = true;
 #else
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", "GL_EXT_framebuffer_object", NULL))
+	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", NULL))
 	{
 		if (ogl_max_tex_units >= 4)
 			m_Caps.m_Shadows = true;
@@ -361,7 +357,7 @@ void CRenderer::EnumCaps()
 #if CONFIG2_GLES
 	m_Caps.m_PrettyWater = true;
 #else
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_vertex_shader", "GL_ARB_fragment_shader", "GL_EXT_framebuffer_object", NULL))
+	if (m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
 		m_Caps.m_PrettyWater = true;
 #endif
 }
@@ -786,7 +782,7 @@ void CRenderer::EndFrame()
 
 	m->sceneRenderer.EndFrame();
 
-	ogl_tex_bind(0, 0);
+	BindTexture(0, 0);
 }
 
 void CRenderer::SetViewport(const SViewPort &vp)
