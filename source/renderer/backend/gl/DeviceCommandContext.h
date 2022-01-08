@@ -40,10 +40,10 @@ public:
 
 	static std::unique_ptr<CDeviceCommandContext> Create();
 
-	void UploadTexture(CTexture* texture, const Format format,
+	void UploadTexture(CTexture* texture, const Format dataFormat,
 		const void* data, const size_t dataSize,
 		const uint32_t level = 0, const uint32_t layer = 0);
-	void UploadTextureRegion(CTexture* texture, const Format format,
+	void UploadTextureRegion(CTexture* texture, const Format dataFormat,
 		const void* data, const size_t dataSize,
 		const uint32_t xOffset, const uint32_t yOffset,
 		const uint32_t width, const uint32_t height,
