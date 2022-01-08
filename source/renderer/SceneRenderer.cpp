@@ -838,6 +838,8 @@ void CSceneRenderer::RenderSubmissions(
 	PROFILE3("render submissions");
 	OGL_SCOPED_DEBUG_GROUP("Render submissions");
 
+	m->skyManager.LoadAndUploadSkyTexturesIfNeeded(deviceCommandContext);
+
 	GetScene().GetLOSTexture().InterpolateLOS(deviceCommandContext);
 	GetScene().GetTerritoryTexture().UpdateIfNeeded(deviceCommandContext);
 	GetScene().GetMiniMapTexture().Render(deviceCommandContext);

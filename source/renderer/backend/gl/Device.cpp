@@ -192,6 +192,17 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	device->m_DriverInformation = GetDriverInformationImpl();
 	device->m_Extensions = GetExtensionsImpl();
 
+	// Set packing parameters for uploading and downloading data.
+	glPixelStorei(GL_PACK_ALIGNMENT, 1);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	// Setup default state.
+	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_DEPTH_TEST);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
+	glEnable(GL_CULL_FACE);
+
 	return device;
 }
 

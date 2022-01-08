@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,9 +20,8 @@
 
 #include "graphics/Material.h"
 #include "graphics/TerrainTextureManager.h"
-#include "graphics/TextureManager.h"
+#include "graphics/Texture.h"
 #include "lib/file/vfs/vfs_path.h"
-#include "lib/res/handle.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStr.h"
 
@@ -91,8 +90,6 @@ private:
 
 	// calculate the root color of the texture, used for coloring minimap
 	void BuildBaseColor();
-
-	void LoadAlphaMaps(const VfsPath& alphaMapType);
 };
 
 #endif

@@ -168,9 +168,9 @@ protected:
 
 	bool ShouldRender() const;
 
-	void RenderFrameImpl(bool renderGUI, bool renderLogger);
+	void RenderFrameImpl(const bool renderGUI, const bool renderLogger);
 	void RenderScreenShot();
-	void RenderBigScreenShot();
+	void RenderBigScreenShot(const bool needsPresent);
 
 	// SetRenderPath: Select the preferred render path.
 	// This may only be called before Open(), because the layout of vertex arrays and other

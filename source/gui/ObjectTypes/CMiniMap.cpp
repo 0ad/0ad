@@ -29,6 +29,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
+#include "graphics/TextureManager.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
 #include "gui/GUIMatrix.h"
