@@ -238,9 +238,6 @@ int WaterManager::LoadWaterTextures()
 
 	// Create the water framebuffers
 
-	GLint currentFbo;
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &currentFbo);
-
 	m_ReflectionFbo = 0;
 	glGenFramebuffersEXT(1, &m_ReflectionFbo);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
@@ -288,7 +285,7 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, currentFbo);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	// Enable rendering, now that we've succeeded this far
 	m_RenderWater = true;
