@@ -52,7 +52,7 @@ void CDeviceCommandContext::UploadTexture(
 }
 
 void CDeviceCommandContext::UploadTextureRegion(
-	CTexture* texture, const Format format,
+	CTexture* texture, const Format dataFormat,
 	const void* data, const size_t dataSize,
 	const uint32_t xOffset, const uint32_t yOffset,
 	const uint32_t width, const uint32_t height,
@@ -64,8 +64,8 @@ void CDeviceCommandContext::UploadTextureRegion(
 		if (texture->GetFormat() == Format::R8G8B8A8 || texture->GetFormat() == Format::A8)
 		{
 			ENSURE(width > 0 && height > 0);
-			ENSURE(texture->GetFormat() == format);
-			const size_t bpp = format == Format::R8G8B8A8 ? 4 : 1;
+			ENSURE(texture->GetFormat() == dataFormat);
+			const size_t bpp = dataFormat == Format::R8G8B8A8 ? 4 : 1;
 			ENSURE(dataSize == width * height * bpp);
 			ENSURE(xOffset + width <= texture->GetWidth());
 			ENSURE(yOffset + height <= texture->GetHeight());
@@ -73,7 +73,7 @@ void CDeviceCommandContext::UploadTextureRegion(
 			glBindTexture(GL_TEXTURE_2D, texture->GetHandle());
 			glTexSubImage2D(GL_TEXTURE_2D, level,
 				xOffset, yOffset, width, height,
-				format == Format::R8G8B8A8 ? GL_RGBA : GL_ALPHA, GL_UNSIGNED_BYTE, data);
+				dataFormat == Format::R8G8B8A8 ? GL_RGBA : GL_ALPHA, GL_UNSIGNED_BYTE, data);
 			glBindTexture(GL_TEXTURE_2D, 0);
 
 			ogl_WarnIfError();
@@ -85,8 +85,8 @@ void CDeviceCommandContext::UploadTextureRegion(
 	{
 		if (texture->GetFormat() == Format::R8G8B8A8)
 		{
-			ENSURE(texture->GetFormat() == format);
-			ENSURE(level == 0 && 0 <= layer && layer < 6);
+			ENSURE(texture->GetFormat() == dataFormat);
+			ENSURE(level == 0 && layer < 6);
 			ENSURE(xOffset == 0 && yOffset == 0 && texture->GetWidth() == width && texture->GetHeight() == height);
 			const size_t bpp = 4;
 			ENSURE(dataSize == width * height * bpp);
