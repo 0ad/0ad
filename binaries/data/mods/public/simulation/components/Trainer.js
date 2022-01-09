@@ -66,7 +66,7 @@ Trainer.prototype.Item.prototype.Queue = function(trainCostMultiplier, batchTime
 
 	for (const res in template.Cost.Resources)
 	{
-		this.resources[res] = (trainCostMultiplier[res] === undefined ? 1 : trainCostMultiplier[res]) *
+		this.resources[res] = trainCostMultiplier[res] *
 			ApplyValueModificationsToTemplate(
 				"Cost/Resources/" + res,
 				+template.Cost.Resources[res],
@@ -102,7 +102,7 @@ Trainer.prototype.Item.prototype.Queue = function(trainCostMultiplier, batchTime
 
 	const buildTime = ApplyValueModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, this.player, template);
 
-	const time = batchTimeMultiplier * (trainCostMultiplier.time || 1) * buildTime * 1000;
+	const time = batchTimeMultiplier * trainCostMultiplier.time * buildTime * 1000;
 	this.timeRemaining = time;
 	this.timeTotal = time;
 
@@ -410,7 +410,14 @@ Trainer.prototype.Init = function()
 {
 	this.nextID = 1;
 	this.queue = new Map();
+	this.trainCostMultiplier = {};
 };
+
+Trainer.prototype.SerializableAttributes = [
+	"entitiesMap",
+	"nextID",
+	"trainCostMultiplier"
+];
 
 Trainer.prototype.Serialize = function()
 {
@@ -418,18 +425,23 @@ Trainer.prototype.Serialize = function()
 	for (const [id, item] of this.queue)
 		queue.push(item.Serialize(id));
 
-	return {
-		"entitiesMap": this.entitiesMap,
-		"nextID": this.nextID,
+	const result = {
 		"queue": queue
 	};
+	for (const att of this.SerializableAttributes)
+		if (this.hasOwnProperty(att))
+			result[att] = this[att];
+
+	return result;
 };
 
 Trainer.prototype.Deserialize = function(data)
 {
-	this.Init();
-	this.entitiesMap = data.entitiesMap;
-	this.nextID = data.nextID;
+	for (const att of this.SerializableAttributes)
+		if (att in data)
+			this[att] = data[att];
+
+	this.queue = new Map();
 	for (const item of data.queue)
 	{
 		const newItem = new this.Item();
@@ -535,6 +547,8 @@ Trainer.prototype.CalculateEntitiesMap = function()
 		updateAllQueuedTemplate(rawToken, token);
 		return entMap;
 	}, new Map());
+
+	this.CalculateTrainCostMultiplier();
 };
 
 /*
@@ -563,19 +577,21 @@ Trainer.prototype.GetUpgradedTemplate = function(templateName)
 	return templateName;
 };
 
+Trainer.prototype.CalculateTrainCostMultiplier = function()
+{
+	for (const res of Resources.GetCodes().concat(["time"]))
+		this.trainCostMultiplier[res] = ApplyValueModificationsToEntity(
+		    "Trainer/TrainCostMultiplier/" + res,
+		    +(this.template?.TrainCostMultiplier?.[res] || 1),
+		    this.entity);
+};
+
 /**
  * @return {Object} - The multipliers to change the costs of any training activity with.
  */
-Trainer.prototype.GetTrainCostMultiplier = function()
+Trainer.prototype.TrainCostMultiplier = function()
 {
-	const trainCostMultiplier = {};
-	for (const res in this.template?.TrainCostMultiplier)
-		trainCostMultiplier[res] = ApplyValueModificationsToEntity(
-		    "Trainer/TrainCostMultiplier/" + res,
-		    +this.template.TrainCostMultiplier[res],
-		    this.entity);
-
-	return trainCostMultiplier;
+	return this.trainCostMultiplier;
 };
 
 /*
@@ -609,10 +625,7 @@ Trainer.prototype.CanTrain = function(templateName)
 Trainer.prototype.QueueBatch = function(templateName, count, metadata)
 {
 	const item = new this.Item(templateName, count, this.entity, metadata);
-
-	const trainCostMultiplier = this.GetTrainCostMultiplier();
-	const batchTimeMultiplier = this.GetBatchTime(count);
-	if (!item.Queue(trainCostMultiplier, batchTimeMultiplier))
+	if (!item.Queue(this.TrainCostMultiplier(), this.GetBatchTime(count)))
 		return -1;
 
 	const id = this.nextID++;
