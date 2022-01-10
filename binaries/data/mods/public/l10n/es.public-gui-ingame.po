@@ -67,7 +67,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-01-06 11:49+0000\n"
+"PO-Revision-Date: 2022-01-07 23:36+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -467,17 +467,17 @@ msgstr "Ahora %(player)s mantiene una posición neutral con %(player2)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s está avanzando a la %(phaseName)s."
+msgstr "%(player)s está avanzando a %(phaseName)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "%(player)s ha cancelado la %(phaseName)s."
+msgstr "%(player)s ha cancelado %(phaseName)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s ha alcanzado la %(phaseName)s."
+msgstr "%(player)s ha alcanzado %(phaseName)s."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
@@ -1214,7 +1214,7 @@ msgstr "Promocionar a %(primaryName)s."
 
 #: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
-msgstr "Cancelar mejora"
+msgstr "Cancelar promoción"
 
 #: gui/session/selection_panels.js:1200
 msgid ""
