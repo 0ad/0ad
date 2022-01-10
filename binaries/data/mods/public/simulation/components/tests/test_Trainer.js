@@ -1,5 +1,6 @@
 Engine.RegisterGlobal("Resources", {
-	"BuildSchema": (a, b) => {}
+	"BuildSchema": (a, b) => {},
+	"GetCodes": () => ["food"]
 });
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
@@ -288,7 +289,7 @@ TS_ASSERT_EQUALS(cmpTrainer.GetBatch(id2).unitTemplate, queuedSecondUnit);
 // Add a modifier that replaces unit A with unit C,
 // adds a unit D and removes unit B from the roster.
 Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, val) => {
-	return HandleTokens(val, "units/{civ}/cavalry_javelineer_b>units/{civ}/c units/{civ}/d -units/{civ}/infantry_swordsman_b");
+	return typeof val === "string" ? HandleTokens(val, "units/{civ}/cavalry_javelineer_b>units/{civ}/c units/{civ}/d -units/{civ}/infantry_swordsman_b") : val;
 });
 
 cmpTrainer.OnValueModification({

@@ -117,9 +117,6 @@ struct ShadowMapInternals
 	// BeginRender and EndRender while we replace it with the shadow camera
 	CCamera SavedViewCamera;
 
-	// Save the caller's FBO so it can be restored
-	GLint SavedViewFBO;
-
 	void CalculateShadowMatrices(const int cascade);
 	void CreateTexture();
 	void UpdateCascadesParameters();
@@ -488,9 +485,6 @@ void ShadowMapInternals::CreateTexture()
 		Framebuffer = 0;
 	}
 
-	// save the caller's FBO
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &SavedViewFBO);
-
 	glGenFramebuffersEXT(1, &Framebuffer);
 
 	CFG_GET_VAL("shadowquality", QualityLevel);
@@ -605,7 +599,7 @@ void ShadowMapInternals::CreateTexture()
 
 	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, SavedViewFBO);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{

@@ -505,8 +505,6 @@ void ActorViewer::Render()
 	// Set simulation context for rendering purposes
 	g_Renderer.GetSceneRenderer().SetSimulation(&m.Simulation2);
 
-	g_Renderer.BeginFrame();
-
 	// Find the centre of the interesting region, in the middle of the patch
 	// and half way up the model (assuming there is one)
 	CVector3D centre;
@@ -522,6 +520,8 @@ void ActorViewer::Render()
 	camera.UpdateFrustum();
 
 	g_Renderer.GetSceneRenderer().SetSceneCamera(camera, camera);
+
+	g_Renderer.BeginFrame();
 
 	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), m);
 

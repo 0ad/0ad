@@ -1,5 +1,6 @@
 Engine.RegisterGlobal("Resources", {
-	"BuildSchema": (a, b) => {}
+	"BuildSchema": (a, b) => {},
+	"GetCodes": () => ["food"]
 });
 Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
@@ -73,7 +74,7 @@ TS_ASSERT_UNEVAL_EQUALS(
 	["gather_fishing_net", "phase_town_generic", "phase_city_generic"]
 );
 
-Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, value) => value + " some_test");
+Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, value) => typeof value === "string" ? value + " some_test": value);
 TS_ASSERT_UNEVAL_EQUALS(
 	cmpResearcher.GetTechnologiesList(),
 	["gather_fishing_net", "phase_town_generic", "phase_city_generic", "some_test"]

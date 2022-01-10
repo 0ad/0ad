@@ -56,7 +56,7 @@ Researcher.prototype.Item.prototype.Queue = function(techCostMultiplier)
 
 	if (template.cost)
 		for (const res in template.cost)
-			this.resources[res] = Math.floor((techCostMultiplier[res] === undefined ? 1 : techCostMultiplier[res]) * template.cost[res]);
+			this.resources[res] = Math.floor(techCostMultiplier[res] * template.cost[res]);
 
 	const cmpPlayer = QueryOwnerInterface(this.researcher);
 
@@ -65,7 +65,7 @@ Researcher.prototype.Item.prototype.Queue = function(techCostMultiplier)
 		return false;
 	this.player = cmpPlayer.GetPlayerID();
 
-	const time = (techCostMultiplier.time || 1) * (template.researchTime || 0) * 1000;
+	const time = techCostMultiplier.time * (template.researchTime || 0) * 1000;
 	this.timeRemaining = time;
 	this.timeTotal = time;
 
@@ -302,10 +302,10 @@ Researcher.prototype.GetTechnologiesList = function()
 Researcher.prototype.GetTechCostMultiplier = function()
 {
 	const techCostMultiplier = {};
-	for (const res in this.template?.TechCostMultiplier)
+	for (const res of Resources.GetCodes().concat(["time"]))
 		techCostMultiplier[res] = ApplyValueModificationsToEntity(
 		    "Researcher/TechCostMultiplier/" + res,
-		    +this.template.TechCostMultiplier[res],
+		    +(this.template?.TechCostMultiplier?.[res] || 1),
 		    this.entity);
 
 	return techCostMultiplier;
