@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,11 +24,13 @@
 
 #include "graphics/Color.h"
 #include "graphics/Texture.h"
-#include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexBufferManager.h"
+
+#include <memory>
+#include <vector>
 
 class CFrustum;
 
@@ -45,14 +47,16 @@ public:
 	CTexturePtr m_WaterTexture[60];
 	CTexturePtr m_NormalMap[60];
 
-	float* m_WindStrength;	// How strong the waves are at point X. % of waviness.
-	float* m_DistanceHeightmap; // How far from the shore a point is. Manhattan
-	CVector3D* m_BlurredNormalMap;	// Cache a slightly blurred map of the normals of the terrain.
+	// How strong the waves are at point X. % of waviness.
+	std::unique_ptr<float[]> m_WindStrength;
+	// How far from the shore a point is. Manhattan.
+	std::unique_ptr<float[]> m_DistanceHeightmap;
 
 	// Waves vertex buffers
-	std::vector< WaveObject* > m_ShoreWaves;	// TODO: once we get C++11, remove pointer
+	// TODO: measure storing value instead of pointer.
+	std::vector<std::unique_ptr<WaveObject>> m_ShoreWaves;
 	// Waves indices buffer. Only one since All Wave Objects have the same.
-	CVertexBuffer::VBChunk* m_ShoreWaves_VBIndices;
+	CVertexBufferManager::Handle m_ShoreWavesVBIndices;
 
 	size_t m_MapSize;
 	ssize_t m_TexSize;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,16 +71,8 @@ void CTexturedLineRData::Render(const SOverlayTexturedLine& line, const CShaderP
 
 void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 {
-	if (m_VB)
-	{
-		g_VBMan.Release(m_VB);
-		m_VB = NULL;
-	}
-	if (m_VBIndices)
-	{
-		g_VBMan.Release(m_VBIndices);
-		m_VBIndices = NULL;
-	}
+	m_VBIndices.Reset();
+	m_VB.Reset();
 
 	if (!line.m_SimContext)
 	{
@@ -313,17 +305,17 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	for (const SVertex& vertex : vertices)
 		m_BoundingBox += vertex.m_Position;
 
-	m_VB = g_VBMan.Allocate(sizeof(SVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+	m_VB = g_VBMan.AllocateChunk(sizeof(SVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 	if (m_VB) // allocation might fail (e.g. due to too many vertices)
 	{
-		m_VB->m_Owner->UpdateChunkVertices(m_VB, &vertices[0]); // copy data into VBO
+		m_VB->m_Owner->UpdateChunkVertices(m_VB.Get(), &vertices[0]); // copy data into VBO
 
 		for (size_t k = 0; k < indices.size(); ++k)
 			indices[k] += static_cast<u16>(m_VB->m_Index);
 
-		m_VBIndices = g_VBMan.Allocate(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+		m_VBIndices = g_VBMan.AllocateChunk(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 		if (m_VBIndices)
-			m_VBIndices->m_Owner->UpdateChunkVertices(m_VBIndices, &indices[0]);
+			m_VBIndices->m_Owner->UpdateChunkVertices(m_VBIndices.Get(), &indices[0]);
 	}
 
 }

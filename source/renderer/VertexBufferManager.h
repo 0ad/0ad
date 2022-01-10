@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,16 +86,12 @@ public:
 	 * @param backingStore if usage is STATIC, this is NULL; else for DYNAMIC/STREAM,
 	 *            this must be a copy of the vertex data that remains valid for the
 	 *            lifetime of the VBChunk
-	 * @return chunk, or NULL if no free chunks available
+	 * @return chunk, or empty handle if no free chunks available
 	 */
-	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr);
+	Handle AllocateChunk(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	/// Returns the given @p chunk to its owning buffer
 	void Release(CVertexBuffer::VBChunk* chunk);
-
-	// Same as the Allocate function but returns Handle. Should be used instead
-	// of the Allocate.
-	Handle AllocateChunk(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	size_t GetBytesReserved() const;
 	size_t GetBytesAllocated() const;
@@ -104,7 +100,6 @@ public:
 	void Shutdown();
 
 private:
-	CVertexBuffer::VBChunk* AllocateImpl(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	/// List of all known vertex buffers
 	std::vector<std::unique_ptr<CVertexBuffer>> m_Buffers[static_cast<std::size_t>(Group::COUNT)];

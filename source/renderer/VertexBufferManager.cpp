@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -13,10 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Allocate and destroy CVertexBuffers
  */
 
 #include "precompiled.h"
@@ -73,23 +69,12 @@ void CVertexBufferManager::Shutdown()
 		m_Buffers[group].clear();
 }
 
-CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore)
-{
-	return AllocateImpl(vertexSize, numVertices, usage, target, backingStore, Group::DEFAULT);
-}
-
+/**
+ * AllocateChunk: try to allocate a buffer of given number of vertices (each of
+ * given size), with the given type, and using the given texture - return null
+ * if no free chunks available
+ */
 CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore, Group group)
-{
-	CVertexBuffer::VBChunk* chunk = AllocateImpl(vertexSize, numVertices, usage, target, backingStore, group);
-	if (!chunk)
-		return Handle();
-	return Handle(chunk);
-}
-
-// Allocate: try to allocate a buffer of given number of vertices (each of
-// given size), with the given type, and using the given texture - return null
-// if no free chunks available
-CVertexBuffer::VBChunk* CVertexBufferManager::AllocateImpl(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore, Group group)
 {
 	CVertexBuffer::VBChunk* result = nullptr;
 
@@ -122,7 +107,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::AllocateImpl(size_t vertexSize, si
 	{
 		result = buffer->Allocate(vertexSize, numVertices, usage, target, backingStore);
 		if (result)
-			return result;
+			return Handle(result);
 	}
 
 	// got this far; need to allocate a new buffer
@@ -136,9 +121,10 @@ CVertexBuffer::VBChunk* CVertexBufferManager::AllocateImpl(size_t vertexSize, si
 	if (!result)
 	{
 		LOGERROR("Failed to create VBOs (%zu*%zu)", vertexSize, numVertices);
+		return Handle();
 	}
 
-	return result;
+	return Handle(result);
 }
 
 void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)

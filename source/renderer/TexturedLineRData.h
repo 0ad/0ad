@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,15 +47,8 @@ class CTexturedLineRData : public CRenderData
 
 public:
 
-	CTexturedLineRData() : m_VB(NULL), m_VBIndices(NULL) { }
-
-	~CTexturedLineRData()
-	{
-		if (m_VB)
-			g_VBMan.Release(m_VB);
-		if (m_VBIndices)
-			g_VBMan.Release(m_VBIndices);
-	}
+	CTexturedLineRData() = default;
+	~CTexturedLineRData() = default;
 
 	void Update(const SOverlayTexturedLine& line);
 	void Render(const SOverlayTexturedLine& line, const CShaderProgramPtr& shader);
@@ -69,7 +62,7 @@ protected:
 		SVertex(CVector3D pos, float u, float v) : m_Position(pos) { m_UVs[0] = u; m_UVs[1] = v; }
 		CVector3D m_Position;
 		GLfloat m_UVs[2];
-		float _padding[3]; // get a pow2 struct size
+		float padding[3]; // get a pow2 struct size
 	};
 	cassert(sizeof(SVertex) == 32);
 
@@ -93,8 +86,8 @@ protected:
 		return (v1.m_Position + v2.m_Position) * 0.5;
 	}
 
-	CVertexBuffer::VBChunk* m_VB;
-	CVertexBuffer::VBChunk* m_VBIndices;
+	CVertexBufferManager::Handle m_VB;
+	CVertexBufferManager::Handle m_VBIndices;
 	CBoundingBoxAligned m_BoundingBox;
 };
 
