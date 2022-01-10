@@ -45,14 +45,14 @@ public:
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) texture
 	 * coordinates, in the form expected by a matrix uniform.
-	 * This must only be called after BindTexture.
+	 * This must only be called after UpdateIfNeeded.
 	 */
 	const float* GetTextureMatrix();
 
 	/**
 	 * Returns a matrix to map (0,0)-(1,1) texture coordinates onto texture
 	 * coordinates, in the form expected by a matrix uniform.
-	 * This must only be called after BindTexture.
+	 * This must only be called after UpdateIfNeeded.
 	 */
 	const CMatrix3D& GetMinimapTextureMatrix();
 
