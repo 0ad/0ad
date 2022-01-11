@@ -627,13 +627,19 @@ g_SelectionPanels.Research = {
 	{
 		let ret = [];
 		if (unitEntStates.length == 1)
-			return !unitEntStates[0].researcher || !unitEntStates[0].researcher.technologies ? ret :
-				unitEntStates[0].researcher.technologies.map(tech => ({
-					"tech": tech,
-					"techCostMultiplier": unitEntStates[0].researcher.techCostMultiplier,
-					"researchFacilityId": unitEntStates[0].id,
-					"isUpgrading": !!unitEntStates[0].upgrade && unitEntStates[0].upgrade.isUpgrading
-				}));
+		{
+			const entState = unitEntStates[0];
+			if (!entState?.researcher?.technologies)
+				return ret;
+			if (!entState.production)
+				warn("Researcher without ProductionQueue found: " + entState.id + ".");
+			return entState.researcher.technologies.map(tech => ({
+				"tech": tech,
+				"techCostMultiplier": entState.researcher.techCostMultiplier,
+				"researchFacilityId": entState.id,
+				"isUpgrading": !!entState.upgrade && entState.upgrade.isUpgrading
+			}));
+		}
 
 		let sortedEntStates = unitEntStates.sort((a, b) =>
 			(!b.upgrade || !b.upgrade.isUpgrading) - (!a.upgrade || !a.upgrade.isUpgrading) ||
@@ -644,6 +650,8 @@ g_SelectionPanels.Research = {
 		{
 			if (!state.researcher || !state.researcher.technologies)
 				continue;
+			if (!state.production)
+				warn("Researcher without ProductionQueue found: " + state.id + ".");
 
 			// Remove the techs we already have in ret (with the same name and techCostMultiplier)
 			const filteredTechs = state.researcher.technologies.filter(
