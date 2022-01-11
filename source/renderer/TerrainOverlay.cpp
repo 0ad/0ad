@@ -225,7 +225,6 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 	overlayTech->BeginPass();
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
-	overlayShader->Bind();
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
@@ -235,7 +234,6 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
-	overlayShader->Unbind();
 	overlayTech->EndPass();
 #endif
 }
@@ -287,7 +285,6 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 	overlayTech->BeginPass();
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
-	overlayShader->Bind();
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
@@ -296,7 +293,6 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 
 	glDrawArrays(GL_QUADS, 0, vertices.size() / 3);
 
-	overlayShader->Unbind();
 	overlayTech->EndPass();
 
 	if (line_width != 1)

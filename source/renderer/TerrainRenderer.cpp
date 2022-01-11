@@ -181,7 +181,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 	debugOverlayTech->BeginPass();
 	CShaderProgramPtr debugOverlayShader = debugOverlayTech->GetShader();
 
-	debugOverlayShader->Bind();
 	debugOverlayShader->BindTexture(str_baseTex, texture);
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
@@ -213,7 +212,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	}
 
-	debugOverlayShader->Unbind();
 	debugOverlayTech->EndPass();
 
 	glDepthMask(1);
@@ -521,7 +519,6 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	waterSimpleTech->BeginPass();
 	CShaderProgramPtr waterSimpleShader = waterSimpleTech->GetShader();
 
-	waterSimpleShader->Bind();
 	waterSimpleShader->BindTexture(str_baseTex, waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)]);
 	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 	waterSimpleShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -536,7 +533,6 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 		data->RenderWater(waterSimpleShader, false, true);
 	}
 
-	waterSimpleShader->Unbind();
 	g_Renderer.BindTexture(1, 0);
 
 	glActiveTextureARB(GL_TEXTURE0_ARB);
