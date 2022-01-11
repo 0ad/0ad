@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-01 22:00+0000\n"
+"PO-Revision-Date: 2022-01-09 22:15+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "Lanceros de infantería de élite (Salud: +25%; Tiempo de adiestramiento
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr "Animar a los soldados a practicar arquería mejora su puntería."
+msgstr "Entrenamiento con arco para mejorar la puntería de los soldados."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
@@ -151,7 +151,7 @@ msgstr "Se desbloquea en la fase intermedia."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr "Arqueros -20% de dispersión de ataque a distancia."
+msgstr "Arqueros (Dispersión de tiro: −20%)."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -382,7 +382,7 @@ msgstr "Muros de madera"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Murallas de la ciudad −20% de tiempo de construcción y −20% de salud."
+msgstr "Murallas (Tiempo de construcción: −20%; Resistencia: −20%)."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -752,7 +752,7 @@ msgstr "Velocidad de sanación"
 #: simulation/data/technologies/heal_rate.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 msgid "Sphagia"
-msgstr "Sphagia"
+msgstr "Esfagia"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
@@ -776,15 +776,15 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr "El telar permitió la elaboración de mejores ropas para la población. Las mujeres en los grupos familiares eran entrenadas en su uso, y consecuentemente gastaban una gran cantidad de tiempo de sus vidas trabajando en él."
+msgstr "El telar permitió la elaboración de mejores ropas para la población. Se enseñaba su utilización a las mujeres dentro de los grupos familiares, y consecuentemente dedicaban una gran cantidad de tiempo de sus vidas trabajando en él."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr "El telar"
+msgstr "Telar"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr "Mujeres Ciudadanas +100% en salud"
+msgstr "Mujeres ciudadanas +100% en salud."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -815,11 +815,11 @@ msgstr "Centros cívicos (Resistencia y puntos de captura: +100%; Doble de flech
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr "Los soldados Hoplitas constituyeron la mayor parte del ejército de Grecia."
+msgstr "Los soldados hoplitas formaban la mayor parte del ejército de Grecia."
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
-msgstr "Tradición Hoplita"
+msgstr "Tradición hoplita"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
@@ -1068,7 +1068,7 @@ msgstr "Peristilo"
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr "Casas + 20% de bonificación de población."
+msgstr "Casas (Límite de población: +20%)."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1107,7 +1107,7 @@ msgstr "Arquitectura naval"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr "Barcos -20% en tiempo de construcción"
+msgstr "Barcos (Tiempo de construcción: −20%)."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1133,7 +1133,7 @@ msgstr "Tripulaciones experimentadas"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr "Barcos + 10% de velocidad de movimiento."
+msgstr "Barcos (Velocidad de movimiento: +10%)."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1377,7 +1377,7 @@ msgstr "Soldados (Resistencia al corte: +2)."
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
-msgstr "Los escudos de madera son más pesados, pero pueden resistir mejor los proyectiles y golpes que los escudos con estructura de mimbre."
+msgstr "Los escudos de madera son más pesados, pero resisten mejor los proyectiles y golpes que los escudos de mimbre."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
@@ -1390,7 +1390,7 @@ msgstr "Soldados (Resistencia a la perforación: +1)."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr "Refuerce los escudos con un borde o lomo de metal."
+msgstr "Refuerza los escudos con un borde o lomo de metal."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
@@ -1402,11 +1402,11 @@ msgstr "Aumenta la resistencia de los escudos con aleaciones más fuertes."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
-msgstr "Mejora de Aleación de Escudos"
+msgstr "Mejora de aleación de los escudos"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr "Soldados +2 de resistencia a perforación"
+msgstr "Soldados (Resistencia a la perforación: +2)."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1474,7 +1474,7 @@ msgstr "Permiten ampliar la distancia de tiro de las flechas en llamas."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr "Aspilleras"
+msgstr "Arqueros"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."

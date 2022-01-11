@@ -62,14 +62,14 @@ public:
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) LOS texture
 	 * coordinates, in the form expected by a matrix uniform.
-	 * This must only be called after BindTexture.
+	 * This must only be called after InterpolateLOS.
 	 */
 	const CMatrix3D& GetTextureMatrix();
 
 	/**
 	 * Returns a matrix to map (0,0)-(1,1) texture coordinates onto LOS texture
 	 * coordinates, in the form expected by a matrix uniform.
-	 * This must only be called after BindTexture.
+	 * This must only be called after InterpolateLOS.
 	 */
 	const CMatrix3D& GetMinimapTextureMatrix();
 

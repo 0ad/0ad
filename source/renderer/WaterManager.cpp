@@ -40,6 +40,7 @@
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
+#include <algorithm>
 
 struct CoastalPoint
 {
@@ -66,7 +67,7 @@ cassert(sizeof(SWavesVertex) == 64);
 
 struct WaveObject
 {
-	CVertexBuffer::VBChunk* m_VBvertices;
+	CVertexBufferManager::Handle m_VBVertices;
 	CBoundingBoxAligned m_AABB;
 	size_t m_Width;
 	float m_TimeDiff;
@@ -93,12 +94,6 @@ WaterManager::WaterManager()
 	m_Murkiness = 0.45f;
 	m_RepeatPeriod = 16.0f;
 
-	m_DistanceHeightmap = NULL;
-	m_BlurredNormalMap = NULL;
-	m_WindStrength = NULL;
-
-	m_ShoreWaves_VBIndices = NULL;
-
 	m_WaterEffects = true;
 	m_WaterFancyEffects = false;
 	m_WaterRealDepth = false;
@@ -122,19 +117,11 @@ WaterManager::~WaterManager()
 	// Cleanup if the caller messed up
 	UnloadWaterTextures();
 
-	for (WaveObject* const& obj : m_ShoreWaves)
-	{
-		if (obj->m_VBvertices)
-			g_VBMan.Release(obj->m_VBvertices);
-		delete obj;
-	}
+	m_ShoreWaves.clear();
+	m_ShoreWavesVBIndices.Reset();
 
-	if (m_ShoreWaves_VBIndices)
-		g_VBMan.Release(m_ShoreWaves_VBIndices);
-
-	delete[] m_DistanceHeightmap;
-	delete[] m_BlurredNormalMap;
-	delete[] m_WindStrength;
+	m_DistanceHeightmap.reset();
+	m_WindStrength.reset();
 
 	if (!g_Renderer.GetCapabilities().m_PrettyWater)
 		return;
@@ -405,10 +392,10 @@ void WaterManager::RecomputeDistanceHeightmap()
 	// we want to look ahead some distance, but not too much (less efficient and not interesting). This is our lookahead.
 	const size_t maxLevel = 5;
 
-	if (m_DistanceHeightmap == NULL)
+	if (!m_DistanceHeightmap)
 	{
-		m_DistanceHeightmap = new float[SideSize*SideSize];
-		std::fill(m_DistanceHeightmap, m_DistanceHeightmap + SideSize*SideSize, (float)maxLevel);
+		m_DistanceHeightmap = std::make_unique<float[]>(SideSize * SideSize);
+		std::fill(m_DistanceHeightmap.get(), m_DistanceHeightmap.get() + SideSize * SideSize, static_cast<float>(maxLevel));
 	}
 
 	// Create a manhattan-distance heightmap.
@@ -416,8 +403,8 @@ void WaterManager::RecomputeDistanceHeightmap()
 
 	u16* heightmap = terrain->GetHeightMap();
 
-	ComputeDirection<false>(m_DistanceHeightmap, heightmap, m_WaterHeight, SideSize, maxLevel);
-	ComputeDirection<true>(m_DistanceHeightmap, heightmap, m_WaterHeight, SideSize, maxLevel);
+	ComputeDirection<false>(m_DistanceHeightmap.get(), heightmap, m_WaterHeight, SideSize, maxLevel);
+	ComputeDirection<true>(m_DistanceHeightmap.get(), heightmap, m_WaterHeight, SideSize, maxLevel);
 }
 
 // This requires m_DistanceHeightmap to be defined properly.
@@ -432,19 +419,8 @@ void WaterManager::CreateWaveMeshes()
 	if (!terrain || !terrain->GetHeightMap())
 		return;
 
-	for (WaveObject* const& obj : m_ShoreWaves)
-	{
-		if (obj->m_VBvertices)
-			g_VBMan.Release(obj->m_VBvertices);
-		delete obj;
-	}
 	m_ShoreWaves.clear();
-
-	if (m_ShoreWaves_VBIndices)
-	{
-		g_VBMan.Release(m_ShoreWaves_VBIndices);
-		m_ShoreWaves_VBIndices = NULL;
-	}
+	m_ShoreWavesVBIndices.Reset();
 
 	if (m_Waviness < 5.0f && m_WaterType != L"ocean")
 		return;
@@ -587,11 +563,15 @@ void WaterManager::CreateWaveMeshes()
 		}
 	}
 	// Generic indexes, max-length
-	m_ShoreWaves_VBIndices = g_VBMan.Allocate(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-	m_ShoreWaves_VBIndices->m_Owner->UpdateChunkVertices(m_ShoreWaves_VBIndices, &water_indices[0]);
+	m_ShoreWavesVBIndices = g_VBMan.AllocateChunk(
+		sizeof(GLushort), water_indices.size(),
+		GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER,
+		nullptr, CVertexBufferManager::Group::WATER);
+	m_ShoreWavesVBIndices->m_Owner->UpdateChunkVertices(m_ShoreWavesVBIndices.Get(), &water_indices[0]);
 
 	float diff = (rand() % 50) / 5.0f;
 
+	std::vector<SWavesVertex> vertices, reversed;
 	for (size_t i = 0; i < CoastalPointsChains.size(); ++i)
 	{
 		for (size_t j = 0; j < CoastalPointsChains[i].size()-waveSizes; ++j)
@@ -679,9 +659,9 @@ void WaterManager::CreateWaveMeshes()
 			}
 			// we passed the checks, we can create a wave of size "width".
 
-			WaveObject* shoreWave = new WaveObject;
-			std::vector<SWavesVertex> vertices;
-			vertices.reserve(9*width);
+			std::unique_ptr<WaveObject> shoreWave = std::make_unique<WaveObject>();
+			vertices.clear();
+			vertices.reserve(9 * width);
 
 			shoreWave->m_Width = width;
 			shoreWave->m_TimeDiff = diff;
@@ -793,21 +773,24 @@ void WaterManager::CreateWaveMeshes()
 			if (sign == 1)
 			{
 				// Let's do some fancy reversing.
-				std::vector<SWavesVertex> reversed;
+				reversed.clear();
 				reversed.reserve(vertices.size());
-				for (int a = width-1; a >= 0; --a)
+				for (int a = width - 1; a >= 0; --a)
 				{
 					for (size_t t = 0; t < 9; ++t)
-						reversed.push_back(vertices[a*9+t]);
+						reversed.push_back(vertices[a * 9 + t]);
 				}
-				vertices = reversed;
+				std::swap(vertices, reversed);
 			}
 			j += width/2-1;
 
-			shoreWave->m_VBvertices = g_VBMan.Allocate(sizeof(SWavesVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-			shoreWave->m_VBvertices->m_Owner->UpdateChunkVertices(shoreWave->m_VBvertices, &vertices[0]);
+			shoreWave->m_VBVertices = g_VBMan.AllocateChunk(
+				sizeof(SWavesVertex), vertices.size(),
+				GL_STATIC_DRAW, GL_ARRAY_BUFFER,
+				nullptr, CVertexBufferManager::Group::WATER);
+			shoreWave->m_VBVertices->m_Owner->UpdateChunkVertices(shoreWave->m_VBVertices.Get(), &vertices[0]);
 
-			m_ShoreWaves.push_back(shoreWave);
+			m_ShoreWaves.emplace_back(std::move(shoreWave));
 		}
 	}
 }
@@ -850,7 +833,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 		if (!frustrum.IsBoxVisible(m_ShoreWaves[a]->m_AABB))
 			continue;
 
-		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBvertices;
+		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBVertices.Get();
 		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind();
 
 		// setup data pointers
@@ -868,9 +851,9 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
 		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 
-		u8* indexBase = m_ShoreWaves_VBIndices->m_Owner->Bind();
+		u8* indexBase = m_ShoreWavesVBIndices->m_Owner->Bind();
 		glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
-					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWaves_VBIndices->m_Index));
+					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWavesVBIndices->m_Index));
 
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
 
@@ -905,8 +888,8 @@ void WaterManager::RecomputeWindStrength()
 	if (m_MapSize <= 0)
 		return;
 
-	if (m_WindStrength == nullptr)
-		m_WindStrength = new float[m_MapSize*m_MapSize];
+	if (!m_WindStrength)
+		m_WindStrength = std::make_unique<float[]>(m_MapSize * m_MapSize);
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	if (!terrain || !terrain->GetHeightMap())
@@ -1027,9 +1010,8 @@ void WaterManager::SetMapSize(size_t size)
 	m_updatej0 = 0;
 	m_updatej1 = size;
 
-	SAFE_ARRAY_DELETE(m_DistanceHeightmap);
-	SAFE_ARRAY_DELETE(m_BlurredNormalMap);
-	SAFE_ARRAY_DELETE(m_WindStrength);
+	m_DistanceHeightmap.reset();
+	m_WindStrength.reset();
 }
 
 ////////////////////////////////////////////////////////////////////////

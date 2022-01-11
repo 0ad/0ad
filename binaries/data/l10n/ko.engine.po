@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"POT-Creation-Date: 2022-01-07 08:19+0000\n"
 "PO-Revision-Date: 2021-08-30 15:10+0000\n"
 "Last-Translator: Jung Hee Lee\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -29,32 +29,32 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: graphics/CameraController.cpp:656
+#: graphics/CameraController.cpp:657
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "스크롤 속도가 %.1f로 증가함"
 
-#: graphics/CameraController.cpp:662
+#: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "스크롤 속도가 %.1f로 감소함"
 
-#: graphics/CameraController.cpp:669
+#: graphics/CameraController.cpp:670
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "회전 속도가 X=%.3f, Y=%.3f로 증가함"
 
-#: graphics/CameraController.cpp:676
+#: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "회전 속도가 X=%.3f, Y=%.3f로 감소함"
 
-#: graphics/CameraController.cpp:682
+#: graphics/CameraController.cpp:683
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "확대/축소 속도가 %.1f로 증가함"
 
-#: graphics/CameraController.cpp:688
+#: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "확대/축소 속도가 %.1f로 감소함"
@@ -63,214 +63,215 @@ msgstr "확대/축소 속도가 %.1f로 감소함"
 msgid "Long strings"
 msgstr "긴 현악기"
 
-#: lobby/XmppClient.cpp:1026
+#: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
 msgstr "알 수 없는 하위 유형(로그 참조)"
 
-#: lobby/XmppClient.cpp:1357
+#: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
 msgstr "인증서를 신뢰할 수 없습니다."
 
-#: lobby/XmppClient.cpp:1358
+#: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
 msgstr "인증서에 알려진 발급자가 없습니다."
 
-#: lobby/XmppClient.cpp:1359
+#: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
 msgstr "인증서가 해지되었습니다."
 
-#: lobby/XmppClient.cpp:1360
+#: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
 msgstr "인증서가 만료되었습니다."
 
-#: lobby/XmppClient.cpp:1361
+#: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
 msgstr "인증서가 아직 활성화되지 않았습니다."
 
-#: lobby/XmppClient.cpp:1362
+#: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "연결된 또래에 대한 인증서가 발급되지 않았습니다."
 
-#: lobby/XmppClient.cpp:1363
+#: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
 msgstr "인증 서명자는 인증 기관이 아닙니다."
 
-#: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
-#: lobby/XmppClient.cpp:1468
+#: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
+#: lobby/XmppClient.cpp:1466
 msgid "Error"
 msgstr "오류"
 
-#: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
+#: lobby/XmppClient.cpp:1386 lobby/XmppClient.cpp:1430
 msgid "No error"
 msgstr "오류 없음"
 
-#: lobby/XmppClient.cpp:1390
+#: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
 msgstr "이미 로그인한 플레이어"
 
-#: lobby/XmppClient.cpp:1392
+#: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
 msgstr "접근금지"
 
-#: lobby/XmppClient.cpp:1394
+#: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
 msgstr "내부 서버 오류"
 
-#: lobby/XmppClient.cpp:1398
+#: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
 msgstr "허용되지 않음"
 
-#: lobby/XmppClient.cpp:1399
+#: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
 msgstr "승인되지 않음"
 
-#: lobby/XmppClient.cpp:1402
+#: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
 msgstr "수신자가 일시적으로 사용 불가능"
 
-#: lobby/XmppClient.cpp:1404
+#: lobby/XmppClient.cpp:1402
 msgid "Registration required"
 msgstr "등록이 필요합니다"
 
-#: lobby/XmppClient.cpp:1408
+#: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
 msgstr "서비스를 이용할수 없습니다"
 
-#: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
+#: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
 msgstr "알 수 없는 오류"
 
-#: lobby/XmppClient.cpp:1433
+#: lobby/XmppClient.cpp:1431
 msgid "Stream error"
 msgstr "스트림 오류"
 
-#: lobby/XmppClient.cpp:1434
+#: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
 msgstr "받은 스트림 버전이 지원되지 않습니다"
 
-#: lobby/XmppClient.cpp:1435
+#: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
 msgstr "서버가 스트림을 닫았습니다"
 
-#: lobby/XmppClient.cpp:1439
+#: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
 msgstr "입출력 오류가 발생했습니다"
 
-#: lobby/XmppClient.cpp:1441
+#: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
 msgstr "서버가 연결을 거부했습니다"
 
-#: lobby/XmppClient.cpp:1442
+#: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
 msgstr "서버가 호스트 이름 확인에 실패했습니다"
 
-#: lobby/XmppClient.cpp:1443
+#: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
 msgstr "이 시스템의 메모리가 부족합니다"
 
-#: lobby/XmppClient.cpp:1445
+#: lobby/XmppClient.cpp:1443
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "서버의 인증서를 확인할 수 없거나 TLS 핸드셰이크가 제대로 완료되지 않았습니다"
 
-#: lobby/XmppClient.cpp:1446
+#: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
 msgstr "이 서버는 필요한 TLS 암호화를 제공하지 않았습니다"
 
-#: lobby/XmppClient.cpp:1448
+#: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "인증에 실패했습니다. 암호가 다르거나 계정이 존재하지 않습니다"
 
-#: lobby/XmppClient.cpp:1449
+#: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
 msgstr "사용자나 시스템이 연결을 끊도록 요쳥했습니다"
 
-#: lobby/XmppClient.cpp:1450
+#: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
 msgstr "활성화된 연결이 없습니다"
 
-#: lobby/XmppClient.cpp:1471
+#: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
 msgstr "계정이 등록되었습니다"
 
-#: lobby/XmppClient.cpp:1472
+#: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
 msgstr "필요한 정보가 전부 준비되지 않았습니다"
 
-#: lobby/XmppClient.cpp:1473
+#: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
 msgstr "사용자 이름은 이미 존재합니다"
 
-#: ps/Mod.cpp:84
+#: ps/Mod.cpp:82
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
 msgstr "압축된 모드 '%s'에 대해 외부 mod.json을 쓸 수 없습니다. 모드를 다시 설치해야 합니다."
 
-#: ps/ModIo.cpp:263
+#: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "게임 ID에 대한 조회를 시작하는 동안 오류가 발생했습니다 오류: %s; %s."
 
-#: ps/ModIo.cpp:293
+#: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "모드 쿼리를 시작하는 동안 오류가 발생했습니다. 오류: %s; %s."
 
-#: ps/ModIo.cpp:319
+#: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "모드 디렉터리를 만들 수 없습니다: %s."
 
-#: ps/ModIo.cpp:344
+#: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "모드 다운로드를 위한 임시 파일을 열 수 없습니다: %s."
 
-#: ps/ModIo.cpp:354
+#: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "다운로드를 시작하지 못했습니다. 오류: %s; %s."
 
-#: ps/ModIo.cpp:399
+#: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "비동기 다운로드가 실패했습니다: %s, %s."
 
-#: ps/ModIo.cpp:427
+#: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "다운로드가 실패했습니다. 서버 응답: %s; %s."
 
-#: ps/ModIo.cpp:530
+#: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
 msgstr "파일 크기가 일치하지 않습니다."
 
-#: ps/ModIo.cpp:548
+#: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "파일이 잘못되었습니다. 예상 md5 값: %s, 받은 md5 값: %s."
 
-#: ps/ModIo.cpp:563
+#: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
 msgstr "최종 해시를 계산하지 못했습니다."
 
-#: ps/ModIo.cpp:569
+#: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
 msgstr "서명을 확인하지 못했습니다."
 
-#: ps/SavedGame.cpp:141
+#: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "'%s'에 게임을 저장함"
 
-#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
-#, c-format
-msgid "Screenshot written to '%s'"
-msgstr "스크린샷이 '%s'에 기록됨"
-
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "사용자 지정 건설"
+
+#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
+#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#, c-format
+msgid "Screenshot written to '%s'"
+msgstr "스크린샷이 '%s'에 기록됨"

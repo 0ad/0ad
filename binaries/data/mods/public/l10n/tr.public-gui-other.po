@@ -14,6 +14,7 @@
 # Eren Ramiz
 # Ferhat Olçum
 # Günay Yılmaz
+# Hasan Can Cezveci
 # Hüseyin Cem Aras
 # İrfan Sunay
 # Muha Aliss
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2021-12-31 08:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-09 13:15+0000\n"
+"Last-Translator: Hasan Can Cezveci\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -276,7 +277,7 @@ msgstr "devre dışı bırakıldı"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "İlk %(min)s dakika için, diğer oyuncular tarafsız kalacak."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -519,7 +520,7 @@ msgstr "Şifre geçersiz."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "ENet STUN istemcisi için kullanılmayan bir bağlantı noktası bulunamadı."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
@@ -2453,12 +2454,12 @@ msgstr "Harekete zorla"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Bir binayı/birimi silerken onay isteme."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Onaylamadan yık"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
@@ -2675,7 +2676,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Bir bina/mekanik birim seçildiğinde garnizondaki birimleri boşaltın."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -3271,7 +3272,7 @@ msgstr "Kontrol Grubu 9'u ayarla"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 0."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 0 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
@@ -3281,7 +3282,7 @@ msgstr "Kontrol Grubu 0'ı seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 1 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
@@ -3291,7 +3292,7 @@ msgstr "Kontrol Grubu 1'i seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 2 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
@@ -3301,7 +3302,7 @@ msgstr "Kontrol Grubu 2'yi seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 3 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
@@ -3311,7 +3312,7 @@ msgstr "Kontrol Grubu 3'ü seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 4 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
@@ -3321,7 +3322,7 @@ msgstr "Kontrol Grubu 4'ü seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 5 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
@@ -3331,7 +3332,7 @@ msgstr "Kontrol Grubu 5'i seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 6 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
@@ -3341,7 +3342,7 @@ msgstr "Kontrol Grubu 6'yı seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 7 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
@@ -3351,7 +3352,7 @@ msgstr "Kontrol Grubu 7'yi seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 8 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
@@ -3361,7 +3362,7 @@ msgstr "Kontrol Grubu 8'i seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 9 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
@@ -3421,7 +3422,7 @@ msgstr "Bir sonraki boştaki işçiyi seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Seçime yalnızca askeri birimler ekleyin. "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
@@ -3431,7 +3432,7 @@ msgstr "Sadece askeri seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Seçime yalnızca askeri olmayan birimleri ekleyin. "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
@@ -3441,22 +3442,22 @@ msgstr "Sadece askeri olmayanları seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Seçime ekran dışı birimleri dahil et. "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Ekran dışını dahil et "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Birimleri seçimden kaldırın. "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Seçimden birimleri kaldır "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
@@ -3471,12 +3472,12 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Yalnızca yaralı birimleri seçin. "
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Yalnızca yaralı birimleri seç "
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -3790,7 +3791,7 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
@@ -3819,11 +3820,11 @@ msgstr "Sonraki sayfaya git."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Harita önizleme boyutunu artırın. "
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Harita önizleme boyutunu küçült. "
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
@@ -3864,7 +3865,7 @@ msgstr "En fazla: %(max)s"
 
 #: gui/options/options.js:170
 msgid "Do you want to keep changes?"
-msgstr ""
+msgstr "Değişiklikleri saklamak istiyor musunuz? "
 
 #: gui/options/options.js:191
 #, javascript-format
@@ -3966,43 +3967,43 @@ msgstr "Sohbet mesajının gönderildiği saati görüntüle."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Varlıkların adlandırılması. "
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Önce belirli isimler "
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Genel adlardan önce belirli adları görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Önce genel isimler "
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Genel adları belirli adlardan önce görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Sadece belirli isimler "
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Varlıklar için yalnızca belirli adları görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Sadece jenerik isimler "
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Varlıklar için yalnızca genel adları görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Varlık adları nasıl gösterilir? "
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
@@ -4093,39 +4094,39 @@ msgstr "CPU'nun iş yükünü azaltmak için, çalışan oyunları oynatma sıkl
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "GUI ölçeği"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "%75"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "%100"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "%125"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "%150"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "%175"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "%200"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "%225"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "%250"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4137,11 +4138,11 @@ msgstr "Grafikler (gelişmiş)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Oluşturucu arka ucu "
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
@@ -4149,7 +4150,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
@@ -4161,7 +4162,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
-msgstr ""
+msgstr "Kalite "
 
 #: gui/options/options.json[2].options[10].list[3].label
 msgid "Very High"
@@ -4175,7 +4176,7 @@ msgstr "Gölge harita çözünürlüğü. Düşük değerli bir grafik kartı ku
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
-msgstr ""
+msgstr "Filtreleme "
 
 #: gui/options/options.json[2].options[11].tooltip
 msgid "Smooth shadows."
@@ -4183,21 +4184,21 @@ msgstr "Yumuşak gölgeler"
 
 #: gui/options/options.json[2].options[12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Kesme mesafesi "
 
 #: gui/options/options.json[2].options[12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Bir kameradan belirli bir mesafenin ötesindeki gölgeleri gizler. "
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Tüm haritayı kapla "
 
 #: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "AÇIK olduğunda, gölgeler tüm haritayı kaplar ve gölgeler kesme mesafesi göz ardı edilir. Bütün bir haritanın ekran görüntülerini almak için kullanışlıdır. "
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
@@ -4340,7 +4341,7 @@ msgstr "Seçilen kanalın keskinliği."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "Model kalitesi "
 
 #: gui/options/options.json[2].options[10].list[0].label
 #: gui/options/options.json[2].options[6].list[0].label
@@ -4349,7 +4350,7 @@ msgstr "Düşük"
 
 #: gui/options/options.json[2].options[6].list[0].tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Daha iyi performans için daha basit modeller. "
 
 #: gui/options/options.json[2].options[10].list[1].label
 #: gui/options/options.json[2].options[6].list[1].label
@@ -4359,7 +4360,7 @@ msgstr "Orta"
 
 #: gui/options/options.json[2].options[6].list[1].tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Ortalama kalite ve ortalama performans. "
 
 #: gui/options/options.json[2].options[10].list[2].label
 #: gui/options/options.json[2].options[6].list[2].label
@@ -4368,15 +4369,15 @@ msgstr "Yüksek"
 
 #: gui/options/options.json[2].options[6].list[2].tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Yüksek kaliteli modeller. "
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Model kalite ayarı. "
 
 #: gui/options/options.json[2].options[7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Model görünümü rastgeleleştirme "
 
 #: gui/options/options.json[2].options[7].list[0].label
 msgid "None"
@@ -6361,11 +6362,11 @@ msgstr ""
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Menzilli piyade birimleriniz kuleleri işgal ederken, ek zırhları vardır ve düşmana ateş edebilirler. "
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Mancınık, koç ve savaş filleri gibi silahları kuşatmaya karşı savunmasız."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6391,23 +6392,23 @@ msgstr "Vatandaşları eğitin: kadın vatandaşlar, piyade vatandaşlar askerle
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
-msgstr ""
+msgstr "VARSAYILAN FORMASYON "
 
 #: gui/text/tips/default_formation.txt:2
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr ""
+msgstr "Varsayılan dizilişi ayarlamak için bir simgeye sağ tıklayın: yürümesi veya devriye gezmesi emredilen birimler bunu otomatik olarak kullanır."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr ""
+msgstr "Varsayılan olarak “formasyon yok” seçilerek devre dışı bırakılabilir. "
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr ""
+msgstr "\"Formasyon kontrolü\" seçeneği, yürüyüş veya devriye dışında siparişler için birliklerin dağılıp dağılmayacağını seçmenizi sağlar. "
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -6415,18 +6416,18 @@ msgstr "SAVUNMA KULELERİ"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Konumunuzu savunmanıza yardımcı olan güçlü gözetleme kuleleri. "
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Geniş bir görüş mesafesine sahiptirler ve görüş alanında düşmana ok atarlar. "
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr ""
+msgstr "Attıkları ok sayısını artırmak için içlerine daha fazla piyade yerleştirebilirsiniz. "
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6435,7 +6436,7 @@ msgstr "FİL AHIRI"
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr ""
+msgstr "Yapı, bazı uygarlıkların fil birimlerini eğitmesi için kullanılabilir. "
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6443,13 +6444,13 @@ msgstr "ELÇİLİK VE PARALI ASKER KAMPLARI"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Ordunuz için paralı asker kiralamanıza izin veren özel yapılar. "
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr ""
+msgstr "Paralı askerler kaynak toplamaz ve yalnızca metale mal olur, ancak deneyimli ve güçlüdürler."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6471,7 +6472,7 @@ msgstr "Balıkçılık, tarlalarda besin üretmekten daha hızlıdır."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Dikkatli ol! Balık sonsuz bir kaynak değildir! Her ne kadar yavaş yavaş çoğalmalarına rağmen. "
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6492,13 +6493,13 @@ msgstr "DÜZEN"
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Savaşlar sırasında onları düzenli tutmak için askerlerinizi formasyonlar halinde düzenleyin. "
 
 #: gui/text/tips/formations.txt:3
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr ""
+msgstr "Formasyonlar varsayılan olarak bir bütün olarak seçilir, ancak bu oyun ayarlarından değiştirilebilir."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6508,7 +6509,7 @@ msgstr "KALE"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Genellikle bir medeniyetin en güçlü yapısı ve Kahramanları yetiştirebileceğiniz yer. "
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6571,11 +6572,11 @@ msgstr "Xerxes, Leonidas, Pericles, Hannibal, Scipio ve Boudicca gibi tarihi kar
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Çok fazla sağlık ve çok güçlü saldırılar. "
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Diğer birimlerin veya yapıların istatistiklerini değiştiren auralara sahip olun. "
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
@@ -6589,7 +6590,7 @@ msgstr "İBERYALI ATEŞ GEMİSİ"
 msgid ""
 "The special Iberian fireship is very effective against other ships and "
 "buildings, but steadily loses health."
-msgstr ""
+msgstr "Özel İberya ateş gemisi diğer gemilere ve binalara karşı çok etkilidir, ancak sürekli olarak sağlığını kaybeder. "
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6599,11 +6600,11 @@ msgstr "DENİZ FENERİ"
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr ""
+msgstr "Kıyıda inşa edildiğinde görüş alanınızı artırmak için özel Ptolemaios yapıları. "
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "HARİTA PARLAMASI "
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""

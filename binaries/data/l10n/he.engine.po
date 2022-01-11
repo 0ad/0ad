@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # adin1999
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-17 07:08+0000\n"
+"POT-Creation-Date: 2022-01-07 08:19+0000\n"
 "PO-Revision-Date: 2021-08-26 10:37+0000\n"
 "Last-Translator: דב בארי וכטפוגל\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
@@ -23,32 +23,32 @@ msgstr ""
 "Language: he\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: graphics/CameraController.cpp:656
+#: graphics/CameraController.cpp:657
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "מהירות הגלילה עלתה ל%.1f"
 
-#: graphics/CameraController.cpp:662
+#: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "מהירות הגלילה ירדה ל%.1f"
 
-#: graphics/CameraController.cpp:669
+#: graphics/CameraController.cpp:670
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "מהירות הסיבוב גדלה ל %.3f = X = %.3f , Y."
 
-#: graphics/CameraController.cpp:676
+#: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "מהירות הסיבוב ירדה ל %.3f = X =  %.3f , Y."
 
-#: graphics/CameraController.cpp:682
+#: graphics/CameraController.cpp:683
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "מהירות הזום גדלה ל%.1f"
 
-#: graphics/CameraController.cpp:688
+#: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "מהירות הזום ירדה ל%.1f"
@@ -57,214 +57,215 @@ msgstr "מהירות הזום ירדה ל%.1f"
 msgid "Long strings"
 msgstr "מיתרים ארוכים"
 
-#: lobby/XmppClient.cpp:1026
+#: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
 msgstr "תת סוג בלתי ידוע (ראה יומן)"
 
-#: lobby/XmppClient.cpp:1357
+#: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
 msgstr "האישור לא מהימן"
 
-#: lobby/XmppClient.cpp:1358
+#: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
 msgstr "לאישור אין מנפיק ידוע."
 
-#: lobby/XmppClient.cpp:1359
+#: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
 msgstr "האישור בוטל"
 
-#: lobby/XmppClient.cpp:1360
+#: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
 msgstr "האישור פג תוקף"
 
-#: lobby/XmppClient.cpp:1361
+#: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
 msgstr "התעודה עדיין לא פעילה."
 
-#: lobby/XmppClient.cpp:1362
+#: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "האישור לא הונפק עבור העמית המחובר אליו."
 
-#: lobby/XmppClient.cpp:1363
+#: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
 msgstr "חותם האישור אינו רשות מחתימה"
 
-#: lobby/XmppClient.cpp:1385 lobby/XmppClient.cpp:1429
-#: lobby/XmppClient.cpp:1468
+#: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
+#: lobby/XmppClient.cpp:1466
 msgid "Error"
 msgstr "שגיאה "
 
-#: lobby/XmppClient.cpp:1388 lobby/XmppClient.cpp:1432
+#: lobby/XmppClient.cpp:1386 lobby/XmppClient.cpp:1430
 msgid "No error"
 msgstr "אין שגיאה"
 
-#: lobby/XmppClient.cpp:1390
+#: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
 msgstr "השחקן כבר התחבר"
 
-#: lobby/XmppClient.cpp:1392
+#: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
 msgstr "אסור"
 
-#: lobby/XmppClient.cpp:1394
+#: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
 msgstr "שגיאת שרת פנימית"
 
-#: lobby/XmppClient.cpp:1398
+#: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
 msgstr "לא מורשה"
 
-#: lobby/XmppClient.cpp:1399
+#: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
 msgstr "אין הרשאה"
 
-#: lobby/XmppClient.cpp:1402
+#: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
 msgstr "נמען אינו זמין באופן זמני"
 
-#: lobby/XmppClient.cpp:1404
+#: lobby/XmppClient.cpp:1402
 msgid "Registration required"
 msgstr "נדרשת הרשמה"
 
-#: lobby/XmppClient.cpp:1408
+#: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
 msgstr "השירות אינו זמין"
 
-#: lobby/XmppClient.cpp:1413 lobby/XmppClient.cpp:1452
+#: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
 msgstr "שגיאה לא ידועה"
 
-#: lobby/XmppClient.cpp:1433
+#: lobby/XmppClient.cpp:1431
 msgid "Stream error"
 msgstr "שגיאה בStream "
 
-#: lobby/XmppClient.cpp:1434
+#: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
 msgstr "גרסת stream הנכנסת אינה נתמכת"
 
-#: lobby/XmppClient.cpp:1435
+#: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
 msgstr "הstream  שנסגר על-ידי השרת"
 
-#: lobby/XmppClient.cpp:1439
+#: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
 msgstr "שגיאת קלט\\פלט התרחשה"
 
-#: lobby/XmppClient.cpp:1441
+#: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
 msgstr "הקשר נדחה על ידי השרת"
 
-#: lobby/XmppClient.cpp:1442
+#: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
 msgstr "הפתרון של שרת המארח נכשל"
 
-#: lobby/XmppClient.cpp:1443
+#: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
 msgstr "מערכת זו היא מחוץ לזכרון"
 
-#: lobby/XmppClient.cpp:1445
+#: lobby/XmppClient.cpp:1443
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "אין אפשרות לאמת שרת את או handshake  TLS לא הושלמה בהצלחה"
 
-#: lobby/XmppClient.cpp:1446
+#: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
 msgstr "השרת לא מציע את הצפנת ה TLS הנדרשת"
 
-#: lobby/XmppClient.cpp:1448
+#: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "אימות נכשל. בסיסמהלא נכונה  או חשבון אינו קיים"
 
-#: lobby/XmppClient.cpp:1449
+#: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
 msgstr "המשתמש או המערכת ביקש להתנתק"
 
-#: lobby/XmppClient.cpp:1450
+#: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
 msgstr "אין חיבור פעיל"
 
-#: lobby/XmppClient.cpp:1471
+#: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
 msgstr "החשבון שלך נרשם בהצלחה"
 
-#: lobby/XmppClient.cpp:1472
+#: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
 msgstr "לא כל המידע הדרוש מסופק"
 
-#: lobby/XmppClient.cpp:1473
+#: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
 msgstr "שם משתמש כבר קיים"
 
-#: ps/Mod.cpp:84
+#: ps/Mod.cpp:82
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
 msgstr "לא ניתן היה לכתוב mod.json חיצוני עבור מוד דחוס '%s'. יש להתקין את המוד מחדש."
 
-#: ps/ModIo.cpp:263
+#: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "כשל בעת התחלת שאילתה עבור מצבים. שְׁגִיאָה: %s; %s."
 
-#: ps/ModIo.cpp:293
+#: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "כשל בעת התחלת שאילתה עבור מודים. שְׁגִיאָה: %s; %s."
 
-#: ps/ModIo.cpp:319
+#: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "לא ניתן ליצור ספריית מצבים: %s."
 
-#: ps/ModIo.cpp:344
+#: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "לא ניתן לפתוח קובץ זמני עבור הורדת מוד: %s"
 
-#: ps/ModIo.cpp:354
+#: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "כישלון בהתחלת הורדה. שגיאה: %s ; %s"
 
-#: ps/ModIo.cpp:399
+#: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "הורדה אי-סינכרונית נכשלה: %s , %s ."
 
-#: ps/ModIo.cpp:427
+#: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "הורדה נכשלה. שרת ענה: %s ; %s ."
 
-#: ps/ModIo.cpp:530
+#: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
 msgstr "גודל קובץ לא תואם."
 
-#: ps/ModIo.cpp:548
+#: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "סוג קובץ לא חוקי. מחפש md5 1%s, והתקבל 1%s."
 
-#: ps/ModIo.cpp:563
+#: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
 msgstr "כישלון בחישוב הצפנה סופית."
 
-#: ps/ModIo.cpp:569
+#: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
 msgstr "כישלון באימות חתימה."
 
-#: ps/SavedGame.cpp:141
+#: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "שמורי משחק ל '%s'"
 
-#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
-#, c-format
-msgid "Screenshot written to '%s'"
-msgstr "תמונת מסך בכתב '%s'"
-
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "בניה מותאמת אישית"
+
+#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
+#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#, c-format
+msgid "Screenshot written to '%s'"
+msgstr "תמונת מסך בכתב '%s'"

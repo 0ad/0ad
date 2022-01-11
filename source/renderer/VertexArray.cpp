@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,11 +36,9 @@ VertexArray::VertexArray(GLenum usage, GLenum target)
 	m_Target = target;
 	m_NumVertices = 0;
 
-	m_VB = 0;
 	m_BackingStore = 0;
 	m_Stride = 0;
 }
-
 
 VertexArray::~VertexArray()
 {
@@ -53,13 +51,8 @@ void VertexArray::Free()
 	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
 
-	if (m_VB)
-	{
-		g_VBMan.Release(m_VB);
-		m_VB = 0;
-	}
+	m_VB.Reset();
 }
-
 
 // Set the number of vertices stored in the array
 void VertexArray::SetNumVertices(size_t num)
@@ -70,7 +63,6 @@ void VertexArray::SetNumVertices(size_t num)
 	Free();
 	m_NumVertices = num;
 }
-
 
 // Add vertex attributes like Position, Normal, UV
 void VertexArray::AddAttribute(Attribute* attr)
@@ -86,7 +78,6 @@ void VertexArray::AddAttribute(Attribute* attr)
 
 	Free();
 }
-
 
 // Template specialization for GetIterator().
 // We can put this into the source file because only a fixed set of types
@@ -276,7 +267,7 @@ void VertexArray::Layout()
 
 void VertexArray::PrepareForRendering()
 {
-	m_VB->m_Owner->PrepareForRendering(m_VB);
+	m_VB->m_Owner->PrepareForRendering(m_VB.Get());
 }
 
 // (Re-)Upload the attributes.
@@ -286,7 +277,7 @@ void VertexArray::Upload()
 	ENSURE(m_BackingStore);
 
 	if (!m_VB)
-		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Usage, m_Target, m_BackingStore);
+		m_VB = g_VBMan.AllocateChunk(m_Stride, m_NumVertices, m_Usage, m_Target, m_BackingStore);
 
 	if (!m_VB)
 	{
@@ -294,7 +285,7 @@ void VertexArray::Upload()
 		return;
 	}
 
-	m_VB->m_Owner->UpdateChunkVertices(m_VB, m_BackingStore);
+	m_VB->m_Owner->UpdateChunkVertices(m_VB.Get(), m_BackingStore);
 }
 
 

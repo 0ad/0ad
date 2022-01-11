@@ -62,13 +62,13 @@
 # Werther Ramalho
 # William Sandres
 # yurids
-# YuriNikolai
+# Yuri Laskowski
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-10-05 19:05+0000\n"
-"Last-Translator: Lush litz\n"
+"PO-Revision-Date: 2022-01-10 04:14+0000\n"
+"Last-Translator: Yuri Laskowski\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -181,7 +181,7 @@ msgstr "Jogador"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "Tipo de jogo"
+msgstr "Tipo de Jogo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
@@ -208,7 +208,7 @@ msgstr "Escolha a civilização desse jogador."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
 msgctxt "civilization"
 msgid "Random"
-msgstr "Qualquer uma"
+msgstr "Aleatória"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
 msgid "Picks one civilization at random when the game starts."
@@ -220,7 +220,7 @@ msgstr "Escolha uma cor."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Indique a equipe do jogador."
+msgstr "Selecione a equipe do jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -262,7 +262,7 @@ msgstr "Visão Aliada"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Alternar Visão aliada (ver o que seus aliados veem)"
+msgstr "Alternar visão aliada (ver o que seus aliados veem)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -277,14 +277,14 @@ msgstr "Permitir uso de trapaças."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr "Mapa já explorado"
+msgstr "Mapa Explorado"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr "Deixa o mapa já explorado por todos (veja o mapa inicial)."
+msgstr "Define a exploração do mapa (visão do mapa inicial)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
@@ -316,26 +316,26 @@ msgstr "No modo Nômade, os jogadores começam com apenas algumas unidades, deve
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
-msgstr "Pontos de competição"
+msgstr "Partida por Colocação"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Indica se este jogo vale pontos para o quadro de competidores do 0 A.D."
+msgstr "Indica se esta partida valerá pontos para o quadro de competidores do 0 A.D."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr "Guarnição de heroi"
+msgstr "Guarnição de Heróis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Indica se herois podem ser guarnecidos em uma construção."
+msgstr "Indica se heróis podem ser guarnecidos em construções."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
-msgstr "Visibilidade total do mapa"
+msgstr "Mapa Revelado"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -346,15 +346,15 @@ msgstr "Mostra para todos os jogadores tudo o que acontece no mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
-msgstr "Desabilitar espiões"
+msgstr "Desabilitar Espiões"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
-msgstr "Desabilita o uso de espiões no jogo."
+msgstr "Desabilita o uso de espiões durante o jogo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:25
 msgid "Disable Treasures"
-msgstr "Desabilitar tesouros"
+msgstr "Desabilitar Tesouros"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
@@ -368,7 +368,7 @@ msgstr "População global"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Esta opção habilita um limite global de população, aplicável a todos os jogadores como um grupo só."
+msgstr "Esta opção habilita um limite global de população, distribuída entre todos os jogadores vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -381,7 +381,7 @@ msgstr "Selecione o tipo de fauna e flora."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
 msgid "Random"
-msgstr "Qualquer um"
+msgstr "Aleatório"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
@@ -398,12 +398,12 @@ msgstr "Indique qual versão do mapa será utilizada: a diurna ou a noturna."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
 msgid "Random"
-msgstr "Tanto faz"
+msgstr "Aleatória"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "Faz um sorteiro para decidir entre a versão noturna e a diurna."
+msgstr "Escolhe uma hora do dia aleatóriamente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
@@ -416,12 +416,12 @@ msgstr "Indique a velocidade do jogo."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
 msgid "Random"
-msgstr "Qualquer um"
+msgstr "Aleatória"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr "Selecione uma paisagem aleatória."
+msgstr "Seleciona uma paisagem aleatória."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -506,7 +506,7 @@ msgstr "Aviso: pode haver problemas de desempenho se todos os %(players)s jogado
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
-msgstr "Recursos iniciais"
+msgstr "Recursos Iniciais"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
@@ -520,7 +520,7 @@ msgstr "Quantidade inicial de cada recurso: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "Por jogador"
+msgstr "Por Jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
@@ -924,7 +924,7 @@ msgstr "Multijogador"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr "Juntar-se a um jogo existente."
+msgstr "Juntando-se a um jogo existente."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
@@ -938,7 +938,7 @@ msgstr "Hostname do Servidor ou IP:"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr "Porta do servidor:"
+msgstr "Porta do Servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
@@ -946,11 +946,11 @@ msgstr "Configure seu servidor como host."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr "Nome do servidor:"
+msgstr "Nome do Servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr "Senha do servidor:"
+msgstr "Senha do Servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -970,7 +970,7 @@ msgstr "Senha:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr "Confirme"
+msgstr "Confirmar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -1003,7 +1003,7 @@ msgstr "Gerando “%(map)s”"
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "Carregando \"%(map)s\""
+msgstr "Carregando “%(map)s”"
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -1016,13 +1016,13 @@ msgstr "“Zeus \\[...] estabeleceu a sua lei: a sabedoria vem através do sofri
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr "“Ela, \\[Helen], trouxe para Ilium seu dote, a destruição”. \\n— Ésquilo (“Agamêmnon”, 406)"
+msgstr "“Ela, \\[Helena], trouxe para Ilium seu dote, a destruição”. \\n— Ésquilo (“Agamêmnon”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr "\"No coração de todo tirano brota no final este veneno, que ele não pode confiar em um amigo.\" - Ésquilo (\"Prometeu Acorrentado\", 224-225)"
+msgstr "“No coração de todo tirano brota no final este veneno, que o impede de confiar em um amigo.” \\n— Ésquilo (“Prometeu Acorrentado”, 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -1034,17 +1034,17 @@ msgstr "\"O tempo a longo prazo ensina todas as coisas.\" - Ésquilo (\"Prometeu
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr "\"Sua determinação não é parecer, mas ser, o melhor.\" \\n— Aeschylus (\"Sete Contra Thebes\", 592)"
+msgstr "“Sua determinação não é parecer, mas ser, o melhor.” \\n— Ésquilo (“Sete Contra Tebas”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
-msgstr "\"Um tolo próspero é um fardo doloroso.\" \\n— Aeschylus (fragmento 383)"
+msgstr "“Um tolo próspero é um fardo doloroso.” \\n— Ésquilo (fragment 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr "\"Os deuses ajudam aos que ajudam a si próprios.\" \\n— Esopo (\"Hércules e o Carroceiro\")"
+msgstr "“Os deuses ajudam aos que ajudam a si próprios.” \\n— Esopo (“Hércules e o Carroceiro”)"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -1060,19 +1060,19 @@ msgstr "“A união faz a força” \\n— Esopo (“O Feixe de Varas”)"
 msgid ""
 "“Never trust advice from a man in the throes of his own difficulty.” \\n— "
 "Aesop (“The Fox and the Goat”)"
-msgstr "“Nunca confie nos conselhos de um homem em meio a suas próprias dificuldades.” \\n— Esopo (“A Raposa e a Cabra”)"
+msgstr "“Nunca confie nos conselhos de um homem imerso em suas próprias dificuldades.” \\n— Esopo (“A Raposa e a Cabra”)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
 "(“The Fox and the Lion”)"
-msgstr "\"Familiaridade gera desdém; conhecimento ameniza preconceitos.” \\n— Esopo (“A Raposa e o Leão”)"
+msgstr "\"A familiaridade gera desdém; o conhecimento ameniza preconceitos.” \\n— Esopo (“A Raposa e o Leão”)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "“Self-conceit may lead to self-destruction.” \\n— Aesop (“The Frog and the "
 "Ox”)"
-msgstr "“A presunção pode levar à autodestruição.” \\n— Esopo (“O sapo e o boi”)"
+msgstr "“A presunção pode levar à autodestruição.” \\n— Esopo (“O Sapo e o Boi”)"
 
 #: gui/text/quotes.txt:13
 msgid ""
@@ -1083,7 +1083,7 @@ msgstr "“Devagar e sempre ganha a corrida.” \\n— Esopo (“A Lebre e a Tar
 msgid ""
 "“Better be wise by the misfortunes of others than by your own.” \\n— Aesop "
 "(“The Lion, the Ass, and the Fox Hunting”)"
-msgstr "“Melhor ser sábio com os infortúnios dos outros do que com o seu próprio.” \\n— Esopo (“O Leão, o Asno e a Caça à Raposa”)"
+msgstr "“É melhor ser sábio por infortúnios dos outros do que através dos seus próprios.” \\n— Esopo (“O Leão, o Asno e a Caça à Raposa”)"
 
 #: gui/text/quotes.txt:15
 msgid ""
@@ -1100,7 +1100,7 @@ msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr "“Se fiz algo nobre, isso é uma memória suficiente; se não, todas as estátuas do mundo não preservarão minha memória.” \\n— Agesilaus II de Esparta (Plutarco, \"Moralia\", \"Sayings of Spartans\", 215a)"
+msgstr "“Se fiz algo nobre, isso é um memorial suficiente; se não, todas as estátuas do mundo não preservarão minha memória.” \\n— Agesilau II de Esparta (Plutarco, \"Moralia\", \"Dizeres de Espartanos\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -1113,13 +1113,13 @@ msgid ""
 "“Weep not for me, as I suffer unjustly, I am in a happier situation than my "
 "murderers.” \\n— Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, “Parallel Lives”, “Agis”, sec. 20)"
-msgstr "“Não chore por mim, pois sofro injustamente, estou em uma situação mais feliz do que meus assassinos.” \\n— Agis IV de Esparta ao ver um de seus algozes chorar (Plutarco, \"Vidas paralelas\", \"Agis\", seção 20)"
+msgstr "“Não chore por mim, pois sofro injustamente, estou em uma situação mais feliz do que a de meus assassinos.” \\n— Agis IV de Esparta ao ver um de seus algozes chorar (Plutarco, \"Vidas Paralelas\", \"Agis\", seção 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr "\"Sexo e dormir sozinho me tornam consciente de que sou mortal.\" \\n— Alexandre, o Grande (Plutarco, \"Vidas paralelas\", \"Alexandre\", seção 22)"
+msgstr "“Somente o sexo e o sono me tornam consciente de que sou mortal.” \\n— Alexandre, o Grande (Plutarco, “Vidas Paralelas”, “Alexandre”, seç. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1127,7 +1127,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr "“É muito servil viver no luxo, mas muito nobre trabalhar. \\[...] Você não sabe que o fim e o objetivo da conquista é evitar os vícios e enfermidades dos subjugados?” \\n— Alexandre, o Grande (Plutarco, \"Vidas paralelas\", \"Alexandre\", seção 40)"
+msgstr "“É muito servil viver no luxo, mas muito nobre trabalhar. \\[...] Você não sabe que o fim e o objetivo da conquista é evitar os vícios e enfermidades dos subjugados?” \\n— Alexandre, o Grande (Plutarco, \"Vidas Paralelas\", \"Alexandre\", seção 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -2380,7 +2380,7 @@ msgstr "“Em suas campanhas durante o verão, o general deve mostrar que pode s
 msgid ""
 "“Battles are decided more by the morale of men than their physical "
 "strength.” \\n— Xenophon (“The Education of Cyrus”, 3.3.20)"
-msgstr "“As batalhas são decididas mais pelo moral dos homens do que por sua força física.” \\n— Xenofonte (\"A Educação de Ciro\", 3.3.20)"
+msgstr "“As batalhas são decididas mais pela moral dos homens do que por sua força física.” \\n— Xenofonte (\"A Educação de Ciro\", 3.3.20)"
 
 #: gui/text/quotes.txt:195
 msgid ""
@@ -2412,7 +2412,7 @@ msgid ""
 "watching Artemisia ram a ship while most of his fleet suffered the reverse, "
 "not knowing that the sunk vessel was his own (Herodotus, “The Histories”, "
 "VIII. 88)"
-msgstr "“Meus homens se transformaram em mulheres e minhas mulheres em homens!” \\n— Xerxes, observando Artemísia abalroar um navio enquanto a maioria de sua frota sofria o reverso, sem saber que o navio afundado era dele (Heródoto, \"As Histórias\", VIII. 88)"
+msgstr "“Meus homens se transformaram em mulheres, e minhas mulheres em homens!” \\n— Xerxes, observando Artemísia abalroar um navio enquanto a maioria de sua frota sofria o contrário, sem saber que o navio afundado era dele (Heródoto, \"As Histórias\", VIII. 88)"
 
 #: gui/text/quotes.txt:199
 msgid ""
