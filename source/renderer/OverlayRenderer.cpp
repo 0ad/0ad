@@ -431,7 +431,6 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 		CShaderProgramPtr shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
 
-		shaderTexLineNormal->Bind();
 		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
@@ -452,7 +451,6 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 
 		CShaderProgramPtr shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
 
-		shaderTexLineAlwaysVisible->Bind();
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
 		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineAlwaysVisible->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
@@ -529,7 +527,6 @@ void OverlayRenderer::RenderQuadOverlays()
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
-	shader->Bind();
 	shader->BindTexture(str_losTex, los.GetTexture());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 

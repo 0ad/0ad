@@ -148,8 +148,6 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 
 	glDisable(GL_BLEND);
 
-	shader->Bind();
-
 	shader->BindTexture(str_losTex1, m_Texture.get());
 	shader->BindTexture(str_losTex2, (m_WhichTex ? m_TextureSmooth1 : m_TextureSmooth2).get());
 
@@ -191,7 +189,6 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 
 	g_Renderer.SetViewport(oldVp);
 
-	shader->Unbind();
 	m_SmoothTech->EndPass();
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);

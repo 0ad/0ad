@@ -192,7 +192,11 @@ function getAllTrainableEntities(selection)
 	{
 		let state = GetEntityState(ent);
 		if (state?.trainer?.entities?.length)
+		{
+			if (!state.production)
+				warn("Trainer without Production Queue found: " + ent + ".");
 			trainableEnts = trainableEnts.concat(state.trainer.entities);
+		}
 	}
 
 	// Remove duplicates

@@ -416,8 +416,6 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shaderTech1->BeginPass(pass);
 	CShaderProgramPtr shader = shaderTech1->GetShader(pass);
 
-	shader->Bind();
-
 	// Use the textures from the current FBO as input to the shader.
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
@@ -444,7 +442,8 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
 	shader->Uniform(str_bloom, g_LightEnv.m_Bloom);
 
-	float quadVerts[] = {
+	float quadVerts[] =
+	{
 		1.0f, 1.0f,
 		-1.0f, 1.0f,
 		-1.0f, -1.0f,
@@ -453,7 +452,8 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 		1.0f, -1.0f,
 		1.0f, 1.0f
 	};
-	float quadTex[] = {
+	float quadTex[] =
+	{
 		1.0f, 1.0f,
 		0.0f, 1.0f,
 		0.0f, 0.0f,
@@ -466,8 +466,6 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-	shader->Unbind();
 
 	shaderTech1->EndPass(pass);
 

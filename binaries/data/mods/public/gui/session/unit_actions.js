@@ -1793,7 +1793,7 @@ var g_EntityCommands =
 	"autoqueue-on": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.trainer || !entState.trainer.entities.length || entState.production.autoqueue))
+			if (entStates.every(entState => !entState.trainer?.entities?.length || !entState.production || entState.production.autoqueue))
 				return false;
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.queueunit.autoqueueon") +
@@ -1813,7 +1813,7 @@ var g_EntityCommands =
 	"autoqueue-off": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => !entState.trainer || !entState.trainer.entities.length || !entState.production.autoqueue))
+			if (entStates.every(entState => !entState.production?.autoqueue))
 				return false;
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.queueunit.autoqueueoff") +
