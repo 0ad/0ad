@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -278,9 +278,10 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 		JS::RootedObject ctorobj(rq.cx);
 		if (!JS_GetClassObject(rq.cx, JSProto_Number, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
+		JS::RootedValue protoval(rq.cx, JS::ObjectOrNullValue(ctorobj));
 
-		JS::RootedObject obj(rq.cx, JS_New(rq.cx, ctorobj, JS::HandleValueArray(val)));
-		if (!obj)
+		JS::RootedObject obj(rq.cx);
+		if (!JS::Construct(rq.cx, protoval, JS::HandleValueArray(val), &obj))
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
 		return JS::ObjectValue(*obj);
@@ -296,9 +297,10 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 		JS::RootedObject ctorobj(rq.cx);
 		if (!JS_GetClassObject(rq.cx, JSProto_String, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
+		JS::RootedValue protoval(rq.cx, JS::ObjectOrNullValue(ctorobj));
 
-		JS::RootedObject obj(rq.cx, JS_New(rq.cx, ctorobj, JS::HandleValueArray(val)));
-		if (!obj)
+		JS::RootedObject obj(rq.cx);
+		if (!JS::Construct(rq.cx, protoval, JS::HandleValueArray(val), &obj))
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
 		return JS::ObjectValue(*obj);
@@ -312,9 +314,10 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 		JS::RootedObject ctorobj(rq.cx);
 		if (!JS_GetClassObject(rq.cx, JSProto_Boolean, &ctorobj))
 			throw PSERROR_Deserialize_ScriptError("JS_GetClassObject failed");
+		JS::RootedValue protoval(rq.cx, JS::ObjectOrNullValue(ctorobj));
 
-		JS::RootedObject obj(rq.cx, JS_New(rq.cx, ctorobj, JS::HandleValueArray(val)));
-		if (!obj)
+		JS::RootedObject obj(rq.cx);
+		if (!JS::Construct(rq.cx, protoval, JS::HandleValueArray(val), &obj))
 			throw PSERROR_Deserialize_ScriptError("JS_New failed");
 		AddScriptBackref(obj);
 		return JS::ObjectValue(*obj);
