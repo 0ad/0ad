@@ -39,7 +39,6 @@ public:
 	void SetShader(const CShaderProgramPtr& shader) { m_Shader = shader; }
 
 	// Add various bits of GL state to the pass:
-	void AlphaFunc(GLenum func, GLclampf ref);
 	void BlendFunc(GLenum src, GLenum dst);
 	void ColorMask(GLboolean r, GLboolean g, GLboolean b, GLboolean a);
 	void DepthMask(GLboolean mask);
@@ -60,24 +59,20 @@ public:
 private:
 	CShaderProgramPtr m_Shader;
 
-	bool m_HasAlpha;
-	GLenum m_AlphaFunc;
-	GLclampf m_AlphaRef;
-
-	bool m_HasBlend;
+	bool m_HasBlend = false;
 	GLenum m_BlendSrc;
 	GLenum m_BlendDst;
 
-	bool m_HasColorMask;
+	bool m_HasColorMask = false;
 	GLboolean m_ColorMaskR;
 	GLboolean m_ColorMaskG;
 	GLboolean m_ColorMaskB;
 	GLboolean m_ColorMaskA;
 
-	bool m_HasDepthMask;
+	bool m_HasDepthMask = false;
 	GLboolean m_DepthMask;
 
-	bool m_HasDepthFunc;
+	bool m_HasDepthFunc = false;
 	GLenum m_DepthFunc;
 };
 
@@ -89,7 +84,7 @@ class CShaderTechnique
 {
 public:
 	CShaderTechnique();
-	void AddPass(const CShaderPass& pass);
+	void SetPasses(std::vector<CShaderPass>&& passes);
 
 	int GetNumPasses() const;
 
@@ -108,7 +103,7 @@ public:
 private:
 	std::vector<CShaderPass> m_Passes;
 
-	bool m_SortByDistance;
+	bool m_SortByDistance = false;
 };
 
 #endif // INCLUDED_SHADERTECHNIQUE

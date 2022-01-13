@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,7 +79,6 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	#undef EL
 
 	CPreprocessorWrapper preprocessor;
-	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_RenderingOptions.GetForceAlphaTest() ? "1" : "0");
 	CMaterial material;
 	material.AddStaticUniform("qualityLevel", CVector4D(qualityLevel, 0, 0, 0));
 

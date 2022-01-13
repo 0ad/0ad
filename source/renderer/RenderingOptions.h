@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,7 +113,6 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 	OPTION(ShadowAlphaFix, bool);
 	OPTION(ARBProgramShadow, bool);
 	OPTION(Particles, bool);
-	OPTION(ForceAlphaTest, bool);
 	OPTION(GPUSkinning, bool);
 	OPTION(Silhouettes, bool);
 	OPTION(SmoothLOS, bool);
