@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -448,8 +448,11 @@ void ScriptInterface::CallConstructor(JS::HandleValue ctor, JS::HandleValueArray
 		return;
 	}
 
-	JS::RootedObject ctorObj(rq.cx, &ctor.toObject());
-	out.setObjectOrNull(JS_New(rq.cx, ctorObj, argv));
+	JS::RootedObject objOut(rq.cx);
+	if (!JS::Construct(rq.cx, ctor, argv, &objOut))
+		out.setNull();
+	else
+		out.setObjectOrNull(objOut);
 }
 
 void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs)
