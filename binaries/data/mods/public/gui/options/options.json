@@ -141,7 +141,7 @@
 				"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
 				"config": "adaptivefps.menu",
 				"min": 20,
-				"max": 100
+				"max": 360
 			},
 			{
 				"type": "slider",
@@ -149,7 +149,7 @@
 				"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
 				"config": "adaptivefps.session",
 				"min": 20,
-				"max": 100
+				"max": 360
 			},
 			{
 				"type": "dropdownNumber",
