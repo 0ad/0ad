@@ -71,9 +71,6 @@ public:
 		if (Tech)
 			return;
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 		CShaderDefines defines;
 		Tech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d, defines);
 		ENSURE(Tech);
@@ -87,8 +84,6 @@ public:
 
 		Tech->EndPass();
 		Tech.reset();
-
-		glDisable(GL_BLEND);
 	}
 
 	CShaderTechniquePtr Tech;
