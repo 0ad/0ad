@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2022-01-08 19:20+0000\n"
+"PO-Revision-Date: 2022-01-12 01:07+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "Si m’apurres daqué %(resource)s, vai permittí-mi supplir las mias fi
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr "Acabo d’affittar una vía nuova cun %(_player_)s. El commercio serhá-nos de bon fin."
+msgstr "Acabo d’affitar una vía nuova cun %(_player_)s. El commercio serhá-nos de bon fin."
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ie la IA predefinida de 0 A.D. Faz el favor d’informar de fallos a Wildfire Games (ve’l vínculo in menú principal).\n\nLa rapidez cun la qui Petra obtien recursos & beneficios commerciales depende de la sua difficultat, (Ẍole −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades minores, tamien baẍan los rhythmos de disinvolvimiento, de creacion & de construccion. D’arriendas, nela difficultat “Ẍole” Petra nien se sparde nien invade."
+msgstr "Petra ie la AI predefinida de 0 A.D. Faz el favor d’informar de fallos a Wildfire Games (ve’l vínculo in menú principal).\n\nLa rapidez cun la qui Petra obtien recursos & beneficios commerciales depende de la sua difficultat, (Ẍole −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades minores, tamien baẍan los rhythmos de disinvolvimiento, de creacion & de construccion. D’arriendas, nela difficultat “Ẍole” Petra nien se sparde nien invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -566,7 +566,7 @@ msgstr "L’ente sta anovando-se. Non puode iniciá-se la produccion."
 
 #: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
-msgstr "La riestra de produccion sta intyena."
+msgstr "La riestra de produccion sta inllena."
 
 #: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
@@ -630,7 +630,7 @@ msgstr "Nanu"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "Nelos mappas d’esta magnitude mal caben a penas los recursos mas básicos."
+msgstr "Nelos mappas d’esta magnitúdine mal caben a penas los recursos mas básicos."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -640,7 +640,7 @@ msgstr "Pequenhu"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Los mappas pequenhos prestan-se para duellos, d’ex qui se puode tyegar aína al adversariu &, al in par, tener daqué spacio para spardé-se."
+msgstr "Los mappas pequenhos prestan-se para duellos, d’ex qui se puode llegar aína al adversariu &, al in par, tener daqué spacio para spardé-se."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -650,13 +650,13 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr "Nelos mappas d’esta magnitude puoden caber guapamente dous jogadores, inclusive ha hi spacio para uoito."
+msgstr "Nelos mappas d’esta magnitúdine puoden caber guapamente dous jogadores, inclusive ha hi spacio para uoito."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "Esta ie la magnitude ideal para 4 a 8 jogadores porque ha hi abundu spacio para spardé-se & tyega-se aína a los vizinos."
+msgstr "Esta ie la magnitúdine ideal para 4 a 8 jogadores porque ha hi abundu spacio para spardé-se & llega-se aína a los vizinos."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -666,7 +666,7 @@ msgstr "Grande"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr "La magnitude grande aconseya-se quando gran parte del mappa sta cobierta cun agua ou monte inaccessible."
+msgstr "La magnitúdine grande aconseya-se quando gran parte del mappa sta cobierta cun agua ou monte inaccessible."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -849,7 +849,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Vence-se siendo’l primeiru in fazer—ou captar—un Miráculo & caltené-llo per un tiempu determinadu. El temporizador reaffitta-se al destruí-se ou captá-se el Miráculo. Si’l modu victoria colligada sta activu, tamien se reaffitta al cambiar de colligados el donhu."
+msgstr "Vence-se siendo’l primeiru in fazer—ou captar—un Miráculo & caltené-llo per un tiempu determinadu. El temporizador reaffita-se al destruí-se ou captá-se el Miráculo. Si’l modu victoria colligada sta activu, tamien se reaffita al cambiar de colligados el donhu."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -862,7 +862,7 @@ msgstr "Venceu-se a %(player)s (trampa)."
 
 #: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
-msgstr "Precisas seleccionar una construccion unde se crían unidades."
+msgstr "Precisas excoyer una construccion unde se crían unidades."
 
 #: simulation/helpers/Commands.js:134
 msgid "(Cheat - control all units)"

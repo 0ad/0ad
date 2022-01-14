@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-01-08 19:23+0000\n"
+"PO-Revision-Date: 2022-01-10 19:18+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Affitta la velocidat del juogu"
+msgstr "Affita la velocidat del juogu"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -277,7 +277,7 @@ msgstr "Premi %(hotkey)s p’abrir la conversa de colligados."
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Premi %(hotkey)s p’abrir la última conversa privada seleccionada."
+msgstr "Premi %(hotkey)s p’abrir la última conversa privada excoyida."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -480,7 +480,7 @@ msgstr "Penheirar la historia de las conversas."
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "Seleccionar el destinatariu de la conversa."
+msgstr "Excoyer el destinatariu de la conversa."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
@@ -500,7 +500,7 @@ msgstr "Cambiar la perspectiva"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
-msgstr "Amostrar el stadu de la seleccion"
+msgstr "Amostrar el stadu de la excolleita"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
@@ -544,7 +544,7 @@ msgstr "Activar la pruoba de rejuntura"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
-msgstr "Ascender las unidades seleccionadas"
+msgstr "Ascender las unidades excoyidas"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
@@ -717,7 +717,7 @@ msgstr "Eliminar"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
-msgstr "¿Destruir todo lo esbillao?"
+msgstr "¿Destruir todo lo excoyido?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
@@ -758,7 +758,7 @@ msgstr "El stadu del tou juogu diffier del stadu del juogu del amphitryon."
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "¡Indhaghora non sta suffittado rejuntá-se a incuontros entre dellos jogadores & intelligencias artificiales!"
+msgstr "¡Indhaghora non sta suffitado rejuntá-se a incuontros entre múltiplos jogadores & agentes intelligentes!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -1341,7 +1341,7 @@ msgstr "Riestra de produccion"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Calca para seleccionar una grea d’unidades, calca duas vezes para infocar ex contra illi & calca cul botton direitu para disfazé-llu."
+msgstr "Calca para excoyer una grea d’unidades, calca duas vezes para infocar ex contra illi & calca cul botton direitu para disfazé-llu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
@@ -1480,7 +1480,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Selecciona’l typu de bienes qui quieras commudar calcando nilli, & lhuogo usa las fletsas de los outros typos para commudar las suas proporciones. Tamien puodes premer %(hotkey)s al seleccionar un typu de bienes para subir la sua proporcion al 100 %%."
+msgstr "Excuoyi’l typu de bienes qui quieras commudar calcando nilli, & lhuogo usa las fletsas de los outros typos para commudar las suas proporciones. Tamien puodes premer %(hotkey)s al excoyer un typu de bienes para subir la sua proporcion al 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1628,7 +1628,7 @@ msgstr "Mercadu commercial de destinu."
 
 #: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
-msgstr "Calca cul botton direitu p’affittar cumo mercadu commercial d’orige"
+msgstr "Calca cul botton direitu p’affitar cumo mercadu commercial d’orige"
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
@@ -1636,7 +1636,7 @@ msgstr "Isti mercadu sta percerca del mercadu d’orige."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
-msgstr "Calca cul botton direitu p’affittar cumo mercadu commercial de destinu."
+msgstr "Calca cul botton direitu p’affitar cumo mercadu commercial de destinu."
 
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
@@ -1650,7 +1650,7 @@ msgstr "Ocupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Calca cul botton direitu p’affittar una vía predefinida para commerciantes nuovos."
+msgstr "Calca cul botton direitu p’affitar una vía predefinida para commerciantes nuovos."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
@@ -1673,7 +1673,7 @@ msgstr "Desocupar les torretes."
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr "Destrúi les unidades o construcciones esbillades."
+msgstr "Destrúi las unidades ou construcciones excoyidas."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1688,15 +1688,15 @@ msgstr "Abortar el mandado actual."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr "Inviar las unidades seleccionadas a acommitter el sitiu signaladu in deponiendo recursos."
+msgstr "Inviar las unidades excoyidas a acommitter el sitiu signaladu in deponiendo recursos."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Mandar qui las unidades seleccionadas s’abloguen nuna construccion ou unidat."
+msgstr "Mandar qui las unidades excoyidas s’abluguen nuna construccion ou unidat."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
-msgstr "Mandar qui les unidades esbillades ocupen una torreta."
+msgstr "Mandar qui las unidades exociydas occupen una turreta."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"
@@ -1704,7 +1704,7 @@ msgstr "Discargar"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Mandar qui las unidades seleccionadas egüen una construccion, barcu ou máchina."
+msgstr "Mandar qui las unidades excoyidas igüen una construccion, barcu ou máchina."
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
@@ -1716,7 +1716,7 @@ msgstr "Volver al llabor"
 
 #: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Mandar qui las unidades seleccionadas protejan una construccion ou unidat."
+msgstr "Mandar qui las unidades excoyidas protejan una construccion ou unidat."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
@@ -1758,15 +1758,15 @@ msgstr "Puodes usar isti depósitu"
 
 #: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
-msgstr "Activar l'enriestru automáticu nes construcciones esbillades."
+msgstr "Activar l’inriestru automáticu nelas construcciones excoyidas."
 
 #: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
-msgstr "Desactivar l'enriestru automáticu nes construcciones esbillades."
+msgstr "Disactivar l’inriestru automáticu nelas construcciones excoyidas."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "Eso ha hi qui lo mattar para explotá-llo"
+msgstr "Eso ha hi qui lo matar para explotá-llo"
 
 #: gui/session/unit_actions.js:1888
 msgid ""

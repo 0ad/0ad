@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-01-09 22:15+0000\n"
+"PO-Revision-Date: 2022-01-13 14:49+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -303,7 +303,7 @@ msgstr "Construcciones de madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Estructuras (Tiempo de construcción: −20%; Resistencia:−20%; Puntos de captura: −20%)."
+msgstr "Estructuras (Tiempo de construcción: −20%; Resistencia: −20%; Puntos de captura: −20%)."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -426,7 +426,7 @@ msgstr "Colonización"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
-msgstr "Estructuras Civiles (Tiempo de construcción y coste de recursos: −25%)."
+msgstr "Estructuras civiles (Tiempo de construcción y coste de recursos: −25%)."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -493,7 +493,7 @@ msgstr "Ganadería"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr "Animales domésticos -25% tiempo de reproducción."
+msgstr "Animales domésticos (Tiempo de reproducción: −25%)."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
@@ -650,7 +650,7 @@ msgstr "Trabajadores (Velocidad de extracción de metal: +25%)."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr "Explota una veta de plata.  Aumenta la tasa de recolección de metal."
+msgstr "Explota una veta de plata. Aumenta el ritmo de extracción de metal."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -689,7 +689,7 @@ msgstr "Servi"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr "Equipa tus trabajadores con útiles de trabajo. Incrementa el ritmo de explotación de metal."
+msgstr "Equipa tus trabajadores con útiles de trabajo. Incrementa el ritmo de extracción de metal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -714,7 +714,7 @@ msgstr "Aumenta el alcance y el campo de visión de todos los sanadores."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Distancia de sanación"
+msgstr "Distancia de curación"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
@@ -727,11 +727,11 @@ msgstr "Panteón olímpico"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr "Sanadores +5 rango de curación."
+msgstr "Sanadores (Alcance: +5)."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "Distancia de sanación 2"
+msgstr "Distancia de curación 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
@@ -744,7 +744,7 @@ msgstr "Aumenta la tasa de curación de todos los sanadores."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "Velocidad de sanación"
+msgstr "Velocidad de curación"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
@@ -757,11 +757,11 @@ msgstr "Esfagia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr "Sanadores: –20% en tiempo de curación."
+msgstr "Sanadores: −20% en tiempo de curación."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "Velocidad de sanación 2"
+msgstr "Velocidad de curación 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
@@ -776,7 +776,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr "El telar permitió la elaboración de mejores ropas para la población. Se enseñaba su utilización a las mujeres dentro de los grupos familiares, y consecuentemente dedicaban una gran cantidad de tiempo de sus vidas trabajando en él."
+msgstr "El telar permitió la elaboración de mejores ropas para la población. Se enseñaba a las mujeres su uso dentro de los grupos familiares, dedicando una gran parte de sus vidas trabajando en él."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -796,7 +796,7 @@ msgstr "Medicina de campaña"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "Unidades orgánicas inactivas +0.5 tasa de regeneración de vida."
+msgstr "Unidades orgánicas inactivas +0.5 tasa de regeneración de salud."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -815,7 +815,7 @@ msgstr "Centros cívicos (Resistencia y puntos de captura: +100%; Doble de flech
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr "Los soldados hoplitas formaban la mayor parte del ejército de Grecia."
+msgstr "Los soldados hoplitas formaban la mayor parte del ejército griego."
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
@@ -837,7 +837,7 @@ msgstr "Inmortales"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr "Inmortales -50% de tiempo de entrenamiento, pero -10% de salud."
+msgstr "Inmortales (Tiempo de adiestramiento: −50%; Salud:  −10%)."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -1119,7 +1119,7 @@ msgstr "Cascos de navío reforzados"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
-msgstr "Barcos + 25% de salud."
+msgstr "Barcos (Resistencia: +25%)."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1157,7 +1157,7 @@ msgstr "Virote de precisión"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr "Disparadores de proyectiles -20% de dispersión de ataque a distancia."
+msgstr "Lanzadores de proyectiles (Dispersión de tiro: −20%)."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
@@ -1182,7 +1182,7 @@ msgstr "Armadura de placas"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr "Arietes y torres de asedio + 25% de salud."
+msgstr "Arietes y torres de asedio (Resistencia: +25%)."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
