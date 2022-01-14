@@ -2,6 +2,24 @@
 # Apply patches if needed
 # This script gets called from build.sh.
 
+# SM78 fails to create virtual envs on macs with python > 3.7
+# Unfortunately, 3.7 is mostly unavailable on ARM macs.
+# Therefore, replace the custom script with a more up-to-date version from pip
+# if python is detected to be newer than 3.7.
+if [ "$(uname -s)" = "Darwin" ];
+then
+    PYTHON_MINOR_VERSION="$(python3 -c 'import sys; print(sys.version_info.minor)')"
+    if [ "$PYTHON_MINOR_VERSION" -gt 7 ];
+    then
+        # SM actually uses features from the full-fledged virtualenv package
+        # and not just venv, so install it to be safe.
+        # Install it locally to not pollute anything.
+        pip3 install --upgrade -t virtualenv virtualenv
+        export PYTHONPATH="$(pwd)/virtualenv:$PYTHONPATH"
+        patch -p1 < ../FixVirtualEnv.diff
+    fi
+fi
+
 # Mozglue symbols need to be linked against static builds.
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1588340
 patch -p1 < ../FixMozglue.diff

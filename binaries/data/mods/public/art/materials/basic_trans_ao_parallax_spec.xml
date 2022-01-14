@@ -2,7 +2,6 @@
 <material>
   <alpha_blending/>
   <alternative material="basic_trans_ao_spec.xml" quality="8"/>
-  <alternative material="alphatest_ao_parallax_spec.xml" if="CFG_FORCE_ALPHATEST"/>
   <define name="USE_TRANSPARENT" value="1"/>
   <define name="USE_PARALLAX" value="1"/>
   <required_texture name="baseTex"/>

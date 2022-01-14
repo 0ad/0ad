@@ -11,8 +11,10 @@
   </group>
   <group>
     <variant name="texture">
-      <textures><texture file="gaia/tree_cypress_b.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_cypress_b.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>alphatest.xml</material>
+  <material>basic_trans_wind.xml</material>
 </actor>

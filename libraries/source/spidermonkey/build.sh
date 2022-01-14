@@ -5,7 +5,7 @@ set -e
 # This should match the version in config/milestone.txt
 FOLDER="mozjs-78.6.0"
 # If same-version changes are needed, increment this.
-LIB_VERSION="78.6.0+2"
+LIB_VERSION="78.6.0+3"
 LIB_NAME="mozjs78-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
@@ -49,6 +49,9 @@ fi
 
 if [ "`uname -s`" = "Darwin" ]
 then
+  # Explicitly target x86_64.
+  CONF_OPTS="${CONF_OPTS} --target=x86_64-apple-darwin"
+
   # Link to custom-built zlib
   export PKG_CONFIG_PATH="=${ZLIB_DIR}:${PKG_CONFIG_PATH}"
   CONF_OPTS="${CONF_OPTS} --with-system-zlib"
@@ -107,6 +110,8 @@ then
   # Apply patches
   cd "$FOLDER"
   . ../patch.sh
+  # Copy a more recent autoconf config.guess to handle ARM macs properly.
+  cp -f ../config.guess build/autoconf/
   # Prevent complaining that configure is outdated.
   touch ./js/src/configure
 else

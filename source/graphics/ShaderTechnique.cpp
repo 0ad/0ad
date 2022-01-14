@@ -21,22 +21,12 @@
 
 #include "graphics/ShaderProgram.h"
 
-CShaderPass::CShaderPass() :
-	m_HasAlpha(false), m_HasBlend(false), m_HasColorMask(false), m_HasDepthMask(false), m_HasDepthFunc(false)
-{
-}
+CShaderPass::CShaderPass() = default;
 
 void CShaderPass::Bind()
 {
 	m_Shader->Bind();
 
-#if !CONFIG2_GLES
-	if (m_HasAlpha)
-	{
-		glEnable(GL_ALPHA_TEST);
-		glAlphaFunc(m_AlphaFunc, m_AlphaRef);
-	}
-#endif
 	// TODO: maybe emit some warning if GLSL shaders try to use alpha test;
 	// the test should be done inside the shader itself
 
@@ -60,11 +50,6 @@ void CShaderPass::Unbind()
 {
 	m_Shader->Unbind();
 
-#if !CONFIG2_GLES
-	if (m_HasAlpha)
-		glDisable(GL_ALPHA_TEST);
-#endif
-
 	if (m_HasBlend)
 		glDisable(GL_BLEND);
 
@@ -76,13 +61,6 @@ void CShaderPass::Unbind()
 
 	if (m_HasDepthFunc)
 		glDepthFunc(GL_LEQUAL);
-}
-
-void CShaderPass::AlphaFunc(GLenum func, GLclampf ref)
-{
-	m_HasAlpha = true;
-	m_AlphaFunc = func;
-	m_AlphaRef = ref;
 }
 
 void CShaderPass::BlendFunc(GLenum src, GLenum dst)
@@ -114,14 +92,11 @@ void CShaderPass::DepthFunc(GLenum func)
 }
 
 
-CShaderTechnique::CShaderTechnique()
-	: m_SortByDistance(false)
-{
-}
+CShaderTechnique::CShaderTechnique() = default;
 
-void CShaderTechnique::AddPass(const CShaderPass& pass)
+void CShaderTechnique::SetPasses(std::vector<CShaderPass>&& passes)
 {
-	m_Passes.push_back(pass);
+	m_Passes = std::move(passes);
 }
 
 int CShaderTechnique::GetNumPasses() const

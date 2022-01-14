@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
-
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="arb/los_interp"/>
+    </technique>
     <technique>
         <require shaders="glsl"/>
-	<pass shader="glsl/los_interp"/>
+        <pass shader="glsl/los_interp"/>
     </technique>
-
 </effect>

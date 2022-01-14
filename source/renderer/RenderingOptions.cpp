@@ -123,7 +123,6 @@ CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 	m_Particles = false;
 	m_Silhouettes = false;
 	m_Fog = false;
-	m_ForceAlphaTest = false;
 	m_GPUSkinning = false;
 	m_SmoothLOS = false;
 	m_PostProc = false;
@@ -212,7 +211,6 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 	});
 	m_ConfigHooks->Setup("silhouettes", m_Silhouettes);
 
-	m_ConfigHooks->Setup("forcealphatest", m_ForceAlphaTest);
 	m_ConfigHooks->Setup("gpuskinning", [this]() {
 		bool enabled;
 		CFG_GET_VAL("gpuskinning", enabled);

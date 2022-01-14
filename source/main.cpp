@@ -281,7 +281,7 @@ inline static void LimitFPS()
 	CFG_GET_VAL(g_Game && g_Game->IsGameStarted() ? "adaptivefps.session" : "adaptivefps.menu", fpsLimit);
 
 	// Keep in sync with options.json
-	if (fpsLimit < 20.0 || fpsLimit >= 100.0)
+	if (fpsLimit < 20.0 || fpsLimit >= 360.0)
 		return;
 
 	double wait = 1000.0 / fpsLimit -

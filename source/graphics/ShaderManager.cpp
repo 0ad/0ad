@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,8 @@
 #if USE_SHADER_XML_VALIDATION
 # include "ps/XML/RelaxNG.h"
 #endif
+
+#include <vector>
 
 TIMER_ADD_CLIENT(tc_ShaderValidation);
 
@@ -385,7 +387,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
-	EL(alpha);
 	EL(blend);
 	EL(define);
 	EL(depth);
@@ -395,7 +396,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	AT(context);
 	AT(dst);
 	AT(func);
-	AT(ref);
 	AT(shader);
 	AT(shaders);
 	AT(src);
@@ -429,6 +429,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		{
 			XMBAttributeList Attrs = Child.GetAttributes();
 
+			// TODO: require should be an attribute of the tech and not its child.
 			if (Child.GetNodeName() == el_require)
 			{
 				if (Attrs.GetNamedItem(at_shaders) == "arb")
@@ -472,7 +473,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		});
 
 	CShaderDefines techDefines = baseDefines;
-
 	XERO_ITER_EL(usableTechs[0].first, Child)
 	{
 		if (Child.GetNodeName() == el_define)
@@ -483,7 +483,15 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		{
 			tech->SetSortByDistance(true);
 		}
-		else if (Child.GetNodeName() == el_pass)
+	}
+	// We don't want to have a shader context depending on the order of define and
+	// pass tags.
+	// TODO: we might want to implement that in a proper way via splitting passes
+	// and tags in different groups in XML.
+	std::vector<CShaderPass> techPasses;
+	XERO_ITER_EL(usableTechs[0].first, Child)
+	{
+		if (Child.GetNodeName() == el_pass)
 		{
 			CShaderDefines passDefines = techDefines;
 
@@ -494,12 +502,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				if (Element.GetNodeName() == el_define)
 				{
 					passDefines.Add(CStrIntern(Element.GetAttributes().GetNamedItem(at_name)), CStrIntern(Element.GetAttributes().GetNamedItem(at_value)));
-				}
-				else if (Element.GetNodeName() == el_alpha)
-				{
-					GLenum func = ParseComparisonFunc(Element.GetAttributes().GetNamedItem(at_func));
-					float ref = Element.GetAttributes().GetNamedItem(at_ref).ToFloat();
-					pass.AlphaFunc(func, ref);
 				}
 				else if (Element.GetNodeName() == el_blend)
 				{
@@ -520,9 +522,11 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 			// Load the shader program after we've read all the possibly-relevant <define>s
 			pass.SetShader(LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines));
 
-			tech->AddPass(pass);
+			techPasses.emplace_back(std::move(pass));
 		}
 	}
+
+	tech->SetPasses(std::move(techPasses));
 
 	return true;
 }

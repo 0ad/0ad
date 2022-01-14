@@ -24,7 +24,7 @@ ZLIB_VERSION="zlib-1.2.11"
 CURL_VERSION="curl-7.71.0"
 ICONV_VERSION="libiconv-1.16"
 XML2_VERSION="libxml2-2.9.10"
-SDL2_VERSION="SDL2-2.0.12"
+SDL2_VERSION="SDL2-2.0.18"
 # NOTE: remember to also update LIB_URL below when changing version
 BOOST_VERSION="boost_1_76_0"
 # NOTE: remember to also update LIB_URL below when changing version
@@ -87,7 +87,23 @@ CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++17 -msse4.1"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
-LDFLAGS="$LDFLAGS -stdlib=libc++"
+# Force x86_64 architecture on MacOS for now.
+# NB: annoyingly, this is rather unstandardised. Some libs expect -arch, others different things.
+# Further: wxWidgets uses its own system and actually fails to compile with arch arguments.
+ARCHLESS_CFLAGS=$CFLAGS
+ARCHLESS_CXXFLAGS=$CXXFLAGS
+ARCHLESS_LDFLAGS="$LDFLAGS -stdlib=libc++"
+
+CFLAGS="$CFLAGS -arch x86_64"
+CXXFLAGS="$CXXFLAGS -arch x86_64"
+
+LDFLAGS="$LDFLAGS -arch x86_64"
+
+# Some libs want this passed to configure for cross compilation.
+HOST_PLATFORM="--host=x86_64-apple-darwin"
+
+# CMake doesn't seem to pick up on architecture with CFLAGS only
+CMAKE_FLAGS="-DCMAKE_OSX_ARCHITECTURES=x86_64"
 
 JOBS=${JOBS:="-j2"}
 
@@ -431,6 +447,7 @@ then
   CONF_OPTS="--prefix=$INSTALL_DIR
     --disable-shared
     --enable-unicode
+    --enable-universal_binary=x86_64
     --with-cocoa
     --with-opengl
     --with-libiconv-prefix=${ICONV_DIR}
@@ -450,10 +467,10 @@ then
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
-  (../configure CFLAGS="$CFLAGS" \
-      CXXFLAGS="$CXXFLAGS" \
-      CPPFLAGS="-stdlib=libc++ -D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1" \
-      LDFLAGS="$LDFLAGS" $CONF_OPTS \
+  (../configure CFLAGS="$ARCHLESS_CFLAGS" \
+      CXXFLAGS="$ARCHLESS_CXXFLAGS" \
+      CPPFLAGS="-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1" \
+      LDFLAGS="$ARCHLESS_LDFLAGS" $CONF_OPTS \
     && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
@@ -638,6 +655,7 @@ then
   (./configure CFLAGS="$CFLAGS" \
       CXXFLAGS="$CXXFLAGS" \
       LDFLAGS="$LDFLAGS" \
+      "$HOST_PLATFORM" \
       --prefix="$INSTALL_DIR" \
       --enable-fat \
       --disable-shared \
@@ -784,6 +802,7 @@ then
   (./configure CFLAGS="$CFLAGS" \
       CXXFLAGS="$CXXFLAGS" \
       LDFLAGS="$LDFLAGS" \
+      "$HOST_PLATFORM" \
       --prefix="$INSTALL_DIR" \
       GNUTLS_CFLAGS="-I${GNUTLS_DIR}/include" \
       GNUTLS_LIBS="-L${GNUTLS_DIR}/lib -lgnutls" \
@@ -832,6 +851,7 @@ then
 
   (CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" \
     ../runConfigureICU MacOSX \
+        "$HOST_PLATFORM" \
         --prefix=$INSTALL_DIR \
         --disable-shared \
         --enable-static \
@@ -994,6 +1014,7 @@ then
       -DFMT_TEST=False \
       -DFMT_DOC=False \
       -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
+      "$CMAKE_FLAGS" \
     && make fmt ${JOBS} && make install) || die "fmt build failed"
 
   popd
@@ -1031,7 +1052,7 @@ then
   rm -f .already-built
 fi
 
-CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" JOBS="$JOBS" ./build.sh || die "Error building NVTT"
+CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" CMAKE_FLAGS="$CMAKE_FLAGS" JOBS="$JOBS" ./build.sh || die "Error building NVTT"
 
 popd > /dev/null
 
