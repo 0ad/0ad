@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -120,7 +120,11 @@ void CSlider::UpdateValue()
 
 CRect CSlider::GetButtonRect() const
 {
-	float ratio = m_MaxValue > m_MinValue ? (m_Value - m_MinValue) / (m_MaxValue - m_MinValue) : 0.0f;
+	// Even if the value is incorrect it doesn't make sense to draw it outside
+	// of the element bounds. Because that value might be set intentionally in the
+	// config for debug purposes.
+	const float value = Clamp<float>(m_Value, m_MinValue, m_MaxValue);
+	float ratio = m_MaxValue > m_MinValue ? (value - m_MinValue) / (m_MaxValue - m_MinValue) : 0.0f;
 	float x = m_CachedActualSize.left + ratio * (m_CachedActualSize.GetWidth() - m_ButtonSide);
 	float y = m_CachedActualSize.top + (m_CachedActualSize.GetHeight() - m_ButtonSide) / 2.0;
 	return CRect(x, y, x + m_ButtonSide, y + m_ButtonSide);
