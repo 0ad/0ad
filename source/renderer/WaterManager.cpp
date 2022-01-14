@@ -813,8 +813,6 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	glClearColor(0.0f,0.0f, 0.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_ALWAYS);
 
@@ -866,7 +864,6 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	tech->EndPass();
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
-	glDisable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);
 #endif
 }

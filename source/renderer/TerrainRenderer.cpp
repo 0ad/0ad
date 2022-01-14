@@ -171,8 +171,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(0);
 	glDisable(GL_DEPTH_TEST);
 
@@ -215,7 +213,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 	debugOverlayTech->EndPass();
 
 	glDepthMask(1);
-	glDisable(GL_BLEND);
 #endif
 }
 
@@ -285,8 +282,6 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 	g_Renderer.BindTexture(3, 0);
 
 	glDepthMask(1);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDisable(GL_BLEND);
 }
 
 
@@ -399,8 +394,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	const double time = waterManager.m_WaterTexTimer;
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
@@ -504,7 +497,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 #endif
 
 	glDepthFunc(GL_LEQUAL);
-	glDisable(GL_BLEND);
 
 	return true;
 }
