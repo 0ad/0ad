@@ -65,12 +65,7 @@ const ssize_t BlendOffsets[9][2] = {
 };
 
 CPatchRData::CPatchRData(CPatch* patch, CSimulation2* simulation) :
-	m_Patch(patch), m_VBSides(),
-	m_VBBase(), m_VBBaseIndices(),
-	m_VBBlends(), m_VBBlendIndices(),
-	m_VBWater(), m_VBWaterIndices(),
-	m_VBWaterShore(), m_VBWaterIndicesShore(),
-	m_Simulation(simulation)
+	m_Patch(patch), m_Simulation(simulation)
 {
 	ENSURE(patch);
 	Build();
@@ -1375,63 +1370,54 @@ void CPatchRData::BuildWater()
 	}
 }
 
-void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fixedPipeline)
+void CPatchRData::RenderWaterSurface(CShaderProgramPtr& shader)
 {
-	ASSERT(m_UpdateFlags==0);
+	ASSERT(m_UpdateFlags == 0);
 
-	if (!m_VBWater && !m_VBWaterShore)
+	if (!m_VBWater)
 		return;
 
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-#endif
+	SWaterVertex* base = reinterpret_cast<SWaterVertex*>(m_VBWater->m_Owner->Bind());
 
-	if (m_VBWater && !onlyShore)
-	{
-		SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
+	// Setup data pointers.
+	const GLsizei stride = sizeof(SWaterVertex);
+	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+	shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
 
-		// setup data pointers
-		GLsizei stride = sizeof(SWaterVertex);
-		shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
-		if (!fixedPipeline)
-			shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
+	shader->AssertPointersBound();
 
-		shader->AssertPointersBound();
+	u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
+	glDrawElements(
+		GL_TRIANGLES, static_cast<GLsizei>(m_VBWaterIndices->m_Count),
+		GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
 
-		u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
-		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndices->m_Count,
-					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
-
-		g_Renderer.m_Stats.m_DrawCalls++;
-		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
-	}
-
-	if (m_VBWaterShore && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-	    g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterEffects &&
-	    g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterFancyEffects)
-	{
-		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
-
-		GLsizei stride = sizeof(SWaterVertex);
-		shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWaterShore->m_Index].m_Position);
-		if (!fixedPipeline)
-			shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWaterShore->m_Index].m_WaterData);
-
-		shader->AssertPointersBound();
-
-		u8* indexBase = m_VBWaterIndicesShore->m_Owner->Bind();
-		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndicesShore->m_Count,
-					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndicesShore->m_Index));
-
-		g_Renderer.m_Stats.m_DrawCalls++;
-		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndicesShore->m_Count / 3;
-	}
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 
 	CVertexBuffer::Unbind();
+}
 
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-#endif
+void CPatchRData::RenderWaterShore(CShaderProgramPtr& shader)
+{
+	ASSERT(m_UpdateFlags == 0);
+
+	if (!m_VBWaterShore)
+		return;
+
+	SWaterVertex* base = reinterpret_cast<SWaterVertex*>(m_VBWaterShore->m_Owner->Bind());
+
+	const GLsizei stride = sizeof(SWaterVertex);
+	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWaterShore->m_Index].m_Position);
+	shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWaterShore->m_Index].m_WaterData);
+
+	shader->AssertPointersBound();
+
+	u8* indexBase = m_VBWaterIndicesShore->m_Owner->Bind();
+	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(m_VBWaterIndicesShore->m_Count),
+					GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndicesShore->m_Index));
+
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndicesShore->m_Count / 3;
+
+	CVertexBuffer::Unbind();
 }

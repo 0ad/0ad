@@ -404,6 +404,11 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
+#if !CONFIG2_GLES
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif
+
 	m->fancyWaterTech->BeginPass();
 	CShaderProgramPtr fancyWaterShader = m->fancyWaterTech->GetShader();
 
@@ -488,9 +493,15 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWater(fancyWaterShader);
+		data->RenderWaterSurface(fancyWaterShader);
+		data->RenderWaterShore(fancyWaterShader);
 	}
 	m->fancyWaterTech->EndPass();
+
+#if !CONFIG2_GLES
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+#endif
 
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_BLEND);
@@ -512,6 +523,9 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	const double time = waterManager.m_WaterTexTimer;
 
 	CShaderTechniquePtr waterSimpleTech =
@@ -530,7 +544,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWater(waterSimpleShader, false, true);
+		data->RenderWaterSurface(waterSimpleShader);
 	}
 
 	g_Renderer.BindTexture(1, 0);
@@ -538,6 +552,9 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	glActiveTextureARB(GL_TEXTURE0_ARB);
 
 	waterSimpleTech->EndPass();
+
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 
@@ -576,7 +593,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(int cullGroup)
 	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
-		data->RenderWater(dummyShader, true, true);
+		data->RenderWaterShore(dummyShader);
 	dummyTech->EndPass();
 
 	glEnable(GL_CULL_FACE);

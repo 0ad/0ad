@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,8 @@ public:
 	void RenderOutline();
 	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWater(CShaderProgramPtr& shader, bool onlyShore = false, bool fixedPipeline = false);
+	void RenderWaterSurface(CShaderProgramPtr& shader);
+	void RenderWaterShore(CShaderProgramPtr& shader);
 
 	CPatch* GetPatch() { return m_Patch; }
 
