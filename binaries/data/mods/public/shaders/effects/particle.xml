@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
 
-    <technique>
-        <require shaders="arb"/>
-        <pass shader="arb/particle"/>
-    </technique>
+	<technique>
+		<require shaders="arb"/>
+		<pass shader="arb/particle">
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
 
-    <technique>
-        <require shaders="glsl"/>
-        <pass shader="glsl/particle"/>
-    </technique>
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/particle">
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
 
 </effect>

@@ -32,8 +32,8 @@
 struct ParticleRendererInternals
 {
 	int frameNumber;
-	CShaderTechniquePtr shader;
-	CShaderTechniquePtr shaderSolid;
+	CShaderTechniquePtr tech;
+	CShaderTechniquePtr techSolid;
 	std::vector<CParticleEmitter*> emitters[CSceneRenderer::CULL_MAX];
 };
 
@@ -87,10 +87,10 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 	// Can't load the shader in the constructor because it's called before the
 	// renderer initialisation is complete, so load it the first time through here
-	if (!m->shader)
+	if (!m->tech)
 	{
-		m->shader = g_Renderer.GetShaderManager().LoadEffect(str_particle, context);
-		m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context);
+		m->tech = g_Renderer.GetShaderManager().LoadEffect(str_particle, context);
+		m->techSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context);
 	}
 
 	++m->frameNumber;
@@ -120,36 +120,32 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
 {
-	CShaderTechniquePtr shader = solidColor ? m->shaderSolid : m->shader;
+	const CShaderTechniquePtr& tech = solidColor ? m->techSolid : m->tech;
 
 	std::vector<CParticleEmitter*>& emitters = m->emitters[cullGroup];
 
-	shader->BeginPass();
+	tech->BeginPass();
 
-	shader->GetShader()->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	shader->GetShader()->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
+	const CShaderProgramPtr& shader = tech->GetShader();
 
-	if (!solidColor)
-		glEnable(GL_BLEND);
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
+
 	glDepthMask(0);
 
-	for (size_t i = 0; i < emitters.size(); ++i)
+	for (CParticleEmitter* emitter : m->emitters[cullGroup])
 	{
-		CParticleEmitter* emitter = emitters[i];
-
-		emitter->Bind(shader->GetShader());
-		emitter->RenderArray(shader->GetShader());
+		emitter->Bind(shader);
+		emitter->RenderArray(shader);
 	}
 
 	CVertexBuffer::Unbind();
 
 	glBlendEquationEXT(GL_FUNC_ADD);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glDisable(GL_BLEND);
 	glDepthMask(1);
 
-	shader->EndPass();
+	tech->EndPass();
 }
 
 void ParticleRenderer::RenderBounds(int cullGroup)
