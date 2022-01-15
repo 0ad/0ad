@@ -486,7 +486,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWaterSurface(fancyWaterShader);
+		data->RenderWaterSurface(fancyWaterShader, true);
 		data->RenderWaterShore(fancyWaterShader);
 	}
 	m->fancyWaterTech->EndPass();
@@ -536,7 +536,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWaterSurface(waterSimpleShader);
+		data->RenderWaterSurface(waterSimpleShader, false);
 	}
 
 	g_Renderer.BindTexture(1, 0);

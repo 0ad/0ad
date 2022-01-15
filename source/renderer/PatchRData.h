@@ -47,7 +47,7 @@ public:
 	void RenderOutline();
 	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWaterSurface(CShaderProgramPtr& shader);
+	void RenderWaterSurface(CShaderProgramPtr& shader, const bool bindWaterData);
 	void RenderWaterShore(CShaderProgramPtr& shader);
 
 	CPatch* GetPatch() { return m_Patch; }
