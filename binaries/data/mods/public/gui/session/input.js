@@ -1403,7 +1403,7 @@ function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 {
 	return entitiesToCheck.filter(entity => {
 		const state = GetEntityState(entity);
-		return state?.trainer?.entities?.indexOf(trainEntType) != -1 &&
+		return state?.trainer?.entities?.includes(trainEntType) &&
 			(!state.upgrade || !state.upgrade.isUpgrading);
 	});
 }
