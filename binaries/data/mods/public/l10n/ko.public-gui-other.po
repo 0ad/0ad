@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2021-12-31 08:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-12 17:14+0000\n"
+"Last-Translator: Jung Hee Lee\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -281,7 +281,7 @@ msgstr "무작위 지도"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
-msgstr "목록에서 지도를 무작위  선택하십시오."
+msgstr "목록에서 지도를 무작위  선택합니다."
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
@@ -306,7 +306,7 @@ msgstr "무작위 생물군계"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
-msgstr "목록에서 무작위 생물군이나 선택하십시오."
+msgstr "목록에서 무작위 생물군이나 선택합니다."
 
 #: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
@@ -464,7 +464,7 @@ msgstr "잘못된 네트워크 프로토콜 버전."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "게임이 불러오는 중이므로 나중에 다시 시도하십시오."
+msgstr "게임이 불러오는 중이므로 나중에 다시 시도합니다."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -480,7 +480,7 @@ msgstr "당신은 차단당했습니다."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr "플레이어 이름이 사용 중입니다. 연결이 끊긴 경우 몇 초 후에 다시 시도하십시오."
+msgstr "플레이어 이름이 사용 중입니다. 연결이 끊긴 경우 몇 초 후에 다시 시도합니다."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -488,7 +488,7 @@ msgstr "서버가 가득찼습니다."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr "보안 앞마당 인증에 실패했습니다. 로비를 통해 가입하십시오."
+msgstr "보안 로비 인증에 실패했습니다. 로비를 통해 가입하십시오."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -625,7 +625,7 @@ msgstr "무작위"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "매번 다른 자원 분배로 고유 한 지도를 작성하십시오. 플레이어와 팀의 수를 자유롭게 선택하십시오."
+msgstr "매번 다른 자원 분배로 고유 한 지도를 작성합니다. 플레이어와 팀의 수를 자유롭게 선택합니다."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -1290,7 +1290,7 @@ msgstr "회수 시설:"
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
-msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭하십시오."
+msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭합니다."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
@@ -1340,11 +1340,11 @@ msgstr "소리 관리자"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr "작곡 책임 담당"
+msgstr "리드 작곡가"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr "음성 관리자"
+msgstr "오디오 관리자"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1417,7 +1417,7 @@ msgstr "목소리"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr "음성"
+msgstr "오디오"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1597,7 +1597,7 @@ msgstr "단축키 설명"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "수정하려면 지도 나타내기를 클릭하십시오.\\n 최대 4개의 다른 단축키를 가질 수 있습니다."
+msgstr "수정하려면 지도 나타내기를 클릭합니다.\\n 최대 4개의 다른 단축키를 가질 수 있습니다."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -2391,7 +2391,7 @@ msgstr "선택한 유닛 파괴"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr "개체에게 포탑 지점을 떠나라고 명령하십시오."
+msgstr "개체에게 포탑 지점을 떠나라고 명령합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
@@ -2907,7 +2907,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "상태 표시줄 표시/해제 예를 들어 지도의 모든 건물/유닛에 대한 상태 표시기입니다(선택되지 않은 항목 포함)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -3389,7 +3389,7 @@ msgstr "다음 노는 전사 선택"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr "다음 노는 일꾼을 선택하십시오."
+msgstr "다음 노는 일꾼을 선택합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
@@ -3459,12 +3459,12 @@ msgstr "부상당한 유닛만 선택"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr "%(hotkey)s을(를) 사용하여 선택한 저장 게임을 삭제하십시오."
+msgstr "%(hotkey)s을(를) 사용하여 선택한 저장 게임을 삭제합니다."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr "삭제하는 동안 확인 대화상자를 건너뛰려면 %(hotkey)s 을(를) 유지하십시오."
+msgstr "삭제하는 동안 확인 대화상자를 건너뛰려면 %(hotkey)s 을(를) 유지합니다."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
@@ -4046,7 +4046,7 @@ msgstr "수직 동기화"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결하십시오. 게임을 다시 시작해야합니다"
+msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결합니다. 게임을 다시 시작해야합니다"
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
@@ -4056,7 +4056,7 @@ msgstr "메뉴에서 FPS 조절"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr "CPU 작업량을 절약하려면 모든 메뉴에서 렌더링 빈도를 조절하십시오. 조절을 사용하지 않으려면 최대 값으로 설정하십시오."
+msgstr "CPU 작업량을 절약하려면 모든 메뉴에서 렌더링 빈도를 조절합니다. 조절을 사용하지 않으려면 최대 값으로 설정합니다."
 
 #: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
@@ -4066,7 +4066,7 @@ msgstr "게임에서 FPS 조절"
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "CPU 작업량을 줄이려면 실행중인 게임에서 렌더링 빈도를 조절하십시오. 조절을 사용하지 않으려면 최대 값으로 설정하십시오."
+msgstr "CPU 작업량을 줄이려면 실행중인 게임에서 렌더링 빈도를 조절합니다. 조절을 사용하지 않으려면 최대 값으로 설정합니다."
 
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
@@ -4567,7 +4567,7 @@ msgstr "플레이어는 주인이 명시적으로 할당할때만 슬롯을 받�
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr "시합 설정 중 플레이어 공간을 확보하기 위해 합류하는 클라이언트를 자동으로 할당하십시오."
+msgstr "시합 설정 중 플레이어 공간을 확보하기 위해 합류하는 클라이언트를 자동으로 할당합니다."
 
 #: gui/options/options.json[5].label
 msgid "Networking / Lobby"
@@ -4580,7 +4580,7 @@ msgstr "TLS 암호화"
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "TLS 암호화를 사용하여 로비 서버와 교환되는 로그인 및 데이타를 보호하십시오."
+msgstr "TLS 암호화를 사용하여 로비 서버와 교환되는 로그인 및 데이타를 보호합니다."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Chat backlog"
@@ -4815,7 +4815,7 @@ msgstr "유닛과 건축물은 여러 제어 그룹에 속할 수 있습니다. 
 
 #: gui/options/options.json[6].options[20].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr "유닛이 여러 통제 무리에 속할 수 있는지 여부를 결정하십시오."
+msgstr "유닛이 여러 통제 무리에 속할 수 있는지 여부를 결정합니다."
 
 #: gui/options/options.json[6].options[21].label
 msgid "Formation control"
@@ -4981,7 +4981,7 @@ msgstr "사용 지침서"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the economic tutorial."
-msgstr "실리적인 사용 지침서를 시작합니다."
+msgstr "경제 사용 지침서를 시작합니다."
 
 #: gui/pregame/MainMenuItems.js:27
 #: gui/reference/common/Buttons/StructreeButton.js:21
@@ -5012,7 +5012,7 @@ msgstr "영구대 개요"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "0 A.D.에 등장한 영구대의 보너스를 비교하십시오."
+msgstr "0 A.D.에 등장한 영구대의 보너스를 비교합니다."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
@@ -5143,7 +5143,7 @@ msgstr "언어"
 
 #: gui/pregame/MainMenuItems.js:221
 msgid "Choose the language of the game."
-msgstr "게임의 언어를 선택하십시오."
+msgstr "게임의 언어를 선택합니다."
 
 #: gui/pregame/MainMenuItems.js:227
 msgid "Mod Selection"
@@ -5151,7 +5151,7 @@ msgstr "모드 선택"
 
 #: gui/pregame/MainMenuItems.js:228
 msgid "Select and download mods for the game."
-msgstr "게임의 모드를 선택하고 다운로드 하십시오."
+msgstr "게임의 모드를 선택하고 다운로드 합니다."
 
 #: gui/pregame/MainMenuItems.js:234
 msgid "Welcome Screen"
@@ -5179,7 +5179,7 @@ msgstr "0 A.D.를 종료하고 시나리오 편집기를 여시겠습니까?"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "시나리오 편집기를 사용할 수 없거나 불러오지 못했습니다. 추가 정보는 게임 기록을 참조하십시오."
+msgstr "시나리오 편집기를 사용할 수 없거나 불러오지 못했습니다. 추가 정보는 게임 기록을 참조합니다."
 
 #: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
 msgid "Error"
@@ -5225,7 +5225,7 @@ msgstr "웹사이트"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
-msgstr "웹 브라우저에서 play0ad.com을 열려면 클릭하십시오."
+msgstr "웹 브라우저에서 play0ad.com을 열려면 클릭합니다."
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
@@ -5237,7 +5237,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "브라우저에서 0 A.D. IRC 채팅을 열려면 여기를 클릭하십시오.(webchat.quakenet.org의 #0ad) 모든 종류의 작업을 수행하는 자원 봉사자가 운영하며 질문에 대한 답변을 얻는 데 시간이 걸릴 수 있습니다. 또는 포럼을 사용할 수 있습니다(웹 사이트 참조)."
+msgstr "브라우저에서 0 A.D. IRC 채팅을 열려면 여기를 클릭합니다.(webchat.quakenet.org의 #0ad) 모든 종류의 작업을 수행하는 자원 봉사자가 운영하며 질문에 대한 답변을 얻는 데 시간이 걸릴 수 있습니다. 또는 포럼을 사용할 수 있습니다(웹 사이트 참조)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5254,7 +5254,7 @@ msgstr "자주 묻는 질문 "
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr "브라우저에서 자주묻는 질문 페이지를 방문하려면 클릭하십시오."
+msgstr "브라우저에서 자주묻는 질문 페이지를 방문하려면 클릭합니다."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5262,7 +5262,7 @@ msgstr "게임 번역"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "브라우저에서 0 A.D. 번역 페이지를 열려면 클릭하십시오."
+msgstr "브라우저에서 0 A.D. 번역 페이지를 열려면 클릭합니다."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5279,7 +5279,7 @@ msgstr "약관"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr "사용자보고서 이용 약관을 읽고 동의하십시오."
+msgstr "사용자보고서 이용 약관을 읽고 동의합니다."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -5796,7 +5796,7 @@ msgstr "집"
 
 #: gui/summary/layout.js:36
 msgid "Economic"
-msgstr "실리적인"
+msgstr "경제"
 
 #: gui/summary/layout.js:37
 msgid "Outposts"
@@ -6195,7 +6195,7 @@ msgstr "유닛은 건물 내부에 주둔하는 동안 경험치를 얻습니다
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "정착지를 단계적으로 향상시키는 동안 시민 군인들을 훈련시킬 수 있는 건물을 일찍 건설하십시오."
+msgstr "정착지를 단계적으로 향상시키는 동안 시민 군인들을 훈련시킬 수 있는 건물을 일찍 건설합니다."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6231,7 +6231,7 @@ msgstr "체력은 낮지만, 빠르며 두려움없이 적을 공격합니다."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr "군대에서 지원하거나 빠른 습격을 위해 사용하십시오."
+msgstr "군대에서 지원하거나 빠른 습격을 위해 사용합니다."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6251,7 +6251,7 @@ msgstr "둘 다 다른 대표전사들처럼 요새 대신 신전에서 훈련�
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "창병을 기병에 대항하여 중보병으로서 활용하십시오. 기병을 공성 무기와 척후병에 대한 강한 공격으로 사용합니다."
+msgstr "창병을 기병에 대항하여 중보병으로서 활용합니다. 기병을 공성 무기와 척후병에 대한 강한 공격으로 사용합니다."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
@@ -6454,7 +6454,7 @@ msgstr "모든 파벌에 대한 건축물을 연구합니다."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr "유닛의 무기 및 방어구 업그레이드를 연구하십시오."
+msgstr "유닛의 무기 및 방어구 업그레이드를 연구합니다."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
@@ -6463,7 +6463,7 @@ msgstr "대형"
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr "병사를 대형으로 배치하여 전투 중에 조직을 유지하십시오."
+msgstr "병사를 대형으로 배치하여 전투 중에 조직을 유지합니다."
 
 #: gui/text/tips/formations.txt:3
 msgid ""
@@ -6764,7 +6764,7 @@ msgstr "스파르타인들이 이용할 수 있는 대표전사 보병입니다.
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "그들을 적의 기병을 학살하거나 당신의 정규 보병을 지원하기 위한 충격력으로 사용하십시오."
+msgstr "그들을 적의 기병을 학살하거나 당신의 정규 보병을 지원하기 위한 충격력으로 사용합니다."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -6786,7 +6786,7 @@ msgstr "적절한 난도질 공격은 그들을 좋은 최전선 부대로 만�
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "그들은 원거리 공격 유닛과 검병에 의해 대응되므로, 투석병 또는 기병으로 창병을 지원하십시오."
+msgstr "그들은 원거리 공격 유닛과 검병에 의해 대응되므로, 투석병 또는 기병으로 창병을 지원합니다."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

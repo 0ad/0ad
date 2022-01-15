@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
 
-    <technique>
-        <define name="DEBUG_TEXTURED" value="1"/>
-        <require shaders="arb"/>
-        <pass shader="arb/debug_overlay"/>
-    </technique>
+	<technique>
+		<define name="DEBUG_TEXTURED" value="1"/>
+		<require shaders="arb"/>
+		<pass shader="arb/debug_overlay">
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
 
-    <technique>
-        <define name="DEBUG_TEXTURED" value="1"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/debug_overlay"/>
-    </technique>
+	<technique>
+		<define name="DEBUG_TEXTURED" value="1"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/debug_overlay">
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
 
 </effect>

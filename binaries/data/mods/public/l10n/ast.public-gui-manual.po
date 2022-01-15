@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2022-01-08 19:22+0000\n"
+"PO-Revision-Date: 2022-01-10 19:25+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Puodes cambiar entre la pantalla completa & la feniestra premiendo Alternativa + Introduzir. Nel modu feniestra, puodes commudar la magnitude de la feniestra. Si’l juogu vai a modin, puodes commudar las configuraciones nel menú “Opciones”: pruoba-llu cun las opciones “Effeitos aquáticos in alta qualidat” & “Solombras” disactivadas."
+msgstr "Puodes cambiar entre la pantalla completa & la feniestra premiendo Alternativa + Introduzir. Nel modu feniestra, puodes commudar las dimensiones de la feniestra. Si’l juogu vai a modin, puodes commudar las configuraciones nel menú “Opciones”: pruoba-llu cun las opciones “Effeitos aquáticos in alta qualidat” & “Solombras” disactivadas."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -59,11 +59,11 @@ msgstr "Mandos básicos (predefinidos):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Calca cul botton ezquierdu pa seleccionar unidades"
+msgstr "• Calca cul botton ezquierdu para excoyer unidades"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Calca cul botton ezquierdu & arrastra para seleccionar greas d’unidades"
+msgstr "• Calca cul botton ezquierdu & arrastra para excoyer greas d’unidades"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
@@ -97,13 +97,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Un jogador[font=\"sans-14\"] – Jogar un incuontru personalizadu contra un ou mas jogadores d’intelligencia artificial (IA). La intelligencia artificial predefinida (Petra), magar qui funccional, sigue in disindolcu & puode non tener anovadas las suas characterísticas."
+msgstr "• [font=\"sans-bold-14\"]Un jogador[font=\"sans-14\"] – Jogar un incuontru personalizadu contra un ou mas agentes intelligentes (AI). L’agente intelligente predefinida (Petra), magar funccional, sigue in disindolcu & puode non tener anovadas las suas characterísticas."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Dellos jogadores[font=\"sans-14\"] – Jogar cun outra gente pela rede."
+msgstr "• [font=\"sans-bold-14\"]Múltiplos jogadores[font=\"sans-14\"] – Jogar cun outra gente pela rede."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -111,7 +111,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Para configurar un incuontru entre dellos jogadores, un jogador ha seleccionar la opcion “Ahospedar incuontru”. L’incuontru usa’l puortu UDP 20595, & l’amphitryon ha permití-llu nel sou NAT/torna-fuogu/etc. De puois, outros jogadores puoden seleccionar “Ajuntá-se a incuontru” & poner las signas IP del amphitryon."
+msgstr "Para configurar un incuontru entre múltiplos jogadores, un jogador ha excoyer la opcion “Ahospedar incuontru”. L’incuontru usa’l puortu UDP 20595, & l’amphitryon ha permití-llu nel sou NAT/torna-fuogu/etc. De puois, outros jogadores puoden excoyer “Ajuntá-se a incuontru” & poner las signas IP del amphitryon."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -119,11 +119,11 @@ msgstr "[font=\"sans-bold-16\"]Configuracion d’incuontros[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr "Nelos incuontros entre dellos jogadores, solo l’amphitryon puode alterar la configuracion del incuontru."
+msgstr "Nelos incuontros entre múltiplos jogadores, solo l’amphitryon puode alterar la configuracion del incuontru."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
-msgstr "De mano, selecciona’l typu de mappa in qui quieres jogar:"
+msgstr "De mano, excuoyi’l typu de mappa in qui quieres jogar:"
 
 #: gui/manual/intro.txt:29
 msgid ""
@@ -159,7 +159,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr "Finalmente affitta los ajustes. Nelos mappas aleatorios estos inclúin el númeru de jogadores, la magnitude del mappa, etc. Nelos scenarios solo puodes excoyer quien manda qui civilizacion, (lo qui determina u comiences, etc.). Ha hi tres opciones: una persona, una intelligencia artificial ou nenguna (el jogador vai quedar hi folgadu)."
+msgstr "Finalmente affita los ajustes. Nelos mappas aleatorios estos inclúin el númeru de jogadores, la magnitúdine del mappa, etc. Nelos scenarios solo puodes excoyer quien manda qui civilizacion, (lo qui determina u comiences, etc.). Ha hi tres opciones: una persona, un agente intelligente ou nenguna (el jogador vai quedar hi folgadu)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -237,25 +237,25 @@ msgstr "[font=\"sans-bold-14\"]En xuegu[font=\"sans-14\"]"
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr "  Calcar cul botton ezquierdu duas vezes \\[nuna unidat] – Seleccionar tódalas unidades de la miesma classe a la vista (in sin reparar nel gradu)"
+msgstr "  Calcar cul botton ezquierdu duas vezes \\[nuna unidat] – Excoyer tódalas unidades de la miesma classe a la vista (in sin reparar nel gradu)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr "  Calcar cul botton ezquierdu tres vezes \\[nuna unidat] – Seleccionar tódalas unidades de la miesma classe & gradu a la vista"
+msgstr "  Calcar cul botton ezquierdu tres vezes \\[nuna unidat] – Excoyer tódalas unidades de la miesma classe & gradu a la vista"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr "  Alternativa + Calcar cul botton ezquierdu duas vezes \\[nuna unidat] – Seleccionar tódalas unidades de la miesma classe in mappa (in sin reparar nel gradu)"
+msgstr "  Alternativa + Calcar cul botton ezquierdu duas vezes \\[nuna unidat] – Excoyer tódalas unidades de la miesma classe in mappa (in sin reparar nel gradu)"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr "  Alternativa + Calcar cul botton ezquierda tres vezes \\[nuna unidat] – Seleccionar tódalas unidades de la miesma classe & gradu in todu’l mappa"
+msgstr "  Alternativa + Calcar cul botton ezquierda tres vezes \\[nuna unidat] – Excoyer tódalas unidades de la miesma classe & gradu in todu’l mappa"
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
@@ -289,7 +289,7 @@ msgstr "  hotkey.teamchat – Inviar un recadu a la quadriella"
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr "  hotkey.privatechat – Conversar in privado cul últimu contactu seleccionadu"
+msgstr "  hotkey.privatechat – Conversar in privado cul últimu contactu excoyidu"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
@@ -323,7 +323,7 @@ msgstr "  hotkey.selection.remove – Camudador – quitar de la esbilla (o calc
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr "  hotkey.selection.offscreen – Commudador – inhadder a la seleccion tódalas unidades, inda qui non stean a la vista."
+msgstr "  hotkey.selection.offscreen – Commudador – inhadder a la excolleita tódalas unidades, inda qui non stean a la vista."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -332,21 +332,21 @@ msgstr "  hotkey.selection.cancel – Desfacer la esbilla, encaboxar la cimentac
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
-msgstr "  hotkey.selection.idlebuilder – Seleccionar un constructor vagadu"
+msgstr "  hotkey.selection.idlebuilder – Excoyer un constructor vagadu"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr "  hotkey.selection.idlewarrior – Seleccionar un mílite vagadu"
+msgstr "  hotkey.selection.idlewarrior – Excoyer un mílite vagadu"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr "  hotkey.selection.idleworker – Seleccionar un obreiru (ou mílite civil) vagadu"
+msgstr "  hotkey.selection.idleworker – Excoyer un obreiru (ou mílite civil) vagadu"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr "  hotkey.selection.idleunit – Seleccionar una unidat vagada"
+msgstr "  hotkey.selection.idleunit – Excoyer una unidat vagada"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
@@ -366,7 +366,7 @@ msgstr "  hotkey.session.unload – Quitar les unidades de lo esbillado"
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.save.1 – Crear una grea (por defeitu, 1,2,3 ... respectivamente) a partir de lo seleccionado"
+msgstr "  hotkey.selection.group.save.1 – Crear una grea (por defeitu, 1,2,3 ... respectivamente) a partir de lo excoyido"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -399,7 +399,7 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Cun una ou varias construcciones creadores seleccionadas. Inhadder la 1a, 2a, … unidat signalada a las riestras de tódalas construcciones seleccionadas"
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Cun una ou varias construcciones creadores excoyidas. Inhadder la 1a, 2a, … unidat signalada a las riestras de tódalas construcciones excoyidas"
 
 #: gui/manual/intro.txt:87
 msgid ""
@@ -540,7 +540,7 @@ msgstr "  hotkey.selection.singleselection – Camudador pa esbillar les unidade
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr "  Calcar cul botton direitu teniendo una ou varias construcciones seleccionadas – Affittar un punto d’incuontru para las unidades qui salan d’essa construccion"
+msgstr "  Calcar cul botton direitu teniendo una ou varias construcciones excoyidas – Affitar un punto d’incuontru para las unidades qui salan d’essa construccion"
 
 #: gui/manual/intro.txt:115
 msgid ""
@@ -558,7 +558,7 @@ msgstr "  hotkey.session.attack + Calcar col botón derechu teniendo una o varia
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr "  hotkey.session.attackmove + Calcar cul botton direitu teniendo una ou dellas unidades seleccionadas – Acommitter (aggrediendo todo lo q’atopen de camminu al obiectivu)"
+msgstr "  hotkey.session.attackmove + Calcar cul botton direitu teniendo una ou varias unidades excoyidas – Acommitter (aggrediendo todo lo q’atopen de camminu al obiectivu)"
 
 #: gui/manual/intro.txt:118
 msgid ""
@@ -681,7 +681,7 @@ msgstr "  hotkey.camera.follow – Siguir la unidá esbillada (movi la cámara p
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr "  hotkey.camera.reset – Reaffittar la orientacion, proximidat de la cámara"
+msgstr "  hotkey.camera.reset – Reaffitar la orientacion, proximidat de la cámara"
 
 #: gui/manual/intro.txt:145
 msgid ""

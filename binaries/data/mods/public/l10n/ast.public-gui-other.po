@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-08 19:13+0000\n"
+"PO-Revision-Date: 2022-01-12 02:13+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgstr "Mappa aleatoriu"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
-msgstr "Seleccionar un mappa aleatoriamente."
+msgstr "Excoyer un mappa aleatoriamente."
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
@@ -291,7 +291,7 @@ msgstr "Typu de mappa"
 
 #: gui/common/gamedescription.js:315
 msgid "Map Size"
-msgstr "Magnitude del mappa"
+msgstr "Magnitúdine del mappa"
 
 #: gui/common/gamedescription.js:324
 msgctxt "biome"
@@ -300,7 +300,7 @@ msgstr "Bioma aleatoriu"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
-msgstr "Seleccionar un bioma aleatoriamente."
+msgstr "Excoyer un bioma aleatoriamente."
 
 #: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
@@ -349,7 +349,7 @@ msgstr "Teito poblacional global"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
-msgstr "Atyalgas"
+msgstr "Ayalgas"
 
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
@@ -474,7 +474,7 @@ msgstr "Torgáronte."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr "Nome de xugador n'usu. Si te desconectesti, reténtalo en dellos segundos."
+msgstr "El nome del jogador sta in usu. Si te disconnectästi, reintenta-lo nunos segundos."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -1193,7 +1193,7 @@ msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
-msgstr "Bonu poblacional:"
+msgstr "Ventaya poblacional:"
 
 #: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
@@ -1526,7 +1526,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultat predefinida de la intelligencia artificial puode supponé-lli un reptu. A isti aconseya-se-lli practicar cun una IA de menus difficultat (Ẍole ou Per-fácile). Para cambiar la difficultat de la intelligencia artificial, calca na ícone de la ruoda dentada cabo’l jogador del quadro superior qui quieras commudar."
+msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultat predefinida del agente intelligente puode supponé-lli un reptu. A isti aconseya-se-lli practicar cun la difficultat del AI reduzida (Ẍole ou Per-fácile). Para cambiar la difficultat del AI, calca na ícone de la ruoda dentada cabo’l jogador del quadro superior qui quieras commudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1566,7 +1566,7 @@ msgstr "Tódolos atayos disponibles."
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr "¿Reaffittar tódolos atayos?\nAVISU: Esto non puode revertí-se."
+msgstr "¿Reaffitar tódolos atayos?\nAVISU: Esto non puode revertí-se."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1588,7 +1588,7 @@ msgstr "Peñera:"
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):43
 msgid "Reset"
-msgstr "Reaffittar"
+msgstr "Reaffitar"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
@@ -1629,7 +1629,7 @@ msgstr "Asignación"
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):44
 msgid "Resets user settings to their game default"
-msgstr "Reaffitta los ajustes del usuariu a los valores por defeitu."
+msgstr "Reaffita los ajustes del usuariu a los valores por defeitu."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
@@ -1641,7 +1641,7 @@ msgstr "Van perdese los cambeos ensin guardar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr "Calca p’affittar l’atayu"
+msgstr "Calca p’affitar l’atayu"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
@@ -1678,7 +1678,7 @@ msgstr "Desplazar/xirar abaxo"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr "Seguir la primeira unidá de la selección."
+msgstr "Seguir la primeira unidat de la excolleita."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
@@ -1688,7 +1688,7 @@ msgstr "Seguir unidá"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr "Ir a la 1a posicion de la cámara (ver “Affittar la posicion 1 de la cámara”)"
+msgstr "Ir a la 1a posicion de la cámara (ver “Affitar la posicion 1 de la cámara”)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
@@ -1698,7 +1698,7 @@ msgstr "Dir a la cámara 1"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr "Ir a la 2a posicion de la cámara (ver “Affittar la posicion 2 de la cámara”)"
+msgstr "Ir a la 2a posicion de la cámara (ver “Affitar la posicion 2 de la cámara”)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
@@ -1708,7 +1708,7 @@ msgstr "Dir a la cámara 2"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr "Ir a la 3a posicion de la cámara (ver “Affittar la posicion 3 de la cámara”)"
+msgstr "Ir a la 3a posicion de la cámara (ver “Affitar la posicion 3 de la cámara”)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
@@ -1718,7 +1718,7 @@ msgstr "Dir a la cámara 3"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr "Ir a la 4a posicion de la cámara (ver “Affittar la posicion 4 de la cámara”)"
+msgstr "Ir a la 4a posicion de la cámara (ver “Affitar la posicion 4 de la cámara”)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
@@ -1728,42 +1728,42 @@ msgstr "Dir a la cámara 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr "Affittar la 1a posicion de la cámara."
+msgstr "Affitar la 1a posicion de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr "Affittar la posicion 1 de la cámara"
+msgstr "Affitar la posicion 1 de la cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr "Affittar la 2a posicion de la cámara."
+msgstr "Affitar la 2a posicion de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr "Affittar la posicion 2 de la cámara"
+msgstr "Affitar la posicion 2 de la cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr "Affittar la 3a posicion de la cámara."
+msgstr "Affitar la 3a posicion de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr "Affittar la posicion 3 de la cámara"
+msgstr "Affitar la posicion 3 de la cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr "Affittar la 4a posicion de la cámara."
+msgstr "Affitar la 4a posicion de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr "Affittar la posicion 4 de la cámara"
+msgstr "Affitar la posicion 4 de la cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
@@ -1808,12 +1808,12 @@ msgstr "Enfocar escontra'l puntu d'alcuentru"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr "Reaffittar el gyru de la cámara al valor predefinidu."
+msgstr "Reaffitar el gyru de la cámara al valor predefinidu."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr "Reaffittar la cámara"
+msgstr "Reaffitar la cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
@@ -2233,12 +2233,12 @@ msgstr "Configuración d'alcuentru"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr "Abrir el restolador cartográficu."
+msgstr "Abrir el navigador chartográphicu."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr "Abrir el restolador cartográficu"
+msgstr "Abrir el navigador chartográphicu"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -2283,7 +2283,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Commudador p’affittar el punto d’incuontru nun miesmo edificio."
+msgstr "Commudador p’affitar el punto d’incuontru nun miesmo edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -2361,7 +2361,7 @@ msgstr "Camudador pa poner un recursu comercial al 100%."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "Affittar el commercio del producto al 100%"
+msgstr "Affitar el commercio del producto al 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -3154,102 +3154,102 @@ msgstr "Amestar el conxuntu 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 0."
-msgstr "Guardar la seleccion actual cumo Grea 0."
+msgstr "Guardar la excolleita actual cumo Grea 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 0"
-msgstr "Affittar la Grea 0"
+msgstr "Affitar la Grea 0"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr "Guardar la seleccion actual cumo Grea 1."
+msgstr "Guardar la excolleita actual cumo Grea 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr "Affittar la Grea 1"
+msgstr "Affitar la Grea 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr "Guardar la seleccion actual cumo Grea 2."
+msgstr "Guardar la excolleita actual cumo Grea 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr "Affittar la Grea 2"
+msgstr "Affitar la Grea 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr "Guardar la seleccion actual cumo Grea 3."
+msgstr "Guardar la excolleita actual cumo Grea 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr "Affittar la Grea 3"
+msgstr "Affitar la Grea 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr "Guardar la seleccion actual cumo Grea 4."
+msgstr "Guardar la excolleita actual cumo Grea 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr "Affittar la Grea 4"
+msgstr "Affitar la Grea 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr "Guardar la seleccion actual cumo Grea 5."
+msgstr "Guardar la excolleita actual cumo Grea 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr "Affittar la Grea 5"
+msgstr "Affitar la Grea 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr "Guardar la seleccion actual cumo Grea 6."
+msgstr "Guardar la excolleita actual cumo Grea 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr "Affittar la Grea 6"
+msgstr "Affitar la Grea 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr "Guardar la seleccion actual cumo Grea 7."
+msgstr "Guardar la excolleita actual cumo Grea 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr "Affittar la Grea 7"
+msgstr "Affitar la Grea 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr "Guardar la seleccion actual cumo Grea 8."
+msgstr "Guardar la excolleita actual cumo Grea 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr "Affittar la Grea 8"
+msgstr "Affitar la Grea 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr "Guardar la seleccion actual cumo Grea 9."
+msgstr "Guardar la excolleita actual cumo Grea 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr "Affittar la Grea 9"
+msgstr "Affitar la Grea 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
@@ -3722,11 +3722,11 @@ msgstr "Mappas qui son nuovos nisti lhanciamiento del juogu."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr "Meyor pa dellos xugadores"
+msgstr "Meyor pal modu multijogador"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr "Mapes que s'encamienten pal modu «dellos xugadores»."
+msgstr "Mappas que s’incommientan pal modu multijogador."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3746,12 +3746,12 @@ msgstr "Cada mapa del tipu escoyidu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr "Restolador cartográficu"
+msgstr "Navigador chartográphicu"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Zarrar el restolador cartográficu y escartar la esbilla."
+msgstr "%(hotkey)s: Cerrar el navigador chartográphicu & discartar la excolleita."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3763,7 +3763,7 @@ msgstr "Zarrar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr "%(hotkey)s: Zarrar el restolador cartográficu."
+msgstr "%(hotkey)s: Cerrar el navigador chartográphicu."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3859,11 +3859,11 @@ msgstr "Valor: %(val)s (mín: %(min)s, máx: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "Al reaffittar las opciones vas eliminar los ajustes guardados. ¿Quieres seguir?"
+msgstr "Al reaffitar las opciones vas eliminar los ajustes guardados. ¿Quieres seguir?"
 
 #: gui/options/options.js:411
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr "¡Nun son válidos los valores de dellos axustes! ¿De xuru que quieres guardallos?"
+msgstr "¡Los valores de varios ajustes son inválidos! ¿Stas ciertu que quieres guardá-llos?"
 
 #: gui/options/options.js:437
 msgid "You have unsaved changes, do you want to close this window?"
@@ -3887,7 +3887,7 @@ msgstr "Nome del xugador (multixugador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "El llamatu de to nos alcuentros de dellos xugadores (sacante n'antepar)."
+msgstr "El llamatu de tou nelos incuontros de múltiplos jogadores (excepto nel antepar)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -4112,7 +4112,7 @@ msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr "Affittar l’equilibrio entre l’aspectu & el rendimiento."
+msgstr "Affitar l’equilibrio entre l’aspectu & el rendimiento."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
@@ -4257,7 +4257,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Anti-scalonado qualidable perho lento q’usa duas amostranças per píxel. Suffitta’l GL3.3+."
+msgstr "Anti-scalonado qualidable perho lento q’usa duas amostranças per píxel. Suffita’l GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4267,7 +4267,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Anti-scalonado qualidable perho lento q’usa quatro amostranças per píxel. Suffitta’l GL3.3+."
+msgstr "Anti-scalonado qualidable perho lento q’usa quatro amostranças per píxel. Suffita’l GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
@@ -4277,7 +4277,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr "Anti-scalonado qualidable perho lento q’usa uoito amostranças per píxel. Suffitta’l GL3.3+."
+msgstr "Anti-scalonado qualidable perho lento q’usa uoito amostranças per píxel. Suffita’l GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4287,7 +4287,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr "Anti-scalonado qualidable perho lento q’usa selze amostranças per píxel. Suffitta’l GL3.3+."
+msgstr "Anti-scalonado qualidable perho lento q’usa selze amostranças per píxel. Suffita’l GL3.3+."
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -4490,7 +4490,7 @@ msgstr "Guardar y restaurar esta configuración pa tenella preparada al agospeda
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Dificultá predefinida de la IA"
+msgstr "Dificultat predefinida del AI"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4514,11 +4514,11 @@ msgstr "Per-diffícile"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "La difficultat predefinida de la intelligencia artificial."
+msgstr "La difficultat predefinida del agente intelligente."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
-msgstr "Actitú por defectu de la IA"
+msgstr "Actitúdine predefinida del AI"
 
 #: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
@@ -4538,7 +4538,7 @@ msgstr "Defensiva"
 
 #: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "L'actitú por defectu de la intelixencia artificial."
+msgstr "L'actitúdine predefinida del agente intelligente."
 
 #: gui/options/options.json[4].options[5].label
 msgid "Assign players"
@@ -4562,7 +4562,7 @@ msgstr "Collacios"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr "Solo s’assigna a jogadores nuovos si son colhacios del amphitryon & ha hi un spacio disponible."
+msgstr "Solo s’assigna a jogadores nuovos si son collacios del amphitryon & ha hi un spacio disponible."
 
 #: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
@@ -4611,7 +4611,7 @@ msgstr "Alvertencies de rede"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Amostrar cuál xugador tien mala conexón n'alcuentros de dellos xugadores."
+msgstr "Amostrar qual jogador tien mala connexion in incuontros de múltiplos jogadores."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
@@ -4639,7 +4639,7 @@ msgstr "Retrasu máximu pa los espectadores"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "Al ahospedar, pousar l’incuontru si los spectadores atrassan mas d’isti númeru de turnos. Si s’affitta a -1, non se llis faz casu."
+msgstr "Al ahospedar, pousar l’incuontru si los spectadores atrassan mas d’isti númeru de turnos. Si s’affita a -1, non se llis faz casu."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -4653,7 +4653,7 @@ msgstr "Si t'allancies al observar un alcuentru en directo, entainar automática
 
 #: gui/options/options.json[5].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr "Estos axustes namái cinquen al modu «Dellos xugadores»."
+msgstr "Estos ajustes solo affectan al modu multijogador."
 
 #: gui/options/options.json[6].label
 msgid "Game Session"
@@ -4786,7 +4786,7 @@ msgstr "Esta opción permítete alliniar construcciones nueves con construccione
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
-msgstr "Magnitude de concreación"
+msgstr "Base de concreacion"
 
 #: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -4854,7 +4854,7 @@ msgstr "Formaciones cohortales"
 
 #: gui/options/options.json[6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr "Si las formaciones se seleccionan in junto."
+msgstr "Si las formaciones s’excuoyen in junto."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -5050,7 +5050,7 @@ msgstr "Entamar, cargar o repetir un alcuentru priváu."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
-msgstr "Alcuentros"
+msgstr "Incuontros"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
@@ -5078,7 +5078,7 @@ msgstr "Reproducir alcuentros anteriores."
 
 #: gui/pregame/MainMenuItems.js:149
 msgid "Multiplayer"
-msgstr "Dellos xugadores"
+msgstr "Múltiplos jogadores"
 
 #: gui/pregame/MainMenuItems.js:150
 msgid "Fight against one or more human players in a multiplayer game."
@@ -5091,7 +5091,7 @@ msgstr "Xunise"
 
 #: gui/pregame/MainMenuItems.js:155
 msgid "Joining an existing multiplayer game."
-msgstr "Xunise a un alcuentru de dellos xugadores."
+msgstr "Ajuntá-se a un incuontru multijogador."
 
 #: gui/pregame/MainMenuItems.js:163
 msgid "Host Game"
@@ -5099,7 +5099,7 @@ msgstr "Agospedar"
 
 #: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
-msgstr "Agospedar un alcuentru de dellos xugadores."
+msgstr "Agospedar un incuontru multijogador."
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
@@ -5230,7 +5230,7 @@ msgstr "Sitiu na rede"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Calca p'abrir play0ad.com en restolador Web."
+msgstr "Calca p’abrir play0ad.com in navigador."
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
@@ -5242,7 +5242,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Calca p'abrir la charra IRC de 0 A.D. en restolador (#0ad en webchat.quakenet.org). Caltiénenla voluntarios que faen toda mena de coses, asina que podría llevar un tiempu recibir respuesta. Como alternativa, puedes usar el foru (ver «Sitiu na rede»)."
+msgstr "Calca p’abrir la conversa IRC de 0 A.D. in navigador (#0ad in webchat.quakenet.org). Caltienen-la voluntarios occupados cun toda triba de jeiras, assina que poderhían tardar in responder. Cumo alternativa, puodes usar el foro (ver el sitiu na rede)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5259,7 +5259,7 @@ msgstr "Entrugues frecuentes"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr "Calca pa visitar la páxina «Entrugues frecuentes» nel restolador."
+msgstr "Calca para visitar la página Intrugas freqüentes nel navigador."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5267,7 +5267,7 @@ msgstr "Traducir el xuegu"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Calca p'abrir la páxina de la torna de 0 A.D. en restolador."
+msgstr "Calca p’abrir la página Traduzir 0 A.D. in navigador."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5397,14 +5397,14 @@ msgstr "Historia de los %(civilization)s"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "Bonu cultural"
-msgstr[1] "Bonos culturales"
+msgstr[0] "Ventaya cultural"
+msgstr[1] "Ventayas culturales"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Bonu quadrelleiru"
-msgstr[1] "Bonos quadrelleiros"
+msgstr[0] "Ventaya quadrelleira"
+msgstr[1] "Ventayas quadrelleiras"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -5612,7 +5612,7 @@ msgstr "Un xugador"
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr "Dellos xugadores"
+msgstr "Múltiplos jogadores"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
@@ -6221,7 +6221,7 @@ msgstr "BIOMES"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr "Los biomes puedes usallos en dellos mapes al debalu. Determinen la estaya del mundu que'l mapa representa."
+msgstr "Los biomas puodes usá-llos in varios mappas aleatorios. Determinan la extaya del mundu que’l mappa representa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
@@ -6380,7 +6380,7 @@ msgstr "FORMACIÓN POR DEFECTU"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr "Cul botton direitu, calca nuna ícone p’affittar la formacion por defeitu: las unidades assumen-la automaticamente al andar ou rondar."
+msgstr "Cul botton direitu, calca nuna ícone p’affitar la formacion por defeitu: las unidades assumen-la automaticamente al andar ou rondar."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
@@ -6481,7 +6481,7 @@ msgstr "Usa formaciones pa caltener l'orde entre les tues files al batallar."
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr "Las formaciones seleccionan-se in junto por defeitu, pero esso puode cambiá-se nos ajustes del incuontru."
+msgstr "Las formaciones excuoyen-se in junto por defeitu, pero esso puode cambiá-se nos ajustes del incuontru."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6510,7 +6510,7 @@ msgstr "¡Da ventaya a les tues forcies asitiándoles estratéxicamente!"
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr "Pa ello esbilla delles unidades y, premiendo'l botón derechu del mure, dibuxa una llinia, ya darréu suelta'l botón."
+msgstr "Para ello, excuoyi dellas unidades, premi’l botton direitu del mure, designa una lhinia & d’a reo suolta’l botton."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -6562,7 +6562,7 @@ msgstr "Tienen aures que cambien les estadístiques d'otres unidades o construcc
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr "Repara: ¡Cada héroe puede conscribise una vez por alcuentru!"
+msgstr "Repara: ¡Cada héroe puode creá-se una sola vez per incuontru!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"

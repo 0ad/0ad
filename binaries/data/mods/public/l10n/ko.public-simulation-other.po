@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2021-11-27 05:57+0000\n"
+"PO-Revision-Date: 2022-01-12 17:12+0000\n"
 "Last-Translator: Jung Hee Lee\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "%(_player_)s님에게 대항하여 대규모 군사 캠페인을 시작할 것입니다. 참전 하십시오."
+msgstr "%(_player_)s님에게 대항하여 대규모 군사 캠페인을 시작할 것입니다. 참전 합니다."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
@@ -85,7 +85,7 @@ msgstr "당분간 %(_player_)s님을 도울 수 없습니다. %(_player_2)s님�
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "%(_player_)s님을 위한 선물입니다. 잘 활용하십시오."
+msgstr "%(_player_)s님을 위한 선물입니다. 잘 활용합니다."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
@@ -588,47 +588,47 @@ msgstr "개체가 생성중입니다. 업그레이드를 시작할 수 없습니
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr "거북이만큼 느림 (0.1×)"
+msgstr "거북이 속도 (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr "빨리 돌리기 (20×)"
+msgstr "빨리 감기 (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr "느림 (0.25×)"
+msgstr "느린 속도 (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr "적당히 느림 (0.5×)"
+msgstr "한가한 속도 (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr "살짝 느림 (0.75×)"
+msgstr "느긋한 속도 (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr "정상 (1×)"
+msgstr "정상 속도 (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr "빠름 (1.25×)"
+msgstr "빠른 속도 (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr "매우 빠름 (1.5×)"
+msgstr "매우 빠른 속도 (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr "미치게 빠름 (2×)"
+msgstr "미친 속도 (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr "빨리 돌리기 (5×)"
+msgstr "빨리 감기 (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr "빨리 돌리기 (10×)"
+msgstr "빨리 감기 (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -761,7 +761,7 @@ msgstr "매우 쉬움"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "당신이 0 A.D.를 발견한다면 이 난이도를 선택하십시오."
+msgstr "당신이 0 A.D.를 발견한다면 이 난이도를 선택합니다."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -769,7 +769,7 @@ msgstr "쉬움"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "당신이 쓰러지는 것을 좋아하지 않는다면 이 난이도를 선택하십시오."
+msgstr "당신이 쓰러지는 것을 좋아하지 않는다면 이 난이도를 선택합니다."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
@@ -779,7 +779,7 @@ msgstr "중형"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "당신이 이미 0 A.D에 대한 좋은 경험을 가지고 있다면 이 난이도를 선택하십시오."
+msgstr "당신이 이미 0 A.D에 대한 좋은 경험을 가지고 있다면 이 난이도를 선택합니다."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -787,7 +787,7 @@ msgstr "어려움"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr "정말 도전받고 싶다면 이 난이도를 선택하십시오."
+msgstr "정말 도전받고 싶다면 이 난이도를 선택합니다."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -795,7 +795,7 @@ msgstr "매우 어려움"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "당신이 휩쓸려 나가도 상관없다면 이 난이도를 선택하십시오."
+msgstr "당신이 휩쓸려 나가도 상관없다면 이 난이도를 선택합니다."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""

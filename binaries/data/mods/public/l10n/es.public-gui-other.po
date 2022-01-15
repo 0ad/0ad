@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-09 16:47+0000\n"
+"PO-Revision-Date: 2022-01-13 16:48+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -4220,7 +4220,7 @@ msgstr "Cuando se activa las sombras cubren todo el terreno y la distancia de co
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
-msgstr "Efectos del agua"
+msgstr "Efectos de agua"
 
 #: gui/options/options.json[2].options[14].tooltip
 msgid ""
@@ -4429,11 +4429,11 @@ msgstr "La aparición de entidades se realiza de forma aleatoria. Deshabilitarlo
 
 #: gui/options/options.json[2].options[8].label
 msgid "Shader effects"
-msgstr "Efectos de sombras"
+msgstr "Sombreado"
 
 #: gui/options/options.json[2].options[8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Cantidad de efectos de sombreadores. Necesita REINICIAR EL JUEGO"
+msgstr "Cantidad de elementos de sombreado. REQUIERE REINICIAR EL JUEGO"
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
@@ -4763,11 +4763,11 @@ msgstr "Dinámicamente ordenar por valor a los jugadores en recursos e informaci
 
 #: gui/options/options.json[6].options[15].label
 msgid "Diplomacy colors: self"
-msgstr "Colores de Diplomacia: Yo"
+msgstr "Colores de diplomacia: jugador"
 
 #: gui/options/options.json[6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr "Color de tus unidades cuando los colores diplomáticos estan activados."
+msgstr "Color de tus unidades cuando los colores de diplomacia estan activados."
 
 #: gui/options/options.json[6].options[16].label
 msgid "Diplomacy colors: ally"
@@ -4787,7 +4787,7 @@ msgstr "Color de jugadores neutrales cuando los colores de diplomacia están hab
 
 #: gui/options/options.json[6].options[18].label
 msgid "Diplomacy colors: enemy"
-msgstr "Colores de diplomacia: Enemigo"
+msgstr "Colores de diplomacia: enemigo"
 
 #: gui/options/options.json[6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -5844,7 +5844,7 @@ msgstr "Casas"
 
 #: gui/summary/layout.js:36
 msgid "Economic"
-msgstr "económica"
+msgstr "Económicos"
 
 #: gui/summary/layout.js:37
 msgid "Outposts"
@@ -5852,7 +5852,7 @@ msgstr "Avanzadas"
 
 #: gui/summary/layout.js:38
 msgid "Military"
-msgstr "Militar"
+msgstr "Militares"
 
 #: gui/summary/layout.js:39
 msgid "Fortresses"
@@ -5956,7 +5956,7 @@ msgstr "Ganancias comerciales"
 
 #: gui/summary/layout.js:164
 msgid "Barter efficiency"
-msgstr "Habilidad de intercambio"
+msgstr "Eficiencia intercambio"
 
 #. Translation: use %(resourceWithinSentence)s if needed
 #: gui/summary/layout.js:170

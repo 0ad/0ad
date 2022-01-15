@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2021-12-24 10:25+0000\n"
+"PO-Revision-Date: 2022-01-12 16:46+0000\n"
 "Last-Translator: Jung Hee Lee\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,7 @@ msgstr "통신 알림"
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "보낼 메시지를 입력하십시오."
+msgstr "보낼 메시지를 입력합니다."
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
@@ -367,7 +367,7 @@ msgstr "%(icon)s%(attacker)s의 공격을 받았습니다!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "공격당한 유닛에 초점을 맞추려면 클릭하십시오."
+msgstr "공격당한 유닛에 초점을 맞추려면 클릭합니다."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -492,7 +492,7 @@ msgstr "대화 기록을 걸러냅니다."
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "대화 대상을 선택하십시오."
+msgstr "대화 대상을 선택합니다."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
@@ -703,7 +703,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "%(resourceAmount)s개의 %(resourceType)s을(를) %(playerName)s에게 바칩니다. %(greaterAmount)s개를 조공하려면 Shift 키를 누른 채 클릭하십시오"
+msgstr "%(resourceAmount)s개의 %(resourceType)s을(를) %(playerName)s에게 바칩니다. %(greaterAmount)s개를 조공하려면 Shift 키를 누른 채 클릭합니다"
 
 #: gui/session/input.js:191
 #, javascript-format
@@ -778,7 +778,7 @@ msgstr "모든 플레이어가 같은 모드를 사용해야 합니다."
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "이 문제를 해결하려면 기본 메뉴에서 \"버그 신고하기\"를 클릭하십시오."
+msgstr "이 문제를 해결하려면 기본 메뉴에서 \"버그 신고하기\"를 클릭합니다."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -881,7 +881,7 @@ msgstr "패배했습니다!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr "이 사용 지침서를 종료하려면 클릭하십시오."
+msgstr "이 사용 지침서를 종료하려면 클릭합니다."
 
 #: gui/session/message_box/QuitConfirmation.js:24
 #: gui/session/message_box/QuitConfirmationReplay.js:32
@@ -891,7 +891,7 @@ msgstr "종료"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
-msgstr "준비가 되면 클릭하십시오."
+msgstr "준비가 되면 클릭합니다."
 
 #: gui/session/messages.js:419
 msgid "Follow the instructions."
@@ -1491,7 +1491,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "맨 위 줄에서 판매할 자원을 선택하십시오. 아랫줄의 버튼이 눌릴때마다 위에 자원 %(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 교역량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
+msgstr "맨 위 줄에서 판매할 자원을 선택합니다. 아랫줄의 버튼이 눌릴때마다 위에 자원 %(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 교역량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1609,7 +1609,7 @@ msgstr "준비 완료"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "이것은 원산지 교역 시장입니다.\n교역로를 취소하려면 마우스 오른쪽 버튼을 클릭하십시오."
+msgstr "이것은 원산지 교역 시장입니다.\n교역로를 취소하려면 마우스 오른쪽 버튼을 클릭합니다."
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1629,7 +1629,7 @@ msgstr "이 시장은 원산지 시장에 너무 가깝습니다."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
-msgstr "목적지 교역 시장으로 지정하려면 마우스 오른쪽 클릭하십시오."
+msgstr "목적지 교역 시장으로 지정하려면 마우스 오른쪽 클릭합니다."
 
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
@@ -1643,7 +1643,7 @@ msgstr "현재 주둔지: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "새로운 상인들을 위한 기본 경로를 지정하려면 마우스 오른쪽 클릭하십시오."
+msgstr "새로운 상인들을 위한 기본 경로를 지정하려면 마우스 오른쪽 클릭합니다."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
@@ -1670,7 +1670,7 @@ msgstr "선택한 유닛 또는 건축물을 파괴합니다."
 #: gui/session/unit_actions.js:1410
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr "확인 대화상자를 표시하지 않으려면 %(hotkey)s 키를 사용하십시오."
+msgstr "확인 대화상자를 표시하지 않으려면 %(hotkey)s 키를 사용합니다."
 
 #: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
@@ -1684,11 +1684,11 @@ msgstr "자원을 드롭한 후 공격 시 선택한 유닛을 지정된 위치�
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "선택한 유닛이 건축물이나 유닛에 주둔하도록 명령합니다."
+msgstr "선택한 유닛에게 건축물이나 유닛에 주둔하도록 명령합니다."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
-msgstr "선택한 유닛이 포탑 지점을 차지하도록 명령하십시오."
+msgstr "선택한 유닛에게 포탑 지점을 차지하도록 명령합니다."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"
@@ -1696,7 +1696,7 @@ msgstr "내리기"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "선택한 유닛이 건축물, 배, 공성 전차의 수리를 명령합니다."
+msgstr "선택한 유닛에게 건축물, 배, 공성 전차를 수리하도록 명령합니다."
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."

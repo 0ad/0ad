@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-12-28 11:10+0000\n"
+"PO-Revision-Date: 2022-01-10 14:06+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Pulsando Alt + Enter puedes cambiar entre pantalla completa y modo ventana. En modo ventana puedes cambiar su tamaño. Si el juego va lento puedes cambiar la configuración en la ventana de opciones: prueba a desactivar las opciones “Efectos de agua” y “Sombras”."
+msgstr "Pulsando Alt + Enter puedes cambiar entre pantalla completa y modo ventana. En modo ventana puedes cambiar su tamaño. Si el juego va lento puedes cambiar la configuración en la ventana de opciones: prueba a desactivar las opciones «Efectos de agua» y «Sombras»."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -149,25 +149,25 @@ msgstr "En una partida multijugador solo el anfitrión puede cambiar los ajustes
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
-msgstr "Elige primero el tipo de mapa que quieras jugar:"
+msgstr "Elige primero el tipo de escenario que quieras jugar:"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Mapa aleatorio[font=\"sans-14\"] – Mapa creado automáticamente a partir de un script"
+msgstr "• [font=\"sans-bold-14\"]Aleatorio[font=\"sans-14\"] – Escenario creado automáticamente a partir de un script"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Mapa de escenario[font=\"sans-14\"] – Mapa prediseñado para civilizaciones concretas"
+msgstr "• [font=\"sans-bold-14\"]Escenario prediseñado[font=\"sans-14\"] – Escenario prediseñado para civilizaciones concretas"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Mapa de escaramuza[font=\"sans-14\"] – Mapa prediseñado en el que se pueden elegir las civilizaciones"
+msgstr "• [font=\"sans-bold-14\"]Escaramuza[font=\"sans-14\"] – Escenario prediseñado en el que se pueden elegir las civilizaciones"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -176,7 +176,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Los mapas pueden filtrarse más aún. Los predeterminados suelen ser los más jugables. En los mapas navales no se puede acceder a todos los enemigos por tierra. Los mapas de demostración son solo de prueba (no están pensados para jugar). Con el filtro «todos» se mostrarán todos los mapas juntos."
+msgstr "Los escenarios pueden filtrarse más aún. Los predeterminados suelen ser los más jugables. En los escenarios navales no todos los los enemigos están accesibles por tierra. Los escenarios de demostración son solo de prueba (no están pensados para jugar). Con el filtro «todos» se mostrarán todos los escenarios juntos."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -185,7 +185,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr "Y por último cambia las opciones. Para mapas aleatorios se incluye el número de jugadores, el tamaño del mapa, etc. Para escenarios solo puedes seleccionar quien controla a cada jugador (determinar donde inicias en el mapa, etc). Las opciones son un jugador humano, IA o sin jugador asignado (el oponente no estará activo)."
+msgstr "Y por último cambia las opciones. Para escenarios aleatorios se incluye el número de jugadores, el tamaño del mapa, etc. Para escenarios prediseñados solo puedes seleccionar quien controla a cada jugador (determinar donde inicias en el mapa, etc). Las opciones son un jugador humano, IA o sin jugador asignado (el oponente no estará activo)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -199,7 +199,7 @@ msgstr "[font=\"sans-bold-16\"]Atajos de teclado[font=\"sans-14\"]"
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr "Puedes cambiar los atajos de teclado en [font=\"sans-bold-14\"]Opciones > Atajos de teclado [font=\"sans-14\"] y adaptarlos a tus necesidades."
+msgstr "Puedes cambiar los atajos de teclado en [font=\"sans-bold-14\"]Ajustes > Atajos de teclado [font=\"sans-14\"] y adaptarlos a tus necesidades."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -505,7 +505,7 @@ msgstr "  hotkey.session.queue + Clic derecho – Encadena acciones ir/construir
 msgid ""
 "  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
 "in front of the order queue."
-msgstr "  hotkey.session.pushorderfront + clic derecho – Combinación para situar una orden al principio de la cola."
+msgstr "  hotkey.session.pushorderfront + clic derecho – Modificador para situar una orden al principio de la cola."
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -560,7 +560,7 @@ msgstr "  hotkey.selection.woundedonly + Clic izquierdo y arrastrar sobre las un
 msgid ""
 "  hotkey.selection.singleselection – Modifier to select units individually, "
 "opposed to per formation."
-msgstr "  hotkey.selection.singleselection – Combinación para seleccionar unidades individualmente, fuera de la formación."
+msgstr "  hotkey.selection.singleselection – Modificador para seleccionar unidades individualmente, fuera de la formación."
 
 #: gui/manual/intro.txt:114
 msgid ""

@@ -77,7 +77,7 @@ public:
 
 	bool m_RenderWater;
 
-	// If disabled, force the use of the fixed function for rendering.
+	// If disabled, force the use of the simple water shader for rendering.
 	bool m_WaterEffects;
 	// Those variables register the current quality level. If there is a change, I have to recompile the shader.
 	// Use real depth or use the fake precomputed one.

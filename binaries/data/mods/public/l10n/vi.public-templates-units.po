@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # DUC PHM
+# Nghĩa Cipher
 # Nguyen Dinh Phuoc Duc
 # Lục Cửu Tử Ư
 # tran gia
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-04-30 09:29+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-14 04:11+0000\n"
+"Last-Translator: Nghĩa Cipher\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr "Thánh tích"
 
 #: simulation/templates/template_unit_catafalque.xml:18
 msgid "Catafalque"
-msgstr "linh cữu"
+msgstr "Linh cữu"
 
 #: simulation/templates/template_unit_catafalque.xml:21
 msgid "A catafalque that holds the remains of a great leader."
@@ -38,14 +39,14 @@ msgstr "Một linh cữu chứa hài cốt của một nhà lãnh đạo tuyệt
 #: simulation/templates/template_unit_infantry.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr ""
+msgstr "Chiếm lấy"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
 #: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr ""
+msgstr "Giết mổ"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_cavalry.xml:35
@@ -118,11 +119,11 @@ msgstr "Cận chiến"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Axe"
-msgstr ""
+msgstr "Rìu"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr "Kỵ binh rìu chiến"
+msgstr "Kỵ binh rìu"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -132,7 +133,7 @@ msgstr "Kỵ binh rìu chiến"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "Rìu chiến"
+msgstr "Lính rìu"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -142,11 +143,11 @@ msgstr "Rìu chiến"
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
-msgstr ""
+msgstr "Chuỳ"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Kỵ binh chuỳ"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
@@ -155,7 +156,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Maceman"
-msgstr "Chùy binh"
+msgstr "Lính chuỳ"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -185,7 +186,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Spearman"
-msgstr "Giáo binh"
+msgstr "Lính giáo"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:5
@@ -253,7 +254,7 @@ msgstr "Kỵ binh tầm xa"
 #: simulation/templates/template_unit_siege_tower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
-msgstr ""
+msgstr "Cung"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
@@ -264,11 +265,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:30
 msgid "Archer"
-msgstr "Cung thủ"
+msgstr "Lính cung"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
-msgstr "Cung kỵ binh"
+msgstr "Kỵ binh bắn cung"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
@@ -278,11 +279,11 @@ msgstr "Cung kỵ binh"
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
-msgstr ""
+msgstr "Nỏ"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 msgid "Cavalry Crossbowman"
-msgstr ""
+msgstr "Kỵ binh bắn nỏ"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -291,7 +292,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
 msgid "Crossbowman"
-msgstr ""
+msgstr "Lính nỏ"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -305,7 +306,7 @@ msgstr "Lao"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr "Kỵ binh phóng lao"
+msgstr "Kỵ binh ném lao"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
@@ -314,47 +315,47 @@ msgstr "Kỵ binh phóng lao"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr "Lao thủ"
+msgstr "Lính ném lao"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
-msgstr "nhà vô địch"
+msgstr "Tinh nhuệ"
 
 #: simulation/templates/template_unit_champion.xml:15
 msgid "Champion Unit"
-msgstr "Đơn vị vô địch"
+msgstr "Đơn vị tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
-msgstr "Kỵ binh quán quân"
+msgstr "Kỵ binh tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
-msgstr "Kỵ xạ vô địch"
+msgstr "Kỵ binh bắn cung tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr "Kỵ rìu vô địch"
+msgstr "Kỵ binh rìu tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr ""
+msgstr "Kỵ binh bắn nỏ tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr "Kỵ binh ném lao vô địch"
+msgstr "Kỵ binh ném lao tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
-msgstr ""
+msgstr "Kỵ binh chuỳ tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr "Kỵ binh giáo vô địch"
+msgstr "Kỵ binh giáo tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:20
 msgid "Champion Cavalry Swordsman"
-msgstr "Kỵ binh gươm vô địch"
+msgstr "Kỵ binh gươm tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_elephant.xml:8
@@ -374,7 +375,7 @@ msgstr "Voi"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr ""
+msgstr "Vòi voi"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -385,27 +386,27 @@ msgstr "Bộ binh"
 
 #: simulation/templates/template_unit_champion_infantry.xml:16
 msgid "Champion Infantry"
-msgstr "Bộ binh đặc chủng"
+msgstr "Bộ binh tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
-msgstr "Cung thủ đặc chủng"
+msgstr "Lính cung tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
-msgstr "Rìu chiến vô địch"
+msgstr "Lính rìu tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr ""
+msgstr "Bộ binh bắn nỏ tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr "Lao thủ vô địch"
+msgstr "Bộ binh ném lao tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "Bộ binh chuỳ tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -416,7 +417,7 @@ msgstr "Thương"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
-msgstr " Thương binh vô địch"
+msgstr "Lính thương tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:27
@@ -432,15 +433,15 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 msgid "Pikeman"
-msgstr "Thương binh"
+msgstr "Lính thương"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
-msgstr "Giáo binh vô địch"
+msgstr "Lính giáo tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:20
 msgid "Champion Swordsman"
-msgstr "Kiếm binh vô địch"
+msgstr "Lính gươm tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
@@ -453,7 +454,7 @@ msgstr ""
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Nanh"
 
 #: simulation/templates/template_unit_dog.xml:31
 msgid "War Dog"
@@ -461,7 +462,7 @@ msgstr "Chó chiến"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr "Không thể tấn công công trình, tàu thuyền, hay thiết bị vây hãm"
+msgstr "Không thể tấn công công trình, tàu thuyền, hay vũ khí công thành"
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -470,16 +471,16 @@ msgstr "Chó"
 #: simulation/templates/template_unit_elephant_archer.xml:33
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
-msgstr ""
+msgstr "Tượng binh bắn cung"
 
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
-msgstr "Giết để thu thập thức ăn"
+msgstr "Giết để lấy thịt"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
-msgstr "Giết để mổ lấy thức ăn"
+msgstr "Giết để mổ lấy thịt"
 
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_hero.xml:26
@@ -503,27 +504,27 @@ msgstr "Kỵ binh anh hùng"
 msgid ""
 "\n"
 "        "
-msgstr ""
+msgstr "\n"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
-msgstr "Kỵ xạ anh hùng"
+msgstr "Kỵ binh bắn cung anh hùng"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr "Kỵ rìu anh hùng"
+msgstr "Kỵ binh rìu anh hùng"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr ""
+msgstr "Kỵ binh bắn nỏ anh hùng"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
-msgstr ""
+msgstr "Kỵ binh ném lao anh hùng"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
-msgstr ""
+msgstr "Kỵ binh chuỳ anh hùng"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
@@ -531,11 +532,11 @@ msgstr "Kỵ binh giáo anh hùng"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
-msgstr "Kỵ binh kiếm anh hùng"
+msgstr "Kỵ binh gươm anh hùng"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:31
 msgid "Hero Elephant"
-msgstr ""
+msgstr "Tượng binh anh hùng"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -547,19 +548,19 @@ msgstr "Hỗ trợ"
 #: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/template_unit_support_healer.xml:27
 msgid "Healer"
-msgstr "Trị liệu"
+msgstr "Chữa trị"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
-msgstr "Cung thủ anh hùng"
+msgstr "Lính cung anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
-msgstr "Rìu chiến anh hùng"
+msgstr "Lính rìu anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr ""
+msgstr "Lính nỏ anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
@@ -567,25 +568,25 @@ msgstr "Bộ binh ném lao anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
-msgstr ""
+msgstr "Lính chuỳ anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
-msgstr "Thương binh anh hùng"
+msgstr "Lính thương anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 msgid "Hero Spearman"
-msgstr "Giáo binh anh hùng"
+msgstr "Lính giáo anh hùng"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:23
 msgid "Hero Swordsman"
-msgstr "Gươm binh anh hùng"
+msgstr "Lính gươm anh hùng"
 
 #: simulation/templates/template_unit_infantry.xml:36
 #: simulation/templates/template_unit_support_female_citizen.xml:37
 #: simulation/templates/template_unit_support_slave.xml:21
 msgid "Worker"
-msgstr "Nhân công"
+msgstr "Dân phu"
 
 #: simulation/templates/template_unit_infantry_melee.xml:7
 msgid "Melee Infantry"
@@ -593,25 +594,25 @@ msgstr "Bộ binh cận chiến"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
-msgstr ""
+msgstr "Bộ binh chuỳ"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
-msgstr ""
+msgstr "Bộ binh bắn nỏ"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr "bộ binh phóng lao"
+msgstr "Bộ binh ném lao"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Sling"
-msgstr ""
+msgstr "Ná bắn đá"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:31
 msgid "Slinger"
-msgstr "lính ném đá"
+msgstr "Lính bắn đá"
 
 #: simulation/templates/template_unit_ship.xml:27
 #: simulation/templates/template_unit_ship.xml:29
@@ -647,7 +648,7 @@ msgstr "Tàu chiến Bireme"
 #: simulation/templates/units/theb_siege_fireraiser.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
-msgstr ""
+msgstr "Khai hoả"
 
 #: simulation/templates/template_unit_ship_fire.xml:22
 #: simulation/templates/units/theb_siege_fireraiser.xml:35
@@ -656,7 +657,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
-msgstr "Tàu chiến lửa"
+msgstr "Tàu phun lửa"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
@@ -664,7 +665,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
-msgstr "Tàu chiến lửa"
+msgstr "Tàu phun lửa"
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -732,7 +733,7 @@ msgstr "Tàu chiến Trireme"
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
 msgid "Siege"
-msgstr "Vây hãm"
+msgstr "Vũ khí công thành"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -778,11 +779,11 @@ msgstr "Máy bắn đá"
 
 #: simulation/templates/template_unit_siege_tower.xml:59
 msgid "SiegeTower"
-msgstr "Tháp vây hãm"
+msgstr "Tháp công thành"
 
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Siege Tower"
-msgstr "Tháp vây hãm"
+msgstr "Tháp công thành"
 
 #: simulation/templates/template_unit_support_elephant.xml:20
 msgid "Worker Elephant"
@@ -1889,7 +1890,7 @@ msgstr ""
 
 #: simulation/templates/units/kush/siege_tower.xml:5
 msgid "Kushite Siege Tower"
-msgstr ""
+msgstr "Tháp công thành Kushite"
 
 #: simulation/templates/units/kush/siege_tower.xml:6
 msgid "iwn n ms"
@@ -2442,7 +2443,7 @@ msgstr ""
 
 #: simulation/templates/units/pers/siege_ram.xml:20
 msgid "Assyrian Siege Ram"
-msgstr ""
+msgstr "Xe đục thành Assyria"
 
 #: simulation/templates/units/pers/siege_ram.xml:21
 msgid "Hamaranakuba Aθuriya"
