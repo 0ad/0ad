@@ -32,7 +32,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
     -DCMAKE_C_FLAGS="$CFLAGS" \
     -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
     -DCMAKE_BUILD_TYPE=Release \
-    "$CMAKE_FLAGS" \
+    $CMAKE_FLAGS \
     -DBINDIR=bin \
     -DLIBDIR=lib \
     -DPNG=0 \
@@ -44,7 +44,7 @@ else
     -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-    "$CMAKE_FLAGS" \
+    $CMAKE_FLAGS \
     -DNVTT_SHARED=1 \
     -DOpenGL_GL_PREFERENCE=GLVND \
     -DBINDIR=bin \
