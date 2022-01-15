@@ -122,8 +122,6 @@ void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
 {
 	const CShaderTechniquePtr& tech = solidColor ? m->techSolid : m->tech;
 
-	std::vector<CParticleEmitter*>& emitters = m->emitters[cullGroup];
-
 	tech->BeginPass();
 
 	const CShaderProgramPtr& shader = tech->GetShader();
