@@ -1370,7 +1370,7 @@ void CPatchRData::BuildWater()
 	}
 }
 
-void CPatchRData::RenderWaterSurface(CShaderProgramPtr& shader)
+void CPatchRData::RenderWaterSurface(CShaderProgramPtr& shader, const bool bindWaterData)
 {
 	ASSERT(m_UpdateFlags == 0);
 
@@ -1382,7 +1382,8 @@ void CPatchRData::RenderWaterSurface(CShaderProgramPtr& shader)
 	// Setup data pointers.
 	const GLsizei stride = sizeof(SWaterVertex);
 	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
-	shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
+	if (bindWaterData)
+		shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
 
 	shader->AssertPointersBound();
 

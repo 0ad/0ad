@@ -203,7 +203,7 @@ EntitySelection.prototype.makePrimarySelection = function(key)
  */
 EntitySelection.prototype.removeGroupFromSelection = function(key)
 {
-	this.removeList(this.groups.getEntsByKey(key));
+	this.removeList(this.groups.getEntsByKey(key), false);
 };
 
 /**
