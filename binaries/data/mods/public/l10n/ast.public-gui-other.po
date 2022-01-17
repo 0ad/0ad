@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-12 02:13+0000\n"
+"PO-Revision-Date: 2022-01-16 22:37+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "%(userDesc)s - %(templateName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Atayu sin assignar: %(hotkeyName)s"
+msgstr "Atayyu sin assignar: %(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
@@ -275,7 +275,7 @@ msgstr "Mappa aleatoriu"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
-msgstr "Excoyer un mappa aleatoriamente."
+msgstr "Excoyyer un mappa aleatoriamente."
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
@@ -300,7 +300,7 @@ msgstr "Bioma aleatoriu"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
-msgstr "Excoyer un bioma aleatoriamente."
+msgstr "Excoyyer un bioma aleatoriamente."
 
 #: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
@@ -314,7 +314,7 @@ msgstr "Foros"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Los jogadores intaman cun un pugnadu d’unidades & tienen q’atopar un lhogar afayadiçu u s’assentar."
+msgstr "Los jogadores intaman cun un pugnadu d’unidades & tienen q’atopar un lhogar incontradiçu u s’assentar."
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
@@ -349,7 +349,7 @@ msgstr "Teito poblacional global"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
-msgstr "Ayalgas"
+msgstr "Ayyalgas"
 
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
@@ -1193,7 +1193,7 @@ msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
-msgstr "Ventaya poblacional:"
+msgstr "Ventayya poblacional:"
 
 #: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
@@ -1526,11 +1526,11 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultat predefinida del agente intelligente puode supponé-lli un reptu. A isti aconseya-se-lli practicar cun la difficultat del AI reduzida (Ẍole ou Per-fácile). Para cambiar la difficultat del AI, calca na ícone de la ruoda dentada cabo’l jogador del quadro superior qui quieras commudar."
+msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultat predefinida del agente intelligente puode supponé-lli un reptu. A isti aconseyya-se-lli practicar cun la difficultat del AI reduzida (Ẍole ou Per-fácile). Para cambiar la difficultat del AI, calca na ícone de la ruoda dentada cabo’l jogador del quadro superior qui quieras commudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr "Otros atayos"
+msgstr "Outros atayyos"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
@@ -1543,7 +1543,7 @@ msgstr "(Calténlu calcáu p'asignallu)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr "Introduz l'atayu nuevu, calténlu calcáu p'asignallu."
+msgstr "Introduz l’atayyu nuovu, calten-lu calcadu p’assigná-llu."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
@@ -1556,17 +1556,17 @@ msgstr "Puede criar conflictos con:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr "Tódolos atayos"
+msgstr "Tódolos atayyos"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr "Tódolos atayos disponibles."
+msgstr "Tódolos atayyos disponibles."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr "¿Reaffitar tódolos atayos?\nAVISU: Esto non puode revertí-se."
+msgstr "¿Reaffitar tódolos atayyos?\nAVISU: Esto non puode revertí-se."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1575,7 +1575,7 @@ msgstr "Confirmanza"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr "Nun hai conseyos disponibles."
+msgstr "Non ha hi conseyyos disponibles."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1592,7 +1592,7 @@ msgstr "Reaffitar"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr "Atayu"
+msgstr "Atayyu"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
@@ -1991,7 +1991,7 @@ msgstr "Alloñar (pasu entre pasu)"
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr "Atayos xenerales."
+msgstr "Atayyos generales."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -2001,12 +2001,12 @@ msgstr "Xeneral"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr "Fai una semeya grande en formatu BMP."
+msgstr "Faz una simeyya grande in formatu BMP."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr "Semeya"
+msgstr "Simeyya"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
@@ -6615,7 +6615,7 @@ msgstr "Les pirámides menores entaínen el llogru de recursos a obreros averaos
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr "Les pirámides mayores aumenten la marcialidá de mílites averaos."
+msgstr "Las pyrámides maiores augmentan la marcialidat de mílites aveirados."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"

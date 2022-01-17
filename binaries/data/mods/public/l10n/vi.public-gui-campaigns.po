@@ -27,16 +27,18 @@ msgid ""
 "Discover the new maps in Alpha XXVI with a demo campaign, taking you through"
 " all of them."
 msgstr ""
+"Khám phá các bản đồ mới của Alpha XXVI với một demo chiến dịch, kể cho bạn "
+"câu chuyện của tất cả."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "Demo chiến dịch - Bản đồ mới"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "Học cách để chơi 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -47,11 +49,15 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Bản đồ này sẽ cung cấp một hướng dẫn sơ bộ để bắt đầu trò chơi một cách hiệu"
+" quả. Điều quan trọng nhất đầu tiên là thu thập tài nguyên càng nhanh càng "
+"tốt để bạn có thể xây dựng quân đội sau này. Cảnh báo: Quá trình này diễn ra"
+" rất nhanh khi bắt đầu, hãy chuẩn bị thật tốt."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "Hướng dẫn Kinh tế"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
@@ -66,65 +72,65 @@ msgstr "Hướng dẫn Nhập môn"
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr ""
+msgstr "Hướng dẫn"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "Hoàn thành"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Có sẵn"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Lỗi khi tải chiến dịch: %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr ""
+msgstr "Tên chiến dịch"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
-msgstr ""
+msgstr "Không có màn nào được chọn"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "Quay lại Menu chính"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
-msgstr ""
+msgstr "Đã lưu màn chơi"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
-msgstr ""
+msgstr "Bắt đầu màn chơi"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Chơi tiếp game màn đã lưu"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "Tên màn chơi"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
-msgstr ""
+msgstr "Trạng thái"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "không thể tải tệp"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xoá %s? Điều này không thể hoàn tác."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -141,15 +147,15 @@ msgstr "Có"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "Tải chiến dịch"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Không có chiến dịch đang diễn ra."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Tên cuộc hành trình đã chọn:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -162,20 +168,20 @@ msgstr "Xóa"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Bắt đầu một chiến dịch"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "Vui lòng nhập tên chiến dịch mới của bạn:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "Bắt đầu chiến dịch"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "Không chiến dịch nào được chọn."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
@@ -183,7 +189,7 @@ msgstr "Nhiệm vụ"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "Không chiến dịch nào được chọn"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
@@ -197,4 +203,4 @@ msgstr "Tên"
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

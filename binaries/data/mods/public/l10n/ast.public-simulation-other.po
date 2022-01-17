@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2022-01-12 01:07+0000\n"
+"PO-Revision-Date: 2022-01-16 20:11+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -215,7 +215,7 @@ msgstr "D’accuordu, %(_player_)s. Acceito la colligacion."
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "D’eiquí pa riba contades cun nós, %(_player_)s."
+msgstr "D’eichí pa riba contades cun nós, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ie la AI predefinida de 0 A.D. Faz el favor d’informar de fallos a Wildfire Games (ve’l vínculo in menú principal).\n\nLa rapidez cun la qui Petra obtien recursos & beneficios commerciales depende de la sua difficultat, (Ẍole −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades minores, tamien baẍan los rhythmos de disinvolvimiento, de creacion & de construccion. D’arriendas, nela difficultat “Ẍole” Petra nien se sparde nien invade."
+msgstr "Petra ie la AI predefinida de 0 A.D. Faz el favor d’informar de fallos a Wildfire Games (ver el vínculo in menú principal).\n\nLa rapidez cun la qui Petra obtien recursos & beneficios commerciales depende de la sua difficultat, (Ẍole −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades minores, tamien baẍan los rhythmos de disinvolvimiento, de creacion & de construccion. D’arriendas, nela difficultat “Ẍole” Petra nien se sparde nien invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -566,7 +566,7 @@ msgstr "L’ente sta anovando-se. Non puode iniciá-se la produccion."
 
 #: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
-msgstr "La riestra de produccion sta inllena."
+msgstr "La riestra de produccion sta inyyena."
 
 #: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
@@ -640,7 +640,7 @@ msgstr "Pequenhu"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Los mappas pequenhos prestan-se para duellos, d’ex qui se puode llegar aína al adversariu &, al in par, tener daqué spacio para spardé-se."
+msgstr "Los mappas pequenhos prestan-se para duellos, d’ex qui se puode yyegar aína al adversariu &, al in par, tener daqué spacio para spardé-se."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -656,7 +656,7 @@ msgstr "Nelos mappas d’esta magnitúdine puoden caber guapamente dous jogadore
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "Esta ie la magnitúdine ideal para 4 a 8 jogadores porque ha hi abundu spacio para spardé-se & llega-se aína a los vizinos."
+msgstr "Esta ie la magnitúdine ideal para 4 a 8 jogadores porque ha hi abundu spacio para expandé-se & yyega-se aína a los vizinos."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -666,7 +666,7 @@ msgstr "Grande"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr "La magnitúdine grande aconseya-se quando gran parte del mappa sta cobierta cun agua ou monte inaccessible."
+msgstr "La magnitúdine grande aconseyya-se quando gran parte del mappa sta cobierta cun agua ou monte inaccessible."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -677,7 +677,7 @@ msgstr "Per-grande"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Non s’aconseyan los mappas per-grandes d’ex qui te sitúan muito lhonge del inimigu & puoden reduzir el rendimiento del juogu."
+msgstr "Non s’aconseyyan los mappas per-grandes d’ex qui te sitúan muito lhonge del inimigu & puoden reduzir el rendimiento del juogu."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -737,12 +737,12 @@ msgstr "Normales"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr "Bayurosos"
+msgstr "Abundantes"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr "Per-bayurosos"
+msgstr "Per-abundantes"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
@@ -755,7 +755,7 @@ msgstr "Per-fácile"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Excuoyi esta difficultat si stas discobriendo 0 A.D."
+msgstr "Excuoyyi esta difficultat si stas discobriendo 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -763,7 +763,7 @@ msgstr "Fácile"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "Excuoyi esta difficultat si non ti presta qui te sulmenen."
+msgstr "Excuoyyi esta difficultat si non ti presta qui te sulmenen."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
@@ -773,7 +773,7 @@ msgstr "Normal"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Excuoyi esta difficultat si stas bien afeitu a 0 A.D."
+msgstr "Excuoyyi esta difficultat si stas bien afeitu a 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -781,7 +781,7 @@ msgstr "Difícile"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr "Excuoyi esta difficultat si quieres un bon reptu."
+msgstr "Excuoyyi esta difficultat si quieres un bon reptu."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -789,7 +789,7 @@ msgstr "Per-difícile"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "Excuoyi esta difficultat si non t’importa qui te varran."
+msgstr "Excuoyyi esta difficultat si non t’importa qui te varran."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
@@ -858,11 +858,11 @@ msgstr "Mirácula"
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr "Venceu-se a %(player)s (trampa)."
+msgstr "Vinceu-se a %(player)s (trampa)."
 
 #: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
-msgstr "Precisas excoyer una construccion unde se crían unidades."
+msgstr "Precisas excoyyer una construccion unde se crían unidades."
 
 #: simulation/helpers/Commands.js:134
 msgid "(Cheat - control all units)"

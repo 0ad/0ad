@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-01-13 14:49+0000\n"
+"PO-Revision-Date: 2022-01-15 14:24+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Los espartanos se sometían a adiestramiento fuera del seno familiar des
 
 #: simulation/data/technologies/agoge.jsongenericName
 msgid "The Agoge"
-msgstr "La agogé"
+msgstr "Agogé"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
@@ -223,7 +223,7 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "Soldados, máquinas de asedio y buques (Daño +25%)."
+msgstr "Soldados, máquinas de asedio y barcos (Daño +25%)."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -368,7 +368,7 @@ msgstr "Chakravarti Samrāt"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr "Límite máximo de población: +10% ."
+msgstr "Límite máximo de población: +10%."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -969,7 +969,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fase avanzada desbloqueando más entidades y tecnologías. Centros cívicos (Radio de influencia territorial: +50%). Estructuras (Regeneración de puntos de captura: +9 por cada unidad guarnecida). Trabajadores (Recolección de metal: +10%)."
+msgstr "Avanza a fase urbana desbloqueando más entidades y tecnologías. Centros cívicos (Radio de influencia territorial: +50%). Estructuras (Regeneración de puntos de captura: +9 por cada unidad guarnecida). Trabajadores (Recolección de metal: +10%)."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -982,7 +982,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fase avanzada desbloqueando más entidades y tecnologías. Centros cívicos (Radio de influencia territorial: +50%). Estructuras (Regeneración de puntos de captura: +9 por cada unidad guarnecida)."
+msgstr "Avanza a fase urbana desbloqueando más entidades y tecnologías. Centros cívicos (Radio de influencia territorial: +50%). Estructuras (Regeneración de puntos de captura: +9 por cada unidad guarnecida)."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1125,11 +1125,11 @@ msgstr "Barcos (Resistencia: +25%)."
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr "Entrena a tus remeros y marineros para que se muevan de forma más eficiente y aceleren tus barcos."
+msgstr "Entrena a tus remeros y marineros para mover de forma más eficiente y rápida tus barcos."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
-msgstr "Tripulaciones experimentadas"
+msgstr "Tripulación experimentada"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
@@ -1149,7 +1149,7 @@ msgstr "Máquinas de asedio (Daño por aplastamiento: +25%)."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
-msgstr "Mejora la precisión de los proyectiles"
+msgstr "Mejora la precisión de los proyectiles."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1161,7 +1161,7 @@ msgstr "Lanzadores de proyectiles (Dispersión de tiro: −20%)."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr "La ciencia o el oficio de colocar o realizar asedios."
+msgstr "La ciencia y arte de sitiar y realizar asedios."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
@@ -1174,7 +1174,7 @@ msgstr "Máquinas de asedio (Tiempo de construcción −20%)."
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr "Cubra el exterior con planchas de hierro para protegerlo contra fuego y proyectiles."
+msgstr "Cubierta exterior con planchas de hierro como protección contra el fuego y los proyectiles."
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
@@ -1217,7 +1217,7 @@ msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr "A menudo, un soldado llevaría un arma secundaria además de su arma principal de elección, para ser desenvainada cuando el arma principal falla o se rompe."
+msgstr "A menudo, un soldado puede llevar un arma secundaria además de su arma principal, para ser desenvainada cuando el arma principal falla o se rompe."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1260,13 +1260,13 @@ msgstr "Carburización"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr "Soldados +20% al daño cuerpo a cuerpo."
+msgstr "Soldados (Daño cuerpo a cuerpo: +20%)."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Las técnicas de artesanía secretas proporcionan a las espadas unas preciosas y distintivas marcas. Y lo que es mejor, la dureza de su acero no conoce igual."
+msgstr "Las técnicas de artesanía secretas proporcionan a las espadas unas preciosas y distintivas marcas, además de una resistencia del acero sin igual."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsongenericName
 msgid "Steel Working"
@@ -1283,7 +1283,7 @@ msgstr "Acero wootz"
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
-msgstr "Soldados +20% al daño cuerpo a cuerpo. Los espadachines obtienen un bonus +20% adicional."
+msgstr "Soldados (Daño cuerpo a cuerpo: +20%). Los espadas obtienen +20% adicional."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid ""
@@ -1410,7 +1410,7 @@ msgstr "Soldados (Resistencia a la perforación: +2)."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr "Recluta una red de informadores con la que vigilar a tu gente"
+msgstr "Recluta una red de informadores con la que vigilar a tu gente."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
@@ -1446,11 +1446,11 @@ msgstr "Torres de vigilancia y de piedra (Disparos:+ 40%, por cada soldado guarn
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr "Mejora los cimientos en previsión de un ataque."
+msgstr "Refuerza los cimientos en previsión de un ataque."
 
 #: simulation/data/technologies/tower_health.jsongenericName
 msgid "Sturdy Foundations"
-msgstr "Sólidos cimientos"
+msgstr "Cimientos robustos"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
@@ -1458,11 +1458,11 @@ msgstr "Torres (Resistencia: +25%)."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Las troneras permiten lanzar proyectiles y disparar con protección a enemigos directamente bajo el torreón."
+msgstr "Los matacanes permiten alcanzar a los enemigos directamente bajo el torreón."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "Troneras"
+msgstr "Matacanes"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
@@ -1675,7 +1675,7 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr "Mediante el comercio y la exploración las gentes descubrían nuevas tierras más allá de sus fronteras, dibujando mapas con los que registrar sus descubrimientos."
+msgstr "Mediante el comercio y los viajes se exploran nuevas tierras más allá de sus fronteras, dibujando mapas con los que registrar sus descubrimientos."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1734,4 +1734,4 @@ msgstr "Peristalsis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "Habilita el aura «Expansión Gloriosa» (Límite máximo de población: +20% por cada maravilla poseida)."
+msgstr "Habilita el aura «Gloriosa expansión» (Límite máximo de población: +20% por cada maravilla poseida)."
