@@ -330,6 +330,7 @@ extern_lib_defs = {
 			end
 			add_default_links({
 				win_names = { "freetype" },
+				no_delayload = 1,
 			})
 		end,
 	},
