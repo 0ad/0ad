@@ -2,6 +2,7 @@
 # Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
+# Nghĩa Cipher
 # Lục Cửu Tử Ư
 # Huynh Yen Loc
 # YubiGalaxy
@@ -9,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2021-05-17 10:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-15 03:30+0000\n"
+"Last-Translator: Nghĩa Cipher\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,32 +22,32 @@ msgstr ""
 #: graphics/CameraController.cpp:657
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "Tốc độ cuộn tăng lên %.1f"
 
 #: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "Tốc độ cuộn giảm còn %.1f"
 
 #: graphics/CameraController.cpp:670
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Tốc độ quay tăng lên X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Tốc độ quay giảm còn X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:683
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "Tốc độ thu phóng tăng lên %.1f"
 
 #: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "Tốc độ thu phóng giảm còn %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -54,7 +55,7 @@ msgstr "Đoạn văn dài"
 
 #: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "unknown subtype (see logs)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
@@ -62,27 +63,27 @@ msgstr "Chứng nhận không được tin tưởng"
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Chứng chỉ không rõ tổ chức phát hành."
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Chứng chỉ đã bị thu hồi."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
-msgstr "Chứng nhận hết thời hạn"
+msgstr "Chứng nhận đã hết thời hạn"
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "Chứng chỉ chưa được kích hoạt."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "The certificate has not been issued for the peer connected to."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "The certificate signer is not a certificate authority."
 
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
@@ -99,11 +100,11 @@ msgstr "Người chơi đã đăng nhập"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
-msgstr ""
+msgstr "Bị cấm"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
-msgstr "Server bị lỗi"
+msgstr "Lỗi server"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
@@ -115,15 +116,15 @@ msgstr "Chưa đồng bộ hóa"
 
 #: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Recipient temporarily unavailable"
 
 #: lobby/XmppClient.cpp:1402
 msgid "Registration required"
-msgstr ""
+msgstr "Registration required"
 
 #: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
-msgstr ""
+msgstr "Service unavailable"
 
 #: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
@@ -135,23 +136,23 @@ msgstr "Lỗi hệ thống"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "The incoming stream version is unsupported"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "The stream has been closed by the server"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "An I/O error occurred"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Kết nối bị server từ chối"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Resolving the server's hostname failed"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
@@ -161,99 +162,99 @@ msgstr "Hệ thống bị tràn bộ nhớ"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "The server's certificate could not be verified or the TLS handshake did not complete successfully"
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "The server did not offer required TLS encryption"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Authentication failed. Incorrect password or account does not exist"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "The user or system requested a disconnect"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
-msgstr ""
+msgstr "Không có kết nối nào hoạt động"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Your account has been successfully registered"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Not all necessary information provided"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr ""
+msgstr "Tên người dùng đã tồn tại"
 
 #: ps/Mod.cpp:82
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "Could not write external mod.json for zipped mod '%s'. The mod should be reinstalled."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Không thể bắt đầu truy vấn game id. Lỗi: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Không thể bắt đầu truy vấn bản mod. Lỗi: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Không thể tạo thư mục bản mod: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Không thể mở tệp tạm thời để tải xuống bản mod: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Không thể bắt đầu tải xuống. Lỗi: %s; %s."
 
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Tải xuống không đồng bộ: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Tải về thất bại. Server phản hồi: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Kích thước tệp không khớp."
 
 #: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Tệp không hợp lệ. Yêu cầu md5 %s, được %s."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Failed to compute final hash."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Không xác minh được chữ ký."
 
 #: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Game đã được lưu tại '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
@@ -263,4 +264,4 @@ msgstr "bản tùy biến"
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Ảnh chụp màn hình được lưu tại '%s'"

@@ -4,12 +4,13 @@
 # project.
 # Translators:
 # Huynh Yen Loc
+# Nghĩa Cipher
 # Quan Nguyen
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-14 02:51+0000\n"
+"PO-Revision-Date: 2022-01-15 17:03+0000\n"
 "Last-Translator: Nghĩa Cipher\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +28,7 @@ msgstr ""
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -357,7 +358,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:392
 msgid "Explored Map"
-msgstr ""
+msgstr "Đã khám phá bản đồ"
 
 #: gui/common/gamedescription.js:397
 msgid "Revealed Map"
@@ -365,7 +366,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr ""
+msgstr "Tầm nhìn đồng minh"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -3432,7 +3433,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr ""
+msgstr "Lựa chọn đơn"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
@@ -3858,7 +3859,7 @@ msgstr "Tổng quát"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Tên người chơi (Một người chơi)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3866,7 +3867,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Tên người chơi (Nhiều người chơi)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -4781,7 +4782,7 @@ msgstr ""
 
 #: gui/options/options.json[6].options[20].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Đơn"
 
 #: gui/options/options.json[6].options[20].list[0].tooltip
 msgid ""
@@ -4893,7 +4894,7 @@ msgstr ""
 
 #: gui/options/options.json[6].options[7].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Hoàn thành"
 
 #: gui/options/options.json[6].options[7].list[2].label
 msgid "All displayed"
@@ -4947,13 +4948,13 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn to Play"
-msgstr ""
+msgstr "Học cách chơi"
 
 #: gui/pregame/MainMenuItems.js:4
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Học cách để chơi, bắt đầu màn chơi hướng dẫn, khám phá cây công nghệ và các câu chuyện lịch sử của các nền văn minh."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -4965,7 +4966,7 @@ msgstr "Mở Hướng dẫn cho 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "Hướng dẫn"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the economic tutorial."
@@ -5025,11 +5026,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:83
 msgid "Single-player"
-msgstr ""
+msgstr "Một người chơi"
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Bắt đầu, tải, hoặc chơi lại màn chơi một người chơi."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
@@ -5037,7 +5038,7 @@ msgstr "Trận đấu"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Bắt đầu màn chơi một người chơi mới."
 
 #: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
@@ -5049,7 +5050,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
-msgstr ""
+msgstr "Tải chiến dịch"
 
 #: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
@@ -5061,7 +5062,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:149
 msgid "Multiplayer"
-msgstr "Nhiều Người Chơi"
+msgstr "Nhiều người chơi"
 
 #: gui/pregame/MainMenuItems.js:150
 msgid "Fight against one or more human players in a multiplayer game."
@@ -5101,7 +5102,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:199
 msgid "Settings"
-msgstr "Thiết lập"
+msgstr "Cài đặt"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Change game options."
@@ -5113,7 +5114,7 @@ msgstr "Thiết lập"
 
 #: gui/pregame/MainMenuItems.js:204
 msgid "Adjust game settings."
-msgstr "Tùy chỉnh thiết lập của game."
+msgstr "Tùy chỉnh cài đặt của trò chơi."
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
 msgid "Hotkeys"
@@ -5187,7 +5188,7 @@ msgstr "Thoát"
 
 #: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
-msgstr ""
+msgstr "Thoát trò chơi."
 
 #: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5583,12 +5584,12 @@ msgstr "Bất kỳ"
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr ""
+msgstr "Một người chơi"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr "Nhiều Người Chơi"
+msgstr "Nhiều người chơi"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
