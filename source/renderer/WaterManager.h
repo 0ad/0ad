@@ -26,6 +26,7 @@
 #include "graphics/Texture.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexBufferManager.h"
 
@@ -190,7 +191,9 @@ public:
 	 */
 	bool WillRenderFancyWater() const;
 
-	void RenderWaves(const CFrustum& frustrum);
+	void RenderWaves(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CFrustum& frustrum);
 
 	/**
 	 * Returns an index of the current texture that should be used for rendering

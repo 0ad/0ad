@@ -32,7 +32,10 @@
 struct ParticleRendererInternals
 {
 	int frameNumber;
-	CShaderTechniquePtr tech;
+	CShaderTechniquePtr techAdd;
+	CShaderTechniquePtr techSubtract;
+	CShaderTechniquePtr techOverlay;
+	CShaderTechniquePtr techMultiply;
 	CShaderTechniquePtr techSolid;
 	std::vector<CParticleEmitter*> emitters[CSceneRenderer::CULL_MAX];
 };
@@ -87,9 +90,12 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 	// Can't load the shader in the constructor because it's called before the
 	// renderer initialisation is complete, so load it the first time through here
-	if (!m->tech)
+	if (!m->techSolid)
 	{
-		m->tech = g_Renderer.GetShaderManager().LoadEffect(str_particle, context);
+		m->techAdd = g_Renderer.GetShaderManager().LoadEffect(str_particle_add, context);
+		m->techSubtract = g_Renderer.GetShaderManager().LoadEffect(str_particle_subtract, context);
+		m->techOverlay = g_Renderer.GetShaderManager().LoadEffect(str_particle_overlay, context);
+		m->techMultiply = g_Renderer.GetShaderManager().LoadEffect(str_particle_multiply, context);
 		m->techSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context);
 	}
 
@@ -118,32 +124,45 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 	// TODO: should batch by texture here when possible, maybe
 }
 
-void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
+void ParticleRenderer::RenderParticles(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup, bool solidColor)
 {
-	const CShaderTechniquePtr& tech = solidColor ? m->techSolid : m->tech;
-
-	tech->BeginPass();
-
-	const CShaderProgramPtr& shader = tech->GetShader();
-
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
-
-	glDepthMask(0);
-
+	CShaderTechnique* lastTech = nullptr;
 	for (CParticleEmitter* emitter : m->emitters[cullGroup])
 	{
-		emitter->Bind(shader);
-		emitter->RenderArray(shader);
+		CShaderTechnique* currentTech = nullptr;
+		if (solidColor)
+			solidColor = m->techSolid.get();
+		else
+		{
+			switch (emitter->m_Type->m_BlendMode)
+			{
+			case CParticleEmitterType::BlendMode::ADD: currentTech = m->techAdd.get(); break;
+			case CParticleEmitterType::BlendMode::SUBTRACT: currentTech = m->techSubtract.get(); break;
+			case CParticleEmitterType::BlendMode::OVERLAY: currentTech = m->techOverlay.get(); break;
+			case CParticleEmitterType::BlendMode::MULTIPLY: currentTech = m->techMultiply.get(); break;
+			}
+		}
+		ENSURE(currentTech);
+		if (lastTech != currentTech)
+		{
+			lastTech = currentTech;
+			lastTech->BeginPass();
+			deviceCommandContext->SetGraphicsPipelineState(lastTech->GetGraphicsPipelineStateDesc());
+
+			const CShaderProgramPtr& shader = lastTech->GetShader();
+			shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+			shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
+		}
+		emitter->Bind(lastTech->GetShader());
+		emitter->RenderArray(lastTech->GetShader());
 	}
 
+	if (lastTech)
+		lastTech->EndPass();
+
 	CVertexBuffer::Unbind();
-
-	glBlendEquationEXT(GL_FUNC_ADD);
-
-	glDepthMask(1);
-
-	tech->EndPass();
 }
 
 void ParticleRenderer::RenderBounds(int cullGroup)

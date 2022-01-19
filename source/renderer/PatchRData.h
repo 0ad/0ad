@@ -23,6 +23,7 @@
 #include "graphics/ShaderProgramPtr.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <vector>
@@ -47,16 +48,18 @@ public:
 	void RenderOutline();
 	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWaterSurface(CShaderProgramPtr& shader, const bool bindWaterData);
-	void RenderWaterShore(CShaderProgramPtr& shader);
+	void RenderWaterSurface(const CShaderProgramPtr& shader, const bool bindWaterData);
+	void RenderWaterShore(const CShaderProgramPtr& shader);
 
 	CPatch* GetPatch() { return m_Patch; }
 
 	const CBoundingBoxAligned& GetWaterBounds() const { return m_WaterBounds; }
 
 	static void RenderBases(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderBlends(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
 	static void RenderSides(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader);

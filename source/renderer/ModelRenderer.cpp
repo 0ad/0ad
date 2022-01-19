@@ -345,7 +345,9 @@ struct SMRCompareTechBucket
 	}
 };
 
-void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags)
+void ShaderModelRenderer::Render(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags)
 {
 	if (m->submissions[cullGroup].empty())
 		return;
@@ -626,6 +628,8 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			for (int pass = 0; pass < currentTech->GetNumPasses(); ++pass)
 			{
 				currentTech->BeginPass(pass);
+				deviceCommandContext->SetGraphicsPipelineState(
+					currentTech->GetGraphicsPipelineStateDesc(pass));
 
 				const CShaderProgramPtr& shader = currentTech->GetShader(pass);
 				int streamflags = shader->GetStreamFlags();

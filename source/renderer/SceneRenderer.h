@@ -198,22 +198,38 @@ protected:
 		const CBoundingBoxAligned& waterScissor);
 
 	// patch rendering stuff
-	void RenderPatches(const CShaderDefines& context, int cullGroup);
+	void RenderPatches(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, int cullGroup);
 
 	// model rendering stuff
-	void RenderModels(const CShaderDefines& context, int cullGroup);
-	void RenderTransparentModels(const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling);
+	void RenderModels(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, int cullGroup);
+	void RenderTransparentModels(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling);
 
-	void RenderSilhouettes(const CShaderDefines& context);
+	void RenderSilhouettes(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context);
 
-	void RenderParticles(int cullGroup);
+	void RenderParticles(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		int cullGroup);
 
 	// shadow rendering stuff
-	void RenderShadowMap(const CShaderDefines& context);
+	void RenderShadowMap(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context);
 
 	// render water reflection and refraction textures
-	void RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
-	void RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
+	void RenderReflections(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, const CBoundingBoxAligned& scissor);
+	void RenderRefractions(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 
 	void ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;
 	void ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;

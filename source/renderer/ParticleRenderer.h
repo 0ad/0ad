@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,8 @@
 
 #ifndef INCLUDED_PARTICLERENDERER
 #define INCLUDED_PARTICLERENDERER
+
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 class CParticleEmitter;
 class CShaderDefines;
@@ -53,7 +55,9 @@ public:
 	/**
 	 * Render all the submitted particles.
 	 */
-	void RenderParticles(int cullGroup, bool solidColor = false);
+	void RenderParticles(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		int cullGroup, bool solidColor = false);
 
 	/**
 	 * Render bounding boxes for all the submitted emitters.

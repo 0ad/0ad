@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 #include "graphics/MeshManager.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/SColor.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/VertexArray.h"
 
 class RenderModifier;
@@ -157,7 +158,9 @@ public:
 	 * If flags is non-zero, only models that contain flags in their
 	 * CModel::GetFlags() are rendered.
 	 */
-	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags) = 0;
+	virtual void Render(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags) = 0;
 
 	/**
 	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
@@ -264,7 +267,9 @@ public:
 	virtual void Submit(int cullGroup, CModel* model);
 	virtual void PrepareModels();
 	virtual void EndFrame();
-	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags);
+	virtual void Render(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags);
 
 private:
 	struct ShaderModelRendererInternals;

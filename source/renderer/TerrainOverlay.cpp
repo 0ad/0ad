@@ -63,7 +63,8 @@ ITerrainOverlay::~ITerrainOverlay()
 }
 
 
-void ITerrainOverlay::RenderOverlaysBeforeWater()
+void ITerrainOverlay::RenderOverlaysBeforeWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (g_TerrainOverlayList.empty())
 		return;
@@ -71,7 +72,7 @@ void ITerrainOverlay::RenderOverlaysBeforeWater()
 	PROFILE3_GPU("terrain overlays (before)");
 
 	for (size_t i = 0; i < g_TerrainOverlayList.size(); ++i)
-		g_TerrainOverlayList[i].first->RenderBeforeWater();
+		g_TerrainOverlayList[i].first->RenderBeforeWater(deviceCommandContext);
 }
 
 void ITerrainOverlay::RenderOverlaysAfterWater(
@@ -110,16 +111,16 @@ void TerrainOverlay::GetTileExtents(
 	max_i_inclusive = max_j_inclusive = m_Terrain->GetTilesPerSide()-1;
 }
 
-void TerrainOverlay::RenderBeforeWater()
+void TerrainOverlay::RenderBeforeWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (!m_Terrain)
 		return; // should never happen, but let's play it safe
 
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 #warning TODO: implement TerrainOverlay::RenderOverlays for GLES
 #else
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(GL_FALSE);
 	// To ensure that outlines are drawn on top of the terrain correctly (and
 	// don't Z-fight and flicker nastily), draw them as QUADS with the LINE
@@ -145,7 +146,7 @@ void TerrainOverlay::RenderBeforeWater()
 
 	for (m_j = min_j; m_j <= max_j; ++m_j)
 		for (m_i = min_i; m_i <= max_i; ++m_i)
-			ProcessTile(m_i, m_j);
+			ProcessTile(deviceCommandContext, m_i, m_j);
 
 	EndRender();
 
@@ -156,16 +157,19 @@ void TerrainOverlay::RenderBeforeWater()
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(GL_TRUE);
-	glDisable(GL_BLEND);
 #endif
 }
 
-void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden)
+void TerrainOverlay::RenderTile(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CColor& color, bool draw_hidden)
 {
-	RenderTile(color, draw_hidden, m_i, m_j);
+	RenderTile(deviceCommandContext, color, draw_hidden, m_i, m_j);
 }
 
-void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i, ssize_t j)
+void TerrainOverlay::RenderTile(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CColor& color, bool draw_hidden, ssize_t i, ssize_t j)
 {
 	// TODO: unnecessary computation calls has been removed but we should use
 	// a vertex buffer or a vertex shader with a texture.
@@ -183,7 +187,10 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 	}
 
 #if CONFIG2_GLES
-	UNUSED2(color); UNUSED2(i); UNUSED2(j);
+	UNUSED2(deviceCommandContext);
+	UNUSED2(color);
+	UNUSED2(i);
+	UNUSED2(j);
 	#warning TODO: implement TerrainOverlay::RenderTile for GLES
 #else
 
@@ -222,7 +229,18 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		overlayTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
 	overlayTech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -238,12 +256,16 @@ void TerrainOverlay::RenderTile(const CColor& color, bool draw_hidden, ssize_t i
 #endif
 }
 
-void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool draw_hidden)
+void TerrainOverlay::RenderTileOutline(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CColor& color, int line_width, bool draw_hidden)
 {
-	RenderTileOutline(color, line_width, draw_hidden, m_i, m_j);
+	RenderTileOutline(deviceCommandContext, color, line_width, draw_hidden, m_i, m_j);
 }
 
-void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j)
+void TerrainOverlay::RenderTileOutline(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j)
 {
 	if (draw_hidden)
 	{
@@ -257,7 +279,11 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 	}
 
 #if CONFIG2_GLES
-	UNUSED2(color); UNUSED2(line_width); UNUSED2(i);  UNUSED2(j);
+	UNUSED2(deviceCommandContext);
+	UNUSED2(color);
+	UNUSED2(line_width);
+	UNUSED2(i);
+	UNUSED2(j);
 	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
 #else
 
@@ -282,7 +308,18 @@ void TerrainOverlay::RenderTileOutline(const CColor& color, int line_width, bool
 
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		overlayTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
 	overlayTech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -346,7 +383,8 @@ void TerrainTextureOverlay::RenderAfterWater(
 	matrix._23 = m_TexelsPerTile / (m_Texture->GetHeight() * TERRAIN_TILE_SIZE);
 	matrix._44 = 1;
 
-	g_Renderer.GetSceneRenderer().GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix, m_Texture.get());
+	g_Renderer.GetSceneRenderer().GetTerrainRenderer().RenderTerrainOverlayTexture(
+		deviceCommandContext, cullGroup, matrix, m_Texture.get());
 }
 
 SColor4ub TerrainTextureOverlay::GetColor(size_t idx, u8 alpha) const

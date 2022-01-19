@@ -154,7 +154,8 @@ void CParticleEmitter::UpdateArrayData(int frameNumber)
 
 		// Special case: If the blending depends on the source color, not the source alpha,
 		// then pre-multiply by the alpha. (This is kind of a hack.)
-		if (m_Type->m_BlendFuncDst == GL_ONE_MINUS_SRC_COLOR)
+		if (m_Type->m_BlendMode == CParticleEmitterType::BlendMode::OVERLAY ||
+			m_Type->m_BlendMode == CParticleEmitterType::BlendMode::MULTIPLY)
 		{
 			color.R = (color.R * color.A) / 255;
 			color.G = (color.G * color.A) / 255;
@@ -189,8 +190,6 @@ void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 
 	shader->BindTexture(str_baseTex, m_Type->m_Texture);
-	glBlendEquationEXT(m_Type->m_BlendEquation);
-	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
 
 void CParticleEmitter::RenderArray(const CShaderProgramPtr& shader)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "graphics/ShaderProgramPtr.h"
 #include "lib/ogl.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 class CBoundingBoxAligned;
 class CCamera;
@@ -137,7 +138,8 @@ public:
 	/**
 	 * Visualize shadow map texture to help in debugging.
 	 */
-	void RenderDebugTexture();
+	void RenderDebugTexture(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 private:
 	ShadowMapInternals* m;

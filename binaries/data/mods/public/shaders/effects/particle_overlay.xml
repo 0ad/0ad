@@ -3,14 +3,16 @@
 
 	<technique>
 		<require shaders="arb"/>
-		<pass shader="arb/particle_solid">
+		<pass shader="arb/particle">
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 			<depth mask="false"/>
 		</pass>
 	</technique>
 
 	<technique>
 		<require shaders="glsl"/>
-		<pass shader="glsl/particle_solid">
+		<pass shader="glsl/particle">
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 			<depth mask="false"/>
 		</pass>
 	</technique>

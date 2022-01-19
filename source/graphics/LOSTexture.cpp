@@ -144,9 +144,10 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, (m_WhichTex ? m_SmoothFBO2 : m_SmoothFBO1));
 
 	m_SmoothTech->BeginPass();
-	CShaderProgramPtr shader = m_SmoothTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		m_SmoothTech->GetGraphicsPipelineStateDesc());
 
-	glDisable(GL_BLEND);
+	const CShaderProgramPtr& shader = m_SmoothTech->GetShader();
 
 	shader->BindTexture(str_losTex1, m_Texture.get());
 	shader->BindTexture(str_losTex2, (m_WhichTex ? m_TextureSmooth1 : m_TextureSmooth2).get());

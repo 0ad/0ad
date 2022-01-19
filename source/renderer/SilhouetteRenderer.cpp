@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -443,7 +443,9 @@ void SilhouetteRenderer::RenderSubmitCasters(SceneCollector& collector)
 		collector.SubmitNonRecursive(m_VisibleModelCasters[i]);
 }
 
-void SilhouetteRenderer::RenderDebugOverlays(const CCamera& UNUSED(camera))
+void SilhouetteRenderer::RenderDebugOverlays(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CCamera& UNUSED(camera))
 {
 	if (m_DebugBounds.empty() && m_DebugRects.empty())
 		return;
@@ -466,6 +468,8 @@ void SilhouetteRenderer::RenderDebugOverlays(const CCamera& UNUSED(camera))
 
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTech->GetGraphicsPipelineStateDesc());
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_transform, proj);

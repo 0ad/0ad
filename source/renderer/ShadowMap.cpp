@@ -736,16 +736,12 @@ void ShadowMap::RenderDebugBounds()
 
 	const CMatrix3D transform = g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection() * m->InvLightTransform;
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowReceiverBound, CColor(1.0f, 1.0f, 0.0f, 1.0f), transform);
 
 	for (int cascade = 0; cascade < GetCascadeCount(); ++cascade)
 	{
-		glEnable(GL_BLEND);
 		g_Renderer.GetDebugRenderer().DrawBoundingBox(m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.10f), transform);
 		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.5f), transform);
-		glDisable(GL_BLEND);
 
 		const CFrustum frustum = GetShadowCasterCullFrustum(cascade);
 		// We don't have a function to create a brush directly from a frustum, so use
@@ -755,10 +751,8 @@ void ShadowMap::RenderDebugBounds()
 		CBrush frustumBrush;
 		brush.Intersect(frustum, frustumBrush);
 
-		glEnable(GL_BLEND);
 		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f));
 		g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.5f));
-		glDisable(GL_BLEND);
 	}
 
 	glEnable(GL_CULL_FACE);
@@ -767,7 +761,8 @@ void ShadowMap::RenderDebugBounds()
 	ogl_WarnIfError();
 }
 
-void ShadowMap::RenderDebugTexture()
+void ShadowMap::RenderDebugTexture(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (!m->Texture)
 		return;
@@ -783,7 +778,10 @@ void ShadowMap::RenderDebugTexture()
 
 	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d);
 	texTech->BeginPass();
-	CShaderProgramPtr texShader = texTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		texTech->GetGraphicsPipelineStateDesc());
+
+	const CShaderProgramPtr& texShader = texTech->GetShader();
 
 	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
 	texShader->BindTexture(str_tex, m->Texture.get());
@@ -792,11 +790,13 @@ void ShadowMap::RenderDebugTexture()
 	texShader->Uniform(str_grayscaleFactor, 0.0f);
 
 	float s = 256.f;
-	float boxVerts[] = {
+	float boxVerts[] =
+	{
  		0,0, 0,s, s,0,
 		s,0, 0,s, s,s
 	};
-	float boxUV[] = {
+	float boxUV[] =
+	{
 		0,0, 0,1, 1,0,
 		1,0, 0,1, 1,1
 	};

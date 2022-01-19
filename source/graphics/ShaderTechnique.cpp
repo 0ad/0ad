@@ -30,12 +30,6 @@ void CShaderPass::Bind()
 	// TODO: maybe emit some warning if GLSL shaders try to use alpha test;
 	// the test should be done inside the shader itself
 
-	if (m_HasBlend)
-	{
-		glEnable(GL_BLEND);
-		glBlendFunc(m_BlendSrc, m_BlendDst);
-	}
-
 	if (m_HasColorMask)
 		glColorMask(m_ColorMaskR, m_ColorMaskG, m_ColorMaskB, m_ColorMaskA);
 
@@ -50,9 +44,6 @@ void CShaderPass::Unbind()
 {
 	m_Shader->Unbind();
 
-	if (m_HasBlend)
-		glDisable(GL_BLEND);
-
 	if (m_HasColorMask)
 		glColorMask(1, 1, 1, 1);
 
@@ -61,13 +52,6 @@ void CShaderPass::Unbind()
 
 	if (m_HasDepthFunc)
 		glDepthFunc(GL_LEQUAL);
-}
-
-void CShaderPass::BlendFunc(GLenum src, GLenum dst)
-{
-	m_HasBlend = true;
-	m_BlendSrc = src;
-	m_BlendDst = dst;
 }
 
 void CShaderPass::ColorMask(GLboolean r, GLboolean g, GLboolean b, GLboolean a)
@@ -91,6 +75,11 @@ void CShaderPass::DepthFunc(GLenum func)
 	m_DepthFunc = func;
 }
 
+void CShaderPass::SetPipelineStateDesc(
+	const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc)
+{
+	m_PipelineStateDesc = pipelineStateDesc;
+}
 
 CShaderTechnique::CShaderTechnique() = default;
 
@@ -120,6 +109,13 @@ const CShaderProgramPtr& CShaderTechnique::GetShader(int pass) const
 {
 	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	return m_Passes[pass].GetShader();
+}
+
+const Renderer::Backend::GraphicsPipelineStateDesc&
+CShaderTechnique::GetGraphicsPipelineStateDesc(int pass) const
+{
+	ENSURE(0 <= pass && pass < static_cast<int>(m_Passes.size()));
+	return m_Passes[pass].GetPipelineStateDesc();
 }
 
 bool CShaderTechnique::GetSortByDistance() const

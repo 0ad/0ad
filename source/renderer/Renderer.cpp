@@ -471,6 +471,7 @@ void CRenderer::RenderFrame(const bool needsPresent)
 		else
 			RenderFrameImpl(true, true);
 
+		m->deviceCommandContext->Flush();
 		if (needsPresent)
 			g_VideoMode.GetBackendDevice()->Present();
 	}
@@ -708,6 +709,8 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 				void* src = static_cast<char*>(tileData) + y * tileWidth * bpp / 8;
 				memcpy(dest, src, tileWidth * bpp / 8);
 			}
+
+			m->deviceCommandContext->Flush();
 			if (needsPresent)
 				g_VideoMode.GetBackendDevice()->Present();
 		}

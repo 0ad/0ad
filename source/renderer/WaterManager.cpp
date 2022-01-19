@@ -795,10 +795,13 @@ void WaterManager::CreateWaveMeshes()
 	}
 }
 
-void WaterManager::RenderWaves(const CFrustum& frustrum)
+void WaterManager::RenderWaves(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CFrustum& frustrum)
 {
 	OGL_SCOPED_DEBUG_GROUP("Render Waves");
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 	UNUSED2(frustrum);
 	#warning Fix WaterManager::RenderWaves on GLES
 #else
@@ -818,7 +821,9 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
 	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& shader = tech->GetShader();
 
 	shader->BindTexture(str_waveTex, m_WaveTex);
 	shader->BindTexture(str_foamTex, m_FoamTex);

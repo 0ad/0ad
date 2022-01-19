@@ -40,7 +40,8 @@ public:
 	/**
 	 * Render the sky.
 	 */
-	void RenderSky();
+	void RenderSky(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Return the currently selected sky set name.

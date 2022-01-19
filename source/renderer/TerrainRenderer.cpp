@@ -158,11 +158,14 @@ void TerrainRenderer::EndFrame()
 	m->phase = Phase_Submit;
 }
 
-void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix,
+void TerrainRenderer::RenderTerrainOverlayTexture(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup, CMatrix3D& textureMatrix,
 	Renderer::Backend::GL::CTexture* texture)
 {
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderTerrainOverlayTexture for GLES
+	UNUSED2(deviceCommandContext);
 	UNUSED2(cullGroup);
 	UNUSED2(textureMatrix);
 	UNUSED2(texture);
@@ -177,7 +180,9 @@ void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& text
 	CShaderTechniquePtr debugOverlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_overlay);
 	debugOverlayTech->BeginPass();
-	CShaderProgramPtr debugOverlayShader = debugOverlayTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		debugOverlayTech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& debugOverlayShader = debugOverlayTech->GetShader();
 
 	debugOverlayShader->BindTexture(str_baseTex, texture);
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -246,7 +251,9 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 }
 
-void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
+void TerrainRenderer::RenderTerrainShader(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	ENSURE(m->phase == Phase_Render);
 
@@ -258,7 +265,10 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 	// render the solid black sides of the map first
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	techSolid->BeginPass();
-	CShaderProgramPtr shaderSolid = techSolid->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		techSolid->GetGraphicsPipelineStateDesc());
+
+	const CShaderProgramPtr& shaderSolid = techSolid->GetShader();
 	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -266,15 +276,15 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 
 	techSolid->EndPass();
 
-	CPatchRData::RenderBases(visiblePatches, context, shadow);
+	CPatchRData::RenderBases(deviceCommandContext, visiblePatches, context, shadow);
 
 	// no need to write to the depth buffer a second time
 	glDepthMask(0);
 
 	// render blend passes for each patch
-	CPatchRData::RenderBlends(visiblePatches, context, shadow);
+	CPatchRData::RenderBlends(deviceCommandContext, visiblePatches, context, shadow);
 
-	CDecalRData::RenderDecals(visibleDecals, context, shadow);
+	CDecalRData::RenderDecals(deviceCommandContext, visibleDecals, context, shadow);
 
 	// restore OpenGL state
 	g_Renderer.BindTexture(1, 0);
@@ -287,7 +297,9 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 
 ///////////////////////////////////////////////////////////////////
 // Render un-textured patches as polygons
-void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
+void TerrainRenderer::RenderPatches(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup, const CColor& color)
 {
 	ENSURE(m->phase == Phase_Render);
 
@@ -296,13 +308,17 @@ void TerrainRenderer::RenderPatches(int cullGroup, const CColor& color)
 		return;
 
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 	UNUSED2(color);
 	#warning TODO: implement TerrainRenderer::RenderPatches for GLES
 #else
 
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_dummy);
 	dummyTech->BeginPass();
-	CShaderProgramPtr dummyShader = dummyTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		dummyTech->GetGraphicsPipelineStateDesc());
+
+	const CShaderProgramPtr& dummyShader = dummyTech->GetShader();
 	dummyShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, color);
 
@@ -349,7 +365,9 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& 
 }
 
 // Render fancy water
-bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
+bool TerrainRenderer::RenderFancyWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
 	OGL_SCOPED_DEBUG_GROUP("Render Fancy Water");
@@ -403,7 +421,9 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 #endif
 
 	m->fancyWaterTech->BeginPass();
-	CShaderProgramPtr fancyWaterShader = m->fancyWaterTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		m->fancyWaterTech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& fancyWaterShader = m->fancyWaterTech->GetShader();
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -501,9 +521,12 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	return true;
 }
 
-void TerrainRenderer::RenderSimpleWater(int cullGroup)
+void TerrainRenderer::RenderSimpleWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup)
 {
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 	UNUSED2(cullGroup);
 #else
 	PROFILE3_GPU("simple water");
@@ -523,7 +546,9 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	CShaderTechniquePtr waterSimpleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_water_simple);
 	waterSimpleTech->BeginPass();
-	CShaderProgramPtr waterSimpleShader = waterSimpleTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		waterSimpleTech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& waterSimpleShader = waterSimpleTech->GetShader();
 
 	waterSimpleShader->BindTexture(str_baseTex, waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)]);
 	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
@@ -552,17 +577,21 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 
 ///////////////////////////////////////////////////////////////////
 // Render water that is part of the terrain
-void TerrainRenderer::RenderWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
+void TerrainRenderer::RenderWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 
 	if (!waterManager.WillRenderFancyWater())
-		RenderSimpleWater(cullGroup);
+		RenderSimpleWater(deviceCommandContext, cullGroup);
 	else
-		RenderFancyWater(context, cullGroup, shadow);
+		RenderFancyWater(deviceCommandContext, context, cullGroup, shadow);
 }
 
-void TerrainRenderer::RenderWaterFoamOccluders(int cullGroup)
+void TerrainRenderer::RenderWaterFoamOccluders(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup)
 {
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 	const WaterManager& waterManager = sceneRenderer.GetWaterManager();
@@ -572,7 +601,6 @@ void TerrainRenderer::RenderWaterFoamOccluders(int cullGroup)
 	// Render normals and foam to a framebuffer if we're using fancy effects.
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager.m_FancyEffectsFBO);
 
-	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
@@ -580,7 +608,9 @@ void TerrainRenderer::RenderWaterFoamOccluders(int cullGroup)
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	dummyTech->BeginPass();
-	CShaderProgramPtr dummyShader = dummyTech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		dummyTech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& dummyShader = dummyTech->GetShader();
 
 	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
