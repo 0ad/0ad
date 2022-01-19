@@ -496,7 +496,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	if (m_EntitiesDrawn > 0)
 	{
 		glEnable(GL_SCISSOR_TEST);
-		glScissor(1, 1, FINAL_TEXTURE_SIZE - 1, FINAL_TEXTURE_SIZE - 1);
+		glScissor(1, 1, FINAL_TEXTURE_SIZE - 2, FINAL_TEXTURE_SIZE - 2);
 #if !CONFIG2_GLES
 		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
