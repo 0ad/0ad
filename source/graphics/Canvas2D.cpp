@@ -27,6 +27,7 @@
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrInternStatic.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
 #include <array>
@@ -75,6 +76,9 @@ public:
 		Tech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d, defines);
 		ENSURE(Tech);
 		Tech->BeginPass();
+		// TODO: remove global renderer access.
+		g_Renderer.GetDeviceCommandContext()->SetGraphicsPipelineState(
+			Tech->GetGraphicsPipelineStateDesc());
 	}
 
 	void UnbindTech()

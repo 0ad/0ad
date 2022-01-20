@@ -29,10 +29,36 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CStrInternStatic.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 
 #include <cmath>
+
+namespace
+{
+
+void SetGraphicsPipelineStateFromTechAndColor(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderTechniquePtr& tech, const CColor& color)
+{
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc = tech->GetGraphicsPipelineStateDesc();
+	if (color.a != 1.0f)
+	{
+		pipelineStateDesc.blendState.enabled = true;
+		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::SRC_ALPHA;
+		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+			Renderer::Backend::BlendOp::ADD;
+	}
+	else
+		pipelineStateDesc.blendState.enabled = false;
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+}
+
+} // anonymous namespace
 
 void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const CColor& color, const float width)
 {
@@ -51,6 +77,7 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugLineTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), debugLineTech, color);
 
 	const CCamera& viewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -104,6 +131,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 	CShaderTechniquePtr debugCircleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugCircleTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), debugCircleTech, color);
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -160,6 +188,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	overlayTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), overlayTech, color);
 
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -234,6 +263,7 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
@@ -280,6 +310,7 @@ void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingB
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
@@ -323,6 +354,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
@@ -370,6 +402,7 @@ void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CColor& color)
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,10 +24,12 @@
 
 class TerrainOverlay;
 
-namespace AtlasMessage {
-
-struct Brush
+namespace AtlasMessage
 {
+
+class Brush
+{
+public:
 	Brush();
 	~Brush();
 
@@ -56,6 +58,6 @@ private:
 
 extern Brush g_CurrentBrush;
 
-}
+} // namespace AtlasMessage
 
 #endif // INCLUDED_BRUSHES

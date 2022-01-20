@@ -19,6 +19,7 @@
 
 #include "DeviceCommandContext.h"
 
+#include "renderer/backend/gl/Mapping.h"
 #include "renderer/backend/gl/Texture.h"
 
 namespace Renderer
@@ -34,13 +35,19 @@ namespace GL
 std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create()
 {
 	std::unique_ptr<CDeviceCommandContext> deviceCommandContext(new CDeviceCommandContext());
-
+	deviceCommandContext->ResetStates();
 	return deviceCommandContext;
 }
 
 CDeviceCommandContext::CDeviceCommandContext() = default;
 
 CDeviceCommandContext::~CDeviceCommandContext() = default;
+
+void CDeviceCommandContext::SetGraphicsPipelineState(
+	const GraphicsPipelineStateDesc& pipelineStateDesc)
+{
+	SetGraphicsPipelineStateImpl(pipelineStateDesc, false);
+}
 
 void CDeviceCommandContext::UploadTexture(
 	CTexture* texture, const Format format,
@@ -114,6 +121,80 @@ void CDeviceCommandContext::UploadTextureRegion(
 	}
 	else
 		debug_warn("Unsupported type");
+}
+
+void CDeviceCommandContext::Flush()
+{
+	ResetStates();
+}
+
+void CDeviceCommandContext::ResetStates()
+{
+	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), true);
+}
+
+void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
+	const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force)
+{
+	const BlendStateDesc& currentBlendStateDesc = m_GraphicsPipelineStateDesc.blendState;
+	const BlendStateDesc& nextBlendStateDesc = pipelineStateDesc.blendState;
+	if (force || currentBlendStateDesc.enabled != nextBlendStateDesc.enabled)
+	{
+		if (nextBlendStateDesc.enabled)
+			glEnable(GL_BLEND);
+		else
+			glDisable(GL_BLEND);
+	}
+	if (force ||
+		currentBlendStateDesc.srcColorBlendFactor != nextBlendStateDesc.srcColorBlendFactor ||
+		currentBlendStateDesc.srcAlphaBlendFactor != nextBlendStateDesc.srcAlphaBlendFactor ||
+		currentBlendStateDesc.dstColorBlendFactor != nextBlendStateDesc.dstColorBlendFactor ||
+		currentBlendStateDesc.dstAlphaBlendFactor != nextBlendStateDesc.dstAlphaBlendFactor)
+	{
+		if (nextBlendStateDesc.srcColorBlendFactor == nextBlendStateDesc.srcAlphaBlendFactor &&
+			nextBlendStateDesc.dstColorBlendFactor == nextBlendStateDesc.dstAlphaBlendFactor)
+		{
+			glBlendFunc(
+				Mapping::FromBlendFactor(nextBlendStateDesc.srcColorBlendFactor),
+				Mapping::FromBlendFactor(nextBlendStateDesc.dstColorBlendFactor));
+		}
+		else
+		{
+			glBlendFuncSeparate(
+				Mapping::FromBlendFactor(nextBlendStateDesc.srcColorBlendFactor),
+				Mapping::FromBlendFactor(nextBlendStateDesc.dstColorBlendFactor),
+				Mapping::FromBlendFactor(nextBlendStateDesc.srcAlphaBlendFactor),
+				Mapping::FromBlendFactor(nextBlendStateDesc.dstAlphaBlendFactor));
+		}
+	}
+
+	if (force ||
+		currentBlendStateDesc.colorBlendOp != nextBlendStateDesc.colorBlendOp ||
+		currentBlendStateDesc.alphaBlendOp != nextBlendStateDesc.alphaBlendOp)
+	{
+		if (nextBlendStateDesc.colorBlendOp == nextBlendStateDesc.alphaBlendOp)
+		{
+			glBlendEquation(Mapping::FromBlendOp(nextBlendStateDesc.colorBlendOp));
+		}
+		else
+		{
+			glBlendEquationSeparate(
+				Mapping::FromBlendOp(nextBlendStateDesc.colorBlendOp),
+				Mapping::FromBlendOp(nextBlendStateDesc.alphaBlendOp));
+		}
+	}
+
+	if (force ||
+		currentBlendStateDesc.constant != nextBlendStateDesc.constant)
+	{
+		glBlendColor(
+			nextBlendStateDesc.constant.r,
+			nextBlendStateDesc.constant.g,
+			nextBlendStateDesc.constant.b,
+			nextBlendStateDesc.constant.a);
+	}
+
+	m_GraphicsPipelineStateDesc = pipelineStateDesc;
 }
 
 } // namespace GL

@@ -142,7 +142,9 @@ public:
 	/**
 	 * Renders all non-alpha-blended models with the given context.
 	 */
-	void CallModelRenderers(const CShaderDefines& context, int cullGroup, int flags)
+	void CallModelRenderers(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, int cullGroup, int flags)
 	{
 		CShaderDefines contextSkinned = context;
 		if (g_RenderingOptions.GetGPUSkinning())
@@ -150,20 +152,22 @@ public:
 			contextSkinned.Add(str_USE_INSTANCING, str_1);
 			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
-		Model.NormalSkinned->Render(Model.ModShader, contextSkinned, cullGroup, flags);
+		Model.NormalSkinned->Render(deviceCommandContext, Model.ModShader, contextSkinned, cullGroup, flags);
 
 		if (Model.NormalUnskinned != Model.NormalSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
 			contextUnskinned.Add(str_USE_INSTANCING, str_1);
-			Model.NormalUnskinned->Render(Model.ModShader, contextUnskinned, cullGroup, flags);
+			Model.NormalUnskinned->Render(deviceCommandContext, Model.ModShader, contextUnskinned, cullGroup, flags);
 		}
 	}
 
 	/**
 	 * Renders all alpha-blended models with the given context.
 	 */
-	void CallTranspModelRenderers(const CShaderDefines& context, int cullGroup, int flags)
+	void CallTranspModelRenderers(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderDefines& context, int cullGroup, int flags)
 	{
 		CShaderDefines contextSkinned = context;
 		if (g_RenderingOptions.GetGPUSkinning())
@@ -171,13 +175,13 @@ public:
 			contextSkinned.Add(str_USE_INSTANCING, str_1);
 			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
-		Model.TranspSkinned->Render(Model.ModShader, contextSkinned, cullGroup, flags);
+		Model.TranspSkinned->Render(deviceCommandContext, Model.ModShader, contextSkinned, cullGroup, flags);
 
 		if (Model.TranspUnskinned != Model.TranspSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
 			contextUnskinned.Add(str_USE_INSTANCING, str_1);
-			Model.TranspUnskinned->Render(Model.ModShader, contextUnskinned, cullGroup, flags);
+			Model.TranspUnskinned->Render(deviceCommandContext, Model.ModShader, contextUnskinned, cullGroup, flags);
 		}
 	}
 };
@@ -297,7 +301,9 @@ void CSceneRenderer::SetSimulation(CSimulation2* simulation)
 	m->terrainRenderer.SetSimulation(simulation);
 }
 
-void CSceneRenderer::RenderShadowMap(const CShaderDefines& context)
+void CSceneRenderer::RenderShadowMap(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context)
 {
 	PROFILE3_GPU("shadow map");
 	OGL_SCOPED_DEBUG_GROUP("Render shadow map");
@@ -318,20 +324,20 @@ void CSceneRenderer::RenderShadowMap(const CShaderDefines& context)
 			PROFILE("render patches");
 			glCullFace(GL_FRONT);
 			glEnable(GL_CULL_FACE);
-			m->terrainRenderer.RenderPatches(cullGroup);
+			m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup);
 			glCullFace(GL_BACK);
 		}
 
 		{
 			PROFILE("render models");
-			m->CallModelRenderers(contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
+			m->CallModelRenderers(deviceCommandContext, contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
 		}
 
 		{
 			PROFILE("render transparent models");
 			// disable face-culling for two-sided models
 			glDisable(GL_CULL_FACE);
-			m->CallTranspModelRenderers(contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
+			m->CallTranspModelRenderers(deviceCommandContext, contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
 			glEnable(GL_CULL_FACE);
 		}
 	}
@@ -341,7 +347,9 @@ void CSceneRenderer::RenderShadowMap(const CShaderDefines& context)
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 }
 
-void CSceneRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
+void CSceneRenderer::RenderPatches(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("patches");
 	OGL_SCOPED_DEBUG_GROUP("Render patches");
@@ -358,7 +366,7 @@ void CSceneRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 
 	// render all the patches, including blend pass
 	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-	m->terrainRenderer.RenderTerrainShader(context, cullGroup,
+	m->terrainRenderer.RenderTerrainShader(deviceCommandContext, context, cullGroup,
 		(capabilities.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
 
 #if !CONFIG2_GLES
@@ -378,7 +386,7 @@ void CSceneRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 		glLineWidth(2.0f);
 
 		// render tiles edges
-		m->terrainRenderer.RenderPatches(cullGroup, CColor(0.5f, 0.5f, 1.0f, 1.0f));
+		m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup, CColor(0.5f, 0.5f, 1.0f, 1.0f));
 
 		glLineWidth(4.0f);
 
@@ -392,7 +400,9 @@ void CSceneRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 #endif
 }
 
-void CSceneRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
+void CSceneRenderer::RenderModels(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("models");
 	OGL_SCOPED_DEBUG_GROUP("Render models");
@@ -406,7 +416,7 @@ void CSceneRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
 	}
 #endif
 
-	m->CallModelRenderers(context, cullGroup, flags);
+	m->CallModelRenderers(deviceCommandContext, context, cullGroup, flags);
 
 #if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
@@ -420,14 +430,16 @@ void CSceneRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-		m->CallModelRenderers(contextWireframe, cullGroup, flags);
+		m->CallModelRenderers(deviceCommandContext, contextWireframe, cullGroup, flags);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 #endif
 }
 
-void CSceneRenderer::RenderTransparentModels(const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling)
+void CSceneRenderer::RenderTransparentModels(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling)
 {
 	PROFILE3_GPU("transparent models");
 	OGL_SCOPED_DEBUG_GROUP("Render transparent models");
@@ -453,10 +465,10 @@ void CSceneRenderer::RenderTransparentModels(const CShaderDefines& context, int 
 	contextBlend.Add(str_ALPHABLEND_PASS_BLEND, str_1);
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_OPAQUE)
-		m->CallTranspModelRenderers(contextOpaque, cullGroup, flags);
+		m->CallTranspModelRenderers(deviceCommandContext, contextOpaque, cullGroup, flags);
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_BLEND)
-		m->CallTranspModelRenderers(contextBlend, cullGroup, flags);
+		m->CallTranspModelRenderers(deviceCommandContext, contextBlend, cullGroup, flags);
 
 	if (disableFaceCulling)
 		glEnable(GL_CULL_FACE);
@@ -474,7 +486,7 @@ void CSceneRenderer::RenderTransparentModels(const CShaderDefines& context, int 
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-		m->CallTranspModelRenderers(contextWireframe, cullGroup, flags);
+		m->CallTranspModelRenderers(deviceCommandContext, contextWireframe, cullGroup, flags);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
@@ -600,7 +612,9 @@ void CSceneRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBox
 }
 
 // RenderReflections: render the water reflections to the reflection texture
-void CSceneRenderer::RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor)
+void CSceneRenderer::RenderReflections(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, const CBoundingBoxAligned& scissor)
 {
 	PROFILE3_GPU("water reflections");
 	OGL_SCOPED_DEBUG_GROUP("Render water reflections");
@@ -641,17 +655,17 @@ void CSceneRenderer::RenderReflections(const CShaderDefines& context, const CBou
 
 	if (!g_RenderingOptions.GetWaterReflection())
 	{
-		m->skyManager.RenderSky();
+		m->skyManager.RenderSky(deviceCommandContext);
 		ogl_WarnIfError();
 	}
 	else
 	{
 		// Render terrain and models
-		RenderPatches(context, CULL_REFLECTIONS);
+		RenderPatches(deviceCommandContext, context, CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderModels(context, CULL_REFLECTIONS);
+		RenderModels(deviceCommandContext, context, CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderTransparentModels(context, CULL_REFLECTIONS, TRANSPARENT, true);
+		RenderTransparentModels(deviceCommandContext, context, CULL_REFLECTIONS, TRANSPARENT, true);
 		ogl_WarnIfError();
 	}
 	glFrontFace(GL_CCW);
@@ -660,7 +674,7 @@ void CSceneRenderer::RenderReflections(const CShaderDefines& context, const CBou
 	// so they don't need the inverted glFrontFace
 	if (g_RenderingOptions.GetParticles())
 	{
-		RenderParticles(CULL_REFLECTIONS);
+		RenderParticles(deviceCommandContext, CULL_REFLECTIONS);
 		ogl_WarnIfError();
 	}
 
@@ -674,7 +688,9 @@ void CSceneRenderer::RenderReflections(const CShaderDefines& context, const CBou
 }
 
 // RenderRefractions: render the water refractions to the refraction texture
-void CSceneRenderer::RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned &scissor)
+void CSceneRenderer::RenderRefractions(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context, const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
 	OGL_SCOPED_DEBUG_GROUP("Render water refractions");
@@ -717,11 +733,11 @@ void CSceneRenderer::RenderRefractions(const CShaderDefines& context, const CBou
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Render terrain and models
-	RenderPatches(context, CULL_REFRACTIONS);
+	RenderPatches(deviceCommandContext, context, CULL_REFRACTIONS);
 	ogl_WarnIfError();
-	RenderModels(context, CULL_REFRACTIONS);
+	RenderModels(deviceCommandContext, context, CULL_REFRACTIONS);
 	ogl_WarnIfError();
-	RenderTransparentModels(context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
+	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
 	ogl_WarnIfError();
 
 	glDisable(GL_SCISSOR_TEST);
@@ -733,7 +749,9 @@ void CSceneRenderer::RenderRefractions(const CShaderDefines& context, const CBou
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
-void CSceneRenderer::RenderSilhouettes(const CShaderDefines& context)
+void CSceneRenderer::RenderSilhouettes(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderDefines& context)
 {
 	PROFILE3_GPU("silhouettes");
 	OGL_SCOPED_DEBUG_GROUP("Render water silhouettes");
@@ -764,18 +782,18 @@ void CSceneRenderer::RenderSilhouettes(const CShaderDefines& context)
 		// protrude into the ground, only occlude with the back faces of the
 		// terrain (so silhouettes will still display when behind hills)
 		glCullFace(GL_FRONT);
-		m->terrainRenderer.RenderPatches(CULL_SILHOUETTE_OCCLUDER);
+		m->terrainRenderer.RenderPatches(deviceCommandContext, CULL_SILHOUETTE_OCCLUDER);
 		glCullFace(GL_BACK);
 	}
 
 	{
 		PROFILE("render model occluders");
-		m->CallModelRenderers(contextOccluder, CULL_SILHOUETTE_OCCLUDER, 0);
+		m->CallModelRenderers(deviceCommandContext, contextOccluder, CULL_SILHOUETTE_OCCLUDER, 0);
 	}
 
 	{
 		PROFILE("render transparent occluders");
-		m->CallTranspModelRenderers(contextOccluder, CULL_SILHOUETTE_OCCLUDER, 0);
+		m->CallTranspModelRenderers(deviceCommandContext, contextOccluder, CULL_SILHOUETTE_OCCLUDER, 0);
 	}
 
 	glDepthFunc(GL_GEQUAL);
@@ -783,46 +801,42 @@ void CSceneRenderer::RenderSilhouettes(const CShaderDefines& context)
 
 	// Since we can't sort, we'll use the stencil buffer to ensure we only draw
 	// a pixel once (using the color of whatever model happens to be drawn first).
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-	const float silhouetteAlpha = 0.75f;
-	glBlendColorEXT(0, 0, 0, silhouetteAlpha);
-
 	glEnable(GL_STENCIL_TEST);
 	glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
 	{
 		PROFILE("render model casters");
-		m->CallModelRenderers(contextDisplay, CULL_SILHOUETTE_CASTER, 0);
+		m->CallModelRenderers(deviceCommandContext, contextDisplay, CULL_SILHOUETTE_CASTER, 0);
 	}
 
 	{
 		PROFILE("render transparent casters");
-		m->CallTranspModelRenderers(contextDisplay, CULL_SILHOUETTE_CASTER, 0);
+		m->CallTranspModelRenderers(deviceCommandContext, contextDisplay, CULL_SILHOUETTE_CASTER, 0);
 	}
 
 	// Restore state
 	glDepthFunc(GL_LEQUAL);
-	glDisable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBlendColorEXT(0, 0, 0, 0);
 	glDisable(GL_STENCIL_TEST);
 }
 
-void CSceneRenderer::RenderParticles(int cullGroup)
+void CSceneRenderer::RenderParticles(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup)
 {
 	PROFILE3_GPU("particles");
 	OGL_SCOPED_DEBUG_GROUP("Render particles");
 
-	m->particleRenderer.RenderParticles(cullGroup);
+	m->particleRenderer.RenderParticles(
+		deviceCommandContext, cullGroup);
 
 #if !CONFIG2_GLES
 	if (m_ModelRenderMode == EDGED_FACES)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-		m->particleRenderer.RenderParticles(true);
+		m->particleRenderer.RenderParticles(
+			deviceCommandContext, cullGroup, true);
 		m->particleRenderer.RenderBounds(cullGroup);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -873,7 +887,7 @@ void CSceneRenderer::RenderSubmissions(
 	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
 	if (capabilities.m_Shadows && g_RenderingOptions.GetShadows())
 	{
-		RenderShadowMap(context);
+		RenderShadowMap(deviceCommandContext, context);
 	}
 
 	ogl_WarnIfError();
@@ -885,12 +899,12 @@ void CSceneRenderer::RenderSubmissions(
 			m->waterManager.UpdateQuality();
 
 			PROFILE3_GPU("water scissor");
-			RenderReflections(context, waterScissor);
+			RenderReflections(deviceCommandContext, context, waterScissor);
 
 			if (g_RenderingOptions.GetWaterRefraction())
-				RenderRefractions(context, waterScissor);
+				RenderRefractions(deviceCommandContext, context, waterScissor);
 
-			m->terrainRenderer.RenderWaterFoamOccluders(cullGroup);
+			m->terrainRenderer.RenderWaterFoamOccluders(deviceCommandContext, cullGroup);
 		}
 	}
 
@@ -912,21 +926,21 @@ void CSceneRenderer::RenderSubmissions(
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
-	m->skyManager.RenderSky();
+	m->skyManager.RenderSky(deviceCommandContext);
 
 	// render submitted patches and models
-	RenderPatches(context, cullGroup);
+	RenderPatches(deviceCommandContext, context, cullGroup);
 	ogl_WarnIfError();
 
 	// render debug-related terrain overlays
-	ITerrainOverlay::RenderOverlaysBeforeWater();
+	ITerrainOverlay::RenderOverlaysBeforeWater(deviceCommandContext);
 	ogl_WarnIfError();
 
 	// render other debug-related overlays before water (so they can be seen when underwater)
 	m->overlayRenderer.RenderOverlaysBeforeWater();
 	ogl_WarnIfError();
 
-	RenderModels(context, cullGroup);
+	RenderModels(deviceCommandContext, context, cullGroup);
 	ogl_WarnIfError();
 
 	// render water
@@ -935,30 +949,30 @@ void CSceneRenderer::RenderSubmissions(
 		if (m->waterManager.WillRenderFancyWater())
 		{
 			// Render transparent stuff, but only the solid parts that can occlude block water.
-			RenderTransparentModels(context, cullGroup, TRANSPARENT_OPAQUE, false);
+			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_OPAQUE, false);
 			ogl_WarnIfError();
 
-			m->terrainRenderer.RenderWater(context, cullGroup, &m->shadow);
+			m->terrainRenderer.RenderWater(deviceCommandContext, context, cullGroup, &m->shadow);
 			ogl_WarnIfError();
 
 			// Render transparent stuff again, but only the blended parts that overlap water.
-			RenderTransparentModels(context, cullGroup, TRANSPARENT_BLEND, false);
+			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_BLEND, false);
 			ogl_WarnIfError();
 		}
 		else
 		{
-			m->terrainRenderer.RenderWater(context, cullGroup, &m->shadow);
+			m->terrainRenderer.RenderWater(deviceCommandContext, context, cullGroup, &m->shadow);
 			ogl_WarnIfError();
 
 			// Render transparent stuff, so it can overlap models/terrain.
-			RenderTransparentModels(context, cullGroup, TRANSPARENT, false);
+			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT, false);
 			ogl_WarnIfError();
 		}
 	}
 	else
 	{
 		// render transparent stuff, so it can overlap models/terrain
-		RenderTransparentModels(context, cullGroup, TRANSPARENT, false);
+		RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT, false);
 		ogl_WarnIfError();
 	}
 
@@ -967,13 +981,13 @@ void CSceneRenderer::RenderSubmissions(
 	ogl_WarnIfError();
 
 	// render some other overlays after water (so they can be displayed on top of water)
-	m->overlayRenderer.RenderOverlaysAfterWater();
+	m->overlayRenderer.RenderOverlaysAfterWater(deviceCommandContext);
 	ogl_WarnIfError();
 
 	// particles are transparent so render after water
 	if (g_RenderingOptions.GetParticles())
 	{
-		RenderParticles(cullGroup);
+		RenderParticles(deviceCommandContext, cullGroup);
 		ogl_WarnIfError();
 	}
 
@@ -982,13 +996,13 @@ void CSceneRenderer::RenderSubmissions(
 		if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
 			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer();
 
-		postprocManager.ApplyPostproc();
+		postprocManager.ApplyPostproc(deviceCommandContext);
 		postprocManager.ReleaseRenderOutput();
 	}
 
 	if (g_RenderingOptions.GetSilhouettes())
 	{
-		RenderSilhouettes(context);
+		RenderSilhouettes(deviceCommandContext, context);
 	}
 
 	// render debug lines
@@ -998,13 +1012,13 @@ void CSceneRenderer::RenderSubmissions(
 	if (g_RenderingOptions.GetDisplayShadowsFrustum())
 	{
 		m->shadow.RenderDebugBounds();
-		m->shadow.RenderDebugTexture();
+		m->shadow.RenderDebugTexture(deviceCommandContext);
 	}
 
-	m->silhouetteRenderer.RenderDebugOverlays(m_ViewCamera);
+	m->silhouetteRenderer.RenderDebugOverlays(deviceCommandContext, m_ViewCamera);
 
 	// render overlays that should appear on top of all other objects
-	m->overlayRenderer.RenderForegroundOverlays(m_ViewCamera);
+	m->overlayRenderer.RenderForegroundOverlays(deviceCommandContext, m_ViewCamera);
 	ogl_WarnIfError();
 
 }
@@ -1037,10 +1051,7 @@ void CSceneRenderer::DisplayFrustum()
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 0.25f), 2);
-	glDisable(GL_BLEND);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 1.0f), 2);
@@ -1247,7 +1258,7 @@ void CSceneRenderer::RenderScene(
 			}
 
 			// Render the waves to the Fancy effects texture
-			m->waterManager.RenderWaves(frustum);
+			m->waterManager.RenderWaves(deviceCommandContext, frustum);
 		}
 	}
 

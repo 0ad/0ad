@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "graphics/Overlay.h"
 #include "maths/BoundingBoxAligned.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 class CCamera;
 class CModel;
@@ -40,7 +41,9 @@ public:
 	void RenderSubmitOccluders(SceneCollector& collector);
 	void RenderSubmitCasters(SceneCollector& collector);
 
-	void RenderDebugOverlays(const CCamera& camera);
+	void RenderDebugOverlays(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CCamera& camera);
 
 	void EndFrame();
 

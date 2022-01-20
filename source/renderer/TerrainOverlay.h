@@ -44,7 +44,7 @@ class ITerrainOverlay
 public:
 	virtual ~ITerrainOverlay();
 
-	virtual void RenderBeforeWater() { }
+	virtual void RenderBeforeWater(Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext)) { }
 
 	virtual void RenderAfterWater(
 		Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext), int UNUSED(cullGroup)) { }
@@ -53,7 +53,8 @@ public:
 	 * Draw all ITerrainOverlay objects that exist
 	 * and that should be drawn before water.
 	 */
-	static void RenderOverlaysBeforeWater();
+	static void RenderOverlaysBeforeWater(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Draw all ITerrainOverlay objects that exist
@@ -127,7 +128,9 @@ protected:
 	 * @param i  <i>i</i> coordinate of tile being processed
 	 * @param j  <i>j</i> coordinate of tile being processed
 	 */
-	virtual void ProcessTile(ssize_t i, ssize_t j) = 0;
+	virtual void ProcessTile(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		ssize_t i, ssize_t j) = 0;
 
 	/**
 	 * Draw a filled quad on top of the current tile.
@@ -136,12 +139,16 @@ protected:
 	 * @param draw_hidden  true if hidden tiles (i.e. those behind other tiles)
 	 * should be drawn
 	 */
-	void RenderTile(const CColor& color, bool draw_hidden);
+	void RenderTile(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CColor& color, bool draw_hidden);
 
 	/**
 	 * Draw a filled quad on top of the given tile.
 	 */
-	void RenderTile(const CColor& color, bool draw_hidden, ssize_t i, ssize_t j);
+	void RenderTile(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CColor& color, bool draw_hidden, ssize_t i, ssize_t j);
 
 	/**
 	 * Draw an outlined quad on top of the current tile.
@@ -151,16 +158,21 @@ protected:
 	 * @param draw_hidden  true if hidden tiles (i.e. those behind other tiles)
 	 * should be drawn
 	 */
-	void RenderTileOutline(const CColor& color, int line_width, bool draw_hidden);
+	void RenderTileOutline(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CColor& color, int line_width, bool draw_hidden);
 
 	/**
 	 * Draw an outlined quad on top of the given tile.
 	 */
-	void RenderTileOutline(const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
+	void RenderTileOutline(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
 
 private:
 	// Process all tiles
-	virtual void RenderBeforeWater();
+	void RenderBeforeWater(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) override;
 
 	// Temporary storage of tile coordinates, so ProcessTile doesn't need to
 	// pass it to RenderTile/etc (and doesn't have a chance to get it wrong)

@@ -298,42 +298,6 @@ static GLenum ParseComparisonFunc(const CStr& str)
 	return GL_ALWAYS;
 }
 
-static GLenum ParseBlendFunc(const CStr& str)
-{
-	if (str == "zero")
-		return GL_ZERO;
-	if (str == "one")
-		return GL_ONE;
-	if (str == "src_color")
-		return GL_SRC_COLOR;
-	if (str == "one_minus_src_color")
-		return GL_ONE_MINUS_SRC_COLOR;
-	if (str == "dst_color")
-		return GL_DST_COLOR;
-	if (str == "one_minus_dst_color")
-		return GL_ONE_MINUS_DST_COLOR;
-	if (str == "src_alpha")
-		return GL_SRC_ALPHA;
-	if (str == "one_minus_src_alpha")
-		return GL_ONE_MINUS_SRC_ALPHA;
-	if (str == "dst_alpha")
-		return GL_DST_ALPHA;
-	if (str == "one_minus_dst_alpha")
-		return GL_ONE_MINUS_DST_ALPHA;
-	if (str == "constant_color")
-		return GL_CONSTANT_COLOR;
-	if (str == "one_minus_constant_color")
-		return GL_ONE_MINUS_CONSTANT_COLOR;
-	if (str == "constant_alpha")
-		return GL_CONSTANT_ALPHA;
-	if (str == "one_minus_constant_alpha")
-		return GL_ONE_MINUS_CONSTANT_ALPHA;
-	if (str == "src_alpha_saturate")
-		return GL_SRC_ALPHA_SATURATE;
-	debug_warn("Invalid blend func");
-	return GL_ZERO;
-}
-
 size_t CShaderManager::EffectCacheKeyHash::operator()(const EffectCacheKey& key) const
 {
 	size_t hash = 0;
@@ -393,9 +357,11 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	EL(pass);
 	EL(require);
 	EL(sort_by_distance);
+	AT(constant);
 	AT(context);
 	AT(dst);
 	AT(func);
+	AT(op);
 	AT(shader);
 	AT(shaders);
 	AT(src);
@@ -496,6 +462,8 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 			CShaderDefines passDefines = techDefines;
 
 			CShaderPass pass;
+			Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
+				Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
 
 			XERO_ITER_EL(Child, Element)
 			{
@@ -505,9 +473,25 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				}
 				else if (Element.GetNodeName() == el_blend)
 				{
-					GLenum src = ParseBlendFunc(Element.GetAttributes().GetNamedItem(at_src));
-					GLenum dst = ParseBlendFunc(Element.GetAttributes().GetNamedItem(at_dst));
-					pass.BlendFunc(src, dst);
+					passPipelineStateDesc.blendState.enabled = true;
+					passPipelineStateDesc.blendState.srcColorBlendFactor = passPipelineStateDesc.blendState.srcAlphaBlendFactor =
+						Renderer::Backend::ParseBlendFactor(Element.GetAttributes().GetNamedItem(at_src));
+					passPipelineStateDesc.blendState.dstColorBlendFactor = passPipelineStateDesc.blendState.dstAlphaBlendFactor =
+						Renderer::Backend::ParseBlendFactor(Element.GetAttributes().GetNamedItem(at_dst));
+					if (!Element.GetAttributes().GetNamedItem(at_op).empty())
+					{
+						passPipelineStateDesc.blendState.colorBlendOp = passPipelineStateDesc.blendState.alphaBlendOp =
+							Renderer::Backend::ParseBlendOp(Element.GetAttributes().GetNamedItem(at_op));
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_constant).empty())
+					{
+						if (!passPipelineStateDesc.blendState.constant.ParseString(
+								Element.GetAttributes().GetNamedItem(at_constant)))
+						{
+							LOGERROR("Failed to parse blend constant: %s",
+								Element.GetAttributes().GetNamedItem(at_constant).c_str());
+						}
+					}
 				}
 				else if (Element.GetNodeName() == el_depth)
 				{
@@ -518,6 +502,8 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 						pass.DepthMask(Element.GetAttributes().GetNamedItem(at_mask) == "true" ? 1 : 0);
 				}
 			}
+
+			pass.SetPipelineStateDesc(passPipelineStateDesc);
 
 			// Load the shader program after we've read all the possibly-relevant <define>s
 			pass.SetShader(LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines));

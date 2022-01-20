@@ -60,7 +60,8 @@ private:
 	void RebuildTerrainTexture(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 		const CTerrain* terrain);
-	void RenderFinalTexture();
+	void RenderFinalTexture(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	CSimulation2& m_Simulation;
 

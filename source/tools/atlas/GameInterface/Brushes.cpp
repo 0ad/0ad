@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,8 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/SimContext.h"
 
+#include <algorithm>
+
 using namespace AtlasMessage;
 
 class BrushTerrainOverlay : public TerrainOverlay
@@ -51,7 +53,9 @@ public:
 		--max_j_inclusive;
 	}
 
-	void ProcessTile(ssize_t i, ssize_t j)
+	void ProcessTile(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		ssize_t i, ssize_t j)
 	{
 		ssize_t i0, j0;
 		m_Brush->GetBottomLeft(i0, j0);
@@ -60,9 +64,9 @@ public:
 			m_Brush->Get(i-i0, j-j0)   + m_Brush->Get(i-i0+1, j-j0) +
 			m_Brush->Get(i-i0, j-j0+1) + m_Brush->Get(i-i0+1, j-j0+1)
 		) / 4.f;
-		RenderTile(CColor(0, 1, 0, avg*0.8f), false);
+		RenderTile(deviceCommandContext, CColor(0, 1, 0, avg*0.8f), false);
 		if (avg > 0.1f)
-			RenderTileOutline(CColor(1, 1, 1, std::min(0.4f, avg-0.1f)), 1, true);
+			RenderTileOutline(deviceCommandContext, CColor(1, 1, 1, std::min(0.4f, avg-0.1f)), 1, true);
 	}
 
 	const AtlasMessage::Brush* m_Brush;

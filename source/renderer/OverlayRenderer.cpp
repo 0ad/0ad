@@ -378,7 +378,6 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
 #else
-	glEnable(GL_BLEND);
 	// Ignore z so that we draw behind terrain (but don't disable GL_DEPTH_TEST
 	// since we still want to write to the z buffer)
 	glDepthFunc(GL_ALWAYS);
@@ -392,20 +391,20 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 	}
 
 	glDepthFunc(GL_LEQUAL);
-	glDisable(GL_BLEND);
 #endif
 }
 
-void OverlayRenderer::RenderOverlaysAfterWater()
+void OverlayRenderer::RenderOverlaysAfterWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (after)");
 
-	RenderTexturedOverlayLines();
-	RenderQuadOverlays();
-	RenderSphereOverlays();
+	RenderTexturedOverlayLines(deviceCommandContext);
+	RenderQuadOverlays(deviceCommandContext);
+	RenderSphereOverlays(deviceCommandContext);
 }
 
-void OverlayRenderer::RenderTexturedOverlayLines()
+void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderTexturedOverlayLines for GLES
@@ -417,7 +416,6 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	ogl_WarnIfError();
 
 	glActiveTextureARB(GL_TEXTURE0);
-	glEnable(GL_BLEND);
 	glDepthMask(0);
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
@@ -427,7 +425,17 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	CShaderTechniquePtr shaderTechTexLineNormal = GetOverlayLineShaderTechnique(m->defsOverlayLineNormal);
 	if (shaderTechTexLineNormal)
 	{
+		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+			shaderTechTexLineNormal->GetGraphicsPipelineStateDesc();
+		pipelineStateDesc.blendState.enabled = true;
+		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::SRC_ALPHA;
+		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+			Renderer::Backend::BlendOp::ADD;
 		shaderTechTexLineNormal->BeginPass();
+		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
 		CShaderProgramPtr shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
 
@@ -447,7 +455,17 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	CShaderTechniquePtr shaderTechTexLineAlwaysVisible = GetOverlayLineShaderTechnique(m->defsOverlayLineAlwaysVisible);
 	if (shaderTechTexLineAlwaysVisible)
 	{
+		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+			shaderTechTexLineAlwaysVisible->GetGraphicsPipelineStateDesc();
+		pipelineStateDesc.blendState.enabled = true;
+		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::SRC_ALPHA;
+		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+			Renderer::Backend::BlendOp::ADD;
 		shaderTechTexLineAlwaysVisible->BeginPass();
+		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
 		CShaderProgramPtr shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
 
@@ -472,10 +490,9 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	CVertexBuffer::Unbind();
 
 	glDepthMask(1);
-	glDisable(GL_BLEND);
 }
 
-void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool alwaysVisible)
+void OverlayRenderer::RenderTexturedOverlayLines(const CShaderProgramPtr& shader, bool alwaysVisible)
 {
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
@@ -498,7 +515,8 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool 
 #endif
 }
 
-void OverlayRenderer::RenderQuadOverlays()
+void OverlayRenderer::RenderQuadOverlays(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderQuadOverlays for GLES
@@ -512,7 +530,17 @@ void OverlayRenderer::RenderQuadOverlays()
 	if (!shaderTech)
 		return;
 
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		shaderTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
 	shaderTech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 
@@ -522,7 +550,6 @@ void OverlayRenderer::RenderQuadOverlays()
 #endif
 
 	glActiveTextureARB(GL_TEXTURE0);
-	glEnable(GL_BLEND);
 	glDepthMask(0);
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
@@ -582,7 +609,6 @@ void OverlayRenderer::RenderQuadOverlays()
 	CVertexBuffer::Unbind();
 
 	glDepthMask(1);
-	glDisable(GL_BLEND);
 
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
@@ -590,11 +616,14 @@ void OverlayRenderer::RenderQuadOverlays()
 #endif
 }
 
-void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
+void OverlayRenderer::RenderForegroundOverlays(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CCamera& viewCamera)
 {
 	PROFILE3_GPU("overlays (fg)");
 
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 	UNUSED2(viewCamera);
 	#warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
 #else
@@ -602,14 +631,24 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	glActiveTextureARB(GL_TEXTURE0);
-	glEnable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
 
 	CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	CVector3D up = viewCamera.GetOrientation().GetUp();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		tech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
 	tech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
 	CShaderProgramPtr shader = tech->GetShader();
 
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -644,7 +683,6 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	tech->EndPass();
 
 	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_BLEND);
 
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -712,24 +750,36 @@ void OverlayRendererInternals::GenerateSphere()
 		TessellateSphere(sphereVertexes, sphereIndexes, 3);
 }
 
-void OverlayRenderer::RenderSphereOverlays()
+void OverlayRenderer::RenderSphereOverlays(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (spheres)");
 
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 #warning TODO: implement OverlayRenderer::RenderSphereOverlays for GLES
 #else
 	if (m->spheres.empty())
 		return;
 
-	glEnable(GL_BLEND);
 	glDepthMask(0);
 
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_overlay_solid);
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		tech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
 	tech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
 	shader = tech->GetShader();
 
 	m->GenerateSphere();
@@ -759,6 +809,5 @@ void OverlayRenderer::RenderSphereOverlays()
 	tech->EndPass();
 
 	glDepthMask(1);
-	glDisable(GL_BLEND);
 #endif
 }

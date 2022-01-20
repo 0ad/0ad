@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,9 +17,6 @@
 
 #include "precompiled.h"
 
-#include <sstream>
-#include <string>
-
 #include "graphics/CinemaManager.h"
 
 #include "graphics/Camera.h"
@@ -37,6 +34,8 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Hotkey.h"
 #include "ps/World.h"
+#include "renderer/DebugRenderer.h"
+#include "renderer/Renderer.h"
 #include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpOverlayRenderer.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -46,9 +45,6 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ComponentManager.h"
 #include "simulation2/Simulation2.h"
-#include "renderer/DebugRenderer.h"
-#include "renderer/Renderer.h"
-
 
 CCinemaManager::CCinemaManager()
 	: m_DrawPaths(false)
@@ -78,7 +74,6 @@ void CCinemaManager::DrawPaths() const
 		return;
 
 	glDisable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
 
 	for (const std::pair<const CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
 	{
@@ -92,7 +87,6 @@ void CCinemaManager::DrawPaths() const
 		DrawNodes(p.second.GetTargetSpline(), CColor(1.f, 0.1f, 0.f, 1.f));
 	}
 
-	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
 }
 

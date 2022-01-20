@@ -352,9 +352,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_Variables[VAR_COLOR_R] = IParticleVarPtr(new CParticleVarConstant(1.f));
 	m_Variables[VAR_COLOR_G] = IParticleVarPtr(new CParticleVarConstant(1.f));
 	m_Variables[VAR_COLOR_B] = IParticleVarPtr(new CParticleVarConstant(1.f));
-	m_BlendEquation = GL_FUNC_ADD;
-	m_BlendFuncSrc = GL_SRC_ALPHA;
-	m_BlendFuncDst = GL_ONE_MINUS_SRC_ALPHA;
+	m_BlendMode = BlendMode::ADD;
 	m_StartFull = false;
 	m_UseRelativeVelocity = false;
 	m_Texture = g_Renderer.GetTextureManager().GetErrorTexture();
@@ -401,31 +399,15 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 		}
 		else if (Child.GetNodeName() == el_blend)
 		{
-			CStr mode = Child.GetAttributes().GetNamedItem(at_mode);
+			const CStr mode = Child.GetAttributes().GetNamedItem(at_mode);
 			if (mode == "add")
-			{
-				m_BlendEquation = GL_FUNC_ADD;
-				m_BlendFuncSrc = GL_SRC_ALPHA;
-				m_BlendFuncDst = GL_ONE;
-			}
+				m_BlendMode = BlendMode::ADD;
 			else if (mode == "subtract")
-			{
-				m_BlendEquation = GL_FUNC_REVERSE_SUBTRACT;
-				m_BlendFuncSrc = GL_SRC_ALPHA;
-				m_BlendFuncDst = GL_ONE;
-			}
+				m_BlendMode = BlendMode::SUBTRACT;
 			else if (mode == "over")
-			{
-				m_BlendEquation = GL_FUNC_ADD;
-				m_BlendFuncSrc = GL_SRC_ALPHA;
-				m_BlendFuncDst = GL_ONE_MINUS_SRC_ALPHA;
-			}
+				m_BlendMode = BlendMode::OVERLAY;
 			else if (mode == "multiply")
-			{
-				m_BlendEquation = GL_FUNC_ADD;
-				m_BlendFuncSrc = GL_ZERO;
-				m_BlendFuncDst = GL_ONE_MINUS_SRC_COLOR;
-			}
+				m_BlendMode = BlendMode::MULTIPLY;
 		}
 		else if (Child.GetNodeName() == el_start_full)
 		{

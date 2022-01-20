@@ -1,40 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
 
-    <technique>
-        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
-        <require shaders="arb"/>
-        <pass shader="arb/model_solid"/>
-    </technique>
+	<technique>
+		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid"/>
+	</technique>
 
-    <technique>
-        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_solid"/>
-    </technique>
-
-
-    <technique>
-        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
-        <require shaders="arb"/>
-        <pass shader="arb/model_solid_player"/>
-    </technique>
-
-    <technique>
-        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_solid_player"/>
-    </technique>
+	<technique>
+		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid"/>
+	</technique>
 
 
-    <technique>
-        <require shaders="arb"/>
-        <pass shader="arb/model_common"/>
-    </technique>
+	<technique>
+		<require context="MODE_WIREFRAME"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid_player"/>
+	</technique>
 
-    <technique>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_common"/>
-    </technique>
+	<technique>
+		<require context="MODE_WIREFRAME"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_player"/>
+	</technique>
+
+
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid_player">
+			<blend src="constant_alpha" dst="one_minus_constant_alpha" constant="0 0 0 191"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_player">
+			<blend src="constant_alpha" dst="one_minus_constant_alpha" constant="0 0 0 191"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common"/>
+	</technique>
+
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_common"/>
+	</technique>
 
 </effect>

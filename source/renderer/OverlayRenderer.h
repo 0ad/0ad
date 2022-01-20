@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_OVERLAYRENDERER
 
 #include "graphics/ShaderProgramPtr.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 struct SOverlayLine;
 struct SOverlayTexturedLine;
@@ -106,14 +107,16 @@ public:
 	 * (i.e. rendered behind other objects in the normal 3D way)
 	 * and should be drawn after water (i.e. may be visible on top of the water)
 	 */
-	void RenderOverlaysAfterWater();
+	void RenderOverlaysAfterWater(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Render all the submitted overlays that should appear on top of everything
 	 * in the world.
 	 * @param viewCamera camera to be used for billboard computations
 	 */
-	void RenderForegroundOverlays(const CCamera& viewCamera);
+	void RenderForegroundOverlays(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CCamera& viewCamera);
 
 	/// Small vertical offset of overlays from terrain to prevent visual glitches
 	static const float OVERLAY_VOFFSET;
@@ -125,7 +128,7 @@ private:
 	 * renders textured overlay lines batched according to their visibility status by delegating
 	 * to RenderTexturedOverlayLines(CShaderProgramPtr, bool).
 	 */
-	void RenderTexturedOverlayLines();
+	void RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Helper method; renders those overlay lines currently registered in the internals (i.e.
@@ -133,17 +136,17 @@ private:
 	 * batch rendering the overlay lines according to their alwaysVisible status, as this
 	 * requires a separate shader to be used.
 	 */
-	void RenderTexturedOverlayLines(CShaderProgramPtr shader, bool alwaysVisible);
+	void RenderTexturedOverlayLines(const CShaderProgramPtr& shader, bool alwaysVisible);
 
 	/**
 	 * Helper method; batch-renders all registered quad overlays, batched by their texture for effiency.
 	 */
-	void RenderQuadOverlays();
+	void RenderQuadOverlays(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Helper method; batch-renders all sphere quad overlays.
 	 */
-	 void RenderSphereOverlays();
+	 void RenderSphereOverlays(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 private:
 	OverlayRendererInternals* m;

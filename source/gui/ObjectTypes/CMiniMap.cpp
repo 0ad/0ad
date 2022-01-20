@@ -411,7 +411,17 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		baseDefines.Add(str_MINIMAP_BASE, str_1);
 
 		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
+		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+			tech->GetGraphicsPipelineStateDesc();
+		pipelineStateDesc.blendState.enabled = true;
+		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::SRC_ALPHA;
+		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+			Renderer::Backend::BlendOp::ADD;
 		tech->BeginPass();
+		g_Renderer.GetDeviceCommandContext()->SetGraphicsPipelineState(pipelineStateDesc);
 		shader = tech->GetShader();
 
 		shader->BindTexture(str_baseTex, miniMapTexture.GetTexture());
@@ -421,17 +431,12 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		shader->Uniform(str_transform, baseTransform);
 		shader->Uniform(str_textureTransform, baseTextureTransform);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 		const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 		const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 		const float angle = GetAngle();
 		DrawTexture(shader, angle, x, y, x2, y2, m_MapScale);
 
 		tech->EndPass();
-
-		glDisable(GL_BLEND);
 	}
 
 	PROFILE_START("minimap flares");

@@ -36,7 +36,6 @@
 #include "simulation2/Simulation2.h"
 
 #include <algorithm>
-#include <vector>
 
 // TODO: Currently each decal is a separate CDecalRData. We might want to use
 // lots of decals for special effects like shadows, footprints, etc, in which
@@ -89,6 +88,7 @@ void CDecalRData::Update(CSimulation2* simulation)
 }
 
 void CDecalRData::RenderDecals(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain decals");
@@ -142,9 +142,6 @@ void CDecalRData::RenderDecals(
 
 	std::sort(batches.begin(), batches.end(), SDecalBatchComparator());
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	CVertexBuffer* lastIB = nullptr;
 	for (auto itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
 	{
@@ -156,7 +153,18 @@ void CDecalRData::RenderDecals(
 
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
+			Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+				techBase->GetGraphicsPipelineStateDesc(pass);
+			pipelineStateDesc.blendState.enabled = true;
+			pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+				Renderer::Backend::BlendFactor::SRC_ALPHA;
+			pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+				Renderer::Backend::BlendOp::ADD;
 			techBase->BeginPass(pass);
+			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
@@ -216,8 +224,6 @@ void CDecalRData::RenderDecals(
 	}
 
 	CVertexBuffer::Unbind();
-
-	glDisable(GL_BLEND);
 }
 
 void CDecalRData::BuildVertexData()

@@ -188,10 +188,12 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	return skies;
 }
 
-void SkyManager::RenderSky()
+void SkyManager::RenderSky(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	OGL_SCOPED_DEBUG_GROUP("Render Sky");
 #if CONFIG2_GLES
+	UNUSED2(deviceCommandContext);
 #warning TODO: implement SkyManager::RenderSky for GLES
 #else
 	if (!m_RenderSky)
@@ -212,7 +214,9 @@ void SkyManager::RenderSky()
 	CShaderTechniquePtr skytech =
 		g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 	skytech->BeginPass();
-	CShaderProgramPtr shader = skytech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		skytech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& shader = skytech->GetShader();
 	shader->BindTexture(str_baseTex, m_SkyCubeMap.get());
 
 	// Translate so the sky center is at the camera space origin.

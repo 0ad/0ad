@@ -692,6 +692,7 @@ using TextureBatches = PooledBatchMap<CTerrainTextureEntry*, VertexBufferBatches
 using ShaderTechniqueBatches = PooledBatchMap<CShaderTechniquePtr, TextureBatches>;
 
 void CPatchRData::RenderBases(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain bases");
@@ -748,6 +749,8 @@ void CPatchRData::RenderBases(
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			techBase->BeginPass(pass);
+			deviceCommandContext->SetGraphicsPipelineState(
+				techBase->GetGraphicsPipelineStateDesc(pass));
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
@@ -838,6 +841,7 @@ struct SBlendStackItem
 };
 
 void CPatchRData::RenderBlends(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain blends");
@@ -933,9 +937,6 @@ void CPatchRData::RenderBlends(
 
 	PROFILE_END("compute batches");
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	CVertexBuffer* lastVB = nullptr;
 	CShaderProgramPtr previousShader;
 	for (BatchesStack::iterator itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
@@ -947,7 +948,18 @@ void CPatchRData::RenderBlends(
 		const int numPasses = techBase->GetNumPasses();
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
+			Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+				techBase->GetGraphicsPipelineStateDesc(pass);
+			pipelineStateDesc.blendState.enabled = true;
+			pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+				Renderer::Backend::BlendFactor::SRC_ALPHA;
+			pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+				Renderer::Backend::BlendOp::ADD;
 			techBase->BeginPass(pass);
+			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
@@ -1018,8 +1030,6 @@ void CPatchRData::RenderBlends(
 			techBase->EndPass();
 		}
 	}
-
-	glDisable(GL_BLEND);
 
 	CVertexBuffer::Unbind();
 }
@@ -1370,7 +1380,7 @@ void CPatchRData::BuildWater()
 	}
 }
 
-void CPatchRData::RenderWaterSurface(CShaderProgramPtr& shader, const bool bindWaterData)
+void CPatchRData::RenderWaterSurface(const CShaderProgramPtr& shader, const bool bindWaterData)
 {
 	ASSERT(m_UpdateFlags == 0);
 
@@ -1398,7 +1408,7 @@ void CPatchRData::RenderWaterSurface(CShaderProgramPtr& shader, const bool bindW
 	CVertexBuffer::Unbind();
 }
 
-void CPatchRData::RenderWaterShore(CShaderProgramPtr& shader)
+void CPatchRData::RenderWaterShore(const CShaderProgramPtr& shader)
 {
 	ASSERT(m_UpdateFlags == 0);
 

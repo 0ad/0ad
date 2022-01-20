@@ -209,6 +209,7 @@ void CPostprocManager::RecreateBuffers()
 
 
 void CPostprocManager::ApplyBlurDownscale2x(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight)
 {
 	// Bind inTex to framebuffer for rendering.
@@ -221,7 +222,9 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines);
 
 	tech->BeginPass();
-	CShaderProgramPtr shader = tech->GetShader();
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
+	const CShaderProgramPtr& shader = tech->GetShader();
 
 	shader->BindTexture(str_renderedTex, inTex);
 
@@ -260,6 +263,7 @@ void CPostprocManager::ApplyBlurDownscale2x(
 }
 
 void CPostprocManager::ApplyBlurGauss(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight)
 {
 	// Set tempTex as our rendering target.
@@ -272,6 +276,8 @@ void CPostprocManager::ApplyBlurGauss(
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines2);
 
 	tech->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
 	CShaderProgramPtr shader = tech->GetShader();
 	shader->BindTexture(str_renderedTex, inOutTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
@@ -337,17 +343,16 @@ void CPostprocManager::ApplyBlurGauss(
 	tech->EndPass();
 }
 
-void CPostprocManager::ApplyBlur()
+void CPostprocManager::ApplyBlur(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	glDisable(GL_BLEND);
-
 	int width = m_Width, height = m_Height;
 
 	#define SCALE_AND_BLUR(tex1, tex2, temptex) \
-		ApplyBlurDownscale2x((tex1).get(), (tex2).get(), width, height); \
+		ApplyBlurDownscale2x(deviceCommandContext, (tex1).get(), (tex2).get(), width, height); \
 		width /= 2; \
 		height /= 2; \
-		ApplyBlurGauss((tex2).get(), (temptex).get(), width, height);
+		ApplyBlurGauss(deviceCommandContext, (tex2).get(), (temptex).get(), width, height);
 
 	// We do the same thing for each scale, incrementally adding more and more blur.
 	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
@@ -402,7 +407,9 @@ void CPostprocManager::ReleaseRenderOutput()
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
-void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
+void CPostprocManager::ApplyEffect(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderTechniquePtr& shaderTech1, int pass)
 {
 	// select the other FBO for rendering
 	if (!m_WhichBuffer)
@@ -414,7 +421,9 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	glDepthMask(GL_FALSE);
 
 	shaderTech1->BeginPass(pass);
-	CShaderProgramPtr shader = shaderTech1->GetShader(pass);
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTech1->GetGraphicsPipelineStateDesc(pass));
+	const CShaderProgramPtr& shader = shaderTech1->GetShader(pass);
 
 	// Use the textures from the current FBO as input to the shader.
 	// We also bind a bunch of other textures and parameters, but since
@@ -475,7 +484,8 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 	m_WhichBuffer = !m_WhichBuffer;
 }
 
-void CPostprocManager::ApplyPostproc()
+void CPostprocManager::ApplyPostproc(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	ENSURE(m_IsInitialized);
 
@@ -507,22 +517,22 @@ void CPostprocManager::ApplyPostproc()
 	{
 		// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
 		// (This may need to change depending on future usage, however that will have a fps hit)
-		ApplyBlur();
+		ApplyBlur(deviceCommandContext);
 		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 		for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
-			ApplyEffect(m_PostProcTech, pass);
+			ApplyEffect(deviceCommandContext, m_PostProcTech, pass);
 	}
 
 	if (hasAA)
 	{
 		for (int pass = 0; pass < m_AATech->GetNumPasses(); ++pass)
-			ApplyEffect(m_AATech, pass);
+			ApplyEffect(deviceCommandContext, m_AATech, pass);
 	}
 
 	if (hasSharp)
 	{
 		for (int pass = 0; pass < m_SharpTech->GetNumPasses(); ++pass)
-			ApplyEffect(m_SharpTech, pass);
+			ApplyEffect(deviceCommandContext, m_SharpTech, pass);
 	}
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
@@ -734,6 +744,7 @@ void CPostprocManager::ResolveMultisampleFramebuffer()
 #warning TODO: implement PostprocManager for GLES
 
 void ApplyBlurDownscale2x(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
 	Renderer::Backend::GL::CTexture* UNUSED(inTex),
 	Renderer::Backend::GL::CTexture* UNUSED(outTex),
 	int UNUSED(inWidth), int UNUSED(inHeight))
@@ -741,13 +752,16 @@ void ApplyBlurDownscale2x(
 }
 
 void CPostprocManager::ApplyBlurGauss(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
 	Renderer::Backend::GL::CTexture* UNUSED(inOutTex),
 	Renderer::Backend::GL::CTexture* UNUSED(tempTex),
 	int UNUSED(inWidth), int UNUSED(inHeight))
 {
 }
 
-void CPostprocManager::ApplyEffect(CShaderTechniquePtr &UNUSED(shaderTech1), int UNUSED(pass))
+void CPostprocManager::ApplyEffect(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
+	const CShaderTechniquePtr& UNUSED(shaderTech1), int UNUSED(pass))
 {
 }
 
@@ -804,7 +818,8 @@ void CPostprocManager::CaptureRenderOutput()
 {
 }
 
-void CPostprocManager::ApplyPostproc()
+void CPostprocManager::ApplyPostproc(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 }
 

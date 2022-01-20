@@ -21,6 +21,7 @@
 #include "graphics/ShaderProgramPtr.h"
 #include "graphics/ShaderTechniquePtr.h"
 #include "lib/ogl.h"
+#include "renderer/backend/PipelineState.h"
 
 #include <vector>
 
@@ -39,10 +40,11 @@ public:
 	void SetShader(const CShaderProgramPtr& shader) { m_Shader = shader; }
 
 	// Add various bits of GL state to the pass:
-	void BlendFunc(GLenum src, GLenum dst);
 	void ColorMask(GLboolean r, GLboolean g, GLboolean b, GLboolean a);
 	void DepthMask(GLboolean mask);
 	void DepthFunc(GLenum func);
+	void SetPipelineStateDesc(
+		const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc);
 
 	/**
 	 * Set up all the GL state that was previously specified on this pass.
@@ -56,12 +58,13 @@ public:
 
 	const CShaderProgramPtr& GetShader() const { return m_Shader; }
 
+	const Renderer::Backend::GraphicsPipelineStateDesc&
+	GetPipelineStateDesc() const { return m_PipelineStateDesc; }
+
 private:
 	CShaderProgramPtr m_Shader;
 
-	bool m_HasBlend = false;
-	GLenum m_BlendSrc;
-	GLenum m_BlendDst;
+	Renderer::Backend::GraphicsPipelineStateDesc m_PipelineStateDesc{};
 
 	bool m_HasColorMask = false;
 	GLboolean m_ColorMaskR;
@@ -91,6 +94,9 @@ public:
 	void BeginPass(int pass = 0);
 	void EndPass(int pass = 0);
 	const CShaderProgramPtr& GetShader(int pass = 0) const;
+
+	const Renderer::Backend::GraphicsPipelineStateDesc&
+	GetGraphicsPipelineStateDesc(int pass = 0) const;
 
 	/**
 	 * Whether this technique uses alpha blending that requires objects to be

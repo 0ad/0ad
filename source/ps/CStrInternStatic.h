@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -129,8 +129,11 @@ X(normalMap2)
 X(objectColor)
 X(overlay_line)
 X(overlay_solid)
-X(particle)
+X(particle_add)
+X(particle_multiply)
+X(particle_overlay)
 X(particle_solid)
+X(particle_subtract)
 X(playerColor)
 X(pointSize)
 X(projInvTransform)

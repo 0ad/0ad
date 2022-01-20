@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "graphics/ShaderTechniquePtr.h"
 #include "lib/ogl.h"
 #include "ps/CStr.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 
 #include <vector>
@@ -65,7 +66,8 @@ public:
 	// First renders blur textures, then calls ApplyEffect for each effect pass,
 	// ping-ponging the buffers at each step.
 	// @note CPostprocManager must be initialized first
-	void ApplyPostproc();
+	void ApplyPostproc(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	// Blits the final postprocessed texture to the system framebuffer. The system framebuffer
 	// is selected as the output buffer. Should be called before silhouette rendering.
@@ -125,22 +127,29 @@ private:
 	bool m_IsInitialized;
 
 	// Creates blur textures at various scales, for bloom, DOF, etc.
-	void ApplyBlur();
+	void ApplyBlur(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	// High quality GPU image scaling to half size. outTex must have exactly half the size
 	// of inTex. inWidth and inHeight are the dimensions of inTex in texels.
-	void ApplyBlurDownscale2x(Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight);
+	void ApplyBlurDownscale2x(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight);
 
 	// GPU-based Gaussian blur in two passes. inOutTex contains the input image and will be filled
 	// with the blurred image. tempTex must have the same size as inOutTex.
 	// inWidth and inHeight are the dimensions of the images in texels.
-	void ApplyBlurGauss(Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight);
+	void ApplyBlurGauss(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight);
 
 	// Applies a pass of a given effect to the entire current framebuffer. The shader is
 	// provided with a number of general-purpose variables, including the rendered screen so far,
 	// the depth buffer, a number of blur textures, the screen size, the zNear/zFar planes and
 	// some other parameters used by the optional bloom/HDR pass.
-	void ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass);
+	void ApplyEffect(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderTechniquePtr& shaderTech1, int pass);
 
 	// Delete all allocated buffers/textures from GPU memory.
 	void Cleanup();

@@ -19,8 +19,10 @@
 #define INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
 
 #include "renderer/backend/Format.h"
+#include "renderer/backend/PipelineState.h"
 
 #include <memory>
+#include <optional>
 
 namespace Renderer
 {
@@ -40,6 +42,8 @@ public:
 
 	static std::unique_ptr<CDeviceCommandContext> Create();
 
+	void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc);
+
 	void UploadTexture(CTexture* texture, const Format dataFormat,
 		const void* data, const size_t dataSize,
 		const uint32_t level = 0, const uint32_t layer = 0);
@@ -49,8 +53,17 @@ public:
 		const uint32_t width, const uint32_t height,
 		const uint32_t level = 0, const uint32_t layer = 0);
 
+	void Flush();
+
 private:
 	CDeviceCommandContext();
+
+	void ResetStates();
+
+	void SetGraphicsPipelineStateImpl(
+		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
+
+	GraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
 };
 
 } // namespace GL
