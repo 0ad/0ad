@@ -502,12 +502,11 @@ bool TerrainRenderer::RenderFancyWater(
 	if (shadow)
 		shadow->BindTo(fancyWaterShader);
 
-	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
-	for (size_t i = 0; i < visiblePatches.size(); ++i)
+	for (CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		CPatchRData* data = visiblePatches[i];
 		data->RenderWaterSurface(fancyWaterShader, true);
-		data->RenderWaterShore(fancyWaterShader);
+		if (waterManager.m_WaterFancyEffects)
+			data->RenderWaterShore(fancyWaterShader);
 	}
 	m->fancyWaterTech->EndPass();
 
