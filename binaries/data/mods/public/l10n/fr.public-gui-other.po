@@ -70,8 +70,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2021-12-31 08:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-20 18:25+0000\n"
+"Last-Translator: Oumph\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -318,7 +318,7 @@ msgstr "désactivé"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Durant la première minute, les autres joueurs restent neutres."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -2971,7 +2971,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -4179,27 +4179,27 @@ msgstr "Graphismes (avancés)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Moteur de rendu"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Moteur OpenGL avec GLSL par défaut. NÉCESSITE UN REDÉMARRAGE DU JEU"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Ancien moteur OpenGL avec rendu ARB par défaut. NÉCESSITE UN REDÉMARRAGE DU JEU"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Choisir le moteur de rendu. NÉCESSITE UN REDÉMARRAGE DU JEU"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4909,11 +4909,11 @@ msgstr "Rend les formations actives pour tous les ordres ou seulement pour « Ma
 
 #: gui/options/options.json[6].options[22].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Formations type bataillon"
 
 #: gui/options/options.json[6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Sélectionner les formations entièrement"
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -6540,7 +6540,7 @@ msgstr "Disposez vos soldats en formations pour les garder organisés pendant le
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr ""
+msgstr "Les formations sont sélectionnées entièrement par défaut, mais cela peut être changer dans les réglages du jeu."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
