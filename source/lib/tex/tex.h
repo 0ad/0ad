@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -328,7 +328,7 @@ struct Tex
 	 * return a pointer to the image data (pixels), taking into account any
 	 * header(s) that may come before it.
 	 *
-	 * @return pointer to data returned by mem_get_ptr (holds reference)!
+	 * @return pointer to the data.
 	 **/
 	u8* get_data();
 
