@@ -1597,12 +1597,11 @@ function GetFormationUnitAIs(ents, player, cmd, formationTemplate, forceTemplate
 		if (!cmpUnitAI || !cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
-		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		// TODO: We only check if the formation is usable by some units
 		// if we move them to it. We should check if we can use formations
 		// for the other cases.
 		let nullFormation = (formationTemplate || cmpUnitAI.GetFormationTemplate()) == NULL_FORMATION;
-		if (nullFormation || !cmpIdentity || !cmpIdentity.CanUseFormation(formationTemplate || NULL_FORMATION))
+		if (nullFormation || !cmpUnitAI.CanUseFormation(formationTemplate || NULL_FORMATION))
 		{
 			if (nullFormation && cmpUnitAI.GetFormationController())
 				cmpUnitAI.LeaveFormation(cmd.queued || false);
@@ -1744,19 +1743,14 @@ function CanMoveEntsIntoFormation(ents, formationTemplate)
 	// TODO: should check the player's civ is allowed to use this formation
 	// See simulation/components/Player.js GetFormations() for a list of all allowed formations
 
-	var requirements = GetFormationRequirements(formationTemplate);
+	const requirements = GetFormationRequirements(formationTemplate);
 	if (!requirements)
 		return false;
 
-	var count = 0;
-	for (let ent of ents)
-	{
-		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.CanUseFormation(formationTemplate))
-			continue;
-
-		++count;
-	}
+	let count = 0;
+	for (const ent of ents)
+		if (Engine.QueryInterface(ent, IID_UnitAI)?.CanUseFormation(formationTemplate))
+			++count;
 
 	return count >= requirements.minCount;
 }

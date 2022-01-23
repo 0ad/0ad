@@ -22,9 +22,6 @@
   <Identity>
     <GenericName>Hero Infantry Javelineer</GenericName>
     <VisibleClasses datatype="tokens">Ranged Javelineer</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/skirmish
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -41,4 +38,9 @@
     </SoundGroups>
   </Sound>
   <Turretable/>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
 </Entity>

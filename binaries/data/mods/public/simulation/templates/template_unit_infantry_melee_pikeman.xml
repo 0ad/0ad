@@ -28,9 +28,6 @@
     <GenericName>Pikeman</GenericName>
     <Tooltip>Counters: 3× vs Cavalry.</Tooltip>
     <VisibleClasses datatype="tokens">Pikeman</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/syntagma
-    </Formations>
   </Identity>
   <Loot>
     <wood>5</wood>
@@ -48,6 +45,11 @@
       <attack_melee>attack/weapon/pike_attack.xml</attack_melee>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/syntagma
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.9</WalkSpeed>
     <Acceleration op="mul">0.9</Acceleration>

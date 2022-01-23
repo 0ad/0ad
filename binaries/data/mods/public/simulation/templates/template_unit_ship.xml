@@ -27,7 +27,6 @@
     <GenericName>Ship</GenericName>
     <Classes datatype="tokens">-Organic</Classes>
     <VisibleClasses datatype="tokens">Ship</VisibleClasses>
-    <Formations disable=""/>
   </Identity>
   <Position>
     <Anchor>upright</Anchor>
@@ -72,6 +71,9 @@
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
   <TreasureCollector disable=""/>
+  <UnitAI>
+    <Formations disable=""/>
+  </UnitAI>
   <UnitMotion>
     <PassabilityClass>ship</PassabilityClass>
     <InstantTurnAngle>0.5</InstantTurnAngle>

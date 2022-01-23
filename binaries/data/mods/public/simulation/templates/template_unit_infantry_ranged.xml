@@ -6,9 +6,6 @@
   <Identity>
     <VisibleClasses datatype="tokens">Ranged</VisibleClasses>
     <GenericName>Ranged</GenericName>
-    <Formations datatype="tokens">
-      special/formations/skirmish
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -20,4 +17,9 @@
     </Entity>
   </Resistance>
   <Turretable/>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
 </Entity>

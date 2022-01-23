@@ -20,6 +20,14 @@ UnitAI.prototype.Schema =
 	"<element name='FleeDistance'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='Formations' a:help='Optional list of space-separated formations this unit is allowed to use. Choices include: Scatter, Box, ColumnClosed, LineClosed, ColumnOpen, LineOpen, Flank, Skirmish, Wedge, Testudo, Phalanx, Syntagma, BattleLine.'>" +
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='CanGuard'>" +
 		"<data type='boolean'/>" +
 	"</element>" +
@@ -3472,6 +3480,16 @@ UnitAI.prototype.IsFormationController = function()
 UnitAI.prototype.IsFormationMember = function()
 {
 	return (this.formationController != INVALID_ENTITY);
+};
+
+UnitAI.prototype.GetFormationsList = function()
+{
+	return this.template.Formations?._string?.split(/\s+/) || [];
+};
+
+UnitAI.prototype.CanUseFormation = function(formation)
+{
+	return this.GetFormationsList().includes(formation);
 };
 
 /**

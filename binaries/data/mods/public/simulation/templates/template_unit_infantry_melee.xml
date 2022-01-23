@@ -6,8 +6,10 @@
   <Identity>
     <GenericName>Melee Infantry</GenericName>
     <VisibleClasses datatype="tokens">Melee</VisibleClasses>
+  </Identity>
+  <UnitAI>
     <Formations datatype="tokens">
       special/formations/testudo
     </Formations>
-  </Identity>
+  </UnitAI>
 </Entity>
