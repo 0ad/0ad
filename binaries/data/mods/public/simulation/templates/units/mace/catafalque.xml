@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_catafalque">
   <Auras datatype="tokens">
-    units/catafalques/mace_catafalque
+    units/catafalques/mace_catafalque_1
+    units/catafalques/mace_catafalque_2
   </Auras>
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Philip V</SpecificName>
-    <Tooltip>Financial Reorganization: Allied with Rome, Philip reorganized the country's internal affairs and finances, leaving as a legacy reopened mines and a new currency. Gain a slow trickle of metal.</Tooltip>
   </Identity>
-  <ResourceTrickle>
-    <Rates>
-      <metal>1.0</metal>
-    </Rates>
-    <Interval>1250</Interval>
-  </ResourceTrickle>
 </Entity>
