@@ -992,7 +992,7 @@ function getNeededResourcesTooltip(resources)
 	for (let resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
 			"component": '[font="sans-12"]' + resourceIcon(resource) + '[/font]',
-			"cost": resources[resource]
+			"cost": Math.ceil(resources[resource])
 		}));
 	return coloredText(
 		'[font="sans-bold-13"]' + translate("Insufficient resources:") + '[/font]',

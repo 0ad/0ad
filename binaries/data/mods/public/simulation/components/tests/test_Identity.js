@@ -13,8 +13,6 @@ TS_ASSERT_EQUALS(cmpIdentity.GetRank(), "");
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetClassesList(), []);
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetVisibleClassesList(), []);
 TS_ASSERT_EQUALS(cmpIdentity.HasClass("CitizenSoldier"), false);
-TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetFormationsList(), []);
-TS_ASSERT_EQUALS(cmpIdentity.CanUseFormation("special/formations/skirmish"), false);
 TS_ASSERT_EQUALS(cmpIdentity.GetSelectionGroupName(), "");
 TS_ASSERT_EQUALS(cmpIdentity.GetGenericName(), "Iberian Skirmisher");
 
@@ -33,7 +31,6 @@ cmpIdentity = ConstructComponent(6, "Identity", {
 	"Rank": "Basic",
 	"Classes": { "_string": "CitizenSoldier Human Organic" },
 	"VisibleClasses": { "_string": "Javelineer" },
-	"Formations": { "_string": "special/formations/skirmish" },
 	"Icon": "units/iber_infantry_javelineer.png",
 	"RequiredTechnology": "phase_town"
 });
@@ -46,9 +43,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetClassesList(), ["CitizenSoldier", "Human"
 TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetVisibleClassesList(), ["Javelineer"]);
 TS_ASSERT_EQUALS(cmpIdentity.HasClass("CitizenSoldier"), true);
 TS_ASSERT_EQUALS(cmpIdentity.HasClass("Female"), false);
-TS_ASSERT_UNEVAL_EQUALS(cmpIdentity.GetFormationsList(), ["special/formations/skirmish"]);
-TS_ASSERT_EQUALS(cmpIdentity.CanUseFormation("special/formations/skirmish"), true);
-TS_ASSERT_EQUALS(cmpIdentity.CanUseFormation("special/formations/line"), false);
 TS_ASSERT_EQUALS(cmpIdentity.GetSelectionGroupName(), "units/iber/infantry_javelineer_b");
 TS_ASSERT_EQUALS(cmpIdentity.GetGenericName(), "Iberian Skirmisher");
 

@@ -6,8 +6,10 @@
   <Identity>
     <VisibleClasses datatype="tokens">Ranged</VisibleClasses>
     <GenericName>Ranged Cavalry</GenericName>
+  </Identity>
+  <UnitAI>
     <Formations datatype="tokens">
       special/formations/skirmish
     </Formations>
-  </Identity>
+  </UnitAI>
 </Entity>

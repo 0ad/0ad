@@ -73,14 +73,6 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Formations' a:help='Optional list of space-separated formations this unit is allowed to use. Choices include: Scatter, Box, ColumnClosed, LineClosed, ColumnOpen, LineOpen, Flank, Skirmish, Wedge, Testudo, Phalanx, Syntagma, BattleLine.'>" +
-			"<attribute name='datatype'>" +
-				"<value>tokens</value>" +
-			"</attribute>" +
-			"<text/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
 		"<element name='Icon'>" +
 			"<text/>" +
 		"</element>" +
@@ -109,11 +101,6 @@ Identity.prototype.Init = function()
 		this.phenotype = "default";
 
 	this.controllable = this.template.Controllable ? this.template.Controllable == "true" : true;
-};
-
-Identity.prototype.HasSomeFormation = function()
-{
-	return this.GetFormationsList().length > 0;
 };
 
 Identity.prototype.GetCiv = function()
@@ -162,18 +149,6 @@ Identity.prototype.GetVisibleClassesList = function()
 Identity.prototype.HasClass = function(name)
 {
 	return this.GetClassesList().indexOf(name) != -1;
-};
-
-Identity.prototype.GetFormationsList = function()
-{
-	if (this.template.Formations && this.template.Formations._string)
-		return this.template.Formations._string.split(/\s+/);
-	return [];
-};
-
-Identity.prototype.CanUseFormation = function(template)
-{
-	return this.GetFormationsList().indexOf(template) != -1;
 };
 
 Identity.prototype.GetSelectionGroupName = function()

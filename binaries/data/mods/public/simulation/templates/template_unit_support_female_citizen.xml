@@ -35,7 +35,6 @@
     <SelectionGroupName>template_unit_support_female_citizen</SelectionGroupName>
     <Classes datatype="tokens">FemaleCitizen</Classes>
     <VisibleClasses datatype="tokens">Citizen Worker</VisibleClasses>
-    <Formations disable=""/>
   </Identity>
   <Loot>
     <xp>3</xp>
@@ -84,6 +83,7 @@
   </Sound>
   <UnitAI>
     <CanPatrol>false</CanPatrol>
+    <Formations disable=""/>
   </UnitAI>
   <Vision>
     <Range>32</Range>

@@ -23,9 +23,6 @@
     <GenericName>Hero Pikeman</GenericName>
     <Tooltip>Counters: 3× vs Cavalry.</Tooltip>
     <VisibleClasses datatype="tokens">Melee Pikeman</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/syntagma
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -40,5 +37,9 @@
       <attack_melee>attack/weapon/pike_attack.xml</attack_melee>
     </SoundGroups>
   </Sound>
-
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/syntagma
+    </Formations>
+  </UnitAI>
 </Entity>

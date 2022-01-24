@@ -47,7 +47,6 @@
     <SpecificName>P-51 Mustang</SpecificName>
     <Tooltip>A World War II American fighter plane.</Tooltip>
     <Icon>units/global_mustang.png</Icon>
-    <Formations datatype="tokens" replace=""/>
   </Identity>
   <Obstruction disable=""/>
   <Position>
@@ -59,6 +58,9 @@
   <Repairable>
     <RepairTimeRatio>3.0</RepairTimeRatio>
   </Repairable>
+  <UnitAI>
+    <Formations datatype="tokens" replace=""/>
+  </UnitAI>
   <UnitMotion disable=""/>
   <UnitMotionFlying>
     <MaxSpeed>60.0</MaxSpeed>

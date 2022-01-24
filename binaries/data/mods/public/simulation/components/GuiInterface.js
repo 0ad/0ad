@@ -276,8 +276,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"classes": cmpIdentity.GetClassesList(),
 			"selectionGroupName": cmpIdentity.GetSelectionGroupName(),
 			"canDelete": !cmpIdentity.IsUndeletable(),
-			"hasSomeFormation": cmpIdentity.HasSomeFormation(),
-			"formations": cmpIdentity.GetFormationsList(),
 			"controllable": cmpIdentity.IsControllable()
 		};
 
@@ -433,6 +431,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"canPatrol": cmpUnitAI.CanPatrol(),
 			"selectableStances": cmpUnitAI.GetSelectableStances(),
 			"isIdle": cmpUnitAI.IsIdle(),
+			"formations": cmpUnitAI.GetFormationsList(),
 			"formation": cmpUnitAI.GetFormationController()
 		};
 

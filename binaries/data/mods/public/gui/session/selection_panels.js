@@ -242,13 +242,13 @@ g_SelectionPanels.Formation = {
 		if (unitEntStates.some(state => !hasClass(state, "Unit")))
 			return [];
 
-		if (unitEntStates.every(state => !state.identity || !state.identity.hasSomeFormation))
+		if (unitEntStates.every(state => !state.unitAI || !state.unitAI.formations.length))
 			return [];
 
 		if (!g_AvailableFormations.has(unitEntStates[0].player))
 			g_AvailableFormations.set(unitEntStates[0].player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntStates[0].player));
 
-		return g_AvailableFormations.get(unitEntStates[0].player).filter(formation => unitEntStates.some(state => !!state.identity && state.identity.formations.indexOf(formation) != -1));
+		return g_AvailableFormations.get(unitEntStates[0].player).filter(formation => unitEntStates.some(state => !!state.unitAI && state.unitAI.formations.includes(formation)));
 	},
 	"setupButton": function(data)
 	{

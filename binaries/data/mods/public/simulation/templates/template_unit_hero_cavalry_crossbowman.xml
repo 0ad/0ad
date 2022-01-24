@@ -22,9 +22,6 @@
   <Identity>
     <GenericName>Hero Cavalry Crossbowman</GenericName>
     <VisibleClasses datatype="tokens">Ranged Crossbowman</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/skirmish
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -40,6 +37,11 @@
       <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.8</WalkSpeed>
     <Acceleration op="mul">0.8</Acceleration>

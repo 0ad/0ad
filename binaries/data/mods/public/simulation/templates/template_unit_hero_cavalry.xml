@@ -18,9 +18,6 @@
     <Classes datatype="tokens">FastMoving</Classes>
     <VisibleClasses datatype="tokens">Cavalry</VisibleClasses>
     <GenericName>Hero Cavalry</GenericName>
-    <Formations datatype="tokens">
-      special/formations/wedge
-    </Formations>
   </Identity>
   <Position>
     <TurnRate>5</TurnRate>
@@ -52,6 +49,11 @@
   <StatusBars>
     <HeightOffset>7.0</HeightOffset>
   </StatusBars>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/wedge
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">2</WalkSpeed>
     <RunMultiplier>1.4</RunMultiplier>

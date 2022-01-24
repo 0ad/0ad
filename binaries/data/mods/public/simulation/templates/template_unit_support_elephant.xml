@@ -19,7 +19,6 @@
   <Identity>
     <GenericName>Worker Elephant</GenericName>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
-    <Formations disable=""/>
   </Identity>
   <Loot>
     <food>10</food>
@@ -66,6 +65,7 @@
   </StatusBars>
   <UnitAI>
     <CanPatrol>false</CanPatrol>
+    <Formations disable=""/>
   </UnitAI>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>

@@ -569,8 +569,6 @@ AddMock(10, IID_Identity, {
 	"HasClass": function() { return true; },
 	"IsUndeletable": function() { return false; },
 	"IsControllable": function() { return true; },
-	"HasSomeFormation": function() { return false; },
-	"GetFormationsList": function() { return []; },
 });
 
 AddMock(10, IID_Position, {
@@ -600,8 +598,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		"classes": ["class1", "class2"],
 		"selectionGroupName": "Selection Group Name",
 		"canDelete": true,
-		"hasSomeFormation": false,
-		"formations": [],
 		"controllable": true,
 	},
 	"position": { "x": 1, "y": 2, "z": 3 },

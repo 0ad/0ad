@@ -22,9 +22,6 @@
   <Identity>
     <GenericName>Champion Cavalry Javelineer</GenericName>
     <VisibleClasses datatype="tokens">Ranged Javelineer</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/skirmish
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -40,6 +37,11 @@
       <attack_impact_ranged>attack/impact/javelin_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">0.9</WalkSpeed>
     <Acceleration op="mul">0.9</Acceleration>

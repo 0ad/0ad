@@ -33,9 +33,6 @@
     <Rank>Basic</Rank>
     <Classes datatype="tokens">Human FastMoving CitizenSoldier</Classes>
     <VisibleClasses datatype="tokens">Citizen Soldier Cavalry</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/wedge
-    </Formations>
   </Identity>
   <Loot>
     <xp>130</xp>
@@ -96,6 +93,11 @@
   <StatusBars>
     <HeightOffset>7.0</HeightOffset>
   </StatusBars>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/wedge
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">2</WalkSpeed>
     <RunMultiplier>1.4</RunMultiplier>

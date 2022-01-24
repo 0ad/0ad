@@ -25,9 +25,6 @@
   <Identity>
     <VisibleClasses datatype="tokens">Ranged Archer</VisibleClasses>
     <GenericName>Champion Archer</GenericName>
-    <Formations datatype="tokens">
-      special/formations/skirmish
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -44,6 +41,11 @@
     </SoundGroups>
   </Sound>
   <Turretable/>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="add">1.2</WalkSpeed>
     <Acceleration op="add">2.4</Acceleration>

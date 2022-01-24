@@ -14,7 +14,6 @@
   <Identity>
     <Classes datatype="tokens">-Organic -ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Relic</VisibleClasses>
-    <Formations disable=""/>
     <GenericName>Catafalque</GenericName>
     <Icon>units/catafalque.png</Icon>
     <SelectionGroupName>template_unit_catafalque</SelectionGroupName>
@@ -48,6 +47,7 @@
   <UnitAI>
     <DefaultStance>standground</DefaultStance>
     <CanGuard>false</CanGuard>
+    <Formations disable=""/>
   </UnitAI>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>

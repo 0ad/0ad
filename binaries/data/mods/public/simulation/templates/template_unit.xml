@@ -37,16 +37,6 @@
     <Civ>gaia</Civ>
     <Classes datatype="tokens">Unit Organic ConquestCritical</Classes>
     <GenericName>Unit</GenericName>
-    <Formations datatype="tokens">
-      special/formations/null
-      special/formations/box
-      special/formations/column_closed
-      special/formations/line_closed
-      special/formations/column_open
-      special/formations/line_open
-      special/formations/flank
-      special/formations/battle_line
-    </Formations>
     <Phenotype datatype="tokens">male</Phenotype>
     <Undeletable>false</Undeletable>
   </Identity>
@@ -119,6 +109,16 @@
     <CanPatrol>true</CanPatrol>
     <PatrolWaitTime>1</PatrolWaitTime>
     <CheeringTime>2800</CheeringTime>
+    <Formations datatype="tokens">
+      special/formations/null
+      special/formations/box
+      special/formations/column_closed
+      special/formations/line_closed
+      special/formations/column_open
+      special/formations/line_open
+      special/formations/flank
+      special/formations/battle_line
+    </Formations>
   </UnitAI>
   <UnitMotion>
     <FormationController>false</FormationController>

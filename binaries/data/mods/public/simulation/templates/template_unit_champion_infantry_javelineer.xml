@@ -25,9 +25,6 @@
   <Identity>
     <GenericName>Champion Infantry Javelineer</GenericName>
     <VisibleClasses datatype="tokens">Ranged Javelineer</VisibleClasses>
-    <Formations datatype="tokens">
-      special/formations/skirmish
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>
@@ -44,6 +41,11 @@
     </SoundGroups>
   </Sound>
   <Turretable/>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed op="mul">1.2</WalkSpeed>
     <Acceleration op="mul">1.2</Acceleration>

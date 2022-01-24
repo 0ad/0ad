@@ -16,7 +16,6 @@
     <GenericName>Trader</GenericName>
     <SelectionGroupName>template_unit_support_trader</SelectionGroupName>
     <Tooltip>Trade resources between your own markets and those of your allies.</Tooltip>
-    <Formations disable=""/>
   </Identity>
   <Loot>
     <xp>10</xp>
@@ -46,6 +45,7 @@
   <UnitAI>
     <CanGuard>false</CanGuard>
     <CanPatrol>false</CanPatrol>
+    <Formations disable=""/>
   </UnitAI>
   <Vision>
     <Range>60</Range>
