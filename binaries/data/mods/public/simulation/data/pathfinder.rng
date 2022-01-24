@@ -15,7 +15,19 @@
         <element name="MovingExtension">
           <data type="decimal"/>
         </element>
+        <element name="StaticSpread">
+          <data type="decimal"/>
+        </element>
+        <element name="MovingSpread">
+          <data type="decimal"/>
+        </element>
         <element name="MinimalForce">
+          <data type="decimal"/>
+        </element>
+        <element name="PressureStrength">
+          <data type="decimal"/>
+        </element>
+        <element name="PressureDecay">
           <data type="decimal"/>
         </element>
       </interleave>

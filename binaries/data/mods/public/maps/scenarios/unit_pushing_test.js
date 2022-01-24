@@ -110,6 +110,16 @@ experiments.units_superdense_forest_of_units = {
 	}
 };
 
+experiments.units_superdense_forest_of_fast_units = {
+	"spawn": (gx, gy) => {
+		for (let i = -12; i <= 12; i += 2)
+			for (let j = -12; j <= 12; j += 2)
+				QuickSpawn(gx + i, gy + 50 + j, FAST_UNIT_TEMPLATE);
+		WalkTo(gx, gy + 100, true, QuickSpawn(gx, gy, FAST_UNIT_TEMPLATE));
+		WalkTo(gx, gy + 100, true, QuickSpawn(gx, gy-10, LARGE_UNIT_TEMPLATE));
+	}
+};
+
 experiments.building = {
 	"spawn": (gx, gy) => {
 		let target = QuickSpawn(gx + 20, gy + 20, "foundation|structures/athen/storehouse");
@@ -146,6 +156,63 @@ experiments.collecting_tree = {
 	}
 };
 
+experiments.multicrossing = {
+	"spawn": (gx, gy) => {
+		for (let i = 0; i < 20; i += 2)
+			for (let j = 0; j < 20; j += 2)
+				WalkTo(gx+10, gy+70, false, QuickSpawn(gx + i, gy + j, REG_UNIT_TEMPLATE));
+		for (let i = 0; i < 20; i += 2)
+			for (let j = 0; j < 20; j += 2)
+				WalkTo(gx+10, gy, false, QuickSpawn(gx + i, gy + j + 70, REG_UNIT_TEMPLATE));
+	}
+};
+
+// Same as above but not as aligned.
+experiments.multicrossing_spaced = {
+	"spawn": (gx, gy) => {
+		for (let i = 0; i < 20; i += 2)
+			for (let j = 0; j < 20; j += 2)
+				WalkTo(gx+10, gy+70, false, QuickSpawn(gx + i, gy + j, REG_UNIT_TEMPLATE));
+		for (let i = 0; i < 20; i += 2)
+			for (let j = 0; j < 20; j += 2)
+				WalkTo(gx+10 + 5, gy, false, QuickSpawn(gx + i + 5, gy + j + 70, REG_UNIT_TEMPLATE));
+	}
+};
+
+// Same as above but not as aligned.
+experiments.multicrossing_spaced_2 = {
+	"spawn": (gx, gy) => {
+		for (let i = 0; i < 20; i += 2)
+			for (let j = 0; j < 20; j += 2)
+				WalkTo(gx+10, gy+70, false, QuickSpawn(gx + i, gy + j, REG_UNIT_TEMPLATE));
+		for (let i = 0; i < 20; i += 2)
+			for (let j = 0; j < 20; j += 2)
+				WalkTo(gx+10 - 5, gy, false, QuickSpawn(gx + i - 5, gy + j + 70, REG_UNIT_TEMPLATE));
+	}
+};
+
+experiments.crossing_perpendicular = {
+	"spawn": (gx, gy) => {
+		for (let i = 0; i < 20; i += 4)
+			for (let j = 0; j < 20; j += 4)
+				WalkTo(gx+10, gy+70, false, QuickSpawn(gx + i, gy + j, REG_UNIT_TEMPLATE));
+		for (let i = 0; i < 20; i += 4)
+			for (let j = 0; j < 20; j += 4)
+				WalkTo(gx - 35, gy + 35, false, QuickSpawn(gx + i + 35, gy + j + 35, REG_UNIT_TEMPLATE));
+	}
+};
+
+experiments.elephant_formation = {
+	"spawn": (gx, gy) => {
+		let ents = [];
+		for (let i = 0; i < 20; i += 4)
+			for (let j = 0; j < 20; j += 4)
+				ents.push(QuickSpawn(gx + i, gy + j, ELE_TEMPLATE));
+		FormationWalkTo(gx, gy+10, false, ents);
+	}
+};
+
+
 experiments.sep1 = {
 	"spawn": (gx, gy) => {}
 };
@@ -170,27 +237,8 @@ experiments.overlapping = {
 	"spawn": (gx, gy) => {
 		for (let i = 0; i < 20; ++i)
 			QuickSpawn(gx, gy, REG_UNIT_TEMPLATE);
-	}
-};
-
-experiments.multicrossing = {
-	"spawn": (gx, gy) => {
-		for (let i = 0; i < 20; i += 2)
-			for (let j = 0; j < 20; j += 2)
-				WalkTo(gx+10, gy+70, false, QuickSpawn(gx + i, gy + j, REG_UNIT_TEMPLATE));
-		for (let i = 0; i < 20; i += 2)
-			for (let j = 0; j < 20; j += 2)
-				WalkTo(gx+10, gy, false, QuickSpawn(gx + i, gy + j + 70, REG_UNIT_TEMPLATE));
-	}
-};
-
-experiments.elephant_formation = {
-	"spawn": (gx, gy) => {
-		let ents = [];
-		for (let i = 0; i < 20; i += 4)
-			for (let j = 0; j < 20; j += 4)
-				ents.push(QuickSpawn(gx + i, gy + j, ELE_TEMPLATE));
-		FormationWalkTo(gx, gy+10, false, ents);
+		for (let i = 0; i < 20; ++i)
+			QuickSpawn(gx+15, gy+15, REG_UNIT_TEMPLATE);
 	}
 };
 
@@ -200,8 +248,8 @@ var perf_experiments = {};
 perf_experiments.Idle = {
 	"spawn": () => {
 		const spacing = 12;
-		for (let x = 0; x < 20*16*4 - 20; x += spacing)
-			for (let z = 0; z < 20*16*4 - 20; z += spacing)
+		for (let x = 0; x < 20*4*4 - 20; x += spacing)
+			for (let z = 0; z < 20*4*4 - 20; z += spacing)
 				QuickSpawn(x, z, REG_UNIT_TEMPLATE);
 	}
 };
@@ -278,6 +326,7 @@ perf_experiments.LotsaLocalCollisions = {
 	}
 };
 
+
 var woodcutting = (gx, gy) => {
 	let dropsite = QuickSpawn(gx + 50, gy, "structures/athen/storehouse");
 	let cmpModifiersManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ModifiersManager);
@@ -318,14 +367,15 @@ Trigger.prototype.Setup = function()
 	for (let key in experiments)
 	{
 		experiments[key].spawn(gx, gy);
-		gx += 60;
+		gx += 90;
 		if (gx > 20*16*4-20)
 		{
-			gx = 20;
-			gy += 100;
+			gx = 100;
+			gy += 150;
 		}
 	}
 	/**/
+	//perf_experiments.LotsaLocalCollisions.spawn();
 	/*
 	let time = 0;
 	for (let key in perf_experiments)

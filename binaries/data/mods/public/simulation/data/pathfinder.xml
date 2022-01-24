@@ -9,18 +9,27 @@
     <!-- Setting the value to 0 disables unit pushing entirely. -->
     <!-- Note that values above 2-3 are likely to start behaving weirdly. -->
     <!-- You can also tweaks extensions below. -->
-    <Radius>1.6</Radius>
+    <Radius>1.4</Radius>
 
     <!-- Actual pushing radius for non-moving units is: -->
     <!-- Clearance * PushingRadius + StaticPushExtension -->
-    <!-- NB: Once idle units start being pushed, they become moving units, -->
-    <!-- so this should be understood as the maximum unit density. -->
-    <StaticExtension>2</StaticExtension>
+    <!-- This mostly controls the maximum unit density-->
+    <StaticExtension>1.5</StaticExtension>
 
     <!-- Actual pushing radius for moving units is: -->
     <!-- Clearance * PushingRadius + MovingPushExtension -->
-    <!-- This is the factor that has the largest influence on actual sparsity. -->
-    <MovingExtension>2.5</MovingExtension>
+    <MovingExtension>4.0</MovingExtension>
+
+    <!-- Pushing force depends on the distance between units. -->
+    <!-- This controls that effect. A value of 1 means pushing -->
+    <!-- is always FULL or OFF. A value of  1 / (Radius + Extensions) means -->
+    <!-- "normal force" when units are touching, and stronger force -->
+    <!-- when units are overlapping. -->
+    <!-- In general, Spread * (Radius + Extensions) ought to be slightly higher than 1 -->
+    <!-- to compensate somewhat for unit clearances (defined below) -->
+    <!-- being somewhat smaller than the units' actual footprints. -->
+    <StaticSpread>0.9</StaticSpread>
+    <MovingSpread>0.4</MovingSpread>
 
     <!-- After the combined pushing force of all neighboring units is calculated, -->
     <!-- if the value is below this number, treat it as effectively zero. -->
@@ -29,6 +38,14 @@
     <!-- NB: If this is 0.25 or above, then pairs of units will overlap -->
     <!-- See MAX_DISTANCE_FACTOR in CCmpUnitMotion_System.cpp for details.-->
     <MinimalForce>0.2</MinimalForce>
+
+    <!-- Multiplier for the pushing pressure units exert on each other. -->
+    <!-- Pushing pressure is a measure of 'how pushed' a unit is. -->
+    <!-- It will slow down units and make movement more realistic, but slower. -->
+    <PressureStrength>0.5</PressureStrength>
+    <!-- This controls the decay rate, 1 never decays, 0 decays entirely every turn. -->
+    <PressureDecay>0.6</PressureDecay>
+
   </Pushing>
 
   <PassabilityClasses>
