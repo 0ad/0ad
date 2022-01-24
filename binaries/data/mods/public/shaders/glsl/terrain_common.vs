@@ -45,10 +45,6 @@ void main()
 {
   vec4 position = vec4(a_vertex, 1.0);
 
-  #if USE_GRASS && LAYER
-    position.y = a_vertex.y + (a_normal.y * 0.015 * LAYER);
-  #endif
-
   gl_Position = transform * position;
 
   v_lighting = clamp(-dot(a_normal, sunDir), 0.0, 1.0) * sunColor;
