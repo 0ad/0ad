@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,24 +20,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * support routines for 2d texture access/writing.
- */
-
 #include "precompiled.h"
+
 #include "tex.h"
 
-#include <math.h>
-#include <stdlib.h>
-#include <algorithm>
-
-#include "lib/timer.h"
-#include "lib/bits.h"
 #include "lib/allocators/shared_ptr.h"
+#include "lib/bits.h"
 #include "lib/sysdep/cpu.h"
+#include "lib/tex/tex_codec.h"
+#include "lib/timer.h"
 
-#include "tex_codec.h"
-
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
 
 static const StatusDefinition texStatusDefinitions[] = {
 	{ ERR::TEX_FMT_INVALID, L"Invalid/unsupported texture format" },
@@ -633,8 +628,33 @@ u8* Tex::get_data()
 
 	u8* p = m_Data.get();
 	if(!p)
-		return 0;
+		return nullptr;
 	return p + m_Ofs;
+}
+
+u8* Tex::GetMipLevelData(const u32 level)
+{
+	// (can't use normal CHECK_TEX due to u8* return value)
+	WARN_IF_ERR(validate());
+
+	u8* levelData = m_Data.get();
+	if (!levelData)
+		return nullptr;
+	levelData += m_Ofs;
+	const size_t dataPadding = (m_Flags & TEX_DXT) != 0 ? 4 : 1;
+	size_t levelWidth = m_Width, levelHeight = m_Height;
+	for (u32 currentLevel = 0; levelWidth > 1 || levelHeight > 1; ++currentLevel)
+	{
+		if (currentLevel == level)
+			return levelData;
+
+		const size_t levelDataSize = round_up(levelWidth, dataPadding) * round_up(levelHeight, dataPadding) * m_Bpp / 8;
+		levelData += levelDataSize;
+
+		levelWidth = std::max<u32>(levelWidth / 2, 1);
+		levelHeight = std::max<u32>(levelHeight / 2, 1);
+	}
+	return nullptr;
 }
 
 // returns color of 1x1 mipmap level
