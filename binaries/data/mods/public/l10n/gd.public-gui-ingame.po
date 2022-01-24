@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2021-12-24 10:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-23 11:24+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,7 +153,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "(This item is paused.)"
-msgstr ""
+msgstr "(Tha an nì seo ’na stad.)"
 
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
@@ -564,19 +564,19 @@ msgstr "Seall frustum nan sgàilean"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr ""
+msgstr "Tha modh dì-bhugachadh an reandaraidh à comas"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr ""
+msgstr "Modh AO airson dì-bhugachadh an reandaraidh"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr ""
+msgstr "Modh Alpha airson dì-bhugachadh an reandaraidh"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr ""
+msgstr "Modh gnàthaichte airson dì-bhugachadh an reandaraidh"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -804,19 +804,19 @@ msgstr "Dearbhadh"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr ""
+msgstr "Thàinig an geama gu crìoch, dè tha thu airson dèanamh?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "Fuirich"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr ""
+msgstr "Fàg an-seo ’s seall air a’ gheàrr-chunntas"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -859,7 +859,7 @@ msgstr "Dearbhadh"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr ""
+msgstr "Thàinig an ath-chluiche gu crìoch. Dè tha thu airson dèanamh?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -903,7 +903,7 @@ msgstr "Cuir lasan dha na caidreabhaich agad"
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "Lorg obraiche ’na thàmh\nÀireamh nan obraichean ’nan tàmh."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1252,10 +1252,10 @@ msgstr "Cha ghabh a thogail ach aon turas."
 #, javascript-format
 msgid "Could only be constructed %(limit)s time."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha b’ urrainnear a thogail ach %(limit)s turas."
+msgstr[1] "Cha b’ urrainnear a thogail ach %(limit)s thuras."
+msgstr[2] "Cha b’ urrainnear a thogail ach %(limit)s tursan."
+msgstr[3] "Cha b’ urrainnear a thogail ach %(limit)s turas."
 
 #: gui/session/selection_panels_helpers.js:148
 #, javascript-format
@@ -1365,7 +1365,7 @@ msgstr "Briog gus aonadan buidhnichte a thaghadh, dèan briogadh dùbailte gus a
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Alpha XXVI: Z——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1728,7 +1728,7 @@ msgstr "Sguir dhen òrdugh làithreach."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Cuir na h-aonadan a thagh thu le gluasad ionnsaighe dhan ionad shònraichte às dèidh an stòrasan a lìbhrigeadh."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."

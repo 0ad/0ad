@@ -10,6 +10,7 @@
 # karubabu
 # Owen Park
 # Photon man
+# Ray I
 # red hare
 # Rowan Hookham
 # Takaki IEKURA
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-12-27 04:52+0000\n"
-"Last-Translator: Photon man\n"
+"PO-Revision-Date: 2022-01-23 18:41+0000\n"
+"Last-Translator: Ray I\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "駐屯している攻城兵器の HP回復+3%"
+msgstr "駐屯攻城兵器HP回復率+3"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -37,7 +38,7 @@ msgstr "攻城兵器の修復"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "駐屯している船は耐久力の回復率が+10%増加します。"
+msgstr "駐屯船のHP回復率+10"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -45,16 +46,16 @@ msgstr "修復ドック"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "兵士の攻撃力+20%"
+msgstr "兵士の近接と遠隔攻撃力+20%"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr "宗教熱"
+msgstr "宗教熱意"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "労働者の採集速度+15"
+msgstr "労働者の採集速度+15%"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -104,7 +105,7 @@ msgstr "アショカの勅書"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr "労働者の採集速度+25%"
+msgstr "労働者の穀物収集率+25％"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -112,7 +113,7 @@ msgstr "農耕ボーナス"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr "人間ユニットのHP回復率+1%"
+msgstr "人間ユニットのHP回復率+1"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -139,11 +140,11 @@ msgstr "壁による防護"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr "人口上限+20%（「威信の伝播」技術が必要です）"
+msgstr "人口上限+20%（「栄光の拡大」技術が必要です）"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
-msgstr "威信の伝播"
+msgstr "栄光の拡大"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
@@ -249,7 +250,7 @@ msgstr "町の中心の建設コスト-20%"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr "シリアの四ポリス"
+msgstr "シリアのテトラポリス"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
@@ -281,7 +282,7 @@ msgstr "経済改革"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr "ソロンは新しい度量衡制度を導入し、父親は息子のために商売を見つけることを奨励しました。\nテクノロジーの研究費用-10%。"
+msgstr "ソロンは新しい度量衡制度を導入し、父親は息子のために商売を見つけることを奨励しました。\n経済技術の資源コスト-10％"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -332,7 +333,7 @@ msgstr "潜伏虐殺"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr "ローマ軍が食糧不足に陥ったとき、ガリアはわずかな収穫の一部を放棄するよう命じられました。アンビオリクス率いるエブロネス族はそれを嫌がったため、カエサルは軍隊を派遣して武力で彼らを捕らえました。\n労働者の穀物収集率-10%\""
+msgstr "ローマ軍が食糧を使い果たしたとき、ガリアの部族たちはすでに小さい収穫の一部を放棄するように命じられた。アンビオリクスのエブロネス族はそうすることに消極的だったため、カエサルは彼らを強制するために軍隊を派遣した。\n労働者の穀物収集率-10％"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -412,7 +413,7 @@ msgstr "ヴァンバ モリヤー"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr "アルタクセルクセスの富の多くは、彼の治世の間中、建築事業に費やされました。彼はスーサのダリウス1世の宮殿を修復し、古代都市エクバタナを復元しました。\n建物の消費コスト-10% HP+5%"
+msgstr "アルタクセルクセスの富の多くは、彼の治世の間中、建築事業に費やされました。彼はスーサのダリウス1世の宮殿を修復し、古代都市エクバタナを復元しました。\n建物の資源コスト-10%とHP+5%"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -422,7 +423,7 @@ msgstr "大建築家"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr "先代のアレクサンドリア大図書館に引き続き、アレクサンドリアに持ち込まれたすべての書物を押収し、人々に膨大な量の知恵を残しました。\n建物の研究消費コスト-10%"
+msgstr "先代のアレクサンドリア大図書館に引き続き、アレクサンドリアに持ち込まれたすべての書物を押収し、人々に膨大な量の知恵を残しました。\n建物の研究資源コスト-10%"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -567,7 +568,7 @@ msgstr "海軍建築家"
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage, "
 "+10% movement speed."
-msgstr "チャンピオンユニットの 占拠力+2 近接、遠距離攻撃と移動速度+10%"
+msgstr "チャンピオンユニットの捕獲攻撃力+2、近接攻撃と遠隔攻撃のダメージ+20％、移動速度+10％"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -851,7 +852,7 @@ msgstr "兵士と攻城兵器の攻撃間隔-20%"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
-msgstr "パトリオット"
+msgstr "愛国者"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraDescription
 msgid "Allied Heroes +10% health."

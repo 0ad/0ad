@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2021-12-31 08:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-01-23 13:37+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,16 +263,16 @@ msgstr "à comas"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad mhionaid."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mionaid."
+msgstr[0] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mhionaid."
+msgstr[1] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mhionaid."
+msgstr[2] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mionaidean."
+msgstr[3] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mhionaid."
 
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
@@ -377,7 +377,7 @@ msgstr "Mapa air fhoillseachadh"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr ""
+msgstr "Sealladh a’ chaidreachais"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -682,22 +682,22 @@ msgstr "Cumha buaidhe nach aithne dhuinn"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "Sgrolaich sìos no cleachd %(hotkey)s gus taba a ghluasad dhan taobh deas."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "Sgrolaich suas no cleachd %(hotkey)s gus taba a ghluasad dhan taobh chlì."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "Sgrolaich sìos no cleachd %(hotkey)s gus taba a ghluasad sìos."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "Sgrolaich suas no cleachd %(hotkey)s gus taba a ghluasad suas."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -1248,7 +1248,7 @@ msgstr "Ruith"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Luathachadh"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -2059,7 +2059,7 @@ msgstr "Dearbh"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr ""
+msgstr "Toglaich a’ chonsoil."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
@@ -2111,7 +2111,7 @@ msgstr "Cuir ann on stòr-bhòrd"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Cuir an geama ’na stad/lean air."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
@@ -2131,7 +2131,7 @@ msgstr "Sàbhail pròifil"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr ""
+msgstr "Toglaich am pròifilear fìor-ama."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
@@ -2141,7 +2141,7 @@ msgstr "Toglaich am pròifilear"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Toglaich na modhan HTTP/GPU dhan phròifilear ùr."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
@@ -2343,12 +2343,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Cuir na h-aonadan a thagh thu le gluasad ionnsaighe dhan ionad shònraichte às dèidh an stòrasan a lìbhrigeadh."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
 msgid "Call to arms"
-msgstr ""
+msgstr "Gairm gu armachd"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -2746,7 +2746,7 @@ msgstr "Toglaich a’ chabadaich"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Toglaich fiosrachadh an t-sìobhaltais."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2940,7 +2940,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "Toglaich am faic thu bàraichean-staide gus nach fhaic, can taisbeanair na slàinte dhan a h-uile togalach/aonad air a’ mhapa (a’ gabhail a-staigh an fheadhainn nach deach a thaghadh)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -2976,7 +2976,7 @@ msgstr "Toglaich sealladh nan tar-chòmhdachaidhean le astar nan ionnsaighean ai
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr ""
+msgstr "Toglaich astar nan ionnsaighean"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
@@ -3012,7 +3012,7 @@ msgstr "Toglaich sgàil-riochdan nan aonadan"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr ""
+msgstr "Toglaich craobh nan sìobhaltas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
@@ -3282,7 +3282,7 @@ msgstr "Suidhich am buidheann-smachd 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 0."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 0 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
@@ -3292,7 +3292,7 @@ msgstr "Tagh am buidheann-smachd 0"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 1 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
@@ -3302,7 +3302,7 @@ msgstr "Tagh am buidheann-smachd 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 2 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
@@ -3312,7 +3312,7 @@ msgstr "Tagh am buidheann-smachd 2"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 3 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
@@ -3322,7 +3322,7 @@ msgstr "Tagh am buidheann-smachd 3"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 4 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
@@ -3332,7 +3332,7 @@ msgstr "Tagh am buidheann-smachd 4"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 5 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
@@ -3342,7 +3342,7 @@ msgstr "Tagh am buidheann-smachd 5"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 6 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
@@ -3352,7 +3352,7 @@ msgstr "Tagh am buidheann-smachd 6"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 7 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
@@ -3362,7 +3362,7 @@ msgstr "Tagh am buidheann-smachd 7"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 8 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
@@ -3372,7 +3372,7 @@ msgstr "Tagh am buidheann-smachd 8"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
-msgstr ""
+msgstr "Tagh am buidheann-smachd 9 seach na thagh thu cheana."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
@@ -3472,12 +3472,12 @@ msgstr "Thoir air falbh aonadan on taghadh"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Atharraichear airson aonadan a thaghadh fa leth seach ’nan cumadh."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr ""
+msgstr "Taghadh singilte"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
@@ -3875,7 +3875,7 @@ msgstr "As motha: %(max)s"
 
 #: gui/options/options.js:170
 msgid "Do you want to keep changes?"
-msgstr ""
+msgstr "A bheil thu airson na h-atharraichean a chumail?"
 
 #: gui/options/options.js:191
 #, javascript-format
@@ -4104,39 +4104,39 @@ msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèi
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "Sgèile na h-eadar-aghaidh"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4148,27 +4148,27 @@ msgstr "Grafaigeachd (adhartach)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Backend an reandaraidh"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Backend OpenGL bunaiteach le GLSL. FEUMAIDH TU AN GEAMA ATH-THÒISEACHADH"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Backend OpenGL dìleabach le sgàileadairean ARB. FEUMAIDH TU AN GEAMA ATH-THÒISEACHADH"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Tagh backend an reandaraidh. FEUMAIDH TU AN GEAMA ATH-THÒISEACHADH"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4878,11 +4878,11 @@ msgstr "Co-dhùin an dèid na cumaidhean a chur an comas dhan a h-uile òrdugh n
 
 #: gui/options/options.json[6].options[22].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Cumaidhean ann an stoidhle còrachaidh"
 
 #: gui/options/options.json[6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Co-dhiù an dèid cumaidhean a thaghadh gu slàn gus nach dèid."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -5244,7 +5244,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Alpha XXVI: Z——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5755,7 +5755,7 @@ msgstr "Lorg cluicheadair"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "Slighe an fhaidhle dhan ath-chluiche a thagh thu."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -6155,7 +6155,7 @@ msgstr "%(hotkey)s: Toglaich an lobaidh ioma-chluicheadair ann an uinneag còmhr
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "Cuir am fòcas air taba geàrr-chunntas %(name)s."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6496,7 +6496,7 @@ msgstr "Tha an t-iasgach nas luaithe na cruinneachadh bìdh air an achadh."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Thoir an aire! Chan e stòras gun chrìch a tha sna h‑èisg! Gidheadh, tillidh iad beag air bheag ma leigeas tu dhaibh."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6523,7 +6523,7 @@ msgstr "Cuir rian air na saighdearan agad air a’ bhlàr is tu ’gan cumail an
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr ""
+msgstr "Thèid cumaidhean a thaghadh gu slàn a ghnàth ach ’s urrainn dhut seo atharrachadh ann an roghainnean a’ gheama."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
