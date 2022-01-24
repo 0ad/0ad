@@ -233,6 +233,18 @@ PETRA.BaseManager.prototype.assignResourceToDropsite = function(gameState, drops
 	});
 };
 
+PETRA.BaseManager.prototype.removeFromAssignedDropsite = function(ent)
+{
+	for (const type in this.dropsiteSupplies)
+		for (const proxim in this.dropsiteSupplies[type])
+		{
+			const resourcesList = this.dropsiteSupplies[type][proxim];
+			for (let i = 0; i < resourcesList.length; ++i)
+				if (resourcesList[i].id === ent.id())
+					resourcesList.splice(i--, 1);
+		}
+};
+
 // completely remove the dropsite resources from our list.
 PETRA.BaseManager.prototype.removeDropsite = function(gameState, ent)
 {
