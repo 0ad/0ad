@@ -74,10 +74,30 @@ struct BlendStateDesc
 	CColor constant;
 };
 
+enum class CullMode
+{
+	NONE,
+	FRONT,
+	BACK
+};
+
+enum class FrontFace
+{
+	COUNTER_CLOCKWISE,
+	CLOCKWISE
+};
+
+struct RasterizationStateDesc
+{
+	CullMode cullMode;
+	FrontFace frontFace;
+};
+
 // TODO: Add a shader program to the graphics pipeline state.
 struct GraphicsPipelineStateDesc
 {
 	BlendStateDesc blendState;
+	RasterizationStateDesc rasterizationState;
 };
 
 // We don't provide additional helpers intentionally because all custom states
@@ -86,6 +106,9 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
 
 BlendFactor ParseBlendFactor(const CStr& str);
 BlendOp ParseBlendOp(const CStr& str);
+
+CullMode ParseCullMode(const CStr& str);
+FrontFace ParseFrontFace(const CStr& str);
 
 } // namespace Backend
 
