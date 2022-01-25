@@ -123,12 +123,6 @@ public:
 	 */
 	bool Culling;
 
-	/**
-	 * Cache global lighting environment. This is used  to check whether the
-	 * environment has changed during the last frame, so that vertex data can be updated etc.
-	 */
-	CLightEnv CachedLightEnv;
-
 	CCinemaManager CinemaManager;
 
 	/**
