@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,8 @@
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
+
+#include <algorithm>
 
 // NB: this implementation of ICmpUnitMotion is very tightly coupled with UnitMotionManager.
 // As such, both are compiled in the same TU.
@@ -424,8 +426,6 @@ public:
 		case MT_Deserialized:
 		{
 			OnValueModification();
-			if (!ENTITY_IS_LOCAL(GetEntityId()))
-				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_IsFormationController);
 			break;
 		}
 		}
@@ -483,7 +483,7 @@ public:
 		WaypointPath shortPath = m_ShortPath;
 		WaypointPath longPath = m_LongPath;
 
-		PerformMove(dt, cmpPosition->GetTurnRate(), shortPath, longPath, pos, speed, angle);
+		PerformMove(dt, cmpPosition->GetTurnRate(), shortPath, longPath, pos, speed, angle, 0);
 		return pos;
 	}
 
@@ -753,7 +753,7 @@ private:
 	 * This does not send actually change the position.
 	 * @returns true if the move was obstructed.
 	 */
-	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, fixed& speed, entity_angle_t& angle) const;
+	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, fixed& speed, entity_angle_t& angle, uint8_t pushingPressure) const;
 
 	/**
 	 * Update other components on our speed.
@@ -1049,7 +1049,7 @@ void CCmpUnitMotion::Move(CCmpUnitMotionManager::MotionState& state, fixed dt)
 	// to it, then throw away our current path and go straight to it.
 	state.wentStraight = TryGoingStraightToTarget(state.initialPos, true);
 
-	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.speed, state.angle);
+	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.speed, state.angle, state.pushingPressure);
 }
 
 void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed dt)
@@ -1065,11 +1065,6 @@ void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed d
 	{
 		// Update the Position component after our movement (if we actually moved anywhere)
 		CFixedVector2D offset = state.pos - state.initialPos;
-		// When moving always set the angle in the direction of the movement,
-		// if we are not trying to move, assume this is pushing-related movement,
-		// and maintain the current angle instead.
-		if (IsMoveRequested())
-			state.angle = atan2_approx(offset.X, offset.Y);
 		state.cmpPosition->MoveAndTurnTo(state.pos.X, state.pos.Y, state.angle);
 
 		// Calculate the mean speed over this past turn.
@@ -1126,7 +1121,7 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	return false;
 }
 
-bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, fixed& speed, entity_angle_t& angle) const
+bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, fixed& speed, entity_angle_t& angle, uint8_t pushingPressure) const
 {
 	// If there are no waypoint, behave as though we were obstructed and let HandleObstructedMove handle it.
 	if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
@@ -1138,11 +1133,6 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 	while (angle < -entity_angle_t::Pi())
 		angle += entity_angle_t::Pi() * 2;
 
-	// TODO: there's some asymmetry here when units look at other
-	// units' positions - the result will depend on the order of execution.
-	// Maybe we should split the updates into multiple phases to minimise
-	// that problem.
-
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	ENSURE(cmpPathfinder);
 
@@ -1150,6 +1140,28 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 	// If in formation, run to keep up; otherwise just walk.
 	if (IsMovingAsFormation())
 		basicSpeed = m_Speed.Multiply(m_RunMultiplier);
+
+	// If pushing pressure is applied, slow the unit down.
+	if (pushingPressure)
+	{
+		// Values below this pressure don't slow the unit down (avoids slowing groups down).
+		constexpr int pressureMinThreshold = 10;
+
+		// Lower speed up to a floor to prevent units from getting stopped.
+		// This helped pushing particularly for fast units, since they'll end up slowing down.
+		constexpr int maxPressure = CCmpUnitMotionManager::MAX_PRESSURE - pressureMinThreshold - 80;
+		constexpr entity_pos_t floorSpeed = entity_pos_t::FromFraction(3, 2);
+		static_assert(maxPressure > 0);
+
+		uint8_t slowdown = maxPressure - std::min(maxPressure, std::max(0, pushingPressure - pressureMinThreshold));
+		basicSpeed = basicSpeed.Multiply(fixed::FromInt(slowdown) / maxPressure);
+		// NB: lowering this too much will make the units behave a lot like viscous fluid
+		// when the density becomes extreme. While perhaps realistic (and kind of neat),
+		// it's not very helpful for gameplay. Empirically, a value of 1.5 avoids most of the effect
+		// while still slowing down movement significantly, and seems like a good balance.
+		// Min with the template speed to allow units that are explicitly absurdly slow.
+		basicSpeed = std::max(std::min(m_TemplateWalkSpeed, floorSpeed), basicSpeed);
+	}
 
 	// Find the speed factor of the underlying terrain.
 	// (We only care about the tile we start on - it doesn't matter if we're moving
@@ -1184,18 +1196,19 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 
 		CFixedVector2D offset = target - pos;
 
-		fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
-		fixed absoluteAngleDiff = angleDiff.Absolute();
-		if (absoluteAngleDiff > entity_angle_t::Pi())
-			absoluteAngleDiff = entity_angle_t::Pi() * 2 - absoluteAngleDiff;
-
-		// We only rotate to the instantTurnAngle angle. The rest we rotate during movement.
-		if (absoluteAngleDiff > m_InstantTurnAngle)
+		if (turnRate > zero && !offset.IsZero())
 		{
-			// Stop moving when rotating this far.
-			speed = zero;
-			if (turnRate > zero && !offset.IsZero())
+			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
+			fixed absoluteAngleDiff = angleDiff.Absolute();
+			if (absoluteAngleDiff > entity_angle_t::Pi())
+				absoluteAngleDiff = entity_angle_t::Pi() * 2 - absoluteAngleDiff;
+
+			// We only rotate to the instantTurnAngle angle. The rest we rotate during movement.
+			if (absoluteAngleDiff > m_InstantTurnAngle)
 			{
+				// Stop moving when rotating this far.
+				speed = zero;
+
 				fixed maxRotation = turnRate.Multiply(timeLeft);
 
 				// Figure out whether rotating will increase or decrease the angle, and how far we need to rotate in that direction.
@@ -1213,13 +1226,14 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 				angle = atan2_approx(offset.X, offset.Y);
 				timeLeft = std::min(maxRotation, maxRotation - absoluteAngleDiff + m_InstantTurnAngle) / turnRate;
 			}
-		}
-		else
-		{
-			// Modify the speed depending on the angle difference.
-			fixed sin, cos;
-			sincos_approx(angleDiff, sin, cos);
-			speed = speed.Multiply(cos);
+			else
+			{
+				// Modify the speed depending on the angle difference.
+				fixed sin, cos;
+				sincos_approx(angleDiff, sin, cos);
+				speed = speed.Multiply(cos);
+				angle = atan2_approx(offset.X, offset.Y);
+			}
 		}
 
 		// Work out how far we can travel in timeLeft.
@@ -1792,7 +1806,7 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	}
 
 	m_ExpectedPathTicket.m_Type = Ticket::SHORT_PATH;
-	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, true, GetGroup(), GetEntityId());
+	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, ShouldCollideWithMovingUnits(), GetGroup(), GetEntityId());
 }
 
 bool CCmpUnitMotion::MoveTo(MoveRequest request)

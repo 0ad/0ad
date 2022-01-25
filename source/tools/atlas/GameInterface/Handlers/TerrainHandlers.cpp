@@ -86,7 +86,7 @@ sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, size_t width, size_
 		// Check that we can fit the texture into the preview size before any transform.
 		texture.m_Width >= width && texture.m_Height >= height &&
 		// Transform to a single format that we can process.
-		texture.transform_to((texture.m_Flags) & ~(TEX_DXT | TEX_MIPMAPS | TEX_GREY | TEX_BGR)) == INFO::OK &&
+		texture.transform_to((texture.m_Flags | TEX_MIPMAPS) & ~(TEX_DXT | TEX_GREY | TEX_BGR)) == INFO::OK &&
 		(texture.m_Bpp == 24 || texture.m_Bpp == 32);
 	if (canUsePreview)
 	{
@@ -95,14 +95,17 @@ sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, size_t width, size_
 			++level;
 		// Extract the middle section (as a representative preview),
 		// and copy into buffer.
-		u8* data = texture.get_data();
-		const size_t dataShiftX = ((texture.m_Width - width) / 2) >> level;
-		const size_t dataShiftY = ((texture.m_Height - height) / 2) >> level;
+		u8* data = texture.GetMipLevelData(level);
+		ENSURE(data);
+		const size_t levelWidth = texture.m_Width >> level;
+		const size_t levelHeight = texture.m_Height >> level;
+		const size_t dataShiftX = (levelWidth - width) / 2;
+		const size_t dataShiftY = (levelHeight - height) / 2;
 		for (size_t y = 0; y < height; ++y)
 			for (size_t x = 0; x < width; ++x)
 			{
 				const size_t bufferOffset = (y * width + x) * previewBPP;
-				const size_t dataOffset = (((y << level) + dataShiftY) * texture.m_Width + (x << level) + dataShiftX) * texture.m_Bpp / 8;
+				const size_t dataOffset = ((y + dataShiftY) * levelWidth + x + dataShiftX) * texture.m_Bpp / 8;
 				buffer[bufferOffset + 0] = data[dataOffset + 0];
 				buffer[bufferOffset + 1] = data[dataOffset + 1];
 				buffer[bufferOffset + 2] = data[dataOffset + 2];

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -728,6 +728,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	}
 
 	// Construct the new component
+	// NB: The unit motion manager relies on components not moving in memory once constructed.
 	IComponent* component = ct.alloc(m_ScriptInterface, obj);
 	ENSURE(component);
 

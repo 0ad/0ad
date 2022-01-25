@@ -13,14 +13,15 @@
 # Mephisto Books
 # naoki yoshida
 # Photon man
+# Ray I
 # sgensum
 # UNJIRO
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-12-21 17:11+0000\n"
-"Last-Translator: Photon man\n"
+"PO-Revision-Date: 2022-01-24 07:30+0000\n"
+"Last-Translator: Ray I\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -401,7 +402,7 @@ msgstr "マップ選択"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
-msgstr "プレイするマップを選択します。"
+msgstr "プレイするマップを選んでください"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
@@ -618,7 +619,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "マルチプレイヤーロビーをダイアログウインドウで表示します。"
+msgstr "マルチプレイヤーロビーをダイアログウインドウで表示する"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -634,24 +635,24 @@ msgstr "まだ準備ができていません！"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "プレイの準備ができたことを表明します。"
+msgstr "プレイの準備ができたことを表明する"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "ゲームの設定が変わっても準備きていることを表明する"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "プレイの準備ができていないことを表明します。"
+msgstr "プレイの準備ができていないことを表明する"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "選択されている文明をデフォルト（ランダム）に設定する"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "全てのチームをデフォルトに戻します。"
+msgstr "全てのチームをデフォルトに戻す"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -665,7 +666,7 @@ msgstr "現在の設定で新しいゲームを開始します。"
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "現在の設定で新しいゲームを開始する（すべてのプレーヤーの準備が整うまで無効）"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format

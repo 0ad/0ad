@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -140,6 +140,12 @@ public:
 	static constexpr CFixed FromInt(int n)
 	{
 		return CFixed(n << fract_bits);
+	}
+
+	// TODO C++20: this won't be necessary when operator/(int) can be made constexpr.
+	static constexpr CFixed FromFraction(int n, int d)
+	{
+		return CFixed(static_cast<int>(static_cast<unsigned int>(n) << fract_bits) / d);
 	}
 
 	static constexpr CFixed FromFloat(float n)

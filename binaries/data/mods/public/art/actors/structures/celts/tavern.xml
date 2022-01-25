@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Celt Tavern">
       <mesh>structural/celt_tavern.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
@@ -15,7 +15,7 @@
         <prop actor="props/structures/celts/celt_tavern_table.xml" attachpoint="table" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/celts/celt_tavern_bucket_food.xml" attachpoint="bucket_food" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/celts/celt_tavern_bucket_water.xml" attachpoint="bucket_water" maxheight="20" minheight="-20"/>
-        <prop actor="fauna/horse.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/mauryas/stable_horse_c.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
         <prop actor="particle/smoke_curved.xml" attachpoint="smoke"/>
       </props>
       <textures>

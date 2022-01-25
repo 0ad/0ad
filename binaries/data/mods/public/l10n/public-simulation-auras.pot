@@ -1,12 +1,12 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-07 07:53+0000\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-24 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -369,15 +369,26 @@ msgstr ""
 msgid "Temple at Naqa"
 msgstr ""
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.json:auraDescription
+#: simulation/data/auras/units/catafalques/mace_catafalque_1.json:auraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious "
 "and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
 msgstr ""
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.json:auraName
+#: simulation/data/auras/units/catafalques/mace_catafalque_1.json:auraName
 msgid "Sacker of Cities"
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/mace_catafalque_2.json:auraDescription
+msgid ""
+"Allied with Rome, Philip reorganized the country's internal affairs and finances, "
+"leaving as a legacy reopened mines and a new currency.\n"
+"Gain a slow trickle of metal."
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/mace_catafalque_2.json:auraName
+msgid "Financial Reorganization"
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.json:auraDescription

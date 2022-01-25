@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,25 +31,26 @@ class CCmpUnitMotion;
 class CCmpUnitMotionManager : public ICmpUnitMotionManager
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
-	{
-		componentManager.SubscribeToMessageType(MT_TerrainChanged);
-		componentManager.SubscribeToMessageType(MT_TurnStart);
-		componentManager.SubscribeToMessageType(MT_Update_Final);
-		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
-		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
-	}
+	static void ClassInit(CComponentManager& componentManager);
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotionManager)
+
+	/**
+	 * Maximum value for pushing pressure.
+	 */
+	static constexpr int MAX_PRESSURE = 255;
 
 	// Persisted state for each unit.
 	struct MotionState
 	{
-		MotionState(CmpPtr<ICmpPosition> cmpPos, CCmpUnitMotion* cmpMotion);
+		MotionState(ICmpPosition* cmpPos, CCmpUnitMotion* cmpMotion);
 
 		// Component references - these must be kept alive for the duration of motion.
-		// NB: this is generally not something one should do, but because of the tight coupling here it's doable.
-		CmpPtr<ICmpPosition> cmpPosition;
+		// NB: this is generally a super dangerous thing to do,
+		// but the tight coupling with CCmpUnitMotion makes it workable.
+		// NB: this assumes that components do _not_ move in memory,
+		// which is currently a fair assumption but might change in the future.
+		ICmpPosition* cmpPosition;
 		CCmpUnitMotion* cmpUnitMotion;
 
 		// Position before units start moving
@@ -69,6 +70,11 @@ public:
 		// (this is required because formations may be tight and large units may end up never settling.
 		entity_id_t controlGroup = INVALID_ENTITY;
 
+		// This is a ad-hoc counter to store under how much pushing 'pressure' an entity is.
+		// More pressure will slow the unit down and make it harder to push,
+		// which effectively bogs down groups of colliding units.
+		uint8_t pushingPressure = 0;
+
 		// Meta-flag -> this entity won't push nor be pushed.
 		// (used for entities that have their obstruction disabled).
 		bool ignore = false;
@@ -85,13 +91,24 @@ public:
 
 	// "Template" state, not serialized (cannot be changed mid-game).
 
-	// Multiplier for the pushing radius. Pre-multiplied by the circle-square correction factor.
-	entity_pos_t m_PushingRadius;
-	// Additive modifiers to the pushing radius for moving units and idle units respectively.
+	// The maximal distance at which units push each other is the combined unit clearances, multipled by this factor,
+	// itself pre-multiplied by the circle-square correction factor.
+	entity_pos_t m_PushingRadiusMultiplier;
+	// Additive modifiers to the maximum pushing distance for moving units and idle units respectively.
 	entity_pos_t m_MovingPushExtension;
 	entity_pos_t m_StaticPushExtension;
+	// Multiplier for the pushing 'spread'.
+	// This should be understand as the % of the maximum distance where pushing will be "in full force".
+	entity_pos_t m_MovingPushingSpread;
+	entity_pos_t m_StaticPushingSpread;
+
 	// Pushing forces below this value are ignored - this prevents units moving forever by very small increments.
 	entity_pos_t m_MinimalPushing;
+
+	// Multiplier for pushing pressure strength.
+	entity_pos_t m_PushingPressureStrength;
+	// Per-turn reduction in pushing pressure.
+	entity_pos_t m_PushingPressureDecay;
 
 	// These vectors are reconstructed on deserialization.
 
@@ -114,50 +131,10 @@ public:
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
-	{
-	}
+	virtual void Serialize(ISerializer& serialize);
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize);
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
-	{
-		Init(paramNode);
-		ResetSubdivisions();
-	}
-
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
-	{
-		switch (msg.GetType())
-		{
-			case MT_TerrainChanged:
-			{
-				CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-				if (cmpTerrain->GetVerticesPerSide() != m_MovingUnits.width())
-					ResetSubdivisions();
-				break;
-			}
-			case MT_TurnStart:
-			{
-				OnTurnStart();
-				break;
-			}
-			case MT_Update_MotionFormation:
-			{
-				fixed dt = static_cast<const CMessageUpdate_MotionFormation&>(msg).turnLength;
-				m_ComputingMotion = true;
-				MoveFormations(dt);
-				m_ComputingMotion = false;
-				break;
-			}
-			case MT_Update_MotionUnit:
-			{
-				fixed dt = static_cast<const CMessageUpdate_MotionUnit&>(msg).turnLength;
-				m_ComputingMotion = true;
-				MoveUnits(dt);
-				m_ComputingMotion = false;
-				break;
-			}
-		}
-	}
+	virtual void HandleMessage(const CMessage& msg, bool global);
 
 	virtual void Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController);
 	virtual void Unregister(entity_id_t ent);
@@ -169,10 +146,11 @@ public:
 
 	virtual bool IsPushingActivated() const
 	{
-		return m_PushingRadius != entity_pos_t::Zero();
+		return m_PushingRadiusMultiplier != entity_pos_t::Zero();
 	}
 
 private:
+	void OnDeserialized();
 	void ResetSubdivisions();
 	void OnTurnStart();
 
@@ -182,17 +160,6 @@ private:
 
 	void Push(EntityMap<MotionState>::value_type& a, EntityMap<MotionState>::value_type& b, fixed dt);
 };
-
-void CCmpUnitMotionManager::ResetSubdivisions()
-{
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-	if (!cmpTerrain)
-		return;
-
-	size_t size = cmpTerrain->GetMapSize();
-	u16 gridSquareSize = static_cast<u16>(size / 20 + 1);
-	m_MovingUnits.resize(gridSquareSize, gridSquareSize);
-}
 
 REGISTER_COMPONENT_TYPE(UnitMotionManager)
 

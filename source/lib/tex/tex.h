@@ -333,6 +333,14 @@ struct Tex
 	u8* get_data();
 
 	/**
+	 * return a pointer to the mip level image data (pixels).
+	 *
+	 * @param level which level's data should be returned.
+	 * @return pointer to the data.
+	 **/
+	u8* GetMipLevelData(const u32 level);
+
+	/**
 	 * return the ARGB value of the 1x1 mipmap level of the texture.
 	 *
 	 * @return ARGB value (or 0 if texture does not have mipmaps)

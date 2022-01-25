@@ -132,6 +132,8 @@ PETRA.BasesManager.prototype.checkEvents = function(gameState, events)
 			evt.metadata[PlayerID].base)
 		{
 			const ent = evt.entityObj;
+			if (evt?.metadata?.[PlayerID]?.assignedResource)
+				this.getBaseByID(evt.metadata[PlayerID].base).removeFromAssignedDropsite(ent);
 			if (ent.owner() != PlayerID)
 				continue;
 			// A new base foundation was created and destroyed on the same (AI) turn

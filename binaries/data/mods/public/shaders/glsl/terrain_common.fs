@@ -106,11 +106,6 @@ void main()
   #if BLEND
     // Use alpha from blend texture
     alpha = 1.0 - texture2D(blendTex, v_blend).a;
-
-    #if USE_GRASS
-      if (alpha < LAYER / 10.0)
-        discard;
-    #endif
   #else
     alpha = 1.0;
   #endif
@@ -119,11 +114,6 @@ void main()
     vec4 tex = triplanar(baseTex, v_tex);
   #else
     vec4 tex = texture2D(baseTex, v_tex.xy);
-  #endif
-
-  #if USE_GRASS && LAYER
-    if (tex.a < 0.05)
-      discard;
   #endif
 
   #if DECAL
@@ -184,10 +174,6 @@ void main()
 
   #if DECAL
     color *= shadingColor;
-  #endif
-
-  #if USE_GRASS
-    alpha = tex.a;
   #endif
 
   gl_FragColor = vec4(applyDebugColor(color, 1.0, 1.0, 0.0), alpha);
