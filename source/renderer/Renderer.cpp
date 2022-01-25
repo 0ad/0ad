@@ -435,10 +435,6 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	g_RenderingOptions.m_RenderPath = rp;
 
 	MakeShadersDirty();
-
-	// We might need to regenerate some render data after changing path
-	if (g_Game)
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_COLOR);
 }
 
 bool CRenderer::ShouldRender() const

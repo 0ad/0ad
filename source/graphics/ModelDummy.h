@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,6 @@ public:
 	virtual CModelDummy* ToCModelDummy() { return this; }
 
 	virtual void CalcBounds() {};
-	virtual void SetDirtyRec(int) {};
 	virtual void SetTerrainDirty(ssize_t, ssize_t, ssize_t, ssize_t) {}
 	virtual void ValidatePosition() {};
 	virtual void InvalidatePosition() {};

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,9 +88,6 @@ public:
 	// (This dynamic casting is a bit ugly, but we won't have many subclasses
 	// and this seems the easiest way to integrate with other code that wants
 	// type-specific processing)
-
-	/// Calls SetDirty on this model and all child objects.
-	virtual void SetDirtyRec(int dirtyflags) = 0;
 
 	/// Returns world space bounds of this object and all child objects.
 	virtual const CBoundingBoxAligned GetWorldBoundsRec() { return GetWorldBounds(); } // default implementation
