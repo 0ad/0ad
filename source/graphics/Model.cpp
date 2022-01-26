@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,6 @@
 #include "graphics/ObjectEntry.h"
 #include "graphics/SkeletonAnim.h"
 #include "graphics/SkeletonAnimDef.h"
-#include "graphics/SkeletonAnimManager.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Quaternion.h"
 #include "lib/sysdep/rtl.h"
@@ -40,10 +39,9 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
-CModel::CModel(CSkeletonAnimManager& skeletonAnimManager, CSimulation2& simulation)
+CModel::CModel(CSimulation2& simulation)
 	: m_Flags(0), m_Anim(NULL), m_AnimTime(0), m_Simulation(simulation),
-	m_BoneMatrices(NULL), m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0),
-	m_SkeletonAnimManager(skeletonAnimManager)
+	m_BoneMatrices(NULL), m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0)
 {
 }
 
@@ -196,43 +194,6 @@ const CBoundingBoxAligned CModel::GetObjectSelectionBoundsRec()
 	}
 
 	return objBounds;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BuildAnimation: load raw animation frame animation from given file, and build a
-// animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, const CStr& ID, int frequency, float speed, float actionpos, float actionpos2, float soundpos)
-{
-	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(pathname);
-	if (!def)
-		return NULL;
-
-	CSkeletonAnim* anim = new CSkeletonAnim();
-	anim->m_Name = name;
-	anim->m_ID = ID;
-	anim->m_Frequency = frequency;
-	anim->m_AnimDef = def;
-	anim->m_Speed = speed;
-
-	if (actionpos == -1.f)
-		anim->m_ActionPos = -1.f;
-	else
-		anim->m_ActionPos = actionpos * anim->m_AnimDef->GetDuration();
-
-	if (actionpos2 == -1.f)
-		anim->m_ActionPos2 = -1.f;
-	else
-		anim->m_ActionPos2 = actionpos2 * anim->m_AnimDef->GetDuration();
-
-	if (soundpos == -1.f)
-		anim->m_SoundPos = -1.f;
-	else
-		anim->m_SoundPos = soundpos * anim->m_AnimDef->GetDuration();
-
-	anim->m_ObjectBounds.SetEmpty();
-	InvalidateBounds();
-
-	return anim;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -533,7 +494,7 @@ CModelAbstract* CModel::FindFirstAmmoProp()
 // Clone: return a clone of this model
 CModelAbstract* CModel::Clone() const
 {
-	CModel* clone = new CModel(m_SkeletonAnimManager, m_Simulation);
+	CModel* clone = new CModel(m_Simulation);
 	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetMaterial(m_Material);

@@ -32,7 +32,6 @@ struct SPropPoint;
 class CObjectEntry;
 class CSkeletonAnim;
 class CSkeletonAnimDef;
-class CSkeletonAnimManager;
 class CSimulation2;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
@@ -77,7 +76,7 @@ public:
 
 public:
 	// constructor
-	CModel(CSkeletonAnimManager& skeletonAnimManager, CSimulation2& simulation);
+	CModel(CSimulation2& simulation);
 	// destructor
 	~CModel();
 
@@ -188,21 +187,6 @@ public:
 	}
 
 	/**
-	 * Load raw animation frame animation from given file, and build an
-	 * animation specific to this model.
-	 * @param pathname animation file to load
-	 * @param name animation name (e.g. "idle")
-	 * @param ID specific ID of the animation, to sync with props
-	 * @param frequency influences the random choices
-	 * @param speed animation speed as a factor of the default animation speed
-	 * @param actionpos offset of 'action' event, in range [0, 1]
-	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
-	 * @param sound offset of 'sound' event, in range [0, 1]
-	 * @return new animation, or NULL on error
-	 */
-	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, const CStr& ID, int frequency, float speed, float actionpos, float actionpos2, float soundpos);
-
-	/**
 	 * Add a prop to the model on the given point.
 	 */
 	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight = 0.f, float maxHeight = 0.f, bool selectable = true);
@@ -290,9 +274,6 @@ private:
 	 * If m_AmmoPropPoint is not NULL, then the index in m_Props of the ammo prop
 	 */
 	size_t m_AmmoLoadedProp;
-
-	// manager object which can load animations for us
-	CSkeletonAnimManager& m_SkeletonAnimManager;
 };
 
 #endif
