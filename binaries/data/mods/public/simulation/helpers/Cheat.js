@@ -164,8 +164,7 @@ function Cheat(input)
 			}
 		}
 
-		if (TechnologyTemplates.Has(techname) &&
-		    !cmpTechnologyManager.IsTechnologyResearched(techname))
+		if (TechnologyTemplates.Has(techname))
 			cmpTechnologyManager.ResearchTechnology(techname);
 		return;
 	}

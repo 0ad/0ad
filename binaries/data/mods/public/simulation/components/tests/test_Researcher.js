@@ -24,7 +24,7 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 
 AddMock(playerEntityID, IID_Player, {
 	"GetCiv": () => "iber",
-	"GetDisabledTechnologies": () => ({})
+	"GetDisabledTechnologies": () => ({}) // ToDo: Should be in the techmanager.
 });
 
 AddMock(playerEntityID, IID_TechnologyManager, {
@@ -98,23 +98,15 @@ const cmpPlayer = AddMock(playerEntityID, IID_Player, {
 	"GetCiv": () => "iber",
 	"GetDisabledTechnologies": () => ({}),
 	"GetPlayerID": () => playerID,
-	"TrySubtractResources": (resources) => {
-		TS_ASSERT_UNEVAL_EQUALS(resources, cost);
-		// Just have enough resources.
-		return true;
-	},
-	"RefundResources": (resources) => {
-		TS_ASSERT_UNEVAL_EQUALS(resources, cost);
-	},
 });
-let spyCmpPlayer = new Spy(cmpPlayer, "TrySubtractResources");
 const techManager = AddMock(playerEntityID, IID_TechnologyManager, {
 	"CheckTechnologyRequirements": () => true,
 	"IsInProgress": () => false,
 	"IsTechnologyResearched": () => false,
-	"QueuedResearch": (templateName, researcher) => {
+	"QueuedResearch": (templateName, researcher, techCostMultiplier) => {
 		TS_ASSERT_UNEVAL_EQUALS(templateName, queuedTech);
 		TS_ASSERT_UNEVAL_EQUALS(researcher, entityID);
+		return true;
 	},
 	"StoppedResearch": (templateName, _) => {
 		TS_ASSERT_UNEVAL_EQUALS(templateName, queuedTech);
@@ -129,30 +121,26 @@ const techManager = AddMock(playerEntityID, IID_TechnologyManager, {
 let spyTechManager = new Spy(techManager, "QueuedResearch");
 let id = cmpResearcher.QueueTechnology(queuedTech);
 TS_ASSERT_EQUALS(spyTechManager._called, 1);
-TS_ASSERT_EQUALS(spyCmpPlayer._called, 1);
 TS_ASSERT_EQUALS(cmpResearcher.queue.size, 1);
 
 
 // Test removing a queued tech.
-spyCmpPlayer = new Spy(cmpPlayer, "RefundResources");
 spyTechManager = new Spy(techManager, "StoppedResearch");
 cmpResearcher.StopResearching(id);
 TS_ASSERT_EQUALS(spyTechManager._called, 1);
-TS_ASSERT_EQUALS(spyCmpPlayer._called, 1);
 TS_ASSERT_EQUALS(cmpResearcher.queue.size, 0);
 
 
 // Test finishing a queued tech.
 id = cmpResearcher.QueueTechnology(queuedTech);
-TS_ASSERT_EQUALS(cmpResearcher.GetResearchingTechnology(id).progress, 0);
+techManager.Progress = () => 500;
+techManager.IsTechnologyQueued = () => true;
 TS_ASSERT_EQUALS(cmpResearcher.Progress(id, 500), 500);
-TS_ASSERT_EQUALS(cmpResearcher.GetResearchingTechnology(id).progress, 0.5);
 
 cmpResearcher = SerializationCycle(cmpResearcher);
 
-spyTechManager = new Spy(techManager, "ResearchTechnology");
+techManager.IsTechnologyQueued = () => false;
 TS_ASSERT_EQUALS(cmpResearcher.Progress(id, 1000), 500);
-TS_ASSERT_EQUALS(spyTechManager._called, 1);
 TS_ASSERT_EQUALS(cmpResearcher.queue.size, 0);
 
 

@@ -212,11 +212,9 @@ m.GameState.prototype.isResearched = function(template)
 	return this.playerData.researchedTechs.has(template);
 };
 
-/** true if started or queued */
 m.GameState.prototype.isResearching = function(template)
 {
-	return this.playerData.researchStarted.has(template) ||
-	       this.playerData.researchQueued.has(template);
+	return this.playerData.researchQueued.has(template);
 };
 
 /** this is an "in-absolute" check that doesn't check if we have a building to research from. */
@@ -229,9 +227,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	if (!template)
 		return false;
 
-	// researching or already researched: NOO.
 	if (this.playerData.researchQueued.has(techTemplateName) ||
-	    this.playerData.researchStarted.has(techTemplateName) ||
 	    this.playerData.researchedTechs.has(techTemplateName))
 		return false;
 
@@ -243,7 +239,6 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	{
 		let other = template.pairedWith();
 		if (this.playerData.researchQueued.has(other) ||
-		    this.playerData.researchStarted.has(other) ||
 		    this.playerData.researchedTechs.has(other))
 			return false;
 	}
