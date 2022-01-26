@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,9 +91,6 @@ public:
 private:
 	// Unloads all graphics resources loaded by RegisterInit.
 	void UnloadResources();
-
-	// Checks whether lighting environment has changed and update vertex data if necessary.
-	void CheckLightEnv();
 
 	CGameViewImpl* m;
 };

@@ -28,6 +28,7 @@ namespace Backend
 GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 {
 	GraphicsPipelineStateDesc desc{};
+
 	desc.blendState.enabled = false;
 	desc.blendState.srcColorBlendFactor = desc.blendState.srcAlphaBlendFactor =
 		BlendFactor::ONE;
@@ -35,6 +36,9 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 		BlendFactor::ZERO;
 	desc.blendState.colorBlendOp = desc.blendState.alphaBlendOp = BlendOp::ADD;
 	desc.blendState.constant = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+	desc.rasterizationState.cullMode = CullMode::BACK;
+	desc.rasterizationState.frontFace = FrontFace::COUNTER_CLOCKWISE;
 	return desc;
 }
 
@@ -77,6 +81,28 @@ BlendOp ParseBlendOp(const CStr& str)
 #undef CASE
 	debug_warn("Invalid blend op");
 	return BlendOp::ADD;
+}
+
+CullMode ParseCullMode(const CStr& str)
+{
+	if (str == "NONE")
+		return CullMode::NONE;
+	else if (str == "FRONT")
+		return CullMode::FRONT;
+	else if (str == "BACK")
+		return CullMode::BACK;
+	debug_warn("Invalid cull mode");
+	return CullMode::BACK;
+}
+
+FrontFace ParseFrontFace(const CStr& str)
+{
+	if (str == "CLOCKWISE")
+		return FrontFace::CLOCKWISE;
+	else if (str == "COUNTER_CLOCKWISE")
+		return FrontFace::COUNTER_CLOCKWISE;
+	debug_warn("Invalid front face");
+	return FrontFace::COUNTER_CLOCKWISE;
 }
 
 } // namespace Backend

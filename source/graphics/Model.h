@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,14 +124,6 @@ public:
 	// remove shadow casting and receiving, recursively through props
 	// TODO: replace with more generic shader define + flags setting
 	void RemoveShadowsRec();
-
-	// recurse down tree setting dirty bits
-	virtual void SetDirtyRec(int dirtyflags) {
-		SetDirty(dirtyflags);
-		for (size_t i=0;i<m_Props.size();i++) {
-			m_Props[i].m_Model->SetDirtyRec(dirtyflags);
-		}
-	}
 
 	virtual void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
 	{

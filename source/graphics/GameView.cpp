@@ -123,12 +123,6 @@ public:
 	 */
 	bool Culling;
 
-	/**
-	 * Cache global lighting environment. This is used  to check whether the
-	 * environment has changed during the last frame, so that vertex data can be updated etc.
-	 */
-	CLightEnv CachedLightEnv;
-
 	CCinemaManager CinemaManager;
 
 	/**
@@ -236,8 +230,6 @@ void CGameView::BeginFrame()
 	}
 	g_Renderer.GetSceneRenderer().SetSceneCamera(m->ViewCamera, m->CullCamera);
 
-	CheckLightEnv();
-
 	m->Game->CachePlayerColors();
 }
 
@@ -278,27 +270,6 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 
 	m->Game->GetSimulation2()->RenderSubmit(*c, frustum, m->Culling);
 }
-
-
-void CGameView::CheckLightEnv()
-{
-	if (m->CachedLightEnv == g_LightEnv)
-		return;
-
-	m->CachedLightEnv = g_LightEnv;
-	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-
-	if (!pTerrain)
-		return;
-
-	PROFILE("update light env");
-	pTerrain->MakeDirty(RENDERDATA_UPDATE_COLOR);
-
-	const std::vector<CUnit*>& units = m->Game->GetWorld()->GetUnitManager().GetUnits();
-	for (size_t i = 0; i < units.size(); ++i)
-		units[i]->GetModel().SetDirtyRec(RENDERDATA_UPDATE_COLOR);
-}
-
 
 void CGameView::UnloadResources()
 {

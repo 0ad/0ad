@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,6 @@
 // need updating
 #define RENDERDATA_UPDATE_VERTICES		(1<<1)
 #define RENDERDATA_UPDATE_INDICES		(1<<2)
-#define RENDERDATA_UPDATE_COLOR			(1<<4)
 
 
 ///////////////////////////////////////////////////////////////////////////////
