@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Crest-1">
+    <variant frequency="1" name="Crest-01-01">
       <mesh>props/helmet/props/iber_crest_c.dae</mesh>
       <textures>
         <texture file="props/helmet/iber_crest_c.png" name="baseTex"/>
@@ -10,16 +10,27 @@
         <texture file="props/helmet/iber_crest_c_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Crest-2">
-      <mesh>props/helmet/props/iber_crest_d.dae</mesh>
+    <variant frequency="1" name="Crest-01-02">
+      <mesh>props/helmet/props/iber_crest_c.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/hele_phrygian_feathers.xml" attachpoint="root"/>
+      </props>
       <textures>
-        <texture file="props/helmet/iber_crest_d.png" name="baseTex"/>
-        <texture file="props/helmet/iber_crest_d_norm.png" name="normTex"/>
-        <texture file="props/helmet/iber_crest_d_spec.png" name="specTex"/>
+        <texture file="props/helmet/iber_crest_c.png" name="baseTex"/>
+        <texture file="props/helmet/iber_crest_c_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_crest_c_spec.png" name="specTex"/>
       </textures>
+    </variant>
+    <variant frequency="1" name="Crest-02-01">
+      <mesh>props/helmet/props/iber_crest_d.dae</mesh>
       <props>
         <prop actor="props/units/helmets/props/iber_crest_c_hair.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="props/helmet/iber_crest_d_01.png" name="baseTex"/>
+        <texture file="props/helmet/iber_crest_d_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_crest_d_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>

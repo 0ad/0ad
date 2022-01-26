@@ -3,38 +3,101 @@
   <castshadow/>
   <group>
     <variant>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/iber_round_su1.xml" attachpoint="shield"/>
-        <prop actor="props/units/helmets/iber_helmet_c.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/iber_round_large_01_all.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sheath_falcata_e.xml" attachpoint="sheath_01_L"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armour-pectoral-1">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Iberian-Helmet-Chalidean-Basic">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_b6.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Chalidean-Advanced">
+      <props>
+        <prop actor="props/units/helmets/iber_chalcidean_a2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Elite">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_c.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Montefortino-01">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_montefortino_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Iber-Chainmail-01-01">
       <textures>
-        <texture file="skeletal/iber_su_inf_1.dds" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armour-pectoral-2">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+    <variant frequency="1" name="Iber-Chainmail-01-02">
       <textures>
-        <texture file="skeletal/iber_su_inf_2.dds" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armour-chainmail">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+    <variant frequency="1" name="Iber-Chainmail-01-03">
       <textures>
-        <texture file="skeletal/iber_champ_inf_3.dds" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-scale-1a">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+    <variant frequency="1" name="Iber-Chainmail-02-05">
       <textures>
-        <texture file="skeletal/iber_padded_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Chainmail-02-06">
+      <textures>
+        <texture file="skeletal/iber_chainmail_02_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Scale-01-01">
+      <textures>
+        <texture file="skeletal/iber_scale_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Scale-01-02">
+      <textures>
+        <texture file="skeletal/iber_scale_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Linothorax-02-01">
+      <textures>
+        <texture file="skeletal/iber_linothorax_02_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Linothorax-02-02">
+      <textures>
+        <texture file="skeletal/iber_linothorax_02_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Linothorax-02-03">
+      <textures>
+        <texture file="skeletal/iber_linothorax_02_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-01-01">
+      <textures>
+        <texture file="skeletal/iber_padded_cardiophylax_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-01-02">
+      <textures>
+        <texture file="skeletal/iber_padded_cardiophylax_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-01-03">
+      <textures>
+        <texture file="skeletal/iber_padded_cardiophylax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

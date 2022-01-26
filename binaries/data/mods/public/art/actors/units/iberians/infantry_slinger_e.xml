@@ -7,42 +7,42 @@
       <props>
         <prop actor="props/units/heads/new/head_iber_basic.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/old/iber_helmet_01.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/iber_round_small_01_advanced.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="slinger-quilted-1a">
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-01">
       <textures>
-        <texture file="skeletal/iber_padded_slinger_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_quilted_slinger_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="slinger-quilted-1b">
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-02">
       <textures>
-        <texture file="skeletal/iber_padded_slinger_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_quilted_slinger_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="slinger-quilted-1c">
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-03">
       <textures>
-        <texture file="skeletal/iber_padded_slinger_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_quilted_slinger_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="slinger-quilted-2a">
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-02-01">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_slinger_2_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_quilted_slinger_02_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="slinger-quilted-2b">
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-02-02">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_slinger_2_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_quilted_slinger_02_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="slinger-quilted-2c">
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-02-03">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_slinger_2_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_quilted_slinger_02_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

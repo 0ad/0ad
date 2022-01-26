@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="iberian-cloth-helmet-mesh-old">
+      <mesh>props/helmet/old/iberian_04.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/iber_04.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="iberian-cloth-helmet-01-01">
+      <textures>
+        <texture file="props/helmet/iber_cloth_helmet_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="iberian-cloth-helmet-01-02">
+      <textures>
+        <texture file="props/helmet/iber_cloth_helmet_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="iberian-cloth-helmet-01-03">
+      <textures>
+        <texture file="props/helmet/iber_cloth_helmet_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

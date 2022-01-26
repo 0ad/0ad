@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="3" name="Brass">
+      <textures>
+        <texture file="props/helmet/iber_montefortino_01_brass.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Bronze">
+      <textures>
+        <texture file="props/helmet/iber_montefortino_01_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Iron">
+      <textures>
+        <texture file="props/helmet/iber_montefortino_01_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Silver">
+      <textures>
+        <texture file="props/helmet/iber_montefortino_01_silver.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Crest-None"/>
+    <variant frequency="1" name="Crest-Feather">
+      <props>
+        <prop actor="props/units/helmets/props/helmet_feather_c.xml" attachpoint="hair"/>
+        <prop actor="props/units/helmets/props/hele_phrygian_feathers.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Hair-Side">
+      <props>
+        <prop actor="props/units/helmets/props/iber_hair_montefortino_01_side_left.xml" attachpoint="hair"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="Hair-Back">
+      <props>
+        <prop actor="props/units/helmets/props/hele_thracian_romanized_long_hair.xml" attachpoint="hair"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <mesh>props/helmet/celt_montefortino_01.dae</mesh>
+      <textures>
+        <texture file="props/helmet/iber_montefortino_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/iber_montefortino_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

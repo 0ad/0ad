@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Iber-Hair-Montefortino-01-Side-Left">
+      <mesh>props/helmet/props/iber_hair_montefortino_01_side_left.dae</mesh>
+      <textures>
+        <texture file="props/helmet/iber_hair_montefortino_01_side_left.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
