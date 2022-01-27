@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_hero_caros.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/old/iber_helmet_hero_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/iber_chalcidean_a2.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_L"/>
-        <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/iber_round_large_01_all.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/sheath_falcata_e.xml" attachpoint="sheath_01_L"/>
+        <prop actor="props/units/armor/greave_04_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_04_bronze_r.xml" attachpoint="leg_R"/>
       </props>
       <textures>
-        <texture file="skeletal/iber_hero_caros.dds" name="baseTex"/>
+        <texture file="skeletal/iber_hero_caros_01_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

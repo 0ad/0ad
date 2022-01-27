@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
@@ -30,64 +30,34 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="skin 01">
+    <variant frequency="1" name="Celtic-Tunic-Sleeveles-01">
       <textures>
-        <texture file="skeletal/celt_ijv_a_01.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_sleeveless_1_a.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="skin 02">
+    <variant frequency="1" name="Celtic-Tunic-Sleeveles-02">
       <textures>
-        <texture file="skeletal/celt_ijv_a_02.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_sleeveless_1_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="skin 03">
+    <variant frequency="1" name="Celtic-Tunic-Sleeveles-03">
       <textures>
-        <texture file="skeletal/celt_ijv_a_03.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_sleeveless_1_c.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="skin 04">
+    <variant frequency="1" name="Celtic-Tunic-Sleeveles-04">
       <textures>
-        <texture file="skeletal/celt_ijv_a_04.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_sleeveless_1_d.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="skin 05">
+    <variant frequency="1" name="Celtic-Tunic-Sleeveles-05">
       <textures>
-        <texture file="skeletal/celt_ijv_a_05.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="skin 06">
-      <textures>
-        <texture file="skeletal/celt_ijv_a_06.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="skin 07">
-      <textures>
-        <texture file="skeletal/celt_ijv_a_07.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="skin 08">
-      <textures>
-        <texture file="skeletal/celt_ijv_a_08.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="skin 09">
-      <textures>
-        <texture file="skeletal/celt_ijv_a_09.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="skin 10">
-      <textures>
-        <texture file="skeletal/celt_ijv_a_10.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="skin 11">
-      <textures>
-        <texture file="skeletal/celt_ijv_a_11.dds" name="baseTex"/>
+        <texture file="skeletal/gaul_tunic_sleeveless_1_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_skirmisher_fast.xml" name="Skirmisher-Shield-Fast" frequency="1"/>
+    <variant file="biped/base_skirmisher_fast.xml" frequency="1" name="Skirmisher-Shield-Fast"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>

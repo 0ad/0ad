@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,8 @@
 
 class CColladaManager;
 class CSkeletonAnimDef;
+class CSkeletonAnim;
+class CStr8;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager : owner class of all skeleton anims - manages creation,
@@ -44,6 +46,21 @@ public:
 	// return a given animation by filename; return null if filename doesn't
 	// refer to valid animation file
 	CSkeletonAnimDef* GetAnimation(const VfsPath& pathname);
+
+	/**
+	 * Load raw animation frame animation from given file, and build an
+	 * animation specific to this model.
+	 * @param pathname animation file to load
+	 * @param name animation name (e.g. "idle")
+	 * @param ID specific ID of the animation, to sync with props
+	 * @param frequency influences the random choices
+	 * @param speed animation speed as a factor of the default animation speed
+	 * @param actionpos offset of 'action' event, in range [0, 1]
+	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
+	 * @param sound offset of 'sound' event, in range [0, 1]
+	 * @return new animation, or NULL on error
+	 */
+	std::unique_ptr<CSkeletonAnim> BuildAnimation(const VfsPath& pathname, const CStr8& name, const CStr8& ID, int frequency, float speed, float actionpos, float actionpos2, float soundpos);
 
 private:
 	// map of all known animations. Value is NULL if it failed to load.

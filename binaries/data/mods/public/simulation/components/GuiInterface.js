@@ -122,7 +122,6 @@ GuiInterface.prototype.GetSimulationState = function()
 			"matchEntityCounts": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetMatchCounts() : null,
 			"entityLimitChangers": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetLimitChangers() : null,
 			"researchQueued": cmpTechnologyManager ? cmpTechnologyManager.GetQueuedResearch() : null,
-			"researchStarted": cmpTechnologyManager ? cmpTechnologyManager.GetStartedTechs() : null,
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null,
@@ -687,30 +686,7 @@ GuiInterface.prototype.CheckTechnologyRequirements = function(player, data)
  */
 GuiInterface.prototype.GetStartedResearch = function(player)
 {
-	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
-	if (!cmpTechnologyManager)
-		return {};
-
-	let ret = {};
-	for (let tech of cmpTechnologyManager.GetStartedTechs())
-	{
-		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
-		const cmpResearcher = Engine.QueryInterface(ret[tech].researcher, IID_Researcher);
-		if (cmpResearcher)
-		{
-			const research = cmpResearcher.GetResearchingTechnologyByName(tech);
-			ret[tech].progress = research.progress;
-			ret[tech].timeRemaining = research.timeRemaining;
-			ret[tech].paused = research.paused;
-		}
-		else
-		{
-			ret[tech].progress = 0;
-			ret[tech].timeRemaining = 0;
-			ret[tech].paused = true;
-		}
-	}
-	return ret;
+	return QueryPlayerIDInterface(player, IID_TechnologyManager)?.GetBasicInfoOfStartedTechs() || {};
 };
 
 /**

@@ -6,38 +6,27 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/helmets/iber_helmet_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/iber_round_small_01_advanced.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/sheath_falcata_e.xml" attachpoint="sheath_01_L"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet_1">
-      <props>
-        <prop actor="props/units/helmets/iber_helmet_b.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet_3">
-      <props>
-        <prop actor="props/units/helmets/iber_helmet_a.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="3" name="cardiopylax-1a">
+    <variant frequency="3" name="Iber-Vest-Strap-01-01">
       <textures>
-        <texture file="skeletal/iber_cardiopylax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_vest_strap_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="cardiopylax-1b">
+    <variant frequency="2" name="Iber-Vest-Strap-01-02">
       <textures>
-        <texture file="skeletal/iber_cardiopylax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_vest_strap_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="cardiopylax-1c">
+    <variant frequency="1" name="Iber-Vest-Strap-01-03">
       <textures>
-        <texture file="skeletal/iber_cardiopylax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_vest_strap_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

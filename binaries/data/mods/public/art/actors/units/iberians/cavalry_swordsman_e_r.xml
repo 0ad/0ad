@@ -6,62 +6,57 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_adv.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kart_csw_round_e.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/iber_round_large_01_elite.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Berru Helmet-02">
+    <variant frequency="1" name="Iberian-Helmet-Basic">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/iber_helmet_b.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Montefortino Helmet-01">
+    <variant frequency="1" name="Iberian-Helmet-Chalcidean-Basic">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_montefortino_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_chalcidean_b6.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Cigarralejo-01">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_cigarralejo_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="chainmail-javelinist-2a">
+    <variant frequency="1" name="Iber-Chainmail-02-01">
       <textures>
-        <texture file="skeletal/iber_chainmail_javelinist_2_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-javelinist-2b">
+    <variant frequency="1" name="Iber-Chainmail-02-02">
       <textures>
-        <texture file="skeletal/iber_chainmail_javelinist_2_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-javelinist-2c">
+    <variant frequency="1" name="Iber-Chainmail-02-03">
       <textures>
-        <texture file="skeletal/iber_chainmail_javelinist_2_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-javelinist-1a">
+    <variant frequency="3" name="Iber-Linothorax-02-01">
       <textures>
-        <texture file="skeletal/iber_chainmail_javelinist_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_02_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-javelinist-1b">
+    <variant frequency="3" name="Iber-Linothorax-02-02">
       <textures>
-        <texture file="skeletal/iber_chainmail_javelinist_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_02_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-javelinist-1c">
+    <variant frequency="3" name="Iber-Linothorax-02-03">
       <textures>
-        <texture file="skeletal/iber_chainmail_javelinist_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="chainmail-cardiopylax-champion-1a">
-      <textures>
-        <texture file="skeletal/iber_chainmail_cardiopylax_champion_1_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="chainmail-cardiopylax-champion-1b">
-      <textures>
-        <texture file="skeletal/iber_chainmail_cardiopylax_champion_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_02_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

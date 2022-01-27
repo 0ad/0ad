@@ -3,29 +3,44 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_adv.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kart_csw_round_a.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/helmets/old/iber_helmet_04.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/iber_round_large_01_advanced.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/helmets/iber_cloth_helmet_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="cardiopylax-javelinist-1a">
+    <variant frequency="1" name="Iber-Linothorax-01-01">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_javelinist_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="cardiopylax-javelinist-1b">
+    <variant frequency="1" name="Iber-Linothorax-01-02">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_javelinist_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="cardiopylax-javelinist-1c">
+    <variant frequency="1" name="Iber-Linothorax-01-03">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_javelinist_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Leather-01-01">
+      <textures>
+        <texture file="skeletal/iber_padded_leather_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Leather-01-02">
+      <textures>
+        <texture file="skeletal/iber_padded_leather_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Leather-01-03">
+      <textures>
+        <texture file="skeletal/iber_padded_leather_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

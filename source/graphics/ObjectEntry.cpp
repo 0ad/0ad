@@ -30,6 +30,7 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/SkeletonAnim.h"
+#include "graphics/SkeletonAnimManager.h"
 #include "graphics/TextureManager.h"
 #include "lib/rand.h"
 #include "ps/CLogger.h"
@@ -48,9 +49,6 @@ CObjectEntry::CObjectEntry(const std::shared_ptr<CObjectBase>& base, CSimulation
 
 CObjectEntry::~CObjectEntry()
 {
-	for (const std::pair<const CStr, CSkeletonAnim*>& anim : m_Animations)
-		delete anim.second;
-
 	delete m_Model;
 }
 
@@ -130,7 +128,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 	}
 
 	// delete old model, create new
-	CModel* model = new CModel(objectManager.GetSkeletonAnimManager(), m_Simulation);
+	CModel* model = new CModel(m_Simulation);
 	delete m_Model;
 	m_Model = model;
 	model->SetMaterial(g_Renderer.GetSceneRenderer().GetMaterialManager().LoadMaterial(m_Base->m_Material));
@@ -169,7 +167,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 
 		if (it->second.m_FileName.empty())
 			continue;
-		CSkeletonAnim* anim = model->BuildAnimation(
+		std::unique_ptr<CSkeletonAnim> anim = objectManager.GetSkeletonAnimManager().BuildAnimation(
 			it->second.m_FileName,
 			name,
 			it->second.m_ID,
@@ -179,13 +177,13 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 			it->second.m_ActionPos2,
 			it->second.m_SoundPos);
 		if (anim)
-			m_Animations.insert(std::make_pair(name, anim));
+			m_Animations.emplace(name, std::move(anim));
 	}
 
 	// ensure there's always an idle animation
 	if (m_Animations.find("idle") == m_Animations.end())
 	{
-		CSkeletonAnim* anim = new CSkeletonAnim();
+		std::unique_ptr<CSkeletonAnim> anim = std::make_unique<CSkeletonAnim>();
 		anim->m_Name = "idle";
 		anim->m_ID = "";
 		anim->m_AnimDef = NULL;
@@ -194,10 +192,10 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 		anim->m_ActionPos = 0.f;
 		anim->m_ActionPos2 = 0.f;
 		anim->m_SoundPos = 0.f;
-		m_Animations.insert(std::make_pair("idle", anim));
+		SkeletonAnimMap::const_iterator it = m_Animations.emplace("idle", std::move(anim));
 
 		// Ignore errors, since they're probably saying this is a non-animated model
-		model->SetAnimation(anim);
+		model->SetAnimation(it->second.get());
 	}
 	else
 	{
@@ -302,7 +300,7 @@ std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationNam
 	for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
 	{
 		if (ID.empty() || it->second->m_ID == ID)
-			anims.push_back(it->second);
+			anims.push_back(it->second.get());
 	}
 
 	if (anims.empty())
@@ -310,7 +308,7 @@ std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationNam
 		lower = m_Animations.lower_bound("idle");
 		upper = m_Animations.upper_bound("idle");
 		for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
-			anims.push_back(it->second);
+			anims.push_back(it->second.get());
 	}
 
 	ENSURE(!anims.empty());

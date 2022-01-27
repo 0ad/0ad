@@ -6,62 +6,105 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/helmets/iber_helmet_e.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/iber_round_small_01_elite.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/sheath_falcata_e.xml" attachpoint="sheath_01_L"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Padded-cardiopylax-original">
+    <variant frequency="1" name="Iberian-Helmet-Basic">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Cigarralejo-01">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_cigarralejo_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Chalcidean-Basic">
+      <props>
+        <prop actor="props/units/helmets/hele_chalcidean_b6.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Iberian-Helmet-Montefortino-02">
+      <props>
+        <prop actor="props/units/helmets/iber_helmet_montefortino_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Iber-Chainmail-02-01">
       <textures>
-        <texture file="skeletal/iber_isw_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Padded-cardiopylax-1a">
+    <variant frequency="1" name="Iber-Chainmail-02-02">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Padded-cardiopylax-1b">
+    <variant frequency="1" name="Iber-Chainmail-02-03">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_chainmail_02_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Padded-cardiopylax-1c">
+    <variant frequency="3" name="Iber-Linothorax-02-01">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_02_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-cardiopylax-champion-1a">
+    <variant frequency="3" name="Iber-Linothorax-02-02">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_champion_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_02_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-cardiopylax-champion-1b">
+    <variant frequency="3" name="Iber-Linothorax-02-03">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_champion_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_02_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-cardiopylax-champion-1c">
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-01-01">
       <textures>
-        <texture file="skeletal/iber_padded_cardiopylax_champion_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_cardiophylax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-cardiopylax-1a">
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-01-02">
       <textures>
-        <texture file="skeletal/iber_chainmail_cardiopylax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_cardiophylax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-cardiopylax-1b">
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-01-03">
       <textures>
-        <texture file="skeletal/iber_chainmail_cardiopylax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_cardiophylax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="chainmail-cardiopylax-1c">
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-02-01">
+      <props>
+        <prop actor="props/units/armor/greave_04_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_04_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
       <textures>
-        <texture file="skeletal/iber_chainmail_cardiopylax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_padded_cardiophylax_02_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-02-02">
+      <props>
+        <prop actor="props/units/armor/greave_04_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_04_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/iber_padded_cardiophylax_02_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Cardiophylax-02-03">
+      <props>
+        <prop actor="props/units/armor/greave_04_bronze_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_04_bronze_r.xml" attachpoint="leg_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/iber_padded_cardiophylax_02_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

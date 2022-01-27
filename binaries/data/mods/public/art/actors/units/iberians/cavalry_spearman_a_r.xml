@@ -3,32 +3,48 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_adv.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/iber_cloth_helmet_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="cardiopylax-2a">
+    <variant frequency="1" name="Iber-Linothorax-01-01">
       <textures>
-        <texture file="skeletal/iber_cardiopylax_2_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="cardiopylax-2b">
+    <variant frequency="1" name="Iber-Linothorax-01-02">
       <textures>
-        <texture file="skeletal/iber_cardiopylax_2_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="cardiopylax-2c">
+    <variant frequency="1" name="Iber-Linothorax-01-03">
       <textures>
-        <texture file="skeletal/iber_cardiopylax_2_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_linothorax_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-01">
+      <textures>
+        <texture file="skeletal/iber_padded_quilted_slinger_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-02">
+      <textures>
+        <texture file="skeletal/iber_padded_quilted_slinger_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-03">
+      <textures>
+        <texture file="skeletal/iber_padded_quilted_slinger_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_02.xml" name="Spearman-Relax-02" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_02.xml" frequency="1" name="Spearman-Relax-02"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>

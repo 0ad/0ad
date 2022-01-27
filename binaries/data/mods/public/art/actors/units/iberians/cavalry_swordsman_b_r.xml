@@ -6,35 +6,35 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_basic.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/kart_csw_round_b.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/iber_round_large_01_basic.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic-1a">
+    <variant frequency="1" name="Iber-Tunic-01-01">
       <textures>
-        <texture file="skeletal/iber_tunic_1_a.png" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic-1b">
+    <variant frequency="1" name="Iber-Tunic-01-02">
       <textures>
-        <texture file="skeletal/iber_tunic_1_b.png" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic-1c">
+    <variant frequency="1" name="Iber-Tunic-01-03">
       <textures>
-        <texture file="skeletal/iber_tunic_1_c.png" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic-1d">
+    <variant frequency="1" name="Iber-Tunic-01-04">
       <textures>
-        <texture file="skeletal/iber_tunic_1_d.png" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_01_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic-1e">
+    <variant frequency="1" name="Iber-Tunic-01-05">
       <textures>
-        <texture file="skeletal/iber_tunic_1_e.png" name="baseTex"/>
+        <texture file="skeletal/iber_tunic_01_05.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

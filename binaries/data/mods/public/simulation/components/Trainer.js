@@ -333,6 +333,8 @@ Trainer.prototype.Item.prototype.Spawn = function()
  */
 Trainer.prototype.Item.prototype.Progress = function(allocatedTime)
 {
+	if (this.paused)
+		this.Unpause();
 	// We couldn't start this timeout, try again later.
 	if (!this.started && !this.Start())
 		return allocatedTime;
@@ -648,14 +650,6 @@ Trainer.prototype.StopBatch = function(id)
 Trainer.prototype.PauseBatch = function(id)
 {
 	this.queue.get(id).Pause();
-};
-
-/**
- * @param {number} id - The ID of the training.
- */
-Trainer.prototype.UnpauseBatch = function(id)
-{
-	this.queue.get(id).Unpause();
 };
 
 /**

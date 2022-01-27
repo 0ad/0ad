@@ -48,43 +48,18 @@ Researcher.prototype.Item = function(templateName, researcher, metadata)
  */
 Researcher.prototype.Item.prototype.Queue = function(techCostMultiplier)
 {
-	const template = TechnologyTemplates.Get(this.templateName);
-	if (!template)
-		return false;
-
-	this.resources = {};
-
-	if (template.cost)
-		for (const res in template.cost)
-			this.resources[res] = Math.floor(techCostMultiplier[res] * template.cost[res]);
-
-	const cmpPlayer = QueryOwnerInterface(this.researcher);
-
-	// TrySubtractResources should report error to player (they ran out of resources).
-	if (!cmpPlayer?.TrySubtractResources(this.resources))
-		return false;
-	this.player = cmpPlayer.GetPlayerID();
-
-	const time = techCostMultiplier.time * (template.researchTime || 0) * 1000;
-	this.timeRemaining = time;
-	this.timeTotal = time;
-
-	// Tell the technology manager that we have queued researching this
-	// such that players can't research the same thing twice.
+	this.player = QueryOwnerInterface(this.researcher).GetPlayerID();
 	const cmpTechnologyManager = QueryPlayerIDInterface(this.player, IID_TechnologyManager);
-	cmpTechnologyManager.QueuedResearch(this.templateName, this.researcher);
+	if (!cmpTechnologyManager.QueuedResearch(this.templateName, this.researcher, techCostMultiplier))
+		return false;
 
 	return true;
 };
 
 Researcher.prototype.Item.prototype.Stop = function()
 {
-	const cmpTechnologyManager = QueryPlayerIDInterface(this.player, IID_TechnologyManager);
-	if (cmpTechnologyManager)
-		cmpTechnologyManager.StoppedResearch(this.templateName, true);
-
-	QueryPlayerIDInterface(this.player)?.RefundResources(this.resources);
-	delete this.resources;
+	QueryPlayerIDInterface(this.player, IID_TechnologyManager).StoppedResearch(this.templateName);
+	delete this.started;
 };
 
 /**
@@ -92,19 +67,11 @@ Researcher.prototype.Item.prototype.Stop = function()
  */
 Researcher.prototype.Item.prototype.Start = function()
 {
-	const cmpTechnologyManager = QueryPlayerIDInterface(this.player, IID_TechnologyManager);
-	cmpTechnologyManager.StartedResearch(this.templateName, true);
 	this.started = true;
 };
 
 Researcher.prototype.Item.prototype.Finish = function()
 {
-	const cmpTechnologyManager = QueryPlayerIDInterface(this.player, IID_TechnologyManager);
-	cmpTechnologyManager.ResearchTechnology(this.templateName);
-
-	const template = TechnologyTemplates.Get(this.templateName);
-	if (template?.soundComplete)
-		Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager)?.PlaySoundGroup(template.soundComplete, this.researcher);
 	this.finished = true;
 };
 
@@ -116,18 +83,18 @@ Researcher.prototype.Item.prototype.Progress = function(allocatedTime)
 {
 	if (!this.started)
 		this.Start();
-
-	if (this.timeRemaining > allocatedTime)
-	{
-		this.timeRemaining -= allocatedTime;
-		return allocatedTime;
-	}
-	this.Finish();
-	return this.timeRemaining;
+	if (this.paused)
+		this.Unpause();
+	const cmpTechnologyManager = QueryPlayerIDInterface(this.player, IID_TechnologyManager);
+	const usedTime = cmpTechnologyManager.Progress(this.templateName, allocatedTime);
+	if (!cmpTechnologyManager.IsTechnologyQueued(this.templateName))
+		this.Finish();
+	return usedTime;
 };
 
 Researcher.prototype.Item.prototype.Pause = function()
 {
+	QueryPlayerIDInterface(this.player, IID_TechnologyManager).Pause(this.templateName);
 	this.paused = true;
 };
 
@@ -141,13 +108,10 @@ Researcher.prototype.Item.prototype.Unpause = function()
  */
 Researcher.prototype.Item.prototype.GetBasicInfo = function()
 {
-	return {
-		"technologyTemplate": this.templateName,
-		"progress": 1 - (this.timeRemaining / (this.timeTotal || 1)),
-		"timeRemaining": this.timeRemaining,
-		"paused": this.paused,
-		"metadata": this.metadata
-	};
+	const result = QueryPlayerIDInterface(this.player, IID_TechnologyManager).GetBasicInfo(this.templateName);
+	result.technologyTemplate = this.templateName;
+	result.metadata = this.metadata;
+	return result;
 };
 
 Researcher.prototype.Item.prototype.SerializableAttributes = [
@@ -155,11 +119,8 @@ Researcher.prototype.Item.prototype.SerializableAttributes = [
 	"paused",
 	"player",
 	"researcher",
-	"resources",
 	"started",
-	"templateName",
-	"timeRemaining",
-	"timeTotal"
+	"templateName"
 ];
 
 Researcher.prototype.Item.prototype.Serialize = function(id)
@@ -226,6 +187,7 @@ Researcher.prototype.GetTechnologiesList = function()
 	const cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return [];
+	const civ = cmpPlayer.GetCiv();
 
 	let techs = string.split(/\s+/);
 
@@ -235,14 +197,14 @@ Researcher.prototype.GetTechnologiesList = function()
 		const tech = techs[i];
 		if (tech.indexOf("{civ}") == -1)
 			continue;
-		const civTech = tech.replace("{civ}", cmpPlayer.GetCiv());
+		const civTech = tech.replace("{civ}", civ);
 		techs[i] = TechnologyTemplates.Has(civTech) ? civTech : tech.replace("{civ}", "generic");
 	}
 
 	// Remove any technologies that can't be researched by this civ.
 	techs = techs.filter(tech =>
 		cmpTechnologyManager.CheckTechnologyRequirements(
-			DeriveTechnologyRequirements(TechnologyTemplates.Get(tech), cmpPlayer.GetCiv()),
+			DeriveTechnologyRequirements(TechnologyTemplates.Get(tech), civ),
 			true));
 
 	const techList = [];
@@ -377,14 +339,6 @@ Researcher.prototype.PauseTechnology = function(id)
 };
 
 /**
- * @param {number} id - The id of the technology.
- */
-Researcher.prototype.UnpauseTechnology = function(id)
-{
-	this.queue.get(id).Unpause();
-};
-
-/**
  * @param {number} id - The ID of the item to check.
  * @return {boolean} - Whether we are currently training the item.
  */
@@ -400,25 +354,6 @@ Researcher.prototype.HasItem = function(id)
 Researcher.prototype.GetResearchingTechnology = function(id)
 {
 	return this.queue.get(id).GetBasicInfo();
-};
-
-/**
- * @parameter {string} technologyName - The name of the research.
- * @return {Object} - Some basic information about the research.
- */
-Researcher.prototype.GetResearchingTechnologyByName = function(technologyName)
-{
-	let techID;
-	for (const [id, value] of this.queue)
-		if (value.templateName === technologyName)
-		{
-			techID = id;
-			break;
-		}
-	if (!techID)
-		return undefined;
-
-	return this.GetResearchingTechnology(techID);
 };
 
 /**

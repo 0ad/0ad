@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Iron">
+      <mesh>props/helmet/iber_montefortino_02.dae</mesh>
+      <textures>
+        <texture file="props/helmet/iber_montefortino_02_spec.png" name="specTex"/>
+        <texture file="props/helmet/iber_montefortino_02_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Prop-None"/>
+    <variant frequency="1" name="Prop-Hair-Boeotian">
+      <props>
+        <prop actor="props/units/helmets/props/hele_boeotian_hair.xml" attachpoint="hair"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Prop-Hair-Boeotian-Feather">
+      <props>
+        <prop actor="props/units/helmets/props/hele_boeotian_hair.xml" attachpoint="hair"/>
+        <prop actor="props/units/helmets/props/hele_phrygian_feathers.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="Iber-Montefortino-02-Bronze">
+      <textures>
+        <texture file="props/helmet/iber_montefortino_02_bronze.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Iber-Montefortino-02-Iron">
+      <textures>
+        <texture file="props/helmet/iber_montefortino_02_iron.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/oval_03.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/shield_oval_c_b.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/celt_manipula.xml" attachpoint="handle"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/iber_shield_01.xml" frequency="1" name="OVAL-C-01-Iberian-01"/>
+    <variant file="shields/iber_shield_02.xml" frequency="1" name="OVAL-C-01-Iberian-02"/>
+    <variant file="shields/iber_shield_03.xml" frequency="1" name="OVAL-C-01-Iberian-03"/>
+    <variant file="shields/iber_shield_04.xml" frequency="1" name="OVAL-C-01-Iberian-04"/>
+    <variant file="shields/iber_shield_05.xml" frequency="1" name="OVAL-C-01-Iberian-05"/>
+    <variant file="shields/iber_shield_06.xml" frequency="1" name="OVAL-C-01-Iberian-06"/>
+    <variant file="shields/iber_shield_07.xml" frequency="1" name="OVAL-C-01-Iberian-07"/>
+    <variant file="shields/iber_shield_08.xml" frequency="1" name="OVAL-C-01-Iberian-08"/>
+    <variant file="shields/iber_shield_09.xml" frequency="1" name="OVAL-C-01-Iberian-09"/>
+    <variant file="shields/iber_shield_10.xml" frequency="1" name="OVAL-C-01-Iberian-10"/>
+    <variant file="shields/iber_shield_11.xml" frequency="1" name="OVAL-C-01-Iberian-11"/>
+    <variant file="shields/iber_shield_12.xml" frequency="1" name="OVAL-C-01-Iberian-12"/>
+    <variant file="shields/iber_shield_13.xml" frequency="1" name="OVAL-C-01-Iberian-13"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Spina-a">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_a_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-b">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_b_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-c">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_c_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-d">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_d_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-e">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_e_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-f">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_f_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-g">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_g_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-h">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_h_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Spina-s">
+      <props>
+        <prop actor="props/units/shields/props/shield_spina_s_01.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

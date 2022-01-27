@@ -120,6 +120,8 @@ ProductionQueue.prototype.Item.prototype.IsFinished = function()
  */
 ProductionQueue.prototype.Item.prototype.Progress = function(allocatedTime)
 {
+	if (this.paused)
+		this.Unpause();
 	if (this.entity)
 	{
 		const cmpTrainer = Engine.QueryInterface(this.producer, IID_Trainer);
@@ -152,10 +154,6 @@ ProductionQueue.prototype.Item.prototype.Pause = function()
 ProductionQueue.prototype.Item.prototype.Unpause = function()
 {
 	delete this.paused;
-	if (this.entity)
-		Engine.QueryInterface(this.producer, IID_Trainer).UnpauseBatch(this.entity);
-	if (this.technology)
-		Engine.QueryInterface(this.producer, IID_Researcher).UnpauseTechnology(this.technology);
 };
 
 /**
@@ -413,8 +411,6 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 	while (this.queue.length)
 	{
 		let item = this.queue[0];
-		if (item.IsPaused())
-			item.Unpause();
 		if (!item.IsStarted())
 		{
 			if (item.entity)
@@ -472,7 +468,6 @@ ProductionQueue.prototype.PauseProduction = function()
 
 ProductionQueue.prototype.UnpauseProduction = function()
 {
-	this.queue[0]?.Unpause();
 	delete this.paused;
 	this.StartTimer();
 };

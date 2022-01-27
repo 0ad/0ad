@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@ class CObjectManager;
 class CSimulation2;
 
 #include <map>
+#include <memory>
 #include <set>
 #include <vector>
 
@@ -83,7 +84,7 @@ private:
 
 	CSimulation2& m_Simulation;
 
-	typedef std::multimap<CStr, CSkeletonAnim*> SkeletonAnimMap;
+	using SkeletonAnimMap = std::multimap<CStr, std::unique_ptr<CSkeletonAnim>>;
 	SkeletonAnimMap m_Animations;
 		// TODO: something more memory-efficient than storing loads of similar strings for each unit?
 };
