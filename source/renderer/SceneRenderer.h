@@ -208,7 +208,7 @@ protected:
 		const CShaderDefines& context, int cullGroup);
 	void RenderTransparentModels(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling);
+		const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode);
 
 	void RenderSilhouettes(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,

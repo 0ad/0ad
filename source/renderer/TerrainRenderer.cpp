@@ -265,8 +265,10 @@ void TerrainRenderer::RenderTerrainShader(
 	// render the solid black sides of the map first
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	techSolid->BeginPass();
-	deviceCommandContext->SetGraphicsPipelineState(
-		techSolid->GetGraphicsPipelineStateDesc());
+	Renderer::Backend::GraphicsPipelineStateDesc solidPipelineStateDesc =
+		techSolid->GetGraphicsPipelineStateDesc();
+	solidPipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+	deviceCommandContext->SetGraphicsPipelineState(solidPipelineStateDesc);
 
 	const CShaderProgramPtr& shaderSolid = techSolid->GetShader();
 	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -299,7 +301,7 @@ void TerrainRenderer::RenderTerrainShader(
 // Render un-textured patches as polygons
 void TerrainRenderer::RenderPatches(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	int cullGroup, const CColor& color)
+	int cullGroup, const CShaderDefines& defines, const CColor& color)
 {
 	ENSURE(m->phase == Phase_Render);
 
@@ -309,21 +311,22 @@ void TerrainRenderer::RenderPatches(
 
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
+	UNUSED2(defines);
 	UNUSED2(color);
 	#warning TODO: implement TerrainRenderer::RenderPatches for GLES
 #else
 
-	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_dummy);
-	dummyTech->BeginPass();
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_terrain_solid, defines);
+	solidTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
-		dummyTech->GetGraphicsPipelineStateDesc());
+		solidTech->GetGraphicsPipelineStateDesc());
 
-	const CShaderProgramPtr& dummyShader = dummyTech->GetShader();
-	dummyShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	dummyShader->Uniform(str_color, color);
+	const CShaderProgramPtr& solidShader = solidTech->GetShader();
+	solidShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	solidShader->Uniform(str_color, color);
 
-	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS);
-	dummyTech->EndPass();
+	CPatchRData::RenderStreams(visiblePatches, solidShader, STREAM_POS);
+	solidTech->EndPass();
 #endif
 }
 
@@ -603,12 +606,13 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
-	glDisable(GL_CULL_FACE);
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	dummyTech->BeginPass();
-	deviceCommandContext->SetGraphicsPipelineState(
-		dummyTech->GetGraphicsPipelineStateDesc());
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		dummyTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	const CShaderProgramPtr& dummyShader = dummyTech->GetShader();
 
 	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
@@ -617,7 +621,6 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 		data->RenderWaterShore(dummyShader);
 	dummyTech->EndPass();
 
-	glEnable(GL_CULL_FACE);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 

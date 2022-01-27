@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
 
-    <technique>
-        <require shaders="arb"/>
-        <pass shader="arb/terrain_decal"/>
-    </technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="arb"/>
+		<pass shader="arb/terrain_decal">
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
 
-    <technique>
-        <require shaders="glsl"/>
-        <pass shader="glsl/terrain_decal"/>
-    </technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/terrain_decal">
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="arb"/>
+		<pass shader="arb/terrain_decal"/>
+	</technique>
+
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/terrain_decal"/>
+	</technique>
 
 </effect>
