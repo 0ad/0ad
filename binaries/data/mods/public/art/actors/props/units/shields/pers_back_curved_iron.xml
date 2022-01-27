@@ -4,8 +4,12 @@
   <group>
     <variant>
       <mesh>props/shield/per_back_curved.dae</mesh>
-      <textures><texture file="props/pers_back_shield.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/pers_back_shield_01_iron.png" name="baseTex"/>
+        <texture file="props/pers_back_shield_01_spec.png" name="specTex"/>
+        <texture file="props/pers_back_shield_01_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>
