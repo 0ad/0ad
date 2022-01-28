@@ -55,6 +55,7 @@ void SetGraphicsPipelineStateFromTechAndColor(
 	}
 	else
 		pipelineStateDesc.blendState.enabled = false;
+	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 }
 

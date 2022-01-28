@@ -14,7 +14,7 @@
     <!-- Actual pushing radius for non-moving units is: -->
     <!-- Clearance * PushingRadius + StaticPushExtension -->
     <!-- This mostly controls the maximum unit density-->
-    <StaticExtension>1.5</StaticExtension>
+    <StaticExtension>0.5</StaticExtension>
 
     <!-- Actual pushing radius for moving units is: -->
     <!-- Clearance * PushingRadius + MovingPushExtension -->

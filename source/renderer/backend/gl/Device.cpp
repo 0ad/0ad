@@ -199,9 +199,6 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	// Setup default state.
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
-	glCullFace(GL_BACK);
-	glFrontFace(GL_CCW);
-	glEnable(GL_CULL_FACE);
 
 	return device;
 }

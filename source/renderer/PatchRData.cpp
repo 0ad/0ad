@@ -1133,8 +1133,6 @@ void CPatchRData::RenderSides(const std::vector<CPatchRData*>& patches, const CS
 {
 	PROFILE3("render terrain sides");
 
-	glDisable(GL_CULL_FACE);
-
 	CVertexBuffer* lastVB = nullptr;
 	for (CPatchRData* patch : patches)
 	{
@@ -1161,8 +1159,6 @@ void CPatchRData::RenderSides(const std::vector<CPatchRData*>& patches, const CS
 	}
 
 	CVertexBuffer::Unbind();
-
-	glEnable(GL_CULL_FACE);
 }
 
 void CPatchRData::RenderPriorities(CTextRenderer& textRenderer)

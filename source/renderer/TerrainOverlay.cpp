@@ -151,7 +151,6 @@ void TerrainOverlay::RenderBeforeWater(
 	EndRender();
 
 	// Clean up state changes
-	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	//glDisable(GL_POLYGON_OFFSET_LINE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
@@ -162,28 +161,26 @@ void TerrainOverlay::RenderBeforeWater(
 
 void TerrainOverlay::RenderTile(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CColor& color, bool draw_hidden)
+	const CColor& color, bool drawHidden)
 {
-	RenderTile(deviceCommandContext, color, draw_hidden, m_i, m_j);
+	RenderTile(deviceCommandContext, color, drawHidden, m_i, m_j);
 }
 
 void TerrainOverlay::RenderTile(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CColor& color, bool draw_hidden, ssize_t i, ssize_t j)
+	const CColor& color, bool drawHidden, ssize_t i, ssize_t j)
 {
 	// TODO: unnecessary computation calls has been removed but we should use
 	// a vertex buffer or a vertex shader with a texture.
 	// Not sure if it's possible on old OpenGL.
 
-	if (draw_hidden)
+	if (drawHidden)
 	{
 		glDisable(GL_DEPTH_TEST);
-		glDisable(GL_CULL_FACE);
 	}
 	else
 	{
 		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
 	}
 
 #if CONFIG2_GLES
@@ -238,6 +235,8 @@ void TerrainOverlay::RenderTile(
 		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 		Renderer::Backend::BlendOp::ADD;
+	pipelineStateDesc.rasterizationState.cullMode =
+		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
 	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
@@ -258,30 +257,28 @@ void TerrainOverlay::RenderTile(
 
 void TerrainOverlay::RenderTileOutline(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CColor& color, int line_width, bool draw_hidden)
+	const CColor& color, int lineWidth, bool drawHidden)
 {
-	RenderTileOutline(deviceCommandContext, color, line_width, draw_hidden, m_i, m_j);
+	RenderTileOutline(deviceCommandContext, color, lineWidth, drawHidden, m_i, m_j);
 }
 
 void TerrainOverlay::RenderTileOutline(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j)
+	const CColor& color, int lineWidth, bool drawHidden, ssize_t i, ssize_t j)
 {
-	if (draw_hidden)
+	if (drawHidden)
 	{
 		glDisable(GL_DEPTH_TEST);
-		glDisable(GL_CULL_FACE);
 	}
 	else
 	{
 		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
 	}
 
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
 	UNUSED2(color);
-	UNUSED2(line_width);
+	UNUSED2(lineWidth);
 	UNUSED2(i);
 	UNUSED2(j);
 	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
@@ -289,8 +286,8 @@ void TerrainOverlay::RenderTileOutline(
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	if (line_width != 1)
-		glLineWidth((float)line_width);
+	if (lineWidth != 1)
+		glLineWidth(static_cast<float>(lineWidth));
 
 	std::vector<float> vertices;
 #define ADD(i, j) \
@@ -317,10 +314,12 @@ void TerrainOverlay::RenderTileOutline(
 		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 		Renderer::Backend::BlendOp::ADD;
+	pipelineStateDesc.rasterizationState.cullMode =
+		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
 	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
-	CShaderProgramPtr overlayShader = overlayTech->GetShader();
+	const CShaderProgramPtr& overlayShader = overlayTech->GetShader();
 
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
@@ -332,7 +331,7 @@ void TerrainOverlay::RenderTileOutline(
 
 	overlayTech->EndPass();
 
-	if (line_width != 1)
+	if (lineWidth != 1)
 		glLineWidth(1.0f);
 #endif
 }

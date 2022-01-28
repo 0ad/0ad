@@ -15,19 +15,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Padded-1a">
+    <variant frequency="1" name="Padded-Thureophoroi-01">
       <textures>
-        <texture file="skeletal/ptol_thureophoroi_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/ptol_padded_thureophoroi_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Padded-1b">
+    <variant frequency="1" name="Padded-Thureophoroi-02">
       <textures>
-        <texture file="skeletal/ptol_thureophoroi_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/ptol_padded_thureophoroi_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_spearman_shield_relax_ptol.xml" name="Spearman-Shield-Relax-Ptol" frequency="1"/>
+    <variant file="biped/base_spearman_shield_relax_ptol.xml" frequency="1" name="Spearman-Shield-Relax-Ptol"/>
     <variant file="biped/formations/phalanx_front.xml"/>
     <variant file="biped/formations/phalanx_mid.xml"/>
     <variant file="biped/formations/phalanx_back.xml"/>

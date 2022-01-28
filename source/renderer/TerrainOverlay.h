@@ -136,38 +136,38 @@ protected:
 	 * Draw a filled quad on top of the current tile.
 	 *
 	 * @param color  color to draw. May be transparent (alpha &lt; 1)
-	 * @param draw_hidden  true if hidden tiles (i.e. those behind other tiles)
+	 * @param drawHidden  true if hidden tiles (i.e. those behind other tiles)
 	 * should be drawn
 	 */
 	void RenderTile(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CColor& color, bool draw_hidden);
+		const CColor& color, bool drawHidden);
 
 	/**
 	 * Draw a filled quad on top of the given tile.
 	 */
 	void RenderTile(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CColor& color, bool draw_hidden, ssize_t i, ssize_t j);
+		const CColor& color, bool drawHidden, ssize_t i, ssize_t j);
 
 	/**
 	 * Draw an outlined quad on top of the current tile.
 	 *
 	 * @param color  color to draw. May be transparent (alpha &lt; 1)
-	 * @param line_width  width of lines in pixels. 1 is a sensible value
-	 * @param draw_hidden  true if hidden tiles (i.e. those behind other tiles)
+	 * @param lineWidth  width of lines in pixels. 1 is a sensible value
+	 * @param drawHidden  true if hidden tiles (i.e. those behind other tiles)
 	 * should be drawn
 	 */
 	void RenderTileOutline(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CColor& color, int line_width, bool draw_hidden);
+		const CColor& color, int lineWidth, bool drawHidden);
 
 	/**
 	 * Draw an outlined quad on top of the given tile.
 	 */
 	void RenderTileOutline(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CColor& color, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
+		const CColor& color, int lineWidth, bool drawHidden, ssize_t i, ssize_t j);
 
 private:
 	// Process all tiles

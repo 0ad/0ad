@@ -451,7 +451,6 @@ void SilhouetteRenderer::RenderDebugOverlays(
 		return;
 
 	glDepthMask(0);
-	glDisable(GL_CULL_FACE);
 
 	for (size_t i = 0; i < m_DebugBounds.size(); ++i)
 		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m_DebugBounds[i].bounds, m_DebugBounds[i].color);
@@ -468,17 +467,20 @@ void SilhouetteRenderer::RenderDebugOverlays(
 
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
-	deviceCommandContext->SetGraphicsPipelineState(
-		shaderTech->GetGraphicsPipelineStateDesc());
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		shaderTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
-	CShaderProgramPtr shader = shaderTech->GetShader();
+	const CShaderProgramPtr& shader = shaderTech->GetShader();
 	shader->Uniform(str_transform, proj);
 
 	for (size_t i = 0; i < m_DebugRects.size(); ++i)
 	{
 		const DebugRect& r = m_DebugRects[i];
 		shader->Uniform(str_color, r.color);
-		u16 verts[] = {
+		u16 verts[] =
+		{
 			r.x0, r.y0,
 			r.x1, r.y0,
 			r.x1, r.y1,
@@ -491,7 +493,6 @@ void SilhouetteRenderer::RenderDebugOverlays(
 
 	shaderTech->EndPass();
 
-	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
 }
 

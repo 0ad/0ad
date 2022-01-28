@@ -727,7 +727,6 @@ void ShadowMap::SetDepthTextureBits(int bits)
 void ShadowMap::RenderDebugBounds()
 {
 	glDepthMask(0);
-	glDisable(GL_CULL_FACE);
 
 	// Render various shadow bounds:
 	//  Yellow = bounds of objects in view frustum that receive shadows
@@ -755,7 +754,6 @@ void ShadowMap::RenderDebugBounds()
 		g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.5f));
 	}
 
-	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
 
 	ogl_WarnIfError();

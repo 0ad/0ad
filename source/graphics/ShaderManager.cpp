@@ -352,6 +352,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(blend);
+	EL(cull);
 	EL(define);
 	EL(depth);
 	EL(pass);
@@ -360,7 +361,9 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	AT(constant);
 	AT(context);
 	AT(dst);
+	AT(front_face);
 	AT(func);
+	AT(mode);
 	AT(op);
 	AT(shader);
 	AT(shaders);
@@ -491,6 +494,19 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 							LOGERROR("Failed to parse blend constant: %s",
 								Element.GetAttributes().GetNamedItem(at_constant).c_str());
 						}
+					}
+				}
+				else if (Element.GetNodeName() == el_cull)
+				{
+					if (!Element.GetAttributes().GetNamedItem(at_mode).empty())
+					{
+						passPipelineStateDesc.rasterizationState.cullMode =
+							Renderer::Backend::ParseCullMode(Element.GetAttributes().GetNamedItem(at_mode));
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_front_face).empty())
+					{
+						passPipelineStateDesc.rasterizationState.frontFace =
+							Renderer::Backend::ParseFrontFace(Element.GetAttributes().GetNamedItem(at_front_face));
 					}
 				}
 				else if (Element.GetNodeName() == el_depth)

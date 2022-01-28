@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+	<technique>
+		<require context="PASS_SHADOWS || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="arb"/>
+		<pass shader="arb/dummy">
+			<!-- See GLSL -->
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+	<technique>
+		<require context="PASS_SHADOWS || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/dummy">
+			<!--
+				To prevent units displaying silhouettes when parts of their model
+				protrude into the ground, only occlude with the back faces of the
+				terrain (so silhouettes will still display when behind hills).
+			-->
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="arb"/>
+		<pass shader="arb/dummy"/>
+	</technique>
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/dummy"/>
+	</technique>
+
+</effect>

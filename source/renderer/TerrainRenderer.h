@@ -115,7 +115,8 @@ public:
 	 */
 	void RenderPatches(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		int cullGroup, const CColor& color = CColor(0.0f, 0.0f, 0.0f, 1.0f));
+		int cullGroup, const CShaderDefines& defines,
+		const CColor& color = CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
 	/**
 	 * RenderOutlines: Render the outline of patches as lines.

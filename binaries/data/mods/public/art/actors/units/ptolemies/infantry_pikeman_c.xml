@@ -29,39 +29,39 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Linothorax-1a">
+    <variant frequency="1" name="Linothorax-Agema-01">
       <textures>
-        <texture file="skeletal/ptol_champion_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/ptol_linothorax_agema_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Linothorax-1b">
+    <variant frequency="1" name="Linothorax-Agema-02">
       <textures>
-        <texture file="skeletal/ptol_champion_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/ptol_linothorax_agema_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Linothorax-1c">
+    <variant frequency="1" name="Linothorax-Agema-03">
       <textures>
-        <texture file="skeletal/ptol_champion_linothorax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/ptol_linothorax_agema_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Linothorax-1d">
+    <variant frequency="1" name="Linothorax-Agema-04">
       <textures>
-        <texture file="skeletal/ptol_champion_linothorax_1_d.png" name="baseTex"/>
+        <texture file="skeletal/ptol_linothorax_agema_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Scale-1a">
+    <variant frequency="1" name="Scale-Agema-01">
       <textures>
-        <texture file="skeletal/ptol_champion_scale_1_a.png" name="baseTex"/>
+        <texture file="skeletal/ptol_scale_agema_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Scale-1b">
+    <variant frequency="1" name="Scale-Agema-02">
       <textures>
-        <texture file="skeletal/ptol_champion_scale_1_b.png" name="baseTex"/>
+        <texture file="skeletal/ptol_scale_agema_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_pikeman_relax.xml" name="Pikeman-Shield-Relax" frequency="1"/>
+    <variant file="biped/base_pikeman_relax.xml" frequency="1" name="Pikeman-Shield-Relax"/>
     <variant file="biped/formations/syntagma_front.xml"/>
     <variant file="biped/formations/syntagma_01.xml"/>
     <variant file="biped/formations/syntagma_02.xml"/>

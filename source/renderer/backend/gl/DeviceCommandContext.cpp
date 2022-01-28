@@ -194,6 +194,32 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 			nextBlendStateDesc.constant.a);
 	}
 
+	const RasterizationStateDesc& currentRasterizationStateDesc = m_GraphicsPipelineStateDesc.rasterizationState;
+	const RasterizationStateDesc& nextRasterizationStateDesc = pipelineStateDesc.rasterizationState;
+	if (force ||
+		currentRasterizationStateDesc.cullMode != nextRasterizationStateDesc.cullMode)
+	{
+		if (nextRasterizationStateDesc.cullMode == CullMode::NONE)
+		{
+			glDisable(GL_CULL_FACE);
+		}
+		else
+		{
+			if (force || currentRasterizationStateDesc.cullMode == CullMode::NONE)
+				glEnable(GL_CULL_FACE);
+			glCullFace(nextRasterizationStateDesc.cullMode == CullMode::FRONT ? GL_FRONT : GL_BACK);
+		}
+	}
+
+	if (force ||
+		currentRasterizationStateDesc.frontFace != nextRasterizationStateDesc.frontFace)
+	{
+		if (nextRasterizationStateDesc.frontFace == FrontFace::CLOCKWISE)
+			glFrontFace(GL_CW);
+		else
+			glFrontFace(GL_CCW);
+	}
+
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
 }
 

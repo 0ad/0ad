@@ -1,83 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
 
-    <technique>
-        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
-        <require shaders="arb"/>
-        <pass shader="arb/model_solid_tex">
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
-        </pass>
-    </technique>
+	<technique>
+		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid_tex">
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
+			<!-- Disable face-culling for two-sided models -->
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
 
-    <technique>
-        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_solid_tex">
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
-        </pass>
-    </technique>
+	<technique>
+		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_tex">
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
+			<!-- Disable face-culling for two-sided models -->
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
 
+	<!--
+		CRenderer::RenderSilhouettes skips alpha-blended models for
+		MODE_SILHOUETTEDISPLAY, so do a dummy non-blended behaviour here to
+		make it obviously buggy if CRenderer is changed to render these models.
+	-->
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid_player"/>
+	</technique>
 
-
-    <!--
-        CRenderer::RenderSilhouettes skips alpha-blended models for
-        MODE_SILHOUETTEDISPLAY, so do a dummy non-blended behaviour here to
-        make it obviously buggy if CRenderer is changed to render these models.
-    -->
-    <technique>
-        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
-        <require shaders="arb"/>
-        <pass shader="arb/model_solid_player"/>
-    </technique>
-
-    <technique>
-        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_solid_player"/>
-    </technique>
-
-
-
-    <technique>
-        <require context="ALPHABLEND_PASS_OPAQUE"/>
-        <require shaders="arb"/>
-        <pass shader="arb/model_common">
-            <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
-        </pass>
-    </technique>
-
-    <technique>
-        <require context="ALPHABLEND_PASS_OPAQUE"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_common">
-            <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
-        </pass>
-    </technique>
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_player"/>
+	</technique>
 
 
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require context="ALPHABLEND_PASS_OPAQUE"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require context="ALPHABLEND_PASS_OPAQUE"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
 
-    <technique>
-        <require context="ALPHABLEND_PASS_BLEND"/>
-        <require shaders="arb"/>
-        <pass shader="arb/model_common">
-            <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
-            <blend src="src_alpha" dst="one_minus_src_alpha"/>
-            <depth func="less" mask="false"/>
-        </pass>
-    </technique>
 
-    <technique>
-        <require context="ALPHABLEND_PASS_BLEND"/>
-        <require shaders="glsl"/>
-        <pass shader="glsl/model_common">
-            <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
-            <blend src="src_alpha" dst="one_minus_src_alpha"/>
-            <depth func="less" mask="false"/>
-        </pass>
-    </technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require context="ALPHABLEND_PASS_BLEND"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require context="ALPHABLEND_PASS_BLEND"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require context="ALPHABLEND_PASS_OPAQUE"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="ALPHABLEND_PASS_OPAQUE"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
+		</pass>
+	</technique>
+
+
+
+	<technique>
+		<require context="ALPHABLEND_PASS_BLEND"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="ALPHABLEND_PASS_BLEND"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+		</pass>
+	</technique>
 
 </effect>

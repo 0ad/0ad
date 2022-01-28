@@ -2,6 +2,22 @@
 <effect>
 
 	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common">
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_common">
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+
+	<technique>
 		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
 		<require shaders="arb"/>
 		<pass shader="arb/model_solid"/>

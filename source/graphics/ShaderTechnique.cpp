@@ -27,9 +27,6 @@ void CShaderPass::Bind()
 {
 	m_Shader->Bind();
 
-	// TODO: maybe emit some warning if GLSL shaders try to use alpha test;
-	// the test should be done inside the shader itself
-
 	if (m_HasColorMask)
 		glColorMask(m_ColorMaskR, m_ColorMaskG, m_ColorMaskB, m_ColorMaskA);
 

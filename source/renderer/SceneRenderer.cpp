@@ -308,7 +308,10 @@ void CSceneRenderer::RenderShadowMap(
 	PROFILE3_GPU("shadow map");
 	OGL_SCOPED_DEBUG_GROUP("Render shadow map");
 
-	CShaderDefines contextCast = context;
+	CShaderDefines shadowsContext = context;
+	shadowsContext.Add(str_PASS_SHADOWS, str_1);
+
+	CShaderDefines contextCast = shadowsContext;
 	contextCast.Add(str_MODE_SHADOWCAST, str_1);
 
 	m->shadow.BeginRender();
@@ -322,10 +325,7 @@ void CSceneRenderer::RenderShadowMap(
 		const int cullGroup = CULL_SHADOWS_CASCADE_0 + cascade;
 		{
 			PROFILE("render patches");
-			glCullFace(GL_FRONT);
-			glEnable(GL_CULL_FACE);
-			m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup);
-			glCullFace(GL_BACK);
+			m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup, shadowsContext);
 		}
 
 		{
@@ -335,10 +335,7 @@ void CSceneRenderer::RenderShadowMap(
 
 		{
 			PROFILE("render transparent models");
-			// disable face-culling for two-sided models
-			glDisable(GL_CULL_FACE);
 			m->CallTranspModelRenderers(deviceCommandContext, contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
-			glEnable(GL_CULL_FACE);
 		}
 	}
 
@@ -386,7 +383,7 @@ void CSceneRenderer::RenderPatches(
 		glLineWidth(2.0f);
 
 		// render tiles edges
-		m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup, CColor(0.5f, 0.5f, 1.0f, 1.0f));
+		m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup, context, CColor(0.5f, 0.5f, 1.0f, 1.0f));
 
 		glLineWidth(4.0f);
 
@@ -439,7 +436,7 @@ void CSceneRenderer::RenderModels(
 
 void CSceneRenderer::RenderTransparentModels(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling)
+	const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode)
 {
 	PROFILE3_GPU("transparent models");
 	OGL_SCOPED_DEBUG_GROUP("Render transparent models");
@@ -454,10 +451,6 @@ void CSceneRenderer::RenderTransparentModels(
 	}
 #endif
 
-	// disable face culling for two-sided models in sub-renders
-	if (disableFaceCulling)
-		glDisable(GL_CULL_FACE);
-
 	CShaderDefines contextOpaque = context;
 	contextOpaque.Add(str_ALPHABLEND_PASS_OPAQUE, str_1);
 
@@ -469,9 +462,6 @@ void CSceneRenderer::RenderTransparentModels(
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_BLEND)
 		m->CallTranspModelRenderers(deviceCommandContext, contextBlend, cullGroup, flags);
-
-	if (disableFaceCulling)
-		glEnable(GL_CULL_FACE);
 
 #if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
@@ -651,8 +641,6 @@ void CSceneRenderer::RenderReflections(
 	glClearColor(0.5f, 0.5f, 1.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glFrontFace(GL_CW);
-
 	if (!g_RenderingOptions.GetWaterReflection())
 	{
 		m->skyManager.RenderSky(deviceCommandContext);
@@ -660,18 +648,19 @@ void CSceneRenderer::RenderReflections(
 	}
 	else
 	{
+		CShaderDefines reflectionsContext = context;
+		reflectionsContext.Add(str_PASS_REFLECTIONS, str_1);
 		// Render terrain and models
-		RenderPatches(deviceCommandContext, context, CULL_REFLECTIONS);
+		RenderPatches(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderModels(deviceCommandContext, context, CULL_REFLECTIONS);
+		RenderModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderTransparentModels(deviceCommandContext, context, CULL_REFLECTIONS, TRANSPARENT, true);
+		RenderTransparentModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS, TRANSPARENT);
 		ogl_WarnIfError();
 	}
-	glFrontFace(GL_CCW);
 
 	// Particles are always oriented to face the camera in the vertex shader,
-	// so they don't need the inverted glFrontFace
+	// so they don't need the inverted cull face.
 	if (g_RenderingOptions.GetParticles())
 	{
 		RenderParticles(deviceCommandContext, CULL_REFLECTIONS);
@@ -737,7 +726,7 @@ void CSceneRenderer::RenderRefractions(
 	ogl_WarnIfError();
 	RenderModels(deviceCommandContext, context, CULL_REFRACTIONS);
 	ogl_WarnIfError();
-	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
+	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE);
 	ogl_WarnIfError();
 
 	glDisable(GL_SCISSOR_TEST);
@@ -777,13 +766,7 @@ void CSceneRenderer::RenderSilhouettes(
 
 	{
 		PROFILE("render patches");
-
-		// To prevent units displaying silhouettes when parts of their model
-		// protrude into the ground, only occlude with the back faces of the
-		// terrain (so silhouettes will still display when behind hills)
-		glCullFace(GL_FRONT);
-		m->terrainRenderer.RenderPatches(deviceCommandContext, CULL_SILHOUETTE_OCCLUDER);
-		glCullFace(GL_BACK);
+		m->terrainRenderer.RenderPatches(deviceCommandContext, CULL_SILHOUETTE_OCCLUDER, contextOccluder);
 	}
 
 	{
@@ -949,14 +932,14 @@ void CSceneRenderer::RenderSubmissions(
 		if (m->waterManager.WillRenderFancyWater())
 		{
 			// Render transparent stuff, but only the solid parts that can occlude block water.
-			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_OPAQUE, false);
+			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_OPAQUE);
 			ogl_WarnIfError();
 
 			m->terrainRenderer.RenderWater(deviceCommandContext, context, cullGroup, &m->shadow);
 			ogl_WarnIfError();
 
 			// Render transparent stuff again, but only the blended parts that overlap water.
-			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_BLEND, false);
+			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_BLEND);
 			ogl_WarnIfError();
 		}
 		else
@@ -965,14 +948,14 @@ void CSceneRenderer::RenderSubmissions(
 			ogl_WarnIfError();
 
 			// Render transparent stuff, so it can overlap models/terrain.
-			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT, false);
+			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT);
 			ogl_WarnIfError();
 		}
 	}
 	else
 	{
 		// render transparent stuff, so it can overlap models/terrain
-		RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT, false);
+		RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT);
 		ogl_WarnIfError();
 	}
 
@@ -1049,7 +1032,6 @@ void CSceneRenderer::DisplayFrustum()
 #warning TODO: implement CSceneRenderer::DisplayFrustum for GLES
 #else
 	glDepthMask(0);
-	glDisable(GL_CULL_FACE);
 
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 0.25f), 2);
 
@@ -1057,7 +1039,6 @@ void CSceneRenderer::DisplayFrustum()
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 1.0f), 2);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
 #endif
 
