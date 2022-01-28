@@ -387,7 +387,7 @@ bool CRenderer::Open(int width, int height)
 
 	m->deviceCommandContext = Renderer::Backend::GL::CDeviceCommandContext::Create();
 
-	if (g_RenderingOptions.GetPostProc())
+	if (m->postprocManager.IsEnabled())
 		m->postprocManager.Initialize();
 
 	m->sceneRenderer.Initialize();

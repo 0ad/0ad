@@ -32,6 +32,9 @@ public:
 	CPostprocManager();
 	~CPostprocManager();
 
+	// Returns true if the the manager can be used.
+	bool IsEnabled() const;
+
 	// Create all buffers/textures in GPU memory and set default effect.
 	// @note Must be called before using in the renderer. May be called multiple times.
 	void Initialize();

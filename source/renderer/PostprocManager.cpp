@@ -50,6 +50,12 @@ CPostprocManager::~CPostprocManager()
 	Cleanup();
 }
 
+bool CPostprocManager::IsEnabled() const
+{
+	return g_RenderingOptions.GetPostProc() &&
+		g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB;
+}
+
 void CPostprocManager::Cleanup()
 {
 	if (!m_IsInitialized) // Only cleanup if previously used
@@ -771,6 +777,11 @@ CPostprocManager::CPostprocManager()
 
 CPostprocManager::~CPostprocManager()
 {
+}
+
+bool CPostprocManager::IsEnabled() const
+{
+	return false;
 }
 
 void CPostprocManager::Initialize()

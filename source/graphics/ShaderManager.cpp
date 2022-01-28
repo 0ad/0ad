@@ -158,11 +158,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	CPreprocessorWrapper preprocessor;
 	preprocessor.AddDefines(baseDefines);
 
-	XMBElement Root = XeroFile.GetRoot();
-
-	const bool isGLSL = (Root.GetAttributes().GetNamedItem(at_type) == "glsl");
-	if (!isGLSL && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB)
-		LOGWARNING("CShaderManager::NewProgram: '%s': trying to load a non-GLSL program with enabled GLSL", name);
+	XMBElement root = XeroFile.GetRoot();
 
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
@@ -172,7 +168,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	std::map<CStrIntern, int> vertexAttribs;
 	int streamFlags = 0;
 
-	XERO_ITER_EL(Root, Child)
+	XERO_ITER_EL(root, Child)
 	{
 		if (Child.GetNodeName() == el_define)
 		{
@@ -262,7 +258,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 		}
 	}
 
-	if (isGLSL)
+	if (root.GetAttributes().GetNamedItem(at_type) == "glsl")
 		program = CShaderProgramPtr(CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamFlags));
 	else
 		program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags));
@@ -376,9 +372,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 
 	// Read some defines that influence how we pick techniques
 	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-	const bool hasARB = capabilities.m_ARBProgram;
-	const bool hasGLSL = capabilities.m_FragmentShader && capabilities.m_VertexShader;
-	const bool preferGLSL = g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB;
 
 	// Prepare the preprocessor for conditional tests
 	CPreprocessorWrapper preprocessor;
@@ -388,11 +381,10 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 
 	// Find all the techniques that we can use, and their preference
 
-	std::vector<std::pair<XMBElement, int>> usableTechs;
+	std::vector<XMBElement> usableTechs;
 
 	XERO_ITER_EL(Root, Technique)
 	{
-		int preference = 0;
 		bool isUsable = true;
 		XERO_ITER_EL(Technique, Child)
 		{
@@ -403,18 +395,19 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 			{
 				if (Attrs.GetNamedItem(at_shaders) == "arb")
 				{
-					if (!hasARB)
+					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB ||
+						!capabilities.m_ARBProgram)
+					{
 						isUsable = false;
+					}
 				}
 				else if (Attrs.GetNamedItem(at_shaders) == "glsl")
 				{
-					if (!hasGLSL)
+					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL ||
+						!(capabilities.m_FragmentShader && capabilities.m_VertexShader))
+					{
 						isUsable = false;
-
-					if (preferGLSL)
-						preference += 100;
-					else
-						preference -= 100;
+					}
 				}
 				else if (!Attrs.GetNamedItem(at_context).empty())
 				{
@@ -426,7 +419,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		}
 
 		if (isUsable)
-			usableTechs.emplace_back(Technique, preference);
+			usableTechs.emplace_back(Technique);
 	}
 
 	if (usableTechs.empty())
@@ -435,14 +428,8 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		return false;
 	}
 
-	// Sort by preference, tie-break on order of specification
-	std::stable_sort(usableTechs.begin(), usableTechs.end(),
-		[](const std::pair<XMBElement, int>& a, const std::pair<XMBElement, int>& b) {
-			return b.second < a.second;
-		});
-
 	CShaderDefines techDefines = baseDefines;
-	XERO_ITER_EL(usableTechs[0].first, Child)
+	XERO_ITER_EL(usableTechs[0], Child)
 	{
 		if (Child.GetNodeName() == el_define)
 		{
@@ -458,7 +445,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	// TODO: we might want to implement that in a proper way via splitting passes
 	// and tags in different groups in XML.
 	std::vector<CShaderPass> techPasses;
-	XERO_ITER_EL(usableTechs[0].first, Child)
+	XERO_ITER_EL(usableTechs[0], Child)
 	{
 		if (Child.GetNodeName() == el_pass)
 		{

@@ -892,7 +892,7 @@ void CSceneRenderer::RenderSubmissions(
 	}
 
 	CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();
-	if (g_RenderingOptions.GetPostProc())
+	if (postprocManager.IsEnabled())
 	{
 		// We have to update the post process manager with real near/far planes
 		// that we use for the scene rendering.
@@ -974,7 +974,7 @@ void CSceneRenderer::RenderSubmissions(
 		ogl_WarnIfError();
 	}
 
-	if (g_RenderingOptions.GetPostProc())
+	if (postprocManager.IsEnabled())
 	{
 		if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
 			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer();
