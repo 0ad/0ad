@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2022-01-16 19:56+0000\n"
+"PO-Revision-Date: 2022-01-28 01:48+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr "Varios effeitos (temporales)"
+msgstr "Varios effectos (temporales)"
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
@@ -46,12 +46,12 @@ msgstr "Reduz la vitalidat del obiectivu."
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr "Danho"
+msgstr "Danno"
 
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Danho frayyante, cumo’l qui fazen las porras, el couzipamiento."
+msgstr "Danno frayyante, cumo’l qui fazen las clavas, la calcadura."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -61,7 +61,7 @@ msgstr "Frayyura"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Danho queimante, cumo’l qui fazen los gabuços, las saiettas ardientes."
+msgstr "Danno queimante, cumo’l qui fazen los fatsucos, las saiettas ardientes."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -73,7 +73,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Danho curtante, cumo’l qui fazen las spadas, las seguras."
+msgstr "Danno curtante, cumo’l qui fazen las spadas, las seguras."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -83,7 +83,7 @@ msgstr "Corte"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Danho perforante, cumo’l qui fazen las saiettas, las lhancias."
+msgstr "Danno perforante, cumo’l qui fazen las saiettas, las hastas."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -95,7 +95,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Danho tóxico, cumo’l qui fazen las coluobras, las armas venenadas."
+msgstr "Danno tóxico, cumo’l qui fazen las coluobras, las armas venenadas."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -105,7 +105,7 @@ msgstr "Toxicidat"
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Esta unidat faz queimar."
+msgstr "Esta unidat fai queimar."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
@@ -178,7 +178,7 @@ msgstr "Micrópolis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "Esta ie una pequenha polis griega."
+msgstr "Esta ie una pequenna polis griega."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
@@ -753,7 +753,7 @@ msgstr "Piedra de grano curtado"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
-msgstr "Piedra cortada"
+msgstr "Piedra curtada"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
@@ -977,7 +977,7 @@ msgstr "Tuna"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr "Árbore tropical"
+msgstr "Árbole tropical"
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
@@ -1018,7 +1018,7 @@ msgstr "Anticaballeiría"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "Acie"
+msgstr "Az"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1042,7 +1042,7 @@ msgstr "Requier pelo menus 8 Mílites ou Máchinas."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "Orde xebradu"
+msgstr "Orde ẍebradu"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
@@ -1168,7 +1168,7 @@ msgstr "Fonte de recursos."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
-msgstr "Árbore"
+msgstr "Árbole"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-01-21 01:23+0000\n"
+"PO-Revision-Date: 2022-01-28 04:37+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Grea aleatoria"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:68
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Los jogadores colligados ajuntan-se, mas sitúan-se aleatoriamente nel mappa."
+msgstr "Los jogadores colligados ajuntan-se, mas sitúan-se aleatoriamente no mappa."
 
 #: gui/gamesettings/attributes/TeamPlacement.js:72
 msgctxt "team placement"
@@ -59,7 +59,7 @@ msgstr "Arce"
 
 #: gui/gamesettings/attributes/TeamPlacement.js:73
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Los jogadores colligados ajuntan-se ayyuri nel mappa."
+msgstr "Los jogadores colligados ajuntan-se ayyuri no mappa."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -71,7 +71,7 @@ msgstr "Acceitar"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
-msgstr "La intelligencia d’isti agente vai star disactivada."
+msgstr "La intelligencia d’esti agente vai star disactivada."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
@@ -108,7 +108,7 @@ msgstr "Non"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:84
 msgctxt "settings value"
 msgid "Unknown"
-msgstr "Disconhoz-se"
+msgstr "Disconnoz-se"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
@@ -145,7 +145,7 @@ msgstr "Sin affitar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
 msgid "Choose the civilization for this player."
-msgstr "Excoyyer la civilizacion d’isti jogador."
+msgstr "Excoyyer la civilizacion d’esti jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
 msgctxt "civilization"
@@ -196,7 +196,7 @@ msgstr "Exqueirar los mappas"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "Premi %(hotkey)s para ver los mappas disponibles."
+msgstr "Preme %(hotkey)s pa ver los mappas disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
@@ -262,7 +262,7 @@ msgstr "Incuontru classificadu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Alternar la classificacion d’isti incuontru nela tabla."
+msgstr "Alternar la classificacion d’esti incuontru na tabla."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
@@ -375,11 +375,11 @@ msgstr "Excoyyer el rodiu del mappa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
-msgstr "Penheira"
+msgstr "Penneira"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
-msgstr "Excoyyer una penheira chartográphica."
+msgstr "Excoyyer una penneira chartográphica."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
 msgid "Map"
@@ -404,11 +404,11 @@ msgstr "Escuoyyi un mappa aleatoriu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:39
 msgid "Map Size"
-msgstr "Magnitúdine del mappa"
+msgstr "Tammagnu del mappa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:42
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Excoyyer la magnitúdine del mappa. (Los mappas maiores puoden affectar al rendimiento)."
+msgstr "Excoyyer el tammagnu del mappa. (Los mappas maiores puoden affectar al rendimiento)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
@@ -542,7 +542,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "El total de reliquias del mappa. Cumo condicion de victoria, una ou duas reliquias son la cuonta. De tres a riba, ie importante captá-llas para recibir ventayyas aurales."
+msgstr "El total de reliquias del mappa. Cumo condicion de victoria, una ou duas reliquias son la cuonta. De tres a riba, ie importante captá-llas pa recibir ventayyas aurales."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
@@ -608,7 +608,7 @@ msgstr "Tornar pal menú principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver la Synopsis civilizacional / Árbore de construcciones\nL’últimu abiertu vai reabrí-se in calcando."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ver la Synopsis civilizacional / Árbole de construcciones\nLa última abierta vai reabrí-se in faziendo clic."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -628,15 +628,15 @@ msgstr "¡Non sto preparadu/a!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Signalar qui stas preparadu para jogar."
+msgstr "Signalar qui stas preparadu/a pa jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Seguir preparadu, inda qui cambien los ajustes del incuontru."
+msgstr "Seguir preparadu/a, inda qui cambien los ajustes del incuontru."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "Signalar qui non stas preparadu/a para jogar."
+msgstr "Signalar qui non stas preparadu/a pa jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
@@ -645,7 +645,7 @@ msgstr "Reaffitar las civilizaciones qui s’excoyyerun al valor predefinidu (al
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Reaffitar tódalas quadriellas al valor por defeitu."
+msgstr "Reaffitar tódalas quadriellas al valor por defectu."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -653,13 +653,13 @@ msgstr "¡Iniciar l’incuontru!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr "Iniciar un incuontru nuovu cun los ajustes actuales."
+msgstr "Iniciar un incuontru nuovu cunnos ajustes actuales."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "Iniciar un incuontru nuovu cun los ajustes actuales (quando todos stean preparados)."
+msgstr "Iniciar un incuontru nuovu cunnos ajustes actuales (quando todos stean preparados)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
@@ -668,7 +668,7 @@ msgstr "Premi %(hotkey)s p’autocompletar nomes de jogadores ou ajustes. "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr "Jogador disconhocidu"
+msgstr "Jogador disconnocidu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
@@ -748,7 +748,7 @@ msgstr "Incuontru classificadu."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "Calca p’alternar la lhingüeta %(name)s."
+msgstr "Fai clic p’alternar la lhingüeta %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -756,11 +756,11 @@ msgstr "Non s’excoyyeu mappa dalu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr "Calca para ver los mappas disponibles."
+msgstr "Fai clic pa ver los mappas disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
-msgstr "Volver amostrar isti conseyyo."
+msgstr "Volver amostrar esti conseyyo."
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -790,7 +790,7 @@ msgstr "El númeru del puortu del servidor tien de star entre %(min)s & %(max)s.
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
-msgstr "Connectando cul servidor..."
+msgstr "Connectando cunno servidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
@@ -808,7 +808,7 @@ msgstr "Stas torgadu/a."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Fallu al obtener el IP local del servidor (suppuẍo-se qui s’atopaba nela miesma rede)."
+msgstr "Fallu al obtener el IP local del servidor (suppuẍo-se qui s’atopaba na miesma rede)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -817,7 +817,7 @@ msgstr "\\[valor non válidu %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
-msgstr "Fallu al connectar cul servidor."
+msgstr "Fallu al connectar cunno servidor."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
@@ -896,7 +896,7 @@ msgstr "Clave del servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr "Usar STUN para evitar torna-fuogos"
+msgstr "Usar STUN pa evitar torna-fuogos"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
@@ -917,11 +917,11 @@ msgstr "Confimar"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "Lheiẍa-lo vazío para usar el puortu predefinidu."
+msgstr "Lheiẍa-lo vazío pa usar el puortu predefinidu."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr "Lheiẍa-lo vazío para non la pedir."
+msgstr "Lheiẍa-lo vazío pa non la pedir."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -964,7 +964,7 @@ msgstr "“Al invés de dote, \\[Helena] traẍo a Ilio la ruina.” \\n— Ésc
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr "“In toda tyrannía ha hi d’algun modu infirmidade; non s’infouta innos amigos.” \\n— Éschylu (“Prometheu incadenadu”, 224–225)"
+msgstr "“In toda tyrannía ha hi d’algun modu infirmidade; non s’infouta nelos amigos.” \\n— Éschylu (“Prometheu incadenadu”, 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -986,7 +986,7 @@ msgstr "“El demente afortunadu ie una carga onerosa.” \\n— Éschylu (fragm
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr "“A dieus rogando & cul maçu dando.” \\n— Esopu (“El carreteiru & Hércules”)"
+msgstr "“A dieus rogando & cunno maçu dando.” \\n— Esopu (“El carreteiru & Hércules”)"
 
 #: gui/text/quotes.txt:8
 msgid ""

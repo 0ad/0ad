@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-09-27 21:33+0000\n"
-"Last-Translator: Stass Baushin\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-24 09:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "Relic"
 msgstr "Relika"
 
-#: simulation/templates/template_unit_catafalque.xml:18
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr "Katafalks"
 
-#: simulation/templates/template_unit_catafalque.xml:21
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Katafalks, kas satur lieliska līdera paliekas."
 
@@ -221,7 +221,7 @@ msgstr "Zobenu bruņinieks"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
@@ -235,7 +235,7 @@ msgstr "Zobenu bruņinieks"
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Ranged"
 msgstr "Šāvējs"
 
@@ -260,7 +260,7 @@ msgstr "Loks"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
@@ -469,7 +469,7 @@ msgstr ""
 msgid "Dog"
 msgstr "Suns"
 
-#: simulation/templates/template_unit_elephant_archer.xml:33
+#: simulation/templates/template_unit_elephant_archer.xml:34
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Lokšāvējs uz ziloņa"
@@ -493,7 +493,7 @@ msgstr "Varonis"
 msgid "Hero Cavalry"
 msgstr "Varoņis jātnieks"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:39
+#: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:52
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
@@ -627,7 +627,7 @@ msgstr "Vieglais kara kuģis"
 #: simulation/templates/template_unit_ship_bireme.xml:45
 #: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:65
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Novietojiet vienības uz klāja transportēšanai un šaušanas spēju uzlabošanai."
 
@@ -778,11 +778,11 @@ msgstr ""
 msgid "Siege Catapult"
 msgstr "Aplenkuma katapulta"
 
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "SiegeTower"
 msgstr "Aplenkuma tornis"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Siege Tower"
 msgstr "Aplenkuma tornis"
 
@@ -1921,15 +1921,8 @@ msgstr ""
 msgid "rmt sbt"
 msgstr ""
 
-#: simulation/templates/units/mace/catafalque.xml:8
-msgid "Philip V"
-msgstr ""
-
 #: simulation/templates/units/mace/catafalque.xml:9
-msgid ""
-"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
-" internal affairs and finances, leaving as a legacy reopened mines and a new"
-" currency. Gain a slow trickle of metal."
+msgid "Philip V"
 msgstr ""
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7

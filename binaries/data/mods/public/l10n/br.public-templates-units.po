@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-04-30 09:29+0000\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-24 09:24+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,11 @@ msgstr ""
 msgid "Relic"
 msgstr "Relegenn"
 
-#: simulation/templates/template_unit_catafalque.xml:18
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr "Geler"
 
-#: simulation/templates/template_unit_catafalque.xml:21
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Ur c'heler a zalc'h restadoù ur penn bras enni."
 
@@ -223,7 +223,7 @@ msgstr "Klezeour"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
@@ -237,7 +237,7 @@ msgstr "Klezeour"
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Ranged"
 msgstr "A-bell"
 
@@ -262,7 +262,7 @@ msgstr ""
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
@@ -471,7 +471,7 @@ msgstr "N'haller ket tagañ savadurioù, bigi pe mekanikoù seziz"
 msgid "Dog"
 msgstr "Ki"
 
-#: simulation/templates/template_unit_elephant_archer.xml:33
+#: simulation/templates/template_unit_elephant_archer.xml:34
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Olifant Gwareger"
@@ -495,7 +495,7 @@ msgstr "Haroz"
 msgid "Hero Cavalry"
 msgstr "Marc'heger Harozel"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:39
+#: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:52
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
@@ -629,7 +629,7 @@ msgstr "Bag-Brezel Skañv"
 #: simulation/templates/template_unit_ship_bireme.xml:45
 #: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:65
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Lakait e gwarnizon unanennoù evit o zreuzdougen ha kreskiñ ar galloud-tennañ."
 
@@ -780,11 +780,11 @@ msgstr "Banneroc'h"
 msgid "Siege Catapult"
 msgstr "Gwinterez Seziz"
 
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "SiegeTower"
 msgstr "TourSeziz"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Siege Tower"
 msgstr "Tour Seziz"
 
@@ -1923,16 +1923,9 @@ msgstr "Marc'hadour Nilotek"
 msgid "rmt sbt"
 msgstr "rmt sbt"
 
-#: simulation/templates/units/mace/catafalque.xml:8
+#: simulation/templates/units/mace/catafalque.xml:9
 msgid "Philip V"
 msgstr "Fulup V"
-
-#: simulation/templates/units/mace/catafalque.xml:9
-msgid ""
-"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
-" internal affairs and finances, leaving as a legacy reopened mines and a new"
-" currency. Gain a slow trickle of metal."
-msgstr "Adaozadur an archantaouiñ: Kevredet gant Roma, Filip a adaozas aferioù hag arc'hanterezh ar vro diabarzh, en ur leuskel evel hêrezh mengleuzioù addigoret hag ur moneiz nevez. Gounezet e vez ur buzad moan a vetal."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2022-01-13 12:59+0000\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-27 12:49+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -399,15 +399,25 @@ msgstr "Como en el resto de culturas la religión era parte clave en Kush. Shana
 msgid "Temple at Naqa"
 msgstr "Templo en Naqa"
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
+#: simulation/data/auras/units/catafalques/mace_catafalque_1.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
 msgstr "Durante la primera guerra macedónica, Filipo y sus tropas saquearon Termo, el centro religioso y político de Etolia.\nHumanos, máquinas de asedio, navíos y estructuras (Saqueo de comida y madera: +5)."
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
+#: simulation/data/auras/units/catafalques/mace_catafalque_1.jsonauraName
 msgid "Sacker of Cities"
 msgstr "Saqueador de ciudades"
+
+#: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraDescription
+msgid ""
+"Allied with Rome, Philip reorganized the country's internal affairs and finances, leaving as a legacy reopened mines and a new currency.\n"
+"Gain a slow trickle of metal."
+msgstr "Aliándose con Roma, Filipo reorganizó todas las finanzas y comercio interno, dejando como legado minas reabiertas y una nueva moneda.\nProporciona un continuo pero lento ingreso de metal."
+
+#: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
+msgid "Financial Reorganization"
+msgstr "Reorganización financiera"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
