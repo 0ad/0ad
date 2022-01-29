@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,6 @@ public:
 		componentManager.SubscribeToMessageType(MT_InterpolatedPositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
-		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_Create);
 		componentManager.SubscribeToMessageType(MT_Destroy);
 	}
@@ -303,15 +302,6 @@ public:
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			m_Unit->GetModel().SetPlayerID(msgData.to);
 
-			break;
-		}
-		case MT_TerrainChanged:
-		{
-			if (!m_Unit)
-				break;
-
-			const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
-			m_Unit->GetModel().SetTerrainDirty(msgData.i0, msgData.j0, msgData.i1, msgData.j1);
 			break;
 		}
 		case MT_ValueModification:

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,6 +55,12 @@ public:
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }
 
 	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
+
+	/**
+	 * Mark a specific region of the terrain as dirty.
+	 * Coordinates are in terrain tiles, lower inclusive, upper exclusive.
+	 */
+	void MakeTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags);
 
 private:
 	// list of all known units
