@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2022-01-21 02:29+0000\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-28 01:47+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Relic"
 msgstr "Reliquia"
 
-#: simulation/templates/template_unit_catafalque.xml:18
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr "Catafalco"
 
-#: simulation/templates/template_unit_catafalque.xml:21
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Un catafalco qui lheva los restos d’una gran lheienda."
 
@@ -140,11 +140,11 @@ msgstr "Securígeru"
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
-msgstr "Maça"
+msgstr "Clava"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
-msgstr "Éqüite maceiru"
+msgstr "Éqüite clavador"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
@@ -153,7 +153,7 @@ msgstr "Éqüite maceiru"
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Maceman"
-msgstr "Maceiru"
+msgstr "Clavador"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -217,7 +217,7 @@ msgstr "Spathariu"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
@@ -231,7 +231,7 @@ msgstr "Spathariu"
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Ranged"
 msgstr "Emittiente"
 
@@ -256,7 +256,7 @@ msgstr "Arcu"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
@@ -344,7 +344,7 @@ msgstr "Éqüite piladu invictu"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
-msgstr "Éqüite maceiru invictu"
+msgstr "Éqüite clavador invictu"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
@@ -403,7 +403,7 @@ msgstr "Pédite piladu invictu"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
-msgstr "Pédite maceiru invictu"
+msgstr "Pédite clavador invictu"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -465,7 +465,7 @@ msgstr "Non ie a aggredir construcciones, barcos nien máchinas."
 msgid "Dog"
 msgstr "Can"
 
-#: simulation/templates/template_unit_elephant_archer.xml:33
+#: simulation/templates/template_unit_elephant_archer.xml:34
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Sagittariu in elephante"
@@ -489,7 +489,7 @@ msgstr "Héroe"
 msgid "Hero Cavalry"
 msgstr "Éqüite heroicu"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:39
+#: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:52
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
@@ -521,7 +521,7 @@ msgstr "Éqüite piladu heroicu"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
-msgstr "Éqüite maceiru heroicu"
+msgstr "Éqüite clavador heroicu"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
@@ -565,7 +565,7 @@ msgstr "Pédite piladu heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
-msgstr "Pédite maceiru heroicu"
+msgstr "Pédite clavador heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
@@ -591,7 +591,7 @@ msgstr "Pédite combattiente"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
-msgstr "Pédite maceiru"
+msgstr "Pédite clavador"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Infantry Crossbowman"
@@ -623,9 +623,9 @@ msgstr "Naviyya"
 #: simulation/templates/template_unit_ship_bireme.xml:45
 #: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:65
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Imbarca unidades para transportá-llas & augmentar la potencia offensiva del barcu."
+msgstr "Imbarca unidades pa transportá-llas & augmentar la potencia offensiva del barcu."
 
 #: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/template_unit_ship_fire.xml:42
@@ -690,7 +690,7 @@ msgstr "Mercador"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Commercia entre puortos. Imbarca un commerciante para mas beneficios (+20% por cada unu imbarcadu). Recuoyye ayyalgas aquáticas."
+msgstr "Commercia entre puortos. Imbarca un commerciante pa mas beneficios (+20% por cada unu imbarcadu). Recuoyye ayyalgas aquáticas."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -774,11 +774,11 @@ msgstr "Catapulta"
 msgid "Siege Catapult"
 msgstr "Catapulta"
 
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "SiegeTower"
 msgstr "Helépolis"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Siege Tower"
 msgstr "Helépolis"
 
@@ -807,7 +807,7 @@ msgstr "Siervu"
 
 #: simulation/templates/template_unit_support_slave.xml:20
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Obreiru de vida finita. Da-se-lli bien extraher minerales & valtar árbores."
+msgstr "Obreiru de vida finita. Da-se-lli bien extraher minerales & valtar árboles."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
@@ -1536,7 +1536,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Commercia entre puortos. Imbarca un commerciante para mas beneficios (+20% por cada unu imbarcadu). Recuoyye ayyalgas aquáticas.  Los carthagineses frúin d’una ventayya del +25% nel commercio marítimo."
+msgstr "Commercia entre puortos. Imbarca un commerciante pa mas beneficios (+20% por cada unu imbarcadu). Recuoyye ayyalgas aquáticas.  Los carthagineses frúin d’una ventayya del +25% no commercio marítimo."
 
 #: simulation/templates/units/cart/ship_quinquereme.xml:10
 msgid "Ḥameš-Mašōt"
@@ -1835,7 +1835,7 @@ msgstr "nhw ʿhȝw Noba"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
 msgid "Noba Maceman"
-msgstr "Maceiru noba"
+msgstr "Clavador noba"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:17
 msgid "nhw Noba"
@@ -1917,16 +1917,9 @@ msgstr "Mercador nilóticu"
 msgid "rmt sbt"
 msgstr "rmt sbt"
 
-#: simulation/templates/units/mace/catafalque.xml:8
+#: simulation/templates/units/mace/catafalque.xml:9
 msgid "Philip V"
 msgstr "Phílippos E΄"
-
-#: simulation/templates/units/mace/catafalque.xml:9
-msgid ""
-"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
-" internal affairs and finances, leaving as a legacy reopened mines and a new"
-" currency. Gain a slow trickle of metal."
-msgstr "Igua financieira: Colligadu cun Roma, Phílippos ordenou los assumptos internos del reino, lheiẍando cumo legado minas re-abiertas & una moneda nuova. Una bisbeira metal vai intsendo las reservas."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
@@ -2474,7 +2467,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Cambia recursos entre mercados proprios & mercados colligados. Los persas frúin d’una ventayya del +25% nel commercio terrestre."
+msgstr "Cambia recursos entre mercados proprios & mercados colligados. Los persas frúin d’una ventayya del +25% no commercio terrestre."
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."

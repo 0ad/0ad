@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-05-03 18:54+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-24 09:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Relic"
 msgstr "Ιερό Λείψανο"
 
-#: simulation/templates/template_unit_catafalque.xml:18
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr "Βάθρο φέρετρου"
 
-#: simulation/templates/template_unit_catafalque.xml:21
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Ένα βάθρο για φέρετρο που διατηρεί τα λείψανα ενός μεγάλου ηγέτη."
 
@@ -229,7 +229,7 @@ msgstr "Ξιφομάχος"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
@@ -243,7 +243,7 @@ msgstr "Ξιφομάχος"
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Ranged"
 msgstr "Εκήβολο"
 
@@ -268,7 +268,7 @@ msgstr "Τόξο"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
@@ -477,7 +477,7 @@ msgstr "Δέ μπορεί να επιτεθεί  σε Κατασκευές, Πλ
 msgid "Dog"
 msgstr "Σκύλος"
 
-#: simulation/templates/template_unit_elephant_archer.xml:33
+#: simulation/templates/template_unit_elephant_archer.xml:34
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Τοξότης Ελέφαντα"
@@ -501,7 +501,7 @@ msgstr "Ήρωας"
 msgid "Hero Cavalry"
 msgstr "Ήρωας Ιππέας"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:39
+#: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:52
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
@@ -635,7 +635,7 @@ msgstr "Ελαφρύ Πολεμικό Πλοίο"
 #: simulation/templates/template_unit_ship_bireme.xml:45
 #: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:65
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Επάνδρωσε με μονάδες για μεταφορά και για αύξηση ισχύος πυρός."
 
@@ -786,11 +786,11 @@ msgstr "Πετροβόλος"
 msgid "Siege Catapult"
 msgstr "Καταπέλτης"
 
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "SiegeTower"
 msgstr "Πολιορκητικός Πύργος"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Siege Tower"
 msgstr "Πολιορκητικός Πύργος"
 
@@ -1929,16 +1929,9 @@ msgstr "Νειλώος Έμπορας"
 msgid "rmt sbt"
 msgstr "ρμτ σβτ"
 
-#: simulation/templates/units/mace/catafalque.xml:8
+#: simulation/templates/units/mace/catafalque.xml:9
 msgid "Philip V"
 msgstr "Φίλιππος Ε'"
-
-#: simulation/templates/units/mace/catafalque.xml:9
-msgid ""
-"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
-" internal affairs and finances, leaving as a legacy reopened mines and a new"
-" currency. Gain a slow trickle of metal."
-msgstr "Οικονομική Αναδιοργάνωση: Συμμαχώντας με τη Ρώμη, ο Φίλιππος αναδιοργάνωσε τις εσωτερικές υποθέσεις και τα οικονομικά της χώρας, αφήνοντας ως παρακαταθήκη ξανανοιγμένα ορυχεία και ένα νέο νόμισμα. Αποκτάς μια αργή εισροή από μέταλλα."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"

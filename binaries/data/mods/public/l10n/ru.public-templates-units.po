@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -44,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-24 07:17+0000\n"
-"PO-Revision-Date: 2021-11-14 10:30+0000\n"
-"Last-Translator: Дмитрий Ошкало\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-24 09:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,11 +58,11 @@ msgstr ""
 msgid "Relic"
 msgstr "Реликвия"
 
-#: simulation/templates/template_unit_catafalque.xml:18
+#: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
 msgstr "Погребальная колесница"
 
-#: simulation/templates/template_unit_catafalque.xml:21
+#: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Погребальная колесница, в которой покоятся останки великого полководца."
 
@@ -253,7 +253,7 @@ msgstr "Мечник"
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:27
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:24
@@ -267,7 +267,7 @@ msgstr "Мечник"
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Ranged"
 msgstr "Стрелки"
 
@@ -292,7 +292,7 @@ msgstr "Лук"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_elephant_archer.xml:34
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:23
 #: simulation/templates/template_unit_hero_infantry_archer.xml:23
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:29
@@ -501,7 +501,7 @@ msgstr "Не может атаковать здания, корабли или �
 msgid "Dog"
 msgstr "Пёс"
 
-#: simulation/templates/template_unit_elephant_archer.xml:33
+#: simulation/templates/template_unit_elephant_archer.xml:34
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Лучник на слоне"
@@ -525,7 +525,7 @@ msgstr "Герой"
 msgid "Hero Cavalry"
 msgstr "Конный герой"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:39
+#: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:52
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
@@ -659,7 +659,7 @@ msgstr "Лёгкий военный корабль"
 #: simulation/templates/template_unit_ship_bireme.xml:45
 #: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:65
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Разместите юнитов внутри для транспортировки и увеличения огневой мощи."
 
@@ -810,11 +810,11 @@ msgstr "Камнемёт"
 msgid "Siege Catapult"
 msgstr "Осадная катапульта"
 
-#: simulation/templates/template_unit_siege_tower.xml:59
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "SiegeTower"
 msgstr "Осадная башня"
 
-#: simulation/templates/template_unit_siege_tower.xml:60
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Siege Tower"
 msgstr "Осадная башня"
 
@@ -1953,16 +1953,9 @@ msgstr "Нилотский торговец"
 msgid "rmt sbt"
 msgstr "Рэмэт сэбэт"
 
-#: simulation/templates/units/mace/catafalque.xml:8
+#: simulation/templates/units/mace/catafalque.xml:9
 msgid "Philip V"
 msgstr "Филипп V"
-
-#: simulation/templates/units/mace/catafalque.xml:9
-msgid ""
-"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
-" internal affairs and finances, leaving as a legacy reopened mines and a new"
-" currency. Gain a slow trickle of metal."
-msgstr "Финансовые преобразования: будучи союзником Рима, Филипп провёл реорганизацию внутренней и финансовой политики в своем государстве, оставив в наследство заново открытые месторождения и новую денежную единицу. Позволяет получить медленный, но постоянный приток запасов металла."
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"

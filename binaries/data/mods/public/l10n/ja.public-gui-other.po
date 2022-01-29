@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-24 07:51+0000\n"
+"PO-Revision-Date: 2022-01-25 06:59+0000\n"
 "Last-Translator: Ray I\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -838,7 +838,7 @@ msgstr "%(projectileString)s / %(attackRateString)s"
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s%(minRange)sから%(maxRange)s（%(relativeRange)s）%(rangeUnit)sまで"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
@@ -850,7 +850,7 @@ msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s%(minRange)sから%(maxRange)s%(rangeUnit)sまで"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
@@ -1167,7 +1167,7 @@ msgstr "塔: %(costs)s"
 #: gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s%(costs)s"
 
 #: gui/common/tooltips.js:951
 msgid "Cost:"
@@ -1176,12 +1176,12 @@ msgstr "コスト:"
 #: gui/common/tooltips.js:964
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "%(technology)sが必要"
 
 #: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s%(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
@@ -1216,7 +1216,7 @@ msgstr "走行"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "加速"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -1520,7 +1520,7 @@ msgstr "経験者にとっては確かに簡単かもしれませんが、まだ
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "他のホットキー"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
@@ -1546,11 +1546,11 @@ msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "全ホットキー"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "利用可能すべてのホットキー"
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
@@ -1582,7 +1582,7 @@ msgstr "リセット"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "ホットキー"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
@@ -6960,7 +6960,7 @@ msgstr "魚"
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr "木の実"
+msgstr "果実"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -6968,7 +6968,7 @@ msgstr "木の実"
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "木の実"
+msgstr "果実"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

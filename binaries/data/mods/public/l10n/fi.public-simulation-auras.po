@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-07 07:53+0000\n"
-"PO-Revision-Date: 2021-06-15 12:24+0000\n"
-"Last-Translator: Matti Tuhola\n"
+"POT-Creation-Date: 2022-01-24 08:09+0000\n"
+"PO-Revision-Date: 2022-01-24 08:25+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -376,15 +376,25 @@ msgstr "Kuten kaikissa kulttuureissa, uskonnolla oli Kušissa merkittävä rooli
 msgid "Temple at Naqa"
 msgstr "Naqan temppeli"
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
+#: simulation/data/auras/units/catafalques/mace_catafalque_1.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
 msgstr "Ensimmäisen makedonialaissodan aikana Filippos joukkoineen ryösti Thermumin, Aetolian uskonnollisen ja poliittisen keskuksen.\nIhmiset, piirityskoneet, laivat ja rakennelmat saavat +5 ruoka- ja puutavarasaalista."
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
+#: simulation/data/auras/units/catafalques/mace_catafalque_1.jsonauraName
 msgid "Sacker of Cities"
 msgstr "Kaupunkien ryöstäjä"
+
+#: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraDescription
+msgid ""
+"Allied with Rome, Philip reorganized the country's internal affairs and finances, leaving as a legacy reopened mines and a new currency.\n"
+"Gain a slow trickle of metal."
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
+msgid "Financial Reorganization"
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
