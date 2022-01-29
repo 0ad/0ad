@@ -435,10 +435,6 @@ void Shutdown(int flags)
 
 	ShutdownPs();
 
-	TIMER_BEGIN(L"shutdown TexMan");
-	delete &g_TexMan;
-	TIMER_END(L"shutdown TexMan");
-
 	if (hasRenderer)
 	{
 		TIMER_BEGIN(L"shutdown Renderer");
@@ -826,10 +822,6 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 
 void InitNonVisual(const CmdLineArgs& args)
 {
-	// Need some stuff for terrain movement costs:
-	// (TODO: this ought to be independent of any graphics code)
-	new CTerrainTextureManager;
-	g_TexMan.LoadTerrainTextures();
 	Autostart(args);
 }
 

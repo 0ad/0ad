@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -192,8 +192,7 @@ namespace Pathfinding
 
 /*
  * For efficient pathfinding we want to try hard to minimise the per-tile search cost,
- * so we precompute the tile passability flags and movement costs for the various different
- * types of unit.
+ * so we precompute the tile passability flags for the various different types of unit.
  * We also want to minimise memory usage (there can easily be 100K tiles so we don't want
  * to store many bytes for each).
  *

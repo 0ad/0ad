@@ -1163,13 +1163,8 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 		basicSpeed = std::max(std::min(m_TemplateWalkSpeed, floorSpeed), basicSpeed);
 	}
 
-	// Find the speed factor of the underlying terrain.
-	// (We only care about the tile we start on - it doesn't matter if we're moving
-	// partially onto a much slower/faster tile).
-	// TODO: Terrain-dependent speeds are not currently supported.
-	fixed terrainSpeed = fixed::FromInt(1);
-
-	fixed maxSpeed = basicSpeed.Multiply(terrainSpeed);
+	// TODO: would be nice to support terrain-dependent speed again.
+	fixed maxSpeed = basicSpeed;
 
 	fixed timeLeft = dt;
 	fixed zero = fixed::Zero();

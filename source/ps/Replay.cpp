@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -248,11 +248,6 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 			if (ooslog)
 				g_Game->GetSimulation2()->EnableOOSLog();
 
-			// Need some stuff for terrain movement costs:
-			// (TODO: this ought to be independent of any graphics code)
-			new CTerrainTextureManager;
-			g_TexMan.LoadTerrainTextures();
-
 			// Initialise h_mgr so it doesn't crash when emitting sounds
 			h_mgr_init();
 
@@ -328,9 +323,6 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 	// Must be explicitly destructed here to avoid callbacks from the JSAPI trying to use g_Profiler2 when
 	// it's already destructed.
 	g_ScriptContext.reset();
-
-	// Clean up
-	delete &g_TexMan;
 
 	delete &g_Profiler;
 	delete &g_ProfileViewer;
