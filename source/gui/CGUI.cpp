@@ -535,6 +535,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::unordered_set<VfsPath>& Pat
 
 	CXeromyces xeroFile;
 	if (xeroFile.Load(g_VFS, Filename, "gui") != PSRETURN_OK)
+		// The error has already been reported by CXeromyces
 		return;
 
 	XMBElement node = xeroFile.GetRoot();
