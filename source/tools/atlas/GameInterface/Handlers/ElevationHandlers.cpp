@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,12 +21,13 @@
 
 #include "../CommandProc.h"
 
+#include "graphics/RenderableObject.h"
 #include "graphics/Terrain.h"
+#include "graphics/UnitManager.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "maths/MathUtil.h"
-#include "graphics/RenderableObject.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
 
@@ -111,6 +112,7 @@ BEGIN_COMMAND(AlterElevation)
 	void MakeDirty()
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
@@ -193,6 +195,7 @@ BEGIN_COMMAND(SmoothElevation)
 	void MakeDirty()
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
@@ -305,6 +308,7 @@ BEGIN_COMMAND(FlattenElevation)
 	void MakeDirty()
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
@@ -379,6 +383,7 @@ BEGIN_COMMAND(PikeElevation)
 	void MakeDirty()
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);

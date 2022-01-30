@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,8 +35,7 @@ CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_BaseColor(0),
 	m_HasBaseColor(false),
 	m_TextureAngle((float)M_PI / 4.f),
-	m_TextureSize(32.f),
-	m_MovementClass("default")
+	m_TextureSize(32.f)
 {
 	if (m_pParent)
 		m_Groups = m_pParent->m_Groups;
@@ -95,7 +94,6 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 	// Terrain Attribs
 	ATTR(mmap);
 	ATTR(groups);
-	ATTR(movementclass);
 	ATTR(angle);
 	ATTR(size);
 	#undef ELMT
@@ -135,10 +133,6 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 		else if (attr.Name == attr_size)
 		{
 			m_TextureSize = attr.Value.ToFloat();
-		}
-		else if (attr.Name == attr_movementclass)
-		{
-			m_MovementClass = attr.Value;
 		}
 	}
 }

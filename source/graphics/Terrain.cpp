@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,17 +93,6 @@ bool CTerrain::Initialize(ssize_t patchesPerSide, const u16* data)
 	m_HeightMipmap.Initialize(m_MapSize, m_Heightmap);
 
 	return true;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-CStr8 CTerrain::GetMovementClass(ssize_t i, ssize_t j) const
-{
-	CMiniPatch* tile = GetTile(i, j);
-	if (tile && tile->GetTextureEntry())
-		return tile->GetTextureEntry()->GetProperties().GetMovementClass();
-
-	return "default";
 }
 
 ///////////////////////////////////////////////////////////////////////////////

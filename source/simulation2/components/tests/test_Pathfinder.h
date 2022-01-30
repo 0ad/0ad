@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,16 +45,10 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
 
 		CXeromyces::Startup();
-
-		// Need some stuff for terrain movement costs:
-		// (TODO: this ought to be independent of any graphics code)
-		new CTerrainTextureManager;
-		g_TexMan.LoadTerrainTextures();
 	}
 
 	void tearDown()
 	{
-		delete &g_TexMan;
 		CXeromyces::Terminate();
 		g_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");

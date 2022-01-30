@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -96,4 +96,12 @@ CUnit* CUnitManager::CreateUnit(const CStrW& actorName, uint32_t seed)
 	if (unit)
 		AddUnit(unit);
 	return unit;
+}
+
+void CUnitManager::MakeTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
+{
+	if (!(dirtyFlags & RENDERDATA_UPDATE_VERTICES))
+		return;
+	for (CUnit* unit : m_Units)
+		unit->GetModel().SetTerrainDirty(i0, j0, i1, j1);
 }

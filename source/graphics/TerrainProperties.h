@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,8 +55,6 @@ private:
 	u32 m_BaseColor;
 	bool m_HasBaseColor;
 
-	CStr m_MovementClass;
-
 	// Orientation of texture (in radians) (default pi/4 = 45 degrees)
 	float m_TextureAngle;
 
@@ -101,11 +99,6 @@ public:
 	float GetTextureSize()
 	{
 		return m_TextureSize;
-	}
-
-	CStr GetMovementClass() const
-	{
-		return m_MovementClass;
 	}
 
 	const GroupVector &GetGroups() const

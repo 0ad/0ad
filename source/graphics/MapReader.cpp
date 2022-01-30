@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -247,9 +247,11 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		ENSURE(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
-		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texturename);
-		m_TerrainTextures.push_back(texentry);
+		if(CTerrainTextureManager::IsInitialised())
+		{
+			CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texturename);
+			m_TerrainTextures.push_back(texentry);
+		}
 
 		cur_terrain_tex++;
 		LDR_CHECK_TIMEOUT(cur_terrain_tex, num_terrain_tex);
@@ -1354,9 +1356,11 @@ if (!Script::GetProperty(rq, val, #prop, out))\
 
 	while (cur_terrain_tex < num_terrain_tex)
 	{
-		ENSURE(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
-		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(textureNames[cur_terrain_tex]);
-		m_TerrainTextures.push_back(texentry);
+		if (CTerrainTextureManager::IsInitialised())
+		{
+			CTerrainTextureEntry* texentry = g_TexMan.FindTexture(textureNames[cur_terrain_tex]);
+			m_TerrainTextures.push_back(texentry);
+		}
 
 		cur_terrain_tex++;
 	}

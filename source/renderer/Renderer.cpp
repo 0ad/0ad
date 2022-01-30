@@ -316,6 +316,8 @@ CRenderer::CRenderer()
 
 CRenderer::~CRenderer()
 {
+	delete &g_TexMan;
+
 	// We no longer UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
 	// them to be loaded (i.e. CGameView).
