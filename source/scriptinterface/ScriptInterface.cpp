@@ -51,7 +51,7 @@
 
 struct ScriptInterface_impl
 {
-	ScriptInterface_impl(const char* nativeScopeName, const std::shared_ptr<ScriptContext>& context);
+	ScriptInterface_impl(const char* nativeScopeName, const std::shared_ptr<ScriptContext>& context, JS::Compartment* compartment);
 	~ScriptInterface_impl();
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
@@ -299,7 +299,7 @@ bool ScriptInterface::Math_random(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
-ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const std::shared_ptr<ScriptContext>& context) :
+ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const std::shared_ptr<ScriptContext>& context, JS::Compartment* compartment) :
 	m_context(context), m_cx(context->GetGeneralJSContext()), m_glob(context->GetGeneralJSContext()), m_nativeScope(context->GetGeneralJSContext())
 {
 	JS::RealmCreationOptions creationOpt;
@@ -307,6 +307,13 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const st
 	creationOpt.setPreserveJitCode(true);
 	// Enable uneval
 	creationOpt.setToSourceEnabled(true);
+
+	if (compartment)
+		creationOpt.setExistingCompartment(compartment);
+	else
+		// This is the default behaviour.
+		creationOpt.setNewCompartmentAndZone();
+
 	JS::RealmOptions opt(creationOpt, JS::RealmBehaviors{});
 
 	m_glob = JS_NewGlobalObject(m_cx, &global_class, nullptr, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt);
@@ -340,8 +347,26 @@ ScriptInterface_impl::~ScriptInterface_impl()
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const std::shared_ptr<ScriptContext>& context) :
-	m(std::make_unique<ScriptInterface_impl>(nativeScopeName, context))
+	m(std::make_unique<ScriptInterface_impl>(nativeScopeName, context, nullptr))
 {
+	// Profiler stats table isn't thread-safe, so only enable this on the main thread
+	if (Threading::IsMainThread())
+	{
+		if (g_ScriptStatsTable)
+			g_ScriptStatsTable->Add(this, debugName);
+	}
+
+	ScriptRequest rq(this);
+	m_CmptPrivate.pScriptInterface = this;
+	JS::SetRealmPrivate(JS::GetObjectRealmOrNull(rq.glob), (void*)&m_CmptPrivate);
+}
+
+ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const ScriptInterface& neighbor)
+{
+	ScriptRequest nrq(neighbor);
+	JS::Compartment* comp = JS::GetCompartmentForRealm(JS::GetCurrentRealmOrNull(nrq.cx));
+	m = std::make_unique<ScriptInterface_impl>(nativeScopeName, neighbor.GetContext(), comp);
+
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
 	if (Threading::IsMainThread())
 	{

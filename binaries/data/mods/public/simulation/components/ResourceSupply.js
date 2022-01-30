@@ -277,7 +277,6 @@ ResourceSupply.prototype.AddGatherer = function(gathererID)
 		return true;
 
 	this.gatherers.push(gathererID);
-	Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
 
 	return true;
 };
@@ -310,10 +309,7 @@ ResourceSupply.prototype.RemoveGatherer = function(gathererID)
 {
 	let index = this.gatherers.indexOf(gathererID);
 	if (index != -1)
-	{
 		this.gatherers.splice(index, 1);
-		Engine.PostMessage(this.entity, MT_ResourceSupplyNumGatherersChanged, { "to": this.GetNumGatherers() });
-	}
 
 	index = this.activeGatherers.indexOf(gathererID);
 	if (index == -1)

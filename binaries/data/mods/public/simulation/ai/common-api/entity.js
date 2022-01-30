@@ -590,6 +590,8 @@ m.Entity = m.Class({
 		this._entityModif = sharedAI._entitiesModifications.get(entity.id);
 	},
 
+	"queryInterface": function(iid) { return SimEngine.QueryInterface(this.id(), iid) },
+
 	"toString": function() { return "[Entity " + this.id() + " " + this.templateName() + "]"; },
 
 	"id": function() { return this._entity.id; },
@@ -679,24 +681,25 @@ m.Entity = m.Class({
 	},
 
 	"resourceSupplyAmount": function() {
-		return this._entity.resourceSupplyAmount;
+		return this.queryInterface(Sim.IID_ResourceSupply)?.GetCurrentAmount();
 	},
 
 	"resourceSupplyNumGatherers": function()
 	{
-		return this._entity.resourceSupplyNumGatherers;
+		return this.queryInterface(Sim.IID_ResourceSupply)?.GetNumGatherers();
 	},
 
 	"isFull": function()
 	{
-		if (this._entity.resourceSupplyNumGatherers !== undefined)
-			return this.maxGatherers() === this._entity.resourceSupplyNumGatherers;
+		let numGatherers = this.resourceSupplyNumGatherers();
+		if (numGatherers)
+			return this.maxGatherers() === numGatherers;
 
 		return undefined;
 	},
 
 	"resourceCarrying": function() {
-		return this._entity.resourceCarrying;
+		return this.queryInterface(Sim.IID_ResourceGatherer)?.GetCarryingStatus();
 	},
 
 	"currentGatherRate": function() {

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,27 +57,24 @@ extern void QuitEngine();
  * AI is primarily scripted, and the CCmpAIManager component defined here
  * takes care of managing all the scripts.
  *
- * To avoid slow AI scripts causing jerky rendering, they are run in a background
- * thread (maintained by CAIWorker) so that it's okay if they take a whole simulation
- * turn before returning their results (though preferably they shouldn't use nearly
- * that much CPU).
+ * The original idea was to run CAIWorker in a separate thread to prevent
+ * slow AIs from impacting framerate. However, copying the game-state every turn
+ * proved difficult and rather slow itself (and isn't threadable, obviously).
+ * For these reasons, the design was changed to a single-thread, same-compartment, different-realm design.
+ * The AI can therefore directly use the simulation data via the 'Sim' & 'SimEngine' globals.
+ * As a result, a lof of the code is still designed to be "thread-ready", but this no longer matters.
  *
- * CCmpAIManager grabs the world state after each turn (making use of AIInterface.js
- * and AIProxy.js to decide what data to include) then passes it to CAIWorker.
- * The AI scripts will then run asynchronously and return a list of commands to execute.
- * Any attempts to read the command list (including indirectly via serialization)
- * will block until it's actually completed, so the rest of the engine should avoid
- * reading it for as long as possible.
+ * TODO: despite the above, it would still be useful to allow the AI to run tasks asynchronously (and off-thread).
+ * This could be implemented by having a separate JS runtime in a different thread,
+ * that runs tasks and returns after a distinct # of simulation turns (to maintain determinism).
  *
- * JS::Values are passed between the game and AI threads using Script::StructuredClone.
- *
- * TODO: actually the thread isn't implemented yet, because performance hasn't been
- * sufficiently problematic to justify the complexity yet, but the CAIWorker interface
- * is designed to hopefully support threading when we want it.
+ * Note also that the RL Interface, by default, uses the 'AI representation'.
+ * This representation, alimented by the JS AIInterface/AIProxy tandem, is likely to grow smaller over time
+ * as the AI uses more sim data directly.
  */
 
 /**
- * Implements worker thread for CCmpAIManager.
+ * AI computation orchestator for CCmpAIManager.
  */
 class CAIWorker
 {
@@ -206,27 +203,43 @@ private:
 		std::shared_ptr<ScriptInterface> m_ScriptInterface;
 
 		JS::PersistentRootedValue m_Obj;
-		std::vector<Script::StructuredClone > m_Commands;
+		std::vector<Script::StructuredClone> m_Commands;
 	};
 
 public:
 	struct SCommandSets
 	{
 		player_id_t player;
-		std::vector<Script::StructuredClone > commands;
+		std::vector<Script::StructuredClone> commands;
 	};
 
 	CAIWorker() :
-		m_ScriptInterface(new ScriptInterface("Engine", "AI", g_ScriptContext)),
 		m_TurnNum(0),
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
-		m_HasSharedComponent(false),
-		m_EntityTemplates(g_ScriptContext->GetGeneralJSContext()),
-		m_SharedAIObj(g_ScriptContext->GetGeneralJSContext()),
-		m_PassabilityMapVal(g_ScriptContext->GetGeneralJSContext()),
-		m_TerritoryMapVal(g_ScriptContext->GetGeneralJSContext())
+		m_HasSharedComponent(false)
 	{
+	}
+
+	~CAIWorker()
+	{
+		// Init will always be called.
+		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), Trace, this);
+	}
+
+	void Init(const ScriptInterface& simInterface)
+	{
+		// Create the script interface in the same compartment as the simulation interface.
+		// This will allow us to directly share data from the sim to the AI (and vice versa, should the need arise).
+		m_ScriptInterface = std::make_shared<ScriptInterface>("Engine", "AI", simInterface);
+
+		ScriptRequest rq(m_ScriptInterface);
+
+		m_EntityTemplates.init(rq.cx);
+		m_SharedAIObj.init(rq.cx);
+		m_PassabilityMapVal.init(rq.cx);
+		m_TerritoryMapVal.init(rq.cx);
+
 
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
 
@@ -234,7 +247,15 @@ public:
 
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), Trace, this);
 
-		ScriptRequest rq(m_ScriptInterface);
+		{
+			ScriptRequest simrq(simInterface);
+			// Register the sim globals for easy & explicit access. Mark it replaceable for hotloading.
+			JS::RootedValue global(rq.cx, simrq.globalValue());
+			m_ScriptInterface->SetGlobal("Sim", global, true);
+			JS::RootedValue scope(rq.cx, JS::ObjectValue(*simrq.nativeScope.get()));
+			m_ScriptInterface->SetGlobal("SimEngine", scope, true);
+		}
+
 #define REGISTER_FUNC_NAME(func, name) \
 	ScriptFunction::Register<&CAIWorker::func, ScriptInterface::ObjectFromCBData<CAIWorker>>(rq, name);
 
@@ -253,11 +274,7 @@ public:
 
 		// Globalscripts may use VFS script functions
 		m_ScriptInterface->LoadGlobalScripts();
-	}
 
-	~CAIWorker()
-	{
-		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), Trace, this);
 	}
 
 	bool HasLoadedEntityTemplates() const { return m_HasLoadedEntityTemplates; }
@@ -814,10 +831,6 @@ private:
 		}
 	}
 
-	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
-	// members have to be called before the context destructor.
-	std::shared_ptr<ScriptContext> m_ScriptContext;
-
 	std::shared_ptr<ScriptInterface> m_ScriptInterface;
 	boost::rand48 m_RNG;
 	u32 m_TurnNum;
@@ -870,6 +883,8 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
+		m_Worker.Init(GetSimContext().GetScriptInterface());
+
 		m_TerritoriesDirtyID = 0;
 		m_TerritoriesDirtyBlinkingID = 0;
 		m_JustDeserialized = false;

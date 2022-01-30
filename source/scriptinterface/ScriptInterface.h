@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,6 +84,16 @@ public:
 	 * @param context ScriptContext to use when initializing this interface.
 	 */
 	ScriptInterface(const char* nativeScopeName, const char* debugName, const std::shared_ptr<ScriptContext>& context);
+
+	/**
+	 * Alternate constructor. This creates the new Realm in the same Compartment as the neighbor scriptInterface.
+	 * This means that data can be freely exchanged between these two script interfaces without cloning.
+	 * @param nativeScopeName Name of global object that functions (via ScriptFunction::Register) will
+	 *   be placed into, as a scoping mechanism; typically "Engine"
+	 * @param debugName Name of this interface for CScriptStats purposes.
+	 * @param scriptInterface 'Neighbor' scriptInterface to share a compartment with.
+	 */
+	ScriptInterface(const char* nativeScopeName, const char* debugName, const ScriptInterface& neighbor);
 
 	~ScriptInterface();
 
