@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="base">
+    <variant frequency="1" name="Spartan House">
       <props>
         <prop actor="props/structures/decals/spart_3x3.xml" attachpoint="root"/>
       </props>
@@ -10,43 +10,45 @@
         <texture file="structural/sparta_struct.png" name="baseTex"/>
         <texture file="structural/sparta_struct_spec.png" name="specTex"/>
         <texture file="structural/sparta_struct_norm.png" name="normTex"/>
-        <texture file="structural/ao/spart_temple_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="a">
-      <mesh>structural/spart_house_a.dae</mesh>
+    <variant frequency="1" name="House 01">
+      <mesh>structural/spart_house_01.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/spart_3x3.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/house_nature.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="structural/ao/spart_house_a_AO.png" name="aoTex"/>
+        <texture file="structural/ao/spart_house_01.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="b">
-      <mesh>structural/spart_house_b.dae</mesh>
+    <variant frequency="1" name="House 02">
+      <mesh>structural/spart_house_02.dae</mesh>
       <textures>
-        <texture file="structural/ao/spart_house_b_AO.png" name="aoTex"/>
+        <texture file="structural/ao/spart_house_02.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="c">
-      <mesh>structural/spart_house_c.dae</mesh>
+    <variant frequency="1" name="House 03">
+      <mesh>structural/spart_house_03.dae</mesh>
       <textures>
-        <texture file="structural/ao/spart_house_c_AO.png" name="aoTex"/>
+        <texture file="structural/ao/spart_house_03.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="d">
-      <mesh>structural/spart_house_d.dae</mesh>
+    <variant frequency="1" name="House 04">
+      <mesh>structural/spart_house_04.dae</mesh>
       <textures>
-        <texture file="structural/ao/spart_house_d_AO.png" name="aoTex"/>
+        <texture file="structural/ao/spart_house_04.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="ungarrisoned"/>
-    <variant name="garrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="alive"/>
