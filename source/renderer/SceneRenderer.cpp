@@ -501,10 +501,10 @@ void CSceneRenderer::SetObliqueFrustumClipping(CCamera& camera, const CVector4D&
 	// by the inverse of the projection matrix
 
 	CVector4D q;
-	q.X = (sgn(camPlane.X) - matrix[8]/matrix[11]) / matrix[0];
-	q.Y = (sgn(camPlane.Y) - matrix[9]/matrix[11]) / matrix[5];
-	q.Z = 1.0f/matrix[11];
-	q.W = (1.0f - matrix[10]/matrix[11]) / matrix[14];
+	q.X = (Sign(camPlane.X) - matrix[8] / matrix[11]) / matrix[0];
+	q.Y = (Sign(camPlane.Y) - matrix[9] / matrix[11]) / matrix[5];
+	q.Z = 1.0f / matrix[11];
+	q.W = (1.0f - matrix[10] / matrix[11]) / matrix[14];
 
 	// Calculate the scaled plane vector
 	CVector4D c = camPlane * (2.0f * matrix[11] / camPlane.Dot(q));
