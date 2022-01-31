@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2022-01-28 01:48+0000\n"
+"PO-Revision-Date: 2022-01-31 02:48+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Stadu d’applicacion"
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Reduz la fidelidat del obiectivu."
+msgstr "Reduz la fidelidá del obiectivu."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -41,7 +41,7 @@ msgstr "Captura"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Reduz la vitalidat del obiectivu."
+msgstr "Reduz la vitalidá del obiectivu."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -51,7 +51,7 @@ msgstr "Danno"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Danno frayyante, cumo’l qui fazen las clavas, la calcadura."
+msgstr "Danno frayyante, cumo’l que fazen las clavas, la calcadura."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -61,7 +61,7 @@ msgstr "Frayyura"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Danno queimante, cumo’l qui fazen los fatsucos, las saiettas ardientes."
+msgstr "Danno queimante, cumo’l que fazen los fatsucos, las saiettas ardientes."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -73,7 +73,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Danno curtante, cumo’l qui fazen las spadas, las seguras."
+msgstr "Danno curtante, cumo’l que fazen las spadas, las seguras."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -83,7 +83,7 @@ msgstr "Corte"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Danno perforante, cumo’l qui fazen las saiettas, las hastas."
+msgstr "Danno perforante, cumo’l que fazen las saiettas, las hastas."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -95,22 +95,22 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Danno tóxico, cumo’l qui fazen las coluobras, las armas venenadas."
+msgstr "Danno tóxico, cumo’l que fazen las coluöbras, las armas venenadas."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr "Toxicidat"
+msgstr "Toxicidá"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Esta unidat fai queimar."
+msgstr "Esta unidá faz queimar."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr "Esta unidat sta queimando."
+msgstr "Esta unidá sta queimando."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
@@ -120,12 +120,12 @@ msgstr "In yyamas"
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr "Esta unidat invenena."
+msgstr "Esta unidá invenena."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "Esta unidat sta venenada."
+msgstr "Esta unidá sta venenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
@@ -255,7 +255,7 @@ msgstr "Camelus dromedarius"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
-msgstr "Cuornos"
+msgstr "Cuörnos"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
@@ -272,7 +272,7 @@ msgstr "Vaca"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:17
 msgid "Sanga Cattle"
-msgstr "Buoi Sanga"
+msgstr "Buöi Sanga"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"
@@ -421,7 +421,7 @@ msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
-msgstr "Cría de Giraffa"
+msgstr "Cría de giraffa"
 
 #: simulation/templates/gaia/fauna_goat.xml:17
 msgid "Goat"
@@ -465,7 +465,7 @@ msgstr "Lheona"
 
 #: simulation/templates/gaia/fauna_muskox.xml:11
 msgid "Muskox"
-msgstr "Buoi moschadu"
+msgstr "Buöi moschadu"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
@@ -506,7 +506,7 @@ msgstr "Oryctolagus cuniculus"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr "Cuornu"
+msgstr "Cuörnu"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
@@ -687,7 +687,7 @@ msgstr "Statua romana"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
-msgstr "Templo griego inacabado"
+msgstr "Templo griego inacabao"
 
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
@@ -698,7 +698,7 @@ msgstr "Ayyalga de comida"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "Barriles medio soterrados"
+msgstr "Barriles medio soterraos"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
@@ -749,7 +749,7 @@ msgstr "Ayyalga de piedra"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr "Piedra de grano curtado"
+msgstr "Piedra de grano curtao"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
@@ -874,7 +874,7 @@ msgstr "Pollascu d’abetu commun"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr "Jinebru castellanu"
+msgstr "Ginebru castellanu"
 
 #: simulation/templates/gaia/tree/mangrove.xml:4
 msgid "Mangrove"
@@ -1026,7 +1026,7 @@ msgstr "Requier pelo menus 4 Mílites ou Máchinas."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "Quadrado"
+msgstr "Quadrao"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
@@ -1074,7 +1074,7 @@ msgstr "Solo Mílites emittientes, requier pelo menus 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Reincuontru"
+msgstr "Reincuöntru"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
@@ -1131,7 +1131,7 @@ msgstr "Fonte de comida."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
-msgstr "Mina"
+msgstr "Jazeda"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
@@ -1180,7 +1180,7 @@ msgstr "Construccion"
 
 #: simulation/templates/template_unit.xml:39
 msgid "Unit"
-msgstr "Unidat"
+msgstr "Unidá"
 
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
